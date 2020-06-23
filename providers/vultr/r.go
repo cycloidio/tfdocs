@@ -310,7 +310,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "label",
-					Description: `(Optional) Label that is given to your block storage. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Label that is given to your block storage.`,
+				},
+				resource.Attribute{
+					Name:        "live",
+					Description: `(Optional) Live will allow attachment of the volume to an instance without a restart. Values are ` + "`" + `yes` + "`" + ` or ` + "`" + `no` + "`" + ` default is ` + "`" + `no` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "size_gb",
@@ -342,7 +346,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID for this block storage. ## Import Block Storage can be imported using the Block Storage ` + "`" + `SUBID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_block_storage.my_blockstorage 25058682 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID for this block storage.`,
+				},
+				resource.Attribute{
+					Name:        "live",
+					Description: `Flag which will determine of a volume should be attached with a restart or not. ## Import Block Storage can be imported using the Block Storage ` + "`" + `SUBID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_block_storage.my_blockstorage 25058682 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -376,7 +384,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID for this block storage. ## Import Block Storage can be imported using the Block Storage ` + "`" + `SUBID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_block_storage.my_blockstorage 25058682 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID for this block storage.`,
+				},
+				resource.Attribute{
+					Name:        "live",
+					Description: `Flag which will determine of a volume should be attached with a restart or not. ## Import Block Storage can be imported using the Block Storage ` + "`" + `SUBID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_block_storage.my_blockstorage 25058682 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -397,7 +409,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_ip",
-					Description: `(Required) Server IP you want associated to domain. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Server IP you want associated to domain. If omitted this will create a domain with no records. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -488,7 +500,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ttl",
-					Description: `The time to live of this record.`,
+					Description: `The time to live of this record. ## Import DNS Records can be imported using the Dns Domain ` + "`" + `domain` + "`" + ` and DNS Record ` + "`" + `ID` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_dns_record.rec domain.com,123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -518,7 +530,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ttl",
-					Description: `The time to live of this record.`,
+					Description: `The time to live of this record. ## Import DNS Records can be imported using the Dns Domain ` + "`" + `domain` + "`" + ` and DNS Record ` + "`" + `ID` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_dns_record.rec domain.com,123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -662,7 +674,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_type",
-					Description: `The type of ip this rule is - may be either v4 or v6.`,
+					Description: `The type of ip this rule is - may be either v4 or v6. ## Import Firewall Rules can be imported using the Firewall Group ` + "`" + `ID` + "`" + ` and Firewall Rule ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_firewall_rule.my_rule c342f929,1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -696,7 +708,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_type",
-					Description: `The type of ip this rule is - may be either v4 or v6.`,
+					Description: `The type of ip this rule is - may be either v4 or v6. ## Import Firewall Rules can be imported using the Firewall Group ` + "`" + `ID` + "`" + ` and Firewall Rule ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_firewall_rule.my_rule c342f929,1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -779,6 +791,229 @@ var (
 				resource.Attribute{
 					Name:        "status",
 					Description: `The status of the ISO file. ## Import ISOs can be imported using the ISO ` + "`" + `ISOID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_iso_private.my_iso 2349859 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vultr_load_balancer",
+			Category:         "Resources",
+			ShortDescription: `Get information about a Vultr Load Balancer.`,
+			Description:      ``,
+			Keywords: []string{
+				"load",
+				"balancer",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region_id",
+					Description: `(Required) The region your load balancer is deployed in.`,
+				},
+				resource.Attribute{
+					Name:        "forwarding_rules",
+					Description: `(Required) List of forwarding rules for a load balancer. The configuration of a ` + "`" + `forwarding_rules` + "`" + ` is listened below.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Optional) The load balancers label.`,
+				},
+				resource.Attribute{
+					Name:        "balancing_algorithm",
+					Description: `(Optional) The balancing algorithm for your load balancer. Options are ` + "`" + `roundrobin` + "`" + ` or ` + "`" + `leastconn` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "proxy_protocol",
+					Description: `(Optional) Boolean value that indicates if Proxy Protocol is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "cookie_name",
+					Description: `(Optional) Name for your given sticky session.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_redirect",
+					Description: `(Optional) Boolean value that indicates if HTTP calls will be redirected to HTTPS.`,
+				},
+				resource.Attribute{
+					Name:        "attached_instances",
+					Description: `(Optional) Array of instances that are currently attached to the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `(Optional) A block that defines the way load balancers should check for health. The configuration of a ` + "`" + `health_check` + "`" + ` is listed below.`,
+				},
+				resource.Attribute{
+					Name:        "ssl",
+					Description: `(Optional) A block that supplies your ssl configuration to be used with HTTPS. The configuration of a ` + "`" + `ssl` + "`" + ` is listed below. ` + "`" + `health_check` + "`" + ` supports the following`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Optional) The protocol used to traffic requests to the load balancer. Possible values are ` + "`" + `http` + "`" + `, or ` + "`" + `tcp` + "`" + `. Default value is ` + "`" + `http` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional) The path on the attached instances that the load balancer should check against. Default value is ` + "`" + `/` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) The assigned port (integer) on the attached instances that the load balancer should check against. Default value is ` + "`" + `80` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "check_interval",
+					Description: `(Optional) Time in seconds to perform health check. Default value is 15.`,
+				},
+				resource.Attribute{
+					Name:        "response_timeout",
+					Description: `(Optional) Time in seconds to wait for a health check response. Default value is 5.`,
+				},
+				resource.Attribute{
+					Name:        "unhealthy_threshold",
+					Description: `(Optional) Number of failed attempts encountered before failover. Default value is 5.`,
+				},
+				resource.Attribute{
+					Name:        "healthy_threshold",
+					Description: `(Optional) Number of failed attempts encountered before failover. Default value is 5. ` + "`" + `forwarding_rules` + "`" + ` supports the following`,
+				},
+				resource.Attribute{
+					Name:        "frontend_protocol",
+					Description: `(Required) Protocol on load balancer side. Possible values: "http", "https", "tcp".`,
+				},
+				resource.Attribute{
+					Name:        "frontend_port",
+					Description: `(Required) Port on load balancer side.`,
+				},
+				resource.Attribute{
+					Name:        "backend_protocol",
+					Description: `(Required) Protocol on instance side. Possible values: "http", "https", "tcp".`,
+				},
+				resource.Attribute{
+					Name:        "target_port",
+					Description: `(Required) Port on instance side. ` + "`" + `ssl` + "`" + ` supports the following`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `(Required) The SSL certificates private key.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `(Required) The SSL Certificate.`,
+				},
+				resource.Attribute{
+					Name:        "chain",
+					Description: `(Optional) The SSL certificate chain. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The load balancer ID.`,
+				},
+				resource.Attribute{
+					Name:        "region_id",
+					Description: `The region your load balancer is deployed in.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The load balancers label.`,
+				},
+				resource.Attribute{
+					Name:        "balancing_algorithm",
+					Description: `The balancing algorithm for your load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "proxy_protocol",
+					Description: `Boolean value that indicates if Proxy Protocol is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "cookie_name",
+					Description: `Name for your given sticky session.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_redirect",
+					Description: `Boolean value that indicates if HTTP calls will be redirected to HTTPS.`,
+				},
+				resource.Attribute{
+					Name:        "has_ssl",
+					Description: `Boolean value that indicates if SSL is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "attached_instances",
+					Description: `Array of instances that are currently attached to the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Current status for the load balancer`,
+				},
+				resource.Attribute{
+					Name:        "ipv4",
+					Description: `IPv4 address for your load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6",
+					Description: `IPv6 address for your load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Defines the way load balancers should check for health.`,
+				},
+				resource.Attribute{
+					Name:        "forwarding_rules",
+					Description: `Defines the forwarding rules for a load balancer.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The load balancer ID.`,
+				},
+				resource.Attribute{
+					Name:        "region_id",
+					Description: `The region your load balancer is deployed in.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The load balancers label.`,
+				},
+				resource.Attribute{
+					Name:        "balancing_algorithm",
+					Description: `The balancing algorithm for your load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "proxy_protocol",
+					Description: `Boolean value that indicates if Proxy Protocol is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "cookie_name",
+					Description: `Name for your given sticky session.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_redirect",
+					Description: `Boolean value that indicates if HTTP calls will be redirected to HTTPS.`,
+				},
+				resource.Attribute{
+					Name:        "has_ssl",
+					Description: `Boolean value that indicates if SSL is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "attached_instances",
+					Description: `Array of instances that are currently attached to the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Current status for the load balancer`,
+				},
+				resource.Attribute{
+					Name:        "ipv4",
+					Description: `IPv4 address for your load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6",
+					Description: `IPv6 address for your load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Defines the way load balancers should check for health.`,
+				},
+				resource.Attribute{
+					Name:        "forwarding_rules",
+					Description: `Defines the forwarding rules for a load balancer.`,
 				},
 			},
 		},
@@ -1019,7 +1254,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "label",
-					Description: `(Optional) A label for the server. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) A label for the server.`,
+				},
+				resource.Attribute{
+					Name:        "reserved_ip",
+					Description: `(Optional) IP address of the floating IP to use as the main IP of this server. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1730,14 +1969,15 @@ var (
 		"vultr_firewall_group":    4,
 		"vultr_firewall_rule":     5,
 		"vultr_iso":               6,
-		"vultr_network":           7,
-		"vultr_reserved_ip":       8,
-		"vultr_server":            9,
-		"vultr_snapshot":          10,
-		"vultr_snapshot_from_url": 11,
-		"vultr_ssh_key":           12,
-		"vultr_startup_script":    13,
-		"vultr_user":              14,
+		"vultr_load_balancer":     7,
+		"vultr_network":           8,
+		"vultr_reserved_ip":       9,
+		"vultr_server":            10,
+		"vultr_snapshot":          11,
+		"vultr_snapshot_from_url": 12,
+		"vultr_ssh_key":           13,
+		"vultr_startup_script":    14,
+		"vultr_user":              15,
 	}
 )
 

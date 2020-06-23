@@ -116,8 +116,48 @@ var (
 					Description: `(Optional) A list of email domains. Example: ` + "`" + `email_domain = ["example.com"]` + "`" + ``,
 				},
 				resource.Attribute{
+					Name:        "service_token",
+					Description: `(Optional) A list of service token ids. Example: ` + "`" + `service_token = [cloudflare_access_service_token.demo.id]` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "any_valid_service_token",
+					Description: `(Optional) Boolean indicating if allow all tokens to be granted. Example: ` + "`" + `any_valid_service_token = true` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "group",
+					Description: `(Optional) A list of access group ids. Example: ` + "`" + `group = [cloudflare_access_group.demo.id]` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "everyone",
-					Description: `(Optional) Boolean indicating permitting access for all requests. Example: ` + "`" + `everyone = true` + "`" + ` ## Import Access Groups can be imported using a composite ID formed of account ID and group ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_access_group.staging 975ecf5a45e3bcb680dba0722a420ad9/67ea780ce4982c1cfbe6b7293afc765d ` + "`" + `` + "`" + `` + "`" + ` where`,
+					Description: `(Optional) Boolean indicating permitting access for all requests. Example: ` + "`" + `everyone = true` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `(Optional) Whether to use mTLS certificate authentication.`,
+				},
+				resource.Attribute{
+					Name:        "common_name",
+					Description: `(Optional) Use a certificate common name to authenticate with.`,
+				},
+				resource.Attribute{
+					Name:        "gsuite",
+					Description: `(Optional) Use GSuite as the authentication mechanism. Example: ` + "`" + `` + "`" + `` + "`" + `hcl # ... other configuration include { gsuite { email = "admins@example.com" identity_provider_id = "ca298b82-93b5-41bf-bc2d-10493f09b761" } } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "github",
+					Description: `(Optional) Use a GitHub team as the ` + "`" + `include` + "`" + ` condition. Example: ` + "`" + `` + "`" + `` + "`" + `hcl # ... other configuration include { github { name = "my-github-team-name" identity_provider_id = "ca298b82-93b5-41bf-bc2d-10493f09b761" } } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "azure",
+					Description: `(Optional) Use Azure AD as the ` + "`" + `include` + "`" + ` condition. Example: ` + "`" + `` + "`" + `` + "`" + `hcl # ... other configuration include { azure { id = "86773093-5feb-48dd-814b-7ccd3676ff50e" identity_provider_id = "ca298b82-93b5-41bf-bc2d-10493f09b761" } } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "okta",
+					Description: `(Optional) Use Okta as the ` + "`" + `include` + "`" + ` condition. Example: ` + "`" + `` + "`" + `` + "`" + `hcl # ... other configuration include { okta { name = "admins" identity_provider_id = "ca298b82-93b5-41bf-bc2d-10493f09b761" } } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "saml",
+					Description: `(Optional) Use an external SAML setup as the ` + "`" + `include` + "`" + ` condition. Example: ` + "`" + `` + "`" + `` + "`" + `hcl # ... other configuration include { saml { attribute_name = "group" attribute_value = "admins" identity_provider_id = "ca298b82-93b5-41bf-bc2d-10493f09b761" } } ` + "`" + `` + "`" + `` + "`" + ` ## Import Access Groups can be imported using a composite ID formed of account ID and group ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_access_group.staging 975ecf5a45e3bcb680dba0722a420ad9/67ea780ce4982c1cfbe6b7293afc765d ` + "`" + `` + "`" + `` + "`" + ` where`,
 				},
 				resource.Attribute{
 					Name:        "975ecf5a45e3bcb680dba0722a420ad9",
@@ -215,7 +255,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "decision",
-					Description: `(Required) Defines the action Access will take if the policy matches the user. Allowed values: ` + "`" + `allow` + "`" + `, ` + "`" + `deny` + "`" + `, ` + "`" + `bypass` + "`" + ``,
+					Description: `(Required) Defines the action Access will take if the policy matches the user. Allowed values: ` + "`" + `allow` + "`" + `, ` + "`" + `deny` + "`" + `, ` + "`" + `non_identity` + "`" + `, ` + "`" + `bypass` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -227,31 +267,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "require",
-					Description: `(Optional) A series of access conditions, see below for full list.`,
+					Description: `(Optional) A series of access conditions, see [Access Groups](/docs/providers/cloudflare/r/access_group.html#conditions).`,
 				},
 				resource.Attribute{
 					Name:        "exclude",
-					Description: `(Optional) A series of access conditions, see below for full list.`,
+					Description: `(Optional) A series of access conditions, see [Access Groups](/docs/providers/cloudflare/r/access_group.html#conditions).`,
 				},
 				resource.Attribute{
 					Name:        "include",
-					Description: `(Required) A series of access conditions, see below for full list. ## Conditions ` + "`" + `require` + "`" + `, ` + "`" + `exclude` + "`" + ` and ` + "`" + `include` + "`" + ` arguments share the available conditions which can be applied. The conditions are:`,
-				},
-				resource.Attribute{
-					Name:        "ip",
-					Description: `(Optional) A list of IP addresses or ranges. Example: ` + "`" + `ip = ["1.2.3.4", "10.0.0.0/2"]` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "email",
-					Description: `(Optional) A list of email addresses. Example: ` + "`" + `email = ["test@example.com"]` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "email_domain",
-					Description: `(Optional) A list of email domains. Example: ` + "`" + `email_domain = ["example.com"]` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "everyone",
-					Description: `(Optional) Boolean indicating permitting access for all requests. Example: ` + "`" + `everyone = true` + "`" + ` ## Import Access Policies can be imported using a composite ID formed of zone ID, application ID and policy ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_access_policy.staging cb029e245cfdd66dc8d2e570d5dd3322/d41d8cd98f00b204e9800998ecf8427e/67ea780ce4982c1cfbe6b7293afc765d ` + "`" + `` + "`" + `` + "`" + ` where`,
+					Description: `(Required) A series of access conditions, see [Access Groups](/docs/providers/cloudflare/r/access_group.html#conditions). ## Import Access Policies can be imported using a composite ID formed of zone ID, application ID and policy ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_access_policy.staging cb029e245cfdd66dc8d2e570d5dd3322/d41d8cd98f00b204e9800998ecf8427e/67ea780ce4982c1cfbe6b7293afc765d ` + "`" + `` + "`" + `` + "`" + ` where`,
 				},
 				resource.Attribute{
 					Name:        "cb029e245cfdd66dc8d2e570d5dd3322",
@@ -454,6 +478,33 @@ var (
 				resource.Attribute{
 					Name:        "smart_routing",
 					Description: `(Optional) Whether smart routing is enabled. Valid values: ` + "`" + `on` + "`" + ` or ` + "`" + `off` + "`" + `. Defaults to ` + "`" + `off` + "`" + `. ## Import Argo settings can be imported the zone ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_argo.example d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ` where ` + "`" + `d41d8cd98f00b204e9800998ecf8427e` + "`" + ` is the zone ID.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "cloudflare_byo_ip_prefix",
+			Category:         "Resources",
+			ShortDescription: `Provides the ability to manage Bring-Your-Own-IP prefixes (BYOIP) which are used with or without Magic Transit.`,
+			Description:      ``,
+			Keywords: []string{
+				"byo",
+				"ip",
+				"prefix",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "prefix_id",
+					Description: `(Required) The assigned Bring-Your-Own-IP prefix ID.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of the prefix.`,
+				},
+				resource.Attribute{
+					Name:        "advertisement",
+					Description: `(Optional) Whether or not the prefix shall be announced. A prefix can be activated or deactivated once every 15 minutes (attempting more regular updates will trigger rate limiting). Valid values: ` + "`" + `on` + "`" + ` or ` + "`" + `off` + "`" + `. ## Import The current settings for Bring-Your-Own-IP prefixes can be imported using the prefix ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_byo_ip_prefix.example d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -666,6 +717,119 @@ var (
 					Description: `rule ID as returned by [API](https://api.cloudflare.com/#zone-firewall-filter-rules)`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "cloudflare_healthcheck",
+			Category:         "Resources",
+			ShortDescription: `Provides the ability to create a Standalone Health Check without needing a Cloudflare Load Balancer.`,
+			Description:      ``,
+			Keywords: []string{
+				"healthcheck",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Required) The DNS zone ID to which apply settings.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A short name to identify the health check. Only alphanumeric characters, hyphens and underscores are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A human-readable description of the health check.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `(Required) The hostname or IP address of the origin server to run health checks on.`,
+				},
+				resource.Attribute{
+					Name:        "suspended",
+					Description: `(Optional) If suspended, no health checks are sent to the origin. Valid values: ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + ` (Default: ` + "`" + `false` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "check_regions",
+					Description: `(Optional) A list of regions from which to run health checks. If not set Cloudflare will pick a default region. Valid values: ` + "`" + `WNAM` + "`" + `, ` + "`" + `ENAM` + "`" + `, ` + "`" + `WEU` + "`" + `, ` + "`" + `EEU` + "`" + `, ` + "`" + `NSAM` + "`" + `, ` + "`" + `SSAM` + "`" + `, ` + "`" + `OC` + "`" + `, ` + "`" + `ME` + "`" + `, ` + "`" + `NAF` + "`" + `, ` + "`" + `SAF` + "`" + `, ` + "`" + `IN` + "`" + `, ` + "`" + `SEAS` + "`" + `, ` + "`" + `NEAS` + "`" + `, ` + "`" + `ALL_REGIONS` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "notification_suspended",
+					Description: `(Optional) Whether the notifications are suspended or not. Useful for maintenance periods. Valid values: ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + ` (Default: ` + "`" + `false` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "notification_email_addresses",
+					Description: `(Optional) A list of email addresses we want to send the notifications to.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The protocol to use for the health check. Valid values: ` + "`" + `HTTP` + "`" + `, ` + "`" + `HTTPS` + "`" + `, ` + "`" + `TCP` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) Port number to connect to for the health check. Valid values are in the rage ` + "`" + `0-65535` + "`" + ` (Default: ` + "`" + `80` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) The timeout (in seconds) before marking the health check as failed. (Default: ` + "`" + `5` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "retries",
+					Description: `(Optional) The number of retries to attempt in case of a timeout before marking the origin as unhealthy. Retries are attempted immediately. (Default: ` + "`" + `2` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `(Optional) The interval between each health check. Shorter intervals may give quicker notifications if the origin status changes, but will increase load on the origin as we check from multiple locations. (Default: ` + "`" + `60` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "consecutive_fails",
+					Description: `(Optional) The number of consecutive fails required from a health check before changing the health to unhealthy. (Default: ` + "`" + `1` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "consecutive_successes",
+					Description: `(Optional) The number of consecutive successes required from a health check before changing the health to healthy. (Default: ` + "`" + `1` + "`" + `) ### HTTP/HTTPS specific arguments`,
+				},
+				resource.Attribute{
+					Name:        "method",
+					Description: `(Optional) The HTTP method to use for the health check. Valid values: ` + "`" + `GET` + "`" + ` or ` + "`" + `HEAD` + "`" + ` (Default: ` + "`" + `GET` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional) The endpoint path to health check against. (Default: ` + "`" + `/` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "expected_body",
+					Description: `(Optional) A case-insensitive sub-string to look for in the response body. If this string is not found, the origin will be marked as unhealthy.`,
+				},
+				resource.Attribute{
+					Name:        "expected_codes",
+					Description: `(Optional) The expected HTTP response codes (e.g. "200") or code ranges (e.g. "2xx" for all codes starting with 2) of the health check. (Default: ` + "`" + `["200"]` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "follow_redirects",
+					Description: `(Optional) Follow redirects if the origin returns a 3xx status code. Valid values: ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + ` (Default: ` + "`" + `false` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "allow_insecure",
+					Description: `(Optional) Do not validate the certificate when the health check uses HTTPS. Valid values: ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + ` (Default: ` + "`" + `false` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "header",
+					Description: `(Optional) The HTTP request headers to send in the health check. It is recommended you set a Host header by default. The User-Agent header cannot be overridden.`,
+				},
+				resource.Attribute{
+					Name:        "header",
+					Description: `(Required) The header name.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) A list of string values for the header. ### TCP specific arguments`,
+				},
+				resource.Attribute{
+					Name:        "method",
+					Description: `(Optional) The TCP connection method to use for the health check. Valid values: ` + "`" + `connection_established` + "`" + ` (Default: ` + "`" + `connection_established` + "`" + `).`,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -908,7 +1072,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "notification_email",
-					Description: `(Optional) The email address to send health status notifications to. This can be an individual mailbox or a mailing list. The`,
+					Description: `(Optional) The email address to send health status notifications to. This can be an individual mailbox or a mailing list. Multiple emails can be supplied as a comma delimited list. The`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -956,6 +1120,28 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "cloudflare_logpull_retention",
+			Category:         "Resources",
+			ShortDescription: `Allows management of the Logpull Retention settings used to control whether or not to retain HTTP request logs.`,
+			Description:      ``,
+			Keywords: []string{
+				"logpull",
+				"retention",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Required) The zone ID to apply the log retention to.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Whether you wish to retain logs or not. ## Import You can import existing Logpull Retention using the zone ID as the identifier. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_logpull_retention.example fb54f084ca7f7b732d3d3ecbd8ef7bf2 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "cloudflare_logpush_job",
 			Category:         "Resources",
 			ShortDescription: `Provides a resource which manages Cloudflare logpush jobs.`,
@@ -979,7 +1165,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ownership_challenge",
-					Description: `(Required) Ownership challenge token to prove destination ownership. See [Developer documentation](https://developers.cloudflare.com/logs/logpush/logpush-configuration-api/understanding-logpush-api/#usage). - - -`,
+					Description: `(Required) Ownership challenge token to prove destination ownership. See [Developer documentation](https://developers.cloudflare.com/logs/logpush/logpush-configuration-api/understanding-logpush-api/#usage).`,
+				},
+				resource.Attribute{
+					Name:        "dataset",
+					Description: `(Required) Which type of dataset resource to use. Available values are ` + "`" + `"firewall_events"` + "`" + `, ` + "`" + `"http_requests"` + "`" + `, and ` + "`" + `"spectrum_events"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "logpull_options",
@@ -991,6 +1181,38 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "cloudflare_logpush_ownership_challenge",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource which manages Cloudflare Logpush ownership challenges to use in a Logpush Job.`,
+			Description:      ``,
+			Keywords: []string{
+				"logpush",
+				"ownership",
+				"challenge",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Required) The zone ID where the logpush ownership challenge should be created.`,
+				},
+				resource.Attribute{
+					Name:        "destination_conf",
+					Description: `(Required) Uniquely identifies a resource (such as an s3 bucket) where data will be pushed. Additional configuration parameters supported by the destination may be included. See [Logpush destination documentation](https://developers.cloudflare.com/logs/logpush/logpush-configuration-api/understanding-logpush-api/#destination). ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "ownership_challenge_filename",
+					Description: `The filename of the ownership challenge which contains the contents required for Logpush Job creation.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ownership_challenge_filename",
+					Description: `The filename of the ownership challenge which contains the contents required for Logpush Job creation.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1106,6 +1328,10 @@ var (
 				resource.Attribute{
 					Name:        "cache_deception_armor",
 					Description: `(Optional) Whether this action is ` + "`" + `"on"` + "`" + ` or ` + "`" + `"off"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "cache_key_fields",
+					Description: `(Optional) Controls how Cloudflare creates Cache Keys used to identify files in cache. See below for full description.`,
 				},
 				resource.Attribute{
 					Name:        "cache_level",
@@ -1237,7 +1463,75 @@ var (
 				},
 				resource.Attribute{
 					Name:        "js",
-					Description: `(Required) Whether Javascript should be minified. Valid values are ` + "`" + `"on"` + "`" + ` or ` + "`" + `"off"` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) Whether Javascript should be minified. Valid values are ` + "`" + `"on"` + "`" + ` or ` + "`" + `"off"` + "`" + `. ### Cache Key Fields -> This setting is available to Enterprise customers only. A Cache Key is an identifier that Cloudflare uses for a file in a cache. The Cache Key Template defines this identifier for a given HTTP request. For detailed description of use cases and semantics for the particular setting please refer to [Cloudflare Support article](https://support.cloudflare.com/hc/en-us/articles/115004290387-Creating-Cache-Keys). Example: ` + "`" + `` + "`" + `` + "`" + `hcl # Cache JavaScript files: # - ignore CORS Origin header (one copy regardless of requesting Host) # - ignore API key query string # - include browser language preference (e.g. string translations) resource "cloudflare_page_rule" "foobar" { zone_id = var.cloudflare_zone_id target = "embed.${var.cloudflare_zone}/`,
+				},
+				resource.Attribute{
+					Name:        "cookie",
+					Description: `(Required, but allowed to be empty) Controls what cookies go into Cache Key:`,
+				},
+				resource.Attribute{
+					Name:        "check_presence",
+					Description: `(Optional, Array) Check for presence of specified cookies, without including their actual values.`,
+				},
+				resource.Attribute{
+					Name:        "include",
+					Description: `(Optional, Array) Use values of specified cookies in Cache Key.`,
+				},
+				resource.Attribute{
+					Name:        "header",
+					Description: `(Required, but allowed to be empty) Controls what HTTP headers go into Cache Key:`,
+				},
+				resource.Attribute{
+					Name:        "check_presence",
+					Description: `(Optional, Array) Check for presence of specified HTTP headers, without including their actual values.`,
+				},
+				resource.Attribute{
+					Name:        "exclude",
+					Description: `(Optional, Array) Exclude these HTTP headers from Cache Key. Currently, only the ` + "`" + `Origin` + "`" + ` header can be excluded.`,
+				},
+				resource.Attribute{
+					Name:        "include",
+					Description: `(Optional, Array) Use values of specified HTTP headers in Cache Key. Please refer to [Support article](https://support.cloudflare.com/hc/en-us/articles/115004290387-Creating-Cache-Keys) for the list of HTTP headers that cannot be included. The ` + "`" + `Origin` + "`" + ` header is always included unless explicitly excluded.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `(Required, but allowed to be empty) Controls which Host header goes into Cache Key:`,
+				},
+				resource.Attribute{
+					Name:        "resolved",
+					Description: `(Optional, Boolean) ` + "`" + `false` + "`" + ` (default) - includes the Host header in the HTTP request sent to the origin; ` + "`" + `true` + "`" + ` - includes the Host header that was resolved to get the origin IP for the request (e.g. changed with Resolve Override Page Rule).`,
+				},
+				resource.Attribute{
+					Name:        "query_string",
+					Description: `(Required, but allowed to be empty) Controls which URL query string parameters go into the Cache Key.`,
+				},
+				resource.Attribute{
+					Name:        "exclude",
+					Description: `(Optional, Array) Exclude these query string parameters from Cache Key.`,
+				},
+				resource.Attribute{
+					Name:        "include",
+					Description: `(Optional, Array) Only use values of specified query string parameters in Cache Key.`,
+				},
+				resource.Attribute{
+					Name:        "ignore",
+					Description: `(Optional, Boolean) ` + "`" + `false` + "`" + ` (default) - all query string parameters are used for Cache Key, unless explicitly excluded; ` + "`" + `true` + "`" + ` - all query string parameters are ignored; value is ignored if any of ` + "`" + `exclude` + "`" + ` or ` + "`" + `include` + "`" + ` is non-empty.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `(Required, but allowed to be empty) Controls which end user-related features go into the Cache Key.`,
+				},
+				resource.Attribute{
+					Name:        "device_type",
+					Description: `(Optional, Boolean) ` + "`" + `true` + "`" + ` - classifies a request as “mobile”, “desktop”, or “tablet” based on the User Agent; defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "geo",
+					Description: `(Optional, Boolean) ` + "`" + `true` + "`" + ` - includes the client’s country, derived from the IP address; defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "lang",
+					Description: `(Optional, Boolean) ` + "`" + `true` + "`" + ` - includes the first language code contained in the ` + "`" + `Accept-Language` + "`" + ` header sent by the client; defaults to ` + "`" + `false` + "`" + `. Example: ` + "`" + `` + "`" + `` + "`" + `hcl # Unrealistic example with all features used resource "cloudflare_page_rule" "foobar" { zone_id = var.cloudflare_zone_id target = "${var.cloudflare_zone}/app/`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1454,7 +1748,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `A key-value map of string metadata Cloudflare associates with the record ## Import Records can be imported using a composite ID formed of zone name and record ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_record.default ae36f999674d196762efcc5abb06b345/d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ` where:`,
+					Description: `A key-value map of string metadata Cloudflare associates with the record ## Import Records can be imported using a composite ID formed of zone ID and record ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_record.default ae36f999674d196762efcc5abb06b345/d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ` where:`,
 				},
 				resource.Attribute{
 					Name:        "ae36f999674d196762efcc5abb06b345",
@@ -1488,7 +1782,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `A key-value map of string metadata Cloudflare associates with the record ## Import Records can be imported using a composite ID formed of zone name and record ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_record.default ae36f999674d196762efcc5abb06b345/d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ` where:`,
+					Description: `A key-value map of string metadata Cloudflare associates with the record ## Import Records can be imported using a composite ID formed of zone ID and record ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_record.default ae36f999674d196762efcc5abb06b345/d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ` where:`,
 				},
 				resource.Attribute{
 					Name:        "ae36f999674d196762efcc5abb06b345",
@@ -1545,7 +1839,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "traffic_type",
-					Description: `(Optional) Set's application type. Valid values are: ` + "`" + `direct` + "`" + `, ` + "`" + `http` + "`" + `, ` + "`" + `https` + "`" + `. Defaults to ` + "`" + `direct` + "`" + `.`,
+					Description: `(Optional) Sets application type. Valid values are: ` + "`" + `direct` + "`" + `, ` + "`" + `http` + "`" + `, ` + "`" + `https` + "`" + `. Defaults to ` + "`" + `direct` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "argo_smart_routing",
+					Description: `(Optional). Enables Argo Smart Routing. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "edge_ip_connectivity",
+					Description: `(Optional). Choose which types of IP addresses will be provisioned for this subdomain. Valid values are: ` + "`" + `all` + "`" + `, ` + "`" + `ipv4` + "`" + `, ` + "`" + `ipv6` + "`" + `. Defaults to ` + "`" + `all` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "edge_ips",
+					Description: `(Optional). A list of edge IPs (IPv4 and/or IPv6) to configure Spectrum application to. Requires [Bring Your Own IP](https://developers.cloudflare.com/spectrum/getting-started/byoip/) provisioned.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -2070,37 +2376,41 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"cloudflare_access_application":       0,
-		"cloudflare_access_group":             1,
-		"cloudflare_access_identity_provider": 2,
-		"cloudflare_access_policy":            3,
-		"cloudflare_access_rule":              4,
-		"cloudflare_access_service_token":     5,
-		"cloudflare_account_member":           6,
-		"cloudflare_argo":                     7,
-		"cloudflare_custom_pages":             8,
-		"cloudflare_custom_ssl":               9,
-		"cloudflare_filter":                   10,
-		"cloudflare_firewall_rule":            11,
-		"cloudflare_load_balancer":            12,
-		"cloudflare_load_balancer_monitor":    13,
-		"cloudflare_load_balancer_pool":       14,
-		"cloudflare_logpush_job":              15,
-		"cloudflare_origin_ca_certificate":    16,
-		"cloudflare_page_rule":                17,
-		"cloudflare_rate_limit":               18,
-		"cloudflare_record":                   19,
-		"cloudflare_spectrum_application":     20,
-		"cloudflare_waf_group":                21,
-		"cloudflare_waf_package":              22,
-		"cloudflare_waf_rule":                 23,
-		"cloudflare_worker_route":             24,
-		"cloudflare_worker_script":            25,
-		"cloudflare_workers_kv":               26,
-		"cloudflare_workers_kv_namespace":     27,
-		"cloudflare_zone":                     28,
-		"cloudflare_zone_lockdown":            29,
-		"cloudflare_zone_settings_override":   30,
+		"cloudflare_access_application":          0,
+		"cloudflare_access_group":                1,
+		"cloudflare_access_identity_provider":    2,
+		"cloudflare_access_policy":               3,
+		"cloudflare_access_rule":                 4,
+		"cloudflare_access_service_token":        5,
+		"cloudflare_account_member":              6,
+		"cloudflare_argo":                        7,
+		"cloudflare_byo_ip_prefix":               8,
+		"cloudflare_custom_pages":                9,
+		"cloudflare_custom_ssl":                  10,
+		"cloudflare_filter":                      11,
+		"cloudflare_firewall_rule":               12,
+		"cloudflare_healthcheck":                 13,
+		"cloudflare_load_balancer":               14,
+		"cloudflare_load_balancer_monitor":       15,
+		"cloudflare_load_balancer_pool":          16,
+		"cloudflare_logpull_retention":           17,
+		"cloudflare_logpush_job":                 18,
+		"cloudflare_logpush_ownership_challenge": 19,
+		"cloudflare_origin_ca_certificate":       20,
+		"cloudflare_page_rule":                   21,
+		"cloudflare_rate_limit":                  22,
+		"cloudflare_record":                      23,
+		"cloudflare_spectrum_application":        24,
+		"cloudflare_waf_group":                   25,
+		"cloudflare_waf_package":                 26,
+		"cloudflare_waf_rule":                    27,
+		"cloudflare_worker_route":                28,
+		"cloudflare_worker_script":               29,
+		"cloudflare_workers_kv":                  30,
+		"cloudflare_workers_kv_namespace":        31,
+		"cloudflare_zone":                        32,
+		"cloudflare_zone_lockdown":               33,
+		"cloudflare_zone_settings_override":      34,
 	}
 )
 

@@ -994,7 +994,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Indicates the name of an AZ.`,
+					Description: `(Optional) Indicates the name of an AZ.`,
 				},
 				resource.Attribute{
 					Name:        "code",
@@ -1002,7 +1002,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 				},
 				resource.Attribute{
 					Name:        "port",
-					Description: `(Required) Indicates the port number of an AZ. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found az. In addition, the following attributes are exported:`,
+					Description: `(Optional) Indicates the port number of an AZ. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found az. In addition, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1093,118 +1093,90 @@ CTS Tracker data source allows access of Cloud Tracker.
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "engine",
-					Description: `(Required) Indicates the name of a message engine.`,
+					Name:        "spec_code",
+					Description: `(Optional) DCS instance specification code. For details, see [Querying Service Specifications](https://support.huaweicloud.com/en-us/api-dcs/dcs-api-0312040.html). ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found product. In addition, the following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Optional) Indicates the version of a message engine.`,
-				},
-				resource.Attribute{
-					Name:        "instance_type",
-					Description: `(Required) Indicates an instance type. Options: "single" and "cluster"`,
-				},
-				resource.Attribute{
-					Name:        "vm_specification",
-					Description: `(Optional) Indicates VM specifications.`,
-				},
-				resource.Attribute{
-					Name:        "storage",
-					Description: `(Optional) Indicates the message storage space.`,
-				},
-				resource.Attribute{
-					Name:        "bandwidth",
-					Description: `(Optional) Indicates the baseline bandwidth of a Kafka instance.`,
-				},
-				resource.Attribute{
-					Name:        "partition_num",
-					Description: `(Optional) Indicates the maximum number of topics that can be created for a Kafka instance.`,
-				},
-				resource.Attribute{
-					Name:        "storage_spec_code",
-					Description: `(Optional) Indicates an I/O specification.`,
-				},
-				resource.Attribute{
-					Name:        "io_type",
-					Description: `(Optional) Indicates an I/O type.`,
-				},
-				resource.Attribute{
-					Name:        "node_num",
-					Description: `(Optional) Indicates the number of nodes in a cluster. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found product. In addition, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "engine",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "instance_type",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "vm_specification",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "bandwidth",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "partition_num",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "storage_spec_code",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "io_type",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "node_num",
+					Name:        "spec_code",
 					Description: `See Argument Reference above.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "engine",
+					Name:        "spec_code",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_dds_flavors_v3",
+			Category:         "Data Sources",
+			ShortDescription: `Get the flavor information on HuaweiCloud DDS service.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V3 dds client.`,
+				},
+				resource.Attribute{
+					Name:        "engine_name",
+					Description: `(Optional) The engine name of the dds, now only DDS-Community is supported.`,
+				},
+				resource.Attribute{
+					Name:        "speccode",
+					Description: `(Optional) The spec code of a dds flavor. ## Available value for attributes engine_name | type | vcpus | ram | speccode ---- | --- | --- | --- | --- DDS-Community | mongos | 1 | 4 | dds.mongodb.c3.medium.4.mongos DDS-Community | mongos | 2 | 8 | dds.mongodb.c3.large.4.mongos DDS-Community | mongos | 4 | 16 | dds.mongodb.c3.xlarge.4.mongos DDS-Community | mongos | 8 | 32 | dds.mongodb.c3.2xlarge.4.mongos DDS-Community | mongos | 16 | 64 | dds.mongodb.c3.4xlarge.4.mongos DDS-Community | shard | 1 | 4 | dds.mongodb.c3.medium.4.shard DDS-Community | shard | 2 | 8 | dds.mongodb.c3.large.4.shard DDS-Community | shard | 4 | 16 | dds.mongodb.c3.xlarge.4.shard DDS-Community | shard | 8 | 32 | dds.mongodb.c3.2xlarge.4.shard DDS-Community | shard | 16 | 64 | dds.mongodb.c3.4xlarge.4.shard DDS-Community | config | 2 | 4 | dds.mongodb.c3.large.2.config DDS-Community | replica | 1 | 4 | dds.mongodb.c3.medium.4.repset DDS-Community | replica | 2 | 8 | dds.mongodb.c3.large.4.repset DDS-Community | replica | 4 | 16 | dds.mongodb.c3.xlarge.4.repset DDS-Community | replica | 8 | 32 | dds.mongodb.c3.2xlarge.4.repset DDS-Community | replica | 16 | 64 | dds.mongodb.c3.4xlarge.4.repset ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "region",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "version",
+					Name:        "engine_name",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "instance_type",
+					Name:        "speccode",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "vm_specification",
+					Name:        "type",
+					Description: `The type of the dds flavor.`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `The vcpus of the dds flavor.`,
+				},
+				resource.Attribute{
+					Name:        "ram",
+					Description: `The ram of the dds flavor.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "bandwidth",
+					Name:        "engine_name",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "partition_num",
+					Name:        "speccode",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "storage_spec_code",
-					Description: `See Argument Reference above.`,
+					Name:        "type",
+					Description: `The type of the dds flavor.`,
 				},
 				resource.Attribute{
-					Name:        "io_type",
-					Description: `See Argument Reference above.`,
+					Name:        "vcpus",
+					Description: `The vcpus of the dds flavor.`,
 				},
 				resource.Attribute{
-					Name:        "node_num",
-					Description: `See Argument Reference above.`,
+					Name:        "ram",
+					Description: `The ram of the dds flavor.`,
 				},
 			},
 		},
@@ -3298,33 +3270,34 @@ VPC that the subnet belongs to.
 		"huaweicloud_dcs_az_v1":                     8,
 		"huaweicloud_dcs_maintainwindow_v1":         9,
 		"huaweicloud_dcs_product_v1":                10,
-		"huaweicloud_dis_partition_v2":              11,
-		"huaweicloud_dms_az_v1":                     12,
-		"huaweicloud_dms_maintainwindow_v1":         13,
-		"huaweicloud_dms_product_v1":                14,
-		"huaweicloud_identity_role_v3":              15,
-		"huaweicloud_images_image_v2":               16,
-		"huaweicloud_kms_data_key_v1":               17,
-		"huaweicloud_kms_key_v1":                    18,
-		"huaweicloud_networking_network_v2":         19,
-		"huaweicloud_networking_port_v2":            20,
-		"huaweicloud_networking_secgroup_v2":        21,
-		"huaweicloud_networking_subnet_v2":          22,
-		"huaweicloud_rds_flavors_v1":                23,
-		"huaweicloud_rds_flavors_v3":                24,
-		"huaweicloud_rts_software_config_v1":        25,
-		"huaweicloud_rts_stack_resource_v1":         26,
-		"huaweicloud_rts_stack_v1":                  27,
-		"huaweicloud_s3_bucket_object":              28,
-		"huaweicloud_sfs_file_sharing_v2":           29,
-		"huaweicloud_vbs_backup_policy_v2":          30,
-		"huaweicloud_vbs_backup_v2":                 31,
-		"huaweicloud_vpc_peering_connection_v2":     32,
-		"huaweicloud_vpc_route_ids_v2":              33,
-		"huaweicloud_vpc_route_v2":                  34,
-		"huaweicloud_vpc_subnet_ids_v1":             35,
-		"huaweicloud_vpc_subnet_v1":                 36,
-		"huaweicloud_vpc_v1":                        37,
+		"huaweicloud_dds_flavors_v3":                11,
+		"huaweicloud_dis_partition_v2":              12,
+		"huaweicloud_dms_az_v1":                     13,
+		"huaweicloud_dms_maintainwindow_v1":         14,
+		"huaweicloud_dms_product_v1":                15,
+		"huaweicloud_identity_role_v3":              16,
+		"huaweicloud_images_image_v2":               17,
+		"huaweicloud_kms_data_key_v1":               18,
+		"huaweicloud_kms_key_v1":                    19,
+		"huaweicloud_networking_network_v2":         20,
+		"huaweicloud_networking_port_v2":            21,
+		"huaweicloud_networking_secgroup_v2":        22,
+		"huaweicloud_networking_subnet_v2":          23,
+		"huaweicloud_rds_flavors_v1":                24,
+		"huaweicloud_rds_flavors_v3":                25,
+		"huaweicloud_rts_software_config_v1":        26,
+		"huaweicloud_rts_stack_resource_v1":         27,
+		"huaweicloud_rts_stack_v1":                  28,
+		"huaweicloud_s3_bucket_object":              29,
+		"huaweicloud_sfs_file_sharing_v2":           30,
+		"huaweicloud_vbs_backup_policy_v2":          31,
+		"huaweicloud_vbs_backup_v2":                 32,
+		"huaweicloud_vpc_peering_connection_v2":     33,
+		"huaweicloud_vpc_route_ids_v2":              34,
+		"huaweicloud_vpc_route_v2":                  35,
+		"huaweicloud_vpc_subnet_ids_v1":             36,
+		"huaweicloud_vpc_subnet_v1":                 37,
+		"huaweicloud_vpc_v1":                        38,
 	}
 )
 

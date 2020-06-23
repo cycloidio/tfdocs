@@ -20,7 +20,11 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_blocks",
-					Description: `The lexically ordered list of CIDR blocks. [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges`,
+					Description: `The lexically ordered list of ipv4 CIDR blocks.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_cidr_blocks",
+					Description: `The lexically ordered list of ipv6 CIDR blocks. [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges`,
 				},
 			},
 		},

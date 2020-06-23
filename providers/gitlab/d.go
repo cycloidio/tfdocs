@@ -209,6 +209,10 @@ var (
 					Name:        "archived",
 					Description: `Whether the project is in read-only mode (archived).`,
 				},
+				resource.Attribute{
+					Name:        "remove_source_branch_after_merge",
+					Description: `Enable ` + "`" + `Delete source branch` + "`" + ` option by default for all new merge requests`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -282,6 +286,198 @@ var (
 				resource.Attribute{
 					Name:        "archived",
 					Description: `Whether the project is in read-only mode (archived).`,
+				},
+				resource.Attribute{
+					Name:        "remove_source_branch_after_merge",
+					Description: `Enable ` + "`" + `Delete source branch` + "`" + ` option by default for all new merge requests`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "gitlab_projects",
+			Category:         "Data Sources",
+			ShortDescription: `List projects using specific filters.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Optional) The ID of the group owned by the authenticated user to look projects for within. Cannot be used with ` + "`" + `min_access_level` + "`" + `, ` + "`" + `with_programming_language` + "`" + ` or ` + "`" + `statistics` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "archived",
+					Description: `(Optional) Limit by archived status.`,
+				},
+				resource.Attribute{
+					Name:        "visibility",
+					Description: `(Optional) Limit by visibility ` + "`" + `public` + "`" + `, ` + "`" + `internal` + "`" + `, or ` + "`" + `private` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "order_by",
+					Description: `(Optional) Return projects ordered by ` + "`" + `id` + "`" + `, ` + "`" + `name` + "`" + `, ` + "`" + `path` + "`" + `, ` + "`" + `created_at` + "`" + `, ` + "`" + `updated_at` + "`" + `, or ` + "`" + `last_activity_at` + "`" + ` fields. Default is ` + "`" + `created_at` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sort",
+					Description: `(Optional) Return projects sorted in ` + "`" + `asc` + "`" + ` or ` + "`" + `desc` + "`" + ` order. Default is ` + "`" + `desc` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "search",
+					Description: `(Optional) Return list of authorized projects matching the search criteria.`,
+				},
+				resource.Attribute{
+					Name:        "simple",
+					Description: `(Optional) Return only the ID, URL, name, and path of each project.`,
+				},
+				resource.Attribute{
+					Name:        "owned",
+					Description: `(Optional) Limit by projects owned by the current user.`,
+				},
+				resource.Attribute{
+					Name:        "starred",
+					Description: `(Optional) Limit by projects starred by the current user.`,
+				},
+				resource.Attribute{
+					Name:        "with_issues_enabled",
+					Description: `(Optional) Limit by projects with issues feature enabled. Default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "with_merge_requests_enabled",
+					Description: `(Optional) Limit by projects with merge requests feature enabled. Default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "with_shared",
+					Description: `(Optional) Include projects shared to this group. Default is ` + "`" + `true` + "`" + `. Needs ` + "`" + `group_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "include_subgroups",
+					Description: `(Optional) Include projects in subgroups of this group. Default is ` + "`" + `false` + "`" + `. Needs ` + "`" + `group_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "min_access_level",
+					Description: `(Optional) Limit to projects where current user has at least this access level, refer to the [official documentation](https://docs.gitlab.com/ee/api/members.html) for values. Cannot be used with ` + "`" + `group_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "with_custom_attributes",
+					Description: `(Optional) Include custom attributes in response _(admins only)_.`,
+				},
+				resource.Attribute{
+					Name:        "membership",
+					Description: `(Optional) Limit by projects that the current user is a member of.`,
+				},
+				resource.Attribute{
+					Name:        "statistics",
+					Description: `(Optional) Include project statistics. Cannot be used with ` + "`" + `group_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "with_programming_language",
+					Description: `(Optional) Limit by projects which use the given programming language. Cannot be used with ` + "`" + `group_id` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "projects",
+					Description: `A list containing the projects matching the supplied arguments Projects items have the following fields:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the project.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the project.`,
+				},
+				resource.Attribute{
+					Name:        "public",
+					Description: `Whether the project is public.`,
+				},
+				resource.Attribute{
+					Name:        "visibility",
+					Description: `The visibility of the project.`,
+				},
+				resource.Attribute{
+					Name:        "ssh_url_to_repo",
+					Description: `The SSH clone URL of the project.`,
+				},
+				resource.Attribute{
+					Name:        "http_url_to_repo",
+					Description: `The HTTP clone URL of the project.`,
+				},
+				resource.Attribute{
+					Name:        "tag_list",
+					Description: `A set of the project topics (formerly called "project tags").`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `The owner of the project, due to Terraform aggregate types limitations, this field's attributes are accessed with the ` + "`" + `owner.0` + "`" + ` prefix. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "name_with_namespace",
+					Description: `In ` + "`" + `group / subgroup / project` + "`" + ` or ` + "`" + `user / project` + "`" + ` format.`,
+				},
+				resource.Attribute{
+					Name:        "path_with_namespace",
+					Description: `In ` + "`" + `group/subgroup/project` + "`" + ` or ` + "`" + `user/project` + "`" + ` format.`,
+				},
+				resource.Attribute{
+					Name:        "approvals_before_merge",
+					Description: `The numbers of approvals needed in a merge requests.`,
+				},
+				resource.Attribute{
+					Name:        "jobs_enabled",
+					Description: `Whether pipelines are enabled for the project.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "projects",
+					Description: `A list containing the projects matching the supplied arguments Projects items have the following fields:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the project.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the project.`,
+				},
+				resource.Attribute{
+					Name:        "public",
+					Description: `Whether the project is public.`,
+				},
+				resource.Attribute{
+					Name:        "visibility",
+					Description: `The visibility of the project.`,
+				},
+				resource.Attribute{
+					Name:        "ssh_url_to_repo",
+					Description: `The SSH clone URL of the project.`,
+				},
+				resource.Attribute{
+					Name:        "http_url_to_repo",
+					Description: `The HTTP clone URL of the project.`,
+				},
+				resource.Attribute{
+					Name:        "tag_list",
+					Description: `A set of the project topics (formerly called "project tags").`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `The owner of the project, due to Terraform aggregate types limitations, this field's attributes are accessed with the ` + "`" + `owner.0` + "`" + ` prefix. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "name_with_namespace",
+					Description: `In ` + "`" + `group / subgroup / project` + "`" + ` or ` + "`" + `user / project` + "`" + ` format.`,
+				},
+				resource.Attribute{
+					Name:        "path_with_namespace",
+					Description: `In ` + "`" + `group/subgroup/project` + "`" + ` or ` + "`" + `user/project` + "`" + ` format.`,
+				},
+				resource.Attribute{
+					Name:        "approvals_before_merge",
+					Description: `The numbers of approvals needed in a merge requests.`,
+				},
+				resource.Attribute{
+					Name:        "jobs_enabled",
+					Description: `Whether pipelines are enabled for the project.`,
 				},
 			},
 		},
@@ -785,10 +981,11 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"gitlab_group":   0,
-		"gitlab_project": 1,
-		"gitlab_user":    2,
-		"gitlab_users":   3,
+		"gitlab_group":    0,
+		"gitlab_project":  1,
+		"gitlab_projects": 2,
+		"gitlab_user":     3,
+		"gitlab_users":    4,
 	}
 )
 

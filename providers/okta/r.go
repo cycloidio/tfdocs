@@ -312,6 +312,10 @@ var (
 					Description: `(Optional) Custom JSON that represents an OAuth application's profile. ## Attributes Reference`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the application.`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `Name assigned to the application by Okta.`,
 				},
@@ -329,6 +333,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the application.`,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `Name assigned to the application by Okta.`,
@@ -2535,6 +2543,10 @@ var (
 					Description: `(Optional) If a user should be informed when their account is locked.`,
 				},
 				resource.Attribute{
+					Name:        "password_lockout_notification_channels",
+					Description: `(Optional) Notification channels to use to notify a user when their account has been locked.`,
+				},
+				resource.Attribute{
 					Name:        "question_min_length",
 					Description: `(Optional) Min length of the password recovery question answer.`,
 				},
@@ -3050,6 +3062,49 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "okta_template_sms",
+			Category:         "Resources",
+			ShortDescription: `Creates an Okta SMS Template.`,
+			Description:      ``,
+			Keywords: []string{
+				"template",
+				"sms",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) SMS template type`,
+				},
+				resource.Attribute{
+					Name:        "template",
+					Description: `(Required) Default SMS message`,
+				},
+				resource.Attribute{
+					Name:        "translations",
+					Description: `(Required) Set of translations for particular template.`,
+				},
+				resource.Attribute{
+					Name:        "language",
+					Description: `(Required) The language to map the template to.`,
+				},
+				resource.Attribute{
+					Name:        "template",
+					Description: `(Required) The SMS message. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the SMS Template. ## Import An Okta SMS Template can be imported via the template type. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import okta_template_sms.example <template type> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the SMS Template. ## Import An Okta SMS Template can be imported via the template type. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import okta_template_sms.example <template type> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "okta_trusted_origin",
 			Category:         "Resources",
 			ShortDescription: `Creates a Trusted Origin.`,
@@ -3398,7 +3453,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "external_name",
-					Description: `(Optional) External name of the user schema property. ## Attributes Reference`,
+					Description: `(Optional) External name of the user schema property.`,
+				},
+				resource.Attribute{
+					Name:        "unique",
+					Description: `(Optional) Whether the property should be unique. It can be set to ` + "`" + `"UNIQUE_VALIDATED"` + "`" + ` or ` + "`" + `"NOT_UNIQUE"` + "`" + `. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "index",
@@ -3452,10 +3511,11 @@ var (
 		"okta_policy_signon":             33,
 		"okta_profile_mapping":           34,
 		"okta_template_email":            35,
-		"okta_trusted_origin":            36,
-		"okta_user":                      37,
-		"okta_user_base_schema":          38,
-		"okta_user_schema":               39,
+		"okta_template_sms":              36,
+		"okta_trusted_origin":            37,
+		"okta_user":                      38,
+		"okta_user_base_schema":          39,
+		"okta_user_schema":               40,
 	}
 )
 

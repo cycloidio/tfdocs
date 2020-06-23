@@ -118,12 +118,24 @@ var (
 					Description: `If function is triggered by HTTP, trigger URL is set here.`,
 				},
 				resource.Attribute{
+					Name:        "ingress_settings",
+					Description: `Controls what traffic can reach the function.`,
+				},
+				resource.Attribute{
 					Name:        "labels",
 					Description: `A map of labels applied to this function.`,
 				},
 				resource.Attribute{
 					Name:        "service_account_email",
-					Description: `The service account email to be assumed by the cloud function. The ` + "`" + `event_trigger` + "`" + ` block contains:`,
+					Description: `The service account email to be assumed by the cloud function.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_connector",
+					Description: `The VPC Network Connector that this cloud function can connect to.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_connector_egress_settings",
+					Description: `The egress settings for the connector, controlling what traffic is diverted through it. The ` + "`" + `event_trigger` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "event_type",
@@ -188,12 +200,24 @@ var (
 					Description: `If function is triggered by HTTP, trigger URL is set here.`,
 				},
 				resource.Attribute{
+					Name:        "ingress_settings",
+					Description: `Controls what traffic can reach the function.`,
+				},
+				resource.Attribute{
 					Name:        "labels",
 					Description: `A map of labels applied to this function.`,
 				},
 				resource.Attribute{
 					Name:        "service_account_email",
-					Description: `The service account email to be assumed by the cloud function. The ` + "`" + `event_trigger` + "`" + ` block contains:`,
+					Description: `The service account email to be assumed by the cloud function.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_connector",
+					Description: `The VPC Network Connector that this cloud function can connect to.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_connector_egress_settings",
+					Description: `The egress settings for the connector, controlling what traffic is diverted through it. The ` + "`" + `event_trigger` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "event_type",
@@ -1039,6 +1063,42 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_compute_instance_serial_port",
+			Category:         "Data Sources",
+			ShortDescription: `Get the serial port output from a Compute Instance.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance",
+					Description: `(Required) The name of the Compute Instance to read output from.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required) The number of the serial port to read output from. Possible values are 1-4. - - -`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The project in which the Compute Instance exists. If it is not provided, the provider project is used.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Optional) The zone in which the Compute Instance exists. If it is not provided, the provider zone is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "contents",
+					Description: `The output of the serial port. Serial port output is available only when the VM instance is running, and logs are limited to the most recent 1 MB of output per port.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "contents",
+					Description: `The output of the serial port. Serial port output is available only when the VM instance is running, and logs are limited to the most recent 1 MB of output per port.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_compute_lb_ip_ranges",
 			Category:         "Data Sources",
 			ShortDescription: `Get information about the IP ranges used when health-checking load balancers.`,
@@ -1585,6 +1645,126 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_firebase_web_app",
+			Category:         "Data Sources",
+			ShortDescription: `A Google Cloud Firebase web application instance`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `(Required) The app_ip of name of the Firebase webApp. - - -`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The fully qualified resource name of the App, for example: projects/projectId/webApps/appId`,
+				},
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `Immutable. The globally unique, Firebase-assigned identifier of the App. This identifier should be treated as an opaque token, as the data format is not specified.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The fully qualified resource name of the App, for example: projects/projectId/webApps/appId`,
+				},
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `Immutable. The globally unique, Firebase-assigned identifier of the App. This identifier should be treated as an opaque token, as the data format is not specified.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_firebase_web_app_config",
+			Category:         "Data Sources",
+			ShortDescription: `A Google Cloud Firebase web application configuration`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "web_app_id",
+					Description: `(Required) the id of the firebase web app - - -`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "api_key",
+					Description: `The API key associated with the web App.`,
+				},
+				resource.Attribute{
+					Name:        "auth_domain",
+					Description: `The domain Firebase Auth configures for OAuth redirects, in the format: projectId.firebaseapp.com`,
+				},
+				resource.Attribute{
+					Name:        "database_url",
+					Description: `The default Firebase Realtime Database URL.`,
+				},
+				resource.Attribute{
+					Name:        "storage_bucket",
+					Description: `The default Cloud Storage for Firebase storage bucket name.`,
+				},
+				resource.Attribute{
+					Name:        "location_id",
+					Description: `The ID of the project's default GCP resource location. The location is one of the available GCP resource locations. This field is omitted if the default GCP resource location has not been finalized yet. To set your project's default GCP resource location, call defaultLocation.finalize after you add Firebase services to your project.`,
+				},
+				resource.Attribute{
+					Name:        "messaging_sender_id",
+					Description: `The sender ID for use with Firebase Cloud Messaging.`,
+				},
+				resource.Attribute{
+					Name:        "measurement_id",
+					Description: `The unique Google-assigned identifier of the Google Analytics web stream associated with the Firebase Web App. Firebase SDKs use this ID to interact with Google Analytics APIs. This field is only present if the App is linked to a web stream in a Google Analytics App + Web property. Learn more about this ID and Google Analytics web streams in the Analytics documentation. To generate a measurementId and link the Web App with a Google Analytics web stream, call projects.addGoogleAnalytics.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "api_key",
+					Description: `The API key associated with the web App.`,
+				},
+				resource.Attribute{
+					Name:        "auth_domain",
+					Description: `The domain Firebase Auth configures for OAuth redirects, in the format: projectId.firebaseapp.com`,
+				},
+				resource.Attribute{
+					Name:        "database_url",
+					Description: `The default Firebase Realtime Database URL.`,
+				},
+				resource.Attribute{
+					Name:        "storage_bucket",
+					Description: `The default Cloud Storage for Firebase storage bucket name.`,
+				},
+				resource.Attribute{
+					Name:        "location_id",
+					Description: `The ID of the project's default GCP resource location. The location is one of the available GCP resource locations. This field is omitted if the default GCP resource location has not been finalized yet. To set your project's default GCP resource location, call defaultLocation.finalize after you add Firebase services to your project.`,
+				},
+				resource.Attribute{
+					Name:        "messaging_sender_id",
+					Description: `The sender ID for use with Firebase Cloud Messaging.`,
+				},
+				resource.Attribute{
+					Name:        "measurement_id",
+					Description: `The unique Google-assigned identifier of the Google Analytics web stream associated with the Firebase Web App. Firebase SDKs use this ID to interact with Google Analytics APIs. This field is only present if the App is linked to a web stream in a Google Analytics App + Web property. Learn more about this ID and Google Analytics web streams in the Analytics documentation. To generate a measurementId and link the Web App with a Google Analytics web stream, call projects.addGoogleAnalytics.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_client_openid_userinfo",
 			Category:         "Data Sources",
 			ShortDescription: `Get OpenID userinfo about the credentials used with the Google provider, specifically the email.`,
@@ -1764,6 +1944,10 @@ var (
 					Description: `The fingerprint of the Backend Service.`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/backendServices/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "port_name",
 					Description: `The name of a service that has been added to an instance group in this backend.`,
 				},
@@ -1808,6 +1992,10 @@ var (
 				resource.Attribute{
 					Name:        "fingerprint",
 					Description: `The fingerprint of the Backend Service.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/backendServices/{{name}}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "port_name",
@@ -1967,6 +2155,33 @@ var (
 				resource.Attribute{
 					Name:        "stage",
 					Description: `indicates the stage of a role in the launch lifecycle, such as ` + "`" + `GA` + "`" + `, ` + "`" + `BETA` + "`" + ` or ` + "`" + `ALPHA` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_monitoring_uptime_check_ips",
+			Category:         "Data Sources",
+			ShortDescription: `Returns the list of IP addresses Stackdriver Monitoring uses for uptime checking.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uptime_check_ips",
+					Description: `A list of uptime check IPs used by Stackdriver Monitoring. Each ` + "`" + `uptime_check_ip` + "`" + ` contains:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `A broad region category in which the IP address is located.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `A more specific location within the region that typically encodes a particular city/town/metro (and its containing state/province or country) within the broader umbrella region category.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `The IP address from which the Uptime check originates. This is a fully specified IP address (not an IP address range). Most IP addresses, as of this publication, are in IPv4 format; however, one should not rely on the IP addresses being in IPv4 format indefinitely, and should support interpreting this field in either IPv4 or IPv6 format.`,
 				},
 			},
 		},
@@ -2299,6 +2514,130 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_iam_testable_permissions",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve a list of testable permissions for a resource. Testable permissions mean the permissions that user can add or remove in a role at a given resource. The resource can be referenced either via the full resource name or via a URI.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "full_resource_name",
+					Description: `(Required) See [full resource name documentation](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more detail.`,
+				},
+				resource.Attribute{
+					Name:        "stages",
+					Description: `(Optional) The acceptable release stages of the permission in the output. Note that ` + "`" + `BETA` + "`" + ` does not include permissions in ` + "`" + `GA` + "`" + `, but you can specify both with ` + "`" + `["GA", "BETA"]` + "`" + ` for example. Can be a list of ` + "`" + `"ALPHA"` + "`" + `, ` + "`" + `"BETA"` + "`" + `, ` + "`" + `"GA"` + "`" + `, ` + "`" + `"DEPRECATED"` + "`" + `. Default is ` + "`" + `["GA"]` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "custom_support_level",
+					Description: `(Optional) The level of support for custom roles. Can be one of ` + "`" + `"NOT_SUPPORTED"` + "`" + `, ` + "`" + `"SUPPORTED"` + "`" + `, ` + "`" + `"TESTING"` + "`" + `. Default is ` + "`" + `"SUPPORTED"` + "`" + ` ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `A list of permissions matching the provided input. Structure is defined below. The ` + "`" + `permissions` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the permission.`,
+				},
+				resource.Attribute{
+					Name:        "title",
+					Description: `Human readable title of the permission.`,
+				},
+				resource.Attribute{
+					Name:        "stage",
+					Description: `Release stage of the permission.`,
+				},
+				resource.Attribute{
+					Name:        "custom_support_level",
+					Description: `The the support level of this permission for custom roles.`,
+				},
+				resource.Attribute{
+					Name:        "api_disabled",
+					Description: `Whether the corresponding API has been enabled for the resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `A list of permissions matching the provided input. Structure is defined below. The ` + "`" + `permissions` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the permission.`,
+				},
+				resource.Attribute{
+					Name:        "title",
+					Description: `Human readable title of the permission.`,
+				},
+				resource.Attribute{
+					Name:        "stage",
+					Description: `Release stage of the permission.`,
+				},
+				resource.Attribute{
+					Name:        "custom_support_level",
+					Description: `The the support level of this permission for custom roles.`,
+				},
+				resource.Attribute{
+					Name:        "api_disabled",
+					Description: `Whether the corresponding API has been enabled for the resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_monitoring_app_engine_service",
+			Category:         "Data Sources",
+			ShortDescription: `An Monitoring Service resource created automatically by GCP to monitor an App Engine service.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "module_id",
+					Description: `(Required) The ID of the App Engine module underlying this service. Corresponds to the moduleId resource label in the [gae_app](https://cloud.google.com/monitoring/api/resources#tag_gae_app) monitored resource, or the service/module name. - - - Other optional fields include:`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The full REST resource name for this channel. The syntax is: ` + "`" + `projects/[PROJECT_ID]/services/[SERVICE_ID]` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Name used for UI elements listing this (Monitoring) Service.`,
+				},
+				resource.Attribute{
+					Name:        "telemetry",
+					Description: `Configuration for how to query telemetry on the Service. Structure is documented below. The ` + "`" + `telemetry` + "`" + ` block includes:`,
+				},
+				resource.Attribute{
+					Name:        "resource_name",
+					Description: `(Optional) The full name of the resource that defines this service. Formatted as described in https://cloud.google.com/apis/design/resource_names.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The full REST resource name for this channel. The syntax is: ` + "`" + `projects/[PROJECT_ID]/services/[SERVICE_ID]` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Name used for UI elements listing this (Monitoring) Service.`,
+				},
+				resource.Attribute{
+					Name:        "telemetry",
+					Description: `Configuration for how to query telemetry on the Service. Structure is documented below. The ` + "`" + `telemetry` + "`" + ` block includes:`,
+				},
+				resource.Attribute{
+					Name:        "resource_name",
+					Description: `(Optional) The full name of the resource that defines this service. Formatted as described in https://cloud.google.com/apis/design/resource_names.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_monitoring_notification_channel",
 			Category:         "Data Sources",
 			ShortDescription: `A NotificationChannel is a medium through which an alert is delivered when a policy violation is detected.`,
@@ -2482,6 +2821,30 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `The resource name of the Folder. This uniquely identifies the folder.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_bigquery_default_service_account",
+			Category:         "Data Sources",
+			ShortDescription: `Get the email address of the project's BigQuery service account`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The project the unique service account was created for. If it is not provided, the provider project is used. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `The email address of the service account. This value is often used to refer to the service account in order to grant IAM permissions.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "email",
+					Description: `The email address of the service account. This value is often used to refer to the service account in order to grant IAM permissions.`,
 				},
 			},
 		},
@@ -3398,58 +3761,65 @@ var (
 		"google_compute_global_address":                   4,
 		"google_compute_image":                            5,
 		"google_compute_instance":                         6,
-		"google_compute_lb_ip_ranges":                     7,
-		"google_compute_network":                          8,
-		"google_compute_region_instance_group":            9,
-		"google_compute_router":                           10,
-		"google_compute_ssl_certificate":                  11,
-		"google_compute_ssl_policy":                       12,
-		"google_compute_subnetwork":                       13,
-		"google_compute_vpn_gateway":                      14,
-		"google_dns_keys":                                 15,
-		"google_client_openid_userinfo":                   16,
-		"google_composer_image_versions":                  17,
-		"google_compute_backend_bucket":                   18,
-		"google_compute_backend_service":                  19,
-		"google_compute_network_endpoint_group":           20,
-		"google_folder_organization_policy":               21,
-		"google_iam_role":                                 22,
-		"google_netblock_ip_ranges":                       23,
-		"google_project_organization_policy":              24,
-		"google_secret_manager_secret_version":            25,
-		"google_service_account":                          26,
-		"google_service_account_access_token":             27,
-		"google_service_account_key":                      28,
-		"google_sql_ca_certs":                             29,
-		"google_monitoring_notification_channel":          30,
-		"google_tpu_tensorflow_versions":                  31,
-		"google_dns_managed_zone":                         32,
-		"google_active_folder":                            33,
-		"google_billing_account":                          34,
-		"google_compute_default_service_account":          35,
-		"google_compute_instance_group":                   36,
-		"google_compute_node_types":                       37,
-		"google_compute_regions":                          38,
-		"google_compute_resource_policy":                  39,
-		"google_compute_zones":                            40,
-		"google_container_cluster":                        41,
-		"google_container_engine_versions":                42,
-		"google_container_registry_image":                 43,
-		"google_container_registry_repository":            44,
-		"google_folder":                                   45,
-		"google_iam_policy":                               46,
-		"google_kms_crypto_key":                           47,
-		"google_kms_crypto_key_version":                   48,
-		"google_kms_key_ring":                             49,
-		"google_kms_secret":                               50,
-		"google_kms_secret_ciphertext":                    51,
-		"google_organization":                             52,
-		"google_project":                                  53,
-		"google_projects":                                 54,
-		"google_storage_project_service_account":          55,
-		"google_storage_transfer_project_service_account": 56,
-		"google_storage_object_signed_url":                57,
-		"google_storage_bucket_object":                    58,
+		"google_compute_instance_serial_port":             7,
+		"google_compute_lb_ip_ranges":                     8,
+		"google_compute_network":                          9,
+		"google_compute_region_instance_group":            10,
+		"google_compute_router":                           11,
+		"google_compute_ssl_certificate":                  12,
+		"google_compute_ssl_policy":                       13,
+		"google_compute_subnetwork":                       14,
+		"google_compute_vpn_gateway":                      15,
+		"google_dns_keys":                                 16,
+		"google_firebase_web_app":                         17,
+		"google_firebase_web_app_config":                  18,
+		"google_client_openid_userinfo":                   19,
+		"google_composer_image_versions":                  20,
+		"google_compute_backend_bucket":                   21,
+		"google_compute_backend_service":                  22,
+		"google_compute_network_endpoint_group":           23,
+		"google_folder_organization_policy":               24,
+		"google_iam_role":                                 25,
+		"google_monitoring_uptime_check_ips":              26,
+		"google_netblock_ip_ranges":                       27,
+		"google_project_organization_policy":              28,
+		"google_secret_manager_secret_version":            29,
+		"google_service_account":                          30,
+		"google_service_account_access_token":             31,
+		"google_service_account_key":                      32,
+		"google_sql_ca_certs":                             33,
+		"google_iam_testable_permissions":                 34,
+		"google_monitoring_app_engine_service":            35,
+		"google_monitoring_notification_channel":          36,
+		"google_tpu_tensorflow_versions":                  37,
+		"google_dns_managed_zone":                         38,
+		"google_active_folder":                            39,
+		"google_bigquery_default_service_account":         40,
+		"google_billing_account":                          41,
+		"google_compute_default_service_account":          42,
+		"google_compute_instance_group":                   43,
+		"google_compute_node_types":                       44,
+		"google_compute_regions":                          45,
+		"google_compute_resource_policy":                  46,
+		"google_compute_zones":                            47,
+		"google_container_cluster":                        48,
+		"google_container_engine_versions":                49,
+		"google_container_registry_image":                 50,
+		"google_container_registry_repository":            51,
+		"google_folder":                                   52,
+		"google_iam_policy":                               53,
+		"google_kms_crypto_key":                           54,
+		"google_kms_crypto_key_version":                   55,
+		"google_kms_key_ring":                             56,
+		"google_kms_secret":                               57,
+		"google_kms_secret_ciphertext":                    58,
+		"google_organization":                             59,
+		"google_project":                                  60,
+		"google_projects":                                 61,
+		"google_storage_project_service_account":          62,
+		"google_storage_transfer_project_service_account": 63,
+		"google_storage_object_signed_url":                64,
+		"google_storage_bucket_object":                    65,
 	}
 )
 

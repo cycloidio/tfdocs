@@ -95,13 +95,61 @@ Use this data source to get information about team permissions for a workspace.
 				},
 				resource.Attribute{
 					Name:        "access",
-					Description: `The type of access granted.`,
+					Description: `The type of access granted to the team on the workspace.`,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `The permissions granted to the team on the workspaces for each whatever. The ` + "`" + `permissions` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "runs",
+					Description: `The permission granted to runs. Valid values are ` + "`" + `read` + "`" + `, ` + "`" + `plan` + "`" + `, or ` + "`" + `apply` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "variables",
+					Description: `The permissions granted to variables. Valid values are ` + "`" + `none` + "`" + `, ` + "`" + `read` + "`" + `, or ` + "`" + `write` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "state_versions",
+					Description: `The permissions granted to state versions. Valid values are ` + "`" + `none` + "`" + `, ` + "`" + `read-outputs` + "`" + `, ` + "`" + `read` + "`" + `, or ` + "`" + `write` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "sentinel_mocks",
+					Description: `The permissions granted to Sentinel mocks. Valid values are ` + "`" + `none` + "`" + ` or ` + "`" + `read` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "workspace_locking",
+					Description: `Whether permission is granted to manually lock the workspace or not.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access",
-					Description: `The type of access granted.`,
+					Description: `The type of access granted to the team on the workspace.`,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `The permissions granted to the team on the workspaces for each whatever. The ` + "`" + `permissions` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "runs",
+					Description: `The permission granted to runs. Valid values are ` + "`" + `read` + "`" + `, ` + "`" + `plan` + "`" + `, or ` + "`" + `apply` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "variables",
+					Description: `The permissions granted to variables. Valid values are ` + "`" + `none` + "`" + `, ` + "`" + `read` + "`" + `, or ` + "`" + `write` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "state_versions",
+					Description: `The permissions granted to state versions. Valid values are ` + "`" + `none` + "`" + `, ` + "`" + `read-outputs` + "`" + `, ` + "`" + `read` + "`" + `, or ` + "`" + `write` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "sentinel_mocks",
+					Description: `The permissions granted to Sentinel mocks. Valid values are ` + "`" + `none` + "`" + ` or ` + "`" + `read` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "workspace_locking",
+					Description: `Whether permission is granted to manually lock the workspace or not.`,
 				},
 			},
 		},
@@ -127,11 +175,7 @@ Use this data source to get information about a workspace.
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The workspace's human-readable ID, which looks like ` + "`" + `<ORGANIZATION>/<WORKSPACE>` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "external_id",
-					Description: `The workspace's opaque external ID, which looks like ` + "`" + `ws-<RANDOM STRING>` + "`" + `.`,
+					Description: `The workspace ID.`,
 				},
 				resource.Attribute{
 					Name:        "auto_apply",
@@ -143,7 +187,7 @@ Use this data source to get information about a workspace.
 				},
 				resource.Attribute{
 					Name:        "operations",
-					Description: `Indicates whether the workspace is using remote execution mode.`,
+					Description: `Indicates whether the workspace is using remote execution mode. Set to ` + "`" + `false` + "`" + ` to switch execution mode to local. ` + "`" + `true` + "`" + ` by default.`,
 				},
 				resource.Attribute{
 					Name:        "queue_all_runs",
@@ -185,11 +229,7 @@ Use this data source to get information about a workspace.
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The workspace's human-readable ID, which looks like ` + "`" + `<ORGANIZATION>/<WORKSPACE>` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "external_id",
-					Description: `The workspace's opaque external ID, which looks like ` + "`" + `ws-<RANDOM STRING>` + "`" + `.`,
+					Description: `The workspace ID.`,
 				},
 				resource.Attribute{
 					Name:        "auto_apply",
@@ -201,7 +241,7 @@ Use this data source to get information about a workspace.
 				},
 				resource.Attribute{
 					Name:        "operations",
-					Description: `Indicates whether the workspace is using remote execution mode.`,
+					Description: `Indicates whether the workspace is using remote execution mode. Set to ` + "`" + `false` + "`" + ` to switch execution mode to local. ` + "`" + `true` + "`" + ` by default.`,
 				},
 				resource.Attribute{
 					Name:        "queue_all_runs",
@@ -259,25 +299,25 @@ Use this data source to get a map of (external) workspace IDs.
 				},
 				resource.Attribute{
 					Name:        "organization",
-					Description: `(Required) Name of the organization. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required) Name of the organization. ## Attributes Reference In addition to all arguments above, the following attributes are exported: ~>`,
 				},
 				resource.Attribute{
-					Name:        "ids",
-					Description: `A map of workspace names and their human-readable IDs, which look like ` + "`" + `<ORGANIZATION>/<WORKSPACE>` + "`" + `.`,
+					Name:        "full_names",
+					Description: `A map of workspace names and their full names, which look like ` + "`" + `<ORGANIZATION>/<WORKSPACE>` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "external_ids",
-					Description: `A map of workspace names and their opaque external IDs, which look like ` + "`" + `ws-<RANDOM STRING>` + "`" + `.`,
+					Description: `A map of workspace names and their opaque, immutable IDs, which look like ` + "`" + `ws-<RANDOM STRING>` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "ids",
-					Description: `A map of workspace names and their human-readable IDs, which look like ` + "`" + `<ORGANIZATION>/<WORKSPACE>` + "`" + `.`,
+					Name:        "full_names",
+					Description: `A map of workspace names and their full names, which look like ` + "`" + `<ORGANIZATION>/<WORKSPACE>` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "external_ids",
-					Description: `A map of workspace names and their opaque external IDs, which look like ` + "`" + `ws-<RANDOM STRING>` + "`" + `.`,
+					Description: `A map of workspace names and their opaque, immutable IDs, which look like ` + "`" + `ws-<RANDOM STRING>` + "`" + `.`,
 				},
 			},
 		},

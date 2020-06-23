@@ -11,7 +11,7 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "triton_account",
+			Type:             "Account",
 			Category:         "Data Sources",
 			ShortDescription: `The ` + "`" + `triton_account` + "`" + ` data source queries Triton for Account information.`,
 			Description:      ``,
@@ -55,7 +55,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "triton_datacenter",
+			Type:             "Datacenter",
 			Category:         "Data Sources",
 			ShortDescription: `The ` + "`" + `triton_datacenter` + "`" + ` data source queries Triton for Data Center information.`,
 			Description:      ``,
@@ -83,7 +83,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "triton_fabric_network",
+			Type:             "Fabric Network",
 			Category:         "Data Sources",
 			ShortDescription: `The ` + "`" + `triton_fabric_network` + "`" + ` data source queries Triton for Fabric Network information (e.g., subnet CIDR, gateway, static routes, etc.) based on the name of the Fabric Network and ID of the VLAN on which the network has been created.`,
 			Description:      ``,
@@ -199,7 +199,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "triton_fabric_vlan",
+			Type:             "Fabric VLAN",
 			Category:         "Data Sources",
 			ShortDescription: `The ` + "`" + `triton_fabric_vlan` + "`" + ` data source queries Triton for Fabric VLAN information (e.g., VLAN ID, etc.) based either on the name, VLAN ID or description of the Fabric VLAN.`,
 			Description:      ``,
@@ -247,7 +247,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "triton_image",
+			Type:             "Image",
 			Category:         "Data Sources",
 			ShortDescription: `The ` + "`" + `triton_image` + "`" + ` data source queries the Triton Image API for image IDs.`,
 			Description:      ``,
@@ -299,7 +299,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "triton_network",
+			Type:             "Network",
 			Category:         "Data Sources",
 			ShortDescription: `The ` + "`" + `triton_network` + "`" + ` data source queries Triton for Network information (e.g., Network ID, etc.) based on the name of the Network.`,
 			Description:      ``,
@@ -337,16 +337,89 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "Volume",
+			Category:         "Data Sources",
+			ShortDescription: `The ` + "`" + `triton_volume` + "`" + ` data source queries the Triton API for an existing volume.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(string) The name of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(integer) The size of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(string) The state of the volume (one of`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(string) - The identifier representing the volume in Triton.`,
+				},
+				resource.Attribute{
+					Name:        "filesystem_path",
+					Description: `(string) - The NFS path that the volume can be referenced through.`,
+				},
+				resource.Attribute{
+					Name:        "networks",
+					Description: `(list of strings) - The ID of the networks which the volume is attached to, and thus over which it can be accessed.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(string) - The current state of the volume. Can be one of`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(map) - A mapping of tags the volume is using.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(string) - The type of the volume.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(string) - The identifier representing the volume in Triton.`,
+				},
+				resource.Attribute{
+					Name:        "filesystem_path",
+					Description: `(string) - The NFS path that the volume can be referenced through.`,
+				},
+				resource.Attribute{
+					Name:        "networks",
+					Description: `(list of strings) - The ID of the networks which the volume is attached to, and thus over which it can be accessed.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(string) - The current state of the volume. Can be one of`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(map) - A mapping of tags the volume is using.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(string) - The type of the volume.`,
+				},
+			},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
 
-		"triton_account":        0,
-		"triton_datacenter":     1,
-		"triton_fabric_network": 2,
-		"triton_fabric_vlan":    3,
-		"triton_image":          4,
-		"triton_network":        5,
+		"Account":        0,
+		"Datacenter":     1,
+		"Fabric Network": 2,
+		"Fabric VLAN":    3,
+		"Image":          4,
+		"Network":        5,
+		"Volume":         6,
 	}
 )
 

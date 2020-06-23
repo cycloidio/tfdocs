@@ -222,6 +222,10 @@ var (
 					Description: `(Optional) An Azure Blob Storage endpoint to send streaming logs too. Defined below.`,
 				},
 				resource.Attribute{
+					Name:        "httpslogging",
+					Description: `(Optional) An HTTPS endpoint to send streaming logs to. Defined below.`,
+				},
+				resource.Attribute{
 					Name:        "response_object",
 					Description: `(Optional) Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.`,
 				},
@@ -343,7 +347,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shield",
-					Description: `(Optional) The POP of the shield designated to reduce inbound load.`,
+					Description: `(Optional) The POP of the shield designated to reduce inbound load. Valid values for ` + "`" + `shield` + "`" + ` are included in the [` + "`" + `GET /datacenters` + "`" + `](https://docs.fastly.com/api/tools#datacenter) API response.`,
 				},
 				resource.Attribute{
 					Name:        "weight",
@@ -383,7 +387,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shield",
-					Description: `(Optional) Selected POP to serve as a "shield" for origin servers.`,
+					Description: `(Optional) Selected POP to serve as a "shield" for backends. Valid values for ` + "`" + `shield` + "`" + ` are included in the [` + "`" + `GET /datacenters` + "`" + `](https://docs.fastly.com/api/tools#datacenter) API response.`,
 				},
 				resource.Attribute{
 					Name:        "capacity",
@@ -887,7 +891,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "response_condition",
-					Description: `(Optional) The name of the ` + "`" + `condition` + "`" + ` to apply. If empty, always execute. The ` + "`" + `blobstoragelogging` + "`" + ` block supports:`,
+					Description: `(Optional) The name of the ` + "`" + `condition` + "`" + ` to apply. If empty, always execute.`,
+				},
+				resource.Attribute{
+					Name:        "tls_hostname",
+					Description: `(Optional) The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).`,
+				},
+				resource.Attribute{
+					Name:        "tls_ca_cert",
+					Description: `(Optional) A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, ` + "`" + `FASTLY_SPLUNK_CA_CERT` + "`" + `. The ` + "`" + `blobstoragelogging` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -940,6 +952,78 @@ var (
 				resource.Attribute{
 					Name:        "placement",
 					Description: `(Optional) Where in the generated VCL the logging call should be placed, overriding any ` + "`" + `format_version` + "`" + ` default. Can be either ` + "`" + `none` + "`" + ` or ` + "`" + `waf_debug` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "response_condition",
+					Description: `(Optional) The name of the ` + "`" + `condition` + "`" + ` to apply. If empty, always execute. The ` + "`" + `httpslogging` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The unique name of the HTTPS logging endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) URL that log data will be sent to. Must use the https protocol.`,
+				},
+				resource.Attribute{
+					Name:        "request_max_entries",
+					Description: `(Optional) The maximum number of logs sent in one request.`,
+				},
+				resource.Attribute{
+					Name:        "request_max_bytes",
+					Description: `(Optional) The maximum number of bytes sent in one request.`,
+				},
+				resource.Attribute{
+					Name:        "content_type",
+					Description: `(Optional) Value of the ` + "`" + `Content-Type` + "`" + ` header sent with the request.`,
+				},
+				resource.Attribute{
+					Name:        "header_name",
+					Description: `(Optional) Custom header sent with the request.`,
+				},
+				resource.Attribute{
+					Name:        "header_value",
+					Description: `(Optional) Value of the custom header sent with the request.`,
+				},
+				resource.Attribute{
+					Name:        "method",
+					Description: `(Optional) HTTP method used for request. Can be either ` + "`" + `POST` + "`" + ` or ` + "`" + `PUT` + "`" + `. Default ` + "`" + `POST` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "json_format",
+					Description: `Formats log entries as JSON. Can be either disabled (` + "`" + `0` + "`" + `), array of json (` + "`" + `1` + "`" + `), or newline delimited json (` + "`" + `2` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tls_hostname",
+					Description: `(Optional) Used during the TLS handshake to validate the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "tls_ca_cert",
+					Description: `(Optional) A secure certificate to authenticate the server with. Must be in PEM format.`,
+				},
+				resource.Attribute{
+					Name:        "tls_client_cert",
+					Description: `(Optional) The client certificate used to make authenticated requests. Must be in PEM format.`,
+				},
+				resource.Attribute{
+					Name:        "tls_client_key",
+					Description: `(Optional) The client private key used to make authenticated requests. Must be in PEM format.`,
+				},
+				resource.Attribute{
+					Name:        "format",
+					Description: `(Optional) Apache-style string or VCL variables to use for log formatting.`,
+				},
+				resource.Attribute{
+					Name:        "format_version",
+					Description: `(Optional) The version of the custom logging format used for the configured endpoint. Can be either ` + "`" + `1` + "`" + ` or ` + "`" + `2` + "`" + `. The logging call gets placed by default in ` + "`" + `vcl_log` + "`" + ` if ` + "`" + `format_version` + "`" + ` is set to ` + "`" + `2` + "`" + ` and in ` + "`" + `vcl_deliver` + "`" + ` if ` + "`" + `format_version` + "`" + ` is set to ` + "`" + `1` + "`" + `. Default ` + "`" + `2` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "message_type",
+					Description: `How the message should be formatted; one of: ` + "`" + `classic` + "`" + `, ` + "`" + `loggly` + "`" + `, ` + "`" + `logplex` + "`" + ` or ` + "`" + `blank` + "`" + `. Default ` + "`" + `blank` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "placement",
+					Description: `(Optional) Where in the generated VCL the logging call should be placed.`,
 				},
 				resource.Attribute{
 					Name:        "response_condition",
@@ -1057,6 +1141,32 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fastly_user_v1",
+			Category:         "Resources",
+			ShortDescription: `Provides a Fastly User`,
+			Description:      ``,
+			Keywords: []string{
+				"user",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "login",
+					Description: `(Required, Forces new resource) The email address, which is the login name, of the User.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The real life name of the user.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Optional) The role of this user. Can be ` + "`" + `user` + "`" + ` (the default), ` + "`" + `billing` + "`" + `, ` + "`" + `engineer` + "`" + `, or ` + "`" + `superuser` + "`" + `. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do). ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
 	}
 
 	resourcesMap = map[string]int{
@@ -1065,6 +1175,7 @@ var (
 		"fastly_service_dictionary_items_v1":        1,
 		"fastly_service_dynamic_snippet_content_v1": 2,
 		"fastly_service_v1":                         3,
+		"fastly_user_v1":                            4,
 	}
 )
 

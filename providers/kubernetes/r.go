@@ -382,7 +382,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "template",
-					Description: `(Optional) Describes the pod that will be created when executing a job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/ ### ` + "`" + `selector` + "`" + ` #### Arguments`,
+					Description: `(Optional) Describes the pod that will be created when executing a job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/`,
+				},
+				resource.Attribute{
+					Name:        "ttl_seconds_after_finished",
+					Description: `(Optional) ttlSecondsAfterFinished limits the lifetime of a Job that has finished execution (either Complete or Failed). If this field is set, ttlSecondsAfterFinished after the Job finishes, it is eligible to be automatically deleted. When the Job is being deleted, its lifecycle guarantees (e.g. finalizers) will be honored. If this field is unset, the Job won't be automatically deleted. If this field is set to zero, the Job becomes eligible to be deleted immediately after it finishes. ### ` + "`" + `selector` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "match_expressions",
@@ -3116,7 +3120,103 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target_cpu_utilization_percentage",
-					Description: `(Optional) Target average CPU utilization (represented as a percentage of requested CPU) over all the pods. If not specified the default autoscaling policy will be used. ### ` + "`" + `scale_target_ref` + "`" + ` #### Arguments`,
+					Description: `(Optional) Target average CPU utilization (represented as a percentage of requested CPU) over all the pods. If not specified the default autoscaling policy will be used.`,
+				},
+				resource.Attribute{
+					Name:        "metric",
+					Description: `(Optional) A metric on which to scale. ### ` + "`" + `metric` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of metric. It can be one of "Object", "Pods", "Resource", or "External".`,
+				},
+				resource.Attribute{
+					Name:        "object",
+					Description: `(Optional) A metric describing a single kubernetes object (for example, hits-per-second on an Ingress object).`,
+				},
+				resource.Attribute{
+					Name:        "pods",
+					Description: `(Optional) A metric describing each pod in the current scale target (for example, transactions-processed-per-second). The values will be averaged together before being compared to the target value.`,
+				},
+				resource.Attribute{
+					Name:        "resource",
+					Description: `(Optional) A resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.`,
+				},
+				resource.Attribute{
+					Name:        "external",
+					Description: `(Optional) A global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster). ### Metric Type: ` + "`" + `external` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "metric",
+					Description: `(Required) Identifies the target by name and selector.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Required) The target for the given metric. ### Metric Type: ` + "`" + `object` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "described_object",
+					Description: `(Required) Reference to the object.`,
+				},
+				resource.Attribute{
+					Name:        "metric",
+					Description: `(Required) Identifies the target by name and selector.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Required) The target for the given metric. ### Metric Type: ` + "`" + `pods` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "metric",
+					Description: `(Required) Identifies the target by name and selector.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Required) The target for the given metric. ### Metric Type: ` + "`" + `resource` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the resource in question.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Required) The target for the given metric. ### ` + "`" + `metric` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the given metric`,
+				},
+				resource.Attribute{
+					Name:        "selector",
+					Description: `(Optional) The label selector for the given metric ### ` + "`" + `target` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Represents whether the metric type is Utilization, Value, or AverageValue.`,
+				},
+				resource.Attribute{
+					Name:        "average_value",
+					Description: `(Optional) The target value of the average of the metric across all relevant pods (as a quantity).`,
+				},
+				resource.Attribute{
+					Name:        "average_utilization",
+					Description: `(Optional) The target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Optional) value is the target value of the metric (as a quantity). #### Quantities See [here](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#quantity-resource-core) for documentation on quantities. ### ` + "`" + `described_object` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "api_version",
+					Description: `(Optional) API version of the referent`,
+				},
+				resource.Attribute{
+					Name:        "kind",
+					Description: `(Required) Kind of the referent. e.g. ` + "`" + `ReplicationController` + "`" + `. For more info see https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#types-kinds`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the referent. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#names) ### ` + "`" + `scale_target_ref` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "api_version",
@@ -3149,7 +3249,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `(Required) Spec defines the behavior of a ingress. https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Required) Spec defines the behavior of a ingress. https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status`,
+				},
+				resource.Attribute{
+					Name:        "wait_for_load_balancer",
+					Description: `(Optional) Terraform will wait for the load balancer to have at least 1 endpoint before considering the resource created. ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -3330,7 +3434,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "template",
-					Description: `(Optional) Describes the pod that will be created when executing a job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/ ### ` + "`" + `selector` + "`" + ` #### Arguments`,
+					Description: `(Optional) Describes the pod that will be created when executing a job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/`,
+				},
+				resource.Attribute{
+					Name:        "ttl_seconds_after_finished",
+					Description: `(Optional) ttlSecondsAfterFinished limits the lifetime of a Job that has finished execution (either Complete or Failed). If this field is set, ttlSecondsAfterFinished after the Job finishes, it is eligible to be automatically deleted. When the Job is being deleted, its lifecycle guarantees (e.g. finalizers) will be honored. If this field is unset, the Job won't be automatically deleted. If this field is set to zero, the Job becomes eligible to be deleted immediately after it finishes. ### ` + "`" + `selector` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "match_expressions",

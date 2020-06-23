@@ -11,12 +11,12 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "triton_fabric",
+			Type:             "Fabric",
 			Category:         "Resources",
 			ShortDescription: `The ` + "`" + `triton_fabric` + "`" + ` resource represents an SSH fabric for a Triton account.`,
 			Description:      ``,
 			Keywords: []string{
-				"fabric",
+				"Fabric",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -169,13 +169,12 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "triton_firewall_rule",
+			Type:             "Firewall Rule",
 			Category:         "Resources",
 			ShortDescription: `The ` + "`" + `triton_firewall_rule` + "`" + ` resource represents a rule for the Triton cloud firewall.`,
 			Description:      ``,
 			Keywords: []string{
-				"firewall",
-				"rule",
+				"Firewall Rule",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -204,13 +203,12 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "triton_instance_template",
+			Type:             "Instance Template",
 			Category:         "Resources",
 			ShortDescription: `The ` + "`" + `triton_instance_template` + "`" + ` resource represents a Triton Service Group instance template.`,
 			Description:      ``,
 			Keywords: []string{
-				"instance",
-				"template",
+				"Instance Template",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -259,12 +257,12 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "triton_key",
+			Type:             "Key",
 			Category:         "Resources",
 			ShortDescription: `The ` + "`" + `triton_key` + "`" + ` resource represents an SSH key for a Triton account.`,
 			Description:      ``,
 			Keywords: []string{
-				"key",
+				"Key",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -280,77 +278,81 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "triton_machine",
+			Type:             "Machine",
 			Category:         "Resources",
 			ShortDescription: `The ` + "`" + `triton_machine` + "`" + ` resource represents a virtual machine or infrastructure container running in Triton.`,
 			Description:      ``,
 			Keywords: []string{
-				"machine",
+				"Machine",
 			},
 			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(string) The friendly name for the machine. Triton will generate a name if one is not specified.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `(map) A mapping of tags to apply to the machine.`,
-				},
-				resource.Attribute{
-					Name:        "cns",
-					Description: `(map of CNS attributes, Optional) A mapping of [CNS](https://docs.joyent.com/public-cloud/network/cns) attributes to apply to the machine.`,
-				},
-				resource.Attribute{
-					Name:        "metadata",
-					Description: `(map, optional) A mapping of metadata to apply to the machine.`,
-				},
 				resource.Attribute{
 					Name:        "package",
 					Description: `(string, Required) The name of the package to use for provisioning.`,
 				},
 				resource.Attribute{
 					Name:        "image",
-					Description: `(string, Required) The UUID of the image to provision.`,
+					Description: `(string, Required) The UUID of the image to provision. The following arguments are optional:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(string, optional) The friendly name for the machine. Triton will generate a name if one is not specified.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(map, optional) A mapping of tags to apply to the machine.`,
+				},
+				resource.Attribute{
+					Name:        "cns",
+					Description: `(map of [CNS](#cns-map) attributes, optional) A mapping of [CNS](https://docs.joyent.com/public-cloud/network/cns) attributes to apply to the machine.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(map, optional) A mapping of metadata to apply to the machine.`,
 				},
 				resource.Attribute{
 					Name:        "networks",
-					Description: `(list, optional) The list of networks to associate with the machine. The network ID will be in hex form, e.g ` + "`" + `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` + "`" + `.`,
+					Description: `(list[string], optional) The list of networks to associate with the machine. The network ID will be in hex form, e.g ` + "`" + `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "affinity",
-					Description: `(list of Affinity rules, Optional) A list of valid [Affinity Rules](https://apidocs.joyent.com/cloudapi/#affinity-rules) to apply to the machine which assist in data center placement. Using this attribute will force resource creation to be serial. NOTE: Affinity rules are best guess and assist in placing instances across a data center. They're used at creation and not referenced after.`,
+					Description: `(list[string] of Affinity rules, optional) A list of valid [Affinity Rules](https://apidocs.joyent.com/cloudapi/#affinity-rules) to apply to the machine which assist in data center placement. Using this attribute will force resource creation to be serial. NOTE: Affinity rules are best guess and assist in placing instances across a data center. They're used at creation and not referenced after.`,
 				},
 				resource.Attribute{
 					Name:        "(Deprecated) locality",
-					Description: `(map of Locality hints, Optional) A mapping of [Locality](https://apidocs.joyent.com/cloudapi/#CreateMachine) attributes to apply to the machine that assist in data center placement. NOTE: Locality hints are only used at the time of machine creation and not referenced after. Locality is deprecated as of [CloudAPI v8.3.0](https://apidocs.joyent.com/cloudapi/#830).`,
+					Description: `([Locality](#locality-map) map, optional) A mapping of [Locality](https://apidocs.joyent.com/cloudapi/#CreateMachine) attributes to apply to the machine that assist in data center placement. NOTE: Locality hints are only used at the time of machine creation and not referenced after. Locality is deprecated as of [CloudAPI v8.3.0](https://apidocs.joyent.com/cloudapi/#830).`,
 				},
 				resource.Attribute{
 					Name:        "firewall_enabled",
-					Description: `(boolean) Default: ` + "`" + `false` + "`" + ` Whether the cloud firewall should be enabled for this machine.`,
+					Description: `(boolean, optional) Default: ` + "`" + `false` + "`" + ` Whether the cloud firewall should be enabled for this machine.`,
 				},
 				resource.Attribute{
 					Name:        "root_authorized_keys",
-					Description: `(string) The public keys authorized for root access via SSH to the machine.`,
+					Description: `(string, optional) The public keys authorized for root access via SSH to the machine.`,
 				},
 				resource.Attribute{
 					Name:        "user_data",
-					Description: `(string) Data to be copied to the machine on boot.`,
+					Description: `(string, optional) Data to be copied to the machine on boot.`,
 				},
 				resource.Attribute{
 					Name:        "user_script",
-					Description: `(string) The user script to run on boot (every boot on SmartMachines). To learn more about both the user script and user data see the [metadata API][2] documentation and the [Joyent Metadata Data Dictionary][1] specification.`,
+					Description: `(string, optional) The user script to run on boot (every boot on SmartMachines). To learn more about both the user script and user data see the [metadata API][2] documentation and the [Joyent Metadata Data Dictionary][1] specification.`,
 				},
 				resource.Attribute{
 					Name:        "administrator_pw",
-					Description: `(string) The initial password for the Administrator user. Only used for Windows virtual machines.`,
+					Description: `(string, optional) The initial password for the Administrator user. Only used for Windows virtual machines.`,
 				},
 				resource.Attribute{
 					Name:        "cloud_config",
-					Description: `(string) Cloud-init configuration for Linux brand machines, used instead of ` + "`" + `user_data` + "`" + `.`,
+					Description: `(string, optional) Cloud-init configuration for Linux brand machines, used instead of ` + "`" + `user_data` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "deletion_protection_enabled",
-					Description: `(bool) Whether an instance is destroyable. Default is ` + "`" + `false` + "`" + `. ## Attribute Reference The following attributes are exported:`,
+					Description: `(bool, optional) Whether an instance is destroyable. Default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "volume",
+					Description: `([Volume](#volume-map) map, optional) A volume to attach to the instance. Volume configurations only apply on resource creation. Multiple`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -426,7 +428,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `The provisioning state of the NIC The following attributes are used by ` + "`" + `cns` + "`" + `:`,
+					Description: `The provisioning state of the NIC ### CNS map The following attributes are used by ` + "`" + `cns` + "`" + `:`,
 				},
 				resource.Attribute{
 					Name:        "services",
@@ -434,7 +436,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disable",
-					Description: `(boolean) - The ability to temporarily disable CNS services domains (optional). The following attributes are used as ` + "`" + `locality` + "`" + ` hints:`,
+					Description: `(boolean) - The ability to temporarily disable CNS services domains (optional). ### Locality map The following attributes are used as ` + "`" + `locality` + "`" + ` hints:`,
 				},
 				resource.Attribute{
 					Name:        "close_to",
@@ -442,7 +444,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "far_from",
-					Description: `(list of strings) - List of container UUIDs that a new instance should not be placed onto the same host. [1]: https://eng.joyent.com/mdata/datadict.html [2]: https://docs.joyent.com/private-cloud/instances/using-mdata`,
+					Description: `(list of strings) - List of container UUIDs that a new instance should not be placed onto the same host. ### Volume map Each`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(string) - The name of the volume`,
+				},
+				resource.Attribute{
+					Name:        "mountpoint",
+					Description: `(string) - Where the volume will be mounted`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `(optional, string) - Can be`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(optional, string) - The type of volume (defaults to`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -520,7 +538,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `The provisioning state of the NIC The following attributes are used by ` + "`" + `cns` + "`" + `:`,
+					Description: `The provisioning state of the NIC ### CNS map The following attributes are used by ` + "`" + `cns` + "`" + `:`,
 				},
 				resource.Attribute{
 					Name:        "services",
@@ -528,7 +546,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disable",
-					Description: `(boolean) - The ability to temporarily disable CNS services domains (optional). The following attributes are used as ` + "`" + `locality` + "`" + ` hints:`,
+					Description: `(boolean) - The ability to temporarily disable CNS services domains (optional). ### Locality map The following attributes are used as ` + "`" + `locality` + "`" + ` hints:`,
 				},
 				resource.Attribute{
 					Name:        "close_to",
@@ -536,19 +554,34 @@ var (
 				},
 				resource.Attribute{
 					Name:        "far_from",
-					Description: `(list of strings) - List of container UUIDs that a new instance should not be placed onto the same host. [1]: https://eng.joyent.com/mdata/datadict.html [2]: https://docs.joyent.com/private-cloud/instances/using-mdata`,
+					Description: `(list of strings) - List of container UUIDs that a new instance should not be placed onto the same host. ### Volume map Each`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(string) - The name of the volume`,
+				},
+				resource.Attribute{
+					Name:        "mountpoint",
+					Description: `(string) - Where the volume will be mounted`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `(optional, string) - Can be`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(optional, string) - The type of volume (defaults to`,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "triton_service_group",
+			Type:             "Service Group",
 			Category:         "Resources",
 			ShortDescription: `The ` + "`" + `triton_service_group` + "`" + ` resource represents a Triton Service Group.`,
 			Description:      ``,
 			Keywords: []string{
-				"service",
-				"group",
+				"Service Group",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -577,12 +610,12 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "triton_snapshot",
+			Type:             "Snapshot",
 			Category:         "Resources",
 			ShortDescription: `The ` + "`" + `triton_snapshot` + "`" + ` resource represents a snapshot of a Triton machine.`,
 			Description:      ``,
 			Keywords: []string{
-				"snapshot",
+				"Snapshot",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -615,12 +648,12 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "triton_vlan",
+			Type:             "VLAN",
 			Category:         "Resources",
 			ShortDescription: `The ` + "`" + `triton_vlan` + "`" + ` resource represents an VLAN for a Triton account.`,
 			Description:      ``,
 			Keywords: []string{
-				"vlan",
+				"VLAN",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -638,18 +671,101 @@ var (
 			},
 			Attributes: []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "Volume",
+			Category:         "Resources",
+			ShortDescription: `The ` + "`" + `triton_volume` + "`" + ` resource represents a storage volume instance running in Triton.`,
+			Description:      ``,
+			Keywords: []string{
+				"Volume",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(string, optional) The friendly name for the volume. Triton will generate a name if one is not specified.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(integer, optional) The size of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "networks",
+					Description: `(list, optional) The list of networks for which the volume will be accessible on. The network ID will be in hex form, e.g ` + "`" + `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(map, optional) A mapping of tags to apply to the volume.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(string, optional) The type of volume Triton should create (defaults to`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(string) - The identifier representing the volume in Triton.`,
+				},
+				resource.Attribute{
+					Name:        "filesystem_path",
+					Description: `(string) - The NFS path that the volume can be referenced through.`,
+				},
+				resource.Attribute{
+					Name:        "networks",
+					Description: `(list of strings) - The ID of the networks which the volume is attached to, and thus over which it can be accessed.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(string) - The current state of the volume. Can be one of`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(map) - A mapping of tags the volume is using.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(string) - The type of the volume.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(string) - The identifier representing the volume in Triton.`,
+				},
+				resource.Attribute{
+					Name:        "filesystem_path",
+					Description: `(string) - The NFS path that the volume can be referenced through.`,
+				},
+				resource.Attribute{
+					Name:        "networks",
+					Description: `(list of strings) - The ID of the networks which the volume is attached to, and thus over which it can be accessed.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(string) - The current state of the volume. Can be one of`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(map) - A mapping of tags the volume is using.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(string) - The type of the volume.`,
+				},
+			},
+		},
 	}
 
 	resourcesMap = map[string]int{
 
-		"triton_fabric":            0,
-		"triton_firewall_rule":     1,
-		"triton_instance_template": 2,
-		"triton_key":               3,
-		"triton_machine":           4,
-		"triton_service_group":     5,
-		"triton_snapshot":          6,
-		"triton_vlan":              7,
+		"Fabric":            0,
+		"Firewall Rule":     1,
+		"Instance Template": 2,
+		"Key":               3,
+		"Machine":           4,
+		"Service Group":     5,
+		"Snapshot":          6,
+		"VLAN":              7,
+		"Volume":            8,
 	}
 )
 

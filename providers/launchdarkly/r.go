@@ -24,6 +24,18 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "launchdarkly_destination",
+			Category:         "Resources",
+			ShortDescription: `Interact with the LaunchDarkly data export destinations API.`,
+			Description:      ``,
+			Keywords: []string{
+				"destination",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "launchdarkly_environment",
 			Category:         "Resources",
 			ShortDescription: `Create and manage LaunchDarkly environments.`,
@@ -115,13 +127,14 @@ var (
 	resourcesMap = map[string]int{
 
 		"launchdarkly_custom_role":              0,
-		"launchdarkly_environment":              1,
-		"launchdarkly_feature_flag":             2,
-		"launchdarkly_feature_flag_environment": 3,
-		"launchdarkly_project":                  4,
-		"launchdarkly_segment":                  5,
-		"launchdarkly_team_member":              6,
-		"launchdarkly_webhook":                  7,
+		"launchdarkly_destination":              1,
+		"launchdarkly_environment":              2,
+		"launchdarkly_feature_flag":             3,
+		"launchdarkly_feature_flag_environment": 4,
+		"launchdarkly_project":                  5,
+		"launchdarkly_segment":                  6,
+		"launchdarkly_team_member":              7,
+		"launchdarkly_webhook":                  8,
 	}
 )
 

@@ -133,10 +133,6 @@ var (
 					Description: `(Optional) A list of ADB cluster IDs.`,
 				},
 				resource.Attribute{
-					Name:        "status",
-					Description: `(Optional) status of the cluster.`,
-				},
-				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional, Available in v1.68.0+) A mapping of tags to assign to the resource. - Key: It can be up to 64 characters in length. It cannot begin with "aliyun", "acs:", "http://", or "https://". It cannot be a null string. - Value: It can be up to 128 characters in length. It cannot begin with "aliyun", "acs:", "http://", or "https://". It can be a null string.`,
 				},
@@ -289,6 +285,326 @@ var (
 				resource.Attribute{
 					Name:        "db_node_storage",
 					Description: `The DBNodeStorage of the ADB cluster.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_adb_zones",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of availability zones for ADB that can be used by an Alibaba Cloud account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "multi",
+					Description: `(Optional) Indicate whether the zones can be used in a multi AZ configuration. Default to ` + "`" + `false` + "`" + `. Multi AZ is usually used to launch ADB instances.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of availability zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the zone.`,
+				},
+				resource.Attribute{
+					Name:        "multi_zone_ids",
+					Description: `A list of zone ids in which the multi zone.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of availability zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the zone.`,
+				},
+				resource.Attribute{
+					Name:        "multi_zone_ids",
+					Description: `A list of zone ids in which the multi zone.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_alidns_domain_groups",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of Domain Groups available to the Alidns.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of instance IDs.`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter results by the domain group name.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of instance IDs.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of domain group names.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `A list of instances. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "domain_count",
+					Description: `Number of domain names in the group.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `Id of the domain group.`,
+				},
+				resource.Attribute{
+					Name:        "group_name",
+					Description: `The name of the domain group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of instance IDs.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of domain group names.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `A list of instances. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "domain_count",
+					Description: `Number of domain names in the group.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `Id of the domain group.`,
+				},
+				resource.Attribute{
+					Name:        "group_name",
+					Description: `The name of the domain group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_alidns_records",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of domain records available to the Alidns.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "domain_name",
+					Description: `(Required) The domain name associated to the records.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Record type. Valid values: ` + "`" + `A` + "`" + `, ` + "`" + `NS` + "`" + `, ` + "`" + `MX` + "`" + `, ` + "`" + `TXT` + "`" + `, ` + "`" + `CNAME` + "`" + `, ` + "`" + `SRV` + "`" + `, ` + "`" + `AAAA` + "`" + `, ` + "`" + `REDIRECT_URL` + "`" + `, ` + "`" + `FORWORD_URL` + "`" + ` .`,
+				},
+				resource.Attribute{
+					Name:        "line",
+					Description: `(Optional) ISP line. Valid values: ` + "`" + `default` + "`" + `, ` + "`" + `telecom` + "`" + `, ` + "`" + `unicom` + "`" + `, ` + "`" + `mobile` + "`" + `, ` + "`" + `oversea` + "`" + `, ` + "`" + `edu` + "`" + `, ` + "`" + `drpeng` + "`" + `, ` + "`" + `btvn` + "`" + `, .etc. For checking all resolution lines enumeration please visit [Alibaba Cloud DNS doc](https://www.alibabacloud.com/help/doc-detail/34339.htm)`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional) Record status. Valid values: ` + "`" + `ENABLE` + "`" + ` and ` + "`" + `DISABLE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "is_locked",
+					Description: `(Optional, type: bool) Whether the record is locked or not.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of record IDs.`,
+				},
+				resource.Attribute{
+					Name:        "direction",
+					Description: `(Optional) Sorting direction. Valid values: ` + "`" + `DESC` + "`" + `,` + "`" + `ASC` + "`" + `. Default to ` + "`" + `AESC` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Optional) Domain name group ID.`,
+				},
+				resource.Attribute{
+					Name:        "key_word",
+					Description: `(Optional) Keywords.`,
+				},
+				resource.Attribute{
+					Name:        "lang",
+					Description: `(Optional) User language.`,
+				},
+				resource.Attribute{
+					Name:        "order_by",
+					Description: `(Optional) Sort by. Sort from newest to oldest according to the time added by resolution.`,
+				},
+				resource.Attribute{
+					Name:        "rr_key_word",
+					Description: `(Optional) The keywords recorded by the host are searched according to the ` + "`" + `%RRKeyWord%` + "`" + ` mode, and are not case sensitive.`,
+				},
+				resource.Attribute{
+					Name:        "search_mode",
+					Description: `(Optional) Search mode, Valid values: ` + "`" + `LIKE` + "`" + `, ` + "`" + `EXACT` + "`" + `, ` + "`" + `ADVANCED` + "`" + `, ` + "`" + `LIKE` + "`" + ` (fuzzy), ` + "`" + `EXACT` + "`" + ` (accurate) search supports KeyWord field, ` + "`" + `ADVANCED` + "`" + ` (advanced) mode supports other fields.`,
+				},
+				resource.Attribute{
+					Name:        "type_key_word",
+					Description: `(Optional) Analyze type keywords, search by full match, not case sensitive.`,
+				},
+				resource.Attribute{
+					Name:        "value_key_word",
+					Description: `(Optional) The keywords of the recorded value are searched according to the ` + "`" + `%ValueKeyWord%` + "`" + ` mode, and are not case sensitive.`,
+				},
+				resource.Attribute{
+					Name:        "rr_regex",
+					Description: `(Optional) Host record regex.`,
+				},
+				resource.Attribute{
+					Name:        "value_regex",
+					Description: `(Optional) Host record value regex.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of record IDs.`,
+				},
+				resource.Attribute{
+					Name:        "records",
+					Description: `A list of records. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "record_id",
+					Description: `ID of the record.`,
+				},
+				resource.Attribute{
+					Name:        "domain_name",
+					Description: `Name of the domain record belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "rr",
+					Description: `Host record of the domain.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Host record value of the domain.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of the record.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `TTL of the record.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Priority of the ` + "`" + `MX` + "`" + ` record.`,
+				},
+				resource.Attribute{
+					Name:        "line",
+					Description: `ISP line of the record.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the record.`,
+				},
+				resource.Attribute{
+					Name:        "locked",
+					Description: `Indicates whether the record is locked.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of record IDs.`,
+				},
+				resource.Attribute{
+					Name:        "records",
+					Description: `A list of records. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "record_id",
+					Description: `ID of the record.`,
+				},
+				resource.Attribute{
+					Name:        "domain_name",
+					Description: `Name of the domain record belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "rr",
+					Description: `Host record of the domain.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Host record value of the domain.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of the record.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `TTL of the record.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Priority of the ` + "`" + `MX` + "`" + ` record.`,
+				},
+				resource.Attribute{
+					Name:        "line",
+					Description: `ISP line of the record.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the record.`,
+				},
+				resource.Attribute{
+					Name:        "locked",
+					Description: `Indicates whether the record is locked.`,
 				},
 			},
 		},
@@ -1441,6 +1757,142 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "alicloud_cen_flowlogs",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of CEN flow logs owned by an Alibaba Cloud account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of CEN flow log IDs.`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter CEN flow logs by name.`,
+				},
+				resource.Attribute{
+					Name:        "cen_id",
+					Description: `(Optional) The ID of the CEN Instance.`,
+				},
+				resource.Attribute{
+					Name:        "project_name",
+					Description: `(Optional) The name of the SLS project.`,
+				},
+				resource.Attribute{
+					Name:        "log_store_name",
+					Description: `(Optional) The name of the log store which is in the ` + "`" + `project_name` + "`" + ` SLS project.`,
+				},
+				resource.Attribute{
+					Name:        "flow_log_name",
+					Description: `(Optional) The name of flowlog.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of flowlog.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional) The status of flowlog. Valid values: ["Active", "Inactive"]. Default to "Active".`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of CEN flow log IDs.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of CEN flow log names.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `A list of CEN flow logs. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the CEN flow log.`,
+				},
+				resource.Attribute{
+					Name:        "flow_log_id",
+					Description: `ID of the CEN flow log.`,
+				},
+				resource.Attribute{
+					Name:        "cen_id",
+					Description: `The ID of the CEN Instance.`,
+				},
+				resource.Attribute{
+					Name:        "project_name",
+					Description: `The name of the SLS project.`,
+				},
+				resource.Attribute{
+					Name:        "log_store_name",
+					Description: `The name of the log store which is in the ` + "`" + `project_name` + "`" + ` SLS project.`,
+				},
+				resource.Attribute{
+					Name:        "flow_log_name",
+					Description: `The name of flowlog.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of flowlog.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of flowlog.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of CEN flow log IDs.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of CEN flow log names.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `A list of CEN flow logs. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the CEN flow log.`,
+				},
+				resource.Attribute{
+					Name:        "flow_log_id",
+					Description: `ID of the CEN flow log.`,
+				},
+				resource.Attribute{
+					Name:        "cen_id",
+					Description: `The ID of the CEN Instance.`,
+				},
+				resource.Attribute{
+					Name:        "project_name",
+					Description: `The name of the SLS project.`,
+				},
+				resource.Attribute{
+					Name:        "log_store_name",
+					Description: `The name of the log store which is in the ` + "`" + `project_name` + "`" + ` SLS project.`,
+				},
+				resource.Attribute{
+					Name:        "flow_log_name",
+					Description: `The name of flowlog.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of flowlog.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of flowlog.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alicloud_cen_instances",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a list of CEN(Cloud Enterprise Network) instances owned by an Alibaba Cloud account.`,
@@ -1454,6 +1906,10 @@ var (
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string to filter CEN instances by name.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, Available in v1.81.0+) A mapping of tags to assign to the resource.`,
 				},
 				resource.Attribute{
 					Name:        "output_file",
@@ -1472,28 +1928,36 @@ var (
 					Description: `A list of CEN instances. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
+					Name:        "cen_bandwidth_package_ids",
+					Description: `List of CEN Bandwidth Package IDs in the specified CEN instance.`,
+				},
+				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the CEN instance.`,
+				},
+				resource.Attribute{
+					Name:        "cen_id",
+					Description: `ID of the CEN instance.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the CEN instance.`,
 				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `Name of the CEN instance.`,
 				},
 				resource.Attribute{
+					Name:        "protection_level",
+					Description: `Indicates the allowed level of CIDR block overlapping.`,
+				},
+				resource.Attribute{
 					Name:        "status",
 					Description: `Status of the CEN instance, including "Creating", "Active" and "Deleting".`,
 				},
 				resource.Attribute{
-					Name:        "bandwidth_package_ids",
-					Description: `List of CEN Bandwidth Package IDs in the specified CEN instance.`,
-				},
-				resource.Attribute{
-					Name:        "child_instance_ids",
-					Description: `List of child instance IDs in the specified CEN instance.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `Description of the CEN instance.`,
+					Name:        "tags",
+					Description: `A map of tags assigned to the Cen Instance.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1510,28 +1974,36 @@ var (
 					Description: `A list of CEN instances. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
+					Name:        "cen_bandwidth_package_ids",
+					Description: `List of CEN Bandwidth Package IDs in the specified CEN instance.`,
+				},
+				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the CEN instance.`,
+				},
+				resource.Attribute{
+					Name:        "cen_id",
+					Description: `ID of the CEN instance.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the CEN instance.`,
 				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `Name of the CEN instance.`,
 				},
 				resource.Attribute{
+					Name:        "protection_level",
+					Description: `Indicates the allowed level of CIDR block overlapping.`,
+				},
+				resource.Attribute{
 					Name:        "status",
 					Description: `Status of the CEN instance, including "Creating", "Active" and "Deleting".`,
 				},
 				resource.Attribute{
-					Name:        "bandwidth_package_ids",
-					Description: `List of CEN Bandwidth Package IDs in the specified CEN instance.`,
-				},
-				resource.Attribute{
-					Name:        "child_instance_ids",
-					Description: `List of child instance IDs in the specified CEN instance.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `Description of the CEN instance.`,
+					Name:        "tags",
+					Description: `A map of tags assigned to the Cen Instance.`,
 				},
 			},
 		},
@@ -1740,6 +2212,302 @@ var (
 				resource.Attribute{
 					Name:        "status",
 					Description: `Reasons of exceptions.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_cen_route_maps",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of CEN(Cloud Enterprise Network) Route Maps owned by an Alibaba Cloud account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cen_id",
+					Description: `(Required) The ID of the CEN instance.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of CEN route map IDs.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional) The status of the route map, including ` + "`" + `Creating` + "`" + `, ` + "`" + `Active` + "`" + ` and ` + "`" + `Deleting` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "description_regex",
+					Description: `(Optional) A regex string to filter CEN route map by description.`,
+				},
+				resource.Attribute{
+					Name:        "cen_region_id",
+					Description: `(Optional) The ID of the region to which the CEN instance belongs.`,
+				},
+				resource.Attribute{
+					Name:        "transmit_direction",
+					Description: `(Optional) The direction in which the route map is applied, including ` + "`" + `RegionIn` + "`" + ` and ` + "`" + `RegionOut` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of CEN route map IDs.`,
+				},
+				resource.Attribute{
+					Name:        "maps",
+					Description: `A list of CEN instances. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the route map.`,
+				},
+				resource.Attribute{
+					Name:        "cen_id",
+					Description: `The ID of the CEN instance.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the route map.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the route map.`,
+				},
+				resource.Attribute{
+					Name:        "cen_region_id",
+					Description: `The ID of the region to which the CEN instance belongs.`,
+				},
+				resource.Attribute{
+					Name:        "as_path_match_mode",
+					Description: `A match statement. It indicates the mode in which the as-path attribute is matched.`,
+				},
+				resource.Attribute{
+					Name:        "cidr_match_mode",
+					Description: `A match statement. It indicates the mode in which the prefix attribute is matched.`,
+				},
+				resource.Attribute{
+					Name:        "community_match_mode",
+					Description: `A match statement. It indicates the mode in which the community attribute is matched.`,
+				},
+				resource.Attribute{
+					Name:        "community_operate_mode",
+					Description: `An action statement. It indicates the mode in which the community attribute is operated.`,
+				},
+				resource.Attribute{
+					Name:        "destination_child_instance_types",
+					Description: `A match statement that indicates the list of IDs of the destination instances.`,
+				},
+				resource.Attribute{
+					Name:        "destination_cidr_blocks",
+					Description: `A match statement that indicates the prefix list.`,
+				},
+				resource.Attribute{
+					Name:        "destination_instance_ids",
+					Description: `A match statement that indicates the list of IDs of the destination instances.`,
+				},
+				resource.Attribute{
+					Name:        "destination_instance_ids_reverse_match",
+					Description: `Indicates whether to enable the reverse match method of the DestinationInstanceIds match condition.`,
+				},
+				resource.Attribute{
+					Name:        "destination_route_table_ids",
+					Description: `A match statement that indicates the list of IDs of the destination route tables.`,
+				},
+				resource.Attribute{
+					Name:        "map_result",
+					Description: `The action that is performed to a route if the route meets all the match conditions.`,
+				},
+				resource.Attribute{
+					Name:        "match_asns",
+					Description: `A match statement that indicates the As path list.`,
+				},
+				resource.Attribute{
+					Name:        "match_community_set",
+					Description: `A match statement that indicates the community set.`,
+				},
+				resource.Attribute{
+					Name:        "next_priority",
+					Description: `The priority of the next route map that is associated with the current route map.`,
+				},
+				resource.Attribute{
+					Name:        "operate_community_set",
+					Description: `An action statement that operates the community attribute.`,
+				},
+				resource.Attribute{
+					Name:        "preference",
+					Description: `An action statement that modifies the preference of the route.`,
+				},
+				resource.Attribute{
+					Name:        "prepend_as_path",
+					Description: `Indicates AS Path prepending when a regional gateway receives or publishes a route.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `The priority of the route map.`,
+				},
+				resource.Attribute{
+					Name:        "route_map_id",
+					Description: `The ID of the route map.`,
+				},
+				resource.Attribute{
+					Name:        "route_types",
+					Description: `A match statement that indicates the list of route types.`,
+				},
+				resource.Attribute{
+					Name:        "source_child_instance_types",
+					Description: `A match statement that indicates the list of IDs of the source instances.`,
+				},
+				resource.Attribute{
+					Name:        "source_instance_ids",
+					Description: `A match statement that indicates the list of IDs of the source instances.`,
+				},
+				resource.Attribute{
+					Name:        "source_instance_ids_reverse_match",
+					Description: `Indicates whether to enable the reverse match method of the SourceInstanceIds match condition.`,
+				},
+				resource.Attribute{
+					Name:        "source_region_ids",
+					Description: `A match statement that indicates the list of IDs of the source regions.`,
+				},
+				resource.Attribute{
+					Name:        "source_route_table_ids",
+					Description: `A match statement that indicates the list of IDs of the source route tables.`,
+				},
+				resource.Attribute{
+					Name:        "transmit_direction",
+					Description: `The direction in which the route map is applied.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of CEN route map IDs.`,
+				},
+				resource.Attribute{
+					Name:        "maps",
+					Description: `A list of CEN instances. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the route map.`,
+				},
+				resource.Attribute{
+					Name:        "cen_id",
+					Description: `The ID of the CEN instance.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the route map.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the route map.`,
+				},
+				resource.Attribute{
+					Name:        "cen_region_id",
+					Description: `The ID of the region to which the CEN instance belongs.`,
+				},
+				resource.Attribute{
+					Name:        "as_path_match_mode",
+					Description: `A match statement. It indicates the mode in which the as-path attribute is matched.`,
+				},
+				resource.Attribute{
+					Name:        "cidr_match_mode",
+					Description: `A match statement. It indicates the mode in which the prefix attribute is matched.`,
+				},
+				resource.Attribute{
+					Name:        "community_match_mode",
+					Description: `A match statement. It indicates the mode in which the community attribute is matched.`,
+				},
+				resource.Attribute{
+					Name:        "community_operate_mode",
+					Description: `An action statement. It indicates the mode in which the community attribute is operated.`,
+				},
+				resource.Attribute{
+					Name:        "destination_child_instance_types",
+					Description: `A match statement that indicates the list of IDs of the destination instances.`,
+				},
+				resource.Attribute{
+					Name:        "destination_cidr_blocks",
+					Description: `A match statement that indicates the prefix list.`,
+				},
+				resource.Attribute{
+					Name:        "destination_instance_ids",
+					Description: `A match statement that indicates the list of IDs of the destination instances.`,
+				},
+				resource.Attribute{
+					Name:        "destination_instance_ids_reverse_match",
+					Description: `Indicates whether to enable the reverse match method of the DestinationInstanceIds match condition.`,
+				},
+				resource.Attribute{
+					Name:        "destination_route_table_ids",
+					Description: `A match statement that indicates the list of IDs of the destination route tables.`,
+				},
+				resource.Attribute{
+					Name:        "map_result",
+					Description: `The action that is performed to a route if the route meets all the match conditions.`,
+				},
+				resource.Attribute{
+					Name:        "match_asns",
+					Description: `A match statement that indicates the As path list.`,
+				},
+				resource.Attribute{
+					Name:        "match_community_set",
+					Description: `A match statement that indicates the community set.`,
+				},
+				resource.Attribute{
+					Name:        "next_priority",
+					Description: `The priority of the next route map that is associated with the current route map.`,
+				},
+				resource.Attribute{
+					Name:        "operate_community_set",
+					Description: `An action statement that operates the community attribute.`,
+				},
+				resource.Attribute{
+					Name:        "preference",
+					Description: `An action statement that modifies the preference of the route.`,
+				},
+				resource.Attribute{
+					Name:        "prepend_as_path",
+					Description: `Indicates AS Path prepending when a regional gateway receives or publishes a route.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `The priority of the route map.`,
+				},
+				resource.Attribute{
+					Name:        "route_map_id",
+					Description: `The ID of the route map.`,
+				},
+				resource.Attribute{
+					Name:        "route_types",
+					Description: `A match statement that indicates the list of route types.`,
+				},
+				resource.Attribute{
+					Name:        "source_child_instance_types",
+					Description: `A match statement that indicates the list of IDs of the source instances.`,
+				},
+				resource.Attribute{
+					Name:        "source_instance_ids",
+					Description: `A match statement that indicates the list of IDs of the source instances.`,
+				},
+				resource.Attribute{
+					Name:        "source_instance_ids_reverse_match",
+					Description: `Indicates whether to enable the reverse match method of the SourceInstanceIds match condition.`,
+				},
+				resource.Attribute{
+					Name:        "source_region_ids",
+					Description: `A match statement that indicates the list of IDs of the source regions.`,
+				},
+				resource.Attribute{
+					Name:        "source_route_table_ids",
+					Description: `A match statement that indicates the list of IDs of the source route tables.`,
+				},
+				resource.Attribute{
+					Name:        "transmit_direction",
+					Description: `The direction in which the route map is applied.`,
 				},
 			},
 		},
@@ -1956,6 +2724,398 @@ var (
 				resource.Attribute{
 					Name:        "allocation_id",
 					Description: `The ID of the EIP instance.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_cr_ee_instances",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of Container Registry Enterprise Edition instances.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of ids to filter results by instance id.`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter results by instance name.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of matched Container Registry Enterprise Edition instances. Its element is an instance uuid.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of instance names.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `A list of matched Container Registry Enterprise Editioninstances. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of Container Registry Enterprise Edition instance.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of Container Registry Enterprise Edition instance.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Region of Container Registry Enterprise Edition instance.`,
+				},
+				resource.Attribute{
+					Name:        "specification",
+					Description: `Specification of Container Registry Enterprise Edition instance.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_quota",
+					Description: `The max number of namespaces that an instance can create.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_usage",
+					Description: `The number of namespaces already created.`,
+				},
+				resource.Attribute{
+					Name:        "repo_quota",
+					Description: `The max number of repos that an instance can create.`,
+				},
+				resource.Attribute{
+					Name:        "repo_usage",
+					Description: `The number of repos already created.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_endpoints",
+					Description: `A list of domains for access on vpc network.`,
+				},
+				resource.Attribute{
+					Name:        "public_endpoints",
+					Description: `A list of domains for access on internet network.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of matched Container Registry Enterprise Edition instances. Its element is an instance uuid.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of instance names.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `A list of matched Container Registry Enterprise Editioninstances. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of Container Registry Enterprise Edition instance.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of Container Registry Enterprise Edition instance.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Region of Container Registry Enterprise Edition instance.`,
+				},
+				resource.Attribute{
+					Name:        "specification",
+					Description: `Specification of Container Registry Enterprise Edition instance.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_quota",
+					Description: `The max number of namespaces that an instance can create.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_usage",
+					Description: `The number of namespaces already created.`,
+				},
+				resource.Attribute{
+					Name:        "repo_quota",
+					Description: `The max number of repos that an instance can create.`,
+				},
+				resource.Attribute{
+					Name:        "repo_usage",
+					Description: `The number of repos already created.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_endpoints",
+					Description: `A list of domains for access on vpc network.`,
+				},
+				resource.Attribute{
+					Name:        "public_endpoints",
+					Description: `A list of domains for access on internet network.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_cr_ee_namespaces",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of Container Registry Enterprise Edition namespaces.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Required) ID of Container Registry Enterprise Edition instance.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of ids to filter results by namespace id.`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter results by namespace name.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of matched Container Registry Enterprise Edition namespaces. Its element is a namespace uuid.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of namespace names.`,
+				},
+				resource.Attribute{
+					Name:        "namespaces",
+					Description: `A list of matched Container Registry Enterprise Edition namespaces. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `ID of Container Registry Enterprise Edition instance.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of Container Registry Enterprise Edition namespace.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of Container Registry Enterprise Edition namespace.`,
+				},
+				resource.Attribute{
+					Name:        "auto_create",
+					Description: `Boolean, when it set to true, repositories are automatically created when pushing new images. If it set to false, you create repository for images before pushing.`,
+				},
+				resource.Attribute{
+					Name:        "default_visibility",
+					Description: `` + "`" + `PUBLIC` + "`" + ` or ` + "`" + `PRIVATE` + "`" + `, default repository visibility in this namespace.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of matched Container Registry Enterprise Edition namespaces. Its element is a namespace uuid.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of namespace names.`,
+				},
+				resource.Attribute{
+					Name:        "namespaces",
+					Description: `A list of matched Container Registry Enterprise Edition namespaces. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `ID of Container Registry Enterprise Edition instance.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of Container Registry Enterprise Edition namespace.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of Container Registry Enterprise Edition namespace.`,
+				},
+				resource.Attribute{
+					Name:        "auto_create",
+					Description: `Boolean, when it set to true, repositories are automatically created when pushing new images. If it set to false, you create repository for images before pushing.`,
+				},
+				resource.Attribute{
+					Name:        "default_visibility",
+					Description: `` + "`" + `PUBLIC` + "`" + ` or ` + "`" + `PRIVATE` + "`" + `, default repository visibility in this namespace.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_cr_ee_repos",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of Container Registry Enterprise Edition repositories.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Required) ID of Container Registry Enterprise Edition instance.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) Name of Container Registry Enterprise Edition namespace where the repositories are located in.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of ids to filter results by repository id.`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter results by repository name.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "enable_details",
+					Description: `(Optional) Boolean, false by default, only repository attributes are exported. Set to true if tags belong to this repository are needed. See ` + "`" + `tags` + "`" + ` in attributes. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of matched Container Registry Enterprise Edition repositories. Its element is a repository id.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of repository names.`,
+				},
+				resource.Attribute{
+					Name:        "repos",
+					Description: `A list of matched Container Registry Enterprise Edition namespaces. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `ID of Container Registry Enterprise Edition instance.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `Name of Container Registry Enterprise Edition namespace where repo is located.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of Container Registry Enterprise Edition repository.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of Container Registry Enterprise Edition repository.`,
+				},
+				resource.Attribute{
+					Name:        "summary",
+					Description: `The repository general information.`,
+				},
+				resource.Attribute{
+					Name:        "repo_type",
+					Description: `` + "`" + `PUBLIC` + "`" + ` or ` + "`" + `PRIVATE` + "`" + `, repository's visibility.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of image tags belong to this repository. Each contains several attributes, see ` + "`" + `Block Tag` + "`" + `. ### Block Tag`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `Tag of this image.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `Id of this image.`,
+				},
+				resource.Attribute{
+					Name:        "digest",
+					Description: `Digest of this image.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of this image.`,
+				},
+				resource.Attribute{
+					Name:        "image_size",
+					Description: `Status of this image, in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "image_update",
+					Description: `Last update time of this image, unix time in nanoseconds.`,
+				},
+				resource.Attribute{
+					Name:        "image_create",
+					Description: `Create time of this image, unix time in nanoseconds.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of matched Container Registry Enterprise Edition repositories. Its element is a repository id.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of repository names.`,
+				},
+				resource.Attribute{
+					Name:        "repos",
+					Description: `A list of matched Container Registry Enterprise Edition namespaces. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `ID of Container Registry Enterprise Edition instance.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `Name of Container Registry Enterprise Edition namespace where repo is located.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of Container Registry Enterprise Edition repository.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of Container Registry Enterprise Edition repository.`,
+				},
+				resource.Attribute{
+					Name:        "summary",
+					Description: `The repository general information.`,
+				},
+				resource.Attribute{
+					Name:        "repo_type",
+					Description: `` + "`" + `PUBLIC` + "`" + ` or ` + "`" + `PRIVATE` + "`" + `, repository's visibility.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of image tags belong to this repository. Each contains several attributes, see ` + "`" + `Block Tag` + "`" + `. ### Block Tag`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `Tag of this image.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `Id of this image.`,
+				},
+				resource.Attribute{
+					Name:        "digest",
+					Description: `Digest of this image.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of this image.`,
+				},
+				resource.Attribute{
+					Name:        "image_size",
+					Description: `Status of this image, in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "image_update",
+					Description: `Last update time of this image, unix time in nanoseconds.`,
+				},
+				resource.Attribute{
+					Name:        "image_create",
+					Description: `Create time of this image, unix time in nanoseconds.`,
 				},
 			},
 		},
@@ -3389,6 +4549,62 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "alicloud_db_zones",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of availability zones for RDS that can be used by an Alibaba Cloud account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "multi",
+					Description: `(Optional) Indicate whether the zones can be used in a multi AZ configuration. Default to ` + "`" + `false` + "`" + `. Multi AZ is usually used to launch RDS instances.`,
+				},
+				resource.Attribute{
+					Name:        "instance_charge_type",
+					Description: `(Optional) Filter the results by a specific instance charge type. Valid values: ` + "`" + `PrePaid` + "`" + ` and ` + "`" + `PostPaid` + "`" + `. Default to ` + "`" + `PostPaid` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of availability zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the zone.`,
+				},
+				resource.Attribute{
+					Name:        "multi_zone_ids",
+					Description: `A list of zone ids in which the multi zone.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of availability zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the zone.`,
+				},
+				resource.Attribute{
+					Name:        "multi_zone_ids",
+					Description: `A list of zone ids in which the multi zone.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alicloud_ddosbgp_instances",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a list of Anti-DDoS Advanced(Ddosbgp) instances available to the user.`,
@@ -3837,6 +5053,50 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "alicloud_dns_domain_txt_guid",
+			Category:         "Data Sources",
+			ShortDescription: `Provides the generation of txt records to realize the retrieval and verification of domain names.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "domain_name",
+					Description: `(Required) Verified domain name.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Txt verification function. Value:` + "`" + `ADD_SUB_DOMAIN` + "`" + `, ` + "`" + `RETRIEVAL` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "lang",
+					Description: `(Optional) User language.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "rr",
+					Description: `Host record.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Record the value.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "rr",
+					Description: `Host record.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Record the value.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alicloud_dns_domains",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a list of domains available to the user.`,
@@ -3869,7 +5129,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_group_id",
-					Description: `(Optional, ForceNew, Available in 1.59.0+) The Id of resource group which the dns belongs. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+					Description: `(Optional, ForceNew, Available in 1.59.0+) The Id of resource group which the dns belongs.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Optional, ForceNew, Available in 1.87.0+) Domain group ID, if not filled, the default is all groups.`,
+				},
+				resource.Attribute{
+					Name:        "key_word",
+					Description: `(Optional, ForceNew, Available in 1.87.0+) The keywords are searched according to the ` + "`" + `%KeyWord%` + "`" + ` mode, which is not case sensitive.`,
+				},
+				resource.Attribute{
+					Name:        "lang",
+					Description: `(Optional, ForceNew, Available in 1.87.0+) User language.`,
+				},
+				resource.Attribute{
+					Name:        "search_mode",
+					Description: `(Optional, ForceNew, Available in 1.87.0+) Search mode, ` + "`" + `LIKE` + "`" + ` fuzzy search, ` + "`" + `EXACT` + "`" + ` exact search.`,
+				},
+				resource.Attribute{
+					Name:        "starmark",
+					Description: `(Optional, ForceNew, Available in 1.87.0+) Whether to query the domain name star.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, ForceNew, Available in 1.87.0+) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
 				},
 				resource.Attribute{
 					Name:        "ids",
@@ -3922,6 +5206,46 @@ var (
 				resource.Attribute{
 					Name:        "resource_group_id",
 					Description: `The Id of resource group which the dns belongs.`,
+				},
+				resource.Attribute{
+					Name:        "dns_servers",
+					Description: `DNS list of domain names in the resolution system.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Id of resource.`,
+				},
+				resource.Attribute{
+					Name:        "in_black_hole",
+					Description: `Whether it is in black hole.`,
+				},
+				resource.Attribute{
+					Name:        "in_clean",
+					Description: `Whether it is cleaning.`,
+				},
+				resource.Attribute{
+					Name:        "min_ttl",
+					Description: `Minimum TTL.`,
+				},
+				resource.Attribute{
+					Name:        "version_code",
+					Description: `Cloud resolution version ID.`,
+				},
+				resource.Attribute{
+					Name:        "record_line_tree_json",
+					Description: `Tree-like analytical line list.`,
+				},
+				resource.Attribute{
+					Name:        "region_lines",
+					Description: `Whether it is a regional route.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `The Id of resource group which the dns belongs.`,
+				},
+				resource.Attribute{
+					Name:        "slave_dns",
+					Description: `Whether to allow auxiliary dns.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3976,6 +5300,46 @@ var (
 				resource.Attribute{
 					Name:        "resource_group_id",
 					Description: `The Id of resource group which the dns belongs.`,
+				},
+				resource.Attribute{
+					Name:        "dns_servers",
+					Description: `DNS list of domain names in the resolution system.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Id of resource.`,
+				},
+				resource.Attribute{
+					Name:        "in_black_hole",
+					Description: `Whether it is in black hole.`,
+				},
+				resource.Attribute{
+					Name:        "in_clean",
+					Description: `Whether it is cleaning.`,
+				},
+				resource.Attribute{
+					Name:        "min_ttl",
+					Description: `Minimum TTL.`,
+				},
+				resource.Attribute{
+					Name:        "version_code",
+					Description: `Cloud resolution version ID.`,
+				},
+				resource.Attribute{
+					Name:        "record_line_tree_json",
+					Description: `Tree-like analytical line list.`,
+				},
+				resource.Attribute{
+					Name:        "region_lines",
+					Description: `Whether it is a regional route.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `The Id of resource group which the dns belongs.`,
+				},
+				resource.Attribute{
+					Name:        "slave_dns",
+					Description: `Whether to allow auxiliary dns.`,
 				},
 			},
 		},
@@ -4040,6 +5404,90 @@ var (
 				resource.Attribute{
 					Name:        "group_name",
 					Description: `Name of the group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_dns_instances",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of instances available to the DNS.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of instance IDs.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of instance IDs.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `A list of instances. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "domain_numbers",
+					Description: `Number of domain names bound.`,
+				},
+				resource.Attribute{
+					Name:        "dns_security",
+					Description: `DNS security level.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `Id of the instance resource.`,
+				},
+				resource.Attribute{
+					Name:        "version_code",
+					Description: `Paid package version.`,
+				},
+				resource.Attribute{
+					Name:        "version_name",
+					Description: `Paid package version name.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of instance IDs.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `A list of instances. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "domain_numbers",
+					Description: `Number of domain names bound.`,
+				},
+				resource.Attribute{
+					Name:        "dns_security",
+					Description: `DNS security level.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `Id of the instance resource.`,
+				},
+				resource.Attribute{
+					Name:        "version_code",
+					Description: `Paid package version.`,
+				},
+				resource.Attribute{
+					Name:        "version_name",
+					Description: `Paid package version name.`,
 				},
 			},
 		},
@@ -4405,6 +5853,446 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "alicloud_edas_applications",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of EDAS applications available to the user.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) An ids string to filter results by the application id.`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter results by the application name.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of application IDs.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of applications names.`,
+				},
+				resource.Attribute{
+					Name:        "applications",
+					Description: `A list of applications.`,
+				},
+				resource.Attribute{
+					Name:        "app_name",
+					Description: `The name of your EDAS application. Only letters '-' '_' and numbers are allowed. The length cannot exceed 36 characters.`,
+				},
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `The ID of the application that you want to deploy.`,
+				},
+				resource.Attribute{
+					Name:        "application_type",
+					Description: `The type of the package for the deployment of the application that you want to create. The valid values are: WAR and JAR. We strongly recommend you to set this parameter when creating the application.`,
+				},
+				resource.Attribute{
+					Name:        "build_package_id",
+					Description: `The package ID of Enterprise Distributed Application Service (EDAS) Container.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `The ID of the cluster that you want to create the application.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_type",
+					Description: `The type of the cluster that you want to create. Valid values: 1: Swarm cluster. 2: ECS cluster. 3: Kubernates cluster.`,
+				},
+				resource.Attribute{
+					Name:        "instance_count",
+					Description: `Number of instances.`,
+				},
+				resource.Attribute{
+					Name:        "running_instance_count",
+					Description: `Number of running instances.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_url",
+					Description: `The URL for health checking of the application.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Application's creation time.`,
+				},
+				resource.Attribute{
+					Name:        "slb_id",
+					Description: `The ID of the SLB instance that is going to be bound.`,
+				},
+				resource.Attribute{
+					Name:        "slb_ip",
+					Description: `The IP address that is allocated to the bound SLB instance.`,
+				},
+				resource.Attribute{
+					Name:        "slb_port",
+					Description: `The port of intranet SLB.`,
+				},
+				resource.Attribute{
+					Name:        "region_id",
+					Description: `The ID of the namespace the application belongs to.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of application IDs.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of applications names.`,
+				},
+				resource.Attribute{
+					Name:        "applications",
+					Description: `A list of applications.`,
+				},
+				resource.Attribute{
+					Name:        "app_name",
+					Description: `The name of your EDAS application. Only letters '-' '_' and numbers are allowed. The length cannot exceed 36 characters.`,
+				},
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `The ID of the application that you want to deploy.`,
+				},
+				resource.Attribute{
+					Name:        "application_type",
+					Description: `The type of the package for the deployment of the application that you want to create. The valid values are: WAR and JAR. We strongly recommend you to set this parameter when creating the application.`,
+				},
+				resource.Attribute{
+					Name:        "build_package_id",
+					Description: `The package ID of Enterprise Distributed Application Service (EDAS) Container.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `The ID of the cluster that you want to create the application.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_type",
+					Description: `The type of the cluster that you want to create. Valid values: 1: Swarm cluster. 2: ECS cluster. 3: Kubernates cluster.`,
+				},
+				resource.Attribute{
+					Name:        "instance_count",
+					Description: `Number of instances.`,
+				},
+				resource.Attribute{
+					Name:        "running_instance_count",
+					Description: `Number of running instances.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_url",
+					Description: `The URL for health checking of the application.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Application's creation time.`,
+				},
+				resource.Attribute{
+					Name:        "slb_id",
+					Description: `The ID of the SLB instance that is going to be bound.`,
+				},
+				resource.Attribute{
+					Name:        "slb_ip",
+					Description: `The IP address that is allocated to the bound SLB instance.`,
+				},
+				resource.Attribute{
+					Name:        "slb_port",
+					Description: `The port of intranet SLB.`,
+				},
+				resource.Attribute{
+					Name:        "region_id",
+					Description: `The ID of the namespace the application belongs to.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_edas_clusters",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of EDAS clusters available to the user.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "logical_region_id",
+					Description: `(Required) ID of the namespace in EDAS.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) An ids string to filter results by the cluster id.`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter results by the cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of cluster IDs.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of cluster names.`,
+				},
+				resource.Attribute{
+					Name:        "clusters",
+					Description: `A list of clusters.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `The ID of the cluster that you want to create the application.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `The name of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_type",
+					Description: `The type of the cluster, Valid values: 1: Swarm cluster. 2: ECS cluster. 3: Kubernates cluster.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Cluster's creation time.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The time when the cluster was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `The total number of CPUs in the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_used",
+					Description: `The number of used CPUs in the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "mem",
+					Description: `The total amount of memory in the cluser. Unit: MB.`,
+				},
+				resource.Attribute{
+					Name:        "mem_used",
+					Description: `The amount of used memory in the cluser. Unit: MB.`,
+				},
+				resource.Attribute{
+					Name:        "network_mode",
+					Description: `The network type of the cluster. Valid values: 1: classic network. 2: VPC.`,
+				},
+				resource.Attribute{
+					Name:        "node_num",
+					Description: `The number of the Elastic Compute Service (ECS) instances that are deployed to the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The ID of the Virtual Private Cloud (VPC) for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "region_id",
+					Description: `The ID of the namespace the application belongs to.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of cluster IDs.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of cluster names.`,
+				},
+				resource.Attribute{
+					Name:        "clusters",
+					Description: `A list of clusters.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `The ID of the cluster that you want to create the application.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `The name of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_type",
+					Description: `The type of the cluster, Valid values: 1: Swarm cluster. 2: ECS cluster. 3: Kubernates cluster.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Cluster's creation time.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The time when the cluster was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `The total number of CPUs in the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_used",
+					Description: `The number of used CPUs in the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "mem",
+					Description: `The total amount of memory in the cluser. Unit: MB.`,
+				},
+				resource.Attribute{
+					Name:        "mem_used",
+					Description: `The amount of used memory in the cluser. Unit: MB.`,
+				},
+				resource.Attribute{
+					Name:        "network_mode",
+					Description: `The network type of the cluster. Valid values: 1: classic network. 2: VPC.`,
+				},
+				resource.Attribute{
+					Name:        "node_num",
+					Description: `The number of the Elastic Compute Service (ECS) instances that are deployed to the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The ID of the Virtual Private Cloud (VPC) for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "region_id",
+					Description: `The ID of the namespace the application belongs to.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_edas_deploy_groups",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of EDAS deploy groups available to the user.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `(Required) ID of the EDAS application.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) An ids string to filter results by the deploy group id.`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter results by the deploy group name.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of deploy group IDs.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of deploy group names.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `A list of consumer group ids.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `The ID of the instance group.`,
+				},
+				resource.Attribute{
+					Name:        "group_name",
+					Description: `The name of the instance group. The length cannot exceed 64 characters.`,
+				},
+				resource.Attribute{
+					Name:        "group_type",
+					Description: `The type of the instance group. Valid values: 0: Default group. 1: Phased release is disabled for traffic management. 2: Phased release is enabled for traffic management.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time when the instance group was created.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The time when the instance group was updated.`,
+				},
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `The ID of the application that you want to deploy.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `The ID of the cluster that you want to create the application.`,
+				},
+				resource.Attribute{
+					Name:        "package_version_id",
+					Description: `The version of the deployment package for the instance group that was created.`,
+				},
+				resource.Attribute{
+					Name:        "app_version_id",
+					Description: `The version of the deployment package for the application.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of deploy group IDs.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of deploy group names.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `A list of consumer group ids.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `The ID of the instance group.`,
+				},
+				resource.Attribute{
+					Name:        "group_name",
+					Description: `The name of the instance group. The length cannot exceed 64 characters.`,
+				},
+				resource.Attribute{
+					Name:        "group_type",
+					Description: `The type of the instance group. Valid values: 0: Default group. 1: Phased release is disabled for traffic management. 2: Phased release is enabled for traffic management.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time when the instance group was created.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The time when the instance group was updated.`,
+				},
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `The ID of the application that you want to deploy.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `The ID of the cluster that you want to create the application.`,
+				},
+				resource.Attribute{
+					Name:        "package_version_id",
+					Description: `The version of the deployment package for the instance group that was created.`,
+				},
+				resource.Attribute{
+					Name:        "app_version_id",
+					Description: `The version of the deployment package for the application.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alicloud_eips",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a list of EIP owned by an Alibaba Cloud account.`,
@@ -4556,6 +6444,10 @@ var (
 					Description: `(Optional) Elasticsearch version. Options are ` + "`" + `5.5.3_with_X-Pack` + "`" + `, ` + "`" + `6.3.2_with_X-Pack` + "`" + ` and ` + "`" + `6.7.0_with_X-Pack` + "`" + `. If no value is specified, all versions are returned.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, Available 1.74.0+) A map of tags assigned to instances.`,
+				},
+				resource.Attribute{
 					Name:        "output_file",
 					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
 				},
@@ -4619,6 +6511,10 @@ var (
 					Name:        "status",
 					Description: `Status of the instance. It includes ` + "`" + `active` + "`" + `, ` + "`" + `activating` + "`" + `, ` + "`" + `inactive` + "`" + ``,
 				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A map of tags assigned to the instance.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -4680,6 +6576,62 @@ var (
 				resource.Attribute{
 					Name:        "status",
 					Description: `Status of the instance. It includes ` + "`" + `active` + "`" + `, ` + "`" + `activating` + "`" + `, ` + "`" + `inactive` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A map of tags assigned to the instance.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_elasticsearch_zones",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of availability zones for Elasticsearch that can be used by an Alibaba Cloud account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "multi",
+					Description: `(Optional) Indicate whether the zones can be used in a multi AZ configuration. Default to ` + "`" + `false` + "`" + `. Multi AZ is usually used to launch Elasticsearch instances.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of availability zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the zone.`,
+				},
+				resource.Attribute{
+					Name:        "multi_zone_ids",
+					Description: `A list of zone ids in which the multi zone.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of availability zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the zone.`,
+				},
+				resource.Attribute{
+					Name:        "multi_zone_ids",
+					Description: `A list of zone ids in which the multi zone.`,
 				},
 			},
 		},
@@ -6349,6 +8301,46 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "alicloud_fc_zones",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of availability zones for FunctionCompute that can be used by an Alibaba Cloud account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of availability zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the zone.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of availability zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the zone.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alicloud_file_crc64_checksum",
 			Category:         "Data Sources",
 			ShortDescription: `Provides compute file crc64 checksum.`,
@@ -6680,6 +8672,10 @@ var (
 					Description: `(Optional) Instance availability zone.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, Available in 1.73.0) A mapping of tags to assign to the resource.`,
+				},
+				resource.Attribute{
 					Name:        "output_file",
 					Description: `(Optional) The name of file that can save the collection of instances after running ` + "`" + `terraform plan` + "`" + `. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
 				},
@@ -6725,7 +8721,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "master_instance_type",
-					Description: `hbase.n1.medium, hbase.n1.large, hbase.n1.2xlarge and so on.`,
+					Description: `hbase.sn1.large, hbase.sn1.large, hbase.n1.2xlarge and so on.`,
 				},
 				resource.Attribute{
 					Name:        "master_node_count",
@@ -6733,7 +8729,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "core_instance_type",
-					Description: `hbase.n1.medium, hbase.n1.large, hbase.n1.2xlarge and so on.`,
+					Description: `hbase.sn1.large, hbase.sn1.large, hbase.n1.2xlarge and so on.`,
 				},
 				resource.Attribute{
 					Name:        "core_node_count",
@@ -6774,6 +8770,14 @@ var (
 				resource.Attribute{
 					Name:        "expire_time",
 					Description: `the expire time of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "deletion_protection",
+					Description: `the switch of delete protection.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the resource.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -6819,7 +8823,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "master_instance_type",
-					Description: `hbase.n1.medium, hbase.n1.large, hbase.n1.2xlarge and so on.`,
+					Description: `hbase.sn1.large, hbase.sn1.large, hbase.n1.2xlarge and so on.`,
 				},
 				resource.Attribute{
 					Name:        "master_node_count",
@@ -6827,7 +8831,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "core_instance_type",
-					Description: `hbase.n1.medium, hbase.n1.large, hbase.n1.2xlarge and so on.`,
+					Description: `hbase.sn1.large, hbase.sn1.large, hbase.n1.2xlarge and so on.`,
 				},
 				resource.Attribute{
 					Name:        "core_node_count",
@@ -6868,6 +8872,66 @@ var (
 				resource.Attribute{
 					Name:        "expire_time",
 					Description: `the expire time of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "deletion_protection",
+					Description: `the switch of delete protection.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_hbase_zones",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of availability zones for HBase that can be used by an Alibaba Cloud account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "multi",
+					Description: `(Optional) Indicate whether the zones can be used in a multi AZ configuration. Default to ` + "`" + `false` + "`" + `. Multi AZ is usually used to launch HBase instances.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of availability zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the zone.`,
+				},
+				resource.Attribute{
+					Name:        "multi_zone_ids",
+					Description: `A list of zone ids in which the multi zone.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of availability zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the zone.`,
+				},
+				resource.Attribute{
+					Name:        "multi_zone_ids",
+					Description: `A list of zone ids in which the multi zone.`,
 				},
 			},
 		},
@@ -7785,6 +9849,78 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "alicloud_kms_aliases",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of available KMS Aliases.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of KMS aliases IDs. The value is same as KMS alias_name.`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter the results by the KMS alias name.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of kms aliases IDs. The value is same as KMS alias_name.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of KMS alias name.`,
+				},
+				resource.Attribute{
+					Name:        "aliases",
+					Description: `A list of KMS User alias. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the alias. The value is same as KMS alias_name.`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `ID of the key.`,
+				},
+				resource.Attribute{
+					Name:        "alias_name",
+					Description: `The unique identifier of the alias.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of kms aliases IDs. The value is same as KMS alias_name.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of KMS alias name.`,
+				},
+				resource.Attribute{
+					Name:        "aliases",
+					Description: `A list of KMS User alias. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the alias. The value is same as KMS alias_name.`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `ID of the key.`,
+				},
+				resource.Attribute{
+					Name:        "alias_name",
+					Description: `The unique identifier of the alias.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alicloud_kms_ciphertext",
 			Category:         "Data Sources",
 			ShortDescription: `Encrypt data with KMS.`,
@@ -7812,6 +9948,78 @@ var (
 				resource.Attribute{
 					Name:        "ciphertext_blob",
 					Description: `The ciphertext of the data key encrypted with the primary CMK version.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_kms_key_versions",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of available KMS KeyVersions.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `(Required) The id of kms key.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of KMS KeyVersion IDs.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of KMS KeyVersion IDs.`,
+				},
+				resource.Attribute{
+					Name:        "versions",
+					Description: `A list of KMS KeyVersions. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "creation_date",
+					Description: `Date and time when the key version was created (UTC time).`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `ID of the key.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the KMS KeyVersion resource.`,
+				},
+				resource.Attribute{
+					Name:        "key_version_id",
+					Description: `ID of the key version.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of KMS KeyVersion IDs.`,
+				},
+				resource.Attribute{
+					Name:        "versions",
+					Description: `A list of KMS KeyVersions. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "creation_date",
+					Description: `Date and time when the key version was created (UTC time).`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `ID of the key.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the KMS KeyVersion resource.`,
+				},
+				resource.Attribute{
+					Name:        "key_version_id",
+					Description: `ID of the key version.`,
 				},
 			},
 		},
@@ -7948,6 +10156,94 @@ var (
 				resource.Attribute{
 					Name:        "key_id",
 					Description: `The globally unique ID of the CMK. It is the ID of the CMK used to decrypt ciphertext.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_kms_secrets",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of available KMS Secrets.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "fetch_tags",
+					Description: `(Optional) Whether to include the predetermined resource tag in the return value. Default to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of KMS Secret ids. The value is same as KMS secret_name.`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter the results by the KMS secret_name.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of Kms Secret ids. The value is same as KMS secret_name.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of KMS Secret names.`,
+				},
+				resource.Attribute{
+					Name:        "secrets",
+					Description: `A list of KMS Secrets. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the Kms Secret. The value is same as KMS secret_name.`,
+				},
+				resource.Attribute{
+					Name:        "secret_name",
+					Description: `Name of the KMS Secret.`,
+				},
+				resource.Attribute{
+					Name:        "planned_delete_time",
+					Description: `Schedule deletion time.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of Kms Secret ids. The value is same as KMS secret_name.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of KMS Secret names.`,
+				},
+				resource.Attribute{
+					Name:        "secrets",
+					Description: `A list of KMS Secrets. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the Kms Secret. The value is same as KMS secret_name.`,
+				},
+				resource.Attribute{
+					Name:        "secret_name",
+					Description: `Name of the KMS Secret.`,
+				},
+				resource.Attribute{
+					Name:        "planned_delete_time",
+					Description: `Schedule deletion time.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the resource.`,
 				},
 			},
 		},
@@ -8304,6 +10600,62 @@ var (
 				resource.Attribute{
 					Name:        "port",
 					Description: `Connection port of the instance.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_kvstore_zones",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of availability zones for KVStore that can be used by an Alibaba Cloud account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "multi",
+					Description: `(Optional) Indicate whether the zones can be used in a multi AZ configuration. Default to ` + "`" + `false` + "`" + `. Multi AZ is usually used to launch KVStore instances.`,
+				},
+				resource.Attribute{
+					Name:        "instance_charge_type",
+					Description: `(Optional) Filter the results by a specific instance charge type. Valid values: ` + "`" + `PrePaid` + "`" + ` and ` + "`" + `PostPaid` + "`" + `. Default to ` + "`" + `PostPaid` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of availability zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the zone.`,
+				},
+				resource.Attribute{
+					Name:        "multi_zone_ids",
+					Description: `A list of zone ids in which the multi zone.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of availability zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the zone.`,
+				},
+				resource.Attribute{
+					Name:        "multi_zone_ids",
+					Description: `A list of zone ids in which the multi zone.`,
 				},
 			},
 		},
@@ -9128,6 +11480,58 @@ var (
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `Instance availability zone.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_mongodb_zones",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of availability zones for mongoDB that can be used by an Alibaba Cloud account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "multi",
+					Description: `(Optional) Indicate whether the zones can be used in a multi AZ configuration. Default to ` + "`" + `false` + "`" + `. Multi AZ is usually used to launch MongoDB instances.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of availability zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the zone.`,
+				},
+				resource.Attribute{
+					Name:        "multi_zone_ids",
+					Description: `A list of zone ids in which the multi zone.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of availability zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the zone.`,
+				},
+				resource.Attribute{
+					Name:        "multi_zone_ids",
+					Description: `A list of zone ids in which the multi zone.`,
 				},
 			},
 		},
@@ -11484,6 +13888,146 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "alicloud_polardb_node_classes",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of PolarDB node classes info.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "pay_type",
+					Description: `(Required) Filter the results by charge type. Valid values: ` + "`" + `PrePaid` + "`" + ` and ` + "`" + `PostPaid` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "db_type",
+					Description: `(Optional) Database type. Options are ` + "`" + `MySQL` + "`" + `, ` + "`" + `PostgreSQL` + "`" + `, ` + "`" + `Oracle` + "`" + `. If db_type is set, db_version also needs to be set.`,
+				},
+				resource.Attribute{
+					Name:        "db_version",
+					Description: `(Optional) Database version required by the user. Value options can refer to the latest docs [detail info](https://www.alibabacloud.com/help/doc-detail/98169.htm) ` + "`" + `DBVersion` + "`" + `. If db_version is set, db_type also needs to be set.`,
+				},
+				resource.Attribute{
+					Name:        "db_node_class",
+					Description: `(Optional) The PolarDB node class type by the user.`,
+				},
+				resource.Attribute{
+					Name:        "region_id",
+					Description: `(Optional) The Region to launch the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Optional) The Zone to launch the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform apply` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "classes",
+					Description: `A list of PolarDB node classes. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `The Zone to launch the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "supported_engines",
+					Description: `A list of PolarDB node classes in the zone.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `In the zone, the database type supports classes in the following available_resources.`,
+				},
+				resource.Attribute{
+					Name:        "available_resources",
+					Description: `A list of PolarDB node available classes.`,
+				},
+				resource.Attribute{
+					Name:        "db_node_class",
+					Description: `PolarDB node available class.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "classes",
+					Description: `A list of PolarDB node classes. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `The Zone to launch the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "supported_engines",
+					Description: `A list of PolarDB node classes in the zone.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `In the zone, the database type supports classes in the following available_resources.`,
+				},
+				resource.Attribute{
+					Name:        "available_resources",
+					Description: `A list of PolarDB node available classes.`,
+				},
+				resource.Attribute{
+					Name:        "db_node_class",
+					Description: `PolarDB node available class.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_polardb_zones",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of availability zones for PolarDB that can be used by an Alibaba Cloud account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "multi",
+					Description: `(Optional) Indicate whether the zones can be used in a multi AZ configuration. Default to ` + "`" + `false` + "`" + `. Multi AZ is usually used to launch PolarDB instances.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of availability zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the zone.`,
+				},
+				resource.Attribute{
+					Name:        "multi_zone_ids",
+					Description: `A list of zone ids in which the multi zone.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of availability zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the zone.`,
+				},
+				resource.Attribute{
+					Name:        "multi_zone_ids",
+					Description: `A list of zone ids in which the multi zone.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alicloud_pvtz_zone_records",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a list of Private Zone Records which owned by an Alibaba Cloud account.`,
@@ -12070,7 +14614,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "last_login_date",
-					Description: `Last login date of the user.`,
+					Description: `Last login date of the user. Removed from version 1.79.0.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -12100,7 +14644,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "last_login_date",
-					Description: `Last login date of the user.`,
+					Description: `Last login date of the user. Removed from version 1.79.0.`,
 				},
 			},
 		},
@@ -12157,6 +14701,634 @@ var (
 				resource.Attribute{
 					Name:        "local_name",
 					Description: `Name of the region in the local language.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_resource_manager_accounts",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of Resource Manager Accounts to the user.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of account IDs.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of account IDs.`,
+				},
+				resource.Attribute{
+					Name:        "accounts",
+					Description: `A list of accounts. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `The ID of the folder.`,
+				},
+				resource.Attribute{
+					Name:        "join_method",
+					Description: `The way in which the member account joined the resource directory.`,
+				},
+				resource.Attribute{
+					Name:        "join_time",
+					Description: `The time when the member account joined the resource directory.`,
+				},
+				resource.Attribute{
+					Name:        "modify_time",
+					Description: `The time when the member account was modified.`,
+				},
+				resource.Attribute{
+					Name:        "resource_directory_id",
+					Description: `The ID of the resource directory.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the member account.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the member account.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of account IDs.`,
+				},
+				resource.Attribute{
+					Name:        "accounts",
+					Description: `A list of accounts. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `The ID of the folder.`,
+				},
+				resource.Attribute{
+					Name:        "join_method",
+					Description: `The way in which the member account joined the resource directory.`,
+				},
+				resource.Attribute{
+					Name:        "join_time",
+					Description: `The time when the member account joined the resource directory.`,
+				},
+				resource.Attribute{
+					Name:        "modify_time",
+					Description: `The time when the member account was modified.`,
+				},
+				resource.Attribute{
+					Name:        "resource_directory_id",
+					Description: `The ID of the resource directory.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the member account.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the member account.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_resource_manager_folders",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of resource manager folders to the user.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of resource manager folders IDs.`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter results by folder name.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of folder IDs.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of folder names.`,
+				},
+				resource.Attribute{
+					Name:        "folders",
+					Description: `A list of folders. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the folder.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of folder IDs.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of folder names.`,
+				},
+				resource.Attribute{
+					Name:        "folders",
+					Description: `A list of folders. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the folder.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_resource_manager_handshakes",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of Resource Manager Handshakes to the user.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of Resource Manager Handshake IDs.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of Resource Manager Handshake IDs.`,
+				},
+				resource.Attribute{
+					Name:        "handshakes",
+					Description: `A list of Resource Manager Handshakes. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `The time when the invitation expires.`,
+				},
+				resource.Attribute{
+					Name:        "master_account_id",
+					Description: `The ID of the master account of the resource directory.`,
+				},
+				resource.Attribute{
+					Name:        "master_account_name",
+					Description: `The name of the master account of the resource directory.`,
+				},
+				resource.Attribute{
+					Name:        "modify_time",
+					Description: `The time when the invitation was modified.`,
+				},
+				resource.Attribute{
+					Name:        "note",
+					Description: `The invitation note.`,
+				},
+				resource.Attribute{
+					Name:        "resource_directory_id",
+					Description: `The ID of the resource directory.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the invitation.`,
+				},
+				resource.Attribute{
+					Name:        "target_entity",
+					Description: `The ID or logon email address of the invited account.`,
+				},
+				resource.Attribute{
+					Name:        "target_type",
+					Description: `The type of the invited account.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of Resource Manager Handshake IDs.`,
+				},
+				resource.Attribute{
+					Name:        "handshakes",
+					Description: `A list of Resource Manager Handshakes. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `The time when the invitation expires.`,
+				},
+				resource.Attribute{
+					Name:        "master_account_id",
+					Description: `The ID of the master account of the resource directory.`,
+				},
+				resource.Attribute{
+					Name:        "master_account_name",
+					Description: `The name of the master account of the resource directory.`,
+				},
+				resource.Attribute{
+					Name:        "modify_time",
+					Description: `The time when the invitation was modified.`,
+				},
+				resource.Attribute{
+					Name:        "note",
+					Description: `The invitation note.`,
+				},
+				resource.Attribute{
+					Name:        "resource_directory_id",
+					Description: `The ID of the resource directory.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the invitation.`,
+				},
+				resource.Attribute{
+					Name:        "target_entity",
+					Description: `The ID or logon email address of the invited account.`,
+				},
+				resource.Attribute{
+					Name:        "target_type",
+					Description: `The type of the invited account.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_resource_manager_policies",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of Resource Manager Policies to the user.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of Resource Manager Policy IDs.`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter results by policy name.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "policy_type",
+					Description: `(Optional) The type of the policy. If you do not specify this parameter, the system lists all types of policies. Valid values: ` + "`" + `Custom` + "`" + ` and ` + "`" + `System` + "`" + `. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of policy IDs.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of policy names.`,
+				},
+				resource.Attribute{
+					Name:        "policies",
+					Description: `A list of policies. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "create_date",
+					Description: `The time when the policy was created.`,
+				},
+				resource.Attribute{
+					Name:        "update_date",
+					Description: `The time when the policy was updated.`,
+				},
+				resource.Attribute{
+					Name:        "default_version",
+					Description: `The default version of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "attachment_count",
+					Description: `The number of times the policy is referenced.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of policy IDs.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of policy names.`,
+				},
+				resource.Attribute{
+					Name:        "policies",
+					Description: `A list of policies. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "create_date",
+					Description: `The time when the policy was created.`,
+				},
+				resource.Attribute{
+					Name:        "update_date",
+					Description: `The time when the policy was updated.`,
+				},
+				resource.Attribute{
+					Name:        "default_version",
+					Description: `The default version of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "attachment_count",
+					Description: `The number of times the policy is referenced.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_resource_manager_policy_versions",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of Resource Manager Policy Versions to the user.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of policy version IDs.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "policy_name",
+					Description: `(Required) The name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_type",
+					Description: `(Required) The type of the policy. Valid values:` + "`" + `Custom` + "`" + ` and ` + "`" + `System` + "`" + `. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of policy version IDs.`,
+				},
+				resource.Attribute{
+					Name:        "versions",
+					Description: `A list of policy versions. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource, the value is ` + "`" + `<policy_name>` + "`" + `:` + "`" + `<version_id>` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of policy version IDs.`,
+				},
+				resource.Attribute{
+					Name:        "versions",
+					Description: `A list of policy versions. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource, the value is ` + "`" + `<policy_name>` + "`" + `:` + "`" + `<version_id>` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_resource_manager_resource_directories",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of Resource Manager Resource Directories to the user.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "directories",
+					Description: `A list of resource directories. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of resource directory.`,
+				},
+				resource.Attribute{
+					Name:        "resource_directory_id",
+					Description: `The ID of the resource directory.`,
+				},
+				resource.Attribute{
+					Name:        "root_folder_id",
+					Description: `The ID of the root folder.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "directories",
+					Description: `A list of resource directories. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of resource directory.`,
+				},
+				resource.Attribute{
+					Name:        "resource_directory_id",
+					Description: `The ID of the resource directory.`,
+				},
+				resource.Attribute{
+					Name:        "root_folder_id",
+					Description: `The ID of the root folder.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_resource_manager_resource_groups",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of resource groups to the user.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of resource group IDs.`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter results by resource group name.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional) The status of the resource group. Possible values:` + "`" + `Creating` + "`" + `,` + "`" + `Deleted` + "`" + `,` + "`" + `OK` + "`" + ` and ` + "`" + `PendingDelete` + "`" + `. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of resource group IDs.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of resource group names.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `A list of resource groups. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The unique identifier of the resource group.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The display name of the resource group.`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `The ID of the Alibaba Cloud account to which the resource group belongs.`,
+				},
+				resource.Attribute{
+					Name:        "create_date",
+					Description: `The time when the resource group was created.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the resource group. Possible values:` + "`" + `Creating` + "`" + `,` + "`" + `Deleted` + "`" + `,` + "`" + `OK` + "`" + ` and ` + "`" + `PendingDelete` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of resource group IDs.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of resource group names.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `A list of resource groups. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The unique identifier of the resource group.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The display name of the resource group.`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `The ID of the Alibaba Cloud account to which the resource group belongs.`,
+				},
+				resource.Attribute{
+					Name:        "create_date",
+					Description: `The time when the resource group was created.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the resource group. Possible values:` + "`" + `Creating` + "`" + `,` + "`" + `Deleted` + "`" + `,` + "`" + `OK` + "`" + ` and ` + "`" + `PendingDelete` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_resource_manager_roles",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of Resource Manager Roles to the user.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of Resource Manager Role IDs.`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter results by role name.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of role IDs.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of role names.`,
+				},
+				resource.Attribute{
+					Name:        "roles",
+					Description: `A list of roles. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the role.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of role IDs.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of role names.`,
+				},
+				resource.Attribute{
+					Name:        "roles",
+					Description: `A list of roles. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the role.`,
 				},
 			},
 		},
@@ -14182,6 +17354,66 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "alicloud_slb_zones",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of availability zones for SLB that can be used by an Alibaba Cloud account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "enable_details",
+					Description: `(Optional) Default to false and only output ` + "`" + `id` + "`" + ` in the ` + "`" + `zones` + "`" + ` block. Set it to true can output more details.`,
+				},
+				resource.Attribute{
+					Name:        "available_slb_address_type",
+					Description: `(Optional) Filter the results by a slb instance address type. Can be either ` + "`" + `Vpc` + "`" + `, ` + "`" + `classic_internet` + "`" + ` or ` + "`" + `classic_intranet` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "available_slb_address_ip_version",
+					Description: `(Optional) Filter the results by a slb instance address version. Can be either ` + "`" + `ipv4` + "`" + `, or ` + "`" + `ipv6` + "`" + `. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of availability zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the zone.`,
+				},
+				resource.Attribute{
+					Name:        "slb_slave_zone_ids",
+					Description: `A list of slb slave zone ids in which the slb master zone.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of availability zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the zone.`,
+				},
+				resource.Attribute{
+					Name:        "slb_slave_zone_ids",
+					Description: `A list of slb slave zone ids in which the slb master zone.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alicloud_slbs",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a list of server load balancers to the user.`,
@@ -15573,6 +18805,54 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "alicloud_waf_domains",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a datasource to retrieve domain names.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of WAF domain names. Each item is domain name.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Required) The Id of waf instance to which waf domain belongs.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of WAF domain names. Each item is domain name.`,
+				},
+				resource.Attribute{
+					Name:        "domains",
+					Description: `A list of Domains. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `Name of the domain. ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of WAF domain names. Each item is domain name.`,
+				},
+				resource.Attribute{
+					Name:        "domains",
+					Description: `A list of Domains. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `Name of the domain. ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alicloud_yundun_bastionhost_instances",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a list of cloud Bastionhost(yundun_bastionhost) instances available to the user.`,
@@ -15919,137 +19199,171 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"alicloud_account":                           0,
-		"alicloud_actiontrails":                      1,
-		"alicloud_adb_clusters":                      2,
-		"alicloud_alikafka_consumer_groups":          3,
-		"alicloud_alikafka_instances":                4,
-		"alicloud_alikafka_sasl_acls":                5,
-		"alicloud_alikafka_sasl_users":               6,
-		"alicloud_alikafka_topics":                   7,
-		"alicloud_api_gateway_apis":                  8,
-		"alicloud_api_gateway_apps":                  9,
-		"alicloud_api_gateway_groups":                10,
-		"alicloud_caller_identity":                   11,
-		"alicloud_cas_certificates":                  12,
-		"alicloud_cen_bandwidth_limits":              13,
-		"alicloud_cen_bandwidth_packages":            14,
-		"alicloud_cen_instances":                     15,
-		"alicloud_cen_region_route_entries":          16,
-		"alicloud_cen_route_entries":                 17,
-		"alicloud_cloud_connect_networks":            18,
-		"alicloud_common_bandwidth_packages":         19,
-		"alicloud_cr_namespaces":                     20,
-		"alicloud_cr_repos":                          21,
-		"alicloud_cs_kubernetes_clusters":            22,
-		"alicloud_cs_managed_kubernetes_clusters":    23,
-		"alicloud_cs_serverless_kubernetes_clusters": 24,
-		"alicloud_db_instance_classes":               25,
-		"alicloud_db_instance_engines":               26,
-		"alicloud_db_instances":                      27,
-		"alicloud_ddosbgp_instances":                 28,
-		"alicloud_ddoscoo_instances":                 29,
-		"alicloud_disks":                             30,
-		"alicloud_dns_domain_groups":                 31,
-		"alicloud_dns_domain_records":                32,
-		"alicloud_dns_domains":                       33,
-		"alicloud_dns_groups":                        34,
-		"alicloud_dns_records":                       35,
-		"alicloud_resolution_lines":                  36,
-		"alicloud_drds_instances":                    37,
-		"alicloud_eips":                              38,
-		"alicloud_elasticsearch_instances":           39,
-		"alicloud_emr_disk_types":                    40,
-		"alicloud_emr_instance_types":                41,
-		"alicloud_emr_main_versions":                 42,
-		"alicloud_ess_alarms":                        43,
-		"alicloud_ess_lifecycle_hooks":               44,
-		"alicloud_ess_notifications":                 45,
-		"alicloud_ess_scaling_configurations":        46,
-		"alicloud_ess_scaling_groups":                47,
-		"alicloud_ess_scaling_rules":                 48,
-		"alicloud_ess_scheduled_tasks":               49,
-		"alicloud_fc_functions":                      50,
-		"alicloud_fc_services":                       51,
-		"alicloud_fc_triggers":                       52,
-		"alicloud_file_crc64_checksum":               53,
-		"alicloud_forward_entries":                   54,
-		"alicloud_gpdb_instances":                    55,
-		"alicloud_hbase_instances":                   56,
-		"alicloud_images":                            57,
-		"alicloud_instance_type_families":            58,
-		"alicloud_instance_types":                    59,
-		"alicloud_instances":                         60,
-		"alicloud_key_pairs":                         61,
-		"alicloud_kms_ciphertext":                    62,
-		"alicloud_kms_keys":                          63,
-		"alicloud_kms_plaintext":                     64,
-		"alicloud_kvstore_instance_classes":          65,
-		"alicloud_kvstore_instance_engines":          66,
-		"alicloud_kvstore_instances":                 67,
-		"alicloud_market_product":                    68,
-		"alicloud_market_products":                   69,
-		"alicloud_mns_queues":                        70,
-		"alicloud_mns_topic_subscriptions":           71,
-		"alicloud_mns_topics":                        72,
-		"alicloud_mongodb_instances":                 73,
-		"alicloud_nas_access_groups":                 74,
-		"alicloud_nas_access_rules":                  75,
-		"alicloud_nas_file_systems":                  76,
-		"alicloud_nas_mount_targets":                 77,
-		"alicloud_nas_protocols":                     78,
-		"alicloud_nat_gateways":                      79,
-		"alicloud_network_interfaces":                80,
-		"alicloud_ons_groups":                        81,
-		"alicloud_ons_instances":                     82,
-		"alicloud_ons_topics":                        83,
-		"alicloud_oss_bucket_objects":                84,
-		"alicloud_oss_buckets":                       85,
-		"alicloud_ots_instance_attachments":          86,
-		"alicloud_ots_instances":                     87,
-		"alicloud_ots_tables":                        88,
-		"alicloud_polardb_accounts":                  89,
-		"alicloud_polardb_clusters":                  90,
-		"alicloud_polardb_databases":                 91,
-		"alicloud_polardb_endpoints":                 92,
-		"alicloud_pvtz_zone_records":                 93,
-		"alicloud_pvtz_zones":                        94,
-		"alicloud_ram_account_aliases":               95,
-		"alicloud_ram_account_alias":                 96,
-		"alicloud_ram_groups":                        97,
-		"alicloud_ram_policies":                      98,
-		"alicloud_ram_roles":                         99,
-		"alicloud_ram_users":                         100,
-		"alicloud_regions":                           101,
-		"alicloud_route_entries":                     102,
-		"alicloud_route_tables":                      103,
-		"alicloud_router_interfaces":                 104,
-		"alicloud_sag_acls":                          105,
-		"alicloud_security_group_rules":              106,
-		"alicloud_security_groups":                   107,
-		"alicloud_slb_acls":                          108,
-		"alicloud_slb_attachments":                   109,
-		"alicloud_slb_backend_servers":               110,
-		"alicloud_slb_ca_certificates":               111,
-		"alicloud_slb_domain_extensions":             112,
-		"alicloud_slb_listeners":                     113,
-		"alicloud_slb_master_slave_server_groups":    114,
-		"alicloud_slb_rules":                         115,
-		"alicloud_slb_server_certificates":           116,
-		"alicloud_slb_server_groups":                 117,
-		"alicloud_slbs":                              118,
-		"alicloud_snapshots":                         119,
-		"alicloud_snat_entries":                      120,
-		"alicloud_ssl_vpn_client_certs":              121,
-		"alicloud_ssl_vpn_servers":                   122,
-		"alicloud_vpcs":                              123,
-		"alicloud_vpn_connections":                   124,
-		"alicloud_vpn_customer_gateways":             125,
-		"alicloud_vpn_gateways":                      126,
-		"alicloud_vswitches":                         127,
-		"alicloud_yundun_bastionhost_instances":      128,
-		"alicloud_yundun_dbaudit_instances":          129,
-		"alicloud_zones":                             130,
+		"alicloud_account":                               0,
+		"alicloud_actiontrails":                          1,
+		"alicloud_adb_clusters":                          2,
+		"alicloud_adb_zones":                             3,
+		"alicloud_alidns_domain_groups":                  4,
+		"alicloud_alidns_records":                        5,
+		"alicloud_alikafka_consumer_groups":              6,
+		"alicloud_alikafka_instances":                    7,
+		"alicloud_alikafka_sasl_acls":                    8,
+		"alicloud_alikafka_sasl_users":                   9,
+		"alicloud_alikafka_topics":                       10,
+		"alicloud_api_gateway_apis":                      11,
+		"alicloud_api_gateway_apps":                      12,
+		"alicloud_api_gateway_groups":                    13,
+		"alicloud_caller_identity":                       14,
+		"alicloud_cas_certificates":                      15,
+		"alicloud_cen_bandwidth_limits":                  16,
+		"alicloud_cen_bandwidth_packages":                17,
+		"alicloud_cen_flowlogs":                          18,
+		"alicloud_cen_instances":                         19,
+		"alicloud_cen_region_route_entries":              20,
+		"alicloud_cen_route_entries":                     21,
+		"alicloud_cen_route_maps":                        22,
+		"alicloud_cloud_connect_networks":                23,
+		"alicloud_common_bandwidth_packages":             24,
+		"alicloud_cr_ee_instances":                       25,
+		"alicloud_cr_ee_namespaces":                      26,
+		"alicloud_cr_ee_repos":                           27,
+		"alicloud_cr_namespaces":                         28,
+		"alicloud_cr_repos":                              29,
+		"alicloud_cs_kubernetes_clusters":                30,
+		"alicloud_cs_managed_kubernetes_clusters":        31,
+		"alicloud_cs_serverless_kubernetes_clusters":     32,
+		"alicloud_db_instance_classes":                   33,
+		"alicloud_db_instance_engines":                   34,
+		"alicloud_db_instances":                          35,
+		"alicloud_db_zones":                              36,
+		"alicloud_ddosbgp_instances":                     37,
+		"alicloud_ddoscoo_instances":                     38,
+		"alicloud_disks":                                 39,
+		"alicloud_dns_domain_groups":                     40,
+		"alicloud_dns_domain_records":                    41,
+		"alicloud_dns_domain_txt_guid":                   42,
+		"alicloud_dns_domains":                           43,
+		"alicloud_dns_groups":                            44,
+		"alicloud_dns_instances":                         45,
+		"alicloud_dns_records":                           46,
+		"alicloud_resolution_lines":                      47,
+		"alicloud_drds_instances":                        48,
+		"alicloud_edas_applications":                     49,
+		"alicloud_edas_clusters":                         50,
+		"alicloud_edas_deploy_groups":                    51,
+		"alicloud_eips":                                  52,
+		"alicloud_elasticsearch_instances":               53,
+		"alicloud_elasticsearch_zones":                   54,
+		"alicloud_emr_disk_types":                        55,
+		"alicloud_emr_instance_types":                    56,
+		"alicloud_emr_main_versions":                     57,
+		"alicloud_ess_alarms":                            58,
+		"alicloud_ess_lifecycle_hooks":                   59,
+		"alicloud_ess_notifications":                     60,
+		"alicloud_ess_scaling_configurations":            61,
+		"alicloud_ess_scaling_groups":                    62,
+		"alicloud_ess_scaling_rules":                     63,
+		"alicloud_ess_scheduled_tasks":                   64,
+		"alicloud_fc_functions":                          65,
+		"alicloud_fc_services":                           66,
+		"alicloud_fc_triggers":                           67,
+		"alicloud_fc_zones":                              68,
+		"alicloud_file_crc64_checksum":                   69,
+		"alicloud_forward_entries":                       70,
+		"alicloud_gpdb_instances":                        71,
+		"alicloud_hbase_instances":                       72,
+		"alicloud_hbase_zones":                           73,
+		"alicloud_images":                                74,
+		"alicloud_instance_type_families":                75,
+		"alicloud_instance_types":                        76,
+		"alicloud_instances":                             77,
+		"alicloud_key_pairs":                             78,
+		"alicloud_kms_aliases":                           79,
+		"alicloud_kms_ciphertext":                        80,
+		"alicloud_kms_key_versions":                      81,
+		"alicloud_kms_keys":                              82,
+		"alicloud_kms_plaintext":                         83,
+		"alicloud_kms_secrets":                           84,
+		"alicloud_kvstore_instance_classes":              85,
+		"alicloud_kvstore_instance_engines":              86,
+		"alicloud_kvstore_instances":                     87,
+		"alicloud_kvstore_zones":                         88,
+		"alicloud_market_product":                        89,
+		"alicloud_market_products":                       90,
+		"alicloud_mns_queues":                            91,
+		"alicloud_mns_topic_subscriptions":               92,
+		"alicloud_mns_topics":                            93,
+		"alicloud_mongodb_instances":                     94,
+		"alicloud_mongodb_zones":                         95,
+		"alicloud_nas_access_groups":                     96,
+		"alicloud_nas_access_rules":                      97,
+		"alicloud_nas_file_systems":                      98,
+		"alicloud_nas_mount_targets":                     99,
+		"alicloud_nas_protocols":                         100,
+		"alicloud_nat_gateways":                          101,
+		"alicloud_network_interfaces":                    102,
+		"alicloud_ons_groups":                            103,
+		"alicloud_ons_instances":                         104,
+		"alicloud_ons_topics":                            105,
+		"alicloud_oss_bucket_objects":                    106,
+		"alicloud_oss_buckets":                           107,
+		"alicloud_ots_instance_attachments":              108,
+		"alicloud_ots_instances":                         109,
+		"alicloud_ots_tables":                            110,
+		"alicloud_polardb_accounts":                      111,
+		"alicloud_polardb_clusters":                      112,
+		"alicloud_polardb_databases":                     113,
+		"alicloud_polardb_endpoints":                     114,
+		"alicloud_polardb_node_classes":                  115,
+		"alicloud_polardb_zones":                         116,
+		"alicloud_pvtz_zone_records":                     117,
+		"alicloud_pvtz_zones":                            118,
+		"alicloud_ram_account_aliases":                   119,
+		"alicloud_ram_account_alias":                     120,
+		"alicloud_ram_groups":                            121,
+		"alicloud_ram_policies":                          122,
+		"alicloud_ram_roles":                             123,
+		"alicloud_ram_users":                             124,
+		"alicloud_regions":                               125,
+		"alicloud_resource_manager_accounts":             126,
+		"alicloud_resource_manager_folders":              127,
+		"alicloud_resource_manager_handshakes":           128,
+		"alicloud_resource_manager_policies":             129,
+		"alicloud_resource_manager_policy_versions":      130,
+		"alicloud_resource_manager_resource_directories": 131,
+		"alicloud_resource_manager_resource_groups":      132,
+		"alicloud_resource_manager_roles":                133,
+		"alicloud_route_entries":                         134,
+		"alicloud_route_tables":                          135,
+		"alicloud_router_interfaces":                     136,
+		"alicloud_sag_acls":                              137,
+		"alicloud_security_group_rules":                  138,
+		"alicloud_security_groups":                       139,
+		"alicloud_slb_acls":                              140,
+		"alicloud_slb_attachments":                       141,
+		"alicloud_slb_backend_servers":                   142,
+		"alicloud_slb_ca_certificates":                   143,
+		"alicloud_slb_domain_extensions":                 144,
+		"alicloud_slb_listeners":                         145,
+		"alicloud_slb_master_slave_server_groups":        146,
+		"alicloud_slb_rules":                             147,
+		"alicloud_slb_server_certificates":               148,
+		"alicloud_slb_server_groups":                     149,
+		"alicloud_slb_zones":                             150,
+		"alicloud_slbs":                                  151,
+		"alicloud_snapshots":                             152,
+		"alicloud_snat_entries":                          153,
+		"alicloud_ssl_vpn_client_certs":                  154,
+		"alicloud_ssl_vpn_servers":                       155,
+		"alicloud_vpcs":                                  156,
+		"alicloud_vpn_connections":                       157,
+		"alicloud_vpn_customer_gateways":                 158,
+		"alicloud_vpn_gateways":                          159,
+		"alicloud_vswitches":                             160,
+		"alicloud_waf_domains":                           161,
+		"alicloud_yundun_bastionhost_instances":          162,
+		"alicloud_yundun_dbaudit_instances":              163,
+		"alicloud_zones":                                 164,
 	}
 )
 

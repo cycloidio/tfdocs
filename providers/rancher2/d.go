@@ -170,6 +170,10 @@ var (
 					Description: `(Computed/Sensitive) The username to access the catalog if needed (string)`,
 				},
 				resource.Attribute{
+					Name:        "version",
+					Description: `(Computed) Helm version for the catalog (string)`,
+				},
+				resource.Attribute{
 					Name:        "url",
 					Description: `(Computed) The url of the catalog repo (string)`,
 				},
@@ -214,6 +218,10 @@ var (
 				resource.Attribute{
 					Name:        "username",
 					Description: `(Computed/Sensitive) The username to access the catalog if needed (string)`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Computed) Helm version for the catalog (string)`,
 				},
 				resource.Attribute{
 					Name:        "url",
@@ -374,6 +382,10 @@ var (
 					Description: `(Computed) The RKE configuration for ` + "`" + `rke` + "`" + ` Clusters. Conflicts with ` + "`" + `aks_config` + "`" + `, ` + "`" + `eks_config` + "`" + ` and ` + "`" + `gke_config` + "`" + ` (list maxitems:1)`,
 				},
 				resource.Attribute{
+					Name:        "k3s_config",
+					Description: `(Computed) The K3S configuration for ` + "`" + `k3s` + "`" + ` imported Clusters. Conflicts with ` + "`" + `aks_config` + "`" + `, ` + "`" + `eks_config` + "`" + `, ` + "`" + `gke_config` + "`" + ` and ` + "`" + `rke_config` + "`" + ` (list maxitems:1)`,
+				},
+				resource.Attribute{
 					Name:        "aks_config",
 					Description: `(Computed) The Azure aks configuration for ` + "`" + `aks` + "`" + ` Clusters. Conflicts with ` + "`" + `eks_config` + "`" + `, ` + "`" + `gke_config` + "`" + ` and ` + "`" + `rke_config` + "`" + ` (list maxitems:1)`,
 				},
@@ -466,6 +478,10 @@ var (
 				resource.Attribute{
 					Name:        "rke_config",
 					Description: `(Computed) The RKE configuration for ` + "`" + `rke` + "`" + ` Clusters. Conflicts with ` + "`" + `aks_config` + "`" + `, ` + "`" + `eks_config` + "`" + ` and ` + "`" + `gke_config` + "`" + ` (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "k3s_config",
+					Description: `(Computed) The K3S configuration for ` + "`" + `k3s` + "`" + ` imported Clusters. Conflicts with ` + "`" + `aks_config` + "`" + `, ` + "`" + `eks_config` + "`" + `, ` + "`" + `gke_config` + "`" + ` and ` + "`" + `rke_config` + "`" + ` (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "aks_config",
@@ -1019,6 +1035,130 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "rancher2_cluster_scan",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a Rancher v2 Cluster CIS Scan resource.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) Cluster ID for CIS Scan (string)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional/Computed) Name of the cluster Scan (string) ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "run_type",
+					Description: `(Computed) Cluster Scan run type (string)`,
+				},
+				resource.Attribute{
+					Name:        "scan_config",
+					Description: `(Computed) Cluster Scan config (bool)`,
+				},
+				resource.Attribute{
+					Name:        "scan_type",
+					Description: `(Computed) Cluster Scan type (string)`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Computed) Cluster Scan status (string)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Computed) Annotations of the resource (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Computed) Labels of the resource (map) ## Nested blocks ### ` + "`" + `scan_config` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "cis_scan_config",
+					Description: `(Computed) Cluster Cis Scan config (List maxitems:1) #### ` + "`" + `cis_scan_config` + "`" + ` ##### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "debug_master",
+					Description: `(Computed) Debug master. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "debug_worker",
+					Description: `(Computed) Debug worker. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "override_benchmark_version",
+					Description: `(Computed) Override benchmark version (string)`,
+				},
+				resource.Attribute{
+					Name:        "override_skip",
+					Description: `(Computed) Override skip (string)`,
+				},
+				resource.Attribute{
+					Name:        "profile",
+					Description: `(Computed) Cis scan profile. Allowed values: ` + "`" + `"permissive" (default) || "hardened"` + "`" + ` (string)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "run_type",
+					Description: `(Computed) Cluster Scan run type (string)`,
+				},
+				resource.Attribute{
+					Name:        "scan_config",
+					Description: `(Computed) Cluster Scan config (bool)`,
+				},
+				resource.Attribute{
+					Name:        "scan_type",
+					Description: `(Computed) Cluster Scan type (string)`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Computed) Cluster Scan status (string)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Computed) Annotations of the resource (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Computed) Labels of the resource (map) ## Nested blocks ### ` + "`" + `scan_config` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "cis_scan_config",
+					Description: `(Computed) Cluster Cis Scan config (List maxitems:1) #### ` + "`" + `cis_scan_config` + "`" + ` ##### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "debug_master",
+					Description: `(Computed) Debug master. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "debug_worker",
+					Description: `(Computed) Debug worker. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "override_benchmark_version",
+					Description: `(Computed) Override benchmark version (string)`,
+				},
+				resource.Attribute{
+					Name:        "override_skip",
+					Description: `(Computed) Override skip (string)`,
+				},
+				resource.Attribute{
+					Name:        "profile",
+					Description: `(Computed) Cis scan profile. Allowed values: ` + "`" + `"permissive" (default) || "hardened"` + "`" + ` (string)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "rancher2_cluster_template",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on a Rancher v2 cluster template.`,
@@ -1182,6 +1322,10 @@ var (
 					Description: `(Computed) The ID of the resource (string)`,
 				},
 				resource.Attribute{
+					Name:        "group_principal_id",
+					Description: `(Computed) The group principal ID to assign global role binding. Rancher v2.4.0 or higher is required (string)`,
+				},
+				resource.Attribute{
 					Name:        "user_id",
 					Description: `(Computed) The user ID to assign global role binding (string)`,
 				},
@@ -1198,6 +1342,10 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Computed) The ID of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "group_principal_id",
+					Description: `(Computed) The group principal ID to assign global role binding. Rancher v2.4.0 or higher is required (string)`,
 				},
 				resource.Attribute{
 					Name:        "user_id",
@@ -1935,6 +2083,190 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "rancher2_project_alert_group",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a Rancher v2 project alert group.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The project id where create project alert group (string)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The project alert group name (string) ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Computed) The project alert group description (string)`,
+				},
+				resource.Attribute{
+					Name:        "group_interval_seconds",
+					Description: `(Computed) The project alert group interval seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "group_wait_seconds",
+					Description: `(Computed) The project alert group wait seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "recipients",
+					Description: `(Computed) The project alert group recipients (list)`,
+				},
+				resource.Attribute{
+					Name:        "repeat_interval_seconds",
+					Description: `(Computed) The project alert group wait seconds. Default: ` + "`" + `3600` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Computed) The project alert group annotations (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Computed) The project alert group labels (map)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Computed) The project alert group description (string)`,
+				},
+				resource.Attribute{
+					Name:        "group_interval_seconds",
+					Description: `(Computed) The project alert group interval seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "group_wait_seconds",
+					Description: `(Computed) The project alert group wait seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "recipients",
+					Description: `(Computed) The project alert group recipients (list)`,
+				},
+				resource.Attribute{
+					Name:        "repeat_interval_seconds",
+					Description: `(Computed) The project alert group wait seconds. Default: ` + "`" + `3600` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Computed) The project alert group annotations (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Computed) The project alert group labels (map)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "rancher2_project_alert_rule",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a Rancher v2 project alert rule.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The project id where create project alert rule (string)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The project alert rule name (string) ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Computed) The project alert rule alert group ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "group_interval_seconds",
+					Description: `(Computed) The project alert rule group interval seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "group_wait_seconds",
+					Description: `(Computed) The project alert rule group wait seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "inherited",
+					Description: `(Computed) The project alert rule inherited. Default: ` + "`" + `true` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "metric_rule",
+					Description: `(Computed) The project alert rule metric rule. ConflictsWith: ` + "`" + `"pod_rule", "workload_rule"` + "`" + `` + "`" + ` (list Maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "pod_rule",
+					Description: `(Computed) The project alert rule pod rule. ConflictsWith: ` + "`" + `"metric_rule", "workload_rule"` + "`" + `` + "`" + ` (list Maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "repeat_interval_seconds",
+					Description: `(Computed) The project alert rule wait seconds. Default: ` + "`" + `3600` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "severity",
+					Description: `(Computed) The project alert rule severity. Supported values : ` + "`" + `"critical" | "info" | "warning"` + "`" + `. Default: ` + "`" + `critical` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "workload_rule",
+					Description: `(Computed) The project alert rule workload rule. ConflictsWith: ` + "`" + `"metric_rule", "pod_rule"` + "`" + `` + "`" + ` (list Maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Computed) The project alert rule annotations (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Computed) The project alert rule labels (map)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Computed) The project alert rule alert group ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "group_interval_seconds",
+					Description: `(Computed) The project alert rule group interval seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "group_wait_seconds",
+					Description: `(Computed) The project alert rule group wait seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "inherited",
+					Description: `(Computed) The project alert rule inherited. Default: ` + "`" + `true` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "metric_rule",
+					Description: `(Computed) The project alert rule metric rule. ConflictsWith: ` + "`" + `"pod_rule", "workload_rule"` + "`" + `` + "`" + ` (list Maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "pod_rule",
+					Description: `(Computed) The project alert rule pod rule. ConflictsWith: ` + "`" + `"metric_rule", "workload_rule"` + "`" + `` + "`" + ` (list Maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "repeat_interval_seconds",
+					Description: `(Computed) The project alert rule wait seconds. Default: ` + "`" + `3600` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "severity",
+					Description: `(Computed) The project alert rule severity. Supported values : ` + "`" + `"critical" | "info" | "warning"` + "`" + `. Default: ` + "`" + `critical` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "workload_rule",
+					Description: `(Computed) The project alert rule workload rule. ConflictsWith: ` + "`" + `"metric_rule", "pod_rule"` + "`" + `` + "`" + ` (list Maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Computed) The project alert rule annotations (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Computed) The project alert rule labels (map)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "rancher2_project_logging",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on a Rancher v2 Project Logging resource.`,
@@ -2487,23 +2819,26 @@ var (
 		"rancher2_cluster_driver":                7,
 		"rancher2_cluster_logging":               8,
 		"rancher2_cluster_role_template_binding": 9,
-		"rancher2_cluster_template":              10,
-		"rancher2_etcd_backup":                   11,
-		"rancher2_global_role_binding":           12,
-		"rancher2_multi_cluster_app":             13,
-		"rancher2_namespace":                     14,
-		"rancher2_node_driver":                   15,
-		"rancher2_node_pool":                     16,
-		"rancher2_node_template":                 17,
-		"rancher2_notifier":                      18,
-		"rancher2_project":                       19,
-		"rancher2_project_logging":               20,
-		"rancher2_project_role_template_binding": 21,
-		"rancher2_registry":                      22,
-		"rancher2_role_template":                 23,
-		"rancher2_secret":                        24,
-		"rancher2_setting":                       25,
-		"rancher2_user":                          26,
+		"rancher2_cluster_scan":                  10,
+		"rancher2_cluster_template":              11,
+		"rancher2_etcd_backup":                   12,
+		"rancher2_global_role_binding":           13,
+		"rancher2_multi_cluster_app":             14,
+		"rancher2_namespace":                     15,
+		"rancher2_node_driver":                   16,
+		"rancher2_node_pool":                     17,
+		"rancher2_node_template":                 18,
+		"rancher2_notifier":                      19,
+		"rancher2_project":                       20,
+		"rancher2_project_alert_group":           21,
+		"rancher2_project_alert_rule":            22,
+		"rancher2_project_logging":               23,
+		"rancher2_project_role_template_binding": 24,
+		"rancher2_registry":                      25,
+		"rancher2_role_template":                 26,
+		"rancher2_secret":                        27,
+		"rancher2_setting":                       28,
+		"rancher2_user":                          29,
 	}
 )
 

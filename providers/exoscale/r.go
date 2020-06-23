@@ -132,7 +132,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A dictionary of tags (key/value). [template]: https://www.exoscale.com/templates/ [zone]: https://www.exoscale.com/datacenters/ [size]: https://www.exoscale.com/pricing/#/compute/ [sshkeypair]: https://community.exoscale.com/documentation/compute/ssh-keypairs/ [cloudinit]: http://cloudinit.readthedocs.io/en/latest/ [aag]: affinity.html [sg]: security_group.html [compute_template]: ../d/compute_template.html ## Attributes Reference The following attributes are exported:`,
+					Description: `A dictionary of tags (key/value). To remove all tags, set attribute to ` + "`" + `tags = {}` + "`" + `. [template]: https://www.exoscale.com/templates/ [zone]: https://www.exoscale.com/datacenters/ [size]: https://www.exoscale.com/pricing/#/compute/ [sshkeypair]: https://community.exoscale.com/documentation/compute/ssh-keypairs/ [cloudinit]: http://cloudinit.readthedocs.io/en/latest/ [aag]: affinity.html [sg]: security_group.html [compute_template]: ../d/compute_template.html ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "username",
@@ -298,7 +298,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_offering",
-					Description: `(Required) The managed Compute instances [size][size], e.g. ` + "`" + `Tiny` + "`" + `, ` + "`" + `Small` + "`" + `, ` + "`" + `Medium` + "`" + `, ` + "`" + `Large` + "`" + ` etc.`,
+					Description: `(Required) The managed Compute instances [size][size], e.g. ` + "`" + `tiny` + "`" + `, ` + "`" + `small` + "`" + `, ` + "`" + `medium` + "`" + `, ` + "`" + `large` + "`" + ` etc.`,
 				},
 				resource.Attribute{
 					Name:        "disk_size",
@@ -375,7 +375,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A dictionary of tags (key/value). [zone]: https://www.exoscale.com/datacenters/ ## Attributes Reference The following attributes are exported:`,
+					Description: `A dictionary of tags (key/value). To remove all tags, set attribute to ` + "`" + `tags = {}` + "`" + `. [zone]: https://www.exoscale.com/datacenters/ ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "ip_address",
@@ -425,7 +425,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A dictionary of tags (key/value). [zone]: https://www.exoscale.com/datacenters/ ## Import An existing Private Network can be imported as a resource by name or ID: ` + "`" + `` + "`" + `` + "`" + `console # By name $ terraform import exoscale_network.net myprivnet # By ID $ terraform import exoscale_network.net 04fb76a2-6d22-49be-8da7-f2a5a0b902e1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A dictionary of tags (key/value). To remove all tags, set attribute to ` + "`" + `tags = {}` + "`" + `. [zone]: https://www.exoscale.com/datacenters/ ## Import An existing Private Network can be imported as a resource by name or ID: ` + "`" + `` + "`" + `` + "`" + `console # By name $ terraform import exoscale_network.net myprivnet # By ID $ terraform import exoscale_network.net 04fb76a2-6d22-49be-8da7-f2a5a0b902e1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -463,6 +463,105 @@ var (
 					Description: `The physical address (MAC) of the Compute instance NIC. ## Import This resource is automatically imported when importing an ` + "`" + `exoscale_compute` + "`" + ` resource.`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "exoscale_nlb",
+			Category:         "Resources",
+			ShortDescription: `Provides an Exoscale Network Load Balancer resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"nlb",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Required) The name of the [zone][zone] to deploy the NLB into.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the NLB.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the NLB. [zone]: https://www.exoscale.com/datacenters/ ## Import An existing NLB can be imported as a resource by ID. Importing a NLB imports the ` + "`" + `exoscale_nlb` + "`" + ` resource. ` + "`" + `` + "`" + `` + "`" + `console $ terraform import exoscale_nlb.website eb556678-ec59-4be6-8c54-0406ae0f6da6 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "exoscale_nlb_service",
+			Category:         "Resources",
+			ShortDescription: `Provides an Exoscale Network Load Balancer service resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"nlb",
+				"service",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "nlb_id",
+					Description: `(Required) The ID of the NLB to attach the service.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Required) The name of the [zone][zone] used by the NLB.`,
+				},
+				resource.Attribute{
+					Name:        "instance_pool_id",
+					Description: `(Required) The ID of the Instance Pool to forward network traffic to.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the NLB service.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required) The port of the NLB service.`,
+				},
+				resource.Attribute{
+					Name:        "target_port",
+					Description: `(Required) The port to forward network traffic to on target instances.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `The protocol (tcp/udp).`,
+				},
+				resource.Attribute{
+					Name:        "strategy",
+					Description: `The strategy (round-robin/source-hash).`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the NLB service.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required) The healthcheck port.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `The healthcheck mode (tcp/http).`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `The healthcheck URI, must be set only if ` + "`" + `mode` + "`" + ` is ` + "`" + `http` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `The healthcheck interval in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `The healthcheck timeout in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "retries",
+					Description: `The healthcheck retries. [zone]: https://www.exoscale.com/datacenters/ ## Import An existing NLB service can be imported as a resource by ID. Importing a NLB service imports the ` + "`" + `exoscale_nlb_service` + "`" + ` resource. ` + "`" + `` + "`" + `` + "`" + `console $ terraform import exoscale_nlb_service.website 9ecc6b8b-73d4-4211-8ced-f7f29bb79524 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -524,7 +623,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A dictionary of tags (key/value). ## Import An existing Security Group can be imported as a resource by name or ID: ` + "`" + `` + "`" + `` + "`" + `console # By name $ terraform import exoscale_security_group.http http # By ID $ terraform import exoscale_security_group.http eb556678-ec59-4be6-8c54-0406ae0f6da6 ` + "`" + `` + "`" + `` + "`" + ` ~>`,
+					Description: `A dictionary of tags (key/value). To remove all tags, set attribute to ` + "`" + `tags = {}` + "`" + `. ## Import An existing Security Group can be imported as a resource by name or ID: ` + "`" + `` + "`" + `` + "`" + `console # By name $ terraform import exoscale_security_group.http http # By ID $ terraform import exoscale_security_group.http eb556678-ec59-4be6-8c54-0406ae0f6da6 ` + "`" + `` + "`" + `` + "`" + ` ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -720,11 +819,13 @@ var (
 		"exoscale_ipaddress":            5,
 		"exoscale_network":              6,
 		"exoscale_nic":                  7,
-		"exoscale_secondary_ipaddress":  8,
-		"exoscale_security_group":       9,
-		"exoscale_security_group_rule":  10,
-		"exoscale_security_group_rules": 11,
-		"exoscale_ssh_keypair":          12,
+		"exoscale_nlb":                  8,
+		"exoscale_nlb_service":          9,
+		"exoscale_secondary_ipaddress":  10,
+		"exoscale_security_group":       11,
+		"exoscale_security_group_rule":  12,
+		"exoscale_security_group_rules": 13,
+		"exoscale_ssh_keypair":          14,
 	}
 )
 

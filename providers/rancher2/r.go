@@ -1240,6 +1240,10 @@ var (
 					Description: `(Optional/Sensitive) The username to access the catalog if needed (string)`,
 				},
 				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional/ForceNew/Computed) Helm version for the catalog. Available options: ` + "`" + `helm_v2` + "`" + ` and ` + "`" + `helm_v3` + "`" + ` (string)`,
+				},
+				resource.Attribute{
 					Name:        "annotations",
 					Description: `(Optional/Computed) Annotations for the catalog (map)`,
 				},
@@ -1345,6 +1349,10 @@ var (
 					Description: `(Optional) DigitalOcean config for the Cloud Credential (list maxitems:1)`,
 				},
 				resource.Attribute{
+					Name:        "linode_credential_config",
+					Description: `(Optional) Linode config for the Cloud Credential (list maxitems:1)`,
+				},
+				resource.Attribute{
 					Name:        "openstack_credential_config",
 					Description: `(Optional) OpenStack config for the Cloud Credential (list maxitems:1)`,
 				},
@@ -1390,7 +1398,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_token",
-					Description: `(Required/Sensitive) DigitalOcean access token (string) ### ` + "`" + `openstack_credential_config` + "`" + ` #### Arguments`,
+					Description: `(Required/Sensitive) DigitalOcean access token (string) ### ` + "`" + `linode_credential_config` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Required/Sensitive) Linode API token (string) ### ` + "`" + `openstack_credential_config` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "password",
@@ -1444,7 +1456,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_token",
-					Description: `(Required/Sensitive) DigitalOcean access token (string) ### ` + "`" + `openstack_credential_config` + "`" + ` #### Arguments`,
+					Description: `(Required/Sensitive) DigitalOcean access token (string) ### ` + "`" + `linode_credential_config` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Required/Sensitive) Linode API token (string) ### ` + "`" + `openstack_credential_config` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "password",
@@ -1484,19 +1500,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rke_config",
-					Description: `(Optional/Computed) The RKE configuration for ` + "`" + `rke` + "`" + ` Clusters. Conflicts with ` + "`" + `aks_config` + "`" + `, ` + "`" + `eks_config` + "`" + ` and ` + "`" + `gke_config` + "`" + ` (list maxitems:1)`,
+					Description: `(Optional/Computed) The RKE configuration for ` + "`" + `rke` + "`" + ` Clusters. Conflicts with ` + "`" + `aks_config` + "`" + `, ` + "`" + `eks_config` + "`" + `, ` + "`" + `gke_config` + "`" + ` and ` + "`" + `k3s_config` + "`" + ` (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "k3s_config",
+					Description: `(Optional/Computed) The K3S configuration for ` + "`" + `k3s` + "`" + ` imported Clusters. Conflicts with ` + "`" + `aks_config` + "`" + `, ` + "`" + `eks_config` + "`" + `, ` + "`" + `gke_config` + "`" + ` and ` + "`" + `rke_config` + "`" + ` (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "aks_config",
-					Description: `(Optional) The Azure AKS configuration for ` + "`" + `aks` + "`" + ` Clusters. Conflicts with ` + "`" + `eks_config` + "`" + `, ` + "`" + `gke_config` + "`" + ` and ` + "`" + `rke_config` + "`" + ` (list maxitems:1)`,
+					Description: `(Optional) The Azure AKS configuration for ` + "`" + `aks` + "`" + ` Clusters. Conflicts with ` + "`" + `eks_config` + "`" + `, ` + "`" + `gke_config` + "`" + `, ` + "`" + `k3s_config` + "`" + ` and ` + "`" + `rke_config` + "`" + ` (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "eks_config",
-					Description: `(Optional) The Amazon EKS configuration for ` + "`" + `eks` + "`" + ` Clusters. Conflicts with ` + "`" + `aks_config` + "`" + `, ` + "`" + `gke_config` + "`" + ` and ` + "`" + `rke_config` + "`" + ` (list maxitems:1)`,
+					Description: `(Optional) The Amazon EKS configuration for ` + "`" + `eks` + "`" + ` Clusters. Conflicts with ` + "`" + `aks_config` + "`" + `, ` + "`" + `gke_config` + "`" + `, ` + "`" + `k3s_config` + "`" + ` and ` + "`" + `rke_config` + "`" + ` (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "gke_config",
-					Description: `(Optional) The Google GKE configuration for ` + "`" + `gke` + "`" + ` Clusters. Conflicts with ` + "`" + `aks_config` + "`" + `, ` + "`" + `eks_config` + "`" + ` and ` + "`" + `rke_config` + "`" + ` (list maxitems:1)`,
+					Description: `(Optional) The Google GKE configuration for ` + "`" + `gke` + "`" + ` Clusters. Conflicts with ` + "`" + `aks_config` + "`" + `, ` + "`" + `eks_config` + "`" + `, ` + "`" + `k3s_config` + "`" + ` and ` + "`" + `rke_config` + "`" + ` (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1568,7 +1588,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "windows_prefered_cluster",
-					Description: `(Optional) Windows preferred cluster. Default: ` + "`" + `false` + "`" + ` (bool) ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Windows preferred cluster. Default: ` + "`" + `false` + "`" + ` (bool) #### ` + "`" + `schedule_config` + "`" + ` ##### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "cron_schedule",
+					Description: `(Required) Crontab schedule. It should contains 5 fields ` + "`" + `"<min> <hour> <month_day> <month> <week_day>"` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "retention",
+					Description: `(Optional/Computed) Cluster scan retention (int) ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1588,7 +1616,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kube_config",
-					Description: `(Computed) Kube Config generated for the cluster (string)`,
+					Description: `(Computed/Sensitive) Kube Config generated for the cluster (string)`,
 				},
 				resource.Attribute{
 					Name:        "system_project_id",
@@ -1636,7 +1664,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kubernetes_version",
-					Description: `(Optional/Computed) Kubernetes version to deploy (string)`,
+					Description: `(Optional/Computed) K8s version to deploy. Default: ` + "`" + `Rancher default` + "`" + ` (string)`,
 				},
 				resource.Attribute{
 					Name:        "monitoring",
@@ -1672,7 +1700,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_key_path",
-					Description: `(Optional/Computed) Cluster level SSH private key path (string) #### ` + "`" + `authentication` + "`" + ` ##### Arguments`,
+					Description: `(Optional/Computed) Cluster level SSH private key path (string)`,
+				},
+				resource.Attribute{
+					Name:        "upgrade_strategy",
+					Description: `(Optional/Computed) RKE upgrade strategy (list maxitems:1) #### ` + "`" + `authentication` + "`" + ` ##### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "sans",
@@ -1740,7 +1772,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global",
-					Description: `(Optional) (list maxitems:1)`,
+					Description: `(Optional/Computed) (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "service_override",
@@ -2207,12 +2239,16 @@ var (
 					Description: `(Optional/Computed) Weave provider config for RKE network (list maxitems:1)`,
 				},
 				resource.Attribute{
+					Name:        "mtu",
+					Description: `(Optional) Network provider MTU. Default ` + "`" + `0` + "`" + ` (int)`,
+				},
+				resource.Attribute{
 					Name:        "options",
 					Description: `(Optional/Computed) RKE options for network (map)`,
 				},
 				resource.Attribute{
 					Name:        "plugin",
-					Description: `(Optional/Computed) Plugin for RKE network. ` + "`" + `canal` + "`" + ` (default), ` + "`" + `flannel` + "`" + `, ` + "`" + `calico` + "`" + ` and ` + "`" + `weave` + "`" + ` are supported. (string) ##### ` + "`" + `calico_network_provider` + "`" + ` ###### Arguments`,
+					Description: `(Optional/Computed) Plugin for RKE network. ` + "`" + `canal` + "`" + ` (default), ` + "`" + `flannel` + "`" + `, ` + "`" + `calico` + "`" + `, ` + "`" + `none` + "`" + ` and ` + "`" + `weave` + "`" + ` are supported. (string) ##### ` + "`" + `calico_network_provider` + "`" + ` ###### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "cloud_provider",
@@ -2436,11 +2472,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "audit_log",
-					Description: `(Optional) K8s audit log configuration. (list maxitem: 1)`,
+					Description: `(Optional) K8s audit log configuration. (list maxitems: 1)`,
 				},
 				resource.Attribute{
 					Name:        "event_rate_limit",
-					Description: `(Optional) K8s event rate limit configuration. (list maxitem: 1)`,
+					Description: `(Optional) K8s event rate limit configuration. (list maxitems: 1)`,
 				},
 				resource.Attribute{
 					Name:        "extra_args",
@@ -2476,7 +2512,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "configuration",
-					Description: `(Optional) Audit log configuration. (list maxtiem: 1)`,
+					Description: `(Optional) Audit log configuration. (list maxitems: 1)`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -2504,7 +2540,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "policy",
-					Description: `(Optional) Audit log policy json formated string. ` + "`" + `omitStages` + "`" + ` and ` + "`" + `rules` + "`" + ` json fields are supported. Example: ` + "`" + `policy = jsonencode({"rules":[{"level": "Metadata"}]})` + "`" + ` (string) ###### ` + "`" + `event_rate_limit` + "`" + ` ###### Arguments`,
+					Description: `(Optional/Computed) Audit policy yaml encoded definition. ` + "`" + `apiVersion` + "`" + ` and ` + "`" + `kind: Policy\nrules:"` + "`" + ` fields are required in the yaml. Ex. ` + "`" + `"apiVersion: audit.k8s.io/v1\nkind: Policy\nrules:\n- level: RequestResponse\n resources:\n - resources:\n - pods\n"` + "`" + ` [More info](https://rancher.com/docs/rke/latest/en/config-options/audit-log/) (string) ###### ` + "`" + `event_rate_limit` + "`" + ` ###### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "configuration",
@@ -2608,7 +2644,67 @@ var (
 				},
 				resource.Attribute{
 					Name:        "image",
-					Description: `(Optional/Computed) Docker image for scheduler service (string) ### ` + "`" + `aks_config` + "`" + ` #### Arguments The following arguments are supported:`,
+					Description: `(Optional/Computed) Docker image for scheduler service (string) #### ` + "`" + `upgrade_strategy` + "`" + ` ##### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "drain",
+					Description: `(Optional) RKE drain nodes. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "drain_input",
+					Description: `(Optional/Computed) RKE drain node input (list Maxitems: 1)`,
+				},
+				resource.Attribute{
+					Name:        "max_unavailable_controlplane",
+					Description: `(Optional) RKE max unavailable controlplane nodes. Default: ` + "`" + `1` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "max_unavailable_worker",
+					Description: `(Optional) RKE max unavailable worker nodes. Default: ` + "`" + `10%` + "`" + ` (string) ##### ` + "`" + `drain_input` + "`" + ` ###### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "delete_local_data",
+					Description: `Delete RKE node local data. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "force",
+					Description: `Force RKE node drain. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "grace_period",
+					Description: `RKE node drain grace period. Default: ` + "`" + `-1` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "ignore_daemon_sets",
+					Description: `Ignore RKE daemon sets. Default: ` + "`" + `true` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `RKE node drain timeout. Default: ` + "`" + `60` + "`" + ` (int) ### ` + "`" + `k3s_config` + "`" + ` #### Arguments The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "upgrade_strategy",
+					Description: `(Optional/Computed) K3S upgrade strategy (List maxitems: 1)`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional/Computed) K3S kubernetes version (string) #### ` + "`" + `upgrade_strategy` + "`" + ` ##### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "drain_server_nodes",
+					Description: `(Optional) Drain server nodes. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "drain_worker_nodes",
+					Description: `(Optional) Drain worker nodes. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "server_concurrency",
+					Description: `(Optional) Server concurrency. Default: ` + "`" + `1` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "worker_concurrency",
+					Description: `(Optional) Worker concurrency. Default: ` + "`" + `1` + "`" + ` (int) ### ` + "`" + `aks_config` + "`" + ` #### Arguments The following arguments are supported:`,
 				},
 				resource.Attribute{
 					Name:        "agent_dns_prefix",
@@ -3048,7 +3144,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "answers",
-					Description: `(Optional/Computed) Key/value answers for monitor input (map) ======= ### ` + "`" + `cluster_template_answers` + "`" + ` #### Arguments`,
+					Description: `(Optional/Computed) Key/value answers for monitor input (map)`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) rancher-monitoring chart version (string) ### ` + "`" + `cluster_template_answers` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "cluster_id",
@@ -3076,7 +3176,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "variable",
-					Description: `(Optional) Variable name (string) >>>>>>> c6a2cbc... Feat: added rancher2_cluster_template datasource and resource. For rancher V2.3.x. Doc files ### ` + "`" + `cluster_registration_token` + "`" + ` #### Attributes`,
+					Description: `(Optional) Variable name (string) ### ` + "`" + `cluster_registration_token` + "`" + ` #### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "cluster_id",
@@ -3116,7 +3216,43 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Computed) Labels for cluster registration token object (map) ## Timeouts ` + "`" + `rancher2_cluster` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for creating clusters. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for cluster modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for deleting clusters. ## Import Clusters can be imported using the Rancher Cluster ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster.foo <cluster> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) Labels for cluster registration token object (map) ### ` + "`" + `scheduled_cluster_scan` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "scan_config",
+					Description: `(Required) Cluster scan config (List maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "schedule_config",
+					Description: `(Required) Cluster scan schedule config (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Enable scheduled cluster scan. Default: ` + "`" + `false` + "`" + ` (bool) #### ` + "`" + `scan_config` + "`" + ` ##### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "cis_scan_config",
+					Description: `(Optional/computed) Cluster Cis Scan config (List maxitems:1) ##### ` + "`" + `cis_scan_config` + "`" + ` ###### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "debug_master",
+					Description: `(Optional) Debug master. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "debug_worker",
+					Description: `(Optional) Debug worker. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "override_benchmark_version",
+					Description: `(Optional) Override benchmark version (string)`,
+				},
+				resource.Attribute{
+					Name:        "override_skip",
+					Description: `(Optional) Override skip (string)`,
+				},
+				resource.Attribute{
+					Name:        "profile",
+					Description: `(Optional) Cis scan profile. Allowed values: ` + "`" + `"permissive" (default) || "hardened"` + "`" + ` (string) ## Timeouts ` + "`" + `rancher2_cluster` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for creating clusters. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for cluster modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for deleting clusters. ## Import Clusters can be imported using the Rancher Cluster ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster.foo <cluster> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3138,7 +3274,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kube_config",
-					Description: `(Computed) Kube Config generated for the cluster (string)`,
+					Description: `(Computed/Sensitive) Kube Config generated for the cluster (string)`,
 				},
 				resource.Attribute{
 					Name:        "system_project_id",
@@ -3186,7 +3322,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kubernetes_version",
-					Description: `(Optional/Computed) Kubernetes version to deploy (string)`,
+					Description: `(Optional/Computed) K8s version to deploy. Default: ` + "`" + `Rancher default` + "`" + ` (string)`,
 				},
 				resource.Attribute{
 					Name:        "monitoring",
@@ -3222,7 +3358,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_key_path",
-					Description: `(Optional/Computed) Cluster level SSH private key path (string) #### ` + "`" + `authentication` + "`" + ` ##### Arguments`,
+					Description: `(Optional/Computed) Cluster level SSH private key path (string)`,
+				},
+				resource.Attribute{
+					Name:        "upgrade_strategy",
+					Description: `(Optional/Computed) RKE upgrade strategy (list maxitems:1) #### ` + "`" + `authentication` + "`" + ` ##### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "sans",
@@ -3290,7 +3430,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global",
-					Description: `(Optional) (list maxitems:1)`,
+					Description: `(Optional/Computed) (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "service_override",
@@ -3757,12 +3897,16 @@ var (
 					Description: `(Optional/Computed) Weave provider config for RKE network (list maxitems:1)`,
 				},
 				resource.Attribute{
+					Name:        "mtu",
+					Description: `(Optional) Network provider MTU. Default ` + "`" + `0` + "`" + ` (int)`,
+				},
+				resource.Attribute{
 					Name:        "options",
 					Description: `(Optional/Computed) RKE options for network (map)`,
 				},
 				resource.Attribute{
 					Name:        "plugin",
-					Description: `(Optional/Computed) Plugin for RKE network. ` + "`" + `canal` + "`" + ` (default), ` + "`" + `flannel` + "`" + `, ` + "`" + `calico` + "`" + ` and ` + "`" + `weave` + "`" + ` are supported. (string) ##### ` + "`" + `calico_network_provider` + "`" + ` ###### Arguments`,
+					Description: `(Optional/Computed) Plugin for RKE network. ` + "`" + `canal` + "`" + ` (default), ` + "`" + `flannel` + "`" + `, ` + "`" + `calico` + "`" + `, ` + "`" + `none` + "`" + ` and ` + "`" + `weave` + "`" + ` are supported. (string) ##### ` + "`" + `calico_network_provider` + "`" + ` ###### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "cloud_provider",
@@ -3986,11 +4130,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "audit_log",
-					Description: `(Optional) K8s audit log configuration. (list maxitem: 1)`,
+					Description: `(Optional) K8s audit log configuration. (list maxitems: 1)`,
 				},
 				resource.Attribute{
 					Name:        "event_rate_limit",
-					Description: `(Optional) K8s event rate limit configuration. (list maxitem: 1)`,
+					Description: `(Optional) K8s event rate limit configuration. (list maxitems: 1)`,
 				},
 				resource.Attribute{
 					Name:        "extra_args",
@@ -4026,7 +4170,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "configuration",
-					Description: `(Optional) Audit log configuration. (list maxtiem: 1)`,
+					Description: `(Optional) Audit log configuration. (list maxitems: 1)`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -4054,7 +4198,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "policy",
-					Description: `(Optional) Audit log policy json formated string. ` + "`" + `omitStages` + "`" + ` and ` + "`" + `rules` + "`" + ` json fields are supported. Example: ` + "`" + `policy = jsonencode({"rules":[{"level": "Metadata"}]})` + "`" + ` (string) ###### ` + "`" + `event_rate_limit` + "`" + ` ###### Arguments`,
+					Description: `(Optional/Computed) Audit policy yaml encoded definition. ` + "`" + `apiVersion` + "`" + ` and ` + "`" + `kind: Policy\nrules:"` + "`" + ` fields are required in the yaml. Ex. ` + "`" + `"apiVersion: audit.k8s.io/v1\nkind: Policy\nrules:\n- level: RequestResponse\n resources:\n - resources:\n - pods\n"` + "`" + ` [More info](https://rancher.com/docs/rke/latest/en/config-options/audit-log/) (string) ###### ` + "`" + `event_rate_limit` + "`" + ` ###### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "configuration",
@@ -4158,7 +4302,67 @@ var (
 				},
 				resource.Attribute{
 					Name:        "image",
-					Description: `(Optional/Computed) Docker image for scheduler service (string) ### ` + "`" + `aks_config` + "`" + ` #### Arguments The following arguments are supported:`,
+					Description: `(Optional/Computed) Docker image for scheduler service (string) #### ` + "`" + `upgrade_strategy` + "`" + ` ##### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "drain",
+					Description: `(Optional) RKE drain nodes. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "drain_input",
+					Description: `(Optional/Computed) RKE drain node input (list Maxitems: 1)`,
+				},
+				resource.Attribute{
+					Name:        "max_unavailable_controlplane",
+					Description: `(Optional) RKE max unavailable controlplane nodes. Default: ` + "`" + `1` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "max_unavailable_worker",
+					Description: `(Optional) RKE max unavailable worker nodes. Default: ` + "`" + `10%` + "`" + ` (string) ##### ` + "`" + `drain_input` + "`" + ` ###### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "delete_local_data",
+					Description: `Delete RKE node local data. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "force",
+					Description: `Force RKE node drain. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "grace_period",
+					Description: `RKE node drain grace period. Default: ` + "`" + `-1` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "ignore_daemon_sets",
+					Description: `Ignore RKE daemon sets. Default: ` + "`" + `true` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `RKE node drain timeout. Default: ` + "`" + `60` + "`" + ` (int) ### ` + "`" + `k3s_config` + "`" + ` #### Arguments The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "upgrade_strategy",
+					Description: `(Optional/Computed) K3S upgrade strategy (List maxitems: 1)`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional/Computed) K3S kubernetes version (string) #### ` + "`" + `upgrade_strategy` + "`" + ` ##### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "drain_server_nodes",
+					Description: `(Optional) Drain server nodes. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "drain_worker_nodes",
+					Description: `(Optional) Drain worker nodes. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "server_concurrency",
+					Description: `(Optional) Server concurrency. Default: ` + "`" + `1` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "worker_concurrency",
+					Description: `(Optional) Worker concurrency. Default: ` + "`" + `1` + "`" + ` (int) ### ` + "`" + `aks_config` + "`" + ` #### Arguments The following arguments are supported:`,
 				},
 				resource.Attribute{
 					Name:        "agent_dns_prefix",
@@ -4598,7 +4802,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "answers",
-					Description: `(Optional/Computed) Key/value answers for monitor input (map) ======= ### ` + "`" + `cluster_template_answers` + "`" + ` #### Arguments`,
+					Description: `(Optional/Computed) Key/value answers for monitor input (map)`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) rancher-monitoring chart version (string) ### ` + "`" + `cluster_template_answers` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "cluster_id",
@@ -4626,7 +4834,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "variable",
-					Description: `(Optional) Variable name (string) >>>>>>> c6a2cbc... Feat: added rancher2_cluster_template datasource and resource. For rancher V2.3.x. Doc files ### ` + "`" + `cluster_registration_token` + "`" + ` #### Attributes`,
+					Description: `(Optional) Variable name (string) ### ` + "`" + `cluster_registration_token` + "`" + ` #### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "cluster_id",
@@ -4666,7 +4874,43 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Computed) Labels for cluster registration token object (map) ## Timeouts ` + "`" + `rancher2_cluster` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for creating clusters. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for cluster modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for deleting clusters. ## Import Clusters can be imported using the Rancher Cluster ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster.foo <cluster> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) Labels for cluster registration token object (map) ### ` + "`" + `scheduled_cluster_scan` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "scan_config",
+					Description: `(Required) Cluster scan config (List maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "schedule_config",
+					Description: `(Required) Cluster scan schedule config (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Enable scheduled cluster scan. Default: ` + "`" + `false` + "`" + ` (bool) #### ` + "`" + `scan_config` + "`" + ` ##### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "cis_scan_config",
+					Description: `(Optional/computed) Cluster Cis Scan config (List maxitems:1) ##### ` + "`" + `cis_scan_config` + "`" + ` ###### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "debug_master",
+					Description: `(Optional) Debug master. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "debug_worker",
+					Description: `(Optional) Debug worker. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "override_benchmark_version",
+					Description: `(Optional) Override benchmark version (string)`,
+				},
+				resource.Attribute{
+					Name:        "override_skip",
+					Description: `(Optional) Override skip (string)`,
+				},
+				resource.Attribute{
+					Name:        "profile",
+					Description: `(Optional) Cis scan profile. Allowed values: ` + "`" + `"permissive" (default) || "hardened"` + "`" + ` (string) ## Timeouts ` + "`" + `rancher2_cluster` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for creating clusters. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for cluster modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for deleting clusters. ## Import Clusters can be imported using the Rancher Cluster ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster.foo <cluster> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4728,7 +4972,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "recipient",
-					Description: `(Optional/Computed) Recipient (string) #### Attributes`,
+					Description: `(Optional/Computed) Recipient (string)`,
+				},
+				resource.Attribute{
+					Name:        "default_recipient",
+					Description: `(Optional) Use notifier default recipient, overriding ` + "`" + `recipient` + "`" + ` argument if set. Default: ` + "`" + `false` + "`" + ` (bool) #### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "notifier_type",
@@ -4746,7 +4994,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "recipient",
-					Description: `(Optional/Computed) Recipient (string) #### Attributes`,
+					Description: `(Optional/Computed) Recipient (string)`,
+				},
+				resource.Attribute{
+					Name:        "default_recipient",
+					Description: `(Optional) Use notifier default recipient, overriding ` + "`" + `recipient` + "`" + ` argument if set. Default: ` + "`" + `false` + "`" + ` (bool) #### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "notifier_type",
@@ -5025,16 +5277,24 @@ var (
 					Description: `(Required) The kind of the Cluster Logging. ` + "`" + `elasticsearch` + "`" + `, ` + "`" + `fluentd` + "`" + `, ` + "`" + `kafka` + "`" + `, ` + "`" + `splunk` + "`" + ` and ` + "`" + `syslog` + "`" + ` are supported (string)`,
 				},
 				resource.Attribute{
+					Name:        "custom_target_config",
+					Description: `(Optional) The custom target config for Cluster Logging. For ` + "`" + `kind = custom` + "`" + `. Conflicts with ` + "`" + `elasticsearch_config` + "`" + `, ` + "`" + `fluentd_config` + "`" + `, ` + "`" + `kafka_config` + "`" + `, ` + "`" + `splunk_config` + "`" + ` and ` + "`" + `syslog_config` + "`" + ` (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "enable_json_parsing",
+					Description: `(Optional) Enable json log parsing. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
 					Name:        "elasticsearch_config",
-					Description: `(Optional) The elasticsearch config for Cluster Logging. For ` + "`" + `kind = elasticsearch` + "`" + `. Conflicts with ` + "`" + `fluentd_config` + "`" + `, ` + "`" + `kafka_config` + "`" + `, ` + "`" + `splunk_config` + "`" + ` and ` + "`" + `syslog_config` + "`" + ` (list maxitems:1)`,
+					Description: `(Optional) The elasticsearch config for Cluster Logging. For ` + "`" + `kind = elasticsearch` + "`" + `. Conflicts with ` + "`" + `custom_target_config` + "`" + `, ` + "`" + `fluentd_config` + "`" + `, ` + "`" + `kafka_config` + "`" + `, ` + "`" + `splunk_config` + "`" + ` and ` + "`" + `syslog_config` + "`" + ` (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "fluentd_config",
-					Description: `(Optional) The fluentd config for Cluster Logging. For ` + "`" + `kind = fluentd` + "`" + `. Conflicts with ` + "`" + `elasticsearch_config` + "`" + `, ` + "`" + `kafka_config` + "`" + `, ` + "`" + `splunk_config` + "`" + ` and ` + "`" + `syslog_config` + "`" + ` (list maxitems:1)`,
+					Description: `(Optional) The fluentd config for Cluster Logging. For ` + "`" + `kind = fluentd` + "`" + `. Conflicts with ` + "`" + `custom_target_config` + "`" + `, ` + "`" + `elasticsearch_config` + "`" + `, ` + "`" + `kafka_config` + "`" + `, ` + "`" + `splunk_config` + "`" + ` and ` + "`" + `syslog_config` + "`" + ` (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "kafka_config",
-					Description: `(Optional) The kafka config for Cluster Logging. For ` + "`" + `kind = kafka` + "`" + `. Conflicts with ` + "`" + `elasticsearch_config` + "`" + `, ` + "`" + `fluentd_config` + "`" + `, ` + "`" + `splunk_config` + "`" + ` and ` + "`" + `syslog_config` + "`" + ` (list maxitems:1)`,
+					Description: `(Optional) The kafka config for Cluster Logging. For ` + "`" + `kind = kafka` + "`" + `. Conflicts with ` + "`" + `custom_target_config` + "`" + `, ` + "`" + `elasticsearch_config` + "`" + `, ` + "`" + `fluentd_config` + "`" + `, ` + "`" + `splunk_config` + "`" + ` and ` + "`" + `syslog_config` + "`" + ` (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "namespace_id",
@@ -5050,11 +5310,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "splunk_config",
-					Description: `(Optional) The splunk config for Cluster Logging. For ` + "`" + `kind = splunk` + "`" + `. Conflicts with ` + "`" + `elasticsearch_config` + "`" + `, ` + "`" + `fluentd_config` + "`" + `, ` + "`" + `kafka_config` + "`" + `, and ` + "`" + `syslog_config` + "`" + ` (list maxitems:1)`,
+					Description: `(Optional) The splunk config for Cluster Logging. For ` + "`" + `kind = splunk` + "`" + `. Conflicts with ` + "`" + `custom_target_config` + "`" + `, ` + "`" + `elasticsearch_config` + "`" + `, ` + "`" + `fluentd_config` + "`" + `, ` + "`" + `kafka_config` + "`" + `, and ` + "`" + `syslog_config` + "`" + ` (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "syslog_config",
-					Description: `(Optional) The syslog config for Cluster Logging. For ` + "`" + `kind = syslog` + "`" + `. Conflicts with ` + "`" + `elasticsearch_config` + "`" + `, ` + "`" + `fluentd_config` + "`" + `, ` + "`" + `kafka_config` + "`" + `, and ` + "`" + `splunk_config` + "`" + ` (list maxitems:1)`,
+					Description: `(Optional) The syslog config for Cluster Logging. For ` + "`" + `kind = syslog` + "`" + `. Conflicts with ` + "`" + `custom_target_config` + "`" + `, ` + "`" + `elasticsearch_config` + "`" + `, ` + "`" + `fluentd_config` + "`" + `, ` + "`" + `kafka_config` + "`" + `, and ` + "`" + `splunk_config` + "`" + ` (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -5066,7 +5326,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Computed) The ID of the resource (string) ## Nested blocks ### ` + "`" + `elasticsearch_config` + "`" + ` #### Arguments`,
+					Description: `(Computed) The ID of the resource (string) ## Nested blocks ### ` + "`" + `custom_target_config` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Required) Custom target config content (string)`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `(Required/Sensitive) SSL CA certificate for the custom target service (string)`,
+				},
+				resource.Attribute{
+					Name:        "client_cert",
+					Description: `(Optional/Sensitive) SSL client certificate for the custom target service (string)`,
+				},
+				resource.Attribute{
+					Name:        "client_key",
+					Description: `(Optional/Sensitive) SSL client key for the custom target service (string) ### ` + "`" + `elasticsearch_config` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "endpoint",
@@ -5256,7 +5532,23 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Computed) The ID of the resource (string) ## Nested blocks ### ` + "`" + `elasticsearch_config` + "`" + ` #### Arguments`,
+					Description: `(Computed) The ID of the resource (string) ## Nested blocks ### ` + "`" + `custom_target_config` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Required) Custom target config content (string)`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `(Required/Sensitive) SSL CA certificate for the custom target service (string)`,
+				},
+				resource.Attribute{
+					Name:        "client_cert",
+					Description: `(Optional/Sensitive) SSL client certificate for the custom target service (string)`,
+				},
+				resource.Attribute{
+					Name:        "client_key",
+					Description: `(Optional/Sensitive) SSL client key for the custom target service (string) ### ` + "`" + `elasticsearch_config` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "endpoint",
@@ -5491,7 +5783,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional/Computed) Labels for cluster role template binding (map) ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional/Computed) Labels for cluster role template binding (map)`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -5522,7 +5814,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "node_pool_ids",
-					Description: `(Optional) The node pool IDs used by the cluster id (list) ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The node pool IDs used by the cluster id (list)`,
+				},
+				resource.Attribute{
+					Name:        "wait_monitoring",
+					Description: `(Optional) Wait until monitoring is up and running. Default: ` + "`" + `false` + "`" + ` (bool) ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -5534,7 +5830,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kube_config",
-					Description: `(Computed) Kube Config generated for the cluster sync (string)`,
+					Description: `(Computed/Sensitive) Kube Config generated for the cluster sync (string)`,
 				},
 				resource.Attribute{
 					Name:        "system_project_id",
@@ -5552,7 +5848,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kube_config",
-					Description: `(Computed) Kube Config generated for the cluster sync (string)`,
+					Description: `(Computed/Sensitive) Kube Config generated for the cluster sync (string)`,
 				},
 				resource.Attribute{
 					Name:        "system_project_id",
@@ -5991,8 +6287,12 @@ var (
 					Description: `(Required/ForceNew) The role id from create global role binding (string)`,
 				},
 				resource.Attribute{
+					Name:        "group_principal_id",
+					Description: `(Optional/Computed/ForceNew) The group principal ID to assign global role binding (only works with external auth providers that support groups). Rancher v2.4.0 or higher is required (string)`,
+				},
+				resource.Attribute{
 					Name:        "user_id",
-					Description: `(Required/ForceNew) The user ID to assign global role binding (string)`,
+					Description: `(Optional/Computed/ForceNew) The user ID to assign global role binding (string)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6004,7 +6304,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional/Computed) Labels for global role binding (map) ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional/Computed) Labels for global role binding (map)`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -6598,6 +6898,10 @@ var (
 					Description: `(Optional) Digitalocean config for the Node Template (list maxitems:1)`,
 				},
 				resource.Attribute{
+					Name:        "linode_config",
+					Description: `(Optional) Linode config for the Node Template (list maxitems:1)`,
+				},
+				resource.Attribute{
 					Name:        "driver_id",
 					Description: `(Optional/Computed) The node driver id used by the node template. It's required if the node driver isn't built in Rancher (string)`,
 				},
@@ -6628,6 +6932,10 @@ var (
 				resource.Attribute{
 					Name:        "engine_storage_driver",
 					Description: `(Optional) Engine storage driver for the node template (string)`,
+				},
+				resource.Attribute{
+					Name:        "opennebula_config",
+					Description: `(Optional) Opennebula config for the Node Template (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "openstack_config",
@@ -6935,7 +7243,143 @@ var (
 				},
 				resource.Attribute{
 					Name:        "userdata",
-					Description: `(Optional) Path to file with cloud-init user-data (string) ### ` + "`" + `openstack_config` + "`" + ` #### Arguments`,
+					Description: `(Optional) Path to file with cloud-init user-data (string) ### ` + "`" + `linode_config` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "authorized_users",
+					Description: `(Optional) Linode user accounts (seperated by commas) whose Linode SSH keys will be permitted root access to the created node. (string)`,
+				},
+				resource.Attribute{
+					Name:        "create_private_ip",
+					Description: `(Optional) Create private IP for the instance. Default ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "docker_port",
+					Description: `(Optional) Docker Port. Default ` + "`" + `2376` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "image",
+					Description: `(Optional) Specifies the Linode Instance image which determines the OS distribution and base files. Default ` + "`" + `linode/ubuntu18.04` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `(Optional) Specifies the Linode Instance type which determines CPU, memory, disk size, etc. Default ` + "`" + `g6-standard-4` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Optional) Linode Instance Label. (string)`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) Specifies the region (location) of the Linode instance. Default ` + "`" + `us-east` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "root_pass",
+					Description: `(Optional/Sensitive) Root Password (string)`,
+				},
+				resource.Attribute{
+					Name:        "ssh_port",
+					Description: `(Optional) SSH port. Default ` + "`" + `22` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "ssh_user",
+					Description: `(Optional) SSH username. Default ` + "`" + `root` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "stackscript",
+					Description: `(Optional) Specifies the Linode StackScript to use to create the instance. (string)`,
+				},
+				resource.Attribute{
+					Name:        "stackscript_data",
+					Description: `(Optional) A JSON string specifying data for the selected StackScript. (string)`,
+				},
+				resource.Attribute{
+					Name:        "swap_size",
+					Description: `(Optional) Linode Instance Swap Size (MB). Default ` + "`" + `512` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A comma separated list of tags to apply to the the Linode resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Optional/Sensitive) Linode API token. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
+				},
+				resource.Attribute{
+					Name:        "ua_prefix",
+					Description: `(Optional) Prefix the User-Agent in Linode API calls with some 'product/version' (string) ### ` + "`" + `opennebula_config` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `(Required`,
+				},
+				resource.Attribute{
+					Name:        "image_name",
+					Description: `(Required`,
+				},
+				resource.Attribute{
+					Name:        "template_id",
+					Description: `(Required`,
+				},
+				resource.Attribute{
+					Name:        "template_name",
+					Description: `(Required`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required/Sensitive) Set the password for the XML-RPC API authentication (string)`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `(Required) Set the user for the XML-RPC API authentication (string)`,
+				},
+				resource.Attribute{
+					Name:        "xml_rpc_url",
+					Description: `(Required) Set the url for the Opennebula XML-RPC API (string)`,
+				},
+				resource.Attribute{
+					Name:        "b2d_size",
+					Description: `(Optional) Size of the Volatile disk in MB - only for b2d (string)`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `(Optional) CPU value for the VM (string)`,
+				},
+				resource.Attribute{
+					Name:        "dev_prefix",
+					Description: `(Optional) Dev prefix to use for the images. E.g.: 'vd', 'sd', 'hd' (string)`,
+				},
+				resource.Attribute{
+					Name:        "disable_vnc",
+					Description: `(Optional) VNC is enabled by default. Disable it with this flag (bool)`,
+				},
+				resource.Attribute{
+					Name:        "disk_resize",
+					Description: `(Optional) Size of the disk for the VM in MB (string)`,
+				},
+				resource.Attribute{
+					Name:        "image_owner",
+					Description: `(Optional) Owner of the image to use as the VM OS (string)`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `(Optional) Opennebula network ID to connect the machine to. Conflicts with ` + "`" + `network_name` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "network_name",
+					Description: `(Optional) Opennebula network to connect the machine to. Conflicts with ` + "`" + `network_id` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "network_owner",
+					Description: `(Optional) Opennebula user ID of the Network to connect the machine to (string)`,
+				},
+				resource.Attribute{
+					Name:        "ssh_user",
+					Description: `(Optional) Set the name of the SSH user. Defaults to docker (string)`,
+				},
+				resource.Attribute{
+					Name:        "vcpu",
+					Description: `(Optional) VCPUs for the VM (string) >`,
 				},
 				resource.Attribute{
 					Name:        "auth_url",
@@ -7023,7 +7467,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_key_file",
-					Description: `(Optional) Private keyfile absolute path to use for SSH (string)`,
+					Description: `(Optional/Sensitive) Private key content to use for SSH (string)`,
 				},
 				resource.Attribute{
 					Name:        "sec_groups",
@@ -7171,7 +7615,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vcenter_port",
-					Description: `(Optional/Sensitive) vSphere Port for vCenter. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x. Default ` + "`" + `443` + "`" + ` (string) ## Timeouts ` + "`" + `rancher2_node_template` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating node templates. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for node template modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting node templates. ## Import Node Template can be imported using the Rancher Node Template ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_node_template.foo <node_template_id> ` + "`" + `` + "`" + `` + "`" + ` ## Upgrading to Rancher v2.3.3 Due to [this feature](https://github.com/rancher/rancher/pull/23718) included on Rancher v2.3.3, ` + "`" + `rancher2_node_template` + "`" + ` are now global scope objects with RBAC around them, instead of user scope objects as they were. This means that existing node templates ` + "`" + `id` + "`" + ` field is changing on upgrade. Because the Terraform provider can not find the old ` + "`" + `id` + "`" + `, it will try to recreate them. As a workaround, if you are upgrading Rancher from previous releases to v2.3.3, you need to get node templates new id from Rancher API, refresh tfstate and import ` + "`" + `rancher2_node_template` + "`" + ` resources with new id. ` + "`" + `` + "`" + `` + "`" + ` $ curl -sk -X GET -H "Authorization: Bearer ${RANCHER_TOKEN_KEY}" ${RANCHER_URL}/v3/nodeTemplates | jq .data $ terraform refresh $ terraform import rancher2_node_template.<name> <new_id> $ terraform apply ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional/Sensitive) vSphere Port for vCenter. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x. Default ` + "`" + `443` + "`" + ` (string) ## Timeouts ` + "`" + `rancher2_node_template` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating node templates. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for node template modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting node templates. ## Import Node Template can be imported using the Rancher Node Template ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_node_template.foo <node_template_id> ` + "`" + `` + "`" + `` + "`" + ` ## Upgrading to Rancher v2.3.3`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -7461,7 +7905,143 @@ var (
 				},
 				resource.Attribute{
 					Name:        "userdata",
-					Description: `(Optional) Path to file with cloud-init user-data (string) ### ` + "`" + `openstack_config` + "`" + ` #### Arguments`,
+					Description: `(Optional) Path to file with cloud-init user-data (string) ### ` + "`" + `linode_config` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "authorized_users",
+					Description: `(Optional) Linode user accounts (seperated by commas) whose Linode SSH keys will be permitted root access to the created node. (string)`,
+				},
+				resource.Attribute{
+					Name:        "create_private_ip",
+					Description: `(Optional) Create private IP for the instance. Default ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "docker_port",
+					Description: `(Optional) Docker Port. Default ` + "`" + `2376` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "image",
+					Description: `(Optional) Specifies the Linode Instance image which determines the OS distribution and base files. Default ` + "`" + `linode/ubuntu18.04` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `(Optional) Specifies the Linode Instance type which determines CPU, memory, disk size, etc. Default ` + "`" + `g6-standard-4` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Optional) Linode Instance Label. (string)`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) Specifies the region (location) of the Linode instance. Default ` + "`" + `us-east` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "root_pass",
+					Description: `(Optional/Sensitive) Root Password (string)`,
+				},
+				resource.Attribute{
+					Name:        "ssh_port",
+					Description: `(Optional) SSH port. Default ` + "`" + `22` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "ssh_user",
+					Description: `(Optional) SSH username. Default ` + "`" + `root` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "stackscript",
+					Description: `(Optional) Specifies the Linode StackScript to use to create the instance. (string)`,
+				},
+				resource.Attribute{
+					Name:        "stackscript_data",
+					Description: `(Optional) A JSON string specifying data for the selected StackScript. (string)`,
+				},
+				resource.Attribute{
+					Name:        "swap_size",
+					Description: `(Optional) Linode Instance Swap Size (MB). Default ` + "`" + `512` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A comma separated list of tags to apply to the the Linode resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Optional/Sensitive) Linode API token. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
+				},
+				resource.Attribute{
+					Name:        "ua_prefix",
+					Description: `(Optional) Prefix the User-Agent in Linode API calls with some 'product/version' (string) ### ` + "`" + `opennebula_config` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `(Required`,
+				},
+				resource.Attribute{
+					Name:        "image_name",
+					Description: `(Required`,
+				},
+				resource.Attribute{
+					Name:        "template_id",
+					Description: `(Required`,
+				},
+				resource.Attribute{
+					Name:        "template_name",
+					Description: `(Required`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required/Sensitive) Set the password for the XML-RPC API authentication (string)`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `(Required) Set the user for the XML-RPC API authentication (string)`,
+				},
+				resource.Attribute{
+					Name:        "xml_rpc_url",
+					Description: `(Required) Set the url for the Opennebula XML-RPC API (string)`,
+				},
+				resource.Attribute{
+					Name:        "b2d_size",
+					Description: `(Optional) Size of the Volatile disk in MB - only for b2d (string)`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `(Optional) CPU value for the VM (string)`,
+				},
+				resource.Attribute{
+					Name:        "dev_prefix",
+					Description: `(Optional) Dev prefix to use for the images. E.g.: 'vd', 'sd', 'hd' (string)`,
+				},
+				resource.Attribute{
+					Name:        "disable_vnc",
+					Description: `(Optional) VNC is enabled by default. Disable it with this flag (bool)`,
+				},
+				resource.Attribute{
+					Name:        "disk_resize",
+					Description: `(Optional) Size of the disk for the VM in MB (string)`,
+				},
+				resource.Attribute{
+					Name:        "image_owner",
+					Description: `(Optional) Owner of the image to use as the VM OS (string)`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `(Optional) Opennebula network ID to connect the machine to. Conflicts with ` + "`" + `network_name` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "network_name",
+					Description: `(Optional) Opennebula network to connect the machine to. Conflicts with ` + "`" + `network_id` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "network_owner",
+					Description: `(Optional) Opennebula user ID of the Network to connect the machine to (string)`,
+				},
+				resource.Attribute{
+					Name:        "ssh_user",
+					Description: `(Optional) Set the name of the SSH user. Defaults to docker (string)`,
+				},
+				resource.Attribute{
+					Name:        "vcpu",
+					Description: `(Optional) VCPUs for the VM (string) >`,
 				},
 				resource.Attribute{
 					Name:        "auth_url",
@@ -7549,7 +8129,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_key_file",
-					Description: `(Optional) Private keyfile absolute path to use for SSH (string)`,
+					Description: `(Optional/Sensitive) Private key content to use for SSH (string)`,
 				},
 				resource.Attribute{
 					Name:        "sec_groups",
@@ -7697,7 +8277,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vcenter_port",
-					Description: `(Optional/Sensitive) vSphere Port for vCenter. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x. Default ` + "`" + `443` + "`" + ` (string) ## Timeouts ` + "`" + `rancher2_node_template` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating node templates. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for node template modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting node templates. ## Import Node Template can be imported using the Rancher Node Template ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_node_template.foo <node_template_id> ` + "`" + `` + "`" + `` + "`" + ` ## Upgrading to Rancher v2.3.3 Due to [this feature](https://github.com/rancher/rancher/pull/23718) included on Rancher v2.3.3, ` + "`" + `rancher2_node_template` + "`" + ` are now global scope objects with RBAC around them, instead of user scope objects as they were. This means that existing node templates ` + "`" + `id` + "`" + ` field is changing on upgrade. Because the Terraform provider can not find the old ` + "`" + `id` + "`" + `, it will try to recreate them. As a workaround, if you are upgrading Rancher from previous releases to v2.3.3, you need to get node templates new id from Rancher API, refresh tfstate and import ` + "`" + `rancher2_node_template` + "`" + ` resources with new id. ` + "`" + `` + "`" + `` + "`" + ` $ curl -sk -X GET -H "Authorization: Bearer ${RANCHER_TOKEN_KEY}" ${RANCHER_URL}/v3/nodeTemplates | jq .data $ terraform refresh $ terraform import rancher2_node_template.<name> <new_id> $ terraform apply ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional/Sensitive) vSphere Port for vCenter. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x. Default ` + "`" + `443` + "`" + ` (string) ## Timeouts ` + "`" + `rancher2_node_template` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating node templates. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for node template modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting node templates. ## Import Node Template can be imported using the Rancher Node Template ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_node_template.foo <node_template_id> ` + "`" + `` + "`" + `` + "`" + ` ## Upgrading to Rancher v2.3.3`,
 				},
 			},
 		},
@@ -7999,7 +8579,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "answers",
-					Description: `(Optional/Computed) Key/value answers for monitor input (map) ### ` + "`" + `resource_quota` + "`" + ` #### Arguments`,
+					Description: `(Optional/Computed) Key/value answers for monitor input (map)`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) rancher-monitoring chart version (string) ### ` + "`" + `resource_quota` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "project_limit",
@@ -8081,7 +8665,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "answers",
-					Description: `(Optional/Computed) Key/value answers for monitor input (map) ### ` + "`" + `resource_quota` + "`" + ` #### Arguments`,
+					Description: `(Optional/Computed) Key/value answers for monitor input (map)`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) rancher-monitoring chart version (string) ### ` + "`" + `resource_quota` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "project_limit",
@@ -8143,6 +8731,262 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "rancher2_project_alert_group",
+			Category:         "Resources",
+			ShortDescription: `Provides a Rancher v2 Project Alert Group resource. This can be used to create Project Alert Group for Rancher v2 environments and retrieve their information.`,
+			Description:      ``,
+			Keywords: []string{
+				"project",
+				"alert",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The project alert group name (string)`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The project id where create project alert group (string)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The project alert group description (string)`,
+				},
+				resource.Attribute{
+					Name:        "group_interval_seconds",
+					Description: `(Optional) The project alert group interval seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "group_wait_seconds",
+					Description: `(Optional) The project alert group wait seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "recipients",
+					Description: `(Optional) The project alert group recipients (list)`,
+				},
+				resource.Attribute{
+					Name:        "repeat_interval_seconds",
+					Description: `(Optional) The project alert group wait seconds. Default: ` + "`" + `3600` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Optional/Computed) The project alert group annotations (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional/Computed) The project alert group labels (map) ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string) ## Nested blocks ### ` + "`" + `recipients` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "notifier_id",
+					Description: `(Required) Recipient notifier ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "recipient",
+					Description: `(Optional/Computed) Recipient (string) #### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "notifier_type",
+					Description: `(Computed) Recipient notifier ID. Supported values : ` + "`" + `"pagerduty" | "slack" | "email" | "webhook" | "wechat"` + "`" + ` (string) ## Timeouts ` + "`" + `rancher2_project_alert_group` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating project alert groups. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for project alert group modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting project alert groups. ## Import Project Alert Group can be imported using the Rancher project alert group ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_project_alert_group.foo <rancher2_project_alert_group_id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string) ## Nested blocks ### ` + "`" + `recipients` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "notifier_id",
+					Description: `(Required) Recipient notifier ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "recipient",
+					Description: `(Optional/Computed) Recipient (string) #### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "notifier_type",
+					Description: `(Computed) Recipient notifier ID. Supported values : ` + "`" + `"pagerduty" | "slack" | "email" | "webhook" | "wechat"` + "`" + ` (string) ## Timeouts ` + "`" + `rancher2_project_alert_group` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating project alert groups. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for project alert group modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting project alert groups. ## Import Project Alert Group can be imported using the Rancher project alert group ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_project_alert_group.foo <rancher2_project_alert_group_id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "rancher2_project_alert_rule",
+			Category:         "Resources",
+			ShortDescription: `Provides a Rancher v2 Project Alert Rule resource. This can be used to create Project Alert Rule for Rancher v2 environments and retrieve their information.`,
+			Description:      ``,
+			Keywords: []string{
+				"project",
+				"alert",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The project id where create project alert rule (string)`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Required) The project alert rule alert group ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The project alert rule name (string)`,
+				},
+				resource.Attribute{
+					Name:        "group_interval_seconds",
+					Description: `(Optional) The project alert rule group interval seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "group_wait_seconds",
+					Description: `(Optional) The project alert rule group wait seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "inherited",
+					Description: `(Optional) The project alert rule inherited. Default: ` + "`" + `true` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "metric_rule",
+					Description: `(Optional) The project alert rule metric rule. ConflictsWith: ` + "`" + `"pod_rule", "workload_rule"` + "`" + `` + "`" + ` (list Maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "pod_rule",
+					Description: `(Optional) The project alert rule pod rule. ConflictsWith: ` + "`" + `"metric_rule", "workload_rule"` + "`" + `` + "`" + ` (list Maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "repeat_interval_seconds",
+					Description: `(Optional) The project alert rule wait seconds. Default: ` + "`" + `3600` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "severity",
+					Description: `(Optional) The project alert rule severity. Supported values : ` + "`" + `"critical" | "info" | "warning"` + "`" + `. Default: ` + "`" + `critical` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "workload_rule",
+					Description: `(Optional) The project alert rule workload rule. ConflictsWith: ` + "`" + `"metric_rule", "pod_rule"` + "`" + `` + "`" + ` (list Maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Optional/Computed) The project alert rule annotations (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional/Computed) The project alert rule labels (map) ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string) ## Nested blocks ### ` + "`" + `metric_rule` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Required) Metric rule duration (string)`,
+				},
+				resource.Attribute{
+					Name:        "expression",
+					Description: `(Required) Metric rule expression (string)`,
+				},
+				resource.Attribute{
+					Name:        "threshold_value",
+					Description: `(Required) Metric rule threshold value (float64)`,
+				},
+				resource.Attribute{
+					Name:        "comparison",
+					Description: `(Optional) Metric rule comparison. Supported values : ` + "`" + `"equal" | "greater-or-equal" | "greater-than" | "less-or-equal" | "less-than" | "not-equal" | "has-value"` + "`" + `. Default: ` + "`" + `equal` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Metric rule description (string) ### ` + "`" + `pod_rule` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "pod_id",
+					Description: `(Required) Pod ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "condition",
+					Description: `(Optional) Pod rule condition. Supported values : ` + "`" + `"notrunning" | "notscheduled" | "restarts"` + "`" + `. Default: ` + "`" + `notrunning` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "restart_interval_seconds",
+					Description: `(Optional) Pod rule restart interval seconds. Default: ` + "`" + `300` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "restart_times",
+					Description: `(Optional) Pod rule restart times. Default: ` + "`" + `3` + "`" + ` (int) ### ` + "`" + `workload_rule` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "available_percentage",
+					Description: `(Optional) Workload rule available percentage. Default: ` + "`" + `70` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "selector",
+					Description: `(Optional) Workload rule selector (map)`,
+				},
+				resource.Attribute{
+					Name:        "workload_id",
+					Description: `(Optional) Workload ID (string) ## Timeouts ` + "`" + `rancher2_project_alert_rule` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating project alert rules. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for project alert rule modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting project alert rules. ## Import Project Alert Rule can be imported using the Rancher project alert rule ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_project_alert_rule.foo <rancher2_project_alert_rule_id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string) ## Nested blocks ### ` + "`" + `metric_rule` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Required) Metric rule duration (string)`,
+				},
+				resource.Attribute{
+					Name:        "expression",
+					Description: `(Required) Metric rule expression (string)`,
+				},
+				resource.Attribute{
+					Name:        "threshold_value",
+					Description: `(Required) Metric rule threshold value (float64)`,
+				},
+				resource.Attribute{
+					Name:        "comparison",
+					Description: `(Optional) Metric rule comparison. Supported values : ` + "`" + `"equal" | "greater-or-equal" | "greater-than" | "less-or-equal" | "less-than" | "not-equal" | "has-value"` + "`" + `. Default: ` + "`" + `equal` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Metric rule description (string) ### ` + "`" + `pod_rule` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "pod_id",
+					Description: `(Required) Pod ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "condition",
+					Description: `(Optional) Pod rule condition. Supported values : ` + "`" + `"notrunning" | "notscheduled" | "restarts"` + "`" + `. Default: ` + "`" + `notrunning` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "restart_interval_seconds",
+					Description: `(Optional) Pod rule restart interval seconds. Default: ` + "`" + `300` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "restart_times",
+					Description: `(Optional) Pod rule restart times. Default: ` + "`" + `3` + "`" + ` (int) ### ` + "`" + `workload_rule` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "available_percentage",
+					Description: `(Optional) Workload rule available percentage. Default: ` + "`" + `70` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "selector",
+					Description: `(Optional) Workload rule selector (map)`,
+				},
+				resource.Attribute{
+					Name:        "workload_id",
+					Description: `(Optional) Workload ID (string) ## Timeouts ` + "`" + `rancher2_project_alert_rule` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating project alert rules. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for project alert rule modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting project alert rules. ## Import Project Alert Rule can be imported using the Rancher project alert rule ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_project_alert_rule.foo <rancher2_project_alert_rule_id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "rancher2_project_logging",
 			Category:         "Resources",
 			ShortDescription: `Provides a Rancher v2 Project Logging resource. This can be used to create Project Logging for Rancher v2 environments and retrieve their information.`,
@@ -8165,16 +9009,24 @@ var (
 					Description: `(Required) The kind of the Project Logging. ` + "`" + `elasticsearch` + "`" + `, ` + "`" + `fluentd` + "`" + `, ` + "`" + `kafka` + "`" + `, ` + "`" + `splunk` + "`" + ` and ` + "`" + `syslog` + "`" + ` are supported (string)`,
 				},
 				resource.Attribute{
+					Name:        "custom_target_config",
+					Description: `(Optional) The custom target config for Cluster Logging. For ` + "`" + `kind = custom` + "`" + `. Conflicts with ` + "`" + `elasticsearch_config` + "`" + `, ` + "`" + `fluentd_config` + "`" + `, ` + "`" + `kafka_config` + "`" + `, ` + "`" + `splunk_config` + "`" + ` and ` + "`" + `syslog_config` + "`" + ` (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "enable_json_parsing",
+					Description: `(Optional) Enable json log parsing. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
 					Name:        "elasticsearch_config",
-					Description: `(Optional) The elasticsearch config for Project Logging. For ` + "`" + `kind = elasticsearch` + "`" + `. Conflicts with ` + "`" + `fluentd_config` + "`" + `, ` + "`" + `kafka_config` + "`" + `, ` + "`" + `splunk_config` + "`" + ` and ` + "`" + `syslog_config` + "`" + ` (list maxitems:1)`,
+					Description: `(Optional) The elasticsearch config for Project Logging. For ` + "`" + `kind = elasticsearch` + "`" + `. Conflicts with ` + "`" + `custom_target_config` + "`" + `, ` + "`" + `fluentd_config` + "`" + `, ` + "`" + `kafka_config` + "`" + `, ` + "`" + `splunk_config` + "`" + ` and ` + "`" + `syslog_config` + "`" + ` (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "fluentd_config",
-					Description: `(Optional) The fluentd config for Project Logging. For ` + "`" + `kind = fluentd` + "`" + `. Conflicts with ` + "`" + `elasticsearch_config` + "`" + `, ` + "`" + `kafka_config` + "`" + `, ` + "`" + `splunk_config` + "`" + ` and ` + "`" + `syslog_config` + "`" + ` (list maxitems:1)`,
+					Description: `(Optional) The fluentd config for Project Logging. For ` + "`" + `kind = fluentd` + "`" + `. Conflicts with ` + "`" + `custom_target_config` + "`" + `, ` + "`" + `elasticsearch_config` + "`" + `, ` + "`" + `kafka_config` + "`" + `, ` + "`" + `splunk_config` + "`" + ` and ` + "`" + `syslog_config` + "`" + ` (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "kafka_config",
-					Description: `(Optional) The kafka config for Project Logging. For ` + "`" + `kind = kafka` + "`" + `. Conflicts with ` + "`" + `elasticsearch_config` + "`" + `, ` + "`" + `fluentd_config` + "`" + `, ` + "`" + `splunk_config` + "`" + ` and ` + "`" + `syslog_config` + "`" + ` (list maxitems:1)`,
+					Description: `(Optional) The kafka config for Project Logging. For ` + "`" + `kind = kafka` + "`" + `. Conflicts with ` + "`" + `custom_target_config` + "`" + `, ` + "`" + `elasticsearch_config` + "`" + `, ` + "`" + `fluentd_config` + "`" + `, ` + "`" + `splunk_config` + "`" + ` and ` + "`" + `syslog_config` + "`" + ` (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "namespace_id",
@@ -8190,11 +9042,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "splunk_config",
-					Description: `(Optional) The splunk config for Project Logging. For ` + "`" + `kind = splunk` + "`" + `. Conflicts with ` + "`" + `elasticsearch_config` + "`" + `, ` + "`" + `fluentd_config` + "`" + `, ` + "`" + `kafka_config` + "`" + `, and ` + "`" + `syslog_config` + "`" + ` (list maxitems:1)`,
+					Description: `(Optional) The splunk config for Project Logging. For ` + "`" + `kind = splunk` + "`" + `. Conflicts with ` + "`" + `custom_target_config` + "`" + `, ` + "`" + `elasticsearch_config` + "`" + `, ` + "`" + `fluentd_config` + "`" + `, ` + "`" + `kafka_config` + "`" + `, and ` + "`" + `syslog_config` + "`" + ` (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "syslog_config",
-					Description: `(Optional) The syslog config for Project Logging. For ` + "`" + `kind = syslog` + "`" + `. Conflicts with ` + "`" + `elasticsearch_config` + "`" + `, ` + "`" + `fluentd_config` + "`" + `, ` + "`" + `kafka_config` + "`" + `, and ` + "`" + `splunk_config` + "`" + ` (list maxitems:1)`,
+					Description: `(Optional) The syslog config for Project Logging. For ` + "`" + `kind = syslog` + "`" + `. Conflicts with ` + "`" + `custom_target_config` + "`" + `, ` + "`" + `elasticsearch_config` + "`" + `, ` + "`" + `fluentd_config` + "`" + `, ` + "`" + `kafka_config` + "`" + `, and ` + "`" + `splunk_config` + "`" + ` (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -8206,7 +9058,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Computed) The ID of the resource (string) ## Nested blocks ### ` + "`" + `elasticsearch_config` + "`" + ` #### Arguments`,
+					Description: `(Computed) The ID of the resource (string) ## Nested blocks ### ` + "`" + `custom_target_config` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Required) Custom target config content (string)`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `(Required/Sensitive) SSL CA certificate for the custom target service (string)`,
+				},
+				resource.Attribute{
+					Name:        "client_cert",
+					Description: `(Optional/Sensitive) SSL client certificate for the custom target service (string)`,
+				},
+				resource.Attribute{
+					Name:        "client_key",
+					Description: `(Optional/Sensitive) SSL client key for the custom target service (string) ### ` + "`" + `elasticsearch_config` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "endpoint",
@@ -8396,7 +9264,23 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Computed) The ID of the resource (string) ## Nested blocks ### ` + "`" + `elasticsearch_config` + "`" + ` #### Arguments`,
+					Description: `(Computed) The ID of the resource (string) ## Nested blocks ### ` + "`" + `custom_target_config` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Required) Custom target config content (string)`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `(Required/Sensitive) SSL CA certificate for the custom target service (string)`,
+				},
+				resource.Attribute{
+					Name:        "client_cert",
+					Description: `(Optional/Sensitive) SSL client certificate for the custom target service (string)`,
+				},
+				resource.Attribute{
+					Name:        "client_key",
+					Description: `(Optional/Sensitive) SSL client key for the custom target service (string) ### ` + "`" + `elasticsearch_config` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "endpoint",
@@ -8631,7 +9515,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional/Computed) Labels of the resource (map) ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional/Computed) Labels of the resource (map)`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -9113,14 +9997,16 @@ var (
 		"rancher2_node_template":                 28,
 		"rancher2_notifier":                      29,
 		"rancher2_project":                       30,
-		"rancher2_project_logging":               31,
-		"rancher2_project_role_template_binding": 32,
-		"rancher2_registry":                      33,
-		"rancher2_role_template":                 34,
-		"rancher2_secret":                        35,
-		"rancher2_setting":                       36,
-		"rancher2_token":                         37,
-		"rancher2_user":                          38,
+		"rancher2_project_alert_group":           31,
+		"rancher2_project_alert_rule":            32,
+		"rancher2_project_logging":               33,
+		"rancher2_project_role_template_binding": 34,
+		"rancher2_registry":                      35,
+		"rancher2_role_template":                 36,
+		"rancher2_secret":                        37,
+		"rancher2_setting":                       38,
+		"rancher2_token":                         39,
+		"rancher2_user":                          40,
 	}
 )
 

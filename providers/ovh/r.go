@@ -1855,7 +1855,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "farm_id",
-					Description: `List of existing farm ids your vRack network is attached to`,
+					Description: `This attribute is there for documentation purpose only and isnt passed to the OVH API as it may conflicts with http/tcp farms ` + "`" + `vrack_network_id` + "`" + ` attribute`,
 				},
 				resource.Attribute{
 					Name:        "nat_ip",
@@ -1944,6 +1944,58 @@ var (
 			},
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_me_ipxe_script",
+			Category:         "Me Resources",
+			ShortDescription: `Creates an IPXE Script.`,
+			Description:      ``,
+			Keywords: []string{
+				"me",
+				"ipxe",
+				"script",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `For documentation purpose only. This attribute is not passed to the OVH API as it cannot be retrieved back. Instead a fake description ('$name auto description') is passed at creation time.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the IPXE Script.`,
+				},
+				resource.Attribute{
+					Name:        "script",
+					Description: `(Required) The content of the script. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "script",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "script",
+					Description: `See Argument Reference above.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2775,17 +2827,18 @@ var (
 		"ovh_me_installation_template_partition_scheme":               17,
 		"ovh_me_installation_template_partition_scheme_hardware_raid": 18,
 		"ovh_me_installation_template_partition_scheme_partition":     19,
-		"ovh_me_ssh_key":                                              20,
-		"ovh_domain_zone_record":                                      21,
-		"ovh_domain_zone_redirection":                                 22,
-		"ovh_publiccloud_private_network":                             23,
-		"ovh_publiccloud_private_network_subnet":                      24,
-		"ovh_publiccloud_user":                                        25,
-		"ovh_vrack_cloudproject":                                      26,
-		"ovh_vrack_dedicated_server":                                  27,
-		"ovh_vrack_dedicated_server_interface":                        28,
-		"ovh_vrack_iploadbalancing":                                   29,
-		"ovh_vrack_publiccloud_attachment":                            30,
+		"ovh_me_ipxe_script":                                          20,
+		"ovh_me_ssh_key":                                              21,
+		"ovh_domain_zone_record":                                      22,
+		"ovh_domain_zone_redirection":                                 23,
+		"ovh_publiccloud_private_network":                             24,
+		"ovh_publiccloud_private_network_subnet":                      25,
+		"ovh_publiccloud_user":                                        26,
+		"ovh_vrack_cloudproject":                                      27,
+		"ovh_vrack_dedicated_server":                                  28,
+		"ovh_vrack_dedicated_server_interface":                        29,
+		"ovh_vrack_iploadbalancing":                                   30,
+		"ovh_vrack_publiccloud_attachment":                            31,
 	}
 )
 

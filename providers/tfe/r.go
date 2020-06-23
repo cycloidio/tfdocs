@@ -45,8 +45,8 @@ var (
 					Description: `(Required) The HTTP or HTTPS URL of the notification configuration where notification requests will be made.`,
 				},
 				resource.Attribute{
-					Name:        "workspace_external_id",
-					Description: `(Required) The external id of the workspace that owns the notification configuration. ## Attributes Reference`,
+					Name:        "workspace_id",
+					Description: `The id of the workspace that owns the notification configuration. This value _must not_ be provided if ` + "`" + `workspace_external_id` + "`" + ` is provided.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -163,6 +163,28 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "tfe_organization_membership",
+			Category:         "Resources",
+			ShortDescription: `Add or remove a user from an organization.`,
+			Description:      ``,
+			Keywords: []string{
+				"organization",
+				"membership",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "organization",
+					Description: `(Required) Name of the organization.`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `(Required) Email of the user to add.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "tfe_organization_token",
 			Category:         "Resources",
 			ShortDescription: `Generates a new organization token, replacing any existing token.`,
@@ -221,7 +243,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global",
-					Description: `(Optional) Whether or not policies in this set will apply to all workspaces. Defaults to ` + "`" + `false` + "`" + `. This value _must not_ be provided if ` + "`" + `workspace_external_ids` + "`" + ` are provided.`,
+					Description: `(Optional) Whether or not policies in this set will apply to all workspaces. Defaults to ` + "`" + `false` + "`" + `. This value _must not_ be provided if ` + "`" + `workspace_ids` + "`" + ` or ` + "`" + `workspace_external_ids` + "`" + ` are provided.`,
 				},
 				resource.Attribute{
 					Name:        "organization",
@@ -240,8 +262,8 @@ var (
 					Description: `(Optional) Settings for the policy sets VCS repository. Forces a new resource if changed. This value _must not_ be provided if ` + "`" + `policy_ids` + "`" + ` are provided.`,
 				},
 				resource.Attribute{
-					Name:        "workspace_external_ids",
-					Description: `(Optional) A list of workspace external IDs. This value _must not_ be provided if ` + "`" + `global` + "`" + ` is provided. ->`,
+					Name:        "workspace_ids",
+					Description: `(Optional) A list of workspace IDs. This value _must not_ be provided if ` + "`" + `global` + "`" + ` or ` + "`" + `workspace_external_ids` + "`" + ` is provided.`,
 				},
 				resource.Attribute{
 					Name:        "identifier",
@@ -257,7 +279,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "oauth_token_id",
-					Description: `(Required) Token ID of the VCS Connection (OAuth Conection Token) to use. ## Attributes Reference`,
+					Description: `(Required) Token ID of the VCS Connection (OAuth Connection Token) to use. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -323,12 +345,12 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "workspace_external_id",
-					Description: `(Required) The external id of the workspace that owns the run trigger. This is the workspace where runs will be triggered.`,
+					Name:        "workspace_id",
+					Description: `The id of the workspace that owns the run trigger. This is the workspace where runs will be triggered. This value _must not_ be provided if ` + "`" + `workspace_external_id` + "`" + ` is provided.`,
 				},
 				resource.Attribute{
 					Name:        "sourceable_id",
-					Description: `(Required) The external id of the sourceable. The sourceable must be a workspace. ## Attributes Reference`,
+					Description: `(Required) The id of the sourceable. The sourceable must be a workspace. ->`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -427,7 +449,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "organization",
-					Description: `(Required) Name of the organization. ## Attributes Reference`,
+					Description: `(Required) Name of the organization.`,
+				},
+				resource.Attribute{
+					Name:        "visibility",
+					Description: `(Optional) The visibility of the team ("secret" or "organization"). Defaults to "secret".`,
+				},
+				resource.Attribute{
+					Name:        "organization_access",
+					Description: `(Optional) Settings for the team's [organization access](https://www.terraform.io/docs/cloud/users-teams-organizations/permissions.html#organization-level-permissions). The ` + "`" + `organization_access` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "manage_policies",
+					Description: `(Optional) Allows members to create, edit, and delete the organization's Sentinel policies and override soft-mandatory policy checks.`,
+				},
+				resource.Attribute{
+					Name:        "manage_workspaces",
+					Description: `(Optional) Allows members to create and administrate all workspaces within the organization.`,
+				},
+				resource.Attribute{
+					Name:        "manage_vcs_settings",
+					Description: `(Optional) Allows members to manage the organization's VCS Providers and SSH keys. ## Attributes Reference`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -444,16 +486,40 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "access",
-					Description: `(Required) Type of access to grant. Valid values are ` + "`" + `admin` + "`" + `, ` + "`" + `read` + "`" + `, ` + "`" + `plan` + "`" + `, or ` + "`" + `write` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "team_id",
 					Description: `(Required) ID of the team to add to the workspace.`,
 				},
 				resource.Attribute{
 					Name:        "workspace_id",
-					Description: `(Required) The workspace to which the team will be added, specified as a human-readable ID (` + "`" + `<ORGANIZATION>/<WORKSPACE>` + "`" + `). ## Attributes Reference`,
+					Description: `(Required) ID of the workspace to which the team will be added.`,
+				},
+				resource.Attribute{
+					Name:        "access",
+					Description: `(Optional) Type of fixed access to grant. Valid values are ` + "`" + `admin` + "`" + `, ` + "`" + `read` + "`" + `, ` + "`" + `plan` + "`" + `, or ` + "`" + `write` + "`" + `. To use ` + "`" + `custom` + "`" + ` permissions, use a ` + "`" + `permissions` + "`" + ` block instead. This value _must not_ be provided if ` + "`" + `permissions` + "`" + ` is provided.`,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `(Optional) Permissions to grant using [custom workspace permissions](https://www.terraform.io/docs/cloud/users-teams-organizations/permissions.html#custom-workspace-permissions). This value _must not_ be provided if ` + "`" + `access` + "`" + ` is provided. The ` + "`" + `permissions` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "runs",
+					Description: `(Required) The permission to grant the team on the workspace's runs. Valid values are ` + "`" + `read` + "`" + `, ` + "`" + `plan` + "`" + `, or ` + "`" + `apply` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "variables",
+					Description: `(Required) The permission to grant the team on the workspace's variables. Valid values are ` + "`" + `none` + "`" + `, ` + "`" + `read` + "`" + `, or ` + "`" + `write` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "state_versions",
+					Description: `(Required) The permission to grant the team on the workspace's state versions. Valid values are ` + "`" + `none` + "`" + `, ` + "`" + `read` + "`" + `, ` + "`" + `read-outputs` + "`" + `, or ` + "`" + `write` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sentinel_mocks",
+					Description: `(Required) The permission to grant the team on the workspace's generated Sentinel mocks, Valid values are ` + "`" + `none` + "`" + ` or ` + "`" + `read` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "workspace_locking",
+					Description: `(Required) Boolean determining whether or not to grant the team permission to manually lock/unlock the workspace. ->`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -510,6 +576,29 @@ var (
 					Description: `The ID of the team. ## Import Team members can be imported; use ` + "`" + `<TEAM ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_team_members.test team-47qC3LmA47piVan7 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tfe_team_organization_member",
+			Category:         "Resources",
+			ShortDescription: `Add or remove a user from a team.`,
+			Description:      ``,
+			Keywords: []string{
+				"team",
+				"organization",
+				"member",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "team_id",
+					Description: `(Required) ID of the team.`,
+				},
+				resource.Attribute{
+					Name:        "organization_membership_id",
+					Description: `(Required) ID of the organization membership. ## Import A team member can be imported; use ` + "`" + `<TEAM ID>/<ORGANIZATION MEMBERSHIP ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_team_organization_member.test team-47qC3LmA47piVan7/ou-2342390sdf0jj ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -586,7 +675,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "workspace_id",
-					Description: `(Required) The workspace that owns the variable, specified as a human-readable ID (` + "`" + `<ORGANIZATION>/<WORKSPACE>` + "`" + `). ## Attributes Reference`,
+					Description: `(Required) ID of the workspace that owns the variable. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -668,25 +757,17 @@ var (
 				},
 				resource.Attribute{
 					Name:        "oauth_token_id",
-					Description: `(Required) Token ID of the VCS Connection (OAuth Conection Token) to use. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required) Token ID of the VCS Connection (OAuth Connection Token) to use. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The workspace's human-readable ID, which looks like ` + "`" + `<ORGANIZATION>/<WORKSPACE>` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "external_id",
-					Description: `The workspace's opaque external ID, which looks like ` + "`" + `ws-<RANDOM STRING>` + "`" + `. ## Import Workspaces can be imported; use ` + "`" + `<ORGANIZATION NAME>/<WORKSPACE NAME>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_workspace.test my-org-name/my-workspace-name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The workspace ID. ## Import ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The workspace's human-readable ID, which looks like ` + "`" + `<ORGANIZATION>/<WORKSPACE>` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "external_id",
-					Description: `The workspace's opaque external ID, which looks like ` + "`" + `ws-<RANDOM STRING>` + "`" + `. ## Import Workspaces can be imported; use ` + "`" + `<ORGANIZATION NAME>/<WORKSPACE NAME>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_workspace.test my-org-name/my-workspace-name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The workspace ID. ## Import ~>`,
 				},
 			},
 		},
@@ -697,19 +778,21 @@ var (
 		"tfe_notification_configuration": 0,
 		"tfe_oauth_client":               1,
 		"tfe_organization":               2,
-		"tfe_organization_token":         3,
-		"tfe_policy_set":                 4,
-		"tfe_policy_set_parameter":       5,
-		"tfe_run_trigger":                6,
-		"tfe_sentinel_policy":            7,
-		"tfe_ssh_key":                    8,
-		"tfe_team":                       9,
-		"tfe_team_access":                10,
-		"tfe_team_member":                11,
-		"tfe_team_members":               12,
-		"tfe_team_token":                 13,
-		"tfe_variable":                   14,
-		"tfe_workspace":                  15,
+		"tfe_organization_membership":    3,
+		"tfe_organization_token":         4,
+		"tfe_policy_set":                 5,
+		"tfe_policy_set_parameter":       6,
+		"tfe_run_trigger":                7,
+		"tfe_sentinel_policy":            8,
+		"tfe_ssh_key":                    9,
+		"tfe_team":                       10,
+		"tfe_team_access":                11,
+		"tfe_team_member":                12,
+		"tfe_team_members":               13,
+		"tfe_team_organization_member":   14,
+		"tfe_team_token":                 15,
+		"tfe_variable":                   16,
+		"tfe_workspace":                  17,
 	}
 )
 

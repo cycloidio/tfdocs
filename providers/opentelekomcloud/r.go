@@ -267,6 +267,14 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the status of the AS group.`,
+				},
+				resource.Attribute{
+					Name:        "current_instance_number",
+					Description: `Indicates the number of current instances in the AS group.`,
+				},
+				resource.Attribute{
 					Name:        "desire_instance_number",
 					Description: `See Argument Reference above.`,
 				},
@@ -319,6 +327,14 @@ var (
 				resource.Attribute{
 					Name:        "scaling_group_name",
 					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the status of the AS group.`,
+				},
+				resource.Attribute{
+					Name:        "current_instance_number",
+					Description: `Indicates the number of current instances in the AS group.`,
 				},
 				resource.Attribute{
 					Name:        "desire_instance_number",
@@ -971,6 +987,10 @@ var (
 					Description: `(Optional) Node tag, key/value pair format. Changing this parameter will create a new resource.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The field is alternative to ` + "`" + `labels` + "`" + `, key/value pair format.`,
+				},
+				resource.Attribute{
 					Name:        "annotations",
 					Description: `(Optional) Node annotation, key/value pair format. Changing this parameter will create a new resource.`,
 				},
@@ -996,7 +1016,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "iptype",
-					Description: `(Required) Elastic IP type.`,
+					Description: `(Optional) Elastic IP type.`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth_charge_mode",
@@ -1004,11 +1024,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sharetype",
-					Description: `(Required) Bandwidth sharing type. Changing this parameter will create a new resource.`,
+					Description: `(Optional) Bandwidth sharing type. Changing this parameter will create a new resource.`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth_size",
-					Description: `(Required) Bandwidth size. Changing this parameter will create a new resource.`,
+					Description: `(Optional) Bandwidth size. Changing this parameter will create a new resource.`,
 				},
 				resource.Attribute{
 					Name:        "extend_param_charging_mode",
@@ -1043,6 +1063,10 @@ var (
 					Description: `(Optional) Script required after installation. The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.`,
 				},
 				resource.Attribute{
+					Name:        "root_volume",
+					Description: `(Required) It corresponds to the system disk related configuration. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
 					Name:        "size",
 					Description: `(Required) Disk size in GB.`,
 				},
@@ -1053,6 +1077,10 @@ var (
 				resource.Attribute{
 					Name:        "extend_param",
 					Description: `(Optional) Disk expansion parameters.`,
+				},
+				resource.Attribute{
+					Name:        "data_volumes",
+					Description: `(Required) Represents the data disk to be created. Changing this parameter will create a new resource.`,
 				},
 				resource.Attribute{
 					Name:        "size",
@@ -1071,8 +1099,16 @@ var (
 					Description: `Node status information.`,
 				},
 				resource.Attribute{
+					Name:        "server_id",
+					Description: `ID of the ECS where the node resides.`,
+				},
+				resource.Attribute{
 					Name:        "private_ip",
 					Description: `Private IP of the CCE node.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `Public IP of the CCE node.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1081,8 +1117,16 @@ var (
 					Description: `Node status information.`,
 				},
 				resource.Attribute{
+					Name:        "server_id",
+					Description: `ID of the ECS where the node resides.`,
+				},
+				resource.Attribute{
 					Name:        "private_ip",
 					Description: `Private IP of the CCE node.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `Public IP of the CCE node.`,
 				},
 			},
 		},
@@ -1105,6 +1149,10 @@ var (
 				resource.Attribute{
 					Name:        "alarm_description",
 					Description: `(Optional) The value can be a string of 0 to 256 characters.`,
+				},
+				resource.Attribute{
+					Name:        "alarm_level",
+					Description: `(Optional) Specifies the alarm severity. The value can be 1, 2, 3 or 4, which indicates critical, major, minor, and informational. The default value is 2.`,
 				},
 				resource.Attribute{
 					Name:        "metric",
@@ -1211,6 +1259,10 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "alarm_level",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
 					Name:        "metric",
 					Description: `See Argument Reference above.`,
 				},
@@ -1248,7 +1300,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "alarm_state",
-					Description: `Specifies the alarm status. The value can be: ok: The alarm status is normal, alarm: An alarm is generated, insufficient_data: The required data is insufficient.`,
+					Description: `Specifies the alarm status. The value can be: - ok: The alarm status is normal; - alarm: An alarm is generated; - insufficient_data: The required data is insufficient;`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1261,6 +1313,10 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "alarm_level",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
 					Name:        "metric",
 					Description: `See Argument Reference above.`,
 				},
@@ -1298,7 +1354,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "alarm_state",
-					Description: `Specifies the alarm status. The value can be: ok: The alarm status is normal, alarm: An alarm is generated, insufficient_data: The required data is insufficient.`,
+					Description: `Specifies the alarm status. The value can be: - ok: The alarm status is normal; - alarm: An alarm is generated; - insufficient_data: The required data is insufficient;`,
 				},
 			},
 		},
@@ -3169,6 +3225,330 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "opentelekomcloud_dms_instance_v1",
+			Category:         "DMS Resources",
+			ShortDescription: `Manages a DMS instance in the opentelekomcloud DMS Service`,
+			Description:      ``,
+			Keywords: []string{
+				"dms",
+				"instance",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Indicates the name of an instance. An instance name starts with a letter, consists of 4 to 64 characters, and supports only letters, digits, and hyphens (-).`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Indicates the description of an instance. It is a character string containing not more than 1024 characters.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `(Optional) Indicates a message engine. Only "kafka" is supported now.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `(Optional) Indicates the version of a message engine. Only "2.3.0" is supported now.`,
+				},
+				resource.Attribute{
+					Name:        "specification",
+					Description: `(Optional) This parameter is mandatory if the engine is kafka. Indicates the baseline bandwidth of a Kafka instance, that is, the maximum amount of data transferred per unit time. Unit: byte/s. Options: 100MB, 300MB, 600MB, 1200MB.`,
+				},
+				resource.Attribute{
+					Name:        "storage_space",
+					Description: `(Required) Indicates the message storage space. Value range: - Kafka instance with specification being 100 MB: 600–90000 GB - Kafka instance with specification being 300 MB: 1200–90000 GB - Kafka instance with specification being 600 MB: 2400–90000 GB - Kafka instance with specification being 1200 MB: 4800–90000 GB`,
+				},
+				resource.Attribute{
+					Name:        "partition_num",
+					Description: `(Optional) This parameter is mandatory when a Kafka instance is created. Indicates the maximum number of topics in a Kafka instance. - When specification is 100 MB: 300 - When specification is 300 MB: 900 - When specification is 600 MB: 1800 - When specification is 1200 MB: 1800`,
+				},
+				resource.Attribute{
+					Name:        "access_user",
+					Description: `(Optional) Indicates a username. A username consists of 4 to 64 characters and supports only letters, digits, and hyphens (-).`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) Indicates the password of an instance. An instance password must meet the following complexity requirements: Must be 8 to 32 characters long. Must contain at least 2 of the following character types: lowercase letters, uppercase letters, digits, and special characters (` + "`" + `~!@#$%^&`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required) Indicates the ID of a VPC.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `(Required) Indicates the ID of a security group.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) Indicates the ID of a subnet.`,
+				},
+				resource.Attribute{
+					Name:        "available_zones",
+					Description: `(Required) Indicates the ID of an AZ. The parameter value can not be left blank or an empty array. For details, see section Querying AZ Information.`,
+				},
+				resource.Attribute{
+					Name:        "product_id",
+					Description: `(Required) Indicates a product ID.`,
+				},
+				resource.Attribute{
+					Name:        "maintain_begin",
+					Description: `(Optional) Indicates the time at which a maintenance time window starts. Format: HH:mm. - The start time and end time of a maintenance time window must indicate the time segment of a supported maintenance time window. - The start time must be set to 22:00, 02:00, 06:00, 10:00, 14:00, or 18:00. - Parameters maintain_begin and maintain_end must be set in pairs. If parameter maintain_begin is left blank, parameter maintain_end is also blank. In this case, the system automatically allocates the default start time 02:00.`,
+				},
+				resource.Attribute{
+					Name:        "maintain_end",
+					Description: `(Optional) Indicates the time at which a maintenance time window ends. Format: HH:mm. - The start time and end time of a maintenance time window must indicate the time segment of a supported maintenance time window. - The end time is four hours later than the start time. For example, if the start time is 22:00, the end time is 02:00. - Parameters maintain_begin and maintain_end must be set in pairs. If parameter maintain_end is left blank, parameter maintain_begin is also blank. In this case, the system automatically allocates the default end time 06:00.`,
+				},
+				resource.Attribute{
+					Name:        "storage_spec_code",
+					Description: `(Optional) Indicates the storage I/O specification. Options for a Kafka instance: - When specification is 100 MB: dms.physical.storage.high or dms.physical.storage.ultra - When specification is 300 MB: dms.physical.storage.high or dms.physical.storage.ultra - When specification is 600 MB: dms.physical.storage.ultra - When specification is 1200 MB: dms.physical.storage.ultra ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "specification",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "storage_space",
+					Description: `Indicates the time when a instance is created.`,
+				},
+				resource.Attribute{
+					Name:        "partition_num",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "access_user",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_name",
+					Description: `Indicates the name of a security group.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_name",
+					Description: `Indicates the name of a subnet.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_cidr",
+					Description: `Indicates a subnet segment.`,
+				},
+				resource.Attribute{
+					Name:        "available_zones",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "product_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "maintain_begin",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "maintain_end",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "storage_spec_code",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "used_storage_space",
+					Description: `Indicates the used message storage space. Unit: GB`,
+				},
+				resource.Attribute{
+					Name:        "connect_address",
+					Description: `Indicates the IP address of an instance.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Indicates the port number of an instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the status of an instance. For details, see section Instance Status.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `Indicates the ID of an instance.`,
+				},
+				resource.Attribute{
+					Name:        "resource_spec_code",
+					Description: `Indicates a resource specifications identifier.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Indicates an instance type. Options: "single" and "cluster"`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Indicates the time when an instance is created. The time is in the format of timestamp, that is, the offset milliseconds from 1970-01-01 00:00:00 UTC to the specified time.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `Indicates a user ID.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `Indicates a username.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "specification",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "storage_space",
+					Description: `Indicates the time when a instance is created.`,
+				},
+				resource.Attribute{
+					Name:        "partition_num",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "access_user",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_name",
+					Description: `Indicates the name of a security group.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_name",
+					Description: `Indicates the name of a subnet.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_cidr",
+					Description: `Indicates a subnet segment.`,
+				},
+				resource.Attribute{
+					Name:        "available_zones",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "product_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "maintain_begin",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "maintain_end",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "storage_spec_code",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "used_storage_space",
+					Description: `Indicates the used message storage space. Unit: GB`,
+				},
+				resource.Attribute{
+					Name:        "connect_address",
+					Description: `Indicates the IP address of an instance.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Indicates the port number of an instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the status of an instance. For details, see section Instance Status.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `Indicates the ID of an instance.`,
+				},
+				resource.Attribute{
+					Name:        "resource_spec_code",
+					Description: `Indicates a resource specifications identifier.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Indicates an instance type. Options: "single" and "cluster"`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Indicates the time when an instance is created. The time is in the format of timestamp, that is, the offset milliseconds from 1970-01-01 00:00:00 UTC to the specified time.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `Indicates a user ID.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `Indicates a username.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "opentelekomcloud_dms_queue_v1",
 			Category:         "DMS Resources",
 			ShortDescription: `Manages a DMS queue in the opentelekomcloud DMS Service`,
@@ -3285,6 +3665,98 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "opentelekomcloud_dns_ptrrecord_v2",
+			Category:         "DNS Resources",
+			ShortDescription: `Manages a DNS PTR record in the OpenTelekomCloud DNS Service`,
+			Description:      ``,
+			Keywords: []string{
+				"dns",
+				"ptrrecord",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Domain name of the PTR record. A domain name is case insensitive. Uppercase letters will also be converted into lowercase letters.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the PTR record.`,
+				},
+				resource.Attribute{
+					Name:        "floatingip_id",
+					Description: `(Required) The ID of the FloatingIP/EIP.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `(Optional) The time to live (TTL) of the record set (in seconds). The value range is 300–2147483647. The default value is 300.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags key/value pairs to associate with the PTR record. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The PTR record ID, which is in {region}:{floatingip_id} format.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "floatingip_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `The address of the FloatingIP/EIP. ## Import PTR records can be imported using region and floatingip/eip ID, separated by a colon(:), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_dns_ptrrecord_v2.ptr_1 eu-de:d90ce693-5ccf-4136-a0ed-152ce412b6b9 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The PTR record ID, which is in {region}:{floatingip_id} format.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "floatingip_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `The address of the FloatingIP/EIP. ## Import PTR records can be imported using region and floatingip/eip ID, separated by a colon(:), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_dns_ptrrecord_v2.ptr_1 eu-de:d90ce693-5ccf-4136-a0ed-152ce412b6b9 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "opentelekomcloud_dns_recordset_v2",
 			Category:         "DNS Resources",
 			ShortDescription: `Manages a DNS record set in the OpenTelekomCloud DNS Service`,
@@ -3320,6 +3792,10 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `(Optional) An array of DNS records.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The key/value pairs to associate with the zone.`,
+				},
+				resource.Attribute{
 					Name:        "value_specs",
 					Description: `(Optional) Map of additional options. Changing this creates a new record set. ## Attributes Reference The following attributes are exported:`,
 				},
@@ -3336,11 +3812,15 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "records",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
 					Name:        "description",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "records",
+					Name:        "tags",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -3366,11 +3846,15 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "records",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
 					Name:        "description",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "records",
+					Name:        "tags",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -3416,8 +3900,8 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `(Optional) A description of the zone.`,
 				},
 				resource.Attribute{
-					Name:        "masters",
-					Description: `(Optional) An array of master DNS servers.`,
+					Name:        "tags",
+					Description: `(Optional) The key/value pairs to associate with the zone.`,
 				},
 				resource.Attribute{
 					Name:        "value_specs",
@@ -3444,12 +3928,16 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "masters",
+					Name:        "tags",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
 					Name:        "value_specs",
-					Description: `See Argument Reference above. ## Import This resource can be imported by specifying the zone ID: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_dns_zone_v2.zone_1 <zone_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "masters",
+					Description: `An array of master DNS servers. ## Import This resource can be imported by specifying the zone ID: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_dns_zone_v2.zone_1 <zone_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3474,12 +3962,16 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "masters",
+					Name:        "tags",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
 					Name:        "value_specs",
-					Description: `See Argument Reference above. ## Import This resource can be imported by specifying the zone ID: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_dns_zone_v2.zone_1 <zone_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "masters",
+					Description: `An array of master DNS servers. ## Import This resource can be imported by specifying the zone ID: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_dns_zone_v2.zone_1 <zone_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5771,6 +6263,10 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `(Optional) Specifies whether the key is enabled. Defaults to true. Changing this updates the state of existing key. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `The globally unique identifier for the key.`,
+				},
+				resource.Attribute{
 					Name:        "key_alias",
 					Description: `See Argument Reference above.`,
 				},
@@ -5781,10 +6277,6 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				resource.Attribute{
 					Name:        "realm",
 					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "key_id",
-					Description: `The globally unique identifier for the key.`,
 				},
 				resource.Attribute{
 					Name:        "default_key_flag",
@@ -5817,6 +6309,10 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `The globally unique identifier for the key.`,
+				},
+				resource.Attribute{
 					Name:        "key_alias",
 					Description: `See Argument Reference above.`,
 				},
@@ -5827,10 +6323,6 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				resource.Attribute{
 					Name:        "realm",
 					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "key_id",
-					Description: `The globally unique identifier for the key.`,
 				},
 				resource.Attribute{
 					Name:        "default_key_flag",
@@ -7251,7 +7743,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "master_node_num",
-					Description: `(Required) Number of Master nodes The value is 2.`,
+					Description: `(Required) Number of Master nodes.`,
 				},
 				resource.Attribute{
 					Name:        "master_node_size",
@@ -9298,6 +9790,239 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "opentelekomcloud_obs_bucket",
+			Category:         "OBS Resource",
+			ShortDescription: `Provides an OBS bucket resource within OpenTelekomCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"obs",
+				"resource",
+				"bucket",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `(Required) Specifies the name of the bucket. Changing this parameter will create a new resource. A bucket must be named according to the globally applied DNS naming regulations as follows:`,
+				},
+				resource.Attribute{
+					Name:        "storage_class",
+					Description: `(Optional) Specifies the storage class of the bucket. OBS provides three storage classes: "STANDARD", "WARM" (Infrequent Access) and "COLD" (Archive). Defaults to ` + "`" + `STANDARD` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `(Optional) Specifies the ACL policy for a bucket. The predefined common policies are as follows: "private", "public-read", "public-read-write" and "log-delivery-write". Defaults to ` + "`" + `private` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the bucket. Each tag is represented by one key-value pair.`,
+				},
+				resource.Attribute{
+					Name:        "versioning",
+					Description: `(Optional) Whether enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.`,
+				},
+				resource.Attribute{
+					Name:        "logging",
+					Description: `(Optional) A settings of bucket logging (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "website",
+					Description: `(Optional) A website object (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "cors_rule",
+					Description: `(Optional) A rule of Cross-Origin Resource Sharing (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_rule",
+					Description: `(Optional) A configuration of object lifecycle management (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "force_destroy",
+					Description: `(Optional) A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. Default to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) If specified, the region this bucket should reside in. Otherwise, the region used by the provider. The ` + "`" + `logging` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "target_bucket",
+					Description: `(Required) The name of the bucket that will receive the log objects. The acl policy of the target bucket should be ` + "`" + `log-delivery-write` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "target_prefix",
+					Description: `(Optional) To specify a key prefix for log objects. The ` + "`" + `website` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "index_document",
+					Description: `(Required, unless using ` + "`" + `redirect_all_requests_to` + "`" + `) Specifies the default homepage of the static website, only HTML web pages are supported. OBS only allows files such as ` + "`" + `index.html` + "`" + ` in the root directory of a bucket to function as the default homepage. That is to say, do not set the default homepage with a multi-level directory structure (for example, /page/index.html).`,
+				},
+				resource.Attribute{
+					Name:        "error_document",
+					Description: `(Optional) Specifies the error page returned when an error occurs during static website access. Only HTML, JPG, PNG, BMP, and WEBP files under the root directory are supported.`,
+				},
+				resource.Attribute{
+					Name:        "redirect_all_requests_to",
+					Description: `(Optional) A hostname to redirect all website requests for this bucket to. Hostname can optionally be prefixed with a protocol (` + "`" + `http://` + "`" + ` or ` + "`" + `https://` + "`" + `) to use when redirecting requests. The default is the protocol that is used in the original request.`,
+				},
+				resource.Attribute{
+					Name:        "routing_rules",
+					Description: `(Optional) A JSON or XML format containing routing rules describing redirect behavior and when redirects are applied. Each rule contains a ` + "`" + `Condition` + "`" + ` and a ` + "`" + `Redirect` + "`" + ` as shown in the following table: Parameter | Key -|- Condition | KeyPrefixEquals, HttpErrorCodeReturnedEquals Redirect | Protocol, HostName, ReplaceKeyPrefixWith, ReplaceKeyWith, HttpRedirectCode The ` + "`" + `cors_rule` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique identifier for lifecycle rules. The Rule Name contains a maximum of 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Specifies lifecycle rule status.`,
+				},
+				resource.Attribute{
+					Name:        "prefix",
+					Description: `(Optional) Object key prefix identifying one or more objects to which the rule applies. If omitted, all objects in the bucket will be managed by the lifecycle rule. The prefix cannot start or end with a slash (/), cannot have consecutive slashes (/), and cannot contain the following special characters: \:`,
+				},
+				resource.Attribute{
+					Name:        "expiration",
+					Description: `(Optional) Specifies a period when objects that have been last updated are automatically deleted. (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "transition",
+					Description: `(Optional) Specifies a period when objects that have been last updated are automatically transitioned to ` + "`" + `WARM` + "`" + ` or ` + "`" + `COLD` + "`" + ` storage class (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "noncurrent_version_expiration",
+					Description: `(Optional) Specifies a period when noncurrent object versions are automatically deleted. (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "noncurrent_version_transition",
+					Description: `(Optional) Specifies a period when noncurrent object versions are automatically transitioned to ` + "`" + `WARM` + "`" + ` or ` + "`" + `COLD` + "`" + ` storage class (documented below). At least one of ` + "`" + `expiration` + "`" + `, ` + "`" + `transition` + "`" + `, ` + "`" + `noncurrent_version_expiration` + "`" + `, ` + "`" + `noncurrent_version_transition` + "`" + ` must be specified. The ` + "`" + `expiration` + "`" + ` object supports the following`,
+				},
+				resource.Attribute{
+					Name:        "storage_class",
+					Description: `(Required) The class of storage used to store the object. Only ` + "`" + `WARM` + "`" + ` and ` + "`" + `COLD` + "`" + ` are supported. The ` + "`" + `noncurrent_version_expiration` + "`" + ` object supports the following`,
+				},
+				resource.Attribute{
+					Name:        "storage_class",
+					Description: `(Required) The class of storage used to store the object. Only ` + "`" + `WARM` + "`" + ` and ` + "`" + `COLD` + "`" + ` are supported. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The name of the bucket.`,
+				},
+				resource.Attribute{
+					Name:        "bucket_domain_name",
+					Description: `The bucket domain name. Will be of format ` + "`" + `bucketname.obs.region.otc.t-systems.com` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region this bucket resides in. ## Import OBS bucket can be imported using the ` + "`" + `bucket` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_obs_bucket.bucket bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The name of the bucket.`,
+				},
+				resource.Attribute{
+					Name:        "bucket_domain_name",
+					Description: `The bucket domain name. Will be of format ` + "`" + `bucketname.obs.region.otc.t-systems.com` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region this bucket resides in. ## Import OBS bucket can be imported using the ` + "`" + `bucket` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_obs_bucket.bucket bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "opentelekomcloud_obs_bucket_object",
+			Category:         "OBS Resource",
+			ShortDescription: `Provides an OBS bucket object resource within OpenTelekomCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"obs",
+				"resource",
+				"bucket",
+				"object",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `(Required) The name of the bucket to put the file in.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The name of the object once it is in the bucket.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Optional) The path to the source file being uploaded to the bucket.`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Optional) The literal content being uploaded to the bucket.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `(Optional) The ACL policy to apply. Defaults to ` + "`" + `private` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "storage_class",
+					Description: `(Optioanl) Specifies the storage class of the object. Defaults to ` + "`" + `STANDARD` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "content_type",
+					Description: `(Optional) A standard MIME type describing the format of the object data, e.g. application/octet-stream. All Valid MIME Types are valid for this input.`,
+				},
+				resource.Attribute{
+					Name:        "encryption",
+					Description: `(Optional) Whether enable server-side encryption of the object in SSE-KMS mode.`,
+				},
+				resource.Attribute{
+					Name:        "sse_kms_key_id",
+					Description: `(Optional) The ID of the kms key. If omitted, the default master key will be used.`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `(Optional) Specifies the unique identifier of the object content. It can be used to trigger updates. The only meaningful value is ` + "`" + `md5(file("path_to_file"))` + "`" + `. Either ` + "`" + `source` + "`" + ` or ` + "`" + `content` + "`" + ` must be provided to specify the bucket content. These two arguments are mutually-exclusive. ## Attributes Reference The following attributes are exported`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `the ` + "`" + `key` + "`" + ` of the resource supplied above.`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `the ETag generated for the object (an MD5 sum of the object content). When the object is encrypted on the server side, the ETag value is not the MD5 value of the object, but the unique identifier calculated through the server-side encryption.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `the size of the object in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "version_id",
+					Description: `A unique version ID value for the object, if bucket versioning is enabled.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `the ` + "`" + `key` + "`" + ` of the resource supplied above.`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `the ETag generated for the object (an MD5 sum of the object content). When the object is encrypted on the server side, the ETag value is not the MD5 value of the object, but the unique identifier calculated through the server-side encryption.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `the size of the object in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "version_id",
+					Description: `A unique version ID value for the object, if bucket versioning is enabled.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "opentelekomcloud_rds_instance_v1",
 			Category:         "DB Instance Resources",
 			ShortDescription: `Manages rds instance resource within OpenTelekomCloud`,
@@ -10425,31 +11150,19 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "topic_urn",
-					Description: `(Required) Resource identifier of a topic, which is unique.`,
+					Description: `(Required) Specifies the resource identifier of a topic, which is unique.`,
 				},
 				resource.Attribute{
 					Name:        "endpoint",
-					Description: `(Required) Message endpoint. For an HTTP subscription, the endpoint starts with http\://. For an HTTPS subscription, the endpoint starts with https\://. For an email subscription, the endpoint is a mail address. For an SMS message subscription, the endpoint is a phone number.`,
+					Description: `(Required) Specifies the message endpoint. - For an HTTP subscription, the endpoint starts with http\://. - For an HTTPS subscription, the endpoint starts with https\://. - For an email subscription, the endpoint is a mail address. - For an SMS message subscription, the endpoint is a phone number.`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `(Required) Protocol of the message endpoint. Currently, email, sms, http, and https are supported.`,
+					Description: `(Required) Specifies protocol of the message endpoint. Currently, email, sms, http, and https are supported.`,
 				},
 				resource.Attribute{
 					Name:        "remark",
-					Description: `(Optional) Remark information. The remarks must be a UTF-8-coded character string containing 128 bytes.`,
-				},
-				resource.Attribute{
-					Name:        "subscription_urn",
-					Description: `(Optional) Resource identifier of a subscription, which is unique.`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `(Optional) Project ID of the topic creator.`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `(Optional) Subscription status. 0 indicates that the subscription is not confirmed. 1 indicates that the subscription is confirmed. 3 indicates that the subscription is canceled. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Specifies the remark information. The remarks must be a UTF-8-coded character string containing 128 bytes. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "topic_urn",
@@ -10469,15 +11182,15 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "subscription_urn",
-					Description: `See Argument Reference above.`,
+					Description: `The resource identifier of a subscription.`,
 				},
 				resource.Attribute{
 					Name:        "owner",
-					Description: `See Argument Reference above.`,
+					Description: `The project ID of the topic creator.`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `See Argument Reference above.`,
+					Description: `The subscription status. - 0 indicates that the subscription is not confirmed. - 1 indicates that the subscription is confirmed. - 3 indicates that the subscription is canceled.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -10499,15 +11212,15 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "subscription_urn",
-					Description: `See Argument Reference above.`,
+					Description: `The resource identifier of a subscription.`,
 				},
 				resource.Attribute{
 					Name:        "owner",
-					Description: `See Argument Reference above.`,
+					Description: `The project ID of the topic creator.`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `See Argument Reference above.`,
+					Description: `The subscription status. - 0 indicates that the subscription is not confirmed. - 1 indicates that the subscription is confirmed. - 3 indicates that the subscription is canceled.`,
 				},
 			},
 		},
@@ -10594,8 +11307,74 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"vbs",
 				"opentelekomcloud-vbs-backup-policy-v2",
 			},
-			Arguments:  []resource.Attribute{},
-			Attributes: []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the policy name. The value is a string of 1 to 64 characters that can contain letters, digits, underscores (_), and hyphens (-). It cannot start with`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Required) Specifies the start time(UTC) of the backup job. The value is in the HH:mm format. You need to set the execution time on a full hour. You can set multiple execution times, and use commas (,) to separate one time from another.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional) Specifies the backup policy status. Possible values are ON or OFF. Defaults to ON.`,
+				},
+				resource.Attribute{
+					Name:        "retain_first_backup",
+					Description: `(Required) Specifies whether to retain the first backup in the current month. Possible values are Y or N.`,
+				},
+				resource.Attribute{
+					Name:        "rentention_num",
+					Description: `(Optional) Specifies number of retained backups. Minimum value is 2. Either this field or ` + "`" + `rentention_day` + "`" + ` must be specified.`,
+				},
+				resource.Attribute{
+					Name:        "rentention_day",
+					Description: `(Optional) Specifies days of retained backups. Minimum value is 2. Either this field or ` + "`" + `rentention_num` + "`" + ` must be specified.`,
+				},
+				resource.Attribute{
+					Name:        "frequency",
+					Description: `(Optional) Specifies the backup interval. The value is in the range of 1 to 14 days. Either this field or ` + "`" + `week_frequency` + "`" + ` must be specified.`,
+				},
+				resource.Attribute{
+					Name:        "week_frequency",
+					Description: `(Optional) Specifies on which days of each week backup jobs are executed. The value can be one or more of the following: SUN, MON, TUE, WED, THU, FRI, SAT. Either this field or ` + "`" + `frequency` + "`" + ` must be specified.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `(Optional) Specifies one or more volumes associated with the backup policy. Any previously associated backup policy will no longer apply.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Represents the list of tags to be configured for the backup policy.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Specifies the tag key. A tag key consists of up to 36 characters, chosen from letters, digits, hyphens (-), and underscores (_).`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Specifies the tag value. A tag value consists of 0 to 43 characters, chosen from letters, digits, hyphens (-), and underscores (_). ## Attributes Reference All of the argument attributes are also exported as result attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Specifies a backup policy ID.`,
+				},
+				resource.Attribute{
+					Name:        "policy_resource_count",
+					Description: `Specifies the number of volumes associated with the backup policy. ## Import Backup Policy can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_vbs_backup_policy_v2.vbs 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Specifies a backup policy ID.`,
+				},
+				resource.Attribute{
+					Name:        "policy_resource_count",
+					Description: `Specifies the number of volumes associated with the backup policy. ## Import Backup Policy can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_vbs_backup_policy_v2.vbs 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -10910,7 +11689,11 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "shared",
-					Description: `(Optional) Specifies whether the shared SNAT should be used or not. Is also required for cross-tenant sharing. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Specifies whether the shared SNAT should be used or not. Is also required for cross-tenant sharing.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The key/value pairs to associate with the VPC. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -10922,6 +11705,10 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "cidr",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -10940,6 +11727,10 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "cidr",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -11570,7 +12361,11 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "value_specs",
-					Description: `(Optional) Map of additional options. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Map of additional options.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The key/value pairs to associate with the connection. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -11642,6 +12437,10 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "value_specs",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
 					Description: `See Argument Reference above. ## Import Site Connections can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_vpnaas_site_connection_v2.conn_1 832cb7f3-59fe-40cf-8f64-8350ffc03272 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
@@ -11716,6 +12515,10 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "value_specs",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
 					Description: `See Argument Reference above. ## Import Site Connections can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_vpnaas_site_connection_v2.conn_1 832cb7f3-59fe-40cf-8f64-8350ffc03272 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
@@ -11968,7 +12771,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "back_protocol",
-					Description: `(Required) Protocl used by WAF to forward client requests to the server. The options are HTTP and HTTPS.`,
+					Description: `(Required) Protocol used by WAF to forward client requests to the server. The options are HTTP and HTTPS.`,
 				},
 				resource.Attribute{
 					Name:        "address",
@@ -12385,95 +13188,99 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		"opentelekomcloud_dcs_instance_v1":                    20,
 		"opentelekomcloud_deh_host_v1":                        21,
 		"opentelekomcloud_dms_group_v1":                       22,
-		"opentelekomcloud_dms_queue_v1":                       23,
-		"opentelekomcloud_dns_recordset_v2":                   24,
-		"opentelekomcloud_dns_zone_v2":                        25,
-		"opentelekomcloud_ecs_instance_v1":                    26,
-		"opentelekomcloud_elb_backend":                        27,
-		"opentelekomcloud_elb_health":                         28,
-		"opentelekomcloud_elb_listener":                       29,
-		"opentelekomcloud_elb_loadbalancer":                   30,
-		"opentelekomcloud_evs_volume_v3":                      31,
-		"opentelekomcloud_fw_firewall_group_v2":               32,
-		"opentelekomcloud_fw_policy_v2":                       33,
-		"opentelekomcloud_fw_rule_v2":                         34,
-		"opentelekomcloud_identity_agency_v3":                 35,
-		"opentelekomcloud_identity_group_membership_v3":       36,
-		"opentelekomcloud_identity_group_v3":                  37,
-		"opentelekomcloud_identity_project_v3":                38,
-		"opentelekomcloud_identity_role_assignment_v3":        39,
-		"opentelekomcloud_identity_role_v3":                   40,
-		"opentelekomcloud_identity_user_v3":                   41,
-		"opentelekomcloud_images_image_v2":                    42,
-		"opentelekomcloud_ims_data_image_v2":                  43,
-		"opentelekomcloud_ims_image_v2":                       44,
-		"opentelekomcloud_kms_key_v1":                         45,
-		"opentelekomcloud_lb_certificate_v2":                  46,
-		"opentelekomcloud_lb_l7policy_v2":                     47,
-		"opentelekomcloud_lb_l7rule_v2":                       48,
-		"opentelekomcloud_lb_listener_v2":                     49,
-		"opentelekomcloud_lb_loadbalancer_v2":                 50,
-		"opentelekomcloud_lb_member_v2":                       51,
-		"opentelekomcloud_lb_monitor_v2":                      52,
-		"opentelekomcloud_lb_pool_v2":                         53,
-		"opentelekomcloud_lb_whitelist_v2":                    54,
-		"opentelekomcloud_logtank_group_v2":                   55,
-		"opentelekomcloud_logtank_topic_v2":                   56,
-		"opentelekomcloud_maas_task_v1":                       57,
-		"opentelekomcloud_mrs_cluster_v1":                     58,
-		"opentelekomcloud_mrs_job_v1":                         59,
-		"opentelekomcloud_nat_dnat_rule_v2":                   60,
-		"opentelekomcloud_nat_gateway_v2":                     61,
-		"opentelekomcloud_nat_snat_rule_v2":                   62,
-		"opentelekomcloud_networking_floatingip_associate_v2": 63,
-		"opentelekomcloud_networking_floatingip_v2":           64,
-		"opentelekomcloud_networking_network_v2":              65,
-		"opentelekomcloud_networking_port_v2":                 66,
-		"opentelekomcloud_networking_router_interface_v2":     67,
-		"opentelekomcloud_networking_router_route_v2":         68,
-		"opentelekomcloud_networking_router_v2":               69,
-		"opentelekomcloud_networking_secgroup_rule_v2":        70,
-		"opentelekomcloud_networking_secgroup_v2":             71,
-		"opentelekomcloud_networking_subnet_v2":               72,
-		"opentelekomcloud_networking_vip_associate_v2":        73,
-		"opentelekomcloud_networking_vip_v2":                  74,
-		"opentelekomcloud_rds_instance_v1":                    75,
-		"opentelekomcloud_rds_instance_v3":                    76,
-		"opentelekomcloud_rds_parametergroup_v3":              77,
-		"opentelekomcloud_rts_software_config_v1":             78,
-		"opentelekomcloud_rts_software_deployment_v1":         79,
-		"opentelekomcloud-resource-rts-stack-v1":              80,
-		"opentelekomcloud_s3_bucket":                          81,
-		"opentelekomcloud_s3-bucket-object":                   82,
-		"opentelekomcloud_s3_bucket_policy":                   83,
-		"opentelekomcloud_sdrs_protectiongroup_v1":            84,
-		"opentelekomcloud_sfs_file_system_v2":                 85,
-		"opentelekomcloud_smn_subscription_v2":                86,
-		"opentelekomcloud_smn_topic_v2":                       87,
-		"opentelekomcloud-vbs-backup-policy-v2":               88,
-		"opentelekomcloud-vbs-backup-share-v2":                89,
-		"opentelekomcloud-vbs-backup-v2":                      90,
-		"opentelekomcloud_vpc_eip_v1":                         91,
-		"opentelekomcloud_vpc_flow_log_v1":                    92,
-		"opentelekomcloud_vpc_peering_connection_accepter_v2": 93,
-		"opentelekomcloud_vpc_peering_connection_v2":          94,
-		"opentelekomcloud_vpc_route_v2":                       95,
-		"opentelekomcloud_vpc_subnet_v1":                      96,
-		"opentelekomcloud_vpc_v1":                             97,
-		"opentelekomcloud_vpnaas_endpoint_group_v2":           98,
-		"opentelekomcloud_vpnaas_ike_policy_v2":               99,
-		"opentelekomcloud_vpnaas_ipsec_policy_v2":             100,
-		"opentelekomcloud_vpnaas_service_v2":                  101,
-		"opentelekomcloud_vpnaas_site_connection_v2":          102,
-		"opentelekomcloud_waf_ccattackprotection_rule_v1":     103,
-		"opentelekomcloud_waf_certificate_v1":                 104,
-		"opentelekomcloud_waf_datamasking_rule_v1":            105,
-		"opentelekomcloud_waf_domain_v1":                      106,
-		"opentelekomcloud_waf_falsealarmmasking_rule_v1":      107,
-		"opentelekomcloud_waf_policy_v1":                      108,
-		"opentelekomcloud_waf_preciseprotection_rule_v1":      109,
-		"opentelekomcloud_waf_webtamperprotection_rule_v1":    110,
-		"opentelekomcloud_waf_whiteblackip_rule_v1":           111,
+		"opentelekomcloud_dms_instance_v1":                    23,
+		"opentelekomcloud_dms_queue_v1":                       24,
+		"opentelekomcloud_dns_ptrrecord_v2":                   25,
+		"opentelekomcloud_dns_recordset_v2":                   26,
+		"opentelekomcloud_dns_zone_v2":                        27,
+		"opentelekomcloud_ecs_instance_v1":                    28,
+		"opentelekomcloud_elb_backend":                        29,
+		"opentelekomcloud_elb_health":                         30,
+		"opentelekomcloud_elb_listener":                       31,
+		"opentelekomcloud_elb_loadbalancer":                   32,
+		"opentelekomcloud_evs_volume_v3":                      33,
+		"opentelekomcloud_fw_firewall_group_v2":               34,
+		"opentelekomcloud_fw_policy_v2":                       35,
+		"opentelekomcloud_fw_rule_v2":                         36,
+		"opentelekomcloud_identity_agency_v3":                 37,
+		"opentelekomcloud_identity_group_membership_v3":       38,
+		"opentelekomcloud_identity_group_v3":                  39,
+		"opentelekomcloud_identity_project_v3":                40,
+		"opentelekomcloud_identity_role_assignment_v3":        41,
+		"opentelekomcloud_identity_role_v3":                   42,
+		"opentelekomcloud_identity_user_v3":                   43,
+		"opentelekomcloud_images_image_v2":                    44,
+		"opentelekomcloud_ims_data_image_v2":                  45,
+		"opentelekomcloud_ims_image_v2":                       46,
+		"opentelekomcloud_kms_key_v1":                         47,
+		"opentelekomcloud_lb_certificate_v2":                  48,
+		"opentelekomcloud_lb_l7policy_v2":                     49,
+		"opentelekomcloud_lb_l7rule_v2":                       50,
+		"opentelekomcloud_lb_listener_v2":                     51,
+		"opentelekomcloud_lb_loadbalancer_v2":                 52,
+		"opentelekomcloud_lb_member_v2":                       53,
+		"opentelekomcloud_lb_monitor_v2":                      54,
+		"opentelekomcloud_lb_pool_v2":                         55,
+		"opentelekomcloud_lb_whitelist_v2":                    56,
+		"opentelekomcloud_logtank_group_v2":                   57,
+		"opentelekomcloud_logtank_topic_v2":                   58,
+		"opentelekomcloud_maas_task_v1":                       59,
+		"opentelekomcloud_mrs_cluster_v1":                     60,
+		"opentelekomcloud_mrs_job_v1":                         61,
+		"opentelekomcloud_nat_dnat_rule_v2":                   62,
+		"opentelekomcloud_nat_gateway_v2":                     63,
+		"opentelekomcloud_nat_snat_rule_v2":                   64,
+		"opentelekomcloud_networking_floatingip_associate_v2": 65,
+		"opentelekomcloud_networking_floatingip_v2":           66,
+		"opentelekomcloud_networking_network_v2":              67,
+		"opentelekomcloud_networking_port_v2":                 68,
+		"opentelekomcloud_networking_router_interface_v2":     69,
+		"opentelekomcloud_networking_router_route_v2":         70,
+		"opentelekomcloud_networking_router_v2":               71,
+		"opentelekomcloud_networking_secgroup_rule_v2":        72,
+		"opentelekomcloud_networking_secgroup_v2":             73,
+		"opentelekomcloud_networking_subnet_v2":               74,
+		"opentelekomcloud_networking_vip_associate_v2":        75,
+		"opentelekomcloud_networking_vip_v2":                  76,
+		"opentelekomcloud_obs_bucket":                         77,
+		"opentelekomcloud_obs_bucket_object":                  78,
+		"opentelekomcloud_rds_instance_v1":                    79,
+		"opentelekomcloud_rds_instance_v3":                    80,
+		"opentelekomcloud_rds_parametergroup_v3":              81,
+		"opentelekomcloud_rts_software_config_v1":             82,
+		"opentelekomcloud_rts_software_deployment_v1":         83,
+		"opentelekomcloud-resource-rts-stack-v1":              84,
+		"opentelekomcloud_s3_bucket":                          85,
+		"opentelekomcloud_s3-bucket-object":                   86,
+		"opentelekomcloud_s3_bucket_policy":                   87,
+		"opentelekomcloud_sdrs_protectiongroup_v1":            88,
+		"opentelekomcloud_sfs_file_system_v2":                 89,
+		"opentelekomcloud_smn_subscription_v2":                90,
+		"opentelekomcloud_smn_topic_v2":                       91,
+		"opentelekomcloud-vbs-backup-policy-v2":               92,
+		"opentelekomcloud-vbs-backup-share-v2":                93,
+		"opentelekomcloud-vbs-backup-v2":                      94,
+		"opentelekomcloud_vpc_eip_v1":                         95,
+		"opentelekomcloud_vpc_flow_log_v1":                    96,
+		"opentelekomcloud_vpc_peering_connection_accepter_v2": 97,
+		"opentelekomcloud_vpc_peering_connection_v2":          98,
+		"opentelekomcloud_vpc_route_v2":                       99,
+		"opentelekomcloud_vpc_subnet_v1":                      100,
+		"opentelekomcloud_vpc_v1":                             101,
+		"opentelekomcloud_vpnaas_endpoint_group_v2":           102,
+		"opentelekomcloud_vpnaas_ike_policy_v2":               103,
+		"opentelekomcloud_vpnaas_ipsec_policy_v2":             104,
+		"opentelekomcloud_vpnaas_service_v2":                  105,
+		"opentelekomcloud_vpnaas_site_connection_v2":          106,
+		"opentelekomcloud_waf_ccattackprotection_rule_v1":     107,
+		"opentelekomcloud_waf_certificate_v1":                 108,
+		"opentelekomcloud_waf_datamasking_rule_v1":            109,
+		"opentelekomcloud_waf_domain_v1":                      110,
+		"opentelekomcloud_waf_falsealarmmasking_rule_v1":      111,
+		"opentelekomcloud_waf_policy_v1":                      112,
+		"opentelekomcloud_waf_preciseprotection_rule_v1":      113,
+		"opentelekomcloud_waf_webtamperprotection_rule_v1":    114,
+		"opentelekomcloud_waf_whiteblackip_rule_v1":           115,
 	}
 )
 

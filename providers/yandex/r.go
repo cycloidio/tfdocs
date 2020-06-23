@@ -47,7 +47,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Type of disk to create. Provide this when creating a disk. One of ` + "`" + `network-hdd` + "`" + ` (default) or ` + "`" + `network-nvme` + "`" + `.`,
+					Description: `(Optional) Type of disk to create. Provide this when creating a disk. One of ` + "`" + `network-hdd` + "`" + ` (default) or ` + "`" + `network-ssd` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "image_id",
@@ -243,7 +243,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_acceleration_type",
-					Description: `(Optional) Type of network acceleration. The default is ` + "`" + `standard` + "`" + `. Values: ` + "`" + `standard` + "`" + `, ` + "`" + `software-accelerated` + "`" + ` --- The ` + "`" + `resources` + "`" + ` block supports:`,
+					Description: `(Optional) Type of network acceleration. The default is ` + "`" + `standard` + "`" + `. Values: ` + "`" + `standard` + "`" + `, ` + "`" + `software_accelerated` + "`" + ` --- The ` + "`" + `resources` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "cores",
@@ -304,6 +304,10 @@ var (
 				resource.Attribute{
 					Name:        "subnet_id",
 					Description: `(Required) ID of the subnet to attach this interface to. The subnet must exist in the same zone where this instance will be created.`,
+				},
+				resource.Attribute{
+					Name:        "ipv4",
+					Description: `(Optional) Allocate an IPv4 address for the interface. The default value is ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ip_address",
@@ -424,7 +428,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allocation_policy",
-					Description: `(Required) The allocation policy of the instance group by zone and region. The structure is documented below. - - -`,
+					Description: `(Required) The allocation policy of the instance group by zone and region. The structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -444,7 +448,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) A set of key/value label pairs to assign to the instance group. --- The ` + "`" + `load_balancer` + "`" + ` block supports:`,
+					Description: `(Optional) A set of key/value label pairs to assign to the instance group.`,
+				},
+				resource.Attribute{
+					Name:        "variables",
+					Description: `(Optional) A set of key/value variables pairs to assign to the instance group. --- The ` + "`" + `load_balancer` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "target_group_name",
@@ -508,7 +516,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_interface",
-					Description: `(Required) Network specifications for the instance. This can be used multiple times for adding multiple interfaces. The structure is documented below. - - -`,
+					Description: `(Required) Network specifications for the instance. This can be used multiple times for adding multiple interfaces. The structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "scheduling_policy",
@@ -536,7 +544,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_account_id",
-					Description: `(Optional) The ID of the service account authorized for this instance. --- The ` + "`" + `secondary_disk` + "`" + ` block supports:`,
+					Description: `(Optional) The ID of the service account authorized for this instance.`,
+				},
+				resource.Attribute{
+					Name:        "network_settings",
+					Description: `(Optional) Network acceleration type for instance. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name template of the instance. In order to be unique it must contain at least one of instance unique placeholders: {instance.short_id} {instance.index} combination of {instance.zone_id} and {instance.index_in_zone} Example: my-instance-{instance.index} If not set, default is used: {instance_group.id}-{instance.short_id} It may also contain another placeholders, see metadata doc for full list.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Optional) Hostname template for the instance. This field is used to generate the FQDN value of instance. The hostname must be unique within the network and region. If not specified, the hostname will be equal to id of the instance and FQDN will be ` + "`" + `<id>.auto.internal` + "`" + `. Otherwise FQDN will be ` + "`" + `<hostname>.<region_id>.internal` + "`" + `. In order to be unique it must contain at least on of instance unique placeholders: {instance.short_id} {instance.index} combination of {instance.zone_id} and {instance.index_in_zone} Example: my-instance-{instance.index} If not set, ` + "`" + `name` + "`" + ` value will be used It may also contain another placeholders, see metadata doc for full list. --- The ` + "`" + `secondary_disk` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "mode",
@@ -712,7 +732,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) A map of labels of metric. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) A map of labels of metric. --- The ` + "`" + `network_settings` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Network acceleration type. By default a network is in ` + "`" + `STANDARD` + "`" + ` mode. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -765,6 +789,10 @@ var (
 				resource.Attribute{
 					Name:        "mac_address",
 					Description: `The MAC address assigned to the network interface.`,
+				},
+				resource.Attribute{
+					Name:        "ipv4",
+					Description: `True if IPv4 address allocated for the network interface.`,
 				},
 				resource.Attribute{
 					Name:        "ip_address",
@@ -839,6 +867,10 @@ var (
 				resource.Attribute{
 					Name:        "mac_address",
 					Description: `The MAC address assigned to the network interface.`,
+				},
+				resource.Attribute{
+					Name:        "ipv4",
+					Description: `True if IPv4 address allocated for the network interface.`,
 				},
 				resource.Attribute{
 					Name:        "ip_address",
@@ -1092,6 +1124,312 @@ var (
 				resource.Attribute{
 					Name:        "cluster_config.0.subcluster_spec.X.id",
 					Description: `(Computed) ID of the subcluster. ## Import A cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_dataproc_cluster.foo cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "yandex_function",
+			Category:         "Yandex Cloud Functions Resources",
+			ShortDescription: `Allows management of a Yandex Cloud Function.`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"functions",
+				"function",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `Folder ID for the Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs to assign to the Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "user_hash",
+					Description: `User-defined string for current function version. User must change this string any times when function changed. Function will be updated when hash is changed.`,
+				},
+				resource.Attribute{
+					Name:        "runtime",
+					Description: `Runtime for Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "entrypoint",
+					Description: `Entrypoint for Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `Memory in megabytes (`,
+				},
+				resource.Attribute{
+					Name:        "execution_timeout",
+					Description: `Execution timeout in seconds for Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "service_account_id",
+					Description: `Service account ID for Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `A set of key/value environment variables for Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags for Yandex Cloud Function. Tag "$latest" isn't returned.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version for Yandex Cloud Function.`,
+				},
+				resource.Attribute{
+					Name:        "image_size",
+					Description: `Image size for Yandex Cloud Function.`,
+				},
+				resource.Attribute{
+					Name:        "loggroup_id",
+					Description: `Loggroup ID size for Yandex Cloud Function.`,
+				},
+				resource.Attribute{
+					Name:        "package",
+					Description: `Version deployment package for Yandex Cloud Function code. Can be only one ` + "`" + `package` + "`" + ` or ` + "`" + `content` + "`" + ` section.`,
+				},
+				resource.Attribute{
+					Name:        "package.0.sha_256",
+					Description: `SHA256 hash of the version deployment package.`,
+				},
+				resource.Attribute{
+					Name:        "package.0.bucket_name",
+					Description: `Name of the bucket that stores the code for the version.`,
+				},
+				resource.Attribute{
+					Name:        "package.0.object_name",
+					Description: `Name of the object in the bucket that stores the code for the version.`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `Version deployment content for Yandex Cloud Function code. Can be only one ` + "`" + `package` + "`" + ` or ` + "`" + `content` + "`" + ` section.`,
+				},
+				resource.Attribute{
+					Name:        "content.0.zip_filename",
+					Description: `Filename to zip archive for the version. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the Yandex Cloud Function.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version for Yandex Cloud Function.`,
+				},
+				resource.Attribute{
+					Name:        "image_size",
+					Description: `Image size for Yandex Cloud Function.`,
+				},
+				resource.Attribute{
+					Name:        "loggroup_id",
+					Description: `Log group ID size for Yandex Cloud Function.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the Yandex Cloud Function.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version for Yandex Cloud Function.`,
+				},
+				resource.Attribute{
+					Name:        "image_size",
+					Description: `Image size for Yandex Cloud Function.`,
+				},
+				resource.Attribute{
+					Name:        "loggroup_id",
+					Description: `Log group ID size for Yandex Cloud Function.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "yandex_function_iam_binding",
+			Category:         "Yandex Cloud Functions Resources",
+			ShortDescription: `Allows management of a single IAM binding for a [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/).`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"functions",
+				"function",
+				"iam",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "function_id",
+					Description: `(Required) The [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/) ID to apply a binding to.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Required) The role that should be applied. See [roles](https://cloud.yandex.com/docs/functions/security/)`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `(Required) Identities that will be granted the privilege in ` + "`" + `role` + "`" + `. Each entry can have one of the following values:`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "yandex_function_trigger",
+			Category:         "Yandex Cloud Functions Resources",
+			ShortDescription: `Allows management of a Yandex Cloud Functions Trigger.`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"functions",
+				"function",
+				"trigger",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `(Optional) Folder ID for the Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs to assign to the Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "function",
+					Description: `[Yandex.Cloud Function](https://cloud.yandex.com/docs/functions/concepts/function) settings definition for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "function.0.id",
+					Description: `Yandex.Cloud Function ID for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "function.0.service_account_id",
+					Description: `Service account ID for Yandex.Cloud Function for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "function.0.tag",
+					Description: `Tag for Yandex.Cloud Function for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "function.0.retry_attempts",
+					Description: `Retry attempts for Yandex.Cloud Function for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "function.0.retry_interval",
+					Description: `Retry interval in seconds for Yandex.Cloud Function for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "dlq",
+					Description: `Dead Letter Queue settings definition for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "dlq.0.queue_id",
+					Description: `Queue ID for Dead Letter Queue for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "dlq.0.service_account_id",
+					Description: `Service Account ID for Dead Letter Queue for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "iot",
+					Description: `[IoT](https://cloud.yandex.com/docs/functions/concepts/trigger/iot-core-trigger) settings definition for Yandex Cloud Functions Trigger, if present. Only one section ` + "`" + `iot` + "`" + ` or ` + "`" + `message_queue` + "`" + ` or ` + "`" + `object_storage` + "`" + ` or ` + "`" + `timer` + "`" + ` can be defined.`,
+				},
+				resource.Attribute{
+					Name:        "iot.0.registry_id",
+					Description: `IoT Registry ID for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "iot.0.device_id",
+					Description: `IoT Device ID for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "iot.0.topic",
+					Description: `IoT Topic for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "message_queue",
+					Description: `[Message Queue](https://cloud.yandex.com/docs/functions/concepts/trigger/ymq-trigger) settings definition for Yandex Cloud Functions Trigger, if present`,
+				},
+				resource.Attribute{
+					Name:        "message_queue.0.queue_id",
+					Description: `Message Queue ID for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "message_queue.0.service_account_id",
+					Description: `Message Queue Service Account ID for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "message_queue.0.batch_cutoff",
+					Description: `Batch Duration in seconds for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "message_queue.0.batch_size",
+					Description: `Batch Size for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "message_queue.0.visibility_timeout",
+					Description: `Visibility timeout for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "object_storage",
+					Description: `[Object Storage](https://cloud.yandex.com/docs/functions/concepts/trigger/os-trigger) settings definition for Yandex Cloud Functions Trigger, if present`,
+				},
+				resource.Attribute{
+					Name:        "object_storage.0.bucket_id",
+					Description: `Object Storage Bucket ID for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "object_storage.0.prefix",
+					Description: `Prefix for Object Storage for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "object_storage.0.suffix",
+					Description: `Suffix for Object Storage for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "object_storage.0.create",
+					Description: `Boolean flag for setting create event for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "object_storage.0.update",
+					Description: `Boolean flag for setting update event for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "object_storage.0.delete",
+					Description: `Boolean flag for setting delete event for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "timer",
+					Description: `[Timer](https://cloud.yandex.com/docs/functions/concepts/trigger/timer) settings definition for Yandex Cloud Functions Trigger, if present`,
+				},
+				resource.Attribute{
+					Name:        "timer.0.cron_expression",
+					Description: `Cron expression for timer for Yandex Cloud Functions Trigger ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the Yandex Cloud Functions Trigger`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the Yandex Cloud Functions Trigger`,
 				},
 			},
 		},
@@ -1449,6 +1787,137 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "yandex_iot_core_device",
+			Category:         "Yandex IoT Core Resources",
+			ShortDescription: `Allows management of a Yandex.Cloud IoT Core Device.`,
+			Description:      ``,
+			Keywords: []string{
+				"iot",
+				"core",
+				"device",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "registry_id",
+					Description: `IoT Core Registry ID for the IoT Core Device`,
+				},
+				resource.Attribute{
+					Name:        "aliases",
+					Description: `A set of key/value aliases pairs to assign to the IoT Core Device`,
+				},
+				resource.Attribute{
+					Name:        "certificates",
+					Description: `A set of certificate's fingerprints for the IoT Core Device`,
+				},
+				resource.Attribute{
+					Name:        "passwords",
+					Description: `A set of passwords's id for the IoT Core Device ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the IoT Core Device`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the IoT Core Device`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "yandex_iot_core_registry",
+			Category:         "Yandex IoT Core Resources",
+			ShortDescription: `Allows management of a Yandex.Cloud IoT Core Registry.`,
+			Description:      ``,
+			Keywords: []string{
+				"iot",
+				"core",
+				"registry",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs to assign to the IoT Core Registry.`,
+				},
+				resource.Attribute{
+					Name:        "certificates",
+					Description: `A set of certificate's fingerprints for the IoT Core Registry`,
+				},
+				resource.Attribute{
+					Name:        "passwords",
+					Description: `A set of passwords's id for the IoT Core Registry ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `Folder ID for the IoT Core Registry`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the IoT Core Registry`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `Folder ID for the IoT Core Registry`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the IoT Core Registry`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "yandex_kms_secret_ciphertext",
+			Category:         "Yandex Key Management Service Resources",
+			ShortDescription: `Encrypts given plaintext with the specified Yandex KMS key and provides access to the ciphertext.`,
+			Description:      ``,
+			Keywords: []string{
+				"key",
+				"management",
+				"service",
+				"kms",
+				"secret",
+				"ciphertext",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `(Required) ID of the symmetric KMS key to use for encryption.`,
+				},
+				resource.Attribute{
+					Name:        "aad_context",
+					Description: `(Optional) Additional authenticated data (AAD context), optional. If specified, this data will be required for decryption with the ` + "`" + `SymmetricDecryptRequest` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "plaintext",
+					Description: `(Required) Plaintext to be encrypted. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{key_id}}/{{ciphertext}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ciphertext",
+					Description: `Resulting ciphertext, encoded with "standard" base64 alphabet as defined in RFC 4648 section 4 ## Timeouts ` + "`" + `yandex_kms_secret_ciphertext` + "`" + ` provides the following configuration options for [timeouts](/docs/configuration/resources.html#timeouts): - ` + "`" + `create` + "`" + ` - Default 1 minute - ` + "`" + `delete` + "`" + ` - Default 1 minute`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{key_id}}/{{ciphertext}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ciphertext",
+					Description: `Resulting ciphertext, encoded with "standard" base64 alphabet as defined in RFC 4648 section 4 ## Timeouts ` + "`" + `yandex_kms_secret_ciphertext` + "`" + ` provides the following configuration options for [timeouts](/docs/configuration/resources.html#timeouts): - ` + "`" + `create` + "`" + ` - Default 1 minute - ` + "`" + `delete` + "`" + ` - Default 1 minute`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "yandex_kms_symmetric_key",
 			Category:         "Yandex Key Management Service Resources",
 			ShortDescription: `Creates a Yandex KMS symmetric key that can be used for cryptographic operation.`,
@@ -1552,6 +2021,10 @@ var (
 					Description: `(Optional) CIDR block. IP range for allocating pod addresses. It should not overlap with any subnet in the network the Kubernetes cluster located in. Static routes will be set up for this CIDR blocks in node subnets.`,
 				},
 				resource.Attribute{
+					Name:        "node_ipv4_cidr_mask_size",
+					Description: `(Optional) Size of the masks that are assigned to each node in the cluster. Effectively limits maximum number of pods for each node.`,
+				},
+				resource.Attribute{
 					Name:        "service_ipv4_range",
 					Description: `(Optional) CIDR block. IP range Kubernetes service Kubernetes cluster IP addresses will be allocated from. It should not overlap with any subnet in the network the Kubernetes cluster located in.`,
 				},
@@ -1570,6 +2043,10 @@ var (
 				resource.Attribute{
 					Name:        "network_policy_provider",
 					Description: `(Optional) Network policy provider for the cluster. Possible values: ` + "`" + `CALICO` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "kms_provider",
+					Description: `(Optional) cluster KMS provider parameters.`,
 				},
 				resource.Attribute{
 					Name:        "master",
@@ -1605,11 +2082,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zonal",
-					Description: `(Optional) Initialize parameters for Zonal Master (one node master). The structure is documented below.`,
+					Description: `(Optional) Initialize parameters for Zonal Master (single node master). The structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "regional",
-					Description: `(Optional) Initialize parameters for Zonal Master (one node master). The structure is documented below.`,
+					Description: `(Optional) Initialize parameters for Regional Master (highly available master). The structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "version_info",
@@ -1652,8 +2129,12 @@ var (
 					Description: `(Optional) ID of the subnet. If no ID is specified, and there only one subnet in specified zone, an address in this subnet will be allocated. --- The ` + "`" + `regional` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) Name of availability region (e.g. "ru-central1"), where master instances will be allocated.`,
+				},
+				resource.Attribute{
 					Name:        "location",
-					Description: `Array of locations, where master will be allocated. The structure is documented below. --- The ` + "`" + `location` + "`" + ` block supports repeated values:`,
+					Description: `Array of locations, where master instances will be allocated. The structure is documented below. --- The ` + "`" + `location` + "`" + ` block supports repeated values:`,
 				},
 				resource.Attribute{
 					Name:        "zone",
@@ -1677,7 +2158,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version_deprecated",
-					Description: `Boolean flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. ## Timeouts This resource provides the following configuration options for [timeouts](/docs/configuration/resources.html#timeouts): - ` + "`" + `create` + "`" + ` - Default is 30 minute. - ` + "`" + `update` + "`" + ` - Default is 20 minute. - ` + "`" + `delete` + "`" + ` - Default is 20 minute. ## Import A Managed Kubernetes cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_kubernetes_cluster.default cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Boolean flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. --- The ` + "`" + `kms_provider` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `KMS key ID. ## Timeouts This resource provides the following configuration options for [timeouts](/docs/configuration/resources.html#timeouts): - ` + "`" + `create` + "`" + ` - Default is 30 minute. - ` + "`" + `update` + "`" + ` - Default is 20 minute. - ` + "`" + `delete` + "`" + ` - Default is 20 minute. ## Import A Managed Kubernetes cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_kubernetes_cluster.default cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1711,11 +2196,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zonal",
-					Description: `(Optional) Initialize parameters for Zonal Master (one node master). The structure is documented below.`,
+					Description: `(Optional) Initialize parameters for Zonal Master (single node master). The structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "regional",
-					Description: `(Optional) Initialize parameters for Zonal Master (one node master). The structure is documented below.`,
+					Description: `(Optional) Initialize parameters for Regional Master (highly available master). The structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "version_info",
@@ -1758,8 +2243,12 @@ var (
 					Description: `(Optional) ID of the subnet. If no ID is specified, and there only one subnet in specified zone, an address in this subnet will be allocated. --- The ` + "`" + `regional` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) Name of availability region (e.g. "ru-central1"), where master instances will be allocated.`,
+				},
+				resource.Attribute{
 					Name:        "location",
-					Description: `Array of locations, where master will be allocated. The structure is documented below. --- The ` + "`" + `location` + "`" + ` block supports repeated values:`,
+					Description: `Array of locations, where master instances will be allocated. The structure is documented below. --- The ` + "`" + `location` + "`" + ` block supports repeated values:`,
 				},
 				resource.Attribute{
 					Name:        "zone",
@@ -1783,7 +2272,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version_deprecated",
-					Description: `Boolean flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. ## Timeouts This resource provides the following configuration options for [timeouts](/docs/configuration/resources.html#timeouts): - ` + "`" + `create` + "`" + ` - Default is 30 minute. - ` + "`" + `update` + "`" + ` - Default is 20 minute. - ` + "`" + `delete` + "`" + ` - Default is 20 minute. ## Import A Managed Kubernetes cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_kubernetes_cluster.default cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Boolean flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. --- The ` + "`" + `kms_provider` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `KMS key ID. ## Timeouts This resource provides the following configuration options for [timeouts](/docs/configuration/resources.html#timeouts): - ` + "`" + `create` + "`" + ` - Default is 30 minute. - ` + "`" + `update` + "`" + ` - Default is 20 minute. - ` + "`" + `delete` + "`" + ` - Default is 20 minute. ## Import A Managed Kubernetes cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_kubernetes_cluster.default cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1856,7 +2349,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version_info",
-					Description: `(Computed) Information about Kubernetes node group version. The structure is documented below. --- The ` + "`" + `instance_template` + "`" + ` block supports:`,
+					Description: `(Computed) Information about Kubernetes node group version. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "deploy_policy",
+					Description: `Deploy policy of the node group. The structure is documented below. --- The ` + "`" + `instance_template` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "platform_id",
@@ -1960,7 +2457,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version_deprecated",
-					Description: `True/false flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `True/false flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. --- The ` + "`" + `deploy_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "max_expansion",
+					Description: `The maximum number of instances that can be temporarily allocated above the group's target size during the update.`,
+				},
+				resource.Attribute{
+					Name:        "max_unavailable",
+					Description: `The maximum number of running instances that can be taken offline during update. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -2359,7 +2864,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metrika",
-					Description: `(Optional) Allow access for Yandex.Metrika. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) Allow access for Yandex.Metrika.`,
+				},
+				resource.Attribute{
+					Name:        "serverless",
+					Description: `(Optional) Allow access for Serverless. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
@@ -2507,7 +3016,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "database_name",
-					Description: `(Required) The name of the database that the permission grants access to. The ` + "`" + `database` + "`" + ` block supports:`,
+					Description: `(Required) The name of the database that the permission grants access to.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Optional) The role of the user in this database. For more information see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/users-and-roles). The ` + "`" + `database` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3233,7 +3746,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "acl",
-					Description: `(Optional) The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to ` + "`" + `private` + "`" + `. ~>`,
+					Description: `(Optional) The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to ` + "`" + `private` + "`" + `. Conflicts with ` + "`" + `grant` + "`" + `. ~>`,
+				},
+				resource.Attribute{
+					Name:        "grant",
+					Description: `(Optional) An [ACL policy grant](https://cloud.yandex.com/docs/storage/concepts/acl#permissions-types). Conflicts with ` + "`" + `acl` + "`" + `. ~>`,
 				},
 				resource.Attribute{
 					Name:        "force_destroy",
@@ -3443,6 +3960,46 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "yandex_vpc_security_group",
+			Category:         "Yandex VPC Resources",
+			ShortDescription: `Yandex VPC Security Group.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpc",
+				"security",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of this security group.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of this security group. --- The ` + "`" + `ingress` + "`" + ` and ` + "`" + `egress` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the rule.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of this security group.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of this security group. --- The ` + "`" + `ingress` + "`" + ` and ` + "`" + `egress` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the rule.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "yandex_vpc_subnet",
 			Category:         "Yandex VPC Resources",
 			ShortDescription: `A VPC network is a virtual version of the traditional physical networks that exist within and between physical data centers.`,
@@ -3507,33 +4064,40 @@ var (
 		"yandex_compute_snapshot":                      4,
 		"yandex_cr_container_registry":                 5,
 		"yandex_dataproc_cluster":                      6,
-		"yandex_iam_service_account":                   7,
-		"yandex_iam_service_account_api_key":           8,
-		"yandex_iam_service_account_iam_binding":       9,
-		"yandex_iam_service_account_iam_member":        10,
-		"yandex_iam_service_account_iam_policy":        11,
-		"yandex_iam_service_account_key":               12,
-		"yandex_iam_service_account_static_access_key": 13,
-		"yandex_kms_symmetric_key":                     14,
-		"yandex_kubernetes_cluster":                    15,
-		"yandex_kubernetes_node_group":                 16,
-		"yandex_lb_network_load_balancer":              17,
-		"yandex_lb_target_group":                       18,
-		"yandex_mdb_clickhouse_cluster":                19,
-		"yandex_mdb_mongodb_cluster":                   20,
-		"yandex_mdb_mysql_cluster":                     21,
-		"yandex_mdb_postgresql_cluster":                22,
-		"yandex_mdb_redis_cluster":                     23,
-		"yandex_resourcemanager_cloud_iam_binding":     24,
-		"yandex_resourcemanager_cloud_iam_member":      25,
-		"yandex_resourcemanager_folder_iam_binding":    26,
-		"yandex_resourcemanager_folder_iam_member":     27,
-		"yandex_resourcemanager_folder_iam_policy":     28,
-		"yandex_storage_bucket":                        29,
-		"yandex_storage_object":                        30,
-		"yandex_vpc_network":                           31,
-		"yandex_vpc_route_table":                       32,
-		"yandex_vpc_subnet":                            33,
+		"yandex_function":                              7,
+		"yandex_function_iam_binding":                  8,
+		"yandex_function_trigger":                      9,
+		"yandex_iam_service_account":                   10,
+		"yandex_iam_service_account_api_key":           11,
+		"yandex_iam_service_account_iam_binding":       12,
+		"yandex_iam_service_account_iam_member":        13,
+		"yandex_iam_service_account_iam_policy":        14,
+		"yandex_iam_service_account_key":               15,
+		"yandex_iam_service_account_static_access_key": 16,
+		"yandex_iot_core_device":                       17,
+		"yandex_iot_core_registry":                     18,
+		"yandex_kms_secret_ciphertext":                 19,
+		"yandex_kms_symmetric_key":                     20,
+		"yandex_kubernetes_cluster":                    21,
+		"yandex_kubernetes_node_group":                 22,
+		"yandex_lb_network_load_balancer":              23,
+		"yandex_lb_target_group":                       24,
+		"yandex_mdb_clickhouse_cluster":                25,
+		"yandex_mdb_mongodb_cluster":                   26,
+		"yandex_mdb_mysql_cluster":                     27,
+		"yandex_mdb_postgresql_cluster":                28,
+		"yandex_mdb_redis_cluster":                     29,
+		"yandex_resourcemanager_cloud_iam_binding":     30,
+		"yandex_resourcemanager_cloud_iam_member":      31,
+		"yandex_resourcemanager_folder_iam_binding":    32,
+		"yandex_resourcemanager_folder_iam_member":     33,
+		"yandex_resourcemanager_folder_iam_policy":     34,
+		"yandex_storage_bucket":                        35,
+		"yandex_storage_object":                        36,
+		"yandex_vpc_network":                           37,
+		"yandex_vpc_route_table":                       38,
+		"yandex_vpc_security_group":                    39,
+		"yandex_vpc_subnet":                            40,
 	}
 )
 

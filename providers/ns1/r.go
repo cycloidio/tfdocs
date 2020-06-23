@@ -137,7 +137,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ipam_view_ipam",
-					Description: `(Optional) Whether the apikey can view IPAM. Only relevant for the DDI product. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions.`,
+					Description: `(Optional) Whether the apikey can view IPAM. Only relevant for the DDI product. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions. ## NS1 Documentation [ApiKeys Api Doc](https://ns1.com/api#api-key)`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -162,7 +162,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "config",
-					Description: `(Optional) The feeds configuration matching the specification in ` + "`" + `feed_config` + "`" + ` from /data/sourcetypes. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions.`,
+					Description: `(Optional) The feeds configuration matching the specification in ` + "`" + `feed_config` + "`" + ` from /data/sourcetypes. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions. ## NS1 Documentation [Datafeed Api Doc](https://ns1.com/api#data-feeds)`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -187,7 +187,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "config",
-					Description: `(Optional) The data source configuration, determined by its type, matching the specification in ` + "`" + `config` + "`" + ` from /data/sourcetypes. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions.`,
+					Description: `(Optional) The data source configuration, determined by its type, matching the specification in ` + "`" + `config` + "`" + ` from /data/sourcetypes. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions. ## NS1 Documentation [Datasource Api Doc](https://ns1.com/api#data-sources)`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -272,7 +272,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Required) The value to compare to. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions.`,
+					Description: `(Required) The value to compare to. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions. ## NS1 Documentation [MonitoringJob Api Doc](https://ns1.com/api#monitoring-jobs)`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -301,7 +301,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "config",
-					Description: `(Required) Configuration details for the given notifier type. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions.`,
+					Description: `(Required) Configuration details for the given notifier type. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions. ## NS1 Documentation [NotifyList Api Doc](https://ns1.com/api#notification-lists)`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -318,11 +318,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
-					Description: `(Required) The zone the record belongs to. Cannot have leading or trailing dots (".") - see the example above.`,
+					Description: `(Required) The zone the record belongs to. Cannot have leading or trailing dots (".") - see the example above and ` + "`" + `FQDN formatting` + "`" + ` below.`,
 				},
 				resource.Attribute{
 					Name:        "domain",
-					Description: `(Required) The records' domain. Cannot have leading or trailing dots - see the example above.`,
+					Description: `(Required) The records' domain. Cannot have leading or trailing dots - see the example above and ` + "`" + `FQDN formatting` + "`" + ` below.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -507,7 +507,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ipam_view_ipam",
-					Description: `(Optional) Whether the team can view IPAM. Only relevant for the DDI product. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions.`,
+					Description: `(Optional) Whether the team can view IPAM. Only relevant for the DDI product. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions. ## NS1 Documentation [Team Api Docs](https://ns1.com/api#team)`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -644,7 +644,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ipam_manage_ipam",
-					Description: `(Optional) Whether the user can manage IPAM. Only relevant for the DDI product. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions.`,
+					Description: `(Optional) Whether the user can manage IPAM. Only relevant for the DDI product. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions. ## NS1 Documentation [User Api Docs](https://ns1.com/api#user)`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -733,7 +733,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "hostmaster",
-					Description: `(Computed) The SOA Hostmaster. ## A note on making Primary or Secondary changes to zones Switching a zone to being a secondary forces a new resource. In other words, the zone will first be destroyed, then recreated as a secondary. Editing or removing the ` + "`" + `primary` + "`" + ` key, or directly changing a secondary zone to a primary (by removing the ` + "`" + `primary` + "`" + ` and ` + "`" + `additional_primaries` + "`" + ` keys, and setting ` + "`" + `secondaries` + "`" + `) is supported "in place". However, in these situations we do not alter records on the zone. You may need to amend records, or finagle them into Terraform state. As a particular example, if you change a secondary zone to be primary (or just not-a-secondary) before a zone transfer has occurred, you can end up with no records on the zone. Currently, this provider does not support zones being both Primary and Secondary. If that functionality is important for your workflow, please open an issue or contact support, so we can prioritize the work accordingly. ## Import ` + "`" + `terraform import ns1_zone.<name> <zone>` + "`" + ` So for the example above: ` + "`" + `terraform import ns1_zone.example terraform.example.io` + "`" + ``,
+					Description: `(Computed) The SOA Hostmaster. ## A note on making Primary or Secondary changes to zones Switching a zone to being a secondary forces a new resource. In other words, the zone will first be destroyed, then recreated as a secondary. Editing or removing the ` + "`" + `primary` + "`" + ` key, or directly changing a secondary zone to a primary (by removing the ` + "`" + `primary` + "`" + ` and ` + "`" + `additional_primaries` + "`" + ` keys, and setting ` + "`" + `secondaries` + "`" + `) is supported "in place". However, in these situations we do not alter records on the zone. You may need to amend records, or finagle them into Terraform state. As a particular example, if you change a secondary zone to be primary (or just not-a-secondary) before a zone transfer has occurred, you can end up with no records on the zone. Currently, this provider does not support zones being both Primary and Secondary. If that functionality is important for your workflow, please open an issue or contact support, so we can prioritize the work accordingly. ## Import ` + "`" + `terraform import ns1_zone.<name> <zone>` + "`" + ` So for the example above: ` + "`" + `terraform import ns1_zone.example terraform.example.io` + "`" + ` ## NS1 Documentation [Zone Api Docs](https://ns1.com/api#zones)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -743,7 +743,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "hostmaster",
-					Description: `(Computed) The SOA Hostmaster. ## A note on making Primary or Secondary changes to zones Switching a zone to being a secondary forces a new resource. In other words, the zone will first be destroyed, then recreated as a secondary. Editing or removing the ` + "`" + `primary` + "`" + ` key, or directly changing a secondary zone to a primary (by removing the ` + "`" + `primary` + "`" + ` and ` + "`" + `additional_primaries` + "`" + ` keys, and setting ` + "`" + `secondaries` + "`" + `) is supported "in place". However, in these situations we do not alter records on the zone. You may need to amend records, or finagle them into Terraform state. As a particular example, if you change a secondary zone to be primary (or just not-a-secondary) before a zone transfer has occurred, you can end up with no records on the zone. Currently, this provider does not support zones being both Primary and Secondary. If that functionality is important for your workflow, please open an issue or contact support, so we can prioritize the work accordingly. ## Import ` + "`" + `terraform import ns1_zone.<name> <zone>` + "`" + ` So for the example above: ` + "`" + `terraform import ns1_zone.example terraform.example.io` + "`" + ``,
+					Description: `(Computed) The SOA Hostmaster. ## A note on making Primary or Secondary changes to zones Switching a zone to being a secondary forces a new resource. In other words, the zone will first be destroyed, then recreated as a secondary. Editing or removing the ` + "`" + `primary` + "`" + ` key, or directly changing a secondary zone to a primary (by removing the ` + "`" + `primary` + "`" + ` and ` + "`" + `additional_primaries` + "`" + ` keys, and setting ` + "`" + `secondaries` + "`" + `) is supported "in place". However, in these situations we do not alter records on the zone. You may need to amend records, or finagle them into Terraform state. As a particular example, if you change a secondary zone to be primary (or just not-a-secondary) before a zone transfer has occurred, you can end up with no records on the zone. Currently, this provider does not support zones being both Primary and Secondary. If that functionality is important for your workflow, please open an issue or contact support, so we can prioritize the work accordingly. ## Import ` + "`" + `terraform import ns1_zone.<name> <zone>` + "`" + ` So for the example above: ` + "`" + `terraform import ns1_zone.example terraform.example.io` + "`" + ` ## NS1 Documentation [Zone Api Docs](https://ns1.com/api#zones)`,
 				},
 			},
 		},

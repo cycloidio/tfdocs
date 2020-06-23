@@ -225,6 +225,10 @@ var (
 					Name:        "environment_scope",
 					Description: `(Optional, string) The associated environment to the cluster. Defaults to ` + "`" + ``,
 				},
+				resource.Attribute{
+					Name:        "management_cluster_id",
+					Description: `(Optional, string) The ID of the management project for the cluster. ## Import GitLab group clusters can be imported using an id made up of ` + "`" + `groupid:clusterid` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import gitlab_group_cluster.bar 123:321 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -326,7 +330,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "protected",
-					Description: `(Optional, boolean) If set to ` + "`" + `true` + "`" + `, the variable will be passed only to pipelines running on protected branches and tags. Defaults to ` + "`" + `false` + "`" + `. ## Import GitLab group variables can be imported using an id made up of ` + "`" + `groupid:variablename` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import gitlab_group_variable.example 12345:group_variable_key ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional, boolean) If set to ` + "`" + `true` + "`" + `, the variable will be passed only to pipelines running on protected branches and tags. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "masked",
+					Description: `(Optional, boolean) If set to ` + "`" + `true` + "`" + `, the value of the variable will be hidden in job logs. The value must meet the [masking requirements](https://docs.gitlab.com/ee/ci/variables/#masked-variables). Defaults to ` + "`" + `false` + "`" + `. ## Import GitLab group variables can be imported using an id made up of ` + "`" + `groupid:variablename` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import gitlab_group_variable.example 12345:group_variable_key ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -596,7 +604,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "group_name",
-					Description: `Group's name. ## Importing projects You can import a project state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` can be whatever the [get single project api][get_single_project] takes for its ` + "`" + `:id` + "`" + ` value, so for example: terraform import gitlab_project.example richardc/example [get_single_project]: https://docs.gitlab.com/ee/api/projects.html#get-single-project [group_members_permissions]: https://docs.gitlab.com/ce/user/permissions.html#group-members-permissions`,
+					Description: `Group's name.`,
+				},
+				resource.Attribute{
+					Name:        "remove_source_branch_after_merge",
+					Description: `Enable ` + "`" + `Delete source branch` + "`" + ` option by default for all new merge requests. ## Importing projects You can import a project state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` can be whatever the [get single project api][get_single_project] takes for its ` + "`" + `:id` + "`" + ` value, so for example: terraform import gitlab_project.example richardc/example [get_single_project]: https://docs.gitlab.com/ee/api/projects.html#get-single-project [group_members_permissions]: https://docs.gitlab.com/ce/user/permissions.html#group-members-permissions`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -626,7 +638,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "group_name",
-					Description: `Group's name. ## Importing projects You can import a project state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` can be whatever the [get single project api][get_single_project] takes for its ` + "`" + `:id` + "`" + ` value, so for example: terraform import gitlab_project.example richardc/example [get_single_project]: https://docs.gitlab.com/ee/api/projects.html#get-single-project [group_members_permissions]: https://docs.gitlab.com/ce/user/permissions.html#group-members-permissions`,
+					Description: `Group's name.`,
+				},
+				resource.Attribute{
+					Name:        "remove_source_branch_after_merge",
+					Description: `Enable ` + "`" + `Delete source branch` + "`" + ` option by default for all new merge requests. ## Importing projects You can import a project state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` can be whatever the [get single project api][get_single_project] takes for its ` + "`" + `:id` + "`" + ` value, so for example: terraform import gitlab_project.example richardc/example [get_single_project]: https://docs.gitlab.com/ee/api/projects.html#get-single-project [group_members_permissions]: https://docs.gitlab.com/ce/user/permissions.html#group-members-permissions`,
 				},
 			},
 		},
@@ -684,6 +700,10 @@ var (
 				resource.Attribute{
 					Name:        "environment_scope",
 					Description: `(Optional, string) The associated environment to the cluster. Defaults to ` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "management_cluster_id",
+					Description: `(Optional, string) The ID of the management project for the cluster. ## Import GitLab project clusters can be imported using an id made up of ` + "`" + `projectid:clusterid` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import gitlab_project_cluster.bar 123:321 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -920,6 +940,36 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "gitlab_service_github",
+			Category:         "Resources",
+			ShortDescription: `Manage GitHub integration that updates pipeline statuses on a GitHub repo's pull requests.`,
+			Description:      ``,
+			Keywords: []string{
+				"service",
+				"github",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Required) ID of the project you want to activate integration on.`,
+				},
+				resource.Attribute{
+					Name:        "repository_url",
+					Description: `(Required) The URL of the GitHub repo to integrate with, e,g, https://github.com/terraform-providers/terraform-provider-gitlab.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Required) A GitHub personal access token with at least ` + "`" + `repo:status` + "`" + ` scope.`,
+				},
+				resource.Attribute{
+					Name:        "static_context",
+					Description: `(Optional) Append instance name instead of branch to the status. Must enable to set a GitLab status check as _required_ in GitHub. See [Static / dynamic status check names] to learn more. ## Importing GitHub service You can import a service_github state using ` + "`" + `terraform import <resource> <project_id>` + "`" + `: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import gitlab_service_github.github 1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "gitlab_service_jira",
 			Category:         "Resources",
 			ShortDescription: `Manage Jira integration that allows to receive event notifications in Jira`,
@@ -951,7 +1001,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "jira_issue_transition_id",
-					Description: `(Optional) The ID of a transition that moves issues to a closed state. You can find this number under the JIRA workflow administration (Administration > Issues > Workflows) by selecting View under Operations of the desired workflow of your project. By default, this ID is set to 2. ## Importing Jira service You can import a service_jira state using ` + "`" + `terraform import <resource> <project_id>` + "`" + `: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import gitlab_service_jira.jira 1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The ID of a transition that moves issues to a closed state. You can find this number under the JIRA workflow administration (Administration > Issues > Workflows) by selecting View under Operations of the desired workflow of your project. By default, this ID is set to 2.`,
+				},
+				resource.Attribute{
+					Name:        "commit_events",
+					Description: `(Optional) Enable notifications for commit events`,
+				},
+				resource.Attribute{
+					Name:        "merge_requests_events",
+					Description: `(Optional) Enable notifications for merge request events`,
+				},
+				resource.Attribute{
+					Name:        "comment_on_event_enabled",
+					Description: `(Optional) Enable comments inside Jira issues on each GitLab event (commit / merge request) ## Importing Jira service You can import a service_jira state using ` + "`" + `terraform import <resource> <project_id>` + "`" + `: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import gitlab_service_jira.jira 1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -985,7 +1047,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "notify_only_default_branch",
-					Description: `(Optional) Send notifications only for the default branch.`,
+					Description: `(Optional) DEPRECATED: This parameter has been replaced with ` + "`" + `branches_to_be_notified` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "branches_to_be_notified",
+					Description: `(Optional) Branches to send notifications for. Valid options are "all", "default", "protected", and "default_and_protected".`,
 				},
 				resource.Attribute{
 					Name:        "push_events",
@@ -1169,10 +1235,11 @@ var (
 		"gitlab_project_push_rules":         16,
 		"gitlab_project_share_group":        17,
 		"gitlab_project_variable":           18,
-		"gitlab_service_jira":               19,
-		"gitlab_service_slack":              20,
-		"gitlab_tag_protection":             21,
-		"gitlab_user":                       22,
+		"gitlab_service_github":             19,
+		"gitlab_service_jira":               20,
+		"gitlab_service_slack":              21,
+		"gitlab_tag_protection":             22,
+		"gitlab_user":                       23,
 	}
 )
 

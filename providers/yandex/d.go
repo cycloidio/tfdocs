@@ -259,7 +259,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `A set of key/value label pairs to assign to the instance.`,
+					Description: `A set of key/value label pairs assigned to the instance.`,
 				},
 				resource.Attribute{
 					Name:        "metadata",
@@ -295,7 +295,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_acceleration_type",
-					Description: `Type of network acceleration. The default is ` + "`" + `standard` + "`" + `. Values: ` + "`" + `standard` + "`" + `, ` + "`" + `software-accelerated` + "`" + ``,
+					Description: `Type of network acceleration. The default is ` + "`" + `standard` + "`" + `. Values: ` + "`" + `standard` + "`" + `, ` + "`" + `software_accelerated` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "network_interface",
@@ -378,8 +378,12 @@ var (
 					Description: `MAC address that is assigned to the network interface.`,
 				},
 				resource.Attribute{
+					Name:        "ipv4",
+					Description: `Show if IPv4 address is assigned to the network interface.`,
+				},
+				resource.Attribute{
 					Name:        "ip_address",
-					Description: `The private IP address to assign to the instance. If empty, the address is automatically assigned from the specified subnet.`,
+					Description: `The assignd private IP address to the network interface.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
@@ -433,7 +437,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `A set of key/value label pairs to assign to the instance.`,
+					Description: `A set of key/value label pairs assigned to the instance.`,
 				},
 				resource.Attribute{
 					Name:        "metadata",
@@ -469,7 +473,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_acceleration_type",
-					Description: `Type of network acceleration. The default is ` + "`" + `standard` + "`" + `. Values: ` + "`" + `standard` + "`" + `, ` + "`" + `software-accelerated` + "`" + ``,
+					Description: `Type of network acceleration. The default is ` + "`" + `standard` + "`" + `. Values: ` + "`" + `standard` + "`" + `, ` + "`" + `software_accelerated` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "network_interface",
@@ -552,8 +556,12 @@ var (
 					Description: `MAC address that is assigned to the network interface.`,
 				},
 				resource.Attribute{
+					Name:        "ipv4",
+					Description: `Show if IPv4 address is assigned to the network interface.`,
+				},
+				resource.Attribute{
 					Name:        "ip_address",
-					Description: `The private IP address to assign to the instance. If empty, the address is automatically assigned from the specified subnet.`,
+					Description: `The assignd private IP address to the network interface.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
@@ -659,7 +667,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "created_at",
-					Description: `The instance group creation timestamp. --- The ` + "`" + `load_balancer_state` + "`" + ` block supports:`,
+					Description: `The instance group creation timestamp.`,
+				},
+				resource.Attribute{
+					Name:        "variables",
+					Description: `A set of key/value variables pairs to assign to the instance group.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the instance group. --- The ` + "`" + `load_balancer_state` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "target_group_id",
@@ -783,7 +799,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "boot_disk",
-					Description: `The specifications for boot disk that will be attached to the instance. The structure is documented below. --- The ` + "`" + `boot_disk` + "`" + ` block supports:`,
+					Description: `The specifications for boot disk that will be attached to the instance. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "network_settings",
+					Description: `Network acceleration settings. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name template of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `Hostname temaplate for the instance. --- The ` + "`" + `boot_disk` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "device_name",
@@ -858,6 +886,10 @@ var (
 					Description: `The IDs of the subnets.`,
 				},
 				resource.Attribute{
+					Name:        "ipv4",
+					Description: `Is IPv4 address assigned.`,
+				},
+				resource.Attribute{
 					Name:        "nat",
 					Description: `A public address that can be used to access the internet over NAT. --- The ` + "`" + `scheduling_policy` + "`" + ` block supports:`,
 				},
@@ -891,7 +923,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_interface",
-					Description: `An array with the network interfaces attached to the managed instance. The structure is documented below. --- The ` + "`" + `network_interface` + "`" + ` block supports:`,
+					Description: `An array with the network interfaces attached to the managed instance. The structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "index",
@@ -999,7 +1031,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "port",
-					Description: `The port to use for TCP health checks.`,
+					Description: `The port to use for TCP health checks. --- The ` + "`" + `network_settings` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Network acceleration type. By default a network is in ` + "`" + `STANDARD` + "`" + ` mode.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1057,7 +1093,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "created_at",
-					Description: `The instance group creation timestamp. --- The ` + "`" + `load_balancer_state` + "`" + ` block supports:`,
+					Description: `The instance group creation timestamp.`,
+				},
+				resource.Attribute{
+					Name:        "variables",
+					Description: `A set of key/value variables pairs to assign to the instance group.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the instance group. --- The ` + "`" + `load_balancer_state` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "target_group_id",
@@ -1181,7 +1225,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "boot_disk",
-					Description: `The specifications for boot disk that will be attached to the instance. The structure is documented below. --- The ` + "`" + `boot_disk` + "`" + ` block supports:`,
+					Description: `The specifications for boot disk that will be attached to the instance. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "network_settings",
+					Description: `Network acceleration settings. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name template of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `Hostname temaplate for the instance. --- The ` + "`" + `boot_disk` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "device_name",
@@ -1256,6 +1312,10 @@ var (
 					Description: `The IDs of the subnets.`,
 				},
 				resource.Attribute{
+					Name:        "ipv4",
+					Description: `Is IPv4 address assigned.`,
+				},
+				resource.Attribute{
 					Name:        "nat",
 					Description: `A public address that can be used to access the internet over NAT. --- The ` + "`" + `scheduling_policy` + "`" + ` block supports:`,
 				},
@@ -1289,7 +1349,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_interface",
-					Description: `An array with the network interfaces attached to the managed instance. The structure is documented below. --- The ` + "`" + `network_interface` + "`" + ` block supports:`,
+					Description: `An array with the network interfaces attached to the managed instance. The structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "index",
@@ -1397,7 +1457,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "port",
-					Description: `The port to use for TCP health checks.`,
+					Description: `The port to use for TCP health checks. --- The ` + "`" + `network_settings` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Network acceleration type. By default a network is in ` + "`" + `STANDARD` + "`" + ` mode.`,
 				},
 			},
 		},
@@ -1751,6 +1815,394 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "yandex_function",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Yandex Cloud Function.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs to assign to the Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "runtime",
+					Description: `Runtime for Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "entrypoint",
+					Description: `Entrypoint for Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `Memory in megabytes (`,
+				},
+				resource.Attribute{
+					Name:        "execution_timeout",
+					Description: `Execution timeout in seconds for Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "service_account_id",
+					Description: `Service account ID for Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `A set of key/value environment variables for Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags for Yandex Cloud Function. Tag "$latest" isn't returned.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version for Yandex Cloud Function.`,
+				},
+				resource.Attribute{
+					Name:        "image_size",
+					Description: `Image size for Yandex Cloud Function.`,
+				},
+				resource.Attribute{
+					Name:        "loggroup_id",
+					Description: `Log group ID size for Yandex Cloud Function.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs to assign to the Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "runtime",
+					Description: `Runtime for Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "entrypoint",
+					Description: `Entrypoint for Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `Memory in megabytes (`,
+				},
+				resource.Attribute{
+					Name:        "execution_timeout",
+					Description: `Execution timeout in seconds for Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "service_account_id",
+					Description: `Service account ID for Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `A set of key/value environment variables for Yandex Cloud Function`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags for Yandex Cloud Function. Tag "$latest" isn't returned.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version for Yandex Cloud Function.`,
+				},
+				resource.Attribute{
+					Name:        "image_size",
+					Description: `Image size for Yandex Cloud Function.`,
+				},
+				resource.Attribute{
+					Name:        "loggroup_id",
+					Description: `Log group ID size for Yandex Cloud Function.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "yandex_function_trigger",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Yandex Cloud Functions Trigger.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `(Optional) Folder ID for the Yandex Cloud Functions Trigger ~>`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `Folder ID for the Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs to assign to the Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "function",
+					Description: `[Yandex.Cloud Function](https://cloud.yandex.com/docs/functions/concepts/function) settings definition for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "function.0.id",
+					Description: `Yandex.Cloud Function ID for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "function.0.service_account_id",
+					Description: `Service account ID for Yandex.Cloud Function for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "function.0.tag",
+					Description: `Tag for Yandex.Cloud Function for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "function.0.retry_attempts",
+					Description: `Retry attempts for Yandex.Cloud Function for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "function.0.retry_interval",
+					Description: `Retry interval in seconds for Yandex.Cloud Function for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "dlq",
+					Description: `Dead Letter Queue settings definition for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "dlq.0.queue_id",
+					Description: `Queue ID for Dead Letter Queue for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "dlq.0.service_account_id",
+					Description: `Service Account ID for Dead Letter Queue for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "iot",
+					Description: `[IoT](https://cloud.yandex.com/docs/functions/concepts/trigger/iot-core-trigger) settings definition for Yandex Cloud Functions Trigger, if present`,
+				},
+				resource.Attribute{
+					Name:        "iot.0.registry_id",
+					Description: `IoT Registry ID for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "iot.0.device_id",
+					Description: `IoT Device ID for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "iot.0.topic",
+					Description: `IoT Topic for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "message_queue",
+					Description: `[Message Queue](https://cloud.yandex.com/docs/functions/concepts/trigger/ymq-trigger) settings definition for Yandex Cloud Functions Trigger, if present`,
+				},
+				resource.Attribute{
+					Name:        "message_queue.0.queue_id",
+					Description: `Message Queue ID for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "message_queue.0.service_account_id",
+					Description: `Message Queue Service Account ID for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "message_queue.0.batch_cutoff",
+					Description: `Batch Duration in seconds for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "message_queue.0.batch_size",
+					Description: `Batch Size for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "message_queue.0.visibility_timeout",
+					Description: `Visibility timeout for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "object_storage",
+					Description: `[Object Storage](https://cloud.yandex.com/docs/functions/concepts/trigger/os-trigger) settings definition for Yandex Cloud Functions Trigger, if present`,
+				},
+				resource.Attribute{
+					Name:        "object_storage.0.bucket_id",
+					Description: `Object Storage Bucket ID for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "object_storage.0.prefix",
+					Description: `Prefix for Object Storage for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "object_storage.0.suffix",
+					Description: `Suffix for Object Storage for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "object_storage.0.create",
+					Description: `Boolean flag for setting create event for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "object_storage.0.update",
+					Description: `Boolean flag for setting update event for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "object_storage.0.delete",
+					Description: `Boolean flag for setting delete event for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "timer",
+					Description: `[Timer](https://cloud.yandex.com/docs/functions/concepts/trigger/timer) settings definition for Yandex Cloud Functions Trigger, if present`,
+				},
+				resource.Attribute{
+					Name:        "timer.0.cron_expression",
+					Description: `Cron expression for timer for Yandex Cloud Functions Trigger`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `Folder ID for the Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs to assign to the Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "function",
+					Description: `[Yandex.Cloud Function](https://cloud.yandex.com/docs/functions/concepts/function) settings definition for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "function.0.id",
+					Description: `Yandex.Cloud Function ID for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "function.0.service_account_id",
+					Description: `Service account ID for Yandex.Cloud Function for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "function.0.tag",
+					Description: `Tag for Yandex.Cloud Function for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "function.0.retry_attempts",
+					Description: `Retry attempts for Yandex.Cloud Function for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "function.0.retry_interval",
+					Description: `Retry interval in seconds for Yandex.Cloud Function for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "dlq",
+					Description: `Dead Letter Queue settings definition for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "dlq.0.queue_id",
+					Description: `Queue ID for Dead Letter Queue for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "dlq.0.service_account_id",
+					Description: `Service Account ID for Dead Letter Queue for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "iot",
+					Description: `[IoT](https://cloud.yandex.com/docs/functions/concepts/trigger/iot-core-trigger) settings definition for Yandex Cloud Functions Trigger, if present`,
+				},
+				resource.Attribute{
+					Name:        "iot.0.registry_id",
+					Description: `IoT Registry ID for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "iot.0.device_id",
+					Description: `IoT Device ID for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "iot.0.topic",
+					Description: `IoT Topic for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "message_queue",
+					Description: `[Message Queue](https://cloud.yandex.com/docs/functions/concepts/trigger/ymq-trigger) settings definition for Yandex Cloud Functions Trigger, if present`,
+				},
+				resource.Attribute{
+					Name:        "message_queue.0.queue_id",
+					Description: `Message Queue ID for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "message_queue.0.service_account_id",
+					Description: `Message Queue Service Account ID for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "message_queue.0.batch_cutoff",
+					Description: `Batch Duration in seconds for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "message_queue.0.batch_size",
+					Description: `Batch Size for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "message_queue.0.visibility_timeout",
+					Description: `Visibility timeout for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "object_storage",
+					Description: `[Object Storage](https://cloud.yandex.com/docs/functions/concepts/trigger/os-trigger) settings definition for Yandex Cloud Functions Trigger, if present`,
+				},
+				resource.Attribute{
+					Name:        "object_storage.0.bucket_id",
+					Description: `Object Storage Bucket ID for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "object_storage.0.prefix",
+					Description: `Prefix for Object Storage for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "object_storage.0.suffix",
+					Description: `Suffix for Object Storage for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "object_storage.0.create",
+					Description: `Boolean flag for setting create event for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "object_storage.0.update",
+					Description: `Boolean flag for setting update event for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "object_storage.0.delete",
+					Description: `Boolean flag for setting delete event for Yandex Cloud Functions Trigger`,
+				},
+				resource.Attribute{
+					Name:        "timer",
+					Description: `[Timer](https://cloud.yandex.com/docs/functions/concepts/trigger/timer) settings definition for Yandex Cloud Functions Trigger, if present`,
+				},
+				resource.Attribute{
+					Name:        "timer.0.cron_expression",
+					Description: `Cron expression for timer for Yandex Cloud Functions Trigger`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "yandex_iam_policy",
 			Category:         "Data Sources",
 			ShortDescription: `Generates an IAM policy that can be referenced by other resources and applied to them.`,
@@ -1837,6 +2289,118 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "yandex_iot_core",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Yandex.Cloud IoT Core Device.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the IoT Core Device`,
+				},
+				resource.Attribute{
+					Name:        "registry_id",
+					Description: `IoT Core Registry ID for the IoT Core Device`,
+				},
+				resource.Attribute{
+					Name:        "aliases",
+					Description: `A set of key/value aliases pairs to assign to the IoT Core Device`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the IoT Core Device`,
+				},
+				resource.Attribute{
+					Name:        "certificates",
+					Description: `A set of certificate's fingerprints for the IoT Core Device`,
+				},
+				resource.Attribute{
+					Name:        "passwords",
+					Description: `A set of passwords's id for the IoT Core Device`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the IoT Core Device`,
+				},
+				resource.Attribute{
+					Name:        "registry_id",
+					Description: `IoT Core Registry ID for the IoT Core Device`,
+				},
+				resource.Attribute{
+					Name:        "aliases",
+					Description: `A set of key/value aliases pairs to assign to the IoT Core Device`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the IoT Core Device`,
+				},
+				resource.Attribute{
+					Name:        "certificates",
+					Description: `A set of certificate's fingerprints for the IoT Core Device`,
+				},
+				resource.Attribute{
+					Name:        "passwords",
+					Description: `A set of passwords's id for the IoT Core Device`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "yandex_iot_registry",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Yandex.Cloud IoT Core Registry.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the IoT Core Registry`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs to assign to the IoT Core Registry.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the IoT Core Registry`,
+				},
+				resource.Attribute{
+					Name:        "certificates",
+					Description: `A set of certificate's fingerprints for the IoT Core Registry`,
+				},
+				resource.Attribute{
+					Name:        "passwords",
+					Description: `A set of passwords's id for the IoT Core Registry`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the IoT Core Registry`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs to assign to the IoT Core Registry.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the IoT Core Registry`,
+				},
+				resource.Attribute{
+					Name:        "certificates",
+					Description: `A set of certificate's fingerprints for the IoT Core Registry`,
+				},
+				resource.Attribute{
+					Name:        "passwords",
+					Description: `A set of passwords's id for the IoT Core Registry`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "yandex_kubernetes_cluster",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -1872,6 +2436,10 @@ var (
 					Description: `IP range for allocating pod addresses.`,
 				},
 				resource.Attribute{
+					Name:        "node_ipv4_cidr_mask_size",
+					Description: `Size of the masks that are assigned to each node in the cluster.`,
+				},
+				resource.Attribute{
 					Name:        "service_ipv4_range",
 					Description: `IP range Kubernetes services Kubernetes cluster IP addresses will be allocated from`,
 				},
@@ -1905,7 +2473,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_policy_provider",
-					Description: `Network policy provider for the cluster, if present. Possible values: ` + "`" + `CALICO` + "`" + `. --- The ` + "`" + `master` + "`" + ` block supports:`,
+					Description: `Network policy provider for the cluster, if present. Possible values: ` + "`" + `CALICO` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "kms_provider",
+					Description: `cluster KMS provider parameters. --- The ` + "`" + `master` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -1925,7 +2497,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "regional",
-					Description: `Information about cluster zonal master. The structure is documented below.`,
+					Description: `Information about cluster regional master. The structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "internal_v4_address",
@@ -1961,11 +2533,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone",
-					Description: `ID of the availability zone where the master resides. --- The ` + "`" + `regional` + "`" + ` block supports:`,
+					Description: `ID of the availability zone where the master compute instance resides. --- The ` + "`" + `regional` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `ID of the availability region where the master resides. --- The ` + "`" + `version_info` + "`" + ` block supports:`,
+					Description: `ID of the availability region where the master compute instances resides. --- The ` + "`" + `version_info` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "current_version",
@@ -1981,7 +2553,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version_deprecated",
-					Description: `True/false flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. ---`,
+					Description: `True/false flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. --- The ` + "`" + `kms_provider` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `KMS key ID. ---`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2002,6 +2578,10 @@ var (
 					Description: `IP range for allocating pod addresses.`,
 				},
 				resource.Attribute{
+					Name:        "node_ipv4_cidr_mask_size",
+					Description: `Size of the masks that are assigned to each node in the cluster.`,
+				},
+				resource.Attribute{
 					Name:        "service_ipv4_range",
 					Description: `IP range Kubernetes services Kubernetes cluster IP addresses will be allocated from`,
 				},
@@ -2035,7 +2615,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_policy_provider",
-					Description: `Network policy provider for the cluster, if present. Possible values: ` + "`" + `CALICO` + "`" + `. --- The ` + "`" + `master` + "`" + ` block supports:`,
+					Description: `Network policy provider for the cluster, if present. Possible values: ` + "`" + `CALICO` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "kms_provider",
+					Description: `cluster KMS provider parameters. --- The ` + "`" + `master` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -2055,7 +2639,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "regional",
-					Description: `Information about cluster zonal master. The structure is documented below.`,
+					Description: `Information about cluster regional master. The structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "internal_v4_address",
@@ -2091,11 +2675,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone",
-					Description: `ID of the availability zone where the master resides. --- The ` + "`" + `regional` + "`" + ` block supports:`,
+					Description: `ID of the availability zone where the master compute instance resides. --- The ` + "`" + `regional` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `ID of the availability region where the master resides. --- The ` + "`" + `version_info` + "`" + ` block supports:`,
+					Description: `ID of the availability region where the master compute instances resides. --- The ` + "`" + `version_info` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "current_version",
@@ -2111,7 +2695,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version_deprecated",
-					Description: `True/false flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. ---`,
+					Description: `True/false flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. --- The ` + "`" + `kms_provider` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `KMS key ID. ---`,
 				},
 			},
 		},
@@ -2189,7 +2777,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version_info",
-					Description: `Information about Kubernetes node group version. The structure is documented below. --- The ` + "`" + `instance_template` + "`" + ` block supports:`,
+					Description: `Information about Kubernetes node group version. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "deploy_policy",
+					Description: `Deploy policy of the node group. The structure is documented below. --- The ` + "`" + `instance_template` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "platform_id",
@@ -2301,7 +2893,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version_deprecated",
-					Description: `True/false flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. ---`,
+					Description: `True/false flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. --- The ` + "`" + `deploy_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "max_expansion",
+					Description: `The maximum number of instances that can be temporarily allocated above the group's target size during the update.`,
+				},
+				resource.Attribute{
+					Name:        "max_unavailable",
+					Description: `The maximum number of running instances that can be taken offline during update. ---`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2359,7 +2959,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version_info",
-					Description: `Information about Kubernetes node group version. The structure is documented below. --- The ` + "`" + `instance_template` + "`" + ` block supports:`,
+					Description: `Information about Kubernetes node group version. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "deploy_policy",
+					Description: `Deploy policy of the node group. The structure is documented below. --- The ` + "`" + `instance_template` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "platform_id",
@@ -2471,7 +3075,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version_deprecated",
-					Description: `True/false flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. ---`,
+					Description: `True/false flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. --- The ` + "`" + `deploy_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "max_expansion",
+					Description: `The maximum number of instances that can be temporarily allocated above the group's target size during the update.`,
+				},
+				resource.Attribute{
+					Name:        "max_unavailable",
+					Description: `The maximum number of running instances that can be taken offline during update. ---`,
 				},
 			},
 		},
@@ -2489,7 +3101,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "folder_id",
-					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used. ## Attributes Reference The following attribute is exported:`,
+					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -2709,7 +3321,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "folder_id",
-					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used. ## Attributes Reference The following attribute is exported:`,
+					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -2915,6 +3527,10 @@ var (
 					Name:        "metrika",
 					Description: `Allow access for Yandex.Metrika.`,
 				},
+				resource.Attribute{
+					Name:        "serverless",
+					Description: `Allow access for Serverless.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -3056,6 +3672,10 @@ var (
 				resource.Attribute{
 					Name:        "metrika",
 					Description: `Allow access for Yandex.Metrika.`,
+				},
+				resource.Attribute{
+					Name:        "serverless",
+					Description: `Allow access for Serverless.`,
 				},
 			},
 		},
@@ -3213,7 +3833,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "database_name",
-					Description: `The name of the database that the permission grants access to. The ` + "`" + `database` + "`" + ` block supports:`,
+					Description: `The name of the database that the permission grants access to.`,
+				},
+				resource.Attribute{
+					Name:        "roles",
+					Description: `(Optional) List of strings. The roles of the user in this database. For more information see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/users-and-roles). The ` + "`" + `database` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3355,7 +3979,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "database_name",
-					Description: `The name of the database that the permission grants access to. The ` + "`" + `database` + "`" + ` block supports:`,
+					Description: `The name of the database that the permission grants access to.`,
+				},
+				resource.Attribute{
+					Name:        "roles",
+					Description: `(Optional) List of strings. The roles of the user in this database. For more information see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/users-and-roles). The ` + "`" + `database` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -4257,7 +4885,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "folder_id",
-					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used. ## Attributes Reference The following attribute is exported:`,
+					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -4301,7 +4929,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "folder_id",
-					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used. ## Attributes Reference The following attribute is exported:`,
+					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -4365,6 +4993,166 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "yandex_vpc_security_group",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Yandex VPC Security Group.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used. ## Attributes Reference The following attribute is exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the security group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the security group.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `ID of the network this security group belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `ID of the folder this security group belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `Labels to assign to this security group.`,
+				},
+				resource.Attribute{
+					Name:        "ingress",
+					Description: `A list of ingress rules. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "egress",
+					Description: `A list of egress rules. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of this security group.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of this security group. --- The ` + "`" + `ingress` + "`" + ` and ` + "`" + `egress` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the rule.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the rule.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `Labels to assign to this rule.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `One of ` + "`" + `ANY` + "`" + `, ` + "`" + `TCP` + "`" + `, ` + "`" + `UDP` + "`" + `, ` + "`" + `ICMP` + "`" + `, ` + "`" + `IPV6_ICMP` + "`" + ` or protocol number.`,
+				},
+				resource.Attribute{
+					Name:        "from_port",
+					Description: `Minimum port number.`,
+				},
+				resource.Attribute{
+					Name:        "to_port",
+					Description: `Maximum port number.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port number (if applied to a single port).`,
+				},
+				resource.Attribute{
+					Name:        "v4_cidr_blocks",
+					Description: `The blocks of IPv4 addresses for this rule.`,
+				},
+				resource.Attribute{
+					Name:        "v6_cidr_blocks",
+					Description: `The blocks of IPv6 addresses for this rule.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the security group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the security group.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `ID of the network this security group belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `ID of the folder this security group belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `Labels to assign to this security group.`,
+				},
+				resource.Attribute{
+					Name:        "ingress",
+					Description: `A list of ingress rules. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "egress",
+					Description: `A list of egress rules. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of this security group.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of this security group. --- The ` + "`" + `ingress` + "`" + ` and ` + "`" + `egress` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the rule.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the rule.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `Labels to assign to this rule.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `One of ` + "`" + `ANY` + "`" + `, ` + "`" + `TCP` + "`" + `, ` + "`" + `UDP` + "`" + `, ` + "`" + `ICMP` + "`" + `, ` + "`" + `IPV6_ICMP` + "`" + ` or protocol number.`,
+				},
+				resource.Attribute{
+					Name:        "from_port",
+					Description: `Minimum port number.`,
+				},
+				resource.Attribute{
+					Name:        "to_port",
+					Description: `Maximum port number.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port number (if applied to a single port).`,
+				},
+				resource.Attribute{
+					Name:        "v4_cidr_blocks",
+					Description: `The blocks of IPv4 addresses for this rule.`,
+				},
+				resource.Attribute{
+					Name:        "v6_cidr_blocks",
+					Description: `The blocks of IPv6 addresses for this rule.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "yandex_vpc_subnet",
 			Category:         "Data Sources",
 			ShortDescription: `Get information about a Yandex VPC subnet.`,
@@ -4377,7 +5165,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "folder_id",
-					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used. ## Attributes Reference The following attribute is exported:`,
+					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -4458,24 +5246,29 @@ var (
 		"yandex_compute_snapshot":         4,
 		"yandex_container_registry":       5,
 		"yandex_dataproc_cluster":         6,
-		"yandex_iam_policy":               7,
-		"yandex_iam_role":                 8,
-		"yandex_iam_service_account":      9,
-		"yandex_iam_user":                 10,
-		"yandex_kubernetes_cluster":       11,
-		"yandex_kubernetes_node_group":    12,
-		"yandex_lb_network_load_balancer": 13,
-		"yandex_lb_target_group":          14,
-		"yandex_mdb_clickhouse_cluster":   15,
-		"yandex_mdb_mongodb_cluster":      16,
-		"yandex_mdb_mysql_cluster":        17,
-		"yandex_mdb_postgresql_cluster":   18,
-		"yandex_mdb_redis_cluster":        19,
-		"yandex_resourcemanager_cloud":    20,
-		"yandex_resourcemanager_folder":   21,
-		"yandex_vpc_network":              22,
-		"yandex_vpc_route_table":          23,
-		"yandex_vpc_subnet":               24,
+		"yandex_function":                 7,
+		"yandex_function_trigger":         8,
+		"yandex_iam_policy":               9,
+		"yandex_iam_role":                 10,
+		"yandex_iam_service_account":      11,
+		"yandex_iam_user":                 12,
+		"yandex_iot_core":                 13,
+		"yandex_iot_registry":             14,
+		"yandex_kubernetes_cluster":       15,
+		"yandex_kubernetes_node_group":    16,
+		"yandex_lb_network_load_balancer": 17,
+		"yandex_lb_target_group":          18,
+		"yandex_mdb_clickhouse_cluster":   19,
+		"yandex_mdb_mongodb_cluster":      20,
+		"yandex_mdb_mysql_cluster":        21,
+		"yandex_mdb_postgresql_cluster":   22,
+		"yandex_mdb_redis_cluster":        23,
+		"yandex_resourcemanager_cloud":    24,
+		"yandex_resourcemanager_folder":   25,
+		"yandex_vpc_network":              26,
+		"yandex_vpc_route_table":          27,
+		"yandex_vpc_security_group":       28,
+		"yandex_vpc_subnet":               29,
 	}
 )
 

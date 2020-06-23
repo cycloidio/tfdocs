@@ -41,6 +41,45 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "pagerduty_business_service",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages a business service in PagerDuty.`,
+			Description:      ``,
+			Keywords: []string{
+				"business",
+				"service",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the business service.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A human-friendly description of the service. If not set, a placeholder of "Managed by Terraform" will be set.`,
+				},
+				resource.Attribute{
+					Name:        "point_of_contact",
+					Description: `(Optional) The owner of the business service.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Default value is ` + "`" + `business_service` + "`" + `. Can also be set as ` + "`" + `business_service_reference` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the service.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the service.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "pagerduty_escalation_policy",
 			Category:         "Resources",
 			ShortDescription: `Creates and manages an escalation policy in PagerDuty.`,
@@ -131,7 +170,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "catch_all",
-					Description: `A boolean that indicates whether the rule is a catch all for the account. This field is read-only through the PagerDuty API. ## Import Escalation policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_event_rule.main 19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A boolean that indicates whether the rule is a catch all for the account. This field is read-only through the PagerDuty API. ## Import Event rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_event_rule.main 19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -141,7 +180,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "catch_all",
-					Description: `A boolean that indicates whether the rule is a catch all for the account. This field is read-only through the PagerDuty API. ## Import Escalation policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_event_rule.main 19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A boolean that indicates whether the rule is a catch all for the account. This field is read-only through the PagerDuty API. ## Import Event rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_event_rule.main 19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -219,6 +258,175 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the maintenance window. ## Import Maintenance windows can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_maintenance_window.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "pagerduty_ruleset",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages an ruleset in PagerDuty.`,
+			Description:      ``,
+			Keywords: []string{
+				"ruleset",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the ruleset.`,
+				},
+				resource.Attribute{
+					Name:        "team",
+					Description: `(Optional) Reference to the team that owns the ruleset. If none is specified, only admins have access. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the ruleset.`,
+				},
+				resource.Attribute{
+					Name:        "routing_keys",
+					Description: `Routing keys routed to this ruleset.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of ruleset. Currently only sets to ` + "`" + `global` + "`" + `. ## Import Rulesets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_ruleset.main 19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the ruleset.`,
+				},
+				resource.Attribute{
+					Name:        "routing_keys",
+					Description: `Routing keys routed to this ruleset.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of ruleset. Currently only sets to ` + "`" + `global` + "`" + `. ## Import Rulesets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_ruleset.main 19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "pagerduty_ruleset_rule",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages a ruleset rule in PagerDuty.`,
+			Description:      ``,
+			Keywords: []string{
+				"ruleset",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ruleset",
+					Description: `(Required) The ID of the ruleset that the rule belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "conditions",
+					Description: `(Required) Conditions evaluated to check if an event matches this event rule. Is always empty for the catch all rule, though.`,
+				},
+				resource.Attribute{
+					Name:        "position",
+					Description: `(Optional) Position/index of the rule within the ruleset.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `(Optional) Indicates whether the rule is disabled and would therefore not be evaluated.`,
+				},
+				resource.Attribute{
+					Name:        "time_frame",
+					Description: `(Optional) Settings for [scheduling the rule](https://support.pagerduty.com/docs/rulesets#section-scheduled-event-rules).`,
+				},
+				resource.Attribute{
+					Name:        "actions",
+					Description: `(Optional) Actions to apply to an event if the conditions match. ### Conditions (` + "`" + `conditions` + "`" + `) supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "operator",
+					Description: `Operator to combine sub-conditions. Can be ` + "`" + `and` + "`" + ` or ` + "`" + `or` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "subconditions",
+					Description: `List of sub-conditions that define the the condition. ### Sub-Conditions (` + "`" + `subconditions` + "`" + `) supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "operator",
+					Description: `Type of operator to apply to the sub-condition. Can be ` + "`" + `exists` + "`" + `,` + "`" + `nexists` + "`" + `,` + "`" + `equals` + "`" + `,` + "`" + `nequals` + "`" + `,` + "`" + `contains` + "`" + `,` + "`" + `ncontains` + "`" + `,` + "`" + `matches` + "`" + `, or ` + "`" + `nmatches` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "parameter",
+					Description: `Parameter for the sub-condition. It requires both a ` + "`" + `path` + "`" + ` and ` + "`" + `value` + "`" + ` to be set. ### Action (` + "`" + `actions` + "`" + `) supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `Field where the data is being copied from.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `Field where the data is being copied to.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `The conditions that need to be met for the extraction to happen.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Boolean value that indicates if the alert should be suppressed before the indicated threshold values are met.`,
+				},
+				resource.Attribute{
+					Name:        "threshold_value",
+					Description: `The number of alerts that should be suppressed.`,
+				},
+				resource.Attribute{
+					Name:        "threshold_time_amount",
+					Description: `The number value of the ` + "`" + `threshold_time_unit` + "`" + ` before an incident is created.`,
+				},
+				resource.Attribute{
+					Name:        "threshold_time_unit",
+					Description: `The ` + "`" + `minutes` + "`" + `,` + "`" + `hours` + "`" + `, or ` + "`" + `days` + "`" + ` that the ` + "`" + `threshold_time_amount` + "`" + ` should be measured. ### Time Frame (` + "`" + `time_frame` + "`" + `) supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "weekdays",
+					Description: `An integer array representing which days during the week the rule executes. For example ` + "`" + `weekdays = [1,3,7]` + "`" + ` would execute on Monday, Wednesday and Sunday.`,
+				},
+				resource.Attribute{
+					Name:        "timezone",
+					Description: `Timezone for the given schedule.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `Time when the schedule will start. Unix timestamp in milliseconds. For example, if you have a rule with a ` + "`" + `start_time` + "`" + ` of ` + "`" + `0` + "`" + ` and a ` + "`" + `duration` + "`" + ` of ` + "`" + `60,000` + "`" + ` then that rule would be active from ` + "`" + `00:00` + "`" + ` to ` + "`" + `00:01` + "`" + `. If the ` + "`" + `start_time` + "`" + ` was ` + "`" + `3,600,000` + "`" + ` the it would be active starting at ` + "`" + `01:00` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `Length of time the schedule will be active. Unix timestamp in milliseconds.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `Beginning of the scheduled time when the rule should execute. Unix timestamp in milliseconds.`,
+				},
+				resource.Attribute{
+					Name:        "end_time",
+					Description: `Ending of the scheduled time when the rule should execute. Unix timestamp in milliseconds. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the rule.`,
+				},
+				resource.Attribute{
+					Name:        "catch_all",
+					Description: `Indicates whether the rule is the last rule of the ruleset that serves as a catch-all. It has limited functionality compared to other rules. ## Import Ruleset rules can be imported using using the related ` + "`" + `ruleset` + "`" + ` id and the ` + "`" + `ruleset_rule` + "`" + ` id separated by a dot, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_ruleset_rule.main a19cdca1-3d5e-4b52-bfea-8c8de04da243.19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the rule.`,
+				},
+				resource.Attribute{
+					Name:        "catch_all",
+					Description: `Indicates whether the rule is the last rule of the ruleset that serves as a catch-all. It has limited functionality compared to other rules. ## Import Ruleset rules can be imported using using the related ` + "`" + `ruleset` + "`" + ` id and the ` + "`" + `ruleset_rule` + "`" + ` id separated by a dot, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_ruleset_rule.main a19cdca1-3d5e-4b52-bfea-8c8de04da243.19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -404,7 +612,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `Designates either the start or the end of the scheduled action. Can be ` + "`" + `support_hours_start` + "`" + ` or ` + "`" + `support_hours_end` + "`" + `. Below is an example for a ` + "`" + `pagerduty_service` + "`" + ` resource with ` + "`" + `incident_urgency_rules` + "`" + ` with ` + "`" + `type = "use_support_hours"` + "`" + `, ` + "`" + `support_hours` + "`" + ` and a default ` + "`" + `scheduled_action` + "`" + ` as well. ` + "`" + `` + "`" + `` + "`" + `hcl resource "pagerduty_service" "foo" { name = "bar" description = "bar bar bar" auto_resolve_timeout = 3600 acknowledgement_timeout = 3600 escalation_policy = "${pagerduty_escalation_policy.foo.id}" incident_urgency_rule { type = "use_support_hours" during_support_hours { type = "constant" urgency = "high" } outside_support_hours { type = "constant" urgency = "low" } } support_hours { type = "fixed_time_per_day" time_zone = "America/Lima" start_time = "09:00:00" end_time = "17:00:00" days_of_week = [1, 2, 3, 4, 5] } scheduled_actions { type = "urgency_change" to_urgency = "high" at { type = "named_time" name = "support_hours_start" } } } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference The following attributes are exported:`,
+					Description: `Designates either the start or the end of the scheduled action. Can be ` + "`" + `support_hours_start` + "`" + ` or ` + "`" + `support_hours_end` + "`" + `. Below is an example for a ` + "`" + `pagerduty_service` + "`" + ` resource with ` + "`" + `incident_urgency_rules` + "`" + ` with ` + "`" + `type = "use_support_hours"` + "`" + `, ` + "`" + `support_hours` + "`" + ` and a default ` + "`" + `scheduled_action` + "`" + ` as well. ` + "`" + `` + "`" + `` + "`" + `hcl resource "pagerduty_service" "foo" { name = "bar" description = "bar bar bar" auto_resolve_timeout = 3600 acknowledgement_timeout = 3600 escalation_policy = pagerduty_escalation_policy.foo.id incident_urgency_rule { type = "use_support_hours" during_support_hours { type = "constant" urgency = "high" } outside_support_hours { type = "constant" urgency = "low" } } support_hours { type = "fixed_time_per_day" time_zone = "America/Lima" start_time = "09:00:00" end_time = "17:00:00" days_of_week = [1, 2, 3, 4, 5] } scheduled_actions { type = "urgency_change" to_urgency = "high" at { type = "named_time" name = "support_hours_start" } } } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -415,6 +623,41 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the service.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "pagerduty_service_dependency",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages a business service dependency in PagerDuty.`,
+			Description:      ``,
+			Keywords: []string{
+				"service",
+				"dependency",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dependency",
+					Description: `(Required) The relationship between the ` + "`" + `supporting_service` + "`" + ` and ` + "`" + `dependent_service` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "supporting_service",
+					Description: `(Required) The service that supports the dependent service.`,
+				},
+				resource.Attribute{
+					Name:        "dependent_service",
+					Description: `(Required) The service that id dependent on the supporting service. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the service dependency.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the service dependency.`,
 				},
 			},
 		},
@@ -544,7 +787,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "team_id",
-					Description: `(Required) The ID of the team in which the user will belong. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The ID of the team in which the user will belong.`,
 				},
 				resource.Attribute{
 					Name:        "user_id",
@@ -552,7 +795,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "team_id",
-					Description: `The team ID the user belongs to. ## Import Team memberships can be imported using the ` + "`" + `user_id` + "`" + ` and ` + "`" + `team_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_team_membership.main PLBP09X:PLB09Z ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The team ID the user belongs to.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -562,7 +805,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "team_id",
-					Description: `The team ID the user belongs to. ## Import Team memberships can be imported using the ` + "`" + `user_id` + "`" + ` and ` + "`" + `team_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_team_membership.main PLBP09X:PLB09Z ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The team ID the user belongs to.`,
 				},
 			},
 		},
@@ -590,7 +833,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "role",
-					Description: `(Optional) The user role. Account must have the ` + "`" + `read_only_users` + "`" + ` ability to set a user as a ` + "`" + `read_only_user` + "`" + `. Can be ` + "`" + `admin` + "`" + `, ` + "`" + `limited_user` + "`" + `, ` + "`" + `observer` + "`" + `, ` + "`" + `owner` + "`" + `, ` + "`" + `read_only_user` + "`" + ` or ` + "`" + `user` + "`" + ``,
+					Description: `(Optional) The user role. Account must have the ` + "`" + `read_only_users` + "`" + ` ability to set a user as a ` + "`" + `read_only_user` + "`" + `. Can be ` + "`" + `admin` + "`" + `, ` + "`" + `limited_user` + "`" + `, ` + "`" + `observer` + "`" + `, ` + "`" + `owner` + "`" + `, ` + "`" + `read_only_user` + "`" + `, ` + "`" + `restricted_user` + "`" + `, or ` + "`" + `user` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "job_title",
@@ -712,22 +955,75 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "pagerduty_user_notification_rule",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages notification rules for a user in PagerDuty.`,
+			Description:      ``,
+			Keywords: []string{
+				"user",
+				"notification",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `(Required) The ID of the user.`,
+				},
+				resource.Attribute{
+					Name:        "start_delay_in_minutes",
+					Description: `(Required) The delay before firing the rule, in minutes.`,
+				},
+				resource.Attribute{
+					Name:        "urgency",
+					Description: `(Required) Which incident urgency this rule is used for. Account must have the ` + "`" + `urgencies` + "`" + ` ability to have a low urgency notification rule. Can be ` + "`" + `high` + "`" + ` or ` + "`" + `low` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "contact_method",
+					Description: `(Required) A contact method block, configured as a block described below. Contact methods (` + "`" + `contact_method` + "`" + `) supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) The id of the referenced contact method.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of contact method. Can be ` + "`" + `email_contact_method` + "`" + `, ` + "`" + `phone_contact_method` + "`" + `, ` + "`" + `push_notification_contact_method` + "`" + ` or ` + "`" + `sms_contact_method` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the user notification rule. ## Import User notification rules can be imported using the ` + "`" + `user_id` + "`" + ` and the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_user_notification_rule.main PXPGF42:PPSCXAN ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the user notification rule. ## Import User notification rules can be imported using the ` + "`" + `user_id` + "`" + ` and the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_user_notification_rule.main PXPGF42:PPSCXAN ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
 	}
 
 	resourcesMap = map[string]int{
 
-		"pagerduty_addon":               0,
-		"pagerduty_escalation_policy":   1,
-		"pagerduty_event_rule":          2,
-		"pagerduty_extension":           3,
-		"pagerduty_maintenance_window":  4,
-		"pagerduty_schedule":            5,
-		"pagerduty_service":             6,
-		"pagerduty_service_integration": 7,
-		"pagerduty_team":                8,
-		"pagerduty_team_membership":     9,
-		"pagerduty_user":                10,
-		"pagerduty_user_contact_method": 11,
+		"pagerduty_addon":                  0,
+		"pagerduty_business_service":       1,
+		"pagerduty_escalation_policy":      2,
+		"pagerduty_event_rule":             3,
+		"pagerduty_extension":              4,
+		"pagerduty_maintenance_window":     5,
+		"pagerduty_ruleset":                6,
+		"pagerduty_ruleset_rule":           7,
+		"pagerduty_schedule":               8,
+		"pagerduty_service":                9,
+		"pagerduty_service_dependency":     10,
+		"pagerduty_service_integration":    11,
+		"pagerduty_team":                   12,
+		"pagerduty_team_membership":        13,
+		"pagerduty_user":                   14,
+		"pagerduty_user_contact_method":    15,
+		"pagerduty_user_notification_rule": 16,
 	}
 )
 

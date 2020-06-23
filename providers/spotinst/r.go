@@ -11,7 +11,7 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "elastigroup_aws",
+			Type:             "spotinst_elastigroup_aws",
 			Category:         "Elastigroup",
 			ShortDescription: `Provides a Spotinst AWS group resource.`,
 			Description:      ``,
@@ -290,23 +290,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "adjustment_percentage",
-					Description: `(Optional; Min 1) The percentage of instances to add or remove. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl scheduled_task { task_type = "backup_ami" cron_expression = "" start_time = "1970-01-01T01:00:00Z" frequency = "hourly" scale_target_capacity = 5 scale_min_capacity = 0 scale_max_capacity = 10 is_enabled = false target_capacity = 5 min_capacity = 0 max_capacity = 10 batch_size_percentage = 33 grace_period = 300 } ` + "`" + `` + "`" + `` + "`" + ` <a id="scaling-policy"></a> ## Scaling Policies Each ` + "`" + `scaling_`,
-				},
-				resource.Attribute{
-					Name:        "namespace",
-					Description: `(Required) The namespace for the alarm's associated metric.`,
-				},
-				resource.Attribute{
-					Name:        "metric_name",
-					Description: `(Required) The name of the metric, with or without spaces.`,
-				},
-				resource.Attribute{
-					Name:        "threshold",
-					Description: `(Required) The value against which the specified statistic is compared.`,
+					Description: `(Optional; Min 1) The percentage of instances to add or remove. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl scheduled_task { task_type = "backup_ami" cron_expression = "" start_time = "1970-01-01T01:00:00Z" frequency = "hourly" scale_target_capacity = 5 scale_min_capacity = 0 scale_max_capacity = 10 is_enabled = false target_capacity = 5 min_capacity = 0 max_capacity = 10 batch_size_percentage = 33 grace_period = 300 } ` + "`" + `` + "`" + `` + "`" + ` <a id="scaling-policy"></a> ## Scaling Policies ` + "`" + `scaling_up_policy` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "policy_name",
 					Description: `(Required) The name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "metric_name",
+					Description: `(Required) The name of the metric, with or without spaces.`,
 				},
 				resource.Attribute{
 					Name:        "statistic",
@@ -315,6 +307,18 @@ var (
 				resource.Attribute{
 					Name:        "unit",
 					Description: `(Required) The unit for the alarm's associated metric. Valid values: ` + "`" + `"percent` + "`" + `, ` + "`" + `"seconds"` + "`" + `, ` + "`" + `"microseconds"` + "`" + `, ` + "`" + `"milliseconds"` + "`" + `, ` + "`" + `"bytes"` + "`" + `, ` + "`" + `"kilobytes"` + "`" + `, ` + "`" + `"megabytes"` + "`" + `, ` + "`" + `"gigabytes"` + "`" + `, ` + "`" + `"terabytes"` + "`" + `, ` + "`" + `"bits"` + "`" + `, ` + "`" + `"kilobits"` + "`" + `, ` + "`" + `"megabits"` + "`" + `, ` + "`" + `"gigabits"` + "`" + `, ` + "`" + `"terabits"` + "`" + `, ` + "`" + `"count"` + "`" + `, ` + "`" + `"bytes/second"` + "`" + `, ` + "`" + `"kilobytes/second"` + "`" + `, ` + "`" + `"megabytes/second"` + "`" + `, ` + "`" + `"gigabytes/second"` + "`" + `, ` + "`" + `"terabytes/second"` + "`" + `, ` + "`" + `"bits/second"` + "`" + `, ` + "`" + `"kilobits/second"` + "`" + `, ` + "`" + `"megabits/second"` + "`" + `, ` + "`" + `"gigabits/second"` + "`" + `, ` + "`" + `"terabits/second"` + "`" + `, ` + "`" + `"count/second"` + "`" + `, ` + "`" + `"none"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "threshold",
+					Description: `(Required) The value against which the specified statistic is compared.`,
+				},
+				resource.Attribute{
+					Name:        "action_type",
+					Description: `(Optional; if not using ` + "`" + `min_target_capacity` + "`" + ` or ` + "`" + `max_target_capacity` + "`" + `) The type of action to perform for scaling. Valid values: ` + "`" + `"adjustment"` + "`" + `, ` + "`" + `"percentageAdjustment"` + "`" + `, ` + "`" + `"setMaxTarget"` + "`" + `, ` + "`" + `"setMinTarget"` + "`" + `, ` + "`" + `"updateCapacity"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Required) The namespace for the alarm's associated metric.`,
 				},
 				resource.Attribute{
 					Name:        "is_enabled",
@@ -350,11 +354,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "source",
-					Description: `(Optional) The source of the metric. Valid values: ` + "`" + `"cloudWatch"` + "`" + `, ` + "`" + `"spectrum"` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "action_type",
-					Description: `(Optional; if not using ` + "`" + `min_target_capacity` + "`" + ` or ` + "`" + `max_target_capacity` + "`" + `) The type of action to perform for scaling. Valid values: ` + "`" + `"adjustment"` + "`" + `, ` + "`" + `"percentageAdjustment"` + "`" + `, ` + "`" + `"setMaxTarget"` + "`" + `, ` + "`" + `"setMinTarget"` + "`" + `, ` + "`" + `"updateCapacity"` + "`" + `. If you do not specify an action type, you can only use – ` + "`" + `adjustment` + "`" + `, ` + "`" + `minTargetCapacity` + "`" + `, ` + "`" + `maxTargetCapacity` + "`" + `. While using action_type, please also set the following: When using ` + "`" + `adjustment` + "`" + ` – set the field ` + "`" + `adjustment` + "`" + ` When using ` + "`" + `percentageAdjustment` + "`" + ` - set the field ` + "`" + `adjustment` + "`" + ` When using ` + "`" + `setMaxTarget` + "`" + ` – set the field ` + "`" + `max_target_capacity` + "`" + ` When using ` + "`" + `setMinTarget` + "`" + ` – set the field ` + "`" + `min_target_capacity` + "`" + ` When using ` + "`" + `updateCapacity` + "`" + ` – set the fields ` + "`" + `minimum` + "`" + `, ` + "`" + `maximum` + "`" + `, and ` + "`" + `target` + "`" + ``,
+					Description: `(Optional) The source of the metric. Valid values: ` + "`" + `"cloudWatch"` + "`" + `, ` + "`" + `"spectrum"` + "`" + `. If you do not specify an action type, you can only use – ` + "`" + `adjustment` + "`" + `, ` + "`" + `minTargetCapacity` + "`" + `, ` + "`" + `maxTargetCapacity` + "`" + `. While using action_type, please also set the following: When using ` + "`" + `adjustment` + "`" + ` – set the field ` + "`" + `adjustment` + "`" + ` When using ` + "`" + `setMinTarget` + "`" + ` – set the field ` + "`" + `min_target_capacity` + "`" + ` When using ` + "`" + `updateCapacity` + "`" + ` – set the fields ` + "`" + `minimum` + "`" + `, ` + "`" + `maximum` + "`" + `, and ` + "`" + `target` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "adjustment",
@@ -363,6 +363,86 @@ var (
 				resource.Attribute{
 					Name:        "min_target_capacity",
 					Description: `(Optional; if not using ` + "`" + `adjustment` + "`" + `; available only for scale up). The number of the desired target (and minimum) capacity`,
+				},
+				resource.Attribute{
+					Name:        "minimum",
+					Description: `(Optional; if using ` + "`" + `updateCapacity` + "`" + `) The minimal number of instances to have in the group.`,
+				},
+				resource.Attribute{
+					Name:        "maximum",
+					Description: `(Optional; if using ` + "`" + `updateCapacity` + "`" + `) The maximal number of instances to have in the group.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Optional; if using ` + "`" + `updateCapacity` + "`" + `) The target number of instances to have in the group. ` + "`" + `scaling_down_policy` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "policy_name",
+					Description: `(Required) The name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "metric_name",
+					Description: `(Required) The name of the metric, with or without spaces.`,
+				},
+				resource.Attribute{
+					Name:        "statistic",
+					Description: `(Optional, Default: ` + "`" + `"average"` + "`" + `) The metric statistics to return. For information about specific statistics go to [Statistics](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/index.html?CHAP_TerminologyandKeyConcepts.html#Statistic) in the Amazon CloudWatch Developer Guide.`,
+				},
+				resource.Attribute{
+					Name:        "unit",
+					Description: `(Required) The unit for the alarm's associated metric. Valid values: ` + "`" + `"percent` + "`" + `, ` + "`" + `"seconds"` + "`" + `, ` + "`" + `"microseconds"` + "`" + `, ` + "`" + `"milliseconds"` + "`" + `, ` + "`" + `"bytes"` + "`" + `, ` + "`" + `"kilobytes"` + "`" + `, ` + "`" + `"megabytes"` + "`" + `, ` + "`" + `"gigabytes"` + "`" + `, ` + "`" + `"terabytes"` + "`" + `, ` + "`" + `"bits"` + "`" + `, ` + "`" + `"kilobits"` + "`" + `, ` + "`" + `"megabits"` + "`" + `, ` + "`" + `"gigabits"` + "`" + `, ` + "`" + `"terabits"` + "`" + `, ` + "`" + `"count"` + "`" + `, ` + "`" + `"bytes/second"` + "`" + `, ` + "`" + `"kilobytes/second"` + "`" + `, ` + "`" + `"megabytes/second"` + "`" + `, ` + "`" + `"gigabytes/second"` + "`" + `, ` + "`" + `"terabytes/second"` + "`" + `, ` + "`" + `"bits/second"` + "`" + `, ` + "`" + `"kilobits/second"` + "`" + `, ` + "`" + `"megabits/second"` + "`" + `, ` + "`" + `"gigabits/second"` + "`" + `, ` + "`" + `"terabits/second"` + "`" + `, ` + "`" + `"count/second"` + "`" + `, ` + "`" + `"none"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "threshold",
+					Description: `(Required) The value against which the specified statistic is compared.`,
+				},
+				resource.Attribute{
+					Name:        "action_type",
+					Description: `(Optional; if not using ` + "`" + `min_target_capacity` + "`" + ` or ` + "`" + `max_target_capacity` + "`" + `) The type of action to perform for scaling. Valid values: ` + "`" + `"adjustment"` + "`" + `, ` + "`" + `"percentageAdjustment"` + "`" + `, ` + "`" + `"setMaxTarget"` + "`" + `, ` + "`" + `"setMinTarget"` + "`" + `, ` + "`" + `"updateCapacity"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Required) The namespace for the alarm's associated metric.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) Specifies whether the scaling policy described in this block is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "period",
+					Description: `(Optional, Default: ` + "`" + `300` + "`" + `) The granularity, in seconds, of the returned datapoints. Period must be at least 60 seconds and must be a multiple of 60.`,
+				},
+				resource.Attribute{
+					Name:        "evaluation_periods",
+					Description: `(Optional, Default: ` + "`" + `1` + "`" + `) The number of periods over which data is compared to the specified threshold.`,
+				},
+				resource.Attribute{
+					Name:        "cooldown",
+					Description: `(Optional, Default: ` + "`" + `300` + "`" + `) The amount of time, in seconds, after a scaling activity completes and before the next scaling activity can start. If this parameter is not specified, the default cooldown period for the group applies.`,
+				},
+				resource.Attribute{
+					Name:        "dimensions",
+					Description: `(Optional) A list of dimensions describing qualities of the metric.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The dimension name.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The dimension value.`,
+				},
+				resource.Attribute{
+					Name:        "operator",
+					Description: `(Optional, Scale Up Default: ` + "`" + `gte` + "`" + `, Scale Down Default: ` + "`" + `lte` + "`" + `) The operator to use in order to determine if the scaling policy is applicable. Valid values: ` + "`" + `"gt"` + "`" + `, ` + "`" + `"gte"` + "`" + `, ` + "`" + `"lt"` + "`" + `, ` + "`" + `"lte"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Optional) The source of the metric. Valid values: ` + "`" + `"cloudWatch"` + "`" + `, ` + "`" + `"spectrum"` + "`" + `. If you do not specify an action type, you can only use – ` + "`" + `adjustment` + "`" + `, ` + "`" + `minTargetCapacity` + "`" + `, ` + "`" + `maxTargetCapacity` + "`" + `. While using action_type, please also set the following: When using ` + "`" + `adjustment` + "`" + ` – set the field ` + "`" + `adjustment` + "`" + ` When using ` + "`" + `updateCapacity` + "`" + ` – set the fields ` + "`" + `minimum` + "`" + `, ` + "`" + `maximum` + "`" + `, and ` + "`" + `target` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "adjustment",
+					Description: `(Optional; if not using ` + "`" + `min_target_capacity` + "`" + ` or ` + "`" + `max_target_capacity` + "`" + `;) The number of instances to add/remove to/from the target capacity when scale is needed. Can be used as advanced expression for scaling of instances to add/remove to/from the target capacity when scale is needed. You can see more information here: Advanced expression. Example value: ` + "`" + `"MAX(currCapacity / 5, value`,
 				},
 				resource.Attribute{
 					Name:        "max_target_capacity",
@@ -378,11 +458,55 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target",
+					Description: `(Optional; if using ` + "`" + `updateCapacity` + "`" + `) The target number of instances to have in the group. ` + "`" + `scaling_target_policy` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "policy_name",
+					Description: `(Required) The name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "metric_name",
+					Description: `(Required) The name of the metric, with or without spaces.`,
+				},
+				resource.Attribute{
+					Name:        "statistic",
+					Description: `(Optional, Default: ` + "`" + `"average"` + "`" + `) The metric statistics to return. For information about specific statistics go to [Statistics](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/index.html?CHAP_TerminologyandKeyConcepts.html#Statistic) in the Amazon CloudWatch Developer Guide.`,
+				},
+				resource.Attribute{
+					Name:        "unit",
+					Description: `(Required) The unit for the alarm's associated metric. Valid values: ` + "`" + `"percent` + "`" + `, ` + "`" + `"seconds"` + "`" + `, ` + "`" + `"microseconds"` + "`" + `, ` + "`" + `"milliseconds"` + "`" + `, ` + "`" + `"bytes"` + "`" + `, ` + "`" + `"kilobytes"` + "`" + `, ` + "`" + `"megabytes"` + "`" + `, ` + "`" + `"gigabytes"` + "`" + `, ` + "`" + `"terabytes"` + "`" + `, ` + "`" + `"bits"` + "`" + `, ` + "`" + `"kilobits"` + "`" + `, ` + "`" + `"megabits"` + "`" + `, ` + "`" + `"gigabits"` + "`" + `, ` + "`" + `"terabits"` + "`" + `, ` + "`" + `"count"` + "`" + `, ` + "`" + `"bytes/second"` + "`" + `, ` + "`" + `"kilobytes/second"` + "`" + `, ` + "`" + `"megabytes/second"` + "`" + `, ` + "`" + `"gigabytes/second"` + "`" + `, ` + "`" + `"terabytes/second"` + "`" + `, ` + "`" + `"bits/second"` + "`" + `, ` + "`" + `"kilobits/second"` + "`" + `, ` + "`" + `"megabits/second"` + "`" + `, ` + "`" + `"gigabits/second"` + "`" + `, ` + "`" + `"terabits/second"` + "`" + `, ` + "`" + `"count/second"` + "`" + `, ` + "`" + `"none"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Required) The namespace for the alarm's associated metric.`,
+				},
+				resource.Attribute{
+					Name:        "cooldown",
+					Description: `(Optional, Default: ` + "`" + `300` + "`" + `) The amount of time, in seconds, after a scaling activity completes and before the next scaling activity can start. If this parameter is not specified, the default cooldown period for the group applies.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Optional) The source of the metric. Valid values: ` + "`" + `"cloudWatch"` + "`" + `, ` + "`" + `"spectrum"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dimensions",
+					Description: `(Optional) A list of dimensions describing qualities of the metric.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The dimension name.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The dimension value.`,
+				},
+				resource.Attribute{
+					Name:        "target",
 					Description: `(Optional; if using ` + "`" + `updateCapacity` + "`" + `) The target number of instances to have in the group. ` + "`" + `scaling_target_policies` + "`" + ` support predictive scaling:`,
 				},
 				resource.Attribute{
 					Name:        "predictive_mode",
-					Description: `(Optional) Start a metric prediction process to determine the expected target metric value within the next two days. See [Predictive Autoscaling](https://api.spotinst.com/elastigroup-for-aws/concepts/scaling-concepts/predictive-autoscaling/) documentation for more info. Valid values: ` + "`" + `FORECAST_AND_SCALE` + "`" + `, ` + "`" + `FORECAST_ONLY` + "`" + `. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl scaling_up_policy { policy_name = "policy-name" metric_name = "CPUUtilization" namespace = "AWS/EC2" source = "" statistic = "average" unit = "" cooldown = 60 is_enabled = false dimensions { name = "name-1" value = "value-1" } threshold = 10 operator = "gt" evaluation_periods = 10 period = 60 // === MIN TARGET =================== action_type = "setMinTarget" min_target_capacity = 1 // ================================== // === ADJUSTMENT =================== # action_type = "adjustment" # action_type = "percentageAdjustment" # adjustment = "MAX(5,10)" // ================================== // === UPDATE CAPACITY ============== # action_type = "updateCapacity" # minimum = 0 # maximum = 10 # target = 5 // ================================== } ` + "`" + `` + "`" + `` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `hcl scaling_target_policy { policy_name = "" metric_name = "" namespace = "" source = "" statistic = "" unit = "" cooldown = 10 target = 1 predictive_mode = "" dimensions { name = "" value = "" } } ` + "`" + `` + "`" + `` + "`" + ` <a id="network-interface"></a> ## Network Interfaces Each of the ` + "`" + `network_interface` + "`" + ` attributes controls a portion of the AWS Instance's "Elastic Network Interfaces". It's a good idea to familiarize yourself with [AWS's Elastic Network Interfaces docs](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html) to understand the implications of using these attributes.`,
+					Description: `(Optional) Start a metric prediction process to determine the expected target metric value within the next two days. See [Predictive Autoscaling](https://api.spotinst.com/elastigroup-for-aws/concepts/scaling-concepts/predictive-autoscaling/) documentation for more info. Valid values: ` + "`" + `FORECAST_AND_SCALE` + "`" + `, ` + "`" + `FORECAST_ONLY` + "`" + `. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl scaling_up_policy { policy_name = "policy-name" metric_name = "CPUUtilization" namespace = "AWS/EC2" source = "" statistic = "average" unit = "" cooldown = 60 dimensions { name = "name-1" value = "value-1" } threshold = 10 operator = "gt" evaluation_periods = 10 period = 60 // === MIN TARGET =================== action_type = "setMinTarget" min_target_capacity = 1 // ================================== // === ADJUSTMENT =================== # action_type = "adjustment" # action_type = "percentageAdjustment" # adjustment = "MAX(5,10)" // ================================== // === UPDATE CAPACITY ============== # action_type = "updateCapacity" # minimum = 0 # maximum = 10 # target = 5 // ================================== } ` + "`" + `` + "`" + `` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `hcl scaling_target_policy { policy_name = "" metric_name = "" namespace = "" source = "" statistic = "" unit = "" cooldown = 10 target = 1 predictive_mode = "" dimensions { name = "" value = "" } } ` + "`" + `` + "`" + `` + "`" + ` <a id="network-interface"></a> ## Network Interfaces Each of the ` + "`" + `network_interface` + "`" + ` attributes controls a portion of the AWS Instance's "Elastic Network Interfaces". It's a good idea to familiarize yourself with [AWS's Elastic Network Interfaces docs](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html) to understand the implications of using these attributes.`,
 				},
 				resource.Attribute{
 					Name:        "network_interface_id",
@@ -926,7 +1050,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "batch_min_healthy_percentage",
-					Description: `(Optional, Default ` + "`" + `50` + "`" + `) Indicates the threshold of minimum healthy instances in single batch. If the amount of healthy instances in single batch is under the threshold, the deployment will fail. Range ` + "`" + `1` + "`" + ` - ` + "`" + `100` + "`" + `. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy { should_resume_stateful = false should_roll = false auto_apply_tags = false roll_config { batch_size_percentage = 33 health_check_type = "ELB" grace_period = 300 wait_for_roll_percentage = 10 wait_for_roll_timeout = 1500 strategy { action = "REPLACE_SERVER" should_drain_instances = false batch_min_healthy_percentage = 10 } } } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional, Default ` + "`" + `50` + "`" + `) Indicates the threshold of minimum healthy instances in single batch. If the amount of healthy instances in single batch is under the threshold, the deployment will fail. Range ` + "`" + `1` + "`" + ` - ` + "`" + `100` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "on_failure",
+					Description: `(Optional) Set detach options to the deployment.`,
+				},
+				resource.Attribute{
+					Name:        "action_type",
+					Description: `(Required) Sets the action that will take place, Accepted values are: ` + "`" + `DETACH_OLD` + "`" + `, ` + "`" + `DETACH_NEW` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "should_handle_all_batches",
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) Indicator if the action should apply to all batches of the deployment or only the latest batch.`,
+				},
+				resource.Attribute{
+					Name:        "draining_timeout",
+					Description: `(Optional, Default: The Elastigroups draining time out) Indicates (in seconds) the timeout to wait until instance are detached.`,
+				},
+				resource.Attribute{
+					Name:        "action_type",
+					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) Decrementing the group target capacity after detaching the instances. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy { should_resume_stateful = false should_roll = false auto_apply_tags = false roll_config { batch_size_percentage = 33 health_check_type = "ELB" grace_period = 300 wait_for_roll_percentage = 10 wait_for_roll_timeout = 1500 strategy { action = "REPLACE_SERVER" should_drain_instances = false batch_min_healthy_percentage = 10 on_failure { action_type = "DETACH_NEW" should_handle_all_batches = true batch_num = 2 draining_timeout = 600 should_decrement_target_capacity = true } } } } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -942,7 +1086,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "elastigroup_aws_beanstalk",
+			Type:             "spotinst_elastigroup_aws_beanstalk",
 			Category:         "Elastigroup",
 			ShortDescription: `Provides a Spotinst AWS group resource using Elastic Beanstalk.`,
 			Description:      ``,
@@ -1105,7 +1249,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "elastigroup_azure",
+			Type:             "spotinst_elastigroup_azure",
 			Category:         "Elastigroup",
 			ShortDescription: `Provides a Spotinst elastigroup resource for Microsoft Azure.`,
 			Description:      ``,
@@ -1463,7 +1607,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "elastigroup_gcp",
+			Type:             "spotinst_elastigroup_gcp",
 			Category:         "Elastigroup",
 			ShortDescription: `Provides a Spotinst elastigroup resource for Google Cloud.`,
 			Description:      ``,
@@ -1813,7 +1957,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "elastigroup_gke",
+			Type:             "spotinst_elastigroup_gke",
 			Category:         "Elastigroup",
 			ShortDescription: `Provides a Spotinst elastigroup resource for Google Cloud using the Google Kubernetes Engine.`,
 			Description:      ``,
@@ -1899,13 +2043,93 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "managed_instance",
+			Type:             "spotinst_health_check",
+			Category:         "Health Check",
+			ShortDescription: `Provides a Spotinst Health Check resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"health",
+				"check",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the health check.`,
+				},
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `(Required) The ID of the resource to check.`,
+				},
+				resource.Attribute{
+					Name:        "check",
+					Description: `(Required) Describes the check to execute.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Required) The protocol to use to connect with the instance. Valid values: http, https.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `(Required) The destination for the request.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required) The port to use to connect with the instance.`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `(Required) The amount of time (in seconds) between each health check (minimum: 10).`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Required) the amount of time (in seconds) to wait when receiving a response from the health check.`,
+				},
+				resource.Attribute{
+					Name:        "threshold",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "healthy",
+					Description: `(Required) The number of consecutive successful health checks that must occur before declaring an instance healthy.`,
+				},
+				resource.Attribute{
+					Name:        "unhealthy",
+					Description: `(Required) The number of consecutive failed health checks that must occur before declaring an instance unhealthy.`,
+				},
+				resource.Attribute{
+					Name:        "proxy",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "addr",
+					Description: `(Required) The public hostname / IP where you installed the Spotinst HCS.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required) The port of the Spotinst HCS (default: 80). ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Health Check ID.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Health Check ID.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "spotinst_managed_instance_aws",
 			Category:         "Managed Instance",
 			ShortDescription: `Provides a Spotinst AWS managed instance resource.`,
 			Description:      ``,
 			Keywords: []string{
 				"managed",
 				"instance",
+				"aws",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2157,7 +2381,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "mrscaler_aws",
+			Type:             "spotinst_mrscaler_aws",
 			Category:         "Mr Scaler",
 			ShortDescription: `Provides a Spotinst MrScaler resource.`,
 			Description:      ``,
@@ -2226,7 +2450,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "keep_job_flow_alive",
-					Description: `(Optional) Specifies whether the cluster should remain available after completing all steps. <a id="task-group"></a> ## Task Group (Wrap, Clone, and New strategies)`,
+					Description: `(Optional) Specifies whether the cluster should remain available after completing all steps.`,
+				},
+				resource.Attribute{
+					Name:        "retries",
+					Description: `(Optional) Specifies the maximum number of times a capacity provisioning should be retried if the provisioning timeout is exceeded. <a id="task-group"></a> ## Task Group (Wrap, Clone, and New strategies)`,
 				},
 				resource.Attribute{
 					Name:        "task_instance_types",
@@ -2243,6 +2471,10 @@ var (
 				resource.Attribute{
 					Name:        "task_minimum",
 					Description: `(Optional) The minimal amount of instances in task group.`,
+				},
+				resource.Attribute{
+					Name:        "task_unit",
+					Description: `(Optional, Default: ` + "`" + `instance` + "`" + `) Unit of task group for target, min and max. The unit could be ` + "`" + `instance` + "`" + ` or ` + "`" + `weight` + "`" + `. instance - amount of instances. weight - amount of vCPU.`,
 				},
 				resource.Attribute{
 					Name:        "task_lifecycle",
@@ -2287,6 +2519,10 @@ var (
 				resource.Attribute{
 					Name:        "core_minimum",
 					Description: `(Optional) The minimal amount of instances in core group.`,
+				},
+				resource.Attribute{
+					Name:        "core_unit",
+					Description: `(Optional, Default: ` + "`" + `instance` + "`" + `) Unit of task group for target, min and max. The unit could be ` + "`" + `instance` + "`" + ` or ` + "`" + `weight` + "`" + `. instance - amount of instances. weight - amount of vCPU.`,
 				},
 				resource.Attribute{
 					Name:        "core_lifecycle",
@@ -2546,7 +2782,47 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_capacity",
-					Description: `(Optional) New max capacity for the elastigroup. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) New max capacity for the elastigroup. <a id="termination-policies"></a> ## termination policies ## Example Usage ` + "`" + `` + "`" + `` + "`" + `hcl termination_policies { statements { namespace = "AWS/ElasticMapReduce" metric_name = "AppsRunning" statistic = "average" unit = "count" threshold = 1 period = 360 evaluation_periods = 4 operator = "lte" } statements { namespace = "AWS/ElasticMapReduce" metric_name = "AppsPending" statistic = "average" unit = "count" threshold = 0 period = 300 evaluation_periods = 3 operator = "lte" } } termination_policies { statements { namespace = "AWS/ElasticMapReduce" metric_name = "AppsRunning" statistic = "average" unit = "count" threshold = 0 period = 300 evaluation_periods = 3 operator = "lte" } } ` + "`" + `` + "`" + `` + "`" + ` ## Argument Reference`,
+				},
+				resource.Attribute{
+					Name:        "termination_policies",
+					Description: `(Optional) Allows defining termination policies for EMR clusters based on CloudWatch Metrics.`,
+				},
+				resource.Attribute{
+					Name:        "statements",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Required) Must contain the value: ` + "`" + `AWS/ElasticMapReduce` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "metric_name",
+					Description: `(Required) The name of the metric in CloudWatch which the statement will be based on.`,
+				},
+				resource.Attribute{
+					Name:        "statistic",
+					Description: `(Optional, Default: ` + "`" + `sum` + "`" + `) The aggregation method of the given metric. Valid Values: ` + "`" + `average` + "`" + ` | ` + "`" + `sum` + "`" + ` | ` + "`" + `sampleCount` + "`" + ` | ` + "`" + `maximum` + "`" + ` | ` + "`" + `minimum` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "unit",
+					Description: `(Optional, Default: ` + "`" + `count` + "`" + `) The unit for a given metric. Valid Values: ` + "`" + `seconds` + "`" + ` | ` + "`" + `microseconds` + "`" + ` | ` + "`" + `milliseconds` + "`" + ` | ` + "`" + `bytes` + "`" + ` | ` + "`" + `kilobytes` + "`" + ` | ` + "`" + `megabytes` + "`" + ` | ` + "`" + `gigabytes` + "`" + ` | ` + "`" + `terabytes` + "`" + ` | ` + "`" + `bits` + "`" + ` | ` + "`" + `kilobits` + "`" + ` | ` + "`" + `megabits` + "`" + ` | ` + "`" + `gigabits` + "`" + ` | ` + "`" + `terabits` + "`" + ` | ` + "`" + `percent` + "`" + ` | ` + "`" + `count` + "`" + ` | ` + "`" + `bytes/second` + "`" + ` | ` + "`" + `kilobytes/second` + "`" + ` | ` + "`" + `megabytes/second` + "`" + ` | ` + "`" + `gigabytes/second` + "`" + ` | ` + "`" + `terabytes/second` + "`" + ` | ` + "`" + `bits/second` + "`" + ` | ` + "`" + `kilobits/second` + "`" + ` | ` + "`" + `megabits/second` + "`" + ` | ` + "`" + `gigabits/second` + "`" + ` | ` + "`" + `terabits/second` + "`" + ` | ` + "`" + `count/second` + "`" + ` | ` + "`" + `none` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "threshold",
+					Description: `(Required) The value that the specified statistic is compared to.`,
+				},
+				resource.Attribute{
+					Name:        "period",
+					Description: `(Optional, Default: ` + "`" + `300` + "`" + `) The time window in seconds over which the statistic is applied.`,
+				},
+				resource.Attribute{
+					Name:        "evaluation_periods",
+					Description: `(Optional, Default: ` + "`" + `1` + "`" + `) The number of periods over which data is compared to the specified threshold.`,
+				},
+				resource.Attribute{
+					Name:        "operator",
+					Description: `(Optional, Default: ` + "`" + `gte` + "`" + `) The operator to use in order to determine if the policy is applicable. Valid values: ` + "`" + `gt` + "`" + ` | ` + "`" + `gte` + "`" + ` | ` + "`" + `lt` + "`" + ` | ` + "`" + `lte` + "`" + ` ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2562,7 +2838,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "ocean_aws",
+			Type:             "spotinst_ocean_aws",
 			Category:         "Ocean",
 			ShortDescription: `Provides a Spotinst Ocean resource using AWS.`,
 			Description:      ``,
@@ -2597,7 +2873,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnet_ids",
-					Description: `(Required) A comma-separated list of subnet identifiers for the Ocean cluster. Subnet IDs should be configured with auto assign public ip. ` + "`" + `` + "`" + `` + "`" + `hcl name = "demo" controller_id = "fakeClusterId" region = "us-west-2" max_size = 2 min_size = 1 desired_capacity = 2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) A comma-separated list of subnet identifiers for the Ocean cluster. Subnet IDs should be configured with auto assign public ip.`,
 				},
 				resource.Attribute{
 					Name:        "whitelist",
@@ -2605,7 +2881,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "blacklist",
-					Description: `(Optional) Instance types not allowed in the Ocean cluster. Cannot be configured if ` + "`" + `whitelist` + "`" + ` is configured. ` + "`" + `` + "`" + `` + "`" + `hcl whitelist = ["t1.micro", "m1.small"] // blacklist = ["t1.micro", "m1.small"] ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Instance types not allowed in the Ocean cluster. Cannot be configured if ` + "`" + `whitelist` + "`" + ` is configured.`,
 				},
 				resource.Attribute{
 					Name:        "user_data",
@@ -2657,23 +2933,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Can be set to CLASSIC or TARGET_GROUP ` + "`" + `` + "`" + `` + "`" + `hcl image_id = "ami-79826301" security_groups = ["sg-042d658b3ee907848"] key_name = "fake key" user_data = "echo hello world" iam_instance_profile = "iam-profile" root_volume_size = 20 monitoring = true ebs_optimized = true associate_public_ip_address = true load_balancers { arn = "arn:aws:elasticloadbalancing:us-west-2:fake-arn" type = "TARGET_GROUP" } load_balancers { name = "balancer-name" type = "CLASSIC" } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Can be set to CLASSIC or TARGET_GROUP`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Optionally adds tags to instances launched in an Ocean cluster.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) The tag key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Optional) The tag value.`,
 				},
 				resource.Attribute{
 					Name:        "fallback_to_ondemand",
 					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) If not Spot instance markets are available, enable Ocean to launch On-Demand instances instead.`,
 				},
 				resource.Attribute{
-					Name:        "spot_percentage",
-					Description: `(Optional, Default: ` + "`" + `100` + "`" + `) The percentage of Spot instances the cluster should maintain. Min 0, max 100.`,
-				},
-				resource.Attribute{
 					Name:        "utilize_reserved_instances",
-					Description: `(Optional, Default ` + "`" + `false` + "`" + `) If Reserved instances exist, OCean will utilize them before launching Spot instances.`,
+					Description: `(Optional, Default ` + "`" + `true` + "`" + `) If Reserved instances exist, Ocean will utilize them before launching Spot instances.`,
 				},
 				resource.Attribute{
 					Name:        "draining_timeout",
-					Description: `(Optional) The time in seconds, the instance is allowed to run while detached from the ELB. This is to allow the instance time to be drained from incoming TCP connections before terminating it, during a scale down operation. ` + "`" + `` + "`" + `` + "`" + `hcl fallback_to_ondemand = true spot_percentage = 100 utilize_reserved_instances = false draining_timeout = 120 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The time in seconds, the instance is allowed to run while detached from the ELB. This is to allow the instance time to be drained from incoming TCP connections before terminating it, during a scale down operation.`,
+				},
+				resource.Attribute{
+					Name:        "grace_period",
+					Description: `(Optional, Default: 600) The amount of time, in seconds, after the instance has launched to start checking its health. <a id="auto-scaler"></a> ## Auto Scaler`,
 				},
 				resource.Attribute{
 					Name:        "autoscaler",
@@ -2690,6 +2978,10 @@ var (
 				resource.Attribute{
 					Name:        "autoscale_cooldown",
 					Description: `(Optional, Default: ` + "`" + `null` + "`" + `) Cooldown period between scaling actions.`,
+				},
+				resource.Attribute{
+					Name:        "auto_headroom_percentage",
+					Description: `(Optional) Set the auto headroom percentage (a number in the range [0, 200]) which controls the percentage of headroom from the cluster. Relevant only when ` + "`" + `isAutoConfig` + "`" + ` toggled on.`,
 				},
 				resource.Attribute{
 					Name:        "autoscale_headroom",
@@ -2720,10 +3012,6 @@ var (
 					Description: `(Optional) Would represent the maximum % to scale-down. Number between 1-100.`,
 				},
 				resource.Attribute{
-					Name:        "evaluation_periods",
-					Description: `(Optional, Default: ` + "`" + `null` + "`" + `) The number of evaluation periods that should accumulate before a scale down action takes place.`,
-				},
-				resource.Attribute{
 					Name:        "resource_limits",
 					Description: `(Optional) Optionally set upper and lower bounds on the resource usage of the cluster.`,
 				},
@@ -2733,19 +3021,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_memory_gib",
-					Description: `(Optional) The maximum memory in GiB units that can be allocated to the cluster. ` + "`" + `` + "`" + `` + "`" + `hcl autoscaler { autoscale_is_enabled = false autoscale_is_auto_config = false autoscale_cooldown = 300 autoscale_headroom { cpu_per_unit = 1024 gpu_per_unit = 1 memory_per_unit = 512 num_of_units = 2 } autoscale_down { evaluation_periods = 300 max_scale_down_percentage = 10 } resource_limits { max_vcpu = 1024 max_memory_gib = 20 } } ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `(Optional) Optionally adds tags to instances launched in an Ocean cluster.`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `(Optional) The tag key.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `(Optional) The tag value. ` + "`" + `` + "`" + `` + "`" + `hcl tags { key = "fakeKey" value = "fakeValue" } ` + "`" + `` + "`" + `` + "`" + ` <a id="update-policy"></a> ## Update Policy`,
+					Description: `(Optional) The maximum memory in GiB units that can be allocated to the cluster. ` + "`" + `` + "`" + `` + "`" + `hcl autoscaler { autoscale_is_enabled = true autoscale_is_auto_config = false autoscale_cooldown = 300 autoscale_headroom { cpu_per_unit = 1024 gpu_per_unit = 0 memory_per_unit = 512 num_of_units = 2 } autoscale_down { max_scale_down_percentage = 60 } resource_limits { max_vcpu = 1024 max_memory_gib = 1500 } } ` + "`" + `` + "`" + `` + "`" + ` <a id="update-policy"></a> ## Update Policy`,
 				},
 				resource.Attribute{
 					Name:        "update_policy",
@@ -2761,14 +3037,46 @@ var (
 				},
 				resource.Attribute{
 					Name:        "batch_size_percentage",
-					Description: `(Required) Sets the percentage of the instances to deploy in each batch. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy { should_roll = false roll_config { batch_size_percentage = 33 } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Sets the percentage of the instances to deploy in each batch. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy { should_roll = false roll_config { batch_size_percentage = 33 } } ` + "`" + `` + "`" + `` + "`" + ` <a id="scheduled-task"></a> ## scheduled task`,
+				},
+				resource.Attribute{
+					Name:        "scheduled_task",
+					Description: `(Optional) Set scheduling object.`,
+				},
+				resource.Attribute{
+					Name:        "shutdown_hours",
+					Description: `(Optional) Set shutdown hours for cluster object.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional) Flag to enable / disable the shutdown hours. Example: True`,
+				},
+				resource.Attribute{
+					Name:        "time_windows",
+					Description: `(Required) Set time windows for shutdown hours. specify a list of 'timeWindows' with at least one time window Each string is in the format of - ddd:hh:mm-ddd:hh:mm ddd = day of week = Sun | Mon | Tue | Wed | Thu | Fri | Sat hh = hour 24 = 0 -23 mm = minute = 0 - 59. Time windows should not overlap. required on cluster.scheduling.isEnabled = True. API Times are in UTC Example: Fri:15:30-Wed:14:30`,
+				},
+				resource.Attribute{
+					Name:        "tasks",
+					Description: `(Optional) The scheduling tasks for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Required) Describes whether the task is enabled. When true the task should run when false it should not run. Required for cluster.scheduling.tasks object.`,
+				},
+				resource.Attribute{
+					Name:        "cron_expression",
+					Description: `(Required) A valid cron expression. For example : "`,
+				},
+				resource.Attribute{
+					Name:        "task_type",
+					Description: `(Required) Valid values: "clusterRoll". Required for cluster.scheduling.tasks object Example: clusterRoll ` + "`" + `` + "`" + `` + "`" + `hcl scheduled_task { shutdown_hours { is_enabled = true time_windows = ["Fri:15:30-Sat:13:30","Sun:15:30-Mon:13:30"] } tasks { is_enabled = false cron_expression = "`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "ocean_aws_launch_spec",
+			Type:             "spotinst_ocean_aws_launch_spec",
 			Category:         "Ocean",
 			ShortDescription: `Provides a Spotinst Ocean Launch Spec resource using AWS.`,
 			Description:      ``,
@@ -2782,6 +3090,10 @@ var (
 				resource.Attribute{
 					Name:        "ocean_id",
 					Description: `(Required) The ocean cluster you wish to`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Set Launch Specification name`,
 				},
 				resource.Attribute{
 					Name:        "user_data",
@@ -2806,6 +3118,10 @@ var (
 				resource.Attribute{
 					Name:        "root_volume_size",
 					Description: `(Optional) Set root volume size (in GB).`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A key/value mapping of tags to assign to the resource.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -2836,6 +3152,22 @@ var (
 					Description: `(Required) The effect of the taint. Valid values: ` + "`" + `"NoSchedule"` + "`" + `, ` + "`" + `"PreferNoSchedule"` + "`" + `, ` + "`" + `"NoExecute"` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "elastic_ip_pool",
+					Description: `(Optional) Assign an Elastic IP to the instances spun by the launch spec. Can be null.`,
+				},
+				resource.Attribute{
+					Name:        "tag_selector",
+					Description: `(Optional) Key-value object, which defines an Elastic IP from the customer pool. Can be null.`,
+				},
+				resource.Attribute{
+					Name:        "tag_key",
+					Description: `(Required) Elastic IP tag key. The launch spec will consider all elastic IPs tagged with this tag as a part of the elastic IP pool to use.`,
+				},
+				resource.Attribute{
+					Name:        "tag_value",
+					Description: `(Optional) Elastic IP tag value. Can be null.`,
+				},
+				resource.Attribute{
 					Name:        "autoscale_headrooms",
 					Description: `(Optional) Set custom headroom per launch spec. provide list of headrooms object.`,
 				},
@@ -2855,12 +3187,20 @@ var (
 					Name:        "memory_per_unit",
 					Description: `(Optional) Optionally configure the amount of memory (MiB) to allocate for each headroom unit.`,
 				},
+				resource.Attribute{
+					Name:        "resource_limits",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "max_instance_count",
+					Description: `(Optional) set a maximum number of instances per launch specification. Can be null. If set, value must be greater than or equal to 0.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "ocean_ecs",
+			Type:             "spotinst_ocean_ecs",
 			Category:         "Ocean",
 			ShortDescription: `Provides a Spotinst Ocean ECS resource using AWS.`,
 			Description:      ``,
@@ -2895,11 +3235,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnet_ids",
-					Description: `(Required) A comma-separated list of subnet identifiers for the Ocean cluster. Subnet IDs should be configured with auto assign public ip. ` + "`" + `` + "`" + `` + "`" + `hcl region = "us-west-2" name = "terraform-ecs-cluster" cluster_name = "terraform-ecs-cluster" max_size = 2 min_size = 1 desired_capacity = 2 subnet_ids = ["subnet-12345"] ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) A comma-separated list of subnet identifiers for the Ocean cluster. Subnet IDs should be configured with auto assign public ip.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Optionally adds tags to instances launched in an Ocean cluster.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) The tag key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Optional) The tag value.`,
 				},
 				resource.Attribute{
 					Name:        "whitelist",
-					Description: `(Optional) Instance types allowed in the Ocean cluster. ` + "`" + `` + "`" + `` + "`" + `hcl whitelist = ["t1.micro", "m1.small"] // blacklist = ["t1.micro", "m1.small"] ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Instance types allowed in the Ocean cluster, Cannot be configured if blacklist is configured.`,
+				},
+				resource.Attribute{
+					Name:        "blacklist",
+					Description: `(Optional) Instance types to avoid launching in the Ocean cluster. Cannot be configured if whitelist is configured.`,
 				},
 				resource.Attribute{
 					Name:        "user_data",
@@ -2926,6 +3282,10 @@ var (
 					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) Configure public IP address allocation.`,
 				},
 				resource.Attribute{
+					Name:        "utilize_reserved_instances",
+					Description: `(Optional, Default ` + "`" + `true` + "`" + `) If Reserved instances exist, OCean will utilize them before launching Spot instances.`,
+				},
+				resource.Attribute{
 					Name:        "draining_timeout",
 					Description: `(Optional) The time in seconds, the instance is allowed to run while detached from the ELB. This is to allow the instance time to be drained from incoming TCP connections before terminating it, during a scale down operation.`,
 				},
@@ -2935,7 +3295,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ebs_optimized",
-					Description: `(Optional) Enable EBS optimized for cluster. Flag will enable optimized capacity for high bandwidth connectivity to the EB service for non EBS optimized instance types. For instances that are EBS optimized this flag will be ignored. ` + "`" + `` + "`" + `` + "`" + `hcl image_id = "ami-79826301" security_group_ids = ["sg-042d658b3ee907848"] key_name = "fake key" user_data = "echo hello world" iam_instance_profile = "iam-profile" associate_public_ip_address = true draining_timeout = 120 monitoring = true ebs_optimized = true ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Enable EBS optimized for cluster. Flag will enable optimized capacity for high bandwidth connectivity to the EB service for non EBS optimized instance types. For instances that are EBS optimized this flag will be ignored. <a id="auto-scaler"></a> ## Auto Scaler`,
 				},
 				resource.Attribute{
 					Name:        "autoscaler",
@@ -2974,10 +3334,6 @@ var (
 					Description: `(Optional) Auto Scaling scale down operations.`,
 				},
 				resource.Attribute{
-					Name:        "evaluation_periods",
-					Description: `(Optional, Default: ` + "`" + `null` + "`" + `) The number of evaluation periods that should accumulate before a scale down action takes place.`,
-				},
-				resource.Attribute{
 					Name:        "max_scale_down_percentage",
 					Description: `(Optional) Would represent the maximum % to scale-down. Number between 1-100`,
 				},
@@ -2991,19 +3347,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_memory_gib",
-					Description: `(Optional) The maximum memory in GiB units that can be allocated to the cluster. ` + "`" + `` + "`" + `` + "`" + `hcl autoscaler { is_enabled = false is_auto_config = false cooldown = 300 headroom { cpu_per_unit = 1024 memory_per_unit = 512 num_of_units = 2 } down { max_scale_down_percentage = 20 } resource_limits { max_vcpu = 1024 max_memory_gib = 20 } } ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `(Optional) Optionally adds tags to instances launched in an Ocean cluster.`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `(Optional) The tag key.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `(Optional) The tag value. ` + "`" + `` + "`" + `` + "`" + `hcl tags { key = "fakeKey" value = "fakeValue" } ` + "`" + `` + "`" + `` + "`" + ` <a id="update-policy"></a> ## Update Policy`,
+					Description: `(Optional) The maximum memory in GiB units that can be allocated to the cluster. ` + "`" + `` + "`" + `` + "`" + `hcl autoscaler { is_enabled = false is_auto_config = false cooldown = 300 headroom { cpu_per_unit = 1024 memory_per_unit = 512 num_of_units = 2 } down { max_scale_down_percentage = 20 } resource_limits { max_vcpu = 1024 max_memory_gib = 20 } } ` + "`" + `` + "`" + `` + "`" + ` <a id="update-policy"></a> ## Update Policy`,
 				},
 				resource.Attribute{
 					Name:        "update_policy",
@@ -3019,14 +3363,46 @@ var (
 				},
 				resource.Attribute{
 					Name:        "batch_size_percentage",
-					Description: `(Required) Sets the percentage of the instances to deploy in each batch. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy { should_roll = false roll_config { batch_size_percentage = 33 } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Sets the percentage of the instances to deploy in each batch. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy { should_roll = false roll_config { batch_size_percentage = 33 } } ` + "`" + `` + "`" + `` + "`" + ` <a id="scheduled-task"></a> ## scheduled task`,
+				},
+				resource.Attribute{
+					Name:        "scheduled_task",
+					Description: `(Optional) While used, you can control whether the group should perform a deployment after an update to the configuration.`,
+				},
+				resource.Attribute{
+					Name:        "shutdown_hours",
+					Description: `(Optional) Set shutdown hours for cluster object.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional) Flag to enable / disable the shutdown hours. Example: True`,
+				},
+				resource.Attribute{
+					Name:        "time_windows",
+					Description: `(Required) Set time windows for shutdown hours. specify a list of 'timeWindows' with at least one time window Each string is in the format of - ddd:hh:mm-ddd:hh:mm ddd = day of week = Sun | Mon | Tue | Wed | Thu | Fri | Sat hh = hour 24 = 0 -23 mm = minute = 0 - 59. Time windows should not overlap. required on cluster.scheduling.isEnabled = True. API Times are in UTC Example: Fri:15:30-Wed:14:30`,
+				},
+				resource.Attribute{
+					Name:        "tasks",
+					Description: `(Optional) The scheduling tasks for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Required) Describes whether the task is enabled. When true the task should run when false it should not run. Required for cluster.scheduling.tasks object.`,
+				},
+				resource.Attribute{
+					Name:        "cron_expression",
+					Description: `(Required) A valid cron expression. For example : "`,
+				},
+				resource.Attribute{
+					Name:        "task_type",
+					Description: `(Required) Valid values: "clusterRoll". Required for cluster.scheduling.tasks object Example: clusterRoll. ` + "`" + `` + "`" + `` + "`" + `hcl scheduled_task { shutdown_hours { is_enabled = false time_windows = ["Fri:15:30-Wed:13:30"] } tasks { is_enabled = false cron_expression = "`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "ocean_ecs_launch_spec",
+			Type:             "spotinst_ocean_ecs_launch_spec",
 			Category:         "Ocean",
 			ShortDescription: `Provides a Spotinst Ocean ECS Launch Spec resource using AWS.`,
 			Description:      ``,
@@ -3048,6 +3424,10 @@ var (
 				resource.Attribute{
 					Name:        "security_group_ids",
 					Description: `(Optional) One or more security group ids.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A key/value mapping of tags to assign to the resource.`,
 				},
 				resource.Attribute{
 					Name:        "attributes",
@@ -3082,7 +3462,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "ocean_gke_import",
+			Type:             "spotinst_ocean_gke_import",
 			Category:         "Ocean",
 			ShortDescription: `Provides a Spotinst Ocean resource using gke.`,
 			Description:      ``,
@@ -3138,14 +3518,114 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ports",
-					Description: `(Required) A list of ports.`,
+					Description: `(Required) A list of ports. <a id="scheduled-task"></a> ## scheduled task`,
+				},
+				resource.Attribute{
+					Name:        "scheduled_task",
+					Description: `(Optional) Set scheduling object.`,
+				},
+				resource.Attribute{
+					Name:        "shutdown_hours",
+					Description: `(Optional) Set shutdown hours for cluster object.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional) Flag to enable / disable the shutdown hours. Example: True`,
+				},
+				resource.Attribute{
+					Name:        "time_windows",
+					Description: `(Required) Set time windows for shutdown hours. specify a list of 'timeWindows' with at least one time window Each string is in the format of - ddd:hh:mm-ddd:hh:mm ddd = day of week = Sun | Mon | Tue | Wed | Thu | Fri | Sat hh = hour 24 = 0 -23 mm = minute = 0 - 59. Time windows should not overlap. required on cluster.scheduling.isEnabled = True. API Times are in UTC Example: Fri:15:30-Wed:14:30`,
+				},
+				resource.Attribute{
+					Name:        "tasks",
+					Description: `(Optional) The scheduling tasks for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Required) Describes whether the task is enabled. When true the task should run when false it should not run. Required for cluster.scheduling.tasks object.`,
+				},
+				resource.Attribute{
+					Name:        "cron_expression",
+					Description: `(Required) A valid cron expression. For example : "`,
+				},
+				resource.Attribute{
+					Name:        "task_type",
+					Description: `(Required) Valid values: "clusterRoll". Required for cluster.scheduling.tasks object.`,
+				},
+				resource.Attribute{
+					Name:        "batch_size_percentage",
+					Description: `(Optional) Value in % to set size of batch in roll. Valid values are 0-100 Example: 20. ` + "`" + `` + "`" + `` + "`" + `hcl scheduled_task { shutdown_hours { is_enabled = false time_windows = ["Fri:15:30-Sat:18:30"] } tasks { is_enabled = false cron_expression = "0 1`,
+				},
+				resource.Attribute{
+					Name:        "autoscaler",
+					Description: `(Optional) The Ocean Kubernetes Autoscaler object.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) Enable the Ocean Kubernetes Autoscaler.`,
+				},
+				resource.Attribute{
+					Name:        "is_auto_config",
+					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) Automatically configure and optimize headroom resources.`,
+				},
+				resource.Attribute{
+					Name:        "auto_headroom_percentage",
+					Description: `Optionally set the auto headroom percentage, set a number between 0-200 to control the headroom % from the cluster. Relevant when isAutoConfig=true.`,
+				},
+				resource.Attribute{
+					Name:        "cooldown",
+					Description: `(Optional, Default: ` + "`" + `null` + "`" + `) Cooldown period between scaling actions.`,
+				},
+				resource.Attribute{
+					Name:        "headroom",
+					Description: `(Optional) Spare resource capacity management enabling fast assignment of Pods without waiting for new resources to launch.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_per_unit",
+					Description: `(Optional) Optionally configure the number of CPUs to allocate the headroom. CPUs are denoted in millicores, where 1000 millicores = 1 vCPU.`,
+				},
+				resource.Attribute{
+					Name:        "memory_per_unit",
+					Description: `(Optional) Optionally configure the amount of memory (MiB) to allocate the headroom.`,
+				},
+				resource.Attribute{
+					Name:        "gpu_per_unit",
+					Description: `(Optional) How much GPU allocate for headroom unit.`,
+				},
+				resource.Attribute{
+					Name:        "num_of_units",
+					Description: `(Optional) The number of units to retain as headroom, where each unit has the defined headroom CPU and memory.`,
+				},
+				resource.Attribute{
+					Name:        "down",
+					Description: `(Optional) Auto Scaling scale down operations.`,
+				},
+				resource.Attribute{
+					Name:        "evaluation_periods",
+					Description: `(Optional, Default: ` + "`" + `null` + "`" + `) The number of evaluation periods that should accumulate before a scale down action takes place.`,
+				},
+				resource.Attribute{
+					Name:        "max_scale_down_percentage",
+					Description: `(Optional) Would represent the maximum % to scale-down. Number between 1-100.`,
+				},
+				resource.Attribute{
+					Name:        "resource_limits",
+					Description: `(Optional) Optionally set upper and lower bounds on the resource usage of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "max_vcpu",
+					Description: `(Optional) The maximum cpu in vCpu units that can be allocated to the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "max_memory_gib",
+					Description: `(Optional) The maximum memory in GiB units that can be allocated to the cluster. ` + "`" + `` + "`" + `` + "`" + `hcl autoscaler { is_enabled = true is_auto_config = false cooldown = 30 auto_headroom_percentage = 10 headroom { cpu_per_unit = 0 gpu_per_unit = 0 memory_per_unit = 0 num_of_units = 0 } down { evaluation_periods = 3 max_scale_down_percentage = 30 } resource_limits { max_vcpu = 1500 max_memory_gib = 750 } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "ocean_gke_launch_spec",
+			Type:             "spotinst_ocean_gke_launch_spec",
 			Category:         "Ocean",
 			ShortDescription: `Provides a Spotinst Ocean Launch Spec resource using GKE.`,
 			Description:      ``,
@@ -3201,7 +3681,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "ocean_gke_launch_spec_import",
+			Type:             "spotinst_ocean_gke_launch_spec_import",
 			Category:         "Ocean",
 			ShortDescription: `Provides a Spotinst Ocean Launch Spec Import resource using GKE.`,
 			Description:      ``,
@@ -3222,7 +3702,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "subscription",
+			Type:             "spotinst_subscription",
 			Category:         "Subscription",
 			ShortDescription: `Provides a Spotinst subscription resource.`,
 			Description:      ``,
@@ -3232,23 +3712,23 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "resource_id",
-					Description: `(Required) Spotinst Resource ID (Elastigroup ID).`,
+					Description: `(Required) Spotinst Resource id (Elastigroup or Ocean ID).`,
 				},
 				resource.Attribute{
 					Name:        "event_type",
-					Description: `(Required) The event to send the notification when triggered. Valid values: ` + "`" + `"AWS_EC2_INSTANCE_TERMINATE"` + "`" + `, ` + "`" + `"AWS_EC2_INSTANCE_TERMINATED"` + "`" + `, ` + "`" + `"AWS_EC2_INSTANCE_LAUNCH"` + "`" + `, ` + "`" + `"AWS_EC2_INSTANCE_UNHEALTHY_IN_ELB"` + "`" + `, ` + "`" + `"GROUP_ROLL_FAILED"` + "`" + `, ` + "`" + `"GROUP_ROLL_FINISHED"` + "`" + `, ` + "`" + `"CANT_SCALE_UP_GROUP_MAX_CAPACITY"` + "`" + `, ` + "`" + `"GROUP_UPDATED"` + "`" + `, ` + "`" + `"AWS_EC2_CANT_SPIN_OD"` + "`" + `, ` + "`" + `"AWS_EMR_PROVISION_TIMEOUT"` + "`" + `, ` + "`" + `"AWS_EC2_INSTANCE_READY_SIGNAL_TIMEOUT"` + "`" + `.`,
+					Description: `(Required) The event to send the notification when triggered. Valid values: ` + "`" + `"AWS_EC2_INSTANCE_TERMINATE"` + "`" + `, ` + "`" + `"AWS_EC2_INSTANCE_TERMINATED"` + "`" + `, ` + "`" + `"AWS_EC2_INSTANCE_LAUNCH"` + "`" + `, ` + "`" + `"AWS_EC2_INSTANCE_READY_SIGNAL_TIMEOUT"` + "`" + `, ` + "`" + `"AWS_EC2_CANT_SPIN_OD"` + "`" + `, ` + "`" + `"AWS_EC2_INSTANCE_UNHEALTHY_IN_ELB"` + "`" + `, ` + "`" + `"GROUP_ROLL_FAILED"` + "`" + `, ` + "`" + `"GROUP_ROLL_FINISHED"` + "`" + `, ` + "`" + `"CANT_SCALE_UP_GROUP_MAX_CAPACITY"` + "`" + `, ` + "`" + `"GROUP_UPDATED"` + "`" + `, ` + "`" + `"AWS_EMR_PROVISION_TIMEOUT"` + "`" + `, ` + "`" + `"GROUP_BEANSTALK_INIT_READY"` + "`" + `, ` + "`" + `"AZURE_VM_TERMINATED"` + "`" + `, ` + "`" + `"AZURE_VM_TERMINATE"` + "`" + `, ` + "`" + `"AWS_EC2_MANAGED_INSTANCE_PAUSING"` + "`" + `, ` + "`" + `"AWS_EC2_MANAGED_INSTANCE_RESUMING"` + "`" + `, ` + "`" + `"AWS_EC2_MANAGED_INSTANCE_RECYCLING"` + "`" + `,` + "`" + `"AWS_EC2_MANAGED_INSTANCE_DELETING"` + "`" + `. Ocean Events:` + "`" + `"CLUSTER_ROLL_FINISHED"` + "`" + `,` + "`" + `"GROUP_ROLL_FAILED"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `(Required) The protocol to send the notification. Valid values: ` + "`" + `"http"` + "`" + `, ` + "`" + `"https"` + "`" + `, ` + "`" + `"email"` + "`" + `, ` + "`" + `"email-json"` + "`" + `, ` + "`" + `"aws-sns"` + "`" + `, ` + "`" + `"web"` + "`" + `.`,
+					Description: `(Required) The protocol to send the notification. Valid values: ` + "`" + `"email"` + "`" + `, ` + "`" + `"email-json"` + "`" + `, ` + "`" + `"aws-sns"` + "`" + `, ` + "`" + `"web"` + "`" + `. The following values are deprecated: ` + "`" + `"http"` + "`" + ` , ` + "`" + `"https"` + "`" + ` You can use the generic ` + "`" + `"web"` + "`" + ` protocol instead. ` + "`" + `"aws-sns"` + "`" + ` is only supported with AWS provider`,
 				},
 				resource.Attribute{
 					Name:        "endpoint",
-					Description: `(Required) The endpoint the notification will be sent to: url in case of ` + "`" + `"http"` + "`" + `/` + "`" + `"https"` + "`" + `, email address in case of ` + "`" + `"email"` + "`" + `/` + "`" + `"email-json"` + "`" + `, sns-topic-arn in case of ` + "`" + `"aws-sns"` + "`" + `.`,
+					Description: `(Required) The endpoint the notification will be sent to. url in case of ` + "`" + `"http"` + "`" + `/` + "`" + `"https"` + "`" + `/` + "`" + `"web"` + "`" + `, email address in case of ` + "`" + `"email"` + "`" + `/` + "`" + `"email-json"` + "`" + ` and sns-topic-arn in case of ` + "`" + `"aws-sns"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "format",
-					Description: `(Optional) The format of the notification content (JSON Format - Key+Value). Valid values: ` + "`" + `"%instance-id%"` + "`" + `, ` + "`" + `"%event%"` + "`" + `, ` + "`" + `"%resource-id%"` + "`" + `, ` + "`" + `"%resource-name%"` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The format of the notification content (JSON Format - Key+Value). Valid Values : ` + "`" + `"instance-id"` + "`" + `, ` + "`" + `"event"` + "`" + `, ` + "`" + `"resource-id"` + "`" + `, ` + "`" + `"resource-name"` + "`" + `, ` + "`" + `"subnet-id"` + "`" + `, ` + "`" + `"availability-zone"` + "`" + `, ` + "`" + `"reason"` + "`" + `, ` + "`" + `"private-ip"` + "`" + `, ` + "`" + `"launchspec-id"` + "`" + ` Example: {"event": ` + "`" + `"event"` + "`" + `, ` + "`" + `"resourceId"` + "`" + `: ` + "`" + `"resource-id"` + "`" + `, ` + "`" + `"resourceName"` + "`" + `: ` + "`" + `"resource-name"` + "`" + `", ` + "`" + `"myCustomKey"` + "`" + `: ` + "`" + `"My content is set here"` + "`" + ` } Default: {` + "`" + `"event"` + "`" + `: ` + "`" + `"<event>"` + "`" + `, ` + "`" + `"instanceId"` + "`" + `: ` + "`" + `"<instance-id>"` + "`" + `, ` + "`" + `"resourceId"` + "`" + `: ` + "`" + `"<resource-id>"` + "`" + `, ` + "`" + `"resourceName"` + "`" + `: ` + "`" + `"<resource-name>"` + "`" + ` }. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -3266,21 +3746,22 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"elastigroup_aws":              0,
-		"elastigroup_aws_beanstalk":    1,
-		"elastigroup_azure":            2,
-		"elastigroup_gcp":              3,
-		"elastigroup_gke":              4,
-		"managed_instance":             5,
-		"mrscaler_aws":                 6,
-		"ocean_aws":                    7,
-		"ocean_aws_launch_spec":        8,
-		"ocean_ecs":                    9,
-		"ocean_ecs_launch_spec":        10,
-		"ocean_gke_import":             11,
-		"ocean_gke_launch_spec":        12,
-		"ocean_gke_launch_spec_import": 13,
-		"subscription":                 14,
+		"spotinst_elastigroup_aws":              0,
+		"spotinst_elastigroup_aws_beanstalk":    1,
+		"spotinst_elastigroup_azure":            2,
+		"spotinst_elastigroup_gcp":              3,
+		"spotinst_elastigroup_gke":              4,
+		"spotinst_health_check":                 5,
+		"spotinst_managed_instance_aws":         6,
+		"spotinst_mrscaler_aws":                 7,
+		"spotinst_ocean_aws":                    8,
+		"spotinst_ocean_aws_launch_spec":        9,
+		"spotinst_ocean_ecs":                    10,
+		"spotinst_ocean_ecs_launch_spec":        11,
+		"spotinst_ocean_gke_import":             12,
+		"spotinst_ocean_gke_launch_spec":        13,
+		"spotinst_ocean_gke_launch_spec_import": 14,
+		"spotinst_subscription":                 15,
 	}
 )
 

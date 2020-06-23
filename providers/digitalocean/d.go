@@ -36,6 +36,30 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "digitalocean_container_registry",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a container registry.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the container registry. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the container registry`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the container registry`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "digitalocean_database_cluster",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on a database cluster resource.`,
@@ -77,6 +101,10 @@ var (
 				resource.Attribute{
 					Name:        "maintenance_window",
 					Description: `Defines when the automatic maintenance should be performed for the database cluster.`,
+				},
+				resource.Attribute{
+					Name:        "private_network_uuid",
+					Description: `The ID of the VPC where the database cluster is located.`,
 				},
 				resource.Attribute{
 					Name:        "host",
@@ -151,6 +179,10 @@ var (
 				resource.Attribute{
 					Name:        "maintenance_window",
 					Description: `Defines when the automatic maintenance should be performed for the database cluster.`,
+				},
+				resource.Attribute{
+					Name:        "private_network_uuid",
+					Description: `The ID of the VPC where the database cluster is located.`,
 				},
 				resource.Attribute{
 					Name:        "host",
@@ -322,6 +354,10 @@ var (
 					Name:        "tags",
 					Description: `A list of the tags associated to the Droplet.`,
 				},
+				resource.Attribute{
+					Name:        "vpc_uuid",
+					Description: `The ID of the VPC where the Droplet is located.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -408,6 +444,10 @@ var (
 					Name:        "tags",
 					Description: `A list of the tags associated to the Droplet.`,
 				},
+				resource.Attribute{
+					Name:        "vpc_uuid",
+					Description: `The ID of the VPC where the Droplet is located.`,
+				},
 			},
 		},
 		&resource.Resource{
@@ -480,6 +520,50 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "digitalocean_droplets",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve information on Droplets.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Filter the results. The ` + "`" + `filter` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "sort",
+					Description: `(Optional) Sort the results. The ` + "`" + `sort` + "`" + ` block is documented below. ` + "`" + `filter` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Filter the Droplets by this key. This may be one of '` + "`" + `backups` + "`" + `, ` + "`" + `created_at` + "`" + `, ` + "`" + `disk` + "`" + `, ` + "`" + `id` + "`" + `, ` + "`" + `image` + "`" + `, ` + "`" + `ipv4_address` + "`" + `, ` + "`" + `ipv4_address_private` + "`" + `, ` + "`" + `ipv6` + "`" + `, ` + "`" + `ipv6_address` + "`" + `, ` + "`" + `ipv6_address_private` + "`" + `, ` + "`" + `locked` + "`" + `, ` + "`" + `memory` + "`" + `, ` + "`" + `monitoring` + "`" + `, ` + "`" + `name` + "`" + `, ` + "`" + `price_hourly` + "`" + `, ` + "`" + `price_monthly` + "`" + `, ` + "`" + `private_networking` + "`" + `, ` + "`" + `region` + "`" + `, ` + "`" + `size` + "`" + `, ` + "`" + `status` + "`" + `, ` + "`" + `tags` + "`" + `, ` + "`" + `urn` + "`" + `, ` + "`" + `vcpus` + "`" + `, ` + "`" + `volume_ids` + "`" + `, or ` + "`" + `vpc_uuid` + "`" + `'.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) A list of values to match against the ` + "`" + `key` + "`" + ` field. Only retrieves Droplets where the ` + "`" + `key` + "`" + ` field takes on one or more of the values provided here. ` + "`" + `sort` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Sort the Droplets by this key. This may be one of ` + "`" + `backups` + "`" + `, ` + "`" + `created_at` + "`" + `, ` + "`" + `disk` + "`" + `, ` + "`" + `id` + "`" + `, ` + "`" + `image` + "`" + `, ` + "`" + `ipv4_address` + "`" + `, ` + "`" + `ipv4_address_private` + "`" + `, ` + "`" + `ipv6` + "`" + `, ` + "`" + `ipv6_address` + "`" + `, ` + "`" + `ipv6_address_private` + "`" + `, ` + "`" + `locked` + "`" + `, ` + "`" + `memory` + "`" + `, ` + "`" + `monitoring` + "`" + `, ` + "`" + `name` + "`" + `, ` + "`" + `price_hourly` + "`" + `, ` + "`" + `price_monthly` + "`" + `, ` + "`" + `private_networking` + "`" + `, ` + "`" + `region` + "`" + `, ` + "`" + `size` + "`" + `, ` + "`" + `status` + "`" + `, ` + "`" + `urn` + "`" + `, ` + "`" + `vcpus` + "`" + `, or ` + "`" + `vpc_uuid` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "direction",
+					Description: `(Required) The sort direction. This may be either ` + "`" + `asc` + "`" + ` or ` + "`" + `desc` + "`" + `. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "droplets",
+					Description: `A list of Droplets satisfying any ` + "`" + `filter` + "`" + ` and ` + "`" + `sort` + "`" + ` criteria. Each Droplet has the following attributes: - ` + "`" + `id` + "`" + ` - The ID of the Droplet. - ` + "`" + `urn` + "`" + ` - The uniform resource name of the Droplet - ` + "`" + `region` + "`" + ` - The region the Droplet is running in. - ` + "`" + `image` + "`" + ` - The Droplet image ID or slug. - ` + "`" + `size` + "`" + ` - The unique slug that identifies the type of Droplet. - ` + "`" + `disk` + "`" + ` - The size of the Droplet's disk in GB. - ` + "`" + `vcpus` + "`" + ` - The number of the Droplet's virtual CPUs. - ` + "`" + `memory` + "`" + ` - The amount of the Droplet's memory in MB. - ` + "`" + `price_hourly` + "`" + ` - Droplet hourly price. - ` + "`" + `price_monthly` + "`" + ` - Droplet monthly price. - ` + "`" + `status` + "`" + ` - The status of the Droplet. - ` + "`" + `locked` + "`" + ` - Whether the Droplet is locked. - ` + "`" + `ipv6_address` + "`" + ` - The Droplet's public IPv6 address - ` + "`" + `ipv6_address_private` + "`" + ` - The Droplet's private IPv6 address - ` + "`" + `ipv4_address` + "`" + ` - The Droplet's public IPv4 address - ` + "`" + `ipv4_address_private` + "`" + ` - The Droplet's private IPv4 address - ` + "`" + `backups` + "`" + ` - Whether backups are enabled. - ` + "`" + `ipv6` + "`" + ` - Whether IPv6 is enabled. - ` + "`" + `private_networking` + "`" + ` - Whether private networks are enabled. - ` + "`" + `monitoring` + "`" + ` - Whether monitoring agent is installed. - ` + "`" + `volume_ids` + "`" + ` - List of the IDs of each volumes attached to the Droplet. - ` + "`" + `tags` + "`" + ` - A list of the tags associated to the Droplet. - ` + "`" + `vpc_uuid` + "`" + ` - The ID of the VPC where the Droplet is located.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "droplets",
+					Description: `A list of Droplets satisfying any ` + "`" + `filter` + "`" + ` and ` + "`" + `sort` + "`" + ` criteria. Each Droplet has the following attributes: - ` + "`" + `id` + "`" + ` - The ID of the Droplet. - ` + "`" + `urn` + "`" + ` - The uniform resource name of the Droplet - ` + "`" + `region` + "`" + ` - The region the Droplet is running in. - ` + "`" + `image` + "`" + ` - The Droplet image ID or slug. - ` + "`" + `size` + "`" + ` - The unique slug that identifies the type of Droplet. - ` + "`" + `disk` + "`" + ` - The size of the Droplet's disk in GB. - ` + "`" + `vcpus` + "`" + ` - The number of the Droplet's virtual CPUs. - ` + "`" + `memory` + "`" + ` - The amount of the Droplet's memory in MB. - ` + "`" + `price_hourly` + "`" + ` - Droplet hourly price. - ` + "`" + `price_monthly` + "`" + ` - Droplet monthly price. - ` + "`" + `status` + "`" + ` - The status of the Droplet. - ` + "`" + `locked` + "`" + ` - Whether the Droplet is locked. - ` + "`" + `ipv6_address` + "`" + ` - The Droplet's public IPv6 address - ` + "`" + `ipv6_address_private` + "`" + ` - The Droplet's private IPv6 address - ` + "`" + `ipv4_address` + "`" + ` - The Droplet's public IPv4 address - ` + "`" + `ipv4_address_private` + "`" + ` - The Droplet's private IPv4 address - ` + "`" + `backups` + "`" + ` - Whether backups are enabled. - ` + "`" + `ipv6` + "`" + ` - Whether IPv6 is enabled. - ` + "`" + `private_networking` + "`" + ` - Whether private networks are enabled. - ` + "`" + `monitoring` + "`" + ` - Whether monitoring agent is installed. - ` + "`" + `volume_ids` + "`" + ` - List of the IDs of each volumes attached to the Droplet. - ` + "`" + `tags` + "`" + ` - A list of the tags associated to the Droplet. - ` + "`" + `vpc_uuid` + "`" + ` - The ID of the VPC where the Droplet is located.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "digitalocean_floating_ip",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on a floating IP.`,
@@ -497,21 +581,25 @@ var (
 			Name:             "",
 			Type:             "digitalocean_image",
 			Category:         "Data Sources",
-			ShortDescription: `Get information on an snapshot.`,
+			ShortDescription: `Get information on a DigitalOcean image.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the image`,
+				},
+				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of the private image.`,
+					Description: `The name of the image.`,
 				},
 				resource.Attribute{
 					Name:        "slug",
-					Description: `(Optional) The slug of the official image. ## Attributes Reference The following attributes are exported:`,
+					Description: `The slug of the official image. If ` + "`" + `name` + "`" + ` is specified, you may also specify:`,
 				},
 				resource.Attribute{
-					Name:        "image",
-					Description: `The id of the image.`,
+					Name:        "source",
+					Description: `(Optional) Restrict the search to one of the following categories of images: - ` + "`" + `all` + "`" + ` - All images (whether public or private) - ` + "`" + `applications` + "`" + ` - One-click applications - ` + "`" + `distributions` + "`" + ` - Distributions - ` + "`" + `user` + "`" + ` - (Default) User (private) images ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "distribution",
@@ -520,20 +608,68 @@ var (
 				resource.Attribute{
 					Name:        "private",
 					Description: `Is image a public image or not. Public images represent Linux distributions or One-Click Applications, while non-public images represent snapshots and backups and are only available within your account.`,
+				},
+				resource.Attribute{
+					Name:        "image",
+					Description: `The id of the image (legacy parameter).`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "image",
-					Description: `The id of the image.`,
-				},
-				resource.Attribute{
 					Name:        "distribution",
 					Description: `The name of the distribution of the OS of the image.`,
 				},
 				resource.Attribute{
 					Name:        "private",
 					Description: `Is image a public image or not. Public images represent Linux distributions or One-Click Applications, while non-public images represent snapshots and backups and are only available within your account.`,
+				},
+				resource.Attribute{
+					Name:        "image",
+					Description: `The id of the image (legacy parameter).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "digitalocean_images",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve information about DigitalOcean images (public and private).`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Filter the results. The ` + "`" + `filter` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "sort",
+					Description: `(Optional) Sort the results. The ` + "`" + `sort` + "`" + ` block is documented below. ` + "`" + `filter` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Filter the images by this key. This may be one of ` + "`" + `distribution` + "`" + `, ` + "`" + `error_message` + "`" + `, ` + "`" + `id` + "`" + `, ` + "`" + `image` + "`" + `, ` + "`" + `min_disk_size` + "`" + `, ` + "`" + `name` + "`" + `, ` + "`" + `private` + "`" + `, ` + "`" + `regions` + "`" + `, ` + "`" + `size_gigabytes` + "`" + `, ` + "`" + `slug` + "`" + `, ` + "`" + `status` + "`" + `, ` + "`" + `tags` + "`" + `, or ` + "`" + `type` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) A list of values to match against the ` + "`" + `key` + "`" + ` field. Only retrieves images where the ` + "`" + `key` + "`" + ` field takes on one or more of the values provided here. ` + "`" + `sort` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Sort the images by this key. This may be one of ` + "`" + `distribution` + "`" + `, ` + "`" + `error_message` + "`" + `, ` + "`" + `id` + "`" + `, ` + "`" + `image` + "`" + `, ` + "`" + `min_disk_size` + "`" + `, ` + "`" + `name` + "`" + `, ` + "`" + `private` + "`" + `, ` + "`" + `size_gigabytes` + "`" + `, ` + "`" + `slug` + "`" + `, ` + "`" + `status` + "`" + `, or ` + "`" + `type` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "direction",
+					Description: `(Required) The sort direction. This may be either ` + "`" + `asc` + "`" + ` or ` + "`" + `desc` + "`" + `. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "images",
+					Description: `A set of images satisfying any ` + "`" + `filter` + "`" + ` and ` + "`" + `sort` + "`" + ` criteria. Each image has the following attributes: - ` + "`" + `slug` + "`" + `: Unique text identifier of the image. - ` + "`" + `id` + "`" + `: The ID of the image. - ` + "`" + `name` + "`" + `: The name of the image. - ` + "`" + `type` + "`" + `: Type of the image. - ` + "`" + `distribution` + "`" + ` - The name of the distribution of the OS of the image. - ` + "`" + `min_disk_size` + "`" + `: The minimum 'disk' required for the image. - ` + "`" + `size_gigabytes` + "`" + `: The size of the image in GB. - ` + "`" + `private` + "`" + ` - Is image a public image or not. Public images represent Linux distributions or One-Click Applications, while non-public images represent snapshots and backups and are only available within your account. - ` + "`" + `regions` + "`" + `: A set of the regions that the image is available in. - ` + "`" + `tags` + "`" + `: A set of tags applied to the image - ` + "`" + `created` + "`" + `: When the image was created - ` + "`" + `status` + "`" + `: Current status of the image - ` + "`" + `error_message` + "`" + `: Any applicable error message pertaining to the image - ` + "`" + `image` + "`" + ` - The id of the image (legacy parameter).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "images",
+					Description: `A set of images satisfying any ` + "`" + `filter` + "`" + ` and ` + "`" + `sort` + "`" + ` criteria. Each image has the following attributes: - ` + "`" + `slug` + "`" + `: Unique text identifier of the image. - ` + "`" + `id` + "`" + `: The ID of the image. - ` + "`" + `name` + "`" + `: The name of the image. - ` + "`" + `type` + "`" + `: Type of the image. - ` + "`" + `distribution` + "`" + ` - The name of the distribution of the OS of the image. - ` + "`" + `min_disk_size` + "`" + `: The minimum 'disk' required for the image. - ` + "`" + `size_gigabytes` + "`" + `: The size of the image in GB. - ` + "`" + `private` + "`" + ` - Is image a public image or not. Public images represent Linux distributions or One-Click Applications, while non-public images represent snapshots and backups and are only available within your account. - ` + "`" + `regions` + "`" + `: A set of the regions that the image is available in. - ` + "`" + `tags` + "`" + `: A set of tags applied to the image - ` + "`" + `created` + "`" + `: When the image was created - ` + "`" + `status` + "`" + `: Current status of the image - ` + "`" + `error_message` + "`" + `: Any applicable error message pertaining to the image - ` + "`" + `image` + "`" + ` - The id of the image (legacy parameter).`,
 				},
 			},
 		},
@@ -566,6 +702,10 @@ var (
 					Description: `A list of tag names to be applied to the Kubernetes cluster.`,
 				},
 				resource.Attribute{
+					Name:        "vpc_uuid",
+					Description: `The ID of the VPC where the Kubernetes cluster is located.`,
+				},
+				resource.Attribute{
 					Name:        "cluster_subnet",
 					Description: `The range of IP addresses in the overlay network of the Kubernetes cluster.`,
 				},
@@ -599,7 +739,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "node_pool",
-					Description: `A list of node pools associated with the cluster. Each node pool exports the following attributes: - ` + "`" + `id` + "`" + ` - The unique ID that can be used to identify and reference the node pool. - ` + "`" + `name` + "`" + ` - The name of the node pool. - ` + "`" + `size` + "`" + ` - The slug identifier for the type of Droplet used as workers in the node pool. - ` + "`" + `node_count` + "`" + ` - The number of Droplet instances in the node pool. - ` + "`" + `actual_node_count` + "`" + ` - The actual number of nodes in the node pool, which is especially useful when auto-scaling is enabled. - ` + "`" + `auto_scale` + "`" + ` - A boolean indicating whether auto-scaling is enabled on the node pool. - ` + "`" + `min_nodes` + "`" + ` - If auto-scaling is enabled, this represents the minimum number of nodes that the node pool can be scaled down to. - ` + "`" + `max_nodes` + "`" + ` - If auto-scaling is enabled, this represents the maximum number of nodes that the node pool can be scaled up to. - ` + "`" + `tags` + "`" + ` - A list of tag names applied to the node pool. - ` + "`" + `nodes` + "`" + ` - A list of nodes in the pool. Each node exports the following attributes: + ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. + ` + "`" + `name` + "`" + ` - The auto-generated name for the node. + ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. + ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. + ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated.`,
+					Description: `A list of node pools associated with the cluster. Each node pool exports the following attributes: - ` + "`" + `id` + "`" + ` - The unique ID that can be used to identify and reference the node pool. - ` + "`" + `name` + "`" + ` - The name of the node pool. - ` + "`" + `size` + "`" + ` - The slug identifier for the type of Droplet used as workers in the node pool. - ` + "`" + `node_count` + "`" + ` - The number of Droplet instances in the node pool. - ` + "`" + `actual_node_count` + "`" + ` - The actual number of nodes in the node pool, which is especially useful when auto-scaling is enabled. - ` + "`" + `auto_scale` + "`" + ` - A boolean indicating whether auto-scaling is enabled on the node pool. - ` + "`" + `min_nodes` + "`" + ` - If auto-scaling is enabled, this represents the minimum number of nodes that the node pool can be scaled down to. - ` + "`" + `max_nodes` + "`" + ` - If auto-scaling is enabled, this represents the maximum number of nodes that the node pool can be scaled up to. - ` + "`" + `tags` + "`" + ` - A list of tag names applied to the node pool. - ` + "`" + `labels` + "`" + ` - A map of key/value pairs applied to nodes in the pool. The labels are exposed in the Kubernetes API as labels in the metadata of the corresponding [Node resources](https://kubernetes.io/docs/concepts/architecture/nodes/). - ` + "`" + `nodes` + "`" + ` - A list of nodes in the pool. Each node exports the following attributes: + ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. + ` + "`" + `name` + "`" + ` - The auto-generated name for the node. + ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. + ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. + ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -620,6 +760,10 @@ var (
 					Description: `A list of tag names to be applied to the Kubernetes cluster.`,
 				},
 				resource.Attribute{
+					Name:        "vpc_uuid",
+					Description: `The ID of the VPC where the Kubernetes cluster is located.`,
+				},
+				resource.Attribute{
 					Name:        "cluster_subnet",
 					Description: `The range of IP addresses in the overlay network of the Kubernetes cluster.`,
 				},
@@ -653,7 +797,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "node_pool",
-					Description: `A list of node pools associated with the cluster. Each node pool exports the following attributes: - ` + "`" + `id` + "`" + ` - The unique ID that can be used to identify and reference the node pool. - ` + "`" + `name` + "`" + ` - The name of the node pool. - ` + "`" + `size` + "`" + ` - The slug identifier for the type of Droplet used as workers in the node pool. - ` + "`" + `node_count` + "`" + ` - The number of Droplet instances in the node pool. - ` + "`" + `actual_node_count` + "`" + ` - The actual number of nodes in the node pool, which is especially useful when auto-scaling is enabled. - ` + "`" + `auto_scale` + "`" + ` - A boolean indicating whether auto-scaling is enabled on the node pool. - ` + "`" + `min_nodes` + "`" + ` - If auto-scaling is enabled, this represents the minimum number of nodes that the node pool can be scaled down to. - ` + "`" + `max_nodes` + "`" + ` - If auto-scaling is enabled, this represents the maximum number of nodes that the node pool can be scaled up to. - ` + "`" + `tags` + "`" + ` - A list of tag names applied to the node pool. - ` + "`" + `nodes` + "`" + ` - A list of nodes in the pool. Each node exports the following attributes: + ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. + ` + "`" + `name` + "`" + ` - The auto-generated name for the node. + ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. + ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. + ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated.`,
+					Description: `A list of node pools associated with the cluster. Each node pool exports the following attributes: - ` + "`" + `id` + "`" + ` - The unique ID that can be used to identify and reference the node pool. - ` + "`" + `name` + "`" + ` - The name of the node pool. - ` + "`" + `size` + "`" + ` - The slug identifier for the type of Droplet used as workers in the node pool. - ` + "`" + `node_count` + "`" + ` - The number of Droplet instances in the node pool. - ` + "`" + `actual_node_count` + "`" + ` - The actual number of nodes in the node pool, which is especially useful when auto-scaling is enabled. - ` + "`" + `auto_scale` + "`" + ` - A boolean indicating whether auto-scaling is enabled on the node pool. - ` + "`" + `min_nodes` + "`" + ` - If auto-scaling is enabled, this represents the minimum number of nodes that the node pool can be scaled down to. - ` + "`" + `max_nodes` + "`" + ` - If auto-scaling is enabled, this represents the maximum number of nodes that the node pool can be scaled up to. - ` + "`" + `tags` + "`" + ` - A list of tag names applied to the node pool. - ` + "`" + `labels` + "`" + ` - A map of key/value pairs applied to nodes in the pool. The labels are exposed in the Kubernetes API as labels in the metadata of the corresponding [Node resources](https://kubernetes.io/docs/concepts/architecture/nodes/). - ` + "`" + `nodes` + "`" + ` - A list of nodes in the pool. Each node exports the following attributes: + ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. + ` + "`" + `name` + "`" + ` - The auto-generated name for the node. + ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. + ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. + ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated.`,
 				},
 			},
 		},
@@ -710,6 +854,134 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "digitalocean_project",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a DigitalOcean project.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) the ID of the project to retrieve`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) the name of the project to retrieve. The data source will raise an error if more than one project has the provided name or if no project has that name. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the project`,
+				},
+				resource.Attribute{
+					Name:        "purpose",
+					Description: `The purpose of the project, (Default: "Web Application")`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `The environment of the project's resources. The possible values are: ` + "`" + `Development` + "`" + `, ` + "`" + `Staging` + "`" + `, ` + "`" + `Production` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `A set of uniform resource names (URNs) for the resources associated with the project`,
+				},
+				resource.Attribute{
+					Name:        "owner_uuid",
+					Description: `The unique universal identifier of the project owner.`,
+				},
+				resource.Attribute{
+					Name:        "owner_id",
+					Description: `The ID of the project owner.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date and time when the project was created, (ISO8601)`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date and time when the project was last updated, (ISO8601)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the project`,
+				},
+				resource.Attribute{
+					Name:        "purpose",
+					Description: `The purpose of the project, (Default: "Web Application")`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `The environment of the project's resources. The possible values are: ` + "`" + `Development` + "`" + `, ` + "`" + `Staging` + "`" + `, ` + "`" + `Production` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `A set of uniform resource names (URNs) for the resources associated with the project`,
+				},
+				resource.Attribute{
+					Name:        "owner_uuid",
+					Description: `The unique universal identifier of the project owner.`,
+				},
+				resource.Attribute{
+					Name:        "owner_id",
+					Description: `The ID of the project owner.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date and time when the project was created, (ISO8601)`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date and time when the project was last updated, (ISO8601)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "digitalocean_projects",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve information about DigitalOcean projects.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Filter the results. The ` + "`" + `filter` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "sort",
+					Description: `(Optional) Sort the results. The ` + "`" + `sort` + "`" + ` block is documented below. ` + "`" + `filter` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Filter the projects by this key. This may be one of ` + "`" + `name` + "`" + `, ` + "`" + `purpose` + "`" + `, ` + "`" + `description` + "`" + `, ` + "`" + `environment` + "`" + `, or ` + "`" + `is_default` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) A list of values to match against the ` + "`" + `key` + "`" + ` field. Only retrieves projects where the ` + "`" + `key` + "`" + ` field takes on one or more of the values provided here. ` + "`" + `sort` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Sort the projects by this key. This may be one of ` + "`" + `name` + "`" + `, ` + "`" + `purpose` + "`" + `, ` + "`" + `description` + "`" + `, or ` + "`" + `environment` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "direction",
+					Description: `(Required) The sort direction. This may be either ` + "`" + `asc` + "`" + ` or ` + "`" + `desc` + "`" + `. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "projects",
+					Description: `A set of projects satisfying any ` + "`" + `filter` + "`" + ` and ` + "`" + `sort` + "`" + ` criteria. Each project has the following attributes: - ` + "`" + `id` + "`" + ` - The ID of the project - ` + "`" + `name` + "`" + ` - The name of the project - ` + "`" + `description` + "`" + ` - The description of the project - ` + "`" + `purpose` + "`" + ` - The purpose of the project (Default: "Web Application") - ` + "`" + `environment` + "`" + ` - The environment of the project's resources. The possible values are: ` + "`" + `Development` + "`" + `, ` + "`" + `Staging` + "`" + `, ` + "`" + `Production` + "`" + `. - ` + "`" + `resources` + "`" + ` - A set of uniform resource names (URNs) for the resources associated with the project - ` + "`" + `owner_uuid` + "`" + ` - The unique universal identifier of the project owner - ` + "`" + `owner_id` + "`" + ` - The ID of the project owner - ` + "`" + `created_at` + "`" + ` - The date and time when the project was created, (ISO8601) - ` + "`" + `updated_at` + "`" + ` - The date and time when the project was last updated, (ISO8601)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "projects",
+					Description: `A set of projects satisfying any ` + "`" + `filter` + "`" + ` and ` + "`" + `sort` + "`" + ` criteria. Each project has the following attributes: - ` + "`" + `id` + "`" + ` - The ID of the project - ` + "`" + `name` + "`" + ` - The name of the project - ` + "`" + `description` + "`" + ` - The description of the project - ` + "`" + `purpose` + "`" + ` - The purpose of the project (Default: "Web Application") - ` + "`" + `environment` + "`" + ` - The environment of the project's resources. The possible values are: ` + "`" + `Development` + "`" + `, ` + "`" + `Staging` + "`" + `, ` + "`" + `Production` + "`" + `. - ` + "`" + `resources` + "`" + ` - A set of uniform resource names (URNs) for the resources associated with the project - ` + "`" + `owner_uuid` + "`" + ` - The unique universal identifier of the project owner - ` + "`" + `owner_id` + "`" + ` - The ID of the project owner - ` + "`" + `created_at` + "`" + ` - The date and time when the project was created, (ISO8601) - ` + "`" + `updated_at` + "`" + ` - The date and time when the project was last updated, (ISO8601)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "digitalocean_record",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on a DNS record.`,
@@ -729,9 +1001,65 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "digitalocean_sizes",
+			Type:             "digitalocean_region",
 			Category:         "Data Sources",
-			ShortDescription: `Retrieve information DigitalOcean Cloud Firewall resource. This can be used to create, modify, and delete Firewalls.`,
+			ShortDescription: `Get information on a DigitalOcean region.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "slug",
+					Description: `(Required) A human-readable string that is used as a unique identifier for each region. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "slug",
+					Description: `A human-readable string that is used as a unique identifier for each region.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The display name of the region.`,
+				},
+				resource.Attribute{
+					Name:        "available",
+					Description: `A boolean value that represents whether new Droplets can be created in this region.`,
+				},
+				resource.Attribute{
+					Name:        "sizes",
+					Description: `A set of identifying slugs for the Droplet sizes available in this region.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `A set of features available in this region.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "slug",
+					Description: `A human-readable string that is used as a unique identifier for each region.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The display name of the region.`,
+				},
+				resource.Attribute{
+					Name:        "available",
+					Description: `A boolean value that represents whether new Droplets can be created in this region.`,
+				},
+				resource.Attribute{
+					Name:        "sizes",
+					Description: `A set of identifying slugs for the Droplet sizes available in this region.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `A set of features available in this region.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "digitalocean_regions",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve information about DigitalOcean regions.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -741,7 +1069,51 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sort",
-					Description: `(Optional) Sort the results. The ` + "`" + `sort` + "`" + ` block is documented below. ` + "`" + `filter` + "`" + ` supports the following:`,
+					Description: `(Optional) Sort the results. The ` + "`" + `sort` + "`" + ` block is documented below. ` + "`" + `filter` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Filter the regions by this key. This may be one of ` + "`" + `slug` + "`" + `, ` + "`" + `name` + "`" + `, ` + "`" + `available` + "`" + `, ` + "`" + `features` + "`" + `, or ` + "`" + `sizes` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) A list of values to match against the ` + "`" + `key` + "`" + ` field. Only retrieves regions where the ` + "`" + `key` + "`" + ` field takes on one or more of the values provided here. ` + "`" + `sort` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Sort the regions by this key. This may be one of ` + "`" + `slug` + "`" + `, ` + "`" + `name` + "`" + `, or ` + "`" + `available` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "direction",
+					Description: `(Required) The sort direction. This may be either ` + "`" + `asc` + "`" + ` or ` + "`" + `desc` + "`" + `. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "regions",
+					Description: `A set of regions satisfying any ` + "`" + `filter` + "`" + ` and ` + "`" + `sort` + "`" + ` criteria. Each region has the following attributes: - ` + "`" + `slug` + "`" + ` - A human-readable string that is used as a unique identifier for each region. - ` + "`" + `name` + "`" + ` - The display name of the region. - ` + "`" + `available` + "`" + ` - A boolean value that represents whether new Droplets can be created in this region. - ` + "`" + `sizes` + "`" + ` - A set of identifying slugs for the Droplet sizes available in this region. - ` + "`" + `features` + "`" + ` - A set of features available in this region.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "regions",
+					Description: `A set of regions satisfying any ` + "`" + `filter` + "`" + ` and ` + "`" + `sort` + "`" + ` criteria. Each region has the following attributes: - ` + "`" + `slug` + "`" + ` - A human-readable string that is used as a unique identifier for each region. - ` + "`" + `name` + "`" + ` - The display name of the region. - ` + "`" + `available` + "`" + ` - A boolean value that represents whether new Droplets can be created in this region. - ` + "`" + `sizes` + "`" + ` - A set of identifying slugs for the Droplet sizes available in this region. - ` + "`" + `features` + "`" + ` - A set of features available in this region.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "digitalocean_sizes",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve information on supported Droplet sizes.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Filter the results. The ` + "`" + `filter` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "sort",
+					Description: `(Optional) Sort the results. The ` + "`" + `sort` + "`" + ` block is documented below. ` + "`" + `filter` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -749,7 +1121,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "values",
-					Description: `(Required) Only retrieves images which keys has value that matches one of the values provided here. ` + "`" + `sort` + "`" + ` supports the following:`,
+					Description: `(Required) Only retrieves images which keys has value that matches one of the values provided here. ` + "`" + `sort` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -837,6 +1209,302 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "digitalocean_spaces_bucket",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a Spaces bucket.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Spaces bucket.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) The slug of the region where the bucket is stored. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the Spaces bucket`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The slug of the region where the bucket is stored.`,
+				},
+				resource.Attribute{
+					Name:        "urn",
+					Description: `The uniform resource name of the bucket`,
+				},
+				resource.Attribute{
+					Name:        "bucket_domain_name",
+					Description: `The FQDN of the bucket (e.g. bucket-name.nyc3.digitaloceanspaces.com)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the Spaces bucket`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The slug of the region where the bucket is stored.`,
+				},
+				resource.Attribute{
+					Name:        "urn",
+					Description: `The uniform resource name of the bucket`,
+				},
+				resource.Attribute{
+					Name:        "bucket_domain_name",
+					Description: `The FQDN of the bucket (e.g. bucket-name.nyc3.digitaloceanspaces.com)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "digitalocean_spaces_bucket_object",
+			Category:         "Data Sources",
+			ShortDescription: `Provides metadata and optionally content of a Spaces object`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `(Required) The name of the bucket to read the object from.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) The slug of the region where the bucket is stored.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The full path to the object inside the bucket`,
+				},
+				resource.Attribute{
+					Name:        "version_id",
+					Description: `(Optional) Specific version ID of the object returned (defaults to latest version) ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "body",
+					Description: `Object data (see`,
+				},
+				resource.Attribute{
+					Name:        "cache_control",
+					Description: `Specifies caching behavior along the request/reply chain.`,
+				},
+				resource.Attribute{
+					Name:        "content_disposition",
+					Description: `Specifies presentational information for the object.`,
+				},
+				resource.Attribute{
+					Name:        "content_encoding",
+					Description: `Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field.`,
+				},
+				resource.Attribute{
+					Name:        "content_language",
+					Description: `The language the content is in.`,
+				},
+				resource.Attribute{
+					Name:        "content_length",
+					Description: `Size of the body in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "content_type",
+					Description: `A standard MIME type describing the format of the object data.`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `[ETag](https://en.wikipedia.org/wiki/HTTP_ETag) generated for the object (an MD5 sum of the object content in case it's not encrypted)`,
+				},
+				resource.Attribute{
+					Name:        "expiration",
+					Description: `If the object expiration is configured (see [object lifecycle management](http://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html)), the field includes this header. It includes the expiry-date and rule-id key value pairs providing object expiration information. The value of the rule-id is URL encoded.`,
+				},
+				resource.Attribute{
+					Name:        "expires",
+					Description: `The date and time at which the object is no longer cacheable.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified",
+					Description: `Last modified date of the object in RFC1123 format (e.g. ` + "`" + `Mon, 02 Jan 2006 15:04:05 MST` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `A map of metadata stored with the object in Spaces`,
+				},
+				resource.Attribute{
+					Name:        "version_id",
+					Description: `The latest version ID of the object returned.`,
+				},
+				resource.Attribute{
+					Name:        "website_redirect_location",
+					Description: `If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Spaces stores the value of this header in the object metadata. ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "body",
+					Description: `Object data (see`,
+				},
+				resource.Attribute{
+					Name:        "cache_control",
+					Description: `Specifies caching behavior along the request/reply chain.`,
+				},
+				resource.Attribute{
+					Name:        "content_disposition",
+					Description: `Specifies presentational information for the object.`,
+				},
+				resource.Attribute{
+					Name:        "content_encoding",
+					Description: `Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field.`,
+				},
+				resource.Attribute{
+					Name:        "content_language",
+					Description: `The language the content is in.`,
+				},
+				resource.Attribute{
+					Name:        "content_length",
+					Description: `Size of the body in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "content_type",
+					Description: `A standard MIME type describing the format of the object data.`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `[ETag](https://en.wikipedia.org/wiki/HTTP_ETag) generated for the object (an MD5 sum of the object content in case it's not encrypted)`,
+				},
+				resource.Attribute{
+					Name:        "expiration",
+					Description: `If the object expiration is configured (see [object lifecycle management](http://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html)), the field includes this header. It includes the expiry-date and rule-id key value pairs providing object expiration information. The value of the rule-id is URL encoded.`,
+				},
+				resource.Attribute{
+					Name:        "expires",
+					Description: `The date and time at which the object is no longer cacheable.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified",
+					Description: `Last modified date of the object in RFC1123 format (e.g. ` + "`" + `Mon, 02 Jan 2006 15:04:05 MST` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `A map of metadata stored with the object in Spaces`,
+				},
+				resource.Attribute{
+					Name:        "version_id",
+					Description: `The latest version ID of the object returned.`,
+				},
+				resource.Attribute{
+					Name:        "website_redirect_location",
+					Description: `If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Spaces stores the value of this header in the object metadata. ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "digitalocean_spaces_bucket_objects",
+			Category:         "Data Sources",
+			ShortDescription: `Returns keys and metadata of Spaces objects`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `(Required) Lists object keys in this Spaces bucket`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) The slug of the region where the bucket is stored.`,
+				},
+				resource.Attribute{
+					Name:        "prefix",
+					Description: `(Optional) Limits results to object keys with this prefix (Default: none)`,
+				},
+				resource.Attribute{
+					Name:        "delimiter",
+					Description: `(Optional) A character used to group keys (Default: none)`,
+				},
+				resource.Attribute{
+					Name:        "encoding_type",
+					Description: `(Optional) Encodes keys using this method (Default: none; besides none, only "url" can be used)`,
+				},
+				resource.Attribute{
+					Name:        "max_keys",
+					Description: `(Optional) Maximum object keys to return (Default: 1000) ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "keys",
+					Description: `List of strings representing object keys`,
+				},
+				resource.Attribute{
+					Name:        "common_prefixes",
+					Description: `List of any keys between ` + "`" + `prefix` + "`" + ` and the next occurrence of ` + "`" + `delimiter` + "`" + ` (i.e., similar to subdirectories of the ` + "`" + `prefix` + "`" + ` "directory"); the list is only returned when you specify ` + "`" + `delimiter` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "owners",
+					Description: `List of strings representing object owner IDs`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "keys",
+					Description: `List of strings representing object keys`,
+				},
+				resource.Attribute{
+					Name:        "common_prefixes",
+					Description: `List of any keys between ` + "`" + `prefix` + "`" + ` and the next occurrence of ` + "`" + `delimiter` + "`" + ` (i.e., similar to subdirectories of the ` + "`" + `prefix` + "`" + ` "directory"); the list is only returned when you specify ` + "`" + `delimiter` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "owners",
+					Description: `List of strings representing object owner IDs`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "digitalocean_spaces_buckets",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve information on Spaces buckets.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Filter the results. The ` + "`" + `filter` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "sort",
+					Description: `(Optional) Sort the results. The ` + "`" + `sort` + "`" + ` block is documented below. ` + "`" + `filter` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Filter the images by this key. This may be one of ` + "`" + `bucket_domain_name` + "`" + `, ` + "`" + `name` + "`" + `, ` + "`" + `region` + "`" + `, or ` + "`" + `urn` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) A list of values to match against the ` + "`" + `key` + "`" + ` field. Only retrieves images where the ` + "`" + `key` + "`" + ` field takes on one or more of the values provided here. ` + "`" + `sort` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Sort the images by this key. This may be one of ` + "`" + `bucket_domain_name` + "`" + `, ` + "`" + `name` + "`" + `, ` + "`" + `region` + "`" + `, or ` + "`" + `urn` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "direction",
+					Description: `(Required) The sort direction. This may be either ` + "`" + `asc` + "`" + ` or ` + "`" + `desc` + "`" + `. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "buckets",
+					Description: `A list of Spaces buckets satisfying any ` + "`" + `filter` + "`" + ` and ` + "`" + `sort` + "`" + ` criteria. Each bucket has the following attributes: - ` + "`" + `name` + "`" + ` - The name of the Spaces bucket - ` + "`" + `region` + "`" + ` - The slug of the region where the bucket is stored. - ` + "`" + `urn` + "`" + ` - The uniform resource name of the bucket - ` + "`" + `bucket_domain_name` + "`" + ` - The FQDN of the bucket (e.g. bucket-name.nyc3.digitaloceanspaces.com)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "buckets",
+					Description: `A list of Spaces buckets satisfying any ` + "`" + `filter` + "`" + ` and ` + "`" + `sort` + "`" + ` criteria. Each bucket has the following attributes: - ` + "`" + `name` + "`" + ` - The name of the Spaces bucket - ` + "`" + `region` + "`" + ` - The slug of the region where the bucket is stored. - ` + "`" + `urn` + "`" + ` - The uniform resource name of the bucket - ` + "`" + `bucket_domain_name` + "`" + ` - The FQDN of the bucket (e.g. bucket-name.nyc3.digitaloceanspaces.com)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "digitalocean_ssh_key",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on a ssh key.`,
@@ -862,8 +1530,149 @@ var (
 					Name:        "name",
 					Description: `(Required) The name of the tag. ## Attributes Reference The following attributes are exported:`,
 				},
+				resource.Attribute{
+					Name:        "total_resource_count",
+					Description: `A count of the total number of resources that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "droplets_count",
+					Description: `A count of the Droplets the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "images_count",
+					Description: `A count of the images that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "volumes_count",
+					Description: `A count of the volumes that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "volume_snapshots_count",
+					Description: `A count of the volume snapshots that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "databases_count",
+					Description: `A count of the database clusters that the tag is applied to.`,
+				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total_resource_count",
+					Description: `A count of the total number of resources that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "droplets_count",
+					Description: `A count of the Droplets the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "images_count",
+					Description: `A count of the images that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "volumes_count",
+					Description: `A count of the volumes that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "volume_snapshots_count",
+					Description: `A count of the volume snapshots that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "databases_count",
+					Description: `A count of the database clusters that the tag is applied to.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "digitalocean_tags",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve information on tags.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Filter the results. The ` + "`" + `filter` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "sort",
+					Description: `(Optional) Sort the results. The ` + "`" + `sort` + "`" + ` block is documented below. ` + "`" + `filter` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Filter the tags by this key. This may be one of ` + "`" + `name` + "`" + `, ` + "`" + `total_resource_count` + "`" + `, ` + "`" + `droplets_count` + "`" + `, ` + "`" + `images_count` + "`" + `, ` + "`" + `volumes_count` + "`" + `, ` + "`" + `volume_snapshots_count` + "`" + `, or ` + "`" + `databases_count` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Only retrieves tags which keys has value that matches one of the values provided here. ` + "`" + `sort` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Sort the tags by this key. This may be one of ` + "`" + `name` + "`" + `, ` + "`" + `total_resource_count` + "`" + `, ` + "`" + `droplets_count` + "`" + `, ` + "`" + `images_count` + "`" + `, ` + "`" + `volumes_count` + "`" + `, ` + "`" + `volume_snapshots_count` + "`" + `, or ` + "`" + `databases_count` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "direction",
+					Description: `(Required) The sort direction. This may be either ` + "`" + `asc` + "`" + ` or ` + "`" + `desc` + "`" + `. ## Attributes Reference The following attributes are exported for each tag:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the tag.`,
+				},
+				resource.Attribute{
+					Name:        "total_resource_count",
+					Description: `A count of the total number of resources that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "droplets_count",
+					Description: `A count of the Droplets the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "images_count",
+					Description: `A count of the images that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "volumes_count",
+					Description: `A count of the volumes that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "volume_snapshots_count",
+					Description: `A count of the volume snapshots that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "databases_count",
+					Description: `A count of the database clusters that the tag is applied to.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the tag.`,
+				},
+				resource.Attribute{
+					Name:        "total_resource_count",
+					Description: `A count of the total number of resources that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "droplets_count",
+					Description: `A count of the Droplets the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "images_count",
+					Description: `A count of the images that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "volumes_count",
+					Description: `A count of the volumes that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "volume_snapshots_count",
+					Description: `A count of the volume snapshots that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "databases_count",
+					Description: `A count of the database clusters that the tag is applied to.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1009,27 +1818,128 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "digitalocean_vpc",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a VPC.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique identifier of an existing VPC.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of an existing VPC.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The DigitalOcean region slug for the VPC's location. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique identifier for the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The DigitalOcean region slug for the VPC's location.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A free-form text field describing the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "ip_range",
+					Description: `The range of IP addresses for the VPC in CIDR notation.`,
+				},
+				resource.Attribute{
+					Name:        "urn",
+					Description: `The uniform resource name (URN) for the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `A boolean indicating whether or not the VPC is the default one for the region.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date and time of when the VPC was created.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique identifier for the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The DigitalOcean region slug for the VPC's location.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A free-form text field describing the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "ip_range",
+					Description: `The range of IP addresses for the VPC in CIDR notation.`,
+				},
+				resource.Attribute{
+					Name:        "urn",
+					Description: `The uniform resource name (URN) for the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `A boolean indicating whether or not the VPC is the default one for the region.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date and time of when the VPC was created.`,
+				},
+			},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
 
-		"digitalocean_account":             0,
-		"digitalocean_certificate":         1,
-		"digitalocean_database_cluster":    2,
-		"digitalocean_domain":              3,
-		"digitalocean_droplet":             4,
-		"digitalocean_droplet_snapshot":    5,
-		"digitalocean_floating_ip":         6,
-		"digitalocean_image":               7,
-		"digitalocean_kubernetes_cluster":  8,
-		"digitalocean_kubernetes_versions": 9,
-		"digitalocean_loadbalancer":        10,
-		"digitalocean_record":              11,
-		"digitalocean_sizes":               12,
-		"digitalocean_ssh_key":             13,
-		"digitalocean_tag":                 14,
-		"digitalocean_volume":              15,
-		"digitalocean_volume_snapshot":     16,
+		"digitalocean_account":               0,
+		"digitalocean_certificate":           1,
+		"digitalocean_container_registry":    2,
+		"digitalocean_database_cluster":      3,
+		"digitalocean_domain":                4,
+		"digitalocean_droplet":               5,
+		"digitalocean_droplet_snapshot":      6,
+		"digitalocean_droplets":              7,
+		"digitalocean_floating_ip":           8,
+		"digitalocean_image":                 9,
+		"digitalocean_images":                10,
+		"digitalocean_kubernetes_cluster":    11,
+		"digitalocean_kubernetes_versions":   12,
+		"digitalocean_loadbalancer":          13,
+		"digitalocean_project":               14,
+		"digitalocean_projects":              15,
+		"digitalocean_record":                16,
+		"digitalocean_region":                17,
+		"digitalocean_regions":               18,
+		"digitalocean_sizes":                 19,
+		"digitalocean_spaces_bucket":         20,
+		"digitalocean_spaces_bucket_object":  21,
+		"digitalocean_spaces_bucket_objects": 22,
+		"digitalocean_spaces_buckets":        23,
+		"digitalocean_ssh_key":               24,
+		"digitalocean_tag":                   25,
+		"digitalocean_tags":                  26,
+		"digitalocean_volume":                27,
+		"digitalocean_volume_snapshot":       28,
+		"digitalocean_vpc":                   29,
 	}
 )
 

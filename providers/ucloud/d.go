@@ -231,6 +231,90 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ucloud_db_parameter_groups",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of db parameter group resources in the current region.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Optional) Availability zone where parameter groups are located. Such as: "cn-bj2-02". You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist)`,
+				},
+				resource.Attribute{
+					Name:        "multi_az",
+					Description: `(Optional) Specifies if the replication instance is a multi-az deployment. You cannot set the ` + "`" + `availability_zone` + "`" + ` parameter if the ` + "`" + `multi_az` + "`" + ` parameter is set to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter resulting parameter groups by name.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "parameter_groups",
+					Description: `It is a nested type which documented below.`,
+				},
+				resource.Attribute{
+					Name:        "total_count",
+					Description: `Total number of parameter groups that satisfy the condition. - - - The attribute (` + "`" + `parameter_groups` + "`" + `) support the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of parameter group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of parameter group.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `Availability zone where parameter group is located.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `The type of database instance engine used by the parameter group.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `The database instance engine version used by the parameter group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "parameter_groups",
+					Description: `It is a nested type which documented below.`,
+				},
+				resource.Attribute{
+					Name:        "total_count",
+					Description: `Total number of parameter groups that satisfy the condition. - - - The attribute (` + "`" + `parameter_groups` + "`" + `) support the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of parameter group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of parameter group.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `Availability zone where parameter group is located.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `The type of database instance engine used by the parameter group.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `The database instance engine version used by the parameter group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ucloud_disks",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a list of Disk resources in the current region.`,
@@ -2470,24 +2554,25 @@ var (
 	dataSourcesMap = map[string]int{
 
 		"ucloud_db_instances":          0,
-		"ucloud_disks":                 1,
-		"ucloud_eips":                  2,
-		"ucloud_images":                3,
-		"ucloud_instances":             4,
-		"ucloud_lb_attachments":        5,
-		"ucloud_lb_listeners":          6,
-		"ucloud_lb_rules":              7,
-		"ucloud_lb_ssls":               8,
-		"ucloud_lbs":                   9,
-		"ucloud_nat_gateways":          10,
-		"ucloud_projects":              11,
-		"ucloud_security_groups":       12,
-		"ucloud_subnets":               13,
-		"ucloud_vpcs":                  14,
-		"ucloud_vpn_connections":       15,
-		"ucloud_vpn_customer_gateways": 16,
-		"ucloud_vpn_gateways":          17,
-		"ucloud_zones":                 18,
+		"ucloud_db_parameter_groups":   1,
+		"ucloud_disks":                 2,
+		"ucloud_eips":                  3,
+		"ucloud_images":                4,
+		"ucloud_instances":             5,
+		"ucloud_lb_attachments":        6,
+		"ucloud_lb_listeners":          7,
+		"ucloud_lb_rules":              8,
+		"ucloud_lb_ssls":               9,
+		"ucloud_lbs":                   10,
+		"ucloud_nat_gateways":          11,
+		"ucloud_projects":              12,
+		"ucloud_security_groups":       13,
+		"ucloud_subnets":               14,
+		"ucloud_vpcs":                  15,
+		"ucloud_vpn_connections":       16,
+		"ucloud_vpn_customer_gateways": 17,
+		"ucloud_vpn_gateways":          18,
+		"ucloud_zones":                 19,
 	}
 )
 

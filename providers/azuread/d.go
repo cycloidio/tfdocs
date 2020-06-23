@@ -48,6 +48,10 @@ Use this data source to access information about an existing Application within 
 					Description: `A list of user-defined URI(s) that uniquely identify a Web application within it's Azure AD tenant, or within a verified custom domain if the application is multi-tenant.`,
 				},
 				resource.Attribute{
+					Name:        "logout_url",
+					Description: `The URL of the logout page.`,
+				},
+				resource.Attribute{
 					Name:        "oauth2_allow_implicit_flow",
 					Description: `Does this Azure AD Application allow OAuth2.0 implicit flow tokens?`,
 				},
@@ -64,6 +68,14 @@ Use this data source to access information about an existing Application within 
 					Description: `The ` + "`" + `groups` + "`" + ` claim issued in a user or OAuth 2.0 access token that the app expects.`,
 				},
 				resource.Attribute{
+					Name:        "optional_claims",
+					Description: `A collection of ` + "`" + `access_token` + "`" + ` or ` + "`" + `id_token` + "`" + ` blocks as documented below which list the optional claims configured for each token type. For more information see https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-optional-claims`,
+				},
+				resource.Attribute{
+					Name:        "owners",
+					Description: `A list of User Object IDs that are assigned ownership of the application registration.`,
+				},
+				resource.Attribute{
 					Name:        "required_resource_access",
 					Description: `A collection of ` + "`" + `required_resource_access` + "`" + ` blocks as documented below.`,
 				},
@@ -73,7 +85,11 @@ Use this data source to access information about an existing Application within 
 				},
 				resource.Attribute{
 					Name:        "app_roles",
-					Description: `A collection of ` + "`" + `app_role` + "`" + ` blocks as documented below. For more information https://docs.microsoft.com/en-us/azure/architecture/multitenant-identity/app-roles --- ` + "`" + `required_resource_access` + "`" + ` block exports the following:`,
+					Description: `A collection of ` + "`" + `app_role` + "`" + ` blocks as documented below. For more information https://docs.microsoft.com/en-us/azure/architecture/multitenant-identity/app-roles`,
+				},
+				resource.Attribute{
+					Name:        "public_client",
+					Description: `Is this Azure AD Application available publically? --- ` + "`" + `required_resource_access` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "resource_app_id",
@@ -89,7 +105,23 @@ Use this data source to access information about an existing Application within 
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `Specifies whether the id property references an ` + "`" + `OAuth2Permission` + "`" + ` or an ` + "`" + `AppRole` + "`" + `. --- ` + "`" + `oauth2_permission` + "`" + ` block exports the following:`,
+					Description: `Specifies whether the id property references an ` + "`" + `OAuth2Permission` + "`" + ` or an ` + "`" + `AppRole` + "`" + `. --- ` + "`" + `access_token` + "`" + ` and/or ` + "`" + `id_token` + "`" + ` blocks export the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the optional claim.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `The source of the claim. If ` + "`" + `source` + "`" + ` is absent, the claim is a predefined optional claim. If ` + "`" + `source` + "`" + ` is ` + "`" + `user` + "`" + `, the value of ` + "`" + `name` + "`" + ` is the extension property from the user object.`,
+				},
+				resource.Attribute{
+					Name:        "essential",
+					Description: `Whether the claim specified by the client is necessary to ensure a smooth authorization experience.`,
+				},
+				resource.Attribute{
+					Name:        "additional_properties",
+					Description: `List of Additional Properties of the claim. If a property exists in this list, it modifies the behaviour of the optional claim. --- ` + "`" + `oauth2_permission` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -166,6 +198,10 @@ Use this data source to access information about an existing Application within 
 					Description: `A list of user-defined URI(s) that uniquely identify a Web application within it's Azure AD tenant, or within a verified custom domain if the application is multi-tenant.`,
 				},
 				resource.Attribute{
+					Name:        "logout_url",
+					Description: `The URL of the logout page.`,
+				},
+				resource.Attribute{
 					Name:        "oauth2_allow_implicit_flow",
 					Description: `Does this Azure AD Application allow OAuth2.0 implicit flow tokens?`,
 				},
@@ -182,6 +218,14 @@ Use this data source to access information about an existing Application within 
 					Description: `The ` + "`" + `groups` + "`" + ` claim issued in a user or OAuth 2.0 access token that the app expects.`,
 				},
 				resource.Attribute{
+					Name:        "optional_claims",
+					Description: `A collection of ` + "`" + `access_token` + "`" + ` or ` + "`" + `id_token` + "`" + ` blocks as documented below which list the optional claims configured for each token type. For more information see https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-optional-claims`,
+				},
+				resource.Attribute{
+					Name:        "owners",
+					Description: `A list of User Object IDs that are assigned ownership of the application registration.`,
+				},
+				resource.Attribute{
 					Name:        "required_resource_access",
 					Description: `A collection of ` + "`" + `required_resource_access` + "`" + ` blocks as documented below.`,
 				},
@@ -191,7 +235,11 @@ Use this data source to access information about an existing Application within 
 				},
 				resource.Attribute{
 					Name:        "app_roles",
-					Description: `A collection of ` + "`" + `app_role` + "`" + ` blocks as documented below. For more information https://docs.microsoft.com/en-us/azure/architecture/multitenant-identity/app-roles --- ` + "`" + `required_resource_access` + "`" + ` block exports the following:`,
+					Description: `A collection of ` + "`" + `app_role` + "`" + ` blocks as documented below. For more information https://docs.microsoft.com/en-us/azure/architecture/multitenant-identity/app-roles`,
+				},
+				resource.Attribute{
+					Name:        "public_client",
+					Description: `Is this Azure AD Application available publically? --- ` + "`" + `required_resource_access` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "resource_app_id",
@@ -207,7 +255,23 @@ Use this data source to access information about an existing Application within 
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `Specifies whether the id property references an ` + "`" + `OAuth2Permission` + "`" + ` or an ` + "`" + `AppRole` + "`" + `. --- ` + "`" + `oauth2_permission` + "`" + ` block exports the following:`,
+					Description: `Specifies whether the id property references an ` + "`" + `OAuth2Permission` + "`" + ` or an ` + "`" + `AppRole` + "`" + `. --- ` + "`" + `access_token` + "`" + ` and/or ` + "`" + `id_token` + "`" + ` blocks export the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the optional claim.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `The source of the claim. If ` + "`" + `source` + "`" + ` is absent, the claim is a predefined optional claim. If ` + "`" + `source` + "`" + ` is ` + "`" + `user` + "`" + `, the value of ` + "`" + `name` + "`" + ` is the extension property from the user object.`,
+				},
+				resource.Attribute{
+					Name:        "essential",
+					Description: `Whether the claim specified by the client is necessary to ensure a smooth authorization experience.`,
+				},
+				resource.Attribute{
+					Name:        "additional_properties",
+					Description: `List of Additional Properties of the claim. If a property exists in this list, it modifies the behaviour of the optional claim. --- ` + "`" + `oauth2_permission` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -266,6 +330,20 @@ Use this data source to access information about an existing Application within 
 					Description: `Specifies the value of the roles claim that the application should expect in the authentication and access tokens.`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuread_client_config",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about the configuration of the azuread provider.`,
+			Description: `
+
+Use this data source to access the configuration of the AzureRM provider.
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -371,11 +449,85 @@ Gets information about an Azure Active Directory group.
 					Name:        "id",
 					Description: `The Object ID of the Azure AD Group.`,
 				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the AD Group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the Azure AD Group.`,
+				},
+				resource.Attribute{
+					Name:        "owners",
+					Description: `The Object IDs of the Azure AD Group owners.`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `The Object IDs of the Azure AD Group members.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Object ID of the Azure AD Group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the AD Group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the Azure AD Group.`,
+				},
+				resource.Attribute{
+					Name:        "owners",
+					Description: `The Object IDs of the Azure AD Group owners.`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `The Object IDs of the Azure AD Group members.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuread_groups",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about Azure Active Directory groups.`,
+			Description: `
+
+Gets Object IDs or Display Names for multiple Azure Active Directory groups.
+
+-> **NOTE:** If you're authenticating using a Service Principal then it must have permissions to ` + "`" + `Read directory data` + "`" + ` within the ` + "`" + `Windows Azure Active Directory` + "`" + ` API.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "names",
+					Description: `(Optional) The Display Names of the Azure AD Groups.`,
+				},
+				resource.Attribute{
+					Name:        "object_ids",
+					Description: `(Optional) The Object IDs of the Azure AD Groups. ->`,
+				},
+				resource.Attribute{
+					Name:        "object_ids",
+					Description: `The Object IDs of the Azure AD Groups.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `The Display Names of the Azure AD Groups.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "object_ids",
+					Description: `The Object IDs of the Azure AD Groups.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `The Display Names of the Azure AD Groups.`,
 				},
 			},
 		},
@@ -588,8 +740,24 @@ Gets information about an Azure Active Directory user.
 					Description: `The email alias of the Azure AD User.`,
 				},
 				resource.Attribute{
+					Name:        "mail_nickname",
+					Description: `The email alias of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "onpremises_sam_account_name",
+					Description: `The on premise sam account name of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "onpremises_user_principal_name",
+					Description: `The on premise user principal name of the Azure AD User.`,
+				},
+				resource.Attribute{
 					Name:        "usage_location",
 					Description: `The usage location of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "immutable_id",
+					Description: `The value used to associate an on-premises Active Directory user account with their Azure AD user object.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -618,8 +786,24 @@ Gets information about an Azure Active Directory user.
 					Description: `The email alias of the Azure AD User.`,
 				},
 				resource.Attribute{
+					Name:        "mail_nickname",
+					Description: `The email alias of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "onpremises_sam_account_name",
+					Description: `The on premise sam account name of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "onpremises_user_principal_name",
+					Description: `The on premise user principal name of the Azure AD User.`,
+				},
+				resource.Attribute{
 					Name:        "usage_location",
 					Description: `The usage location of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "immutable_id",
+					Description: `The value used to associate an on-premises Active Directory user account with their Azure AD user object.`,
 				},
 			},
 		},
@@ -639,7 +823,7 @@ Gets Object IDs or UPNs for multiple Azure Active Directory users.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user_principal_names",
-					Description: `(optional) The User Principal Names of the Azure AD Users.`,
+					Description: `(Optional) The User Principal Names of the Azure AD Users.`,
 				},
 				resource.Attribute{
 					Name:        "object_ids",
@@ -682,11 +866,13 @@ Gets Object IDs or UPNs for multiple Azure Active Directory users.
 	dataSourcesMap = map[string]int{
 
 		"azuread_application":       0,
-		"azuread_domains":           1,
-		"azuread_group":             2,
-		"azuread_service_principal": 3,
-		"azuread_user":              4,
-		"azuread_users":             5,
+		"azuread_client_config":     1,
+		"azuread_domains":           2,
+		"azuread_group":             3,
+		"azuread_groups":            4,
+		"azuread_service_principal": 5,
+		"azuread_user":              6,
+		"azuread_users":             7,
 	}
 )
 

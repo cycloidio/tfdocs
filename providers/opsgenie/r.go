@@ -66,7 +66,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "api_key",
-					Description: `(Computed) API key of the created integration ## Import API Integrations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_team.team1 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
+					Description: `(Computed) API key of the created integration ## Import API Integrations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_api_integration.defaultintegration 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -76,7 +76,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "api_key",
-					Description: `(Computed) API key of the created integration ## Import API Integrations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_team.team1 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
+					Description: `(Computed) API key of the created integration ## Import API Integrations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_api_integration.defaultintegration 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
 				},
 			},
 		},
@@ -511,11 +511,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) Timezone of schedule. Please look at [Supported Timezone Ids](https://docs.opsgenie.com/docs/supported-timezone-ids) for available timezones - Defaults to "America/New_York".`,
+					Description: `(Optional) The description of schedule.`,
 				},
 				resource.Attribute{
 					Name:        "timezone",
-					Description: `(Optional) The description of schedule.`,
+					Description: `(Optional) Timezone of schedule. Please look at [Supported Timezone Ids](https://docs.opsgenie.com/docs/supported-timezone-ids) for available timezones - Defaults to "America/New_York".`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -570,7 +570,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "length",
-					Description: `(Required) Length of the rotation with default value 1.`,
+					Description: `(Optional) Length of the rotation with default value 1.`,
 				},
 				resource.Attribute{
 					Name:        "participant",
@@ -578,7 +578,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "time_restriction",
-					Description: `(Required) ` + "`" + `participant` + "`" + ` supports the following:`,
+					Description: `(Optional) ` + "`" + `participant` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -590,15 +590,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) This parameter should be set time-of-day`,
+					Description: `(Required) This parameter should be set to ` + "`" + `time-of-day` + "`" + ` or ` + "`" + `weekday-and-time-of-day` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "restriction",
-					Description: `(Required) It is a restriction object which is described below. In this case startDay/endDay fields are not supported. ` + "`" + `restriction` + "`" + ` supports the following:`,
+					Description: `(Optional) It is a restriction object which is described below. In this case startDay/endDay fields are not supported. This can be used only if time restriction type is ` + "`" + `time-of-day` + "`" + `. ` + "`" + `restriction` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "start_hour",
-					Description: `(Required) Value of the hour that frame will start`,
+					Description: `(Required) Value of the hour that frame will start.`,
 				},
 				resource.Attribute{
 					Name:        "start_min",
@@ -610,7 +610,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "end_min",
-					Description: `(Required) Value of the minute that frame will end. Minutes may take 0 or 30 as value. Otherwise they will be converted to nearest 0 or 30 automatically. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) Value of the minute that frame will end. Minutes may take 0 or 30 as value. Otherwise they will be converted to nearest 0 or 30 automatically.`,
+				},
+				resource.Attribute{
+					Name:        "restrictions",
+					Description: `(Optional) It is a restriction object which is described below. This can be used only if time restriction type is ` + "`" + `weekday-and-time-of-day` + "`" + `. ` + "`" + `restrictions` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "start_day",
+					Description: `(Required) Value of the day that frame will start.`,
+				},
+				resource.Attribute{
+					Name:        "start_hour",
+					Description: `(Required) Value of the hour that frame will start`,
+				},
+				resource.Attribute{
+					Name:        "start_min",
+					Description: `(Required) Value of the minute that frame will start. Minutes may take 0 or 30 as value. Otherwise they will be converted to nearest 0 or 30 automatically.`,
+				},
+				resource.Attribute{
+					Name:        "end_day",
+					Description: `(Required) Value of the day that frame will end.`,
+				},
+				resource.Attribute{
+					Name:        "end_hour",
+					Description: `(Required) Value of the hour that frame will end.`,
+				},
+				resource.Attribute{
+					Name:        "end_min",
+					Description: `(Required) Value of the minute that frame will end. Minutes may take 0 or 30 as value. Otherwise they will be converted to nearest 0 or 30 automatically. Both ` + "`" + `start_day` + "`" + ` and ` + "`" + `end_day` + "`" + ` can assume only ` + "`" + `monday` + "`" + `, ` + "`" + `tuesday` + "`" + `, ` + "`" + `wednesday` + "`" + `, ` + "`" + `thursday` + "`" + `, ` + "`" + `friday` + "`" + `, ` + "`" + `saturday` + "`" + `, or ` + "`" + `sunday` + "`" + ` values. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -641,6 +669,10 @@ var (
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) A description for this team.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_members",
+					Description: `(Optional) Set to true to ignore any configured member blocks and any team member added/updated/removed via OpsGenie web UI. Use this option e.g. to maintain membership via web UI only and use it only for new teams. Changing the value for existing teams might lead to strange behaviour. Defaults to false.`,
 				},
 				resource.Attribute{
 					Name:        "member",
@@ -683,6 +715,10 @@ var (
 					Description: `(Optional) Name of the team routing rule`,
 				},
 				resource.Attribute{
+					Name:        "team_id",
+					Description: `(Required) Id of the team owning the routing rule`,
+				},
+				resource.Attribute{
 					Name:        "order",
 					Description: `(Optional) The order of the team routing rule within the rules. order value is actually the index of the team routing rule whose minimum value is 0 and whose maximum value is n-1 (number of team routing rules is n)`,
 				},
@@ -700,7 +736,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "notify",
-					Description: `(Optional) Target entity of schedule, escalation, or the reserved word none which will be notified in routing rule. The possible values for notify type : schedule, escalation, none ` + "`" + `notify` + "`" + ` supports the following:`,
+					Description: `(Required) Target entity of schedule, escalation, or the reserved word none which will be notified in routing rule. The possible values for notify type : schedule, escalation, none ` + "`" + `notify` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -748,13 +784,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Team Routing Rule. ## Import Teams can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_team_routing_rule.ruletest teamId/routingRuleId` + "`" + ` For this example: - Team Id = ` + "`" + `c827c472-31f2-497b-9ec6-8ec855d7d94c` + "`" + ` - Routing Rule Id = ` + "`" + `2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ` ` + "`" + `$ terraform import opsgenie_team_routing_rule.ruletest c827c472-31f2-497b-9ec6-8ec855d7d94c/2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ``,
+					Description: `The ID of the Opsgenie Team Routing Rule. ## Import Team Routing Rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_team_routing_rule.ruletest teamId/routingRuleId` + "`" + ` For this example: - Team Id = ` + "`" + `c827c472-31f2-497b-9ec6-8ec855d7d94c` + "`" + ` - Routing Rule Id = ` + "`" + `2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ` ` + "`" + `$ terraform import opsgenie_team_routing_rule.ruletest c827c472-31f2-497b-9ec6-8ec855d7d94c/2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Team Routing Rule. ## Import Teams can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_team_routing_rule.ruletest teamId/routingRuleId` + "`" + ` For this example: - Team Id = ` + "`" + `c827c472-31f2-497b-9ec6-8ec855d7d94c` + "`" + ` - Routing Rule Id = ` + "`" + `2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ` ` + "`" + `$ terraform import opsgenie_team_routing_rule.ruletest c827c472-31f2-497b-9ec6-8ec855d7d94c/2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ``,
+					Description: `The ID of the Opsgenie Team Routing Rule. ## Import Team Routing Rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_team_routing_rule.ruletest teamId/routingRuleId` + "`" + ` For this example: - Team Id = ` + "`" + `c827c472-31f2-497b-9ec6-8ec855d7d94c` + "`" + ` - Routing Rule Id = ` + "`" + `2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ` ` + "`" + `$ terraform import opsgenie_team_routing_rule.ruletest c827c472-31f2-497b-9ec6-8ec855d7d94c/2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ``,
 				},
 			},
 		},
@@ -770,7 +806,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "username",
-					Description: `(Required) The email address associated with this user. Opsgenie defines that this must not be longer than 100 characters.`,
+					Description: `(Required) The email address associated with this user. Opsgenie defines that this must not be longer than 100 characters and must contain lowercase characters only.`,
 				},
 				resource.Attribute{
 					Name:        "full_name",

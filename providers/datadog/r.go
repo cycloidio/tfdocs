@@ -63,7 +63,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "scope",
-					Description: `(Required) A list of items to apply the downtime to, e.g. host:X`,
+					Description: `(Required) The scope(s) to which the downtime applies, e.g. host:app2. Provide multiple scopes as a comma-separated list, e.g. env:dev,env:prod. The resulting downtime applies to sources that matches ALL provided scopes (i.e. env:dev AND env:prod), NOT any of them.`,
 				},
 				resource.Attribute{
 					Name:        "active",
@@ -182,19 +182,67 @@ var (
 				},
 				resource.Attribute{
 					Name:        "account_specific_namespace_rules",
-					Description: `(Optional) Enables or disables metric collection for specific AWS namespaces for this AWS account only. A list of namespaces can be found at the [available namespace rules API endpoint](https://api.datadoghq.com/api/v1/integration/aws/available_namespace_rules). ### See also`,
+					Description: `(Optional) Enables or disables metric collection for specific AWS namespaces for this AWS account only. A list of namespaces can be found at the [available namespace rules API endpoint](https://docs.datadoghq.com/api/v1/aws-integration/#list-namespace-rules). ### See also`,
 				},
 				resource.Attribute{
 					Name:        "external_id",
-					Description: `AWS External ID ## Import Amazon Web Services integrations can be imported using their ` + "`" + `account ID` + "`" + ` and ` + "`" + `role name` + "`" + ` separated with a colon (` + "`" + `:` + "`" + `), while the ` + "`" + `external_id` + "`" + ` should be passed by setting an environment variable called ` + "`" + `EXTERNAL_ID` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ EXTERNAL_ID=${external_id} terraform import datadog_integration_aws.test ${account_id}:${role_name} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `AWS External ID`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "external_id",
-					Description: `AWS External ID ## Import Amazon Web Services integrations can be imported using their ` + "`" + `account ID` + "`" + ` and ` + "`" + `role name` + "`" + ` separated with a colon (` + "`" + `:` + "`" + `), while the ` + "`" + `external_id` + "`" + ` should be passed by setting an environment variable called ` + "`" + `EXTERNAL_ID` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ EXTERNAL_ID=${external_id} terraform import datadog_integration_aws.test ${account_id}:${role_name} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `AWS External ID`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "datadog_integration_aws_lambda_arn",
+			Category:         "Resources",
+			ShortDescription: `Provides a Datadog - Amazon Web Services integration Lambda ARN resource. This can be used to create and manage the log collection Lambdas for an account.`,
+			Description:      ``,
+			Keywords: []string{
+				"integration",
+				"aws",
+				"lambda",
+				"arn",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Required) Your AWS Account ID without dashes.`,
+				},
+				resource.Attribute{
+					Name:        "lambda_arn",
+					Description: `(Required) The ARN of the Datadog forwarder Lambda. ### See also`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "datadog_integration_aws_log_collection",
+			Category:         "Resources",
+			ShortDescription: `Provides a Datadog - Amazon Web Services integration log collection resource. This can be used to manage which AWS services logs are collected from for an account.`,
+			Description:      ``,
+			Keywords: []string{
+				"integration",
+				"aws",
+				"log",
+				"collection",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Required) Your AWS Account ID without dashes.`,
+				},
+				resource.Attribute{
+					Name:        "services",
+					Description: `(Required) A list of services to collect logs from. See the [api docs](https://docs.datadoghq.com/api/v1/aws-logs-integration/#get-list-of-aws-log-ready-services) for more details on which services are supported. ### See also`,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -486,6 +534,30 @@ var (
 					Description: `(Optional, default = false) If the processor is enabled or not.`,
 				},
 				resource.Attribute{
+					Name:        "source",
+					Description: `(Required) Name of the source attribute used to do the lookup.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Required) Name of the attribute that contains the result of the lookup.`,
+				},
+				resource.Attribute{
+					Name:        "lookup_table",
+					Description: `(Required) List of entries of the lookup table using ` + "`" + `"key,value"` + "`" + ` format.`,
+				},
+				resource.Attribute{
+					Name:        "default_lookup",
+					Description: `(Optional) Default lookup value to use if there is no entry in the lookup table for the value of the source attribute.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the processor.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional, default = false) If the processor is enabled or not.`,
+				},
+				resource.Attribute{
 					Name:        "sources",
 					Description: `(Required) List of source attributes.`,
 				},
@@ -722,7 +794,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name attribute in the resource ` + "`" + `datadog_logs_pipeline_order` + "`" + ` needs to be unique. It's recommended to use the same value as the resource ` + "`" + `NAME` + "`" + `. No related field is available in [Logs Pipeline API](https://docs.datadoghq.com/api/?lang=python#get-pipeline-order).`,
+					Description: `(Required) The name attribute in the resource ` + "`" + `datadog_logs_pipeline_order` + "`" + ` needs to be unique. It's recommended to use the same value as the resource ` + "`" + `NAME` + "`" + `. No related field is available in [Logs Pipeline API](https://docs.datadoghq.com/api/v1/logs-pipelines/#get-pipeline-orderr).`,
 				},
 				resource.Attribute{
 					Name:        "pipelines",
@@ -790,7 +862,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) The type of the monitor. The mapping from these types to the types found in the Datadog Web UI can be found in the Datadog API [documentation](https://docs.datadoghq.com/api/?lang=python#create-a-monitor) page. The available options are below.`,
+					Description: `(Required) The type of the monitor. The mapping from these types to the types found in the Datadog Web UI can be found in the Datadog API [documentation](https://docs.datadoghq.com/api/v1/monitors/#create-a-monitor) page. The available options are below.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -798,7 +870,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "query",
-					Description: `(Required) The monitor query to notify on. Note this is not the same query you see in the UI and the syntax is different depending on the monitor ` + "`" + `type` + "`" + `, please see the [API Reference](https://docs.datadoghq.com/api/?lang=python#create-a-monitor) for details.`,
+					Description: `(Required) The monitor query to notify on. Note this is not the same query you see in the UI and the syntax is different depending on the monitor ` + "`" + `type` + "`" + `, please see the [API Reference](https://docs.datadoghq.com/api/v1/monitors/#create-a-monitor) for details.`,
 				},
 				resource.Attribute{
 					Name:        "message",
@@ -855,7 +927,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) The type of the service level objective. The mapping from these types to the types found in the Datadog Web UI can be found in the Datadog API [documentation](https://docs.datadoghq.com/api/?lang=python#create-a-service-level-objective) page. Available options to choose from are:`,
+					Description: `(Required) The type of the service level objective. The mapping from these types to the types found in the Datadog Web UI can be found in the Datadog API [documentation](https://docs.datadoghq.com/api/v1/service-level-objectives/#create-a-slo-object) page. Available options to choose from are:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1015,21 +1087,23 @@ var (
 		"datadog_dashboard_list":                       1,
 		"datadog_downtime":                             2,
 		"datadog_integration_aws":                      3,
-		"datadog_integration_gcp":                      4,
-		"datadog_integration_pagerduty":                5,
-		"datadog_integration_pagerduty_service_object": 6,
-		"datadog_logs_custom_pipeline":                 7,
-		"datadog_logs_index":                           8,
-		"datadog_logs_index_order":                     9,
-		"datadog_logs_integration_pipeline":            10,
-		"datadog_logs_pipeline_order":                  11,
-		"datadog_metric_metadata":                      12,
-		"datadog_monitor":                              13,
-		"datadog_screenboard":                          14,
-		"datadog_service_level_objective":              15,
-		"datadog_synthetics":                           16,
-		"datadog_timeboard":                            17,
-		"datadog_user":                                 18,
+		"datadog_integration_aws_lambda_arn":           4,
+		"datadog_integration_aws_log_collection":       5,
+		"datadog_integration_gcp":                      6,
+		"datadog_integration_pagerduty":                7,
+		"datadog_integration_pagerduty_service_object": 8,
+		"datadog_logs_custom_pipeline":                 9,
+		"datadog_logs_index":                           10,
+		"datadog_logs_index_order":                     11,
+		"datadog_logs_integration_pipeline":            12,
+		"datadog_logs_pipeline_order":                  13,
+		"datadog_metric_metadata":                      14,
+		"datadog_monitor":                              15,
+		"datadog_screenboard":                          16,
+		"datadog_service_level_objective":              17,
+		"datadog_synthetics":                           18,
+		"datadog_timeboard":                            19,
+		"datadog_user":                                 20,
 	}
 )
 

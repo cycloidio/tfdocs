@@ -159,7 +159,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "operator",
-					Description: `(Required) A logical operator to apply to a selector like "=", "!=", "in", or "notin".`,
+					Description: `(Required) A logical operator to apply to a selector. Only the "in" operator is supported.`,
 				},
 				resource.Attribute{
 					Name:        "values",
@@ -249,11 +249,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "image",
-					Description: `(Required) The location of a Docker image to run as a virtual machine.`,
+					Description: `(Required) The disk image to run as a virtual machine.`,
 				},
 				resource.Attribute{
 					Name:        "port",
-					Description: `(Optional) Network ports to expose from the virtual machine. See [Network Ports](#network-ports) below for details.`,
+					Description: `(Optional) Network ports to expose from the virtual machine. Ports can also be used for internal DNS-based service discovery. See [Network Ports](#network-ports) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "liveness_probe",
@@ -273,7 +273,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "user_data",
-					Description: `(Optional) Base64-encoded [cloud-init](https://cloud-init.io/) user data. ### Containers ` + "`" + `container` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) [Cloud-init](https://cloud-init.io/) user data. ### Containers ` + "`" + `container` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -293,7 +293,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "port",
-					Description: `(Optional) Networking ports to expose from the container. See [Network Ports](#network-ports) below for details.`,
+					Description: `(Optional) Networking ports to expose from the container. Ports can also be used for internal DNS-based service discovery. See [Network Ports](#network-ports) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "liveness_probe",
@@ -337,7 +337,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_implicit_network_policy",
-					Description: `(Optional) Whether or not the network port has access to the public Internet. Defaults to ` + "`" + `false` + "`" + `. ### Volume Claims ` + "`" + `volume_claim` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) Whether or not the network port is accessible from the public Internet. Defaults to ` + "`" + `false` + "`" + `. ### Volume Claims ` + "`" + `volume_claim` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -457,11 +457,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "operator",
-					Description: `(Required) A logical operator to apply to a selector like "=", "!=", "in", or "notin".`,
+					Description: `(Required) A logical operator to apply to a selector. Only the "in" operator is supported.`,
 				},
 				resource.Attribute{
 					Name:        "values",
-					Description: `(Required) Data values to look for in a label selector. ## Instances A workload instance is a collection of containers or a virtual machine created based on the template provided in a workload. Instances are accessed via a ` + "`" + `stackpath_resource_compute_workload` + "`" + `'s computed ` + "`" + `instances` + "`" + ` field. ### Example Usage ` + "`" + `` + "`" + `` + "`" + `hcl # Output a StackPath compute workload's instances' name, internal IP addresses, # and status output "my-compute-workload-instances" { value = { for instance in stackpath_compute_workload.my-compute-workload.instances : instance.name => { "ip_address" = instance.external_ip_address "phase" = instance.phase } } } ` + "`" + `` + "`" + `` + "`" + ` ### Instance Fields`,
+					Description: `(Required) Data values to look for in a label selector. ## Instances A workload instance is a collection of containers or a virtual machine created based on the template provided in a workload. Instances are accessed via a ` + "`" + `stackpath_resource_compute_workload` + "`" + `'s computed ` + "`" + `instances` + "`" + ` field. ### Example Usage ` + "`" + `` + "`" + `` + "`" + `hcl # Output a StackPath compute workload's instances' name, internal IP addresses, # and status output "my-compute-workload-instances" { value = { for instance in stackpath_compute_workload.my-compute-workload.instances: instance.name => { ip_address = instance.external_ip_address phase = instance.phase } } } ` + "`" + `` + "`" + `` + "`" + ` ### Instance Fields`,
 				},
 				resource.Attribute{
 					Name:        "name",

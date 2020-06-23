@@ -1239,10 +1239,6 @@ var (
 					Description: `(Optional) Function reserved concurrent executions, support [0-90] ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "code_id",
-					Description: `CFC Function code id`,
-				},
-				resource.Attribute{
 					Name:        "code_sha256",
 					Description: `Function code sha256`,
 				},
@@ -1296,10 +1292,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "code_id",
-					Description: `CFC Function code id`,
-				},
 				resource.Attribute{
 					Name:        "code_sha256",
 					Description: `Function code sha256`,
@@ -1635,6 +1627,14 @@ var (
 					Description: `(Required, ForceNew) Eip payment timing, support Prepaid and Postpaid`,
 				},
 				resource.Attribute{
+					Name:        "auto_renew_time_unit",
+					Description: `(Optional) Eip auto renew time unit, only useful when payment_timing is Prepaid, support month/year`,
+				},
+				resource.Attribute{
+					Name:        "auto_renew_time",
+					Description: `(Optional) Eip auto renew time length, only useful when payment_timing is Prepaid. If auto_renew_time_unit is month, support 1-9, if auto_renew_time_unit is year, support 1-3.`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional, ForceNew) Eip name, length must be between 1 and 65 bytes`,
 				},
@@ -1754,6 +1754,10 @@ var (
 				resource.Attribute{
 					Name:        "memory_capacity_in_gb",
 					Description: `(Required) Memory capacity(GB) of the instance to be created.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Optional) Start or stop the instance, which can only be start or stop, default start.`,
 				},
 				resource.Attribute{
 					Name:        "admin_pass",
