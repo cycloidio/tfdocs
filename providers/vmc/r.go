@@ -11,6 +11,56 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "vmc_cluster",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource to manage clusters.`,
+			Description:      ``,
+			Keywords: []string{
+				"cluster",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "sddc_id",
+					Description: `(Required) SDDC identifier.`,
+				},
+				resource.Attribute{
+					Name:        "num_hosts",
+					Description: `(Required) Number of hosts in the cluster. The number of hosts must be between 3 - 16 hosts for a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "host_cpu_cores_count",
+					Description: `(Optional) Customize CPU cores on hosts in a cluster. Specify number of cores to be enabled on hosts in a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "host_instance_type",
+					Description: `(Optional) The instance type for the esx hosts added to this cluster. Possible values are: I3_METAL, I3EN.metal and R5_METAL. Default value: I3_METAL.`,
+				},
+				resource.Attribute{
+					Name:        "storage_capacity",
+					Description: `(Optional) For EBS-backed instances i.e: for R5.METAL only, the requested storage capacity in GiB. ## Attributes Reference In addition to arguments listed above, the following attributes are exported after cluster creation:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Cluster identifier.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_info",
+					Description: `Information about cluster like name, state, host instance type and cluster identifier.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Cluster identifier.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_info",
+					Description: `Information about cluster like name, state, host instance type and cluster identifier.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vmc_public_ip",
 			Category:         "Resources",
 			ShortDescription: `Provides a resource to manage public IPs.`,
@@ -80,7 +130,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_capacity",
-					Description: `(Optional) The storage capacity value to be requested for the sddc primary cluster, in GiBs. If provided, instead of using the direct-attached storage, a capacity value amount of separable storage will be used.`,
+					Description: `(Optional) The storage capacity value to be requested for the SDDC primary cluster. This variable is only for R5.METAL. Possible values are 15TB, 20TB, 25TB, 30TB, 35TB per host.`,
 				},
 				resource.Attribute{
 					Name:        "num_host",
@@ -92,11 +142,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "host_instance_type",
-					Description: `(Optional) The instance type for the esx hosts in the primary cluster of the SDDC.`,
+					Description: `(Optional) The instance type for the esx hosts in the primary cluster of the SDDC. Possible values : I3_METAL, R5_METAL.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_cidr",
-					Description: `(Optional) AWS VPC IP range. Only prefix of 16 or 20 is currently supported.`,
+					Description: `(Optional) SDDC management network CIDR. Only prefix of 16, 20 and 23 are supported. Note : Specify a private subnet range (RFC 1918) to be used for vCenter Server, NSX Manager, and ESXi hosts. Choose a range that will not conflict with other networks you will connect to this SDDC. Minimum CIDR sizes : /23 for up to 27 hosts, /20 for up to 251 hosts, /16 for up to 4091 hosts. Reserved CIDRs : 10.0.0.0/15, 172.31.0.0/16.`,
 				},
 				resource.Attribute{
 					Name:        "sddc_type",
@@ -104,7 +154,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vxlan_subnet",
-					Description: `(Optional) VXLAN IP subnet in CIDR for compute gateway.`,
+					Description: `(Optional) A logical network segment that will be created with the SDDC under the compute gateway.`,
 				},
 				resource.Attribute{
 					Name:        "delay_account_link",
@@ -112,7 +162,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_type",
-					Description: `(Optional) Determines what additional properties are available based on cloud provider. Acceptable values are "ZEROCLOUD" and "AWS" with AWS as the default value.`,
+					Description: `(Optional) Determines what additional properties are available based on cloud provider. Default value : AWS`,
 				},
 				resource.Attribute{
 					Name:        "skip_creating_vxlan",
@@ -128,7 +178,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "deployment_type",
-					Description: `(Optional) Denotes if request is for a SingleAZ or a MultiAZ SDDC. Default is SingleAZ.`,
+					Description: `(Optional) Denotes if request is for a SingleAZ or a MultiAZ SDDC. Default : SingleAZ.`,
 				},
 				resource.Attribute{
 					Name:        "cluster_id",
@@ -142,6 +192,10 @@ var (
 					Name:        "nsxt_reverse_proxy_url",
 					Description: `NSXT reverse proxy url for managing public IP.`,
 				},
+				resource.Attribute{
+					Name:        "cluster_info",
+					Description: `Information about cluster like id, name, state, host instance type.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -152,14 +206,115 @@ var (
 					Name:        "nsxt_reverse_proxy_url",
 					Description: `NSXT reverse proxy url for managing public IP.`,
 				},
+				resource.Attribute{
+					Name:        "cluster_info",
+					Description: `Information about cluster like id, name, state, host instance type.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vmc_site_recovery",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource to activate and deactivate site recovery for SDDC.`,
+			Description:      ``,
+			Keywords: []string{
+				"site",
+				"recovery",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "sddc_id",
+					Description: `(Required) SDDC identifier.`,
+				},
+				resource.Attribute{
+					Name:        "srm_node_extension_key_suffix",
+					Description: `(Optional) Custom extension key suffix for SRM. If not specified, default extension key will be used. The custom extension suffix must contain 13 characters or less, be composed of letters, numbers, ., - characters. The extension suffix must begin and end with a letter or number. The suffix is appended to com.vmware.vcDr- to form the full extension key. ## Attributes Reference In addition to arguments listed above, the following attributes are exported after site recovery activation:`,
+				},
+				resource.Attribute{
+					Name:        "site_recovery_state",
+					Description: `Site recovery state. Possible values are: ACTIVATED, ACTIVATING, CANCELED, DEACTIVATED, DEACTIVATING, DELETED, FAILED.`,
+				},
+				resource.Attribute{
+					Name:        "srm_node",
+					Description: `Site recovery node created after site recovery activation.`,
+				},
+				resource.Attribute{
+					Name:        "vr_node",
+					Description: `VR node created after site recovery activation.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "site_recovery_state",
+					Description: `Site recovery state. Possible values are: ACTIVATED, ACTIVATING, CANCELED, DEACTIVATED, DEACTIVATING, DELETED, FAILED.`,
+				},
+				resource.Attribute{
+					Name:        "srm_node",
+					Description: `Site recovery node created after site recovery activation.`,
+				},
+				resource.Attribute{
+					Name:        "vr_node",
+					Description: `VR node created after site recovery activation.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vmc_srm_node",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource to add an instance to SDDC after site recovery has been activated.`,
+			Description:      ``,
+			Keywords: []string{
+				"srm",
+				"node",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "sddc_id",
+					Description: `(Required) SDDC identifier.`,
+				},
+				resource.Attribute{
+					Name:        "srm_node_extension_key_suffix",
+					Description: `(Required) Custom extension key suffix for SRM. If not specified, default extension key will be used. The custom extension suffix must contain 13 characters or less, be composed of letters, numbers, ., - characters. The extension suffix must begin and end with a letter or number. The suffix is appended to com.vmware.vcDr- to form the full extension key. ## Attributes Reference In addition to arguments listed above, the following attributes are exported after site recovery activation:`,
+				},
+				resource.Attribute{
+					Name:        "site_recovery_state",
+					Description: `Site recovery state. Possible values are: ACTIVATED, ACTIVATING, CANCELED, DEACTIVATED, DEACTIVATING, DELETED, FAILED.`,
+				},
+				resource.Attribute{
+					Name:        "srm_node",
+					Description: `Site recovery node information.`,
+				},
+				resource.Attribute{
+					Name:        "vr_node",
+					Description: `VR node information.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "site_recovery_state",
+					Description: `Site recovery state. Possible values are: ACTIVATED, ACTIVATING, CANCELED, DEACTIVATED, DEACTIVATING, DELETED, FAILED.`,
+				},
+				resource.Attribute{
+					Name:        "srm_node",
+					Description: `Site recovery node information.`,
+				},
+				resource.Attribute{
+					Name:        "vr_node",
+					Description: `VR node information.`,
+				},
 			},
 		},
 	}
 
 	resourcesMap = map[string]int{
 
-		"vmc_public_ip": 0,
-		"vmc_sddc":      1,
+		"vmc_cluster":       0,
+		"vmc_public_ip":     1,
+		"vmc_sddc":          2,
+		"vmc_site_recovery": 3,
+		"vmc_srm_node":      4,
 	}
 )
 

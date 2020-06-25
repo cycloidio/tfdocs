@@ -66,7 +66,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nameservers",
-					Description: `(Required) The zone nameservers.`,
+					Description: `(Optional) The zone nameservers.`,
+				},
+				resource.Attribute{
+					Name:        "masters",
+					Description: `(Optional) List of IP addresses configured as a master for this zone (“Slave” kind zones only)`,
 				},
 				resource.Attribute{
 					Name:        "soa_edit_api",

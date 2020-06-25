@@ -155,6 +155,70 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "dome9_aws_security_group_rule",
+			Category:         "Resources",
+			ShortDescription: `Bound input and output services to AWS Security Group in Dome9`,
+			Description:      ``,
+			Keywords: []string{
+				"aws",
+				"security",
+				"group",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dome9_security_group_id",
+					Description: `(Required) Dome9 security group id.`,
+				},
+				resource.Attribute{
+					Name:        "services",
+					Description: `(Optional) Security Group services. ### Security Group services ` + "`" + `services` + "`" + ` has the these arguments:`,
+				},
+				resource.Attribute{
+					Name:        "inbound",
+					Description: `(Required) inbound service.`,
+				},
+				resource.Attribute{
+					Name:        "outbound",
+					Description: `(Required) outbound service. The configuration of inbound and outbound is:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Service name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Service description.`,
+				},
+				resource.Attribute{
+					Name:        "protocol_type",
+					Description: `(Required) Service protocol type. Select from "ALL", "HOPOPT", "ICMP", "IGMP", "GGP", "IPV4", "ST", "TCP", "CBT", "EGP", "IGP", "BBN_RCC_MON", "NVP2", "PUP", "ARGUS", "EMCON", "XNET", "CHAOS", "UDP", "MUX", "DCN_MEAS", "HMP", "PRM", "XNS_IDP", "TRUNK1", "TRUNK2", "LEAF1", "LEAF2", "RDP", "IRTP", "ISO_TP4", "NETBLT", "MFE_NSP", "MERIT_INP", "DCCP", "ThreePC", "IDPR", "XTP", "DDP", "IDPR_CMTP", "TPplusplus", "IL", "IPV6", "SDRP", "IPV6_ROUTE", "IPV6_FRAG", "IDRP", "RSVP", "GRE", "DSR", "BNA", "ESP", "AH", "I_NLSP", "SWIPE", "NARP", "MOBILE", "TLSP", "SKIP", "ICMPV6", "IPV6_NONXT", "IPV6_OPTS", "CFTP", "SAT_EXPAK", "KRYPTOLAN", "RVD", "IPPC", "SAT_MON", "VISA", "IPCV", "CPNX", "CPHB", "WSN", "PVP", "BR_SAT_MON", "SUN_ND", "WB_MON", "WB_EXPAK", "ISO_IP", "VMTP", "SECURE_VMTP", "VINES", "TTP", "NSFNET_IGP", "DGP", "TCF", "EIGRP", "OSPFIGP", "SPRITE_RPC", "LARP", "MTP", "AX25", "IPIP", "MICP", "SCC_SP", "ETHERIP", "ENCAP", "GMTP", "IFMP", "PNNI", "PIM", "ARIS", "SCPS", "QNX", "AN", "IPCOMP", "SNP", "COMPAQ_PEER", "IPX_IN_IP", "VRRP", "PGM", "L2TP", "DDX", "IATP", "STP", "SRP", "UTI", "SMP", "SM", "PTP", "ISIS", "FIRE", "CRTP", "CRUDP", "SSCOPMCE", "IPLT", "SPS", "PIPE", "SCTP", "FC", "RSVP_E2E_IGNORE", "MOBILITY_HEADER", "UDPLITE", "MPLS_IN_IP", "MANET", "HIP", "SHIM6", "WESP" or "ROHC".`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) Service type (port).`,
+				},
+				resource.Attribute{
+					Name:        "open_for_all",
+					Description: `(Optional) Is open for all.`,
+				},
+				resource.Attribute{
+					Name:        "scope",
+					Description: `(Optional) Service scope which has the following configuration:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) scope type.`,
+				},
+				resource.Attribute{
+					Name:        "data",
+					Description: `(Required) scope data.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "dome9_azure_security_group",
 			Category:         "Resources",
 			ShortDescription: `Creates azure security group in Dome9`,
@@ -867,7 +931,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cloud_account_type",
-					Description: `(Required) The cloud account provider ("AWS", "Azure", "Google").`,
+					Description: `(Required) The cloud account provider ("Aws", "Azure", "Google").`,
 				},
 				resource.Attribute{
 					Name:        "notification_ids",
@@ -1275,17 +1339,18 @@ var (
 
 		"dome9_attach_iam_safe":                    0,
 		"dome9_aws_security_group":                 1,
-		"dome9_azure_security_group":               2,
-		"dome9_cloudaccount_aws":                   3,
-		"dome9_cloudaccount_azure":                 4,
-		"dome9_cloudaccount_gcp":                   5,
-		"dome9_continuous_compliance_notification": 6,
-		"dome9_continuous_compliance_policy":       7,
-		"dome9_iam_safe_entity":                    8,
-		"dome9_iplist":                             9,
-		"dome9_organizational_unit":                10,
-		"dome9_role":                               11,
-		"dome9_ruleset":                            12,
+		"dome9_aws_security_group_rule":            2,
+		"dome9_azure_security_group":               3,
+		"dome9_cloudaccount_aws":                   4,
+		"dome9_cloudaccount_azure":                 5,
+		"dome9_cloudaccount_gcp":                   6,
+		"dome9_continuous_compliance_notification": 7,
+		"dome9_continuous_compliance_policy":       8,
+		"dome9_iam_safe_entity":                    9,
+		"dome9_iplist":                             10,
+		"dome9_organizational_unit":                11,
+		"dome9_role":                               12,
+		"dome9_ruleset":                            13,
 	}
 )
 

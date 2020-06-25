@@ -449,7 +449,7 @@ Provides information about a Linode profile.
 			ShortDescription: `Provides details about a specific service region`,
 			Description: `\_region
 
-` + "`" + `linode_region` + "`" + ` provides details about a specific Linode region.
+` + "`" + `linode_region` + "`" + ` provides details about a specific Linode region. See all regions [here](https://api.linode.com/v4/regions).
 
 `,
 			Keywords:   []string{},

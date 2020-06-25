@@ -570,18 +570,6 @@ var (
 					Description: `Human readable name for your vrack network`,
 				},
 				resource.Attribute{
-					Name:        "farm_id",
-					Description: `Farm id your vRack network is attached to and their type`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `farm type`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `farm id`,
-				},
-				resource.Attribute{
 					Name:        "nat_ip",
 					Description: `An IP block used as a pool of IPs by this Load Balancer to connect to the servers in this private network. The blck must be in the private network and reserved for the Load Balancer`,
 				},
@@ -598,18 +586,6 @@ var (
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `Human readable name for your vrack network`,
-				},
-				resource.Attribute{
-					Name:        "farm_id",
-					Description: `Farm id your vRack network is attached to and their type`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `farm type`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `farm id`,
 				},
 				resource.Attribute{
 					Name:        "nat_ip",
@@ -684,6 +660,58 @@ var (
 				resource.Attribute{
 					Name:        "result",
 					Description: `The list of custom installation templates IDs available for dedicated servers.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_me_ipxe_script",
+			Category:         "Data Sources",
+			ShortDescription: `Get information & status of an IPXE Script.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the IPXE Script. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "script",
+					Description: `The content of the script.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "script",
+					Description: `The content of the script.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_me_ipxe_scripts",
+			Category:         "Data Sources",
+			ShortDescription: `Get the list of the IPXE Scripts of the account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "result",
+					Description: `The list of the names of all the IPXE Scripts.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "result",
+					Description: `The list of the names of all the IPXE Scripts.`,
 				},
 			},
 		},
@@ -973,13 +1001,15 @@ var (
 		"ovh_iploadbalancing_vrack_networks":   9,
 		"ovh_me_installation_template":         10,
 		"ovh_me_installation_templates":        11,
-		"ovh_me_paymentmean_bankaccount":       12,
-		"ovh_me_paymentmean_creditcard":        13,
-		"ovh_me_ssh_key":                       14,
-		"ovh_me_ssh_keys":                      15,
-		"ovh_publiccloud_region":               16,
-		"ovh_publiccloud_regions":              17,
-		"ovh_vracks":                           18,
+		"ovh_me_ipxe_script":                   12,
+		"ovh_me_ipxe_scripts":                  13,
+		"ovh_me_paymentmean_bankaccount":       14,
+		"ovh_me_paymentmean_creditcard":        15,
+		"ovh_me_ssh_key":                       16,
+		"ovh_me_ssh_keys":                      17,
+		"ovh_publiccloud_region":               18,
+		"ovh_publiccloud_regions":              19,
+		"ovh_vracks":                           20,
 	}
 )
 

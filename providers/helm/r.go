@@ -33,11 +33,11 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 				},
 				resource.Attribute{
 					Name:        "chart",
-					Description: `(Required) Chart name to be installed.`,
+					Description: `(Required) Chart name to be installed. A path may be used.`,
 				},
 				resource.Attribute{
 					Name:        "repository",
-					Description: `(Optional) Repository where to locate the requested chart. If is an URL the chart is installed without installing the repository.`,
+					Description: `(Optional) Repository URL where to locate the requested chart.`,
 				},
 				resource.Attribute{
 					Name:        "repository_key_file",
@@ -57,7 +57,7 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 				},
 				resource.Attribute{
 					Name:        "repository_password",
-					Description: `(Optional) Password for HTTP basic authentication against the reposotory.`,
+					Description: `(Optional) Password for HTTP basic authentication against the repository.`,
 				},
 				resource.Attribute{
 					Name:        "devel",
@@ -81,7 +81,7 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 				},
 				resource.Attribute{
 					Name:        "timeout",
-					Description: `(Optional) Time in seconds to wait for any individual kubernetes operation. Defaults to ` + "`" + `300` + "`" + ` seconds.`,
+					Description: `(Optional) Time in seconds to wait for any individual kubernetes operation (like Jobs for hooks). Defaults to ` + "`" + `300` + "`" + ` seconds.`,
 				},
 				resource.Attribute{
 					Name:        "disable_webhooks",
@@ -124,6 +124,10 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 					Description: `(Optional) If set, render subchart notes along with the parent. Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "disable_openapi_validation",
+					Description: `(Optional) If set, the installation process will not validate rendered templates against the Kubernetes OpenAPI Schema. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "wait",
 					Description: `(Optional) Will wait until all resources are in a ready state before marking the release as successful. It will wait for as long as ` + "`" + `timeout` + "`" + `. Defaults to ` + "`" + `true` + "`" + `.`,
 				},
@@ -149,7 +153,23 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 				},
 				resource.Attribute{
 					Name:        "replace",
-					Description: `(Optional) Re-use the given name, even if that name is already used. This is unsafe in production. Defaults to ` + "`" + `false` + "`" + `. The ` + "`" + `set` + "`" + `, ` + "`" + `set_sensitive` + "`" + ` and ` + "`" + `set_strings` + "`" + ` blocks support:`,
+					Description: `(Optional) Re-use the given name, even if that name is already used. This is unsafe in production. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Set release description attribute (visible in the history).`,
+				},
+				resource.Attribute{
+					Name:        "postrender",
+					Description: `(Optional) Configure a command to run after helm renders the manifest which can alter the manifest contents.`,
+				},
+				resource.Attribute{
+					Name:        "lint",
+					Description: `(Optional) Run the helm chart linter during the plan. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "create_namespace",
+					Description: `(Optional) Create the namespace if it does not yet exist. Defaults to ` + "`" + `false` + "`" + `. The ` + "`" + `set` + "`" + `, ` + "`" + `set_sensitive` + "`" + ` and ` + "`" + `set_strings` + "`" + ` blocks support:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -157,7 +177,11 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Required) value of the variable to be set. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Required) value of the variable to be set. The ` + "`" + `postrender` + "`" + ` block supports a single attribute:`,
+				},
+				resource.Attribute{
+					Name:        "binary_path",
+					Description: `(Required) relative or full path to command binary. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "metadata",

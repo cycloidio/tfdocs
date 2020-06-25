@@ -155,6 +155,78 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "digitalocean_container_registry",
+			Category:         "Resources",
+			ShortDescription: `Provides a DigitalOcean Tag resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"container",
+				"registry",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the container_registry ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the container registry`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the container registry`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the container registry`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the container registry`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "container_registry_docker_credentials",
+			Category:         "Resources",
+			ShortDescription: `Get DigitalOcean Container Registry docker credentials`,
+			Description:      ``,
+			Keywords: []string{
+				"container",
+				"registry",
+				"docker",
+				"credentials",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "registry_name",
+					Description: `(Required) The name of the container registry.`,
+				},
+				resource.Attribute{
+					Name:        "write",
+					Description: `(Optional) Allow for write access to the container registry. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "expiry_seconds",
+					Description: `(Optional) The amount of time to pass before the Docker credentials expire in seconds. Defaults to 2147483647, or roughly 68 years. Must be greater than 0 and less than 2147483647. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "registry_name",
+					Description: `The name of the container registry`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "registry_name",
+					Description: `The name of the container registry`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "digitalocean_database_cluster",
 			Category:         "Resources",
 			ShortDescription: `Provides a DigitalOcean database cluster resource.`,
@@ -186,11 +258,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `(Optional) Engine version used by the cluster (ex. ` + "`" + `11` + "`" + ` for PostgreSQL 11).`,
+					Description: `(Required) Engine version used by the cluster (ex. ` + "`" + `11` + "`" + ` for PostgreSQL 11).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) A list of tag names to be applied to the database cluster.`,
+				},
+				resource.Attribute{
+					Name:        "private_network_uuid",
+					Description: `(Optional) The ID of the VPC where the database cluster will be located.`,
 				},
 				resource.Attribute{
 					Name:        "eviction_policy",
@@ -573,7 +649,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name for the database user. ## Attributes Reference In addition to the above arguments, the following attributes are exported:`,
+					Description: `(Required) The name for the database user.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_auth_plugin",
+					Description: `(Optional) The authentication method to use for connections to the MySQL user account. The valid values are ` + "`" + `mysql_native_password` + "`" + ` or ` + "`" + `caching_sha2_password` + "`" + ` (this is the default). ## Attributes Reference In addition to the above arguments, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "role",
@@ -672,8 +752,12 @@ var (
 					Description: `(Optional) Boolean controlling if IPv6 is enabled. Defaults to false.`,
 				},
 				resource.Attribute{
+					Name:        "vpc_uuid",
+					Description: `(Optional) The ID of the VPC where the Droplet will be located.`,
+				},
+				resource.Attribute{
 					Name:        "private_networking",
-					Description: `(Optional) Boolean controlling if private networks are enabled. Defaults to false.`,
+					Description: `(Optional) Boolean controlling if private networking is enabled. When VPC is enabled on an account, this will provision the Droplet inside of your account's default VPC for the region. Use the ` + "`" + `vpc_uuid` + "`" + ` attribute to specify a different VPC.`,
 				},
 				resource.Attribute{
 					Name:        "ssh_keys",
@@ -1122,8 +1206,12 @@ var (
 					Description: `(Required) The slug identifier for the version of Kubernetes used for the cluster. Use [doctl](https://github.com/digitalocean/doctl) to find the available versions ` + "`" + `doctl kubernetes options versions` + "`" + `. (`,
 				},
 				resource.Attribute{
+					Name:        "vpc_uuid",
+					Description: `(Optional) The ID of the VPC where the Kubernetes cluster will be located.`,
+				},
+				resource.Attribute{
 					Name:        "node_pool",
-					Description: `(Required) A block representing the cluster's default node pool. Additional node pools may be added to the cluster using the ` + "`" + `digitalocean_kubernetes_node_pool` + "`" + ` resource. The following arguments may be specified: - ` + "`" + `name` + "`" + ` - (Required) A name for the node pool. - ` + "`" + `size` + "`" + ` - (Required) The slug identifier for the type of Droplet to be used as workers in the node pool. - ` + "`" + `node_count` + "`" + ` - (Optional) The number of Droplet instances in the node pool. If auto-scaling is enabled, this should only be set if the desired result is to explicitly reset the number of nodes to this value. If auto-scaling is enabled, and the node count is outside of the given min/max range, it will use the min nodes value. - ` + "`" + `auto_scale` + "`" + ` - (Optional) Enable auto-scaling of the number of nodes in the node pool within the given min/max range. - ` + "`" + `min_nodes` + "`" + ` - (Optional) If auto-scaling is enabled, this represents the minimum number of nodes that the node pool can be scaled down to. - ` + "`" + `max_nodes` + "`" + ` - (Optional) If auto-scaling is enabled, this represents the maximum number of nodes that the node pool can be scaled up to. - ` + "`" + `tags` + "`" + ` - (Optional) A list of tag names to be applied to the Kubernetes cluster.`,
+					Description: `(Required) A block representing the cluster's default node pool. Additional node pools may be added to the cluster using the ` + "`" + `digitalocean_kubernetes_node_pool` + "`" + ` resource. The following arguments may be specified: - ` + "`" + `name` + "`" + ` - (Required) A name for the node pool. - ` + "`" + `size` + "`" + ` - (Required) The slug identifier for the type of Droplet to be used as workers in the node pool. - ` + "`" + `node_count` + "`" + ` - (Optional) The number of Droplet instances in the node pool. If auto-scaling is enabled, this should only be set if the desired result is to explicitly reset the number of nodes to this value. If auto-scaling is enabled, and the node count is outside of the given min/max range, it will use the min nodes value. - ` + "`" + `auto_scale` + "`" + ` - (Optional) Enable auto-scaling of the number of nodes in the node pool within the given min/max range. - ` + "`" + `min_nodes` + "`" + ` - (Optional) If auto-scaling is enabled, this represents the minimum number of nodes that the node pool can be scaled down to. - ` + "`" + `max_nodes` + "`" + ` - (Optional) If auto-scaling is enabled, this represents the maximum number of nodes that the node pool can be scaled up to. - ` + "`" + `tags` + "`" + ` - (Optional) A list of tag names to be applied to the Kubernetes cluster. - ` + "`" + `labels` + "`" + ` - (Optional) A map of key/value pairs to apply to nodes in the pool. The labels are exposed in the Kubernetes API as labels in the metadata of the corresponding [Node resources](https://kubernetes.io/docs/concepts/architecture/nodes/).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1167,7 +1255,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "node_pool",
-					Description: `In addition to the arguments provided, these additional attributes about the cluster's default node pool are exported: - ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node pool. - ` + "`" + `actual_node_count` + "`" + ` - A computed field representing the actual number of nodes in the node pool, which is especially useful when auto-scaling is enabled. - ` + "`" + `nodes` + "`" + ` - A list of nodes in the pool. Each node exports the following attributes: + ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. + ` + "`" + `name` + "`" + ` - The auto-generated name for the node. + ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. + ` + "`" + `droplet_id` + "`" + ` - The id of the node's droplet + ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. + ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated. ## Import Kubernetes clusters can not be imported at this time.`,
+					Description: `In addition to the arguments provided, these additional attributes about the cluster's default node pool are exported: - ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node pool. - ` + "`" + `actual_node_count` + "`" + ` - A computed field representing the actual number of nodes in the node pool, which is especially useful when auto-scaling is enabled. - ` + "`" + `nodes` + "`" + ` - A list of nodes in the pool. Each node exports the following attributes: + ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. + ` + "`" + `name` + "`" + ` - The auto-generated name for the node. + ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. + ` + "`" + `droplet_id` + "`" + ` - The id of the node's droplet + ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. + ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated. ## Import Before importing a Kubernetes cluster, the cluster's default node pool must be tagged with the ` + "`" + `terraform:default-node-pool` + "`" + ` tag. The provider will automatically add this tag if the cluster has a single node pool. Clusters with more than one node pool, however, will require that you manually add the ` + "`" + `terraform:default-node-pool` + "`" + ` tag to the node pool that you intend to be the default node pool. Then the Kubernetes cluster and all of its node pools can be imported using the cluster's ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_kubernetes_cluster.mycluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1209,7 +1297,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "node_pool",
-					Description: `In addition to the arguments provided, these additional attributes about the cluster's default node pool are exported: - ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node pool. - ` + "`" + `actual_node_count` + "`" + ` - A computed field representing the actual number of nodes in the node pool, which is especially useful when auto-scaling is enabled. - ` + "`" + `nodes` + "`" + ` - A list of nodes in the pool. Each node exports the following attributes: + ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. + ` + "`" + `name` + "`" + ` - The auto-generated name for the node. + ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. + ` + "`" + `droplet_id` + "`" + ` - The id of the node's droplet + ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. + ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated. ## Import Kubernetes clusters can not be imported at this time.`,
+					Description: `In addition to the arguments provided, these additional attributes about the cluster's default node pool are exported: - ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node pool. - ` + "`" + `actual_node_count` + "`" + ` - A computed field representing the actual number of nodes in the node pool, which is especially useful when auto-scaling is enabled. - ` + "`" + `nodes` + "`" + ` - A list of nodes in the pool. Each node exports the following attributes: + ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. + ` + "`" + `name` + "`" + ` - The auto-generated name for the node. + ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. + ` + "`" + `droplet_id` + "`" + ` - The id of the node's droplet + ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. + ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated. ## Import Before importing a Kubernetes cluster, the cluster's default node pool must be tagged with the ` + "`" + `terraform:default-node-pool` + "`" + ` tag. The provider will automatically add this tag if the cluster has a single node pool. Clusters with more than one node pool, however, will require that you manually add the ` + "`" + `terraform:default-node-pool` + "`" + ` tag to the node pool that you intend to be the default node pool. Then the Kubernetes cluster and all of its node pools can be imported using the cluster's ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_kubernetes_cluster.mycluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1255,7 +1343,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A list of tag names to be applied to the Kubernetes cluster. ## Attributes Reference In addition to the arguments listed above, the following additional attributes are exported:`,
+					Description: `(Optional) A list of tag names to be applied to the Kubernetes cluster.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) A map of key/value pairs to apply to nodes in the pool. The labels are exposed in the Kubernetes API as labels in the metadata of the corresponding [Node resources](https://kubernetes.io/docs/concepts/architecture/nodes/). ## Attributes Reference In addition to the arguments listed above, the following additional attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1267,7 +1359,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nodes",
-					Description: `A list of nodes in the pool. Each node exports the following attributes: - ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. - ` + "`" + `name` + "`" + ` - The auto-generated name for the node. - ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. - ` + "`" + `droplet_id` + "`" + ` - The id of the node's droplet - ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. - ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated. ## Import Kubernetes node pools can not be imported at this time.`,
+					Description: `A list of nodes in the pool. Each node exports the following attributes: - ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. - ` + "`" + `name` + "`" + ` - The auto-generated name for the node. - ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. - ` + "`" + `droplet_id` + "`" + ` - The id of the node's droplet - ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. - ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated. ## Import If you are importing an existing Kubernetes cluster, just import the cluster. Importing a cluster also imports all of its associated node pools. If you still need to import a single node pool, then import it by using its ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_kubernetes_node_pool.mynodepool 9d76f410-9284-4436-9633-4066852442c8 ` + "`" + `` + "`" + `` + "`" + ` Note: If the node pool has the ` + "`" + `terraform:default-node-pool` + "`" + ` tag, then it is a default node pool for an existing cluster. The provider will refuse to import the node pool in that case because the node pool is managed by the ` + "`" + `digitalocean_kubernetes_cluster` + "`" + ` resource and not by this ` + "`" + `digitalocean_kubernetes_node_pool` + "`" + ` resource.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1281,7 +1373,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nodes",
-					Description: `A list of nodes in the pool. Each node exports the following attributes: - ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. - ` + "`" + `name` + "`" + ` - The auto-generated name for the node. - ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. - ` + "`" + `droplet_id` + "`" + ` - The id of the node's droplet - ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. - ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated. ## Import Kubernetes node pools can not be imported at this time.`,
+					Description: `A list of nodes in the pool. Each node exports the following attributes: - ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. - ` + "`" + `name` + "`" + ` - The auto-generated name for the node. - ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. - ` + "`" + `droplet_id` + "`" + ` - The id of the node's droplet - ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. - ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated. ## Import If you are importing an existing Kubernetes cluster, just import the cluster. Importing a cluster also imports all of its associated node pools. If you still need to import a single node pool, then import it by using its ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_kubernetes_node_pool.mynodepool 9d76f410-9284-4436-9633-4066852442c8 ` + "`" + `` + "`" + `` + "`" + ` Note: If the node pool has the ` + "`" + `terraform:default-node-pool` + "`" + ` tag, then it is a default node pool for an existing cluster. The provider will refuse to import the node pool in that case because the node pool is managed by the ` + "`" + `digitalocean_kubernetes_cluster` + "`" + ` resource and not by this ` + "`" + `digitalocean_kubernetes_node_pool` + "`" + ` resource.`,
 				},
 			},
 		},
@@ -1326,6 +1418,14 @@ var (
 				resource.Attribute{
 					Name:        "enable_proxy_protocol",
 					Description: `(Optional) A boolean value indicating whether PROXY Protocol should be used to pass information from connecting client requests to the backend service. Default value is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "enable_backend_keepalive",
+					Description: `(Optional) A boolean value indicating whether HTTP keepalive connections are maintained to target Droplets. Default value is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_uuid",
+					Description: `(Optional) The ID of the VPC where the load balancer will be located.`,
 				},
 				resource.Attribute{
 					Name:        "entry_protocol",
@@ -1389,7 +1489,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "healthy_threshold",
-					Description: `(Optional) The number of times a health check must pass for a backend Droplet to be marked "healthy" and be re-added to the pool. If not specified, the default value is ` + "`" + `5` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The number of times a health check must pass for a backend Droplet to be marked "healthy" and be re-added to the pool. If not specified, the default value is ` + "`" + `5` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1487,6 +1587,27 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "digitalocean_project_resources",
+			Category:         "Resources",
+			ShortDescription: `Assign resources to a DigitalOcean Project.`,
+			Description:      ``,
+			Keywords: []string{
+				"project",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Required) the ID of the project`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `(Required) a list of uniform resource names (URNs) for the resources associated with the project ## Attributes Reference No additional attributes are exported. ## Import Importing this resource is not supported.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "digitalocean_record",
 			Category:         "Resources",
 			ShortDescription: `Provides a DigitalOcean DNS record resource.`,
@@ -1509,7 +1630,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of the record.`,
+					Description: `(Required) The name of the record. Use ` + "`" + `@` + "`" + ` for records on domain's name itself.`,
 				},
 				resource.Attribute{
 					Name:        "port",
@@ -1579,6 +1700,18 @@ var (
 					Description: `Canned ACL applied on bucket creation (` + "`" + `private` + "`" + ` or ` + "`" + `public-read` + "`" + `)`,
 				},
 				resource.Attribute{
+					Name:        "cors_rule",
+					Description: `(Optional) A rule of Cross-Origin Resource Sharing (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_rule",
+					Description: `(Optional) A configuration of object lifecycle management (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "versioning",
+					Description: `(Optional) A state of versioning (documented below)`,
+				},
+				resource.Attribute{
 					Name:        "force_destroy",
 					Description: `Unless ` + "`" + `true` + "`" + `, the bucket will only be destroyed if empty (Defaults to ` + "`" + `false` + "`" + `) The ` + "`" + `cors_rule` + "`" + ` object supports the following:`,
 				},
@@ -1596,7 +1729,47 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_age_seconds",
-					Description: `(Optional) The time in seconds that browser can cache the response for a preflight request. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The time in seconds that browser can cache the response for a preflight request. The ` + "`" + `lifecycle_rule` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) Unique identifier for the rule.`,
+				},
+				resource.Attribute{
+					Name:        "prefix",
+					Description: `(Optional) Object key prefix identifying one or more objects to which the rule applies.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Specifies lifecycle rule status.`,
+				},
+				resource.Attribute{
+					Name:        "expiration",
+					Description: `(Optional) Specifies a time period after which applicable objects expire (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "noncurrent_version_expiration",
+					Description: `(Optional) Specifies when non-current object versions expire (documented below). At least one of ` + "`" + `expiration` + "`" + ` or ` + "`" + `noncurrent_version_expiration` + "`" + ` must be specified. The ` + "`" + `expiration` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "date",
+					Description: `(Optional) Specifies the date/time after which you want applicable objects to expire. The argument uses RFC3339 format, e.g. "2020-03-22T15:03:55Z" or parts thereof e.g. "2019-02-28".`,
+				},
+				resource.Attribute{
+					Name:        "days",
+					Description: `(Optional) Specifies the number of days after object creation when the applicable objects will expire.`,
+				},
+				resource.Attribute{
+					Name:        "expired_object_delete_marker",
+					Description: `(Optional) On a versioned bucket (versioning-enabled or versioning-suspended bucket), setting this to true directs Spaces to delete expired object delete markers. The ` + "`" + `noncurrent_version_expiration` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "days",
+					Description: `(Required) Specifies the number of days after which an object's non-current versions expire. The ` + "`" + `versioning` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1631,6 +1804,102 @@ var (
 				resource.Attribute{
 					Name:        "bucket_domain_name",
 					Description: `The FQDN of the bucket (e.g. bucket-name.nyc3.digitaloceanspaces.com) ## Import Buckets can be imported using the ` + "`" + `region` + "`" + ` and ` + "`" + `name` + "`" + ` attributes (delimited by a comma): ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_spaces_bucket.foobar ` + "`" + `region` + "`" + `,` + "`" + `name` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "digitalocean_spaces_bucket_object",
+			Category:         "Resources",
+			ShortDescription: `Provides a DigitalOcean Spaces Bucket Object resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"spaces",
+				"bucket",
+				"object",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region where the bucket resides (Defaults to ` + "`" + `nyc3` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `(Required) The name of the bucket to put the file in.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The name of the object once it is in the bucket.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Optional, conflicts with ` + "`" + `content` + "`" + ` and ` + "`" + `content_base64` + "`" + `) The path to a file that will be read and uploaded as raw bytes for the object content.`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Optional, conflicts with ` + "`" + `source` + "`" + ` and ` + "`" + `content_base64` + "`" + `) Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text.`,
+				},
+				resource.Attribute{
+					Name:        "content_base64",
+					Description: `(Optional, conflicts with ` + "`" + `source` + "`" + ` and ` + "`" + `content` + "`" + `) Base64-encoded data that will be decoded and uploaded as raw bytes for the object content. This allows safely uploading non-UTF8 binary data, but is recommended only for small content such as the result of the ` + "`" + `gzipbase64` + "`" + ` function with small text strings. For larger objects, use ` + "`" + `source` + "`" + ` to stream the content from a disk file.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `(Optional) The canned ACL to apply. DigitalOcean supports "private" and "public-read". (Defaults to "private".)`,
+				},
+				resource.Attribute{
+					Name:        "cache_control",
+					Description: `(Optional) Specifies caching behavior along the request/reply chain Read [w3c cache_control](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9) for further details.`,
+				},
+				resource.Attribute{
+					Name:        "content_disposition",
+					Description: `(Optional) Specifies presentational information for the object. Read [w3c content_disposition](http://www.w3.org/Protocols/rfc2616/rfc2616-sec19.html#sec19.5.1) for further information.`,
+				},
+				resource.Attribute{
+					Name:        "content_encoding",
+					Description: `(Optional) Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field. Read [w3c content encoding](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11) for further information.`,
+				},
+				resource.Attribute{
+					Name:        "content_language",
+					Description: `(Optional) The language the content is in e.g. en-US or en-GB.`,
+				},
+				resource.Attribute{
+					Name:        "content_type",
+					Description: `(Optional) A standard MIME type describing the format of the object data, e.g. application/octet-stream. All Valid MIME Types are valid for this input.`,
+				},
+				resource.Attribute{
+					Name:        "website_redirect",
+					Description: `(Optional) Specifies a target URL for [website redirect](http://docs.aws.amazon.com/AmazonS3/latest/dev/how-to-page-redirect.html).`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `(Optional) Used to trigger updates. The only meaningful value is ` + "`" + `${filemd5("path/to/file")}` + "`" + ` (Terraform 0.11.12 or later) or ` + "`" + `${md5(file("path/to/file"))}` + "`" + ` (Terraform 0.11.11 or earlier).`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional) A mapping of keys/values to provision metadata (will be automatically prefixed by ` + "`" + `x-amz-meta-` + "`" + `, note that only lowercase label are currently supported by the AWS Go API).`,
+				},
+				resource.Attribute{
+					Name:        "force_destroy",
+					Description: `(Optional) Allow the object to be deleted by removing any legal hold on any object version. Default is ` + "`" + `false` + "`" + `. This value should be set to ` + "`" + `true` + "`" + ` only if the bucket has S3 object lock enabled. If no content is provided through ` + "`" + `source` + "`" + `, ` + "`" + `content` + "`" + ` or ` + "`" + `content_base64` + "`" + `, then the object will be empty. ->`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `the ETag generated for the object (an MD5 sum of the object content). The hash is an MD5 digest of the object data. For objects created by either the Multipart Upload or Part Copy operation, the hash is not an MD5 digest. More information on possible values can be found on [Common Response Headers](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTCommonResponseHeaders.html).`,
+				},
+				resource.Attribute{
+					Name:        "version_id",
+					Description: `A unique version ID value for the object, if bucket versioning is enabled. ## Import Importing this resource is not supported.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "etag",
+					Description: `the ETag generated for the object (an MD5 sum of the object content). The hash is an MD5 digest of the object data. For objects created by either the Multipart Upload or Part Copy operation, the hash is not an MD5 digest. More information on possible values can be found on [Common Response Headers](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTCommonResponseHeaders.html).`,
+				},
+				resource.Attribute{
+					Name:        "version_id",
+					Description: `A unique version ID value for the object, if bucket versioning is enabled. ## Import Importing this resource is not supported.`,
 				},
 			},
 		},
@@ -1709,7 +1978,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the tag ## Import Tags can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_tag.mytag tagname ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The name of the tag`,
+				},
+				resource.Attribute{
+					Name:        "total_resource_count",
+					Description: `A count of the total number of resources that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "droplets_count",
+					Description: `A count of the Droplets the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "images_count",
+					Description: `A count of the images that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "volumes_count",
+					Description: `A count of the volumes that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "volume_snapshots_count",
+					Description: `A count of the volume snapshots that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "databases_count",
+					Description: `A count of the database clusters that the tag is applied to. ## Import Tags can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_tag.mytag tagname ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1719,7 +2012,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the tag ## Import Tags can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_tag.mytag tagname ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The name of the tag`,
+				},
+				resource.Attribute{
+					Name:        "total_resource_count",
+					Description: `A count of the total number of resources that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "droplets_count",
+					Description: `A count of the Droplets the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "images_count",
+					Description: `A count of the images that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "volumes_count",
+					Description: `A count of the volumes that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "volume_snapshots_count",
+					Description: `A count of the volume snapshots that the tag is applied to.`,
+				},
+				resource.Attribute{
+					Name:        "databases_count",
+					Description: `A count of the database clusters that the tag is applied to. ## Import Tags can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_tag.mytag tagname ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1767,7 +2084,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The unique identifier for the block storage volume.`,
+					Description: `The unique identifier for the volume.`,
+				},
+				resource.Attribute{
+					Name:        "urn",
+					Description: `The uniform resource name for the volume.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `List of applied tags to the volume.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region that the volume is created in.`,
+				},
+				resource.Attribute{
+					Name:        "droplet_ids",
+					Description: `A list of associated droplet ids.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `The ID of the existing volume snapshot from which this volume was created from.`,
 				},
 				resource.Attribute{
 					Name:        "filesystem_type",
@@ -1778,14 +2123,46 @@ var (
 					Description: `Filesystem label for the block storage volume.`,
 				},
 				resource.Attribute{
-					Name:        "droplet_ids",
-					Description: `A list of associated droplet ids. ## Import Volumes can be imported using the ` + "`" + `volume id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_volume.volume 506f78a4-e098-11e5-ad9f-000f53306ae1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "initial_filesystem_type",
+					Description: `Filesystem type (` + "`" + `xfs` + "`" + ` or ` + "`" + `ext4` + "`" + `) for the block storage volume when it was first created.`,
+				},
+				resource.Attribute{
+					Name:        "initial_filesystem_label",
+					Description: `Filesystem label for the block storage volume when it was first created. ## Import Volumes can be imported using the ` + "`" + `volume id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_volume.volume 506f78a4-e098-11e5-ad9f-000f53306ae1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The unique identifier for the block storage volume.`,
+					Description: `The unique identifier for the volume.`,
+				},
+				resource.Attribute{
+					Name:        "urn",
+					Description: `The uniform resource name for the volume.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `List of applied tags to the volume.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region that the volume is created in.`,
+				},
+				resource.Attribute{
+					Name:        "droplet_ids",
+					Description: `A list of associated droplet ids.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `The ID of the existing volume snapshot from which this volume was created from.`,
 				},
 				resource.Attribute{
 					Name:        "filesystem_type",
@@ -1796,8 +2173,12 @@ var (
 					Description: `Filesystem label for the block storage volume.`,
 				},
 				resource.Attribute{
-					Name:        "droplet_ids",
-					Description: `A list of associated droplet ids. ## Import Volumes can be imported using the ` + "`" + `volume id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_volume.volume 506f78a4-e098-11e5-ad9f-000f53306ae1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "initial_filesystem_type",
+					Description: `Filesystem type (` + "`" + `xfs` + "`" + ` or ` + "`" + `ext4` + "`" + `) for the block storage volume when it was first created.`,
+				},
+				resource.Attribute{
+					Name:        "initial_filesystem_label",
+					Description: `Filesystem label for the block storage volume when it was first created. ## Import Volumes can be imported using the ` + "`" + `volume id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_volume.volume 506f78a4-e098-11e5-ad9f-000f53306ae1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1891,35 +2272,102 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "digitalocean_vpc",
+			Category:         "Resources",
+			ShortDescription: `Provides a DigitalOcean VPC resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpc",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A name for the VPC. Must be unique and contain alphanumeric characters, dashes, and periods only.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) The DigitalOcean region slug for the VPC's location.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A free-form text field up to a limit of 255 characters to describe the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "ip_range",
+					Description: `(Optional) The range of IP addresses for the VPC in CIDR notation. Network ranges cannot overlap with other networks in the same account and must be in range of private addresses as defined in RFC1918. It may not be larger than ` + "`" + `/16` + "`" + ` or smaller than ` + "`" + `/24` + "`" + `. ## Attributes Reference In addition to the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique identifier for the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "urn",
+					Description: `The uniform resource name (URN) for the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `A boolean indicating whether or not the VPC is the default one for the region.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date and time of when the VPC was created. ## Import A VPC can be imported using its ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_vpc.example 506f78a4-e098-11e5-ad9f-000f53306ae1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique identifier for the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "urn",
+					Description: `The uniform resource name (URN) for the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `A boolean indicating whether or not the VPC is the default one for the region.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date and time of when the VPC was created. ## Import A VPC can be imported using its ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_vpc.example 506f78a4-e098-11e5-ad9f-000f53306ae1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
 	}
 
 	resourcesMap = map[string]int{
 
 		"digitalocean_cdn":                      0,
 		"digitalocean_certificate":              1,
-		"digitalocean_database_cluster":         2,
-		"digitalocean_database_connection_pool": 3,
-		"digitalocean_database_db":              4,
-		"digitalocean_database_firewall":        5,
-		"digitalocean_database_replica":         6,
-		"digitalocean_database_user":            7,
-		"digitalocean_domain":                   8,
-		"digitalocean_droplet":                  9,
-		"digitalocean_droplet_snapshot":         10,
-		"digitalocean_firewall":                 11,
-		"digitalocean_floating_ip":              12,
-		"digitalocean_floating_ip_assignment":   13,
-		"digitalocean_kubernetes_cluster":       14,
-		"digitalocean_kubernetes_node_pool":     15,
-		"digitalocean_loadbalancer":             16,
-		"digitalocean_project":                  17,
-		"digitalocean_record":                   18,
-		"digitalocean_spaces_bucket":            19,
-		"digitalocean_ssh_key":                  20,
-		"digitalocean_tag":                      21,
-		"digitalocean_volume":                   22,
-		"digitalocean_volume_attachment":        23,
-		"digitalocean_volume_snapshot":          24,
+		"digitalocean_container_registry":       2,
+		"container_registry_docker_credentials": 3,
+		"digitalocean_database_cluster":         4,
+		"digitalocean_database_connection_pool": 5,
+		"digitalocean_database_db":              6,
+		"digitalocean_database_firewall":        7,
+		"digitalocean_database_replica":         8,
+		"digitalocean_database_user":            9,
+		"digitalocean_domain":                   10,
+		"digitalocean_droplet":                  11,
+		"digitalocean_droplet_snapshot":         12,
+		"digitalocean_firewall":                 13,
+		"digitalocean_floating_ip":              14,
+		"digitalocean_floating_ip_assignment":   15,
+		"digitalocean_kubernetes_cluster":       16,
+		"digitalocean_kubernetes_node_pool":     17,
+		"digitalocean_loadbalancer":             18,
+		"digitalocean_project":                  19,
+		"digitalocean_project_resources":        20,
+		"digitalocean_record":                   21,
+		"digitalocean_spaces_bucket":            22,
+		"digitalocean_spaces_bucket_object":     23,
+		"digitalocean_ssh_key":                  24,
+		"digitalocean_tag":                      25,
+		"digitalocean_volume":                   26,
+		"digitalocean_volume_attachment":        27,
+		"digitalocean_volume_snapshot":          28,
+		"digitalocean_vpc":                      29,
 	}
 )
 

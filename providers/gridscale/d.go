@@ -773,7 +773,7 @@ var (
 			Name:             "",
 			Type:             "gridscale_loadbalancer",
 			Category:         "Data Sources",
-			ShortDescription: `Gets data of a loadbalancer.`,
+			ShortDescription: `Get the data of a Load Balancer.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -1027,7 +1027,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "gridscale_paas_securityzone",
+			Type:             "gridscale_paas",
 			Category:         "Data Sources",
 			ShortDescription: `Gets the data of a PaaS based on given UUID.`,
 			Description:      ``,
@@ -1331,7 +1331,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "gridscale_paas",
+			Type:             "gridscale_paas_securityzone",
 			Category:         "Data Sources",
 			ShortDescription: `Get data of a security zone.`,
 			Description:      ``,
@@ -2755,9 +2755,9 @@ var (
 		"gridscale_loadbalancer":             3,
 		"gridscale_network":                  4,
 		"gridscale_object_storage_accesskey": 5,
-		"gridscale_paas_securityzone":        6,
+		"gridscale_paas":                     6,
 		"gridscale_public_network":           7,
-		"gridscale_paas":                     8,
+		"gridscale_paas_securityzone":        8,
 		"gridscale_server":                   9,
 		"gridscale_snapshot":                 10,
 		"gridscale_snapshotschedule":         11,

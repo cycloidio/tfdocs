@@ -159,6 +159,166 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "huaweicloudstack_kms_data_key_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an HuaweiCloudStack KMS data encryption key.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `(Required) The globally unique identifier for the key. Changing this gets the new data encryption key.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_context",
+					Description: `(Optional) The value of this parameter must be a series of "key:value" pairs used to record resource context information. The value of this parameter must not contain sensitive information and must be within 8192 characters in length. Example: {"Key1":"Value1","Key2":"Value2"}`,
+				},
+				resource.Attribute{
+					Name:        "datakey_length",
+					Description: `(Required) Number of bits in the length of a DEK (data encryption keys). The maximum number is 512. Changing this gets the new data encryption key. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the date of the found data key. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "plain_text",
+					Description: `The plaintext of a DEK is expressed in hexadecimal format, and two characters indicate one byte.`,
+				},
+				resource.Attribute{
+					Name:        "cipher_text",
+					Description: `The ciphertext of a DEK is expressed in hexadecimal format, and two characters indicate one byte.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "plain_text",
+					Description: `The plaintext of a DEK is expressed in hexadecimal format, and two characters indicate one byte.`,
+				},
+				resource.Attribute{
+					Name:        "cipher_text",
+					Description: `The ciphertext of a DEK is expressed in hexadecimal format, and two characters indicate one byte.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloudstack_kms_key_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an HuaweiCloudStack KMS Key.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key_alias",
+					Description: `(Optional) The alias in which to create the key. It is required when we create a new key. Changing this gets the new key.`,
+				},
+				resource.Attribute{
+					Name:        "key_description",
+					Description: `(Optional) The description of the key as viewed in HCS console. Changing this gets a new key.`,
+				},
+				resource.Attribute{
+					Name:        "realm",
+					Description: `(Optional) Region where a key resides. Changing this gets a new key.`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `(Optional) The globally unique identifier for the key. Changing this gets the new key.`,
+				},
+				resource.Attribute{
+					Name:        "default_key_flag",
+					Description: `(Optional) Identification of a Master Key. The value "1" indicates a Default Master Key, and the value "0" indicates a key. Changing this gets a new key.`,
+				},
+				resource.Attribute{
+					Name:        "key_state",
+					Description: `(Optional) The state of a key. "1" indicates that the key is waiting to be activated. "2" indicates that the key is enabled. "3" indicates that the key is disabled. "4" indicates that the key is scheduled for deletion. Changing this gets a new key.`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `(Optional) - ID of a user domain for the key. Changing this gets a new key. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found key. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "key_alias",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "key_description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "realm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "default_key_flag",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "scheduled_deletion_date",
+					Description: `Scheduled deletion time (time stamp) of a key.`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_time",
+					Description: `Expiration time.`,
+				},
+				resource.Attribute{
+					Name:        "creation_date",
+					Description: `Creation time (time stamp) of a key.`,
+				},
+				resource.Attribute{
+					Name:        "key_state",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key_alias",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "key_description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "realm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "default_key_flag",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "scheduled_deletion_date",
+					Description: `Scheduled deletion time (time stamp) of a key.`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_time",
+					Description: `Expiration time.`,
+				},
+				resource.Attribute{
+					Name:        "creation_date",
+					Description: `Creation time (time stamp) of a key.`,
+				},
+				resource.Attribute{
+					Name:        "key_state",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "huaweicloudstack_networking_network_v2",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an HuaweiCloudStack Network.`,
@@ -514,10 +674,12 @@ var (
 	dataSourcesMap = map[string]int{
 
 		"huaweicloudstack_images_image_v2":        0,
-		"huaweicloudstack_networking_network_v2":  1,
-		"huaweicloudstack_networking_port_v2":     2,
-		"huaweicloudstack_networking_secgroup_v2": 3,
-		"huaweicloudstack_networking_subnet_v2":   4,
+		"huaweicloudstack_kms_data_key_v1":        1,
+		"huaweicloudstack_kms_key_v1":             2,
+		"huaweicloudstack_networking_network_v2":  3,
+		"huaweicloudstack_networking_port_v2":     4,
+		"huaweicloudstack_networking_secgroup_v2": 5,
+		"huaweicloudstack_networking_subnet_v2":   6,
 	}
 )
 

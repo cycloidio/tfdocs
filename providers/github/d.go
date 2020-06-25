@@ -11,6 +11,74 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "github_actions_public_key",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a GitHub Actions Public Key.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "repository",
+					Description: `(Required) Name of the repository to get public key from. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `ID of the key that has been retrieved.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `ID of the key that has been retrieved.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "github_branch",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a repository branch.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "repository",
+					Description: `(Required) The GitHub repository name.`,
+				},
+				resource.Attribute{
+					Name:        "branch",
+					Description: `(Required) The repository branch to create. ## Attribute Reference The following additional attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `An etag representing the Branch object.`,
+				},
+				resource.Attribute{
+					Name:        "ref",
+					Description: `A string representing a branch reference, in the form of ` + "`" + `refs/heads/<branch>` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sha",
+					Description: `A string storing the reference's ` + "`" + `HEAD` + "`" + ` commit's SHA1.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "etag",
+					Description: `An etag representing the Branch object.`,
+				},
+				resource.Attribute{
+					Name:        "ref",
+					Description: `A string representing a branch reference, in the form of ` + "`" + `refs/heads/<branch>` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sha",
+					Description: `A string storing the reference's ` + "`" + `HEAD` + "`" + ` commit's SHA1.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "github_collaborators",
 			Category:         "Data Sources",
 			ShortDescription: `Get the collaborators for a given repository.`,
@@ -28,55 +96,55 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The id of the collaborator.`,
+					Description: `The ID of the collaborator.`,
 				},
 				resource.Attribute{
 					Name:        "url",
-					Description: `The github api url for the collaborator.`,
+					Description: `The GitHub API URL for the collaborator.`,
 				},
 				resource.Attribute{
 					Name:        "html_url",
-					Description: `The github html url for the collaborator.`,
+					Description: `The GitHub HTML URL for the collaborator.`,
 				},
 				resource.Attribute{
 					Name:        "followers_url",
-					Description: `The github api url for the collaborator's followers.`,
+					Description: `The GitHub API URL for the collaborator's followers.`,
 				},
 				resource.Attribute{
 					Name:        "following_url",
-					Description: `The github api url for those following the collaborator.`,
+					Description: `The GitHub API URL for those following the collaborator.`,
 				},
 				resource.Attribute{
 					Name:        "gists_url",
-					Description: `The github api url for the collaborator's gists.`,
+					Description: `The GitHub API URL for the collaborator's gists.`,
 				},
 				resource.Attribute{
 					Name:        "starred_url",
-					Description: `The github api url for the collaborator's starred repositories.`,
+					Description: `The GitHub API URL for the collaborator's starred repositories.`,
 				},
 				resource.Attribute{
 					Name:        "subscriptions_url",
-					Description: `The github api url for the collaborator's subscribed repositories.`,
+					Description: `The GitHub API URL for the collaborator's subscribed repositories.`,
 				},
 				resource.Attribute{
 					Name:        "organizations_url",
-					Description: `The github api url for the collaborator's organizations.`,
+					Description: `The GitHub API URL for the collaborator's organizations.`,
 				},
 				resource.Attribute{
 					Name:        "repos_url",
-					Description: `The github api url for the collaborator's repositories.`,
+					Description: `The GitHub API URL for the collaborator's repositories.`,
 				},
 				resource.Attribute{
 					Name:        "events_url",
-					Description: `The github api url for the collaborator's events.`,
+					Description: `The GitHub API URL for the collaborator's events.`,
 				},
 				resource.Attribute{
 					Name:        "received_events_url",
-					Description: `The github api url for the collaborator's received events.`,
+					Description: `The GitHub API URL for the collaborator's received events.`,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The type of the collaborator (ex. ` + "`" + `User` + "`" + `).`,
+					Description: `The type of the collaborator (ex. ` + "`" + `user` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "site_admin",
@@ -92,7 +160,7 @@ var (
 			Name:             "",
 			Type:             "github_ip_ranges",
 			Category:         "Data Sources",
-			ShortDescription: `Get information on a GitHub's IP addresses.`,
+			ShortDescription: `Get information on GitHub's IP addresses.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -112,6 +180,205 @@ var (
 				resource.Attribute{
 					Name:        "importer",
 					Description: `An Array of IP addresses in CIDR format specifying the A records for GitHub Importer.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "github_membership",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on user membership in an organization.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) The username to lookup in the organization. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `The username.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `` + "`" + `admin` + "`" + ` or ` + "`" + `member` + "`" + ` -- the role the user has within the organization.`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `An etag representing the membership object.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "username",
+					Description: `The username.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `` + "`" + `admin` + "`" + ` or ` + "`" + `member` + "`" + ` -- the role the user has within the organization.`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `An etag representing the membership object.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "github_organization_team_sync_groups",
+			Category:         "Data Sources",
+			ShortDescription: `Get the external identity provider (IdP) groups for an organization.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "groups",
+					Description: `An Array of GitHub Identity Provider Groups. Each ` + "`" + `group` + "`" + ` block consists of the fields documented below. ___ The ` + "`" + `group` + "`" + ` block consists of:`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `The ID of the IdP group.`,
+				},
+				resource.Attribute{
+					Name:        "group_name",
+					Description: `The name of the IdP group.`,
+				},
+				resource.Attribute{
+					Name:        "group_description",
+					Description: `The description of the IdP group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "github_release",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a GitHub release.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "release_tag",
+					Description: `Tag of release`,
+				},
+				resource.Attribute{
+					Name:        "release_id",
+					Description: `ID of release`,
+				},
+				resource.Attribute{
+					Name:        "target_commitish",
+					Description: `Commitish value that determines where the Git release is created from`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of release`,
+				},
+				resource.Attribute{
+					Name:        "body",
+					Description: `Contents of the description (body) of a release`,
+				},
+				resource.Attribute{
+					Name:        "draft",
+					Description: `(` + "`" + `Boolean` + "`" + `) indicates whether the release is a draft`,
+				},
+				resource.Attribute{
+					Name:        "prerelease",
+					Description: `(` + "`" + `Boolean` + "`" + `) indicates whether the release is a prerelease`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date of release creation`,
+				},
+				resource.Attribute{
+					Name:        "published_at",
+					Description: `Date of release publishing`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `Base URL of the release`,
+				},
+				resource.Attribute{
+					Name:        "html_url",
+					Description: `URL directing to detailed information on the release`,
+				},
+				resource.Attribute{
+					Name:        "asserts_url",
+					Description: `URL of any associated assets with the release`,
+				},
+				resource.Attribute{
+					Name:        "upload_url",
+					Description: `URL that can be used to upload Assets to the release`,
+				},
+				resource.Attribute{
+					Name:        "zipball_url",
+					Description: `Download URL of a specific release in ` + "`" + `zip` + "`" + ` format`,
+				},
+				resource.Attribute{
+					Name:        "tarball_url",
+					Description: `Download URL of a specific release in ` + "`" + `tar.gz` + "`" + ` format`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "release_tag",
+					Description: `Tag of release`,
+				},
+				resource.Attribute{
+					Name:        "release_id",
+					Description: `ID of release`,
+				},
+				resource.Attribute{
+					Name:        "target_commitish",
+					Description: `Commitish value that determines where the Git release is created from`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of release`,
+				},
+				resource.Attribute{
+					Name:        "body",
+					Description: `Contents of the description (body) of a release`,
+				},
+				resource.Attribute{
+					Name:        "draft",
+					Description: `(` + "`" + `Boolean` + "`" + `) indicates whether the release is a draft`,
+				},
+				resource.Attribute{
+					Name:        "prerelease",
+					Description: `(` + "`" + `Boolean` + "`" + `) indicates whether the release is a prerelease`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date of release creation`,
+				},
+				resource.Attribute{
+					Name:        "published_at",
+					Description: `Date of release publishing`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `Base URL of the release`,
+				},
+				resource.Attribute{
+					Name:        "html_url",
+					Description: `URL directing to detailed information on the release`,
+				},
+				resource.Attribute{
+					Name:        "asserts_url",
+					Description: `URL of any associated assets with the release`,
+				},
+				resource.Attribute{
+					Name:        "upload_url",
+					Description: `URL that can be used to upload Assets to the release`,
+				},
+				resource.Attribute{
+					Name:        "zipball_url",
+					Description: `Download URL of a specific release in ` + "`" + `zip` + "`" + ` format`,
+				},
+				resource.Attribute{
+					Name:        "tarball_url",
+					Description: `Download URL of a specific release in ` + "`" + `tar.gz` + "`" + ` format`,
 				},
 			},
 		},
@@ -429,11 +696,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gpg_keys",
-					Description: `list of user's GPG keys`,
+					Description: `list of user's GPG keys.`,
 				},
 				resource.Attribute{
 					Name:        "ssh_keys",
-					Description: `list of user's SSH keys`,
+					Description: `list of user's SSH keys.`,
 				},
 				resource.Attribute{
 					Name:        "bio",
@@ -503,11 +770,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gpg_keys",
-					Description: `list of user's GPG keys`,
+					Description: `list of user's GPG keys.`,
 				},
 				resource.Attribute{
 					Name:        "ssh_keys",
-					Description: `list of user's SSH keys`,
+					Description: `list of user's SSH keys.`,
 				},
 				resource.Attribute{
 					Name:        "bio",
@@ -543,12 +810,17 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"github_collaborators": 0,
-		"github_ip_ranges":     1,
-		"github_repositories":  2,
-		"github_repository":    3,
-		"github_team":          4,
-		"github_user":          5,
+		"github_actions_public_key":            0,
+		"github_branch":                        1,
+		"github_collaborators":                 2,
+		"github_ip_ranges":                     3,
+		"github_membership":                    4,
+		"github_organization_team_sync_groups": 5,
+		"github_release":                       6,
+		"github_repositories":                  7,
+		"github_repository":                    8,
+		"github_team":                          9,
+		"github_user":                          10,
 	}
 )
 

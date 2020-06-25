@@ -1613,6 +1613,238 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "opentelekomcloud_dms_az_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an OpenTelekomCloud dms az.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Indicates the name of an AZ.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) Indicates the port number of an AZ.`,
+				},
+				resource.Attribute{
+					Name:        "code",
+					Description: `(Optional) Indicates the code of an AZ. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found az. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "code",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "code",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "opentelekomcloud_dms_maintainwindow_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an OpenTelekomCloud dms maintainwindow.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "seq",
+					Description: `(Required) Indicates the sequential number of a maintenance time window.`,
+				},
+				resource.Attribute{
+					Name:        "begin",
+					Description: `(Optional) Indicates the time at which a maintenance time window starts.`,
+				},
+				resource.Attribute{
+					Name:        "end",
+					Description: `(Optional) Indicates the time at which a maintenance time window ends.`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `(Optional) Indicates whether a maintenance time window is set to the default time segment. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found maintainwindow. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "seq",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "begin",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "end",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "seq",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "begin",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "end",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "opentelekomcloud_dms_product_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an OpenTelekomCloud dms product.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "engine",
+					Description: `(Required) Indicates the name of a message engine. Only "kafka" is supported now.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) Indicates the version of a message engine. Only "2.3.0" is supported now.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `(Required) Indicates an instance type. Only "cluster" is supported now.`,
+				},
+				resource.Attribute{
+					Name:        "vm_specification",
+					Description: `(Optional) Indicates VM specifications.`,
+				},
+				resource.Attribute{
+					Name:        "storage",
+					Description: `(Optional) Indicates the message storage space.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth",
+					Description: `(Optional) Indicates the baseline bandwidth of a Kafka instance.`,
+				},
+				resource.Attribute{
+					Name:        "partition_num",
+					Description: `(Optional) Indicates the maximum number of topics that can be created for a Kafka instance.`,
+				},
+				resource.Attribute{
+					Name:        "storage_spec_code",
+					Description: `(Optional) Indicates an I/O specification.`,
+				},
+				resource.Attribute{
+					Name:        "io_type",
+					Description: `(Optional) Indicates an I/O type.`,
+				},
+				resource.Attribute{
+					Name:        "node_num",
+					Description: `(Optional) Indicates the number of nodes in a cluster. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found product. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vm_specification",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "partition_num",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "storage_spec_code",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "io_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "node_num",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "engine",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vm_specification",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "partition_num",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "storage_spec_code",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "io_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "node_num",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "opentelekomcloud_identity_group_v3",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an OpentelekomCloud Group.`,
@@ -3504,7 +3736,11 @@ VPC that the subnet belongs to.
 				},
 				resource.Attribute{
 					Name:        "cidr",
-					Description: `(Optional) The cidr block of the desired VPC. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The cidr block of the desired VPC.`,
+				},
+				resource.Attribute{
+					Name:        "shared",
+					Description: `(Optional) Enable SNAT (In order to let instances without an EIP access the internet). ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -3578,33 +3814,36 @@ VPC that the subnet belongs to.
 		"opentelekomcloud_dcs_product_v1":             13,
 		"opentelekomcloud_deh_host_v1":                14,
 		"opentelekomcloud_deh_server_v1":              15,
-		"opentelekomcloud_identity_group_v3":          16,
-		"opentelekomcloud_identity_project_v3":        17,
-		"opentelekomcloud_identity_role_v3":           18,
-		"opentelekomcloud_identity_user_v3":           19,
-		"opentelekomcloud_images_image_v2":            20,
-		"opentelekomcloud_kms_data_key_v1":            21,
-		"opentelekomcloud_kms_key_v1":                 22,
-		"opentelekomcloud_networking_network_v2":      23,
-		"opentelekomcloud_networking_port_v2":         24,
-		"opentelekomcloud_networking_secgroup_v2":     25,
-		"opentelekomcloud_rds_flavor_v1":              26,
-		"opentelekomcloud_rds_flavors_v3":             27,
-		"opentelekomcloud_rts_software_config_v1":     28,
-		"opentelekomcloud_rts_software_deployment_v1": 29,
-		"opentelekomcloud_rts_stack_resource_v1":      30,
-		"opentelekomcloud_rts_stack_v1":               31,
-		"opentelekomcloud_s3_bucket_object":           32,
-		"opentelekomcloud_sdrs_domain_v1":             33,
-		"opentelekomcloud_sfs_file_system_v2":         34,
-		"opentelekomcloud_vbs_backup_policy_v2":       35,
-		"opentelekomcloud_vbs_backup_v2":              36,
-		"opentelekomcloud_vpc_peering_connection_v2":  37,
-		"opentelekomcloud_vpc_route_ids_v2":           38,
-		"opentelekomcloud_vpc_route_v2":               39,
-		"opentelekomcloud_vpc_subnet_ids_v1":          40,
-		"opentelekomcloud_vpc_subnet_v1":              41,
-		"opentelekomcloud_vpc_v1":                     42,
+		"opentelekomcloud_dms_az_v1":                  16,
+		"opentelekomcloud_dms_maintainwindow_v1":      17,
+		"opentelekomcloud_dms_product_v1":             18,
+		"opentelekomcloud_identity_group_v3":          19,
+		"opentelekomcloud_identity_project_v3":        20,
+		"opentelekomcloud_identity_role_v3":           21,
+		"opentelekomcloud_identity_user_v3":           22,
+		"opentelekomcloud_images_image_v2":            23,
+		"opentelekomcloud_kms_data_key_v1":            24,
+		"opentelekomcloud_kms_key_v1":                 25,
+		"opentelekomcloud_networking_network_v2":      26,
+		"opentelekomcloud_networking_port_v2":         27,
+		"opentelekomcloud_networking_secgroup_v2":     28,
+		"opentelekomcloud_rds_flavor_v1":              29,
+		"opentelekomcloud_rds_flavors_v3":             30,
+		"opentelekomcloud_rts_software_config_v1":     31,
+		"opentelekomcloud_rts_software_deployment_v1": 32,
+		"opentelekomcloud_rts_stack_resource_v1":      33,
+		"opentelekomcloud_rts_stack_v1":               34,
+		"opentelekomcloud_s3_bucket_object":           35,
+		"opentelekomcloud_sdrs_domain_v1":             36,
+		"opentelekomcloud_sfs_file_system_v2":         37,
+		"opentelekomcloud_vbs_backup_policy_v2":       38,
+		"opentelekomcloud_vbs_backup_v2":              39,
+		"opentelekomcloud_vpc_peering_connection_v2":  40,
+		"opentelekomcloud_vpc_route_ids_v2":           41,
+		"opentelekomcloud_vpc_route_v2":               42,
+		"opentelekomcloud_vpc_subnet_ids_v1":          43,
+		"opentelekomcloud_vpc_subnet_v1":              44,
+		"opentelekomcloud_vpc_v1":                     45,
 	}
 )
 

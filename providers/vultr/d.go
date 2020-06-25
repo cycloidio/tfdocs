@@ -771,6 +771,222 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vultr_load_balancer",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Vultr Load Balancer.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Required) Query parameters for finding load balancers. The ` + "`" + `filter` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Attribute name to filter with.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `One or more values filter with. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region_id",
+					Description: `The region your load balancer is deployed in.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The load balancers label.`,
+				},
+				resource.Attribute{
+					Name:        "balancing_algorithm",
+					Description: `The balancing algorithm for your load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "proxy_protocol",
+					Description: `Boolean value that indicates if Proxy Protocol is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "cookie_name",
+					Description: `Name for your given sticky session.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_redirect",
+					Description: `Boolean value that indicates if HTTP calls will be redirected to HTTPS.`,
+				},
+				resource.Attribute{
+					Name:        "has_ssl",
+					Description: `Boolean value that indicates if SSL is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "attached_instances",
+					Description: `Array of instances that are currently attached to the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Current status for the load balancer`,
+				},
+				resource.Attribute{
+					Name:        "ipv4",
+					Description: `IPv4 address for your load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6",
+					Description: `IPv6 address for your load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Defines the way load balancers should check for health. The configuration of a ` + "`" + `health_check` + "`" + ` is listed below.`,
+				},
+				resource.Attribute{
+					Name:        "forwarding_rules",
+					Description: `Defines the forwarding rules for a load balancer. The configuration of a ` + "`" + `forwarding_rules` + "`" + ` is listened below. ` + "`" + `health_check` + "`" + ` supports the following`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `The protocol used to traffic requests to the load balancer. Possible values are ` + "`" + `http` + "`" + `, or ` + "`" + `tcp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The path on the attached instances that the load balancer should check against.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The assigned port (integer) on the attached instances that the load balancer should check against.`,
+				},
+				resource.Attribute{
+					Name:        "check_interval",
+					Description: `Time in seconds to perform health check. Default value is 15.`,
+				},
+				resource.Attribute{
+					Name:        "response_timeout",
+					Description: `Time in seconds to wait for a health check response. Default value is 5.`,
+				},
+				resource.Attribute{
+					Name:        "unhealthy_threshold",
+					Description: `Number of failed attempts encountered before failover. Default value is 5.`,
+				},
+				resource.Attribute{
+					Name:        "healthy_threshold",
+					Description: `Number of failed attempts encountered before failover. Default value is 5. ` + "`" + `forwarding_rules` + "`" + ` supports the following`,
+				},
+				resource.Attribute{
+					Name:        "frontend_protocol",
+					Description: `Protocol on load balancer side. Possible values: "http", "https", "tcp".`,
+				},
+				resource.Attribute{
+					Name:        "frontend_port",
+					Description: `Port on load balancer side.`,
+				},
+				resource.Attribute{
+					Name:        "backend_protocol",
+					Description: `Protocol on instance side. Possible values: "http", "https", "tcp".`,
+				},
+				resource.Attribute{
+					Name:        "target_port",
+					Description: `Port on instance side.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region_id",
+					Description: `The region your load balancer is deployed in.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The load balancers label.`,
+				},
+				resource.Attribute{
+					Name:        "balancing_algorithm",
+					Description: `The balancing algorithm for your load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "proxy_protocol",
+					Description: `Boolean value that indicates if Proxy Protocol is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "cookie_name",
+					Description: `Name for your given sticky session.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_redirect",
+					Description: `Boolean value that indicates if HTTP calls will be redirected to HTTPS.`,
+				},
+				resource.Attribute{
+					Name:        "has_ssl",
+					Description: `Boolean value that indicates if SSL is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "attached_instances",
+					Description: `Array of instances that are currently attached to the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Current status for the load balancer`,
+				},
+				resource.Attribute{
+					Name:        "ipv4",
+					Description: `IPv4 address for your load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6",
+					Description: `IPv6 address for your load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Defines the way load balancers should check for health. The configuration of a ` + "`" + `health_check` + "`" + ` is listed below.`,
+				},
+				resource.Attribute{
+					Name:        "forwarding_rules",
+					Description: `Defines the forwarding rules for a load balancer. The configuration of a ` + "`" + `forwarding_rules` + "`" + ` is listened below. ` + "`" + `health_check` + "`" + ` supports the following`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `The protocol used to traffic requests to the load balancer. Possible values are ` + "`" + `http` + "`" + `, or ` + "`" + `tcp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The path on the attached instances that the load balancer should check against.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The assigned port (integer) on the attached instances that the load balancer should check against.`,
+				},
+				resource.Attribute{
+					Name:        "check_interval",
+					Description: `Time in seconds to perform health check. Default value is 15.`,
+				},
+				resource.Attribute{
+					Name:        "response_timeout",
+					Description: `Time in seconds to wait for a health check response. Default value is 5.`,
+				},
+				resource.Attribute{
+					Name:        "unhealthy_threshold",
+					Description: `Number of failed attempts encountered before failover. Default value is 5.`,
+				},
+				resource.Attribute{
+					Name:        "healthy_threshold",
+					Description: `Number of failed attempts encountered before failover. Default value is 5. ` + "`" + `forwarding_rules` + "`" + ` supports the following`,
+				},
+				resource.Attribute{
+					Name:        "frontend_protocol",
+					Description: `Protocol on load balancer side. Possible values: "http", "https", "tcp".`,
+				},
+				resource.Attribute{
+					Name:        "frontend_port",
+					Description: `Port on load balancer side.`,
+				},
+				resource.Attribute{
+					Name:        "backend_protocol",
+					Description: `Protocol on instance side. Possible values: "http", "https", "tcp".`,
+				},
+				resource.Attribute{
+					Name:        "target_port",
+					Description: `Port on instance side.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vultr_network",
 			Category:         "Data Sources",
 			ShortDescription: `Get information about a Vultr private network.`,
@@ -1640,16 +1856,17 @@ var (
 		"vultr_firewall_group":    8,
 		"vultr_iso_private":       9,
 		"vultr_iso_public":        10,
-		"vultr_network":           11,
-		"vultr_os":                12,
-		"vultr_plan":              13,
-		"vultr_region":            14,
-		"vultr_reserved_ip":       15,
-		"vultr_server":            16,
-		"vultr_snapshot":          17,
-		"vultr_ssh_key":           18,
-		"vultr_startup_script":    19,
-		"vultr_user":              20,
+		"vultr_load_balancer":     11,
+		"vultr_network":           12,
+		"vultr_os":                13,
+		"vultr_plan":              14,
+		"vultr_region":            15,
+		"vultr_reserved_ip":       16,
+		"vultr_server":            17,
+		"vultr_snapshot":          18,
+		"vultr_ssh_key":           19,
+		"vultr_startup_script":    20,
+		"vultr_user":              21,
 	}
 )
 

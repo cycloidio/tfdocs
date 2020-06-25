@@ -21,9 +21,9 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "scaleway_baremetal_offer_beta",
+			Type:             "scaleway_baremetal_offer",
 			Category:         "Data Sources",
-			ShortDescription: `Gets information about an baremetal offer.`,
+			ShortDescription: `Gets information about a baremetal offer.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -221,6 +221,26 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "scaleway_registry_image_beta",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about a registry image.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "scaleway_registry_namespace_beta",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about a registry namespace.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "scaleway_security_group",
 			Category:         "Data Sources",
 			ShortDescription: `Gets information about a Security Group.`,
@@ -296,7 +316,7 @@ var (
 	dataSourcesMap = map[string]int{
 
 		"scaleway_account_ssh_key":         0,
-		"scaleway_baremetal_offer_beta":    1,
+		"scaleway_baremetal_offer":         1,
 		"scaleway_bootscript":              2,
 		"scaleway_image":                   3,
 		"scaleway_instance_image":          4,
@@ -304,8 +324,10 @@ var (
 		"scaleway_instance_server":         6,
 		"scaleway_instance_volume":         7,
 		"scaleway_marketplace_image_beta":  8,
-		"scaleway_security_group":          9,
-		"scaleway_volume":                  10,
+		"scaleway_registry_image_beta":     9,
+		"scaleway_registry_namespace_beta": 10,
+		"scaleway_security_group":          11,
+		"scaleway_volume":                  12,
 	}
 )
 

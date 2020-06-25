@@ -11,6 +11,258 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "selectel_domains_domain_v1",
+			Category:         "Domains Resources",
+			ShortDescription: `Manages a V1 domain resource within Selectel Domains API Service.`,
+			Description:      ``,
+			Keywords: []string{
+				"domains",
+				"domain",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the domain. Changing this creates a new domain name. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the domain.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `Identifier of the Selectel API user. ## Import Domain can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ env SEL_TOKEN=SELECTEL_API_TOKEN terraform import selectel_domains_domain_v1.domain_1 45623 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the domain.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `Identifier of the Selectel API user. ## Import Domain can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ env SEL_TOKEN=SELECTEL_API_TOKEN terraform import selectel_domains_domain_v1.domain_1 45623 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "selectel_domains_record_v1",
+			Category:         "Domains Resources",
+			ShortDescription: `Manages a V1 record resource within Selectel Domains API Service.`,
+			Description:      ``,
+			Keywords: []string{
+				"domains",
+				"record",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `(Required) Represents an identifier of the associated domain. Changing this creates a new domain record.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Represents a name of the domain record.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Represents a type of the record. Possible values: A, AAAA, TXT, CNAME, NS, SOA, MX, SRV.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `(Required) Represents a time-to-live for the record. Must be the value between 60 and 604800.`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Optional) Represents a content of the record. Absent for SRV records.`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `(Optional) Represents an email of the domain's admin. For SOA records only.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Represents priority of the records preferences. Lower value means more preferred. MX/SRV records only.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `(Optional) Represents a relative weight for records with the same priority, higher value means higher chance of getting picked. For SRV records only.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) Represents TCP or UDP port on which the service is to be found. For SRV records only.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Optional) Represents a canonical hostname of the machine providing the service. For SRV records only. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `Represents a content of the record.`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `Represents an email of the domain's admin.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Represents priority of the records preferences.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Represents a relative weight for records with the same priority, higher value means higher chance of getting picked.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Represents TCP or UDP port on which the service is to be found.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `Represents a canonical hostname of the machine providing the service. ## Import Domain records can be imported using a combined ID in the following format: ` + "`" + `` + "`" + `<domain_id>/<record_id>` + "`" + `` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `shell $ env SEL_TOKEN=SELECTEL_API_TOKEN terraform import selectel_domains_record_v1.record_1 45623/123 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "content",
+					Description: `Represents a content of the record.`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `Represents an email of the domain's admin.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Represents priority of the records preferences.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Represents a relative weight for records with the same priority, higher value means higher chance of getting picked.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Represents TCP or UDP port on which the service is to be found.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `Represents a canonical hostname of the machine providing the service. ## Import Domain records can be imported using a combined ID in the following format: ` + "`" + `` + "`" + `<domain_id>/<record_id>` + "`" + `` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `shell $ env SEL_TOKEN=SELECTEL_API_TOKEN terraform import selectel_domains_record_v1.record_1 45623/123 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "selectel_mks_cluster_v1",
+			Category:         "MKS Resources",
+			ShortDescription: `Manages a V1 cluster resource within Selectel Managed Kubernetes Service.`,
+			Description:      ``,
+			Keywords: []string{
+				"mks",
+				"cluster",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the cluster. Changing this creates a new cluster.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) An associated Selectel VPC project. Changing this creates a new cluster.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) A Selectel VPC region of where the cluster is located. Changing this creates a new cluster.`,
+				},
+				resource.Attribute{
+					Name:        "kube_version",
+					Description: `(Required) The current Kubernetes version of the cluster. Changing this upgrades the current version of the cluster. To upgrade a patch version, the desired version should match the latest available patch version for the current minor release. To upgrade a minor version, the desired version should match the next available minor release with the latest patch version.`,
+				},
+				resource.Attribute{
+					Name:        "enable_autorepair",
+					Description: `(Optional) Reflects if worker nodes are allowed to be reinstalled automatically. Accepts true or false. Defaults to true.`,
+				},
+				resource.Attribute{
+					Name:        "enable_patch_version_auto_upgrade",
+					Description: `(Optional) Specifies if Kubernetes patch version of the cluster is allowed to be upgraded automatically. Accepts true or false. Defaults to true.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `(Optional) An associated OpenStack Networking service network ID. Changing this creates a new cluster.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Optional) associated OpenStack Networking service subnet ID. Changing this creates a new cluster.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_window_start",
+					Description: `(Optional) Represents UTC time in "hh:mm:ss" format of when the cluster will start its maintenance tasks. Changing this updates maintenance window start time. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_window_end",
+					Description: `Shows UTC time in "hh:mm:ss" format of when the cluster will end its maintenance tasks.`,
+				},
+				resource.Attribute{
+					Name:        "kube_api_ip",
+					Description: `Shows the IP of the Kubernetes API.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Shows the current status of the cluster. ## Import Cluster can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ env SEL_TOKEN=SELECTEL_API_TOKEN SEL_PROJECT_ID=SELECTEL_VPC_PROJECT_ID SEL_REGION=SELECTEL_VPC_REGION terraform import selectel_mks_cluster_v1.cluster_1 b311ce58-2658-46b5-b733-7a0f418703f2 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "maintenance_window_end",
+					Description: `Shows UTC time in "hh:mm:ss" format of when the cluster will end its maintenance tasks.`,
+				},
+				resource.Attribute{
+					Name:        "kube_api_ip",
+					Description: `Shows the IP of the Kubernetes API.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Shows the current status of the cluster. ## Import Cluster can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ env SEL_TOKEN=SELECTEL_API_TOKEN SEL_PROJECT_ID=SELECTEL_VPC_PROJECT_ID SEL_REGION=SELECTEL_VPC_REGION terraform import selectel_mks_cluster_v1.cluster_1 b311ce58-2658-46b5-b733-7a0f418703f2 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "selectel_mks_nodegroup_v1",
+			Category:         "MKS Resources",
+			ShortDescription: `Manages a V1 nodegroup resource within Selectel Managed Kubernetes Service.`,
+			Description:      ``,
+			Keywords: []string{
+				"mks",
+				"nodegroup",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) An associated MKS cluster. Changing this creates a new nodegroup.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) An associated Selectel VPC project. Changing this creates a new nodegroup.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) A Selectel VPC region of where the nodegroup is located. Changing this creates a new nodegroup.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Contains a list of all nodes in the nodegroup. ## Import Nodegroup can be imported using a combined ID using the following format: ` + "`" + `` + "`" + `<cluster_id>/<nodegroup_id>` + "`" + `` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `shell $ env SEL_TOKEN=SELECTEL_API_TOKEN SEL_PROJECT_ID=SELECTEL_VPC_PROJECT_ID SEL_REGION=SELECTEL_VPC_REGION terraform import selectel_mks_nodegroup_v1.nodegroup_1 b311ce58-2658-46b5-b733-7a0f418703f2/63ed5342-b22c-4c7a-9d41-c1fe4a142c13 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Contains a list of all nodes in the nodegroup. ## Import Nodegroup can be imported using a combined ID using the following format: ` + "`" + `` + "`" + `<cluster_id>/<nodegroup_id>` + "`" + `` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `shell $ env SEL_TOKEN=SELECTEL_API_TOKEN SEL_PROJECT_ID=SELECTEL_VPC_PROJECT_ID SEL_REGION=SELECTEL_VPC_REGION terraform import selectel_mks_nodegroup_v1.nodegroup_1 b311ce58-2658-46b5-b733-7a0f418703f2/63ed5342-b22c-4c7a-9d41-c1fe4a142c13 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "selectel_vpc_floatingip_v2",
 			Category:         "VPC Resources",
 			ShortDescription: `Manages a V2 floating IP resource within Selectel VPC.`,
@@ -134,7 +386,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "servers",
-					Description: `Shows information about servers that use this license. Contains ` + "`" + `id` + "`" + `, ` + "`" + `name` + "`" + ` and ` + "`" + `status` + "`" + ` fields. ## Import Licenses can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ env SEL_TOKEN=SELECTEL_API_TOKEN terraform import selectel_vpc_license_v2.license_1 4123 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Shows information about servers that use this license. Contains ` + "`" + `id` + "`" + `, ` + "`" + `name` + "`" + ` and ` + "`" + `status` + "`" + ` fields.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `Represents id of the associated network in the Networking service.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `Represents id of the associated network in the Networking service.`,
+				},
+				resource.Attribute{
+					Name:        "port_id",
+					Description: `Represents id of the associated port in the Networking service. ## Import Licenses can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ env SEL_TOKEN=SELECTEL_API_TOKEN terraform import selectel_vpc_license_v2.license_1 4123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -144,7 +408,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "servers",
-					Description: `Shows information about servers that use this license. Contains ` + "`" + `id` + "`" + `, ` + "`" + `name` + "`" + ` and ` + "`" + `status` + "`" + ` fields. ## Import Licenses can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ env SEL_TOKEN=SELECTEL_API_TOKEN terraform import selectel_vpc_license_v2.license_1 4123 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Shows information about servers that use this license. Contains ` + "`" + `id` + "`" + `, ` + "`" + `name` + "`" + ` and ` + "`" + `status` + "`" + ` fields.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `Represents id of the associated network in the Networking service.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `Represents id of the associated network in the Networking service.`,
+				},
+				resource.Attribute{
+					Name:        "port_id",
+					Description: `Represents id of the associated port in the Networking service. ## Import Licenses can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ env SEL_TOKEN=SELECTEL_API_TOKEN terraform import selectel_vpc_license_v2.license_1 4123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -454,15 +730,19 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"selectel_vpc_floatingip_v2":  0,
-		"selectel_vpc_keypair_v2":     1,
-		"selectel_vpc_license_v2":     2,
-		"selectel_vpc_project_v2":     3,
-		"selectel_vpc_role_v2":        4,
-		"selectel_vpc_subnet_v2":      5,
-		"selectel_vpc_token_v2":       6,
-		"selectel_vpc_user_v2":        7,
-		"selectel_vpc_vrrp_subnet_v2": 8,
+		"selectel_domains_domain_v1":  0,
+		"selectel_domains_record_v1":  1,
+		"selectel_mks_cluster_v1":     2,
+		"selectel_mks_nodegroup_v1":   3,
+		"selectel_vpc_floatingip_v2":  4,
+		"selectel_vpc_keypair_v2":     5,
+		"selectel_vpc_license_v2":     6,
+		"selectel_vpc_project_v2":     7,
+		"selectel_vpc_role_v2":        8,
+		"selectel_vpc_subnet_v2":      9,
+		"selectel_vpc_token_v2":       10,
+		"selectel_vpc_user_v2":        11,
+		"selectel_vpc_vrrp_subnet_v2": 12,
 	}
 )
 

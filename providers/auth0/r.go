@@ -385,99 +385,67 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) String. Name of the connection.`,
+					Description: `(Required) Name of the connection.`,
 				},
 				resource.Attribute{
 					Name:        "is_domain_connection",
-					Description: `(Optional) Boolean. Indicates whether or not the connection is domain level.`,
+					Description: `(Optional) Indicates whether or not the connection is domain level.`,
 				},
 				resource.Attribute{
 					Name:        "strategy",
-					Description: `(Required) String. Type of the connection, which indicates the identity provider. Options include ` + "`" + `ad` + "`" + `, ` + "`" + `adfs` + "`" + `, ` + "`" + `amazon` + "`" + `, ` + "`" + `aol` + "`" + `, ` + "`" + `apple` + "`" + `, ` + "`" + `auth0` + "`" + `, ` + "`" + `auth0-adldap` + "`" + `, ` + "`" + `auth0-oidc` + "`" + `, ` + "`" + `baidu` + "`" + `, ` + "`" + `bitbucket` + "`" + `, ` + "`" + `bitly` + "`" + `, ` + "`" + `box` + "`" + `, ` + "`" + `custom` + "`" + `, ` + "`" + `daccount` + "`" + `, ` + "`" + `dropbox` + "`" + `, ` + "`" + `dwolla` + "`" + `, ` + "`" + `email` + "`" + `, ` + "`" + `evernote` + "`" + `, ` + "`" + `evernote-sandbox` + "`" + `, ` + "`" + `exact` + "`" + `, ` + "`" + `facebook` + "`" + `, ` + "`" + `fitbit` + "`" + `, ` + "`" + `flickr` + "`" + `, ` + "`" + `github` + "`" + `, ` + "`" + `google-apps` + "`" + `, ` + "`" + `google-oauth2` + "`" + `, ` + "`" + `guardian` + "`" + `, ` + "`" + `instagram` + "`" + `, ` + "`" + `ip` + "`" + `, ` + "`" + `line` + "`" + `, ` + "`" + `linkedin` + "`" + `, ` + "`" + `miicard` + "`" + `, ` + "`" + `oauth1` + "`" + `, ` + "`" + `oauth2` + "`" + `, ` + "`" + `office365` + "`" + `, ` + "`" + `oidc` + "`" + `, ` + "`" + `paypal` + "`" + `, ` + "`" + `paypal-sandbox` + "`" + `, ` + "`" + `pingfederate` + "`" + `, ` + "`" + `planningcenter` + "`" + `, ` + "`" + `renren` + "`" + `, ` + "`" + `salesforce` + "`" + `, ` + "`" + `salesforce-community` + "`" + `, ` + "`" + `salesforce-sandbox` + "`" + ` ` + "`" + `samlp` + "`" + `, ` + "`" + `sharepoint` + "`" + `, ` + "`" + `shopify` + "`" + `, ` + "`" + `sms` + "`" + `, ` + "`" + `soundcloud` + "`" + `, ` + "`" + `thecity` + "`" + `, ` + "`" + `thecity-sandbox` + "`" + `, ` + "`" + `thirtysevensignals` + "`" + `, ` + "`" + `twitter` + "`" + `, ` + "`" + `untappd` + "`" + `, ` + "`" + `vkontakte` + "`" + `, ` + "`" + `waad` + "`" + `, ` + "`" + `weibo` + "`" + `, ` + "`" + `windowslive` + "`" + `, ` + "`" + `wordpress` + "`" + `, ` + "`" + `yahoo` + "`" + `, ` + "`" + `yammer` + "`" + `, ` + "`" + `yandex` + "`" + `.`,
+					Description: `(Required) Type of the connection, which indicates the identity provider. Options include ` + "`" + `ad` + "`" + `, ` + "`" + `adfs` + "`" + `, ` + "`" + `amazon` + "`" + `, ` + "`" + `aol` + "`" + `, ` + "`" + `apple` + "`" + `, ` + "`" + `auth0` + "`" + `, ` + "`" + `auth0-adldap` + "`" + `, ` + "`" + `auth0-oidc` + "`" + `, ` + "`" + `baidu` + "`" + `, ` + "`" + `bitbucket` + "`" + `, ` + "`" + `bitly` + "`" + `, ` + "`" + `box` + "`" + `, ` + "`" + `custom` + "`" + `, ` + "`" + `daccount` + "`" + `, ` + "`" + `dropbox` + "`" + `, ` + "`" + `dwolla` + "`" + `, ` + "`" + `email` + "`" + `, ` + "`" + `evernote` + "`" + `, ` + "`" + `evernote-sandbox` + "`" + `, ` + "`" + `exact` + "`" + `, ` + "`" + `facebook` + "`" + `, ` + "`" + `fitbit` + "`" + `, ` + "`" + `flickr` + "`" + `, ` + "`" + `github` + "`" + `, ` + "`" + `google-apps` + "`" + `, ` + "`" + `google-oauth2` + "`" + `, ` + "`" + `guardian` + "`" + `, ` + "`" + `instagram` + "`" + `, ` + "`" + `ip` + "`" + `, ` + "`" + `line` + "`" + `, ` + "`" + `linkedin` + "`" + `, ` + "`" + `miicard` + "`" + `, ` + "`" + `oauth1` + "`" + `, ` + "`" + `oauth2` + "`" + `, ` + "`" + `office365` + "`" + `, ` + "`" + `oidc` + "`" + `, ` + "`" + `paypal` + "`" + `, ` + "`" + `paypal-sandbox` + "`" + `, ` + "`" + `pingfederate` + "`" + `, ` + "`" + `planningcenter` + "`" + `, ` + "`" + `renren` + "`" + `, ` + "`" + `salesforce` + "`" + `, ` + "`" + `salesforce-community` + "`" + `, ` + "`" + `salesforce-sandbox` + "`" + ` ` + "`" + `samlp` + "`" + `, ` + "`" + `sharepoint` + "`" + `, ` + "`" + `shopify` + "`" + `, ` + "`" + `sms` + "`" + `, ` + "`" + `soundcloud` + "`" + `, ` + "`" + `thecity` + "`" + `, ` + "`" + `thecity-sandbox` + "`" + `, ` + "`" + `thirtysevensignals` + "`" + `, ` + "`" + `twitter` + "`" + `, ` + "`" + `untappd` + "`" + `, ` + "`" + `vkontakte` + "`" + `, ` + "`" + `waad` + "`" + `, ` + "`" + `weibo` + "`" + `, ` + "`" + `windowslive` + "`" + `, ` + "`" + `wordpress` + "`" + `, ` + "`" + `yahoo` + "`" + `, ` + "`" + `yammer` + "`" + `, ` + "`" + `yandex` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "options",
-					Description: `(Optional) List(Resource). Configuration settings for connection options. For details, see [Options](#options).`,
+					Description: `(Optional) Configuration settings for connection options. For details, see [Options](#options).`,
 				},
 				resource.Attribute{
 					Name:        "enabled_clients",
-					Description: `(Optional) Set(String). IDs of the clients for which the connection is enabled. If not specified, no clients are enabled.`,
+					Description: `(Optional) IDs of the clients for which the connection is enabled. If not specified, no clients are enabled.`,
 				},
 				resource.Attribute{
 					Name:        "realms",
-					Description: `(Optional) List(String). Defines the realms for which the connection will be used (i.e., email domains). If not specified, the connection name is added as the realm. ### Options ` + "`" + `options` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) Defines the realms for which the connection will be used (i.e., email domains). If not specified, the connection name is added as the realm. ### Options ` + "`" + `options` + "`" + ` supports different arguments depending on the connection ` + "`" + `strategy` + "`" + ` defined in [Argument Reference](#argument-reference). ### Auth0 With the ` + "`" + `auth0` + "`" + ` connection strategy, ` + "`" + `options` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "validation",
-					Description: `(Optional) String.`,
+					Description: `(Optional) A map defining the validation options.`,
 				},
 				resource.Attribute{
 					Name:        "password_policy",
-					Description: `(Optional) String. Indicates level of password strength to enforce during authentication. A strong password policy will make it difficult, if not improbable, for someone to guess a password through either manual or automated means. Options include ` + "`" + `none` + "`" + `, ` + "`" + `low` + "`" + `, ` + "`" + `fair` + "`" + `, ` + "`" + `good` + "`" + `, ` + "`" + `excellent` + "`" + `.`,
+					Description: `(Optional) Indicates level of password strength to enforce during authentication. A strong password policy will make it difficult, if not improbable, for someone to guess a password through either manual or automated means. Options include ` + "`" + `none` + "`" + `, ` + "`" + `low` + "`" + `, ` + "`" + `fair` + "`" + `, ` + "`" + `good` + "`" + `, ` + "`" + `excellent` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "password_history",
-					Description: `(Optional) List(Resource). Configuration settings for the password history that is maintained for each user to prevent the reuse of passwords. For details, see [Password History](#password-history).`,
+					Description: `(Optional) Configuration settings for the password history that is maintained for each user to prevent the reuse of passwords. For details, see [Password History](#password-history).`,
 				},
 				resource.Attribute{
 					Name:        "password_no_personal_info",
-					Description: `(Optional) List(Resource). Configuration settings for the password personal info check, which does not allow passwords that contain any part of the user's personal data, including user's name, username, nickname, user_metadata.name, user_metadata.first, user_metadata.last, user's email, or firstpart of the user's email. For details, see [Password No Personal Info](#password-no-personal-info).`,
+					Description: `(Optional) Configuration settings for the password personal info check, which does not allow passwords that contain any part of the user's personal data, including user's name, username, nickname, user_metadata.name, user_metadata.first, user_metadata.last, user's email, or first part of the user's email. For details, see [Password No Personal Info](#password-no-personal-info).`,
 				},
 				resource.Attribute{
 					Name:        "password_dictionary",
-					Description: `(Optional) List(Resource). Configuration settings for the password dictionary check, which does not allow passwords that are part of the password dictionary. For details, see [Password Dictionary](#password-dictionary).`,
+					Description: `(Optional) Configuration settings for the password dictionary check, which does not allow passwords that are part of the password dictionary. For details, see [Password Dictionary](#password-dictionary).`,
 				},
 				resource.Attribute{
 					Name:        "password_complexity_options",
-					Description: `(Optional) List(Resource). Configuration settings for password complexity. For details, see [Password Complexity Options](#password-complexity-options).`,
+					Description: `(Optional) Configuration settings for password complexity. For details, see [Password Complexity Options](#password-complexity-options).`,
 				},
 				resource.Attribute{
 					Name:        "api_enable_users",
-					Description: `(Optional) Boolean.`,
-				},
-				resource.Attribute{
-					Name:        "basic_profile",
-					Description: `(Optional) Boolean.`,
-				},
-				resource.Attribute{
-					Name:        "ext_admin",
-					Description: `(Optional) Boolean.`,
-				},
-				resource.Attribute{
-					Name:        "ext_is_suspended",
-					Description: `(Optional) Boolean.`,
-				},
-				resource.Attribute{
-					Name:        "ext_agreed_terms",
-					Description: `(Optional) Boolean.`,
-				},
-				resource.Attribute{
-					Name:        "ext_groups",
-					Description: `(Optional) Boolean.`,
-				},
-				resource.Attribute{
-					Name:        "ext_nested_groups",
-					Description: `(Optional) Boolean.`,
-				},
-				resource.Attribute{
-					Name:        "ext_assigned_plans",
-					Description: `(Optional) Boolean.`,
-				},
-				resource.Attribute{
-					Name:        "ext_profile",
-					Description: `(Optional) Boolean.`,
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "enabled_database_customization",
-					Description: `(Optional) Boolean.`,
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "brute_force_protection",
-					Description: `(Optional) Boolean. Indicates whether or not to enable brute force protection, which will limit the number of signups and failed logins from a suspicious IP address.`,
+					Description: `(Optional) Indicates whether or not to enable brute force protection, which will limit the number of signups and failed logins from a suspicious IP address.`,
 				},
 				resource.Attribute{
 					Name:        "import_mode",
-					Description: `(Optional) Boolean. Indicates whether or not you have a legacy user store and want to gradually migrate those users to the Auth0 user store. [Learn more](https://auth0.com/docs/users/guides/configure-automatic-migration).`,
+					Description: `(Optional) Indicates whether or not you have a legacy user store and want to gradually migrate those users to the Auth0 user store. [Learn more](https://auth0.com/docs/users/guides/configure-automatic-migration).`,
 				},
 				resource.Attribute{
 					Name:        "disable_signup",
@@ -485,115 +453,239 @@ var (
 				},
 				resource.Attribute{
 					Name:        "requires_username",
-					Description: `(Optional) Boolean. Indicates whether or not the user is required to provide a username in addition to an email address.`,
+					Description: `(Optional) Indicates whether or not the user is required to provide a username in addition to an email address.`,
 				},
 				resource.Attribute{
 					Name:        "custom_scripts",
-					Description: `(Optional) Map(String).`,
+					Description: `(Optional) Custom database action scripts. For more information, read [Custom Database Action Script Templates](https://auth0.com/docs/connections/database/custom-db/templates).`,
 				},
 				resource.Attribute{
 					Name:        "configuration",
-					Description: `(Optional) Map(String), Case-sensitive.`,
-				},
-				resource.Attribute{
-					Name:        "app_id",
-					Description: `(Optional) String`,
-				},
-				resource.Attribute{
-					Name:        "app_domain",
-					Description: `(Optional) String. Azure AD domain name.`,
-				},
-				resource.Attribute{
-					Name:        "client_id",
-					Description: `(Optional) String. Client ID for your Azure AD application.`,
-				},
-				resource.Attribute{
-					Name:        "client_secret",
-					Description: `(Optional) String, Case-sensitive. Client secret for your Azure AD application.`,
-				},
-				resource.Attribute{
-					Name:        "domain_aliases",
-					Description: `(Optional) List(String). List of the domains that can be authenticated using the Identity Provider. Only needed for Identifier First authentication flows.`,
-				},
-				resource.Attribute{
-					Name:        "max_groups_to_retrieve",
-					Description: `(Optional) String. Maximum number of groups to retrieve.`,
-				},
-				resource.Attribute{
-					Name:        "tenant_domain",
-					Description: `(Optional) String`,
-				},
-				resource.Attribute{
-					Name:        "use_wsfed",
-					Description: `(Optional) Bool`,
-				},
-				resource.Attribute{
-					Name:        "waad_protocol",
-					Description: `(Optional) String`,
-				},
-				resource.Attribute{
-					Name:        "waad_common_endpoint",
-					Description: `(Optional) Boolean. Indicates whether or not to use the common endpoint rather than the default endpoint. Typically enabled if you're using this for a multi-tenant application in Azure AD.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Optional) String.`,
-				},
-				resource.Attribute{
-					Name:        "twilio_sid",
-					Description: `(Optional) String. SID for your Twilio account.`,
-				},
-				resource.Attribute{
-					Name:        "twilio_token",
-					Description: `(Optional) String, Case-sensitive. AuthToken for your Twilio account.`,
-				},
-				resource.Attribute{
-					Name:        "from",
-					Description: `(Optional) String. SMS number for the sender. Used when SMS Source is From.`,
-				},
-				resource.Attribute{
-					Name:        "syntax",
-					Description: `(Optional) String. Syntax of the SMS. Options include ` + "`" + `markdown` + "`" + ` and ` + "`" + `liquid` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "template",
-					Description: `(Optional) String. Template for the SMS. You can use ` + "`" + `@@password@@` + "`" + ` as a placeholder for the password value.`,
-				},
-				resource.Attribute{
-					Name:        "totp",
-					Description: `(Optional) Map(Resource). Configuration options for one-time passwords. For details, see [TOTP](#totp).`,
-				},
-				resource.Attribute{
-					Name:        "messaging_service_sid",
-					Description: `(Optional) String. SID for Copilot. Used when SMS Source is Copilot.`,
-				},
-				resource.Attribute{
-					Name:        "adfs_server",
-					Description: `(Optional) String. ADFS Metadata source.`,
-				},
-				resource.Attribute{
-					Name:        "community_base_url",
-					Description: `(Optional) String. #### Password History ` + "`" + `password_history` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) A case-sensitive map of key value pairs used as configuration variables for the ` + "`" + `custom_script` + "`" + `. #### Password History ` + "`" + `password_history` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "enable",
-					Description: `(Optional) Boolean. Indicates whether password history is enabled for the connection. When enabled, any existing users in this connection will be unaffected; the system will maintain their password history going forward.`,
+					Description: `(Optional) Indicates whether password history is enabled for the connection. When enabled, any existing users in this connection will be unaffected; the system will maintain their password history going forward.`,
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `(Optional) Integer, (Maximum=24). Indicates the number of passwords to keep in history. #### Password No Personal Info ` + "`" + `password_no_personal_info` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) Indicates the number of passwords to keep in history with a maximum of 24. #### Password No Personal Info ` + "`" + `password_no_personal_info` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "enable",
-					Description: `(Optional) Boolean. Indicates whether the password personal info check is enabled for this connection. #### Password Dictionary ` + "`" + `passsword_dictionary` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) Indicates whether the password personal info check is enabled for this connection. #### Password Dictionary ` + "`" + `passsword_dictionary` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "enable",
-					Description: `(Optional) Boolean. Indicates whether the password dictionary check is enabled for this connection.`,
+					Description: `(Optional) Indicates whether the password dictionary check is enabled for this connection.`,
 				},
 				resource.Attribute{
 					Name:        "dictionary",
-					Description: `(Optional) Set(String), (Maximum=2000 characters). Customized contents of the password dictionary. By default, the password dictionary contains a list of the [10,000 most common passwords](https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10k-most-common.txt); your customized content is used in addition to the default password dictionary. Matching is not case-sensitive. #### Password Complexity Options ` + "`" + `password_complexity_options` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) Customized contents of the password dictionary. By default, the password dictionary contains a list of the [10,000 most common passwords](https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10k-most-common.txt); your customized content is used in addition to the default password dictionary. Matching is not case-sensitive. #### Password Complexity Options ` + "`" + `password_complexity_options` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Optional) Facebook client ID.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `(Optional) Facebook client secret.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_audiences",
+					Description: `(Optional) List of allowed audiences.`,
+				},
+				resource.Attribute{
+					Name:        "scopes",
+					Description: `(Optional) Scopes.`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Optional) Facebook client ID.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `(Optional) Facebook client secret.`,
+				},
+				resource.Attribute{
+					Name:        "scopes",
+					Description: `(Optional) Scopes.`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Optional) Apple client ID.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `(Optional) App secret.`,
+				},
+				resource.Attribute{
+					Name:        "team_id",
+					Description: `(Optional) Team ID.`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `(Optional) Key ID.`,
+				},
+				resource.Attribute{
+					Name:        "scopes",
+					Description: `(Optional) Scopes.`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Optional) Linkedin API key.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `(Optional) Linkedin secret key.`,
+				},
+				resource.Attribute{
+					Name:        "strategy_version",
+					Description: `(Optional) Version 1 is deprecated, use version 2.`,
+				},
+				resource.Attribute{
+					Name:        "scopes",
+					Description: `(Optional) Scopes.`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Optional) GitHub client ID.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `(Optional) GitHub client secret.`,
+				},
+				resource.Attribute{
+					Name:        "set_user_root_attributes",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Optional) The Salesforce client ID.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `(Optional) The Salesforce client secret.`,
+				},
+				resource.Attribute{
+					Name:        "community_base_url",
+					Description: `(Optional) String.`,
+				},
+				resource.Attribute{
+					Name:        "scopes",
+					Description: `(Optional) Scopes.`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Optional) OIDC provider client ID.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `(Optional) OIDC provider client secret.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Value can be ` + "`" + `back_channel` + "`" + ` or ` + "`" + `front_channel` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "scopes",
+					Description: `(Optional) Scopes required by the connection. The value must be a list, for example ` + "`" + `["openid", "profile", "email"]` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "issuer",
+					Description: `(Optional) Issuer URL. E.g. ` + "`" + `https://auth.example.com` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "discovery_url",
+					Description: `(Optional) OpenID discovery URL. E.g. ` + "`" + `https://auth.example.com/.well-known/openid-configuration` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "jwks_uri",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "token_endpoint",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "userinfo_endpoint",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "authorization_endpoint",
+					Description: `(Optional) ### Azure AD With the ` + "`" + `waad` + "`" + ` connection strategy, ` + "`" + `options` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `(Optional) Azure AD app ID.`,
+				},
+				resource.Attribute{
+					Name:        "app_domain",
+					Description: `(Optional) Azure AD domain name.`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Optional) Client ID for your Azure AD application.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `(Optional) Client secret for your Azure AD application.`,
+				},
+				resource.Attribute{
+					Name:        "domain_aliases",
+					Description: `(Optional) List of the domains that can be authenticated using the Identity Provider. Only needed for Identifier First authentication flows.`,
+				},
+				resource.Attribute{
+					Name:        "max_groups_to_retrieve",
+					Description: `(Optional) Maximum number of groups to retrieve.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_domain",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "use_wsfed",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "waad_protocol",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "waad_common_endpoint",
+					Description: `(Optional) Indicates whether or not to use the common endpoint rather than the default endpoint. Typically enabled if you're using this for a multi-tenant application in Azure AD. ### Twilio / SMS With the ` + "`" + `sms` + "`" + ` connection strategy, ` + "`" + `options` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "twilio_sid",
+					Description: `(Optional) SID for your Twilio account.`,
+				},
+				resource.Attribute{
+					Name:        "twilio_token",
+					Description: `(Optional) AuthToken for your Twilio account.`,
+				},
+				resource.Attribute{
+					Name:        "from",
+					Description: `(Optional) SMS number for the sender. Used when SMS Source is From.`,
+				},
+				resource.Attribute{
+					Name:        "syntax",
+					Description: `(Optional) Syntax of the SMS. Options include ` + "`" + `markdown` + "`" + ` and ` + "`" + `liquid` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "template",
+					Description: `(Optional) Template for the SMS. You can use ` + "`" + `@@password@@` + "`" + ` as a placeholder for the password value.`,
+				},
+				resource.Attribute{
+					Name:        "totp",
+					Description: `(Optional) Configuration options for one-time passwords. For details, see [TOTP](#totp).`,
+				},
+				resource.Attribute{
+					Name:        "messaging_service_sid",
+					Description: `(Optional) SID for Copilot. Used when SMS Source is Copilot. #### TOTP ` + "`" + `totp` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "time_step",
@@ -601,7 +693,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "length",
-					Description: `(Optional) Integer. Length of the one-time password. ## Attribute Reference Attributes exported by this resource include:`,
+					Description: `(Optional) Integer. Length of the one-time password.`,
+				},
+				resource.Attribute{
+					Name:        "adfs_server",
+					Description: `(Optional) ADFS Metadata source. ## Attribute Reference Attributes exported by this resource include:`,
 				},
 				resource.Attribute{
 					Name:        "is_domain_connection",
@@ -625,7 +721,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `Integer. Indicates the number of passwords to keep in history.`,
+					Description: `Integer. Indicates the number of passwords to keep in history. ### Import Connections can be imported using their id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import auth0_connection.google con_a17f21fdb24d48a0 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -651,7 +747,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `Integer. Indicates the number of passwords to keep in history.`,
+					Description: `Integer. Indicates the number of passwords to keep in history. ### Import Connections can be imported using their id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import auth0_connection.google con_a17f21fdb24d48a0 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -852,6 +948,18 @@ var (
 					Description: `(Required) Execution stage of this rule. Can be credentials-exchange, pre-user-registration, post-user-registration, post-change-password, or send-phone-message`,
 				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "auth0_prompt",
+			Category:         "Resources",
+			ShortDescription: `With this resource, you can manage your Auth0 prompts, including choosing the login experience version.`,
+			Description:      ``,
+			Keywords: []string{
+				"prompt",
+			},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -1309,12 +1417,13 @@ var (
 		"auth0_email":           4,
 		"auth0_email_template":  5,
 		"auth0_hook":            6,
-		"auth0_resource_server": 7,
-		"auth0_role":            8,
-		"auth0_rule":            9,
-		"auth0_rule_config":     10,
-		"auth0_tenant":          11,
-		"auth0_user":            12,
+		"auth0_prompt":          7,
+		"auth0_resource_server": 8,
+		"auth0_role":            9,
+		"auth0_rule":            10,
+		"auth0_rule_config":     11,
+		"auth0_tenant":          12,
+		"auth0_user":            13,
 	}
 )
 

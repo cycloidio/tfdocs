@@ -84,7 +84,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Name of the new network.`,
+					Description: `(Required) Name of the network.`,
 				},
 				resource.Attribute{
 					Name:        "zone_slug",
@@ -92,7 +92,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mtu",
-					Description: `(Optional) ` + "`" + `You can specify the MTU size for the network, defaults to 9000. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) You can specify the MTU size for the network, defaults to 9000.`,
+				},
+				resource.Attribute{
+					Name:        "auto_create_ipv4_subnet",
+					Description: `(Optional) Automatically create an IPv4 Subnet on the network. Can be ` + "`" + `true` + "`" + ` (default) or ` + "`" + `false` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "href",
@@ -201,6 +205,26 @@ var (
 					Description: `(Required) The type of the interface. Can be ` + "`" + `public` + "`" + ` or ` + "`" + `private` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "network_uuid",
+					Description: `(Optional, can be set only for ` + "`" + `private` + "`" + ` interfaces) The UUID of the private network this interface should be attached to. Must be compatible with ` + "`" + `subnet_uuid` + "`" + ` if both are specified.`,
+				},
+				resource.Attribute{
+					Name:        "addresses",
+					Description: `(Optional, can be set only for ` + "`" + `private` + "`" + ` interfaces) A list of address objects:`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `(Optional) An IP address that has been assigned to this server.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_uuid",
+					Description: `(Optional) The UUID of the subnet this address should be part of. Must be compatible with ` + "`" + `network_uuid` + "`" + ` if both are specified.`,
+				},
+				resource.Attribute{
+					Name:        "no_address",
+					Description: `(Optional, can be set only for ` + "`" + `private` + "`" + ` interfaces) You neet to set this to ` + "`" + `true` + "`" + ` if no address should be configured, e.g. if you want to attach to a network without a subnet.`,
+				},
+				resource.Attribute{
 					Name:        "user_data",
 					Description: `(Optional) User data (custom cloud-config settings) to use for the new server. Needs to be valid YAML. A default configuration will be used if this parameter is not specified or set to null. Use only if you are an advanced user with knowledge of cloud-config and cloud-init.`,
 				},
@@ -265,15 +289,15 @@ var (
 					Description: `A string. Either ` + "`" + `ssd` + "`" + ` or ` + "`" + `bulk` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "public_ipv4",
+					Name:        "public_ipv4_address",
 					Description: `The first ` + "`" + `public` + "`" + ` IPv4 address of this server. The returned IP address may be ` + "`" + `""` + "`" + ` if the server does not have a public IPv4.`,
 				},
 				resource.Attribute{
-					Name:        "private_ipv4",
+					Name:        "private_ipv4_address",
 					Description: `The first ` + "`" + `private` + "`" + ` IPv4 address of this server. The returned IP address may be ` + "`" + `""` + "`" + ` if the server does not have private networking enabled.`,
 				},
 				resource.Attribute{
-					Name:        "public_ipv6",
+					Name:        "public_ipv6_address",
 					Description: `The first ` + "`" + `public` + "`" + ` IPv6 address of this server. The returned IP address may be ` + "`" + `""` + "`" + ` if the server does not have a public IPv6.`,
 				},
 				resource.Attribute{
@@ -281,16 +305,12 @@ var (
 					Description: `A list of interface objects attached to this server. Each interface object has the following attributes:`,
 				},
 				resource.Attribute{
-					Name:        "network_uuid",
-					Description: `The UUID of the network the interface is attatched to.`,
-				},
-				resource.Attribute{
 					Name:        "network_name",
 					Description: `The name of the network the interface is attatched to.`,
 				},
 				resource.Attribute{
 					Name:        "network_href",
-					Description: `The cloudscale.ch API URL of the network the interface is attatched to.`,
+					Description: `The cloudscale.ch API URL of the network the interface is attached to.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -299,10 +319,6 @@ var (
 				resource.Attribute{
 					Name:        "addresses",
 					Description: `A list of address objects:`,
-				},
-				resource.Attribute{
-					Name:        "address",
-					Description: `An IPv4 or IPv6 address that has been assigned to this server.`,
 				},
 				resource.Attribute{
 					Name:        "gateway",
@@ -319,6 +335,14 @@ var (
 				resource.Attribute{
 					Name:        "version",
 					Description: `The IP version, either ` + "`" + `4` + "`" + ` or ` + "`" + `6` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_cidr",
+					Description: `The cidr of the subnet the address is part of.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_href",
+					Description: `The cloudscale.ch API URL of the subnet the address is part of.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -355,15 +379,15 @@ var (
 					Description: `A string. Either ` + "`" + `ssd` + "`" + ` or ` + "`" + `bulk` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "public_ipv4",
+					Name:        "public_ipv4_address",
 					Description: `The first ` + "`" + `public` + "`" + ` IPv4 address of this server. The returned IP address may be ` + "`" + `""` + "`" + ` if the server does not have a public IPv4.`,
 				},
 				resource.Attribute{
-					Name:        "private_ipv4",
+					Name:        "private_ipv4_address",
 					Description: `The first ` + "`" + `private` + "`" + ` IPv4 address of this server. The returned IP address may be ` + "`" + `""` + "`" + ` if the server does not have private networking enabled.`,
 				},
 				resource.Attribute{
-					Name:        "public_ipv6",
+					Name:        "public_ipv6_address",
 					Description: `The first ` + "`" + `public` + "`" + ` IPv6 address of this server. The returned IP address may be ` + "`" + `""` + "`" + ` if the server does not have a public IPv6.`,
 				},
 				resource.Attribute{
@@ -371,16 +395,12 @@ var (
 					Description: `A list of interface objects attached to this server. Each interface object has the following attributes:`,
 				},
 				resource.Attribute{
-					Name:        "network_uuid",
-					Description: `The UUID of the network the interface is attatched to.`,
-				},
-				resource.Attribute{
 					Name:        "network_name",
 					Description: `The name of the network the interface is attatched to.`,
 				},
 				resource.Attribute{
 					Name:        "network_href",
-					Description: `The cloudscale.ch API URL of the network the interface is attatched to.`,
+					Description: `The cloudscale.ch API URL of the network the interface is attached to.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -389,10 +409,6 @@ var (
 				resource.Attribute{
 					Name:        "addresses",
 					Description: `A list of address objects:`,
-				},
-				resource.Attribute{
-					Name:        "address",
-					Description: `An IPv4 or IPv6 address that has been assigned to this server.`,
 				},
 				resource.Attribute{
 					Name:        "gateway",
@@ -409,6 +425,14 @@ var (
 				resource.Attribute{
 					Name:        "version",
 					Description: `The IP version, either ` + "`" + `4` + "`" + ` or ` + "`" + `6` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_cidr",
+					Description: `The cidr of the subnet the address is part of.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_href",
+					Description: `The cloudscale.ch API URL of the subnet the address is part of.`,
 				},
 			},
 		},
@@ -444,6 +468,44 @@ var (
 				resource.Attribute{
 					Name:        "href",
 					Description: `The cloudscale.ch API URL of the current resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "cloudscale_subnet",
+			Category:         "Resources",
+			ShortDescription: `Provides a cloudscale.ch Subnet resource. This can be used to create, modify, and delete subnets.`,
+			Description:      ``,
+			Keywords: []string{
+				"subnet",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cidr",
+					Description: `(Required) The address range in CIDR notation. Must be at least /24.`,
+				},
+				resource.Attribute{
+					Name:        "network_uuid",
+					Description: `(Required) The network of the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "gateway_address",
+					Description: `(Optional) The gateway address of the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "dns_servers",
+					Description: `(Optional) A list of DNS resolver IP addresses, that act as DNS servers. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "href",
+					Description: `The cloudscale.ch API URL of the current subnet.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "href",
+					Description: `The cloudscale.ch API URL of the current subnet.`,
 				},
 			},
 		},
@@ -497,7 +559,8 @@ var (
 		"cloudscale_network":      1,
 		"cloudscale_server":       2,
 		"cloudscale_server_group": 3,
-		"cloudscale_volume":       4,
+		"cloudscale_subnet":       4,
+		"cloudscale_volume":       5,
 	}
 )
 

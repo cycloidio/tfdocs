@@ -26,7 +26,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cloud_type",
-					Description: `(Required) Type of cloud service provider. Only AWS, GCP, ARM, OCI, and AWS Gov are supported currently. Enter 1 for AWS, 4 for GCP, 8 for ARM, 16 for OCI, 256 for AWS Gov. ### AWS`,
+					Description: `(Required) Type of cloud service provider. Only AWS, GCP, AZURE, OCI, and AWS Gov are supported currently. Enter 1 for AWS, 4 for GCP, 8 for AZURE, 16 for OCI, 256 for AWS Gov. ### AWS`,
 				},
 				resource.Attribute{
 					Name:        "aws_account_number",
@@ -38,35 +38,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "aws_access_key",
-					Description: `(Optional) AWS Access Key. Required when aws_iam is "false" and when creating an account for AWS.`,
+					Description: `(Optional) AWS Access Key. Required when ` + "`" + `aws_iam` + "`" + ` is "false" and when creating an account for AWS.`,
 				},
 				resource.Attribute{
 					Name:        "aws_secret_key",
-					Description: `(Optional) AWS Secret Key. Required when aws_iam is "false" and when creating an account for AWS.`,
+					Description: `(Optional) AWS Secret Key. Required when ` + "`" + `aws_iam` + "`" + ` is "false" and when creating an account for AWS.`,
 				},
 				resource.Attribute{
 					Name:        "aws_role_app",
-					Description: `(Optional) AWS App role ARN, this option is for UserConnect. Required when aws_iam is "true" and when creating an account for AWS.`,
+					Description: `(Optional) AWS App role ARN, this option is for UserConnect. Required when ` + "`" + `aws_iam` + "`" + ` is "true" and when creating an account for AWS.`,
 				},
 				resource.Attribute{
 					Name:        "aws_role_ec2",
-					Description: `(Optional) AWS EC2 role ARN, this option is for UserConnect. Required when aws_iam is "true" and when creating an account for AWS. ### Azure`,
+					Description: `(Optional) AWS EC2 role ARN, this option is for UserConnect. Required when ` + "`" + `aws_iam` + "`" + ` is "true" and when creating an account for AWS. ### Azure`,
 				},
 				resource.Attribute{
 					Name:        "arm_subscription_id",
-					Description: `(Optional) Azure ARM Subscription ID. Required when creating an account for ARM.`,
+					Description: `(Optional) Azure ARM Subscription ID. Required when creating an account for Azure.`,
 				},
 				resource.Attribute{
 					Name:        "arm_directory_id",
-					Description: `(Optional) Azure ARM Directory ID. Required when creating an account for ARM.`,
+					Description: `(Optional) Azure ARM Directory ID. Required when creating an account for Azure.`,
 				},
 				resource.Attribute{
 					Name:        "arm_application_id",
-					Description: `(Optional) Azure ARM Application ID. Required when creating an account for ARM.`,
+					Description: `(Optional) Azure ARM Application ID. Required when creating an account for Azure.`,
 				},
 				resource.Attribute{
 					Name:        "arm_application_key",
-					Description: `(Optional) Azure ARM Application key. Required when creating an account for ARM. ### Google Cloud`,
+					Description: `(Optional) Azure ARM Application key. Required when creating an account for Azure. ### Google Cloud`,
 				},
 				resource.Attribute{
 					Name:        "gcloud_project_id",
@@ -78,7 +78,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "oci_tenancy_id",
-					Description: `(Optional)Oracle OCI Tenancy ID. Required when creating an account for OCI.`,
+					Description: `(Optional) Oracle OCI Tenancy ID. Required when creating an account for OCI.`,
 				},
 				resource.Attribute{
 					Name:        "oci_user_id",
@@ -124,16 +124,20 @@ var (
 					Description: `(Required) Name of account user to be created.`,
 				},
 				resource.Attribute{
-					Name:        "account_name",
-					Description: `(Required) Cloud account name of user to be created.`,
-				},
-				resource.Attribute{
 					Name:        "email",
 					Description: `(Required) Email of address of account user to be created.`,
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Required) Login password for the account user to be created. If password is changed, current account will be destroyed and a new account will be created. ## Import Instance account_user can be imported using the username (when doing import, needs to leave password argument blank), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_account_user.test username ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Login password for the account user to be created. If password is changed, current account will be destroyed and a new account will be created. The following arguments are deprecated:`,
+				},
+				resource.Attribute{
+					Name:        "account_name",
+					Description: `(Required) Cloud account name of user to be created. Deprecated as of Aviatrix provider R2.13 (Controller 5.4) due to RBAC implementation. ->`,
+				},
+				resource.Attribute{
+					Name:        "account_name",
+					Description: `If you are using/upgraded to Aviatrix Terraform Provider R2.13+, and an`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -180,7 +184,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vnet_cidr2",
-					Description: `List of VNet CIDR of vnet_name_resource_group2. ## Import Instance arm_peer can be imported using the vnet_name_resource_group1 and vnet_name_resource_group2, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_aws_peer.test vnet_name_resource_group1~vnet_name_resource_group2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `List of VNet CIDR of vnet_name_resource_group2. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -190,7 +194,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vnet_cidr2",
-					Description: `List of VNet CIDR of vnet_name_resource_group2. ## Import Instance arm_peer can be imported using the vnet_name_resource_group1 and vnet_name_resource_group2, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_aws_peer.test vnet_name_resource_group1~vnet_name_resource_group2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `List of VNet CIDR of vnet_name_resource_group2. ## Import`,
 				},
 			},
 		},
@@ -198,7 +202,7 @@ var (
 			Name:             "",
 			Type:             "aviatrix_aws_peer",
 			Category:         "Peering",
-			ShortDescription: `Creates and manages Aviatrix AWS peerings`,
+			ShortDescription: `Creates and manages native AWS VPC peerings`,
 			Description:      ``,
 			Keywords: []string{
 				"peering",
@@ -216,11 +220,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id1",
-					Description: `(Required) VPC-ID of AWS cloud. Example: AWS: "vpc-abcd1234".`,
+					Description: `(Required) VPC ID of AWS cloud. Example: AWS: "vpc-abcd1234".`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id2",
-					Description: `(Required) VPC-ID of AWS cloud. Example: AWS: "vpc-abcd1234".`,
+					Description: `(Required) VPC ID of AWS cloud. Example: AWS: "vpc-abcd1234".`,
 				},
 				resource.Attribute{
 					Name:        "vpc_reg1",
@@ -244,7 +248,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rtb_list2_output",
-					Description: `List of route table ID of vpc_id2. ## Import Instance aws_peer can be imported using the vpc_id1 and vpc_id2, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_aws_peer.test vpc_id1~vpc_id2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `List of route table ID of vpc_id2. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -254,7 +258,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rtb_list2_output",
-					Description: `List of route table ID of vpc_id2. ## Import Instance aws_peer can be imported using the vpc_id1 and vpc_id2, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_aws_peer.test vpc_id1~vpc_id2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `List of route table ID of vpc_id2. ## Import`,
 				},
 			},
 		},
@@ -272,15 +276,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tgw_name",
-					Description: `(Required) Name of the AWS TGW which is going to be created.`,
+					Description: `(Required) Name of the AWS TGW to be created`,
 				},
 				resource.Attribute{
 					Name:        "account_name",
-					Description: `(Required) This parameter represents the name of a Cloud-Account in Aviatrix controller.`,
+					Description: `(Required) Name of the cloud account in the Aviatrix controller.`,
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Required) Region of cloud provider(AWS).`,
+					Description: `(Required) AWS region of AWS TGW to be created in`,
 				},
 				resource.Attribute{
 					Name:        "aws_side_as_number",
@@ -288,7 +292,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "security_domains",
-					Description: `(Required) Security Domains to create together with AWS TGW's creation. Three default domains are created automatically together with the AWS TGW's creation, so are the connections between any two of them. These three domains can't be deleted, but the connection between any two of them can be deleted.`,
+					Description: `(Required) Security Domains to create together with AWS TGW's creation. Three default domains, along with the connections between them, are created automatically. These three domains can't be deleted, but the connection between any two of them can be.`,
 				},
 				resource.Attribute{
 					Name:        "security_domain_name",
@@ -296,19 +300,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "aviatrix_firewall",
-					Description: `(Optional) Set to true if the security domain is an aviatrix firewall domain. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) Set to true if the security domain is to be used as an Aviatrix Firewall Domain for the Aviatrix Firewall Network. Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "native_egress",
-					Description: `(Optional) Set to true if the security domain is a native egress domain. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) Set to true if the security domain is to be used as a native egress domain (for non-Aviatrix Firewall Network-based central Internet bound traffic). Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "native_firewall",
-					Description: `(Optional) Set to true if the security domain is a native firewall domain. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) Set to true if the security domain is to be used as a native firewall domain (for non-Aviatrix Firewall Network-based firewall traffic inspection). Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "connected_domains",
-					Description: `(Optional) A list of domains connected to the domain (name: ` + "`" + `security_domain_name` + "`" + `) together with its creation.`,
+					Description: `(Optional) A list of domains connected to the domain (name: ` + "`" + `security_domain_name` + "`" + `) together with its creation. ### VPC Attachments ->`,
 				},
 				resource.Attribute{
 					Name:        "attached_vpc",
@@ -316,19 +320,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_region",
-					Description: `(Required) Region of the vpc, needs to be consistent with AWS TGW's region.`,
+					Description: `(Required) Region of the VPC, needs to be consistent with AWS TGW's region.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_account_name",
-					Description: `(Required) This parameter represents the name of a Cloud-Account in Aviatrix controller.`,
+					Description: `(Required) Cloud account name of the VPC in the Aviatrix controller.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) This parameter represents the ID of the VPC which is going to be attached to the security domain (name: ` + "`" + `security_domain_name` + "`" + `) which is going to be created.`,
+					Description: `(Required) VPC ID of the VPC to be attached to the security domain`,
 				},
 				resource.Attribute{
 					Name:        "subnets",
-					Description: `(Optional) Advanced option. VPC subnets separated by ',' to attach to the VPC. If left blank, Aviatrix Controller automatically selects a subnet representing each AZ for the VPC attachment. Example: "subnet-214f5646,subnet-085e8c81a89d70846".`,
+					Description: `(Optional) Advanced option. VPC subnets separated by ',' to attach to the VPC. If left blank, the Aviatrix Controller automatically selects a subnet representing each AZ for the VPC attachment. Example: "subnet-214f5646,subnet-085e8c81a89d70846".`,
 				},
 				resource.Attribute{
 					Name:        "route_tables",
@@ -340,23 +344,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "customized_route_advertisement",
-					Description: `(Optional) Advanced option. Customized route(s) to advertise. Example: "10.8.0.0/16,10.9.0.0/16,10.10.0.0/16".`,
+					Description: `(Optional) Advanced option. Customized route(s) to be advertised to other VPCs that are connected to the same TGW. Example: "10.8.0.0/16,10.9.0.0/16,10.10.0.0/16".`,
 				},
 				resource.Attribute{
 					Name:        "disable_local_route_propagation",
-					Description: `(Optional) Advanced option. Switch to allow admin not to propagate the VPC CIDR to the security domain/TGW route table that it is being attached to. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) Advanced option. If set to true, it disables automatic route propagation of this VPC to other VPCs within the same security domain. Valid values: true, false. Default value: false. ### Misc.`,
 				},
 				resource.Attribute{
 					Name:        "attached_aviatrix_transit_gateway",
-					Description: `(Optional) A list of Names of Aviatrix Transit Gateway to attach to one of the three default domains: Aviatrix_Edge_Domain.`,
+					Description: `(Optional) A list of names of Aviatrix Transit Gateway(s) (transit VPCs) to attach to the Aviatrix_Edge_Domain.`,
+				},
+				resource.Attribute{
+					Name:        "manage_transit_gateway_attachment",
+					Description: `(Optional) This parameter is a switch used to determine whether or not to manage transit gateway attachments to the TGW using the`,
+				},
+				resource.Attribute{
+					Name:        "manage_transit_gateway_attachment",
+					Description: `If you are using/upgraded to Aviatrix Terraform Provider R2.13+, and an`,
 				},
 				resource.Attribute{
 					Name:        "manage_vpc_attachment",
-					Description: `(Optional) This parameter is a switch used to allow attaching VPCs to tgw using the aviatrix_aws_tgw resource. If it is set to false, attachment of VPC must be done using the aviatrix_aws_tgw_vpc_attachment resource. Valid values: true or false. Default value is true. ->`,
+					Description: `(Optional) This parameter is a switch used to determine whether or not to manage VPC attachments to the TGW using the`,
 				},
 				resource.Attribute{
 					Name:        "manage_vpc_attachment",
-					Description: `If you are using/upgraded to Aviatrix Terraform Provider R1.5+, and an aws_tgw resource was originally created with a provider version <R1.5, you must do ‘terraform refresh’ to update and apply the attribute’s default value (true) into the state file. ## Import Instance aws_tgw can be imported using the tgw_name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_aws_tgw.test tgw_name ` + "`" + `` + "`" + `` + "`" + ` ->`,
+					Description: `If you are using/upgraded to Aviatrix Terraform Provider R1.5+, and an`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -365,7 +377,7 @@ var (
 			Name:             "",
 			Type:             "aviatrix_aws_tgw_directconnect",
 			Category:         "TGW Orchestrator",
-			ShortDescription: `Creates and manages Aviatrix AWS TGW DirectConnects`,
+			ShortDescription: `Creates and manages Aviatrix AWS TGW DirectConnect connections`,
 			Description:      ``,
 			Keywords: []string{
 				"tgw",
@@ -392,7 +404,107 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allowed_prefix",
-					Description: `(Required) A list of comma separated CIDRs for DXGW to advertise to remote(on-prem). ## Import Instance aws_tgw_directconnect can be imported using the tgw_name and dx_gateway_id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_aws_tgw_directconnect.test tgw_name~dx_gateway_id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) A list of comma separated CIDRs for DXGW to advertise to remote(on-prem).`,
+				},
+				resource.Attribute{
+					Name:        "enable_learned_cidrs_approval",
+					Description: `(Optional) Switch to enable/disable [encrypted transit approval](https://docs.aviatrix.com/HowTos/tgw_approval.html) for AWS TGW DirectConnect. Valid values: true, false. Default value: false. ## Import`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aviatrix_aws_tgw_peering",
+			Category:         "TGW Orchestrator",
+			ShortDescription: `Creates and manages Aviatrix inter-region AWS TGW peerings`,
+			Description:      ``,
+			Keywords: []string{
+				"tgw",
+				"orchestrator",
+				"aws",
+				"peering",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tgw_name1",
+					Description: `(Required) This parameter represents name of the first AWS TGW to make a peer pair.`,
+				},
+				resource.Attribute{
+					Name:        "tgw_name2",
+					Description: `(Required) This parameter represents name of the second AWS TGW to make a peer pair. ## Import`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aviatrix_aws_tgw_peering_domain_conn",
+			Category:         "TGW Orchestrator",
+			ShortDescription: `Creates and manages Aviatrix domain connections between peered AWS TGWs`,
+			Description:      ``,
+			Keywords: []string{
+				"tgw",
+				"orchestrator",
+				"aws",
+				"peering",
+				"domain",
+				"conn",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tgw_name1",
+					Description: `(Required) The AWS TGW name of the source domain to make a connection.`,
+				},
+				resource.Attribute{
+					Name:        "domain_name1",
+					Description: `(Required) The name of the source domain to make a connection.`,
+				},
+				resource.Attribute{
+					Name:        "tgw_name2",
+					Description: `(Required) The AWS TGW name of the destination domain to make a connection.`,
+				},
+				resource.Attribute{
+					Name:        "domain_name2",
+					Description: `(Required) The name of the destination domain to make a connection. ## Import`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aviatrix_aws_tgw_transit_gateway_attachment",
+			Category:         "TGW Orchestrator",
+			ShortDescription: `Manages attachment of transit gateways to the AWS TGW`,
+			Description:      ``,
+			Keywords: []string{
+				"tgw",
+				"orchestrator",
+				"aws",
+				"transit",
+				"gateway",
+				"attachment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tgw_name",
+					Description: `(Required) Name of the AWS TGW.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) AWS Region of the TGW.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_account_name",
+					Description: `(Required) The name of the cloud account in the Aviatrix controller, which is associated with the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required) VPC ID of the VPC, where transit gateway is launched.`,
+				},
+				resource.Attribute{
+					Name:        "transit_gateway_name",
+					Description: `(Required) Name of the transit gateway to be attached to the AWS TGW. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -417,23 +529,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Required) Region of cloud provider(AWS).`,
+					Description: `(Required) AWS Region of the TGW.`,
 				},
 				resource.Attribute{
 					Name:        "security_domain_name",
-					Description: `(Required & ForceNew) The name of the security domain, to which the VPC will be attached. If changed, the VPC will be detached from the old domain, and attached to the new domain.`,
+					Description: `(Required & ForceNew) The name of the security domain, to which the VPC will be attached to. If changed, the VPC will be detached from the old domain, and attached to the new domain.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_account_name",
-					Description: `(Required) This parameter represents the name of a Cloud-Account in Aviatrix controller, which is associated with the VPC.`,
+					Description: `(Required) The name of the cloud account in the Aviatrix controller, which is associated with the VPC.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) This parameter represents the ID of the VPC which is going to be attached to the security domain (name: ` + "`" + `security_domain_name` + "`" + `).`,
+					Description: `(Required) VPC ID of the VPC to be attached to the specified ` + "`" + `security_domain_name` + "`" + `. ->`,
 				},
 				resource.Attribute{
 					Name:        "subnets",
-					Description: `(Optional and ForceNew) Advanced option. VPC subnets separated by ',' to attach to the VPC. If left blank, Aviatrix Controller automatically selects a subnet representing each AZ for the VPC attachment. Example: "subnet-214f5646,subnet-085e8c81a89d70846".`,
+					Description: `(Optional and ForceNew) Advanced option. VPC subnets separated by ',' to attach to the VPC. If left blank, the Aviatrix Controller automatically selects a subnet representing each AZ for the VPC attachment. Example: "subnet-214f5646,subnet-085e8c81a89d70846".`,
 				},
 				resource.Attribute{
 					Name:        "route_tables",
@@ -445,11 +557,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "customized_route_advertisement",
-					Description: `(Optional and ForeNew) Advanced option. Customized route(s) to advertise. Example: "10.8.0.0/16,10.9.0.0/16,10.10.0.0/16".`,
+					Description: `(Optional and ForeNew) Advanced option. Customized route(s) to be advertised to other VPCs that are connected to the same TGW. Example: "10.8.0.0/16,10.9.0.0/16,10.10.0.0/16".`,
 				},
 				resource.Attribute{
 					Name:        "disable_local_route_propagation",
-					Description: `(Optional and ForceNew) Switch to allow admin not to propagate the VPC CIDR to the security domain/TGW route table that it is being attached to. Valid values: true, false. Default value: false. ->`,
+					Description: `(Optional and ForceNew) Advanced option. If set to true, it disables automatic route propagation of this VPC to other VPCs within the same security domain. Valid values: true, false. Default value: false. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -490,15 +602,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "connection_type",
-					Description: `If you are using/upgraded to Aviatrix Terraform Provider R2.11.0+, and an aws_tgw_vpn_conn resource (static VPN connection) was originally created with a provider version <R2.11.0, you must add ` + "`" + `connection_type = static` + "`" + ` into your configuration file and do ‘terraform refresh’ to update and apply the attribute’s value (static) into the state file.`,
+					Description: `If you are using/upgraded to Aviatrix Terraform Provider R2.11.0+, and an`,
 				},
 				resource.Attribute{
 					Name:        "remote_as_number",
-					Description: `(Optional) AWS side as a number. Integer between 1-65535. Example: "12". Required for a dynamic VPN connection.`,
+					Description: `(Optional) AWS side as a number. Integer between 1-65535. Example: "12".`,
 				},
 				resource.Attribute{
 					Name:        "remote_cidr",
-					Description: `(Optional) Remote CIDRs separated by ",". Example: AWS: "16.0.0.0/16,16.1.0.0/16". Required for a static VPN connection.`,
+					Description: `(Optional) Remote CIDRs separated by ",". Example: AWS: "16.0.0.0/16,16.1.0.0/16".`,
 				},
 				resource.Attribute{
 					Name:        "inside_ip_cidr_tun_1",
@@ -514,19 +626,114 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pre_shared_key_tun_2",
-					Description: `(Optional) Pre-Shared Key for Tunnel 2. A 8-64 character string with alphanumeric underscore(_) and dot(.). It cannot start with 0. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Pre-Shared Key for Tunnel 2. A 8-64 character string with alphanumeric underscore(_) and dot(.). It cannot start with 0.`,
+				},
+				resource.Attribute{
+					Name:        "enable_learned_cidrs_approval",
+					Description: `(Optional) Switch to enable/disable [encrypted transit approval](https://docs.aviatrix.com/HowTos/tgw_approval.html) for AWS TGW VPN connection. Valid values: true, false. Default value: false. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "vpn_id",
-					Description: `ID of the VPN generated by creation of the connection. ## Import Instance aws_tgw_vpn_conn can be imported using the tgw_name and vpn_id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_aws_tgw_vpn_conn.test tgw_name~vpn_id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID of the VPN generated by creation of the connection. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpn_id",
-					Description: `ID of the VPN generated by creation of the connection. ## Import Instance aws_tgw_vpn_conn can be imported using the tgw_name and vpn_id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_aws_tgw_vpn_conn.test tgw_name~vpn_id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID of the VPN generated by creation of the connection. ## Import`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aviatrix_azure_peer",
+			Category:         "Peering",
+			ShortDescription: `Creates and manages of the Aviatrix peerings between Azure VNets`,
+			Description:      ``,
+			Keywords: []string{
+				"peering",
+				"azure",
+				"peer",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account_name1",
+					Description: `(Required) Name of the Azure cloud account in the Aviatrix controller for VNet 1.`,
+				},
+				resource.Attribute{
+					Name:        "account_name2",
+					Description: `(Required) Name of the Azure cloud account in the Aviatrix controller for VNet 2.`,
+				},
+				resource.Attribute{
+					Name:        "vnet_name_resource_group1",
+					Description: `(Required) Azure VNet 1's name. Example: "VNet_Name:Resource_Group_Name".`,
+				},
+				resource.Attribute{
+					Name:        "vnet_name_resource_group2",
+					Description: `(Required) Azure VNet 2's name. Example: "VNet_Name:Resource_Group_Name".`,
+				},
+				resource.Attribute{
+					Name:        "vnet_reg1",
+					Description: `(Required) Region of Azure VNet 1. Example: "East US 2".`,
+				},
+				resource.Attribute{
+					Name:        "vnet_reg2",
+					Description: `(Required) Region of Azure VNet 2. Example: "East US 2". ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "vnet_cidr1",
+					Description: `List of VNet CIDR of vnet_name_resource_group1.`,
+				},
+				resource.Attribute{
+					Name:        "vnet_cidr2",
+					Description: `List of VNet CIDR of vnet_name_resource_group2. ## Import`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vnet_cidr1",
+					Description: `List of VNet CIDR of vnet_name_resource_group1.`,
+				},
+				resource.Attribute{
+					Name:        "vnet_cidr2",
+					Description: `List of VNet CIDR of vnet_name_resource_group2. ## Import`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aviatrix_azure_spoke_native_peering",
+			Category:         "Multi-Cloud Transit",
+			ShortDescription: `Creates and manages Aviatrix Azure spoke native peerings`,
+			Description:      ``,
+			Keywords: []string{
+				"multi",
+				"cloud",
+				"transit",
+				"azure",
+				"spoke",
+				"native",
+				"peering",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "transit_gateway_name",
+					Description: `(Required) Name of an Transit FireNet-enabled Azure transit gateway.`,
+				},
+				resource.Attribute{
+					Name:        "spoke_account_name",
+					Description: `(Required) An Aviatrix account that corresponds to a subscription in Azure.`,
+				},
+				resource.Attribute{
+					Name:        "spoke_region",
+					Description: `(Required) Spoke VNet region. Example: "West US".`,
+				},
+				resource.Attribute{
+					Name:        "spoke_vpc_id",
+					Description: `(Required) Combination of the Spoke's VNet name and resource group. Example: "Foo_VNet:Bar_RG". ## Import`,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -542,27 +749,23 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "sg_management_account_name",
-					Description: `(Optional) Cloud account name of user.`,
-				},
-				resource.Attribute{
-					Name:        "http_access",
-					Description: `(Optional) Switch for http access. Valid values: true, false. Default value: false.`,
-				},
-				resource.Attribute{
-					Name:        "fqdn_exception_rule",
-					Description: `(Optional) A system-wide mode. Valida values: true, false. Defaultvalue: true.`,
+					Description: `(Optional) Select the [primary access account](https://docs.aviatrix.com/HowTos/aviatrix_account.html#setup-primary-access-account-for-aws-cloud).`,
 				},
 				resource.Attribute{
 					Name:        "security_group_management",
-					Description: `(Optional) Used to manage the Controller instance’s inbound rules from gateways. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) Enable to allow Controller to automatically manage inbound rules from gateways. Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
-					Name:        "target_version",
-					Description: `(Optional) The release version number to which the controller will be upgraded to. If not specified, controller will not be upgraded. If set to "latest", controller will be upgraded to the latest release. Please look at https://docs.aviatrix.com/HowTos/inline_upgrade.html for more information.`,
+					Name:        "http_access",
+					Description: `(Optional) Switch for HTTP access. Valid values: true, false. Default value: false.`,
+				},
+				resource.Attribute{
+					Name:        "fqdn_exception_rule",
+					Description: `(Optional) Enable/disable packets without an SNI field to pass through gateway(s). Valid values: true, false. Default value: true. For more information on this setting, please see [here](https://docs.aviatrix.com/HowTos/FQDN_Whitelists_Ref_Design.html#exception-rule) ### Backup`,
 				},
 				resource.Attribute{
 					Name:        "backup_configuration",
-					Description: `(Optional) Switch to enable/disable controller cloudn backup config. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) Switch to enable/disable controller CloudN backup config. Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "backup_cloud_type",
@@ -570,7 +773,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_account_name",
-					Description: `(Optional) This parameter represents the name of a Cloud-Account in Aviatrix controller.`,
+					Description: `(Optional) Name of the cloud account in the Aviatrix controller.`,
 				},
 				resource.Attribute{
 					Name:        "backup_bucket_name",
@@ -578,7 +781,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "multiple_backups",
-					Description: `(Optional) Switch to enable the controller to backup up to a maximum of 3 rotating backups. Valid values: true, false. Default value: false. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Switch to enable the Controller to backup up to a maximum of 3 rotating backups. Valid values: true, false. Default value: false. ### Misc.`,
+				},
+				resource.Attribute{
+					Name:        "target_version",
+					Description: `(Optional) The release version number to which the controller will be upgraded to. If not specified, controller will not be upgraded. If set to "latest", controller will be upgraded to the latest release. Please see the [Controller upgrade guide](https://docs.aviatrix.com/HowTos/inline_upgrade.html) for more information. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -606,19 +813,31 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) ID of the Security VPC.`,
+					Description: `(Required) VPC ID of the Security VPC.`,
 				},
 				resource.Attribute{
 					Name:        "inspection_enabled",
-					Description: `(Optional) Enable/Disable traffic inspection. Valid values: true, false. Default value: true.`,
+					Description: `(Optional) Enable/disable traffic inspection. Valid values: true, false. Default value: true. ->`,
+				},
+				resource.Attribute{
+					Name:        "inspection_enabled",
+					Description: `Default value is true for associating firewall instance to FireNet. Only false is supported for associating FQDN gateway to FireNet.`,
 				},
 				resource.Attribute{
 					Name:        "egress_enabled",
-					Description: `(Optional) Enable/Disable egress through firewall. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) Enable/disable egress through firewall. Valid values: true, false. Default value: false. ->`,
+				},
+				resource.Attribute{
+					Name:        "egress_enabled",
+					Description: `Default value is false for associating firewall instance to FireNet. Only true is supported for associating FQDN gateway to FireNet. ### Firewall Association ->`,
 				},
 				resource.Attribute{
 					Name:        "firewall_instance_association",
-					Description: `(Optional) List of firewall instances to be associated with fireNet.`,
+					Description: `If associating FQDN gateway to FireNet, ` + "`" + `single_az_ha` + "`" + ` needs to be enabled for the FQDN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "firewall_instance_association",
+					Description: `(Optional) Dynamic block of firewall instance(s) to be associated with the FireNet.`,
 				},
 				resource.Attribute{
 					Name:        "firenet_gw_name",
@@ -626,31 +845,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instance_id",
-					Description: `(Required) ID of Firewall instance, if associating FQDN gateway to fireNet, it is FQDN gateway's gw_name..`,
+					Description: `(Required) ID of Firewall instance. ->`,
 				},
 				resource.Attribute{
 					Name:        "vendor_type",
-					Description: `(Optional) Type of the firewall. Valid values: "Generic", "fqdn_gateway". Default value: "Generic". Value "fqdn_gateway" is required for FQDN gateway.`,
+					Description: `(Optional) Type of firewall. Valid values: "Generic", "fqdn_gateway". Default value: "Generic". Value "fqdn_gateway" is required for FQDN gateway.`,
 				},
 				resource.Attribute{
 					Name:        "firewall_name",
-					Description: `(Optional) Firewall instance name, required if it is a firewall instance.`,
+					Description: `(Optional) Firewall instance name.`,
 				},
 				resource.Attribute{
 					Name:        "management_interface",
-					Description: `(Optional) Management interface ID, required if it is a firewall instance.`,
-				},
-				resource.Attribute{
-					Name:        "inspection_enabled",
-					Description: `Default value is true for associating firewall instance to fireNet. Only false is supported for associating FQDN gateway to fireNet. ->`,
-				},
-				resource.Attribute{
-					Name:        "egress_enabled",
-					Description: `Default value is false for associating firewall instance to fireNet. Only true is supported for associating FQDN gateway to fireNet. ->`,
-				},
-				resource.Attribute{
-					Name:        "firewall_instance_association",
-					Description: `If associating FQDN gateway to fireNet, "single_az_ha" needs to be enabled for the FQDN gateway. ## Import Instance firenet can be imported using the vpc_id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_firenet.test vpc_id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Management interface ID.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -659,7 +866,7 @@ var (
 			Name:             "",
 			Type:             "aviatrix_firewall",
 			Category:         "Security",
-			ShortDescription: `Creates and manages Aviatrix Firewall Policies`,
+			ShortDescription: `Creates and manages Aviatrix Stateful Firewall Policies`,
 			Description:      ``,
 			Keywords: []string{
 				"security",
@@ -668,27 +875,27 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "gw_name",
-					Description: `(Required) The name of gateway.`,
+					Description: `(Required) Gateway name to attach firewall policy to.`,
 				},
 				resource.Attribute{
 					Name:        "base_policy",
-					Description: `(Optional) New base policy. Valid Values: "allow-all", "deny-all".`,
+					Description: `(Optional) New base policy. Valid Values: "allow-all", "deny-all". Default value: "deny-all"`,
 				},
 				resource.Attribute{
 					Name:        "base_log_enabled",
-					Description: `(Optional) Indicates whether enable logging or not. Valid Values: true, false.`,
+					Description: `(Optional) Indicates whether enable logging or not. Valid Values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "policy",
-					Description: `(Optional) New access policy for the gateway. Type: String (valid JSON). Seven fields are required for each policy item: src_ip, dst_ip, protocol, port, allow_deny, log_enabled and description.`,
+					Description: `(Optional) New access policy for the gateway. Type: String (valid JSON). Seven fields are required for each policy item: ` + "`" + `src_ip` + "`" + `, ` + "`" + `dst_ip` + "`" + `, ` + "`" + `protocol` + "`" + `, ` + "`" + `port` + "`" + `, ` + "`" + `allow_deny` + "`" + `, ` + "`" + `log_enabled` + "`" + ` and ` + "`" + `description` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "src_ip",
-					Description: `(Required) CIDRs separated by comma or tag names such "HR" or "marketing" etc. Example: "10.30.0.0/16,10.45.0.0/20". The aviatrix_firewall_tag resource should be created prior to using the tag name.`,
+					Description: `(Required) CIDRs separated by comma or tag names such "HR" or "marketing" etc. Example: "10.30.0.0/16,10.45.0.0/20". The`,
 				},
 				resource.Attribute{
 					Name:        "dst_ip",
-					Description: `(Required) CIDRs separated by comma or tag names such "HR" or "marketing" etc. Example: "10.30.0.0/16,10.45.0.0/20". The aviatrix_firewall_tag resource should be created prior to using the tag name.`,
+					Description: `(Required) CIDRs separated by comma or tag names such "HR" or "marketing" etc. Example: "10.30.0.0/16,10.45.0.0/20". The`,
 				},
 				resource.Attribute{
 					Name:        "port",
@@ -711,7 +918,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) ID of the Security VPC.`,
+					Description: `(Required) VPC ID of the Security VPC.`,
 				},
 				resource.Attribute{
 					Name:        "firenet_gw_name",
@@ -723,7 +930,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "firewall_image",
-					Description: `(Required) One of the AWS AMIs from Palo Alto Networks.`,
+					Description: `(Required) One of the AWS/Azure AMIs from Palo Alto Networks.`,
 				},
 				resource.Attribute{
 					Name:        "firewall_size",
@@ -739,7 +946,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "firewall_image_version",
-					Description: `(Optional) Version of firewall image.`,
+					Description: `(Optional) Version of firewall image. If not specified, Controller will automatically select the latest version available. ### Advanced Options`,
 				},
 				resource.Attribute{
 					Name:        "iam_role",
@@ -750,9 +957,35 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aviatrix_firewall_management_access",
+			Category:         "Multi-Cloud Transit",
+			ShortDescription: `Manage Aviatrix Firewall Management Access`,
+			Description:      ``,
+			Keywords: []string{
+				"multi",
+				"cloud",
+				"transit",
+				"firewall",
+				"management",
+				"access",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "transit_firenet_gateway_name",
+					Description: `(Required) Name of the Transit FireNet-enabled transit gateway. Currently supports AWS(1) and Azure(8) providers.`,
+				},
+				resource.Attribute{
+					Name:        "management_access_resource_name",
+					Description: `(Required) Name of the resource to enable Firewall Management Access. ## Import`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aviatrix_firewall_tag",
 			Category:         "Security",
-			ShortDescription: `Creates and manages Aviatrix Firewall Tags`,
+			ShortDescription: `Creates and manages Aviatrix Stateful Firewall Tags`,
 			Description:      ``,
 			Keywords: []string{
 				"security",
@@ -762,19 +995,19 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "firewall_tag",
-					Description: `(Required) This parameter represents the name of a Cloud-Account in Aviatrix controller.`,
+					Description: `(Required) Name of the stateful firewall tag to be created. ### Tag Rules`,
 				},
 				resource.Attribute{
 					Name:        "cidr_list",
-					Description: `(Optional) A JSON file with the following:`,
+					Description: `(Optional) Dynamic block representing a CIDR to filter, and a name to identify it:`,
 				},
 				resource.Attribute{
 					Name:        "cidr_tag_name",
-					Description: `(Required) The name attribute of a policy. Example: "policy1".`,
+					Description: `(Required) A name to identify the CIDR. Example: "policy1".`,
 				},
 				resource.Attribute{
 					Name:        "cidr",
-					Description: `(Required) The CIDR attribute of a policy. Example: "10.88.88.88/32". ## Import Instance firewall_tag can be imported using the firewall_tag, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_firewall_tag.test firewall_tag ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) CIDR address to filter. Example: "10.88.88.88/32". ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -783,7 +1016,7 @@ var (
 			Name:             "",
 			Type:             "aviatrix_fqdn",
 			Category:         "Security",
-			ShortDescription: `Manages Aviatrix FQDN filtering for Gateway`,
+			ShortDescription: `Manages Aviatrix FQDN filtering for gateways`,
 			Description:      ``,
 			Keywords: []string{
 				"security",
@@ -792,15 +1025,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "fqdn_tag",
-					Description: `(Required) FQDN Filter Tag Name.`,
+					Description: `(Required) FQDN Filter tag name.`,
 				},
 				resource.Attribute{
 					Name:        "fqdn_enabled",
-					Description: `(Optional) FQDN Filter Tag Status. Valid values: true, false.`,
+					Description: `(Optional) FQDN Filter tag status. Valid values: true, false.`,
 				},
 				resource.Attribute{
 					Name:        "fqdn_mode",
-					Description: `(Optional) Specify the tag color to be a white-list tag or black-list tag. Valid values: "white", "black".`,
+					Description: `(Optional) Specify FQDN mode: whitelist or blacklist. Valid values: "white", "black".`,
 				},
 				resource.Attribute{
 					Name:        "gw_filter_tag_list",
@@ -830,6 +1063,10 @@ var (
 					Name:        "port",
 					Description: `(Required) Port. Example "25".`,
 				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Optional) What action should happen to matching requests. Possible values are: 'Base Policy', 'Allow' or 'Deny'. Defaults to 'Base Policy' if no value provided.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -845,7 +1082,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_type",
-					Description: `(Required) Type of cloud service provider, requires an integer value. Currently only AWS(1), GCP(4), ARM(8), OCI(16), and AWSGov(256) are supported.`,
+					Description: `(Required) Cloud service provider to use to launch the gateway. Requires an integer value. Currently supports AWS(1), GCP(4), AZURE(8), OCI(16), and AWSGov(256).`,
 				},
 				resource.Attribute{
 					Name:        "account_name",
@@ -853,39 +1090,39 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gw_name",
-					Description: `(Required) Aviatrix gateway unique name.`,
+					Description: `(Required) Name of the Aviatrix gateway to be created.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) VPC-ID/VNet-Name of cloud provider. Example: AWS: "vpc-abcd1234", GCP: "vpc-gcp-test", ARM: "vnet1:hello", OCI: "vpc-oracle-test1".`,
+					Description: `(Required) VPC ID/VNet name of cloud provider. Example: AWS: "vpc-abcd1234", GCP: "vpc-gcp-test", AZURE: "vnet1:hello", OCI: "vpc-oracle-test1".`,
 				},
 				resource.Attribute{
 					Name:        "vpc_reg",
-					Description: `(Required) Region of cloud provider. Example: AWS: "us-east-1", GCP: "us-west2-a", ARM: "East US 2", Oracle: "us-ashburn-1".`,
+					Description: `(Required) VPC region the gateway will be created in. Example: AWS: "us-east-1", GCP: "us-west2-a", AZURE: "East US 2", OCI: "us-ashburn-1".`,
 				},
 				resource.Attribute{
 					Name:        "gw_size",
-					Description: `(Required) Size of the gateway instance. Example: AWS: "t2.large", ARM: "Standard_B1s", Oracle: "VM.Standard2.2", GCP: "n1-standard-1".`,
+					Description: `(Required) Size of the gateway instance. Example: AWS: "t2.large", GCP: "n1-standard-1", AZURE: "Standard_B1s", OCI: "VM.Standard2.2".`,
 				},
 				resource.Attribute{
 					Name:        "subnet",
-					Description: `(Required) A VPC Network address range selected from one of the available network ranges. Example: "172.31.0.0/20".`,
+					Description: `(Required) A VPC network address range selected from one of the available network ranges. Example: "172.31.0.0/20".`,
 				},
 				resource.Attribute{
 					Name:        "peering_ha_subnet",
-					Description: `(Optional) Public subnet CIDR to create Peering HA Gateway in. Required only if enabling Peering HA for AWS/ARM . Example: AWS: "10.0.0.0/16".`,
+					Description: `(Optional) Public subnet CIDR to create Peering HA Gateway in. Required if enabling Peering HA for AWS/AZURE. Optional if enabling Peering HA for GCP. Example: AWS: "10.0.0.0/16".`,
 				},
 				resource.Attribute{
 					Name:        "peering_ha_zone",
-					Description: `(Optional) Zone information for creating Peering HA Gateway, only zone is accepted. Required only if enabling Peering HA for GCP. Example: GCP: "us-west1-c".`,
+					Description: `(Optional) Zone to create Peering HA Gateway in. Required only if enabling Peering HA for GCP. Example: GCP: "us-west1-c".`,
 				},
 				resource.Attribute{
 					Name:        "peering_ha_insane_mode_az",
-					Description: `(Optional) AZ of subnet being created for Insane Mode Peering HA Gateway. Required for AWS only if ` + "`" + `insane_mode` + "`" + ` is set and ` + "`" + `peering_ha_subnet` + "`" + ` is set. Example: AWS: "us-west-1a".`,
+					Description: `(Optional) Region + Availability Zone of subnet being created for Insane Mode-enabled Peering HA Gateway. Required for AWS only if ` + "`" + `insane_mode` + "`" + ` is set and ` + "`" + `peering_ha_subnet` + "`" + ` is set. Example: AWS: "us-west-1a".`,
 				},
 				resource.Attribute{
 					Name:        "peering_ha_eip",
-					Description: `(Optional) Public IP address that you want assigned to the HA peering instance. Only available for AWS.`,
+					Description: `(Optional) Public IP address to be assigned to the the HA peering instance. Only available for AWS.`,
 				},
 				resource.Attribute{
 					Name:        "peering_ha_gw_size",
@@ -893,31 +1130,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "insane_mode",
-					Description: `(Optional) Enable Insane Mode for Gateway. Insane Mode Gateway size must be at least c5 (AWS) or Standard_D3_v2 (ARM). If enabled, you must specify a valid /26 CIDR segment of the VPC to create a new subnet. Only supported for AWS, AWSGov or ARM. Valid values: true, false.`,
+					Description: `(Optional) Enable [Insane Mode](https://docs.aviatrix.com/HowTos/insane_mode.html) for Gateway. Insane Mode gateway size must be at least c5 series (AWS) or Standard_D3_v2 (AZURE). If enabled, a valid /26 CIDR segment of the VPC must be specified to create a new subnet. Only supported for AWS, AWSGov or Azure. Valid values: true, false.`,
 				},
 				resource.Attribute{
 					Name:        "insane_mode_az",
-					Description: `(Optional) AZ of subnet being created for Insane Mode Gateway. Required for AWS and AWSGov if insane_mode is set. Example: AWS: "us-west-1a". ### SNAT/DNAT`,
+					Description: `(Optional) Region + Availability Zone of subnet being created for Insane Mode gateway. Required for AWS and AWSGov if ` + "`" + `insane_mode` + "`" + ` is set. Example: AWS: "us-west-1a". ### SNAT/DNAT`,
 				},
 				resource.Attribute{
 					Name:        "single_ip_snat",
-					Description: `(Optional) Enable Source NAT in "single ip" mode for this container. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) Enable Source NAT in "single ip" mode for this gateway. Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "vpn_access",
-					Description: `(Optional) Enable user access through VPN to this container. Valid values: true, false.`,
+					Description: `(Optional) Enable [user access through VPN](https://docs.aviatrix.com/HowTos/gateway.html#vpn-access) to this gateway. Valid values: true, false.`,
 				},
 				resource.Attribute{
 					Name:        "vpn_cidr",
-					Description: `(Optional) VPN CIDR block for the container. Required if ` + "`" + `vpn_access` + "`" + ` is true. Example: "192.168.43.0/24".`,
+					Description: `(Optional) VPN CIDR block for the gateway. Required if ` + "`" + `vpn_access` + "`" + ` is true. Example: "192.168.43.0/24".`,
 				},
 				resource.Attribute{
 					Name:        "max_vpn_conn",
-					Description: `(Optional) Maximum number of active VPN users allowed to be connected to this gateway. Required if vpn_access is true. Make sure the number is smaller than the VPN CIDR block. Example: 100.`,
+					Description: `(Optional) Maximum number of active VPN users allowed to be connected to this gateway. Required if ` + "`" + `vpn_access` + "`" + ` is true. Make sure the number is smaller than the VPN CIDR block. Example: 100.`,
 				},
 				resource.Attribute{
 					Name:        "enable_elb",
-					Description: `(Optional) Specify whether to enable ELB or not. Not supported for Oracle gateways. Valid values: true, false.`,
+					Description: `(Optional) Specify whether to enable ELB or not. Not supported for OCI gateways. Valid values: true, false.`,
 				},
 				resource.Attribute{
 					Name:        "elb_name",
@@ -925,11 +1162,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpn_protocol",
-					Description: `(Optional) Transport mode for VPN connection. All ` + "`" + `cloud_types` + "`" + ` support TCP with ELB, and UDP without ELB. AWS(1) additionally supports UDP with ELB. Valid values: "TCP", "UDP". If not specified, "TCP" will be used.`,
+					Description: `(Optional) Transport mode for VPN connection. All ` + "`" + `cloud_types` + "`" + ` support TCP with ELB, and UDP without ELB. AWS(1) additionally supports UDP with ELB. Valid values: "TCP", "UDP". If not specified, "TCP" will be used. #### Split Tunnel`,
 				},
 				resource.Attribute{
 					Name:        "split_tunnel",
-					Description: `(Optional) Specify split tunnel mode. Valid values: true, false.`,
+					Description: `(Optional) Enable/disable Split Tunnel Mode. Valid values: true, false. Default value: true. Please see [here](https://docs.aviatrix.com/HowTos/gateway.html#split-tunnel-mode) for more information on split tunnel.`,
 				},
 				resource.Attribute{
 					Name:        "name_servers",
@@ -941,27 +1178,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "additional_cidrs",
-					Description: `(Optional) A list of destination CIDR ranges that will also go through the VPN tunnel when Split Tunnel Mode is enabled.`,
+					Description: `(Optional) A list of destination CIDR ranges that will also go through the VPN tunnel when Split Tunnel Mode is enabled. #### MFA Authentication`,
 				},
 				resource.Attribute{
 					Name:        "otp_mode",
-					Description: `(Optional) Two step authentication mode. "2": DUO, "3": Okta.`,
+					Description: `(Optional) Two step authentication mode. Valid values: "2" for DUO, "3" for Okta.`,
 				},
 				resource.Attribute{
 					Name:        "saml_enabled",
-					Description: `(Optional) This field indicates whether enabling SAML or not. This field is available in controller version 3.3 or later release. Valid values: true, false.`,
+					Description: `(Optional) Enable/disable SAML. This field is available in Controller version 3.3 or later release. Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "enable_vpn_nat",
-					Description: `(Optional) This field indicates whether enabling VPN NAT or not. Only supported for VPN gateway. Valid values: true, false. Default value: true.`,
+					Description: `(Optional) Enable/disable VPN NAT. Only supported for VPN gateway. Valid values: true, false. Default value: true.`,
 				},
 				resource.Attribute{
 					Name:        "okta_token",
-					Description: `(Optional) Token for Okta auth mode. Required if otp_mode is "3".`,
+					Description: `(Optional) Token for Okta auth mode. Required if ` + "`" + `otp_mode` + "`" + ` is "3".`,
 				},
 				resource.Attribute{
 					Name:        "okta_url",
-					Description: `(Optional) URL for Okta auth mode. Required if otp_mode is "3".`,
+					Description: `(Optional) URL for Okta auth mode. Required if ` + "`" + `otp_mode` + "`" + ` is "3".`,
 				},
 				resource.Attribute{
 					Name:        "okta_username_suffix",
@@ -969,87 +1206,79 @@ var (
 				},
 				resource.Attribute{
 					Name:        "duo_integration_key",
-					Description: `(Optional) Integration key for DUO auth mode. Required if otp_mode is "2".`,
+					Description: `(Optional) Integration key for DUO auth mode. Required if ` + "`" + `otp_mode` + "`" + ` is "2".`,
 				},
 				resource.Attribute{
 					Name:        "duo_secret_key",
-					Description: `(Optional) Secret key for DUO auth mode. Required if otp_mode is "2".`,
+					Description: `(Optional) Secret key for DUO auth mode. Required if ` + "`" + `otp_mode` + "`" + ` is "2".`,
 				},
 				resource.Attribute{
 					Name:        "duo_api_hostname",
-					Description: `(Optional) API hostname for DUO auth mode. Required: Yes if otp_mode is "2".`,
+					Description: `(Optional) API hostname for DUO auth mode. Required: Yes if ` + "`" + `otp_mode` + "`" + ` is "2".`,
 				},
 				resource.Attribute{
 					Name:        "duo_push_mode",
-					Description: `(Optional) Push mode for DUO auth. Required if otp_mode is "2". Valid values: "auto", "selective" and "token".`,
+					Description: `(Optional) Push mode for DUO auth. Required if ` + "`" + `otp_mode` + "`" + ` is "2". Valid values: "auto", "selective" and "token".`,
 				},
 				resource.Attribute{
 					Name:        "enable_ldap",
-					Description: `(Optional) Specify whether to enable LDAP or not. Valid values: true, false.`,
+					Description: `(Optional) Enable/disable LDAP. Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "ldap_server",
-					Description: `(Optional) LDAP server address. Required if enable_ldap is true.`,
+					Description: `(Optional) LDAP server address. Required if ` + "`" + `enable_ldap` + "`" + ` is true.`,
 				},
 				resource.Attribute{
 					Name:        "ldap_bind_dn",
-					Description: `(Optional) LDAP bind DN. Required if enable_ldap is true.`,
+					Description: `(Optional) LDAP bind DN. Required if ` + "`" + `enable_ldap` + "`" + ` is true.`,
 				},
 				resource.Attribute{
 					Name:        "ldap_password",
-					Description: `(Optional) LDAP password. Required if enable_ldap is true.`,
+					Description: `(Optional) LDAP password. Required if ` + "`" + `enable_ldap` + "`" + ` is true.`,
 				},
 				resource.Attribute{
 					Name:        "ldap_base_dn",
-					Description: `(Optional) LDAP base DN. Required if enable_ldap is true.`,
+					Description: `(Optional) LDAP base DN. Required if ` + "`" + `enable_ldap` + "`" + ` is true.`,
 				},
 				resource.Attribute{
 					Name:        "ldap_username_attribute",
-					Description: `(Optional) LDAP user attribute. Required if enable_ldap is true. ### Misc.`,
-				},
-				resource.Attribute{
-					Name:        "allocate_new_eip",
-					Description: `(Optional) When value is false, reuse an idle address in Elastic IP pool for this gateway. Otherwise, allocate a new Elastic IP and use it for this gateway. Available in Controller 2.7+. Valid values: true, false. Default: true. Option not available for GCP, ARM and OCI gateways, they will automatically allocate new EIPs.`,
-				},
-				resource.Attribute{
-					Name:        "eip",
-					Description: `(Optional) Required when ` + "`" + `allocate_new_eip` + "`" + ` is false. It uses the specified EIP for this gateway. Available in Controller version 3.5+. Only available for AWS.`,
-				},
-				resource.Attribute{
-					Name:        "tag_list",
-					Description: `(Optional) Instance tag of cloud provider. Only available for AWS and AWSGov. Example: ["key1:value1", "key2:value2"].`,
-				},
-				resource.Attribute{
-					Name:        "enable_vpc_dns_server",
-					Description: `(Optional) Enable VPC DNS Server for Gateway. Currently only supports AWS and AWSGov. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) LDAP user attribute. Required if ` + "`" + `enable_ldap` + "`" + ` is true. ### Designated Gateway`,
 				},
 				resource.Attribute{
 					Name:        "enable_designated_gateway",
-					Description: `(Optional) Enable 'designated_gateway' feature for Gateway. Only supports AWS. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) Enable Designated Gateway feature for Gateway. Only supported for AWS gateways. Valid values: true, false. Default value: false. Please view documentation [here](https://docs.aviatrix.com/HowTos/gateway.html#designated-gateway) for more information on this feature.`,
 				},
 				resource.Attribute{
 					Name:        "additional_cidrs_designated_gateway",
-					Description: `(Optional) A list of CIDR ranges separated by comma to configure when 'designated_gateway' feature is enabled. Example: "10.8.0.0/16,10.9.0.0/16,10.10.0.0/16".`,
+					Description: `(Optional) A list of CIDR ranges separated by comma to configure when "Designated Gateway" feature is enabled. Example: "10.8.0.0/16,10.9.0.0/16,10.10.0.0/16". ### Encryption`,
 				},
 				resource.Attribute{
 					Name:        "enable_encrypt_volume",
-					Description: `(Optional) Enable EBS volume encryption for Gateway. Only supports AWS. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) Enable EBS volume encryption for the gateway. Only supported for AWS gateways. Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "customer_managed_keys",
-					Description: `(Optional and Sensitive) Customer managed key ID. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional and Sensitive) Customer-managed key ID. ### Misc.`,
+				},
+				resource.Attribute{
+					Name:        "allocate_new_eip",
+					Description: `(Optional) If set to false, use an available address in Elastic IP pool for this gateway. Otherwise, allocate a new Elastic IP and use it for this gateway. Available in Controller 2.7+. Valid values: true, false. Default: true. Option not available for GCP, Azure and OCI gateways, they will automatically allocate new EIPs.`,
+				},
+				resource.Attribute{
+					Name:        "eip",
+					Description: `(Optional) Specified EIP to use for gateway creation. Required when ` + "`" + `allocate_new_eip` + "`" + ` is false. Available in Controller version 3.5+. Only supported for AWS gateways.`,
+				},
+				resource.Attribute{
+					Name:        "tag_list",
+					Description: `(Optional) Tag list of the gateway instance. Only available for AWS and AWSGov gateways. Example: ["key1:value1", "key2:value2"].`,
+				},
+				resource.Attribute{
+					Name:        "enable_vpc_dns_server",
+					Description: `(Optional) Enable VPC DNS Server for gateway. Currently only supported for AWS and AWSGov gateways. Valid values: true, false. Default value: false. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "elb_dns_name",
 					Description: `ELB DNS name.`,
-				},
-				resource.Attribute{
-					Name:        "public_ip",
-					Description: `Public IP address of the Gateway created.`,
-				},
-				resource.Attribute{
-					Name:        "backup_public_ip",
-					Description: `Private IP address of the Gateway created.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_server",
@@ -1061,11 +1290,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cloud_instance_id",
-					Description: `Instance ID of the gateway.`,
+					Description: `Cloud instance ID of the gateway.`,
 				},
 				resource.Attribute{
-					Name:        "cloudn_bkup_gateway_inst_id",
-					Description: `Instance ID of the backup gateway. The following arguments are deprecated:`,
+					Name:        "private_ip",
+					Description: `Private IP address of the gateway created.`,
+				},
+				resource.Attribute{
+					Name:        "peering_ha_cloud_instance_id",
+					Description: `Cloud instance ID of the HA gateway.`,
+				},
+				resource.Attribute{
+					Name:        "peering_ha_gw_name",
+					Description: `Aviatrix gateway unique name of HA gateway.`,
+				},
+				resource.Attribute{
+					Name:        "peering_ha_private_ip",
+					Description: `Private IP address of HA gateway. The following arguments are deprecated:`,
 				},
 				resource.Attribute{
 					Name:        "dns_server",
@@ -1073,11 +1314,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_snat",
-					Description: `(Optional) Enable Source NAT for this container. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) Enable Source NAT for this gateway. Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "dnat_policy",
-					Description: `(Optional) Policy rule applied for enabling Destination NAT (DNAT), which allows you to change the destination to a virtual address range. Currently only supports AWS(1) and ARM(8).`,
+					Description: `(Optional) Policy rule applied for enabling Destination NAT (DNAT), which allows you to change the destination to a virtual address range. Currently only supports AWS(1) and AZURE(8).`,
 				},
 				resource.Attribute{
 					Name:        "src_ip",
@@ -1121,7 +1362,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "exclude_rtb",
-					Description: `(Optional) This field specifies which VPC private route table will not be programmed with the default route entry. ## Import Instance gateway can be imported using the gw_name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_gateway.test gw_name ` + "`" + `` + "`" + `` + "`" + ` ## Notes ### FQDN In order for the FQDN feature to be enabled for the specified gateway, ` + "`" + `single_ip_snat` + "`" + ` must be set to true. If it is not set at gateway creation, creation of FQDN resource will automatically enable SNAT and users must rectify the diff in the Terraform state by setting ` + "`" + `single_ip_snat = true` + "`" + ` in their config file. ### insane_mode If ` + "`" + `insane_mode` + "`" + ` is enabled, you must specify a valid /26 CIDR segment of the VPC specified for the ` + "`" + `subnet` + "`" + `. This will then create a new subnet to be used for the corresponding gateway. You cannot specify an existing /26 subnet. ### max_vpn_conn If you are using/upgraded to Aviatrix Terraform Provider R1.14+, and a gateway with VPN enabled was originally created with a provider version <R1.14, you must do a ‘terraform refresh’ to update and apply the attribute’s value into the state. In addition, you must also input this attribute and its value to "100" in your ` + "`" + `.tf` + "`" + ` file. ### peering_ha_gw_size If you are using/upgraded to Aviatrix Terraform Provider R1.8+, and a peering-HA gateway was originally created with a provider version <R1.8, you must do a ‘terraform refresh’ to update and apply the attribute’s value into the state. In addition, you must also input this attribute and its value to its corresponding gateway resource in your ` + "`" + `.tf` + "`" + ` file. ### enable_snat If you are using/upgraded to Aviatrix Terraform Provider R2.10+, and a gateway with ` + "`" + `enable_snat` + "`" + ` set to true was originally created with a provider version <R2.10, you must do a ‘terraform refresh’ to update and apply the attribute’s value into the state. In addition, you must also change this attribute to ` + "`" + `single_ip_snat` + "`" + ` in your ` + "`" + `.tf` + "`" + ` file. ### dnat_policy If you are using/upgraded to Aviatrix Terraform Provider R2.10+, and a gateway with ` + "`" + `dnat_policy` + "`" + ` was originally created with a provider version <R2.10, you must do a ‘terraform refresh’ to remove attribute’s value from the state. In addition, you must transfer its corresponding values to the`,
+					Description: `(Optional) This field specifies which VPC private route table will not be programmed with the default route entry.`,
+				},
+				resource.Attribute{
+					Name:        "cloudn_bkup_gateway_inst_id",
+					Description: `Instance ID of the backup gateway.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `Public IP address of the gateway created.`,
+				},
+				resource.Attribute{
+					Name:        "peering_ha_public_ip",
+					Description: `Public IP address of the peering HA Gateway created. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1130,14 +1383,6 @@ var (
 					Description: `ELB DNS name.`,
 				},
 				resource.Attribute{
-					Name:        "public_ip",
-					Description: `Public IP address of the Gateway created.`,
-				},
-				resource.Attribute{
-					Name:        "backup_public_ip",
-					Description: `Private IP address of the Gateway created.`,
-				},
-				resource.Attribute{
 					Name:        "public_dns_server",
 					Description: `DNS server used by the gateway. Default is "8.8.8.8", can be overridden with the VPC's setting.`,
 				},
@@ -1147,11 +1392,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cloud_instance_id",
-					Description: `Instance ID of the gateway.`,
+					Description: `Cloud instance ID of the gateway.`,
 				},
 				resource.Attribute{
-					Name:        "cloudn_bkup_gateway_inst_id",
-					Description: `Instance ID of the backup gateway. The following arguments are deprecated:`,
+					Name:        "private_ip",
+					Description: `Private IP address of the gateway created.`,
+				},
+				resource.Attribute{
+					Name:        "peering_ha_cloud_instance_id",
+					Description: `Cloud instance ID of the HA gateway.`,
+				},
+				resource.Attribute{
+					Name:        "peering_ha_gw_name",
+					Description: `Aviatrix gateway unique name of HA gateway.`,
+				},
+				resource.Attribute{
+					Name:        "peering_ha_private_ip",
+					Description: `Private IP address of HA gateway. The following arguments are deprecated:`,
 				},
 				resource.Attribute{
 					Name:        "dns_server",
@@ -1159,11 +1416,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_snat",
-					Description: `(Optional) Enable Source NAT for this container. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) Enable Source NAT for this gateway. Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "dnat_policy",
-					Description: `(Optional) Policy rule applied for enabling Destination NAT (DNAT), which allows you to change the destination to a virtual address range. Currently only supports AWS(1) and ARM(8).`,
+					Description: `(Optional) Policy rule applied for enabling Destination NAT (DNAT), which allows you to change the destination to a virtual address range. Currently only supports AWS(1) and AZURE(8).`,
 				},
 				resource.Attribute{
 					Name:        "src_ip",
@@ -1207,7 +1464,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "exclude_rtb",
-					Description: `(Optional) This field specifies which VPC private route table will not be programmed with the default route entry. ## Import Instance gateway can be imported using the gw_name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_gateway.test gw_name ` + "`" + `` + "`" + `` + "`" + ` ## Notes ### FQDN In order for the FQDN feature to be enabled for the specified gateway, ` + "`" + `single_ip_snat` + "`" + ` must be set to true. If it is not set at gateway creation, creation of FQDN resource will automatically enable SNAT and users must rectify the diff in the Terraform state by setting ` + "`" + `single_ip_snat = true` + "`" + ` in their config file. ### insane_mode If ` + "`" + `insane_mode` + "`" + ` is enabled, you must specify a valid /26 CIDR segment of the VPC specified for the ` + "`" + `subnet` + "`" + `. This will then create a new subnet to be used for the corresponding gateway. You cannot specify an existing /26 subnet. ### max_vpn_conn If you are using/upgraded to Aviatrix Terraform Provider R1.14+, and a gateway with VPN enabled was originally created with a provider version <R1.14, you must do a ‘terraform refresh’ to update and apply the attribute’s value into the state. In addition, you must also input this attribute and its value to "100" in your ` + "`" + `.tf` + "`" + ` file. ### peering_ha_gw_size If you are using/upgraded to Aviatrix Terraform Provider R1.8+, and a peering-HA gateway was originally created with a provider version <R1.8, you must do a ‘terraform refresh’ to update and apply the attribute’s value into the state. In addition, you must also input this attribute and its value to its corresponding gateway resource in your ` + "`" + `.tf` + "`" + ` file. ### enable_snat If you are using/upgraded to Aviatrix Terraform Provider R2.10+, and a gateway with ` + "`" + `enable_snat` + "`" + ` set to true was originally created with a provider version <R2.10, you must do a ‘terraform refresh’ to update and apply the attribute’s value into the state. In addition, you must also change this attribute to ` + "`" + `single_ip_snat` + "`" + ` in your ` + "`" + `.tf` + "`" + ` file. ### dnat_policy If you are using/upgraded to Aviatrix Terraform Provider R2.10+, and a gateway with ` + "`" + `dnat_policy` + "`" + ` was originally created with a provider version <R2.10, you must do a ‘terraform refresh’ to remove attribute’s value from the state. In addition, you must transfer its corresponding values to the`,
+					Description: `(Optional) This field specifies which VPC private route table will not be programmed with the default route entry.`,
+				},
+				resource.Attribute{
+					Name:        "cloudn_bkup_gateway_inst_id",
+					Description: `Instance ID of the backup gateway.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `Public IP address of the gateway created.`,
+				},
+				resource.Attribute{
+					Name:        "peering_ha_public_ip",
+					Description: `Public IP address of the peering HA Gateway created. ## Import`,
 				},
 			},
 		},
@@ -1224,11 +1493,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "gw_name",
-					Description: `(Required) Aviatrix gateway unique name.`,
+					Description: `(Required) Name of the Aviatrix gateway the custom DNAT will be configured for.`,
 				},
 				resource.Attribute{
 					Name:        "dnat_policy",
-					Description: `(Required) Policy rule applied for enabling Destination NAT (DNAT), which allows you to change the destination to a virtual address range. Currently only supports AWS(1) and ARM(8).`,
+					Description: `(Required) Policy rule applied for enabling Destination NAT (DNAT), which allows you to change the destination to a virtual address range. Currently only supports AWS(1) and AZURE(8).`,
 				},
 				resource.Attribute{
 					Name:        "src_cidr",
@@ -1272,7 +1541,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "exclude_rtb",
-					Description: `(Optional) This field specifies which VPC private route table will not be programmed with the default route entry. ## Import Instance gateway_dnat can be imported using the gw_name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_gateway_dnat.test gw_name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) This field specifies which VPC private route table will not be programmed with the default route entry. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1290,7 +1559,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "gw_name",
-					Description: `(Required) Aviatrix gateway unique name.`,
+					Description: `(Required) Name of the Aviatrix gateway the custom SNAT will be configured for.`,
 				},
 				resource.Attribute{
 					Name:        "snat_mode",
@@ -1298,7 +1567,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "snat_policy",
-					Description: `(Required) Policy rule applied for enabling source NAT (mode: "customized_snat"). Currently only supports AWS(1) and ARM(8).`,
+					Description: `(Required) Policy rule applied for enabling source NAT (mode: "customized_snat"). Currently only supports AWS(1) and Azure(8).`,
 				},
 				resource.Attribute{
 					Name:        "src_cidr",
@@ -1322,7 +1591,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "interface",
-					Description: `(Optional) This is a qualifier condition that specifies output interface where the rule applies. When left blank, this field is not used.`,
+					Description: `(Optional) This is a qualifier condition that specifies output interface where the rule applies. When left blank, this field is not used. Default value: "eth0". Empty string is not a valid value.`,
 				},
 				resource.Attribute{
 					Name:        "connection",
@@ -1342,7 +1611,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "exclude_rtb",
-					Description: `(Optional) This field specifies which VPC private route table will not be programmed with the default route entry. ## Import Instance gateway_snat can be imported using the gw_name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_gateway_snat.test gw_name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) This field specifies which VPC private route table will not be programmed with the default route entry. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1377,7 +1646,102 @@ var (
 				},
 				resource.Attribute{
 					Name:        "elb_dns_names",
-					Description: `(Required) List of ELB names to attach to this Geo VPN name. ## Import Instance geo_vpn can be imported using the service name and domain name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_geo_vpn.test service_name~domain_name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) List of ELB names to attach to this Geo VPN name. ## Import`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aviatrix_rbac_group",
+			Category:         "Accounts",
+			ShortDescription: `Creates and manages Aviatrix RBAC groups`,
+			Description:      ``,
+			Keywords: []string{
+				"accounts",
+				"rbac",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group_name",
+					Description: `(Required) This parameter represents the name of a RBAC group to be created. ## Import`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aviatrix_rbac_group_access_account_attachment",
+			Category:         "Accounts",
+			ShortDescription: `Creates and manages Aviatrix RBAC group access account attachments`,
+			Description:      ``,
+			Keywords: []string{
+				"accounts",
+				"rbac",
+				"group",
+				"access",
+				"account",
+				"attachment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group_name",
+					Description: `(Required) This parameter represents the name of a RBAC group.`,
+				},
+				resource.Attribute{
+					Name:        "access_account_name",
+					Description: `(Required) Account name. This can be used for logging in to CloudN console or UserConnect controller. ->`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aviatrix_rbac_group_permission_attachment",
+			Category:         "Accounts",
+			ShortDescription: `Creates and manages Aviatrix RBAC group permission attachments`,
+			Description:      ``,
+			Keywords: []string{
+				"accounts",
+				"rbac",
+				"group",
+				"permission",
+				"attachment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group_name",
+					Description: `(Required) This parameter represents the name of a RBAC group.`,
+				},
+				resource.Attribute{
+					Name:        "permission_name",
+					Description: `(Required) This parameter represents the permission to attach to the RBAC group. Valid ` + "`" + `permission_name` + "`" + ` values:`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aviatrix_rbac_group_user_attachment",
+			Category:         "Accounts",
+			ShortDescription: `Creates and manages Aviatrix RBAC group user attachments`,
+			Description:      ``,
+			Keywords: []string{
+				"accounts",
+				"rbac",
+				"group",
+				"user",
+				"attachment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group_name",
+					Description: `(Required) This parameter represents the name of a RBAC group.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `(Required) Username of the account user. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1396,7 +1760,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "endpoint_name",
-					Description: `(Required) The SAML Endpoint name.`,
+					Description: `(Required) The SAML endpoint name.`,
 				},
 				resource.Attribute{
 					Name:        "idp_metadata_type",
@@ -1404,7 +1768,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "idp_metadata",
-					Description: `(Required) The IDP Metadata from SAML provider. Normally the metadata is in XML format which may contain special characters. Best practice is encode metadata in base64 and set here ` + "`" + `${base64decode(var.idp_metadata)}` + "`" + `.`,
+					Description: `(Required) The IDP Metadata from SAML provider. Normally the metadata is in XML format which may contain special characters. Best practice is encode metadata in base64 and set here ` + "`" + `${base64decode(var.idp_metadata)}` + "`" + `. ### Custom`,
 				},
 				resource.Attribute{
 					Name:        "custom_entity_id",
@@ -1412,7 +1776,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "custom_saml_request_template",
-					Description: `(Optional) Custom SAML Request Template in string. ## Import Instance saml_endpoint can be imported using the SAML Endpoint name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_saml_endpoint.test saml-test ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Custom SAML Request Template in string. ### Controller Login`,
+				},
+				resource.Attribute{
+					Name:        "controller_login",
+					Description: `(Optional) Valid values: true, false. Default value: false. Set true for creating a saml endpoint for controller login.`,
+				},
+				resource.Attribute{
+					Name:        "access_set_by",
+					Description: `(Optional) Access type. Valid values: "controller", "profile_attribute". Default value: "controller".`,
+				},
+				resource.Attribute{
+					Name:        "rbac_groups",
+					Description: `(Optional) List of rbac groups. Required for controller login and "access_set_by" of "controller". ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1429,7 +1805,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) VPC Id of the cloud gateway.`,
+					Description: `(Required) VPC ID of the cloud gateway.`,
 				},
 				resource.Attribute{
 					Name:        "connection_name",
@@ -1445,7 +1821,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tunnel_type",
-					Description: `(Required) Site2Cloud Tunnel Type. Valid Values: "udp", "tcp".`,
+					Description: `(Required) Site2Cloud Tunnel Type. Valid Values: "policy", "route".`,
 				},
 				resource.Attribute{
 					Name:        "primary_cloud_gateway_name",
@@ -1461,15 +1837,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "remote_subnet_virtual",
-					Description: `Remote Subnet CIDR (Virtual). Required for connection type "mapped" only.`,
+					Description: `Remote Subnet CIDR (Virtual).`,
 				},
 				resource.Attribute{
 					Name:        "local_subnet_cidr",
-					Description: `(Optional) Local Subnet CIDR. Required for connection type "mapped".`,
+					Description: `(Optional) Local Subnet CIDR.`,
 				},
 				resource.Attribute{
 					Name:        "local_subnet_virtual",
-					Description: `Local Subnet CIDR (Virtual). Required for connection type "mapped" only. ## HA`,
+					Description: `Local Subnet CIDR (Virtual).`,
 				},
 				resource.Attribute{
 					Name:        "ha_enabled",
@@ -1493,19 +1869,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "phase_1_authentication",
-					Description: `(Optional) Phase one Authentication. Valid values: 'SHA-1', 'SHA-256', 'SHA-384' and 'SHA-512'. Default value: 'SHA-1'.`,
+					Description: `(Optional) Phase one Authentication. Valid values: 'SHA-1', 'SHA-256', 'SHA-384' and 'SHA-512'. Default value: 'SHA-256'.`,
 				},
 				resource.Attribute{
 					Name:        "phase_2_authentication",
-					Description: `(Optional) Phase two Authentication. Valid values: 'NO-AUTH', 'HMAC-SHA-1', 'HMAC-SHA-256', 'HMAC-SHA-384' and 'HMAC-SHA-512'. Default value: 'HMAC-SHA-1'.`,
+					Description: `(Optional) Phase two Authentication. Valid values: 'NO-AUTH', 'HMAC-SHA-1', 'HMAC-SHA-256', 'HMAC-SHA-384' and 'HMAC-SHA-512'. Default value: 'HMAC-SHA-256'.`,
 				},
 				resource.Attribute{
 					Name:        "phase_1_dh_groups",
-					Description: `(Optional) Phase one DH Groups. Valid values: '1', '2', '5', '14', '15', '16', '17' and '18'. Default value: '2'.`,
+					Description: `(Optional) Phase one DH Groups. Valid values: '1', '2', '5', '14', '15', '16', '17' and '18'. Default value: '14'.`,
 				},
 				resource.Attribute{
 					Name:        "phase_2_dh_groups",
-					Description: `(Optional) Phase two DH Groups. Valid values: '1', '2', '5', '14', '15', '16', '17' and '18'. Default value: '2'.`,
+					Description: `(Optional) Phase two DH Groups. Valid values: '1', '2', '5', '14', '15', '16', '17' and '18'. Default value: '14'.`,
 				},
 				resource.Attribute{
 					Name:        "phase_1_encryption",
@@ -1553,36 +1929,41 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_active_active",
-					Description: `(Optional) Enable/disable active active HA for an existing site2cloud connection. Valid values: true, false. Default value: false. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Enable/disable active active HA for an existing site2cloud connection. Valid values: true, false. Default value: false.`,
+				},
+				resource.Attribute{
+					Name:        "enable_ikev2",
+					Description: `(Optional) Switch to enable IKEv2 for policy-based site2cloud. Valid values: true, false. Default value: false. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "local_subnet_cidr",
-					Description: `Local subnet CIDR. ## Import Instance site2cloud can be imported using the connection_name and vpc_id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_site2cloud.test connection_name~vpc_id ` + "`" + `` + "`" + `` + "`" + ` ## Notes ### custom_algorithms Only supported for 'udp' tunnel type. If set to true, the six algorithm arguments cannot all be default value. If set to false, default values will be used for all six algorithm arguments. ### enable_dead_peer_detection If you are using/upgraded to Aviatrix Terraform Provider R1.9+, and a site2cloud resource was originally created with a provider version <R1.9, you must do ‘terraform refresh’ to update and apply the attribute’s default value (true) into the state file. ### HA Enabled The following arguments are only supported if the backup gateway is set up by enabling peering HA through the primary gateway resource by specifying a "peering_ha_subnet" and "peering_ha_gw_size". For more information on site2cloud, please see the doc site [here](https://docs.aviatrix.com/HowTos/site2cloud.html):`,
+					Description: `Local subnet CIDR. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "local_subnet_cidr",
-					Description: `Local subnet CIDR. ## Import Instance site2cloud can be imported using the connection_name and vpc_id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_site2cloud.test connection_name~vpc_id ` + "`" + `` + "`" + `` + "`" + ` ## Notes ### custom_algorithms Only supported for 'udp' tunnel type. If set to true, the six algorithm arguments cannot all be default value. If set to false, default values will be used for all six algorithm arguments. ### enable_dead_peer_detection If you are using/upgraded to Aviatrix Terraform Provider R1.9+, and a site2cloud resource was originally created with a provider version <R1.9, you must do ‘terraform refresh’ to update and apply the attribute’s default value (true) into the state file. ### HA Enabled The following arguments are only supported if the backup gateway is set up by enabling peering HA through the primary gateway resource by specifying a "peering_ha_subnet" and "peering_ha_gw_size". For more information on site2cloud, please see the doc site [here](https://docs.aviatrix.com/HowTos/site2cloud.html):`,
+					Description: `Local subnet CIDR. ## Import`,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "aviatrix_spoke_gateway",
-			Category:         "Transit Network",
+			Category:         "Multi-Cloud Transit",
 			ShortDescription: `Creates and manages Aviatrix spoke gateways`,
 			Description:      ``,
 			Keywords: []string{
+				"multi",
+				"cloud",
 				"transit",
-				"network",
 				"spoke",
 				"gateway",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_type",
-					Description: `(Required) Type of cloud service provider, requires an integer value. Currently only AWS(1), GCP(4), ARM(8), and OCI(16) are supported.`,
+					Description: `(Required) Type of cloud service provider, requires an integer value. Currently only AWS(1), GCP(4), AZURE(8), and OCI(16) are supported.`,
 				},
 				resource.Attribute{
 					Name:        "account_name",
@@ -1594,15 +1975,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) VPC-ID/VNet-Name of cloud provider. Example: AWS: "vpc-abcd1234", GCP: "vpc-gcp-test", ARM: "vnet1:hello", OCI: "vpc-oracle-test1".`,
+					Description: `(Required) VPC-ID/VNet-Name of cloud provider. Example: AWS: "vpc-abcd1234", GCP: "vpc-gcp-test", AZURE: "vnet1:hello", OCI: "vpc-oracle-test1".`,
 				},
 				resource.Attribute{
 					Name:        "vpc_reg",
-					Description: `(Required) Region of cloud provider. Example: AWS: "us-east-1", GCP: "us-west2-a", ARM: "East US 2", Oracle: "us-ashburn-1".`,
+					Description: `(Required) Region of cloud provider. Example: AWS: "us-east-1", GCP: "us-west2-a", AZURE: "East US 2", Oracle: "us-ashburn-1".`,
 				},
 				resource.Attribute{
 					Name:        "gw_size",
-					Description: `(Required) Size of the gateway instance. Example: AWS: "t2.large", ARM: "Standard_B1s", Oracle: "VM.Standard2.2", GCP: "n1-standard-1".`,
+					Description: `(Required) Size of the gateway instance. Example: AWS: "t2.large", AZURE: "Standard_B1s", Oracle: "VM.Standard2.2", GCP: "n1-standard-1".`,
 				},
 				resource.Attribute{
 					Name:        "subnet",
@@ -1610,7 +1991,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ha_subnet",
-					Description: `(Optional) HA Subnet. Required only if enabling HA for AWS/ARM gateway. Setting to empty/unsetting will disable HA. Setting to a valid subnet CIDR will create an HA gateway on the subnet. Example: "10.12.0.0/24"`,
+					Description: `(Optional) HA Subnet. Required if enabling HA for AWS/Azure gateway. Optional for GCP. Setting to empty/unsetting will disable HA. Setting to a valid subnet CIDR will create an HA gateway on the subnet. Example: "10.12.0.0/24"`,
 				},
 				resource.Attribute{
 					Name:        "ha_zone",
@@ -1626,7 +2007,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "insane_mode",
-					Description: `(Optional) Enable Insane Mode for Spoke Gateway. Insane Mode gateway size has to be at least c5 (AWS) or Standard_D3_v2 (ARM). If enabled, you must specify a valid /26 CIDR segment of the VPC to create a new subnet. Only supported for AWS and ARM. Valid values: true, false.`,
+					Description: `(Optional) Enable [Insane Mode](https://docs.aviatrix.com/HowTos/insane_mode.html) for Spoke Gateway. Insane Mode gateway size has to be at least c5 (AWS) or Standard_D3_v2 (AZURE). If enabled, you must specify a valid /26 CIDR segment of the VPC to create a new subnet. Only supported for AWS and Azure. Valid values: true, false.`,
 				},
 				resource.Attribute{
 					Name:        "insane_mode_az",
@@ -1634,31 +2015,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "single_ip_snat",
-					Description: `(Optional) Specify whether to enable Source NAT feature in "single_ip" mode on the gateway or not. Please disable AWS NAT instance before enabling this feature. Currently only supports AWS(1) and ARM(8). Valid values: true, false. ->`,
-				},
-				resource.Attribute{
-					Name:        "transit_gw",
-					Description: `(Optional) Specify the transit Gateway.`,
-				},
-				resource.Attribute{
-					Name:        "allocate_new_eip",
-					Description: `(Optional) When value is false, reuse an idle address in Elastic IP pool for this gateway. Otherwise, allocate a new Elastic IP and use it for this gateway. Available in Controller 4.7+. Valid values: true, false. Default: true. Option not available for GCP, ARM and OCI gateways, they will automatically allocate new EIPs.`,
-				},
-				resource.Attribute{
-					Name:        "eip",
-					Description: `(Optional) Required when ` + "`" + `allocate_new_eip` + "`" + ` is false. It uses the specified EIP for this gateway. Available in Controller 4.7+. Only available for AWS.`,
-				},
-				resource.Attribute{
-					Name:        "tag_list",
-					Description: `(Optional) Instance tag of cloud provider. Only AWS, cloud_type is "1", is supported. Example: ["key1:value1", "key2:value2"].`,
-				},
-				resource.Attribute{
-					Name:        "enable_active_mesh",
-					Description: `(Optional) Switch to enable/disable Active Mesh Mode for Spoke Gateway. Valid values: true, false. Default value: false.`,
-				},
-				resource.Attribute{
-					Name:        "enable_vpc_dns_server",
-					Description: `(Optional) Enable VPC DNS Server for Gateway. Currently only supports AWS. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) Specify whether to enable Source NAT feature in "single_ip" mode on the gateway or not. Please disable AWS NAT instance before enabling this feature. Currently only supports AWS(1) and AZURE(8). Valid values: true, false. ->`,
 				},
 				resource.Attribute{
 					Name:        "enable_encrypt_volume",
@@ -1666,7 +2023,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "customer_managed_keys",
-					Description: `(Optional and Sensitive) Customer managed key ID.`,
+					Description: `(Optional and Sensitive) Customer managed key ID. ### Route Customization`,
 				},
 				resource.Attribute{
 					Name:        "customized_spoke_vpc_routes",
@@ -1678,7 +2035,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "included_advertised_spoke_routes",
-					Description: `(Optional) A list of comma separated CIDRs to be advertised to on-prem as 'Included CIDR List'. When configured, it will replace all advertised routes from this VPC. Example: "10.4.0.0/116,10.5.0.0/16". ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) A list of comma separated CIDRs to be advertised to on-prem as 'Included CIDR List'. When configured, it will replace all advertised routes from this VPC. Example: "10.4.0.0/116,10.5.0.0/16". ### Misc.`,
+				},
+				resource.Attribute{
+					Name:        "transit_gw",
+					Description: `(Optional) Specify the Aviatrix transit gateway to attach this spoke gateway to.`,
+				},
+				resource.Attribute{
+					Name:        "allocate_new_eip",
+					Description: `(Optional) When value is false, reuse an idle address in Elastic IP pool for this gateway. Otherwise, allocate a new Elastic IP and use it for this gateway. Available in Controller 4.7+. Valid values: true, false. Default: true. Option not available for GCP, AZURE and OCI gateways, they will automatically allocate new EIPs.`,
+				},
+				resource.Attribute{
+					Name:        "eip",
+					Description: `(Optional) Required when ` + "`" + `allocate_new_eip` + "`" + ` is false. It uses the specified EIP for this gateway. Available in Controller 4.7+. Only available for AWS.`,
+				},
+				resource.Attribute{
+					Name:        "tag_list",
+					Description: `(Optional) Instance tag of cloud provider. Only AWS, cloud_type is "1", is supported. Example: ["key1:value1", "key2:value2"].`,
+				},
+				resource.Attribute{
+					Name:        "enable_active_mesh",
+					Description: `(Optional) Switch to enable/disable [Active Mesh Mode](https://docs.aviatrix.com/HowTos/activemesh_faq.html) for Spoke Gateway. Valid values: true, false. Default value: false.`,
+				},
+				resource.Attribute{
+					Name:        "enable_vpc_dns_server",
+					Description: `(Optional) Enable VPC DNS Server for Gateway. Currently only supports AWS. Valid values: true, false. Default value: false. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "eip",
@@ -1689,12 +2070,32 @@ var (
 					Description: `Public IP address assigned to the HA gateway.`,
 				},
 				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `Security group used for the spoke gateway.`,
+				},
+				resource.Attribute{
 					Name:        "cloud_instance_id",
-					Description: `Cloud Instance ID. The following arguments are deprecated:`,
+					Description: `Cloud instance ID of the spoke gateway.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `Private IP address of the spoke gateway created.`,
+				},
+				resource.Attribute{
+					Name:        "ha_cloud_instance_id",
+					Description: `Cloud instance ID of the HA spoke gateway.`,
+				},
+				resource.Attribute{
+					Name:        "ha_gw_name",
+					Description: `Aviatrix spoke gateway unique name of HA spoke gateway.`,
+				},
+				resource.Attribute{
+					Name:        "ha_private_ip",
+					Description: `Private IP address of HA spoke gateway. The following arguments are deprecated:`,
 				},
 				resource.Attribute{
 					Name:        "enable_snat",
-					Description: `(Optional) Specify whether enabling Source NAT feature on the gateway or not. Please disable AWS NAT instance before enabling this feature. Currently only supports AWS(1) and ARM(8). Valid values: true, false.`,
+					Description: `(Optional) Specify whether enabling Source NAT feature on the gateway or not. Please disable AWS NAT instance before enabling this feature. Currently only supports AWS(1) and AZURE(8). Valid values: true, false.`,
 				},
 				resource.Attribute{
 					Name:        "snat_mode",
@@ -1750,7 +2151,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dnat_policy",
-					Description: `(Optional) Policy rule applied for enabling Destination NAT (DNAT), which allows you to change the destination to a virtual address range. Currently only supports AWS(1) and ARM(8).`,
+					Description: `(Optional) Policy rule applied for enabling Destination NAT (DNAT), which allows you to change the destination to a virtual address range. Currently only supports AWS(1) and AZURE(8).`,
 				},
 				resource.Attribute{
 					Name:        "src_ip",
@@ -1794,7 +2195,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "exclude_rtb",
-					Description: `(Optional) This field specifies which VPC private route table will not be programmed with the default route entry. ## Import Instance spoke_gateway can be imported using the gw_name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_spoke_gateway.test gw_name ` + "`" + `` + "`" + `` + "`" + ` ## Notes ### insane_mode If ` + "`" + `insane_mode` + "`" + ` is enabled, you must specify a valid /26 CIDR segment of the VPC specified for the ` + "`" + `subnet` + "`" + `. This will then create a new subnet to be used for the corresponding gateway. You cannot specify an existing /26 subnet. ### enable_snat If you are using/upgraded to Aviatrix Terraform Provider R2.10+, and a spoke gateway with ` + "`" + `enable_snat` + "`" + ` set to true was originally created with a provider version <R2.10, you must do a ‘terraform refresh’ to update and apply the attribute’s value into the state. In addition, you must also change this attribute to ` + "`" + `single_ip_snat` + "`" + ` in your ` + "`" + `.tf` + "`" + ` file. ### snat_mode & snat_policy If you are using/upgraded to Aviatrix Terraform Provider R2.10+, and a spoke gateway with ` + "`" + `snat_mode` + "`" + ` and ` + "`" + `snat_policy` + "`" + ` was originally created with a provider version <R2.10, you must do a ‘terraform refresh’ to remove attribute’s value from the state. In addition, you must transfer its corresponding values to the`,
+					Description: `(Optional) This field specifies which VPC private route table will not be programmed with the default route entry. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1807,12 +2208,32 @@ var (
 					Description: `Public IP address assigned to the HA gateway.`,
 				},
 				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `Security group used for the spoke gateway.`,
+				},
+				resource.Attribute{
 					Name:        "cloud_instance_id",
-					Description: `Cloud Instance ID. The following arguments are deprecated:`,
+					Description: `Cloud instance ID of the spoke gateway.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `Private IP address of the spoke gateway created.`,
+				},
+				resource.Attribute{
+					Name:        "ha_cloud_instance_id",
+					Description: `Cloud instance ID of the HA spoke gateway.`,
+				},
+				resource.Attribute{
+					Name:        "ha_gw_name",
+					Description: `Aviatrix spoke gateway unique name of HA spoke gateway.`,
+				},
+				resource.Attribute{
+					Name:        "ha_private_ip",
+					Description: `Private IP address of HA spoke gateway. The following arguments are deprecated:`,
 				},
 				resource.Attribute{
 					Name:        "enable_snat",
-					Description: `(Optional) Specify whether enabling Source NAT feature on the gateway or not. Please disable AWS NAT instance before enabling this feature. Currently only supports AWS(1) and ARM(8). Valid values: true, false.`,
+					Description: `(Optional) Specify whether enabling Source NAT feature on the gateway or not. Please disable AWS NAT instance before enabling this feature. Currently only supports AWS(1) and AZURE(8). Valid values: true, false.`,
 				},
 				resource.Attribute{
 					Name:        "snat_mode",
@@ -1868,7 +2289,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dnat_policy",
-					Description: `(Optional) Policy rule applied for enabling Destination NAT (DNAT), which allows you to change the destination to a virtual address range. Currently only supports AWS(1) and ARM(8).`,
+					Description: `(Optional) Policy rule applied for enabling Destination NAT (DNAT), which allows you to change the destination to a virtual address range. Currently only supports AWS(1) and AZURE(8).`,
 				},
 				resource.Attribute{
 					Name:        "src_ip",
@@ -1912,19 +2333,20 @@ var (
 				},
 				resource.Attribute{
 					Name:        "exclude_rtb",
-					Description: `(Optional) This field specifies which VPC private route table will not be programmed with the default route entry. ## Import Instance spoke_gateway can be imported using the gw_name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_spoke_gateway.test gw_name ` + "`" + `` + "`" + `` + "`" + ` ## Notes ### insane_mode If ` + "`" + `insane_mode` + "`" + ` is enabled, you must specify a valid /26 CIDR segment of the VPC specified for the ` + "`" + `subnet` + "`" + `. This will then create a new subnet to be used for the corresponding gateway. You cannot specify an existing /26 subnet. ### enable_snat If you are using/upgraded to Aviatrix Terraform Provider R2.10+, and a spoke gateway with ` + "`" + `enable_snat` + "`" + ` set to true was originally created with a provider version <R2.10, you must do a ‘terraform refresh’ to update and apply the attribute’s value into the state. In addition, you must also change this attribute to ` + "`" + `single_ip_snat` + "`" + ` in your ` + "`" + `.tf` + "`" + ` file. ### snat_mode & snat_policy If you are using/upgraded to Aviatrix Terraform Provider R2.10+, and a spoke gateway with ` + "`" + `snat_mode` + "`" + ` and ` + "`" + `snat_policy` + "`" + ` was originally created with a provider version <R2.10, you must do a ‘terraform refresh’ to remove attribute’s value from the state. In addition, you must transfer its corresponding values to the`,
+					Description: `(Optional) This field specifies which VPC private route table will not be programmed with the default route entry. ## Import`,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "aviatrix_spoke_vpc",
-			Category:         "Transit Network",
+			Category:         "Multi-Cloud Transit",
 			ShortDescription: `Creates and Manages Aviatrix Spoke Gateways`,
 			Description:      ``,
 			Keywords: []string{
+				"multi",
+				"cloud",
 				"transit",
-				"network",
 				"spoke",
 				"vpc",
 			},
@@ -2018,7 +2440,158 @@ var (
 				},
 				resource.Attribute{
 					Name:        "reachable_cidr",
-					Description: `(Required) Destination CIDR. ## Import Instance trans_peer can be imported using the source, nexthop and reachable_cidr, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_trans_peer.test source~nexthop~reachable_cidr ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Destination CIDR. ## Import`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aviatrix_transit_external_device_conn",
+			Category:         "Multi-Cloud Transit",
+			ShortDescription: `Creates and manages Aviatrix transit external device connections`,
+			Description:      ``,
+			Keywords: []string{
+				"multi",
+				"cloud",
+				"transit",
+				"external",
+				"device",
+				"conn",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required) VPC ID of the cloud gateway.`,
+				},
+				resource.Attribute{
+					Name:        "connection_name",
+					Description: `(Required) Site2Cloud Connection Name.`,
+				},
+				resource.Attribute{
+					Name:        "gw_name",
+					Description: `(Required) Site2Cloud Connection Name.`,
+				},
+				resource.Attribute{
+					Name:        "remote_gateway_ip",
+					Description: `(Required) Remote Gateway IP.`,
+				},
+				resource.Attribute{
+					Name:        "connection_type",
+					Description: `(Required) Connection type. Valid values: 'bpg', 'static'. Default value: 'bgp'.`,
+				},
+				resource.Attribute{
+					Name:        "bgp_local_as_num",
+					Description: `(Optional) BGP local ASN (Autonomous System Number). Integer between 1-65535. Required for 'bgp' connection.`,
+				},
+				resource.Attribute{
+					Name:        "bgp_remote_as_num",
+					Description: `(Optional) BGP remote ASN (Autonomous System Number). Integer between 1-65535. Required for 'bgp' connection.`,
+				},
+				resource.Attribute{
+					Name:        "remote_subnet",
+					Description: `(Optional) Remote CIDRs joined as a string with ','. Required for a 'static' type connection. ### HA`,
+				},
+				resource.Attribute{
+					Name:        "ha_enabled",
+					Description: `(Optional) Set as true if there are two external devices.`,
+				},
+				resource.Attribute{
+					Name:        "backup_remote_gateway_ip",
+					Description: `(Optional) Backup remote gateway IP. Required if HA enabled.`,
+				},
+				resource.Attribute{
+					Name:        "backup_bgp_remote_as_num",
+					Description: `(Optional) Backup BGP remote ASN (Autonomous System Number). Integer between 1-65535. Required if HA enabled for 'bgp' connection.`,
+				},
+				resource.Attribute{
+					Name:        "backup_pre_shared_key",
+					Description: `(Optional) Backup Pre-Shared Key.`,
+				},
+				resource.Attribute{
+					Name:        "backup_local_tunnel_cidr",
+					Description: `(Optional) Source CIDR for the tunnel from the backup Aviatrix transit gateway.`,
+				},
+				resource.Attribute{
+					Name:        "backup_remote_tunnel_cidr",
+					Description: `(Optional) Destination CIDR for the tunnel to the backup external device.`,
+				},
+				resource.Attribute{
+					Name:        "backup_direct_connect",
+					Description: `(Optional) Backup direct connect for backup external device. ### Custom Algorithms`,
+				},
+				resource.Attribute{
+					Name:        "custom_algorithms",
+					Description: `(Optional) Switch to enable custom/non-default algorithms for IPSec Authentication/Encryption. Valid values: true, false.`,
+				},
+				resource.Attribute{
+					Name:        "phase_1_authentication",
+					Description: `(Optional) Phase one Authentication. Valid values: 'SHA-1', 'SHA-256', 'SHA-384' and 'SHA-512'. Default value: 'SHA-256'.`,
+				},
+				resource.Attribute{
+					Name:        "phase_2_authentication",
+					Description: `(Optional) Phase two Authentication. Valid values: 'NO-AUTH', 'HMAC-SHA-1', 'HMAC-SHA-256', 'HMAC-SHA-384' and 'HMAC-SHA-512'. Default value: 'HMAC-SHA-256'.`,
+				},
+				resource.Attribute{
+					Name:        "phase_1_dh_groups",
+					Description: `(Optional) Phase one DH Groups. Valid values: '1', '2', '5', '14', '15', '16', '17' and '18'. Default value: '14'.`,
+				},
+				resource.Attribute{
+					Name:        "phase_2_dh_groups",
+					Description: `(Optional) Phase two DH Groups. Valid values: '1', '2', '5', '14', '15', '16', '17' and '18'. Default value: '14'.`,
+				},
+				resource.Attribute{
+					Name:        "phase_1_encryption",
+					Description: `(Optional) Phase one Encryption. Valid values: '3DES', 'AES-128-CBC', 'AES-192-CBC' and 'AES-256-CBC'. Default value: 'AES-256-CBC'.`,
+				},
+				resource.Attribute{
+					Name:        "phase_2_encryption",
+					Description: `(Optional) Phase two Encryption. Valid values: '3DES', 'AES-128-CBC', 'AES-192-CBC', 'AES-256-CBC', 'AES-128-GCM-64', 'AES-128-GCM-96' and 'AES-128-GCM-128'. Default value: 'AES-256-CBC'. ### Misc.`,
+				},
+				resource.Attribute{
+					Name:        "direct_connect",
+					Description: `(Optional) Set true for private network infrastructure.`,
+				},
+				resource.Attribute{
+					Name:        "pre_shared_key",
+					Description: `(Optional) Pre-Shared Key.`,
+				},
+				resource.Attribute{
+					Name:        "local_tunnel_cidr",
+					Description: `(Optional) Source CIDR for the tunnel from the Aviatrix transit gateway.`,
+				},
+				resource.Attribute{
+					Name:        "remote_tunnel_cidr",
+					Description: `(Optional) Destination CIDR for the tunnel to the external device.`,
+				},
+				resource.Attribute{
+					Name:        "enable_edge_segmentation",
+					Description: `(Optional) Switch to allow this connection to communicate with a Security Domain via Connection Policy. ## Import`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aviatrix_transit_firenet_policy",
+			Category:         "Multi-Cloud Transit",
+			ShortDescription: `Creates and manages Aviatrix Transit FireNet policies`,
+			Description:      ``,
+			Keywords: []string{
+				"multi",
+				"cloud",
+				"transit",
+				"firenet",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "transit_firenet_gateway_name",
+					Description: `(Required) Name of the Transit FireNet-enabled transit gateway. Currently supports AWS and Azure.`,
+				},
+				resource.Attribute{
+					Name:        "inspected_resource_name",
+					Description: `(Required) The name of the resource which will be inspected. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2026,18 +2599,19 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "aviatrix_transit_gateway",
-			Category:         "Transit Network",
-			ShortDescription: `Creates and manages the Aviatrix transit network gateways`,
+			Category:         "Multi-Cloud Transit",
+			ShortDescription: `Creates and manages the Aviatrix Transit Network gateways`,
 			Description:      ``,
 			Keywords: []string{
+				"multi",
+				"cloud",
 				"transit",
-				"network",
 				"gateway",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_type",
-					Description: `(Required) Type of cloud service provider, requires an integer value. Currently only AWS(1), GCP(4), ARM(8), and OCI(16) are supported.`,
+					Description: `(Required) Type of cloud service provider, requires an integer value. Currently only AWS(1), GCP(4), AZURE(8), and OCI(16) are supported.`,
 				},
 				resource.Attribute{
 					Name:        "account_name",
@@ -2049,15 +2623,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) VPC-ID/VNet-Name of cloud provider. Example: AWS: "vpc-abcd1234", GCP: "vpc-gcp-test", ARM: "vnet1:hello", OCI: "vpc-oracle-test1".`,
+					Description: `(Required) VPC-ID/VNet-Name of cloud provider. Example: AWS: "vpc-abcd1234", GCP: "vpc-gcp-test", AZURE: "vnet1:hello", OCI: "vpc-oracle-test1".`,
 				},
 				resource.Attribute{
 					Name:        "vpc_reg",
-					Description: `(Required) Region of cloud provider. Example: AWS: "us-east-1", GCP: "us-west2-a", ARM: "East US 2", Oracle: "us-ashburn-1".`,
+					Description: `(Required) Region of cloud provider. Example: AWS: "us-east-1", GCP: "us-west2-a", AZURE: "East US 2", Oracle: "us-ashburn-1".`,
 				},
 				resource.Attribute{
 					Name:        "gw_size",
-					Description: `(Required) Size of the gateway instance. Example: AWS: "t2.large", ARM: "Standard_B1s", Oracle: "VM.Standard2.2", GCP: "n1-standard-1".`,
+					Description: `(Required) Size of the gateway instance. Example: AWS: "t2.large", AZURE: "Standard_B1s", Oracle: "VM.Standard2.2", GCP: "n1-standard-1".`,
 				},
 				resource.Attribute{
 					Name:        "subnet",
@@ -2065,7 +2639,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ha_subnet",
-					Description: `(Optional) HA Subnet CIDR. Required only if enabling HA for AWS/ARM gateway. Setting to empty/unsetting will disable HA. Setting to a valid subnet CIDR will create an HA gateway on the subnet. Example: "10.12.0.0/24".`,
+					Description: `(Optional) HA Subnet CIDR. Required only if enabling HA for AWS/Azure gateway. Optional for GCP. Setting to empty/unsetting will disable HA. Setting to a valid subnet CIDR will create an HA gateway on the subnet. Example: "10.12.0.0/24".`,
 				},
 				resource.Attribute{
 					Name:        "ha_zone",
@@ -2085,7 +2659,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "insane_mode",
-					Description: `(Optional) Specify Insane Mode high performance gateway. Insane Mode gateway size must be at least c5 size (AWS) or Standard_D3_v2 (ARM). If enabled, you must specify a valid /26 CIDR segment of the VPC to create a new subnet. Only available for AWS and ARM. Valid values: true, false.`,
+					Description: `(Optional) Specify true for [Insane Mode](https://docs.aviatrix.com/HowTos/insane_mode.html) high performance gateway. Insane Mode gateway size must be at least c5 size (AWS) or Standard_D3_v2 (AZURE). If enabled, you must specify a valid /26 CIDR segment of the VPC to create a new subnet. Only available for AWS and Azure. Valid values: true, false.`,
 				},
 				resource.Attribute{
 					Name:        "insane_mode_az",
@@ -2096,28 +2670,8 @@ var (
 					Description: `(Optional) Enable "single_ip" mode Source NAT for this container. Valid values: true, false.`,
 				},
 				resource.Attribute{
-					Name:        "allocate_new_eip",
-					Description: `(Optional) When value is false, reuse an idle address in Elastic IP pool for this gateway. Otherwise, allocate a new Elastic IP and use it for this gateway. Available in Controller 4.7+. Valid values: true, false. Default: true. Option not available for GCP, ARM and OCI gateways, they will automatically allocate new EIPs.`,
-				},
-				resource.Attribute{
-					Name:        "eip",
-					Description: `(Optional) Required when ` + "`" + `allocate_new_eip` + "`" + ` is false. It uses the specified EIP for this gateway. Available in Controller version 4.7+. Only available for AWS.`,
-				},
-				resource.Attribute{
-					Name:        "tag_list",
-					Description: `(Optional) Instance tag of cloud provider. Only supported for AWS. Example: ["key1:value1","key2:value2"].`,
-				},
-				resource.Attribute{
 					Name:        "connected_transit",
 					Description: `(Optional) Specify Connected Transit status. If enabled, it allows spokes to run traffics to other spokes via transit gateway. Valid values: true, false. Default value: false.`,
-				},
-				resource.Attribute{
-					Name:        "enable_hybrid_connection",
-					Description: `(Optional) Sign of readiness for TGW connection. Only supported for AWS. Example: false.`,
-				},
-				resource.Attribute{
-					Name:        "enable_firenet",
-					Description: `(Optional) Sign of readiness for FireNet connection. Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "enable_advertise_transit_cidr",
@@ -2128,12 +2682,16 @@ var (
 					Description: `(Optional) Intended CIDR list to advertise to VGW. Example: "10.2.0.0/16,10.4.0.0/16". Available as of R2.6.`,
 				},
 				resource.Attribute{
-					Name:        "enable_active_mesh",
-					Description: `(Optional) Switch to enable/disable Active Mesh Mode for Transit Gateway. Valid values: true, false. Default value: false.`,
+					Name:        "enable_hybrid_connection",
+					Description: `(Optional) Sign of readiness for TGW connection. Only supported for AWS. Example: false.`,
 				},
 				resource.Attribute{
-					Name:        "enable_vpc_dns_server",
-					Description: `(Optional) Enable VPC DNS Server for Gateway. Currently only supports AWS. Valid values: true, false. Default value: false.`,
+					Name:        "enable_firenet",
+					Description: `(Optional) Sign of readiness for FireNet connection. Valid values: true, false. Default value: false.`,
+				},
+				resource.Attribute{
+					Name:        "enable_transit_firenet",
+					Description: `(Optional) Sign of readiness for [Transit FireNet](https://docs.aviatrix.com/HowTos/transit_firenet_faq.html) connection. Valid values: true, false. Default value: false. ### Encryption`,
 				},
 				resource.Attribute{
 					Name:        "enable_encrypt_volume",
@@ -2141,7 +2699,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "customer_managed_keys",
-					Description: `(Optional and Sensitive) Customer managed key ID.`,
+					Description: `(Optional and Sensitive) Customer managed key ID. ### Route Customization`,
 				},
 				resource.Attribute{
 					Name:        "customized_spoke_vpc_routes",
@@ -2153,7 +2711,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "excluded_advertised_spoke_routes",
-					Description: `(Optional) A list of comma separated CIDRs to be advertised to on-prem as 'Excluded CIDR List'. When configured, it inspects all the advertised CIDRs from its spoke gateways and remove those included in the 'Excluded CIDR List'. Example: "10.4.0.0/116,10.5.0.0/16". ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) A list of comma separated CIDRs to be advertised to on-prem as 'Excluded CIDR List'. When configured, it inspects all the advertised CIDRs from its spoke gateways and remove those included in the 'Excluded CIDR List'. Example: "10.4.0.0/116,10.5.0.0/16". ### Misc.`,
+				},
+				resource.Attribute{
+					Name:        "allocate_new_eip",
+					Description: `(Optional) When value is false, reuse an idle address in Elastic IP pool for this gateway. Otherwise, allocate a new Elastic IP and use it for this gateway. Available in Controller 4.7+. Valid values: true, false. Default: true. Option not available for GCP, Azure and OCI gateways, they will automatically allocate new EIPs.`,
+				},
+				resource.Attribute{
+					Name:        "eip",
+					Description: `(Optional) Required when ` + "`" + `allocate_new_eip` + "`" + ` is false. It uses the specified EIP for this gateway. Available in Controller version 4.7+. Only available for AWS.`,
+				},
+				resource.Attribute{
+					Name:        "tag_list",
+					Description: `(Optional) Instance tag of cloud provider. Only supported for AWS. Example: ["key1:value1","key2:value2"].`,
+				},
+				resource.Attribute{
+					Name:        "enable_active_mesh",
+					Description: `(Optional) Switch to enable/disable [Active Mesh Mode](https://docs.aviatrix.com/HowTos/activemesh_faq.html) for Transit Gateway. Valid values: true, false. Default value: false.`,
+				},
+				resource.Attribute{
+					Name:        "enable_vpc_dns_server",
+					Description: `(Optional) Enable VPC DNS Server for Gateway. Currently only supports AWS. Valid values: true, false. Default value: false.`,
+				},
+				resource.Attribute{
+					Name:        "enable_learned_cidrs_approval",
+					Description: `(Optional) Switch to enable/disable [encrypted transit approval](https://docs.aviatrix.com/HowTos/transit_approval.html) for transit Gateway. Valid values: true, false. Default value: false. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "eip",
@@ -2161,7 +2743,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ha_eip",
-					Description: `Public IP address assigned to the HA gateway. The following arguments are deprecated:`,
+					Description: `Public IP address assigned to the HA gateway.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `Security group used for the transit gateway.`,
+				},
+				resource.Attribute{
+					Name:        "cloud_instance_id",
+					Description: `Cloud instance ID of the transit gateway.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `Private IP address of the transit gateway created.`,
+				},
+				resource.Attribute{
+					Name:        "ha_cloud_instance_id",
+					Description: `Cloud instance ID of the HA transit gateway.`,
+				},
+				resource.Attribute{
+					Name:        "ha_gw_name",
+					Description: `Aviatrix transit gateway unique name of HA transit gateway.`,
+				},
+				resource.Attribute{
+					Name:        "ha_private_ip",
+					Description: `Private IP address of the HA transit gateway created. The following arguments are deprecated:`,
 				},
 				resource.Attribute{
 					Name:        "enable_firenet_interfaces",
@@ -2169,7 +2775,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_snat",
-					Description: `(Optional) Enable Source NAT for this container. Valid values: true, false. ## Import Instance transit_gateway can be imported using the gw_name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_transit_gateway.test gw_name ` + "`" + `` + "`" + `` + "`" + ` ## Notes ### CIDR advertising ` + "`" + `enable_advertise_transit_cidr` + "`" + ` and ` + "`" + `bgp_manual_spoke_advertise_cidrs` + "`" + ` functionality has been migrated over to`,
+					Description: `(Optional) Enable Source NAT for this container. Valid values: true, false. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2179,7 +2785,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ha_eip",
-					Description: `Public IP address assigned to the HA gateway. The following arguments are deprecated:`,
+					Description: `Public IP address assigned to the HA gateway.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `Security group used for the transit gateway.`,
+				},
+				resource.Attribute{
+					Name:        "cloud_instance_id",
+					Description: `Cloud instance ID of the transit gateway.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `Private IP address of the transit gateway created.`,
+				},
+				resource.Attribute{
+					Name:        "ha_cloud_instance_id",
+					Description: `Cloud instance ID of the HA transit gateway.`,
+				},
+				resource.Attribute{
+					Name:        "ha_gw_name",
+					Description: `Aviatrix transit gateway unique name of HA transit gateway.`,
+				},
+				resource.Attribute{
+					Name:        "ha_private_ip",
+					Description: `Private IP address of the HA transit gateway created. The following arguments are deprecated:`,
 				},
 				resource.Attribute{
 					Name:        "enable_firenet_interfaces",
@@ -2187,19 +2817,20 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_snat",
-					Description: `(Optional) Enable Source NAT for this container. Valid values: true, false. ## Import Instance transit_gateway can be imported using the gw_name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_transit_gateway.test gw_name ` + "`" + `` + "`" + `` + "`" + ` ## Notes ### CIDR advertising ` + "`" + `enable_advertise_transit_cidr` + "`" + ` and ` + "`" + `bgp_manual_spoke_advertise_cidrs` + "`" + ` functionality has been migrated over to`,
+					Description: `(Optional) Enable Source NAT for this container. Valid values: true, false. ## Import`,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "aviatrix_transit_gateway_peering",
-			Category:         "Transit Network",
+			Category:         "Multi-Cloud Transit",
 			ShortDescription: `Creates and manages Aviatrix transit gateway peerings`,
 			Description:      ``,
 			Keywords: []string{
+				"multi",
+				"cloud",
 				"transit",
-				"network",
 				"gateway",
 				"peering",
 			},
@@ -2210,7 +2841,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "transit_gateway_name2",
-					Description: `(Required) The second transit gateway name to make a peer pair. ## Import Instance transit_gateway_peering can be imported using the transit_gateway_name1 and transit_gateway_name2, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_transit_gateway_peering.test transit_gateway_name1~transit_gateway_name2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The second transit gateway name to make a peer pair. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2218,12 +2849,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "aviatrix_transit_vpc",
-			Category:         "Transit Network",
+			Category:         "Multi-Cloud Transit",
 			ShortDescription: `Creates and Manages the Aviatrix Transit Network Gateways`,
 			Description:      ``,
 			Keywords: []string{
+				"multi",
+				"cloud",
 				"transit",
-				"network",
 				"vpc",
 			},
 			Arguments: []resource.Attribute{
@@ -2318,7 +2950,7 @@ var (
 			Name:             "",
 			Type:             "aviatrix_tunnel",
 			Category:         "Peering",
-			ShortDescription: `Creates and manages Aviatrix Tunnels`,
+			ShortDescription: `Creates and manages Aviatrix Encrypted Peering tunnels`,
 			Description:      ``,
 			Keywords: []string{
 				"peering",
@@ -2331,11 +2963,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gw_name2",
-					Description: `(Required) The second VPC Container name to make a peer pair.`,
+					Description: `(Required) The second VPC Container name to make a peer pair. ### HA`,
 				},
 				resource.Attribute{
 					Name:        "enable_ha",
-					Description: `(Optional) Whether Peering HA is enabled. Valid values: true, false. Default value: false. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Enable this attribute if peering-HA is enabled on the gateways. Valid values: true, false. Default value: false. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "peering_state",
@@ -2347,7 +2979,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "peering_link",
-					Description: `(Computed) Name of the peering link. ## Import Instance tunnel can be imported using the gw_name1 and gw_name2, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_tunnel.test gw_name1~gw_name2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) Name of the peering link. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2361,19 +2993,20 @@ var (
 				},
 				resource.Attribute{
 					Name:        "peering_link",
-					Description: `(Computed) Name of the peering link. ## Import Instance tunnel can be imported using the gw_name1 and gw_name2, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_tunnel.test gw_name1~gw_name2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) Name of the peering link. ## Import`,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "aviatrix_vgw_conn",
-			Category:         "Transit Network",
-			ShortDescription: `Manages the Aviatrix Transit Gateway to VGW`,
+			Category:         "Multi-Cloud Transit",
+			ShortDescription: `Manages the connection between the Aviatrix Transit Gateway to VGW`,
 			Description:      ``,
 			Keywords: []string{
+				"multi",
+				"cloud",
 				"transit",
-				"network",
 				"vgw",
 				"conn",
 			},
@@ -2388,19 +3021,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) VPC-ID where the Transit Gateway is located. Example: AWS: "vpc-abcd1234".`,
+					Description: `(Required) VPC ID where the Transit Gateway is located. Example: AWS: "vpc-abcd1234".`,
 				},
 				resource.Attribute{
 					Name:        "bgp_vgw_id",
-					Description: `(Required) Id of AWS's VGW that is used for this connection. Example: "vgw-abcd1234".`,
+					Description: `(Required) ID of AWS VGW that will be used for this connection. Example: "vgw-abcd1234".`,
 				},
 				resource.Attribute{
 					Name:        "bgp_vgw_account",
-					Description: `(Required) Account of AWS's VGW that is used for this connection. Example: "dev-account-1".`,
+					Description: `(Required) Cloud Account used to create the AWS VGW that will be used for this connection. Example: "dev-account-1".`,
 				},
 				resource.Attribute{
 					Name:        "bgp_vgw_region",
-					Description: `(Required) Region of AWS's VGW that is used for this connection. Example: "us-east-1".`,
+					Description: `(Required) Region of AWS VGW that will be used for this connection. Example: "us-east-1".`,
 				},
 				resource.Attribute{
 					Name:        "bgp_local_as_num",
@@ -2425,7 +3058,7 @@ var (
 			Name:             "",
 			Type:             "aviatrix_vpc",
 			Category:         "Useful Tools",
-			ShortDescription: `Creates and manages VPCs`,
+			ShortDescription: `Creates and manages Aviatrix-created VPCs`,
 			Description:      ``,
 			Keywords: []string{
 				"useful",
@@ -2435,7 +3068,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_type",
-					Description: `(Required) Type of cloud service provider, requires an integer value. Currently only AWS(1) and GCP(4) is supported.`,
+					Description: `(Required) Type of cloud service provider, requires an integer value. Currently only AWS(1), GCP(4) and AZURE(8) are supported.`,
 				},
 				resource.Attribute{
 					Name:        "account_name",
@@ -2443,15 +3076,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Name of the vpc to be created.`,
+					Description: `(Required) Name of the VPC to be created.`,
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) Region of cloud provider. Required to be empty for GCP provider, and non-empty for other providers. Example: AWS: "us-east-1", ARM: "East US 2".`,
+					Description: `(Optional) Region of cloud provider.`,
 				},
 				resource.Attribute{
 					Name:        "cidr",
-					Description: `(Optional) VPC cidr. Required to be empty for GCP provider, and non-empty for other providers. Example: "10.11.0.0/24".`,
+					Description: `(Optional) VPC CIDR.`,
 				},
 				resource.Attribute{
 					Name:        "subnets",
@@ -2467,15 +3100,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `Name of this subnet.`,
+					Description: `Name of this subnet. ### Misc.`,
 				},
 				resource.Attribute{
 					Name:        "aviatrix_transit_vpc",
-					Description: `(Optional) Specify whether it is an Aviatrix Transit VPC. Only supported for AWS provider, required to be false for other providers. Valid values: true, false. Default: false.`,
+					Description: `(Optional) Specify whether it is an [Aviatrix Transit VPC](https://docs.aviatrix.com/HowTos/create_vpc.html#aviatrix-transit-vpc) to be used for [Transit Network](https://docs.aviatrix.com/HowTos/transitvpc_faq.html) or [TGW](https://docs.aviatrix.com/HowTos/tgw_faq.html) solutions.`,
 				},
 				resource.Attribute{
 					Name:        "aviatrix_firenet_vpc",
-					Description: `(Optional) Specify whether it is an Aviatrix FireNet VPC. Only supported for AWS provider, required to be false for other providers. Valid values: true, false. Default: false. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Specify whether it is an Aviatrix FireNet VPC to be used for [Aviatrix FireNet](https://docs.aviatrix.com/HowTos/firewall_network_faq.html) and [Transit FireNet](https://docs.aviatrix.com/HowTos/transit_firenet_faq.html) solutions.`,
+				},
+				resource.Attribute{
+					Name:        "aviatrix_firenet_vpc",
+					Description: `If you are using/ upgraded to Aviatrix Terraform Provider R1.8+, and a VPC resource was originally created with a provider version <R1.8, you must do 'terraform refresh' to update and apply the attribute’s default value (false) into the state file. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
@@ -2498,12 +3135,8 @@ var (
 					Description: `ID of this subnet. ->`,
 				},
 				resource.Attribute{
-					Name:        "aviatrix_firenet_vpc",
-					Description: `If you are using/ upgraded to Aviatrix Terraform Provider R1.8+, and an vpc resource was originally created with a provider version < R1.8, you must do ‘terraform refresh’ to update and apply the attribute’s default value (false) into the state file. ->`,
-				},
-				resource.Attribute{
 					Name:        "subnets",
-					Description: `If created as a FireNet VPC, four public subnets will be created in the following order: subnet for firewall-mgmt in the first zone, subnet for ingress-egress in the first zone, subnet for firewall-mgmt in the second zone, and subnet for ingress-egress in the second zone. ## Import Instance vpc can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_vpc.test name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `If created as a FireNet VPC, four public subnets will be created in the following order: subnet for firewall-mgmt in the first zone, subnet for ingress-egress in the first zone, subnet for firewall-mgmt in the second zone, and subnet for ingress-egress in the second zone. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2528,12 +3161,8 @@ var (
 					Description: `ID of this subnet. ->`,
 				},
 				resource.Attribute{
-					Name:        "aviatrix_firenet_vpc",
-					Description: `If you are using/ upgraded to Aviatrix Terraform Provider R1.8+, and an vpc resource was originally created with a provider version < R1.8, you must do ‘terraform refresh’ to update and apply the attribute’s default value (false) into the state file. ->`,
-				},
-				resource.Attribute{
 					Name:        "subnets",
-					Description: `If created as a FireNet VPC, four public subnets will be created in the following order: subnet for firewall-mgmt in the first zone, subnet for ingress-egress in the first zone, subnet for firewall-mgmt in the second zone, and subnet for ingress-egress in the second zone. ## Import Instance vpc can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_vpc.test name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `If created as a FireNet VPC, four public subnets will be created in the following order: subnet for firewall-mgmt in the first zone, subnet for ingress-egress in the first zone, subnet for firewall-mgmt in the second zone, and subnet for ingress-egress in the second zone. ## Import`,
 				},
 			},
 		},
@@ -2555,11 +3184,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "base_rule",
-					Description: `(Optional) Base policy rule of the profile to be added. Enter "allow_all" or "deny_all", based on whether you want a white list or black list.`,
-				},
-				resource.Attribute{
-					Name:        "users",
-					Description: `(Optional) List of VPN users to attach to this profile.`,
+					Description: `(Optional) Base policy rule of the profile to be added. Enter "allow_all" or "deny_all", based on whether you want a whitelist or blacklist. ### Policy Options`,
 				},
 				resource.Attribute{
 					Name:        "policy",
@@ -2567,7 +3192,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "action",
-					Description: `(Required) Should be the opposite of the base rule for correct behaviour. Valid values for action: "allow", "deny".`,
+					Description: `(Required) Should be the opposite of the base rule for correct behavior. Valid values for action: "allow", "deny".`,
 				},
 				resource.Attribute{
 					Name:        "proto",
@@ -2579,7 +3204,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target",
-					Description: `(Required) CIDR to be allowed or denied. Valid values for target: IPv4 CIDRs. Example: "10.30.0.0/16". ## Import Instance vpn_profile can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_vpn_profile.test name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) CIDR to be allowed or denied. Valid values for target: IPv4 CIDRs. Example: "10.30.0.0/16". ### Misc.`,
+				},
+				resource.Attribute{
+					Name:        "manage_user_attachment",
+					Description: `(Optional) This parameter is a switch used to determine whether or not to manage VPN user attachments to the VPN profile using this resource. If this is set to false, attachment must be managed using the`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `(Optional) List of VPN users to attach to this profile. This should be set to null if ` + "`" + `manage_user_attachment` + "`" + ` is set to false. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2598,11 +3231,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) VPC ID of Aviatrix VPN gateway. Example: "vpc-abcd1234".`,
+					Description: `(Optional) VPC ID of Aviatrix VPN gateway. Used together with ` + "`" + `gw_name` + "`" + `. Example: "vpc-abcd1234".`,
 				},
 				resource.Attribute{
 					Name:        "gw_name",
-					Description: `(Required) If ELB is enabled, this will be the name of the ELB, else it will be the name of the Aviatrix VPN gateway. Example: "gw1".`,
+					Description: `(Optional) If ELB is enabled, this will be the name of the ELB, else it will be the name of the Aviatrix VPN gateway. Used together with ` + "`" + `vpc_id` + "`" + `. Example: "gw1".`,
+				},
+				resource.Attribute{
+					Name:        "dns_name",
+					Description: `(Optional) FQDN of a DNS based VPN service such as GeoVPN or UDP load balancer. Example: "vpn.testuser.com".`,
 				},
 				resource.Attribute{
 					Name:        "user_name",
@@ -2610,11 +3247,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "user_email",
-					Description: `(Optional) VPN User's email. Example: "abc@xyz.com".`,
+					Description: `(Optional) VPN user's email. Example: "abc@xyz.com". ### SAML`,
 				},
 				resource.Attribute{
 					Name:        "saml_endpoint",
-					Description: `(Optional) This is the name of the SAML endpoint to which the user is to be associated. This is required if adding user to a SAML gateway/LB. ## Import Instance vpn_user can be imported using the user_name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_vpn_user.test user_name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) This is the name of the SAML endpoint to which the user is to be associated. This is required if adding user to a SAML gateway/LB. ### Misc.`,
+				},
+				resource.Attribute{
+					Name:        "manage_user_attachment",
+					Description: `(Optional) This parameter is a switch to determine whether or not to manage VPN user attachments to the VPN profile using this resource. If this is set to false, attachment must be managed using the`,
+				},
+				resource.Attribute{
+					Name:        "profiles",
+					Description: `(Optional) List of VPN profiles for user to attach to. This should be set to null if ` + "`" + `manage_user_attachment` + "`" + ` is set to false. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2634,7 +3279,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "elb_name",
-					Description: `(Required) Name of ELB to be added to VPN User Accelerator. Example: "Aviatrix-vpc-abcd2134". ## Import ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_vpn_user_acclerator.test Aviatrix-vpc-abcd1234 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Name of ELB to be added to VPN User Accelerator. Example: "Aviatrix-vpc-abcd2134". ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2643,38 +3288,50 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"aviatrix_account":                 0,
-		"aviatrix_account_user":            1,
-		"aviatrix_arm_peer":                2,
-		"aviatrix_aws_peer":                3,
-		"aviatrix_aws_tgw":                 4,
-		"aviatrix_aws_tgw_directconnect":   5,
-		"aviatrix_aws_tgw_vpc_attachment":  6,
-		"aviatrix_aws_tgw_vpn_conn":        7,
-		"aviatrix_controller_config":       8,
-		"aviatrix_firenet":                 9,
-		"aviatrix_firewall":                10,
-		"aviatrix_firewall_instance":       11,
-		"aviatrix_firewall_tag":            12,
-		"aviatrix_fqdn":                    13,
-		"aviatrix_gateway":                 14,
-		"aviatrix_gateway_dnat":            15,
-		"aviatrix_gateway_snat":            16,
-		"aviatrix_geo_vpn":                 17,
-		"aviatrix_saml_endpoint":           18,
-		"aviatrix_site2cloud":              19,
-		"aviatrix_spoke_gateway":           20,
-		"aviatrix_spoke_vpc":               21,
-		"aviatrix_trans_peer":              22,
-		"aviatrix_transit_gateway":         23,
-		"aviatrix_transit_gateway_peering": 24,
-		"aviatrix_transit_vpc":             25,
-		"aviatrix_tunnel":                  26,
-		"aviatrix_vgw_conn":                27,
-		"aviatrix_vpc":                     28,
-		"aviatrix_vpn_profile":             29,
-		"aviatrix_vpn_user":                30,
-		"aviatrix_vpn_user_accelerator":    31,
+		"aviatrix_account":                              0,
+		"aviatrix_account_user":                         1,
+		"aviatrix_arm_peer":                             2,
+		"aviatrix_aws_peer":                             3,
+		"aviatrix_aws_tgw":                              4,
+		"aviatrix_aws_tgw_directconnect":                5,
+		"aviatrix_aws_tgw_peering":                      6,
+		"aviatrix_aws_tgw_peering_domain_conn":          7,
+		"aviatrix_aws_tgw_transit_gateway_attachment":   8,
+		"aviatrix_aws_tgw_vpc_attachment":               9,
+		"aviatrix_aws_tgw_vpn_conn":                     10,
+		"aviatrix_azure_peer":                           11,
+		"aviatrix_azure_spoke_native_peering":           12,
+		"aviatrix_controller_config":                    13,
+		"aviatrix_firenet":                              14,
+		"aviatrix_firewall":                             15,
+		"aviatrix_firewall_instance":                    16,
+		"aviatrix_firewall_management_access":           17,
+		"aviatrix_firewall_tag":                         18,
+		"aviatrix_fqdn":                                 19,
+		"aviatrix_gateway":                              20,
+		"aviatrix_gateway_dnat":                         21,
+		"aviatrix_gateway_snat":                         22,
+		"aviatrix_geo_vpn":                              23,
+		"aviatrix_rbac_group":                           24,
+		"aviatrix_rbac_group_access_account_attachment": 25,
+		"aviatrix_rbac_group_permission_attachment":     26,
+		"aviatrix_rbac_group_user_attachment":           27,
+		"aviatrix_saml_endpoint":                        28,
+		"aviatrix_site2cloud":                           29,
+		"aviatrix_spoke_gateway":                        30,
+		"aviatrix_spoke_vpc":                            31,
+		"aviatrix_trans_peer":                           32,
+		"aviatrix_transit_external_device_conn":         33,
+		"aviatrix_transit_firenet_policy":               34,
+		"aviatrix_transit_gateway":                      35,
+		"aviatrix_transit_gateway_peering":              36,
+		"aviatrix_transit_vpc":                          37,
+		"aviatrix_tunnel":                               38,
+		"aviatrix_vgw_conn":                             39,
+		"aviatrix_vpc":                                  40,
+		"aviatrix_vpn_profile":                          41,
+		"aviatrix_vpn_user":                             42,
+		"aviatrix_vpn_user_accelerator":                 43,
 	}
 )
 

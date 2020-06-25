@@ -195,6 +195,90 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vault_azure_access_credentials",
+			Category:         "Data Sources",
+			ShortDescription: `Reads Azure credentials from an Azure secret backend in Vault`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "backend",
+					Description: `(Required) The path to the Azure secret backend to read credentials from, with no leading or trailing ` + "`" + `/` + "`" + `s.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Required) The name of the Azure secret backend role to read credentials from, with no leading or trailing ` + "`" + `/` + "`" + `s.`,
+				},
+				resource.Attribute{
+					Name:        "validate_creds",
+					Description: `(Optional) Whether generated credentials should be validated before being returned. Defaults to ` + "`" + `false` + "`" + `, which returns credentials without checking whether they have fully propagated throughout Azure Active Directory. Designating ` + "`" + `true` + "`" + ` activates testing.`,
+				},
+				resource.Attribute{
+					Name:        "num_sequential_successes",
+					Description: `(Optional) If 'validate_creds' is true, the number of sequential successes required to validate generated credentials. Defaults to 8.`,
+				},
+				resource.Attribute{
+					Name:        "num_seconds_between_tests",
+					Description: `(Optional) If 'validate_creds' is true, the number of seconds to wait between each test of generated credentials. Defaults to 7.`,
+				},
+				resource.Attribute{
+					Name:        "max_cred_validation_seconds",
+					Description: `(Optional) If 'validate_creds' is true, the number of seconds after which to give up validating credentials. Defaults to 1,200 (20 minutes). ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `The client id for credentials to query the Azure APIs.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `The client secret for credentials to query the Azure APIs.`,
+				},
+				resource.Attribute{
+					Name:        "lease_id",
+					Description: `The lease identifier assigned by Vault.`,
+				},
+				resource.Attribute{
+					Name:        "lease_duration",
+					Description: `The duration of the secret lease, in seconds relative to the time the data was requested. Once this time has passed any plan generated with this data may fail to apply.`,
+				},
+				resource.Attribute{
+					Name:        "lease_start_time",
+					Description: `As a convenience, this records the current time on the computer where Terraform is running when the data is requested. This can be used to approximate the absolute time represented by ` + "`" + `lease_duration` + "`" + `, though users must allow for any clock drift and response latency relative to the Vault server.`,
+				},
+				resource.Attribute{
+					Name:        "lease_renewable",
+					Description: `` + "`" + `true` + "`" + ` if the lease can be renewed using Vault's ` + "`" + `sys/renew/{lease-id}` + "`" + ` endpoint. Terraform does not currently support lease renewal, and so it will request a new lease each time this data source is refreshed.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `The client id for credentials to query the Azure APIs.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `The client secret for credentials to query the Azure APIs.`,
+				},
+				resource.Attribute{
+					Name:        "lease_id",
+					Description: `The lease identifier assigned by Vault.`,
+				},
+				resource.Attribute{
+					Name:        "lease_duration",
+					Description: `The duration of the secret lease, in seconds relative to the time the data was requested. Once this time has passed any plan generated with this data may fail to apply.`,
+				},
+				resource.Attribute{
+					Name:        "lease_start_time",
+					Description: `As a convenience, this records the current time on the computer where Terraform is running when the data is requested. This can be used to approximate the absolute time represented by ` + "`" + `lease_duration` + "`" + `, though users must allow for any clock drift and response latency relative to the Vault server.`,
+				},
+				resource.Attribute{
+					Name:        "lease_renewable",
+					Description: `` + "`" + `true` + "`" + ` if the lease can be renewed using Vault's ` + "`" + `sys/renew/{lease-id}` + "`" + ` endpoint. Terraform does not currently support lease renewal, and so it will request a new lease each time this data source is refreshed.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vault_generic_secret",
 			Category:         "Data Sources",
 			ShortDescription: `Reads arbitrary data from a given path in Vault`,
@@ -872,12 +956,13 @@ var (
 		"vault_approle_auth_backend_role_id":   0,
 		"vault_auth_backend":                   1,
 		"vault_aws_access_credentials":         2,
-		"vault_generic_secret":                 3,
-		"vault_identity_entity":                4,
-		"vault_identity_group":                 5,
-		"vault_kubernetes_auth_backend_config": 6,
-		"vault_kubernetes_auth_backend_role":   7,
-		"vault_policy_document":                8,
+		"vault_azure_access_credentials":       3,
+		"vault_generic_secret":                 4,
+		"vault_identity_entity":                5,
+		"vault_identity_group":                 6,
+		"vault_kubernetes_auth_backend_config": 7,
+		"vault_kubernetes_auth_backend_role":   8,
+		"vault_policy_document":                9,
 	}
 )
 

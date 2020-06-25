@@ -45,7 +45,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "host_system_ids",
-					Description: `(Optional) The [managed object IDs][docs-about-morefs] of the hosts to put in the cluster.`,
+					Description: `(Optional) The [managed object IDs][docs-about-morefs] of the hosts to put in the cluster. Conflicts with: ` + "`" + `host_managed` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "host_managed",
+					Description: `(Optional) Can be set to ` + "`" + `true` + "`" + ` if compute cluster membership will be managed through the ` + "`" + `host` + "`" + ` resource rather than the ` + "`" + `compute_cluster` + "`" + ` resource. Conflicts with: ` + "`" + `host_system_ids` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "host_cluster_exit_timeout",
@@ -1278,7 +1282,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster",
-					Description: `(Optional) The ID of the Compute Cluster this host should be added to. This should not be set if ` + "`" + `datacenter` + "`" + ` is set.`,
+					Description: `(Optional) The ID of the Compute Cluster this host should be added to. This should not be set if ` + "`" + `datacenter` + "`" + ` is set. Conflicts with: ` + "`" + `cluster` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_managed",
+					Description: `(Optional) Can be set to ` + "`" + `true` + "`" + ` if compute cluster membership will be managed through the ` + "`" + `compute_cluster` + "`" + ` resource rather than the` + "`" + `host` + "`" + ` resource. Conflicts with: ` + "`" + `cluster` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "thumbprint",
@@ -2022,6 +2030,10 @@ var (
 					Description: `(Optional) The [managed object reference ID][docs-about-morefs] of the datastore cluster ID to use. This setting applies to entire virtual machine and implies that you wish to use Storage DRS with this virtual machine. See the section on [virtual machine migration](#virtual-machine-migration) for details on changing this value. ~>`,
 				},
 				resource.Attribute{
+					Name:        "datacenter_id",
+					Description: `(Optional) The datacenter id. Required only when deploying an ovf template.`,
+				},
+				resource.Attribute{
 					Name:        "folder",
 					Description: `(Optional) The path to the folder to put this virtual machine in, relative to the datacenter that the resource pool is in.`,
 				},
@@ -2043,7 +2055,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "clone",
-					Description: `(Optional) When specified, the VM will be created as a clone of a specified template. Optional customization options can be submitted as well. See [creating a virtual machine from a template](#creating-a-virtual-machine-from-a-template) for more details. ~>`,
+					Description: `(Optional) When specified, the VM will be created as a clone of a specified template. Optional customization options can be submitted as well. See [creating a virtual machine from a template](#creating-a-virtual-machine-from-a-template) for more details.`,
+				},
+				resource.Attribute{
+					Name:        "hardware_version",
+					Description: `(Optional) The hardware version number. Valid range is from 4 to 15. The hardware version cannot be downgraded. See [virtual machine hardware compatibility][virtual-machine-hardware-compatibility] for more details.`,
+				},
+				resource.Attribute{
+					Name:        "pci_device_id",
+					Description: `(Optional) List of host PCI device IDs to create PCI passthroughs for. [virtual-machine-hardware-compatibility]: https://kb.vmware.com/s/article/2007240 ~>`,
+				},
+				resource.Attribute{
+					Name:        "ovf_deploy",
+					Description: `(Optional) When specified, the VM will be deployed from the provided ovf template. See [creating a virtual machine from a ovf template](#creating-vm-from-deploying-a-ovf-template) for more details.`,
 				},
 				resource.Attribute{
 					Name:        "vapp",
@@ -2051,7 +2075,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "guest_id",
-					Description: `(Optional) The guest ID for the operating system type. For a full list of possible values, see [here][vmware-docs-guest-ids]. Default: ` + "`" + `other-64` + "`" + `. [vmware-docs-guest-ids]: https://pubs.vmware.com/vsphere-6-5/topic/com.vmware.wssdk.apiref.doc/vim.vm.GuestOsDescriptor.GuestOsIdentifier.html`,
+					Description: `(Optional) The guest ID for the operating system type. For a full list of possible values, see [here][vmware-docs-guest-ids]. Default: ` + "`" + `other-64` + "`" + `. [vmware-docs-guest-ids]: https://code.vmware.com/apis/358/doc/vim.vm.GuestOsDescriptor.GuestOsIdentifier.html`,
 				},
 				resource.Attribute{
 					Name:        "alternate_guest_name",
@@ -2355,7 +2379,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bandwidth_share_count",
-					Description: `(Optional) The share count for this network interface when the share level is ` + "`" + `custom` + "`" + `. ### CDROM options A single virtual CDROM device can be created and attached to the virtual machine. The resource supports attaching a CDROM from a datastore ISO or using a remote client device. An example is below: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { ... cdrom { datastore_id = "${data.vsphere_datastore.iso_datastore.id}" path = "ISOs/os-livecd.iso" } } ` + "`" + `` + "`" + `` + "`" + ` The options are:`,
+					Description: `(Optional) The share count for this network interface when the share level is ` + "`" + `custom` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ovf_mapping",
+					Description: `(Optional) Specifies which OVF NIC the ` + "`" + `network_interface` + "`" + ` should be associated with. Only applies at creation and only when deploying from an OVF source. ### CDROM options A single virtual CDROM device can be created and attached to the virtual machine. The resource supports attaching a CDROM from a datastore ISO or using a remote client device. An example is below: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { ... cdrom { datastore_id = "${data.vsphere_datastore.iso_datastore.id}" path = "ISOs/os-livecd.iso" } } ` + "`" + `` + "`" + `` + "`" + ` The options are:`,
 				},
 				resource.Attribute{
 					Name:        "client_device",
@@ -2499,7 +2527,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "time_zone",
-					Description: `(Optional) The new time zone for the virtual machine. This is a numeric, sysprep-dictated, timezone code. For a list of codes, click [here][ms-docs-valid-sysprep-tzs]. The default is ` + "`" + `85` + "`" + ` (GMT/UTC). [ms-docs-valid-sysprep-tzs]: https://msdn.microsoft.com/en-us/library/ms912391(v=winembedded.11).aspx #### Supplying your own SysPrep file Alternative to the ` + "`" + `windows_options` + "`" + ` supplied above, you can instead supply your own ` + "`" + `sysprep.inf` + "`" + ` file contents via the ` + "`" + `windows_sysprep_text` + "`" + ` option. This allows full control of the customization process out-of-band of vSphere. Example below: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { ... clone { ... customize { ... windows_sysprep_text = "${file("${path.module}/sysprep.inf")}" } } } ` + "`" + `` + "`" + `` + "`" + ` Note this option is mutually exclusive to ` + "`" + `windows_options` + "`" + ` - one must not be included if the other is specified. ### Using vApp properties to supply OVF/OVA configuration Alternative to the settings in ` + "`" + `customize` + "`" + `, one can use the settings in the ` + "`" + `properties` + "`" + ` section of the ` + "`" + `vapp` + "`" + ` block to supply configuration parameters to a virtual machine cloned from a template that came from an imported OVF or OVA file. Both GuestInfo and ISO transport methods are supported. For templates that use ISO transport, a CDROM backed by client device is required. See [CDROM options](#cdrom-options) for details. ~>`,
+					Description: `(Optional) The new time zone for the virtual machine. This is a numeric, sysprep-dictated, timezone code. For a list of codes, click [here][ms-docs-valid-sysprep-tzs]. The default is ` + "`" + `85` + "`" + ` (GMT/UTC). [ms-docs-valid-sysprep-tzs]: https://msdn.microsoft.com/en-us/library/ms912391(v=winembedded.11).aspx #### Supplying your own SysPrep file Alternative to the ` + "`" + `windows_options` + "`" + ` supplied above, you can instead supply your own ` + "`" + `sysprep.xml` + "`" + ` file contents via the ` + "`" + `windows_sysprep_text` + "`" + ` option. This allows full control of the customization process out-of-band of vSphere. Example below: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { ... clone { ... customize { ... windows_sysprep_text = "${file("${path.module}/sysprep.xml")}" } } } ` + "`" + `` + "`" + `` + "`" + ` Note this option is mutually exclusive to ` + "`" + `windows_options` + "`" + ` - one must not be included if the other is specified. ### Creating VM from deploying a OVF template The ` + "`" + `ovf_deploy` + "`" + ` block can be used to create a new virtual machine from an OVF template either from local system or remote URL. While deploying from OVF, the VM properties are taken from OVF and setting them in configuration file is not necessary. See the [Deploying from OVF example](#deploying-vm-from-an-ovf-template) for a usage synopsis. ~>`,
+				},
+				resource.Attribute{
+					Name:        "local_ovf_path",
+					Description: `(Optional) The absolute path to the ovf file in the local system. Make sure the other necessary files like the .vmdk files are also in the same directory as the given ovf file.`,
+				},
+				resource.Attribute{
+					Name:        "remote_ovf_url",
+					Description: `(Optional) URL to the remote ovf file to be deployed. ~>`,
+				},
+				resource.Attribute{
+					Name:        "ip_allocation_policy",
+					Description: `(Optional) The IP allocation policy.`,
+				},
+				resource.Attribute{
+					Name:        "ip_protocol",
+					Description: `(Optional) The IP protocol.`,
+				},
+				resource.Attribute{
+					Name:        "disk_provisioning",
+					Description: `(Optional) The disk provisioning. If set, all the disks in the deployed OVF will have the same specified disk type (e.g., thin provisioned).`,
+				},
+				resource.Attribute{
+					Name:        "ovf_network_map",
+					Description: `(Optional) The mapping of name of network identifiers from the ovf descriptor to network UUID in the VI infrastructure. ### Using vApp properties to supply OVF/OVA configuration Alternative to the settings in ` + "`" + `customize` + "`" + `, one can use the settings in the ` + "`" + `properties` + "`" + ` section of the ` + "`" + `vapp` + "`" + ` block to supply configuration parameters to a virtual machine cloned from a template that came from an imported OVF or OVA file. Both GuestInfo and ISO transport methods are supported. For templates that use ISO transport, a CDROM backed by client device is required. See [CDROM options](#cdrom-options) for details. ~>`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2624,6 +2676,45 @@ var (
 				resource.Attribute{
 					Name:        "consolidate",
 					Description: `(Optional) If set to ` + "`" + `true` + "`" + `, the delta disks involved in this snapshot will be consolidated into the parent when this resource is destroyed. ## Attribute Reference The only attribute this resource exports is the resource ` + "`" + `id` + "`" + `, which is set to the [managed object reference ID][docs-about-morefs] of the snapshot. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vm_storage_policy",
+			Category:         "Storage Resources",
+			ShortDescription: `Provides CRUD operations on vm storage policy profiles. These policies help create tag based rules for placement of a VM on datastores. While placing a VM, compatible datastores can be filtered using these profiles.`,
+			Description:      ``,
+			Keywords: []string{
+				"storage",
+				"vm",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the storage policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the storage policy.`,
+				},
+				resource.Attribute{
+					Name:        "tag_rules",
+					Description: `(Required) List of tag rules. The tag category and tags to be associated to this storage policy.`,
+				},
+				resource.Attribute{
+					Name:        "tag_category",
+					Description: `(Required) Name of the tag category.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Required) List of Name of tags to select from the given category.`,
+				},
+				resource.Attribute{
+					Name:        "include_datastores_with_tags",
+					Description: `(Optional) Whether to include datastores with the given tags or exclude. Default value is true i.e. include datastores with the given tags.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2858,8 +2949,9 @@ var (
 		"vsphere_virtual_disk":                            29,
 		"vsphere_virtual_machine":                         30,
 		"vsphere_virtual_machine_snapshot":                31,
-		"vsphere_vmfs_datastore":                          32,
-		"vsphere_vnic":                                    33,
+		"vm_storage_policy":                               32,
+		"vsphere_vmfs_datastore":                          33,
+		"vsphere_vnic":                                    34,
 	}
 )
 

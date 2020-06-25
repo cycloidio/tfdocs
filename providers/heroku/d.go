@@ -86,94 +86,102 @@ Use this data source to get information about a Heroku App.
 					Description: `(Required) The name of the application. In Heroku, this is also the unique ID, so it must be unique and have a minimum of 3 characters. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `The unique UUID of the Heroku app.`,
+				},
+				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of the application. In Heroku, this is also the unique .`,
+					Description: `The name of the application. In Heroku, this is also the unique ID.`,
 				},
 				resource.Attribute{
 					Name:        "stack",
-					Description: `(Optional) The application stack is what platform to run the application in.`,
+					Description: `The application stack is what platform to run the application in.`,
 				},
 				resource.Attribute{
 					Name:        "buildpacks",
-					Description: `(Optional) A list of buildpacks that this app uses.`,
+					Description: `A list of buildpacks that this app uses.`,
 				},
 				resource.Attribute{
 					Name:        "space",
-					Description: `(Optional) The private space in which the app runs. Not present if this is a common runtime app.`,
+					Description: `The private space in which the app runs. Not present if this is a common runtime app.`,
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Required) The region in which the app is deployed.`,
+					Description: `The region in which the app is deployed.`,
 				},
 				resource.Attribute{
 					Name:        "git_url",
-					Description: `(Required) The Git URL for the application. This is used for deploying new versions of the app.`,
+					Description: `The Git URL for the application. This is used for deploying new versions of the app.`,
 				},
 				resource.Attribute{
 					Name:        "web_url",
-					Description: `(Required) The web (HTTP) URL that the application can be accessed at by default.`,
+					Description: `The web (HTTP) URL that the application can be accessed at by default.`,
 				},
 				resource.Attribute{
 					Name:        "heroku_hostname",
-					Description: `(Required) A hostname for the Heroku application, suitable for pointing DNS records.`,
+					Description: `The hostname for the Heroku application, suitable for pointing DNS records.`,
 				},
 				resource.Attribute{
 					Name:        "config_vars",
-					Description: `(Optional) A map of all of the configuration variables for the app.`,
+					Description: `A map of all of the configuration variables for the app.`,
 				},
 				resource.Attribute{
 					Name:        "acm",
-					Description: `(Required) True if Heroku ACM is enabled for this app, false otherwise.`,
+					Description: `True if Heroku ACM is enabled for this app, false otherwise.`,
 				},
 				resource.Attribute{
 					Name:        "organization",
-					Description: `(Optional) The Heroku Team that owns this app. The fields for this block are documented below. The ` + "`" + `organization` + "`" + ` block supports:`,
+					Description: `The Heroku Team that owns this app. - ` + "`" + `name` + "`" + ` - The name of the Heroku Team (organization). - ` + "`" + `locked` + "`" + ` - True if the app access is locked - ` + "`" + `personal` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `The unique UUID of the Heroku app.`,
+				},
+				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of the application. In Heroku, this is also the unique .`,
+					Description: `The name of the application. In Heroku, this is also the unique ID.`,
 				},
 				resource.Attribute{
 					Name:        "stack",
-					Description: `(Optional) The application stack is what platform to run the application in.`,
+					Description: `The application stack is what platform to run the application in.`,
 				},
 				resource.Attribute{
 					Name:        "buildpacks",
-					Description: `(Optional) A list of buildpacks that this app uses.`,
+					Description: `A list of buildpacks that this app uses.`,
 				},
 				resource.Attribute{
 					Name:        "space",
-					Description: `(Optional) The private space in which the app runs. Not present if this is a common runtime app.`,
+					Description: `The private space in which the app runs. Not present if this is a common runtime app.`,
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Required) The region in which the app is deployed.`,
+					Description: `The region in which the app is deployed.`,
 				},
 				resource.Attribute{
 					Name:        "git_url",
-					Description: `(Required) The Git URL for the application. This is used for deploying new versions of the app.`,
+					Description: `The Git URL for the application. This is used for deploying new versions of the app.`,
 				},
 				resource.Attribute{
 					Name:        "web_url",
-					Description: `(Required) The web (HTTP) URL that the application can be accessed at by default.`,
+					Description: `The web (HTTP) URL that the application can be accessed at by default.`,
 				},
 				resource.Attribute{
 					Name:        "heroku_hostname",
-					Description: `(Required) A hostname for the Heroku application, suitable for pointing DNS records.`,
+					Description: `The hostname for the Heroku application, suitable for pointing DNS records.`,
 				},
 				resource.Attribute{
 					Name:        "config_vars",
-					Description: `(Optional) A map of all of the configuration variables for the app.`,
+					Description: `A map of all of the configuration variables for the app.`,
 				},
 				resource.Attribute{
 					Name:        "acm",
-					Description: `(Required) True if Heroku ACM is enabled for this app, false otherwise.`,
+					Description: `True if Heroku ACM is enabled for this app, false otherwise.`,
 				},
 				resource.Attribute{
 					Name:        "organization",
-					Description: `(Optional) The Heroku Team that owns this app. The fields for this block are documented below. The ` + "`" + `organization` + "`" + ` block supports:`,
+					Description: `The Heroku Team that owns this app. - ` + "`" + `name` + "`" + ` - The name of the Heroku Team (organization). - ` + "`" + `locked` + "`" + ` - True if the app access is locked - ` + "`" + `personal` + "`" + ``,
 				},
 			},
 		},

@@ -23,15 +23,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
-					Description: `(Required) Availability zone where database instance is located. Such as: "cn-bj2-02". You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist)`,
+					Description: `(Required, ForceNew) Availability zone where database instance is located. Such as: "cn-bj2-02". You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist)`,
 				},
 				resource.Attribute{
 					Name:        "engine",
-					Description: `(Required) The type of database engine, possible values are: "mysql", "percona".`,
+					Description: `(Required, ForceNew) The type of database engine, possible values are: "mysql", "percona".`,
 				},
 				resource.Attribute{
 					Name:        "engine_version",
-					Description: `(Required) The database engine version, possible values are: "5.5", "5.6", "5.7". - 5.5/5.6/5.7 for mysql and percona engine.`,
+					Description: `(Required, ForceNew) The database engine version, possible values are: "5.5", "5.6", "5.7". - 5.5/5.6/5.7 for mysql and percona engine.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -47,7 +47,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "standby_zone",
-					Description: `(Optional) Availability zone where the standby database instance is located for the high availability database instance with multiple zone; The disaster recovery of data center can be activated by switching to the standby database instance for the high availability database instance.`,
+					Description: `(Optional, ForceNew) Availability zone where the standby database instance is located for the high availability database instance with multiple zone; The disaster recovery of data center can be activated by switching to the standby database instance for the high availability database instance.`,
 				},
 				resource.Attribute{
 					Name:        "password",
@@ -59,23 +59,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "charge_type",
-					Description: `(Optional) The charge type of db instance, possible values are: ` + "`" + `year` + "`" + `, ` + "`" + `month` + "`" + ` and ` + "`" + `dynamic` + "`" + ` as pay by hour (specific permission required). (Default: ` + "`" + `month` + "`" + `).`,
+					Description: `(Optional, ForceNew) The charge type of db instance, possible values are: ` + "`" + `year` + "`" + `, ` + "`" + `month` + "`" + ` and ` + "`" + `dynamic` + "`" + ` as pay by hour (specific permission required). (Default: ` + "`" + `month` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "duration",
-					Description: `(Optional) The duration that you will buy the db instance (Default: ` + "`" + `1` + "`" + `). The value is ` + "`" + `0` + "`" + ` when pay by month and the instance will be vaild till the last day of that month. It is not required when ` + "`" + `dynamic` + "`" + ` (pay by hour).`,
+					Description: `(Optional, ForceNew) The duration that you will buy the db instance (Default: ` + "`" + `1` + "`" + `). The value is ` + "`" + `0` + "`" + ` when pay by month and the instance will be vaild till the last day of that month. It is not required when ` + "`" + `dynamic` + "`" + ` (pay by hour).`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Optional) The ID of VPC linked to the database instances.`,
+					Description: `(Optional, ForceNew) The ID of VPC linked to the database instances.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `(Optional) The ID of subnet.`,
+					Description: `(Optional, ForceNew) The ID of subnet.`,
 				},
 				resource.Attribute{
 					Name:        "backup_count",
-					Description: `(Optional) Specifies the number of backup saved per week, it is 7 backups saved per week by default.`,
+					Description: `(Optional, ForceNew) Specifies the number of backup saved per week, it is 7 backups saved per week by default.`,
 				},
 				resource.Attribute{
 					Name:        "backup_begin_time",
@@ -91,7 +91,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tag",
-					Description: `(Optional) A tag assigned to database instance, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) A tag assigned to database instance, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "parameter_group",
+					Description: `(Optional) The parameter group for database. If you not set, the default parameter group will be used. You can select one by the data source [ucloud_db_parameter_groups](https://www.terraform.io/docs/providers/ucloud/d/db_parameter_groups.html).`,
+				},
+				resource.Attribute{
+					Name:        "allow_stopping_for_update",
+					Description: `(Optional) If you try to update the property ` + "`" + `parameter_group` + "`" + ` which requires restarting the db instance, you must set ` + "`" + `allow_stopping_for_update` + "`" + ` to ` + "`" + `true` + "`" + ` in your config to allows Terraform to restart the instance to update its property. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 mins) Used when launching the db instance (until it reaches the initial ` + "`" + `Running` + "`" + ` state)`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 20 mins) Used when updating the arguments of the db instance if necessary - e.g. when changing ` + "`" + `instance_storage` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 10 mins) Used when terminating the db instance ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource db instance.`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -115,6 +139,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource db instance.`,
+				},
 				resource.Attribute{
 					Name:        "status",
 					Description: `Specifies the status of database, possible values are: ` + "`" + `Init` + "`" + `, ` + "`" + `Fail` + "`" + `, ` + "`" + `Starting` + "`" + `, ` + "`" + `Running` + "`" + `, ` + "`" + `Shutdown` + "`" + `, ` + "`" + `Shutoff` + "`" + `, ` + "`" + `Delete` + "`" + `, ` + "`" + `Upgrading` + "`" + `, ` + "`" + `Promoting` + "`" + `, ` + "`" + `Recovering` + "`" + ` and ` + "`" + `Recover fail` + "`" + `.`,
@@ -150,11 +178,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
-					Description: `(Required) Availability zone where cloud disk is located. Such as: "cn-bj2-02". You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist).`,
+					Description: `(Required, ForceNew) Availability zone where cloud disk is located. Such as: "cn-bj2-02". You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist).`,
 				},
 				resource.Attribute{
 					Name:        "disk_size",
-					Description: `(Required) The size of disk. Purchase the size of disk in GB. 1-8000 for a cloud disk, 1-4000 for SSD cloud disk. If the disk have attached to the instance, the instance will reboot automatically to make the change take effect when update the ` + "`" + `disk_size` + "`" + `. - - -`,
+					Description: `(Required) The size of disk. Purchase the size of disk in GB. 20-8000 for a cloud disk, 20-8000 for SSD cloud disk . If the disk have attached to the instance, the instance will reboot automatically to make the change take effect when update the ` + "`" + `disk_size` + "`" + `. - - -`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -162,19 +190,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_type",
-					Description: `(Optional) The type of disk. Possible values are: ` + "`" + `data_disk` + "`" + `as cloud disk, ` + "`" + `ssd_data_disk` + "`" + ` as ssd cloud disk, ` + "`" + `rssd_data_disk` + "`" + ` as RDMA-SSD cloud disk (the ` + "`" + `rssd_data_disk` + "`" + ` only be supported in ` + "`" + `cn-bj2-05` + "`" + `).(Default: ` + "`" + `data_disk` + "`" + `).`,
+					Description: `(Optional, ForceNew) The type of disk. Possible values are: ` + "`" + `data_disk` + "`" + `as cloud disk, ` + "`" + `ssd_data_disk` + "`" + ` as ssd cloud disk, ` + "`" + `rssd_data_disk` + "`" + ` as RDMA-SSD cloud disk (the ` + "`" + `rssd_data_disk` + "`" + ` only be supported in ` + "`" + `cn-bj2-05` + "`" + `).(Default: ` + "`" + `data_disk` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "charge_type",
-					Description: `(Optional) Charge type of disk. Possible values are: ` + "`" + `year` + "`" + ` as pay by year, ` + "`" + `month` + "`" + ` as pay by month, ` + "`" + `dynamic` + "`" + ` as pay by hour. (Default: ` + "`" + `month` + "`" + `).`,
+					Description: `(Optional, ForceNew) Charge type of disk. Possible values are: ` + "`" + `year` + "`" + ` as pay by year, ` + "`" + `month` + "`" + ` as pay by month, ` + "`" + `dynamic` + "`" + ` as pay by hour. (Default: ` + "`" + `month` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "duration",
-					Description: `(Optional) The duration that you will buy the resource. (Default: ` + "`" + `1` + "`" + `). It is not required when ` + "`" + `dynamic` + "`" + ` (pay by hour), the value is ` + "`" + `0` + "`" + ` when ` + "`" + `month` + "`" + `(pay by month) and the disk will be vaild till the last day of that month.`,
+					Description: `(Optional, ForceNew) The duration that you will buy the resource. (Default: ` + "`" + `1` + "`" + `). It is not required when ` + "`" + `dynamic` + "`" + ` (pay by hour), the value is ` + "`" + `0` + "`" + ` when ` + "`" + `month` + "`" + `(pay by month) and the disk will be vaild till the last day of that month.`,
 				},
 				resource.Attribute{
 					Name:        "tag",
-					Description: `(Optional) A tag assigned to VPC, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) A tag assigned to VPC, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource disk.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
@@ -190,6 +222,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource disk.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time of creation of disk, formatted in RFC3339 time string.`,
@@ -218,15 +254,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
-					Description: `(Required) The Zone to attach the disk in.`,
+					Description: `(Required, ForceNew) The Zone to attach the disk in.`,
 				},
 				resource.Attribute{
 					Name:        "instance_id",
-					Description: `(Required) The ID of host instance.`,
+					Description: `(Required, ForceNew) The ID of instance.`,
 				},
 				resource.Attribute{
 					Name:        "disk_id",
-					Description: `(Required) The ID of disk that needs to be attached`,
+					Description: `(Required, ForceNew) The ID of disk that needs to be attached`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -244,7 +280,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "internet_type",
-					Description: `(Required) Type of Elastic IP routes. Possible values are: ` + "`" + `international` + "`" + ` as international BGP IP and ` + "`" + `bgp` + "`" + ` as china mainland BGP IP. - - -`,
+					Description: `(Required, ForceNew) Type of Elastic IP routes. Possible values are: ` + "`" + `international` + "`" + ` as international BGP IP and ` + "`" + `bgp` + "`" + ` as china mainland BGP IP. - - -`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth",
@@ -256,11 +292,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "duration",
-					Description: `(Optional) The duration that you will buy the resource. (Default: ` + "`" + `1` + "`" + `). It is not required when ` + "`" + `dynamic` + "`" + ` (pay by hour), the value is ` + "`" + `0` + "`" + ` when ` + "`" + `month` + "`" + `(pay by month) and the instance will be valid till the last day of that month.`,
+					Description: `(Optional, ForceNew) The duration that you will buy the resource. (Default: ` + "`" + `1` + "`" + `). It is not required when ` + "`" + `dynamic` + "`" + ` (pay by hour), the value is ` + "`" + `0` + "`" + ` when ` + "`" + `month` + "`" + `(pay by month) and the instance will be valid till the last day of that month.`,
 				},
 				resource.Attribute{
 					Name:        "charge_type",
-					Description: `(Optional) Elastic IP charge type. Possible values are: ` + "`" + `year` + "`" + ` as pay by year, ` + "`" + `month` + "`" + ` as pay by month, ` + "`" + `dynamic` + "`" + ` as pay by hour (specific permission required). (Default: ` + "`" + `month` + "`" + `).`,
+					Description: `(Optional, ForceNew) Elastic IP charge type. Possible values are: ` + "`" + `year` + "`" + ` as pay by year, ` + "`" + `month` + "`" + ` as pay by month, ` + "`" + `dynamic` + "`" + ` as pay by hour (specific permission required). (Default: ` + "`" + `month` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -273,6 +309,10 @@ var (
 				resource.Attribute{
 					Name:        "tag",
 					Description: `(Optional) A tag assigned to Elastic IP, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource eip.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
@@ -312,6 +352,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource eip.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time of creation for EIP, formatted in RFC3339 time string.`,
@@ -364,11 +408,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "eip_id",
-					Description: `(Required) The ID of EIP.`,
+					Description: `(Required, ForceNew) The ID of EIP.`,
 				},
 				resource.Attribute{
 					Name:        "resource_id",
-					Description: `(Required) The ID of resource with EIP attached.`,
+					Description: `(Required, ForceNew) The ID of resource with EIP attached.`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `(`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -386,7 +434,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
-					Description: `(Required) Availability zone where instance is located. such as: ` + "`" + `cn-bj2-02` + "`" + `. You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist)`,
+					Description: `(Required, ForceNew) Availability zone where instance is located. such as: ` + "`" + `cn-bj2-02` + "`" + `. You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist)`,
 				},
 				resource.Attribute{
 					Name:        "image_id",
@@ -406,27 +454,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "boot_disk_size",
-					Description: `(Optional) The size of the boot disk, measured in GB (GigaByte). Range: 20-100. The value set of disk size must be larger or equal to ` + "`" + `20` + "`" + `(default: ` + "`" + `20` + "`" + `) for Linux and ` + "`" + `40` + "`" + ` (default: ` + "`" + `40` + "`" + `) for Windows. The responsive time is a bit longer if the value set is larger than default for local boot disk, and further settings may be required on host instance if the value set is larger than default for cloud boot disk. The disk volume adjustment must be a multiple of 10 GB. In addition, any reduction of boot disk size is not supported. ~>`,
+					Description: `(Optional) The size of the boot disk, measured in GB (GigaByte). Range: 20-500. The value set of disk size must be larger or equal to ` + "`" + `20` + "`" + `(default: ` + "`" + `20` + "`" + `) for Linux and ` + "`" + `40` + "`" + ` (default: ` + "`" + `40` + "`" + `) for Windows. The responsive time is a bit longer if the value set is larger than default for local boot disk, and further settings may be required on host instance if the value set is larger than default for cloud boot disk. The disk volume adjustment must be a multiple of 10 GB. In addition, any reduction of boot disk size is not supported. ~>`,
 				},
 				resource.Attribute{
 					Name:        "boot_disk_type",
-					Description: `(Optional) The type of boot disk. Possible values are: ` + "`" + `local_normal` + "`" + ` and ` + "`" + `local_ssd` + "`" + ` for local boot disk, ` + "`" + `cloud_ssd` + "`" + ` for cloud SSD boot disk. (Default: ` + "`" + `local_normal` + "`" + `). The ` + "`" + `local_ssd` + "`" + ` and ` + "`" + `cloud_ssd` + "`" + ` are not fully support by all regions as boot disk type, please proceed to UCloud console for more details.`,
+					Description: `(Optional, ForceNew) The type of boot disk. Possible values are: ` + "`" + `local_normal` + "`" + ` and ` + "`" + `local_ssd` + "`" + ` for local boot disk, ` + "`" + `cloud_ssd` + "`" + ` for cloud SSD boot disk. (Default: ` + "`" + `local_normal` + "`" + `). The ` + "`" + `local_ssd` + "`" + ` and ` + "`" + `cloud_ssd` + "`" + ` are not fully support by all regions as boot disk type, please proceed to UCloud console for more details.`,
 				},
 				resource.Attribute{
 					Name:        "data_disk_type",
-					Description: `(Optional) The type of local data disk. Possible values are: ` + "`" + `local_normal` + "`" + ` and ` + "`" + `local_ssd` + "`" + ` for local data disk. (Default: ` + "`" + `local_normal` + "`" + `). The ` + "`" + `local_ssd` + "`" + ` is not fully support by all regions as data disk type, please proceed to UCloud console for more details. In addition, the ` + "`" + `data_disk_type` + "`" + ` must be same as ` + "`" + `boot_disk_type` + "`" + ` if specified.`,
+					Description: `(Optional, ForceNew) The type of local data disk. Possible values are: ` + "`" + `local_normal` + "`" + ` and ` + "`" + `local_ssd` + "`" + ` for local data disk. (Default: ` + "`" + `local_normal` + "`" + `). The ` + "`" + `local_ssd` + "`" + ` is not fully support by all regions as data disk type, please proceed to UCloud console for more details. In addition, the ` + "`" + `data_disk_type` + "`" + ` must be same as ` + "`" + `boot_disk_type` + "`" + ` if specified.`,
 				},
 				resource.Attribute{
 					Name:        "data_disk_size",
-					Description: `(Optional) The size of local data disk, measured in GB (GigaByte), range: 0-8000 (Default: ` + "`" + `20` + "`" + `), 0-8000 for cloud disk, 0-2000 for local sata disk and 100-1000 for local ssd disk (all the GPU type instances are included). The volume adjustment must be a multiple of 10 GB. In addition, any reduction of data disk size is not supported. ~>`,
+					Description: `(Optional) The size of local data disk, measured in GB (GigaByte), 20-2000 for local sata disk and 20-1000 for local ssd disk (all the GPU type instances are included). The volume adjustment must be a multiple of 10 GB. In addition, any reduction of data disk size is not supported. ~>`,
 				},
 				resource.Attribute{
 					Name:        "charge_type",
-					Description: `(Optional) The charge type of instance, possible values are: ` + "`" + `year` + "`" + `, ` + "`" + `month` + "`" + ` and ` + "`" + `dynamic` + "`" + ` as pay by hour (specific permission required). (Default: ` + "`" + `month` + "`" + `).`,
+					Description: `(Optional, ForceNew) The charge type of instance, possible values are: ` + "`" + `year` + "`" + `, ` + "`" + `month` + "`" + ` and ` + "`" + `dynamic` + "`" + ` as pay by hour (specific permission required). (Default: ` + "`" + `month` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "duration",
-					Description: `(Optional) The duration that you will buy the instance (Default: ` + "`" + `1` + "`" + `). The value is ` + "`" + `0` + "`" + ` when pay by month and the instance will be valid till the last day of that month. It is not required when ` + "`" + `dynamic` + "`" + ` (pay by hour).`,
+					Description: `(Optional, ForceNew) The duration that you will buy the instance (Default: ` + "`" + `1` + "`" + `). The value is ` + "`" + `0` + "`" + ` when pay by month and the instance will be valid till the last day of that month. It is not required when ` + "`" + `dynamic` + "`" + ` (pay by hour).`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -442,11 +490,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Optional) The ID of VPC linked to the instance. If not defined ` + "`" + `vpc_id` + "`" + `, the instance will use the default VPC in the current region.`,
+					Description: `(Optional, ForceNew) The ID of VPC linked to the instance. If not defined ` + "`" + `vpc_id` + "`" + `, the instance will use the default VPC in the current region.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `(Optional) The ID of subnet. If defined ` + "`" + `vpc_id` + "`" + `, the ` + "`" + `subnet_id` + "`" + ` is Required. If not defined ` + "`" + `vpc_id` + "`" + ` and ` + "`" + `subnet_id` + "`" + `, the instance will use the default subnet in the current region.`,
+					Description: `(Optional, ForceNew) The ID of subnet. If defined ` + "`" + `vpc_id` + "`" + `, the ` + "`" + `subnet_id` + "`" + ` is Required. If not defined ` + "`" + `vpc_id` + "`" + ` and ` + "`" + `subnet_id` + "`" + `, the instance will use the default subnet in the current region.`,
 				},
 				resource.Attribute{
 					Name:        "tag",
@@ -454,11 +502,51 @@ var (
 				},
 				resource.Attribute{
 					Name:        "isolation_group",
-					Description: `(Optional) The ID of the associated isolation group.`,
+					Description: `(Optional, ForceNew) The ID of the associated isolation group.`,
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `(Optional) The private IP address assigned to the instance. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) The private IP address assigned to the instance.`,
+				},
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `(Optional, ForceNew) The user data to customize the startup behaviors when launching the instance. You may refer to [user_data_document](https://docs.ucloud.cn/uhost/guide/metadata/userdata)`,
+				},
+				resource.Attribute{
+					Name:        "data_disks",
+					Description: `(Optional, ForceNew) Additional cloud data disks to attach to the instance. ` + "`" + `data_disks` + "`" + ` configurations only apply on resource creation. The count of ` + "`" + `data_disks` + "`" + ` can only be one. See [data_disks](#data_disks) below for details on attributes. When set ` + "`" + `data_disks` + "`" + `, the argument ` + "`" + `delete_disks_with_instance` + "`" + ` must bet set.`,
+				},
+				resource.Attribute{
+					Name:        "delete_disks_with_instance",
+					Description: `(Optional, ForceNew, Required when set ` + "`" + `data_disks` + "`" + `) Whether the cloud data disks attached instance should be destroyed on instance termination. ~>`,
+				},
+				resource.Attribute{
+					Name:        "min_cpu_platform",
+					Description: `(Optional) Specifies a minimum CPU platform for the the VM instance. (Default: ` + "`" + `Intel/Auto` + "`" + `). You may refer to [min_cpu_platform](https://docs.ucloud.cn/uhost/introduction/uhost/type_new) - The Intel CPU platform: - ` + "`" + `Intel/Auto` + "`" + ` as the Intel CPU platform version will be selected randomly by system; - ` + "`" + `Intel/IvyBridge` + "`" + ` as Intel V2, the version of Intel CPU platform selected by system will be ` + "`" + `Intel/IvyBridge` + "`" + ` and above; - ` + "`" + `Intel/Haswell` + "`" + ` as Intel V3, the version of Intel CPU platform selected by system will be ` + "`" + `Intel/Haswell` + "`" + ` and above; - ` + "`" + `Intel/Broadwell` + "`" + ` as Intel V4, the version of Intel CPU platform selected by system will be ` + "`" + `Intel/Broadwell` + "`" + ` and above; - ` + "`" + `Intel/Skylake` + "`" + ` as Intel V5, the version of Intel CPU platform selected by system will be ` + "`" + `Intel/Skylake` + "`" + ` and above; - ` + "`" + `Intel/Cascadelake` + "`" + ` as Intel V6, the version of Intel CPU platform selected by system will be ` + "`" + `Intel/Cascadelake` + "`" + `; - The AMD CPU platform: - ` + "`" + `Amd/Auto` + "`" + ` as the Amd CPU platform version will be selected randomly by system; - ` + "`" + `Amd/Epyc2` + "`" + ` as the version of Amd CPU platform selected by system will be ` + "`" + `Amd/Epyc2` + "`" + ` and above; ### data_disks The ` + "`" + `data_disks` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Required) The size of the cloud data disk, range 20-8000, measured in GB (GigaByte).`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of the cloud data disk. Possible values are: ` + "`" + `cloud_normal` + "`" + ` and ` + "`" + `cloud_ssd` + "`" + ` for local boot disk, ` + "`" + `cloud_ssd` + "`" + ` for cloud SSD boot disk. ~>`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 mins) Used when launching the instance (until it reaches the initial ` + "`" + `Running` + "`" + ` state)`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 20 mins) Used when updating the arguments of the instance if necessary - e.g. when changing ` + "`" + `instance_type` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 10 mins) Used when terminating the instance ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource instance.`,
 				},
 				resource.Attribute{
 					Name:        "auto_renew",
@@ -518,6 +606,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource instance.`,
+				},
 				resource.Attribute{
 					Name:        "auto_renew",
 					Description: `Whether to renew an instance automatically or not.`,
@@ -590,14 +682,23 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of the isolation group information which contains 1-63 characters and only support Chinese, English, numbers, '-', '_', '.', ',', '[', ']', ':'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-isolation-group` + "`" + `.`,
+					Description: `(Optional, ForceNew) The name of the isolation group information which contains 1-63 characters and only support Chinese, English, numbers, '-', '_', '.', ',', '[', ']', ':'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-isolation-group` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "remark",
-					Description: `(Optional) The remarks of the isolation group. (Default: ` + "`" + `""` + "`" + `). ## Import Isolation Group can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_isolation_group.example ig-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional, ForceNew) The remarks of the isolation group. (Default: ` + "`" + `""` + "`" + `). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource isolation group. ## Import Isolation Group can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_isolation_group.example ig-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource isolation group. ## Import Isolation Group can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_isolation_group.example ig-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -612,19 +713,23 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "internal",
-					Description: `(Optional) Indicate whether the load balancer is intranet mode.(Default: ` + "`" + `"false"` + "`" + `)`,
+					Description: `(Optional, ForceNew) Indicate whether the load balancer is intranet mode.(Default: ` + "`" + `"false"` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the load balancer. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-lb` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "charge_type",
+					Description: `(`,
+				},
+				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Optional) The ID of the VPC linked to the Load balancer, This argument is not required if default VPC.`,
+					Description: `(Optional, ForceNew) The ID of the VPC linked to the Load balancer, This argument is not required if default VPC.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `(Optional) The ID of subnet that intranet load balancer belongs to. This argument is not required if default subnet.`,
+					Description: `(Optional, ForceNew) The ID of subnet that intranet load balancer belongs to. This argument is not required if default subnet.`,
 				},
 				resource.Attribute{
 					Name:        "tag",
@@ -632,7 +737,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "remark",
-					Description: `(Optional) The remarks of the load balancer. (Default: ` + "`" + `""` + "`" + `). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) The remarks of the load balancer. (Default: ` + "`" + `""` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "security_group",
+					Description: `(Optional) The ID of the associated security group. The security_group only takes effect for ULB instances of request_proxy mode and extranet mode at present. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource load balancer.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
@@ -656,6 +769,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource load balancer.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time of creation for load balancer, formatted in RFC3339 time string.`,
@@ -692,37 +809,49 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
-					Description: `(Required) The ID of a load balancer.`,
+					Description: `(Required, ForceNew) The ID of a load balancer.`,
 				},
 				resource.Attribute{
 					Name:        "listener_id",
-					Description: `(Required) The ID of a listener server.`,
+					Description: `(Required, ForceNew) The ID of a listener server.`,
 				},
 				resource.Attribute{
 					Name:        "resource_id",
-					Description: `(Required) The ID of a backend server. - - -`,
+					Description: `(Required, ForceNew) The ID of a backend server. - - -`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "port",
 					Description: `(Optional) The listening port of the backend server, range: 1-65535, (Default: ` + "`" + `80` + "`" + `). Backend server port have the following restrictions: If the LB listener type is ` + "`" + `request_proxy` + "`" + `, the backend serve can add different ports to implement different service instances of the same IP. Else if LB listener type is ` + "`" + `packets_transmit` + "`" + `, the port of the backend server must be consistent with the LB listening port. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource lb attachment.`,
+				},
+				resource.Attribute{
 					Name:        "private_ip",
 					Description: `The private ip address for backend servers.`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of backend servers. Possible values are: ` + "`" + `normalRunning` + "`" + `, ` + "`" + `exceptionRunning` + "`" + `.`,
+					Description: `The status of backend servers. Possible values are: ` + "`" + `normalRunning` + "`" + `, ` + "`" + `exceptionRunning` + "`" + `. ## Import LB Listener can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_lb_attachment.example backend-abcdefg ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource lb attachment.`,
+				},
+				resource.Attribute{
 					Name:        "private_ip",
 					Description: `The private ip address for backend servers.`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of backend servers. Possible values are: ` + "`" + `normalRunning` + "`" + `, ` + "`" + `exceptionRunning` + "`" + `.`,
+					Description: `The status of backend servers. Possible values are: ` + "`" + `normalRunning` + "`" + `, ` + "`" + `exceptionRunning` + "`" + `. ## Import LB Listener can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_lb_attachment.example backend-abcdefg ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -740,11 +869,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
-					Description: `(Required) The ID of load balancer instance.`,
+					Description: `(Required, ForceNew) The ID of load balancer instance.`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `(Required) Listener protocol. Possible values: ` + "`" + `http` + "`" + `, ` + "`" + `https` + "`" + `, ` + "`" + `tcp` + "`" + ` if ` + "`" + `listen_type` + "`" + ` is ` + "`" + `request_proxy` + "`" + `, ` + "`" + `tcp` + "`" + ` and ` + "`" + `udp` + "`" + ` if ` + "`" + `listen_type` + "`" + ` is ` + "`" + `packets_transmit` + "`" + `. - - -`,
+					Description: `(Required, ForceNew) Listener protocol. Possible values: ` + "`" + `http` + "`" + `, ` + "`" + `https` + "`" + `, ` + "`" + `tcp` + "`" + ` if ` + "`" + `listen_type` + "`" + ` is ` + "`" + `request_proxy` + "`" + `, ` + "`" + `tcp` + "`" + ` and ` + "`" + `udp` + "`" + ` if ` + "`" + `listen_type` + "`" + ` is ` + "`" + `packets_transmit` + "`" + `. - - -`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -752,11 +881,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "listen_type",
-					Description: `(Optional) The type of listener. Possible values are ` + "`" + `request_proxy` + "`" + ` and ` + "`" + `packets_transmit` + "`" + `. When ` + "`" + `packets_transmit` + "`" + ` was specified, you need to config the instances by yourself if the instances attach to the load balancer. You may refer to [configuration instruction](https://docs.ucloud.cn/network/ulb/fast/createulb/vservertype).`,
+					Description: `(Optional, ForceNew) The type of listener. Possible values are ` + "`" + `request_proxy` + "`" + ` and ` + "`" + `packets_transmit` + "`" + `. When ` + "`" + `packets_transmit` + "`" + ` was specified, you need to config the instances by yourself if the instances attach to the load balancer. You may refer to [configuration instruction](https://docs.ucloud.cn/network/ulb/fast/createulb/vservertype).`,
 				},
 				resource.Attribute{
 					Name:        "port",
-					Description: `(Optional) Port opened on the listeners to receive requests, range: 1-65535. The default value: ` + "`" + `80` + "`" + ` as ` + "`" + `protocol` + "`" + ` is ` + "`" + `http` + "`" + `, ` + "`" + `443` + "`" + ` as ` + "`" + `protocol` + "`" + ` is ` + "`" + `https` + "`" + `, ` + "`" + `1024` + "`" + ` as ` + "`" + `protocol` + "`" + ` is ` + "`" + `tcp` + "`" + ` or ` + "`" + `udp` + "`" + `.`,
+					Description: `(Optional, ForceNew) Port opened on the listeners to receive requests, range: 1-65535. The default value: ` + "`" + `80` + "`" + ` as ` + "`" + `protocol` + "`" + ` is ` + "`" + `http` + "`" + `, ` + "`" + `443` + "`" + ` as ` + "`" + `protocol` + "`" + ` is ` + "`" + `https` + "`" + `, ` + "`" + `1024` + "`" + ` as ` + "`" + `protocol` + "`" + ` is ` + "`" + `tcp` + "`" + ` or ` + "`" + `udp` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "idle_timeout",
@@ -787,11 +916,19 @@ var (
 					Description: `(Optional) Health check domain checking. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource lb listener.`,
+				},
+				resource.Attribute{
 					Name:        "status",
 					Description: `Listener status. Possible values are: ` + "`" + `allNormal` + "`" + ` for all resource functioning well, ` + "`" + `partNormal` + "`" + ` for partial resource functioning well and ` + "`" + `allException` + "`" + ` for all resource functioning exceptional. ## Import LB Listener can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_lb_listener.example vserver-abcdefg ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource lb listener.`,
+				},
 				resource.Attribute{
 					Name:        "status",
 					Description: `Listener status. Possible values are: ` + "`" + `allNormal` + "`" + ` for all resource functioning well, ` + "`" + `partNormal` + "`" + ` for partial resource functioning well and ` + "`" + `allException` + "`" + ` for all resource functioning exceptional. ## Import LB Listener can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_lb_listener.example vserver-abcdefg ` + "`" + `` + "`" + `` + "`" + ``,
@@ -812,15 +949,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
-					Description: `(Required) The ID of a load balancer.`,
+					Description: `(Required, ForceNew) The ID of a load balancer.`,
 				},
 				resource.Attribute{
 					Name:        "listener_id",
-					Description: `(Required) The ID of a listener server.`,
+					Description: `(Required, ForceNew) The ID of a listener server.`,
 				},
 				resource.Attribute{
 					Name:        "backend_ids",
-					Description: `(Required) The IDs of the backend servers where rule applies, this argument is populated base on the ` + "`" + `backend_id` + "`" + ` responded from ` + "`" + `lb_attachment` + "`" + ` create. - - -`,
+					Description: `(Required, ForceNew) The IDs of the backend servers where rule applies, this argument is populated base on the ` + "`" + `backend_id` + "`" + ` responded from ` + "`" + `lb_attachment` + "`" + ` create. - - -`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -828,10 +965,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "domain",
-					Description: `(Optional) The domain of content forward matching fields. ` + "`" + `path` + "`" + ` and ` + "`" + `domain` + "`" + ` cannot coexist. ` + "`" + `path` + "`" + ` and ` + "`" + `domain` + "`" + ` must be filled in one.`,
+					Description: `(Optional) The domain of content forward matching fields. ` + "`" + `path` + "`" + ` and ` + "`" + `domain` + "`" + ` cannot coexist. ` + "`" + `path` + "`" + ` and ` + "`" + `domain` + "`" + ` must be filled in one. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource lb rule. ## Import LB Listener can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_lb_rule.example rule-abcdefg ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource lb rule. ## Import LB Listener can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_lb_rule.example rule-abcdefg ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -847,19 +993,23 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "private_key",
-					Description: `(Required) The content of the private key about ssl certificate.`,
+					Description: `(Required, ForceNew) The content of the private key about ssl certificate.`,
 				},
 				resource.Attribute{
 					Name:        "user_cert",
-					Description: `(Required) The content of the user certificate about ssl certificate. - - -`,
+					Description: `(Required, ForceNew) The content of the user certificate about ssl certificate. - - -`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of the LB ssl, which contains 1-63 characters and only support Chinese, English, numbers, '-', '_', '.'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-lb-ssl` + "`" + `.`,
+					Description: `(Optional, ForceNew) The name of the LB ssl, which contains 1-63 characters and only support Chinese, English, numbers, '-', '_', '.'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-lb-ssl` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ca_cert",
-					Description: `(Optional) The content of the CA certificate about ssl certificate. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) The content of the CA certificate about ssl certificate. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource lb ssl.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
@@ -867,6 +1017,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource lb ssl.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time of creation for lb ssl, formatted in RFC3339 time string.`,
@@ -888,15 +1042,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ssl_id",
-					Description: `(Required) The ID of SSL certificate.`,
+					Description: `(Required, ForceNew) The ID of SSL certificate.`,
 				},
 				resource.Attribute{
 					Name:        "load_balance_id",
-					Description: `(Required) The ID of load balancer instance.`,
+					Description: `(Required, ForceNew) The ID of load balancer instance.`,
 				},
 				resource.Attribute{
 					Name:        "listener_id",
-					Description: `(Required) The ID of listener servers.`,
+					Description: `(Required, ForceNew) The ID of listener servers.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -915,7 +1069,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
-					Description: `(Required) Availability zone where Memcache instance is located. Such as: "cn-bj2-02". You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist)`,
+					Description: `(Required, ForceNew) Availability zone where Memcache instance is located. Such as: "cn-bj2-02". You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist)`,
 				},
 				resource.Attribute{
 					Name:        "instance_type",
@@ -927,23 +1081,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "charge_type",
-					Description: `(Optional) The charge type of Memcache instance, possible values are: ` + "`" + `year` + "`" + `, ` + "`" + `month` + "`" + ` and ` + "`" + `dynamic` + "`" + ` as pay by hour (specific permission required). (Default: ` + "`" + `month` + "`" + `).`,
+					Description: `(Optional, ForceNew) The charge type of Memcache instance, possible values are: ` + "`" + `year` + "`" + `, ` + "`" + `month` + "`" + ` and ` + "`" + `dynamic` + "`" + ` as pay by hour (specific permission required). (Default: ` + "`" + `month` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "duration",
-					Description: `(Optional) The duration that you will buy the Memcache instance (Default: ` + "`" + `1` + "`" + `). The value is ` + "`" + `0` + "`" + ` when pay by month and the instance will be valid till the last day of that month. It is not required when ` + "`" + `dynamic` + "`" + ` (pay by hour).`,
+					Description: `(Optional, ForceNew) The duration that you will buy the Memcache instance (Default: ` + "`" + `1` + "`" + `). The value is ` + "`" + `0` + "`" + ` when pay by month and the instance will be valid till the last day of that month. It is not required when ` + "`" + `dynamic` + "`" + ` (pay by hour).`,
 				},
 				resource.Attribute{
 					Name:        "tag",
-					Description: `(Optional) A tag assigned to Memcache instance, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `).`,
+					Description: `(Optional, ForceNew) A tag assigned to Memcache instance, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Optional) The ID of VPC linked to the Memcache instance.`,
+					Description: `(Optional, ForceNew) The ID of VPC linked to the Memcache instance.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `(Optional) The ID of subnet linked to the Memcache instance. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) The ID of subnet linked to the Memcache instance. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource Memcache instance.`,
 				},
 				resource.Attribute{
 					Name:        "ip_set",
@@ -971,6 +1129,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource Memcache instance.`,
+				},
 				resource.Attribute{
 					Name:        "ip_set",
 					Description: `ip_set is a nested type. ip_set documented below.`,
@@ -1011,7 +1173,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) The ID of VPC linked to the Nat Gateway.`,
+					Description: `(Required, ForceNew) The ID of VPC linked to the Nat Gateway.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_ids",
@@ -1019,7 +1181,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "eip_id",
-					Description: `(Required) The ID of eip associate to the Nat Gateway.`,
+					Description: `(Required, ForceNew) The ID of eip associate to the Nat Gateway.`,
 				},
 				resource.Attribute{
 					Name:        "security_group",
@@ -1035,15 +1197,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of the Nat Gateway which contains 6-63 characters and only support Chinese, English, numbers, '-', '_' and '.'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-nat-gateway-` + "`" + `.`,
+					Description: `(Optional, ForceNew) The name of the Nat Gateway which contains 6-63 characters and only support Chinese, English, numbers, '-', '_' and '.'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-nat-gateway-` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "remark",
-					Description: `(Optional) The remarks of the Nat Gateway. (Default: ` + "`" + `""` + "`" + `).`,
+					Description: `(Optional, ForceNew) The remarks of the Nat Gateway. (Default: ` + "`" + `""` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "tag",
-					Description: `(Optional) A tag assigned to Nat Gateway, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `).`,
+					Description: `(Optional, ForceNew) A tag assigned to Nat Gateway, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource Nat Gateway.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
@@ -1051,6 +1217,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource Nat Gateway.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time of creation of Nat Gateway, formatted in RFC3339 time string. ## Import Nat Gateway can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_nat_gateway.example natgw-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1072,7 +1242,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "nat_gateway_id",
-					Description: `(Required) The ID of the Nat Gateway.`,
+					Description: `(Required, ForceNew) The ID of the Nat Gateway.`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
@@ -1115,7 +1285,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
-					Description: `(Required) Availability zone where Redis instance is located. Such as: "cn-bj2-02". You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist)`,
+					Description: `(Required, ForceNew) Availability zone where Redis instance is located. Such as: "cn-bj2-02". You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist)`,
 				},
 				resource.Attribute{
 					Name:        "instance_type",
@@ -1127,31 +1297,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "charge_type",
-					Description: `(Optional) The charge type of Redis instance, possible values are: ` + "`" + `year` + "`" + `, ` + "`" + `month` + "`" + ` and ` + "`" + `dynamic` + "`" + ` as pay by hour (specific permission required). (Default: ` + "`" + `month` + "`" + `).`,
+					Description: `(Optional, ForceNew) The charge type of Redis instance, possible values are: ` + "`" + `year` + "`" + `, ` + "`" + `month` + "`" + ` and ` + "`" + `dynamic` + "`" + ` as pay by hour (specific permission required). (Default: ` + "`" + `month` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "duration",
-					Description: `(Optional) The duration that you will buy the Redis instance (Default: ` + "`" + `1` + "`" + `). The value is ` + "`" + `0` + "`" + ` when pay by month and the instance will be valid till the last day of that month. It is not required when ` + "`" + `dynamic` + "`" + ` (pay by hour).`,
+					Description: `(Optional, ForceNew) The duration that you will buy the Redis instance (Default: ` + "`" + `1` + "`" + `). The value is ` + "`" + `0` + "`" + ` when pay by month and the instance will be valid till the last day of that month. It is not required when ` + "`" + `dynamic` + "`" + ` (pay by hour).`,
 				},
 				resource.Attribute{
 					Name:        "tag",
-					Description: `(Optional) A tag assigned to Redis instance, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `).`,
+					Description: `(Optional, ForceNew) A tag assigned to Redis instance, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Optional) The ID of VPC linked to the Redis instance.`,
+					Description: `(Optional, ForceNew) The ID of VPC linked to the Redis instance.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `(Optional) The ID of subnet linked to the Redis instance.`,
+					Description: `(Optional, ForceNew) The ID of subnet linked to the Redis instance.`,
 				},
 				resource.Attribute{
 					Name:        "engine_version",
-					Description: `(active-standby Redis Required) The version of engine of active-standby Redis. Possible values are: 3.0, 3.2 and 4.0.`,
+					Description: `(active-standby Redis Required, ForceNew) The version of engine of active-standby Redis. Possible values are: 3.0, 3.2, 4.0 and 5.0.`,
 				},
 				resource.Attribute{
 					Name:        "password",
 					Description: `(Optional) The password for active-standby Redis instance which should have 6-36 characters. It must contain at least 3 items of Capital letters, small letter, numbers and special characters. The special characters include ` + "`" + `-_` + "`" + `. ~>`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource Redis instance.`,
 				},
 				resource.Attribute{
 					Name:        "ip_set",
@@ -1179,6 +1353,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource Redis instance.`,
+				},
 				resource.Attribute{
 					Name:        "ip_set",
 					Description: `ip_set is a nested type. ip_set documented below.`,
@@ -1219,7 +1397,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rules",
-					Description: `(Required) A list of security group rules. Can be specified multiple times for each rules. Each rules supports fields documented below. - - -`,
+					Description: `(Required) A list of security group rules. Can be specified multiple times for each rules. See [rules](#rules) below for details on attributes. - - -`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1231,7 +1409,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tag",
-					Description: `(Optional) A tag assigned to security group, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `). ### Block rules The rules mapping supports the following:`,
+					Description: `(Optional) A tag assigned to security group, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `). ### rules The ` + "`" + `rules` + "`" + ` mapping supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "port_range",
@@ -1254,11 +1432,19 @@ var (
 					Description: `(Optional) The protocol. Possible values are: ` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `, ` + "`" + `gre` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource security group.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time of creation of security group, formatted in RFC3339 time string. ## Import Security Group can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_security_group.example firewall-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource security group.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time of creation of security group, formatted in RFC3339 time string. ## Import Security Group can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_security_group.example firewall-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1278,11 +1464,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_block",
-					Description: `(Required) The cidr block of the desired subnet, format in "0.0.0.0/0", such as: ` + "`" + `192.168.0.0/24` + "`" + `.`,
+					Description: `(Required, ForceNew) The cidr block of the desired subnet, format in "0.0.0.0/0", such as: ` + "`" + `192.168.0.0/24` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) The id of the VPC that the desired subnet belongs to. - - -`,
+					Description: `(Required, ForceNew) The id of the VPC that the desired subnet belongs to. - - -`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1290,11 +1476,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "remark",
-					Description: `(Optional) The remarks of the subnet. (Default: ` + "`" + `""` + "`" + `).`,
+					Description: `(Optional, ForceNew) The remarks of the subnet. (Default: ` + "`" + `""` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "tag",
 					Description: `(Optional) A tag assigned to subnet, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource subnet.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
@@ -1302,6 +1492,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource subnet.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time of creation of subnet, formatted in RFC3339 time string. ## Import Subnet can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_subnet.example subnet-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1325,15 +1519,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "duration",
-					Description: `(Optional) The duration that you will buy the resource, the default value is "1". It is not required when "dynamic" (pay by hour), the value is "0" when pay by month and the instance will be valid till the last day of that month.`,
+					Description: `(Optional, ForceNew) The duration that you will buy the resource, the default value is "1". It is not required when "dynamic" (pay by hour), the value is "0" when pay by month and the instance will be valid till the last day of that month.`,
 				},
 				resource.Attribute{
 					Name:        "charge_type",
-					Description: `(Optional) Charge type. Possible values are: "year" as pay by year, "month" as pay by month, "dynamic" as pay by hour. The default value is "month".`,
+					Description: `(Optional, ForceNew) Charge type. Possible values are: "year" as pay by year, "month" as pay by month, "dynamic" as pay by hour. The default value is "month".`,
 				},
 				resource.Attribute{
 					Name:        "peer_region",
-					Description: `(Optional) The correspondent region of dedicated connection, please refer to the region and [availability zone list](https://docs.ucloud.cn/api/summary/regionlist) and [UDPN price list](https://docs.ucloud.cn/network/udpn/udpn_price). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) The correspondent region of dedicated connection, please refer to the region and [availability zone list](https://docs.ucloud.cn/api/summary/regionlist) and [UDPN price list](https://docs.ucloud.cn/network/udpn/udpn_price). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource UDPN connection.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
@@ -1345,6 +1543,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource UDPN connection.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time of creation for UDPN connection, formatted by RFC3339 time string.`,
@@ -1368,11 +1570,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) The ID of VPC linked to the VIP.`,
+					Description: `(Required, ForceNew) The ID of VPC linked to the VIP.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `(Required) The ID of subnet. If defined ` + "`" + `vpc_id` + "`" + `, the ` + "`" + `subnet_id` + "`" + ` is Required. - - -`,
+					Description: `(Required, ForceNew) The ID of subnet. If defined ` + "`" + `vpc_id` + "`" + `, the ` + "`" + `subnet_id` + "`" + ` is Required. - - -`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1387,6 +1589,10 @@ var (
 					Description: `(Optional) The remarks of the VIP. (Default: ` + "`" + `""` + "`" + `). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource VIP.`,
+				},
+				resource.Attribute{
 					Name:        "ip_address",
 					Description: `The ip address of the VIP.`,
 				},
@@ -1396,6 +1602,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource VIP.`,
+				},
 				resource.Attribute{
 					Name:        "ip_address",
 					Description: `The ip address of the VIP.`,
@@ -1422,15 +1632,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of VPC. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-vpc` + "`" + `.`,
+					Description: `(Optional, ForceNew) The name of VPC. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-vpc` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "tag",
-					Description: `(Optional) A tag assigned to VPC, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `).`,
+					Description: `(Optional, ForceNew) A tag assigned to VPC, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "remark",
-					Description: `(Optional) The remarks of the VPC. (Default: ` + "`" + `""` + "`" + `). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) The remarks of the VPC. (Default: ` + "`" + `""` + "`" + `). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource VPC.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
@@ -1450,6 +1664,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource VPC.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time of creation for VPC, formatted in RFC3339 time string.`,
@@ -1482,15 +1700,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) The short of ID of the requester VPC of the specific VPC Peering Connection to retrieve.`,
+					Description: `(Required, ForceNew) The short of ID of the requester VPC of the specific VPC Peering Connection to retrieve.`,
 				},
 				resource.Attribute{
 					Name:        "peer_vpc_id",
-					Description: `(Required) The short ID of accepter VPC of the specific VPC Peering Connection to retrieve. - - -`,
+					Description: `(Required, ForceNew) The short ID of accepter VPC of the specific VPC Peering Connection to retrieve. - - -`,
 				},
 				resource.Attribute{
 					Name:        "peer_project_id",
-					Description: `(Optional) The ID of accepter project of the specific VPC Peering Connection to retrieve.`,
+					Description: `(Optional, ForceNew) The ID of accepter project of the specific VPC Peering Connection to retrieve.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1509,15 +1727,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) The ID of VPC linked to the VPN Gateway Connection.`,
+					Description: `(Required, ForceNew) The ID of VPC linked to the VPN Gateway Connection.`,
 				},
 				resource.Attribute{
 					Name:        "vpn_gateway_id",
-					Description: `(Required) The ID of the VPN Customer Gateway.`,
+					Description: `(Required, ForceNew) The ID of the VPN Customer Gateway.`,
 				},
 				resource.Attribute{
 					Name:        "customer_gateway_id",
-					Description: `(Required) The grade of the VPN Gateway`,
+					Description: `(Required, ForceNew) The grade of the VPN Gateway`,
 				},
 				resource.Attribute{
 					Name:        "ike_config",
@@ -1537,7 +1755,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tag",
-					Description: `(Optional) A tag assigned to VPN Gateway Connection, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `). ### Block ike_config The ike_config mapping supports the following:`,
+					Description: `(Optional, ForceNew) A tag assigned to VPN Gateway Connection, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `). ### Block ike_config The ike_config mapping supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "pre_shared_key",
@@ -1608,6 +1826,10 @@ var (
 					Description: `(Optional) The Security Association lifecycle in bytes as the result of IPSec negotiation. Unit: second. Range: 1200-604800. (Default: ` + "`" + `3600` + "`" + `) ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource VPN Gateway Connection.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `The creation time for VPN Gateway Connection, formatted in RFC3339 time string.`,
 				},
@@ -1617,6 +1839,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource VPN Gateway Connection.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The creation time for VPN Gateway Connection, formatted in RFC3339 time string.`,
@@ -1642,19 +1868,23 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `(Required) The ip address of the VPN Customer Gateway. - - -`,
+					Description: `(Required, ForceNew) The ip address of the VPN Customer Gateway. - - -`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of the VPN Customer Gateway which contains 1-63 characters and only support Chinese, English, numbers, '-', '_' and '.'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-vpn-customer-gateway-` + "`" + `.`,
+					Description: `(Optional, ForceNew) The name of the VPN Customer Gateway which contains 1-63 characters and only support Chinese, English, numbers, '-', '_' and '.'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-vpn-customer-gateway-` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "remark",
-					Description: `(Optional) The remarks of the VPN Customer Gateway. (Default: ` + "`" + `""` + "`" + `).`,
+					Description: `(Optional, ForceNew) The remarks of the VPN Customer Gateway. (Default: ` + "`" + `""` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "tag",
-					Description: `(Optional) A tag assigned to VPN Customer Gateway, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `).`,
+					Description: `(Optional, ForceNew) A tag assigned to VPN Customer Gateway, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource VPN Customer Gateway.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
@@ -1662,6 +1892,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource VPN Customer Gateway.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The creation time for VPN Customer Gateway, formatted in RFC3339 time string. ## Import VPN Customer Gateway can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_vpn_gateway.example remotevpngw-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1682,7 +1916,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) The ID of VPC linked to the VPN Gateway.`,
+					Description: `(Required, ForceNew) The ID of VPC linked to the VPN Gateway.`,
 				},
 				resource.Attribute{
 					Name:        "grade",
@@ -1690,7 +1924,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "eip_id",
-					Description: `(Required) The ID of eip associate to the VPN Gateway.`,
+					Description: `(Required, ForceNew) The ID of eip associate to the VPN Gateway.`,
 				},
 				resource.Attribute{
 					Name:        "security_group",
@@ -1698,23 +1932,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "charge_type",
-					Description: `(Optional) The charge type of VPN Gateway, possible values are: ` + "`" + `year` + "`" + `, ` + "`" + `month` + "`" + ` and ` + "`" + `dynamic` + "`" + ` as pay by hour (specific permission required). (Default: ` + "`" + `month` + "`" + `).`,
+					Description: `(Optional, ForceNew) The charge type of VPN Gateway, possible values are: ` + "`" + `year` + "`" + `, ` + "`" + `month` + "`" + ` and ` + "`" + `dynamic` + "`" + ` as pay by hour (specific permission required). (Default: ` + "`" + `month` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "duration",
-					Description: `(Optional) The duration that you will buy the VPN Gateway (Default: ` + "`" + `1` + "`" + `). The value is ` + "`" + `0` + "`" + ` when pay by month and the instance will be valid till the last day of that month. It is not required when ` + "`" + `dynamic` + "`" + ` (pay by hour).`,
+					Description: `(Optional, ForceNew) The duration that you will buy the VPN Gateway (Default: ` + "`" + `1` + "`" + `). The value is ` + "`" + `0` + "`" + ` when pay by month and the instance will be valid till the last day of that month. It is not required when ` + "`" + `dynamic` + "`" + ` (pay by hour).`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of the VPN Gateway which contains 1-63 characters and only support Chinese, English, numbers, '-', '_' and '.'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-vpn-gateway-` + "`" + `.`,
+					Description: `(Optional, ForceNew) The name of the VPN Gateway which contains 1-63 characters and only support Chinese, English, numbers, '-', '_' and '.'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-vpn-gateway-` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "remark",
-					Description: `(Optional) The remarks of the VPN Gateway. (Default: ` + "`" + `""` + "`" + `).`,
+					Description: `(Optional, ForceNew) The remarks of the VPN Gateway. (Default: ` + "`" + `""` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "tag",
-					Description: `(Optional) A tag assigned to VPN Gateway, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `).`,
+					Description: `(Optional, ForceNew) A tag assigned to VPN Gateway, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource VPN Gateway.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
@@ -1726,6 +1964,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource VPN Gateway.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The creation time for VPN Gateway, formatted in RFC3339 time string.`,

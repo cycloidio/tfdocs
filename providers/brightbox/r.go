@@ -11,6 +11,57 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "brightbox_api_client",
+			Category:         "Resources",
+			ShortDescription: `Provides a Brightbox API Client resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"api",
+				"client",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) A label to assign to the API Client`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A further description of the API Client`,
+				},
+				resource.Attribute{
+					Name:        "permissions_group",
+					Description: `(Optional) The type of API Client required, either ` + "`" + `full` + "`" + ` or ` + "`" + `storage` + "`" + `. The default is ` + "`" + `full` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the API Client`,
+				},
+				resource.Attribute{
+					Name:        "secret",
+					Description: `The initial secret key of the API Client`,
+				},
+				resource.Attribute{
+					Name:        "account",
+					Description: `The ID of the account the API Client is linked to`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the API Client`,
+				},
+				resource.Attribute{
+					Name:        "secret",
+					Description: `The initial secret key of the API Client`,
+				},
+				resource.Attribute{
+					Name:        "account",
+					Description: `The ID of the account the API Client is linked to`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "brightbox_cloudip",
 			Category:         "Resources",
 			ShortDescription: `Provides a Brightbox CloudIP resource.`,
@@ -124,19 +175,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "database_engine",
-					Description: `(Optional) Database engine to request. Default is mysql.`,
+					Description: `(Optional) Database engine to request. Default is mysql`,
 				},
 				resource.Attribute{
 					Name:        "database_version",
-					Description: `(Optional) Database version to request. Default is 8.0.`,
+					Description: `(Optional) Database version to request. Default is 8.0`,
 				},
 				resource.Attribute{
 					Name:        "database_type",
-					Description: `(Optional) ID of the Database Type required.`,
+					Description: `(Optional) ID of the Database Type required`,
 				},
 				resource.Attribute{
 					Name:        "zone",
-					Description: `(Optional) The handle of the zone required (` + "`" + `gb1-a` + "`" + `, ` + "`" + `gb1-b` + "`" + `) ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The handle of the zone required (` + "`" + `gb1-a` + "`" + `, ` + "`" + `gb1-b` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "locked",
+					Description: `(Optional) Set to true to stop the database server from being deleted ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -153,10 +208,6 @@ var (
 				resource.Attribute{
 					Name:        "status",
 					Description: `Current state of the database server, usually ` + "`" + `active` + "`" + ` or ` + "`" + `deleted` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "locked",
-					Description: `True if database server has been set to locked and cannot be deleted`,
 				},
 				resource.Attribute{
 					Name:        "snapshots_schedule_next_at",
@@ -179,10 +230,6 @@ var (
 				resource.Attribute{
 					Name:        "status",
 					Description: `Current state of the database server, usually ` + "`" + `active` + "`" + ` or ` + "`" + `deleted` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "locked",
-					Description: `True if database server has been set to locked and cannot be deleted`,
 				},
 				resource.Attribute{
 					Name:        "snapshots_schedule_next_at",
@@ -316,6 +363,10 @@ var (
 					Description: `(Optional) Buffer size in bytes`,
 				},
 				resource.Attribute{
+					Name:        "locked",
+					Description: `(Optional) Set to true to stop the load balancer from being deleted`,
+				},
+				resource.Attribute{
 					Name:        "nodes",
 					Description: `(Optional) An array of Server IDs`,
 				},
@@ -377,11 +428,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Current state of the load balancer. Usually ` + "`" + `creating` + "`" + ` or ` + "`" + `active` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "locked",
-					Description: `True if the database server has been set to locked and cannot be deleted ## Import Load Balancers can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_load_balancer.mylba lba-12345 ` + "`" + `` + "`" + `` + "`" + ` <a id="timeouts"></a> ## Timeouts ` + "`" + `brightbox_load_balancer` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Creating Load Balancers - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Deleting Load Balancers`,
+					Description: `Current state of the load balancer. Usually ` + "`" + `creating` + "`" + ` or ` + "`" + `active` + "`" + ` ## Import Load Balancers can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_load_balancer.mylba lba-12345 ` + "`" + `` + "`" + `` + "`" + ` <a id="timeouts"></a> ## Timeouts ` + "`" + `brightbox_load_balancer` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Creating Load Balancers - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Deleting Load Balancers`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -391,11 +438,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Current state of the load balancer. Usually ` + "`" + `creating` + "`" + ` or ` + "`" + `active` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "locked",
-					Description: `True if the database server has been set to locked and cannot be deleted ## Import Load Balancers can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_load_balancer.mylba lba-12345 ` + "`" + `` + "`" + `` + "`" + ` <a id="timeouts"></a> ## Timeouts ` + "`" + `brightbox_load_balancer` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Creating Load Balancers - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Deleting Load Balancers`,
+					Description: `Current state of the load balancer. Usually ` + "`" + `creating` + "`" + ` or ` + "`" + `active` + "`" + ` ## Import Load Balancers can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_load_balancer.mylba lba-12345 ` + "`" + `` + "`" + `` + "`" + ` <a id="timeouts"></a> ## Timeouts ` + "`" + `brightbox_load_balancer` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Creating Load Balancers - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Deleting Load Balancers`,
 				},
 			},
 		},
@@ -481,6 +524,10 @@ var (
 					Description: `(Optional) The handle of the zone required (` + "`" + `gb1-a` + "`" + `, ` + "`" + `gb1-b` + "`" + `)`,
 				},
 				resource.Attribute{
+					Name:        "locked",
+					Description: `(Optional) Set to true to stop the server from being deleted`,
+				},
+				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Server`,
 				},
@@ -515,10 +562,6 @@ var (
 				resource.Attribute{
 					Name:        "ipv4_address",
 					Description: `the public IPV4 address of the server. Appears if a cloud ip is mapped`,
-				},
-				resource.Attribute{
-					Name:        "locked",
-					Description: `True if server has been set to locked and cannot be deleted`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -565,10 +608,6 @@ var (
 				resource.Attribute{
 					Name:        "ipv4_address",
 					Description: `the public IPV4 address of the server. Appears if a cloud ip is mapped`,
-				},
-				resource.Attribute{
-					Name:        "locked",
-					Description: `True if server has been set to locked and cannot be deleted`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -615,14 +654,15 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"brightbox_cloudip":         0,
-		"brightbox_database_server": 1,
-		"brightbox_firewall_policy": 2,
-		"brightbox_firewall_rule":   3,
-		"brightbox_load_balancer":   4,
-		"brightbox_orbit_container": 5,
-		"brightbox_server":          6,
-		"brightbox_server_group":    7,
+		"brightbox_api_client":      0,
+		"brightbox_cloudip":         1,
+		"brightbox_database_server": 2,
+		"brightbox_firewall_policy": 3,
+		"brightbox_firewall_rule":   4,
+		"brightbox_load_balancer":   5,
+		"brightbox_orbit_container": 6,
+		"brightbox_server":          7,
+		"brightbox_server_group":    8,
 	}
 )
 

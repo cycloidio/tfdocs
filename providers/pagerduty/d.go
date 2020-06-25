@@ -83,6 +83,78 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "pagerduty_priority",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a priority that you can use with ruleset_rules, etc.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the priority to find in the PagerDuty API. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the found priority.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the found priority.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the found priority. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1priorities/get`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the found priority.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the found priority.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the found priority. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1priorities/get`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "pagerduty_ruleset",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a ruleset that you have created.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the ruleset to find in the PagerDuty API. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the found ruleset.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the found ruleset. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1rulesets/get [2]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1rulesets~1%7Bid%7D~1rules/get`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the found ruleset.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the found ruleset. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1rulesets/get [2]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1rulesets~1%7Bid%7D~1rules/get`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "pagerduty_schedule",
 			Category:         "Data Sources",
 			ShortDescription: `Provides information about a Schedule. This data source can be helpful when a schedule is handled outside Terraform but you still want to reference it in other resources.`,
@@ -263,11 +335,13 @@ var (
 
 		"pagerduty_escalation_policy": 0,
 		"pagerduty_extension_schema":  1,
-		"pagerduty_schedule":          2,
-		"pagerduty_service":           3,
-		"pagerduty_team":              4,
-		"pagerduty_user":              5,
-		"pagerduty_vendor":            6,
+		"pagerduty_priority":          2,
+		"pagerduty_ruleset":           3,
+		"pagerduty_schedule":          4,
+		"pagerduty_service":           5,
+		"pagerduty_team":              6,
+		"pagerduty_user":              7,
+		"pagerduty_vendor":            8,
 	}
 )
 

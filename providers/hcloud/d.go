@@ -11,6 +11,16 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "hcloud_certificate",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a specific Hetzner Cloud Certificate.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "hcloud_datacenter",
 			Category:         "Data Sources",
 			ShortDescription: `Provides details about a specific Hetzner Cloud Datacenter.`,
@@ -65,6 +75,16 @@ This resource is useful if you want to use a non-terraform managed image.
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "hcloud_load_balancer",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a specific Hetzner Cloud Load Balancer.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -166,17 +186,19 @@ This resource is useful if you want to use a non-terraform managed volume.
 
 	dataSourcesMap = map[string]int{
 
-		"hcloud_datacenter":  0,
-		"hcloud_datacenters": 1,
-		"hcloud_floating_ip": 2,
-		"hcloud_image":       3,
-		"hcloud_location":    4,
-		"hcloud_locations":   5,
-		"hcloud_network":     6,
-		"hcloud_server":      7,
-		"hcloud_ssh_key":     8,
-		"hcloud_ssh_keys":    9,
-		"hcloud_volume":      10,
+		"hcloud_certificate":   0,
+		"hcloud_datacenter":    1,
+		"hcloud_datacenters":   2,
+		"hcloud_floating_ip":   3,
+		"hcloud_image":         4,
+		"hcloud_load_balancer": 5,
+		"hcloud_location":      6,
+		"hcloud_locations":     7,
+		"hcloud_network":       8,
+		"hcloud_server":        9,
+		"hcloud_ssh_key":       10,
+		"hcloud_ssh_keys":      11,
+		"hcloud_volume":        12,
 	}
 )
 

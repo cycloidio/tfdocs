@@ -19,7 +19,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of the ACL Auth Method. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The name of the ACL Auth Method.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional, Enterprise Only) The namespace to lookup the auth method. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -59,7 +63,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of the ACL Policy. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The name of the ACL Policy.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional, Enterprise Only) The namespace to lookup the policy. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -99,7 +107,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of the ACL Role. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The name of the ACL Role.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional, Enterprise Only) The namespace to lookup the role. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -139,7 +151,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "accessor_id",
-					Description: `(Required) The accessor ID of the ACL token. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The accessor ID of the ACL token.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional, Enterprise Only) The namespace to lookup the ACL token. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -182,26 +198,26 @@ var (
 					Description: `(Required) The accessor ID of the ACL token.`,
 				},
 				resource.Attribute{
-					Name:        "gpg_key",
+					Name:        "pgp_key",
 					Description: `(Optional) Either a base-64 encoded PGP public key, or a keybase username in the form ` + "`" + `keybase:some_person_that_exists` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "secret_id",
-					Description: `The secret ID of the ACL token if ` + "`" + `gpg_key` + "`" + ` has not been set.`,
+					Description: `The secret ID of the ACL token if ` + "`" + `pgp_key` + "`" + ` has not been set.`,
 				},
 				resource.Attribute{
 					Name:        "encrypted_secret_id",
-					Description: `The encrypted secret ID of the ACL token if ` + "`" + `gpg_key` + "`" + ` has been set. You can decrypt the secret by using the command line, for example with: ` + "`" + `terraform output encrypted_secret | base64 --decode | keybase pgp decrypt` + "`" + `.`,
+					Description: `The encrypted secret ID of the ACL token if ` + "`" + `pgp_key` + "`" + ` has been set. You can decrypt the secret by using the command line, for example with: ` + "`" + `terraform output encrypted_secret | base64 --decode | keybase pgp decrypt` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "secret_id",
-					Description: `The secret ID of the ACL token if ` + "`" + `gpg_key` + "`" + ` has not been set.`,
+					Description: `The secret ID of the ACL token if ` + "`" + `pgp_key` + "`" + ` has not been set.`,
 				},
 				resource.Attribute{
 					Name:        "encrypted_secret_id",
-					Description: `The encrypted secret ID of the ACL token if ` + "`" + `gpg_key` + "`" + ` has been set. You can decrypt the secret by using the command line, for example with: ` + "`" + `terraform output encrypted_secret | base64 --decode | keybase pgp decrypt` + "`" + `.`,
+					Description: `The encrypted secret ID of the ACL token if ` + "`" + `pgp_key` + "`" + ` has been set. You can decrypt the secret by using the command line, for example with: ` + "`" + `terraform output encrypted_secret | base64 --decode | keybase pgp decrypt` + "`" + `.`,
 				},
 			},
 		},
@@ -417,7 +433,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subkey",
-					Description: `(Optional) Specifies a subkey in Consul to be read. Supported values documented below. Multiple blocks supported. The ` + "`" + `subkey` + "`" + ` block supports the following:`,
+					Description: `(Optional) Specifies a subkey in Consul to be read. Supported values documented below. Multiple blocks supported.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional, Enterprise Only) The namespace to create the keys within. The ` + "`" + `subkey` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -485,7 +505,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `(Required) Specifies a key in Consul to be read. Supported values documented below. Multiple blocks supported. The ` + "`" + `key` + "`" + ` block supports the following:`,
+					Description: `(Required) Specifies a key in Consul to be read. Supported values documented below. Multiple blocks supported.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional, Enterprise Only) The namespace to lookup the keys. The ` + "`" + `key` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -516,6 +540,170 @@ var (
 				resource.Attribute{
 					Name:        "var.<name>",
 					Description: `For each name given, the corresponding attribute has the value of the key.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "consul_network_area_members",
+			Category:         "Data Sources",
+			ShortDescription: `Provides the list of Consul servers present in a specific Network Area.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "datacenter",
+					Description: `(Optional) The datacenter to use. This overrides the agent's default datacenter and the datacenter in the provider setup.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Optional) The ACL token to use. This overrides the token that the agent provides by default.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `(Required) The UUID of the area to list. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "datacenter",
+					Description: `The datacenter used to query the Network Area.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `The UUID of the Network Area being queried.`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `The list of Consul servers in this network area`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The node ID of the server.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The node name of the server, with its datacenter appended.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `The IP address of the server.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The server RPC port the node.`,
+				},
+				resource.Attribute{
+					Name:        "datacenter",
+					Description: `The node's Consul datacenter.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Role is always ` + "`" + `"server"` + "`" + ` since only Consul servers can participate in network areas.`,
+				},
+				resource.Attribute{
+					Name:        "build",
+					Description: `The Consul version running on the node.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `The protocol version being spoken by the node.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current health status of the node, as determined by the network area distributed failure detector. This will be ` + "`" + `"alive"` + "`" + `, ` + "`" + `"leaving"` + "`" + `, or ` + "`" + `"failed"` + "`" + `. A ` + "`" + `"failed"` + "`" + ` status means that other servers are not able to probe this server over its server RPC interface.`,
+				},
+				resource.Attribute{
+					Name:        "rtt",
+					Description: `An estimated network round trip time from the server answering the query to the given server, in nanoseconds. This is computed using network coordinates.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "datacenter",
+					Description: `The datacenter used to query the Network Area.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `The UUID of the Network Area being queried.`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `The list of Consul servers in this network area`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The node ID of the server.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The node name of the server, with its datacenter appended.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `The IP address of the server.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The server RPC port the node.`,
+				},
+				resource.Attribute{
+					Name:        "datacenter",
+					Description: `The node's Consul datacenter.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Role is always ` + "`" + `"server"` + "`" + ` since only Consul servers can participate in network areas.`,
+				},
+				resource.Attribute{
+					Name:        "build",
+					Description: `The Consul version running on the node.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `The protocol version being spoken by the node.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current health status of the node, as determined by the network area distributed failure detector. This will be ` + "`" + `"alive"` + "`" + `, ` + "`" + `"leaving"` + "`" + `, or ` + "`" + `"failed"` + "`" + `. A ` + "`" + `"failed"` + "`" + ` status means that other servers are not able to probe this server over its server RPC interface.`,
+				},
+				resource.Attribute{
+					Name:        "rtt",
+					Description: `An estimated network round trip time from the server answering the query to the given server, in nanoseconds. This is computed using network coordinates.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "consul_network_segments",
+			Category:         "Data Sources",
+			ShortDescription: `Provides the list of Network Segments.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "datacenter",
+					Description: `(Optional) The datacenter to use. This overrides the agent's default datacenter and the datacenter in the provider setup.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Optional) The ACL token to use. This overrides the token that the agent provides by default. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "datacenter",
+					Description: `The datacenter the segments are being read from.`,
+				},
+				resource.Attribute{
+					Name:        "segments",
+					Description: `The list of network segments.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "datacenter",
+					Description: `The datacenter the segments are being read from.`,
+				},
+				resource.Attribute{
+					Name:        "segments",
+					Description: `The list of network segments.`,
 				},
 			},
 		},
@@ -641,7 +829,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "wait_time",
-					Description: `(Optional) Max time the client should wait for a blocking query to return. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Max time the client should wait for a blocking query to return.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional, Enterprise Only) The namespace to lookup the service. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "datacenter",
@@ -973,7 +1165,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "wait_time",
-					Description: `(Optional) Max time the client should wait for a blocking query to return. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Max time the client should wait for a blocking query to return.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional, Enterprise Only) The namespace to lookup the services. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "datacenter",
@@ -1015,20 +1211,22 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"consul_acl_auth_method":     0,
-		"consul_acl_policy":          1,
-		"consul_acl_role":            2,
-		"consul_acl_token":           3,
-		"consul_acl_token_secret_id": 4,
-		"consul_agent_config":        5,
-		"consul_agent_self":          6,
-		"consul_autopilot_health":    7,
-		"consul_key_prefix":          8,
-		"consul_keys":                9,
-		"consul_nodes":               10,
-		"consul_service":             11,
-		"consul_service_health":      12,
-		"consul_services":            13,
+		"consul_acl_auth_method":      0,
+		"consul_acl_policy":           1,
+		"consul_acl_role":             2,
+		"consul_acl_token":            3,
+		"consul_acl_token_secret_id":  4,
+		"consul_agent_config":         5,
+		"consul_agent_self":           6,
+		"consul_autopilot_health":     7,
+		"consul_key_prefix":           8,
+		"consul_keys":                 9,
+		"consul_network_area_members": 10,
+		"consul_network_segments":     11,
+		"consul_nodes":                12,
+		"consul_service":              13,
+		"consul_service_health":       14,
+		"consul_services":             15,
 	}
 )
 

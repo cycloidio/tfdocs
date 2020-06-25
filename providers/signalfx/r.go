@@ -71,7 +71,7 @@ Provides a SignalFx resource for managing alert muting rules. See [Mute Notifica
 
 SignalFx AWS CloudWatch integrations using Role ARNs. For help with this integration see [Connect to AWS CloudWatch](https://docs.signalfx.com/en/latest/integrations/amazon-web-services.html#connect-to-aws).
 
-**Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider.
+~> **NOTE** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider.
 
 ~> **WARNING** This resource implements a part of a workflow. You must use it with ` + "`" + `signalfx_aws_integration` + "`" + `. Check with SignalFx support for your realm's AWS account id.
 
@@ -123,7 +123,7 @@ SignalFx AWS CloudWatch integrations using Role ARNs. For help with this integra
 
 SignalFx AWS CloudWatch integrations. For help with this integration see [Monitoring Amazon Web Services](https://docs.signalfx.com/en/latest/integrations/amazon-web-services.html#monitor-amazon-web-services).
 
-**Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider.
+~> **NOTE** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider.
 
 ~> **WARNING** This resource implements a part of a workflow. You must use it with one of either ` + "`" + `signalfx_aws_external_integration` + "`" + ` or ` + "`" + `signalfx_aws_token_integration` + "`" + `.
 
@@ -211,7 +211,7 @@ SignalFx AWS CloudWatch integrations. For help with this integration see [Monito
 				},
 				resource.Attribute{
 					Name:        "services",
-					Description: `(Optional) List of AWS services that you want SignalFx to monitor. Each element is a string designating an AWS service. Conflicts with ` + "`" + `namespace_sync_rule` + "`" + `.`,
+					Description: `(Optional) List of AWS services that you want SignalFx to monitor. Each element is a string designating an AWS service. Conflicts with ` + "`" + `namespace_sync_rule` + "`" + `. See the documentation for [Creating Integrations](https://developers.signalfx.com/integrations_reference.html#operation/Create%20Integration) for valida values.`,
 				},
 				resource.Attribute{
 					Name:        "poll_rate",
@@ -233,7 +233,7 @@ SignalFx AWS CloudWatch integrations. For help with this integration see [Monito
 
 SignalFx AWS CloudWatch integrations using security tokens. For help with this integration see [Connect to AWS CloudWatch](https://docs.signalfx.com/en/latest/integrations/amazon-web-services.html#connect-to-aws).
 
-**Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider.
+~> **NOTE** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider.
 
 ~> **WARNING** This resource implements a part of a workflow. You must use it with ` + "`" + `signalfx_aws_integration` + "`" + `.
 
@@ -275,9 +275,9 @@ SignalFx AWS CloudWatch integrations using security tokens. For help with this i
 			ShortDescription: `Allows Terraform to create and manage SignalFx Azure Integrations`,
 			Description: `
 
-SignalFx Azure integrations. For help with this integration see [Monitoring Microsoft Azure](https://docs.signalfx.com/en/latest/integrations/azure-info.html).
+SignalFx Azure integrations. For help with this integration see [Monitoring Microsoft Azure](https://docs.signalfx.com/en/latest/integrations/azure-info.html#connect-to-azure).
 
-**Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+~> **NOTE** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
 
 `,
 			Keywords: []string{
@@ -303,11 +303,11 @@ SignalFx Azure integrations. For help with this integration see [Monitoring Micr
 				},
 				resource.Attribute{
 					Name:        "secret_key",
-					Description: `(Required) Azure secret key that associates the SignalFx app in Azure with the Azure tenant ID. To learn how to get this ID, see the topic [Connect to Microsoft Azure](https://docs.signalfx.com/en/latest/getting-started/send-data.html#connect-to-microsoft-azure) in the product documentation.`,
+					Description: `(Required) Azure secret key that associates the SignalFx app in Azure with the Azure tenant ID. To learn how to get this ID, see the topic [Connect to Microsoft Azure](https://docs.signalfx.com/en/latest/integrations/azure-info.html#connect-to-azure) in the product documentation.`,
 				},
 				resource.Attribute{
 					Name:        "services",
-					Description: `(Required) List of Microsoft Azure service names for the Azure services you want SignalFx to monitor.`,
+					Description: `(Required) List of Microsoft Azure service names for the Azure services you want SignalFx to monitor. See the documentation for [Creating Integrations](https://developers.signalfx.com/integrations_reference.html#operation/Create%20Integration) for valida values.`,
 				},
 				resource.Attribute{
 					Name:        "subscriptions",
@@ -325,7 +325,7 @@ SignalFx Azure integrations. For help with this integration see [Monitoring Micr
 
 A dashboard is a curated collection of specific charts and supports dimensional [filters](http://docs.signalfx.com/en/latest/dashboards/dashboard-filter-dynamic.html#filter-dashboard-charts), [dashboard variables](http://docs.signalfx.com/en/latest/dashboards/dashboard-filter-dynamic.html#dashboard-variables) and [time range](http://docs.signalfx.com/en/latest/_sidebars-and-includes/using-time-range-selector.html#time-range-selector) options. These options are applied to all charts in the dashboard, providing a consistent view of the data displayed in that dashboard. This also means that when you open a chart to drill down for more details, you are viewing the same data that is visible in the dashboard view.
 
-**NOTE:** Since every dashboard is included in a [dashboard group](dashboard_group.html) (SignalFx collection of dashboards), you need to create that first and reference it as shown in the example.
+~> **NOTE** Since every dashboard is included in a [dashboard group](dashboard_group.html) (SignalFx collection of dashboards), you need to create that first and reference it as shown in the example.
 
 `,
 			Keywords: []string{
@@ -558,9 +558,9 @@ A dashboard is a curated collection of specific charts and supports dimensional 
 			ShortDescription: `Allows Terraform to create and manage SignalFx Dashboard Groups`,
 			Description: `
 
-In the SignalFx web UI, a [dashboard group](https://developers.signalfx.com/v2/docs/dashboard-group-model) is a collection of dashboards.
+In the SignalFx web UI, a [dashboard group](https://developers.signalfx.com/dashboard_groups_reference.html) is a collection of dashboards.
 
-**NOTE:** Dashboard groups cannot be accessed directly, but just via a dashboard contained in them. This is the reason why make show won't show any of yours dashboard groups.
+~> **NOTE** Dashboard groups cannot be accessed directly, but just via a dashboard contained in them. This is the reason why make show won't show any of yours dashboard groups.
 
 `,
 			Keywords: []string{
@@ -739,7 +739,7 @@ Provides a SignalFx detector resource. This can be used to create and manage det
 				},
 				resource.Attribute{
 					Name:        "program_text",
-					Description: `(Required) Signalflow program text for the detector. More info at <https://developers.signalfx.com/signalflow_analytics/signalflow_overview.html>.`,
+					Description: `(Required) Signalflow program text for the detector. More info [in the SignalFx docs](https://developers.signalfx.com/signalflow_analytics/signalflow_overview.html#_signalflow_programming_language).`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -755,7 +755,7 @@ Provides a SignalFx detector resource. This can be used to create and manage det
 				},
 				resource.Attribute{
 					Name:        "max_delay",
-					Description: `(Optional) How long (in seconds) to wait for late datapoints. See <https://signalfx-product-docs.readthedocs-hosted.com/en/latest/charts/chart-builder.html#delayed-datapoints> for more info. Max value is ` + "`" + `900` + "`" + ` seconds (15 minutes). ` + "`" + `Auto` + "`" + ` (as little as possible) by default.`,
+					Description: `(Optional) How long (in seconds) to wait for late datapoints. See [Delayed Datapoints](https://signalfx-product-docs.readthedocs-hosted.com/en/latest/charts/chart-builder.html#delayed-datapoints) for more info. Max value is ` + "`" + `900` + "`" + ` seconds (15 minutes). ` + "`" + `Auto` + "`" + ` (as little as possible) by default.`,
 				},
 				resource.Attribute{
 					Name:        "show_data_markers",
@@ -807,15 +807,15 @@ Provides a SignalFx detector resource. This can be used to create and manage det
 				},
 				resource.Attribute{
 					Name:        "notifications",
-					Description: `(Optional) List of strings specifying where notifications will be sent when an incident occurs. See <https://developers.signalfx.com/detectors_reference.html#operation/Create%20Single%20Detector> for more info.`,
+					Description: `(Optional) List of strings specifying where notifications will be sent when an incident occurs. See [Create A Single Detector](https://developers.signalfx.com/detectors_reference.html#operation/Create%20Single%20Detector) for more info.`,
 				},
 				resource.Attribute{
 					Name:        "parameterized_body",
-					Description: `(Optional) Custom notification message body when an alert is triggered. See <https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#about-detectors#alert-settings> for more info.`,
+					Description: `(Optional) Custom notification message body when an alert is triggered. See [Set Up Detectors to Trigger Alerts](https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#about-detectors#alert-settings) for more info.`,
 				},
 				resource.Attribute{
 					Name:        "parameterized_subject",
-					Description: `(Optional) Custom notification message subject when an alert is triggered. See <https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#about-detectors#alert-settings> for more info.`,
+					Description: `(Optional) Custom notification message subject when an alert is triggered. See [Set Up Detectors to Trigger Alerts](https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#about-detectors#alert-settings) for more info.`,
 				},
 				resource.Attribute{
 					Name:        "runbook_url",
@@ -879,7 +879,7 @@ Displays a listing of events as a widget in a dashboard.
 				},
 				resource.Attribute{
 					Name:        "program_text",
-					Description: `(Required) Signalflow program text for the chart. More info at <https://developers.signalfx.com/docs/signalflow-overview>.`,
+					Description: `(Required) Signalflow program text for the chart. More info[in the SignalFx docs](https://developers.signalfx.com/signalflow_analytics/signalflow_overview.html#_signalflow_programming_language).`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -909,7 +909,7 @@ Displays a listing of events as a widget in a dashboard.
 
 SignalFx GCP Integration
 
-**Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+~> **NOTE** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
 
 `,
 			Keywords: []string{
@@ -931,11 +931,15 @@ SignalFx GCP Integration
 				},
 				resource.Attribute{
 					Name:        "services",
-					Description: `(Optional) GCP service metrics to import. Can be an empty list, or not included, to import 'All services'.`,
+					Description: `(Optional) GCP service metrics to import. Can be an empty list, or not included, to import 'All services'. See the documentation for [Creating Integrations](https://developers.signalfx.com/integrations_reference.html#operation/Create%20Integration) for valid values.`,
 				},
 				resource.Attribute{
 					Name:        "project_service_keys",
 					Description: `(Required) GCP projects to add.`,
+				},
+				resource.Attribute{
+					Name:        "whilelist",
+					Description: `(Optional) [Compute Metadata Whitelist](https://docs.signalfx.com/en/latest/integrations/google-cloud-platform.html#compute-engine-instance).`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1001,7 +1005,7 @@ This chart type displays the specified plot in a heatmap fashion. This format is
 				},
 				resource.Attribute{
 					Name:        "color_range",
-					Description: `(Required unless using ` + "`" + `color_scale` + "`" + `. Conflicts with ` + "`" + `color_scale` + "`" + `) Values and color for the color range. Example: ` + "`" + `color_range : { min : 0, max : 100, color : "#0000ff" }` + "`" + `. Look at this [link](https://docs.signalfx.com/en/latest/charts/chart-options-tab.html).`,
+					Description: `(Optional, Default) Values and color for the color range. Example: ` + "`" + `color_range : { min : 0, max : 100, color : "#0000ff" }` + "`" + `. Look at this [link](https://docs.signalfx.com/en/latest/charts/chart-options-tab.html).`,
 				},
 				resource.Attribute{
 					Name:        "min_value",
@@ -1017,7 +1021,7 @@ This chart type displays the specified plot in a heatmap fashion. This format is
 				},
 				resource.Attribute{
 					Name:        "color_scale",
-					Description: `(Required unless using ` + "`" + `color_range` + "`" + `. Conflicts with ` + "`" + `color_range` + "`" + `) Single color range including both the color to display for that range and the borders of the range. Example: ` + "`" + `[{ gt = 60, color = "blue" }, { lte = 60, color = "yellow" }]` + "`" + `. Look at this [link](https://docs.signalfx.com/en/latest/charts/chart-options-tab.html).`,
+					Description: `(Optional. Conflicts with ` + "`" + `color_range` + "`" + `) One to N blocks, each defining a single color range including both the color to display for that range and the borders of the range. Example: ` + "`" + `color_scale { gt = 60, color = "blue" } color_scale { lte = 60, color = "yellow" }` + "`" + `. Look at this [link](https://docs.signalfx.com/en/latest/charts/chart-options-tab.html).`,
 				},
 				resource.Attribute{
 					Name:        "gt",
@@ -1029,7 +1033,7 @@ This chart type displays the specified plot in a heatmap fashion. This format is
 				},
 				resource.Attribute{
 					Name:        "lt",
-					Description: `(Optional) Indicates the upper threshold non-inculsive value for this range.`,
+					Description: `(Optional) Indicates the upper threshold non-inclusive value for this range.`,
 				},
 				resource.Attribute{
 					Name:        "lte",
@@ -1037,7 +1041,7 @@ This chart type displays the specified plot in a heatmap fashion. This format is
 				},
 				resource.Attribute{
 					Name:        "color",
-					Description: `(Required) The color range to use. Must be either gray, blue, navy, orange, yellow, magenta, purple, violet, lilac, green, aquamarine.`,
+					Description: `(Required) The color range to use. Hex values are not supported here. Must be either gray, blue, light_blue, navy, dark_orange, orange, dark_yellow, magenta, cerise, pink, violet, purple, gray_blue, dark_green, green, aquamarine, red, yellow, vivid_yellow, light_green, lime_green.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1051,7 +1055,7 @@ This chart type displays the specified plot in a heatmap fashion. This format is
 
 SignalFx Jira integrations. For help with this integration see [Integration with Jira](https://docs.signalfx.com/en/latest/admin-guide/integrate-notifications.html#integrate-with-jira).
 
-**Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+~> **NOTE** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
 
 `,
 			Keywords: []string{
@@ -1134,7 +1138,7 @@ The name of each value in the chart reflects the name of the plot and any associ
 				},
 				resource.Attribute{
 					Name:        "program_text",
-					Description: `(Required) Signalflow program text for the chart. More info at <https://developers.signalfx.com/docs/signalflow-overview>.`,
+					Description: `(Required) Signalflow program text for the chart. More info[in the SignalFx docs](https://developers.signalfx.com/signalflow_analytics/signalflow_overview.html#_signalflow_programming_language).`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1248,7 +1252,7 @@ The name of each value in the chart reflects the name of the plot and any associ
 
 SignalFx Opsgenie integration.
 
-**Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+~> **NOTE** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
 
 `,
 			Keywords: []string{
@@ -1301,6 +1305,10 @@ Manage SignalFx org tokens.
 				resource.Attribute{
 					Name:        "disabled",
 					Description: `(Optional) Flag that controls enabling the token. If set to ` + "`" + `true` + "`" + `, the token is disabled, and you can't use it for authentication. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "secret",
+					Description: `The secret token created by the API. You cannot set this value.`,
 				},
 				resource.Attribute{
 					Name:        "notifications",
@@ -1362,7 +1370,7 @@ Manage SignalFx org tokens.
 
 SignalFx PagerDuty integrations
 
-**Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+~> **NOTE** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
 
 `,
 			Keywords: []string{
@@ -1409,7 +1417,7 @@ If the time period is in the past, the number represents the value of the metric
 				},
 				resource.Attribute{
 					Name:        "program_text",
-					Description: `(Required) Signalflow program text for the chart. More info at <https://developers.signalfx.com/docs/signalflow-overview>.`,
+					Description: `(Required) Signalflow program text for the chart. More info [in the SignalFx docs](https://developers.signalfx.com/signalflow_analytics/signalflow_overview.html#_signalflow_programming_language).`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1503,7 +1511,7 @@ If the time period is in the past, the number represents the value of the metric
 
 SignalFx Slack integration.
 
-**Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+~> **NOTE** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
 
 `,
 			Keywords: []string{
@@ -1634,7 +1642,7 @@ Time charts display data points over a period of time.
 				},
 				resource.Attribute{
 					Name:        "program_text",
-					Description: `(Required) Signalflow program text for the chart. More info at <https://developers.signalfx.com/docs/signalflow-overview>.`,
+					Description: `(Required) Signalflow program text for the chart. More info [in the SignalFx docs](https://developers.signalfx.com/signalflow_analytics/signalflow_overview.html#_signalflow_programming_language).`,
 				},
 				resource.Attribute{
 					Name:        "plot_type",
@@ -1836,7 +1844,7 @@ Time charts display data points over a period of time.
 
 SignalFx VictorOps integration.
 
-**Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+~> **NOTE** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
 
 `,
 			Keywords: []string{
@@ -1869,7 +1877,7 @@ SignalFx VictorOps integration.
 
 SignalFx Webhook integration.
 
-**Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+~> **NOTE** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
 
 `,
 			Keywords: []string{

@@ -369,7 +369,7 @@ var (
 			Name:             "",
 			Type:             "mongodbatlas_cloud_provider_snapshot",
 			Category:         "Data Sources",
-			ShortDescription: `Provides an Cloud Provider Snapshot Datasource.`,
+			ShortDescription: `Provides an Cloud Backup Snapshot Datasource.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -423,7 +423,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `Specifies the type of cluster: replicaSet or shardedCluster. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-get-one/)`,
+					Description: `Specifies the type of cluster: replicaSet or shardedCluster. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/get-one-backup/)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -465,7 +465,131 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `Specifies the type of cluster: replicaSet or shardedCluster. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-get-one/)`,
+					Description: `Specifies the type of cluster: replicaSet or shardedCluster. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/get-one-backup/)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mongodbatlas_cloud_provider_snapshot_backup_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a Cloud Backup Snapshot Policy Datasource.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The unique identifier of the project for the Atlas cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `(Required) The name of the Atlas cluster that contains the snapshots backup policy you want to retrieve. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `Unique identifier of the Atlas cluster.`,
+				},
+				resource.Attribute{
+					Name:        "next_snapshot",
+					Description: `UTC ISO 8601 formatted point in time when Atlas will take the next snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "reference_hour_of_day",
+					Description: `UTC Hour of day between 0 and 23 representing which hour of the day that Atlas takes a snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "reference_minute_of_hour",
+					Description: `UTC Minute of day between 0 and 59 representing which minute of the referenceHourOfDay that Atlas takes the snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "restore_window_days",
+					Description: `Specifies a restore window in days for cloud backup to maintain. ### Policies`,
+				},
+				resource.Attribute{
+					Name:        "policies",
+					Description: `A list of policy definitions for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "policies.#.id",
+					Description: `Unique identifier of the backup policy. #### Policy Item`,
+				},
+				resource.Attribute{
+					Name:        "policies.#.policy_item",
+					Description: `A list of specifications for a policy.`,
+				},
+				resource.Attribute{
+					Name:        "policies.#.policy_item.#.id",
+					Description: `Unique identifier for this policy item.`,
+				},
+				resource.Attribute{
+					Name:        "policies.#.policy_item.#.frequency_interval",
+					Description: `The frequency interval for a set of snapshots.`,
+				},
+				resource.Attribute{
+					Name:        "policies.#.policy_item.#.frequency_type",
+					Description: `A type of frequency (hourly, daily, weekly, monthly).`,
+				},
+				resource.Attribute{
+					Name:        "policies.#.policy_item.#.retention_unit",
+					Description: `The unit of time in which snapshot retention is measured (days, weeks, months).`,
+				},
+				resource.Attribute{
+					Name:        "policies.#.policy_item.#.retention_value",
+					Description: `The number of days, weeks, or months the snapshot is retained. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/get-all-schedules/)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `Unique identifier of the Atlas cluster.`,
+				},
+				resource.Attribute{
+					Name:        "next_snapshot",
+					Description: `UTC ISO 8601 formatted point in time when Atlas will take the next snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "reference_hour_of_day",
+					Description: `UTC Hour of day between 0 and 23 representing which hour of the day that Atlas takes a snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "reference_minute_of_hour",
+					Description: `UTC Minute of day between 0 and 59 representing which minute of the referenceHourOfDay that Atlas takes the snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "restore_window_days",
+					Description: `Specifies a restore window in days for cloud backup to maintain. ### Policies`,
+				},
+				resource.Attribute{
+					Name:        "policies",
+					Description: `A list of policy definitions for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "policies.#.id",
+					Description: `Unique identifier of the backup policy. #### Policy Item`,
+				},
+				resource.Attribute{
+					Name:        "policies.#.policy_item",
+					Description: `A list of specifications for a policy.`,
+				},
+				resource.Attribute{
+					Name:        "policies.#.policy_item.#.id",
+					Description: `Unique identifier for this policy item.`,
+				},
+				resource.Attribute{
+					Name:        "policies.#.policy_item.#.frequency_interval",
+					Description: `The frequency interval for a set of snapshots.`,
+				},
+				resource.Attribute{
+					Name:        "policies.#.policy_item.#.frequency_type",
+					Description: `A type of frequency (hourly, daily, weekly, monthly).`,
+				},
+				resource.Attribute{
+					Name:        "policies.#.policy_item.#.retention_unit",
+					Description: `The unit of time in which snapshot retention is measured (days, weeks, months).`,
+				},
+				resource.Attribute{
+					Name:        "policies.#.policy_item.#.retention_value",
+					Description: `The number of days, weeks, or months the snapshot is retained. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/get-all-schedules/)`,
 				},
 			},
 		},
@@ -473,7 +597,7 @@ var (
 			Name:             "",
 			Type:             "mongodbatlas_cloud_provider_snapshot_restore_job",
 			Category:         "Data Sources",
-			ShortDescription: `Provides a Cloud Provider Snapshot Restore Job Datasource.`,
+			ShortDescription: `Provides a Cloud Backup Snapshot Restore Job Datasource.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -535,7 +659,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "timestamp",
-					Description: `Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-restore-jobs-get-one/)`,
+					Description: `Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.`,
+				},
+				resource.Attribute{
+					Name:        "oplogTs",
+					Description: `Timestamp in the number of seconds that have elapsed since the UNIX epoch.`,
+				},
+				resource.Attribute{
+					Name:        "oplogInc",
+					Description: `Oplog operation number from which to you want to restore this snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "pointInTimeUTCSeconds",
+					Description: `Timestamp in the number of seconds that have elapsed since the UNIX epoch. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/get-one-restore-job/)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -585,7 +721,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "timestamp",
-					Description: `Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-restore-jobs-get-one/)`,
+					Description: `Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.`,
+				},
+				resource.Attribute{
+					Name:        "oplogTs",
+					Description: `Timestamp in the number of seconds that have elapsed since the UNIX epoch.`,
+				},
+				resource.Attribute{
+					Name:        "oplogInc",
+					Description: `Oplog operation number from which to you want to restore this snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "pointInTimeUTCSeconds",
+					Description: `Timestamp in the number of seconds that have elapsed since the UNIX epoch. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/get-one-restore-job/)`,
 				},
 			},
 		},
@@ -593,7 +741,7 @@ var (
 			Name:             "",
 			Type:             "mongodbatlas_cloud_provider_snapshot_restore_jobs",
 			Category:         "Data Sources",
-			ShortDescription: `Provides a Cloud Provider Snapshot Restore Jobs Datasource.`,
+			ShortDescription: `Provides a Cloud Backup Snapshot Restore Jobs Datasource.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -603,7 +751,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_name",
-					Description: `(Required) The name of the Atlas cluster for which you want to retrieve restore jobs. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required) The name of the Atlas cluster for which you want to retrieve restore jobs.`,
+				},
+				resource.Attribute{
+					Name:        "page_num",
+					Description: `(Optional) The page to return. Defaults to ` + "`" + `1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "items_per_page",
+					Description: `(Optional) Number of items to return per page, up to a maximum of 500. Defaults to ` + "`" + `100` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "results",
@@ -659,7 +815,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "timestamp",
-					Description: `Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-restore-jobs-get-all/)`,
+					Description: `Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.`,
+				},
+				resource.Attribute{
+					Name:        "oplogTs",
+					Description: `Timestamp in the number of seconds that have elapsed since the UNIX epoch.`,
+				},
+				resource.Attribute{
+					Name:        "oplogInc",
+					Description: `Oplog operation number from which to you want to restore this snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "pointInTimeUTCSeconds",
+					Description: `Timestamp in the number of seconds that have elapsed since the UNIX epoch. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/get-all-restore-jobs/)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -717,7 +885,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "timestamp",
-					Description: `Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-restore-jobs-get-all/)`,
+					Description: `Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.`,
+				},
+				resource.Attribute{
+					Name:        "oplogTs",
+					Description: `Timestamp in the number of seconds that have elapsed since the UNIX epoch.`,
+				},
+				resource.Attribute{
+					Name:        "oplogInc",
+					Description: `Oplog operation number from which to you want to restore this snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "pointInTimeUTCSeconds",
+					Description: `Timestamp in the number of seconds that have elapsed since the UNIX epoch. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/get-all-restore-jobs/)`,
 				},
 			},
 		},
@@ -725,7 +905,7 @@ var (
 			Name:             "",
 			Type:             "mongodbatlas_cloud_provider_snapshots",
 			Category:         "Data Sources",
-			ShortDescription: `Provides an Cloud Provider Snapshot Datasource.`,
+			ShortDescription: `Provides an Cloud Backup Snapshot Datasource.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -735,7 +915,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "group_id",
-					Description: `(Required) The unique identifier of the project for the Atlas cluster. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required) The unique identifier of the project for the Atlas cluster.`,
+				},
+				resource.Attribute{
+					Name:        "page_num",
+					Description: `(Optional) The page to return. Defaults to ` + "`" + `1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "items_per_page",
+					Description: `(Optional) Number of items to return per page, up to a maximum of 500. Defaults to ` + "`" + `100` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "results",
@@ -783,7 +971,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `Specifies the type of cluster: replicaSet or shardedCluster. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-get-all/)`,
+					Description: `Specifies the type of cluster: replicaSet or shardedCluster. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/get-all-backups/)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -833,7 +1021,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `Specifies the type of cluster: replicaSet or shardedCluster. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-get-all/)`,
+					Description: `Specifies the type of cluster: replicaSet or shardedCluster. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/get-all-backups/)`,
 				},
 			},
 		},
@@ -875,7 +1063,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pit_enabled",
-					Description: `Flag that indicates if the cluster uses Point-in-Time backups.`,
+					Description: `Flag that indicates if the cluster uses Continuous Cloud Backup.`,
 				},
 				resource.Attribute{
 					Name:        "srv_address",
@@ -890,8 +1078,16 @@ var (
 					Description: `Indicates whether disk auto-scaling is enabled.`,
 				},
 				resource.Attribute{
+					Name:        "auto_scaling_compute_enabled",
+					Description: `(Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.`,
+				},
+				resource.Attribute{
+					Name:        "auto_scaling_compute_scale_down_enabled",
+					Description: `(Optional) Set to ` + "`" + `true` + "`" + ` to enable the cluster tier to scale down.`,
+				},
+				resource.Attribute{
 					Name:        "backup_enabled",
-					Description: `Indicates whether Atlas continuous backups are enabled for the cluster.`,
+					Description: `Legacy Option, Indicates whether Atlas continuous backups are enabled for the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "bi_connector",
@@ -900,6 +1096,10 @@ var (
 				resource.Attribute{
 					Name:        "cluster_type",
 					Description: `Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.`,
+				},
+				resource.Attribute{
+					Name:        "connection_strings",
+					Description: `Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster. - ` + "`" + `connection_strings.standard` + "`" + ` - Public mongodb:// connection string for this cluster. - ` + "`" + `connection_strings.standard_srv` + "`" + ` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard. - ` + "`" + `connection_strings.aws_private_link` + "`" + ` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. - ` + "`" + `connection_strings.aws_private_link_srv` + "`" + ` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink. - ` + "`" + `connection_strings.private` + "`" + ` - [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster. - ` + "`" + `connection_strings.private_srv` + "`" + ` - [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "disk_size_gb",
@@ -923,7 +1123,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_backup_enabled",
-					Description: `Flag indicating if the cluster uses Cloud Provider Snapshots for backups.`,
+					Description: `Flag indicating if the cluster uses Cloud Backup Snapshots for backups.`,
 				},
 				resource.Attribute{
 					Name:        "provider_instance_size_name",
@@ -962,8 +1162,20 @@ var (
 					Description: `Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.`,
 				},
 				resource.Attribute{
+					Name:        "provider_auto_scaling_compute_min_instance_size",
+					Description: `(Optional) Minimum instance size to which your cluster can automatically scale.`,
+				},
+				resource.Attribute{
+					Name:        "provider_auto_scaling_compute_max_instance_size",
+					Description: `(Optional) Maximum instance size to which your cluster can automatically scale.`,
+				},
+				resource.Attribute{
 					Name:        "replication_specs",
-					Description: `Configuration for cluster regions. See [Replication Spec](#replication-spec) below for more details. ### BI Connector Indicates BI Connector for Atlas configuration.`,
+					Description: `Configuration for cluster regions. See [Replication Spec](#replication-spec) below for more details.`,
+				},
+				resource.Attribute{
+					Name:        "container_id",
+					Description: `The Network Peering Container ID. ### BI Connector Indicates BI Connector for Atlas configuration.`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -1023,7 +1235,71 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `The current version of the plugin. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
+					Description: `The current version of the plugin. ### Cloud Provider Snapshot Backup Policy`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy",
+					Description: `current snapshot schedule and retention settings for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.cluster_id",
+					Description: `Unique identifier of the Atlas cluster.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.cluster_name",
+					Description: `Name of the Atlas cluster that contains the snapshot backup policy.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.next_snapshot",
+					Description: `UTC ISO 8601 formatted point in time when Atlas will take the next snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.reference_hour_of_day",
+					Description: `UTC Hour of day between 0 and 23 representing which hour of the day that Atlas takes a snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.reference_minute_of_hour",
+					Description: `UTC Minute of day between 0 and 59 representing which minute of the referenceHourOfDay that Atlas takes the snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.restore_window_days",
+					Description: `Specifies a restore window in days for the cloud provider backup to maintain.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.update_snapshots",
+					Description: `Specifies it's true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. ### Policies`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies",
+					Description: `A list of policy definitions for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.id",
+					Description: `Unique identifier of the backup policy. #### Policy Item`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item",
+					Description: `A list of specifications for a policy.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.id",
+					Description: `Unique identifier for this policy item.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.frequency_interval",
+					Description: `The frequency interval for a set of snapshots.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.frequency_type",
+					Description: `A type of frequency (hourly, daily, weekly, monthly).`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.retention_unit",
+					Description: `The unit of time in which snapshot retention is measured (days, weeks, months).`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.retention_value",
+					Description: `The number of days, weeks, or months the snapshot is retained. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1049,7 +1325,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pit_enabled",
-					Description: `Flag that indicates if the cluster uses Point-in-Time backups.`,
+					Description: `Flag that indicates if the cluster uses Continuous Cloud Backup.`,
 				},
 				resource.Attribute{
 					Name:        "srv_address",
@@ -1064,8 +1340,16 @@ var (
 					Description: `Indicates whether disk auto-scaling is enabled.`,
 				},
 				resource.Attribute{
+					Name:        "auto_scaling_compute_enabled",
+					Description: `(Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.`,
+				},
+				resource.Attribute{
+					Name:        "auto_scaling_compute_scale_down_enabled",
+					Description: `(Optional) Set to ` + "`" + `true` + "`" + ` to enable the cluster tier to scale down.`,
+				},
+				resource.Attribute{
 					Name:        "backup_enabled",
-					Description: `Indicates whether Atlas continuous backups are enabled for the cluster.`,
+					Description: `Legacy Option, Indicates whether Atlas continuous backups are enabled for the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "bi_connector",
@@ -1074,6 +1358,10 @@ var (
 				resource.Attribute{
 					Name:        "cluster_type",
 					Description: `Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.`,
+				},
+				resource.Attribute{
+					Name:        "connection_strings",
+					Description: `Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster. - ` + "`" + `connection_strings.standard` + "`" + ` - Public mongodb:// connection string for this cluster. - ` + "`" + `connection_strings.standard_srv` + "`" + ` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard. - ` + "`" + `connection_strings.aws_private_link` + "`" + ` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. - ` + "`" + `connection_strings.aws_private_link_srv` + "`" + ` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink. - ` + "`" + `connection_strings.private` + "`" + ` - [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster. - ` + "`" + `connection_strings.private_srv` + "`" + ` - [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "disk_size_gb",
@@ -1097,7 +1385,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_backup_enabled",
-					Description: `Flag indicating if the cluster uses Cloud Provider Snapshots for backups.`,
+					Description: `Flag indicating if the cluster uses Cloud Backup Snapshots for backups.`,
 				},
 				resource.Attribute{
 					Name:        "provider_instance_size_name",
@@ -1136,8 +1424,20 @@ var (
 					Description: `Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.`,
 				},
 				resource.Attribute{
+					Name:        "provider_auto_scaling_compute_min_instance_size",
+					Description: `(Optional) Minimum instance size to which your cluster can automatically scale.`,
+				},
+				resource.Attribute{
+					Name:        "provider_auto_scaling_compute_max_instance_size",
+					Description: `(Optional) Maximum instance size to which your cluster can automatically scale.`,
+				},
+				resource.Attribute{
 					Name:        "replication_specs",
-					Description: `Configuration for cluster regions. See [Replication Spec](#replication-spec) below for more details. ### BI Connector Indicates BI Connector for Atlas configuration.`,
+					Description: `Configuration for cluster regions. See [Replication Spec](#replication-spec) below for more details.`,
+				},
+				resource.Attribute{
+					Name:        "container_id",
+					Description: `The Network Peering Container ID. ### BI Connector Indicates BI Connector for Atlas configuration.`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -1197,7 +1497,71 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `The current version of the plugin. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
+					Description: `The current version of the plugin. ### Cloud Provider Snapshot Backup Policy`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy",
+					Description: `current snapshot schedule and retention settings for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.cluster_id",
+					Description: `Unique identifier of the Atlas cluster.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.cluster_name",
+					Description: `Name of the Atlas cluster that contains the snapshot backup policy.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.next_snapshot",
+					Description: `UTC ISO 8601 formatted point in time when Atlas will take the next snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.reference_hour_of_day",
+					Description: `UTC Hour of day between 0 and 23 representing which hour of the day that Atlas takes a snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.reference_minute_of_hour",
+					Description: `UTC Minute of day between 0 and 59 representing which minute of the referenceHourOfDay that Atlas takes the snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.restore_window_days",
+					Description: `Specifies a restore window in days for the cloud provider backup to maintain.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.update_snapshots",
+					Description: `Specifies it's true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. ### Policies`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies",
+					Description: `A list of policy definitions for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.id",
+					Description: `Unique identifier of the backup policy. #### Policy Item`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item",
+					Description: `A list of specifications for a policy.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.id",
+					Description: `Unique identifier for this policy item.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.frequency_interval",
+					Description: `The frequency interval for a set of snapshots.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.frequency_type",
+					Description: `A type of frequency (hourly, daily, weekly, monthly).`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.retention_unit",
+					Description: `The unit of time in which snapshot retention is measured (days, weeks, months).`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.retention_value",
+					Description: `The number of days, weeks, or months the snapshot is retained. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
 				},
 			},
 		},
@@ -1243,7 +1607,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pit_enabled",
-					Description: `Flag that indicates if the cluster uses Point-in-Time backups.`,
+					Description: `Flag that indicates if the cluster uses Continuous Cloud Backup.`,
 				},
 				resource.Attribute{
 					Name:        "srv_address",
@@ -1258,8 +1622,16 @@ var (
 					Description: `Indicates whether disk auto-scaling is enabled.`,
 				},
 				resource.Attribute{
+					Name:        "auto_scaling_compute_enabled",
+					Description: `(Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.`,
+				},
+				resource.Attribute{
+					Name:        "auto_scaling_compute_scale_down_enabled",
+					Description: `(Optional) Set to ` + "`" + `true` + "`" + ` to enable the cluster tier to scale down.`,
+				},
+				resource.Attribute{
 					Name:        "backup_enabled",
-					Description: `Indicates whether Atlas continuous backups are enabled for the cluster.`,
+					Description: `Legacy Option, Indicates whether Atlas continuous backups are enabled for the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "bi_connector",
@@ -1268,6 +1640,10 @@ var (
 				resource.Attribute{
 					Name:        "cluster_type",
 					Description: `Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.`,
+				},
+				resource.Attribute{
+					Name:        "connection_strings",
+					Description: `Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster. - ` + "`" + `connection_strings.standard` + "`" + ` - Public mongodb:// connection string for this cluster. - ` + "`" + `connection_strings.standard_srv` + "`" + ` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard. - ` + "`" + `connection_strings.aws_private_link` + "`" + ` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. - ` + "`" + `connection_strings.aws_private_link_srv` + "`" + ` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink. - ` + "`" + `connection_strings.private` + "`" + ` - [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster. - ` + "`" + `connection_strings.private_srv` + "`" + ` - [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "disk_size_gb",
@@ -1287,7 +1663,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_backup_enabled",
-					Description: `Flag indicating if the cluster uses Cloud Provider Snapshots for backups.`,
+					Description: `Flag indicating if the cluster uses Cloud Backup Snapshots for backups.`,
 				},
 				resource.Attribute{
 					Name:        "provider_instance_size_name",
@@ -1322,12 +1698,24 @@ var (
 					Description: `Indicates the type of the volume. The possible values are: ` + "`" + `STANDARD` + "`" + ` and ` + "`" + `PROVISIONED` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "provider_auto_scaling_compute_min_instance_size",
+					Description: `(Optional) Minimum instance size to which your cluster can automatically scale.`,
+				},
+				resource.Attribute{
+					Name:        "provider_auto_scaling_compute_max_instance_size",
+					Description: `(Optional) Maximum instance size to which your cluster can automatically scale.`,
+				},
+				resource.Attribute{
 					Name:        "replication_factor",
 					Description: `Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.`,
 				},
 				resource.Attribute{
 					Name:        "replication_specs",
-					Description: `Configuration for cluster regions. See [Replication Spec](#replication-spec) below for more details. ### BI Connector Indicates BI Connector for Atlas configuration.`,
+					Description: `Configuration for cluster regions. See [Replication Spec](#replication-spec) below for more details.`,
+				},
+				resource.Attribute{
+					Name:        "container_id",
+					Description: `The Network Peering Container ID. ### BI Connector Indicates BI Connector for Atlas configuration.`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -1387,7 +1775,71 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `The current version of the plugin. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
+					Description: `The current version of the plugin. ### Cloud Provider Snapshot Backup Policy`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy",
+					Description: `current snapshot schedule and retention settings for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.cluster_id",
+					Description: `Unique identifier of the Atlas cluster.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.cluster_name",
+					Description: `Name of the Atlas cluster that contains the snapshot backup policy.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.next_snapshot",
+					Description: `UTC ISO 8601 formatted point in time when Atlas will take the next snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.reference_hour_of_day",
+					Description: `UTC Hour of day between 0 and 23 representing which hour of the day that Atlas takes a snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.reference_minute_of_hour",
+					Description: `UTC Minute of day between 0 and 59 representing which minute of the referenceHourOfDay that Atlas takes the snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.restore_window_days",
+					Description: `Specifies a restore window in days for the cloud provider backup to maintain.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.update_snapshots",
+					Description: `Specifies it's true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. ### Policies`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies",
+					Description: `A list of policy definitions for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.id",
+					Description: `Unique identifier of the backup policy. #### Policy Item`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item",
+					Description: `A list of specifications for a policy.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.id",
+					Description: `Unique identifier for this policy item.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.frequency_interval",
+					Description: `The frequency interval for a set of snapshots.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.frequency_type",
+					Description: `A type of frequency (hourly, daily, weekly, monthly).`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.retention_unit",
+					Description: `The unit of time in which snapshot retention is measured (days, weeks, months).`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.retention_value",
+					Description: `The number of days, weeks, or months the snapshot is retained. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1421,7 +1873,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pit_enabled",
-					Description: `Flag that indicates if the cluster uses Point-in-Time backups.`,
+					Description: `Flag that indicates if the cluster uses Continuous Cloud Backup.`,
 				},
 				resource.Attribute{
 					Name:        "srv_address",
@@ -1436,8 +1888,16 @@ var (
 					Description: `Indicates whether disk auto-scaling is enabled.`,
 				},
 				resource.Attribute{
+					Name:        "auto_scaling_compute_enabled",
+					Description: `(Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.`,
+				},
+				resource.Attribute{
+					Name:        "auto_scaling_compute_scale_down_enabled",
+					Description: `(Optional) Set to ` + "`" + `true` + "`" + ` to enable the cluster tier to scale down.`,
+				},
+				resource.Attribute{
 					Name:        "backup_enabled",
-					Description: `Indicates whether Atlas continuous backups are enabled for the cluster.`,
+					Description: `Legacy Option, Indicates whether Atlas continuous backups are enabled for the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "bi_connector",
@@ -1446,6 +1906,10 @@ var (
 				resource.Attribute{
 					Name:        "cluster_type",
 					Description: `Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.`,
+				},
+				resource.Attribute{
+					Name:        "connection_strings",
+					Description: `Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster. - ` + "`" + `connection_strings.standard` + "`" + ` - Public mongodb:// connection string for this cluster. - ` + "`" + `connection_strings.standard_srv` + "`" + ` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard. - ` + "`" + `connection_strings.aws_private_link` + "`" + ` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. - ` + "`" + `connection_strings.aws_private_link_srv` + "`" + ` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink. - ` + "`" + `connection_strings.private` + "`" + ` - [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster. - ` + "`" + `connection_strings.private_srv` + "`" + ` - [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "disk_size_gb",
@@ -1465,7 +1929,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_backup_enabled",
-					Description: `Flag indicating if the cluster uses Cloud Provider Snapshots for backups.`,
+					Description: `Flag indicating if the cluster uses Cloud Backup Snapshots for backups.`,
 				},
 				resource.Attribute{
 					Name:        "provider_instance_size_name",
@@ -1500,12 +1964,24 @@ var (
 					Description: `Indicates the type of the volume. The possible values are: ` + "`" + `STANDARD` + "`" + ` and ` + "`" + `PROVISIONED` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "provider_auto_scaling_compute_min_instance_size",
+					Description: `(Optional) Minimum instance size to which your cluster can automatically scale.`,
+				},
+				resource.Attribute{
+					Name:        "provider_auto_scaling_compute_max_instance_size",
+					Description: `(Optional) Maximum instance size to which your cluster can automatically scale.`,
+				},
+				resource.Attribute{
 					Name:        "replication_factor",
 					Description: `Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.`,
 				},
 				resource.Attribute{
 					Name:        "replication_specs",
-					Description: `Configuration for cluster regions. See [Replication Spec](#replication-spec) below for more details. ### BI Connector Indicates BI Connector for Atlas configuration.`,
+					Description: `Configuration for cluster regions. See [Replication Spec](#replication-spec) below for more details.`,
+				},
+				resource.Attribute{
+					Name:        "container_id",
+					Description: `The Network Peering Container ID. ### BI Connector Indicates BI Connector for Atlas configuration.`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -1565,7 +2041,71 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `The current version of the plugin. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
+					Description: `The current version of the plugin. ### Cloud Provider Snapshot Backup Policy`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy",
+					Description: `current snapshot schedule and retention settings for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.cluster_id",
+					Description: `Unique identifier of the Atlas cluster.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.cluster_name",
+					Description: `Name of the Atlas cluster that contains the snapshot backup policy.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.next_snapshot",
+					Description: `UTC ISO 8601 formatted point in time when Atlas will take the next snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.reference_hour_of_day",
+					Description: `UTC Hour of day between 0 and 23 representing which hour of the day that Atlas takes a snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.reference_minute_of_hour",
+					Description: `UTC Minute of day between 0 and 59 representing which minute of the referenceHourOfDay that Atlas takes the snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.restore_window_days",
+					Description: `Specifies a restore window in days for the cloud provider backup to maintain.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.update_snapshots",
+					Description: `Specifies it's true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. ### Policies`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies",
+					Description: `A list of policy definitions for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.id",
+					Description: `Unique identifier of the backup policy. #### Policy Item`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item",
+					Description: `A list of specifications for a policy.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.id",
+					Description: `Unique identifier for this policy item.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.frequency_interval",
+					Description: `The frequency interval for a set of snapshots.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.frequency_type",
+					Description: `A type of frequency (hourly, daily, weekly, monthly).`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.retention_unit",
+					Description: `The unit of time in which snapshot retention is measured (days, weeks, months).`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.retention_value",
+					Description: `The number of days, weeks, or months the snapshot is retained. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
 				},
 			},
 		},
@@ -1899,11 +2439,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region_name",
-					Description: `AWS region.`,
+					Description: `The Atlas AWS region name for where this container will exist.`,
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `Azure region where the container resides.`,
+					Description: `The Atlas Azure region name for where this container will exist.`,
 				},
 				resource.Attribute{
 					Name:        "azure_subscription_id",
@@ -1941,11 +2481,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region_name",
-					Description: `AWS region.`,
+					Description: `The Atlas AWS region name for where this container will exist.`,
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `Azure region where the container resides.`,
+					Description: `The Atlas Azure region name for where this container will exist.`,
 				},
 				resource.Attribute{
 					Name:        "azure_subscription_id",
@@ -2007,11 +2547,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region_name",
-					Description: `AWS region.`,
+					Description: `The Atlas AWS region name for where this container exists.`,
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `Azure region where the container resides.`,
+					Description: `The Atlas Azure region name for where this container exists.`,
 				},
 				resource.Attribute{
 					Name:        "azure_subscription_id",
@@ -2057,11 +2597,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region_name",
-					Description: `AWS region.`,
+					Description: `The Atlas AWS region name for where this container exists.`,
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `Azure region where the container resides.`,
+					Description: `The Atlas Azure region name for where this container exists.`,
 				},
 				resource.Attribute{
 					Name:        "azure_subscription_id",
@@ -2670,6 +3210,14 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "page_num",
+					Description: `(Optional) The page to return. Defaults to ` + "`" + `1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "items_per_page",
+					Description: `(Optional) Number of items to return per page, up to a maximum of 500. Defaults to ` + "`" + `100` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "id",
 					Description: `Autogenerated Unique ID for this data source.`,
 				},
@@ -2824,28 +3372,29 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"mongodbatlas_alert_configuration":                  0,
-		"mongodbatlas_auditing":                             1,
-		"mongodbatlas_cloud_provider_snapshot":              2,
-		"mongodbatlas_cloud_provider_snapshot_restore_job":  3,
-		"mongodbatlas_cloud_provider_snapshot_restore_jobs": 4,
-		"mongodbatlas_cloud_provider_snapshots":             5,
-		"mongodbatlas_cluster":                              6,
-		"mongodbatlas_clusters":                             7,
-		"mongodbatlas_custom_db_roles":                      8,
-		"mongodbatlas_database_user":                        9,
-		"mongodbatlas_database_users":                       10,
-		"mongodbatlas_maintenance_window":                   11,
-		"mongodbatlas_network_container":                    12,
-		"mongodbatlas_network_containers":                   13,
-		"mongodbatlas_network_peering":                      14,
-		"mongodbatlas_network_peerings":                     15,
-		"mongodbatlas_private_endpoint":                     16,
-		"mongodbatlas_private_endpoint_interface_link":      17,
-		"mongodbatlas_project":                              18,
-		"mongodbatlas_projects":                             19,
-		"mongodbatlas_team":                                 20,
-		"mongodbatlas_x509_authentication_database_user":    21,
+		"mongodbatlas_alert_configuration":                   0,
+		"mongodbatlas_auditing":                              1,
+		"mongodbatlas_cloud_provider_snapshot":               2,
+		"mongodbatlas_cloud_provider_snapshot_backup_policy": 3,
+		"mongodbatlas_cloud_provider_snapshot_restore_job":   4,
+		"mongodbatlas_cloud_provider_snapshot_restore_jobs":  5,
+		"mongodbatlas_cloud_provider_snapshots":              6,
+		"mongodbatlas_cluster":                               7,
+		"mongodbatlas_clusters":                              8,
+		"mongodbatlas_custom_db_roles":                       9,
+		"mongodbatlas_database_user":                         10,
+		"mongodbatlas_database_users":                        11,
+		"mongodbatlas_maintenance_window":                    12,
+		"mongodbatlas_network_container":                     13,
+		"mongodbatlas_network_containers":                    14,
+		"mongodbatlas_network_peering":                       15,
+		"mongodbatlas_network_peerings":                      16,
+		"mongodbatlas_private_endpoint":                      17,
+		"mongodbatlas_private_endpoint_interface_link":       18,
+		"mongodbatlas_project":                               19,
+		"mongodbatlas_projects":                              20,
+		"mongodbatlas_team":                                  21,
+		"mongodbatlas_x509_authentication_database_user":     22,
 	}
 )
 

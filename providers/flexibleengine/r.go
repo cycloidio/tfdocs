@@ -1075,11 +1075,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "preinstall",
-					Description: `(Optional) Script required before installation. The input value must be encoded using Base64. Changing this parameter will create a new resource.`,
+					Description: `(Optional) Script required before installation. The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.`,
 				},
 				resource.Attribute{
 					Name:        "postinstall",
-					Description: `(Optional) Script required after installation. The input value must be encoded using Base64. Changing this parameter will create a new resource.`,
+					Description: `(Optional) Script required after installation. The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.`,
 				},
 				resource.Attribute{
 					Name:        "size",
@@ -2598,7 +2598,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "product_id",
-					Description: `(Required) Product ID used to differentiate DCS instance types. Changing this creates a new instance.`,
+					Description: `(Required) Product ID used to differentiate DCS instance types. For example now there are following values available: - dcs.memcached.master_standby-h, - dcs.memcached.master_standby-m, - dcs.memcached.single_node-h, - dcs.memcached.single_node-m, - dcs.master_standby-h, - dcs.cluster-h, - dcs.single_node-h, - redis.cluster.xu1.large.r1.4-h, - redis.cluster.xu1.large.r2.4-h, - redis.cluster.xu1.large.r1.8-h, - redis.cluster.xu1.large.r2.16-h, - redis.cluster.xu1.large.r1.16-h, - redis.cluster.xu1.large.r2.24-h, - redis.cluster.xu1.large.r2.32-h, - redis.cluster.xu1.large.r1.32-h, - redis.cluster.xu1.large.r2.48-h, - redis.cluster.xu1.large.r1.48-h - redis.cluster.xu1.large.r2.64-h - redis.cluster.xu1.large.r1.64-h - redis.cluster.xu1.large.r2.96-h - redis.cluster.xu1.large.r1.96-h - redis.cluster.xu1.large.r2.128-h - redis.cluster.xu1.large.r1.128-h - redis.cluster.xu1.large.r1.192-h - redis.cluster.xu1.large.r2.192-h - redis.cluster.xu1.large.r2.256-h - redis.cluster.xu1.large.r1.256-h - redis.cluster.xu1.large.r2.384-h - redis.cluster.xu1.large.r1.384-h - redis.cluster.xu1.large.r1.512-h - redis.cluster.xu1.large.r2.512-h ..... For the whole list and the specification of product id please check the DCS API DOC for querying: https://dcs.eu-west-0.prod-cloud-ocb.orange-business.com/v1.0/products Changing this creates a new instance.`,
 				},
 				resource.Attribute{
 					Name:        "maintain_begin",
@@ -6670,11 +6670,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "master_node_size",
-					Description: `(Required) Best match based on several years of commissioning experience. MRS supports specifications of hosts, and host specifications are determined by CPUs, memory, and disks space. Master nodes support s1.4xlarge.linux.mrs, and s1.8xlarge.linux.mrs. Core nodes of a streaming cluster support s1.xlarge.linux.mrs, c2.2xlarge.linux.mrs, s1.2xlarge.linux.mrs, s1.4xlarge.linux.mrs, s1.8xlarge.linux.mrs, and d1.8xlarge.linux.mrs. Core nodes of an analysis cluster support all specifications. s1.xlarge.linux.mrs CPU: 4-core Memory: 16 GB System Disk: 40 GB c2.2xlarge.linux.mrs CPU: 8-core Memory: 16 GB System Disk: 40 GB s1.4xlarge.linux.mrs CPU: 16-core Memory: 64 GB System Disk: 40 GB s1.8xlarge.linux.mrs CPU: 32-core Memory: 128 GB System Disk: 40 GB d1.xlarge.linux.mrs CPU: 6-core Memory: 55 GB System Disk: 40 GB Data Disk: 1.8 TB x 3 HDDs d1.2xlarge.linux.mrs CPU: 12-core Memory: 110 GB System Disk: 40 GB Data Disk: 1.8 TB x 6 HDDs d1.4xlarge.linux.mrs CPU: 24-core Memory: 220 GB System Disk: 40 GB Data Disk: 1.8 TB x 12 HDDs d1.8xlarge.linux.mrs CPU: 48-core Memory: 440 GB System Disk: 40 GB Data Disk: 1.8 TB x 24 HDDs`,
+					Description: `(Required) Best match based on several years of commissioning experience. MRS supports specifications of hosts, and host specifications are determined by CPUs, memory, and disks space. - Master nodes support s1.4xlarge and s1.8xlarge, c3.2xlarge.2, c3.xlarge.4, c3.2xlarge.4, c3.4xlarge.2, c3.4xlarge.4, c3.8xlarge.4, c3.15xlarge.4. - Core nodes of a streaming cluster support s1.xlarge, c2.2xlarge, s1.2xlarge, s1.4xlarge, s1.8xlarge, d1.8xlarge, , c3.2xlarge.2, c3.xlarge.4, c3.2xlarge.4, c3.4xlarge.2, c3.4xlarge.4, c3.8xlarge.4, c3.15xlarge.4. - Core nodes of an analysis cluster support all specifications c2.2xlarge, s1.xlarge, s1.4xlarge, s1.8xlarge, d1.xlarge, d1.2xlarge, d1.4xlarge, d1.8xlarge, , c3.2xlarge.2, c3.xlarge.4, c3.2xlarge.4, c3.4xlarge.2, c3.4xlarge.4, c3.8xlarge.4, c3.15xlarge.4, d2.xlarge.8, d2.2xlarge.8, d2.4xlarge.8, d2.8xlarge.8. The following provides specification details. node_size | CPU(core) | Memory(GB) | System Disk | Data Disk | --- | --- | --- | --- | --- | c2.2xlarge.linux.mrs | 8 | 16 | 40 | - cc3.xlarge.4.linux.mrs | 4 | 16 | 40 | - cc3.2xlarge.4.linux.mrs | 8 | 32 | 40 | - cc3.4xlarge.4.linux.mrs | 16 | 64 | 40 | - cc3.8xlarge.4.linux.mrs | 32 | 128 | 40 | - s1.xlarge.linux.mrs | 4 | 16 | 40 | - s1.4xlarge.linux.mrs | 16 | 64 | 40 | - s1.8xlarge.linux.mrs | 32 | 128 | 40 | - s3.xlarge.4.linux.mrs| 4 | 16 | 40 | - s3.2xlarge.4.linux.mrs| 8 | 32 | 40 | - s3.4xlarge.4.linux.mrs| 16 | 64 | 40 | - d1.xlarge.linux.mrs | 6 | 55 | 40 | 1.8 TB x 3 HDDs d1.2xlarge.linux.mrs | 12 | 110 | 40 | 1.8 TB x 6 HDDs d1.4xlarge.linux.mrs | 24 | 220 | 40 | 1.8 TB x 12 HDDs d1.8xlarge.linux.mrs | 48 | 440 | 40 | 1.8 TB x 24 HDDs d2.xlarge.linux.mrs | 4 | 32 | 40 | - d2.2xlarge.linux.mrs | 8 | 64 | 40 | - d2.4xlarge.linux.mrs | 16 | 128 | 40 | 1.8TB`,
 				},
 				resource.Attribute{
 					Name:        "core_node_num",
-					Description: `(Required) Number of Core nodes Value range: 3 to 100 A maximum of 100 Core nodes are supported by default. If more than 100 Core nodes are required, contact technical support engineers or invoke background APIs to modify the database.`,
+					Description: `(Required) Number of Core nodes Value range: 3 to 500. A maximum of 500 Core nodes are supported by default. If more than 500 Core nodes are required, contact technical support engineers or invoke background APIs to modify the database.`,
 				},
 				resource.Attribute{
 					Name:        "core_node_size",
@@ -6698,11 +6698,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_version",
-					Description: `(Optional) Version of the clusters.You can refer to the online documentation to have the full list of available versions. The latest version of MRS is used by default.`,
+					Description: `(Optional) Version of the clusters. Currently, MRS 1.3.0, MRS 1.5.0, MRS 1.6.3, MRS 1.8.9, and MRS 2.0.1 are supported. The latest version of MRS is used by default. Currently, the latest version is MRS 2.0.1.`,
 				},
 				resource.Attribute{
 					Name:        "cluster_type",
-					Description: `(Optional) Type of clusters 0: analysis cluster 1: streaming cluster The default value is 0.`,
+					Description: `(Optional) Type of clusters. 0: analysis cluster; 1: streaming cluster. The default value is 0.`,
 				},
 				resource.Attribute{
 					Name:        "volume_type",
@@ -7551,12 +7551,20 @@ var (
 					Description: `(Required) ID of the nat gateway this snat rule belongs to. Changing this creates a new snat rule.`,
 				},
 				resource.Attribute{
-					Name:        "network_id",
-					Description: `(Required) ID of the network this snat rule connects to. Changing this creates a new snat rule.`,
+					Name:        "floating_ip_id",
+					Description: `(Required) ID of the floating ip this snat rule connets to. Changing this creates a new snat rule.`,
 				},
 				resource.Attribute{
-					Name:        "floating_ip_id",
-					Description: `(Required) ID of the floating ip this snat rule connets to. Changing this creates a new snat rule. ## Attributes Reference The following attributes are exported:`,
+					Name:        "network_id",
+					Description: `(Optional) ID of the network this snat rule connects to. This parameter and ` + "`" + `cidr` + "`" + ` are alternative. Changing this creates a new snat rule.`,
+				},
+				resource.Attribute{
+					Name:        "cidr",
+					Description: `(Optional) Specifies CIDR, which can be in the format of a network segment or a host IP address. This parameter and ` + "`" + `network_id` + "`" + ` are alternative. Changing this creates a new snat rule.`,
+				},
+				resource.Attribute{
+					Name:        "source_type",
+					Description: `(Optional) Specifies the scenario. The valid value is 0 (VPC scenario) and 1 (Direct Connect scenario). Only ` + "`" + `cidr` + "`" + ` can be specified over a Direct Connect connection. If no value is entered, the default value 0 (VPC scenario) is used. Changing this creates a new snat rule. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -7571,8 +7579,24 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "cidr",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "source_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
 					Name:        "floating_ip_id",
 					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "floating_ip_address",
+					Description: `The actual floating IP address.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the SNAT rule.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -7589,8 +7613,24 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "cidr",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "source_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
 					Name:        "floating_ip_id",
 					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "floating_ip_address",
+					Description: `The actual floating IP address.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the SNAT rule.`,
 				},
 			},
 		},
@@ -8761,6 +8801,235 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_obs_bucket",
+			Category:         "OBS Resource",
+			ShortDescription: `Provides an OBS bucket resource within FlexibleEngine.`,
+			Description:      ``,
+			Keywords: []string{
+				"obs",
+				"resource",
+				"bucket",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `(Required) Specifies the name of the bucket. Changing this parameter will create a new resource. A bucket must be named according to the globally applied DNS naming regulations as follows:`,
+				},
+				resource.Attribute{
+					Name:        "storage_class",
+					Description: `(Optional) Specifies the storage class of the bucket. OBS provides three storage classes: "STANDARD", "WARM" (Infrequent Access) and "COLD" (Archive). Defaults to ` + "`" + `STANDARD` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `(Optional) Specifies the ACL policy for a bucket. The predefined common policies are as follows: "private", "public-read", "public-read-write" and "log-delivery-write". Defaults to ` + "`" + `private` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "versioning",
+					Description: `(Optional) Whether enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.`,
+				},
+				resource.Attribute{
+					Name:        "logging",
+					Description: `(Optional) A settings of bucket logging (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "website",
+					Description: `(Optional) A website object (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "cors_rule",
+					Description: `(Optional) A rule of Cross-Origin Resource Sharing (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_rule",
+					Description: `(Optional) A configuration of object lifecycle management (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "force_destroy",
+					Description: `(Optional) A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. Default to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) If specified, the region this bucket should reside in. Otherwise, the region used by the provider. The ` + "`" + `logging` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "target_bucket",
+					Description: `(Required) The name of the bucket that will receive the log objects. The acl policy of the target bucket should be ` + "`" + `log-delivery-write` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "target_prefix",
+					Description: `(Optional) To specify a key prefix for log objects. The ` + "`" + `website` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "index_document",
+					Description: `(Required, unless using ` + "`" + `redirect_all_requests_to` + "`" + `) Specifies the default homepage of the static website, only HTML web pages are supported. OBS only allows files such as ` + "`" + `index.html` + "`" + ` in the root directory of a bucket to function as the default homepage. That is to say, do not set the default homepage with a multi-level directory structure (for example, /page/index.html).`,
+				},
+				resource.Attribute{
+					Name:        "error_document",
+					Description: `(Optional) Specifies the error page returned when an error occurs during static website access. Only HTML, JPG, PNG, BMP, and WEBP files under the root directory are supported.`,
+				},
+				resource.Attribute{
+					Name:        "redirect_all_requests_to",
+					Description: `(Optional) A hostname to redirect all website requests for this bucket to. Hostname can optionally be prefixed with a protocol (` + "`" + `http://` + "`" + ` or ` + "`" + `https://` + "`" + `) to use when redirecting requests. The default is the protocol that is used in the original request.`,
+				},
+				resource.Attribute{
+					Name:        "routing_rules",
+					Description: `(Optional) A JSON or XML format containing routing rules describing redirect behavior and when redirects are applied. Each rule contains a ` + "`" + `Condition` + "`" + ` and a ` + "`" + `Redirect` + "`" + ` as shown in the following table: Parameter | Key -|- Condition | KeyPrefixEquals, HttpErrorCodeReturnedEquals Redirect | Protocol, HostName, ReplaceKeyPrefixWith, ReplaceKeyWith, HttpRedirectCode The ` + "`" + `cors_rule` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique identifier for lifecycle rules. The Rule Name contains a maximum of 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Specifies lifecycle rule status.`,
+				},
+				resource.Attribute{
+					Name:        "prefix",
+					Description: `(Optional) Object key prefix identifying one or more objects to which the rule applies. If omitted, all objects in the bucket will be managed by the lifecycle rule. The prefix cannot start or end with a slash (/), cannot have consecutive slashes (/), and cannot contain the following special characters: \:`,
+				},
+				resource.Attribute{
+					Name:        "expiration",
+					Description: `(Optional) Specifies a period when objects that have been last updated are automatically deleted. (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "transition",
+					Description: `(Optional) Specifies a period when objects that have been last updated are automatically transitioned to ` + "`" + `WARM` + "`" + ` or ` + "`" + `COLD` + "`" + ` storage class (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "noncurrent_version_expiration",
+					Description: `(Optional) Specifies a period when noncurrent object versions are automatically deleted. (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "noncurrent_version_transition",
+					Description: `(Optional) Specifies a period when noncurrent object versions are automatically transitioned to ` + "`" + `WARM` + "`" + ` or ` + "`" + `COLD` + "`" + ` storage class (documented below). At least one of ` + "`" + `expiration` + "`" + `, ` + "`" + `transition` + "`" + `, ` + "`" + `noncurrent_version_expiration` + "`" + `, ` + "`" + `noncurrent_version_transition` + "`" + ` must be specified. The ` + "`" + `expiration` + "`" + ` object supports the following`,
+				},
+				resource.Attribute{
+					Name:        "storage_class",
+					Description: `(Required) The class of storage used to store the object. Only ` + "`" + `WARM` + "`" + ` and ` + "`" + `COLD` + "`" + ` are supported. The ` + "`" + `noncurrent_version_expiration` + "`" + ` object supports the following`,
+				},
+				resource.Attribute{
+					Name:        "storage_class",
+					Description: `(Required) The class of storage used to store the object. Only ` + "`" + `WARM` + "`" + ` and ` + "`" + `COLD` + "`" + ` are supported. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The name of the bucket.`,
+				},
+				resource.Attribute{
+					Name:        "bucket_domain_name",
+					Description: `The bucket domain name. Will be of format ` + "`" + `bucketname.oss.region.prod-cloud-ocb.orange-business.com` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region this bucket resides in. ## Import OBS bucket can be imported using the ` + "`" + `bucket` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_obs_bucket.bucket bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The name of the bucket.`,
+				},
+				resource.Attribute{
+					Name:        "bucket_domain_name",
+					Description: `The bucket domain name. Will be of format ` + "`" + `bucketname.oss.region.prod-cloud-ocb.orange-business.com` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region this bucket resides in. ## Import OBS bucket can be imported using the ` + "`" + `bucket` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_obs_bucket.bucket bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_obs_bucket_object",
+			Category:         "OBS Resource",
+			ShortDescription: `Provides an OBS bucket object resource within FlexibleEngine.`,
+			Description:      ``,
+			Keywords: []string{
+				"obs",
+				"resource",
+				"bucket",
+				"object",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `(Required) The name of the bucket to put the file in.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The name of the object once it is in the bucket.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Optional) The path to the source file being uploaded to the bucket.`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Optional) The literal content being uploaded to the bucket.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `(Optional) The ACL policy to apply. Defaults to ` + "`" + `private` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "storage_class",
+					Description: `(Optioanl) Specifies the storage class of the object. Defaults to ` + "`" + `STANDARD` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "content_type",
+					Description: `(Optional) A standard MIME type describing the format of the object data, e.g. application/octet-stream. All Valid MIME Types are valid for this input.`,
+				},
+				resource.Attribute{
+					Name:        "encryption",
+					Description: `(Optional) Whether enable server-side encryption of the object in SSE-KMS mode.`,
+				},
+				resource.Attribute{
+					Name:        "sse_kms_key_id",
+					Description: `(Optional) The ID of the kms key. If omitted, the default master key will be used.`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `(Optional) Specifies the unique identifier of the object content. It can be used to trigger updates. The only meaningful value is ` + "`" + `md5(file("path_to_file"))` + "`" + `. Either ` + "`" + `source` + "`" + ` or ` + "`" + `content` + "`" + ` must be provided to specify the bucket content. These two arguments are mutually-exclusive. ## Attributes Reference The following attributes are exported`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `the ` + "`" + `key` + "`" + ` of the resource supplied above.`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `the ETag generated for the object (an MD5 sum of the object content). When the object is encrypted on the server side, the ETag value is not the MD5 value of the object, but the unique identifier calculated through the server-side encryption.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `the size of the object in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "version_id",
+					Description: `A unique version ID value for the object, if bucket versioning is enabled.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `the ` + "`" + `key` + "`" + ` of the resource supplied above.`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `the ETag generated for the object (an MD5 sum of the object content). When the object is encrypted on the server side, the ETag value is not the MD5 value of the object, but the unique identifier calculated through the server-side encryption.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `the size of the object in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "version_id",
+					Description: `A unique version ID value for the object, if bucket versioning is enabled.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_rds_instance_v1",
 			Category:         "RDS Resources",
 			ShortDescription: `Manages rds instance resource within FlexibleEngine`,
@@ -9310,6 +9579,151 @@ var (
 				resource.Attribute{
 					Name:        "description",
 					Description: `Indicates the parameter description. ## Import Parameter groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_rds_parametergroup_v3.pg_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_rds_read_replica_v3",
+			Category:         "RDS Resources",
+			ShortDescription: `read replica management`,
+			Description:      ``,
+			Keywords: []string{
+				"rds",
+				"read",
+				"replica",
+				"v3",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the DB instance name. The DB instance name of the same type must be unique for the same tenant. The value must be 4 to 64 characters in length and start with a letter. It is case-sensitive and can contain only letters, digits, hyphens (-), and underscores (_). Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `(Required) Specifies the specification code. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "replica_of_id",
+					Description: `(Required) Specifies the DB instance ID, which is used to create a read replica. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "volume",
+					Description: `(Required) Specifies the volume information. Structure is documented below. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Required) Specifies the AZ name. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to create the instance. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Currently, read replicas can be created only in the same region as that of the promary DB instance. Changing this parameter will create a new resource. The ` + "`" + `volume` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Specifies the volume type. Its value can be any of the following and is case-sensitive: - ULTRAHIGH: indicates the SSD type. - ULTRAHIGHPRO: indicates the ultra-high I/O. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "disk_encryption_id",
+					Description: `(Optional) Specifies the key ID for disk encryption. Changing this parameter will create a new resource. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates the instance ID.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the instance status.`,
+				},
+				resource.Attribute{
+					Name:        "db",
+					Description: `Indicates the database information. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "private_ips",
+					Description: `Indicates the private IP address list.`,
+				},
+				resource.Attribute{
+					Name:        "public_ips",
+					Description: `Indicates the public IP address list.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `Indicates the security group which the RDS DB instance belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `Indicates the subnet id.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `Indicates the VPC ID. The ` + "`" + `db` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Indicates the database port information.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Indicates the DB engine. Value: MySQL, PostgreSQL, SQLServer.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `Indicates the default user name of database.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Indicates the database version. ## Import RDS instance can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_rds_read_replica_v3.instance_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates the instance ID.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the instance status.`,
+				},
+				resource.Attribute{
+					Name:        "db",
+					Description: `Indicates the database information. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "private_ips",
+					Description: `Indicates the private IP address list.`,
+				},
+				resource.Attribute{
+					Name:        "public_ips",
+					Description: `Indicates the public IP address list.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `Indicates the security group which the RDS DB instance belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `Indicates the subnet id.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `Indicates the VPC ID. The ` + "`" + `db` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Indicates the database port information.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Indicates the DB engine. Value: MySQL, PostgreSQL, SQLServer.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `Indicates the default user name of database.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Indicates the database version. ## Import RDS instance can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_rds_read_replica_v3.instance_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -10363,7 +10777,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `(Required) The bandwidth size. The value ranges from 1 to 300 Mbit/s.`,
+					Description: `(Required) The bandwidth size. The value ranges from 1 to 1000 Mbit/s.`,
 				},
 				resource.Attribute{
 					Name:        "share_type",
@@ -10729,30 +11143,33 @@ var (
 		"flexibleengine_networking_subnet_v2":               59,
 		"flexibleengine_networking_vip_associate_v2":        60,
 		"flexibleengine_networking_vip_v2":                  61,
-		"flexibleengine_rds_instance_v1":                    62,
-		"flexibleengine_rds_instance_v3":                    63,
-		"flexibleengine_rds_parametergroup_v3":              64,
-		"flexibleengine_rts_software_config_v1":             65,
-		"flexibleengine_resource_rts_stack_v1":              66,
-		"flexibleengine_s3_bucket":                          67,
-		"flexibleengine_s3_bucket_object":                   68,
-		"flexibleengine_s3_bucket_policy":                   69,
-		"flexibleengine_sdrs_drill_v1":                      70,
-		"flexibleengine_sdrs_protectedinstance_v1":          71,
-		"flexibleengine_sdrs_protectiongroup_v1":            72,
-		"flexibleengine_sdrs_replication_attach_v1":         73,
-		"flexibleengine_sdrs_replication_pair_v1":           74,
-		"flexibleengine_sfs_file_system_v2":                 75,
-		"flexibleengine_smn_subscription_v2":                76,
-		"flexibleengine_smn_topic_v2":                       77,
-		"flexibleengine-vbs-backup-policy-v2":               78,
-		"flexibleengine-vbs-backup-v2":                      79,
-		"flexibleengine_vpc_eip_v1":                         80,
-		"flexibleengine_vpc_peering_connection_accepter_v2": 81,
-		"flexibleengine_vpc_peering_connection_v2":          82,
-		"flexibleengine_vpc_route_v2":                       83,
-		"flexibleengine_vpc_subnet_v1":                      84,
-		"flexibleengine_vpc_v1":                             85,
+		"flexibleengine_obs_bucket":                         62,
+		"flexibleengine_obs_bucket_object":                  63,
+		"flexibleengine_rds_instance_v1":                    64,
+		"flexibleengine_rds_instance_v3":                    65,
+		"flexibleengine_rds_parametergroup_v3":              66,
+		"flexibleengine_rds_read_replica_v3":                67,
+		"flexibleengine_rts_software_config_v1":             68,
+		"flexibleengine_resource_rts_stack_v1":              69,
+		"flexibleengine_s3_bucket":                          70,
+		"flexibleengine_s3_bucket_object":                   71,
+		"flexibleengine_s3_bucket_policy":                   72,
+		"flexibleengine_sdrs_drill_v1":                      73,
+		"flexibleengine_sdrs_protectedinstance_v1":          74,
+		"flexibleengine_sdrs_protectiongroup_v1":            75,
+		"flexibleengine_sdrs_replication_attach_v1":         76,
+		"flexibleengine_sdrs_replication_pair_v1":           77,
+		"flexibleengine_sfs_file_system_v2":                 78,
+		"flexibleengine_smn_subscription_v2":                79,
+		"flexibleengine_smn_topic_v2":                       80,
+		"flexibleengine-vbs-backup-policy-v2":               81,
+		"flexibleengine-vbs-backup-v2":                      82,
+		"flexibleengine_vpc_eip_v1":                         83,
+		"flexibleengine_vpc_peering_connection_accepter_v2": 84,
+		"flexibleengine_vpc_peering_connection_v2":          85,
+		"flexibleengine_vpc_route_v2":                       86,
+		"flexibleengine_vpc_subnet_v1":                      87,
+		"flexibleengine_vpc_v1":                             88,
 	}
 )
 

@@ -35,7 +35,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "config",
-					Description: `(Required) The raw configuration for this ACL auth method. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The raw configuration for this ACL auth method.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional, Enterprise Only) The namespace to create the policy within. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -111,7 +115,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bind_name",
-					Description: `(Required) The name to bind to a token at login-time. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The name to bind to a token at login-time.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional, Enterprise Only) The namespace to create the binding rule within. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -190,7 +198,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "datacenters",
-					Description: `(Optional) The datacenters of the policy. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The datacenters of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional, Enterprise Only) The namespace to create the policy within. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -261,7 +273,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_identities",
-					Description: `(Optional) The list of service identities that should be applied to the role. The ` + "`" + `service_identities` + "`" + ` supports:`,
+					Description: `(Optional) The list of service identities that should be applied to the role.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional, Enterprise Only) The namespace to create the role within. The ` + "`" + `service_identities` + "`" + ` supports:`,
 				},
 				resource.Attribute{
 					Name:        "service_name",
@@ -289,7 +305,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_identities",
-					Description: `The list of service identities that should be applied to the role.`,
+					Description: `The list of service identities that should be applied to the role. ## Import ` + "`" + `consul_acl_role` + "`" + ` can be imported: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_acl_role.read 816a195f-6cb1-2e8d-92af-3011ae706318 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -311,7 +327,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_identities",
-					Description: `The list of service identities that should be applied to the role.`,
+					Description: `The list of service identities that should be applied to the role. ## Import ` + "`" + `consul_acl_role` + "`" + ` can be imported: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_acl_role.read 816a195f-6cb1-2e8d-92af-3011ae706318 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -339,8 +355,16 @@ var (
 					Description: `(Optional) The list of policies attached to the token.`,
 				},
 				resource.Attribute{
+					Name:        "roles",
+					Description: `(Optional) The list of roles attached to the token.`,
+				},
+				resource.Attribute{
 					Name:        "local",
-					Description: `(Optional) The flag to set the token local to the current datacenter. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The flag to set the token local to the current datacenter.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional, Enterprise Only) The namespace to create the token within. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -357,6 +381,10 @@ var (
 				resource.Attribute{
 					Name:        "policies",
 					Description: `The list of policies attached to the token.`,
+				},
+				resource.Attribute{
+					Name:        "roles",
+					Description: `The list of roles attached to the token.`,
 				},
 				resource.Attribute{
 					Name:        "local",
@@ -379,6 +407,10 @@ var (
 				resource.Attribute{
 					Name:        "policies",
 					Description: `The list of policies attached to the token.`,
+				},
+				resource.Attribute{
+					Name:        "roles",
+					Description: `The list of roles attached to the token.`,
 				},
 				resource.Attribute{
 					Name:        "local",
@@ -762,8 +794,16 @@ var (
 					Description: `(Required, string) The name of the source service for the intention. This service does not have to exist.`,
 				},
 				resource.Attribute{
+					Name:        "source_namespace",
+					Description: `(Optional, Enterprise Only) The source namespace of the intention.`,
+				},
+				resource.Attribute{
 					Name:        "destination_name",
 					Description: `(Required, string) The name of the destination service for the intention. This service does not have to exist.`,
+				},
+				resource.Attribute{
+					Name:        "destination_namespace",
+					Description: `(Optional, Enterprise Only) The destination namespace of the intention.`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -854,7 +894,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subkey",
-					Description: `(Optional) A subkey to add. Supported values documented below. Multiple blocks supported. The ` + "`" + `subkey` + "`" + ` block supports the following:`,
+					Description: `(Optional) A subkey to add. Supported values documented below. Multiple blocks supported.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional, Enterprise Only) The namespace to create the keys within. The ` + "`" + `subkey` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -900,7 +944,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `(Required) Specifies a key in Consul to be written. Supported values documented below. The ` + "`" + `key` + "`" + ` block supports the following:`,
+					Description: `(Required) Specifies a key in Consul to be written. Supported values documented below.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional, Enterprise Only) The namespace to create the keys within. The ` + "`" + `key` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -927,6 +975,257 @@ var (
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `The datacenter the keys are being written to.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "consul_license",
+			Category:         "Resources",
+			ShortDescription: `Manage the Consul Enterprise license.`,
+			Description:      ``,
+			Keywords: []string{
+				"license",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "datacenter",
+					Description: `(Optional) The datacenter to use. This overrides the agent's default datacenter and the datacenter in the provider setup.`,
+				},
+				resource.Attribute{
+					Name:        "license",
+					Description: `(Required) The Consul license to use. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "valid",
+					Description: `Whether the license is valid.`,
+				},
+				resource.Attribute{
+					Name:        "license_id",
+					Description: `The ID of the license used.`,
+				},
+				resource.Attribute{
+					Name:        "customer_id",
+					Description: `The ID of the customer the license is attached to.`,
+				},
+				resource.Attribute{
+					Name:        "installation_id",
+					Description: `The ID of the current installation.`,
+				},
+				resource.Attribute{
+					Name:        "issue_time",
+					Description: `The date the license was issued.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `The start time of the license.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_time",
+					Description: `The expiration time of the license.`,
+				},
+				resource.Attribute{
+					Name:        "product",
+					Description: `The product for which the license is valid.`,
+				},
+				resource.Attribute{
+					Name:        "flags",
+					Description: `The metadata attached to the license.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `The features for which the license is valid.`,
+				},
+				resource.Attribute{
+					Name:        "warnings",
+					Description: `A list of warning messages regarding the license validity.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "valid",
+					Description: `Whether the license is valid.`,
+				},
+				resource.Attribute{
+					Name:        "license_id",
+					Description: `The ID of the license used.`,
+				},
+				resource.Attribute{
+					Name:        "customer_id",
+					Description: `The ID of the customer the license is attached to.`,
+				},
+				resource.Attribute{
+					Name:        "installation_id",
+					Description: `The ID of the current installation.`,
+				},
+				resource.Attribute{
+					Name:        "issue_time",
+					Description: `The date the license was issued.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `The start time of the license.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_time",
+					Description: `The expiration time of the license.`,
+				},
+				resource.Attribute{
+					Name:        "product",
+					Description: `The product for which the license is valid.`,
+				},
+				resource.Attribute{
+					Name:        "flags",
+					Description: `The metadata attached to the license.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `The features for which the license is valid.`,
+				},
+				resource.Attribute{
+					Name:        "warnings",
+					Description: `A list of warning messages regarding the license validity.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "consul_namespace",
+			Category:         "Resources",
+			ShortDescription: `Manage a Consul namespace.`,
+			Description:      ``,
+			Keywords: []string{
+				"namespace",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The namespace name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Free form namespace description.`,
+				},
+				resource.Attribute{
+					Name:        "policy_defaults",
+					Description: `(Optional) The list of default policies that should be applied to all tokens created in this namespace.`,
+				},
+				resource.Attribute{
+					Name:        "role_defaults",
+					Description: `(Optional) The list of default roles that should be applied to all tokens created in this namespace.`,
+				},
+				resource.Attribute{
+					Name:        "meta",
+					Description: `(Optional) Specifies arbitrary KV metadata to associate with the namespace. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The namespace name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The namespace description.`,
+				},
+				resource.Attribute{
+					Name:        "policy_defaults",
+					Description: `The list of default policies that will be applied to all tokens created in this namespace.`,
+				},
+				resource.Attribute{
+					Name:        "role_defaults",
+					Description: `The list of default roles that will be applied to all tokens created in this namespace.`,
+				},
+				resource.Attribute{
+					Name:        "meta",
+					Description: `Arbitrary KV metadata associated with the namespace.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The namespace name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The namespace description.`,
+				},
+				resource.Attribute{
+					Name:        "policy_defaults",
+					Description: `The list of default policies that will be applied to all tokens created in this namespace.`,
+				},
+				resource.Attribute{
+					Name:        "role_defaults",
+					Description: `The list of default roles that will be applied to all tokens created in this namespace.`,
+				},
+				resource.Attribute{
+					Name:        "meta",
+					Description: `Arbitrary KV metadata associated with the namespace.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "consul_network_area",
+			Category:         "Resources",
+			ShortDescription: `Manage Network Areas.`,
+			Description:      ``,
+			Keywords: []string{
+				"network",
+				"area",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "datacenter",
+					Description: `(Optional) The datacenter to use. This overrides the agent's default datacenter and the datacenter in the provider setup.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Optional) The ACL token to use. This overrides the token that the agent provides by default.`,
+				},
+				resource.Attribute{
+					Name:        "peer_datacenter",
+					Description: `(Required) The name of the Consul datacenter that will be joined to form the area.`,
+				},
+				resource.Attribute{
+					Name:        "retry_join",
+					Description: `(Optional) Specifies a list of Consul servers to attempt to join. Servers can be given as ` + "`" + `IP` + "`" + `, ` + "`" + `IP:port` + "`" + `, ` + "`" + `hostname` + "`" + `, or ` + "`" + `hostname:port` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "use_tls",
+					Description: `(Optional) Specifies whether gossip over this area should be encrypted with TLS if possible. Defaults to ` + "`" + `false` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "datacenter",
+					Description: `The datacenter being queried.`,
+				},
+				resource.Attribute{
+					Name:        "peer_datacenter",
+					Description: `The name of the Consul datacenter joined to form the area.`,
+				},
+				resource.Attribute{
+					Name:        "retry_join",
+					Description: `The list of Consul servers Consul attempts to join.`,
+				},
+				resource.Attribute{
+					Name:        "use_tls",
+					Description: `Whether the gossip over this area should be encrypted with TLS.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "datacenter",
+					Description: `The datacenter being queried.`,
+				},
+				resource.Attribute{
+					Name:        "peer_datacenter",
+					Description: `The name of the Consul datacenter joined to form the area.`,
+				},
+				resource.Attribute{
+					Name:        "retry_join",
+					Description: `The list of Consul servers Consul attempts to join.`,
+				},
+				resource.Attribute{
+					Name:        "use_tls",
+					Description: `Whether the gossip over this area should be encrypted with TLS.`,
 				},
 			},
 		},
@@ -1032,6 +1331,18 @@ var (
 					Description: `(Optional) Allows specifying the name of a node to sort results near using Consul's distance sorting and network coordinates. The magic ` + "`" + `_agent` + "`" + ` value can be used to always sort nearest the node servicing the request.`,
 				},
 				resource.Attribute{
+					Name:        "ignore_check_ids",
+					Description: `(Optional) Specifies a list of check IDs that should be ignored when filtering unhealthy instances. This is mostly useful in an emergency or as a temporary measure when a health check is found to be unreliable. Being able to ignore it in centrally-defined queries can be simpler than de-registering the check as an interim solution until the check can be fixed.`,
+				},
+				resource.Attribute{
+					Name:        "node_meta",
+					Description: `(Optional) Specifies a list of user-defined key/value pairs that will be used for filtering the query results to nodes with the given metadata values present.`,
+				},
+				resource.Attribute{
+					Name:        "service_meta",
+					Description: `(Optional) Specifies a list of user-defined key/value pairs that will be used for filtering the query results to services with the given metadata values present.`,
+				},
+				resource.Attribute{
 					Name:        "failover",
 					Description: `(Optional) Options for controlling behavior when no healthy nodes are available in the local DC.`,
 				},
@@ -1115,7 +1426,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "meta",
-					Description: `(Optional) A map of arbitrary KV metadata linked to the service instance. The following attributes are available for each health-check:`,
+					Description: `(Optional) A map of arbitrary KV metadata linked to the service instance.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional, Enterprise Only) The namespace to create the service within. The following attributes are available for each health-check:`,
 				},
 				resource.Attribute{
 					Name:        "check_id",
@@ -1266,9 +1581,12 @@ var (
 		"consul_intention":                   10,
 		"consul_key_prefix":                  11,
 		"consul_keys":                        12,
-		"consul_node":                        13,
-		"consul_prepared_query":              14,
-		"consul_service":                     15,
+		"consul_license":                     13,
+		"consul_namespace":                   14,
+		"consul_network_area":                15,
+		"consul_node":                        16,
+		"consul_prepared_query":              17,
+		"consul_service":                     18,
 	}
 )
 

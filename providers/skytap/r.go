@@ -75,6 +75,18 @@ var (
 					Name:        "value",
 					Description: `(Required) Label value to be use for reporting ~>`,
 				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 10 mins) Used when creating the environment`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 10 mins) Used when updating the environment`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 10 mins) Used when destroying the environment ## Attributes Reference The following attributes are exported:`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -95,7 +107,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target",
-					Description: `(Required, Force New) Target network to which the connection was made. The network needs to be “tunnelable” (visible to other networks) ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required, Force New) Target network to which the connection was made. The network needs to be “tunnelable” (visible to other networks) ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain operations:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 10 mins) Used when creating the tunnel`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 10 mins) Used when updating the tunnel`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 10 mins) Used when destroying the tunnel ## Attributes Reference The following attributes are exported:`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -117,7 +141,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "single_value",
-					Description: `(Required) With single value labels can have only one value for a category, with false labels can have multiple values. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) With single value labels can have only one value for a category, with false labels can have multiple values. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain operations:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 10 mins) Used when creating the category`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 10 mins) Used when updating the category`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 10 mins) Used when destroying the category ## Attributes Reference The following attributes are exported:`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -154,7 +190,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tunnelable",
-					Description: `(Optional) If true, this network can be connected to other networks. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) If true, this network can be connected to other networks. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain operations:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 10 mins) Used when creating the network`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 10 mins) Used when updating the network`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 10 mins) Used when destroying the network ## Attributes Reference The following attributes are exported:`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -183,7 +231,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "show_project_members",
-					Description: `(Optional) Determines whether projects members can view a list of other project members. False by default. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Determines whether projects members can view a list of other project members. False by default. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain operations:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 10 mins) Used when creating the project`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 10 mins) Used when updating the project`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 10 mins) destroying the project ## Attributes Reference The following attributes are exported:`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -284,7 +344,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Required) Label value to be use for reporting ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) Label value to be use for reporting ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain operations:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 10 mins) Used when launching the VM`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 10 mins) Used when stopping and starting the VM when necessary during update`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 10 mins) Used when terminating the instance ## Attributes Reference The following attributes are exported:`,
 				},
 			},
 			Attributes: []resource.Attribute{},

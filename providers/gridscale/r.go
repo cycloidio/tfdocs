@@ -169,7 +169,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -607,7 +619,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Attributes This resource exports the following attributes:`,
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -700,7 +724,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Attributes This resource exports the following attributes:`,
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -789,7 +825,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1003,7 +1051,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Attributes This resource exports the following attributes:`,
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1072,7 +1132,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Attributes This resource exports the following attributes:`,
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1158,13 +1230,12 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "gridscale_paas_securityzone",
+			Type:             "gridscale_paas",
 			Category:         "Resources",
 			ShortDescription: `Manages a PaaS in gridscale.`,
 			Description:      ``,
 			Keywords: []string{
 				"paas",
-				"securityzone",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -1209,7 +1280,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Primitive type of the parameter: bool, int (better use float for int case), float, string. ## Attributes This resource exports the following attributes:`,
+					Description: `(Required) Primitive type of the parameter: bool, int (better use float for int case), float, string. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "15m" - 15 minutes) Used for Creating resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "15m" - 15 minutes) Used for Updating resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "15m" - 15 minutes) Used for Deleteing resource. ## Attributes This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1304,12 +1387,13 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "gridscale_paas",
+			Type:             "gridscale_paas_securityzone",
 			Category:         "Resources",
 			ShortDescription: `Manages a security zone in gridscale.`,
 			Description:      ``,
 			Keywords: []string{
 				"paas",
+				"securityzone",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -1318,7 +1402,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
-					Description: `(Optional) Helps to identify which datacenter an object belongs to. ## Attributes This resource exports the following attributes:`,
+					Description: `(Optional) Helps to identify which datacenter an object belongs to. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1587,7 +1683,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "comment",
-					Description: `(Optional) Comment. ## Attributes This resource exports the following attributes:`,
+					Description: `(Optional) Comment. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1931,12 +2039,52 @@ var (
 					Description: `(Optional) The list of labels.`,
 				},
 				resource.Attribute{
+					Name:        "object_storage_export",
+					Description: `(Optional) Export snapshot to a object storage.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `(Required) Host of object storage. Must be of URL type. E.g: https://gos3.io`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `(Required) Access key.`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `(Required) Secret key.`,
+				},
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `(Required) Bucket name.`,
+				},
+				resource.Attribute{
+					Name:        "object",
+					Description: `(Required) Name of file (include file path).`,
+				},
+				resource.Attribute{
+					Name:        "private",
+					Description: `(Required) Privacy.`,
+				},
+				resource.Attribute{
 					Name:        "rollback",
 					Description: `(Optional) Returns a storage to the state of the selected Snapshot.`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Required) ID of the rollback request. It can be any string value. Each rollback request has to have a UNIQUE id. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) ID of the rollback request. It can be any string value. Each rollback request has to have a UNIQUE id. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1993,6 +2141,38 @@ var (
 				resource.Attribute{
 					Name:        "license_product_no",
 					Description: `If a template has been used that requires a license key (e.g. Windows Servers) this shows the product_no of the license (see the /prices endpoint for more details).`,
+				},
+				resource.Attribute{
+					Name:        "object_storage_export",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "object",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "private",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the export request.`,
 				},
 				resource.Attribute{
 					Name:        "rollback",
@@ -2073,6 +2253,38 @@ var (
 					Description: `If a template has been used that requires a license key (e.g. Windows Servers) this shows the product_no of the license (see the /prices endpoint for more details).`,
 				},
 				resource.Attribute{
+					Name:        "object_storage_export",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "object",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "private",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the export request.`,
+				},
+				resource.Attribute{
 					Name:        "rollback",
 					Description: `See Argument Reference above.`,
 				},
@@ -2126,7 +2338,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "run_interval",
-					Description: `(Required) The interval at which the schedule will run (in minutes, >=60). ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The interval at which the schedule will run (in minutes, >=60). ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2264,7 +2488,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Attributes This resource exports the following attributes:`,
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -2342,6 +2578,18 @@ var (
 				resource.Attribute{
 					Name:        "hostname",
 					Description: `(Optional) The hostname of the installed server (ignored for private templates and public windows templates). ~>`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -2426,7 +2674,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) List of labels. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) List of labels. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -2595,8 +2855,8 @@ var (
 		"gridscale_loadbalancer":             4,
 		"gridscale_network":                  5,
 		"gridscale_object_storage_accesskey": 6,
-		"gridscale_paas_securityzone":        7,
-		"gridscale_paas":                     8,
+		"gridscale_paas":                     7,
+		"gridscale_paas_securityzone":        8,
 		"gridscale_server":                   9,
 		"gridscale_snapshot":                 10,
 		"gridscale_snapshotschedule":         11,

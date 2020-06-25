@@ -205,11 +205,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the app. This is also the name of the application.`,
+					Description: `The ID of the app. This is also the name of the app.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the application. In Heroku, this is also the unique ID.`,
+					Description: `The name of the application.`,
 				},
 				resource.Attribute{
 					Name:        "stack",
@@ -251,11 +251,11 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the app. This is also the name of the application.`,
+					Description: `The ID of the app. This is also the name of the app.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the application. In Heroku, this is also the unique ID.`,
+					Description: `The name of the application.`,
 				},
 				resource.Attribute{
 					Name:        "stack",
@@ -313,7 +313,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vars",
-					Description: `Map of config vars that are output in plaintext.`,
+					Description: `Map of config vars that can be output in plaintext.`,
 				},
 				resource.Attribute{
 					Name:        "sensitive_vars",
@@ -321,13 +321,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the app config association. ## Import The ` + "`" + `heroku_app_config_association` + "`" + ` resource's primary attributes are managed only within Terraform state. It does not exist as a native Heroku resource. Therefore, it is not possible to import an existing ` + "`" + `heroku_app_config_association` + "`" + ` resource.`,
+					Description: `The ID of the app config association. ## Import This resource defines two config var attributes with one of them used for masking any sensitive/secret variables during a ` + "`" + `terraform plan|apply` + "`" + ` in a CI build, terminal, etc. This 'sensitive' distinction for config vars is unique to this provider and not a built-in feature of the Heroku Platform API. Therefore, it will not be possible to import this resource. However, it is safe to define the resource in your configuration file and execute a ` + "`" + `terraform apply` + "`" + ` as the end result is ` + "`" + `noop` + "`" + ` when the config vars already exist on the remote resource.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the app config association. ## Import The ` + "`" + `heroku_app_config_association` + "`" + ` resource's primary attributes are managed only within Terraform state. It does not exist as a native Heroku resource. Therefore, it is not possible to import an existing ` + "`" + `heroku_app_config_association` + "`" + ` resource.`,
+					Description: `The ID of the app config association. ## Import This resource defines two config var attributes with one of them used for masking any sensitive/secret variables during a ` + "`" + `terraform plan|apply` + "`" + ` in a CI build, terminal, etc. This 'sensitive' distinction for config vars is unique to this provider and not a built-in feature of the Heroku Platform API. Therefore, it will not be possible to import this resource. However, it is safe to define the resource in your configuration file and execute a ` + "`" + `terraform apply` + "`" + ` as the end result is ` + "`" + `noop` + "`" + ` when the config vars already exist on the remote resource.`,
 				},
 			},
 		},
@@ -734,7 +734,19 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of the pipeline. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The name of the pipeline.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `(Required) The owner of the pipeline. This block as the following required attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) The unique identifier (UUID) of a pipeline owner.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of pipeline owner. Can be either ` + "`" + `user` + "`" + ` or ` + "`" + `team` + "`" + `. Regarding the ` + "`" + `owner` + "`" + ` attribute block, please note the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -758,6 +770,46 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "heroku_pipeline_config_var",
+			Category:         "Resources",
+			ShortDescription: `Provides a Heroku Pipeline Config Var resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"pipeline",
+				"config",
+				"var",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "pipeline_id",
+					Description: `(Required) The UUID of an existing pipeline.`,
+				},
+				resource.Attribute{
+					Name:        "pipeline_stage",
+					Description: `(Required) The pipeline's stage. Supported values are ` + "`" + `test` + "`" + ` & ` + "`" + `review` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vars",
+					Description: `Map of config vars that can be output in plaintext.`,
+				},
+				resource.Attribute{
+					Name:        "sensitive_vars",
+					Description: `This is the same as ` + "`" + `vars` + "`" + `. The main difference between the two attributes is ` + "`" + `sensitive_vars` + "`" + ` outputs are redacted on-screen and replaced by a ` + "`" + `<sensitive>` + "`" + ` placeholder, following a terraform ` + "`" + `plan` + "`" + ` or ` + "`" + `apply` + "`" + `. It is recommended to put private keys, passwords, etc in this argument. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "all_vars",
+					Description: `All vars of a pipeline stage. This is marked ` + "`" + `sensitive` + "`" + ` so that ` + "`" + `sensitive_vars` + "`" + ` do not leak in the console/logs. ## Import This resource defines two config var attributes with one of them used for masking any sensitive/secret variables during a ` + "`" + `terraform plan|apply` + "`" + ` in a CI build, terminal, etc. This 'sensitive' distinction for config vars is unique to this provider and not a built-in feature of the Heroku Platform API. Therefore, it will not be possible to import this resource. However, it is safe to define the resource in your configuration file and execute a ` + "`" + `terraform apply` + "`" + ` as the end result is ` + "`" + `noop` + "`" + ` when the config vars already exist on the remote resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "all_vars",
+					Description: `All vars of a pipeline stage. This is marked ` + "`" + `sensitive` + "`" + ` so that ` + "`" + `sensitive_vars` + "`" + ` do not leak in the console/logs. ## Import This resource defines two config var attributes with one of them used for masking any sensitive/secret variables during a ` + "`" + `terraform plan|apply` + "`" + ` in a CI build, terminal, etc. This 'sensitive' distinction for config vars is unique to this provider and not a built-in feature of the Heroku Platform API. Therefore, it will not be possible to import this resource. However, it is safe to define the resource in your configuration file and execute a ` + "`" + `terraform apply` + "`" + ` as the end result is ` + "`" + `noop` + "`" + ` when the config vars already exist on the remote resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "heroku_pipeline_coupling",
 			Category:         "Resources",
 			ShortDescription: `Provides a Heroku Pipeline Coupling resource.`,
@@ -769,7 +821,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "app",
-					Description: `(Required) The name of the app for this coupling.`,
+					Description: `(Required) A Heroku app's ` + "`" + `UUID` + "`" + `. Can also be the name of the Heroku app but ` + "`" + `UUID` + "`" + ` is preferred as it is idempotent.`,
 				},
 				resource.Attribute{
 					Name:        "pipeline",
@@ -1112,7 +1164,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "space",
-					Description: `(Required) The name of the space.`,
+					Description: `(Required) The ` + "`" + `UUID` + "`" + ` of the space.`,
 				},
 				resource.Attribute{
 					Name:        "rule",
@@ -1153,7 +1205,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "space",
-					Description: `(Required) The name of the space.`,
+					Description: `(Required) The ` + "`" + `UUID` + "`" + ` of the space.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_peering_connection_id",
@@ -1197,7 +1249,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "space",
-					Description: `(Required) The name of the Heroku Private Space where the VPN connection will be established.`,
+					Description: `(Required) The ` + "`" + `UUID` + "`" + ` of the Heroku Private Space where the VPN connection will be established.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip",
@@ -1331,15 +1383,16 @@ var (
 		"heroku_drain":                             12,
 		"heroku_formation":                         13,
 		"heroku_pipeline":                          14,
-		"heroku_pipeline_coupling":                 15,
-		"heroku_slug":                              16,
-		"heroku_space":                             17,
-		"heroku_space_app_access":                  18,
-		"heroku_space_inbound_ruleset":             19,
-		"heroku_space_peering_connection_accepter": 20,
-		"heroku_space_vpn_connection":              21,
-		"heroku_team_collaborator":                 22,
-		"heroku_team_member":                       23,
+		"heroku_pipeline_config_var":               15,
+		"heroku_pipeline_coupling":                 16,
+		"heroku_slug":                              17,
+		"heroku_space":                             18,
+		"heroku_space_app_access":                  19,
+		"heroku_space_inbound_ruleset":             20,
+		"heroku_space_peering_connection_accepter": 21,
+		"heroku_space_vpn_connection":              22,
+		"heroku_team_collaborator":                 23,
+		"heroku_team_member":                       24,
 	}
 )
 

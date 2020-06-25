@@ -22,6 +22,10 @@ var (
 					Description: `(Optional) ID of the ACL to retrieve.`,
 				},
 				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
 					Name:        "output_file",
 					Description: `(Optional, ForceNew) Output file for saving result.`,
 				},
@@ -31,7 +35,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Optional) VPC ID of the ACLs to retrieve. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) VPC ID of the ACLs to retrieve. The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "acls",
@@ -146,6 +158,10 @@ var (
 					Description: `(Required, ForceNew) ID of the Application LoadBalance instance`,
 				},
 				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
 					Name:        "listener_port",
 					Description: `(Optional, ForceNew) The port of the Listener to be queried`,
 				},
@@ -155,7 +171,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `(Optional, ForceNew) Protocol of the Listener to be queried ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) Protocol of the Listener to be queried The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "listeners",
@@ -418,12 +442,24 @@ var (
 					Description: `(Optional) Whether the name is an exact match or not, default false`,
 				},
 				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) Name of the Server Group to be queried`,
 				},
 				resource.Attribute{
 					Name:        "output_file",
-					Description: `(Optional, ForceNew) Query result output file path ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) Query result output file path The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "server_groups",
@@ -702,12 +738,24 @@ var (
 					Description: `(Optional) Whether the query condition is an exact match or not, default false`,
 				},
 				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) Name of the LoadBalance instance to be queried`,
 				},
 				resource.Attribute{
 					Name:        "output_file",
-					Description: `(Optional, ForceNew) Query result output file path ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) Query result output file path The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "appblbs",
@@ -878,12 +926,24 @@ var (
 					Description: `(Optional) Name of the automatic snapshot policy.`,
 				},
 				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
 					Name:        "output_file",
 					Description: `(Optional, ForceNew) Automatic snapshot policies search result output file.`,
 				},
 				resource.Attribute{
 					Name:        "volume_name",
-					Description: `(Optional) Name of the volume. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Name of the volume. The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "auto_snapshot_policies",
@@ -998,12 +1058,24 @@ var (
 					Description: `(Required) Bucket name of the objects to retrieve.`,
 				},
 				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
 					Name:        "output_file",
 					Description: `(Optional, ForceNew) Output file for saving result.`,
 				},
 				resource.Attribute{
 					Name:        "prefix",
-					Description: `(Optional) Prefix of the objects. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Prefix of the objects. The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "objects",
@@ -1182,8 +1254,20 @@ var (
 					Description: `(Optional) Name of the bucket to retrieve.`,
 				},
 				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
 					Name:        "output_file",
-					Description: `(Optional, ForceNew) Output file for saving result. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) Output file for saving result. The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "buckets",
@@ -1550,6 +1634,10 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Optional, ForceNew) CDS volume bind instance ID`,
 				},
@@ -1559,7 +1647,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone_name",
-					Description: `(Optional, ForceNew) CDS volume zone name ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) CDS volume zone name The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "cdss",
@@ -1850,8 +1946,20 @@ var (
 					Description: `(Optional, ForceNew) Name of the Cert to be queried`,
 				},
 				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
 					Name:        "output_file",
-					Description: `(Optional, ForceNew) Certs search result output file ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) Certs search result output file The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "certs",
@@ -1944,10 +2052,6 @@ var (
 				resource.Attribute{
 					Name:        "qualifier",
 					Description: `(Optional) Function search qualifier ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "code_id",
-					Description: `CFC Function code id`,
 				},
 				resource.Attribute{
 					Name:        "code_sha256",
@@ -2055,10 +2159,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "code_id",
-					Description: `CFC Function code id`,
-				},
 				resource.Attribute{
 					Name:        "code_sha256",
 					Description: `Function code sha256`,
@@ -2178,6 +2278,10 @@ var (
 					Description: `(Optional, ForceNew) Eip address`,
 				},
 				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Optional, ForceNew) Eip bind instance id`,
 				},
@@ -2191,7 +2295,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `(Optional, ForceNew) Eip status ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) Eip status The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "eips",
@@ -2302,6 +2414,10 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
 					Name:        "image_type",
 					Description: `(Optional, ForceNew) Image type of the images to be queried, support ALL/System/Custom/Integration/Sharing/GpuBccSystem/GpuBccCustom/FpgaBccSystem/FpgaBccCustom`,
 				},
@@ -2315,7 +2431,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "output_file",
-					Description: `(Optional, ForceNew) Images search result output file ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) Images search result output file The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "images",
@@ -2438,6 +2562,10 @@ var (
 					Description: `(Optional) Dedicated host id of the instance to retrieve.`,
 				},
 				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
 					Name:        "internal_ip",
 					Description: `(Optional) Internal ip address of the instance to retrieve.`,
 				},
@@ -2447,7 +2575,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone_name",
-					Description: `(Optional) Name of the available zone to which the instance belongs. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Name of the available zone to which the instance belongs. The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "instances",
@@ -2718,6 +2854,10 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
 					Name:        "ip",
 					Description: `(Optional) Specify the EIP binded by the NAT gateway to retrieve.`,
 				},
@@ -2735,7 +2875,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Optional) VPC ID where the NAT gateways located. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) VPC ID where the NAT gateways located. The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "nat_gateways",
@@ -2822,6 +2970,10 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
 					Name:        "output_file",
 					Description: `(Optional, ForceNew) Output file for saving result.`,
 				},
@@ -2831,7 +2983,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Optional) VPC ID where the peer connections located. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) VPC ID where the peer connections located. The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "peer_conns",
@@ -2982,6 +3142,10 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
 					Name:        "output_file",
 					Description: `(Optional, ForceNew) Output file for saving result.`,
 				},
@@ -2995,7 +3159,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Optional) VPC ID for the routing rules. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) VPC ID for the routing rules. The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "route_rules",
@@ -3078,6 +3250,10 @@ var (
 					Description: `(Required) Security Group ID`,
 				},
 				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Optional) Security Group attached instance ID`,
 				},
@@ -3087,7 +3263,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Optional) Security Group attached vpc id ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Security Group attached vpc id The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "rules",
@@ -3190,6 +3374,10 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Optional) Security Group attached instance ID`,
 				},
@@ -3199,7 +3387,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Optional) Security Group attached vpc id ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Security Group attached vpc id The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "security_groups",
@@ -3262,12 +3458,24 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
 					Name:        "output_file",
 					Description: `(Optional, ForceNew) Snapshots search result output file.`,
 				},
 				resource.Attribute{
 					Name:        "volume_id",
-					Description: `(Optional) Volume ID to be attached of snapshots, if volume is system disk, volume ID is instance ID ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Volume ID to be attached of snapshots, if volume is system disk, volume ID is instance ID The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "snapshots",
@@ -3358,6 +3566,10 @@ var (
 					Description: `(Optional, ForceNew) Useful cpu count of the search spec`,
 				},
 				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
 					Name:        "instance_type",
 					Description: `(Optional, ForceNew) Instance type of the search spec`,
 				},
@@ -3371,7 +3583,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "output_file",
-					Description: `(Optional, ForceNew) Output file for saving result. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) Output file for saving result. The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "specs",
@@ -3434,6 +3654,10 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
 					Name:        "output_file",
 					Description: `(Optional, ForceNew) Output file for saving result.`,
 				},
@@ -3451,7 +3675,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone_name",
-					Description: `(Optional, ForceNew) Specify the zone name for subnets. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) Specify the zone name for subnets. The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "subnets",
@@ -3546,6 +3778,10 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional, ForceNew) Name of the specific VPC to retrieve.`,
 				},
@@ -3555,7 +3791,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Optional, ForceNew) ID of the specific VPC to retrieve. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) ID of the specific VPC to retrieve. The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "vpcs",
@@ -3642,12 +3886,24 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional, ForceNew) Regex pattern of the search zone name`,
 				},
 				resource.Attribute{
 					Name:        "output_file",
-					Description: `(Optional, ForceNew) Output file for saving result. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) Output file for saving result. The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "zones",

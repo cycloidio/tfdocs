@@ -251,6 +251,126 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "packet_device_bgp_neighbors",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a datasource for listing BGP neighbors of a Packet device`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "device_id",
+					Description: `UUID of BGP-enabled device whose neighbors to list ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "bgp_neighbors",
+					Description: `array of BGP neighbor records with attributes:`,
+				},
+				resource.Attribute{
+					Name:        "address_family",
+					Description: `IP address version, 4 or 6`,
+				},
+				resource.Attribute{
+					Name:        "customer_as",
+					Description: `Local autonomous system number`,
+				},
+				resource.Attribute{
+					Name:        "customer_ip",
+					Description: `Local used peer IP address`,
+				},
+				resource.Attribute{
+					Name:        "md5_enabled",
+					Description: `Whether BGP session is password enabled`,
+				},
+				resource.Attribute{
+					Name:        "md5_password",
+					Description: `BGP session password in plaintext (not a checksum)`,
+				},
+				resource.Attribute{
+					Name:        "multihop",
+					Description: `Whether the neighbor is in EBGP multihop session`,
+				},
+				resource.Attribute{
+					Name:        "peer_as",
+					Description: `Peer AS number (different than customer_as for EBGP)`,
+				},
+				resource.Attribute{
+					Name:        "peer_ips",
+					Description: `Array of IP addresses of this neighbor's peers`,
+				},
+				resource.Attribute{
+					Name:        "routes_in",
+					Description: `Array of incoming routes. Each route has attributes:`,
+				},
+				resource.Attribute{
+					Name:        "route",
+					Description: `CIDR expression of route (ip/mask)`,
+				},
+				resource.Attribute{
+					Name:        "exact",
+					Description: `(bool) Whether the route is exact`,
+				},
+				resource.Attribute{
+					Name:        "routes_out",
+					Description: `Array of outgoing routes in the same format`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "bgp_neighbors",
+					Description: `array of BGP neighbor records with attributes:`,
+				},
+				resource.Attribute{
+					Name:        "address_family",
+					Description: `IP address version, 4 or 6`,
+				},
+				resource.Attribute{
+					Name:        "customer_as",
+					Description: `Local autonomous system number`,
+				},
+				resource.Attribute{
+					Name:        "customer_ip",
+					Description: `Local used peer IP address`,
+				},
+				resource.Attribute{
+					Name:        "md5_enabled",
+					Description: `Whether BGP session is password enabled`,
+				},
+				resource.Attribute{
+					Name:        "md5_password",
+					Description: `BGP session password in plaintext (not a checksum)`,
+				},
+				resource.Attribute{
+					Name:        "multihop",
+					Description: `Whether the neighbor is in EBGP multihop session`,
+				},
+				resource.Attribute{
+					Name:        "peer_as",
+					Description: `Peer AS number (different than customer_as for EBGP)`,
+				},
+				resource.Attribute{
+					Name:        "peer_ips",
+					Description: `Array of IP addresses of this neighbor's peers`,
+				},
+				resource.Attribute{
+					Name:        "routes_in",
+					Description: `Array of incoming routes. Each route has attributes:`,
+				},
+				resource.Attribute{
+					Name:        "route",
+					Description: `CIDR expression of route (ip/mask)`,
+				},
+				resource.Attribute{
+					Name:        "exact",
+					Description: `(bool) Whether the route is exact`,
+				},
+				resource.Attribute{
+					Name:        "routes_out",
+					Description: `Array of outgoing routes in the same format`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "packet_ip_block_ranges",
 			Category:         "Data Sources",
 			ShortDescription: `List IP address ranges allocated to a project`,
@@ -717,15 +837,16 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"packet_device":              0,
-		"packet_ip_block_ranges":     1,
-		"packet_operating_system":    2,
-		"packet_organization":        3,
-		"packet_precreated_ip_block": 4,
-		"packet_project":             5,
-		"packet_spot_market_price":   6,
-		"packet_spot_market_request": 7,
-		"packet_volume":              8,
+		"packet_device":               0,
+		"packet_device_bgp_neighbors": 1,
+		"packet_ip_block_ranges":      2,
+		"packet_operating_system":     3,
+		"packet_organization":         4,
+		"packet_precreated_ip_block":  5,
+		"packet_project":              6,
+		"packet_spot_market_price":    7,
+		"packet_spot_market_request":  8,
+		"packet_volume":               9,
 	}
 )
 

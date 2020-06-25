@@ -197,6 +197,10 @@ var (
 					Description: `(Optional) The instance removal policy. The policy has four options: ` + "`" + `OLD_CONFIG_OLD_INSTANCE` + "`" + ` (default), ` + "`" + `OLD_CONFIG_NEW_INSTANCE` + "`" + `, ` + "`" + `OLD_INSTANCE` + "`" + `, and ` + "`" + `NEW_INSTANCE` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The key/value pairs to associate with the scaling group.`,
+				},
+				resource.Attribute{
 					Name:        "notifications",
 					Description: `(Optional) The notification mode. The system only supports ` + "`" + `EMAIL` + "`" + ` mode which refers to notification by email.`,
 				},
@@ -289,6 +293,10 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
 					Name:        "notifications",
 					Description: `See Argument Reference above.`,
 				},
@@ -356,6 +364,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete_publicip",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -822,6 +834,10 @@ var (
 					Description: `(Optional) Metadata key/value pairs to make available from within the instance. Changing this updates the existing server metadata.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) An array of one or more tags of the compute instance.`,
+				},
+				resource.Attribute{
 					Name:        "config_drive",
 					Description: `(Optional) Whether to use the config_drive feature to configure the instance. Changing this creates a new server.`,
 				},
@@ -938,6 +954,10 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
 					Name:        "security_groups",
 					Description: `See Argument Reference above.`,
 				},
@@ -975,7 +995,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "all_metadata",
-					Description: `Contains all instance metadata, even metadata not set by Terraform. ## Notes ### Multiple Ephemeral Disks It's possible to specify multiple ` + "`" + `block_device` + "`" + ` entries to create an instance with multiple ephemeral (local) disks. In order to create multiple ephemeral disks, the sum of the total amount of ephemeral space must be less than or equal to what the chosen flavor supports. The following example shows how to create an instance with multiple ephemeral disks: ` + "`" + `` + "`" + `` + "`" + ` resource "huaweicloudstack_compute_instance_v2" "foo" { name = "terraform-test" security_groups = ["default"] block_device { boot_index = 0 delete_on_termination = true destination_type = "local" source_type = "image" uuid = "<image uuid>" } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } } ` + "`" + `` + "`" + `` + "`" + ` ### Instances and Ports Neutron Ports are a great feature and provide a lot of functionality. However, there are some notes to be aware of when mixing Instances and Ports:`,
+					Description: `Contains all instance metadata, even metadata not set by Terraform. ## Importing Instances can be imported by the ` + "`" + `id` + "`" + `. For example, ` + "`" + `` + "`" + `` + "`" + ` terraform import huaweicloudstack_compute_instance_v2.my_instance b11b407c-e604-4e8d-8bc4-92398320b847 ` + "`" + `` + "`" + `` + "`" + ` Note that the imported state may not be identical to your resource definition, which could be because of a different network interface attachment order, missing ephemeral disk configuration, or some other reason. It is generally recommended running ` + "`" + `terraform plan` + "`" + ` after importing an instance. You can then decide if changes should be applied to the instance, or the resource definition should be updated to align with the instance. ## Notes ### Multiple Ephemeral Disks It's possible to specify multiple ` + "`" + `block_device` + "`" + ` entries to create an instance with multiple ephemeral (local) disks. In order to create multiple ephemeral disks, the sum of the total amount of ephemeral space must be less than or equal to what the chosen flavor supports. The following example shows how to create an instance with multiple ephemeral disks: ` + "`" + `` + "`" + `` + "`" + ` resource "huaweicloudstack_compute_instance_v2" "foo" { name = "terraform-test" security_groups = ["default"] block_device { boot_index = 0 delete_on_termination = true destination_type = "local" source_type = "image" uuid = "<image uuid>" } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } } ` + "`" + `` + "`" + `` + "`" + ` ### Instances and Ports Neutron Ports are a great feature and provide a lot of functionality. However, there are some notes to be aware of when mixing Instances and Ports:`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1000,6 +1020,10 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
 					Name:        "security_groups",
 					Description: `See Argument Reference above.`,
 				},
@@ -1037,7 +1061,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "all_metadata",
-					Description: `Contains all instance metadata, even metadata not set by Terraform. ## Notes ### Multiple Ephemeral Disks It's possible to specify multiple ` + "`" + `block_device` + "`" + ` entries to create an instance with multiple ephemeral (local) disks. In order to create multiple ephemeral disks, the sum of the total amount of ephemeral space must be less than or equal to what the chosen flavor supports. The following example shows how to create an instance with multiple ephemeral disks: ` + "`" + `` + "`" + `` + "`" + ` resource "huaweicloudstack_compute_instance_v2" "foo" { name = "terraform-test" security_groups = ["default"] block_device { boot_index = 0 delete_on_termination = true destination_type = "local" source_type = "image" uuid = "<image uuid>" } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } } ` + "`" + `` + "`" + `` + "`" + ` ### Instances and Ports Neutron Ports are a great feature and provide a lot of functionality. However, there are some notes to be aware of when mixing Instances and Ports:`,
+					Description: `Contains all instance metadata, even metadata not set by Terraform. ## Importing Instances can be imported by the ` + "`" + `id` + "`" + `. For example, ` + "`" + `` + "`" + `` + "`" + ` terraform import huaweicloudstack_compute_instance_v2.my_instance b11b407c-e604-4e8d-8bc4-92398320b847 ` + "`" + `` + "`" + `` + "`" + ` Note that the imported state may not be identical to your resource definition, which could be because of a different network interface attachment order, missing ephemeral disk configuration, or some other reason. It is generally recommended running ` + "`" + `terraform plan` + "`" + ` after importing an instance. You can then decide if changes should be applied to the instance, or the resource definition should be updated to align with the instance. ## Notes ### Multiple Ephemeral Disks It's possible to specify multiple ` + "`" + `block_device` + "`" + ` entries to create an instance with multiple ephemeral (local) disks. In order to create multiple ephemeral disks, the sum of the total amount of ephemeral space must be less than or equal to what the chosen flavor supports. The following example shows how to create an instance with multiple ephemeral disks: ` + "`" + `` + "`" + `` + "`" + ` resource "huaweicloudstack_compute_instance_v2" "foo" { name = "terraform-test" security_groups = ["default"] block_device { boot_index = 0 delete_on_termination = true destination_type = "local" source_type = "image" uuid = "<image uuid>" } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } } ` + "`" + `` + "`" + `` + "`" + ` ### Instances and Ports Neutron Ports are a great feature and provide a lot of functionality. However, there are some notes to be aware of when mixing Instances and Ports:`,
 				},
 			},
 		},
@@ -1292,6 +1316,122 @@ var (
 				resource.Attribute{
 					Name:        "device",
 					Description: `See Argument Reference above. _NOTE_: The correctness of this information is dependent upon the hypervisor in use. In some cases, this should not be used as an authoritative piece of information. ## Import Volume Attachments can be imported using the Instance ID and Volume ID separated by a slash, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloudstack_compute_volume_attach_v2.va_1 89c60255-9bd6-460c-822a-e2b959ede9d2/45670584-225f-46c3-b33e-6707b589b666 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloudstack_kms_key_v1",
+			Category:         "KMS Resources",
+			ShortDescription: `Manages a V1 key resource within KMS.`,
+			Description:      ``,
+			Keywords: []string{
+				"kms",
+				"key",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key_alias",
+					Description: `(Required) The alias in which to create the key. It is required when we create a new key. Changing this updates the alias of key.`,
+				},
+				resource.Attribute{
+					Name:        "key_description",
+					Description: `(Optional) The description of the key as viewed in HCS console. Changing this updates the description of key.`,
+				},
+				resource.Attribute{
+					Name:        "realm",
+					Description: `(Optional) Region where a key resides. Changing this creates a new key.`,
+				},
+				resource.Attribute{
+					Name:        "pending_days",
+					Description: `(Optional) Duration in days after which the key is deleted after destruction of the resource, must be between 7 and 1096 days. It doesn't have default value. It only be used when delete a key.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional) Specifies whether the key is enabled. Defaults to true. Changing this updates the state of existing key. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "key_alias",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "key_description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "realm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `The globally unique identifier for the key.`,
+				},
+				resource.Attribute{
+					Name:        "default_key_flag",
+					Description: `Identification of a Master Key. The value 1 indicates a Default Master Key, and the value 0 indicates a key.`,
+				},
+				resource.Attribute{
+					Name:        "scheduled_deletion_date",
+					Description: `Scheduled deletion time (time stamp) of a key.`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `ID of a user domain for the key.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_time",
+					Description: `Expiration time.`,
+				},
+				resource.Attribute{
+					Name:        "creation_date",
+					Description: `Creation time (time stamp) of a key.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `See Argument Reference above. ## Import KMS Keys can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloudstack_kms_key_v1.key_1 7056d636-ac60-4663-8a6c-82d3c32c1c64 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key_alias",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "key_description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "realm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `The globally unique identifier for the key.`,
+				},
+				resource.Attribute{
+					Name:        "default_key_flag",
+					Description: `Identification of a Master Key. The value 1 indicates a Default Master Key, and the value 0 indicates a key.`,
+				},
+				resource.Attribute{
+					Name:        "scheduled_deletion_date",
+					Description: `Scheduled deletion time (time stamp) of a key.`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `ID of a user domain for the key.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_time",
+					Description: `Expiration time.`,
+				},
+				resource.Attribute{
+					Name:        "creation_date",
+					Description: `Creation time (time stamp) of a key.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `See Argument Reference above. ## Import KMS Keys can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloudstack_kms_key_v1.key_1 7056d636-ac60-4663-8a6c-82d3c32c1c64 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -3541,27 +3681,28 @@ var (
 		"huaweicloudstack_compute_keypair_v2":                 7,
 		"huaweicloudstack_compute_servergroup_v2":             8,
 		"huaweicloudstack_compute_volume_attach_v2":           9,
-		"huaweicloudstack_lb_certificate_v2":                  10,
-		"huaweicloudstack_lb_l7policy_v2":                     11,
-		"huaweicloudstack_lb_l7rule_v2":                       12,
-		"huaweicloudstack_lb_listener_v2":                     13,
-		"huaweicloudstack_lb_loadbalancer_v2":                 14,
-		"huaweicloudstack_lb_member_v2":                       15,
-		"huaweicloudstack_lb_monitor_v2":                      16,
-		"huaweicloudstack_lb_pool_v2":                         17,
-		"huaweicloudstack_lb_whitelist_v2":                    18,
-		"huaweicloudstack_networking_floatingip_associate_v2": 19,
-		"huaweicloudstack_networking_floatingip_v2":           20,
-		"huaweicloudstack_networking_network_v2":              21,
-		"huaweicloudstack_networking_port_v2":                 22,
-		"huaweicloudstack_networking_router_interface_v2":     23,
-		"huaweicloudstack_networking_router_route_v2":         24,
-		"huaweicloudstack_networking_router_v2":               25,
-		"huaweicloudstack_networking_secgroup_rule_v2":        26,
-		"huaweicloudstack_networking_secgroup_v2":             27,
-		"huaweicloudstack_networking_subnet_v2":               28,
-		"huaweicloudstack_networking_vip_associate_v2":        29,
-		"huaweicloudstack_networking_vip_v2":                  30,
+		"huaweicloudstack_kms_key_v1":                         10,
+		"huaweicloudstack_lb_certificate_v2":                  11,
+		"huaweicloudstack_lb_l7policy_v2":                     12,
+		"huaweicloudstack_lb_l7rule_v2":                       13,
+		"huaweicloudstack_lb_listener_v2":                     14,
+		"huaweicloudstack_lb_loadbalancer_v2":                 15,
+		"huaweicloudstack_lb_member_v2":                       16,
+		"huaweicloudstack_lb_monitor_v2":                      17,
+		"huaweicloudstack_lb_pool_v2":                         18,
+		"huaweicloudstack_lb_whitelist_v2":                    19,
+		"huaweicloudstack_networking_floatingip_associate_v2": 20,
+		"huaweicloudstack_networking_floatingip_v2":           21,
+		"huaweicloudstack_networking_network_v2":              22,
+		"huaweicloudstack_networking_port_v2":                 23,
+		"huaweicloudstack_networking_router_interface_v2":     24,
+		"huaweicloudstack_networking_router_route_v2":         25,
+		"huaweicloudstack_networking_router_v2":               26,
+		"huaweicloudstack_networking_secgroup_rule_v2":        27,
+		"huaweicloudstack_networking_secgroup_v2":             28,
+		"huaweicloudstack_networking_subnet_v2":               29,
+		"huaweicloudstack_networking_vip_associate_v2":        30,
+		"huaweicloudstack_networking_vip_v2":                  31,
 	}
 )
 

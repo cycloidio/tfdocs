@@ -70,6 +70,25 @@ Use this data source to get information about an AWS Security Group onboarded to
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "dome9_aws_security_group_rule",
+			Category:         "Data Sources",
+			ShortDescription: `Bound input and output services to AWS Security Group in Dome9`,
+			Description: `
+
+Use this data source to get inbounds and outbounds services for AWS Security Groups in a cloud account that is managed by Dome9.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "services",
+					Description: `Security Group services.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "dome9_azure_security_group",
 			Category:         "Data Sources",
 			ShortDescription: `Get information about Azure Security Group in Dome9`,
@@ -1008,16 +1027,17 @@ Use this data source to get information about a ruleset in Dome9.
 	dataSourcesMap = map[string]int{
 
 		"dome9_aws_security_group":                 0,
-		"dome9_azure_security_group":               1,
-		"dome9_cloudaccount_aws":                   2,
-		"dome9_cloudaccount_azure":                 3,
-		"dome9_cloudaccount_gcp":                   4,
-		"dome9_continuous_compliance_notification": 5,
-		"dome9_continuous_compliance_policy":       6,
-		"dome9_iplist":                             7,
-		"dome9_organizational_unit":                8,
-		"dome9_role":                               9,
-		"dome9_ruleset":                            10,
+		"dome9_aws_security_group_rule":            1,
+		"dome9_azure_security_group":               2,
+		"dome9_cloudaccount_aws":                   3,
+		"dome9_cloudaccount_azure":                 4,
+		"dome9_cloudaccount_gcp":                   5,
+		"dome9_continuous_compliance_notification": 6,
+		"dome9_continuous_compliance_policy":       7,
+		"dome9_iplist":                             8,
+		"dome9_organizational_unit":                9,
+		"dome9_role":                               10,
+		"dome9_ruleset":                            11,
 	}
 )
 

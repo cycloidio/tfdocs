@@ -53,6 +53,10 @@ var (
 					Description: `(Required) The name of an existing Icinga2 CheckCommand object that is used to determine if the host is available or not.`,
 				},
 				resource.Attribute{
+					Name:        "groups",
+					Description: `(Optional) The groups of the host.`,
+				},
+				resource.Attribute{
 					Name:        "hostname",
 					Description: `(Required) The hostname of the host.`,
 				},
@@ -126,6 +130,10 @@ var (
 				resource.Attribute{
 					Name:        "hostname",
 					Description: `(Required) The host to check the service's status on`,
+				},
+				resource.Attribute{
+					Name:        "vars",
+					Description: `(Optional) A mapping of variables to assign to the service.`,
 				},
 			},
 			Attributes: []resource.Attribute{},

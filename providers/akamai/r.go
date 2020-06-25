@@ -48,7 +48,12 @@ var (
 				"dns",
 				"zone",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `key name`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{

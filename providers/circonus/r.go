@@ -81,7 +81,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "period",
-					Description: `(Optional) The period between each time the check is made in seconds.`,
+					Description: `(Optional) The period between each time the check is made in seconds. Default is ` + "`" + `"60s"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "postgresql",
@@ -109,7 +109,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "timeout",
-					Description: `(Optional) A floating point number representing the maximum number of seconds this check should wait for a result. Defaults to ` + "`" + `10.0` + "`" + `. ## Supported ` + "`" + `metric` + "`" + ` Attributes The following attributes are available within a ` + "`" + `metric` + "`" + `.`,
+					Description: `(Optional) A string representing the maximum number of seconds this check should wait for a result. Defaults to ` + "`" + `"10s"` + "`" + `. ## Supported ` + "`" + `metric` + "`" + ` Attributes The following attributes are available within a ` + "`" + `metric` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "active",

@@ -154,7 +154,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "victor_ops_routing_key",
-					Description: `VictorOps routing key. Optional for the ` + "`" + `VICTOR_OPS` + "`" + ` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `VictorOps routing key. Optional for the ` + "`" + `VICTOR_OPS` + "`" + ` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.`,
+				},
+				resource.Attribute{
+					Name:        "Roles",
+					Description: `Roles. Optional. The following roles grant privileges within a project. Accepted values are: - ` + "`" + `GROUP_CHARTS_ADMIN` + "`" + ` - ` + "`" + `GROUP_CLUSTER_MANAGER` + "`" + ` - ` + "`" + `GROUP_DATA_ACCESS_ADMIN` + "`" + ` - ` + "`" + `GROUP_DATA_ACCESS_READ_ONLY` + "`" + ` - ` + "`" + `GROUP_DATA_ACCESS_READ_WRITE` + "`" + ` - ` + "`" + `GROUP_OWNER` + "`" + ` - ` + "`" + `GROUP_READ_ONLY` + "`" + ` ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -242,7 +246,7 @@ var (
 			Name:             "",
 			Type:             "mongodbatlas_cloud_provider_snapshot",
 			Category:         "Resources",
-			ShortDescription: `Provides an Cloud Provider Snapshot resource.`,
+			ShortDescription: `Provides an Cloud Backup Snapshot resource.`,
 			Description:      ``,
 			Keywords: []string{
 				"cloud",
@@ -308,7 +312,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `Specifies the type of cluster: replicaSet or shardedCluster. ## Import Cloud Provider Snapshot entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format ` + "`" + `PROJECTID-CLUSTERNAME-SNAPSHOTID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_cloud_provider_snapshot.test 5d0f1f73cf09a29120e173cf-MyClusterTest-5d116d82014b764445b2f9b5 ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot/)`,
+					Description: `Specifies the type of cluster: replicaSet or shardedCluster. ## Import Cloud Backup Snapshot entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format ` + "`" + `PROJECTID-CLUSTERNAME-SNAPSHOTID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_cloud_provider_snapshot.test 5d0f1f73cf09a29120e173cf-MyClusterTest-5d116d82014b764445b2f9b5 ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/backups/)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -354,7 +358,97 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `Specifies the type of cluster: replicaSet or shardedCluster. ## Import Cloud Provider Snapshot entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format ` + "`" + `PROJECTID-CLUSTERNAME-SNAPSHOTID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_cloud_provider_snapshot.test 5d0f1f73cf09a29120e173cf-MyClusterTest-5d116d82014b764445b2f9b5 ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot/)`,
+					Description: `Specifies the type of cluster: replicaSet or shardedCluster. ## Import Cloud Backup Snapshot entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format ` + "`" + `PROJECTID-CLUSTERNAME-SNAPSHOTID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_cloud_provider_snapshot.test 5d0f1f73cf09a29120e173cf-MyClusterTest-5d116d82014b764445b2f9b5 ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/backups/)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mongodbatlas_cloud_provider_snapshot_backup_policy",
+			Category:         "Resources",
+			ShortDescription: `Provides a Cloud Backup Snapshot Policy resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"provider",
+				"snapshot",
+				"backup",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The unique identifier of the project for the Atlas cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `(Required) The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.`,
+				},
+				resource.Attribute{
+					Name:        "reference_hour_of_day",
+					Description: `(Optional) UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.`,
+				},
+				resource.Attribute{
+					Name:        "reference_minute_of_hour",
+					Description: `(Optional) UTC Minutes after referenceHourOfDay that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.`,
+				},
+				resource.Attribute{
+					Name:        "restore_window_days",
+					Description: `(Optional) Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.`,
+				},
+				resource.Attribute{
+					Name:        "update_snapshots",
+					Description: `(Optional) Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. ### Policies`,
+				},
+				resource.Attribute{
+					Name:        "policies",
+					Description: `(Required) Contains a document for each backup policy item in the desired updated backup policy.`,
+				},
+				resource.Attribute{
+					Name:        "policies.#.id",
+					Description: `(Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas_cluster resource. provider_backup_enabled of the mongodbatlas_cluster resource must be set to true. See the example above for how to refer to the mongodbatlas_cluster resource for policies.#.id #### Policy Item`,
+				},
+				resource.Attribute{
+					Name:        "policies.#.policy_item",
+					Description: `(Required) Array of backup policy items.`,
+				},
+				resource.Attribute{
+					Name:        "policies.#.policy_item.#.id",
+					Description: `(Required) Unique identifier of the backup policy item. ` + "`" + `policies.#.policy_item.#.id` + "`" + ` is a value obtained via the mongodbatlas_cluster resource. provider_backup_enabled of the mongodbatlas_cluster resource must be set to true. See the example above for how to refer to the mongodbatlas_cluster resource forpolicies.#.policy_item.#.id`,
+				},
+				resource.Attribute{
+					Name:        "policies.#.policy_item.#.frequency_interval",
+					Description: `(Required) Desired frequency of the new backup policy item specified by frequencyType.`,
+				},
+				resource.Attribute{
+					Name:        "policies.#.policy_item.#.frequency_type",
+					Description: `(Required) Frequency associated with the backup policy item. One of the following values: hourly, daily, weekly or monthly.`,
+				},
+				resource.Attribute{
+					Name:        "policies.#.policy_item.#.retention_unit",
+					Description: `(Required) Scope of the backup policy item: days, weeks, or months.`,
+				},
+				resource.Attribute{
+					Name:        "policies.#.policy_item.#.retention_value",
+					Description: `(Required) Value to associate with retentionUnit. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `Unique identifier of the Atlas cluster.`,
+				},
+				resource.Attribute{
+					Name:        "next_snapshot",
+					Description: `Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot. ## Import Cloud Backup Snapshot Policy entries can be imported using project project_id and cluster_name, in the format ` + "`" + `PROJECTID-CLUSTERNAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_cloud_provider_snapshot_backup_policy.test 5d0f1f73cf09a29120e173cf-MyClusterTest ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/modify-one-schedule/)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `Unique identifier of the Atlas cluster.`,
+				},
+				resource.Attribute{
+					Name:        "next_snapshot",
+					Description: `Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot. ## Import Cloud Backup Snapshot Policy entries can be imported using project project_id and cluster_name, in the format ` + "`" + `PROJECTID-CLUSTERNAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_cloud_provider_snapshot_backup_policy.test 5d0f1f73cf09a29120e173cf-MyClusterTest ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/modify-one-schedule/)`,
 				},
 			},
 		},
@@ -362,7 +456,7 @@ var (
 			Name:             "",
 			Type:             "mongodbatlas_cloud_provider_snapshot_restore_job",
 			Category:         "Resources",
-			ShortDescription: `Provides a Cloud Provider Snapshot Restore Job resource.`,
+			ShortDescription: `Provides a Cloud Backup Snapshot Restore Job resource.`,
 			Description:      ``,
 			Keywords: []string{
 				"cloud",
@@ -450,7 +544,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "timestamp",
-					Description: `Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken. ## Import Cloud Provider Snapshot Restore Job entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format ` + "`" + `PROJECTID-CLUSTERNAME-JOBID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_cloud_provider_snapshot_restore_job.test 5cf5a45a9ccf6400e60981b6-MyCluster-5d1b654ecf09a24b888f4c79 ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-restore-jobs/)`,
+					Description: `Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.`,
+				},
+				resource.Attribute{
+					Name:        "oplogTs",
+					Description: `Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. Three conditions apply to this parameter:`,
+				},
+				resource.Attribute{
+					Name:        "oplogInc",
+					Description: `Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Three conditions apply to this parameter:`,
+				},
+				resource.Attribute{
+					Name:        "pointInTimeUTCSeconds",
+					Description: `Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Two conditions apply to this parameter:`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -508,7 +614,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "timestamp",
-					Description: `Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken. ## Import Cloud Provider Snapshot Restore Job entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format ` + "`" + `PROJECTID-CLUSTERNAME-JOBID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_cloud_provider_snapshot_restore_job.test 5cf5a45a9ccf6400e60981b6-MyCluster-5d1b654ecf09a24b888f4c79 ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-provider-snapshot-restore-jobs/)`,
+					Description: `Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.`,
+				},
+				resource.Attribute{
+					Name:        "oplogTs",
+					Description: `Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. Three conditions apply to this parameter:`,
+				},
+				resource.Attribute{
+					Name:        "oplogInc",
+					Description: `Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Three conditions apply to this parameter:`,
+				},
+				resource.Attribute{
+					Name:        "pointInTimeUTCSeconds",
+					Description: `Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Two conditions apply to this parameter:`,
 				},
 			},
 		},
@@ -536,15 +654,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_instance_size_name",
-					Description: `(Required) Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) ` + "`" + `providerSettings.instanceSizeName` + "`" + ` for valid values and default resources. Note free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.`,
+					Description: `(Required) Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) ` + "`" + `providerSettings.instanceSizeName` + "`" + ` for valid values and default resources.`,
 				},
 				resource.Attribute{
 					Name:        "auto_scaling_disk_gb_enabled",
 					Description: `(Optional) Specifies whether disk auto-scaling is enabled. The default is true. - Set to ` + "`" + `true` + "`" + ` to enable disk auto-scaling. - Set to ` + "`" + `false` + "`" + ` to disable disk auto-scaling.`,
 				},
 				resource.Attribute{
+					Name:        "auto_scaling_compute_enabled",
+					Description: `(Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false. - Set to ` + "`" + `true` + "`" + ` to enable cluster tier auto-scaling. If enabled, you must specify a value for ` + "`" + `providerSettings.autoScaling.compute.maxInstanceSize` + "`" + `. - Set to ` + "`" + `false` + "`" + ` to disable cluster tier auto-scaling. ~>`,
+				},
+				resource.Attribute{
+					Name:        "auto_scaling_compute_scale_down_enabled",
+					Description: `(Optional) Set to ` + "`" + `true` + "`" + ` to enable the cluster tier to scale down. This option is only available if ` + "`" + `autoScaling.compute.enabled` + "`" + ` is ` + "`" + `true` + "`" + `. - If this option is enabled, you must specify a value for ` + "`" + `providerSettings.autoScaling.compute.minInstanceSize` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "backup_enabled",
-					Description: `(Optional) Set to true to enable Atlas continuous backups for the cluster. Set to false to disable continuous backups for the cluster. Atlas deletes any stored snapshots. See the continuous backup Snapshot Schedule for more information. You cannot enable continuous backups if you have an existing cluster in the project with Cloud Provider Snapshots enabled. You cannot enable continuous backups for new AWS clusters. If backup is required for a new cluster use ` + "`" + `provider_backup_enabled` + "`" + ` to enable Cloud Provider Snapshots. The default value is false. M10 and above only.`,
+					Description: `(Optional) Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "bi_connector",
@@ -556,11 +682,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_size_gb",
-					Description: `(Optional - GCP/AWS Only) The size in gigabytes of the server’s root volume. You can add capacity by increasing this number, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer. The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.`,
+					Description: `(Optional - GCP/AWS Only) Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.`,
 				},
 				resource.Attribute{
 					Name:        "encryption_at_rest_provider",
-					Description: `(Optional) Set the Encryption at Rest parameter. Possible values are AWS, GCP, AZURE or NONE. Requires M10 or greater and for backup_enabled to be false or omitted.`,
+					Description: `(Optional) Possible values are AWS, GCP, AZURE or NONE. Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation. You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) Array containing key-value pairs that tag and categorize the cluster. Each key and value has a maximum length of 255 characters. You cannot set the key ` + "`" + `Infrastructure Tool` + "`" + `, it is used for internal purposes to track aggregate usage.`,
 				},
 				resource.Attribute{
 					Name:        "mongo_db_major_version",
@@ -572,11 +702,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pit_enabled",
-					Description: `(Optional) - Flag that indicates if the cluster uses Point-in-Time backups. If set to true, provider_backup_enabled must also be set to true.`,
+					Description: `(Optional) - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, provider_backup_enabled must also be set to true.`,
 				},
 				resource.Attribute{
 					Name:        "provider_backup_enabled",
-					Description: `(Optional) Flag indicating if the cluster uses Cloud Provider Snapshots for backups. If true, the cluster uses Cloud Provider Snapshots for backups. If providerBackupEnabled and backupEnabled are false, the cluster does not use Atlas backups. You cannot enable cloud provider snapshots if you have an existing cluster in the project with Continuous Backups enabled.`,
+					Description: `(Optional) Flag indicating if the cluster uses Cloud Backup for backups. If true, the cluster uses Cloud Backup for backups. If provider_backup_enabled and backup_enabled are false, the cluster does not use Atlas backups. You cannot enable cloud backup if you have an existing cluster in the project with legacy backup enabled. ~>`,
 				},
 				resource.Attribute{
 					Name:        "backing_provider_name",
@@ -584,19 +714,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_disk_iops",
-					Description: `(Optional) The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected providerSettings.instanceSizeName and diskSizeGB.`,
+					Description: `(Optional) The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected ` + "`" + `provider_instance_size_name` + "`" + ` and ` + "`" + `disk_size_gb` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "provider_disk_type_name",
-					Description: `(Optional - Azure Only) Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName. Example disk types and associated storage sizes: PP4 - 32GB, P6 - 64GB, P10 - 128GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB. More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.`,
+					Description: `(Optional - Azure Only) Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName. Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB. More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.`,
 				},
 				resource.Attribute{
 					Name:        "provider_encrypt_ebs_volume",
-					Description: `(Optional) If enabled, the Amazon EBS encryption feature encrypts the server’s root volume for both data at rest within the volume and for data moving between the volume and the instance.`,
+					Description: `(Optional- AWS ONLY) If enabled, the Amazon EBS encryption feature encrypts the server’s root volume for both data at rest within the volume and for data moving between the volume and the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "provider_region_name",
-					Description: `(Optional) Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.`,
+					Description: `(Optional) Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the`,
 				},
 				resource.Attribute{
 					Name:        "provider_volume_type",
@@ -607,20 +737,20 @@ var (
 					Description: `(Optional) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.`,
 				},
 				resource.Attribute{
+					Name:        "provider_auto_scaling_compute_min_instance_size",
+					Description: `(Optional) Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if ` + "`" + `autoScaling.compute.scaleDownEnabled` + "`" + ` is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "provider_auto_scaling_compute_max_instance_size",
+					Description: `(Optional) Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if ` + "`" + `autoScaling.compute.enabled` + "`" + ` is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "replication_specs",
-					Description: `(Optional) Configuration for cluster regions. See [Replication Spec](#replication-spec) below for more details. ### BI Connector Specifies BI Connector for Atlas configuration.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `(Optional) Specifies whether or not BI Connector for Atlas is enabled on the cluster. - Set to ` + "`" + `true` + "`" + ` to enable BI Connector for Atlas. - Set to ` + "`" + `false` + "`" + ` to disable BI Connector for Atlas.`,
-				},
-				resource.Attribute{
-					Name:        "read_preference",
-					Description: `(Optional) Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences). - Set to "primary" to have BI Connector for Atlas read from the primary. - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster. - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes. ### Replication Spec Configuration for cluster regions.`,
+					Description: `(Optional) Configuration for cluster regions. See [Replication Spec](#replication-spec) below for more details. ### Multi-Region Cluster ` + "`" + `` + "`" + `` + "`" + `hcl //Example 3 Multi-Region block replication_specs { num_shards = 1 regions_config { region_name = "US_EAST_1" electable_nodes = 3 priority = 7 read_only_nodes = 0 } regions_config { region_name = "US_EAST_2" electable_nodes = 2 priority = 6 read_only_nodes = 0 } regions_config { region_name = "US_WEST_1" electable_nodes = 2 priority = 5 read_only_nodes = 2 } } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "num_shards",
-					Description: `(Required) Number of shards to deploy in the specified zone.`,
+					Description: `(Required) Number of shards to deploy in the specified zone, minimum 1.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -632,11 +762,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone_name",
-					Description: `(Optional) Name for the zone in a Global Cluster. ### Region Config Physical location of the region.`,
+					Description: `(Optional) Name for the zone in a Global Cluster.`,
 				},
 				resource.Attribute{
 					Name:        "region_name",
-					Description: `(Optional) Name for the region specified.`,
+					Description: `(Optional) Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the`,
 				},
 				resource.Attribute{
 					Name:        "electable_nodes",
@@ -652,7 +782,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "analytics_nodes",
-					Description: `(Optional) The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region. ### Advanced Configuration Options ->`,
+					Description: `(Optional) The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region. ### BI Connector Specifies BI Connector for Atlas configuration. ` + "`" + `` + "`" + `` + "`" + `hcl bi_connector = { enabled = true read_preference = secondary } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Specifies whether or not BI Connector for Atlas is enabled on the cluster.l`,
+				},
+				resource.Attribute{
+					Name:        "read_preference",
+					Description: `(Optional) Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences). - Set to "primary" to have BI Connector for Atlas read from the primary. - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster. - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes. ### Advanced Configuration Options ->`,
 				},
 				resource.Attribute{
 					Name:        "fail_index_key_too_long",
@@ -708,7 +846,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mongo_uri_with_options",
-					Description: `connection string for connecting to the Atlas cluster. Includes the replicaSet, ssl, and authSource query parameters in the connection string with values appropriate for the cluster. To review the connection string format, see the connection string format documentation. To add MongoDB users to a Atlas project, see Configure MongoDB Users. Atlas only displays this field after the cluster is operational, not while it builds the cluster.`,
+					Description: `connection string for connecting to the Atlas cluster. Includes the replicaSet, ssl, and authSource query parameters in the connection string with values appropriate for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "connection_strings",
+					Description: `Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "container_id",
+					Description: `The Network Peering Container ID. The id of the container either created programmatically by the user before any clusters existed in the project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.`,
 				},
 				resource.Attribute{
 					Name:        "paused",
@@ -720,7 +866,71 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state_name",
-					Description: `Current state of the cluster. The possible states are: - IDLE - CREATING - UPDATING - DELETING - DELETED - REPAIRING ## Import Clusters can be imported using project ID and cluster name, in the format ` + "`" + `PROJECTID-CLUSTERNAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_cluster.my_cluster 1112222b3bf99403840e8934-Cluster0 ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
+					Description: `Current state of the cluster. The possible states are: - IDLE - CREATING - UPDATING - DELETING - DELETED - REPAIRING ### Cloud Backup Policy Cloud Backup Policy will be added if provider_backup_enabled is enabled because MongoDB Atlas automatically creates a default policy, if not, returned values will be empty.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy",
+					Description: `current snapshot schedule and retention settings for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.cluster_id",
+					Description: `Unique identifier of the Atlas cluster.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.cluster_name",
+					Description: `Name of the Atlas cluster that contains the snapshot backup policy.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.next_snapshot",
+					Description: `UTC ISO 8601 formatted point in time when Atlas will take the next snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.reference_hour_of_day",
+					Description: `UTC Hour of day between 0 and 23 representing which hour of the day that Atlas takes a snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.reference_minute_of_hour",
+					Description: `UTC Minute of day between 0 and 59 representing which minute of the referenceHourOfDay that Atlas takes the snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.restore_window_days",
+					Description: `Specifies a restore window in days for the cloud provider backup to maintain.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.update_snapshots",
+					Description: `Specifies it's true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. ### Policies`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies",
+					Description: `A list of policy definitions for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.id",
+					Description: `Unique identifier of the backup policy. #### Policy Item`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item",
+					Description: `A list of specifications for a policy.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.id",
+					Description: `Unique identifier for this policy item.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.frequency_interval",
+					Description: `The frequency interval for a set of snapshots.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.frequency_type",
+					Description: `A type of frequency (hourly, daily, weekly, monthly).`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.retention_unit",
+					Description: `The unit of time in which snapshot retention is measured (days, weeks, months).`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.retention_value",
+					Description: `The number of days, weeks, or months the snapshot is retained. ## Import Clusters can be imported using project ID and cluster name, in the format ` + "`" + `PROJECTID-CLUSTERNAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_cluster.my_cluster 1112222b3bf99403840e8934-Cluster0 ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -742,7 +952,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mongo_uri_with_options",
-					Description: `connection string for connecting to the Atlas cluster. Includes the replicaSet, ssl, and authSource query parameters in the connection string with values appropriate for the cluster. To review the connection string format, see the connection string format documentation. To add MongoDB users to a Atlas project, see Configure MongoDB Users. Atlas only displays this field after the cluster is operational, not while it builds the cluster.`,
+					Description: `connection string for connecting to the Atlas cluster. Includes the replicaSet, ssl, and authSource query parameters in the connection string with values appropriate for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "connection_strings",
+					Description: `Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "container_id",
+					Description: `The Network Peering Container ID. The id of the container either created programmatically by the user before any clusters existed in the project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.`,
 				},
 				resource.Attribute{
 					Name:        "paused",
@@ -754,7 +972,71 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state_name",
-					Description: `Current state of the cluster. The possible states are: - IDLE - CREATING - UPDATING - DELETING - DELETED - REPAIRING ## Import Clusters can be imported using project ID and cluster name, in the format ` + "`" + `PROJECTID-CLUSTERNAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_cluster.my_cluster 1112222b3bf99403840e8934-Cluster0 ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
+					Description: `Current state of the cluster. The possible states are: - IDLE - CREATING - UPDATING - DELETING - DELETED - REPAIRING ### Cloud Backup Policy Cloud Backup Policy will be added if provider_backup_enabled is enabled because MongoDB Atlas automatically creates a default policy, if not, returned values will be empty.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy",
+					Description: `current snapshot schedule and retention settings for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.cluster_id",
+					Description: `Unique identifier of the Atlas cluster.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.cluster_name",
+					Description: `Name of the Atlas cluster that contains the snapshot backup policy.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.next_snapshot",
+					Description: `UTC ISO 8601 formatted point in time when Atlas will take the next snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.reference_hour_of_day",
+					Description: `UTC Hour of day between 0 and 23 representing which hour of the day that Atlas takes a snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.reference_minute_of_hour",
+					Description: `UTC Minute of day between 0 and 59 representing which minute of the referenceHourOfDay that Atlas takes the snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.restore_window_days",
+					Description: `Specifies a restore window in days for the cloud provider backup to maintain.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.update_snapshots",
+					Description: `Specifies it's true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. ### Policies`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies",
+					Description: `A list of policy definitions for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.id",
+					Description: `Unique identifier of the backup policy. #### Policy Item`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item",
+					Description: `A list of specifications for a policy.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.id",
+					Description: `Unique identifier for this policy item.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.frequency_interval",
+					Description: `The frequency interval for a set of snapshots.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.frequency_type",
+					Description: `A type of frequency (hourly, daily, weekly, monthly).`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.retention_unit",
+					Description: `The unit of time in which snapshot retention is measured (days, weeks, months).`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.retention_value",
+					Description: `The number of days, weeks, or months the snapshot is retained. ## Import Clusters can be imported using project ID and cluster name, in the format ` + "`" + `PROJECTID-CLUSTERNAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_cluster.my_cluster 1112222b3bf99403840e8934-Cluster0 ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
 				},
 			},
 		},
@@ -850,7 +1132,7 @@ var (
 					Description: `The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the ` + "`" + `$external` + "`" + ` database. ### Roles Block mapping a user's role to a database / collection. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. ->`,
 				},
 				resource.Attribute{
-					Name:        "name",
+					Name:        "role_name",
 					Description: `(Required) Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) ` + "`" + `roles.roleName` + "`" + ` for valid values and restrictions.`,
 				},
 				resource.Attribute{
@@ -975,14 +1257,14 @@ var (
 				},
 				resource.Attribute{
 					Name:        "key_version_resource_id",
-					Description: `The Key Version Resource ID from your GCP account. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/encryption-at-rest/)`,
+					Description: `The Key Version Resource ID from your GCP account. For more information see: [MongoDB Atlas API Reference for Encryption at Rest using Customer Key Management.](https://docs.atlas.mongodb.com/reference/api/encryption-at-rest/)`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "global_cluster_config",
+			Type:             "mongodbatlas_global_cluster_config",
 			Category:         "Resources",
 			ShortDescription: `Provides a Global Cluster Configuration resource.`,
 			Description:      ``,
@@ -1087,19 +1369,19 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `(Required) The unique ID for the project to create the database user.`,
+					Description: `(Required) Unique identifier for the Atlas project for this Network Peering Container.`,
 				},
 				resource.Attribute{
 					Name:        "atlas_cidr_block",
-					Description: `(Required) CIDR block that Atlas uses for your clusters. Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3).`,
+					Description: `(Required) CIDR block that Atlas uses for the Network Peering containers in your project. Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3):`,
 				},
 				resource.Attribute{
 					Name:        "region_name",
-					Description: `(Optional | AWS provider only) AWS region.`,
+					Description: `(Required AWS only) The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).`,
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional | AZURE provider only) Azure region where the container resides. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required AZURE only) Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "container_id",
@@ -1107,39 +1389,39 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Terraform's unique identifier used internally for state management.`,
-				},
-				resource.Attribute{
-					Name:        "region_name",
-					Description: `AWS region.`,
-				},
-				resource.Attribute{
-					Name:        "region",
-					Description: `Azure region where the container resides.`,
-				},
-				resource.Attribute{
-					Name:        "azure_subscription_id",
-					Description: `Unique identifer of the Azure subscription in which the VNet resides.`,
+					Description: `Terraform's unique identifier used internally for state management.`,
 				},
 				resource.Attribute{
 					Name:        "provisioned",
 					Description: `Indicates whether the project has Network Peering connections deployed in the container.`,
 				},
 				resource.Attribute{
-					Name:        "gcp_project_id",
-					Description: `Unique identifier of the GCP project in which the Network Peering connection resides.`,
-				},
-				resource.Attribute{
-					Name:        "network_name",
-					Description: `Name of the Network Peering connection in the Atlas project.`,
+					Name:        "region_name",
+					Description: `Atlas name for AWS region where the Atlas container resides.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `Unique identifier of the project’s VPC.`,
+					Description: `Unique identifier of Atlas' AWS VPC.`,
+				},
+				resource.Attribute{
+					Name:        "gcp_project_id",
+					Description: `Unique identifier of the GCP project in which the network peer resides. Returns null. This value is populated once you create a new network peering connection with the network peering resource.`,
+				},
+				resource.Attribute{
+					Name:        "network_name",
+					Description: `Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Azure region where the Atlas container resides.`,
+				},
+				resource.Attribute{
+					Name:        "azure_subscription_id",
+					Description: `Unique identifier of the Azure subscription in which the VNet resides.`,
 				},
 				resource.Attribute{
 					Name:        "vnet_name",
-					Description: `The name of the Azure VNet. This value is null until you provision an Azure VNet in the container. ## Import Clusters can be imported using project ID and network peering container id, in the format ` + "`" + `PROJECTID-CONTAINER-ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_network_container.my_container 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)`,
+					Description: `The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource. ## Import Clusters can be imported using project ID and network peering container id, in the format ` + "`" + `PROJECTID-CONTAINER-ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_network_container.my_container 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1149,39 +1431,39 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Terraform's unique identifier used internally for state management.`,
-				},
-				resource.Attribute{
-					Name:        "region_name",
-					Description: `AWS region.`,
-				},
-				resource.Attribute{
-					Name:        "region",
-					Description: `Azure region where the container resides.`,
-				},
-				resource.Attribute{
-					Name:        "azure_subscription_id",
-					Description: `Unique identifer of the Azure subscription in which the VNet resides.`,
+					Description: `Terraform's unique identifier used internally for state management.`,
 				},
 				resource.Attribute{
 					Name:        "provisioned",
 					Description: `Indicates whether the project has Network Peering connections deployed in the container.`,
 				},
 				resource.Attribute{
-					Name:        "gcp_project_id",
-					Description: `Unique identifier of the GCP project in which the Network Peering connection resides.`,
-				},
-				resource.Attribute{
-					Name:        "network_name",
-					Description: `Name of the Network Peering connection in the Atlas project.`,
+					Name:        "region_name",
+					Description: `Atlas name for AWS region where the Atlas container resides.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `Unique identifier of the project’s VPC.`,
+					Description: `Unique identifier of Atlas' AWS VPC.`,
+				},
+				resource.Attribute{
+					Name:        "gcp_project_id",
+					Description: `Unique identifier of the GCP project in which the network peer resides. Returns null. This value is populated once you create a new network peering connection with the network peering resource.`,
+				},
+				resource.Attribute{
+					Name:        "network_name",
+					Description: `Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Azure region where the Atlas container resides.`,
+				},
+				resource.Attribute{
+					Name:        "azure_subscription_id",
+					Description: `Unique identifier of the Azure subscription in which the VNet resides.`,
 				},
 				resource.Attribute{
 					Name:        "vnet_name",
-					Description: `The name of the Azure VNet. This value is null until you provision an Azure VNet in the container. ## Import Clusters can be imported using project ID and network peering container id, in the format ` + "`" + `PROJECTID-CONTAINER-ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_network_container.my_container 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)`,
+					Description: `The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource. ## Import Clusters can be imported using project ID and network peering container id, in the format ` + "`" + `PROJECTID-CONTAINER-ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_network_container.my_container 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)`,
 				},
 			},
 		},
@@ -1198,71 +1480,71 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `(Required) The unique ID for the project to create the database user.`,
+					Description: `(Required) The unique ID for the MongoDB Atlas project to create the database user.`,
 				},
 				resource.Attribute{
 					Name:        "container_id",
-					Description: `(Required) Unique identifier of the Atlas VPC container for the region. You can create an Atlas VPC container using the Create Container endpoint. You cannot create more than one container per region. To retrieve a list of container IDs, use the Get list of VPC containers endpoint.`,
+					Description: `(Required) Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.`,
 				},
 				resource.Attribute{
 					Name:        "provider_name",
-					Description: `(Required) Cloud provider for this VPC peering connection. (Possible Values ` + "`" + `AWS` + "`" + `, ` + "`" + `AZURE` + "`" + `, ` + "`" + `GCP` + "`" + `).`,
+					Description: `(Required) Cloud provider to whom the peering connection is being made. (Possible Values ` + "`" + `AWS` + "`" + `, ` + "`" + `AZURE` + "`" + `, ` + "`" + `GCP` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "accepter_region_name",
-					Description: `(Optional |`,
+					Description: `(Required - AWS) Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).`,
 				},
 				resource.Attribute{
 					Name:        "aws_account_id",
-					Description: `(Optional |`,
-				},
-				resource.Attribute{
-					Name:        "route_table_cidr_block",
-					Description: `(Optional |`,
+					Description: `(Required - AWS) AWS Account ID of the owner of the peer VPC.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Optional |`,
+					Description: `(Required) Unique identifier of the AWS peer VPC (Note: this is`,
 				},
 				resource.Attribute{
-					Name:        "atlas_cidr_block",
-					Description: `(Optional |`,
-				},
-				resource.Attribute{
-					Name:        "azure_directory_id",
-					Description: `(Optional |`,
-				},
-				resource.Attribute{
-					Name:        "azure_subscription_id",
-					Description: `(Optional |`,
-				},
-				resource.Attribute{
-					Name:        "resource_group_name",
-					Description: `(Optional |`,
-				},
-				resource.Attribute{
-					Name:        "vnet_name",
-					Description: `(Optional |`,
+					Name:        "route_table_cidr_block",
+					Description: `(Required - AWS) AWS VPC CIDR block or subnet.`,
 				},
 				resource.Attribute{
 					Name:        "gcp_project_id",
-					Description: `(Optinal |`,
+					Description: `(Required - GCP) GCP project ID of the owner of the network peer.`,
 				},
 				resource.Attribute{
 					Name:        "network_name",
-					Description: `(Optional |`,
+					Description: `(Required- AWS) Name of the network peer to which Atlas connects.`,
+				},
+				resource.Attribute{
+					Name:        "azure_directory_id",
+					Description: `(Required - AZURE) Unique identifier for an Azure AD directory.`,
+				},
+				resource.Attribute{
+					Name:        "azure_subscription_id",
+					Description: `(Required - AZURE) Unique identifier of the Azure subscription in which the VNet resides.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required - AZURE) Name of your Azure resource group.`,
+				},
+				resource.Attribute{
+					Name:        "vnet_name",
+					Description: `(Required - AZURE) Name of your Azure VNet. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "peer_id",
-					Description: `The Network Peering Container ID.`,
+					Description: `Unique identifier of the Atlas network peer.`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Terraform's unique identifier used internally for state management.`,
+					Description: `Terraform's unique identifier used internally for state management.`,
 				},
 				resource.Attribute{
 					Name:        "connection_id",
-					Description: `Unique identifier for the peering connection.`,
+					Description: `Unique identifier of the Atlas network peering container.`,
+				},
+				resource.Attribute{
+					Name:        "provider_name",
+					Description: `Cloud provider to whom the peering connection is being made. (Possible Values ` + "`" + `AWS` + "`" + `, ` + "`" + `AZURE` + "`" + `, ` + "`" + `GCP` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "accepter_region_name",
@@ -1271,10 +1553,6 @@ var (
 				resource.Attribute{
 					Name:        "aws_account_id",
 					Description: `Account ID of the owner of the peer VPC.`,
-				},
-				resource.Attribute{
-					Name:        "provider_name",
-					Description: `Cloud provider for this VPC peering connection. If omitted, Atlas sets this parameter to AWS. (Possible Values ` + "`" + `AWS` + "`" + `, ` + "`" + `AZURE` + "`" + `, ` + "`" + `GCP` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "route_table_cidr_block",
@@ -1290,11 +1568,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status_name",
-					Description: `The VPC peering connection status value can be one of the following: ` + "`" + `INITIATING` + "`" + `, ` + "`" + `PENDING_ACCEPTANCE` + "`" + `, ` + "`" + `FAILED` + "`" + `, ` + "`" + `FINALIZING` + "`" + `, ` + "`" + `AVAILABLE` + "`" + `, ` + "`" + `TERMINATING` + "`" + `.`,
+					Description: `(AWS Only) The VPC peering connection status value can be one of the following: ` + "`" + `INITIATING` + "`" + `, ` + "`" + `PENDING_ACCEPTANCE` + "`" + `, ` + "`" + `FAILED` + "`" + `, ` + "`" + `FINALIZING` + "`" + `, ` + "`" + `AVAILABLE` + "`" + `, ` + "`" + `TERMINATING` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "atlas_cidr_block",
-					Description: `Unique identifier for an Azure AD directory.`,
+					Name:        "status",
+					Description: `Status of the Atlas network peering connection. Azure/GCP: ` + "`" + `ADDING_PEER` + "`" + `, ` + "`" + `AVAILABLE` + "`" + `, ` + "`" + `FAILED` + "`" + `, ` + "`" + `DELETING` + "`" + ` GCP Only: ` + "`" + `WAITING_FOR_USER` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "gcp_project_id",
+					Description: `GCP project ID of the owner of the network peer.`,
+				},
+				resource.Attribute{
+					Name:        "error_message",
+					Description: `When ` + "`" + `"status" : "FAILED"` + "`" + `, Atlas provides a description of the error.`,
+				},
+				resource.Attribute{
+					Name:        "network_name",
+					Description: `Name of the network peer to which Atlas connects.`,
+				},
+				resource.Attribute{
+					Name:        "atlas_gcp_project_id",
+					Description: `The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.`,
 				},
 				resource.Attribute{
 					Name:        "azure_directory_id",
@@ -1305,54 +1599,34 @@ var (
 					Description: `Unique identifer of the Azure subscription in which the VNet resides.`,
 				},
 				resource.Attribute{
+					Name:        "error_state",
+					Description: `Description of the Atlas error when ` + "`" + `status` + "`" + ` is ` + "`" + `Failed` + "`" + `, Otherwise, Atlas returns ` + "`" + `null` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "resource_group_name",
 					Description: `Name of your Azure resource group.`,
 				},
 				resource.Attribute{
 					Name:        "vnet_name",
-					Description: `Name of your Azure VNet.`,
-				},
-				resource.Attribute{
-					Name:        "error_state",
-					Description: `Description of the Atlas error when ` + "`" + `status` + "`" + ` is ` + "`" + `Failed` + "`" + `, Otherwise, Atlas returns ` + "`" + `null` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `Status of the Atlas network peering connection: ` + "`" + `ADDING_PEER` + "`" + `, ` + "`" + `AVAILABLE` + "`" + `, ` + "`" + `FAILED` + "`" + `, ` + "`" + `DELETING` + "`" + `, ` + "`" + `WAITING_FOR_USER` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "gcp_project_id",
-					Description: `GCP project ID of the owner of the network peer.`,
-				},
-				resource.Attribute{
-					Name:        "atlas_gcp_project_id",
-					Description: `The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.`,
-				},
-				resource.Attribute{
-					Name:        "atlas_vpc_name",
-					Description: `The Atlas VPC Name is used by your atlas clister that it is need to set up the reciprocal connection.`,
-				},
-				resource.Attribute{
-					Name:        "network_name",
-					Description: `Name of the network peer to which Atlas connects.`,
-				},
-				resource.Attribute{
-					Name:        "error_message",
-					Description: `When ` + "`" + `"status" : "FAILED"` + "`" + `, Atlas provides a description of the error. ## Import Clusters can be imported using project ID and network peering peering id, in the format ` + "`" + `PROJECTID-PEERID-PROVIDERNAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_network_peering.my_peering 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a-AWS ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)`,
+					Description: `Name of your Azure VNet. ## Import Clusters can be imported using project ID and network peering peering id, in the format ` + "`" + `PROJECTID-PEERID-PROVIDERNAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_network_peering.my_peering 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a-AWS ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "peer_id",
-					Description: `The Network Peering Container ID.`,
+					Description: `Unique identifier of the Atlas network peer.`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Terraform's unique identifier used internally for state management.`,
+					Description: `Terraform's unique identifier used internally for state management.`,
 				},
 				resource.Attribute{
 					Name:        "connection_id",
-					Description: `Unique identifier for the peering connection.`,
+					Description: `Unique identifier of the Atlas network peering container.`,
+				},
+				resource.Attribute{
+					Name:        "provider_name",
+					Description: `Cloud provider to whom the peering connection is being made. (Possible Values ` + "`" + `AWS` + "`" + `, ` + "`" + `AZURE` + "`" + `, ` + "`" + `GCP` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "accepter_region_name",
@@ -1361,10 +1635,6 @@ var (
 				resource.Attribute{
 					Name:        "aws_account_id",
 					Description: `Account ID of the owner of the peer VPC.`,
-				},
-				resource.Attribute{
-					Name:        "provider_name",
-					Description: `Cloud provider for this VPC peering connection. If omitted, Atlas sets this parameter to AWS. (Possible Values ` + "`" + `AWS` + "`" + `, ` + "`" + `AZURE` + "`" + `, ` + "`" + `GCP` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "route_table_cidr_block",
@@ -1380,11 +1650,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status_name",
-					Description: `The VPC peering connection status value can be one of the following: ` + "`" + `INITIATING` + "`" + `, ` + "`" + `PENDING_ACCEPTANCE` + "`" + `, ` + "`" + `FAILED` + "`" + `, ` + "`" + `FINALIZING` + "`" + `, ` + "`" + `AVAILABLE` + "`" + `, ` + "`" + `TERMINATING` + "`" + `.`,
+					Description: `(AWS Only) The VPC peering connection status value can be one of the following: ` + "`" + `INITIATING` + "`" + `, ` + "`" + `PENDING_ACCEPTANCE` + "`" + `, ` + "`" + `FAILED` + "`" + `, ` + "`" + `FINALIZING` + "`" + `, ` + "`" + `AVAILABLE` + "`" + `, ` + "`" + `TERMINATING` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "atlas_cidr_block",
-					Description: `Unique identifier for an Azure AD directory.`,
+					Name:        "status",
+					Description: `Status of the Atlas network peering connection. Azure/GCP: ` + "`" + `ADDING_PEER` + "`" + `, ` + "`" + `AVAILABLE` + "`" + `, ` + "`" + `FAILED` + "`" + `, ` + "`" + `DELETING` + "`" + ` GCP Only: ` + "`" + `WAITING_FOR_USER` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "gcp_project_id",
+					Description: `GCP project ID of the owner of the network peer.`,
+				},
+				resource.Attribute{
+					Name:        "error_message",
+					Description: `When ` + "`" + `"status" : "FAILED"` + "`" + `, Atlas provides a description of the error.`,
+				},
+				resource.Attribute{
+					Name:        "network_name",
+					Description: `Name of the network peer to which Atlas connects.`,
+				},
+				resource.Attribute{
+					Name:        "atlas_gcp_project_id",
+					Description: `The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.`,
 				},
 				resource.Attribute{
 					Name:        "azure_directory_id",
@@ -1395,40 +1681,16 @@ var (
 					Description: `Unique identifer of the Azure subscription in which the VNet resides.`,
 				},
 				resource.Attribute{
+					Name:        "error_state",
+					Description: `Description of the Atlas error when ` + "`" + `status` + "`" + ` is ` + "`" + `Failed` + "`" + `, Otherwise, Atlas returns ` + "`" + `null` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "resource_group_name",
 					Description: `Name of your Azure resource group.`,
 				},
 				resource.Attribute{
 					Name:        "vnet_name",
-					Description: `Name of your Azure VNet.`,
-				},
-				resource.Attribute{
-					Name:        "error_state",
-					Description: `Description of the Atlas error when ` + "`" + `status` + "`" + ` is ` + "`" + `Failed` + "`" + `, Otherwise, Atlas returns ` + "`" + `null` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `Status of the Atlas network peering connection: ` + "`" + `ADDING_PEER` + "`" + `, ` + "`" + `AVAILABLE` + "`" + `, ` + "`" + `FAILED` + "`" + `, ` + "`" + `DELETING` + "`" + `, ` + "`" + `WAITING_FOR_USER` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "gcp_project_id",
-					Description: `GCP project ID of the owner of the network peer.`,
-				},
-				resource.Attribute{
-					Name:        "atlas_gcp_project_id",
-					Description: `The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.`,
-				},
-				resource.Attribute{
-					Name:        "atlas_vpc_name",
-					Description: `The Atlas VPC Name is used by your atlas clister that it is need to set up the reciprocal connection.`,
-				},
-				resource.Attribute{
-					Name:        "network_name",
-					Description: `Name of the network peer to which Atlas connects.`,
-				},
-				resource.Attribute{
-					Name:        "error_message",
-					Description: `When ` + "`" + `"status" : "FAILED"` + "`" + `, Atlas provides a description of the error. ## Import Clusters can be imported using project ID and network peering peering id, in the format ` + "`" + `PROJECTID-PEERID-PROVIDERNAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_network_peering.my_peering 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a-AWS ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)`,
+					Description: `Name of your Azure VNet. ## Import Clusters can be imported using project ID and network peering peering id, in the format ` + "`" + `PROJECTID-PEERID-PROVIDERNAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_network_peering.my_peering 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a-AWS ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)`,
 				},
 			},
 		},
@@ -1570,7 +1832,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "DELETING",
-					Description: `Atlas is removing the interface endpoint from the private endpoint connection. ## Import Private Endpoint Link Connection can be imported using project ID and username, in the format ` + "`" + `{project_id}-{private_link_id}-{interface_endpoint_id}` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_private_endpoint_link.test 1112222b3bf99403840e8934-3242342343112-vpce-4242342343 ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoint-create-one-interface-endpoint/)`,
+					Description: `Atlas is removing the interface endpoint from the private endpoint connection. ## Import Private Endpoint Link Connection can be imported using project ID and username, in the format ` + "`" + `{project_id}-{private_link_id}-{interface_endpoint_id}` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_private_endpoint_interface_link.test 1112222b3bf99403840e8934-3242342343112-vpce-4242342343 ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoint-create-one-interface-endpoint/)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1612,7 +1874,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "DELETING",
-					Description: `Atlas is removing the interface endpoint from the private endpoint connection. ## Import Private Endpoint Link Connection can be imported using project ID and username, in the format ` + "`" + `{project_id}-{private_link_id}-{interface_endpoint_id}` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_private_endpoint_link.test 1112222b3bf99403840e8934-3242342343112-vpce-4242342343 ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoint-create-one-interface-endpoint/)`,
+					Description: `Atlas is removing the interface endpoint from the private endpoint connection. ## Import Private Endpoint Link Connection can be imported using project ID and username, in the format ` + "`" + `{project_id}-{private_link_id}-{interface_endpoint_id}` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_private_endpoint_interface_link.test 1112222b3bf99403840e8934-3242342343112-vpce-4242342343 ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoint-create-one-interface-endpoint/)`,
 				},
 			},
 		},
@@ -1634,7 +1896,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Indicates whether Connect via Peering Only mode is enabled or disabled for an Atlas project. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required) Indicates whether Connect via Peering Only mode is enabled or disabled for an Atlas project ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1736,13 +1998,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Unique identifier used for terraform for internal manages and can be used to import. ## Import IP Whitelist entries can be imported using the ` + "`" + `project_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_project_ip_whitelist.test 5d0f1f74cf09a29120e123cd ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/whitelist/)`,
+					Description: `Unique identifier used for terraform for internal manages and can be used to import. ## Import IP Whitelist entries can be imported using the ` + "`" + `project_id` + "`" + ` and ` + "`" + `cidr_block` + "`" + ` or ` + "`" + `ip_address` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_project_ip_whitelist.test 5d0f1f74cf09a29120e123cd-10.242.88.0/21 ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/whitelist/)`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Unique identifier used for terraform for internal manages and can be used to import. ## Import IP Whitelist entries can be imported using the ` + "`" + `project_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_project_ip_whitelist.test 5d0f1f74cf09a29120e123cd ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/whitelist/)`,
+					Description: `Unique identifier used for terraform for internal manages and can be used to import. ## Import IP Whitelist entries can be imported using the ` + "`" + `project_id` + "`" + ` and ` + "`" + `cidr_block` + "`" + ` or ` + "`" + `ip_address` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_project_ip_whitelist.test 5d0f1f74cf09a29120e123cd-10.242.88.0/21 ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/whitelist/)`,
 				},
 			},
 		},
@@ -1766,7 +2028,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "usernames",
-					Description: `(Required) You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1881,25 +2143,26 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"mongodbatlas_alert_configuration":                 0,
-		"mongodbatlas_auditing":                            1,
-		"mongodbatlas_cloud_provider_snapshot":             2,
-		"mongodbatlas_cloud_provider_snapshot_restore_job": 3,
-		"mongodbatlas_cluster":                             4,
-		"mongodbatlas_custom_db_role":                      5,
-		"mongodbatlas_database_user":                       6,
-		"mongodbatlas_encryption_at_rest":                  7,
-		"global_cluster_config":                            8,
-		"mongodbatlas_maintenance_window":                  9,
-		"mongodbatlas_network_container":                   10,
-		"mongodbatlas_network_peering":                     11,
-		"mongodbatlas_private_endpoint":                    12,
-		"mongodbatlas_private_endpoint_interface_link":     13,
-		"mongodbatlas_private_ip_mode":                     14,
-		"mongodbatlas_project":                             15,
-		"mongodbatlas_project_ip_whitelist":                16,
-		"mongodbatlas_team":                                17,
-		"mongodbatlas_x509_authentication_database_user":   18,
+		"mongodbatlas_alert_configuration":                   0,
+		"mongodbatlas_auditing":                              1,
+		"mongodbatlas_cloud_provider_snapshot":               2,
+		"mongodbatlas_cloud_provider_snapshot_backup_policy": 3,
+		"mongodbatlas_cloud_provider_snapshot_restore_job":   4,
+		"mongodbatlas_cluster":                               5,
+		"mongodbatlas_custom_db_role":                        6,
+		"mongodbatlas_database_user":                         7,
+		"mongodbatlas_encryption_at_rest":                    8,
+		"mongodbatlas_global_cluster_config":                 9,
+		"mongodbatlas_maintenance_window":                    10,
+		"mongodbatlas_network_container":                     11,
+		"mongodbatlas_network_peering":                       12,
+		"mongodbatlas_private_endpoint":                      13,
+		"mongodbatlas_private_endpoint_interface_link":       14,
+		"mongodbatlas_private_ip_mode":                       15,
+		"mongodbatlas_project":                               16,
+		"mongodbatlas_project_ip_whitelist":                  17,
+		"mongodbatlas_team":                                  18,
+		"mongodbatlas_x509_authentication_database_user":     19,
 	}
 )
 

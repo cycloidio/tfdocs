@@ -585,7 +585,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "asn",
-					Description: `Autonomous System Numer for local BGP deployment`,
+					Description: `Autonomous System Number for local BGP deployment`,
 				},
 				resource.Attribute{
 					Name:        "md5",

@@ -1206,11 +1206,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dns1",
-					Description: `(Optional) First DNS server to use. Defaults to ` + "`" + `8.8.8.8` + "`" + ``,
+					Description: `(Optional) First DNS server to use.`,
 				},
 				resource.Attribute{
 					Name:        "dns2",
-					Description: `(Optional) Second DNS server to use. Defaults to ` + "`" + `8.8.4.4` + "`" + ``,
+					Description: `(Optional) Second DNS server to use.`,
 				},
 				resource.Attribute{
 					Name:        "dns_suffix",
@@ -1288,11 +1288,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dns1",
-					Description: `(Optional) First DNS server to use. Defaults to ` + "`" + `8.8.8.8` + "`" + ``,
+					Description: `(Optional) First DNS server to use.`,
 				},
 				resource.Attribute{
 					Name:        "dns2",
-					Description: `(Optional) Second DNS server to use. Defaults to ` + "`" + `8.8.4.4` + "`" + ``,
+					Description: `(Optional) Second DNS server to use.`,
 				},
 				resource.Attribute{
 					Name:        "dns_suffix",
@@ -1316,11 +1316,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "end_address",
-					Description: `(Required) The final address in the IP Range DHCP Pools additionally support the following attributes:`,
-				},
-				resource.Attribute{
-					Name:        "default_lease_time",
-					Description: `(Optional) The default DHCP lease time to use. Defaults to ` + "`" + `3600` + "`" + `.`,
+					Description: `(Required) The final address in the IP Range DHCP Pools additionally support the following attribute:`,
 				},
 				resource.Attribute{
 					Name:        "max_lease_time",
@@ -1686,7 +1682,39 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delay_after_power_on_seconds",
-					Description: `(Optional) - Specifies this organization's default for virtual machine boot delay after power on. Default is ` + "`" + `0` + "`" + `. ## Importing Supported in provider`,
+					Description: `(Optional) - Specifies this organization's default for virtual machine boot delay after power on. Default is ` + "`" + `0` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vapp_lease",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "vapp_template_lease",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "maximum_runtime_lease_in_sec",
+					Description: `(Required) - How long vApps can run before they are automatically stopped (in seconds). 0 means never expires. Values accepted from 3600+ <br>Note: Default when the whole ` + "`" + `vapp_lease` + "`" + ` block is omitted is 604800 (7 days) but may vary depending on vCD version`,
+				},
+				resource.Attribute{
+					Name:        "power_off_on_runtime_lease_expiration",
+					Description: `(Required) - When true, vApps are powered off when the runtime lease expires. When false, vApps are suspended when the runtime lease expires. <br>Note: Default when the whole ` + "`" + `vapp_lease` + "`" + ` block is omitted is false`,
+				},
+				resource.Attribute{
+					Name:        "maximum_storage_lease_in_sec",
+					Description: `(Required) - How long stopped vApps are available before being automatically cleaned up (in seconds). 0 means never expires. Regular values accepted from 3600+ <br>Note: Default when the whole ` + "`" + `vapp_lease` + "`" + ` block is omitted is 2592000 (30 days) but may vary depending on vCD version`,
+				},
+				resource.Attribute{
+					Name:        "delete_on_storage_lease_expiration",
+					Description: `(Required) - If true, storage for a vApp is deleted when the vApp's lease expires. If false, the storage is flagged for deletion, but not deleted. <br>Note: Default when the whole ` + "`" + `vapp_lease` + "`" + ` block is omitted is false <a id="vapp-template-lease"></a> ## vApp Template Lease The ` + "`" + `vapp_template_lease` + "`" + ` section contains lease parameters for vApp templates created in the current organization, as defined below:`,
+				},
+				resource.Attribute{
+					Name:        "maximum_storage_lease_in_sec",
+					Description: `(Required) - How long vApp templates are available before being automatically cleaned up (in seconds). 0 means never expires. Regular values accepted from 3600+ <br>Note: Default when the whole ` + "`" + `vapp_template_lease` + "`" + ` block is omitted is 2592000 (30 days) but may vary depending on vCD version`,
+				},
+				resource.Attribute{
+					Name:        "delete_on_storage_lease_expiration",
+					Description: `(Required) - If true, storage for a vAppTemplate is deleted when the vAppTemplate lease expires. If false, the storage is flagged for deletion, but not deleted. <br>Note: Default when the whole ` + "`" + `vapp_template_lease` + "`" + ` block is omitted is false ## Importing Supported in provider`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1807,7 +1835,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allocation_model",
-					Description: `(Required) The allocation model used by this VDC; must be one of {AllocationVApp ("Pay as you go"), AllocationPool ("Allocation pool"), ReservationPool ("Reservation pool")}`,
+					Description: `(Required) The allocation model used by this VDC; must be one of`,
 				},
 				resource.Attribute{
 					Name:        "compute_capacity",
@@ -1835,15 +1863,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "memory_guaranteed",
-					Description: `(Optional, System Admin) Percentage of allocated memory resources guaranteed to vApps deployed in this VDC. For example, if this value is 0.75, then 75% of allocated resources are guaranteed. Required when AllocationModel is AllocationVApp or AllocationPool. When Allocation model is AllocationPool minimum value is 0.2. If left empty, vCD sets a value.`,
+					Description: `(Optional, System Admin) Percentage of allocated memory resources guaranteed to vApps deployed in this VDC. For example, if this value is 0.75, then 75% of allocated resources are guaranteed. Required when ` + "`" + `allocation_model` + "`" + ` is AllocationVApp, AllocationPool or Flex. When Allocation model is AllocationPool minimum value is 0.2. If left empty, vCD sets a value.`,
 				},
 				resource.Attribute{
 					Name:        "cpu_guaranteed",
-					Description: `(Optional, System Admin) Percentage of allocated CPU resources guaranteed to vApps deployed in this VDC. For example, if this value is 0.75, then 75% of allocated resources are guaranteed. Required when AllocationModel is AllocationVApp or AllocationPool. If left empty, vCD sets a value.`,
+					Description: `(Optional, System Admin) Percentage of allocated CPU resources guaranteed to vApps deployed in this VDC. For example, if this value is 0.75, then 75% of allocated resources are guaranteed. Required when ` + "`" + `allocation_model` + "`" + ` is AllocationVApp, AllocationPool or Flex. If left empty, vCD sets a value.`,
 				},
 				resource.Attribute{
 					Name:        "cpu_speed",
-					Description: `(Optional, System Admin) Specifies the clock frequency, in Megahertz, for any virtual CPU that is allocated to a VM. A VM with 2 vCPUs will consume twice as much of this value. Ignored for ReservationPool. Required when AllocationModel is AllocationVApp or AllocationPool, and may not be less than 256 MHz. Defaults to 1000 MHz if value isn't provided.`,
+					Description: `(Optional, System Admin) Specifies the clock frequency, in Megahertz, for any virtual CPU that is allocated to a VM. A VM with 2 vCPUs will consume twice as much of this value. Ignored for ReservationPool. Required when ` + "`" + `allocation_model` + "`" + ` is AllocationVApp, AllocationPool or Flex, and may not be less than 256 MHz. Defaults to 1000 MHz if value isn't provided.`,
 				},
 				resource.Attribute{
 					Name:        "metadata",
@@ -1863,11 +1891,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allow_over_commit",
-					Description: `(Optional) Set to false to disallow creation of the VDC if the AllocationModel is AllocationPool or ReservationPool and the ComputeCapacity you specified is greater than what the backing Provider VDC can supply. Default is true.`,
+					Description: `(Optional) Set to false to disallow creation of the VDC if the ` + "`" + `allocation_model` + "`" + ` is AllocationPool or ReservationPool and the ComputeCapacity you specified is greater than what the backing Provider VDC can supply. Default is true.`,
 				},
 				resource.Attribute{
 					Name:        "enable_vm_discovery",
 					Description: `(Optional) If true, discovery of vCenter VMs is enabled for resource pools backing this VDC. If false, discovery is disabled. If left unspecified, the actual behaviour depends on enablement at the organization level and at the system level.`,
+				},
+				resource.Attribute{
+					Name:        "elasticity",
+					Description: `(Optional,`,
+				},
+				resource.Attribute{
+					Name:        "include_vm_memory_overhead",
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "delete_force",
@@ -1895,11 +1931,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allocated",
-					Description: `(Optional) Capacity that is committed to be available. Value in MB or MHz. Used with AllocationPool ("Allocation pool") and ReservationPool ("Reservation pool").`,
+					Description: `(Optional) Capacity that is committed to be available. Value in MB or MHz. Used with AllocationPool ("Allocation pool"), ReservationPool ("Reservation pool"), Flex.`,
 				},
 				resource.Attribute{
 					Name:        "limit",
-					Description: `(Optional) Capacity limit relative to the value specified for Allocation. It must not be less than that value. If it is greater than that value, it implies over provisioning. A value of 0 specifies unlimited units. Value in MB or MHz. Used with AllocationVApp ("Pay as you go"). ## Importing Supported in provider`,
+					Description: `(Optional) Capacity limit relative to the value specified for Allocation. It must not be less than that value. If it is greater than that value, it implies over provisioning. A value of 0 specifies unlimited units. Value in MB or MHz. Used with AllocationVApp ("Pay as you go") or Flex (only for ` + "`" + `memory` + "`" + `). ## Importing Supported in provider`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2038,7 +2074,7 @@ var (
 			Name:             "",
 			Type:             "vcd_vapp_network",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director vApp isolated Network. This can be used to create and delete internal networks for vApps to connect.`,
+			ShortDescription: `Allows to provision a vApp network and optionally connect it to an existing Org VDC network.`,
 			Description:      ``,
 			Keywords: []string{
 				"vapp",
@@ -2058,8 +2094,12 @@ var (
 					Description: `(Required) A unique name for the network.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
 					Name:        "vapp_name",
-					Description: `(Required) The vApp this VM should belong to.`,
+					Description: `(Required) The vApp this network belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "netmask",
@@ -2067,11 +2107,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dns1",
-					Description: `(Optional) First DNS server to use. Default is ` + "`" + `8.8.8.8` + "`" + `.`,
+					Description: `(Optional) First DNS server to use.`,
 				},
 				resource.Attribute{
 					Name:        "dns2",
-					Description: `(Optional) Second DNS server to use. Default is ` + "`" + `8.8.4.4` + "`" + `.`,
+					Description: `(Optional) Second DNS server to use.`,
 				},
 				resource.Attribute{
 					Name:        "dns_suffix",
@@ -2083,7 +2123,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dhcp_pool",
-					Description: `(Optional) A range of IPs to issue to virtual machines that don't have a static IP; see [IP Pools](#ip-pools) below for details. <a id="ip-pools"></a> ## IP Pools Static IP Pools and DHCP Pools support the following attributes:`,
+					Description: `(Optional) A range of IPs to issue to virtual machines that don't have a static IP; see [IP Pools](#ip-pools) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "org_network_name",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "firewall_enabled",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "nat_enabled",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "retain_ip_mac_enabled",
+					Description: `(Optional;`,
 				},
 				resource.Attribute{
 					Name:        "start_address",
@@ -2103,7 +2159,50 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) Allows to enable or disable service. Default is true.`,
+					Description: `(Optional) Allows to enable or disable service. Default is true. ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_vapp_org_network",
+			Category:         "Resources",
+			ShortDescription: `Provides capability to attach an existing Org VDC Network to a vApp and toggle network features.`,
+			Description:      ``,
+			Keywords: []string{
+				"vapp",
+				"org",
+				"network",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "vapp_name",
+					Description: `(Required) The vApp this network belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "org_network_name",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "firewall_enabled",
+					Description: `(Optional) Firewall service enabled or disabled. Configurable when ` + "`" + `is_fenced` + "`" + ` is true. Default is true.`,
+				},
+				resource.Attribute{
+					Name:        "nat_enabled",
+					Description: `(Optional) NAT service enabled or disabled. Configurable when ` + "`" + `is_fenced` + "`" + ` and ` + "`" + `firewall_enabled` + "`" + ` is true.`,
+				},
+				resource.Attribute{
+					Name:        "retain_ip_mac_enabled",
+					Description: `(Optional) Specifies whether the network resources such as IP/MAC of router will be retained across deployments. Configurable when ` + "`" + `is_fenced` + "`" + ` is true. ## Importing ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2204,6 +2303,14 @@ var (
 					Description: `(Optional;`,
 				},
 				resource.Attribute{
+					Name:        "override_template_disk",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "network_dhcp_wait_seconds",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Independent disk name`,
 				},
@@ -2213,11 +2320,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "unit_number",
-					Description: `(Required) Unit number (slot) on the bus specified by BusNumber. <a id="network"></a> ## Network`,
+					Description: `(Required) Unit number (slot) on the bus specified by BusNumber. <a id="network-block"></a> ## Network`,
 				},
 				resource.Attribute{
 					Name:        "mac",
 					Description: `(Computed) Mac address of network interface.`,
+				},
+				resource.Attribute{
+					Name:        "adapter_type",
+					Description: `(Optional, Computed) Adapter type (names are case insensitive). Some known adapter types - ` + "`" + `VMXNET3` + "`" + `, ` + "`" + `E1000` + "`" + `, ` + "`" + `E1000E` + "`" + `, ` + "`" + `SRIOVETHERNETCARD` + "`" + `, ` + "`" + `VMXNET2` + "`" + `, ` + "`" + `PCNet32` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "POOL",
@@ -2234,6 +2345,174 @@ var (
 				resource.Attribute{
 					Name:        "NONE",
 					Description: `No IP address will be set because VM will have a NIC without network.`,
+				},
+				resource.Attribute{
+					Name:        "bus_type",
+					Description: `(Required) The type of disk controller. Possible values: ` + "`" + `ide` + "`" + `, ` + "`" + `parallel` + "`" + `( LSI Logic Parallel SCSI), ` + "`" + `sas` + "`" + `(LSI Logic SAS (SCSI)), ` + "`" + `paravirtual` + "`" + `(Paravirtual (SCSI)), ` + "`" + `sata` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "size_in_mb",
+					Description: `(Required) The size of the disk in MB.`,
+				},
+				resource.Attribute{
+					Name:        "bus_number",
+					Description: `(Required) The number of the SCSI or IDE controller itself.`,
+				},
+				resource.Attribute{
+					Name:        "unit_number",
+					Description: `(Required) The device number on the SCSI or IDE controller of the disk.`,
+				},
+				resource.Attribute{
+					Name:        "iops",
+					Description: `(Optional) Specifies the IOPS for the disk. Default is 0.`,
+				},
+				resource.Attribute{
+					Name:        "storage_profile",
+					Description: `(Optional) Storage profile which overrides the VM default one. <a id="customization-block"></a> ## Customization When you customize your guest OS you can set up a virtual machine with the operating system that you want. vCloud Director can customize the network settings of the guest operating system of a virtual machine created from a vApp template. When you customize your guest operating system, you can create and deploy multiple unique virtual machines based on the same vApp template without machine name or network conflicts. When you configure a vApp template with the prerequisites for guest customization and add a virtual machine to a vApp based on that template, vCloud Director creates a package with guest customization tools. When you deploy and power on the virtual machine for the first time, vCloud Director copies the package, runs the tools, and deletes the package from the virtual machine. ~>`,
+				},
+				resource.Attribute{
+					Name:        "internal_disk",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "disk.size_in_mb",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "disk_id",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "bus_type",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "size_in_mb",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "bus_number",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "unit_number",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "thin_provisioned",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "iops",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "storage_profile",
+					Description: `(`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "internal_disk",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "disk.size_in_mb",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "disk_id",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "bus_type",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "size_in_mb",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "bus_number",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "unit_number",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "thin_provisioned",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "iops",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "storage_profile",
+					Description: `(`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_vm_internal_disk",
+			Category:         "Resources",
+			ShortDescription: `Provides a vCloud Director VM internal disk resource. This can be used to create and delete VM internal disks.`,
+			Description:      ``,
+			Keywords: []string{
+				"vm",
+				"internal",
+				"disk",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "vapp_name",
+					Description: `(Required) The vAPP this VM internal disk belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "vm_name",
+					Description: `(Required) VM in vAPP in which internal disk is created.`,
+				},
+				resource.Attribute{
+					Name:        "allow_vm_reboot",
+					Description: `(Optional) Powers off VM when changing any attribute of an IDE disk or unit/bus number of other disk types, after the change is complete VM is powered back on. Without this setting enabled, such changes on a powered-on VM would fail. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "bus_type",
+					Description: `(Required) The type of disk controller. Possible values: ` + "`" + `ide` + "`" + `, ` + "`" + `parallel` + "`" + `( LSI Logic Parallel SCSI), ` + "`" + `sas` + "`" + `(LSI Logic SAS (SCSI)), ` + "`" + `paravirtual` + "`" + `(Paravirtual (SCSI)), ` + "`" + `sata` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "size_in_mb",
+					Description: `(Required) The size of the disk in MB.`,
+				},
+				resource.Attribute{
+					Name:        "bus_number",
+					Description: `(Required) The number of the SCSI or IDE controller itself.`,
+				},
+				resource.Attribute{
+					Name:        "unit_number",
+					Description: `(Required) The device number on the SCSI or IDE controller of the disk.`,
+				},
+				resource.Attribute{
+					Name:        "iops",
+					Description: `(Optional) Specifies the IOPS for the disk. Default is 0.`,
+				},
+				resource.Attribute{
+					Name:        "storage_profile",
+					Description: `(Optional) Storage profile which overrides the VM default one. ## Attribute reference`,
+				},
+				resource.Attribute{
+					Name:        "thin_provisioned",
+					Description: `Specifies whether the disk storage is pre-allocated or allocated on demand. ## Importing ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2272,7 +2551,9 @@ var (
 		"vcd_snat":               27,
 		"vcd_vapp":               28,
 		"vcd_vapp_network":       29,
-		"vcd_vapp_vm":            30,
+		"vcd_vapp_org_network":   30,
+		"vcd_vapp_vm":            31,
+		"vcd_vm_internal_disk":   32,
 	}
 )
 

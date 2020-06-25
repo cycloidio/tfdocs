@@ -450,6 +450,10 @@ var (
 					Description: `(Optional) The instance removal policy. The policy has four options: ` + "`" + `OLD_CONFIG_OLD_INSTANCE` + "`" + ` (default), ` + "`" + `OLD_CONFIG_NEW_INSTANCE` + "`" + `, ` + "`" + `OLD_INSTANCE` + "`" + `, and ` + "`" + `NEW_INSTANCE` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The key/value pairs to associate with the scaling group.`,
+				},
+				resource.Attribute{
 					Name:        "notifications",
 					Description: `(Optional) The notification mode. The system only supports ` + "`" + `EMAIL` + "`" + ` mode which refers to notification by email.`,
 				},
@@ -534,6 +538,10 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
 					Name:        "instances",
 					Description: `The instances IDs of the AS group.`,
 				},
@@ -589,6 +597,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "notifications",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -1066,6 +1078,10 @@ var (
 					Description: `(Optional) Authentication mode of the cluster, possible values are x509 and rbac. Defaults to x509. Changing this parameter will create a new cluster resource.`,
 				},
 				resource.Attribute{
+					Name:        "authenticating_proxy_ca",
+					Description: `(Optional) CA root certificate provided in the authenticating_proxy mode. The CA root certificate is encoded to the Base64 format. Changing this parameter will create a new cluster resource.`,
+				},
+				resource.Attribute{
 					Name:        "multi_az",
 					Description: `(Optional) Enable multiple AZs for the cluster, only when using HA flavors. Changing this parameter will create a new cluster resource.`,
 				},
@@ -1190,11 +1206,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "key_pair",
-					Description: `(Optional) Key pair name when logging in to select the key pair mode. Changing this parameter will create a new resource.`,
+					Description: `(Optional) Key pair name when logging in to select the key pair mode. This parameter and ` + "`" + `password` + "`" + ` are alternative. Changing this parameter will create a new resource.`,
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional) root password when logging in to select the password mode. Changing this parameter will create a new resource.`,
+					Description: `(Optional) root password when logging in to select the password mode. This parameter must be salted and alternative to ` + "`" + `key_pair` + "`" + `. Changing this parameter will create a new resource.`,
 				},
 				resource.Attribute{
 					Name:        "eip_ids",
@@ -1253,6 +1269,10 @@ var (
 					Description: `(Optional) Script required after installation. The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.`,
 				},
 				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Optional) The ID of the subnet to which the NIC belongs. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
 					Name:        "size",
 					Description: `(Required) Disk size in GB.`,
 				},
@@ -1301,6 +1321,73 @@ var (
 				resource.Attribute{
 					Name:        "public_ip",
 					Description: `Public IP of the CCE node.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_cci_network_v1",
+			Category:         "Cloud Container Instance (CCI)",
+			ShortDescription: `Provides Cloud Container Instance(CCI) resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"container",
+				"instance",
+				"cci",
+				"network",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) CCI Network name. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Required) CCI Network namespace. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "security_group",
+					Description: `(Required) ID of the security group to which the subnet of the network belongs. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) Project ID of the tenant. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `(Required) Domain ID of the tenant. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required) ID of the VPC to which the network belongs. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `(Required) Network ID of the VPC subnet in which the network belongs. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) ID of the VPC subnet to which the network belongs. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "available_zone",
+					Description: `(Required) AZ to which the VPC subnet of the network belongs. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "cidr",
+					Description: `(Required) Network segment of the VPC subnet to which the network belongs. Changing this parameter will create a new resource. ## Attributes Reference All above argument parameters can be exported as attribute parameters along with attribute reference.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the instance resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the instance resource.`,
 				},
 			},
 		},
@@ -3450,7 +3537,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "engine",
-					Description: `(Optional) Indicates a message engine. Options: rabbitmq and kafka. Changing this creates a new instance.`,
+					Description: `(Optional) Indicates a cache engine. Options: Redis and Memcached. Changing this creates a new instance.`,
 				},
 				resource.Attribute{
 					Name:        "engine_version",
@@ -3761,6 +3848,225 @@ var (
 				resource.Attribute{
 					Name:        "ip",
 					Description: `Cache node's IP address in tenant's VPC.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_dds_instance_v3",
+			Category:         "Document Database Service (DDS)",
+			ShortDescription: `Manages dds instance resource within HuaweiCloud`,
+			Description:      ``,
+			Keywords: []string{
+				"document",
+				"database",
+				"service",
+				"dds",
+				"instance",
+				"v3",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) Specifies the region of the DDS instance. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the DB instance name. The DB instance name of the same type is unique in the same tenant. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "datastore",
+					Description: `(Required) Specifies database information. The structure is described below. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Required) Specifies the ID of the availability zone. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required) Specifies the VPC ID. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) Specifies the subnet Network ID. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `(Required) Specifies the security group ID of the DDS instance. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) Specifies the Administrator password of the database instance. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "disk_encryption_id",
+					Description: `(Required) Specifies the disk encryption ID of the instance. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `(Required) Specifies the mode of the database instance. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `(Required) Specifies the flavors information. The structure is described below. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "backup_strategy",
+					Description: `(Optional) Specifies the advanced backup policy. The structure is described below. Changing this creates a new instance. The ` + "`" + `datastore` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Specifies the DB engine. 'DDS-Community' and 'DDS-Enhanced' are supported.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) Specifies the DB instance version. For the Community Edition, the valid values are 3.2, 3.4, or 4.0. For the Enhanced Edition, only 3.4 is supported now.`,
+				},
+				resource.Attribute{
+					Name:        "storage_engine",
+					Description: `(Optional) Specifies the storage engine of the DB instance. DDS Community Edition supports wiredTiger engine, and the Enhanced Edition supports rocksDB engine. The ` + "`" + `flavor` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Specifies the node type. Valid value:`,
+				},
+				resource.Attribute{
+					Name:        "num",
+					Description: `(Required) Specifies the node quantity. Valid value:`,
+				},
+				resource.Attribute{
+					Name:        "storage",
+					Description: `(Optional) Specifies the disk type. Valid value: ULTRAHIGH which indicates the type SSD.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Optional) Specifies the disk size. The value must be a multiple of 10. The unit is GB. This parameter is mandatory for nodes except mongos and invalid for mongos.`,
+				},
+				resource.Attribute{
+					Name:        "spec_code",
+					Description: `(Required) Specifies the resource specification code. In a cluster instance, multiple specifications need to be specified. All specifications must be of the same series, that is, general-purpose (s6), enhanced (c3), or enhanced II (c6). For example:`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Required) Specifies the backup time window. Automated backups will be triggered during the backup time window. The value cannot be empty. It must be a valid value in the "hh:mm-HH:MM" format. The current time is in the UTC format.`,
+				},
+				resource.Attribute{
+					Name:        "keep_days",
+					Description: `(Optional) Specifies the number of days to retain the generated backup files. The value range is from 0 to 732.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "datastore",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "disk_encryption_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "backup_strategy",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "db_username",
+					Description: `Indicates the DB Administator name.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the the DB instance status`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "datastore",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "disk_encryption_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "backup_strategy",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "db_username",
+					Description: `Indicates the DB Administator name.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the the DB instance status`,
 				},
 			},
 		},
@@ -4468,6 +4774,101 @@ var (
 				resource.Attribute{
 					Name:        "group_count",
 					Description: `Indicates the total number of consumer groups in a queue.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_dns_ptrrecord_v2",
+			Category:         "Domain Name Service (DNS)",
+			ShortDescription: `Manages a DNS PTR record in the HuaweiCloud DNS Service`,
+			Description:      ``,
+			Keywords: []string{
+				"domain",
+				"name",
+				"service",
+				"dns",
+				"ptrrecord",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Domain name of the PTR record. A domain name is case insensitive. Uppercase letters will also be converted into lowercase letters.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the PTR record.`,
+				},
+				resource.Attribute{
+					Name:        "floatingip_id",
+					Description: `(Required) The ID of the FloatingIP/EIP.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `(Optional) The time to live (TTL) of the record set (in seconds). The value range is 300–2147483647. The default value is 300.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags key/value pairs to associate with the PTR record. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The PTR record ID, which is in {region}:{floatingip_id} format.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "floatingip_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `The address of the FloatingIP/EIP. ## Import PTR records can be imported using region and floatingip/eip ID, separated by a colon(:), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_dns_ptrrecord_v2.ptr_1 cn-north-1:d90ce693-5ccf-4136-a0ed-152ce412b6b9 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The PTR record ID, which is in {region}:{floatingip_id} format.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "floatingip_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `The address of the FloatingIP/EIP. ## Import PTR records can be imported using region and floatingip/eip ID, separated by a colon(:), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_dns_ptrrecord_v2.ptr_1 cn-north-1:d90ce693-5ccf-4136-a0ed-152ce412b6b9 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5793,6 +6194,22 @@ var (
 					Description: `Specifies the status of the load balancer. The value can be ACTIVE, PENDING_CREATE, or ERROR.`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_evs_snapshot",
+			Category:         "Elastic Volume Service (EVS)",
+			ShortDescription: `Provides an EVS snapshot resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"elastic",
+				"volume",
+				"service",
+				"evs",
+				"snapshot",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -7649,7 +8066,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `(Required) The protocol - can either be TCP, HTTP, HTTPS or TERMINATED_HTTPS. Changing this creates a new Listener.`,
+					Description: `(Required) The protocol can either be TCP, HTTP, HTTPS or TERMINATED_HTTPS. Changing this creates a new Listener.`,
 				},
 				resource.Attribute{
 					Name:        "protocol_port",
@@ -7677,15 +8094,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "connection_limit",
-					Description: `(Optional) The maximum number of connections allowed for the Listener.`,
+					Description: `(Optional) The maximum number of connections allowed for the Listener. The value ranges from -1 to 2,147,483,647. This parameter is reserved and has been not used. Only the administrator can specify the maximum number of connections.`,
+				},
+				resource.Attribute{
+					Name:        "http2_enable",
+					Description: `(Optional) Specifies whether to use HTTP/2. The default value is false. This parameter is valid only when the protocol is set to ` + "`" + `TERMINATED_HTTPS` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "default_tls_container_ref",
-					Description: `(Optional) A reference to a Barbican Secrets container which stores TLS information. This is required if the protocol is ` + "`" + `TERMINATED_HTTPS` + "`" + `. See [here](https://wiki.openstack.org/wiki/Network/LBaaS/docs/how-to-create-tls-loadbalancer) for more information.`,
+					Description: `(Optional) Specifies the ID of the server certificate used by the listener. This parameter is mandatory when protocol is set to ` + "`" + `TERMINATED_HTTPS` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "sni_container_refs",
-					Description: `(Optional) A list of references to Barbican Secrets containers which store SNI information. See [here](https://wiki.openstack.org/wiki/Network/LBaaS/docs/how-to-create-tls-loadbalancer) for more information.`,
+					Description: `(Optional) Lists the IDs of SNI certificates (server certificates with a domain name) used by the listener. This parameter is valid when protocol is set to ` + "`" + `TERMINATED_HTTPS` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "admin_state_up",
@@ -7721,6 +8142,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "connection_limit",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "http2_enable",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -7767,6 +8192,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "connection_limit",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "http2_enable",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -10950,7 +11379,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) If specified, the region this bucket should reside in. Otherwise, the region used by the provider. The ` + "`" + `logging` + "`" + ` object supports the following:`,
+					Description: `(Optional) Specified the region where this bucket will be created. If not specified, used the region by the provider. The ` + "`" + `logging` + "`" + ` object supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "target_bucket",
@@ -11022,7 +11451,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `The region this bucket resides in. ## Import OBS bucket can be imported using the ` + "`" + `bucket` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_obs_bucket.bucket bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The region where this bucket resides in. ## Import OBS bucket can be imported using the ` + "`" + `bucket` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_obs_bucket.bucket bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -11036,7 +11465,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `The region this bucket resides in. ## Import OBS bucket can be imported using the ` + "`" + `bucket` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_obs_bucket.bucket bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The region where this bucket resides in. ## Import OBS bucket can be imported using the ` + "`" + `bucket` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_obs_bucket.bucket bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -12438,8 +12867,74 @@ var (
 				"vbs",
 				"huaweicloud-vbs-backup-policy-v2",
 			},
-			Arguments:  []resource.Attribute{},
-			Attributes: []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the policy name. The value is a string of 1 to 64 characters that can contain letters, digits, underscores (_), and hyphens (-). It cannot start with`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Required) Specifies the start time(UTC) of the backup job. The value is in the HH:mm format. You need to set the execution time on a full hour. You can set multiple execution times, and use commas (,) to separate one time from another.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional) Specifies the backup policy status. Possible values are ON or OFF. Defaults to ON.`,
+				},
+				resource.Attribute{
+					Name:        "retain_first_backup",
+					Description: `(Required) Specifies whether to retain the first backup in the current month. Possible values are Y or N.`,
+				},
+				resource.Attribute{
+					Name:        "rentention_num",
+					Description: `(Optional) Specifies number of retained backups. Minimum value is 2. Either this field or ` + "`" + `rentention_day` + "`" + ` must be specified.`,
+				},
+				resource.Attribute{
+					Name:        "rentention_day",
+					Description: `(Optional) Specifies days of retained backups. Minimum value is 2. Either this field or ` + "`" + `rentention_num` + "`" + ` must be specified.`,
+				},
+				resource.Attribute{
+					Name:        "frequency",
+					Description: `(Optional) Specifies the backup interval. The value is in the range of 1 to 14 days. Either this field or ` + "`" + `week_frequency` + "`" + ` must be specified.`,
+				},
+				resource.Attribute{
+					Name:        "week_frequency",
+					Description: `(Optional) Specifies on which days of each week backup jobs are executed. The value can be one or more of the following: SUN, MON, TUE, WED, THU, FRI, SAT. Either this field or ` + "`" + `frequency` + "`" + ` must be specified.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `(Optional) Specifies one or more volumes associated with the backup policy. Any previously associated backup policy will no longer apply.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Represents the list of tags to be configured for the backup policy.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Specifies the tag key. A tag key consists of up to 36 characters, chosen from letters, digits, hyphens (-), and underscores (_).`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Specifies the tag value. A tag value consists of 0 to 43 characters, chosen from letters, digits, hyphens (-), and underscores (_). ## Attributes Reference All of the argument attributes are also exported as result attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Specifies a backup policy ID.`,
+				},
+				resource.Attribute{
+					Name:        "policy_resource_count",
+					Description: `Specifies the number of volumes associated with the backup policy. ## Import Backup Policy can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_vbs_backup_policy_v2.vbs 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Specifies a backup policy ID.`,
+				},
+				resource.Attribute{
+					Name:        "policy_resource_count",
+					Description: `Specifies the number of volumes associated with the backup policy. ## Import Backup Policy can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_vbs_backup_policy_v2.vbs 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -12820,7 +13315,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of the VPC. The name must be unique for a tenant. The value is a string of no more than 64 characters and can contain digits, letters, underscores (_), and hyphens (-). Changing this updates the name of the existing VPC. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The name of the VPC. The name must be unique for a tenant. The value is a string of no more than 64 characters and can contain digits, letters, underscores (_), and hyphens (-). Changing this updates the name of the existing VPC.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The key/value pairs to associate with the vpc. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -12844,6 +13343,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
 					Description: `See Argument Reference above. ## Import VPCs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_vpc_v1.vpc_v1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
@@ -12870,6 +13373,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
 					Description: `See Argument Reference above. ## Import VPCs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_vpc_v1.vpc_v1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
@@ -13319,7 +13826,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_state_up",
-					Description: `(Optional) The administrative state of the resource. Can either be up(true) or down(false). Changing this updates the administrative state of the existing service.`,
+					Description: `(Optional) The administrative state of the resource. Can either be up(true) or down (false). Defaults to ` + "`" + `true` + "`" + `. Changing this updates the administrative state of the existing service.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
@@ -13460,7 +13967,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_state_up",
-					Description: `(Optional) The administrative state of the resource. Can either be up(true) or down(false). Changing this updates the administrative state of the existing connection.`,
+					Description: `(Optional) The administrative state of the resource. Can either be up(true) or down(false). Defaults to ` + "`" + `true` + "`" + `. Changing this updates the administrative state of the existing connection.`,
 				},
 				resource.Attribute{
 					Name:        "ikepolicy_id",
@@ -13678,107 +14185,111 @@ var (
 		"huaweicloud_blockstorage_volume_v2":             5,
 		"huaweicloud_cce_cluster_v3":                     6,
 		"huaweicloud_cce_nodes_v3":                       7,
-		"huaweicloud_cdm_cluster_v1":                     8,
-		"huaweicloud_cdn_domain_v1":                      9,
-		"huaweicloud_ces-alarmrule":                      10,
-		"huaweicloud_cloudtable_cluster_v2":              11,
-		"huaweicloud_compute_floatingip_associate_v2":    12,
-		"huaweicloud_compute_floatingip_v2":              13,
-		"huaweicloud_compute_instance_v2":                14,
-		"huaweicloud_compute_interface_attach_v2":        15,
-		"huaweicloud_compute_keypair_v2":                 16,
-		"huaweicloud_compute_secgroup_v2":                17,
-		"huaweicloud_compute_servergroup_v2":             18,
-		"huaweicloud_compute_volume_attach_v2":           19,
-		"huaweicloud_cs_cluster_v1":                      20,
-		"huaweicloud_cs_peering_connect_v1":              21,
-		"huaweicloud_cs_route_v1":                        22,
-		"huaweicloud_csbs_backup_policy_v1":              23,
-		"huaweicloud_csbs_backup_v1":                     24,
-		"huaweicloud_css_cluster_v1":                     25,
-		"huaweicloud_cts_tracker_v1":                     26,
-		"huaweicloud_dcs_instance_v1":                    27,
-		"huaweicloud_dis_stream_v2":                      28,
-		"huaweicloud_dli_queue_v1":                       29,
-		"huaweicloud_dms_group_v1":                       30,
-		"huaweicloud_dms_instance_v1":                    31,
-		"huaweicloud_dms_queue_v1":                       32,
-		"huaweicloud_dns_recordset_v2":                   33,
-		"huaweicloud_dns_zone_v2":                        34,
-		"huaweicloud_dws_cluster":                        35,
-		"huaweicloud_ecs_instance_v1":                    36,
-		"huaweicloud_elb_backendecs":                     37,
-		"huaweicloud_elb_healthcheck":                    38,
-		"huaweicloud_elb_listener":                       39,
-		"huaweicloud_elb_loadbalancer":                   40,
-		"huaweicloud_fgs_function_v2":                    41,
-		"huaweicloud_fw_firewall_group_v2":               42,
-		"huaweicloud_fw_policy_v2":                       43,
-		"huaweicloud_fw_rule_v2":                         44,
-		"huaweicloud_ges_graph_v1":                       45,
-		"huaweicloud_iam_agency_v3":                      46,
-		"huaweicloud_identity_group_membership_v3":       47,
-		"huaweicloud_identity_group_v3":                  48,
-		"huaweicloud_identity_project_v3":                49,
-		"huaweicloud_identity_role_assignment_v3":        50,
-		"huaweicloud_identity_user_v3":                   51,
-		"huaweicloud_images_image_v2":                    52,
-		"huaweicloud_kms_key_v1":                         53,
-		"huaweicloud_lb_certificate_v2":                  54,
-		"huaweicloud_lb_l7policy_v2":                     55,
-		"huaweicloud_lb_l7rule_v2":                       56,
-		"huaweicloud_lb_listener_v2":                     57,
-		"huaweicloud_lb_loadbalancer_v2":                 58,
-		"huaweicloud_lb_member_v2":                       59,
-		"huaweicloud_lb_monitor_v2":                      60,
-		"huaweicloud_lb_pool_v2":                         61,
-		"huaweicloud_lb_whitelist_v2":                    62,
-		"huaweicloud_maas_task_v1":                       63,
-		"huaweicloud_mls_instance":                       64,
-		"huaweicloud_mrs_cluster_v1":                     65,
-		"huaweicloud_mrs_job_v1":                         66,
-		"huaweicloud_nat_dnat_rule_v2":                   67,
-		"huaweicloud_nat_gateway_v2":                     68,
-		"huaweicloud_nat_snat_rule_v2":                   69,
-		"huaweicloud_networking_floatingip_associate_v2": 70,
-		"huaweicloud_networking_floatingip_v2":           71,
-		"huaweicloud_networking_network_v2":              72,
-		"huaweicloud_networking_port_v2":                 73,
-		"huaweicloud_networking_router_interface_v2":     74,
-		"huaweicloud_networking_router_route_v2":         75,
-		"huaweicloud_networking_router_v2":               76,
-		"huaweicloud_networking_secgroup_rule_v2":        77,
-		"huaweicloud_networking_secgroup_v2":             78,
-		"huaweicloud_networking_subnet_v2":               79,
-		"huaweicloud_networking_vip_associate_v2":        80,
-		"huaweicloud_networking_vip_v2":                  81,
-		"huaweicloud_obs_bucket":                         82,
-		"huaweicloud_obs_bucket_object":                  83,
-		"huaweicloud_rds_instance_v1":                    84,
-		"huaweicloud_rds_instance_v3":                    85,
-		"huaweicloud_rds_parametergroup_v3":              86,
-		"huaweicloud_rts_software_config_v1":             87,
-		"huaweicloud_rts_stack_v1":                       88,
-		"huaweicloud_s3_bucket":                          89,
-		"huaweicloud_s3_bucket_object":                   90,
-		"huaweicloud_s3_object_policy":                   91,
-		"huaweicloud_sfs_file_system_v2":                 92,
-		"huaweicloud_smn_subscription_v2":                93,
-		"huaweicloud_smn_topic_v2":                       94,
-		"huaweicloud-vbs-backup-policy-v2":               95,
-		"huaweicloud-vbs-backup-v2":                      96,
-		"huaweicloud_vpc_bandwidth_v2":                   97,
-		"huaweicloud_vpc_eip_v1":                         98,
-		"huaweicloud_vpc_peering_connection_accepter_v2": 99,
-		"huaweicloud_vpc_peering_connection_v2":          100,
-		"huaweicloud_vpc_route_v2":                       101,
-		"huaweicloud_vpc_subnet_v1":                      102,
-		"huaweicloud_vpc_v1":                             103,
-		"huaweicloud_vpnaas_endpoint_group_v2":           104,
-		"huaweicloud_vpnaas_ike_policy_v2":               105,
-		"huaweicloud_vpnaas_ipsec_policy_v2":             106,
-		"huaweicloud_vpnaas_service_v2":                  107,
-		"huaweicloud_vpnaas_site_connection_v2":          108,
+		"huaweicloud_cci_network_v1":                     8,
+		"huaweicloud_cdm_cluster_v1":                     9,
+		"huaweicloud_cdn_domain_v1":                      10,
+		"huaweicloud_ces-alarmrule":                      11,
+		"huaweicloud_cloudtable_cluster_v2":              12,
+		"huaweicloud_compute_floatingip_associate_v2":    13,
+		"huaweicloud_compute_floatingip_v2":              14,
+		"huaweicloud_compute_instance_v2":                15,
+		"huaweicloud_compute_interface_attach_v2":        16,
+		"huaweicloud_compute_keypair_v2":                 17,
+		"huaweicloud_compute_secgroup_v2":                18,
+		"huaweicloud_compute_servergroup_v2":             19,
+		"huaweicloud_compute_volume_attach_v2":           20,
+		"huaweicloud_cs_cluster_v1":                      21,
+		"huaweicloud_cs_peering_connect_v1":              22,
+		"huaweicloud_cs_route_v1":                        23,
+		"huaweicloud_csbs_backup_policy_v1":              24,
+		"huaweicloud_csbs_backup_v1":                     25,
+		"huaweicloud_css_cluster_v1":                     26,
+		"huaweicloud_cts_tracker_v1":                     27,
+		"huaweicloud_dcs_instance_v1":                    28,
+		"huaweicloud_dds_instance_v3":                    29,
+		"huaweicloud_dis_stream_v2":                      30,
+		"huaweicloud_dli_queue_v1":                       31,
+		"huaweicloud_dms_group_v1":                       32,
+		"huaweicloud_dms_instance_v1":                    33,
+		"huaweicloud_dms_queue_v1":                       34,
+		"huaweicloud_dns_ptrrecord_v2":                   35,
+		"huaweicloud_dns_recordset_v2":                   36,
+		"huaweicloud_dns_zone_v2":                        37,
+		"huaweicloud_dws_cluster":                        38,
+		"huaweicloud_ecs_instance_v1":                    39,
+		"huaweicloud_elb_backendecs":                     40,
+		"huaweicloud_elb_healthcheck":                    41,
+		"huaweicloud_elb_listener":                       42,
+		"huaweicloud_elb_loadbalancer":                   43,
+		"huaweicloud_evs_snapshot":                       44,
+		"huaweicloud_fgs_function_v2":                    45,
+		"huaweicloud_fw_firewall_group_v2":               46,
+		"huaweicloud_fw_policy_v2":                       47,
+		"huaweicloud_fw_rule_v2":                         48,
+		"huaweicloud_ges_graph_v1":                       49,
+		"huaweicloud_iam_agency_v3":                      50,
+		"huaweicloud_identity_group_membership_v3":       51,
+		"huaweicloud_identity_group_v3":                  52,
+		"huaweicloud_identity_project_v3":                53,
+		"huaweicloud_identity_role_assignment_v3":        54,
+		"huaweicloud_identity_user_v3":                   55,
+		"huaweicloud_images_image_v2":                    56,
+		"huaweicloud_kms_key_v1":                         57,
+		"huaweicloud_lb_certificate_v2":                  58,
+		"huaweicloud_lb_l7policy_v2":                     59,
+		"huaweicloud_lb_l7rule_v2":                       60,
+		"huaweicloud_lb_listener_v2":                     61,
+		"huaweicloud_lb_loadbalancer_v2":                 62,
+		"huaweicloud_lb_member_v2":                       63,
+		"huaweicloud_lb_monitor_v2":                      64,
+		"huaweicloud_lb_pool_v2":                         65,
+		"huaweicloud_lb_whitelist_v2":                    66,
+		"huaweicloud_maas_task_v1":                       67,
+		"huaweicloud_mls_instance":                       68,
+		"huaweicloud_mrs_cluster_v1":                     69,
+		"huaweicloud_mrs_job_v1":                         70,
+		"huaweicloud_nat_dnat_rule_v2":                   71,
+		"huaweicloud_nat_gateway_v2":                     72,
+		"huaweicloud_nat_snat_rule_v2":                   73,
+		"huaweicloud_networking_floatingip_associate_v2": 74,
+		"huaweicloud_networking_floatingip_v2":           75,
+		"huaweicloud_networking_network_v2":              76,
+		"huaweicloud_networking_port_v2":                 77,
+		"huaweicloud_networking_router_interface_v2":     78,
+		"huaweicloud_networking_router_route_v2":         79,
+		"huaweicloud_networking_router_v2":               80,
+		"huaweicloud_networking_secgroup_rule_v2":        81,
+		"huaweicloud_networking_secgroup_v2":             82,
+		"huaweicloud_networking_subnet_v2":               83,
+		"huaweicloud_networking_vip_associate_v2":        84,
+		"huaweicloud_networking_vip_v2":                  85,
+		"huaweicloud_obs_bucket":                         86,
+		"huaweicloud_obs_bucket_object":                  87,
+		"huaweicloud_rds_instance_v1":                    88,
+		"huaweicloud_rds_instance_v3":                    89,
+		"huaweicloud_rds_parametergroup_v3":              90,
+		"huaweicloud_rts_software_config_v1":             91,
+		"huaweicloud_rts_stack_v1":                       92,
+		"huaweicloud_s3_bucket":                          93,
+		"huaweicloud_s3_bucket_object":                   94,
+		"huaweicloud_s3_object_policy":                   95,
+		"huaweicloud_sfs_file_system_v2":                 96,
+		"huaweicloud_smn_subscription_v2":                97,
+		"huaweicloud_smn_topic_v2":                       98,
+		"huaweicloud-vbs-backup-policy-v2":               99,
+		"huaweicloud-vbs-backup-v2":                      100,
+		"huaweicloud_vpc_bandwidth_v2":                   101,
+		"huaweicloud_vpc_eip_v1":                         102,
+		"huaweicloud_vpc_peering_connection_accepter_v2": 103,
+		"huaweicloud_vpc_peering_connection_v2":          104,
+		"huaweicloud_vpc_route_v2":                       105,
+		"huaweicloud_vpc_subnet_v1":                      106,
+		"huaweicloud_vpc_v1":                             107,
+		"huaweicloud_vpnaas_endpoint_group_v2":           108,
+		"huaweicloud_vpnaas_ike_policy_v2":               109,
+		"huaweicloud_vpnaas_ipsec_policy_v2":             110,
+		"huaweicloud_vpnaas_service_v2":                  111,
+		"huaweicloud_vpnaas_site_connection_v2":          112,
 	}
 )
 

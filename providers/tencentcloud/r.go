@@ -51,11 +51,19 @@ var (
 					Description: `(Optional) Weight of the backend server. Valid value range: [0-100]. Default to 10. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "protocol_type",
 					Description: `The protocol type, http or tcp.`,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "protocol_type",
 					Description: `The protocol type, http or tcp.`,
@@ -81,10 +89,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scaling_group_id",
-					Description: `(Required, ForceNew) ID of a scaling group.`,
+					Description: `(Required, ForceNew) ID of a scaling group. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -134,10 +151,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "notification_topic_name",
-					Description: `(Optional) For CMQ_TOPIC type, a name of topic must be set.`,
+					Description: `(Optional) For CMQ_TOPIC type, a name of topic must be set. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -162,10 +188,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scaling_group_id",
-					Description: `(Required, ForceNew) ID of a scaling group.`,
+					Description: `(Required, ForceNew) ID of a scaling group. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -265,22 +300,30 @@ var (
 					Description: `(Optional) Data disk snapshot ID. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time when the launch configuration was created.`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Current statues of a launch configuration. ## Import AutoScaling Configuration can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import tencentcloud_as_scaling_config.scaling_config asc-n32ymck2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Current statues of a launch configuration. ## Import AutoScaling Configuration can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_as_scaling_config.scaling_config asc-n32ymck2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time when the launch configuration was created.`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Current statues of a launch configuration. ## Import AutoScaling Configuration can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import tencentcloud_as_scaling_config.scaling_config asc-n32ymck2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Current statues of a launch configuration. ## Import AutoScaling Configuration can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_as_scaling_config.scaling_config asc-n32ymck2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -382,6 +425,10 @@ var (
 					Description: `(Required) Weight. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time when the AS group was created.`,
 				},
@@ -395,6 +442,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time when the AS group was created.`,
@@ -468,10 +519,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "statistic",
-					Description: `(Optional) Statistic types, include AVERAGE, MAXIMUM and MINIMUM. Default is AVERAGE.`,
+					Description: `(Optional) Statistic types, include AVERAGE, MAXIMUM and MINIMUM. Default is AVERAGE. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -516,10 +576,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "recurrence",
-					Description: `(Optional) The time when recurring future actions will start. Start time is specified by the user following the Unix cron syntax format. And this argument should be set with end_time together.`,
+					Description: `(Optional) The time when recurring future actions will start. Start time is specified by the user following the Unix cron syntax format. And this argument should be set with end_time together. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -544,11 +613,19 @@ var (
 					Description: `(Optional) Description of the CAM group. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the CAM group. ## Import CAM group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_group.foo 90496 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the CAM group. ## Import CAM group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_group.foo 90496 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -576,10 +653,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "user_ids",
-					Description: `(Required) Id set of the CAM group members. ## Import CAM group membership can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_group_membership.foo 12515263 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Id set of the CAM group members. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import CAM group membership can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_group_membership.foo 12515263 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import CAM group membership can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_group_membership.foo 12515263 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -606,6 +692,10 @@ var (
 					Description: `(Required, ForceNew) Id of the policy. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_mode",
 					Description: `Mode of Creation of the CAM group policy attachment. 1 means the cam policy attachment is created by production, and the others indicate syntax strategy ways.`,
 				},
@@ -623,6 +713,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_mode",
 					Description: `Mode of Creation of the CAM group policy attachment. 1 means the cam policy attachment is created by production, and the others indicate syntax strategy ways.`,
@@ -668,6 +762,10 @@ var (
 					Description: `(Optional) Description of the CAM policy. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the CAM policy.`,
 				},
@@ -681,6 +779,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the CAM policy.`,
@@ -726,6 +828,10 @@ var (
 					Description: `(Optional) Description of the CAM role. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the CAM role.`,
 				},
@@ -735,6 +841,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the CAM role.`,
@@ -770,6 +880,10 @@ var (
 					Description: `(Required, ForceNew) Id of the attached CAM role. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_mode",
 					Description: `Mode of Creation of the CAM role policy attachment. 1 means the CAM policy attachment is created by production, and the others indicate syntax strategy ways.`,
 				},
@@ -787,6 +901,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_mode",
 					Description: `Mode of Creation of the CAM role policy attachment. 1 means the CAM policy attachment is created by production, and the others indicate syntax strategy ways.`,
@@ -833,6 +951,10 @@ var (
 					Description: `(Required, ForceNew) Name of CAM SAML provider. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `The create time of the CAM SAML provider.`,
 				},
@@ -846,6 +968,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The create time of the CAM SAML provider.`,
@@ -864,7 +990,7 @@ var (
 			Name:             "",
 			Type:             "tencentcloud_cam_user",
 			Category:         "Cloud Access Management(CAM)",
-			ShortDescription: `Provides a resource to create a CAM user.`,
+			ShortDescription: `Provides a resource to manage CAM user.`,
 			Description:      ``,
 			Keywords: []string{
 				"cloud",
@@ -876,31 +1002,35 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required, ForceNew) Name of CAM user.`,
+					Description: `(Required, ForceNew) Name of the CAM user.`,
 				},
 				resource.Attribute{
 					Name:        "console_login",
-					Description: `(Optional) Indicade whether the CAM user can login or not.`,
+					Description: `(Optional) Indicate whether the CAM user can login to the web console or not.`,
 				},
 				resource.Attribute{
 					Name:        "country_code",
-					Description: `(Optional) Country code of the phone num, like '86'.`,
+					Description: `(Optional) Country code of the phone number, for example: '86'.`,
 				},
 				resource.Attribute{
 					Name:        "email",
 					Description: `(Optional) Email of the CAM user.`,
 				},
 				resource.Attribute{
+					Name:        "force_delete",
+					Description: `(Optional) Indicate whether to force deletes the CAM user. If set false, the API secret key will be checked and failed when exists; otherwise the user will be deleted directly. Default is false.`,
+				},
+				resource.Attribute{
 					Name:        "need_reset_password",
-					Description: `(Optional) Indicate whether the CAM user will reset the password the next time he/her logs in.`,
+					Description: `(Optional) Indicate whether the CAM user need to reset the password when first logins.`,
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional) The password of the CAM user. The password should be set with 8 characters or more and contains uppercase small letters, numbers, and special characters. Only valid when console_login set true. If not set and the value of console_login is true, a random password is automatically generated.`,
+					Description: `(Optional) The password of the CAM user. Password should be at least 8 characters and no more than 32 characters, includes uppercase letters, lowercase letters, numbers and special characters. Only required when ` + "`" + `console_login` + "`" + ` is true. If not set, a random password will be automatically generated.`,
 				},
 				resource.Attribute{
 					Name:        "phone_num",
-					Description: `(Optional) Phone num of the CAM user.`,
+					Description: `(Optional) Phone number of the CAM user.`,
 				},
 				resource.Attribute{
 					Name:        "remark",
@@ -908,11 +1038,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "use_api",
-					Description: `(Optional) Indicate whether to generate a secret key or not. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Indicate whether to generate the API secret key or not. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 				resource.Attribute{
 					Name:        "secret_id",
-					Description: `Secret Id of the CAM user.`,
+					Description: `Secret ID of the CAM user.`,
 				},
 				resource.Attribute{
 					Name:        "secret_key",
@@ -920,17 +1054,21 @@ var (
 				},
 				resource.Attribute{
 					Name:        "uid",
-					Description: `Id of the CAM user.`,
+					Description: `ID of the CAM user.`,
 				},
 				resource.Attribute{
 					Name:        "uin",
-					Description: `Uin of the CAM User. ## Import CAM user can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_user.foo cam-user-test ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Uin of the CAM User. ## Import CAM user can be imported using the user name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_user.foo cam-user-test ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "secret_id",
-					Description: `Secret Id of the CAM user.`,
+					Description: `Secret ID of the CAM user.`,
 				},
 				resource.Attribute{
 					Name:        "secret_key",
@@ -938,11 +1076,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "uid",
-					Description: `Id of the CAM user.`,
+					Description: `ID of the CAM user.`,
 				},
 				resource.Attribute{
 					Name:        "uin",
-					Description: `Uin of the CAM User. ## Import CAM user can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_user.foo cam-user-test ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Uin of the CAM User. ## Import CAM user can be imported using the user name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_user.foo cam-user-test ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -971,6 +1109,10 @@ var (
 					Description: `(Required, ForceNew) Id of the attached CAM user. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_mode",
 					Description: `Mode of Creation of the CAM user policy attachment. 1 means the CAM policy attachment is created by production, and the others indicate syntax strategy ways.`,
 				},
@@ -988,6 +1130,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_mode",
 					Description: `Mode of Creation of the CAM user policy attachment. 1 means the CAM policy attachment is created by production, and the others indicate syntax strategy ways.`,
@@ -1029,6 +1175,10 @@ var (
 					Description: `(Required, ForceNew) ID of the the CBS which this snapshot created from. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of snapshot.`,
 				},
@@ -1050,6 +1200,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of snapshot.`,
@@ -1101,10 +1255,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "retention_days",
-					Description: `(Optional) Retention days of the snapshot, and the default value is 7. ## Import CBS snapshot policy can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cbs_snapshot_policy.snapshot_policy asp-jliex1tn ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Retention days of the snapshot, and the default value is 7. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import CBS snapshot policy can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cbs_snapshot_policy.snapshot_policy asp-jliex1tn ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import CBS snapshot policy can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cbs_snapshot_policy.snapshot_policy asp-jliex1tn ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1128,10 +1291,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_id",
-					Description: `(Required, ForceNew) ID of CBS.`,
+					Description: `(Required, ForceNew) ID of CBS. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1163,12 +1335,28 @@ var (
 					Description: `(Required, ForceNew) Type of CBS medium, and available values include CLOUD_BASIC, CLOUD_PREMIUM and CLOUD_SSD.`,
 				},
 				resource.Attribute{
+					Name:        "charge_type",
+					Description: `(Optional) The charge type of CBS instance. Valid values are ` + "`" + `PREPAID` + "`" + ` and ` + "`" + `POSTPAID_BY_HOUR` + "`" + `, The default is ` + "`" + `POSTPAID_BY_HOUR` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "encrypt",
 					Description: `(Optional, ForceNew) Indicates whether CBS is encrypted.`,
 				},
 				resource.Attribute{
+					Name:        "force_delete",
+					Description: `(Optional) Indicate whether to delete CBS instance directly or not. Default is false. If set true, the instance will be deleted instead of staying recycle bin.`,
+				},
+				resource.Attribute{
 					Name:        "period",
-					Description: `(Optional) The purchased usage period of CBS, and value range [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36].`,
+					Description: `(Optional,`,
+				},
+				resource.Attribute{
+					Name:        "prepaid_period",
+					Description: `(Optional) The tenancy (time unit is month) of the prepaid instance, NOTE: it only works when charge_type is set to ` + "`" + `PREPAID` + "`" + `. Valid values are 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36.`,
+				},
+				resource.Attribute{
+					Name:        "prepaid_renew_flag",
+					Description: `(Optional) When enabled, the CBS instance will be renew automatically when it reach the end of the prepaid tenancy. Valid values are ` + "`" + `NOTIFY_AND_AUTO_RENEW` + "`" + `, ` + "`" + `NOTIFY_AND_MANUAL_RENEW` + "`" + ` and ` + "`" + `DISABLE_NOTIFY_AND_MANUAL_RENEW` + "`" + `. NOTE: it only works when charge_type is set to ` + "`" + `PREPAID` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "project_id",
@@ -1183,6 +1371,10 @@ var (
 					Description: `(Optional) The available tags within this CBS. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "attached",
 					Description: `Indicates whether the CBS is mounted the CVM.`,
 				},
@@ -1192,6 +1384,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "attached",
 					Description: `Indicates whether the CBS is mounted the CVM.`,
@@ -1222,10 +1418,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_id",
-					Description: `(Required, ForceNew) ID of the mounted CBS.`,
+					Description: `(Required, ForceNew) ID of the mounted CBS. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1253,6 +1458,10 @@ var (
 					Description: `(Optional, ForceNew) Service quality of CCN, and the available value include 'PT', 'AU', 'AG'. The default is 'AU'. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of resource.`,
 				},
@@ -1262,11 +1471,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `States of instance. The available value include 'ISOLATED'(arrears) and 'AVAILABLE'. ## Import Ccn instance can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import tencentcloud_ccn.test ccn-id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `States of instance. The available value include 'ISOLATED'(arrears) and 'AVAILABLE'. ## Import Ccn instance can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_ccn.test ccn-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of resource.`,
 				},
@@ -1276,7 +1489,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `States of instance. The available value include 'ISOLATED'(arrears) and 'AVAILABLE'. ## Import Ccn instance can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import tencentcloud_ccn.test ccn-id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `States of instance. The available value include 'ISOLATED'(arrears) and 'AVAILABLE'. ## Import Ccn instance can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_ccn.test ccn-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1308,7 +1521,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instance_type",
-					Description: `(Required, ForceNew) Type of attached instance network, and available values include VPC, DIRECTCONNECT and BMVPC. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required, ForceNew) Type of attached instance network, and available values include VPC, DIRECTCONNECT, BMVPC and VPNGW. Note: VPNGW type is only for whitelist customer now.`,
+				},
+				resource.Attribute{
+					Name:        "ccn_uin",
+					Description: `(Optional, ForceNew) Uin of the ccn attached. Default is ` + "`" + `` + "`" + `, which means the uin of this account. This parameter is used with case when attaching ccn of other account to the instance of this account. For now only support instance type ` + "`" + `VPC` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 				resource.Attribute{
 					Name:        "attached_time",
@@ -1324,6 +1545,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "attached_time",
 					Description: `Time of attaching.`,
@@ -1363,10 +1588,178 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bandwidth_limit",
-					Description: `(Optional) Limitation of bandwidth.`,
+					Description: `(Optional) Limitation of bandwidth. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cdn_domain",
+			Category:         "CDN",
+			ShortDescription: `Provides a resource to create a CDN domain.`,
+			Description:      ``,
+			Keywords: []string{
+				"cdn",
+				"domain",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "domain",
+					Description: `(Required, ForceNew) Name of the acceleration domain.`,
+				},
+				resource.Attribute{
+					Name:        "origin",
+					Description: `(Required) Origin server configuration. It's a list and consist of at most one item.`,
+				},
+				resource.Attribute{
+					Name:        "service_type",
+					Description: `(Required, ForceNew) Service type of Acceleration domain name. Valid values are ` + "`" + `web` + "`" + `, ` + "`" + `download` + "`" + ` and ` + "`" + `media` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "area",
+					Description: `(Optional) Domain name acceleration region. Valid values are ` + "`" + `mainland` + "`" + `, ` + "`" + `overseas` + "`" + ` and ` + "`" + `global` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "full_url_cache",
+					Description: `(Optional) Whether to enable full-path cache. Default value is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "https_config",
+					Description: `(Optional) HTTPS acceleration configuration. It's a list and consist of at most one item.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Optional) The project CDN belongs to, default to 0.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags of cdn domain. The ` + "`" + `client_certificate_config` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "certificate_content",
+					Description: `(Required) Client Certificate PEM format, requires Base64 encoding. The ` + "`" + `https_config` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "https_switch",
+					Description: `(Required) HTTPS configuration switch. Valid values are ` + "`" + `on` + "`" + ` and ` + "`" + `off` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate_config",
+					Description: `(Optional) Client certificate configuration information.`,
+				},
+				resource.Attribute{
+					Name:        "http2_switch",
+					Description: `(Optional) HTTP2 configuration switch. Valid values are ` + "`" + `on` + "`" + ` and ` + "`" + `off` + "`" + `, and default value is ` + "`" + `off` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ocsp_stapling_switch",
+					Description: `(Optional) OCSP configuration switch. Valid values are ` + "`" + `on` + "`" + ` and ` + "`" + `off` + "`" + `, and default value is ` + "`" + `off` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "server_certificate_config",
+					Description: `(Optional) Server certificate configuration information.`,
+				},
+				resource.Attribute{
+					Name:        "spdy_switch",
+					Description: `(Optional) Spdy configuration switch. Valid values are ` + "`" + `on` + "`" + ` and ` + "`" + `off` + "`" + `, and default value is ` + "`" + `off` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "verify_client",
+					Description: `(Optional) Client certificate authentication feature. Valid values are ` + "`" + `on` + "`" + ` and ` + "`" + `off` + "`" + `, and default value is ` + "`" + `off` + "`" + `. The ` + "`" + `origin` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "origin_list",
+					Description: `(Required) Master origin server list. Valid values can be ip or doamin name. When modifying the origin server, you need to enter the corresponding ` + "`" + `origin_type` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "origin_type",
+					Description: `(Required) Master origin server type. Valid values are ` + "`" + `domain` + "`" + `, ` + "`" + `cos` + "`" + `, ` + "`" + `ip` + "`" + `, ` + "`" + `ipv6` + "`" + ` and ` + "`" + `ip_ipv6` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "backup_origin_list",
+					Description: `(Optional) Backup origin server list. Valid values can be ip or doamin name. When modifying the backup origin server, you need to enter the corresponding ` + "`" + `backup_origin_type` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "backup_origin_type",
+					Description: `(Optional) Backup origin server type. Valid values are ` + "`" + `domain` + "`" + ` and ` + "`" + `ip` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "backup_server_name",
+					Description: `(Optional) Host header used when accessing the backup origin server. If left empty, the ServerName of master origin server will be used by default.`,
+				},
+				resource.Attribute{
+					Name:        "cos_private_access",
+					Description: `(Optional) When OriginType is COS, you can specify if access to private buckets is allowed. Valid values are ` + "`" + `on` + "`" + ` and ` + "`" + `off` + "`" + `, and default value is ` + "`" + `off` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "origin_pull_protocol",
+					Description: `(Optional) Origin-pull protocol configuration. Valid values are ` + "`" + `http` + "`" + `, ` + "`" + `https` + "`" + ` and ` + "`" + `follow` + "`" + `, and default value is ` + "`" + `http` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "server_name",
+					Description: `(Optional) Host header used when accessing the master origin server. If left empty, the acceleration domain name will be used by default. The ` + "`" + `server_certificate_config` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "certificate_content",
+					Description: `(Optional) Server certificate information. This is required when uploading an external certificate, which should contain the complete certificate chain.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_id",
+					Description: `(Optional) Server certificate ID.`,
+				},
+				resource.Attribute{
+					Name:        "message",
+					Description: `(Optional) Certificate remarks.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `(Optional) Server key information. This is required when uploading an external certificate. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "cname",
+					Description: `CNAME address of domain name.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time of domain name.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Acceleration service status. ## Import CDN domain can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cdn_domain.foo xxxx.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "cname",
+					Description: `CNAME address of domain name.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time of domain name.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Acceleration service status. ## Import CDN domain can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cdn_domain.foo xxxx.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1392,11 +1785,19 @@ var (
 					Description: `(Optional) Description of the access group, and max length is 255. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the access group. ## Import CFS access group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cfs_access_group.foo pgroup-7nx89k7l ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the access group. ## Import CFS access group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cfs_access_group.foo pgroup-7nx89k7l ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1436,10 +1837,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "user_permission",
-					Description: `(Optional) The permissions of accessing users. Valid values are ` + "`" + `all_squash` + "`" + `, ` + "`" + `no_all_squash` + "`" + `, ` + "`" + `root_squash` + "`" + ` and ` + "`" + `no_root_squash` + "`" + `, and default is ` + "`" + `root_squash` + "`" + `. ` + "`" + `all_squash` + "`" + ` indicates that all access users are mapped as anonymous users or user groups; ` + "`" + `no_all_squash` + "`" + ` indicates that access users will match local users first and be mapped to anonymous users or user groups after matching failed; ` + "`" + `root_squash` + "`" + ` indicates that map access root users to anonymous users or user groups; ` + "`" + `no_root_squash` + "`" + ` indicates that access root users keep root account permission.`,
+					Description: `(Optional) The permissions of accessing users. Valid values are ` + "`" + `all_squash` + "`" + `, ` + "`" + `no_all_squash` + "`" + `, ` + "`" + `root_squash` + "`" + ` and ` + "`" + `no_root_squash` + "`" + `, and default is ` + "`" + `root_squash` + "`" + `. ` + "`" + `all_squash` + "`" + ` indicates that all access users are mapped as anonymous users or user groups; ` + "`" + `no_all_squash` + "`" + ` indicates that access users will match local users first and be mapped to anonymous users or user groups after matching failed; ` + "`" + `root_squash` + "`" + ` indicates that map access root users to anonymous users or user groups; ` + "`" + `no_root_squash` + "`" + ` indicates that access root users keep root account permission. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1484,11 +1894,19 @@ var (
 					Description: `(Optional, ForceNew) File service protocol. Valid values are ` + "`" + `NFS` + "`" + ` and ` + "`" + `CIFS` + "`" + `, and the default is ` + "`" + `NFS` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the file system. ## Import Cloud file system can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cfs_file_system.foo cfs-6hgquxmj ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the file system. ## Import Cloud file system can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cfs_file_system.foo cfs-6hgquxmj ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1535,11 +1953,19 @@ var (
 					Description: `(Optional) Forwarding weight of the backend service, the range of [0, 100], defaults to 10. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "protocol_type",
 					Description: `Type of protocol within the listener. ## Import CLB attachment can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_clb_attachment.foo loc-4xxr2cy7#lbl-hh141sn9#lb-7a0t6zqb ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "protocol_type",
 					Description: `Type of protocol within the listener. ## Import CLB attachment can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_clb_attachment.foo loc-4xxr2cy7#lbl-hh141sn9#lb-7a0t6zqb ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1594,11 +2020,19 @@ var (
 					Description: `(Optional, ForceNew) VPC id of the CLB. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "clb_vips",
 					Description: `The virtual service address table of the CLB. ## Import CLB instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_clb_instance.foo lb-7a0t6zqb ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "clb_vips",
 					Description: `The virtual service address table of the CLB. ## Import CLB instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_clb_instance.foo lb-7a0t6zqb ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1674,10 +2108,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sni_switch",
-					Description: `(Optional, ForceNew) Indicates whether SNI is enabled, and only supported with protocol 'HTTPS'. If enabled, you can set a certificate for each rule in ` + "`" + `tencentcloud_clb_listener_rule` + "`" + `, otherwise all rules have a certificate.`,
+					Description: `(Optional, ForceNew) Indicates whether SNI is enabled, and only supported with protocol 'HTTPS'. If enabled, you can set a certificate for each rule in ` + "`" + `tencentcloud_clb_listener_rule` + "`" + `, otherwise all rules have a certificate. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1757,10 +2200,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "session_expire_time",
-					Description: `(Optional) Time of session persistence within the CLB listener. NOTES: Available when scheduler is specified as 'WRR', and not available when listener protocol is 'TCP_SSL'. NOTES: TCP/UDP/TCP_SSL listener allows direct configuration, HTTP/HTTPS listener needs to be configured in tencentcloud_clb_listener_rule.`,
+					Description: `(Optional) Time of session persistence within the CLB listener. NOTES: Available when scheduler is specified as 'WRR', and not available when listener protocol is 'TCP_SSL'. NOTES: TCP/UDP/TCP_SSL listener allows direct configuration, HTTP/HTTPS listener needs to be configured in tencentcloud_clb_listener_rule. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1795,10 +2247,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "source_rule_id",
-					Description: `(Optional, ForceNew) Rule id of source listener. ## Import CLB redirection can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_clb_redirection.foo loc-ft8fmngv#loc-4xxr2cy7#lbl-jc1dx6ju#lbl-asj1hzuo#lb-p7olt9e5 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional, ForceNew) Rule id of source listener. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import CLB redirection can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_clb_redirection.foo loc-ft8fmngv#loc-4xxr2cy7#lbl-jc1dx6ju#lbl-asj1hzuo#lb-p7olt9e5 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import CLB redirection can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_clb_redirection.foo loc-ft8fmngv#loc-4xxr2cy7#lbl-jc1dx6ju#lbl-asj1hzuo#lb-p7olt9e5 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1932,6 +2393,10 @@ var (
 					Description: `(Optional) User defined script in a base64-format. The script runs after the kubernetes component is ready on node. see more from CCS api documents. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "kubernetes_version",
 					Description: `The kubernetes version of the cluster.`,
 				},
@@ -1953,6 +2418,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "kubernetes_version",
 					Description: `The kubernetes version of the cluster.`,
@@ -2084,6 +2553,10 @@ var (
 					Description: `(Optional) User defined script in a base64-format. The script runs after the kubernetes component is ready on node. see more from CCS api documents. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "abnormal_reason",
 					Description: `Describe the reason when node is in abnormal state(if it was).`,
 				},
@@ -2105,6 +2578,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "abnormal_reason",
 					Description: `Describe the reason when node is in abnormal state(if it was).`,
@@ -2151,12 +2628,20 @@ var (
 					Description: `(Optional) A rule of Cross-Origin Resource Sharing (documented below).`,
 				},
 				resource.Attribute{
+					Name:        "encryption_algorithm",
+					Description: `(Optional) The server-side encryption algorithm to use. Valid value is ` + "`" + `AES256` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "lifecycle_rules",
 					Description: `(Optional) A configuration of object lifecycle management (documented below).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) The tags of a bucket.`,
+				},
+				resource.Attribute{
+					Name:        "versioning_enable",
+					Description: `(Optional) Enable bucket versioning.`,
 				},
 				resource.Attribute{
 					Name:        "website",
@@ -2220,10 +2705,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "index_document",
-					Description: `(Optional) COS returns this index document when requests are made to the root domain or any of the subfolders. ## Import COS bucket can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cos_bucket.bucket bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) COS returns this index document when requests are made to the root domain or any of the subfolders. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import COS bucket can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cos_bucket.bucket bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import COS bucket can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cos_bucket.bucket bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2279,10 +2773,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_class",
-					Description: `(Optional) Object storage type, Available values include STANDARD, STANDARD_IA and ARCHIVE.`,
+					Description: `(Optional) Object storage type, Available values include STANDARD, STANDARD_IA and ARCHIVE. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2348,6 +2851,10 @@ var (
 					Description: `(Optional) Rule value, then length should be less than 31 bytes. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the CC self-define http policy.`,
 				},
@@ -2357,6 +2864,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the CC self-define http policy.`,
@@ -2427,6 +2938,10 @@ var (
 					Description: `(Required) Rule value, then length should be less than 31 bytes. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the CC self-define https policy.`,
 				},
@@ -2440,6 +2955,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the CC self-define https policy.`,
@@ -2672,6 +3191,10 @@ var (
 					Description: `(Optional) Port range of TCP, the format is like ` + "`" + `2000-3000` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the DDoS policy.`,
 				},
@@ -2701,6 +3224,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the DDoS policy.`,
@@ -2755,10 +3282,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_type",
-					Description: `(Required, ForceNew) Type of the resource that the DDoS policy works for, valid values are ` + "`" + `bgpip` + "`" + `, ` + "`" + `bgp` + "`" + `, ` + "`" + `bgp-multip` + "`" + `, ` + "`" + `net` + "`" + `.`,
+					Description: `(Required, ForceNew) Type of the resource that the DDoS policy works for, valid values are ` + "`" + `bgpip` + "`" + `, ` + "`" + `bgp` + "`" + `, ` + "`" + `bgp-multip` + "`" + `, ` + "`" + `net` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2863,6 +3399,10 @@ var (
 					Description: `(Optional) The fixed signature of TCP protocol load, valid value length is range from 1 to 512. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the DDoS policy case.`,
 				},
@@ -2872,6 +3412,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the DDoS policy case.`,
@@ -2965,6 +3509,10 @@ var (
 					Description: `(Required) Weight of the source, the valid value ranges from 0 to 100. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "lb_type",
 					Description: `LB type of the rule, 1 for weight cycling and 2 for IP hash.`,
 				},
@@ -2974,6 +3522,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "lb_type",
 					Description: `LB type of the rule, 1 for weight cycling and 2 for IP hash.`,
@@ -3063,6 +3615,10 @@ var (
 					Description: `(Optional) SSL id, when the ` + "`" + `protocol` + "`" + ` is ` + "`" + `https` + "`" + `, the field should be set with valid SSL id. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "rule_id",
 					Description: `Id of the layer 7 rule.`,
 				},
@@ -3072,6 +3628,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "rule_id",
 					Description: `Id of the layer 7 rule.`,
@@ -3113,6 +3673,10 @@ var (
 					Description: `(Optional, ForceNew) Type of the gateway, the available value include 'NORMAL' and 'NAT'. Default is 'NORMAL'. NOTES: CCN only supports 'NORMAL' and a vpc can create two DCGs, the one is NAT type and the other is non-NAT type. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "cnn_route_type",
 					Description: `Type of CCN route, the available value include 'BGP' and 'STATIC'. The property is available when the DCG type is CCN gateway and BGP enabled.`,
 				},
@@ -3126,6 +3690,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "cnn_route_type",
 					Description: `Type of CCN route, the available value include 'BGP' and 'STATIC'. The property is available when the DCG type is CCN gateway and BGP enabled.`,
@@ -3165,11 +3733,19 @@ var (
 					Description: `(Required, ForceNew) ID of the DCG. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "as_path",
 					Description: `As_Path list of the BGP.`,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "as_path",
 					Description: `As_Path list of the BGP.`,
@@ -3242,6 +3818,10 @@ var (
 					Description: `(Optional, ForceNew) Vlan of the dedicated tunnels, and the range of values is [0-3000]. '0' means that only one tunnel can be created for the physical connect. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of resource.`,
 				},
@@ -3251,6 +3831,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of resource.`,
@@ -3302,10 +3886,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) Description of the NAT forward. ## Import NAT forwarding can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_dnat.foo tcp://vpc-asg3sfa3:nat-1asg3t63@127.15.2.3:8080 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Description of the NAT forward. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import NAT forwarding can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_dnat.foo tcp://vpc-asg3sfa3:nat-1asg3t63@127.15.2.3:8080 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import NAT forwarding can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_dnat.foo tcp://vpc-asg3sfa3:nat-1asg3t63@127.15.2.3:8080 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3332,7 +3925,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "internet_max_bandwidth_out",
-					Description: `(Optional, ForceNew) The bandwidth limit of eip, unit is Mbps, and the range is 1-1000.`,
+					Description: `(Optional, ForceNew) The bandwidth limit of eip, unit is Mbps.`,
 				},
 				resource.Attribute{
 					Name:        "internet_service_provider",
@@ -3351,6 +3944,10 @@ var (
 					Description: `(Optional, ForceNew) The type of eip, and available values include ` + "`" + `EIP` + "`" + ` and ` + "`" + `AnycastEIP` + "`" + `. Default is ` + "`" + `EIP` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "public_ip",
 					Description: `The elastic ip address.`,
 				},
@@ -3360,6 +3957,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "public_ip",
 					Description: `The elastic ip address.`,
@@ -3396,10 +3997,170 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `(Optional, ForceNew) Indicates an IP belongs to the ` + "`" + `network_interface_id` + "`" + `. This field is conflict with ` + "`" + `instance_id` + "`" + `.`,
+					Description: `(Optional, ForceNew) Indicates an IP belongs to the ` + "`" + `network_interface_id` + "`" + `. This field is conflict with ` + "`" + `instance_id` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_elasticsearch_instance",
+			Category:         "Elasticsearch",
+			ShortDescription: `Provides an elasticsearch instance resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"elasticsearch",
+				"instance",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Required, ForceNew) Availability zone.`,
+				},
+				resource.Attribute{
+					Name:        "node_info_list",
+					Description: `(Required, ForceNew) Node information list, which is used to describe the specification information of various types of nodes in the cluster, such as node type, node quantity, node specification, disk type, and disk size.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) Password to an instance.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required, ForceNew) The id of a VPC subnetwork.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) Version of the instance. Valid values are ` + "`" + `5.6.4` + "`" + `, ` + "`" + `6.4.3` + "`" + `, ` + "`" + `6.8.2` + "`" + ` and ` + "`" + `7.5.1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required, ForceNew) The id of a VPC network.`,
+				},
+				resource.Attribute{
+					Name:        "basic_security_type",
+					Description: `(Optional) Whether to enable X-Pack security authentication in Basic Edition 6.8 and above. Valid values are ` + "`" + `1` + "`" + ` and ` + "`" + `2` + "`" + `, ` + "`" + `1` + "`" + ` is disabled, ` + "`" + `2` + "`" + ` is enabled, and default value is ` + "`" + `1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "charge_period",
+					Description: `(Optional, ForceNew) The tenancy of the prepaid instance, and uint is month. NOTE: it only works when charge_type is set to ` + "`" + `PREPAID` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "charge_type",
+					Description: `(Optional, ForceNew) The charge type of instance. Valid values are ` + "`" + `PREPAID` + "`" + ` and ` + "`" + `POSTPAID_BY_HOUR` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "deploy_mode",
+					Description: `(Optional, ForceNew) Cluster deployment mode. Valid values are ` + "`" + `0` + "`" + ` and ` + "`" + `1` + "`" + `, ` + "`" + `0` + "`" + ` is single-AZ deployment, and ` + "`" + `1` + "`" + ` is multi-AZ deployment. Default value is ` + "`" + `0` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "instance_name",
+					Description: `(Optional) Name of the instance, which can contain 1 to 50 English letters, Chinese characters, digits, dashes(-), or underscores(_).`,
+				},
+				resource.Attribute{
+					Name:        "license_type",
+					Description: `(Optional) License type. Valid values are ` + "`" + `oss` + "`" + `, ` + "`" + `basic` + "`" + ` and ` + "`" + `platinum` + "`" + `, and default value is ` + "`" + `platinum` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "multi_zone_infos",
+					Description: `(Optional, ForceNew) Details of AZs in multi-AZ deployment mode (which is required when deploy_mode is ` + "`" + `1` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "renew_flag",
+					Description: `(Optional, ForceNew) When enabled, the instance will be renew automatically when it reach the end of the prepaid tenancy. Valid values are ` + "`" + `RENEW_FLAG_AUTO` + "`" + ` and ` + "`" + `RENEW_FLAG_MANUAL` + "`" + `. NOTE: it only works when charge_type is set to ` + "`" + `PREPAID` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the instance. For tag limits, please refer to [Use Limits](https://intl.cloud.tencent.com/document/product/651/13354). The ` + "`" + `multi_zone_infos` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Required) Availability zone.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) The id of a VPC subnetwork. The ` + "`" + `node_info_list` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "node_num",
+					Description: `(Required) Number of nodes.`,
+				},
+				resource.Attribute{
+					Name:        "node_type",
+					Description: `(Required) Node specification, and valid values refer to [document of tencentcloud](https://intl.cloud.tencent.com/document/product/845/18376).`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `(Optional) Node disk size. Unit is GB, and default value is ` + "`" + `100` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "disk_type",
+					Description: `(Optional) Node disk type. Valid values are ` + "`" + `CLOUD_SSD` + "`" + ` and ` + "`" + `CLOUD_PREMIUM` + "`" + `, and default value is ` + "`" + `CLOUD_SSD` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Node type. Valid values are ` + "`" + `hotData` + "`" + `, ` + "`" + `warmData` + "`" + ` and ` + "`" + `dedicatedMaster` + "`" + `, and default value is 'hotData` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Instance creation time.`,
+				},
+				resource.Attribute{
+					Name:        "elasticsearch_domain",
+					Description: `Elasticsearch domain name.`,
+				},
+				resource.Attribute{
+					Name:        "elasticsearch_port",
+					Description: `Elasticsearch port.`,
+				},
+				resource.Attribute{
+					Name:        "elasticsearch_vip",
+					Description: `Elasticsearch VIP.`,
+				},
+				resource.Attribute{
+					Name:        "kibana_url",
+					Description: `Kibana access URL. ## Import Elasticsearch instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_elasticsearch_instance.foo es-17634f05 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Instance creation time.`,
+				},
+				resource.Attribute{
+					Name:        "elasticsearch_domain",
+					Description: `Elasticsearch domain name.`,
+				},
+				resource.Attribute{
+					Name:        "elasticsearch_port",
+					Description: `Elasticsearch port.`,
+				},
+				resource.Attribute{
+					Name:        "elasticsearch_vip",
+					Description: `Elasticsearch VIP.`,
+				},
+				resource.Attribute{
+					Name:        "kibana_url",
+					Description: `Kibana access URL. ## Import Elasticsearch instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_elasticsearch_instance.foo es-17634f05 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3457,6 +4218,10 @@ var (
 					Description: `(Optional) Description of the IP, maximum length 25. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of the ENI.`,
 				},
@@ -3490,6 +4255,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of the ENI.`,
@@ -3542,10 +4311,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instance_id",
-					Description: `(Required, ForceNew) ID of the instance which bind the ENI. ## Import ENI attachment can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_eni_attachment.foo eni-gtlvkjvz+ins-0h3a5new ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required, ForceNew) ID of the instance which bind the ENI. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import ENI attachment can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_eni_attachment.foo eni-gtlvkjvz+ins-0h3a5new ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import ENI attachment can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_eni_attachment.foo eni-gtlvkjvz+ins-0h3a5new ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3578,6 +4356,10 @@ var (
 					Description: `(Optional) Name of the certificate. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "begin_time",
 					Description: `Beginning time of the certificate.`,
 				},
@@ -3599,6 +4381,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "begin_time",
 					Description: `Beginning time of the certificate.`,
@@ -3663,10 +4449,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "set_headers",
-					Description: `(Optional, ForceNew) Response headers to be set.`,
+					Description: `(Optional, ForceNew) Response headers to be set. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3733,10 +4528,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "realserver_certificate_ids",
-					Description: `(Optional) CA certificate ID list of the realserver. ## Import GAAP http domain can be imported using the id, e.g. ->`,
+					Description: `(Optional) CA certificate ID list of the realserver. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import GAAP http domain can be imported using the id, e.g. ->`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import GAAP http domain can be imported using the id, e.g. ->`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3819,10 +4623,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "weight",
-					Description: `(Optional) Scheduling weight, default value is ` + "`" + `1` + "`" + `. The range of values is [1,100]. ## Import GAAP http rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_gaap_http_rule.foo rule-3bsuu01r ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Scheduling weight, default value is ` + "`" + `1` + "`" + `. The range of values is [1,100]. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import GAAP http rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_gaap_http_rule.foo rule-3bsuu01r ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import GAAP http rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_gaap_http_rule.foo rule-3bsuu01r ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3896,6 +4709,10 @@ var (
 					Description: `(Optional) Scheduling weight, default value is ` + "`" + `1` + "`" + `. The range of values is [1,100]. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of the layer4 listener.`,
 				},
@@ -3905,6 +4722,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of the layer4 listener.`,
@@ -3967,6 +4788,10 @@ var (
 					Description: `(Optional, ForceNew) Protocol type of the forwarding, the available values include ` + "`" + `HTTP` + "`" + ` and ` + "`" + `HTTPS` + "`" + `. NOTES: Only supports listeners of ` + "`" + `HTTPS` + "`" + ` protocol. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of the layer7 listener.`,
 				},
@@ -3976,6 +4801,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of the layer7 listener.`,
@@ -4033,6 +4862,10 @@ var (
 					Description: `(Optional) Tags of the GAAP proxy. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of the GAAP proxy.`,
 				},
@@ -4062,6 +4895,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of the GAAP proxy.`,
@@ -4124,10 +4961,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Tags of the GAAP realserver. ## Import GAAP realserver can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_gaap_realserver.foo rs-4ftghy6 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Tags of the GAAP realserver. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import GAAP realserver can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_gaap_realserver.foo rs-4ftghy6 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import GAAP realserver can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_gaap_realserver.foo rs-4ftghy6 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4154,10 +5000,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable",
-					Description: `(Optional) Indicates whether policy is enable, default value is ` + "`" + `true` + "`" + `. ## Import GAAP security policy can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_gaap_security_policy.foo pl-xxxx ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Indicates whether policy is enable, default value is ` + "`" + `true` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import GAAP security policy can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_gaap_security_policy.foo pl-xxxx ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import GAAP security policy can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_gaap_security_policy.foo pl-xxxx ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4196,10 +5051,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `(Optional, ForceNew) Protocol of the security policy rule. Default value is ` + "`" + `ALL` + "`" + `, the available values include ` + "`" + `TCP` + "`" + `, ` + "`" + `UDP` + "`" + ` and ` + "`" + `ALL` + "`" + `. ## Import GAAP security rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_gaap_security_rule.foo sr-xxxxxxxx ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional, ForceNew) Protocol of the security policy rule. Default value is ` + "`" + `ALL` + "`" + `, the available values include ` + "`" + `TCP` + "`" + `, ` + "`" + `UDP` + "`" + ` and ` + "`" + `ALL` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import GAAP security rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_gaap_security_rule.foo sr-xxxxxxxx ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import GAAP security rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_gaap_security_rule.foo sr-xxxxxxxx ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4230,6 +5094,10 @@ var (
 					Description: `(Optional, ForceNew) Virtual IP address, it must not be occupied and in this VPC network segment. If not set, it will be assigned after resource created automatically. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "address_ip",
 					Description: `EIP that is associated.`,
 				},
@@ -4251,6 +5119,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "address_ip",
 					Description: `EIP that is associated.`,
@@ -4293,10 +5165,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "havip_id",
-					Description: `(Required, ForceNew) Id of the attached HA VIP. ## Import HA VIP EIP attachment can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_ha_vip_eip_attachment.foo havip-kjqwe4ba#1.1.1.1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required, ForceNew) Id of the attached HA VIP. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import HA VIP EIP attachment can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_ha_vip_eip_attachment.foo havip-kjqwe4ba#1.1.1.1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import HA VIP EIP attachment can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_ha_vip_eip_attachment.foo havip-kjqwe4ba#1.1.1.1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4332,6 +5213,10 @@ var (
 				resource.Attribute{
 					Name:        "disable_security_service",
 					Description: `(Optional) Disable enhance service for security, it is enabled by default. When this options is set, security agent won't be installed.`,
+				},
+				resource.Attribute{
+					Name:        "force_delete",
+					Description: `(Optional) Indicate whether to delete instance directly or not. Default is false. If set true, the instance will be permanently deleted instead of staying in recycle bin. Note: only works for ` + "`" + `PREPAID` + "`" + ` instance.`,
 				},
 				resource.Attribute{
 					Name:        "hostname",
@@ -4447,7 +5332,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete_with_instance",
-					Description: `(Optional, ForceNew) Decides whether the disk is deleted with instance(only applied to cloud disk), default to true. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) Decides whether the disk is deleted with instance(only applied to ` + "`" + `CLOUD_BASIC` + "`" + `, ` + "`" + `CLOUD_SSD` + "`" + ` and ` + "`" + `CLOUD_PREMIUM` + "`" + ` disk with ` + "`" + `POSTPAID_BY_HOUR` + "`" + ` instance), default is true. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
@@ -4467,6 +5356,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the instance.`,
@@ -4507,10 +5400,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `(Optional, ForceNew) Specifys to which project the key pair belongs. ## Import Key pair can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_key_pair.foo skey-17634f05 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional, ForceNew) Specifys to which project the key pair belongs. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import Key pair can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_key_pair.foo skey-17634f05 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import Key pair can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_key_pair.foo skey-17634f05 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4535,7 +5437,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_id",
-					Description: `(Required, ForceNew) ID of the cluster. The ` + "`" + `auto_scaling_config` + "`" + ` object supports the following:`,
+					Description: `(Required, ForceNew) ID of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional, ForceNew) Labels of kubernetes AS Group created nodes. The ` + "`" + `auto_scaling_config` + "`" + ` object supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "configuration_name",
@@ -4687,10 +5593,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "weight",
-					Description: `(Required, ForceNew) Weight.`,
+					Description: `(Required, ForceNew) Weight. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4766,6 +5681,10 @@ var (
 				resource.Attribute{
 					Name:        "ignore_cluster_cidr_conflict",
 					Description: `(Optional, ForceNew) Indicates whether to ignore the cluster cidr conflict error. Default is false.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional, ForceNew) Labels of tke cluster nodes.`,
 				},
 				resource.Attribute{
 					Name:        "managed_cluster_internet_security_policies",
@@ -4960,6 +5879,10 @@ var (
 					Description: `(Optional, ForceNew) ase64-encoded User Data text, the length limit is 16KB. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "certification_authority",
 					Description: `The certificate used for access.`,
 				},
@@ -5014,6 +5937,10 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "certification_authority",
 					Description: `The certificate used for access.`,
 				},
@@ -5064,6 +5991,58 @@ var (
 				resource.Attribute{
 					Name:        "instance_state",
 					Description: `State of the cvm.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_kubernetes_cluster_attachment",
+			Category:         "Kubernetes",
+			ShortDescription: `Provide a resource to attach an existing cvm to kubernetes cluster.`,
+			Description:      ``,
+			Keywords: []string{
+				"kubernetes",
+				"cluster",
+				"attachment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required, ForceNew) ID of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Required, ForceNew) ID of the CVM instance, this cvm will reinstall the system.`,
+				},
+				resource.Attribute{
+					Name:        "key_ids",
+					Description: `(Optional, ForceNew) The key pair to use for the instance, it looks like skey-16jig7tx, it should be set if ` + "`" + `password` + "`" + ` not set.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional, ForceNew) Labels of tke attachment exits cvm.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional, ForceNew) Password to access, should be set if ` + "`" + `key_ids` + "`" + ` not set. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "security_groups",
+					Description: `A list of security group ids after attach to cluster.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "security_groups",
+					Description: `A list of security group ids after attach to cluster.`,
 				},
 			},
 		},
@@ -5180,6 +6159,10 @@ var (
 					Description: `(Optional, ForceNew) ase64-encoded User Data text, the length limit is 16KB. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "worker_instances_list",
 					Description: `An information list of kubernetes cluster 'WORKER'. Each element contains the following attributes:`,
 				},
@@ -5201,6 +6184,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "worker_instances_list",
 					Description: `An information list of kubernetes cluster 'WORKER'. Each element contains the following attributes:`,
@@ -5255,11 +6242,19 @@ var (
 					Description: `(Optional, ForceNew) The VPC ID of the LB, unspecified or 0 stands for CVM basic network. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "status",
 					Description: `The status of the LB.`,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "status",
 					Description: `The status of the LB.`,
@@ -5326,6 +6321,10 @@ var (
 					Description: `(Optional, ForceNew) ID of the VPC. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of the Mongodb instance.`,
 				},
@@ -5343,6 +6342,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of the Mongodb instance.`,
@@ -5430,6 +6433,10 @@ var (
 					Description: `(Optional, ForceNew) ID of the VPC. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of the Mongodb instance.`,
 				},
@@ -5448,6 +6455,10 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of the Mongodb instance.`,
 				},
@@ -5462,6 +6473,386 @@ var (
 				resource.Attribute{
 					Name:        "vport",
 					Description: `IP port of the Mongodb instance. ## Import Mongodb sharding instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_mongodb_sharding_instance.mongodb cmgo-41s6jwy4 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_monitor_binding_object",
+			Category:         "Monitor",
+			ShortDescription: `Provides a resource for bind objects to a policy group resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"monitor",
+				"binding",
+				"object",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dimensions",
+					Description: `(Required, ForceNew) A list objects. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Required, ForceNew) Policy group id for binding objects. The ` + "`" + `dimensions` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "dimensions_json",
+					Description: `(Required, ForceNew) Represents a collection of dimensions of an object instance, json format.eg:'{"unInstanceId":"ins-ot3cq4bi"}'. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_monitor_binding_receiver",
+			Category:         "Monitor",
+			ShortDescription: `Provides a resource for bind receivers to a policy group resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"monitor",
+				"binding",
+				"receiver",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Required, ForceNew) Policy group id for binding receivers.`,
+				},
+				resource.Attribute{
+					Name:        "receivers",
+					Description: `(Optional) A list of receivers(will overwrite the configuration of the server or other resources). Each element contains the following attributes: The ` + "`" + `receivers` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "notify_way",
+					Description: `(Required) Method of warning notification.Optional ` + "`" + `CALL` + "`" + `,` + "`" + `EMAIL` + "`" + `,` + "`" + `SITE` + "`" + `,` + "`" + `SMS` + "`" + `,` + "`" + `WECHAT` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "receiver_type",
+					Description: `(Required) Receive type. Optional ` + "`" + `group` + "`" + `,` + "`" + `user` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "end_time",
+					Description: `(Optional) End of alarm period. Meaning with ` + "`" + `start_time` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "receive_language",
+					Description: `(Optional) Alert sending language. Optional ` + "`" + `en-US` + "`" + `,` + "`" + `zh-CN` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "receiver_group_list",
+					Description: `(Optional) Alarm receive group id list.`,
+				},
+				resource.Attribute{
+					Name:        "receiver_user_list",
+					Description: `(Optional) Alarm receiver id list.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Optional) Alarm period start time.Range [0,86399], which removes the date after it is converted to Beijing time as a Unix timestamp, for example 7200 means '10:0:0'. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_monitor_policy_group",
+			Category:         "Monitor",
+			ShortDescription: `Provides a policy group resource for monitor.`,
+			Description:      ``,
+			Keywords: []string{
+				"monitor",
+				"policy",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group_name",
+					Description: `(Required) Policy group name, length should between 1 and 20.`,
+				},
+				resource.Attribute{
+					Name:        "policy_view_name",
+					Description: `(Required, ForceNew) Policy view name, eg:` + "`" + `cvm_device` + "`" + `,` + "`" + `BANDWIDTHPACKAGE` + "`" + `, refer to ` + "`" + `data.tencentcloud_monitor_policy_conditions(policy_view_name)` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `(Required, ForceNew) Policy group's remark information.`,
+				},
+				resource.Attribute{
+					Name:        "conditions",
+					Description: `(Optional) A list of threshold rules. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "event_conditions",
+					Description: `(Optional) A list of event rules. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "is_union_rule",
+					Description: `(Optional) The and or relation of indicator alarm rule, 0 represents or rule (if any rule is met, the alarm will be raised), 1 represents and rule (if all rules are met, the alarm will be raised).The default is 0.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Optional, ForceNew) The project id to which the policy group belongs, default is 0. The ` + "`" + `conditions` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "alarm_notify_period",
+					Description: `(Required) Alarm sending cycle per second. <0 does not fire, 0 only fires once, and >0 fires every triggerTime second.`,
+				},
+				resource.Attribute{
+					Name:        "alarm_notify_type",
+					Description: `(Required) Alarm sending convergence type. 0 continuous alarm, 1 index alarm.`,
+				},
+				resource.Attribute{
+					Name:        "metric_id",
+					Description: `(Required) Id of the metric, refer to ` + "`" + `data.tencentcloud_monitor_policy_conditions(metric_id)` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "calc_period",
+					Description: `(Optional) Data aggregation cycle (unit of second), if the metric has a default value can not be filled, refer to ` + "`" + `data.tencentcloud_monitor_policy_conditions(period_keys)` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "calc_type",
+					Description: `(Optional) Compare type, 1 means more than, 2 means greater than or equal, 3 means less than, 4 means less than or equal to, 5 means equal, 6 means not equal, 7 means days rose, 8 means days fell, 9 means weeks rose, 10 means weeks fell, 11 means period rise, 12 means period fell, refer to ` + "`" + `data.tencentcloud_monitor_policy_conditions(calc_type_keys)` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "calc_value",
+					Description: `(Optional) Threshold value, refer to ` + "`" + `data.tencentcloud_monitor_policy_conditions(calc_value_`,
+				},
+				resource.Attribute{
+					Name:        "continue_period",
+					Description: `(Optional) The rule triggers an alert that lasts for several detection cycles, refer to ` + "`" + `data.tencentcloud_monitor_policy_conditions(period_num_keys)` + "`" + `. The ` + "`" + `event_conditions` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "alarm_notify_period",
+					Description: `(Required) Alarm sending cycle per second.<0 does not fire, 0 only fires once, and >0 fires every triggerTime second.`,
+				},
+				resource.Attribute{
+					Name:        "alarm_notify_type",
+					Description: `(Required) Alarm sending convergence type. 0 continuous alarm, 1 index alarm.`,
+				},
+				resource.Attribute{
+					Name:        "event_id",
+					Description: `(Required) The id of this event metric, refer to ` + "`" + `data.tencentcloud_monitor_policy_conditions(event_id). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "binding_objects",
+					Description: `A list binding objects(list only those in the ` + "`" + `provider.region` + "`" + `). Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "dimensions_json",
+					Description: `Represents a collection of dimensions of an object instance, json format.`,
+				},
+				resource.Attribute{
+					Name:        "is_shielded",
+					Description: `Whether the object is shielded or not, 0 means unshielded and 1 means shielded.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region where the object is located.`,
+				},
+				resource.Attribute{
+					Name:        "unique_id",
+					Description: `Object unique id.`,
+				},
+				resource.Attribute{
+					Name:        "dimension_group",
+					Description: `A list of dimensions for this policy group.`,
+				},
+				resource.Attribute{
+					Name:        "last_edit_uin",
+					Description: `Recently edited user uin.`,
+				},
+				resource.Attribute{
+					Name:        "receivers",
+					Description: `A list of receivers. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "end_time",
+					Description: `End of alarm period. Meaning with ` + "`" + `start_time` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "need_send_notice",
+					Description: `Do need a telephone alarm contact prompt.You don't need 0, you need 1.`,
+				},
+				resource.Attribute{
+					Name:        "notify_way",
+					Description: `Method of warning notification.Optional "SMS", "SITE", "EMAIL", "CALL", "WECHAT".`,
+				},
+				resource.Attribute{
+					Name:        "person_interval",
+					Description: `Telephone warning to individual interval (seconds).`,
+				},
+				resource.Attribute{
+					Name:        "receive_language",
+					Description: `Alert sending language.`,
+				},
+				resource.Attribute{
+					Name:        "receiver_group_list",
+					Description: `Alarm receive group id list.`,
+				},
+				resource.Attribute{
+					Name:        "receiver_type",
+					Description: `Receive type, 'group' (receiving group) or 'user' (receiver).`,
+				},
+				resource.Attribute{
+					Name:        "receiver_user_list",
+					Description: `Alarm receiver id list.`,
+				},
+				resource.Attribute{
+					Name:        "recover_notify",
+					Description: `Restore notification mode. Optional "SMS".`,
+				},
+				resource.Attribute{
+					Name:        "round_interval",
+					Description: `Telephone alarm interval per round (seconds).`,
+				},
+				resource.Attribute{
+					Name:        "round_number",
+					Description: `Telephone alarm number.`,
+				},
+				resource.Attribute{
+					Name:        "send_for",
+					Description: `Telephone warning time.Option "OCCUR","RECOVER".`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `Alarm period start time.Range [0,86400], which removes the date after it is converted to Beijing time as a Unix timestamp, for example 7200 means '10:0:0'.`,
+				},
+				resource.Attribute{
+					Name:        "uid_list",
+					Description: `The phone alerts the receiver uid.`,
+				},
+				resource.Attribute{
+					Name:        "support_regions",
+					Description: `Support regions this policy group.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The policy group update time. ## Import Policy group instance can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_monitor_policy_group.group group-id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "binding_objects",
+					Description: `A list binding objects(list only those in the ` + "`" + `provider.region` + "`" + `). Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "dimensions_json",
+					Description: `Represents a collection of dimensions of an object instance, json format.`,
+				},
+				resource.Attribute{
+					Name:        "is_shielded",
+					Description: `Whether the object is shielded or not, 0 means unshielded and 1 means shielded.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region where the object is located.`,
+				},
+				resource.Attribute{
+					Name:        "unique_id",
+					Description: `Object unique id.`,
+				},
+				resource.Attribute{
+					Name:        "dimension_group",
+					Description: `A list of dimensions for this policy group.`,
+				},
+				resource.Attribute{
+					Name:        "last_edit_uin",
+					Description: `Recently edited user uin.`,
+				},
+				resource.Attribute{
+					Name:        "receivers",
+					Description: `A list of receivers. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "end_time",
+					Description: `End of alarm period. Meaning with ` + "`" + `start_time` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "need_send_notice",
+					Description: `Do need a telephone alarm contact prompt.You don't need 0, you need 1.`,
+				},
+				resource.Attribute{
+					Name:        "notify_way",
+					Description: `Method of warning notification.Optional "SMS", "SITE", "EMAIL", "CALL", "WECHAT".`,
+				},
+				resource.Attribute{
+					Name:        "person_interval",
+					Description: `Telephone warning to individual interval (seconds).`,
+				},
+				resource.Attribute{
+					Name:        "receive_language",
+					Description: `Alert sending language.`,
+				},
+				resource.Attribute{
+					Name:        "receiver_group_list",
+					Description: `Alarm receive group id list.`,
+				},
+				resource.Attribute{
+					Name:        "receiver_type",
+					Description: `Receive type, 'group' (receiving group) or 'user' (receiver).`,
+				},
+				resource.Attribute{
+					Name:        "receiver_user_list",
+					Description: `Alarm receiver id list.`,
+				},
+				resource.Attribute{
+					Name:        "recover_notify",
+					Description: `Restore notification mode. Optional "SMS".`,
+				},
+				resource.Attribute{
+					Name:        "round_interval",
+					Description: `Telephone alarm interval per round (seconds).`,
+				},
+				resource.Attribute{
+					Name:        "round_number",
+					Description: `Telephone alarm number.`,
+				},
+				resource.Attribute{
+					Name:        "send_for",
+					Description: `Telephone warning time.Option "OCCUR","RECOVER".`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `Alarm period start time.Range [0,86400], which removes the date after it is converted to Beijing time as a Unix timestamp, for example 7200 means '10:0:0'.`,
+				},
+				resource.Attribute{
+					Name:        "uid_list",
+					Description: `The phone alerts the receiver uid.`,
+				},
+				resource.Attribute{
+					Name:        "support_regions",
+					Description: `Support regions this policy group.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The policy group update time. ## Import Policy group instance can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_monitor_policy_group.group group-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5492,8 +6883,21 @@ var (
 					Name:        "description",
 					Description: `(Optional) Database description.`,
 				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `(Optional, ForceNew) Account host, default is ` + "`" + `%` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5520,11 +6924,24 @@ var (
 					Description: `(Required, ForceNew) Instance ID.`,
 				},
 				resource.Attribute{
+					Name:        "account_host",
+					Description: `(Optional, ForceNew) Account host, default is ` + "`" + `%` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "privileges",
-					Description: `(Optional) Database permissions. Available values for Privileges: "SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "DROP", "REFERENCES", "INDEX", "ALTER", "CREATE TEMPORARY TABLES", "LOCK TABLES","EXECUTE", "CREATE VIEW", "SHOW VIEW", "CREATE ROUTINE", "ALTER ROUTINE", "EVENT", and "TRIGGER".`,
+					Description: `(Optional) Database permissions. Available values for Privileges: "SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "DROP", "REFERENCES", "INDEX", "ALTER", "CREATE TEMPORARY TABLES", "LOCK TABLES","EXECUTE", "CREATE VIEW", "SHOW VIEW", "CREATE ROUTINE", "ALTER ROUTINE", "EVENT", and "TRIGGER". ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5555,11 +6972,19 @@ var (
 					Description: `(Optional) Instance backup retention days. Valid values: [7-730]. And default value is 7. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "binlog_period",
 					Description: `Retention period for binlog in days.`,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "binlog_period",
 					Description: `Retention period for binlog in days.`,
@@ -5595,11 +7020,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_renew_flag",
-					Description: `(Optional) Auto renew flag. NOTES: Only supported prepay instance.`,
+					Description: `(Optional) Auto renew flag. NOTES: Only supported prepaid instance.`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Optional, ForceNew) Indicates which availability zone will be used.`,
+				},
+				resource.Attribute{
+					Name:        "charge_type",
+					Description: `(Optional, ForceNew) Pay type of instance, valid values are ` + "`" + `PREPAID` + "`" + `, ` + "`" + `POSTPAID` + "`" + `. Default is ` + "`" + `POSTPAID` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "engine_version",
@@ -5608,6 +7037,10 @@ var (
 				resource.Attribute{
 					Name:        "first_slave_zone",
 					Description: `(Optional, ForceNew) Zone information about first slave instance.`,
+				},
+				resource.Attribute{
+					Name:        "force_delete",
+					Description: `(Optional) Indicate whether to delete instance directly or not. Default is false. If set true, the instance will be deleted instead of staying recycle bin. Note: only works for ` + "`" + `PREPAID` + "`" + ` instance. When the main mysql instance set true, this para of the readonly mysql instance will not take effect.`,
 				},
 				resource.Attribute{
 					Name:        "internet_service",
@@ -5623,11 +7056,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pay_type",
-					Description: `(Optional, ForceNew) Pay type of instance, 0: prepay, 1: postpay. NOTES: Only supported prepay instance.`,
+					Description: `(Optional, ForceNew,`,
 				},
 				resource.Attribute{
 					Name:        "period",
-					Description: `(Optional) Period of instance. NOTES: Only supported prepay instance.`,
+					Description: `(Optional,`,
+				},
+				resource.Attribute{
+					Name:        "prepaid_period",
+					Description: `(Optional) Period of instance. NOTES: Only supported prepaid instance.`,
 				},
 				resource.Attribute{
 					Name:        "project_id",
@@ -5662,6 +7099,10 @@ var (
 					Description: `(Optional) ID of VPC, which can be modified once every 24 hours and can't be removed. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "gtid",
 					Description: `Indicates whether GTID is enable. 0 - Not enabled; 1 - Enabled.`,
 				},
@@ -5691,6 +7132,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "gtid",
 					Description: `Indicates whether GTID is enable. 0 - Not enabled; 1 - Enabled.`,
@@ -5745,6 +7190,10 @@ var (
 					Description: `(Required, ForceNew) Instance ID.`,
 				},
 				resource.Attribute{
+					Name:        "account_host",
+					Description: `(Optional, ForceNew) Account host, default is ` + "`" + `%` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "column",
 					Description: `(Optional) Column privileges list.`,
 				},
@@ -5790,10 +7239,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "table_name",
-					Description: `(Required) Table name.`,
+					Description: `(Required) Table name. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5825,7 +7283,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_renew_flag",
-					Description: `(Optional) Auto renew flag. NOTES: Only supported prepay instance.`,
+					Description: `(Optional) Auto renew flag. NOTES: Only supported prepaid instance.`,
+				},
+				resource.Attribute{
+					Name:        "charge_type",
+					Description: `(Optional, ForceNew) Pay type of instance, valid values are ` + "`" + `PREPAID` + "`" + `, ` + "`" + `POSTPAID` + "`" + `. Default is ` + "`" + `POSTPAID` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "force_delete",
+					Description: `(Optional) Indicate whether to delete instance directly or not. Default is false. If set true, the instance will be deleted instead of staying recycle bin. Note: only works for ` + "`" + `PREPAID` + "`" + ` instance. When the main mysql instance set true, this para of the readonly mysql instance will not take effect.`,
 				},
 				resource.Attribute{
 					Name:        "intranet_port",
@@ -5833,11 +7299,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pay_type",
-					Description: `(Optional, ForceNew) Pay type of instance, 0: prepay, 1: postpay. NOTES: Only supported prepay instance.`,
+					Description: `(Optional, ForceNew,`,
 				},
 				resource.Attribute{
 					Name:        "period",
-					Description: `(Optional) Period of instance. NOTES: Only supported prepay instance.`,
+					Description: `(Optional,`,
+				},
+				resource.Attribute{
+					Name:        "prepaid_period",
+					Description: `(Optional) Period of instance. NOTES: Only supported prepaid instance.`,
 				},
 				resource.Attribute{
 					Name:        "security_groups",
@@ -5854,6 +7324,10 @@ var (
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Optional) ID of VPC, which can be modified once every 24 hours and can't be removed. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 				resource.Attribute{
 					Name:        "intranet_ip",
@@ -5873,6 +7347,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "intranet_ip",
 					Description: `instance intranet IP.`,
@@ -5924,11 +7402,19 @@ var (
 					Description: `(Optional) The upper limit of concurrent connection of NAT gateway, the available values include: 1000000,3000000,10000000. Default is 1000000. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "created_time",
 					Description: `Create time of the NAT gateway. ## Import NAT gateway can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_nat_gateway.foo nat-1asg3t63 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "created_time",
 					Description: `Create time of the NAT gateway. ## Import NAT gateway can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_nat_gateway.foo nat-1asg3t63 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -5956,6 +7442,10 @@ var (
 					Description: `(Required, ForceNew) Type of the placement group, the available values include ` + "`" + `HOST` + "`" + `,` + "`" + `SW` + "`" + ` and ` + "`" + `RACK` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of the placement group.`,
 				},
@@ -5969,6 +7459,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of the placement group.`,
@@ -6005,10 +7499,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "redis_id",
-					Description: `(Required, ForceNew) ID of a Redis instance to which the policy will be applied. ## Import Redis backup config can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import tencentcloud_redis_backup_config.redisconfig redis-id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required, ForceNew) ID of a Redis instance to which the policy will be applied. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import Redis backup config can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_redis_backup_config.redisconfig redis-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import Redis backup config can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_redis_backup_config.redisconfig redis-id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6034,6 +7537,14 @@ var (
 					Description: `(Required) Password for a Redis user, which should be 8 to 16 characters.`,
 				},
 				resource.Attribute{
+					Name:        "charge_type",
+					Description: `(Optional, ForceNew) The charge type of instance. Valid values are ` + "`" + `PREPAID` + "`" + ` and ` + "`" + `POSTPAID` + "`" + `. Default value is ` + "`" + `POSTPAID` + "`" + `. Note: TencentCloud International only supports ` + "`" + `POSTPAID` + "`" + `. Caution that update operation on this field will delete old instances and create new with new charge type.`,
+				},
+				resource.Attribute{
+					Name:        "force_delete",
+					Description: `(Optional) Indicate whether to delete Redis instance directly or not. Default is false. If set true, the instance will be deleted instead of staying recycle bin. Note: only works for PREPAID instance.`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) Instance name.`,
 				},
@@ -6042,8 +7553,20 @@ var (
 					Description: `(Optional, ForceNew) The port used to access a redis instance. The default value is 6379. And this value can't be changed after creation, or the Redis instance will be recreated.`,
 				},
 				resource.Attribute{
+					Name:        "prepaid_period",
+					Description: `(Optional) The tenancy (time unit is month) of the prepaid instance, NOTE: it only works when charge_type is set to ` + "`" + `PREPAID` + "`" + `. Valid values are 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36.`,
+				},
+				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Optional) Specifies which project the instance should belong to.`,
+				},
+				resource.Attribute{
+					Name:        "redis_replicas_num",
+					Description: `(Optional, ForceNew) The number of instance copies. This is not required for standalone and master slave versions.`,
+				},
+				resource.Attribute{
+					Name:        "redis_shard_num",
+					Description: `(Optional, ForceNew) The number of instance shard. This is not required for standalone and master slave versions.`,
 				},
 				resource.Attribute{
 					Name:        "security_groups",
@@ -6058,12 +7581,20 @@ var (
 					Description: `(Optional) Instance tags.`,
 				},
 				resource.Attribute{
+					Name:        "type_id",
+					Description: `(Optional, ForceNew) Instance type. Refer to ` + "`" + `data.tencentcloud_redis_zone_config.list.type_id` + "`" + ` get available values.`,
+				},
+				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional, ForceNew) Instance type. Available values: master_slave_redis.`,
+					Description: `(Optional, ForceNew,`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Optional, ForceNew) ID of the vpc with which the instance is to be associated. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
@@ -6079,6 +7610,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time when the instance was created.`,
@@ -6114,6 +7649,10 @@ var (
 					Description: `(Required) Number of reserved instances to be purchased. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "end_time",
 					Description: `Expiry time of the RI.`,
 				},
@@ -6127,6 +7666,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "end_time",
 					Description: `Expiry time of the RI.`,
@@ -6171,10 +7714,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required, ForceNew) The VPC ID.`,
+					Description: `(Required, ForceNew) The VPC ID. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6201,6 +7753,10 @@ var (
 					Description: `(Optional) The tags of routing table. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of the routing table.`,
 				},
@@ -6218,6 +7774,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of the routing table.`,
@@ -6267,10 +7827,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional, ForceNew) Description of the routing table entry.`,
+					Description: `(Optional, ForceNew) Description of the routing table entry. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6295,7 +7864,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "runtime",
-					Description: `(Required) Runtime of the SCF function, only supports ` + "`" + `Python2.7` + "`" + `, ` + "`" + `Python3.6` + "`" + `, ` + "`" + `Nodejs6.10` + "`" + `, ` + "`" + `PHP5` + "`" + `, ` + "`" + `PHP7` + "`" + `, ` + "`" + `Golang1` + "`" + `, and ` + "`" + `Java8` + "`" + `.`,
+					Description: `(Required) Runtime of the SCF function, only supports ` + "`" + `Python2.7` + "`" + `, ` + "`" + `Python3.6` + "`" + `, ` + "`" + `Nodejs6.10` + "`" + `, ` + "`" + `Nodejs8.9` + "`" + `, ` + "`" + `Nodejs10.15` + "`" + `, ` + "`" + `PHP5` + "`" + `, ` + "`" + `PHP7` + "`" + `, ` + "`" + `Golang1` + "`" + `, and ` + "`" + `Java8` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "cls_logset_id",
@@ -6351,7 +7920,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "timeout",
-					Description: `(Optional) Timeout of the SCF function, unit is second. Default ` + "`" + `3` + "`" + `. Available value is 1-300.`,
+					Description: `(Optional) Timeout of the SCF function, unit is second. Default ` + "`" + `3` + "`" + `. Available value is 1-900.`,
 				},
 				resource.Attribute{
 					Name:        "triggers",
@@ -6363,7 +7932,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zip_file",
-					Description: `(Optional) Zip file of the SCF function, content is encoded by base64, conflict with ` + "`" + `cos_bucket_name` + "`" + `, ` + "`" + `cos_object_name` + "`" + `, ` + "`" + `cos_bucket_region` + "`" + `. The ` + "`" + `triggers` + "`" + ` object supports the following:`,
+					Description: `(Optional) Zip file of the SCF function, conflict with ` + "`" + `cos_bucket_name` + "`" + `, ` + "`" + `cos_object_name` + "`" + `, ` + "`" + `cos_bucket_region` + "`" + `. The ` + "`" + `triggers` + "`" + ` object supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6380,6 +7949,10 @@ var (
 				resource.Attribute{
 					Name:        "cos_region",
 					Description: `(Optional) Region of cos bucket. if ` + "`" + `type` + "`" + ` is ` + "`" + `cos` + "`" + `, ` + "`" + `cos_region` + "`" + ` is required. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 				resource.Attribute{
 					Name:        "code_error",
@@ -6463,6 +8036,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "code_error",
 					Description: `SCF function code error message.`,
@@ -6568,6 +8145,10 @@ var (
 					Description: `(Optional) Description of the SCF namespace. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `SCF namespace creation time.`,
 				},
@@ -6581,6 +8162,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `SCF namespace creation time.`,
@@ -6621,10 +8206,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Tags of the security group. ## Import Security group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_security_group.sglab sg-ey3wmiz1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Tags of the security group. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import Security group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_security_group.sglab sg-ey3wmiz1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import Security group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_security_group.sglab sg-ey3wmiz1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6650,10 +8244,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ingress",
-					Description: `(Optional) Ingress rules set. A rule must match the following format: [action]#[cidr_ip]#[port]#[protocol]. The available value of 'action' is ` + "`" + `ACCEPT` + "`" + ` and ` + "`" + `DROP` + "`" + `. The 'cidr_ip' must be an IP address network or segment. The 'port' valid format is ` + "`" + `80` + "`" + `, ` + "`" + `80,443` + "`" + `, ` + "`" + `80-90` + "`" + ` or ` + "`" + `ALL` + "`" + `. The available value of 'protocol' is ` + "`" + `TCP` + "`" + `, ` + "`" + `UDP` + "`" + `, ` + "`" + `ICMP` + "`" + ` and ` + "`" + `ALL` + "`" + `. When 'protocol' is ` + "`" + `ICMP` + "`" + ` or ` + "`" + `ALL` + "`" + `, the 'port' must be ` + "`" + `ALL` + "`" + `. ## Import Security group lite rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_security_group_lite_rule.foo sg-ey3wmiz1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Ingress rules set. A rule must match the following format: [action]#[cidr_ip]#[port]#[protocol]. The available value of 'action' is ` + "`" + `ACCEPT` + "`" + ` and ` + "`" + `DROP` + "`" + `. The 'cidr_ip' must be an IP address network or segment. The 'port' valid format is ` + "`" + `80` + "`" + `, ` + "`" + `80,443` + "`" + `, ` + "`" + `80-90` + "`" + ` or ` + "`" + `ALL` + "`" + `. The available value of 'protocol' is ` + "`" + `TCP` + "`" + `, ` + "`" + `UDP` + "`" + `, ` + "`" + `ICMP` + "`" + ` and ` + "`" + `ALL` + "`" + `. When 'protocol' is ` + "`" + `ICMP` + "`" + ` or ` + "`" + `ALL` + "`" + `, the 'port' must be ` + "`" + `ALL` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import Security group lite rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_security_group_lite_rule.foo sg-ey3wmiz1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import Security group lite rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_security_group_lite_rule.foo sg-ey3wmiz1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6698,10 +8301,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "source_sgid",
-					Description: `(Optional, ForceNew) ID of the nested security group, and conflict with ` + "`" + `cidr_ip` + "`" + `.`,
+					Description: `(Optional, ForceNew) ID of the nested security group, and conflict with ` + "`" + `cidr_ip` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6736,6 +8348,10 @@ var (
 					Description: `(Optional, ForceNew) Project ID of the SSL certificate. Default is ` + "`" + `0` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "begin_time",
 					Description: `Beginning time of the SSL certificate.`,
 				},
@@ -6765,6 +8381,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "begin_time",
 					Description: `Beginning time of the SSL certificate.`,
@@ -6835,6 +8455,10 @@ var (
 					Description: `(Optional) Tags of the subnet. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "available_ip_count",
 					Description: `The number of available IPs.`,
 				},
@@ -6848,6 +8472,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "available_ip_count",
 					Description: `The number of available IPs.`,
@@ -6864,307 +8492,343 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "tencentcloud_tcaplus_application",
-			Category:         "Tcaplus",
-			ShortDescription: `Use this resource to create tcaplus application`,
+			Type:             "tencentcloud_tcaplus_cluster",
+			Category:         "TcaplusDB",
+			ShortDescription: `Use this resource to create TcaplusDB cluster.`,
 			Description:      ``,
 			Keywords: []string{
+				"tcaplusdb",
 				"tcaplus",
-				"application",
+				"cluster",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "app_name",
-					Description: `(Required) Name of the tcapplus application. length should between 1 and 30.`,
+					Name:        "cluster_name",
+					Description: `(Required) Name of the TcaplusDB cluster. Name length should be between 1 and 30.`,
 				},
 				resource.Attribute{
 					Name:        "idl_type",
-					Description: `(Required, ForceNew) Idl type of the tcapplus application.Valid values are PROTO,TDR,MIX.`,
+					Description: `(Required, ForceNew) IDL type of the TcaplusDB cluster. Valid values are PROTO and TDR.`,
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Required) Password of the tcapplus application. length should between 12 and 16,a-z and 0-9 and A-Z must contain.`,
+					Description: `(Required) Password of the TcaplusDB cluster. Password length should be between 12 and 16. The password must be a`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `(Required, ForceNew) Subnet id of the tcapplus application.`,
+					Description: `(Required, ForceNew) Subnet id of the TcaplusDB cluster.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required, ForceNew) VPC id of the tcapplus application.`,
+					Description: `(Required, ForceNew) VPC id of the TcaplusDB cluster.`,
 				},
 				resource.Attribute{
 					Name:        "old_password_expire_last",
-					Description: `(Optional) Old password expected expiration seconds after change password,must >= 300. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Expiration time of old password after password update, unit: second. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 				resource.Attribute{
 					Name:        "api_access_id",
-					Description: `Access id of the tcapplus application.For TcaplusDB SDK connect.`,
+					Description: `Access id of the TcaplusDB cluster.For TcaplusDB SDK connect.`,
 				},
 				resource.Attribute{
 					Name:        "api_access_ip",
-					Description: `Access ip of the tcapplus application.For TcaplusDB SDK connect.`,
+					Description: `Access ip of the TcaplusDB cluster.For TcaplusDB SDK connect.`,
 				},
 				resource.Attribute{
 					Name:        "api_access_port",
-					Description: `Access port of the tcapplus application.For TcaplusDB SDK connect.`,
+					Description: `Access port of the TcaplusDB cluster.For TcaplusDB SDK connect.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
-					Description: `Create time of the tcapplus application.`,
+					Description: `Create time of the TcaplusDB cluster.`,
 				},
 				resource.Attribute{
 					Name:        "network_type",
-					Description: `Network type of the tcapplus application.`,
+					Description: `Network type of the TcaplusDB cluster.`,
 				},
 				resource.Attribute{
 					Name:        "old_password_expire_time",
-					Description: `This field will display the old password expiration time,if password_status is ` + "`" + `unmodifiable` + "`" + ` means the old password has not yet expired, otherwise ` + "`" + `-` + "`" + `.`,
+					Description: `Expiration time of the old password. If ` + "`" + `password_status` + "`" + ` is ` + "`" + `unmodifiable` + "`" + `, it means the old password has not yet expired.`,
 				},
 				resource.Attribute{
 					Name:        "password_status",
-					Description: `Password status of the tcapplus application.` + "`" + `unmodifiable` + "`" + ` means:can not change password now,` + "`" + `modifiable` + "`" + ` means:can change password now. ## Import tcaplus application can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_tcaplus_application.test 26655801 ` + "`" + `` + "`" + `` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Password status of the TcaplusDB cluster. Valid values: ` + "`" + `unmodifiable` + "`" + `, which means the password can not be changed in this moment; ` + "`" + `modifiable` + "`" + `, which means the password can be changed in this moment. ## Import tcaplus cluster can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_tcaplus_cluster.test 26655801 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "api_access_id",
-					Description: `Access id of the tcapplus application.For TcaplusDB SDK connect.`,
+					Description: `Access id of the TcaplusDB cluster.For TcaplusDB SDK connect.`,
 				},
 				resource.Attribute{
 					Name:        "api_access_ip",
-					Description: `Access ip of the tcapplus application.For TcaplusDB SDK connect.`,
+					Description: `Access ip of the TcaplusDB cluster.For TcaplusDB SDK connect.`,
 				},
 				resource.Attribute{
 					Name:        "api_access_port",
-					Description: `Access port of the tcapplus application.For TcaplusDB SDK connect.`,
+					Description: `Access port of the TcaplusDB cluster.For TcaplusDB SDK connect.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
-					Description: `Create time of the tcapplus application.`,
+					Description: `Create time of the TcaplusDB cluster.`,
 				},
 				resource.Attribute{
 					Name:        "network_type",
-					Description: `Network type of the tcapplus application.`,
+					Description: `Network type of the TcaplusDB cluster.`,
 				},
 				resource.Attribute{
 					Name:        "old_password_expire_time",
-					Description: `This field will display the old password expiration time,if password_status is ` + "`" + `unmodifiable` + "`" + ` means the old password has not yet expired, otherwise ` + "`" + `-` + "`" + `.`,
+					Description: `Expiration time of the old password. If ` + "`" + `password_status` + "`" + ` is ` + "`" + `unmodifiable` + "`" + `, it means the old password has not yet expired.`,
 				},
 				resource.Attribute{
 					Name:        "password_status",
-					Description: `Password status of the tcapplus application.` + "`" + `unmodifiable` + "`" + ` means:can not change password now,` + "`" + `modifiable` + "`" + ` means:can change password now. ## Import tcaplus application can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_tcaplus_application.test 26655801 ` + "`" + `` + "`" + `` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Password status of the TcaplusDB cluster. Valid values: ` + "`" + `unmodifiable` + "`" + `, which means the password can not be changed in this moment; ` + "`" + `modifiable` + "`" + `, which means the password can be changed in this moment. ## Import tcaplus cluster can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_tcaplus_cluster.test 26655801 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "tencentcloud_tcaplus_idl",
-			Category:         "Tcaplus",
-			ShortDescription: `Use this resource to create tcaplus idl file`,
+			Category:         "TcaplusDB",
+			ShortDescription: `Use this resource to create TcaplusDB IDL file.`,
 			Description:      ``,
 			Keywords: []string{
+				"tcaplusdb",
 				"tcaplus",
 				"idl",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "app_id",
-					Description: `(Required, ForceNew) Application id of the idl belongs..`,
+					Name:        "cluster_id",
+					Description: `(Required, ForceNew) Id of the TcaplusDB cluster to which the table group belongs.`,
 				},
 				resource.Attribute{
 					Name:        "file_content",
-					Description: `(Required, ForceNew) Idl file content.`,
+					Description: `(Required, ForceNew) IDL file content of the TcaplusDB table.`,
 				},
 				resource.Attribute{
 					Name:        "file_ext_type",
-					Description: `(Required, ForceNew) File ext type of this idl file. if ` + "`" + `file_type` + "`" + ` is PROTO ` + "`" + `file_ext_type` + "`" + ` must be 'proto',if ` + "`" + `file_type` + "`" + ` is TDR ` + "`" + `file_ext_type` + "`" + ` must be 'xml',if ` + "`" + `file_type` + "`" + ` is MIX ` + "`" + `file_ext_type` + "`" + ` must be 'xml' or 'proto'.`,
+					Description: `(Required, ForceNew) File ext type of the IDL file. If ` + "`" + `file_type` + "`" + ` is ` + "`" + `PROTO` + "`" + `, ` + "`" + `file_ext_type` + "`" + ` must be 'proto'; If ` + "`" + `file_type` + "`" + ` is ` + "`" + `TDR` + "`" + `, ` + "`" + `file_ext_type` + "`" + ` must be 'xml'.`,
 				},
 				resource.Attribute{
 					Name:        "file_name",
-					Description: `(Required, ForceNew) Name of this idl file.`,
+					Description: `(Required, ForceNew) Name of the IDL file.`,
 				},
 				resource.Attribute{
 					Name:        "file_type",
-					Description: `(Required, ForceNew) Type of this idl file, Valid values are PROTO,TDR,MIX. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required, ForceNew) Type of the IDL file. Valid values are PROTO and TDR.`,
+				},
+				resource.Attribute{
+					Name:        "tablegroup_id",
+					Description: `(Required, ForceNew) Id of the table group to which the IDL file belongs. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 				resource.Attribute{
 					Name:        "table_infos",
-					Description: `Table infos in this idl.`,
+					Description: `Table info of the IDL.`,
 				},
 				resource.Attribute{
 					Name:        "error",
-					Description: `Show if this table error.`,
+					Description: `Error messages for creating IDL file.`,
 				},
 				resource.Attribute{
 					Name:        "index_key_set",
-					Description: `Index key set of this table.`,
+					Description: `Index key set of the TcaplusDB table.`,
 				},
 				resource.Attribute{
 					Name:        "key_fields",
-					Description: `Key fields of this table.`,
+					Description: `Primary key fields of the TcaplusDB table.`,
 				},
 				resource.Attribute{
 					Name:        "sum_key_field_size",
-					Description: `Key fields size of this table.`,
+					Description: `Total size of primary key field of the TcaplusDB table.`,
 				},
 				resource.Attribute{
 					Name:        "sum_value_field_size",
-					Description: `Value fields size of this table.`,
+					Description: `Total size of non-primary key fields of the TcaplusDB table.`,
 				},
 				resource.Attribute{
 					Name:        "table_name",
-					Description: `Name of this table.`,
+					Description: `Name of the TcaplusDB table.`,
 				},
 				resource.Attribute{
 					Name:        "value_fields",
-					Description: `Value fields of this table.`,
+					Description: `Non-primary key fields of the TcaplusDB table.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "table_infos",
-					Description: `Table infos in this idl.`,
+					Description: `Table info of the IDL.`,
 				},
 				resource.Attribute{
 					Name:        "error",
-					Description: `Show if this table error.`,
+					Description: `Error messages for creating IDL file.`,
 				},
 				resource.Attribute{
 					Name:        "index_key_set",
-					Description: `Index key set of this table.`,
+					Description: `Index key set of the TcaplusDB table.`,
 				},
 				resource.Attribute{
 					Name:        "key_fields",
-					Description: `Key fields of this table.`,
+					Description: `Primary key fields of the TcaplusDB table.`,
 				},
 				resource.Attribute{
 					Name:        "sum_key_field_size",
-					Description: `Key fields size of this table.`,
+					Description: `Total size of primary key field of the TcaplusDB table.`,
 				},
 				resource.Attribute{
 					Name:        "sum_value_field_size",
-					Description: `Value fields size of this table.`,
+					Description: `Total size of non-primary key fields of the TcaplusDB table.`,
 				},
 				resource.Attribute{
 					Name:        "table_name",
-					Description: `Name of this table.`,
+					Description: `Name of the TcaplusDB table.`,
 				},
 				resource.Attribute{
 					Name:        "value_fields",
-					Description: `Value fields of this table.`,
+					Description: `Non-primary key fields of the TcaplusDB table.`,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "tencentcloud_tcaplus_table",
-			Category:         "Tcaplus",
-			ShortDescription: `Use this resource to create tcaplus table`,
+			Category:         "TcaplusDB",
+			ShortDescription: `Use this resource to create TcaplusDB table.`,
 			Description:      ``,
 			Keywords: []string{
+				"tcaplusdb",
 				"tcaplus",
 				"table",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "app_id",
-					Description: `(Required, ForceNew) Application of this table belongs.`,
+					Name:        "cluster_id",
+					Description: `(Required, ForceNew) ID of the TcaplusDB cluster to which the table belongs.`,
 				},
 				resource.Attribute{
 					Name:        "idl_id",
-					Description: `(Required) Idl file for this table.`,
+					Description: `(Required) ID of the IDL File.`,
 				},
 				resource.Attribute{
-					Name:        "reserved_read_qps",
-					Description: `(Required, ForceNew) Table reserved read QPS.`,
+					Name:        "reserved_read_cu",
+					Description: `(Required, ForceNew) Reserved read capacity units of the TcaplusDB table.`,
 				},
 				resource.Attribute{
 					Name:        "reserved_volume",
-					Description: `(Required, ForceNew) Table reserved capacity(GB).`,
+					Description: `(Required, ForceNew) Reserved storage capacity of the TcaplusDB table (unit: GB).`,
 				},
 				resource.Attribute{
-					Name:        "reserved_write_qps",
-					Description: `(Required, ForceNew) Table reserved write QPS.`,
+					Name:        "reserved_write_cu",
+					Description: `(Required, ForceNew) Reserved write capacity units of the TcaplusDB table.`,
 				},
 				resource.Attribute{
 					Name:        "table_idl_type",
-					Description: `(Required) Type of this table idl, Valid values are PROTO,TDR.`,
+					Description: `(Required) IDL type of the TcaplusDB table. Valid values are PROTO and TDR.`,
 				},
 				resource.Attribute{
 					Name:        "table_name",
-					Description: `(Required, ForceNew) Name of this table.`,
+					Description: `(Required, ForceNew) Name of the TcaplusDB table.`,
 				},
 				resource.Attribute{
 					Name:        "table_type",
-					Description: `(Required, ForceNew) Type of this table, Valid values are GENERIC,LIST.`,
+					Description: `(Required, ForceNew) Type of the TcaplusDB table. Valid values are GENERIC and LIST.`,
 				},
 				resource.Attribute{
-					Name:        "zone_id",
-					Description: `(Required, ForceNew) Zone of this table belongs.`,
+					Name:        "tablegroup_id",
+					Description: `(Required, ForceNew) ID of the table group to which the table belongs.`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) Description of this table. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Description of the TcaplusDB table. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
-					Description: `Create time of the tcapplus table.`,
+					Description: `Create time of the TcaplusDB table.`,
 				},
 				resource.Attribute{
 					Name:        "error",
-					Description: `Show if this table create error.`,
+					Description: `Error messages for creating TcaplusDB table.`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of this table.`,
+					Description: `Status of the TcaplusDB table.`,
 				},
 				resource.Attribute{
 					Name:        "table_size",
-					Description: `Size of this table.`,
+					Description: `Size of the TcaplusDB table.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
-					Description: `Create time of the tcapplus table.`,
+					Description: `Create time of the TcaplusDB table.`,
 				},
 				resource.Attribute{
 					Name:        "error",
-					Description: `Show if this table create error.`,
+					Description: `Error messages for creating TcaplusDB table.`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of this table.`,
+					Description: `Status of the TcaplusDB table.`,
 				},
 				resource.Attribute{
 					Name:        "table_size",
-					Description: `Size of this table.`,
+					Description: `Size of the TcaplusDB table.`,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "tencentcloud_tcaplus_zone",
-			Category:         "Tcaplus",
-			ShortDescription: `Use this resource to create tcaplus zone`,
+			Type:             "tencentcloud_tcaplus_tablegroup",
+			Category:         "TcaplusDB",
+			ShortDescription: `Use this resource to create TcaplusDB table group.`,
 			Description:      ``,
 			Keywords: []string{
+				"tcaplusdb",
 				"tcaplus",
-				"zone",
+				"tablegroup",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "app_id",
-					Description: `(Required, ForceNew) Application of the tcapplus zone belongs.`,
+					Name:        "cluster_id",
+					Description: `(Required, ForceNew) Id of the TcaplusDB cluster to which the table group belongs.`,
 				},
 				resource.Attribute{
-					Name:        "zone_name",
-					Description: `(Required) Name of the tcapplus zone. length should between 1 and 30. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Name:        "tablegroup_name",
+					Description: `(Required) Name of the TcaplusDB table group. Name length should be between 1 and 30. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
-					Description: `Create time of the tcapplus zone.`,
+					Description: `Create time of the TcaplusDB table group.`,
 				},
 				resource.Attribute{
 					Name:        "table_count",
@@ -7172,13 +8836,17 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_size",
-					Description: `The total storage(MB).`,
+					Description: `Total storage size (MB).`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
-					Description: `Create time of the tcapplus zone.`,
+					Description: `Create time of the TcaplusDB table group.`,
 				},
 				resource.Attribute{
 					Name:        "table_count",
@@ -7186,7 +8854,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_size",
-					Description: `The total storage(MB).`,
+					Description: `Total storage size (MB).`,
 				},
 			},
 		},
@@ -7221,6 +8889,10 @@ var (
 					Description: `(Optional) Tags of the VPC. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of VPC.`,
 				},
@@ -7230,6 +8902,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of VPC.`,
@@ -7356,6 +9032,10 @@ var (
 					Description: `(Required) Remote cidr block list. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the VPN connection.`,
 				},
@@ -7381,6 +9061,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the VPN connection.`,
@@ -7432,11 +9116,19 @@ var (
 					Description: `(Optional) A list of tags used to associate different resources. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the customer gateway. ## Import VPN customer gateway can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_vpn_customer_gateway.foo cgw-xfqag ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the customer gateway. ## Import VPN customer gateway can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_vpn_customer_gateway.foo cgw-xfqag ` + "`" + `` + "`" + `` + "`" + ``,
@@ -7468,7 +9160,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bandwidth",
-					Description: `(Optional) The maximum public network output bandwidth of VPN gateway (unit: Mbps), the available values include: 5,10,20,50,100. Default is 5. When charge type is ` + "`" + `PREPAID` + "`" + `, bandwidth degradation operation is unsupported.`,
+					Description: `(Optional) The maximum public network output bandwidth of VPN gateway (unit: Mbps), the available values include: 5,10,20,50,100,200,500,1000. Default is 5. When charge type is ` + "`" + `PREPAID` + "`" + `, bandwidth degradation operation is unsupported.`,
 				},
 				resource.Attribute{
 					Name:        "charge_type",
@@ -7484,7 +9176,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A list of tags used to associate different resources. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) A list of tags used to associate different resources.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Type of gateway instance, valid values are ` + "`" + `IPSEC` + "`" + `, ` + "`" + `SSL` + "`" + ` and ` + "`" + `CCN` + "`" + `. Note: CCN type is only for whitelist customer now. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
@@ -7512,15 +9212,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `State of the VPN gateway, valid values are ` + "`" + `PENDING` + "`" + `, ` + "`" + `DELETING` + "`" + `, ` + "`" + `AVAILABLE` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `Type of gateway instance, valid values are ` + "`" + `IPSEC` + "`" + `, ` + "`" + `SSL` + "`" + `. ## Import VPN gateway can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_vpn_gateway.foo vpngw-8ccsnclt ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `State of the VPN gateway, valid values are ` + "`" + `PENDING` + "`" + `, ` + "`" + `DELETING` + "`" + `, ` + "`" + `AVAILABLE` + "`" + `. ## Import VPN gateway can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_vpn_gateway.foo vpngw-8ccsnclt ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the VPN gateway.`,
 				},
@@ -7546,11 +9246,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `State of the VPN gateway, valid values are ` + "`" + `PENDING` + "`" + `, ` + "`" + `DELETING` + "`" + `, ` + "`" + `AVAILABLE` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `Type of gateway instance, valid values are ` + "`" + `IPSEC` + "`" + `, ` + "`" + `SSL` + "`" + `. ## Import VPN gateway can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_vpn_gateway.foo vpngw-8ccsnclt ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `State of the VPN gateway, valid values are ` + "`" + `PENDING` + "`" + `, ` + "`" + `DELETING` + "`" + `, ` + "`" + `AVAILABLE` + "`" + `. ## Import VPN gateway can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_vpn_gateway.foo vpngw-8ccsnclt ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -7583,82 +9279,88 @@ var (
 		"tencentcloud_ccn":                            22,
 		"tencentcloud_ccn_attachment":                 23,
 		"tencentcloud_ccn_bandwidth_limit":            24,
-		"tencentcloud_cfs_access_group":               25,
-		"tencentcloud_cfs_access_rule":                26,
-		"tencentcloud_cfs_file_system":                27,
-		"tencentcloud_clb_attachment":                 28,
-		"tencentcloud_clb_instance":                   29,
-		"tencentcloud_clb_listener":                   30,
-		"tencentcloud_clb_listener_rule":              31,
-		"tencentcloud_clb_redirection":                32,
-		"tencentcloud_container_cluster":              33,
-		"tencentcloud_container_cluster_instance":     34,
-		"tencentcloud_cos_bucket":                     35,
-		"tencentcloud_cos_bucket_object":              36,
-		"tencentcloud_dayu_cc_http_policy":            37,
-		"tencentcloud_dayu_cc_https_policy":           38,
-		"tencentcloud_dayu_ddos_policy":               39,
-		"tencentcloud_dayu_ddos_policy_attachment":    40,
-		"tencentcloud_dayu_ddos_policy_case":          41,
-		"tencentcloud_dayu_l4_rule":                   42,
-		"tencentcloud_dayu_l7_rule":                   43,
-		"tencentcloud_dc_gateway":                     44,
-		"tencentcloud_dc_gateway_ccn_route":           45,
-		"tencentcloud_dcx":                            46,
-		"tencentcloud_dnat":                           47,
-		"tencentcloud_eip":                            48,
-		"tencentcloud_eip_association":                49,
-		"tencentcloud_eni":                            50,
-		"tencentcloud_eni_attachment":                 51,
-		"tencentcloud_gaap_certificate":               52,
-		"tencentcloud_gaap_domain_error_page":         53,
-		"tencentcloud_gaap_http_domain":               54,
-		"tencentcloud_gaap_http_rule":                 55,
-		"tencentcloud_gaap_layer4_listener":           56,
-		"tencentcloud_gaap_layer7_listener":           57,
-		"tencentcloud_gaap_proxy":                     58,
-		"tencentcloud_gaap_realserver":                59,
-		"tencentcloud_gaap_security_policy":           60,
-		"tencentcloud_gaap_security_rule":             61,
-		"tencentcloud_ha_vip":                         62,
-		"tencentcloud_ha_vip_eip_attachment":          63,
-		"tencentcloud_instance":                       64,
-		"tencentcloud_key_pair":                       65,
-		"tencentcloud_kubernetes_as_scaling_group":    66,
-		"tencentcloud_kubernetes_cluster":             67,
-		"tencentcloud_kubernetes_scale_worker":        68,
-		"tencentcloud_lb":                             69,
-		"tencentcloud_mongodb_instance":               70,
-		"tencentcloud_mongodb_sharding_instance":      71,
-		"tencentcloud_mysql_account":                  72,
-		"tencentcloud_mysql_account_privilege":        73,
-		"tencentcloud_mysql_backup_policy":            74,
-		"tencentcloud_mysql_instance":                 75,
-		"tencentcloud_mysql_privilege":                76,
-		"tencentcloud_mysql_readonly_instance":        77,
-		"tencentcloud_nat_gateway":                    78,
-		"tencentcloud_placement_group":                79,
-		"tencentcloud_redis_backup_config":            80,
-		"tencentcloud_redis_instance":                 81,
-		"tencentcloud_reserved_instance":              82,
-		"tencentcloud_route_entry":                    83,
-		"tencentcloud_route_table":                    84,
-		"tencentcloud_route_table_entry":              85,
-		"tencentcloud_scf_function":                   86,
-		"tencentcloud_scf_namespace":                  87,
-		"tencentcloud_security_group":                 88,
-		"tencentcloud_security_group_lite_rule":       89,
-		"tencentcloud_security_group_rule":            90,
-		"tencentcloud_ssl_certificate":                91,
-		"tencentcloud_subnet":                         92,
-		"tencentcloud_tcaplus_application":            93,
-		"tencentcloud_tcaplus_idl":                    94,
-		"tencentcloud_tcaplus_table":                  95,
-		"tencentcloud_tcaplus_zone":                   96,
-		"tencentcloud_vpc":                            97,
-		"tencentcloud_vpn_connection":                 98,
-		"tencentcloud_vpn_customer_gateway":           99,
-		"tencentcloud_vpn_gateway":                    100,
+		"tencentcloud_cdn_domain":                     25,
+		"tencentcloud_cfs_access_group":               26,
+		"tencentcloud_cfs_access_rule":                27,
+		"tencentcloud_cfs_file_system":                28,
+		"tencentcloud_clb_attachment":                 29,
+		"tencentcloud_clb_instance":                   30,
+		"tencentcloud_clb_listener":                   31,
+		"tencentcloud_clb_listener_rule":              32,
+		"tencentcloud_clb_redirection":                33,
+		"tencentcloud_container_cluster":              34,
+		"tencentcloud_container_cluster_instance":     35,
+		"tencentcloud_cos_bucket":                     36,
+		"tencentcloud_cos_bucket_object":              37,
+		"tencentcloud_dayu_cc_http_policy":            38,
+		"tencentcloud_dayu_cc_https_policy":           39,
+		"tencentcloud_dayu_ddos_policy":               40,
+		"tencentcloud_dayu_ddos_policy_attachment":    41,
+		"tencentcloud_dayu_ddos_policy_case":          42,
+		"tencentcloud_dayu_l4_rule":                   43,
+		"tencentcloud_dayu_l7_rule":                   44,
+		"tencentcloud_dc_gateway":                     45,
+		"tencentcloud_dc_gateway_ccn_route":           46,
+		"tencentcloud_dcx":                            47,
+		"tencentcloud_dnat":                           48,
+		"tencentcloud_eip":                            49,
+		"tencentcloud_eip_association":                50,
+		"tencentcloud_elasticsearch_instance":         51,
+		"tencentcloud_eni":                            52,
+		"tencentcloud_eni_attachment":                 53,
+		"tencentcloud_gaap_certificate":               54,
+		"tencentcloud_gaap_domain_error_page":         55,
+		"tencentcloud_gaap_http_domain":               56,
+		"tencentcloud_gaap_http_rule":                 57,
+		"tencentcloud_gaap_layer4_listener":           58,
+		"tencentcloud_gaap_layer7_listener":           59,
+		"tencentcloud_gaap_proxy":                     60,
+		"tencentcloud_gaap_realserver":                61,
+		"tencentcloud_gaap_security_policy":           62,
+		"tencentcloud_gaap_security_rule":             63,
+		"tencentcloud_ha_vip":                         64,
+		"tencentcloud_ha_vip_eip_attachment":          65,
+		"tencentcloud_instance":                       66,
+		"tencentcloud_key_pair":                       67,
+		"tencentcloud_kubernetes_as_scaling_group":    68,
+		"tencentcloud_kubernetes_cluster":             69,
+		"tencentcloud_kubernetes_cluster_attachment":  70,
+		"tencentcloud_kubernetes_scale_worker":        71,
+		"tencentcloud_lb":                             72,
+		"tencentcloud_mongodb_instance":               73,
+		"tencentcloud_mongodb_sharding_instance":      74,
+		"tencentcloud_monitor_binding_object":         75,
+		"tencentcloud_monitor_binding_receiver":       76,
+		"tencentcloud_monitor_policy_group":           77,
+		"tencentcloud_mysql_account":                  78,
+		"tencentcloud_mysql_account_privilege":        79,
+		"tencentcloud_mysql_backup_policy":            80,
+		"tencentcloud_mysql_instance":                 81,
+		"tencentcloud_mysql_privilege":                82,
+		"tencentcloud_mysql_readonly_instance":        83,
+		"tencentcloud_nat_gateway":                    84,
+		"tencentcloud_placement_group":                85,
+		"tencentcloud_redis_backup_config":            86,
+		"tencentcloud_redis_instance":                 87,
+		"tencentcloud_reserved_instance":              88,
+		"tencentcloud_route_entry":                    89,
+		"tencentcloud_route_table":                    90,
+		"tencentcloud_route_table_entry":              91,
+		"tencentcloud_scf_function":                   92,
+		"tencentcloud_scf_namespace":                  93,
+		"tencentcloud_security_group":                 94,
+		"tencentcloud_security_group_lite_rule":       95,
+		"tencentcloud_security_group_rule":            96,
+		"tencentcloud_ssl_certificate":                97,
+		"tencentcloud_subnet":                         98,
+		"tencentcloud_tcaplus_cluster":                99,
+		"tencentcloud_tcaplus_idl":                    100,
+		"tencentcloud_tcaplus_table":                  101,
+		"tencentcloud_tcaplus_tablegroup":             102,
+		"tencentcloud_vpc":                            103,
+		"tencentcloud_vpn_connection":                 104,
+		"tencentcloud_vpn_customer_gateway":           105,
+		"tencentcloud_vpn_gateway":                    106,
 	}
 )
 

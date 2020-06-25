@@ -586,6 +586,38 @@ var (
 					Name:        "delay_after_power_on_seconds",
 					Description: `Specifies this organization's default for virtual machine boot delay after power on.`,
 				},
+				resource.Attribute{
+					Name:        "vapp_lease",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "vapp_template_lease",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "maximum_runtime_lease_in_sec",
+					Description: `How long vApps can run before they are automatically stopped (in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "power_off_on_runtime_lease_expiration",
+					Description: `When true, vApps are powered off when the runtime lease expires. When false, vApps are suspended when the runtime lease expires.`,
+				},
+				resource.Attribute{
+					Name:        "maximum_storage_lease_in_sec",
+					Description: `How long stopped vApps are available before being automatically cleaned up (in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "delete_on_storage_lease_expiration",
+					Description: `If true, storage for a vApp is deleted when the vApp's lease expires. If false, the storage is flagged for deletion, but not deleted. <a id="vapp-template-lease"></a> ## vApp Template Lease The ` + "`" + `vapp_template_lease` + "`" + ` section contains lease parameters for vApp templates created in the current organization, as defined below:`,
+				},
+				resource.Attribute{
+					Name:        "maximum_storage_lease_in_sec",
+					Description: `How long vApp templates are available before being automatically cleaned up (in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "delete_on_storage_lease_expiration",
+					Description: `If true, storage for a vAppTemplate is deleted when the vAppTemplate lease expires. If false, the storage is flagged for deletion, but not deleted`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -615,6 +647,38 @@ var (
 				resource.Attribute{
 					Name:        "delay_after_power_on_seconds",
 					Description: `Specifies this organization's default for virtual machine boot delay after power on.`,
+				},
+				resource.Attribute{
+					Name:        "vapp_lease",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "vapp_template_lease",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "maximum_runtime_lease_in_sec",
+					Description: `How long vApps can run before they are automatically stopped (in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "power_off_on_runtime_lease_expiration",
+					Description: `When true, vApps are powered off when the runtime lease expires. When false, vApps are suspended when the runtime lease expires.`,
+				},
+				resource.Attribute{
+					Name:        "maximum_storage_lease_in_sec",
+					Description: `How long stopped vApps are available before being automatically cleaned up (in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "delete_on_storage_lease_expiration",
+					Description: `If true, storage for a vApp is deleted when the vApp's lease expires. If false, the storage is flagged for deletion, but not deleted. <a id="vapp-template-lease"></a> ## vApp Template Lease The ` + "`" + `vapp_template_lease` + "`" + ` section contains lease parameters for vApp templates created in the current organization, as defined below:`,
+				},
+				resource.Attribute{
+					Name:        "maximum_storage_lease_in_sec",
+					Description: `How long vApp templates are available before being automatically cleaned up (in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "delete_on_storage_lease_expiration",
+					Description: `If true, storage for a vAppTemplate is deleted when the vAppTemplate lease expires. If false, the storage is flagged for deletion, but not deleted`,
 				},
 			},
 		},
@@ -682,6 +746,60 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_vapp_network",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a vCloud Director vApp network data source. This can be used to access a vApp network.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "vapp_name",
+					Description: `(Required) The vApp name.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A name for the vApp network, unique within the vApp ## Attribute reference All attributes defined in [` + "`" + `vcd_vapp_network` + "`" + `](/docs/providers/vcd/r/vapp_network.html#attribute-reference) are supported.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_vapp_org_network",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data source for vCloud director Org network attached to vApp. This can be used to access vApp Org network.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "vapp_name",
+					Description: `(Required) The vApp name.`,
+				},
+				resource.Attribute{
+					Name:        "org_network_name",
+					Description: `(Required) A name for the vApp Org network, unique within the vApp. ## Attribute reference All attributes defined in [` + "`" + `vcd_vapp_org_network` + "`" + `](/docs/providers/vcd/r/vapp_org_network.html#attribute-reference) are supported.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_vapp_vm",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a vCloud Director VM data source. This can be used to access VMs within a vApp.`,
@@ -702,7 +820,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) A name for the VM, unique within the vApp ## Attribute reference`,
+					Description: `(Required) A name for the VM, unique within the vApp`,
+				},
+				resource.Attribute{
+					Name:        "network_dhcp_wait_seconds",
+					Description: `(Optional;`,
 				},
 				resource.Attribute{
 					Name:        "computer_name",
@@ -746,7 +868,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "expose_hardware_virtualization",
-					Description: `Expose hardware-assisted CPU virtualization to guest OS See [VM resource](/docs/providers/vcd/r/vapp_vm.html#attribute-reference) for more info about VM attributes.`,
+					Description: `Expose hardware-assisted CPU virtualization to guest OS`,
+				},
+				resource.Attribute{
+					Name:        "internal_disk",
+					Description: `(`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -777,7 +903,9 @@ var (
 		"vcd_org":                19,
 		"vcd_org_vdc":            20,
 		"vcd_vapp":               21,
-		"vcd_vapp_vm":            22,
+		"vcd_vapp_network":       22,
+		"vcd_vapp_org_network":   23,
+		"vcd_vapp_vm":            24,
 	}
 )
 
