@@ -902,7 +902,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_resource_control_version",
-					Description: `(Optional) The version of network I/O control to use. Can be one of ` + "`" + `version2` + "`" + ` or ` + "`" + `version3` + "`" + `. Default: ` + "`" + `version2` + "`" + `. #### Network I/O control traffic classes There are currently 9 traffic classes that can be used for network I/O control - they are below. Each of these classes has 4 options that can be tuned that are discussed in the next section. <table> <tr><th>Type</th><th>Class Name</th></tr> <tr><td>Fault Tolerance (FT) Traffic</td><td>` + "`" + `faulttolerance` + "`" + `</td></tr> <tr><td>vSphere Replication (VR) Traffic</td><td>` + "`" + `hbr` + "`" + `</td></tr> <tr><td>iSCSI Traffic</td><td>` + "`" + `iscsi` + "`" + `</td></tr> <tr><td>Management Traffic</td><td>` + "`" + `management` + "`" + `</td></tr> <tr><td>NFS Traffic</td><td>` + "`" + `nfs` + "`" + `</td></tr> <tr><td>vSphere Data Protection</td><td>` + "`" + `vdp` + "`" + `</td></tr> <tr><td>Virtual Machine Traffic</td><td>` + "`" + `virtualmachine` + "`" + `</td></tr> <tr><td>vMotion Traffic</td><td>` + "`" + `vmotion` + "`" + `</td></tr> <tr><td>VSAN Traffic</td><td>` + "`" + `vsan` + "`" + `</td></tr> </table> #### Traffic class resource options There are 4 traffic resource options for each class, prefixed with the name of the traffic classes seen above. For example, to set the traffic class resource options for virtual machine traffic, see the example below: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_distributed_virtual_switch" "dvs" { ... virtualmachine_share_level = "custom" virtualmachine_share_count = 150 virtualmachine_maximum_mbit = 200 virtualmachine_reservation_mbit = 20 } ` + "`" + `` + "`" + `` + "`" + ` The options are:`,
+					Description: `(Optional) The version of network I/O control to use. Can be one of ` + "`" + `version2` + "`" + ` or ` + "`" + `version3` + "`" + `. Default: ` + "`" + `version2` + "`" + `. #### Network I/O control traffic classes There are currently 9 traffic classes that can be used for network I/O control - they are below. Each of these classes has 4 options that can be tuned that are discussed in the next section. <table> <tr><th>Type</th><th>Class Name</th></tr> <tr><td>Fault Tolerance (FT) Traffic</td><td>` + "`" + `faulttolerance` + "`" + `</td></tr> <tr><td>vSphere Replication (VR) Traffic</td><td>` + "`" + `hbr` + "`" + `</td></tr> <tr><td>iSCSI Traffic</td><td>` + "`" + `iscsi` + "`" + `</td></tr> <tr><td>Management Traffic</td><td>` + "`" + `management` + "`" + `</td></tr> <tr><td>NFS Traffic</td><td>` + "`" + `nfs` + "`" + `</td></tr> <tr><td>vSphere Data Protection</td><td>` + "`" + `vdp` + "`" + `</td></tr> <tr><td>Virtual Machine Traffic</td><td>` + "`" + `virtualmachine` + "`" + `</td></tr> <tr><td>vMotion Traffic</td><td>` + "`" + `vmotion` + "`" + `</td></tr> <tr><td>VSAN Traffic</td><td>` + "`" + `vsan` + "`" + `</td></tr> </table> #### Traffic class resource options There are 4 traffic resource options for each class, prefixed with the name of the traffic classes seen above. For example, to set the traffic class resource options for virtual machine traffic, see the example below: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_distributed_virtual_switch" "dvs" { # ... other configuration ... virtualmachine_share_level = "custom" virtualmachine_share_count = 150 virtualmachine_maximum_mbit = 200 virtualmachine_reservation_mbit = 20 } ` + "`" + `` + "`" + `` + "`" + ` The options are:`,
 				},
 				resource.Attribute{
 					Name:        "share_level",
@@ -926,7 +926,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vlan_range",
-					Description: `(Optional) Used to denote VLAN trunking. Use the ` + "`" + `min_vlan` + "`" + ` and ` + "`" + `max_vlan` + "`" + ` sub-arguments to define the tagged VLAN range. Multiple ` + "`" + `vlan_range` + "`" + ` definitions are allowed, but they must not overlap. Example below: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_distributed_virtual_switch" "dvs" { ... vlan_range { min_vlan = 1 max_vlan = 1000 } vlan_range { min_vlan = 2000 max_vlan = 4094 } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Used to denote VLAN trunking. Use the ` + "`" + `min_vlan` + "`" + ` and ` + "`" + `max_vlan` + "`" + ` sub-arguments to define the tagged VLAN range. Multiple ` + "`" + `vlan_range` + "`" + ` definitions are allowed, but they must not overlap. Example below: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_distributed_virtual_switch" "dvs" { # ... other configuration ... vlan_range { min_vlan = 1 max_vlan = 1000 } vlan_range { min_vlan = 2000 max_vlan = 4094 } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "port_private_secondary_vlan_id",
@@ -2067,7 +2067,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ovf_deploy",
-					Description: `(Optional) When specified, the VM will be deployed from the provided ovf template. See [creating a virtual machine from a ovf template](#creating-vm-from-deploying-a-ovf-template) for more details.`,
+					Description: `(Optional) When specified, the VM will be deployed from the provided ovf/ova template. See [creating a virtual machine from a ovf/ova template](#creating-vm-from-deploying-a-ovf-ova-template) for more details.`,
 				},
 				resource.Attribute{
 					Name:        "vapp",
@@ -2271,7 +2271,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scsi_controller_count",
-					Description: `(Optional) The number of SCSI controllers that Terraform manages on this virtual machine. This directly affects the amount of disks you can add to the virtual machine and the maximum disk unit number. Note that lowering this value does not remove controllers. Default: ` + "`" + `1` + "`" + `. ~>`,
+					Description: `(Optional) The number of SCSI controllers that Terraform manages on this virtual machine. This directly affects the amount of disks you can add to the virtual machine and the maximum disk unit number. Note that lowering this value does not remove controllers. Default: ` + "`" + `1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sata_controller_count",
+					Description: `(Optional) The number of SATA controllers that Terraform manages on this virtual machine. This directly affects the amount of disks you can add to the virtual machine and the maximum disk unit number. Note that lowering this value does not remove controllers. Default: ` + "`" + `0` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ide_controller_count",
+					Description: `(Optional) The number of IDE controllers that Terraform manages on this virtual machine. This directly affects the amount of disks you can add to the virtual machine and the maximum disk unit number. Note that lowering this value does not remove controllers. Default: ` + "`" + `2` + "`" + `. ### Disk options Virtual disks are managed by adding an instance of the ` + "`" + `disk` + "`" + ` block. At the very least, there must be ` + "`" + `name` + "`" + ` and ` + "`" + `size` + "`" + ` attributes. ` + "`" + `unit_number` + "`" + ` is required for any disk other than the first, and there must be at least one resource with the implicit number of 0. An abridged multi-disk example is below: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { # ... other configuration ... disk { label = "disk0" size = "10" } disk { label = "disk1" size = "100" unit_number = 1 } # ... other configuration ... } ` + "`" + `` + "`" + `` + "`" + ` The options are:`,
 				},
 				resource.Attribute{
 					Name:        "label",
@@ -2287,7 +2295,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "unit_number",
-					Description: `(Optional) The disk number on the SCSI bus. The maximum value for this setting is the value of [` + "`" + `scsi_controller_count` + "`" + `](#scsi_controller_count) times 15, minus 1 (so ` + "`" + `14` + "`" + `, ` + "`" + `29` + "`" + `, ` + "`" + `44` + "`" + `, and ` + "`" + `59` + "`" + `, for 1-4 controllers respectively). The default is ` + "`" + `0` + "`" + `, for which one disk must be set to. Duplicate unit numbers are not allowed.`,
+					Description: `(Optional) The disk number on the storage bus. The maximum value for this setting is the value of the controller count times the controller capacity (15 for SCSI, 30 for SATA, and 2 for IDE). The default is ` + "`" + `0` + "`" + `, for which one disk must be set to. Duplicate unit numbers are not allowed.`,
 				},
 				resource.Attribute{
 					Name:        "datastore_id",
@@ -2343,7 +2351,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_policy_id",
-					Description: `(Optional) The UUID of the storage policy to assign to this disk. #### Computed disk attributes`,
+					Description: `(Optional) The UUID of the storage policy to assign to this disk.`,
+				},
+				resource.Attribute{
+					Name:        "controller_type",
+					Description: `(Optional) The type of storage controller to attach the disk to. Can be ` + "`" + `scsi` + "`" + `, ` + "`" + `sata` + "`" + `, or ` + "`" + `ide` + "`" + `. You must have the appropriate number of controllers enabled for the selected type. Default ` + "`" + `scsi` + "`" + `. #### Computed disk attributes`,
 				},
 				resource.Attribute{
 					Name:        "uuid",
@@ -2383,7 +2395,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ovf_mapping",
-					Description: `(Optional) Specifies which OVF NIC the ` + "`" + `network_interface` + "`" + ` should be associated with. Only applies at creation and only when deploying from an OVF source. ### CDROM options A single virtual CDROM device can be created and attached to the virtual machine. The resource supports attaching a CDROM from a datastore ISO or using a remote client device. An example is below: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { ... cdrom { datastore_id = "${data.vsphere_datastore.iso_datastore.id}" path = "ISOs/os-livecd.iso" } } ` + "`" + `` + "`" + `` + "`" + ` The options are:`,
+					Description: `(Optional) Specifies which OVF NIC the ` + "`" + `network_interface` + "`" + ` should be associated with. Only applies at creation and only when deploying from an OVF source. ### CDROM options A single virtual CDROM device can be created and attached to the virtual machine. The resource supports attaching a CDROM from a datastore ISO or using a remote client device. An example is below: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { # ... other configuration ... cdrom { datastore_id = "${data.vsphere_datastore.iso_datastore.id}" path = "ISOs/os-livecd.iso" } } ` + "`" + `` + "`" + `` + "`" + ` The options are:`,
 				},
 				resource.Attribute{
 					Name:        "client_device",
@@ -2423,7 +2435,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "timeout",
-					Description: `(Optional) The time, in minutes that Terraform waits for customization to complete before failing. The default is 10 minutes, and setting the value to 0 or a negative value disables the waiter altogether. #### Network interface settings These settings, which should be specified in nested ` + "`" + `network_interface` + "`" + ` blocks within [` + "`" + `customize` + "`" + `](#virtual-machine-customization), configure network interfaces on a per-interface basis and are matched up to [` + "`" + `network_interface` + "`" + `](#network-interface-options) devices in the order they are declared. Given the following example: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { ... network_interface { network_id = "${data.vsphere_network.public.id}" } network_interface { network_id = "${data.vsphere_network.private.id}" } clone { ... customize { ... network_interface { ipv4_address = "10.0.0.10" ipv4_netmask = 24 } network_interface { ipv4_address = "172.16.0.10" ipv4_netmask = 24 } ipv4_gateway = "10.0.0.1" } } } ` + "`" + `` + "`" + `` + "`" + ` The first set of ` + "`" + `network_interface` + "`" + ` data would be assigned to the ` + "`" + `public` + "`" + ` interface, and the second to the ` + "`" + `private` + "`" + ` interface. To use DHCP, declare an empty ` + "`" + `network_interface` + "`" + ` block for each interface being configured. So the above example would look like: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { ... network_interface { network_id = "${data.vsphere_network.public.id}" } network_interface { network_id = "${data.vsphere_network.private.id}" } clone { ... customize { ... network_interface {} network_interface {} } } } ` + "`" + `` + "`" + `` + "`" + ` The options are:`,
+					Description: `(Optional) The time, in minutes that Terraform waits for customization to complete before failing. The default is 10 minutes, and setting the value to 0 or a negative value disables the waiter altogether. #### Network interface settings These settings, which should be specified in nested ` + "`" + `network_interface` + "`" + ` blocks within [` + "`" + `customize` + "`" + `](#virtual-machine-customization), configure network interfaces on a per-interface basis and are matched up to [` + "`" + `network_interface` + "`" + `](#network-interface-options) devices in the order they are declared. Given the following example: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { # ... other configuration ... network_interface { network_id = "${data.vsphere_network.public.id}" } network_interface { network_id = "${data.vsphere_network.private.id}" } clone { # ... other configuration ... customize { # ... other configuration ... network_interface { ipv4_address = "10.0.0.10" ipv4_netmask = 24 } network_interface { ipv4_address = "172.16.0.10" ipv4_netmask = 24 } ipv4_gateway = "10.0.0.1" } } } ` + "`" + `` + "`" + `` + "`" + ` The first set of ` + "`" + `network_interface` + "`" + ` data would be assigned to the ` + "`" + `public` + "`" + ` interface, and the second to the ` + "`" + `private` + "`" + ` interface. To use DHCP, declare an empty ` + "`" + `network_interface` + "`" + ` block for each interface being configured. So the above example would look like: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { # ... other configuration ... network_interface { network_id = "${data.vsphere_network.public.id}" } network_interface { network_id = "${data.vsphere_network.private.id}" } clone { # ... other configuration ... customize { # ... other configuration ... network_interface {} network_interface {} } } } ` + "`" + `` + "`" + `` + "`" + ` The options are:`,
 				},
 				resource.Attribute{
 					Name:        "dns_server_list",
@@ -2459,7 +2471,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dns_suffix_list",
-					Description: `A list of DNS search domains to add to the DNS configuration on the virtual machine. #### Linux customization options The settings in the ` + "`" + `linux_options` + "`" + ` block pertain to Linux guest OS customization. If you are customizing a Linux operating system, this section must be included. Example: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { ... clone { ... customize { ... linux_options { host_name = "terraform-test" domain = "test.internal" } } } } ` + "`" + `` + "`" + `` + "`" + ` The options are:`,
+					Description: `A list of DNS search domains to add to the DNS configuration on the virtual machine. #### Linux customization options The settings in the ` + "`" + `linux_options` + "`" + ` block pertain to Linux guest OS customization. If you are customizing a Linux operating system, this section must be included. Example: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { # ... other configuration ... clone { # ... other configuration ... customize { # ... other configuration ... linux_options { host_name = "terraform-test" domain = "test.internal" } } } } ` + "`" + `` + "`" + `` + "`" + ` The options are:`,
 				},
 				resource.Attribute{
 					Name:        "host_name",
@@ -2475,7 +2487,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "time_zone",
-					Description: `(Optional) Sets the time zone. For a list of possible combinations, click [here][vmware-docs-valid-linux-tzs]. The default is UTC. [vmware-docs-valid-linux-tzs]: https://pubs.vmware.com/vsphere-6-5/topic/com.vmware.wssdk.apiref.doc/timezone.html #### Windows customization options The settings in the ` + "`" + `windows_options` + "`" + ` block pertain to Windows guest OS customization. If you are customizing a Windows operating system, this section must be included. Example: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { ... clone { ... customize { ... windows_options { computer_name = "terraform-test" workgroup = "test" admin_password = "VMw4re" } } } } ` + "`" + `` + "`" + `` + "`" + ` The options are:`,
+					Description: `(Optional) Sets the time zone. For a list of possible combinations, click [here][vmware-docs-valid-linux-tzs]. The default is UTC. [vmware-docs-valid-linux-tzs]: https://pubs.vmware.com/vsphere-6-5/topic/com.vmware.wssdk.apiref.doc/timezone.html #### Windows customization options The settings in the ` + "`" + `windows_options` + "`" + ` block pertain to Windows guest OS customization. If you are customizing a Windows operating system, this section must be included. Example: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { # ... other configuration ... clone { # ... other configuration ... customize { # ... other configuration ... windows_options { computer_name = "terraform-test" workgroup = "test" admin_password = "VMw4re" } } } } ` + "`" + `` + "`" + `` + "`" + ` The options are:`,
 				},
 				resource.Attribute{
 					Name:        "computer_name",
@@ -2527,15 +2539,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "time_zone",
-					Description: `(Optional) The new time zone for the virtual machine. This is a numeric, sysprep-dictated, timezone code. For a list of codes, click [here][ms-docs-valid-sysprep-tzs]. The default is ` + "`" + `85` + "`" + ` (GMT/UTC). [ms-docs-valid-sysprep-tzs]: https://msdn.microsoft.com/en-us/library/ms912391(v=winembedded.11).aspx #### Supplying your own SysPrep file Alternative to the ` + "`" + `windows_options` + "`" + ` supplied above, you can instead supply your own ` + "`" + `sysprep.xml` + "`" + ` file contents via the ` + "`" + `windows_sysprep_text` + "`" + ` option. This allows full control of the customization process out-of-band of vSphere. Example below: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { ... clone { ... customize { ... windows_sysprep_text = "${file("${path.module}/sysprep.xml")}" } } } ` + "`" + `` + "`" + `` + "`" + ` Note this option is mutually exclusive to ` + "`" + `windows_options` + "`" + ` - one must not be included if the other is specified. ### Creating VM from deploying a OVF template The ` + "`" + `ovf_deploy` + "`" + ` block can be used to create a new virtual machine from an OVF template either from local system or remote URL. While deploying from OVF, the VM properties are taken from OVF and setting them in configuration file is not necessary. See the [Deploying from OVF example](#deploying-vm-from-an-ovf-template) for a usage synopsis. ~>`,
+					Description: `(Optional) The new time zone for the virtual machine. This is a numeric, sysprep-dictated, timezone code. For a list of codes, click [here][ms-docs-valid-sysprep-tzs]. The default is ` + "`" + `85` + "`" + ` (GMT/UTC). [ms-docs-valid-sysprep-tzs]: https://msdn.microsoft.com/en-us/library/ms912391(v=winembedded.11).aspx #### Supplying your own SysPrep file Alternative to the ` + "`" + `windows_options` + "`" + ` supplied above, you can instead supply your own ` + "`" + `sysprep.xml` + "`" + ` file contents via the ` + "`" + `windows_sysprep_text` + "`" + ` option. This allows full control of the customization process out-of-band of vSphere. Example below: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { # ... other configuration ... clone { # ... other configuration ... customize { # ... other configuration ... windows_sysprep_text = "${file("${path.module}/sysprep.xml")}" } } } ` + "`" + `` + "`" + `` + "`" + ` Note this option is mutually exclusive to ` + "`" + `windows_options` + "`" + ` - one must not be included if the other is specified. ### Creating VM from deploying a OVF/OVA template The ` + "`" + `ovf_deploy` + "`" + ` block can be used to create a new virtual machine from an ovf/ova template either from local system or remote URL. While deploying, the VM properties are taken from ovf and setting them in configuration file is not necessary. See the [Deploying from OVF example](#deploying-vm-from-an-ovf-ova-template) for a usage synopsis. ~>`,
 				},
 				resource.Attribute{
 					Name:        "local_ovf_path",
-					Description: `(Optional) The absolute path to the ovf file in the local system. Make sure the other necessary files like the .vmdk files are also in the same directory as the given ovf file.`,
+					Description: `(Optional) The absolute path to the ovf/ova file in the local system. While deploying from ovf, make sure the other necessary files like the .vmdk files are also in the same directory as the given ovf file.`,
 				},
 				resource.Attribute{
 					Name:        "remote_ovf_url",
-					Description: `(Optional) URL to the remote ovf file to be deployed. ~>`,
+					Description: `(Optional) URL to the remote ovf/ova file to be deployed. ~>`,
 				},
 				resource.Attribute{
 					Name:        "ip_allocation_policy",
@@ -2547,11 +2559,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_provisioning",
-					Description: `(Optional) The disk provisioning. If set, all the disks in the deployed OVF will have the same specified disk type (e.g., thin provisioned).`,
+					Description: `(Optional) The disk provisioning. If set, all the disks in the deployed OVF will have the same specified disk type (accepted values {thin, flat, thick, sameAsSource}).`,
 				},
 				resource.Attribute{
 					Name:        "ovf_network_map",
-					Description: `(Optional) The mapping of name of network identifiers from the ovf descriptor to network UUID in the VI infrastructure. ### Using vApp properties to supply OVF/OVA configuration Alternative to the settings in ` + "`" + `customize` + "`" + `, one can use the settings in the ` + "`" + `properties` + "`" + ` section of the ` + "`" + `vapp` + "`" + ` block to supply configuration parameters to a virtual machine cloned from a template that came from an imported OVF or OVA file. Both GuestInfo and ISO transport methods are supported. For templates that use ISO transport, a CDROM backed by client device is required. See [CDROM options](#cdrom-options) for details. ~>`,
+					Description: `(Optional) The mapping of name of network identifiers from the ovf descriptor to network UUID in the VI infrastructure.`,
+				},
+				resource.Attribute{
+					Name:        "allow_unverified_ssl_cert",
+					Description: `(Optional) Allow unverified ssl certificates while deploying ovf/ova from url. Defaults true. ### Using vApp properties to supply OVF/OVA configuration Alternative to the settings in ` + "`" + `customize` + "`" + `, one can use the settings in the ` + "`" + `properties` + "`" + ` section of the ` + "`" + `vapp` + "`" + ` block to supply configuration parameters to a virtual machine cloned from a template that came from an imported OVF or OVA file. Both GuestInfo and ISO transport methods are supported. For templates that use ISO transport, a CDROM backed by client device is required. See [CDROM options](#cdrom-options) for details. ~>`,
 				},
 				resource.Attribute{
 					Name:        "id",

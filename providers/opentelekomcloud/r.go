@@ -828,7 +828,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `(Required) The ID of the subnet used to create the node. Changing this parameter will create a new cluster resource.`,
+					Description: `(Required) The Network ID of the subnet used to create the node. Changing this parameter will create a new cluster resource.`,
 				},
 				resource.Attribute{
 					Name:        "highway_subnet_id",
@@ -10356,10 +10356,6 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `(Required) Specifies the DB engine. Value: MySQL, PostgreSQL, SQLServer. Changing this parameter will create a new resource.`,
 				},
 				resource.Attribute{
-					Name:        "user_name",
-					Description: `Indicates the default user name of database.`,
-				},
-				resource.Attribute{
 					Name:        "version",
 					Description: `(Required) Specifies the database version. MySQL databases support MySQL 5.6 and 5.7. PostgreSQL databases support PostgreSQL 9.5 and 9.6. Microsoft SQL Server databases support 2014 SE, 2016 SE, and 2016 EE. Changing this parameter will create a new resource. The ` + "`" + `volume` + "`" + ` block supports:`,
 				},
@@ -10397,7 +10393,15 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "public_ips",
-					Description: `Indicates the public IP address list. The ` + "`" + `nodes` + "`" + ` block contains:`,
+					Description: `Indicates the public IP address list.`,
+				},
+				resource.Attribute{
+					Name:        "db",
+					Description: `See Argument Reference above. The ` + "`" + `db` + "`" + ` block also contains:`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `Indicates the default user name of database. The ` + "`" + `nodes` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -10435,7 +10439,15 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "public_ips",
-					Description: `Indicates the public IP address list. The ` + "`" + `nodes` + "`" + ` block contains:`,
+					Description: `Indicates the public IP address list.`,
+				},
+				resource.Attribute{
+					Name:        "db",
+					Description: `See Argument Reference above. The ` + "`" + `db` + "`" + ` block also contains:`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `Indicates the default user name of database. The ` + "`" + `nodes` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",

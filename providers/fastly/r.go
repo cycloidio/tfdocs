@@ -226,6 +226,66 @@ var (
 					Description: `(Optional) An HTTPS endpoint to send streaming logs to. Defined below.`,
 				},
 				resource.Attribute{
+					Name:        "logging_elasticsearch",
+					Description: `(optional) An Elasticsearch endpoint to send streaming logs to. Defined below.`,
+				},
+				resource.Attribute{
+					Name:        "logging_ftp",
+					Description: `(Optional) An FTP endpoint to send streaming logs to. Defined below.`,
+				},
+				resource.Attribute{
+					Name:        "logging_sftp",
+					Description: `(Optional) An SFTP endpoint to send streaming logs to. Defined below.`,
+				},
+				resource.Attribute{
+					Name:        "logging_datadog",
+					Description: `(Optional) A Datadog endpoint to send streaming logs to. Defined below.`,
+				},
+				resource.Attribute{
+					Name:        "logging_loggly",
+					Description: `(Optional) A Loggly endpoint to send streaming logs to. Defined below.`,
+				},
+				resource.Attribute{
+					Name:        "logging_newrelic",
+					Description: `(Optional) A New Relic endpoint to send streaming logs to. Defined below.`,
+				},
+				resource.Attribute{
+					Name:        "logging_scalyr",
+					Description: `(Optional) A Scalyr endpoint to send streaming logs to. Defined below.`,
+				},
+				resource.Attribute{
+					Name:        "logging_googlepubsub",
+					Description: `(Optional) A Google Cloud Pub/Sub endpoint to send streaming logs to. Defined below.`,
+				},
+				resource.Attribute{
+					Name:        "logging_kafka",
+					Description: `(Optional) A Kafka endpoint to send streaming logs to. Defined below.`,
+				},
+				resource.Attribute{
+					Name:        "logging_heroku",
+					Description: `(Optional) A Heroku endpoint to send streaming logs to. Defined below.`,
+				},
+				resource.Attribute{
+					Name:        "logging_honeycomb",
+					Description: `(Optional) A Honeycomb endpoint to send streaming logs to. Defined below.`,
+				},
+				resource.Attribute{
+					Name:        "logging_logshuttle",
+					Description: `(Optional) A Log Shuttle endpoint to send streaming logs to. Defined below.`,
+				},
+				resource.Attribute{
+					Name:        "logging_openstack",
+					Description: `(Optional) An OpenStack endpoint to send streaming logs to. Defined below.`,
+				},
+				resource.Attribute{
+					Name:        "logging_digitalocean",
+					Description: `(Optional) A DigitalOcean Spaces endpoint to send streaming logs to. Defined below.`,
+				},
+				resource.Attribute{
+					Name:        "logging_cloudfiles",
+					Description: `(Optional) A Rackspace Cloud Files endpoint to send streaming logs to. Defined below.`,
+				},
+				resource.Attribute{
 					Name:        "response_object",
 					Description: `(Optional) Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.`,
 				},
@@ -239,7 +299,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vcl",
-					Description: `(Optional) A set of custom VCL configuration blocks. The ability to upload custom VCL code is not enabled by default for new Fastly accounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).`,
+					Description: `(Optional) A set of custom VCL configuration blocks. See the [Fastly documentation](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/) for more information on using custom VCL.`,
 				},
 				resource.Attribute{
 					Name:        "acl",
@@ -347,15 +407,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shield",
-					Description: `(Optional) The POP of the shield designated to reduce inbound load. Valid values for ` + "`" + `shield` + "`" + ` are included in the [` + "`" + `GET /datacenters` + "`" + `](https://docs.fastly.com/api/tools#datacenter) API response.`,
+					Description: `(Optional) The POP of the shield designated to reduce inbound load. Valid values for ` + "`" + `shield` + "`" + ` are included in the [` + "`" + `GET /datacenters` + "`" + `](https://developer.fastly.com/reference/api/utils/datacenter/) API response.`,
 				},
 				resource.Attribute{
 					Name:        "weight",
-					Description: `(Optional) The [portion of traffic](https://docs.fastly.com/guides/performance-tuning/load-balancing-configuration.html#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives ` + "`" + `weight / total` + "`" + ` of the traffic. Default ` + "`" + `100` + "`" + `.`,
+					Description: `(Optional) The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives ` + "`" + `weight / total` + "`" + ` of the traffic. Default ` + "`" + `100` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "healthcheck",
-					Description: `(Optional) Name of a defined ` + "`" + `healthcheck` + "`" + ` to assign to this backend. The ` + "`" + `condition` + "`" + ` block supports allows you to add logic to any basic configuration object in a service. See Fastly's documentation ["About Conditions"](https://docs.fastly.com/guides/conditions/about-conditions) for more detailed information on using Conditions. The Condition ` + "`" + `name` + "`" + ` can be used in the ` + "`" + `request_condition` + "`" + `, ` + "`" + `response_condition` + "`" + `, or ` + "`" + `cache_condition` + "`" + ` attributes of other block settings.`,
+					Description: `(Optional) Name of a defined ` + "`" + `healthcheck` + "`" + ` to assign to this backend. The ` + "`" + `condition` + "`" + ` block supports allows you to add logic to any basic configuration object in a service. See Fastly's documentation ["About Conditions"](https://docs.fastly.com/en/guides/about-conditions) for more detailed information on using Conditions. The Condition ` + "`" + `name` + "`" + ` can be used in the ` + "`" + `request_condition` + "`" + `, ` + "`" + `response_condition` + "`" + `, or ` + "`" + `cache_condition` + "`" + ` attributes of other block settings.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -387,7 +447,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shield",
-					Description: `(Optional) Selected POP to serve as a "shield" for backends. Valid values for ` + "`" + `shield` + "`" + ` are included in the [` + "`" + `GET /datacenters` + "`" + `](https://docs.fastly.com/api/tools#datacenter) API response.`,
+					Description: `(Optional) Selected POP to serve as a "shield" for backends. Valid values for ` + "`" + `shield` + "`" + ` are included in the [` + "`" + `GET /datacenters` + "`" + `](https://developer.fastly.com/reference/api/utils/datacenter/) API response.`,
 				},
 				resource.Attribute{
 					Name:        "capacity",
@@ -411,7 +471,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "action",
-					Description: `(Optional) One of ` + "`" + `cache` + "`" + `, ` + "`" + `pass` + "`" + `, or ` + "`" + `restart` + "`" + `, as defined on Fastly's documentation under ["Caching action descriptions"](https://docs.fastly.com/guides/performance-tuning/controlling-caching#caching-action-descriptions).`,
+					Description: `(Optional) One of ` + "`" + `cache` + "`" + `, ` + "`" + `pass` + "`" + `, or ` + "`" + `restart` + "`" + `, as defined on Fastly's documentation under ["Caching action descriptions"](https://docs.fastly.com/en/guides/controlling-caching#caching-action-descriptions).`,
 				},
 				resource.Attribute{
 					Name:        "cache_condition",
@@ -439,7 +499,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cache_condition",
-					Description: `(Optional) Name of already defined ` + "`" + `condition` + "`" + ` controlling when this gzip configuration applies. This ` + "`" + `condition` + "`" + ` must be of type ` + "`" + `CACHE` + "`" + `. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals]. The ` + "`" + `header` + "`" + ` block supports adding, removing, or modifying Request and Response headers. See Fastly's documentation on [Adding or modifying headers on HTTP requests and responses](https://docs.fastly.com/guides/basic-configuration/adding-or-modifying-headers-on-http-requests-and-responses#field-description-table) for more detailed information on any of the properties below.`,
+					Description: `(Optional) Name of already defined ` + "`" + `condition` + "`" + ` controlling when this gzip configuration applies. This ` + "`" + `condition` + "`" + ` must be of type ` + "`" + `CACHE` + "`" + `. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals]. The ` + "`" + `header` + "`" + ` block supports adding, removing, or modifying Request and Response headers. See Fastly's documentation on [Adding or modifying headers on HTTP requests and responses](https://docs.fastly.com/en/guides/adding-or-modifying-headers-on-http-requests-and-responses#field-description-table) for more detailed information on any of the properties below.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -583,7 +643,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) A unique name to identify this S3 Logging Bucket.`,
+					Description: `(Required) The unique name of the S3 logging endpoint.`,
 				},
 				resource.Attribute{
 					Name:        "bucket_name",
@@ -606,16 +666,20 @@ var (
 					Description: `(Optional) If you created the S3 bucket outside of ` + "`" + `us-east-1` + "`" + `, then specify the corresponding bucket endpoint. Example: ` + "`" + `s3-us-west-2.amazonaws.com` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "public_key",
+					Description: `(Optional) A PGP public key that Fastly will use to encrypt your log files before writing them to disk.`,
+				},
+				resource.Attribute{
 					Name:        "period",
 					Description: `(Optional) How frequently the logs should be transferred, in seconds. Default ` + "`" + `3600` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "gzip_level",
-					Description: `(Optional) Level of GZIP compression, from ` + "`" + `0-9` + "`" + `. ` + "`" + `0` + "`" + ` is no compression. ` + "`" + `1` + "`" + ` is fastest and least compressed, ` + "`" + `9` + "`" + ` is slowest and most compressed. Default ` + "`" + `0` + "`" + `.`,
+					Description: `(Optional) Level of Gzip compression, from ` + "`" + `0-9` + "`" + `. ` + "`" + `0` + "`" + ` is no compression. ` + "`" + `1` + "`" + ` is fastest and least compressed, ` + "`" + `9` + "`" + ` is slowest and most compressed. Default ` + "`" + `0` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "format",
-					Description: `(Optional) Apache-style string or VCL variables to use for log formatting. Defaults to Apache Common Log format (` + "`" + `%h %l %u %t %r %>s` + "`" + `)`,
+					Description: `(Optional) Apache-style string or VCL variables to use for log formatting. Defaults to Apache Common Log format (` + "`" + `%h %l %u %t %r %>s` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "format_version",
@@ -719,7 +783,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gzip_level",
-					Description: `(Optional) Level of GZIP compression, from ` + "`" + `0-9` + "`" + `. ` + "`" + `0` + "`" + ` is no compression. ` + "`" + `1` + "`" + ` is fastest and least compressed, ` + "`" + `9` + "`" + ` is slowest and most compressed. Default ` + "`" + `0` + "`" + `.`,
+					Description: `(Optional) Level of Gzip compression, from ` + "`" + `0-9` + "`" + `. ` + "`" + `0` + "`" + ` is no compression. ` + "`" + `1` + "`" + ` is fastest and least compressed, ` + "`" + `9` + "`" + ` is slowest and most compressed. Default ` + "`" + `0` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "format",
@@ -731,7 +795,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "message_type",
-					Description: `(Optional) How the message should be formatted; one of: ` + "`" + `classic` + "`" + `, ` + "`" + `loggly` + "`" + `, ` + "`" + `logplex` + "`" + ` or ` + "`" + `blank` + "`" + `. Default ` + "`" + `classic` + "`" + `. [Fastly Documentation](https://docs.fastly.com/api/logging#logging_gcs)`,
+					Description: `(Optional) How the message should be formatted; one of: ` + "`" + `classic` + "`" + `, ` + "`" + `loggly` + "`" + `, ` + "`" + `logplex` + "`" + ` or ` + "`" + `blank` + "`" + `. Default ` + "`" + `classic` + "`" + `. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)`,
 				},
 				resource.Attribute{
 					Name:        "placement",
@@ -931,7 +995,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gzip_level",
-					Description: `(Optional) Level of GZIP compression from ` + "`" + `0` + "`" + `to ` + "`" + `9` + "`" + `. ` + "`" + `0` + "`" + ` means no compression. ` + "`" + `1` + "`" + ` is the fastest and the least compressed version, ` + "`" + `9` + "`" + ` is the slowest and the most compressed version. Default ` + "`" + `0` + "`" + `.`,
+					Description: `(Optional) Level of Gzip compression from ` + "`" + `0` + "`" + `to ` + "`" + `9` + "`" + `. ` + "`" + `0` + "`" + ` means no compression. ` + "`" + `1` + "`" + ` is the fastest and the least compressed version, ` + "`" + `9` + "`" + ` is the slowest and the most compressed version. Default ` + "`" + `0` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "public_key",
@@ -1027,7 +1091,655 @@ var (
 				},
 				resource.Attribute{
 					Name:        "response_condition",
-					Description: `(Optional) The name of the ` + "`" + `condition` + "`" + ` to apply. If empty, always execute. The ` + "`" + `response_object` + "`" + ` block supports:`,
+					Description: `(Optional) The name of the ` + "`" + `condition` + "`" + ` to apply. If empty, always execute. The ` + "`" + `logging_elasticsearch` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The unique name of the Elasticsearch logging endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) The Elasticsearch URL to stream logs to.`,
+				},
+				resource.Attribute{
+					Name:        "index",
+					Description: `(Required) The name of the Elasticsearch index to send documents (logs) to.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `(Optional) BasicAuth username for Elasticsearch.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) BasicAuth password for Elasticsearch.`,
+				},
+				resource.Attribute{
+					Name:        "pipeline",
+					Description: `(Optional) The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing.`,
+				},
+				resource.Attribute{
+					Name:        "request_max_bytes",
+					Description: `(Optional) The maximum number of bytes sent in one request. Defaults to ` + "`" + `0` + "`" + ` for unbounded.`,
+				},
+				resource.Attribute{
+					Name:        "request_max_entries",
+					Description: `(Optional) The maximum number of logs sent in one request. Defaults to ` + "`" + `0` + "`" + ` for unbounded.`,
+				},
+				resource.Attribute{
+					Name:        "tls_ca_cert",
+					Description: `(Optional) A secure certificate to authenticate the server with. Must be in PEM format.`,
+				},
+				resource.Attribute{
+					Name:        "tls_client_cert",
+					Description: `(Optional) The client certificate used to make authenticated requests. Must be in PEM format.`,
+				},
+				resource.Attribute{
+					Name:        "tls_client_key",
+					Description: `(Optional) The client private key used to make authenticated requests. Must be in PEM format.`,
+				},
+				resource.Attribute{
+					Name:        "tls_hostname",
+					Description: `(Optional) The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN).`,
+				},
+				resource.Attribute{
+					Name:        "format",
+					Description: `(Optional) Apache-style string or VCL variables to use for log formatting.`,
+				},
+				resource.Attribute{
+					Name:        "format_version",
+					Description: `(Optional) The version of the custom logging format used for the configured endpoint. Can be either ` + "`" + `1` + "`" + ` or ` + "`" + `2` + "`" + `. (default: ` + "`" + `2` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "placement",
+					Description: `(Optional) Where in the generated VCL the logging call should be placed.`,
+				},
+				resource.Attribute{
+					Name:        "response_condition",
+					Description: `(Optional) The name of the ` + "`" + `condition` + "`" + ` to apply. If empty, always execute. The ` + "`" + `logging_ftp` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The unique name of the FTP logging endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `(Required) The FTP address to stream logs to.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `(Required) The username for the server (can be ` + "`" + `anonymous` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) The password for the server (for anonymous use an email address).`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) The path to upload log files to. If the path ends in ` + "`" + `/` + "`" + ` then it is treated as a directory.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) The port number. Default: ` + "`" + `21` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "gzip_level",
+					Description: `(Optional) Gzip Compression level. Default ` + "`" + `0` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "period",
+					Description: `(Optional) How frequently the logs should be transferred, in seconds (Default 3600).`,
+				},
+				resource.Attribute{
+					Name:        "public_key",
+					Description: `(Optional) The PGP public key that Fastly will use to encrypt your log files before writing them to disk.`,
+				},
+				resource.Attribute{
+					Name:        "timestamp_format",
+					Description: `(Optional) specified timestamp formatting (default ` + "`" + `%Y-%m-%dT%H:%M:%S.000` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "format",
+					Description: `(Optional) Apache-style string or VCL variables to use for log formatting.`,
+				},
+				resource.Attribute{
+					Name:        "format_version",
+					Description: `(Optional) The version of the custom logging format used for the configured endpoint. Can be either ` + "`" + `1` + "`" + ` or ` + "`" + `2` + "`" + `. (default: ` + "`" + `2` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "placement",
+					Description: `(Optional) Where in the generated VCL the logging call should be placed.`,
+				},
+				resource.Attribute{
+					Name:        "response_condition",
+					Description: `(Optional) The name of the condition to apply. The ` + "`" + `logging_sftp` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The unique name of the SFTP logging endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `(Required) The SFTP address to stream logs to.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) The path to upload log files to. If the path ends in / then it is treated as a directory.`,
+				},
+				resource.Attribute{
+					Name:        "ssh_known_hosts",
+					Description: `(Required) A list of host keys for all hosts we can connect to over SFTP.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `(Required) The username for the server.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) The port the SFTP service listens on. (Default: ` + "`" + `22` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The password for the server. If both ` + "`" + `password` + "`" + ` and ` + "`" + `secret_key` + "`" + ` are passed, ` + "`" + `secret_key` + "`" + ` will be preferred.`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `(Optional) The SSH private key for the server. If both ` + "`" + `password` + "`" + ` and ` + "`" + `secret_key` + "`" + ` are passed, ` + "`" + `secret_key` + "`" + ` will be preferred.`,
+				},
+				resource.Attribute{
+					Name:        "gzip_level",
+					Description: `(Optional) What level of Gzip encoding to have when dumping logs (default 0, no compression).`,
+				},
+				resource.Attribute{
+					Name:        "period",
+					Description: `(Optional) How frequently log files are finalized so they can be available for reading (in seconds, default ` + "`" + `3600` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "placement",
+					Description: `(Optional) Where in the generated VCL the logging call should be placed.`,
+				},
+				resource.Attribute{
+					Name:        "public_key",
+					Description: `(Optional) A PGP public key that Fastly will use to encrypt your log files before writing them to disk.`,
+				},
+				resource.Attribute{
+					Name:        "format",
+					Description: `(Optional) Apache-style string or VCL variables to use for log formatting.`,
+				},
+				resource.Attribute{
+					Name:        "format_version",
+					Description: `(Optional) The version of the custom logging format used for the configured endpoint. Can be either ` + "`" + `1` + "`" + ` or ` + "`" + `2` + "`" + `. (default: ` + "`" + `2` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "response_condition",
+					Description: `(Optional) The name of the condition to apply.`,
+				},
+				resource.Attribute{
+					Name:        "timestamp_format",
+					Description: `(Optional) The strftime specified timestamp formatting (default ` + "`" + `%Y-%m-%dT%H:%M:%S.000` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "message_type",
+					Description: `(Optional) How the message should be formatted. One of: classic (default), loggly, logplex or blank. The ` + "`" + `logging_datadog` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The unique name of the Datadog logging endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Required) The API key from your Datadog account.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region that log data will be sent to. One of ` + "`" + `US` + "`" + ` or ` + "`" + `EU` + "`" + `. Defaults to ` + "`" + `US` + "`" + ` if undefined.`,
+				},
+				resource.Attribute{
+					Name:        "format",
+					Description: `(Optional) Apache-style string or VCL variables to use for log formatting.`,
+				},
+				resource.Attribute{
+					Name:        "format_version",
+					Description: `(Optional) The version of the custom logging format used for the configured endpoint. Can be either ` + "`" + `1` + "`" + ` or ` + "`" + `2` + "`" + `. (default: ` + "`" + `2` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "placement",
+					Description: `(Optional) Where in the generated VCL the logging call should be placed.`,
+				},
+				resource.Attribute{
+					Name:        "response_condition",
+					Description: `(Optional) The name of the condition to apply. The ` + "`" + `logging_loggly` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The unique name of the Loggly logging endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Required) The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).`,
+				},
+				resource.Attribute{
+					Name:        "format",
+					Description: `(Optional) Apache-style string or VCL variables to use for log formatting.`,
+				},
+				resource.Attribute{
+					Name:        "format_version",
+					Description: `(Optional) The version of the custom logging format used for the configured endpoint. Can be either ` + "`" + `1` + "`" + ` or ` + "`" + `2` + "`" + `. (default: ` + "`" + `2` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "placement",
+					Description: `(Optional) Where in the generated VCL the logging call should be placed. Can be ` + "`" + `none` + "`" + ` or ` + "`" + `waf_debug` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "response_condition",
+					Description: `(Optional) The name of an existing condition in the configured endpoint, or leave blank to always execute. The ` + "`" + `logging_newrelic` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The unique name of the New Relic logging endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Required) The Insert API key from the Account page of your New Relic account.`,
+				},
+				resource.Attribute{
+					Name:        "format",
+					Description: `(Optional) Apache style log formatting. Your log must produce valid JSON that New Relic Logs can ingest.`,
+				},
+				resource.Attribute{
+					Name:        "format_version",
+					Description: `(Optional) The version of the custom logging format used for the configured endpoint. Can be either ` + "`" + `1` + "`" + ` or ` + "`" + `2` + "`" + `. (default: ` + "`" + `2` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "placement",
+					Description: `(Optional) Where in the generated VCL the logging call should be placed.`,
+				},
+				resource.Attribute{
+					Name:        "response_condition",
+					Description: `(Optional) The name of the condition to apply. The ` + "`" + `logging_scalyr` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The unique name of the Scalyr logging endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Required) The token to use for authentication (https://www.scalyr.com/keys).`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region that log data will be sent to. One of US or EU. Defaults to US if undefined.`,
+				},
+				resource.Attribute{
+					Name:        "format",
+					Description: `(Optional) Apache-style string or VCL variables to use for log formatting.`,
+				},
+				resource.Attribute{
+					Name:        "format_version",
+					Description: `(Optional) The version of the custom logging format used for the configured endpoint. Can be either ` + "`" + `1` + "`" + ` or ` + "`" + `2` + "`" + `. The logging call gets placed by default in ` + "`" + `vcl_log` + "`" + ` if ` + "`" + `format_version` + "`" + ` is set to ` + "`" + `2` + "`" + ` and in ` + "`" + `vcl_deliver` + "`" + ` if ` + "`" + `format_version` + "`" + ` is set to ` + "`" + `1` + "`" + `. Default ` + "`" + `2` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "placement",
+					Description: `(Optional) The name of an existing condition in the configured endpoint, or leave blank to always execute.`,
+				},
+				resource.Attribute{
+					Name:        "response_condition",
+					Description: `(Optional) The name of the ` + "`" + `condition` + "`" + ` to apply. If empty, always execute. The ` + "`" + `logging_googlepubsub` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The unique name of the Google Cloud Pub/Sub logging endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `(Required) Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `(Required) Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The ID of your Google Cloud Platform project.`,
+				},
+				resource.Attribute{
+					Name:        "topic",
+					Description: `(Required) The Google Cloud Pub/Sub topic to which logs will be published.`,
+				},
+				resource.Attribute{
+					Name:        "format",
+					Description: `(Optional) Apache-style string or VCL variables to use for log formatting.`,
+				},
+				resource.Attribute{
+					Name:        "format_version",
+					Description: `(Optional) The version of the custom logging format used for the configured endpoint. Can be either ` + "`" + `1` + "`" + ` or ` + "`" + `2` + "`" + `. The logging call gets placed by default in ` + "`" + `vcl_log` + "`" + ` if ` + "`" + `format_version` + "`" + ` is set to ` + "`" + `2` + "`" + ` and in ` + "`" + `vcl_deliver` + "`" + ` if ` + "`" + `format_version` + "`" + ` is set to ` + "`" + `1` + "`" + `. Default ` + "`" + `2` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "placement",
+					Description: `(Optional) The name of an existing condition in the configured endpoint, or leave blank to always execute.`,
+				},
+				resource.Attribute{
+					Name:        "response_condition",
+					Description: `(Optional) The name of the ` + "`" + `condition` + "`" + ` to apply. If empty, always execute. The ` + "`" + `logging_kafka` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The unique name of the Kafka logging endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "topic",
+					Description: `(Required) The Kafka topic to send logs to.`,
+				},
+				resource.Attribute{
+					Name:        "brokers",
+					Description: `(Required) A comma-separated list of IP addresses or hostnames of Kafka brokers.`,
+				},
+				resource.Attribute{
+					Name:        "compression_codec",
+					Description: `(Optional) The codec used for compression of your logs. One of: gzip, snappy, lz4.`,
+				},
+				resource.Attribute{
+					Name:        "required_acks",
+					Description: `(Optional) The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0 No servers need to respond. -1 Wait for all in-sync replicas to respond.`,
+				},
+				resource.Attribute{
+					Name:        "use_tls",
+					Description: `(Optional) Whether to use TLS for secure logging. Can be either true or false.`,
+				},
+				resource.Attribute{
+					Name:        "tls_ca_cert",
+					Description: `(Optional) A secure certificate to authenticate the server with. Must be in PEM format.`,
+				},
+				resource.Attribute{
+					Name:        "tls_client_cert",
+					Description: `(Optional) The client certificate used to make authenticated requests. Must be in PEM format.`,
+				},
+				resource.Attribute{
+					Name:        "tls_client_key",
+					Description: `(Optional) The client private key used to make authenticated requests. Must be in PEM format.`,
+				},
+				resource.Attribute{
+					Name:        "tls_hostname",
+					Description: `(Optional) The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN).`,
+				},
+				resource.Attribute{
+					Name:        "format",
+					Description: `(Optional) Apache-style string or VCL variables to use for log formatting.`,
+				},
+				resource.Attribute{
+					Name:        "format_version",
+					Description: `(Optional) The version of the custom logging format used for the configured endpoint. Can be either ` + "`" + `1` + "`" + ` or ` + "`" + `2` + "`" + `. The logging call gets placed by default in ` + "`" + `vcl_log` + "`" + ` if ` + "`" + `format_version` + "`" + ` is set to ` + "`" + `2` + "`" + ` and in ` + "`" + `vcl_deliver` + "`" + ` if ` + "`" + `format_version` + "`" + ` is set to ` + "`" + `1` + "`" + `. Default ` + "`" + `2` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "placement",
+					Description: `(Optional) The name of an existing condition in the configured endpoint, or leave blank to always execute.`,
+				},
+				resource.Attribute{
+					Name:        "response_condition",
+					Description: `(Optional) The name of the ` + "`" + `condition` + "`" + ` to apply. If empty, always execute. The ` + "`" + `logging_heroku` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The unique name of the Heroku logging endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Required) The token to use for authentication (https://devcenter.heroku.com/articles/add-on-partner-log-integration).`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) The url to stream logs to.`,
+				},
+				resource.Attribute{
+					Name:        "format",
+					Description: `(Optional) Apache-style string or VCL variables to use for log formatting.`,
+				},
+				resource.Attribute{
+					Name:        "format_version",
+					Description: `(Optional) The version of the custom logging format used for the configured endpoint. Can be either ` + "`" + `1` + "`" + ` or ` + "`" + `2` + "`" + `. (default: ` + "`" + `2` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "placement",
+					Description: `(Optional) Where in the generated VCL the logging call should be placed. Can be ` + "`" + `none` + "`" + ` or ` + "`" + `waf_debug` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "response_condition",
+					Description: `(Optional) The name of an existing condition in the configured endpoint, or leave blank to always execute. The ` + "`" + `logging_honeycomb` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The unique name of the Honeycomb logging endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "dataset",
+					Description: `(Required) The Honeycomb Dataset you want to log to.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Required) The Write Key from the Account page of your Honeycomb account.`,
+				},
+				resource.Attribute{
+					Name:        "format",
+					Description: `(Optional) Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest.`,
+				},
+				resource.Attribute{
+					Name:        "format_version",
+					Description: `(Optional) The version of the custom logging format used for the configured endpoint. Can be either ` + "`" + `1` + "`" + ` or ` + "`" + `2` + "`" + `. (default: ` + "`" + `2` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "placement",
+					Description: `(Optional) Where in the generated VCL the logging call should be placed. Can be ` + "`" + `none` + "`" + ` or ` + "`" + `waf_debug` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "response_condition",
+					Description: `(Optional) The name of an existing condition in the configured endpoint, or leave blank to always execute. The ` + "`" + `logging_logshuttle` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The unique name of the Logshuttle logging endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Required) The data authentication token associated with this endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) Your Log Shuttle endpoint url.`,
+				},
+				resource.Attribute{
+					Name:        "format",
+					Description: `(Optional) Apache style log formatting.`,
+				},
+				resource.Attribute{
+					Name:        "format_version",
+					Description: `(Optional) The version of the custom logging format used for the configured endpoint. Can be either ` + "`" + `1` + "`" + ` or ` + "`" + `2` + "`" + `. (default: ` + "`" + `2` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "placement",
+					Description: `(Optional) Where in the generated VCL the logging call should be placed. Can be ` + "`" + `none` + "`" + ` or ` + "`" + `waf_debug` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "response_condition",
+					Description: `(Optional) The name of an existing condition in the configured endpoint, or leave blank to always execute. The ` + "`" + `logging_openstack` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The unique name of the OpenStack logging endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "bucket_name",
+					Description: `(Required) The name of your OpenStack container.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) Your OpenStack auth url.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `(Required) The username for your OpenStack account.`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `(Required) Your OpenStack account access key.`,
+				},
+				resource.Attribute{
+					Name:        "public_key",
+					Description: `(Optional) A PGP public key that Fastly will use to encrypt your log files before writing them to disk.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional) Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path.`,
+				},
+				resource.Attribute{
+					Name:        "period",
+					Description: `(Optional) How frequently the logs should be transferred, in seconds. Default ` + "`" + `3600` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "gzip_level",
+					Description: `(Optional) What level of Gzip encoding to have when dumping logs (default 0, no compression).`,
+				},
+				resource.Attribute{
+					Name:        "message_type",
+					Description: `(Optional) How the message should be formatted; one of: ` + "`" + `classic` + "`" + `, ` + "`" + `loggly` + "`" + `, ` + "`" + `logplex` + "`" + ` or ` + "`" + `blank` + "`" + `. Default ` + "`" + `classic` + "`" + `. [Fastly Documentation](https://developer.fastly.com/reference/api/logging/gcs/)`,
+				},
+				resource.Attribute{
+					Name:        "format",
+					Description: `(Optional) Apache style log formatting.`,
+				},
+				resource.Attribute{
+					Name:        "format_version",
+					Description: `(Optional) The version of the custom logging format used for the configured endpoint. Can be either ` + "`" + `1` + "`" + ` or ` + "`" + `2` + "`" + `. The logging call gets placed by default in ` + "`" + `vcl_log` + "`" + ` if ` + "`" + `format_version` + "`" + ` is set to ` + "`" + `2` + "`" + ` and in ` + "`" + `vcl_deliver` + "`" + ` if ` + "`" + `format_version` + "`" + ` is set to ` + "`" + `1` + "`" + `. Default ` + "`" + `2` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "timestamp_format",
+					Description: `(Optional) The strftime specified timestamp formatting (default ` + "`" + `%Y-%m-%dT%H:%M:%S.000` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "response_condition",
+					Description: `(Optional) The name of an existing condition in the configured endpoint, or leave blank to always execute.`,
+				},
+				resource.Attribute{
+					Name:        "placement",
+					Description: `(Optional) Where in the generated VCL the logging call should be placed; one of: ` + "`" + `none` + "`" + ` or ` + "`" + `waf_debug` + "`" + `. The ` + "`" + `logging_digitalocean` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The unique name of the DigitalOcean Spaces logging endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "bucket_name",
+					Description: `(Required) The name of the DigitalOcean Space.`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `(Required) Your DigitalOcean Spaces account access key.`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `(Required) Your DigitalOcean Spaces account secret key.`,
+				},
+				resource.Attribute{
+					Name:        "public_key",
+					Description: `(Optional) A PGP public key that Fastly will use to encrypt your log files before writing them to disk.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `(Optional) The domain of the DigitalOcean Spaces endpoint (default "nyc3.digitaloceanspaces.com").`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional) The path to upload logs to.`,
+				},
+				resource.Attribute{
+					Name:        "period",
+					Description: `(Optional) How frequently log files are finalized so they can be available for reading (in seconds, default 3600).`,
+				},
+				resource.Attribute{
+					Name:        "timestamp_format",
+					Description: `(Optional) The strftime specified timestamp formatting (default ` + "`" + `%Y-%m-%dT%H:%M:%S.000` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "gzip_level",
+					Description: `(Optional) What level of Gzip encoding to have when dumping logs (default 0, no compression).`,
+				},
+				resource.Attribute{
+					Name:        "format",
+					Description: `(Optional) Apache-style string or VCL variables to use for log formatting.`,
+				},
+				resource.Attribute{
+					Name:        "format_version",
+					Description: `(Optional) The version of the custom logging format used for the configured endpoint. Can be either ` + "`" + `1` + "`" + ` or ` + "`" + `2` + "`" + `. (default: ` + "`" + `2` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "message_type",
+					Description: `(Optional) How the message should be formatted. One of: classic (default), loggly, logplex or blank.`,
+				},
+				resource.Attribute{
+					Name:        "placement",
+					Description: `(Optional) Where in the generated VCL the logging call should be placed. Can be ` + "`" + `none` + "`" + ` or ` + "`" + `waf_debug` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "response_condition",
+					Description: `(Optional) The name of an existing condition in the configured endpoint, or leave blank to always execute. The ` + "`" + `logging_cloudfiles` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The unique name of the Rackspace Cloud Files logging endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `(Required) The username for your Cloud Files account.`,
+				},
+				resource.Attribute{
+					Name:        "bucket_name",
+					Description: `(Required) The name of your Cloud Files container.`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `(Required) Your Cloud File account access key.`,
+				},
+				resource.Attribute{
+					Name:        "public_key",
+					Description: `(Optional) The PGP public key that Fastly will use to encrypt your log files before writing them to disk.`,
+				},
+				resource.Attribute{
+					Name:        "format",
+					Description: `(Optional) Apache style log formatting.`,
+				},
+				resource.Attribute{
+					Name:        "format_version",
+					Description: `(Optional) The version of the custom logging format used for the configured endpoint. Can be either ` + "`" + `1` + "`" + ` or ` + "`" + `2` + "`" + `. (default: ` + "`" + `2` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "gzip_level",
+					Description: `(Optional) What level of GZIP encoding to have when dumping logs (default 0, no compression).`,
+				},
+				resource.Attribute{
+					Name:        "message_type",
+					Description: `(Optional) How the message should be formatted. One of: classic (default), loggly, logplex or blank.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional) The path to upload logs to.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong).`,
+				},
+				resource.Attribute{
+					Name:        "period",
+					Description: `(Optional) How frequently log files are finalized so they can be available for reading (in seconds, default 3600).`,
+				},
+				resource.Attribute{
+					Name:        "placement",
+					Description: `(Optional) Where in the generated VCL the logging call should be placed. Can be ` + "`" + `none` + "`" + ` or ` + "`" + `waf_debug` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "response_condition",
+					Description: `(Optional) The name of an existing condition in the configured endpoint, or leave blank to always execute.`,
+				},
+				resource.Attribute{
+					Name:        "timestamp_format",
+					Description: `(Optional) The strftime specified timestamp formatting (default ` + "`" + `%Y-%m-%dT%H:%M:%S.000` + "`" + `). The ` + "`" + `response_object` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1119,7 +1831,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dictionary_id",
-					Description: `The ID of the dictionary. [fastly-s3]: https://docs.fastly.com/guides/integrations/amazon-s3 [fastly-cname]: https://docs.fastly.com/guides/basic-setup/adding-cname-records [fastly-conditionals]: https://docs.fastly.com/guides/conditions/using-conditions [fastly-sumologic]: https://docs.fastly.com/api/logging#logging_sumologic [fastly-gcs]: https://docs.fastly.com/api/logging#logging_gcs ## Import Fastly Service can be imported using their service ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import fastly_service_v1.demo xxxxxxxxxxxxxxxxxxxx ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the dictionary. [fastly-s3]: https://docs.fastly.com/en/guides/amazon-s3 [fastly-cname]: https://docs.fastly.com/en/guides/adding-cname-records [fastly-conditionals]: https://docs.fastly.com/en/guides/using-conditions [fastly-sumologic]: https://developer.fastly.com/reference/api/logging/sumologic/ [fastly-gcs]: https://developer.fastly.com/reference/api/logging/gcs/ ## Import Fastly Service can be imported using their service ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import fastly_service_v1.demo xxxxxxxxxxxxxxxxxxxx ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1137,7 +1849,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dictionary_id",
-					Description: `The ID of the dictionary. [fastly-s3]: https://docs.fastly.com/guides/integrations/amazon-s3 [fastly-cname]: https://docs.fastly.com/guides/basic-setup/adding-cname-records [fastly-conditionals]: https://docs.fastly.com/guides/conditions/using-conditions [fastly-sumologic]: https://docs.fastly.com/api/logging#logging_sumologic [fastly-gcs]: https://docs.fastly.com/api/logging#logging_gcs ## Import Fastly Service can be imported using their service ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import fastly_service_v1.demo xxxxxxxxxxxxxxxxxxxx ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the dictionary. [fastly-s3]: https://docs.fastly.com/en/guides/amazon-s3 [fastly-cname]: https://docs.fastly.com/en/guides/adding-cname-records [fastly-conditionals]: https://docs.fastly.com/en/guides/using-conditions [fastly-sumologic]: https://developer.fastly.com/reference/api/logging/sumologic/ [fastly-gcs]: https://developer.fastly.com/reference/api/logging/gcs/ ## Import Fastly Service can be imported using their service ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import fastly_service_v1.demo xxxxxxxxxxxxxxxxxxxx ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},

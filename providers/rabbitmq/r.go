@@ -98,6 +98,76 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "rabbitmq_federation_upstream",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages a federation upstream on a RabbitMQ server.`,
+			Description:      ``,
+			Keywords: []string{
+				"federation",
+				"upstream",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the federation upstream.`,
+				},
+				resource.Attribute{
+					Name:        "vhost",
+					Description: `(Required) The vhost to create the resource in.`,
+				},
+				resource.Attribute{
+					Name:        "component",
+					Description: `(Computed) Set to ` + "`" + `federation-upstream` + "`" + ` by the underlying RabbitMQ provider. You do not set this attribute but will see it in state and plan output.`,
+				},
+				resource.Attribute{
+					Name:        "definition",
+					Description: `(Required) The configuration of the federation upstream. The structure is described below. The ` + "`" + `definition` + "`" + ` block supports the following arguments: Applicable to Both Federated Exchanges and Queues`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `(Required) The AMQP URI(s) for the upstream. Note that the URI may contain sensitive information, such as a password.`,
+				},
+				resource.Attribute{
+					Name:        "prefetch_count",
+					Description: `(Optional) Maximum number of unacknowledged messages that may be in flight over a federation link at one time. Default is ` + "`" + `1000` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "reconnect_delay",
+					Description: `(Optional) Time in seconds to wait after a network link goes down before attempting reconnection. Default is ` + "`" + `5` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ack_mode",
+					Description: `(Optional) Determines how the link should acknowledge messages. Valid values are ` + "`" + `on-confirm` + "`" + `, ` + "`" + `on-publish` + "`" + `, and ` + "`" + `no-ack` + "`" + `. Default is ` + "`" + `on-confirm` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "trust_user_id",
+					Description: `(Optional) Determines how federation should interact with the validated user-id feature. Default is ` + "`" + `false` + "`" + `. Applicable to Federated Exchanges Only`,
+				},
+				resource.Attribute{
+					Name:        "exchange",
+					Description: `(Optional) The name of the upstream exchange.`,
+				},
+				resource.Attribute{
+					Name:        "max_hops",
+					Description: `(Optional) Maximum number of federation links that messages can traverse before being dropped. Default is ` + "`" + `1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "expires",
+					Description: `(Optional) The expiry time (in milliseconds) after which an upstream queue for a federated exchange may be deleted if a connection to the upstream is lost.`,
+				},
+				resource.Attribute{
+					Name:        "message_ttl",
+					Description: `(Optional) The expiry time (in milliseconds) for messages in the upstream queue for a federated exchange (see expires). Applicable to Federated Queues Only`,
+				},
+				resource.Attribute{
+					Name:        "queue",
+					Description: `(Optional) The name of the upstream queue. Consult the RabbitMQ [Federation Reference](https://www.rabbitmq.com/federation-reference.html) documentation for detailed information and guidance on setting these values. ## Attributes Reference No further attributes are exported. ## Import A Federation upstream can be imported using the resource ` + "`" + `id` + "`" + ` which is composed of ` + "`" + `name@vhost` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import rabbitmq_federation_upstream.foo foo@test ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "rabbitmq_permissions",
 			Category:         "Resources",
 			ShortDescription: `Creates and manages a user's permissions on a RabbitMQ server.`,
@@ -217,6 +287,83 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "rabbitmq_shovel",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages a shovel on a RabbitMQ server.`,
+			Description:      ``,
+			Keywords: []string{
+				"shovel",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The shovel name.`,
+				},
+				resource.Attribute{
+					Name:        "vhost",
+					Description: `(Required) The vhost to create the resource in.`,
+				},
+				resource.Attribute{
+					Name:        "info",
+					Description: `(Required) The settings of the shovel. The structure is described below. The ` + "`" + `info` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "source_uri",
+					Description: `(Required) The amqp uri for the source.`,
+				},
+				resource.Attribute{
+					Name:        "source_exchange",
+					Description: `(Optional) The exchange from which to consume. Either this or source_queue must be specified but not both.`,
+				},
+				resource.Attribute{
+					Name:        "source_exchange_key",
+					Description: `(Optional) The routing key when using source_exchange.`,
+				},
+				resource.Attribute{
+					Name:        "source_queue",
+					Description: `(Optional) The queue from which to consume. Either this or source_exchange must be specified but not both.`,
+				},
+				resource.Attribute{
+					Name:        "destination_uri",
+					Description: `(Required) The amqp uri for the destination .`,
+				},
+				resource.Attribute{
+					Name:        "destination_exchange",
+					Description: `(Optional) The exchange to which messages should be published. Either this or destination_queue must be specified but not both.`,
+				},
+				resource.Attribute{
+					Name:        "destination_exchange_key",
+					Description: `(Optional) The routing key when using destination_exchange.`,
+				},
+				resource.Attribute{
+					Name:        "destination_queue",
+					Description: `(Optional) The queue to which messages should be published. Either this or destination_exchange must be specified but not both.`,
+				},
+				resource.Attribute{
+					Name:        "prefetch_count",
+					Description: `(Optional) The maximum number of unacknowledged messages copied over a shovel at any one time. Defaults to ` + "`" + `1000` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "reconnect_delay",
+					Description: `(Optional) The duration in seconds to reconnect to a broker after disconnected. Defaults to ` + "`" + `1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "add_forward_headers",
+					Description: `(Optional) Whether to amqp shovel headers. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ack_mode",
+					Description: `(Optional) Determines how the shovel should acknowledge messages. Defaults to ` + "`" + `on-confirm` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "delete_after",
+					Description: `(Optional) Determines when (if ever) the shovel should delete itself . Defaults to ` + "`" + `never` + "`" + `. ## Attributes Reference No further attributes are exported. ## Import Shovels can be imported using the ` + "`" + `name` + "`" + ` and ` + "`" + `vhost` + "`" + ` E.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import rabbitmq_shovel.test shovelTest@test ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "rabbitmq_topic_permissions",
 			Category:         "Resources",
 			ShortDescription: `Creates and manages a user's topic permissions on a RabbitMQ server.`,
@@ -299,14 +446,16 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"rabbitmq_binding":           0,
-		"rabbitmq_exchange":          1,
-		"rabbitmq_permissions":       2,
-		"rabbitmq_policy":            3,
-		"rabbitmq_queue":             4,
-		"rabbitmq_topic_permissions": 5,
-		"rabbitmq_user":              6,
-		"rabbitmq_vhost":             7,
+		"rabbitmq_binding":             0,
+		"rabbitmq_exchange":            1,
+		"rabbitmq_federation_upstream": 2,
+		"rabbitmq_permissions":         3,
+		"rabbitmq_policy":              4,
+		"rabbitmq_queue":               5,
+		"rabbitmq_shovel":              6,
+		"rabbitmq_topic_permissions":   7,
+		"rabbitmq_user":                8,
+		"rabbitmq_vhost":               9,
 	}
 )
 

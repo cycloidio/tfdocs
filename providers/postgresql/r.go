@@ -91,7 +91,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "object_type",
-					Description: `(Required) The PostgreSQL object type to set the default privileges on (one of: table, sequence).`,
+					Description: `(Required) The PostgreSQL object type to set the default privileges on (one of: table, sequence, function, type).`,
 				},
 				resource.Attribute{
 					Name:        "privileges",
@@ -153,11 +153,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "object_type",
-					Description: `(Required) The PostgreSQL object type to grant the privileges on (one of: table, sequence).`,
+					Description: `(Required) The PostgreSQL object type to grant the privileges on (one of: database, table, sequence,function).`,
 				},
 				resource.Attribute{
 					Name:        "privileges",
-					Description: `(Required) The list of privileges to grant.`,
+					Description: `(Required) The list of privileges to grant. There are different kinds of privileges: SELECT, INSERT, UPDATE, DELETE, TRUNCATE, REFERENCES, TRIGGER, CREATE, CONNECT, TEMPORARY, EXECUTE, and USAGE.`,
 				},
 			},
 			Attributes: []resource.Attribute{},

@@ -50,14 +50,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fields",
-					Description: `(Optional) Map containing [key/value pairs][3]. The following attributes are exported:`,
+					Description: `(Optional) Map containing [key/value pairs][3]. ### See also`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `The internal ID of the collector. This can be used to attach sources to the collector. ## Import Collectors can be imported using the collector id, e.g.: ` + "`" + `` + "`" + `` + "`" + `hcl terraform import sumologic_collector.test 1234567890 ` + "`" + `` + "`" + `` + "`" + ` Collectors can also be imported using the collector name, which is unique per Sumo Logic account, e.g.: ` + "`" + `` + "`" + `` + "`" + `hcl terraform import sumologic_collector.test my_test_collector ` + "`" + `` + "`" + `` + "`" + ` [1]: https://help.sumologic.com/Send_Data/Hosted_Collectors [2]: https://en.wikipedia.org/wiki/Tz_database [3]: https://help.sumologic.com/Manage/Fields [4]: https://www.terraform.io/docs/configuration/resources.html#prevent_destroy`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The internal ID of the collector. This can be used to attach sources to the collector. ## Import Collectors can be imported using the collector id, e.g.: ` + "`" + `` + "`" + `` + "`" + `hcl terraform import sumologic_collector.test 1234567890 ` + "`" + `` + "`" + `` + "`" + ` Collectors can also be imported using the collector name, which is unique per Sumo Logic account, e.g.: ` + "`" + `` + "`" + `` + "`" + `hcl terraform import sumologic_collector.test my_test_collector ` + "`" + `` + "`" + `` + "`" + ` [1]: https://help.sumologic.com/Send_Data/Hosted_Collectors [2]: https://en.wikipedia.org/wiki/Tz_database [3]: https://help.sumologic.com/Manage/Fields [4]: https://www.terraform.io/docs/configuration/resources.html#prevent_destroy`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -191,7 +196,7 @@ var (
 			Name:             "",
 			Type:             "sumologic_polling_source",
 			Category:         "Resources",
-			ShortDescription: `Provides a Sumologic Polling source. This source is used to import data from AWS S3 buckets.`,
+			ShortDescription: `Provides a Sumologic Polling source. This source is used to import data from various AWS products.`,
 			Description:      ``,
 			Keywords: []string{
 				"polling",

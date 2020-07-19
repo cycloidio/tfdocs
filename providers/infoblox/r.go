@@ -184,7 +184,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mac_addr",
-					Description: `(Optional) - Updates the actual mac adress when used with another provider`,
+					Description: `(Required) - Updates the actual mac adress when used with another provider`,
 				},
 			},
 			Attributes: []resource.Attribute{},

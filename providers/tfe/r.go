@@ -26,7 +26,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "destination_type",
-					Description: `(Required) The type of notification configuration payload to send. Valid values are ` + "`" + `generic` + "`" + ` or ` + "`" + `slack` + "`" + `.`,
+					Description: `(Required) The type of notification configuration payload to send. Valid values are ` + "`" + `email` + "`" + `, ` + "`" + `generic` + "`" + ` or ` + "`" + `slack` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "email_addresses",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "email_user_ids",
+					Description: `(Optional) A list of user IDs. This value _must not_ be provided if ` + "`" + `destination_type` + "`" + ` is ` + "`" + `generic` + "`" + ` or ` + "`" + `slack` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -34,7 +42,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "token",
-					Description: `(Optional) A write-only secure token for the notification configuration, which can be used by the receiving server to verify request authenticity when configured for notification configurations with a destination type of ` + "`" + `generic` + "`" + `. A token set for notification configurations with a destination type of ` + "`" + `slack` + "`" + ` is not allowed and will result in an error. Defaults to ` + "`" + `null` + "`" + `.`,
+					Description: `(Optional) A write-only secure token for the notification configuration, which can be used by the receiving server to verify request authenticity when configured for notification configurations with a destination type of ` + "`" + `generic` + "`" + `. Defaults to ` + "`" + `null` + "`" + `. This value _must not_ be provided if ` + "`" + `destination_type` + "`" + ` is ` + "`" + `email` + "`" + ` or ` + "`" + `slack` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "triggers",
@@ -42,7 +50,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "url",
-					Description: `(Required) The HTTP or HTTPS URL of the notification configuration where notification requests will be made.`,
+					Description: `(Required if ` + "`" + `destination_type` + "`" + ` is ` + "`" + `generic` + "`" + ` or ` + "`" + `slack` + "`" + `) The HTTP or HTTPS URL of the notification configuration where notification requests will be made. This value _must not_ be provided if ` + "`" + `destination_type` + "`" + ` is ` + "`" + `email` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "workspace_id",
@@ -178,10 +186,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "email",
-					Description: `(Required) Email of the user to add.`,
+					Description: `(Required) Email of the user to add. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The organization membership ID.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `The ID of the user associated with the organization membership. Organization memberships can be imported; use ` + "`" + `<ORGANIZATION MEMBERSHIP ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_organization_membership.test ou-wAs3zYmWAhYK7peR ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The organization membership ID.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `The ID of the user associated with the organization membership. Organization memberships can be imported; use ` + "`" + `<ORGANIZATION MEMBERSHIP ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_organization_membership.test ou-wAs3zYmWAhYK7peR ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",

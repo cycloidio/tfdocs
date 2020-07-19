@@ -473,11 +473,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tiered_caching",
-					Description: `(Optional) Whether tiered caching is enabled. Valid values: ` + "`" + `on` + "`" + ` or ` + "`" + `off` + "`" + `. Defaults to ` + "`" + `off` + "`" + `.`,
+					Description: `(Optional) Whether tiered caching is enabled. Valid values: ` + "`" + `on` + "`" + ` or ` + "`" + `off` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "smart_routing",
-					Description: `(Optional) Whether smart routing is enabled. Valid values: ` + "`" + `on` + "`" + ` or ` + "`" + `off` + "`" + `. Defaults to ` + "`" + `off` + "`" + `. ## Import Argo settings can be imported the zone ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_argo.example d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ` where ` + "`" + `d41d8cd98f00b204e9800998ecf8427e` + "`" + ` is the zone ID.`,
+					Description: `(Optional) Whether smart routing is enabled. Valid values: ` + "`" + `on` + "`" + ` or ` + "`" + `off` + "`" + `. ## Import Argo settings can be imported the zone ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_argo.example d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ` where ` + "`" + `d41d8cd98f00b204e9800998ecf8427e` + "`" + ` is the zone ID.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1331,7 +1331,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cache_key_fields",
-					Description: `(Optional) Controls how Cloudflare creates Cache Keys used to identify files in cache. See below for full description.`,
+					Description: `(Optional) Controls how Cloudflare creates Cache Keys used to identify files in cache. [See below](#cache-key-fields) for full description.`,
 				},
 				resource.Attribute{
 					Name:        "cache_level",
@@ -1340,6 +1340,10 @@ var (
 				resource.Attribute{
 					Name:        "cache_on_cookie",
 					Description: `(Optional) String value of cookie name to conditionally cache the page.`,
+				},
+				resource.Attribute{
+					Name:        "cache_ttl_by_status",
+					Description: `(Optional) Set cache TTL based on the response status from the origin web server. Can be specified multiple times. [See below](#cache-ttl-by-status) for full description.`,
 				},
 				resource.Attribute{
 					Name:        "disable_apps",
@@ -1532,6 +1536,22 @@ var (
 				resource.Attribute{
 					Name:        "lang",
 					Description: `(Optional, Boolean) ` + "`" + `true` + "`" + ` - includes the first language code contained in the ` + "`" + `Accept-Language` + "`" + ` header sent by the client; defaults to ` + "`" + `false` + "`" + `. Example: ` + "`" + `` + "`" + `` + "`" + `hcl # Unrealistic example with all features used resource "cloudflare_page_rule" "foobar" { zone_id = var.cloudflare_zone_id target = "${var.cloudflare_zone}/app/`,
+				},
+				resource.Attribute{
+					Name:        "codes",
+					Description: `(Required) A HTTP code (e.g. ` + "`" + `404` + "`" + `) or range of codes (e.g. ` + "`" + `400-499` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `(Required) Duration a resource lives in the Cloudflare cache.`,
+				},
+				resource.Attribute{
+					Name:        "0",
+					Description: `sets ` + "`" + `no-cache` + "`" + `, saved to cache, but expired immediately (revalidate from origin every time)`,
+				},
+				resource.Attribute{
+					Name:        "-1",
+					Description: `sets ` + "`" + `no-store` + "`" + `, never save to cache Example: ` + "`" + `` + "`" + `` + "`" + `hcl resource "cloudflare_page_rule" "test" { zone_id = var.cloudflare_zone_id target = "${var.cloudflare_zone}/app/`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1942,6 +1962,52 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "cloudflare_waf_override",
+			Category:         "Resources",
+			ShortDescription: `Provides a Cloudflare WAF Override resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"waf",
+				"override",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Required) The DNS zone to which the WAF override condition should be added.`,
+				},
+				resource.Attribute{
+					Name:        "urls",
+					Description: `(Required) An array of URLs to apply the WAF override to.`,
+				},
+				resource.Attribute{
+					Name:        "rules",
+					Description: `(Required) A list of WAF rule ID to rule action you intend to apply.`,
+				},
+				resource.Attribute{
+					Name:        "paused",
+					Description: `(Optional) Whether this package is currently paused.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of what the WAF override does.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Relative priority of this configuration when multiple configurations match a single URL.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `(Optional) Similar to ` + "`" + `rules` + "`" + `; which WAF groups you want to alter.`,
+				},
+				resource.Attribute{
+					Name:        "rewrite_action",
+					Description: `(Optional) When a WAF rule matches, substitute its configured action for a different action specified by this definition. ## Import WAF Overrides can be imported using a composite ID formed of zone ID and override ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_waf_override.my_example_waf_override 3abe5b950053dbddf1516d89f9ef1e8a/9d4e66d7649c178663bf62e06dbacb23 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "cloudflare_waf_package",
 			Category:         "Resources",
 			ShortDescription: `Provides a Cloudflare WAF rule package resource for a particular zone.`,
@@ -2085,11 +2151,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name for the binding.`,
+					Description: `(Required) The global variable for the binding in your Worker code.`,
 				},
 				resource.Attribute{
-					Name:        "namespace_id",
-					Description: `(Required) ID of KV namespace. ## Import To import a script, use a script name, e.g. ` + "`" + `script_name` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_worker_script.default script_name ` + "`" + `` + "`" + `` + "`" + ` where:`,
+					Name:        "kv_namespace_id",
+					Description: `(Required) ID of the KV namespace you want to use.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The global variable for the binding in your Worker code.`,
+				},
+				resource.Attribute{
+					Name:        "text",
+					Description: `(Required) The plain text you want to store.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The global variable for the binding in your Worker code.`,
+				},
+				resource.Attribute{
+					Name:        "text",
+					Description: `(Required) The secret text you want to store. ## Import To import a script, use a script name, e.g. ` + "`" + `script_name` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_worker_script.default script_name ` + "`" + `` + "`" + `` + "`" + ` where:`,
 				},
 				resource.Attribute{
 					Name:        "script_name",
@@ -2402,15 +2484,16 @@ var (
 		"cloudflare_record":                      23,
 		"cloudflare_spectrum_application":        24,
 		"cloudflare_waf_group":                   25,
-		"cloudflare_waf_package":                 26,
-		"cloudflare_waf_rule":                    27,
-		"cloudflare_worker_route":                28,
-		"cloudflare_worker_script":               29,
-		"cloudflare_workers_kv":                  30,
-		"cloudflare_workers_kv_namespace":        31,
-		"cloudflare_zone":                        32,
-		"cloudflare_zone_lockdown":               33,
-		"cloudflare_zone_settings_override":      34,
+		"cloudflare_waf_override":                26,
+		"cloudflare_waf_package":                 27,
+		"cloudflare_waf_rule":                    28,
+		"cloudflare_worker_route":                29,
+		"cloudflare_worker_script":               30,
+		"cloudflare_workers_kv":                  31,
+		"cloudflare_workers_kv_namespace":        32,
+		"cloudflare_zone":                        33,
+		"cloudflare_zone_lockdown":               34,
+		"cloudflare_zone_settings_override":      35,
 	}
 )
 

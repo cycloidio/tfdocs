@@ -85,6 +85,18 @@ var (
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nomad_volume",
+			Category:         "Resources",
+			ShortDescription: `Manages the lifecycle of registering and deregistering Nomad volumes.`,
+			Description:      ``,
+			Keywords: []string{
+				"volume",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
 	}
 
 	resourcesMap = map[string]int{
@@ -95,6 +107,7 @@ var (
 		"nomad_namespace":           3,
 		"nomad_quota_specification": 4,
 		"nomad_sentinel_policy":     5,
+		"nomad_volume":              6,
 	}
 )
 

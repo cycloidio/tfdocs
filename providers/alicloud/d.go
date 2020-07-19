@@ -1565,6 +1565,390 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "alicloud_cassandra_clusters",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a collection of Cassandra clusters according to the specified filters.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to apply to the cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) The list of Cassandra cluster ids.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, Available in 1.73.0) A mapping of tags to assign to the resource.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) The name of file that can save the collection of clusters after running ` + "`" + `terraform plan` + "`" + `. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `The list of Cassandra cluster ids.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `The name list of Cassandra clusters.`,
+				},
+				resource.Attribute{
+					Name:        "clusters",
+					Description: `A list of Cassandra clusters. Its every element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Cassandra cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `The ID of the Cassandra cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `The name of the Cassandra cluster.`,
+				},
+				resource.Attribute{
+					Name:        "major_version",
+					Description: `The major version of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "minor_version",
+					Description: `The minor version of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "lock_mode",
+					Description: `The lock mode of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "data_center_count",
+					Description: `The count of data centers`,
+				},
+				resource.Attribute{
+					Name:        "pay_type",
+					Description: `Billing method. Value options are ` + "`" + `Subscription` + "`" + ` for Pay-As-You-Go and ` + "`" + `PayAsYouGo` + "`" + ` for yearly or monthly subscription.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The create time of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `The expire time of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `The list of Cassandra cluster ids.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `The name list of Cassandra clusters.`,
+				},
+				resource.Attribute{
+					Name:        "clusters",
+					Description: `A list of Cassandra clusters. Its every element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Cassandra cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `The ID of the Cassandra cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `The name of the Cassandra cluster.`,
+				},
+				resource.Attribute{
+					Name:        "major_version",
+					Description: `The major version of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "minor_version",
+					Description: `The minor version of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "lock_mode",
+					Description: `The lock mode of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "data_center_count",
+					Description: `The count of data centers`,
+				},
+				resource.Attribute{
+					Name:        "pay_type",
+					Description: `Billing method. Value options are ` + "`" + `Subscription` + "`" + ` for Pay-As-You-Go and ` + "`" + `PayAsYouGo` + "`" + ` for yearly or monthly subscription.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The create time of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `The expire time of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_cassandra_data_centers",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a collection of Cassandra Data Centers according to the specified filters.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to apply to the cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) The list of Cassandra data center ids.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `(Optional) The name list of Cassandra data centers.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) The cluster id of dataCenters belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) The name of file that can save the collection of data centers after running ` + "`" + `terraform plan` + "`" + `. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `The list of Cassandra data center ids.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `The name list of Cassandra data centers.`,
+				},
+				resource.Attribute{
+					Name:        "centers",
+					Description: `A list of Cassandra data centers. Its every element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `The ID of the Cassandra cluster.`,
+				},
+				resource.Attribute{
+					Name:        "commodity_instance",
+					Description: `The commodity ID of the Cassandra dataCenter.`,
+				},
+				resource.Attribute{
+					Name:        "data_center_id",
+					Description: `The id of the Cassandra dataCenter.`,
+				},
+				resource.Attribute{
+					Name:        "data_center_name",
+					Description: `The name of the Cassandra dataCenter.`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `One node disk size, unit:GB.`,
+				},
+				resource.Attribute{
+					Name:        "disk_type",
+					Description: `Cloud_ssd or cloud_efficiency.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `The instance type of the Cassandra dataCenter, eg: cassandra.c.large.`,
+				},
+				resource.Attribute{
+					Name:        "lock_mode",
+					Description: `The lock mode of the dataCenter.`,
+				},
+				resource.Attribute{
+					Name:        "node_count",
+					Description: `The node count of dataCenter.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the dataCenter.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The create time of the dataCenter.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `The expire time of the dataCenter.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `Zone ID the dataCenter belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `VPC ID the dataCenter belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "vswitch_id",
+					Description: `VSwitch ID the dataCenter belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "pay_type",
+					Description: `Billing method. Value options are ` + "`" + `Subscription` + "`" + ` for Pay-As-You-Go and ` + "`" + `PayAsYouGo` + "`" + ` for yearly or monthly subscription.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `The list of Cassandra data center ids.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `The name list of Cassandra data centers.`,
+				},
+				resource.Attribute{
+					Name:        "centers",
+					Description: `A list of Cassandra data centers. Its every element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `The ID of the Cassandra cluster.`,
+				},
+				resource.Attribute{
+					Name:        "commodity_instance",
+					Description: `The commodity ID of the Cassandra dataCenter.`,
+				},
+				resource.Attribute{
+					Name:        "data_center_id",
+					Description: `The id of the Cassandra dataCenter.`,
+				},
+				resource.Attribute{
+					Name:        "data_center_name",
+					Description: `The name of the Cassandra dataCenter.`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `One node disk size, unit:GB.`,
+				},
+				resource.Attribute{
+					Name:        "disk_type",
+					Description: `Cloud_ssd or cloud_efficiency.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `The instance type of the Cassandra dataCenter, eg: cassandra.c.large.`,
+				},
+				resource.Attribute{
+					Name:        "lock_mode",
+					Description: `The lock mode of the dataCenter.`,
+				},
+				resource.Attribute{
+					Name:        "node_count",
+					Description: `The node count of dataCenter.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the dataCenter.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The create time of the dataCenter.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `The expire time of the dataCenter.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `Zone ID the dataCenter belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `VPC ID the dataCenter belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "vswitch_id",
+					Description: `VSwitch ID the dataCenter belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "pay_type",
+					Description: `Billing method. Value options are ` + "`" + `Subscription` + "`" + ` for Pay-As-You-Go and ` + "`" + `PayAsYouGo` + "`" + ` for yearly or monthly subscription.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_cassandra_zones",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of availability zones for Cassandra that can be used by an Alibaba Cloud account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "multi",
+					Description: `(Optional) Indicate whether the zones can be used in a multi AZ configuration. Default to ` + "`" + `false` + "`" + `. Multi AZ is usually used to launch Cassandra clusters.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of availability zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the zone.`,
+				},
+				resource.Attribute{
+					Name:        "multi_zone_ids",
+					Description: `A list of zone ids in which the multi zone.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of availability zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the zone.`,
+				},
+				resource.Attribute{
+					Name:        "multi_zone_ids",
+					Description: `A list of zone ids in which the multi zone.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alicloud_cen_bandwidth_limits",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a list of CEN Bandwidth Limits owned by an Alibaba Cloud account.`,
@@ -2004,6 +2388,110 @@ var (
 				resource.Attribute{
 					Name:        "tags",
 					Description: `A map of tags assigned to the Cen Instance.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_cen_private_zones",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of CEN(Cloud Enterprise Network) Private Zones owned by an Alibaba Cloud account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cen_id",
+					Description: `(Required) The ID of the CEN instance.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of CEN private zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "host_region_id",
+					Description: `(Optional) The service region is the target region of the PrivateZone service accessed through CEN.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional) The status of the PrivateZone service, including ` + "`" + `Creating` + "`" + `, ` + "`" + `Active` + "`" + ` and ` + "`" + `Deleting` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of CEN private zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of CEN private zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the private zone.`,
+				},
+				resource.Attribute{
+					Name:        "cen_id",
+					Description: `The ID of the CEN instance.`,
+				},
+				resource.Attribute{
+					Name:        "private_zone_dns_servers",
+					Description: `The DNS IP addresses of the PrivateZone service.`,
+				},
+				resource.Attribute{
+					Name:        "access_region_id",
+					Description: `The access region. The access region is the region of the cloud resource that accesses the PrivateZone service through CEN.`,
+				},
+				resource.Attribute{
+					Name:        "host_region_id",
+					Description: `The service region. The service region is the target region of the PrivateZone service accessed through CEN.`,
+				},
+				resource.Attribute{
+					Name:        "host_vpc_id",
+					Description: `The VPC that belongs to the service region.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the PrivateZone service.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of CEN private zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of CEN private zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the private zone.`,
+				},
+				resource.Attribute{
+					Name:        "cen_id",
+					Description: `The ID of the CEN instance.`,
+				},
+				resource.Attribute{
+					Name:        "private_zone_dns_servers",
+					Description: `The DNS IP addresses of the PrivateZone service.`,
+				},
+				resource.Attribute{
+					Name:        "access_region_id",
+					Description: `The access region. The access region is the region of the cloud resource that accesses the PrivateZone service through CEN.`,
+				},
+				resource.Attribute{
+					Name:        "host_region_id",
+					Description: `The service region. The service region is the target region of the PrivateZone service accessed through CEN.`,
+				},
+				resource.Attribute{
+					Name:        "host_vpc_id",
+					Description: `The VPC that belongs to the service region.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the PrivateZone service.`,
 				},
 			},
 		},
@@ -3116,6 +3604,182 @@ var (
 				resource.Attribute{
 					Name:        "image_create",
 					Description: `Create time of this image, unix time in nanoseconds.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_cr_ee_sync_rules",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of Container Registry Enterprise Edition sync rules.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Required) ID of Container Registry Enterprise Edition local instance.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_name",
+					Description: `(Optional) Name of Container Registry Enterprise Edition local namespace.`,
+				},
+				resource.Attribute{
+					Name:        "repo_name",
+					Description: `(Optional) Name of Container Registry Enterprise Edition local repo.`,
+				},
+				resource.Attribute{
+					Name:        "target_instance_id",
+					Description: `(Optional) ID of Container Registry Enterprise Edition target instance.`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter results by sync rule name.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of ids to filter results by sync rule id.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of matched Container Registry Enterprise Edition sync rules. Its element is a sync rule uuid.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of sync rule names.`,
+				},
+				resource.Attribute{
+					Name:        "rules",
+					Description: `A list of matched Container Registry Enterprise Edition sync rules. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of Container Registry Enterprise Edition sync rule.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of Container Registry Enterprise Edition sync rule.`,
+				},
+				resource.Attribute{
+					Name:        "region_id",
+					Description: `Region of Container Registry Enterprise Edition local instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `ID of Container Registry Enterprise Edition local instance.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_name",
+					Description: `Name of Container Registry Enterprise Edition local namespace.`,
+				},
+				resource.Attribute{
+					Name:        "repo_name",
+					Description: `Name of Container Registry Enterprise Edition local repo.`,
+				},
+				resource.Attribute{
+					Name:        "target_region_id",
+					Description: `Region of Container Registry Enterprise Edition target instance.`,
+				},
+				resource.Attribute{
+					Name:        "target_instance_id",
+					Description: `ID of Container Registry Enterprise Edition target instance.`,
+				},
+				resource.Attribute{
+					Name:        "target_namespace_name",
+					Description: `Name of Container Registry Enterprise Edition target namespace.`,
+				},
+				resource.Attribute{
+					Name:        "target_repo_name",
+					Description: `Name of Container Registry Enterprise Edition target repo.`,
+				},
+				resource.Attribute{
+					Name:        "tag_filter",
+					Description: `The regular expression used to filter image tags for synchronization in the source repository.`,
+				},
+				resource.Attribute{
+					Name:        "sync_direction",
+					Description: `` + "`" + `FROM` + "`" + ` or ` + "`" + `TO` + "`" + `, the direction of synchronization. ` + "`" + `FROM` + "`" + ` indicates that the local instance is the source instance. ` + "`" + `TO` + "`" + ` indicates that the local instance is the target instance to be synchronized.`,
+				},
+				resource.Attribute{
+					Name:        "sync_scope",
+					Description: `` + "`" + `REPO` + "`" + ` or ` + "`" + `NAMESPACE` + "`" + `,the scope that the synchronization rule applies.`,
+				},
+				resource.Attribute{
+					Name:        "sync_trigger",
+					Description: `` + "`" + `PASSIVE` + "`" + ` or ` + "`" + `INITIATIVE` + "`" + `, the policy configured to trigger the synchronization rule.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of matched Container Registry Enterprise Edition sync rules. Its element is a sync rule uuid.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of sync rule names.`,
+				},
+				resource.Attribute{
+					Name:        "rules",
+					Description: `A list of matched Container Registry Enterprise Edition sync rules. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of Container Registry Enterprise Edition sync rule.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of Container Registry Enterprise Edition sync rule.`,
+				},
+				resource.Attribute{
+					Name:        "region_id",
+					Description: `Region of Container Registry Enterprise Edition local instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `ID of Container Registry Enterprise Edition local instance.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_name",
+					Description: `Name of Container Registry Enterprise Edition local namespace.`,
+				},
+				resource.Attribute{
+					Name:        "repo_name",
+					Description: `Name of Container Registry Enterprise Edition local repo.`,
+				},
+				resource.Attribute{
+					Name:        "target_region_id",
+					Description: `Region of Container Registry Enterprise Edition target instance.`,
+				},
+				resource.Attribute{
+					Name:        "target_instance_id",
+					Description: `ID of Container Registry Enterprise Edition target instance.`,
+				},
+				resource.Attribute{
+					Name:        "target_namespace_name",
+					Description: `Name of Container Registry Enterprise Edition target namespace.`,
+				},
+				resource.Attribute{
+					Name:        "target_repo_name",
+					Description: `Name of Container Registry Enterprise Edition target repo.`,
+				},
+				resource.Attribute{
+					Name:        "tag_filter",
+					Description: `The regular expression used to filter image tags for synchronization in the source repository.`,
+				},
+				resource.Attribute{
+					Name:        "sync_direction",
+					Description: `` + "`" + `FROM` + "`" + ` or ` + "`" + `TO` + "`" + `, the direction of synchronization. ` + "`" + `FROM` + "`" + ` indicates that the local instance is the source instance. ` + "`" + `TO` + "`" + ` indicates that the local instance is the target instance to be synchronized.`,
+				},
+				resource.Attribute{
+					Name:        "sync_scope",
+					Description: `` + "`" + `REPO` + "`" + ` or ` + "`" + `NAMESPACE` + "`" + `,the scope that the synchronization rule applies.`,
+				},
+				resource.Attribute{
+					Name:        "sync_trigger",
+					Description: `` + "`" + `PASSIVE` + "`" + ` or ` + "`" + `INITIATIVE` + "`" + `, the policy configured to trigger the synchronization rule.`,
 				},
 			},
 		},
@@ -5033,6 +5697,354 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "alicloud_dms_enterprise_instances",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of available DMS Enterprise Instances.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional) Filter the results by status of the DMS Enterprise Instances. Valid values: ` + "`" + `NORMAL` + "`" + `, ` + "`" + `UNAVAILABLE` + "`" + `, ` + "`" + `UNKNOWN` + "`" + `, ` + "`" + `DELETED` + "`" + `, ` + "`" + `DISABLE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "env_type",
+					Description: `(Optional) The type of the environment to which the database instance belongs.`,
+				},
+				resource.Attribute{
+					Name:        "instance_source",
+					Description: `(Optional) The source of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_state",
+					Description: `(Optional) The status of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "net_type",
+					Description: `(Optional) The network type of the database instance. Valid values: CLASSIC and VPC. For more information about the valid values, see the description of the RegisterInstance operation.`,
+				},
+				resource.Attribute{
+					Name:        "search_key",
+					Description: `(Optional) The keyword used to query database instances.`,
+				},
+				resource.Attribute{
+					Name:        "tid",
+					Description: `(Optional) The ID of the tenant in Data Management (DMS) Enterprise.`,
+				},
+				resource.Attribute{
+					Name:        "instance_alias_regex",
+					Description: `(Optional) A regex string to filter the results by the DMS Enterprise Instance instance_alias.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `A list of KMS keys. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "data_link_name",
+					Description: `The name of the data link for the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "database_password",
+					Description: `The logon password of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "database_user",
+					Description: `The logon username of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "dba_id",
+					Description: `The ID of the database administrator (DBA) of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "dba_nick_name",
+					Description: `The nickname of the DBA.`,
+				},
+				resource.Attribute{
+					Name:        "ddl_online",
+					Description: `Indicates whether the online data description language (DDL) service was enabled for the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "ecs_instance_id",
+					Description: `The ID of the Elastic Compute Service (ECS) instance to which the database instance belongs.`,
+				},
+				resource.Attribute{
+					Name:        "ecs_region",
+					Description: `The region where the database instance resides.`,
+				},
+				resource.Attribute{
+					Name:        "env_type",
+					Description: `The type of the environment to which the database instance belongs..`,
+				},
+				resource.Attribute{
+					Name:        "export_timeout",
+					Description: `The timeout period for exporting the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `The endpoint of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_alias",
+					Description: `The alias of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `The ID of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_source",
+					Description: `The ID of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `The ID of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The connection port of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "query_timeout",
+					Description: `The timeout period for querying the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "safe_rule_id",
+					Description: `The ID of the security rule for the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "sid",
+					Description: `The system ID (SID) of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "use_dsql",
+					Description: `Indicates whether cross-database query was enabled for the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The ID of the Virtual Private Cloud (VPC) to which the database instance belongs.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instances",
+					Description: `A list of KMS keys. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "data_link_name",
+					Description: `The name of the data link for the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "database_password",
+					Description: `The logon password of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "database_user",
+					Description: `The logon username of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "dba_id",
+					Description: `The ID of the database administrator (DBA) of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "dba_nick_name",
+					Description: `The nickname of the DBA.`,
+				},
+				resource.Attribute{
+					Name:        "ddl_online",
+					Description: `Indicates whether the online data description language (DDL) service was enabled for the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "ecs_instance_id",
+					Description: `The ID of the Elastic Compute Service (ECS) instance to which the database instance belongs.`,
+				},
+				resource.Attribute{
+					Name:        "ecs_region",
+					Description: `The region where the database instance resides.`,
+				},
+				resource.Attribute{
+					Name:        "env_type",
+					Description: `The type of the environment to which the database instance belongs..`,
+				},
+				resource.Attribute{
+					Name:        "export_timeout",
+					Description: `The timeout period for exporting the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `The endpoint of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_alias",
+					Description: `The alias of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `The ID of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_source",
+					Description: `The ID of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `The ID of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The connection port of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "query_timeout",
+					Description: `The timeout period for querying the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "safe_rule_id",
+					Description: `The ID of the security rule for the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "sid",
+					Description: `The system ID (SID) of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "use_dsql",
+					Description: `Indicates whether cross-database query was enabled for the database instance.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The ID of the Virtual Private Cloud (VPC) to which the database instance belongs.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_dms_enterprise_users",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of available DMS Enterprise Users.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Optional) The role of the user to query.`,
+				},
+				resource.Attribute{
+					Name:        "search_key",
+					Description: `(Optional) The keyword used to query users.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional) The status of the user.`,
+				},
+				resource.Attribute{
+					Name:        "tid",
+					Description: `(Optional) The ID of the tenant in DMS Enterprise.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of DMS Enterprise User IDs (UID).`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of DMS Enterprise User IDs (UID).`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `A list of DMS Enterprise Users. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "mobile",
+					Description: `The DingTalk number or mobile number of the user.`,
+				},
+				resource.Attribute{
+					Name:        "nick_name",
+					Description: `The nickname of the user.`,
+				},
+				resource.Attribute{
+					Name:        "parent_uid",
+					Description: `The Alibaba Cloud unique ID (UID) of the parent account if the user corresponds to a Resource Access Management (RAM) user.`,
+				},
+				resource.Attribute{
+					Name:        "role_ids",
+					Description: `The list ids of the role that the user plays.`,
+				},
+				resource.Attribute{
+					Name:        "role_names",
+					Description: `The list names of the role that he user plays.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the user.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Alibaba Cloud unique ID (UID) of the user.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `The ID of the user.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of DMS Enterprise User IDs (UID).`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `A list of DMS Enterprise Users. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "mobile",
+					Description: `The DingTalk number or mobile number of the user.`,
+				},
+				resource.Attribute{
+					Name:        "nick_name",
+					Description: `The nickname of the user.`,
+				},
+				resource.Attribute{
+					Name:        "parent_uid",
+					Description: `The Alibaba Cloud unique ID (UID) of the parent account if the user corresponds to a Resource Access Management (RAM) user.`,
+				},
+				resource.Attribute{
+					Name:        "role_ids",
+					Description: `The list ids of the role that the user plays.`,
+				},
+				resource.Attribute{
+					Name:        "role_names",
+					Description: `The list names of the role that he user plays.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the user.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Alibaba Cloud unique ID (UID) of the user.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `The ID of the user.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alicloud_dns_domain_groups",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a list of groups available to the domain.`,
@@ -5848,6 +6860,190 @@ var (
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of DRDS instance IDs.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_eci_image_caches",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a collection of ECI Image Cache to the specified filters.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list ids of ECI Image Cache.`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter results by the image cache name.`,
+				},
+				resource.Attribute{
+					Name:        "image",
+					Description: `(Optional) Find the mirror cache containing it according to the image name.`,
+				},
+				resource.Attribute{
+					Name:        "image_cache_name",
+					Description: `(Optional) The name of ECI Image Cache.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `(Optional) The id of snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional) The status of ECI Image Cache.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list ids of ECI Image Cache.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of ECI Image Cache names.`,
+				},
+				resource.Attribute{
+					Name:        "caches",
+					Description: `A list of caches. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the ECI Image Cache.`,
+				},
+				resource.Attribute{
+					Name:        "container_group_id",
+					Description: `The id of container group.`,
+				},
+				resource.Attribute{
+					Name:        "expire_date_time",
+					Description: `The time of expired.`,
+				},
+				resource.Attribute{
+					Name:        "image_cache_id",
+					Description: `The id of the ECI Image Cache.`,
+				},
+				resource.Attribute{
+					Name:        "image_cache_name",
+					Description: `The name of the ECI Image Cache.`,
+				},
+				resource.Attribute{
+					Name:        "images",
+					Description: `The list of cached images.`,
+				},
+				resource.Attribute{
+					Name:        "progress",
+					Description: `The progress of ECI Image Cache.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `The id of snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of ECI Image Cache.`,
+				},
+				resource.Attribute{
+					Name:        "events",
+					Description: `Image cache pulls image event information.`,
+				},
+				resource.Attribute{
+					Name:        "first_timestamp",
+					Description: `Start time.`,
+				},
+				resource.Attribute{
+					Name:        "last_timestamp",
+					Description: `End time.`,
+				},
+				resource.Attribute{
+					Name:        "count",
+					Description: `Number of events.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of event.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of event.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list ids of ECI Image Cache.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of ECI Image Cache names.`,
+				},
+				resource.Attribute{
+					Name:        "caches",
+					Description: `A list of caches. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the ECI Image Cache.`,
+				},
+				resource.Attribute{
+					Name:        "container_group_id",
+					Description: `The id of container group.`,
+				},
+				resource.Attribute{
+					Name:        "expire_date_time",
+					Description: `The time of expired.`,
+				},
+				resource.Attribute{
+					Name:        "image_cache_id",
+					Description: `The id of the ECI Image Cache.`,
+				},
+				resource.Attribute{
+					Name:        "image_cache_name",
+					Description: `The name of the ECI Image Cache.`,
+				},
+				resource.Attribute{
+					Name:        "images",
+					Description: `The list of cached images.`,
+				},
+				resource.Attribute{
+					Name:        "progress",
+					Description: `The progress of ECI Image Cache.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `The id of snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of ECI Image Cache.`,
+				},
+				resource.Attribute{
+					Name:        "events",
+					Description: `Image cache pulls image event information.`,
+				},
+				resource.Attribute{
+					Name:        "first_timestamp",
+					Description: `Start time.`,
+				},
+				resource.Attribute{
+					Name:        "last_timestamp",
+					Description: `End time.`,
+				},
+				resource.Attribute{
+					Name:        "count",
+					Description: `Number of events.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of event.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of event.`,
 				},
 			},
 		},
@@ -10156,6 +11352,98 @@ var (
 				resource.Attribute{
 					Name:        "key_id",
 					Description: `The globally unique ID of the CMK. It is the ID of the CMK used to decrypt ciphertext.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_kms_secret_versions",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of available KMS Secret Versions.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "include_deprecated",
+					Description: `(Optional, ForceNew) Specifies whether to return deprecated secret versions. Default to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional, ForceNew) A list of KMS Secret Version ids.`,
+				},
+				resource.Attribute{
+					Name:        "secret_name",
+					Description: `(Required, ForceNew) The name of the secret.`,
+				},
+				resource.Attribute{
+					Name:        "version_stage",
+					Description: `(Optional, ForceNew, Available in 1.89.0+) The stage of the secret version.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "enable_details",
+					Description: `(Optional) Default to false and only output ` + "`" + `secret_name` + "`" + `, ` + "`" + `version_id` + "`" + `, ` + "`" + `version_stages` + "`" + `. Set it to true can output more details. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of Kms Secret Version ids.`,
+				},
+				resource.Attribute{
+					Name:        "versions",
+					Description: `A list of KMS Secret Versions. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "secret_data",
+					Description: `The secret value. Secrets Manager decrypts the stored secret value in ciphertext and returns it. (Returned when ` + "`" + `enable_details` + "`" + ` is true).`,
+				},
+				resource.Attribute{
+					Name:        "secret_data_type",
+					Description: `The type of the secret value. (Returned when ` + "`" + `enable_details` + "`" + ` is true).`,
+				},
+				resource.Attribute{
+					Name:        "secret_name",
+					Description: `The name of the secret.`,
+				},
+				resource.Attribute{
+					Name:        "version_id",
+					Description: `The version number of the secret value.`,
+				},
+				resource.Attribute{
+					Name:        "version_stages",
+					Description: `Stage labels that mark the secret version.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of Kms Secret Version ids.`,
+				},
+				resource.Attribute{
+					Name:        "versions",
+					Description: `A list of KMS Secret Versions. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "secret_data",
+					Description: `The secret value. Secrets Manager decrypts the stored secret value in ciphertext and returns it. (Returned when ` + "`" + `enable_details` + "`" + ` is true).`,
+				},
+				resource.Attribute{
+					Name:        "secret_data_type",
+					Description: `The type of the secret value. (Returned when ` + "`" + `enable_details` + "`" + ` is true).`,
+				},
+				resource.Attribute{
+					Name:        "secret_name",
+					Description: `The name of the secret.`,
+				},
+				resource.Attribute{
+					Name:        "version_id",
+					Description: `The version number of the secret value.`,
+				},
+				resource.Attribute{
+					Name:        "version_stages",
+					Description: `Stage labels that mark the secret version.`,
 				},
 			},
 		},
@@ -18853,6 +20141,126 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "alicloud_waf_instances",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a datasource to retrieve WAF instances.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of WAF instance IDs.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional) The status of WAF instance to filter results. Optional value: ` + "`" + `0` + "`" + `: The instance has expired, ` + "`" + `1` + "`" + ` : The instance has not expired and is working properly.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_id",
+					Description: `(Optional) The ID of resource group to which WAF instance belongs.`,
+				},
+				resource.Attribute{
+					Name:        "instance_source",
+					Description: `(Optional) The source of the WAF instance.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of WAF instance IDs.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `A list of WAF instances. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the WAF instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `The ID of WAF the instance.`,
+				},
+				resource.Attribute{
+					Name:        "end_date",
+					Description: `The timestamp (in seconds) indicating when the WAF instance expires.`,
+				},
+				resource.Attribute{
+					Name:        "in_debt",
+					Description: `Indicates whether the WAF instance has overdue payments.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region where the WAF instance is located.`,
+				},
+				resource.Attribute{
+					Name:        "remain_day",
+					Description: `The number of days before the trial period of the WAF instance expires.`,
+				},
+				resource.Attribute{
+					Name:        "trial",
+					Description: `Indicates whether this is a trial instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates whether the WAF instance has expired.`,
+				},
+				resource.Attribute{
+					Name:        "subscription_typed",
+					Description: `The billing method of the WAF instance.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of WAF instance IDs.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `A list of WAF instances. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the WAF instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `The ID of WAF the instance.`,
+				},
+				resource.Attribute{
+					Name:        "end_date",
+					Description: `The timestamp (in seconds) indicating when the WAF instance expires.`,
+				},
+				resource.Attribute{
+					Name:        "in_debt",
+					Description: `Indicates whether the WAF instance has overdue payments.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region where the WAF instance is located.`,
+				},
+				resource.Attribute{
+					Name:        "remain_day",
+					Description: `The number of days before the trial period of the WAF instance expires.`,
+				},
+				resource.Attribute{
+					Name:        "trial",
+					Description: `Indicates whether this is a trial instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates whether the WAF instance has expired.`,
+				},
+				resource.Attribute{
+					Name:        "subscription_typed",
+					Description: `The billing method of the WAF instance.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alicloud_yundun_bastionhost_instances",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a list of cloud Bastionhost(yundun_bastionhost) instances available to the user.`,
@@ -19215,155 +20623,165 @@ var (
 		"alicloud_api_gateway_groups":                    13,
 		"alicloud_caller_identity":                       14,
 		"alicloud_cas_certificates":                      15,
-		"alicloud_cen_bandwidth_limits":                  16,
-		"alicloud_cen_bandwidth_packages":                17,
-		"alicloud_cen_flowlogs":                          18,
-		"alicloud_cen_instances":                         19,
-		"alicloud_cen_region_route_entries":              20,
-		"alicloud_cen_route_entries":                     21,
-		"alicloud_cen_route_maps":                        22,
-		"alicloud_cloud_connect_networks":                23,
-		"alicloud_common_bandwidth_packages":             24,
-		"alicloud_cr_ee_instances":                       25,
-		"alicloud_cr_ee_namespaces":                      26,
-		"alicloud_cr_ee_repos":                           27,
-		"alicloud_cr_namespaces":                         28,
-		"alicloud_cr_repos":                              29,
-		"alicloud_cs_kubernetes_clusters":                30,
-		"alicloud_cs_managed_kubernetes_clusters":        31,
-		"alicloud_cs_serverless_kubernetes_clusters":     32,
-		"alicloud_db_instance_classes":                   33,
-		"alicloud_db_instance_engines":                   34,
-		"alicloud_db_instances":                          35,
-		"alicloud_db_zones":                              36,
-		"alicloud_ddosbgp_instances":                     37,
-		"alicloud_ddoscoo_instances":                     38,
-		"alicloud_disks":                                 39,
-		"alicloud_dns_domain_groups":                     40,
-		"alicloud_dns_domain_records":                    41,
-		"alicloud_dns_domain_txt_guid":                   42,
-		"alicloud_dns_domains":                           43,
-		"alicloud_dns_groups":                            44,
-		"alicloud_dns_instances":                         45,
-		"alicloud_dns_records":                           46,
-		"alicloud_resolution_lines":                      47,
-		"alicloud_drds_instances":                        48,
-		"alicloud_edas_applications":                     49,
-		"alicloud_edas_clusters":                         50,
-		"alicloud_edas_deploy_groups":                    51,
-		"alicloud_eips":                                  52,
-		"alicloud_elasticsearch_instances":               53,
-		"alicloud_elasticsearch_zones":                   54,
-		"alicloud_emr_disk_types":                        55,
-		"alicloud_emr_instance_types":                    56,
-		"alicloud_emr_main_versions":                     57,
-		"alicloud_ess_alarms":                            58,
-		"alicloud_ess_lifecycle_hooks":                   59,
-		"alicloud_ess_notifications":                     60,
-		"alicloud_ess_scaling_configurations":            61,
-		"alicloud_ess_scaling_groups":                    62,
-		"alicloud_ess_scaling_rules":                     63,
-		"alicloud_ess_scheduled_tasks":                   64,
-		"alicloud_fc_functions":                          65,
-		"alicloud_fc_services":                           66,
-		"alicloud_fc_triggers":                           67,
-		"alicloud_fc_zones":                              68,
-		"alicloud_file_crc64_checksum":                   69,
-		"alicloud_forward_entries":                       70,
-		"alicloud_gpdb_instances":                        71,
-		"alicloud_hbase_instances":                       72,
-		"alicloud_hbase_zones":                           73,
-		"alicloud_images":                                74,
-		"alicloud_instance_type_families":                75,
-		"alicloud_instance_types":                        76,
-		"alicloud_instances":                             77,
-		"alicloud_key_pairs":                             78,
-		"alicloud_kms_aliases":                           79,
-		"alicloud_kms_ciphertext":                        80,
-		"alicloud_kms_key_versions":                      81,
-		"alicloud_kms_keys":                              82,
-		"alicloud_kms_plaintext":                         83,
-		"alicloud_kms_secrets":                           84,
-		"alicloud_kvstore_instance_classes":              85,
-		"alicloud_kvstore_instance_engines":              86,
-		"alicloud_kvstore_instances":                     87,
-		"alicloud_kvstore_zones":                         88,
-		"alicloud_market_product":                        89,
-		"alicloud_market_products":                       90,
-		"alicloud_mns_queues":                            91,
-		"alicloud_mns_topic_subscriptions":               92,
-		"alicloud_mns_topics":                            93,
-		"alicloud_mongodb_instances":                     94,
-		"alicloud_mongodb_zones":                         95,
-		"alicloud_nas_access_groups":                     96,
-		"alicloud_nas_access_rules":                      97,
-		"alicloud_nas_file_systems":                      98,
-		"alicloud_nas_mount_targets":                     99,
-		"alicloud_nas_protocols":                         100,
-		"alicloud_nat_gateways":                          101,
-		"alicloud_network_interfaces":                    102,
-		"alicloud_ons_groups":                            103,
-		"alicloud_ons_instances":                         104,
-		"alicloud_ons_topics":                            105,
-		"alicloud_oss_bucket_objects":                    106,
-		"alicloud_oss_buckets":                           107,
-		"alicloud_ots_instance_attachments":              108,
-		"alicloud_ots_instances":                         109,
-		"alicloud_ots_tables":                            110,
-		"alicloud_polardb_accounts":                      111,
-		"alicloud_polardb_clusters":                      112,
-		"alicloud_polardb_databases":                     113,
-		"alicloud_polardb_endpoints":                     114,
-		"alicloud_polardb_node_classes":                  115,
-		"alicloud_polardb_zones":                         116,
-		"alicloud_pvtz_zone_records":                     117,
-		"alicloud_pvtz_zones":                            118,
-		"alicloud_ram_account_aliases":                   119,
-		"alicloud_ram_account_alias":                     120,
-		"alicloud_ram_groups":                            121,
-		"alicloud_ram_policies":                          122,
-		"alicloud_ram_roles":                             123,
-		"alicloud_ram_users":                             124,
-		"alicloud_regions":                               125,
-		"alicloud_resource_manager_accounts":             126,
-		"alicloud_resource_manager_folders":              127,
-		"alicloud_resource_manager_handshakes":           128,
-		"alicloud_resource_manager_policies":             129,
-		"alicloud_resource_manager_policy_versions":      130,
-		"alicloud_resource_manager_resource_directories": 131,
-		"alicloud_resource_manager_resource_groups":      132,
-		"alicloud_resource_manager_roles":                133,
-		"alicloud_route_entries":                         134,
-		"alicloud_route_tables":                          135,
-		"alicloud_router_interfaces":                     136,
-		"alicloud_sag_acls":                              137,
-		"alicloud_security_group_rules":                  138,
-		"alicloud_security_groups":                       139,
-		"alicloud_slb_acls":                              140,
-		"alicloud_slb_attachments":                       141,
-		"alicloud_slb_backend_servers":                   142,
-		"alicloud_slb_ca_certificates":                   143,
-		"alicloud_slb_domain_extensions":                 144,
-		"alicloud_slb_listeners":                         145,
-		"alicloud_slb_master_slave_server_groups":        146,
-		"alicloud_slb_rules":                             147,
-		"alicloud_slb_server_certificates":               148,
-		"alicloud_slb_server_groups":                     149,
-		"alicloud_slb_zones":                             150,
-		"alicloud_slbs":                                  151,
-		"alicloud_snapshots":                             152,
-		"alicloud_snat_entries":                          153,
-		"alicloud_ssl_vpn_client_certs":                  154,
-		"alicloud_ssl_vpn_servers":                       155,
-		"alicloud_vpcs":                                  156,
-		"alicloud_vpn_connections":                       157,
-		"alicloud_vpn_customer_gateways":                 158,
-		"alicloud_vpn_gateways":                          159,
-		"alicloud_vswitches":                             160,
-		"alicloud_waf_domains":                           161,
-		"alicloud_yundun_bastionhost_instances":          162,
-		"alicloud_yundun_dbaudit_instances":              163,
-		"alicloud_zones":                                 164,
+		"alicloud_cassandra_clusters":                    16,
+		"alicloud_cassandra_data_centers":                17,
+		"alicloud_cassandra_zones":                       18,
+		"alicloud_cen_bandwidth_limits":                  19,
+		"alicloud_cen_bandwidth_packages":                20,
+		"alicloud_cen_flowlogs":                          21,
+		"alicloud_cen_instances":                         22,
+		"alicloud_cen_private_zones":                     23,
+		"alicloud_cen_region_route_entries":              24,
+		"alicloud_cen_route_entries":                     25,
+		"alicloud_cen_route_maps":                        26,
+		"alicloud_cloud_connect_networks":                27,
+		"alicloud_common_bandwidth_packages":             28,
+		"alicloud_cr_ee_instances":                       29,
+		"alicloud_cr_ee_namespaces":                      30,
+		"alicloud_cr_ee_repos":                           31,
+		"alicloud_cr_ee_sync_rules":                      32,
+		"alicloud_cr_namespaces":                         33,
+		"alicloud_cr_repos":                              34,
+		"alicloud_cs_kubernetes_clusters":                35,
+		"alicloud_cs_managed_kubernetes_clusters":        36,
+		"alicloud_cs_serverless_kubernetes_clusters":     37,
+		"alicloud_db_instance_classes":                   38,
+		"alicloud_db_instance_engines":                   39,
+		"alicloud_db_instances":                          40,
+		"alicloud_db_zones":                              41,
+		"alicloud_ddosbgp_instances":                     42,
+		"alicloud_ddoscoo_instances":                     43,
+		"alicloud_disks":                                 44,
+		"alicloud_dms_enterprise_instances":              45,
+		"alicloud_dms_enterprise_users":                  46,
+		"alicloud_dns_domain_groups":                     47,
+		"alicloud_dns_domain_records":                    48,
+		"alicloud_dns_domain_txt_guid":                   49,
+		"alicloud_dns_domains":                           50,
+		"alicloud_dns_groups":                            51,
+		"alicloud_dns_instances":                         52,
+		"alicloud_dns_records":                           53,
+		"alicloud_resolution_lines":                      54,
+		"alicloud_drds_instances":                        55,
+		"alicloud_eci_image_caches":                      56,
+		"alicloud_edas_applications":                     57,
+		"alicloud_edas_clusters":                         58,
+		"alicloud_edas_deploy_groups":                    59,
+		"alicloud_eips":                                  60,
+		"alicloud_elasticsearch_instances":               61,
+		"alicloud_elasticsearch_zones":                   62,
+		"alicloud_emr_disk_types":                        63,
+		"alicloud_emr_instance_types":                    64,
+		"alicloud_emr_main_versions":                     65,
+		"alicloud_ess_alarms":                            66,
+		"alicloud_ess_lifecycle_hooks":                   67,
+		"alicloud_ess_notifications":                     68,
+		"alicloud_ess_scaling_configurations":            69,
+		"alicloud_ess_scaling_groups":                    70,
+		"alicloud_ess_scaling_rules":                     71,
+		"alicloud_ess_scheduled_tasks":                   72,
+		"alicloud_fc_functions":                          73,
+		"alicloud_fc_services":                           74,
+		"alicloud_fc_triggers":                           75,
+		"alicloud_fc_zones":                              76,
+		"alicloud_file_crc64_checksum":                   77,
+		"alicloud_forward_entries":                       78,
+		"alicloud_gpdb_instances":                        79,
+		"alicloud_hbase_instances":                       80,
+		"alicloud_hbase_zones":                           81,
+		"alicloud_images":                                82,
+		"alicloud_instance_type_families":                83,
+		"alicloud_instance_types":                        84,
+		"alicloud_instances":                             85,
+		"alicloud_key_pairs":                             86,
+		"alicloud_kms_aliases":                           87,
+		"alicloud_kms_ciphertext":                        88,
+		"alicloud_kms_key_versions":                      89,
+		"alicloud_kms_keys":                              90,
+		"alicloud_kms_plaintext":                         91,
+		"alicloud_kms_secret_versions":                   92,
+		"alicloud_kms_secrets":                           93,
+		"alicloud_kvstore_instance_classes":              94,
+		"alicloud_kvstore_instance_engines":              95,
+		"alicloud_kvstore_instances":                     96,
+		"alicloud_kvstore_zones":                         97,
+		"alicloud_market_product":                        98,
+		"alicloud_market_products":                       99,
+		"alicloud_mns_queues":                            100,
+		"alicloud_mns_topic_subscriptions":               101,
+		"alicloud_mns_topics":                            102,
+		"alicloud_mongodb_instances":                     103,
+		"alicloud_mongodb_zones":                         104,
+		"alicloud_nas_access_groups":                     105,
+		"alicloud_nas_access_rules":                      106,
+		"alicloud_nas_file_systems":                      107,
+		"alicloud_nas_mount_targets":                     108,
+		"alicloud_nas_protocols":                         109,
+		"alicloud_nat_gateways":                          110,
+		"alicloud_network_interfaces":                    111,
+		"alicloud_ons_groups":                            112,
+		"alicloud_ons_instances":                         113,
+		"alicloud_ons_topics":                            114,
+		"alicloud_oss_bucket_objects":                    115,
+		"alicloud_oss_buckets":                           116,
+		"alicloud_ots_instance_attachments":              117,
+		"alicloud_ots_instances":                         118,
+		"alicloud_ots_tables":                            119,
+		"alicloud_polardb_accounts":                      120,
+		"alicloud_polardb_clusters":                      121,
+		"alicloud_polardb_databases":                     122,
+		"alicloud_polardb_endpoints":                     123,
+		"alicloud_polardb_node_classes":                  124,
+		"alicloud_polardb_zones":                         125,
+		"alicloud_pvtz_zone_records":                     126,
+		"alicloud_pvtz_zones":                            127,
+		"alicloud_ram_account_aliases":                   128,
+		"alicloud_ram_account_alias":                     129,
+		"alicloud_ram_groups":                            130,
+		"alicloud_ram_policies":                          131,
+		"alicloud_ram_roles":                             132,
+		"alicloud_ram_users":                             133,
+		"alicloud_regions":                               134,
+		"alicloud_resource_manager_accounts":             135,
+		"alicloud_resource_manager_folders":              136,
+		"alicloud_resource_manager_handshakes":           137,
+		"alicloud_resource_manager_policies":             138,
+		"alicloud_resource_manager_policy_versions":      139,
+		"alicloud_resource_manager_resource_directories": 140,
+		"alicloud_resource_manager_resource_groups":      141,
+		"alicloud_resource_manager_roles":                142,
+		"alicloud_route_entries":                         143,
+		"alicloud_route_tables":                          144,
+		"alicloud_router_interfaces":                     145,
+		"alicloud_sag_acls":                              146,
+		"alicloud_security_group_rules":                  147,
+		"alicloud_security_groups":                       148,
+		"alicloud_slb_acls":                              149,
+		"alicloud_slb_attachments":                       150,
+		"alicloud_slb_backend_servers":                   151,
+		"alicloud_slb_ca_certificates":                   152,
+		"alicloud_slb_domain_extensions":                 153,
+		"alicloud_slb_listeners":                         154,
+		"alicloud_slb_master_slave_server_groups":        155,
+		"alicloud_slb_rules":                             156,
+		"alicloud_slb_server_certificates":               157,
+		"alicloud_slb_server_groups":                     158,
+		"alicloud_slb_zones":                             159,
+		"alicloud_slbs":                                  160,
+		"alicloud_snapshots":                             161,
+		"alicloud_snat_entries":                          162,
+		"alicloud_ssl_vpn_client_certs":                  163,
+		"alicloud_ssl_vpn_servers":                       164,
+		"alicloud_vpcs":                                  165,
+		"alicloud_vpn_connections":                       166,
+		"alicloud_vpn_customer_gateways":                 167,
+		"alicloud_vpn_gateways":                          168,
+		"alicloud_vswitches":                             169,
+		"alicloud_waf_domains":                           170,
+		"alicloud_waf_instances":                         171,
+		"alicloud_yundun_bastionhost_instances":          172,
+		"alicloud_yundun_dbaudit_instances":              173,
+		"alicloud_zones":                                 174,
 	}
 )
 

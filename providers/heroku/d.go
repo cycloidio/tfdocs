@@ -187,6 +187,53 @@ Use this data source to get information about a Heroku App.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "heroku_pipeline",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a Heroku Pipeline.`,
+			Description: `
+
+Use this data source to get information about a Heroku Pipeline.
+
+~> **NOTE:** This data source can only be used to fetch information regarding a pipeline that has apps associated to it.
+This is a limitation in the Heroku Platform API where it is not possible to query a pipeline without apps by its name.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The pipeline name. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the pipeline`,
+				},
+				resource.Attribute{
+					Name:        "owner_id",
+					Description: `The pipeline owner's ID`,
+				},
+				resource.Attribute{
+					Name:        "owner_type",
+					Description: `The pipeline owner's type`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the pipeline`,
+				},
+				resource.Attribute{
+					Name:        "owner_id",
+					Description: `The pipeline owner's ID`,
+				},
+				resource.Attribute{
+					Name:        "owner_type",
+					Description: `The pipeline owner's type`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "heroku_space",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on a Heroku Private Space.`,
@@ -419,9 +466,10 @@ Use this data source to get information about a Heroku Team or Heroku Enterprise
 
 		"heroku_addon":              0,
 		"heroku_app":                1,
-		"heroku_space":              2,
-		"heroku_space_peering_info": 3,
-		"heroku_team":               4,
+		"heroku_pipeline":           2,
+		"heroku_space":              3,
+		"heroku_space_peering_info": 4,
+		"heroku_team":               5,
 	}
 )
 

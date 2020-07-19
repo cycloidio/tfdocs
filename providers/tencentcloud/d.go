@@ -2043,6 +2043,262 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "tencentcloud_cdn_domains",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query the detail information of CDN domain.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "domain",
+					Description: `(Optional) Acceleration domain name.`,
+				},
+				resource.Attribute{
+					Name:        "full_url_cache",
+					Description: `(Optional) Whether to enable full-path cache.`,
+				},
+				resource.Attribute{
+					Name:        "https_switch",
+					Description: `(Optional) HTTPS configuration. The available value include ` + "`" + `on` + "`" + `, ` + "`" + `off` + "`" + ` and ` + "`" + `processing` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "offset",
+					Description: `(Optional) Record offset. Default is 10.`,
+				},
+				resource.Attribute{
+					Name:        "origin_pull_protocol",
+					Description: `(Optional) Origin-pull protocol configuration. The available value include ` + "`" + `http` + "`" + `, ` + "`" + `https` + "`" + ` and ` + "`" + `follow` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results.`,
+				},
+				resource.Attribute{
+					Name:        "service_type",
+					Description: `(Optional) Service type of acceleration domain name. The available value include ` + "`" + `web` + "`" + `, ` + "`" + `download` + "`" + ` and ` + "`" + `media` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "domain_list",
+					Description: `An information list of cdn domain. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "area",
+					Description: `Acceleration region.`,
+				},
+				resource.Attribute{
+					Name:        "cname",
+					Description: `CNAME address of domain name.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Domain name creation time.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `Acceleration domain name.`,
+				},
+				resource.Attribute{
+					Name:        "full_url_cache",
+					Description: `Whether to enable full-path cache.`,
+				},
+				resource.Attribute{
+					Name:        "https_config",
+					Description: `HTTPS acceleration configuration. It's a list and consist of at most one item.`,
+				},
+				resource.Attribute{
+					Name:        "http2_switch",
+					Description: `HTTP2 configuration switch.`,
+				},
+				resource.Attribute{
+					Name:        "https_switch",
+					Description: `HTTPS configuration switch.`,
+				},
+				resource.Attribute{
+					Name:        "ocsp_stapling_switch",
+					Description: `OCSP configuration switch.`,
+				},
+				resource.Attribute{
+					Name:        "spdy_switch",
+					Description: `Spdy configuration switch.`,
+				},
+				resource.Attribute{
+					Name:        "verify_client",
+					Description: `Client certificate authentication feature.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Domain name ID.`,
+				},
+				resource.Attribute{
+					Name:        "origin",
+					Description: `Origin server configuration.`,
+				},
+				resource.Attribute{
+					Name:        "backup_origin_list",
+					Description: `Backup origin server list.`,
+				},
+				resource.Attribute{
+					Name:        "backup_origin_type",
+					Description: `Backup origin server type.`,
+				},
+				resource.Attribute{
+					Name:        "backup_server_name",
+					Description: `Host header used when accessing the backup origin server. If left empty, the ServerName of master origin server will be used by default.`,
+				},
+				resource.Attribute{
+					Name:        "cos_private_access",
+					Description: `When OriginType is COS, you can specify if access to private buckets is allowed.`,
+				},
+				resource.Attribute{
+					Name:        "origin_list",
+					Description: `Master origin server list.`,
+				},
+				resource.Attribute{
+					Name:        "origin_pull_protocol",
+					Description: `Origin-pull protocol configuration.`,
+				},
+				resource.Attribute{
+					Name:        "origin_type",
+					Description: `Master origin server type.`,
+				},
+				resource.Attribute{
+					Name:        "server_name",
+					Description: `Host header used when accessing the master origin server. If left empty, the acceleration domain name will be used by default.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `The project CDN belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "service_type",
+					Description: `Service type of acceleration domain name.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Acceleration service status.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of cdn domain.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `Last modified time of domain name.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "domain_list",
+					Description: `An information list of cdn domain. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "area",
+					Description: `Acceleration region.`,
+				},
+				resource.Attribute{
+					Name:        "cname",
+					Description: `CNAME address of domain name.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Domain name creation time.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `Acceleration domain name.`,
+				},
+				resource.Attribute{
+					Name:        "full_url_cache",
+					Description: `Whether to enable full-path cache.`,
+				},
+				resource.Attribute{
+					Name:        "https_config",
+					Description: `HTTPS acceleration configuration. It's a list and consist of at most one item.`,
+				},
+				resource.Attribute{
+					Name:        "http2_switch",
+					Description: `HTTP2 configuration switch.`,
+				},
+				resource.Attribute{
+					Name:        "https_switch",
+					Description: `HTTPS configuration switch.`,
+				},
+				resource.Attribute{
+					Name:        "ocsp_stapling_switch",
+					Description: `OCSP configuration switch.`,
+				},
+				resource.Attribute{
+					Name:        "spdy_switch",
+					Description: `Spdy configuration switch.`,
+				},
+				resource.Attribute{
+					Name:        "verify_client",
+					Description: `Client certificate authentication feature.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Domain name ID.`,
+				},
+				resource.Attribute{
+					Name:        "origin",
+					Description: `Origin server configuration.`,
+				},
+				resource.Attribute{
+					Name:        "backup_origin_list",
+					Description: `Backup origin server list.`,
+				},
+				resource.Attribute{
+					Name:        "backup_origin_type",
+					Description: `Backup origin server type.`,
+				},
+				resource.Attribute{
+					Name:        "backup_server_name",
+					Description: `Host header used when accessing the backup origin server. If left empty, the ServerName of master origin server will be used by default.`,
+				},
+				resource.Attribute{
+					Name:        "cos_private_access",
+					Description: `When OriginType is COS, you can specify if access to private buckets is allowed.`,
+				},
+				resource.Attribute{
+					Name:        "origin_list",
+					Description: `Master origin server list.`,
+				},
+				resource.Attribute{
+					Name:        "origin_pull_protocol",
+					Description: `Origin-pull protocol configuration.`,
+				},
+				resource.Attribute{
+					Name:        "origin_type",
+					Description: `Master origin server type.`,
+				},
+				resource.Attribute{
+					Name:        "server_name",
+					Description: `Host header used when accessing the master origin server. If left empty, the acceleration domain name will be used by default.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `The project CDN belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "service_type",
+					Description: `Service type of acceleration domain name.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Acceleration service status.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of cdn domain.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `Last modified time of domain name.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "tencentcloud_cfs_access_groups",
 			Category:         "Data Sources",
 			ShortDescription: `Use this data source to query the detail information of CFS access group.`,
@@ -10759,6 +11015,278 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "tencentcloud_postgresql_instances",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query postgresql instances`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the postgresql instance to be query.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the postgresql instance to be query.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Optional) Project id of the postgresql instance to be query.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "instance_list",
+					Description: `A list of postgresql instances. Each element contains the following attributes.`,
+				},
+				resource.Attribute{
+					Name:        "auto_renew_flag",
+					Description: `Auto renew flag.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `Availability zone.`,
+				},
+				resource.Attribute{
+					Name:        "charge_type",
+					Description: `Pay type of the postgresql instance.`,
+				},
+				resource.Attribute{
+					Name:        "charset",
+					Description: `Charset of the postgresql instance.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the postgresql instance.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `Version of the postgresql database engine.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the postgresql instance.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `Memory size(in GB).`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the postgresql instance.`,
+				},
+				resource.Attribute{
+					Name:        "private_access_ip",
+					Description: `IP address for private access.`,
+				},
+				resource.Attribute{
+					Name:        "private_access_port",
+					Description: `Port for private access.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `Project id, default value is 0.`,
+				},
+				resource.Attribute{
+					Name:        "public_access_host",
+					Description: `Host for public access.`,
+				},
+				resource.Attribute{
+					Name:        "public_access_port",
+					Description: `Port for public access.`,
+				},
+				resource.Attribute{
+					Name:        "public_access_switch",
+					Description: `Indicates whether to enable the access to an instance from public network or not.`,
+				},
+				resource.Attribute{
+					Name:        "storage",
+					Description: `Volume size(in GB).`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `ID of subnet.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `ID of VPC.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance_list",
+					Description: `A list of postgresql instances. Each element contains the following attributes.`,
+				},
+				resource.Attribute{
+					Name:        "auto_renew_flag",
+					Description: `Auto renew flag.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `Availability zone.`,
+				},
+				resource.Attribute{
+					Name:        "charge_type",
+					Description: `Pay type of the postgresql instance.`,
+				},
+				resource.Attribute{
+					Name:        "charset",
+					Description: `Charset of the postgresql instance.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the postgresql instance.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `Version of the postgresql database engine.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the postgresql instance.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `Memory size(in GB).`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the postgresql instance.`,
+				},
+				resource.Attribute{
+					Name:        "private_access_ip",
+					Description: `IP address for private access.`,
+				},
+				resource.Attribute{
+					Name:        "private_access_port",
+					Description: `Port for private access.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `Project id, default value is 0.`,
+				},
+				resource.Attribute{
+					Name:        "public_access_host",
+					Description: `Host for public access.`,
+				},
+				resource.Attribute{
+					Name:        "public_access_port",
+					Description: `Port for public access.`,
+				},
+				resource.Attribute{
+					Name:        "public_access_switch",
+					Description: `Indicates whether to enable the access to an instance from public network or not.`,
+				},
+				resource.Attribute{
+					Name:        "storage",
+					Description: `Volume size(in GB).`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `ID of subnet.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `ID of VPC.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_postgresql_specinfos",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get the available product configs of the postgresql instance.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Required) The zone of the postgresql instance to query.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of zones will be exported and its every element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `The CPU number of the postgresql instance.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version_name",
+					Description: `Version name of the postgresql database engine.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `Version of the postgresql database engine.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the postgresql instance speccode.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `Memory size(in GB).`,
+				},
+				resource.Attribute{
+					Name:        "qps",
+					Description: `The QPS of the postgresql instance.`,
+				},
+				resource.Attribute{
+					Name:        "storage_max",
+					Description: `The maximum volume size(in GB).`,
+				},
+				resource.Attribute{
+					Name:        "storage_min",
+					Description: `The minimum volume size(in GB).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of zones will be exported and its every element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `The CPU number of the postgresql instance.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version_name",
+					Description: `Version name of the postgresql database engine.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `Version of the postgresql database engine.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the postgresql instance speccode.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `Memory size(in GB).`,
+				},
+				resource.Attribute{
+					Name:        "qps",
+					Description: `The QPS of the postgresql instance.`,
+				},
+				resource.Attribute{
+					Name:        "storage_max",
+					Description: `The maximum volume size(in GB).`,
+				},
+				resource.Attribute{
+					Name:        "storage_min",
+					Description: `The minimum volume size(in GB).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "tencentcloud_redis_instances",
 			Category:         "Data Sources",
 			ShortDescription: `Use this data source to query the detail information of redis instance.`,
@@ -12014,6 +12542,134 @@ var (
 				resource.Attribute{
 					Name:        "tags",
 					Description: `Tags of the security group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_sqlserver_zone_config",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query purchasable specification configuration for each availability zone in this specific region.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to store results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "zone_list",
+					Description: `A list of availability zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `Alphabet ID of availability zone.`,
+				},
+				resource.Attribute{
+					Name:        "specinfo_list",
+					Description: `A list of specinfo configurations for the specific availability zone. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "charge_type",
+					Description: `Billing mode under this specification. Valid values are ` + "`" + `POSTPAID_BY_HOUR` + "`" + `, ` + "`" + `PREPAID` + "`" + ` and ` + "`" + `ALL` + "`" + ` which means both POSTPAID_BY_HOUR and PREPAID.`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `Number of CPU cores.`,
+				},
+				resource.Attribute{
+					Name:        "db_version_name",
+					Description: `Version name corresponding to the ` + "`" + `db_version` + "`" + ` field.`,
+				},
+				resource.Attribute{
+					Name:        "db_version",
+					Description: `Database version information. Valid values: ` + "`" + `2008R2 (SQL Server 2008 Enterprise)` + "`" + `, ` + "`" + `2012SP3 (SQL Server 2012 Enterprise)` + "`" + `, ` + "`" + `2016SP1 (SQL Server 2016 Enterprise)` + "`" + `, ` + "`" + `201602 (SQL Server 2016 Standard)` + "`" + `, ` + "`" + `2017 (SQL Server 2017 Enterprise)` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "machine_type",
+					Description: `Model ID.`,
+				},
+				resource.Attribute{
+					Name:        "max_storage_size",
+					Description: `Maximum disk size under this specification in GB.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `Memory size in GB.`,
+				},
+				resource.Attribute{
+					Name:        "min_storage_size",
+					Description: `Minimum disk size under this specification in GB.`,
+				},
+				resource.Attribute{
+					Name:        "qps",
+					Description: `QPS of this specification.`,
+				},
+				resource.Attribute{
+					Name:        "spec_id",
+					Description: `Instance specification ID.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `Number ID of availability zone.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "zone_list",
+					Description: `A list of availability zones. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `Alphabet ID of availability zone.`,
+				},
+				resource.Attribute{
+					Name:        "specinfo_list",
+					Description: `A list of specinfo configurations for the specific availability zone. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "charge_type",
+					Description: `Billing mode under this specification. Valid values are ` + "`" + `POSTPAID_BY_HOUR` + "`" + `, ` + "`" + `PREPAID` + "`" + ` and ` + "`" + `ALL` + "`" + ` which means both POSTPAID_BY_HOUR and PREPAID.`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `Number of CPU cores.`,
+				},
+				resource.Attribute{
+					Name:        "db_version_name",
+					Description: `Version name corresponding to the ` + "`" + `db_version` + "`" + ` field.`,
+				},
+				resource.Attribute{
+					Name:        "db_version",
+					Description: `Database version information. Valid values: ` + "`" + `2008R2 (SQL Server 2008 Enterprise)` + "`" + `, ` + "`" + `2012SP3 (SQL Server 2012 Enterprise)` + "`" + `, ` + "`" + `2016SP1 (SQL Server 2016 Enterprise)` + "`" + `, ` + "`" + `201602 (SQL Server 2016 Standard)` + "`" + `, ` + "`" + `2017 (SQL Server 2017 Enterprise)` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "machine_type",
+					Description: `Model ID.`,
+				},
+				resource.Attribute{
+					Name:        "max_storage_size",
+					Description: `Maximum disk size under this specification in GB.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `Memory size in GB.`,
+				},
+				resource.Attribute{
+					Name:        "min_storage_size",
+					Description: `Minimum disk size under this specification in GB.`,
+				},
+				resource.Attribute{
+					Name:        "qps",
+					Description: `QPS of this specification.`,
+				},
+				resource.Attribute{
+					Name:        "spec_id",
+					Description: `Instance specification ID.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `Number ID of availability zone.`,
 				},
 			},
 		},
@@ -13656,90 +14312,94 @@ var (
 		"tencentcloud_cbs_storages":                 16,
 		"tencentcloud_ccn_bandwidth_limits":         17,
 		"tencentcloud_ccn_instances":                18,
-		"tencentcloud_cfs_access_groups":            19,
-		"tencentcloud_cfs_access_rules":             20,
-		"tencentcloud_cfs_file_systems":             21,
-		"tencentcloud_clb_attachments":              22,
-		"tencentcloud_clb_instances":                23,
-		"tencentcloud_clb_listener_rules":           24,
-		"tencentcloud_clb_listeners":                25,
-		"tencentcloud_clb_redirections":             26,
-		"tencentcloud_container_cluster_instances":  27,
-		"tencentcloud_container_clusters":           28,
-		"tencentcloud_cos_bucket_object":            29,
-		"tencentcloud_cos_buckets":                  30,
-		"tencentcloud_dayu_cc_http_policies":        31,
-		"tencentcloud_dayu_cc_https_policies":       32,
-		"tencentcloud_dayu_ddos_policies":           33,
-		"tencentcloud_dayu_ddos_policy_attachments": 34,
-		"tencentcloud_dayu_ddos_policy_cases":       35,
-		"tencentcloud_dayu_l4_rules":                36,
-		"tencentcloud_dayu_l7_rules":                37,
-		"tencentcloud_dc_gateway_ccn_routes":        38,
-		"tencentcloud_dc_gateway_instances":         39,
-		"tencentcloud_dc_instances":                 40,
-		"tencentcloud_dcx_instances":                41,
-		"tencentcloud_dnats":                        42,
-		"tencentcloud_eip":                          43,
-		"tencentcloud_eips":                         44,
-		"tencentcloud_elasticsearch_instances":      45,
-		"tencentcloud_enis":                         46,
-		"tencentcloud_gaap_certificates":            47,
-		"tencentcloud_gaap_domain_error_pages":      48,
-		"tencentcloud_gaap_http_domains":            49,
-		"tencentcloud_gaap_http_rules":              50,
-		"tencentcloud_gaap_layer4_listeners":        51,
-		"tencentcloud_gaap_layer7_listeners":        52,
-		"tencentcloud_gaap_proxies":                 53,
-		"tencentcloud_gaap_realservers":             54,
-		"tencentcloud_gaap_security_policies":       55,
-		"tencentcloud_gaap_security_rules":          56,
-		"tencentcloud_ha_vip_eip_attachments":       57,
-		"tencentcloud_ha_vips":                      58,
-		"tencentcloud_image":                        59,
-		"tencentcloud_images":                       60,
-		"tencentcloud_instance_types":               61,
-		"tencentcloud_instances":                    62,
-		"tencentcloud_key_pairs":                    63,
-		"tencentcloud_kubernetes_clusters":          64,
-		"tencentcloud_mongodb_instances":            65,
-		"tencentcloud_mongodb_zone_config":          66,
-		"tencentcloud_monitor_binding_objects":      67,
-		"tencentcloud_monitor_data":                 68,
-		"tencentcloud_monitor_policy_conditions":    69,
-		"tencentcloud_monitor_policy_groups":        70,
-		"tencentcloud_monitor_product_event":        71,
-		"tencentcloud_monitor_product_namespace":    72,
-		"tencentcloud_mysql_backup_list":            73,
-		"tencentcloud_mysql_instance":               74,
-		"tencentcloud_mysql_parameter_list":         75,
-		"tencentcloud_mysql_zone_config":            76,
-		"tencentcloud_nat_gateways":                 77,
-		"tencentcloud_nats":                         78,
-		"tencentcloud_placement_groups":             79,
-		"tencentcloud_redis_instances":              80,
-		"tencentcloud_redis_zone_config":            81,
-		"tencentcloud_reserved_instance_configs":    82,
-		"tencentcloud_reserved_instances":           83,
-		"tencentcloud_route_table":                  84,
-		"tencentcloud_scf_functions":                85,
-		"tencentcloud_scf_logs":                     86,
-		"tencentcloud_scf_namespaces":               87,
-		"tencentcloud_security_group":               88,
-		"tencentcloud_security_groups":              89,
-		"tencentcloud_ssl_certificates":             90,
-		"tencentcloud_subnet":                       91,
-		"tencentcloud_tcaplus_clusters":             92,
-		"tencentcloud_tcaplus_idls":                 93,
-		"tencentcloud_tcaplus_tablegroups":          94,
-		"tencentcloud_tcaplus_tables":               95,
-		"tencentcloud_vpc":                          96,
-		"tencentcloud_vpc_instances":                97,
-		"tencentcloud_vpc_route_tables":             98,
-		"tencentcloud_vpc_subnets":                  99,
-		"tencentcloud_vpn_connections":              100,
-		"tencentcloud_vpn_customer_gateways":        101,
-		"tencentcloud_vpn_gateways":                 102,
+		"tencentcloud_cdn_domains":                  19,
+		"tencentcloud_cfs_access_groups":            20,
+		"tencentcloud_cfs_access_rules":             21,
+		"tencentcloud_cfs_file_systems":             22,
+		"tencentcloud_clb_attachments":              23,
+		"tencentcloud_clb_instances":                24,
+		"tencentcloud_clb_listener_rules":           25,
+		"tencentcloud_clb_listeners":                26,
+		"tencentcloud_clb_redirections":             27,
+		"tencentcloud_container_cluster_instances":  28,
+		"tencentcloud_container_clusters":           29,
+		"tencentcloud_cos_bucket_object":            30,
+		"tencentcloud_cos_buckets":                  31,
+		"tencentcloud_dayu_cc_http_policies":        32,
+		"tencentcloud_dayu_cc_https_policies":       33,
+		"tencentcloud_dayu_ddos_policies":           34,
+		"tencentcloud_dayu_ddos_policy_attachments": 35,
+		"tencentcloud_dayu_ddos_policy_cases":       36,
+		"tencentcloud_dayu_l4_rules":                37,
+		"tencentcloud_dayu_l7_rules":                38,
+		"tencentcloud_dc_gateway_ccn_routes":        39,
+		"tencentcloud_dc_gateway_instances":         40,
+		"tencentcloud_dc_instances":                 41,
+		"tencentcloud_dcx_instances":                42,
+		"tencentcloud_dnats":                        43,
+		"tencentcloud_eip":                          44,
+		"tencentcloud_eips":                         45,
+		"tencentcloud_elasticsearch_instances":      46,
+		"tencentcloud_enis":                         47,
+		"tencentcloud_gaap_certificates":            48,
+		"tencentcloud_gaap_domain_error_pages":      49,
+		"tencentcloud_gaap_http_domains":            50,
+		"tencentcloud_gaap_http_rules":              51,
+		"tencentcloud_gaap_layer4_listeners":        52,
+		"tencentcloud_gaap_layer7_listeners":        53,
+		"tencentcloud_gaap_proxies":                 54,
+		"tencentcloud_gaap_realservers":             55,
+		"tencentcloud_gaap_security_policies":       56,
+		"tencentcloud_gaap_security_rules":          57,
+		"tencentcloud_ha_vip_eip_attachments":       58,
+		"tencentcloud_ha_vips":                      59,
+		"tencentcloud_image":                        60,
+		"tencentcloud_images":                       61,
+		"tencentcloud_instance_types":               62,
+		"tencentcloud_instances":                    63,
+		"tencentcloud_key_pairs":                    64,
+		"tencentcloud_kubernetes_clusters":          65,
+		"tencentcloud_mongodb_instances":            66,
+		"tencentcloud_mongodb_zone_config":          67,
+		"tencentcloud_monitor_binding_objects":      68,
+		"tencentcloud_monitor_data":                 69,
+		"tencentcloud_monitor_policy_conditions":    70,
+		"tencentcloud_monitor_policy_groups":        71,
+		"tencentcloud_monitor_product_event":        72,
+		"tencentcloud_monitor_product_namespace":    73,
+		"tencentcloud_mysql_backup_list":            74,
+		"tencentcloud_mysql_instance":               75,
+		"tencentcloud_mysql_parameter_list":         76,
+		"tencentcloud_mysql_zone_config":            77,
+		"tencentcloud_nat_gateways":                 78,
+		"tencentcloud_nats":                         79,
+		"tencentcloud_placement_groups":             80,
+		"tencentcloud_postgresql_instances":         81,
+		"tencentcloud_postgresql_specinfos":         82,
+		"tencentcloud_redis_instances":              83,
+		"tencentcloud_redis_zone_config":            84,
+		"tencentcloud_reserved_instance_configs":    85,
+		"tencentcloud_reserved_instances":           86,
+		"tencentcloud_route_table":                  87,
+		"tencentcloud_scf_functions":                88,
+		"tencentcloud_scf_logs":                     89,
+		"tencentcloud_scf_namespaces":               90,
+		"tencentcloud_security_group":               91,
+		"tencentcloud_security_groups":              92,
+		"tencentcloud_sqlserver_zone_config":        93,
+		"tencentcloud_ssl_certificates":             94,
+		"tencentcloud_subnet":                       95,
+		"tencentcloud_tcaplus_clusters":             96,
+		"tencentcloud_tcaplus_idls":                 97,
+		"tencentcloud_tcaplus_tablegroups":          98,
+		"tencentcloud_tcaplus_tables":               99,
+		"tencentcloud_vpc":                          100,
+		"tencentcloud_vpc_instances":                101,
+		"tencentcloud_vpc_route_tables":             102,
+		"tencentcloud_vpc_subnets":                  103,
+		"tencentcloud_vpn_connections":              104,
+		"tencentcloud_vpn_customer_gateways":        105,
+		"tencentcloud_vpn_gateways":                 106,
 	}
 )
 

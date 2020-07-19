@@ -23,17 +23,21 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Catalog name ## Attribute Reference`,
+					Description: `(Required) Catalog name (optional when ` + "`" + `filter` + "`" + ` is used)`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional;`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `Catalog description.`,
+					Description: `Catalog description. ## Filter arguments (Supported in provider`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
-					Description: `Catalog description.`,
+					Description: `Catalog description. ## Filter arguments (Supported in provider`,
 				},
 			},
 		},
@@ -55,7 +59,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Catalog Item name ## Attribute Reference`,
+					Description: `(Required) Catalog Item name (optional when ` + "`" + `filter` + "`" + ` is used)`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional;`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -63,7 +71,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `Key value map of metadata.`,
+					Description: `Key value map of metadata. ## Filter arguments (Supported in provider`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -73,7 +81,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `Key value map of metadata.`,
+					Description: `Key value map of metadata. ## Filter arguments (Supported in provider`,
 				},
 			},
 		},
@@ -95,7 +103,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Media name in catalog ## Attribute reference All attributes defined in [catalog_media](/docs/providers/vcd/r/catalog_media.html#attribute-reference) are supported.`,
+					Description: `(Required) Media name in catalog (optional when ` + "`" + `filter` + "`" + ` is used)`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional;`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -110,7 +122,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) A unique name for the edge gateway.`,
+					Description: `(Required) A unique name for the edge gateway (optional when ` + "`" + `filter` + "`" + ` is used)`,
 				},
 				resource.Attribute{
 					Name:        "org",
@@ -118,7 +130,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vdc",
-					Description: `(Optional) The name of VDC that owns the edge gateway. Optional if defined at provider level. ## Attribute Reference All attributes defined in [edge gateway resource](/docs/providers/vcd/r/edgegateway.html#attribute-reference) are supported.`,
+					Description: `(Optional) The name of VDC that owns the edge gateway. Optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional;`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -374,7 +390,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) A unique name for the network ## Attribute Reference`,
+					Description: `(Required) A unique name for the network (optional when ` + "`" + `filter` + "`" + ` is used)`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional;`,
 				},
 				resource.Attribute{
 					Name:        "external_network",
@@ -382,7 +402,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shared",
-					Description: `Defines if this network is shared between multiple vDCs in the vOrg.`,
+					Description: `Defines if this network is shared between multiple vDCs in the vOrg. ## Filter arguments (Supported in provider`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -392,7 +412,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shared",
-					Description: `Defines if this network is shared between multiple vDCs in the vOrg.`,
+					Description: `Defines if this network is shared between multiple vDCs in the vOrg. ## Filter arguments (Supported in provider`,
 				},
 			},
 		},
@@ -414,7 +434,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) A unique name for the network ## Attribute reference All attributes defined in [isolated network resource](/docs/providers/vcd/r/network_isolated.html#attribute-reference) are supported.`,
+					Description: `(Required) A unique name for the network (optional when ` + "`" + `filter` + "`" + ` is used)`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional;`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -437,7 +461,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) A unique name for the network ## Attribute reference All attributes defined in [routed network resource](/docs/providers/vcd/r/network_routed.html#attribute-reference) are supported.`,
+					Description: `(Required) A unique name for the network (optional when ` + "`" + `filter` + "`" + ` is used)`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional;`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -877,6 +905,37 @@ var (
 			},
 			Attributes: []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_vm_affinity_rule",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a vCloud Director VM affinity rule data source. This can be used to read VM affinity and anti-affinity rules.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `The name of VDC to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of VM affinity rule. Needed if we don't provide ` + "`" + `rule_id` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "rule_id",
+					Description: `Is the ID of the affinity rule. It's the preferred way to retrieve the affinity rule, especially if the rule name could have duplicates ## Attribute reference`,
+				},
+				resource.Attribute{
+					Name:        "polarity",
+					Description: `One of ` + "`" + `Affinity` + "`" + ` or ` + "`" + `Anti-Affinity` + "`" + `. This property cannot be changed. Once created, if we need to change polarity, we need to remove the rule and create a new one.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
@@ -906,6 +965,7 @@ var (
 		"vcd_vapp_network":       22,
 		"vcd_vapp_org_network":   23,
 		"vcd_vapp_vm":            24,
+		"vcd_vm_affinity_rule":   25,
 	}
 )
 

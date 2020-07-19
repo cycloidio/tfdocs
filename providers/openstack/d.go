@@ -496,25 +496,21 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rx_tx_factor",
-					Description: `(Optional) The ` + "`" + `rx_tx_factor` + "`" + ` of the flavor. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found flavor. In addition, the following attributes are exported:`,
+					Description: `(Optional) The ` + "`" + `rx_tx_factor` + "`" + ` of the flavor.`,
+				},
+				resource.Attribute{
+					Name:        "is_public",
+					Description: `(Optional) The flavor visibility. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found flavor. In addition, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "extra_specs",
 					Description: `Key/Value pairs of metadata for the flavor.`,
-				},
-				resource.Attribute{
-					Name:        "is_public",
-					Description: `Whether the flavor is public or private.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "extra_specs",
 					Description: `Key/Value pairs of metadata for the flavor.`,
-				},
-				resource.Attribute{
-					Name:        "is_public",
-					Description: `Whether the flavor is public or private.`,
 				},
 			},
 		},

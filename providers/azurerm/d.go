@@ -549,6 +549,10 @@ Use this data source to access information about an existing API Management API.
 					Description: `A ` + "`" + `subscription_key_parameter_names` + "`" + ` block as documented below.`,
 				},
 				resource.Attribute{
+					Name:        "subscription_required",
+					Description: `Should this API require a subscription key?`,
+				},
+				resource.Attribute{
 					Name:        "version",
 					Description: `The Version number of this API, if this API is versioned.`,
 				},
@@ -617,6 +621,10 @@ Use this data source to access information about an existing API Management API.
 				resource.Attribute{
 					Name:        "subscription_key_parameter_names",
 					Description: `A ` + "`" + `subscription_key_parameter_names` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "subscription_required",
+					Description: `Should this API require a subscription key?`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -5085,6 +5093,14 @@ Use this data source to access information about an existing EventHub Namespace.
 					Description: `Specifies the maximum number of throughput units when Auto Inflate is Enabled.`,
 				},
 				resource.Attribute{
+					Name:        "zone_redundant",
+					Description: `Is this EventHub Namespace deployed across Availability Zones?`,
+				},
+				resource.Attribute{
+					Name:        "dedicated_cluster_id",
+					Description: `The ID of the EventHub Dedicated Cluster where this Namespace exists.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `A mapping of tags to assign to the EventHub Namespace. The following attributes are exported only if there is an authorization rule named ` + "`" + `RootManageSharedAccessKey` + "`" + ` which is created automatically by Azure.`,
 				},
@@ -5141,6 +5157,14 @@ Use this data source to access information about an existing EventHub Namespace.
 				resource.Attribute{
 					Name:        "maximum_throughput_units",
 					Description: `Specifies the maximum number of throughput units when Auto Inflate is Enabled.`,
+				},
+				resource.Attribute{
+					Name:        "zone_redundant",
+					Description: `Is this EventHub Namespace deployed across Availability Zones?`,
+				},
+				resource.Attribute{
+					Name:        "dedicated_cluster_id",
+					Description: `The ID of the EventHub Dedicated Cluster where this Namespace exists.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -6881,6 +6905,61 @@ Use this data source to access information about an existing Key Vault Certifica
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_key_vault_certificate_issuer",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing Key Vault Certificate Issuer.`,
+			Description: `
+
+Use this data source to access information about an existing Key Vault Certificate Issuer.
+
+`,
+			Keywords:  []string{},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Key Vault Certificate Issuer.`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `The account number with the third-party Certificate Issuer.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The organization ID with the third-party Certificate Issuer.`,
+				},
+				resource.Attribute{
+					Name:        "admin",
+					Description: `A list of ` + "`" + `admin` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "provider_name",
+					Description: `The name of the third-party Certificate Issuer. --- An ` + "`" + `admin` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "email_address",
+					Description: `E-mail address of the admin.`,
+				},
+				resource.Attribute{
+					Name:        "first_name",
+					Description: `First name of the admin.`,
+				},
+				resource.Attribute{
+					Name:        "last_name",
+					Description: `Last name of the admin.`,
+				},
+				resource.Attribute{
+					Name:        "phone",
+					Description: `Phone number of the admin. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Key Vault Certificate Issuer.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_key_vault_key",
 			Category:         "Data Sources",
 			ShortDescription: `Gets information about an existing Key Vault Key.`,
@@ -7082,7 +7161,7 @@ Use this data source to access information about an existing Managed Kubernetes 
 				},
 				resource.Attribute{
 					Name:        "api_server_authorized_ip_ranges",
-					Description: `The IP ranges to whitelist for incoming traffic to the masters. ->`,
+					Description: `The IP ranges to whitelist for incoming traffic to the primaries. ->`,
 				},
 				resource.Attribute{
 					Name:        "addon_profile",
@@ -7386,11 +7465,11 @@ Use this data source to access information about an existing Managed Kubernetes 
 				},
 				resource.Attribute{
 					Name:        "principal_id",
-					Description: `The principal id of the system assigned identity which is used by master components.`,
+					Description: `The principal id of the system assigned identity which is used by primary components.`,
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The tenant id of the system assigned identity which is used by master components. --- The ` + "`" + `kubelet_identity` + "`" + ` block exports the following:`,
+					Description: `The tenant id of the system assigned identity which is used by primary components. --- The ` + "`" + `kubelet_identity` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "client_id",
@@ -7420,7 +7499,7 @@ Use this data source to access information about an existing Managed Kubernetes 
 				},
 				resource.Attribute{
 					Name:        "api_server_authorized_ip_ranges",
-					Description: `The IP ranges to whitelist for incoming traffic to the masters. ->`,
+					Description: `The IP ranges to whitelist for incoming traffic to the primaries. ->`,
 				},
 				resource.Attribute{
 					Name:        "addon_profile",
@@ -7724,11 +7803,11 @@ Use this data source to access information about an existing Managed Kubernetes 
 				},
 				resource.Attribute{
 					Name:        "principal_id",
-					Description: `The principal id of the system assigned identity which is used by master components.`,
+					Description: `The principal id of the system assigned identity which is used by primary components.`,
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The tenant id of the system assigned identity which is used by master components. --- The ` + "`" + `kubelet_identity` + "`" + ` block exports the following:`,
+					Description: `The tenant id of the system assigned identity which is used by primary components. --- The ` + "`" + `kubelet_identity` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "client_id",
@@ -8636,6 +8715,10 @@ Use this data source to access information about an existing Managed Disk.
 					Description: `The size of the Managed Disk in gigabytes.`,
 				},
 				resource.Attribute{
+					Name:        "image_reference_id",
+					Description: `The ID of the source image used for creating this Managed Disk.`,
+				},
+				resource.Attribute{
 					Name:        "os_type",
 					Description: `The operating system used for this Managed Disk.`,
 				},
@@ -8684,6 +8767,10 @@ Use this data source to access information about an existing Managed Disk.
 				resource.Attribute{
 					Name:        "disk_size_gb",
 					Description: `The size of the Managed Disk in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "image_reference_id",
+					Description: `The ID of the source image used for creating this Managed Disk.`,
 				},
 				resource.Attribute{
 					Name:        "os_type",
@@ -11440,6 +11527,10 @@ Use this data source to access information about an existing PostgreSQL Azure Da
 					Description: `The administrator username of the PostgreSQL Server.`,
 				},
 				resource.Attribute{
+					Name:        "sku_name",
+					Description: `The SKU name of the PostgreSQL Server.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
@@ -11464,6 +11555,10 @@ Use this data source to access information about an existing PostgreSQL Azure Da
 				resource.Attribute{
 					Name:        "administrator_login",
 					Description: `The administrator username of the PostgreSQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "sku_name",
+					Description: `The SKU name of the PostgreSQL Server.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -12702,6 +12797,57 @@ Use this data source to access information about an existing Role Definition.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_route_filter",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing Route Filter.`,
+			Description: `
+
+Use this data source to access information about an existing Route Filter.
+
+`,
+			Keywords:  []string{},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Route Filter.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure Region where the Route Filter exists.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `A ` + "`" + `rule` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the Route Filter. --- A ` + "`" + `rule` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "access",
+					Description: `The access type of the rule`,
+				},
+				resource.Attribute{
+					Name:        "communities",
+					Description: `The collection for bgp community values.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The Name of Route Filter Rule`,
+				},
+				resource.Attribute{
+					Name:        "rule_type",
+					Description: `The Route Filter Rule Type. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Route Filter.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_route_table",
 			Category:         "Data Sources",
 			ShortDescription: `Gets information about an existing Route Table`,
@@ -13128,6 +13274,10 @@ Use this data source to access information about an existing Shared Image within
 					Description: `The supported Azure location where the Shared Image Gallery exists.`,
 				},
 				resource.Attribute{
+					Name:        "specialized",
+					Description: `Specifies that the Operating System used inside this Image has not been Generalized (for example, ` + "`" + `sysprep` + "`" + ` on Windows has not been run).`,
+				},
+				resource.Attribute{
 					Name:        "identifier",
 					Description: `An ` + "`" + `identifier` + "`" + ` block as defined below.`,
 				},
@@ -13184,6 +13334,10 @@ Use this data source to access information about an existing Shared Image within
 				resource.Attribute{
 					Name:        "location",
 					Description: `The supported Azure location where the Shared Image Gallery exists.`,
+				},
+				resource.Attribute{
+					Name:        "specialized",
+					Description: `Specifies that the Operating System used inside this Image has not been Generalized (for example, ` + "`" + `sysprep` + "`" + ` on Windows has not been run).`,
 				},
 				resource.Attribute{
 					Name:        "identifier",
@@ -13340,6 +13494,10 @@ Use this data source to access information about an existing Version of a Shared
 					Description: `One or more ` + "`" + `target_region` + "`" + ` blocks as documented below.`,
 				},
 				resource.Attribute{
+					Name:        "os_disk_snapshot_id",
+					Description: `The ID of the OS disk snapshot which was the source of this Shared Image Version.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `A mapping of tags assigned to the Shared Image. --- The ` + "`" + `target_region` + "`" + ` block exports the following:`,
 				},
@@ -13380,6 +13538,10 @@ Use this data source to access information about an existing Version of a Shared
 				resource.Attribute{
 					Name:        "target_region",
 					Description: `One or more ` + "`" + `target_region` + "`" + ` blocks as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "os_disk_snapshot_id",
+					Description: `The ID of the OS disk snapshot which was the source of this Shared Image Version.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -14240,6 +14402,10 @@ Use this data source to access information about an existing Storage Account.
 					Description: `Is traffic only allowed via HTTPS? See [here](https://docs.microsoft.com/en-us/azure/storage/storage-require-secure-transfer/) for more information.`,
 				},
 				resource.Attribute{
+					Name:        "allow_blob_public_access",
+					Description: `Is public access allowed to all blobs or containers in the storage account?`,
+				},
+				resource.Attribute{
 					Name:        "is_hns_enabled",
 					Description: `Is Hierarchical Namespace enabled?`,
 				},
@@ -14416,6 +14582,10 @@ Use this data source to access information about an existing Storage Account.
 				resource.Attribute{
 					Name:        "enable_https_traffic_only",
 					Description: `Is traffic only allowed via HTTPS? See [here](https://docs.microsoft.com/en-us/azure/storage/storage-require-secure-transfer/) for more information.`,
+				},
+				resource.Attribute{
+					Name:        "allow_blob_public_access",
+					Description: `Is public access allowed to all blobs or containers in the storage account?`,
 				},
 				resource.Attribute{
 					Name:        "is_hns_enabled",
@@ -16167,7 +16337,15 @@ Use this data source to access information about an existing Virtual Network Gat
 				},
 				resource.Attribute{
 					Name:        "sa_lifetime",
-					Description: `The IPSec SA lifetime in seconds. Must be at least ` + "`" + `300` + "`" + ` seconds. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The IPSec SA lifetime in seconds. Must be at least ` + "`" + `300` + "`" + ` seconds. The ` + "`" + `traffic_selector_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "local_address_cidrs",
+					Description: `List of local CIDRs.`,
+				},
+				resource.Attribute{
+					Name:        "remote_address_cidrs",
+					Description: `List of remote CIDRs. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -16261,11 +16439,42 @@ Use this data source to access information about an existing Virtual Network Gat
 				},
 				resource.Attribute{
 					Name:        "sa_lifetime",
-					Description: `The IPSec SA lifetime in seconds. Must be at least ` + "`" + `300` + "`" + ` seconds. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The IPSec SA lifetime in seconds. Must be at least ` + "`" + `300` + "`" + ` seconds. The ` + "`" + `traffic_selector_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "local_address_cidrs",
+					Description: `List of local CIDRs.`,
+				},
+				resource.Attribute{
+					Name:        "remote_address_cidrs",
+					Description: `List of remote CIDRs. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
 					Description: `(Defaults to 5 minutes) Used when retrieving the Virtual Network Gateway Connection.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_web_application_firewall_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing Web Application Firewall Policy.`,
+			Description: `
+
+Use this data source to access information about an existing Web Application Firewall Policy.
+
+`,
+			Keywords:  []string{},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Web Application Firewall Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Web Application Firewall Policy.`,
 				},
 			},
 		},
@@ -16335,91 +16544,94 @@ Use this data source to access information about an existing Virtual Network Gat
 		"azurerm_key_vault":                                 59,
 		"azurerm_key_vault_access_policy":                   60,
 		"azurerm_key_vault_certificate":                     61,
-		"azurerm_key_vault_key":                             62,
-		"azurerm_key_vault_secret":                          63,
-		"azurerm_kubernetes_cluster":                        64,
-		"azurerm_kubernetes_cluster_node_pool":              65,
-		"azurerm_kubernetes_service_versions":               66,
-		"azurerm_kusto_cluster":                             67,
-		"azurerm_lb":                                        68,
-		"azurerm_lb_backend_address_pool":                   69,
-		"azurerm_log_analytics_workspace":                   70,
-		"azurerm_logic_app_integration_account":             71,
-		"azurerm_logic_app_workflow":                        72,
-		"azurerm_machine_learning_workspace":                73,
-		"azurerm_maintenance_configuration":                 74,
-		"azurerm_managed_application_definition":            75,
-		"azurerm_managed_disk":                              76,
-		"azurerm_management_group":                          77,
-		"azurerm_maps_account":                              78,
-		"azurerm_mariadb_server":                            79,
-		"azurerm_monitor_action_group":                      80,
-		"azurerm_monitor_diagnostic_categories":             81,
-		"azurerm_monitor_log_profile":                       82,
-		"azurerm_monitor_scheduled_query_rules_alert":       83,
-		"azurerm_monitor_scheduled_query_rules_log":         84,
-		"azurerm_mssql_database":                            85,
-		"azurerm_mssql_elasticpool":                         86,
-		"azurerm_nat_gateway":                               87,
-		"azurerm_netapp_account":                            88,
-		"azurerm_netapp_pool":                               89,
-		"azurerm_netapp_snapshot":                           90,
-		"azurerm_netapp_volume":                             91,
-		"azurerm_network_ddos_protection_plan":              92,
-		"azurerm_network_interface":                         93,
-		"azurerm_network_security_group":                    94,
-		"azurerm_network_service_tags":                      95,
-		"azurerm_network_watcher":                           96,
-		"azurerm_notification_hub":                          97,
-		"azurerm_notification_hub_namespace":                98,
-		"azurerm_platform_image":                            99,
-		"azurerm_policy_definition":                         100,
-		"azurerm_policy_set_definition":                     101,
-		"azurerm_postgresql_server":                         102,
-		"azurerm_private_dns_zone":                          103,
-		"azurerm_private_endpoint_connection":               104,
-		"azurerm_private_link_service":                      105,
-		"azurerm_private_link_service_endpoint_connections": 106,
-		"azurerm_proximity_placement_group":                 107,
-		"azurerm_public_ip":                                 108,
-		"azurerm_public_ip_prefix":                          109,
-		"azurerm_public_ips":                                110,
-		"azurerm_recovery_services_vault":                   111,
-		"azurerm_redis_cache":                               112,
-		"azurerm_resource_group":                            113,
-		"azurerm_resources":                                 114,
-		"azurerm_role_definition":                           115,
-		"azurerm_route_table":                               116,
-		"azurerm_sentinel_alert_rule":                       117,
-		"azurerm_servicebus_namespace":                      118,
-		"azurerm_servicebus_namespace_authorization_rule":   119,
-		"azurerm_servicebus_topic_authorization_rule":       120,
-		"azurerm_shared_image":                              121,
-		"azurerm_shared_image_gallery":                      122,
-		"azurerm_shared_image_version":                      123,
-		"azurerm_shared_image_versions":                     124,
-		"azurerm_signalr_service":                           125,
-		"azurerm_snapshot":                                  126,
-		"azurerm_spring_cloud_service":                      127,
-		"azurerm_sql_database":                              128,
-		"azurerm_sql_server":                                129,
-		"azurerm_storage_account":                           130,
-		"azurerm_storage_account_blob_container_sas":        131,
-		"azurerm_storage_account_sas":                       132,
-		"azurerm_storage_container":                         133,
-		"azurerm_storage_management_policy":                 134,
-		"azurerm_stream_analytics_job":                      135,
-		"azurerm_subnet":                                    136,
-		"azurerm_subscription":                              137,
-		"azurerm_subscriptions":                             138,
-		"azurerm_traffic_manager_geographical_location":     139,
-		"azurerm_user_assigned_identity":                    140,
-		"azurerm_virtual_hub":                               141,
-		"azurerm_virtual_machine":                           142,
-		"azurerm_virtual_machine_scale_set":                 143,
-		"azurerm_virtual_network":                           144,
-		"azurerm_virtual_network_gateway":                   145,
-		"azurerm_virtual_network_gateway_connection":        146,
+		"azurerm_key_vault_certificate_issuer":              62,
+		"azurerm_key_vault_key":                             63,
+		"azurerm_key_vault_secret":                          64,
+		"azurerm_kubernetes_cluster":                        65,
+		"azurerm_kubernetes_cluster_node_pool":              66,
+		"azurerm_kubernetes_service_versions":               67,
+		"azurerm_kusto_cluster":                             68,
+		"azurerm_lb":                                        69,
+		"azurerm_lb_backend_address_pool":                   70,
+		"azurerm_log_analytics_workspace":                   71,
+		"azurerm_logic_app_integration_account":             72,
+		"azurerm_logic_app_workflow":                        73,
+		"azurerm_machine_learning_workspace":                74,
+		"azurerm_maintenance_configuration":                 75,
+		"azurerm_managed_application_definition":            76,
+		"azurerm_managed_disk":                              77,
+		"azurerm_management_group":                          78,
+		"azurerm_maps_account":                              79,
+		"azurerm_mariadb_server":                            80,
+		"azurerm_monitor_action_group":                      81,
+		"azurerm_monitor_diagnostic_categories":             82,
+		"azurerm_monitor_log_profile":                       83,
+		"azurerm_monitor_scheduled_query_rules_alert":       84,
+		"azurerm_monitor_scheduled_query_rules_log":         85,
+		"azurerm_mssql_database":                            86,
+		"azurerm_mssql_elasticpool":                         87,
+		"azurerm_nat_gateway":                               88,
+		"azurerm_netapp_account":                            89,
+		"azurerm_netapp_pool":                               90,
+		"azurerm_netapp_snapshot":                           91,
+		"azurerm_netapp_volume":                             92,
+		"azurerm_network_ddos_protection_plan":              93,
+		"azurerm_network_interface":                         94,
+		"azurerm_network_security_group":                    95,
+		"azurerm_network_service_tags":                      96,
+		"azurerm_network_watcher":                           97,
+		"azurerm_notification_hub":                          98,
+		"azurerm_notification_hub_namespace":                99,
+		"azurerm_platform_image":                            100,
+		"azurerm_policy_definition":                         101,
+		"azurerm_policy_set_definition":                     102,
+		"azurerm_postgresql_server":                         103,
+		"azurerm_private_dns_zone":                          104,
+		"azurerm_private_endpoint_connection":               105,
+		"azurerm_private_link_service":                      106,
+		"azurerm_private_link_service_endpoint_connections": 107,
+		"azurerm_proximity_placement_group":                 108,
+		"azurerm_public_ip":                                 109,
+		"azurerm_public_ip_prefix":                          110,
+		"azurerm_public_ips":                                111,
+		"azurerm_recovery_services_vault":                   112,
+		"azurerm_redis_cache":                               113,
+		"azurerm_resource_group":                            114,
+		"azurerm_resources":                                 115,
+		"azurerm_role_definition":                           116,
+		"azurerm_route_filter":                              117,
+		"azurerm_route_table":                               118,
+		"azurerm_sentinel_alert_rule":                       119,
+		"azurerm_servicebus_namespace":                      120,
+		"azurerm_servicebus_namespace_authorization_rule":   121,
+		"azurerm_servicebus_topic_authorization_rule":       122,
+		"azurerm_shared_image":                              123,
+		"azurerm_shared_image_gallery":                      124,
+		"azurerm_shared_image_version":                      125,
+		"azurerm_shared_image_versions":                     126,
+		"azurerm_signalr_service":                           127,
+		"azurerm_snapshot":                                  128,
+		"azurerm_spring_cloud_service":                      129,
+		"azurerm_sql_database":                              130,
+		"azurerm_sql_server":                                131,
+		"azurerm_storage_account":                           132,
+		"azurerm_storage_account_blob_container_sas":        133,
+		"azurerm_storage_account_sas":                       134,
+		"azurerm_storage_container":                         135,
+		"azurerm_storage_management_policy":                 136,
+		"azurerm_stream_analytics_job":                      137,
+		"azurerm_subnet":                                    138,
+		"azurerm_subscription":                              139,
+		"azurerm_subscriptions":                             140,
+		"azurerm_traffic_manager_geographical_location":     141,
+		"azurerm_user_assigned_identity":                    142,
+		"azurerm_virtual_hub":                               143,
+		"azurerm_virtual_machine":                           144,
+		"azurerm_virtual_machine_scale_set":                 145,
+		"azurerm_virtual_network":                           146,
+		"azurerm_virtual_network_gateway":                   147,
+		"azurerm_virtual_network_gateway_connection":        148,
+		"azurerm_web_application_firewall_policy":           149,
 	}
 )
 

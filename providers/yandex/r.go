@@ -327,7 +327,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nat_ip_address",
-					Description: `(Optional) Provide a public address, for instance, to access the internet over NAT. Address should be already reserved in web UI. The ` + "`" + `secondary_disk` + "`" + ` block supports:`,
+					Description: `(Optional) Provide a public address, for instance, to access the internet over NAT. Address should be already reserved in web UI.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_ids",
+					Description: `(Optional) Security group ids for network interface. The ` + "`" + `secondary_disk` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "disk_id",
@@ -452,7 +456,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "variables",
-					Description: `(Optional) A set of key/value variables pairs to assign to the instance group. --- The ` + "`" + `load_balancer` + "`" + ` block supports:`,
+					Description: `(Optional) A set of key/value variables pairs to assign to the instance group.`,
+				},
+				resource.Attribute{
+					Name:        "deletion_protection",
+					Description: `(Optional) Flag that protects the instance group from accidental deletion. --- The ` + "`" + `load_balancer` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "target_group_name",
@@ -604,7 +612,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nat",
-					Description: `(Optional) A public address that can be used to access the internet over NAT. --- The ` + "`" + `resources` + "`" + ` block supports:`,
+					Description: `(Optional) A public address that can be used to access the internet over NAT.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_ids",
+					Description: `(Optional) Security group ids for network interface. --- The ` + "`" + `resources` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "memory",
@@ -679,8 +691,44 @@ var (
 					Description: `(Optional) The auto scaling policy of the instance group. The structure is documented below. ~>`,
 				},
 				resource.Attribute{
+					Name:        "test_auto_scale",
+					Description: `(Optional) The test auto scaling policy of the instance group. Use it to test how the auto scale works. The structure is documented below. --- The ` + "`" + `fixed_scale` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
 					Name:        "size",
 					Description: `(Required) The number of instances in the instance group. --- The ` + "`" + `auto_scale` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "initial_size",
+					Description: `(Required) The initial number of instances in the instance group.`,
+				},
+				resource.Attribute{
+					Name:        "measurement_duration",
+					Description: `(Required) The amount of time, in seconds, that metrics are averaged for. If the average value at the end of the interval is higher than the ` + "`" + `cpu_utilization_target` + "`" + `, the instance group will increase the number of virtual machines in the group.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_utilization_target",
+					Description: `(Required) Target CPU load level.`,
+				},
+				resource.Attribute{
+					Name:        "min_zone_size",
+					Description: `(Optional) The minimum number of virtual machines in a single availability zone.`,
+				},
+				resource.Attribute{
+					Name:        "max_size",
+					Description: `(Optional) The maximum number of virtual machines in the group.`,
+				},
+				resource.Attribute{
+					Name:        "warmup_duration",
+					Description: `(Optional) The warm-up time of the virtual machine, in seconds. During this time, traffic is fed to the virtual machine, but load metrics are not taken into account.`,
+				},
+				resource.Attribute{
+					Name:        "stabilization_duration",
+					Description: `(Optional) The minimum time interval, in seconds, to monitor the load before an instance group can reduce the number of virtual machines in the group. During this time, the group will not decrease even if the average load falls below the value of ` + "`" + `cpu_utilization_target` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "custom_rule",
+					Description: `(Optional) A list of custom rules. The structure is documented below. --- The ` + "`" + `test_auto_scale` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "initial_size",
@@ -2380,6 +2428,10 @@ var (
 					Description: `Baseline core performance as a percent.`,
 				},
 				resource.Attribute{
+					Name:        "resources.0.gpus",
+					Description: `Number of GPU cores allocated to the instance.`,
+				},
+				resource.Attribute{
 					Name:        "boot_disk",
 					Description: `The specifications for boot disks that will be attached to the instance. The structure is documented below.`,
 				},
@@ -2736,7 +2788,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "environment",
-					Description: `(Required) Deployment environment of the ClickHouse cluster.`,
+					Description: `(Required) Deployment environment of the ClickHouse cluster. Can be either ` + "`" + `PRESTABLE` + "`" + ` or ` + "`" + `PRODUCTION` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "clickhouse",
@@ -2796,7 +2848,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_type_id",
-					Description: `(Required) Type of the storage of ClickHouse hosts. The ` + "`" + `zookeeper` + "`" + ` block supports:`,
+					Description: `(Required) Type of the storage of ClickHouse hosts. For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage). The ` + "`" + `zookeeper` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "resources",
@@ -2812,7 +2864,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_type_id",
-					Description: `(Optional) Type of the storage of ZooKeeper hosts. The ` + "`" + `user` + "`" + ` block supports:`,
+					Description: `(Optional) Type of the storage of ZooKeeper hosts. For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage). The ` + "`" + `user` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -2840,11 +2892,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) The type of the host to be deployed.`,
+					Description: `(Required) The type of the host to be deployed. Can be either ` + "`" + `CLICKHOUSE` + "`" + ` or ` + "`" + `ZOOKEEPER` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "zone",
-					Description: `(Required) The availability zone where the ClickHouse host will be created.`,
+					Description: `(Required) The availability zone where the ClickHouse host will be created. For more information see [the official documentation](https://cloud.yandex.com/docs/overview/concepts/geo-scope).`,
 				},
 				resource.Attribute{
 					Name:        "hours",
@@ -2856,19 +2908,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "web_sql",
-					Description: `(Optional) Allow access for DataLens.`,
+					Description: `(Optional) Allow access for DataLens. Can be either ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "data_lens",
-					Description: `(Optional) Allow access for Web SQL.`,
+					Description: `(Optional) Allow access for Web SQL. Can be either ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "metrika",
-					Description: `(Optional) Allow access for Yandex.Metrika.`,
+					Description: `(Optional) Allow access for Yandex.Metrika. Can be either ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "serverless",
-					Description: `(Optional) Allow access for Serverless. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) Allow access for Serverless. Can be either ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
@@ -2876,11 +2928,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "health",
-					Description: `Aggregated health of the cluster.`,
+					Description: `Aggregated health of the cluster. Can be either ` + "`" + `ALIVE` + "`" + `, ` + "`" + `DEGRADED` + "`" + `, ` + "`" + `DEAD` + "`" + ` or ` + "`" + `HEALTH_UNKNOWN` + "`" + `. For more information see ` + "`" + `health` + "`" + ` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/).`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of the cluster. ## Import A cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_mdb_clickhouse_cluster.foo cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Status of the cluster. Can be either ` + "`" + `CREATING` + "`" + `, ` + "`" + `STARTING` + "`" + `, ` + "`" + `RUNNING` + "`" + `, ` + "`" + `UPDATING` + "`" + `, ` + "`" + `STOPPING` + "`" + `, ` + "`" + `STOPPED` + "`" + `, ` + "`" + `ERROR` + "`" + ` or ` + "`" + `STATUS_UNKNOWN` + "`" + `. For more information see ` + "`" + `status` + "`" + ` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/). ## Import A cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_mdb_clickhouse_cluster.foo cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2890,11 +2942,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "health",
-					Description: `Aggregated health of the cluster.`,
+					Description: `Aggregated health of the cluster. Can be either ` + "`" + `ALIVE` + "`" + `, ` + "`" + `DEGRADED` + "`" + `, ` + "`" + `DEAD` + "`" + ` or ` + "`" + `HEALTH_UNKNOWN` + "`" + `. For more information see ` + "`" + `health` + "`" + ` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/).`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of the cluster. ## Import A cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_mdb_clickhouse_cluster.foo cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Status of the cluster. Can be either ` + "`" + `CREATING` + "`" + `, ` + "`" + `STARTING` + "`" + `, ` + "`" + `RUNNING` + "`" + `, ` + "`" + `UPDATING` + "`" + `, ` + "`" + `STOPPING` + "`" + `, ` + "`" + `STOPPED` + "`" + `, ` + "`" + `ERROR` + "`" + ` or ` + "`" + `STATUS_UNKNOWN` + "`" + `. For more information see ` + "`" + `status` + "`" + ` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/). ## Import A cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_mdb_clickhouse_cluster.foo cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -2924,7 +2976,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "environment",
-					Description: `(Required) Deployment environment of the MongoDB cluster.`,
+					Description: `(Required) Deployment environment of the MongoDB cluster. Can be either ` + "`" + `PRESTABLE` + "`" + ` or ` + "`" + `PRODUCTION` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "cluster_config",
@@ -2948,7 +3000,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `(Optional) Version of the MongoDB server software.`,
+					Description: `(Optional) Version of the MongoDB server software. Can be either ` + "`" + `3.6` + "`" + `, ` + "`" + `4.0` + "`" + ` and ` + "`" + `4.2` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -2972,7 +3024,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "feature_compatibility_version",
-					Description: `(Optional) Feature compatibility version of MongoDB. If not provided version is taken.`,
+					Description: `(Optional) Feature compatibility version of MongoDB. If not provided version is taken. Can be either ` + "`" + `4.2` + "`" + `, ` + "`" + `4.0` + "`" + ` and ` + "`" + `3.6` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "backup_window_start",
@@ -3000,7 +3052,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_type_id",
-					Description: `(Required) Type of the storage of MongoDB hosts. The ` + "`" + `user` + "`" + ` block supports:`,
+					Description: `(Required) Type of the storage of MongoDB hosts. For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage). The ` + "`" + `user` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3032,7 +3084,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone_id",
-					Description: `(Required) The availability zone where the MongoDB host will be created.`,
+					Description: `(Required) The availability zone where the MongoDB host will be created. For more information see [the official documentation](https://cloud.yandex.com/docs/overview/concepts/geo-scope).`,
 				},
 				resource.Attribute{
 					Name:        "role",
@@ -3064,11 +3116,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "health",
-					Description: `Aggregated health of the cluster.`,
+					Description: `Aggregated health of the cluster. Can be either ` + "`" + `ALIVE` + "`" + `, ` + "`" + `DEGRADED` + "`" + `, ` + "`" + `DEAD` + "`" + ` or ` + "`" + `HEALTH_UNKNOWN` + "`" + `. For more information see ` + "`" + `health` + "`" + ` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/api-ref/Cluster/).`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of the cluster.`,
+					Description: `Status of the cluster. Can be either ` + "`" + `CREATING` + "`" + `, ` + "`" + `STARTING` + "`" + `, ` + "`" + `RUNNING` + "`" + `, ` + "`" + `UPDATING` + "`" + `, ` + "`" + `STOPPING` + "`" + `, ` + "`" + `STOPPED` + "`" + `, ` + "`" + `ERROR` + "`" + ` or ` + "`" + `STATUS_UNKNOWN` + "`" + `. For more information see ` + "`" + `status` + "`" + ` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/api-ref/Cluster/).`,
 				},
 				resource.Attribute{
 					Name:        "cluster_id",
@@ -3086,11 +3138,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "health",
-					Description: `Aggregated health of the cluster.`,
+					Description: `Aggregated health of the cluster. Can be either ` + "`" + `ALIVE` + "`" + `, ` + "`" + `DEGRADED` + "`" + `, ` + "`" + `DEAD` + "`" + ` or ` + "`" + `HEALTH_UNKNOWN` + "`" + `. For more information see ` + "`" + `health` + "`" + ` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/api-ref/Cluster/).`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of the cluster.`,
+					Description: `Status of the cluster. Can be either ` + "`" + `CREATING` + "`" + `, ` + "`" + `STARTING` + "`" + `, ` + "`" + `RUNNING` + "`" + `, ` + "`" + `UPDATING` + "`" + `, ` + "`" + `STOPPING` + "`" + `, ` + "`" + `STOPPED` + "`" + `, ` + "`" + `ERROR` + "`" + ` or ` + "`" + `STATUS_UNKNOWN` + "`" + `. For more information see ` + "`" + `status` + "`" + ` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/api-ref/Cluster/).`,
 				},
 				resource.Attribute{
 					Name:        "cluster_id",
@@ -3488,7 +3540,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "environment",
-					Description: `(Required) Deployment environment of the Redis cluster.`,
+					Description: `(Required) Deployment environment of the Redis cluster. Can be either ` + "`" + `PRESTABLE` + "`" + ` or ` + "`" + `PRODUCTION` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "config",
@@ -3528,7 +3580,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "maxmemory_policy",
-					Description: `(Optional) Redis key eviction policy for a dataset that reaches maximum memory. The ` + "`" + `resources` + "`" + ` block supports:`,
+					Description: `(Optional) Redis key eviction policy for a dataset that reaches maximum memory. Can be any of the listed in [the official RedisDB documentation](https://docs.redislabs.com/latest/rs/administering/database-operations/eviction-policy/). The ` + "`" + `resources` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "resources_preset_id",
@@ -3540,7 +3592,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone",
-					Description: `(Required) The availability zone where the Redis host will be created.`,
+					Description: `(Required) The availability zone where the Redis host will be created. For more information see [the official documentation](https://cloud.yandex.com/docs/overview/concepts/geo-scope).`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
@@ -3548,11 +3600,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "health",
-					Description: `Aggregated health of the cluster.`,
+					Description: `Aggregated health of the cluster. Can be either ` + "`" + `ALIVE` + "`" + `, ` + "`" + `DEGRADED` + "`" + `, ` + "`" + `DEAD` + "`" + ` or ` + "`" + `HEALTH_UNKNOWN` + "`" + `. For more information see ` + "`" + `health` + "`" + ` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-redis/api-ref/Cluster/).`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of the cluster. ## Import A cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_mdb_redis_cluster.foo cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Status of the cluster. Can be either ` + "`" + `CREATING` + "`" + `, ` + "`" + `STARTING` + "`" + `, ` + "`" + `RUNNING` + "`" + `, ` + "`" + `UPDATING` + "`" + `, ` + "`" + `STOPPING` + "`" + `, ` + "`" + `STOPPED` + "`" + `, ` + "`" + `ERROR` + "`" + ` or ` + "`" + `STATUS_UNKNOWN` + "`" + `. For more information see ` + "`" + `status` + "`" + ` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-redis/api-ref/Cluster/). ## Import A cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_mdb_redis_cluster.foo cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3562,11 +3614,90 @@ var (
 				},
 				resource.Attribute{
 					Name:        "health",
-					Description: `Aggregated health of the cluster.`,
+					Description: `Aggregated health of the cluster. Can be either ` + "`" + `ALIVE` + "`" + `, ` + "`" + `DEGRADED` + "`" + `, ` + "`" + `DEAD` + "`" + ` or ` + "`" + `HEALTH_UNKNOWN` + "`" + `. For more information see ` + "`" + `health` + "`" + ` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-redis/api-ref/Cluster/).`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of the cluster. ## Import A cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_mdb_redis_cluster.foo cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Status of the cluster. Can be either ` + "`" + `CREATING` + "`" + `, ` + "`" + `STARTING` + "`" + `, ` + "`" + `RUNNING` + "`" + `, ` + "`" + `UPDATING` + "`" + `, ` + "`" + `STOPPING` + "`" + `, ` + "`" + `STOPPED` + "`" + `, ` + "`" + `ERROR` + "`" + ` or ` + "`" + `STATUS_UNKNOWN` + "`" + `. For more information see ` + "`" + `status` + "`" + ` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-redis/api-ref/Cluster/). ## Import A cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_mdb_redis_cluster.foo cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "yandex_message_queue",
+			Category:         "Yandex Message Queue Resources",
+			ShortDescription: `Allows management of a Yandex.Cloud Message Queue.`,
+			Description:      ``,
+			Keywords: []string{
+				"message",
+				"queue",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, forces new resource) Queue name. The maximum length is 80 characters. You can use numbers, letters, underscores, and hyphens in the name. The name of a FIFO queue must end with the ` + "`" + `.fifo` + "`" + ` suffix. If not specified, random name will be generated. Conflicts with ` + "`" + `name_prefix` + "`" + `. For more information see [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/CreateQueue).`,
+				},
+				resource.Attribute{
+					Name:        "name_prefix",
+					Description: `(Optional, forces new resource) Generates random name with the specified prefix. Conflicts with ` + "`" + `name` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "visibility_timeout_seconds",
+					Description: `(Optional) [Visibility timeout](https://cloud.yandex.com/docs/message-queue/concepts/visibility-timeout) for messages in a queue, specified in seconds. Valid values: from 0 to 43200 seconds (12 hours). Default: 30.`,
+				},
+				resource.Attribute{
+					Name:        "message_retention_seconds",
+					Description: `(Optional) The length of time in seconds to retain a message. Valid values: from 60 seconds (1 minute) to 1209600 seconds (14 days). Default: 345600 (4 days). For more information see [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/CreateQueue).`,
+				},
+				resource.Attribute{
+					Name:        "max_message_size",
+					Description: `(Optional) Maximum message size in bytes. Valid values: from 1024 bytes (1 KB) to 262144 bytes (256 KB). Default: 262144 (256 KB). For more information see [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/CreateQueue).`,
+				},
+				resource.Attribute{
+					Name:        "delay_seconds",
+					Description: `(Optional) Number of seconds to [delay the message from being available for processing](https://cloud.yandex.com/docs/message-queue/concepts/delay-queues#delay-queues). Valid values: from 0 to 900 seconds (15 minutes). Default: 0.`,
+				},
+				resource.Attribute{
+					Name:        "receive_wait_time_seconds",
+					Description: `(Optional) Wait time for the [ReceiveMessage](https://cloud.yandex.com/docs/message-queue/api-ref/message/ReceiveMessage) method (for long polling), in seconds. Valid values: from 0 to 20 seconds. Default: 0. For more information about long polling see [documentation](https://cloud.yandex.com/docs/message-queue/concepts/long-polling).`,
+				},
+				resource.Attribute{
+					Name:        "redrive_policy",
+					Description: `(Optional) Message redrive policy in [Dead Letter Queue](https://cloud.yandex.com/docs/message-queue/concepts/dlq). The source queue and DLQ must be the same type: for FIFO queues, the DLQ must also be a FIFO queue. For more information about redrive policy see [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/CreateQueue). Also you can use example in this page.`,
+				},
+				resource.Attribute{
+					Name:        "fifo_queue",
+					Description: `(Optional, forces new resource) Is this queue [FIFO](https://cloud.yandex.com/docs/message-queue/concepts/queue#fifo-queues). If this parameter is not used, a standard queue is created. You cannot change the parameter value for a created queue.`,
+				},
+				resource.Attribute{
+					Name:        "content_based_deduplication",
+					Description: `(Optional) Enables [content-based deduplication](https://cloud.yandex.com/docs/message-queue/concepts/deduplication#content-based-deduplication). Can be used only if queue is [FIFO](https://cloud.yandex.com/docs/message-queue/concepts/queue#fifo-queues).`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `(Optional) The [access key](https://cloud.yandex.com/docs/iam/operations/sa/create-access-key) to use when applying changes. If omitted, ` + "`" + `ymq_access_key` + "`" + ` specified in provider config is used. For more information see [documentation](https://cloud.yandex.com/docs/message-queue/quickstart).`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `(Optional) The [secret key](https://cloud.yandex.com/docs/iam/operations/sa/create-access-key) to use when applying changes. If omitted, ` + "`" + `ymq_secret_key` + "`" + ` specified in provider config is used. For more information see [documentation](https://cloud.yandex.com/docs/message-queue/quickstart). ## Attributes Reference Message Queue also has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `URL of the Yandex Message Queue.`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `ARN of the Yandex Message Queue. It is used for setting up a [redrive policy](https://cloud.yandex.com/docs/message-queue/concepts/dlq). See [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/SetQueueAttributes). ## Import Yandex Message Queues can be imported using its ` + "`" + `queue url` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_message_queue.example_import_queue https://message-queue.api.cloud.yandex.net/abcdefghijklmn123456/opqrstuvwxyz87654321/ymq_terraform_import_example ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `URL of the Yandex Message Queue.`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `ARN of the Yandex Message Queue. It is used for setting up a [redrive policy](https://cloud.yandex.com/docs/message-queue/concepts/dlq). See [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/SetQueueAttributes). ## Import Yandex Message Queues can be imported using its ` + "`" + `queue url` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_message_queue.example_import_queue https://message-queue.api.cloud.yandex.net/abcdefghijklmn123456/opqrstuvwxyz87654321/ymq_terraform_import_example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4039,7 +4170,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "route_table_id",
-					Description: `(Optional) The ID of the route table to assign to this subnet. Assigned route table should belong to the same network as this subnet. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) The ID of the route table to assign to this subnet. Assigned route table should belong to the same network as this subnet.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_options",
+					Description: `(Optional) Options for DHCP client. The structure is documented below. --- The ` + "`" + `dhcp_options` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "domain_name",
+					Description: `(Optional) Domain name.`,
+				},
+				resource.Attribute{
+					Name:        "domain_name_servers",
+					Description: `(Optional) Domain name server IP addresses.`,
+				},
+				resource.Attribute{
+					Name:        "ntp_servers",
+					Description: `(Optional) NTP server IP addresses. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "v6_cidr_blocks",
@@ -4087,17 +4234,18 @@ var (
 		"yandex_mdb_mysql_cluster":                     27,
 		"yandex_mdb_postgresql_cluster":                28,
 		"yandex_mdb_redis_cluster":                     29,
-		"yandex_resourcemanager_cloud_iam_binding":     30,
-		"yandex_resourcemanager_cloud_iam_member":      31,
-		"yandex_resourcemanager_folder_iam_binding":    32,
-		"yandex_resourcemanager_folder_iam_member":     33,
-		"yandex_resourcemanager_folder_iam_policy":     34,
-		"yandex_storage_bucket":                        35,
-		"yandex_storage_object":                        36,
-		"yandex_vpc_network":                           37,
-		"yandex_vpc_route_table":                       38,
-		"yandex_vpc_security_group":                    39,
-		"yandex_vpc_subnet":                            40,
+		"yandex_message_queue":                         30,
+		"yandex_resourcemanager_cloud_iam_binding":     31,
+		"yandex_resourcemanager_cloud_iam_member":      32,
+		"yandex_resourcemanager_folder_iam_binding":    33,
+		"yandex_resourcemanager_folder_iam_member":     34,
+		"yandex_resourcemanager_folder_iam_policy":     35,
+		"yandex_storage_bucket":                        36,
+		"yandex_storage_object":                        37,
+		"yandex_vpc_network":                           38,
+		"yandex_vpc_route_table":                       39,
+		"yandex_vpc_security_group":                    40,
+		"yandex_vpc_subnet":                            41,
 	}
 )
 

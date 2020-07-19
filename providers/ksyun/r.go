@@ -260,28 +260,7 @@ var (
 				"kkrds",
 				"krds",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "output_file",
-					Description: `(Required) will return the file name of the content store`,
-				},
-				resource.Attribute{
-					Name:        "db_instance_identifier",
-					Description: `(Optional) instance ID (passed in the instance ID to get the details of the instance, otherwise get the list)`,
-				},
-				resource.Attribute{
-					Name:        "db_instance_type",
-					Description: `(Optional) hrds (highly available), RR (read-only), trds (temporary)`,
-				},
-				resource.Attribute{
-					Name:        "order",
-					Description: `(Optional) case sensitive, value range: default (default sorting method), group (sorting by replication group, will rank read-only instances after their primary instances)`,
-				},
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Optional) the default value is all projects`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{

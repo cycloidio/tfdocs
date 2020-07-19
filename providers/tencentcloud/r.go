@@ -1679,7 +1679,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "origin_list",
-					Description: `(Required) Master origin server list. Valid values can be ip or doamin name. When modifying the origin server, you need to enter the corresponding ` + "`" + `origin_type` + "`" + `.`,
+					Description: `(Required) Master origin server list. Valid values can be ip or domain name. When modifying the origin server, you need to enter the corresponding ` + "`" + `origin_type` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "origin_type",
@@ -1687,7 +1687,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_origin_list",
-					Description: `(Optional) Backup origin server list. Valid values can be ip or doamin name. When modifying the backup origin server, you need to enter the corresponding ` + "`" + `backup_origin_type` + "`" + `.`,
+					Description: `(Optional) Backup origin server list. Valid values can be ip or domain name. When modifying the backup origin server, you need to enter the corresponding ` + "`" + `backup_origin_type` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "backup_origin_type",
@@ -6278,7 +6278,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "engine_version",
-					Description: `(Required, ForceNew) Version of the Mongodb, and available values include MONGO_3_WT, MONGO_3_ROCKS and MONGO_36_WT.`,
+					Description: `(Required, ForceNew) Version of the Mongodb, and available values include ` + "`" + `MONGO_3_WT` + "`" + `, ` + "`" + `MONGO_3_ROCKS` + "`" + ` and ` + "`" + `MONGO_36_WT` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "instance_name",
@@ -6286,7 +6286,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "machine_type",
-					Description: `(Required, ForceNew) Type of Mongodb instance, and available values include GIO and TGIO.`,
+					Description: `(Required, ForceNew) Type of Mongodb instance, and available values include ` + "`" + `GIO` + "`" + `(or ` + "`" + `HIO` + "`" + `) and ` + "`" + `TGIO` + "`" + `(or ` + "`" + `HIO10G` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "memory",
@@ -6382,7 +6382,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "engine_version",
-					Description: `(Required, ForceNew) Version of the Mongodb, and available values include MONGO_3_WT, MONGO_3_ROCKS and MONGO_36_WT.`,
+					Description: `(Required, ForceNew) Version of the Mongodb, and available values include ` + "`" + `MONGO_3_WT` + "`" + `, ` + "`" + `MONGO_3_ROCKS` + "`" + ` and ` + "`" + `MONGO_36_WT` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "instance_name",
@@ -6390,7 +6390,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "machine_type",
-					Description: `(Required, ForceNew) Type of Mongodb instance, and available values include GIO and TGIO.`,
+					Description: `(Required, ForceNew) Type of Mongodb instance, and available values include ` + "`" + `GIO` + "`" + `(or ` + "`" + `HIO` + "`" + `) and ` + "`" + `TGIO` + "`" + `(or ` + "`" + `HIO10G` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "memory",
@@ -7056,7 +7056,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pay_type",
-					Description: `(Optional, ForceNew,`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "period",
@@ -7299,7 +7299,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pay_type",
-					Description: `(Optional, ForceNew,`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "period",
@@ -7474,6 +7474,117 @@ var (
 				resource.Attribute{
 					Name:        "cvm_quota_total",
 					Description: `Maximum number of hosts in the placement group. ## Import Placement group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_placement_group.foo ps-ilan8vjf ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_postgresql_instance",
+			Category:         "PostgreSQL",
+			ShortDescription: `Use this resource to create postgresql instance.`,
+			Description:      ``,
+			Keywords: []string{
+				"postgresql",
+				"instance",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "memory",
+					Description: `(Required) Memory size(in GB). Allowed value must be larger than ` + "`" + `memory` + "`" + ` that data source ` + "`" + `tencentcloud_postgresql_specinfos` + "`" + ` provides.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the postgresql instance.`,
+				},
+				resource.Attribute{
+					Name:        "root_password",
+					Description: `(Required) Password of root account. This parameter can be specified when you purchase master instances, but it should be ignored when you purchase read-only instances or disaster recovery instances.`,
+				},
+				resource.Attribute{
+					Name:        "storage",
+					Description: `(Required) Volume size(in GB). Allowed value must be a multiple of 10. The storage must be set with the limit of ` + "`" + `storage_min` + "`" + ` and ` + "`" + `storage_max` + "`" + ` which data source ` + "`" + `tencentcloud_postgresql_specinfos` + "`" + ` provides.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Optional, ForceNew) Availability zone.`,
+				},
+				resource.Attribute{
+					Name:        "charge_type",
+					Description: `(Optional, ForceNew) Pay type of the postgresql instance. For now, only ` + "`" + `POSTPAID_BY_HOUR` + "`" + ` is valid.`,
+				},
+				resource.Attribute{
+					Name:        "charset",
+					Description: `(Optional, ForceNew) Charset of the root account. Valid values are ` + "`" + `UTF8` + "`" + `,` + "`" + `LATIN1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `(Optional, ForceNew) Version of the postgresql database engine. Allowed values are ` + "`" + `9.3.5` + "`" + `, ` + "`" + `9.5.4` + "`" + `, ` + "`" + `10.4` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Optional) Project id, default value is 0.`,
+				},
+				resource.Attribute{
+					Name:        "public_access_switch",
+					Description: `(Optional) Indicates whether to enable the access to an instance from public network or not.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Optional, ForceNew) ID of subnet.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Optional, ForceNew) ID of VPC. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the postgresql instance.`,
+				},
+				resource.Attribute{
+					Name:        "private_access_ip",
+					Description: `IP for private access.`,
+				},
+				resource.Attribute{
+					Name:        "private_access_port",
+					Description: `Port for private access.`,
+				},
+				resource.Attribute{
+					Name:        "public_access_host",
+					Description: `Host for public access.`,
+				},
+				resource.Attribute{
+					Name:        "public_access_port",
+					Description: `Port for public access. ## Import postgresql instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_postgresql_instance.foo postgres-cda1iex1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the postgresql instance.`,
+				},
+				resource.Attribute{
+					Name:        "private_access_ip",
+					Description: `IP for private access.`,
+				},
+				resource.Attribute{
+					Name:        "private_access_port",
+					Description: `Port for private access.`,
+				},
+				resource.Attribute{
+					Name:        "public_access_host",
+					Description: `Host for public access.`,
+				},
+				resource.Attribute{
+					Name:        "public_access_port",
+					Description: `Port for public access. ## Import postgresql instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_postgresql_instance.foo postgres-cda1iex1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -9340,27 +9451,28 @@ var (
 		"tencentcloud_mysql_readonly_instance":        83,
 		"tencentcloud_nat_gateway":                    84,
 		"tencentcloud_placement_group":                85,
-		"tencentcloud_redis_backup_config":            86,
-		"tencentcloud_redis_instance":                 87,
-		"tencentcloud_reserved_instance":              88,
-		"tencentcloud_route_entry":                    89,
-		"tencentcloud_route_table":                    90,
-		"tencentcloud_route_table_entry":              91,
-		"tencentcloud_scf_function":                   92,
-		"tencentcloud_scf_namespace":                  93,
-		"tencentcloud_security_group":                 94,
-		"tencentcloud_security_group_lite_rule":       95,
-		"tencentcloud_security_group_rule":            96,
-		"tencentcloud_ssl_certificate":                97,
-		"tencentcloud_subnet":                         98,
-		"tencentcloud_tcaplus_cluster":                99,
-		"tencentcloud_tcaplus_idl":                    100,
-		"tencentcloud_tcaplus_table":                  101,
-		"tencentcloud_tcaplus_tablegroup":             102,
-		"tencentcloud_vpc":                            103,
-		"tencentcloud_vpn_connection":                 104,
-		"tencentcloud_vpn_customer_gateway":           105,
-		"tencentcloud_vpn_gateway":                    106,
+		"tencentcloud_postgresql_instance":            86,
+		"tencentcloud_redis_backup_config":            87,
+		"tencentcloud_redis_instance":                 88,
+		"tencentcloud_reserved_instance":              89,
+		"tencentcloud_route_entry":                    90,
+		"tencentcloud_route_table":                    91,
+		"tencentcloud_route_table_entry":              92,
+		"tencentcloud_scf_function":                   93,
+		"tencentcloud_scf_namespace":                  94,
+		"tencentcloud_security_group":                 95,
+		"tencentcloud_security_group_lite_rule":       96,
+		"tencentcloud_security_group_rule":            97,
+		"tencentcloud_ssl_certificate":                98,
+		"tencentcloud_subnet":                         99,
+		"tencentcloud_tcaplus_cluster":                100,
+		"tencentcloud_tcaplus_idl":                    101,
+		"tencentcloud_tcaplus_table":                  102,
+		"tencentcloud_tcaplus_tablegroup":             103,
+		"tencentcloud_vpc":                            104,
+		"tencentcloud_vpn_connection":                 105,
+		"tencentcloud_vpn_customer_gateway":           106,
+		"tencentcloud_vpn_gateway":                    107,
 	}
 )
 

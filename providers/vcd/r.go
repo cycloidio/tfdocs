@@ -867,11 +867,11 @@ var (
 					Description: `(Required) The proportion of traffic this member is to handle. Must be an integer in the range 1-256.`,
 				},
 				resource.Attribute{
-					Name:        "min_connections",
+					Name:        "max_connections",
 					Description: `(Optional) The maximum number of concurrent connections the member can handle.`,
 				},
 				resource.Attribute{
-					Name:        "max_connections",
+					Name:        "min_connections",
 					Description: `(Optional) The minimum number of concurrent connections a member must always accept. ## Attribute Reference The following attributes are exported on this resource:`,
 				},
 				resource.Attribute{
@@ -1721,6 +1721,49 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_org_group",
+			Category:         "Resources",
+			ShortDescription: `Provides a vCloud Director Organization group. This can be used to create, update, and delete organization groups defined in SAML or LDAP.`,
+			Description:      ``,
+			Keywords: []string{
+				"org",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to which the VDC belongs. Optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique name for the group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of Organization group`,
+				},
+				resource.Attribute{
+					Name:        "provider_type",
+					Description: `(Required) Identity provider type for this this group. One of ` + "`" + `SAML` + "`" + ` or ` + "`" + `INTEGRATED` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Required) The role of the group. Role names can be retrieved from the organization. Both built-in roles and custom built can be used. The roles normally available are:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Organization group ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Organization group ## Importing ~>`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_org_user",
 			Category:         "Resources",
 			ShortDescription: `Provides a vCloud Director Organization user. This can be used to create, update, and delete organization users.`,
@@ -2072,6 +2115,184 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_vapp_firewall_rules",
+			Category:         "Resources",
+			ShortDescription: `Provides a vCloud Director vApp Firewall resource. This can be used to create, modify, and delete firewall settings and rules.`,
+			Description:      ``,
+			Keywords: []string{
+				"vapp",
+				"firewall",
+				"rules",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "vapp_id",
+					Description: `(Required) The identifier of [vApp](/docs/providers/vcd/r/vapp.html).`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `(Required) The identifier of [vApp network](/docs/providers/vcd/r/vapp_network.html).`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Enable or disable firewall. Default is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "default_action",
+					Description: `(Required) Either 'allow' or 'drop'. Specifies what to do should none of the rules match.`,
+				},
+				resource.Attribute{
+					Name:        "log_default_action",
+					Description: `(Optional) Flag to enable logging for default action. Default value is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Optional) Configures a firewall rule; see [Rules](#rules) below for details. <a id="rules"></a> ## Rules Each firewall rule supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the firewall rule.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) ` + "`" + `true` + "`" + ` value will enable firewall rule. Default is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Optional) Specifies what to do when this rule is matched. Either ` + "`" + `allow` + "`" + ` or ` + "`" + `drop` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Optional) The protocol to match. One of ` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `, ` + "`" + `any` + "`" + ` or ` + "`" + `tcp&udp` + "`" + `. Default is ` + "`" + `any` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "destination_port",
+					Description: `(Optional) The destination port to match. Either a port number or ` + "`" + `any` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "destination_ip",
+					Description: `(Optional) The destination IP to match. Either an IP address, IP range or ` + "`" + `any` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "destination_vm_id",
+					Description: `(Optional) Destination VM identifier.`,
+				},
+				resource.Attribute{
+					Name:        "destination_vm_ip_type",
+					Description: `(Optional) The value can be one of: ` + "`" + `assigned` + "`" + ` - assigned internal IP will be automatically chosen, ` + "`" + `NAT` + "`" + ` - NATed external IP will be automatically chosen.`,
+				},
+				resource.Attribute{
+					Name:        "destination_vm_nic_id",
+					Description: `(Optional) VM NIC ID to which this rule applies.`,
+				},
+				resource.Attribute{
+					Name:        "source_port",
+					Description: `(Optional) The source port to match. Either a port number or ` + "`" + `any` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "source_ip",
+					Description: `(Optional) The source IP to match. Either an IP address, IP range or ` + "`" + `any` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "source_vm_id",
+					Description: `(Optional) Source VM identifier.`,
+				},
+				resource.Attribute{
+					Name:        "source_vm_ip_type",
+					Description: `(Optional) The value can be one of: ` + "`" + `assigned` + "`" + ` - assigned internal IP will be automatically chosen, ` + "`" + `NAT` + "`" + ` - NATed external IP will be automatically chosen.`,
+				},
+				resource.Attribute{
+					Name:        "source_vm_nic_id",
+					Description: `(Optional) VM NIC ID to which this rule applies.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_vapp_nat_rules",
+			Category:         "Resources",
+			ShortDescription: `Provides a vCloud Director vApp NAT resource. This can be used to create, modify, and delete NAT rules.`,
+			Description:      ``,
+			Keywords: []string{
+				"vapp",
+				"nat",
+				"rules",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "vapp_id",
+					Description: `(Required) The identifier of [vApp](/docs/providers/vcd/r/vapp.html).`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `(Required) The identifier of [vApp network](/docs/providers/vcd/r/vapp_network.html).`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Enable or disable NAT. Default is ` + "`" + `true` + "`" + `. To enable the NAT service, [vcd_vapp_firewall_rules](/docs/providers/vcd/r/vapp_firewall_rules.html) needs to be enabled as well.`,
+				},
+				resource.Attribute{
+					Name:        "nat_type",
+					Description: `(Required) "One of: ` + "`" + `ipTranslation` + "`" + ` (use IP translation), ` + "`" + `portForwarding` + "`" + ` (use port forwarding). For ` + "`" + `ipTranslation` + "`" + ` fields ` + "`" + `vm_id` + "`" + `, ` + "`" + `vm_nic_id` + "`" + `, ` + "`" + `mapping_mode` + "`" + ` are required and ` + "`" + `external_ip` + "`" + ` is optional. For ` + "`" + `portForwarding` + "`" + ` fields ` + "`" + `vm_id` + "`" + `, ` + "`" + `vm_nic_id` + "`" + `, ` + "`" + `protocol` + "`" + `, ` + "`" + `external_port` + "`" + ` and ` + "`" + `forward_to_port` + "`" + ` are required.`,
+				},
+				resource.Attribute{
+					Name:        "enable_ip_masquerade",
+					Description: `(Optional) When enabled translates a virtual machine's private, internal IP address to a public IP address for outbound traffic. Default value is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Optional) Configures a NAT rule; see [Rules](#rules) below for details. <a id="rules"></a> ## Rules Each NAT rule supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "mapping_mode",
+					Description: `(Optional) Mapping mode. One of: ` + "`" + `automatic` + "`" + `, ` + "`" + `manual` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vm_id",
+					Description: `(Required) VM to which this rule applies.`,
+				},
+				resource.Attribute{
+					Name:        "vm_nic_id",
+					Description: `(Required) VM NIC ID to which this rule applies.`,
+				},
+				resource.Attribute{
+					Name:        "external_ip",
+					Description: `(Optional) External IP address to forward to or External IP address to map to VM.`,
+				},
+				resource.Attribute{
+					Name:        "external_port",
+					Description: `(Optional) External port to forward. ` + "`" + `-1` + "`" + ` value for any port.`,
+				},
+				resource.Attribute{
+					Name:        "forward_to_port",
+					Description: `(Optional) Internal port to forward. ` + "`" + `-1` + "`" + ` value for any port.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Optional) Protocol to forward. One of: ` + "`" + `TCP` + "`" + ` (forward TCP packets), ` + "`" + `UDP` + "`" + ` (forward UDP packets), ` + "`" + `TCP_UDP` + "`" + ` (forward TCP and UDP packets). ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_vapp_network",
 			Category:         "Resources",
 			ShortDescription: `Allows to provision a vApp network and optionally connect it to an existing Org VDC network.`,
@@ -2130,14 +2351,6 @@ var (
 					Description: `(Optional;`,
 				},
 				resource.Attribute{
-					Name:        "firewall_enabled",
-					Description: `(Optional;`,
-				},
-				resource.Attribute{
-					Name:        "nat_enabled",
-					Description: `(Optional;`,
-				},
-				resource.Attribute{
 					Name:        "retain_ip_mac_enabled",
 					Description: `(Optional;`,
 				},
@@ -2193,16 +2406,59 @@ var (
 					Description: `(Optional;`,
 				},
 				resource.Attribute{
-					Name:        "firewall_enabled",
-					Description: `(Optional) Firewall service enabled or disabled. Configurable when ` + "`" + `is_fenced` + "`" + ` is true. Default is true.`,
-				},
-				resource.Attribute{
-					Name:        "nat_enabled",
-					Description: `(Optional) NAT service enabled or disabled. Configurable when ` + "`" + `is_fenced` + "`" + ` and ` + "`" + `firewall_enabled` + "`" + ` is true.`,
-				},
-				resource.Attribute{
 					Name:        "retain_ip_mac_enabled",
 					Description: `(Optional) Specifies whether the network resources such as IP/MAC of router will be retained across deployments. Configurable when ` + "`" + `is_fenced` + "`" + ` is true. ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_vapp_static_routing",
+			Category:         "Resources",
+			ShortDescription: `Provides a vCloud Director vApp static routing resource. This can be used to create, modify, and delete static routing rules.`,
+			Description:      ``,
+			Keywords: []string{
+				"vapp",
+				"static",
+				"routing",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "vapp_id",
+					Description: `(Required) The identifier of [vApp](/docs/providers/vcd/r/vapp.html).`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `(Required) The identifier of [vApp network](/docs/providers/vcd/r/vapp_network.html).`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Enable or disable static Routing. Default is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Optional) Configures a static routing rule; see [Rules](#rules) below for details. <a id="rules"></a> ## Rules Each static routing rule supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the static route.`,
+				},
+				resource.Attribute{
+					Name:        "network_cidr",
+					Description: `(Required) Network specification in CIDR.`,
+				},
+				resource.Attribute{
+					Name:        "next_hop_ip",
+					Description: `(Required) IP address of Next Hop router/gateway. ## Importing ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2240,11 +2496,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "catalog_name",
-					Description: `(Required) The catalog name in which to find the given vApp Template`,
+					Description: `(Optional;`,
 				},
 				resource.Attribute{
 					Name:        "template_name",
-					Description: `(Required) The name of the vApp Template to use`,
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "vm_name_in_template",
+					Description: `(Optional;`,
 				},
 				resource.Attribute{
 					Name:        "memory",
@@ -2308,6 +2568,18 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_dhcp_wait_seconds",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "os_type",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "hardware_version",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "boot_image",
 					Description: `(Optional;`,
 				},
 				resource.Attribute{
@@ -2456,6 +2728,37 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_vm_affinity_rule",
+			Category:         "Resources",
+			ShortDescription: `Provides a vCloud Director VM affinity rule resource. This can be used to create, modify, and delete VM affinity and anti-affinity rules.`,
+			Description:      ``,
+			Keywords: []string{
+				"vm",
+				"affinity",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organizations`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of VM affinity rule. Duplicates are allowed, although the name can be used to retrieve the rule (as data source or when importing) only if it is unique.`,
+				},
+				resource.Attribute{
+					Name:        "polarity",
+					Description: `(Required) One of ` + "`" + `Affinity` + "`" + ` or ` + "`" + `Anti-Affinity` + "`" + `. This property cannot be changed. Once created, if we need to change polarity, we need to remove the rule and create a new one.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_vm_internal_disk",
 			Category:         "Resources",
 			ShortDescription: `Provides a vCloud Director VM internal disk resource. This can be used to create and delete VM internal disks.`,
@@ -2521,39 +2824,44 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"vcd_catalog":            0,
-		"vcd_catalog_item":       1,
-		"vcd_catalog_media":      2,
-		"vcd_dnat":               3,
-		"vcd_edgegateway":        4,
-		"vcd_edgegateway_vpn":    5,
-		"vcd_external_network":   6,
-		"vcd_firewall_rules":     7,
-		"vcd_independent_disk":   8,
-		"vcd_inserted_media":     9,
-		"vcd_nsxv_ip_set":        10,
-		"vcd_lb_app_profile":     11,
-		"vcd_lb_app_rule":        12,
-		"vcd_lb_server_pool":     13,
-		"vcd_lb_service_monitor": 14,
-		"vcd_lb_virtual_server":  15,
-		"vcd_network":            16,
-		"vcd_network_direct":     17,
-		"vcd_network_isolated":   18,
-		"vcd_network_routed":     19,
-		"vcd_nsxv_dhcp_relay":    20,
-		"vcd_nsxv_dnat":          21,
-		"vcd_nsxv_firewall_rule": 22,
-		"vcd_nsxv_snat":          23,
-		"vcd_org":                24,
-		"vcd_org_user":           25,
-		"vcd_org_vdc":            26,
-		"vcd_snat":               27,
-		"vcd_vapp":               28,
-		"vcd_vapp_network":       29,
-		"vcd_vapp_org_network":   30,
-		"vcd_vapp_vm":            31,
-		"vcd_vm_internal_disk":   32,
+		"vcd_catalog":             0,
+		"vcd_catalog_item":        1,
+		"vcd_catalog_media":       2,
+		"vcd_dnat":                3,
+		"vcd_edgegateway":         4,
+		"vcd_edgegateway_vpn":     5,
+		"vcd_external_network":    6,
+		"vcd_firewall_rules":      7,
+		"vcd_independent_disk":    8,
+		"vcd_inserted_media":      9,
+		"vcd_nsxv_ip_set":         10,
+		"vcd_lb_app_profile":      11,
+		"vcd_lb_app_rule":         12,
+		"vcd_lb_server_pool":      13,
+		"vcd_lb_service_monitor":  14,
+		"vcd_lb_virtual_server":   15,
+		"vcd_network":             16,
+		"vcd_network_direct":      17,
+		"vcd_network_isolated":    18,
+		"vcd_network_routed":      19,
+		"vcd_nsxv_dhcp_relay":     20,
+		"vcd_nsxv_dnat":           21,
+		"vcd_nsxv_firewall_rule":  22,
+		"vcd_nsxv_snat":           23,
+		"vcd_org":                 24,
+		"vcd_org_group":           25,
+		"vcd_org_user":            26,
+		"vcd_org_vdc":             27,
+		"vcd_snat":                28,
+		"vcd_vapp":                29,
+		"vcd_vapp_firewall_rules": 30,
+		"vcd_vapp_nat_rules":      31,
+		"vcd_vapp_network":        32,
+		"vcd_vapp_org_network":    33,
+		"vcd_vapp_static_routing": 34,
+		"vcd_vapp_vm":             35,
+		"vcd_vm_affinity_rule":    36,
+		"vcd_vm_internal_disk":    37,
 	}
 )
 

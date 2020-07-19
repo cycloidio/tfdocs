@@ -37,7 +37,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target",
-					Description: `(Optional) The email address or integration endpoint (such as PagerDuty or web hook) to notify when the alert status changes.`,
+					Description: `(Optional) A comma-separated list of the email address or integration endpoint (such as PagerDuty or web hook) to notify when the alert status changes.`,
 				},
 				resource.Attribute{
 					Name:        "condition",
@@ -135,7 +135,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "custom_headers",
-					Description: `(Optional) A ` + "`" + `string->string` + "`" + ` map specifying the custome HTTP header key/value pairs that will be sent in the requests with a method of ` + "`" + `WEBHOOK` + "`" + `. ### Route The ` + "`" + `route` + "`" + ` mapping supports the following:`,
+					Description: `(Optional) A ` + "`" + `string->string` + "`" + ` map specifying the custome HTTP header key/value pairs that will be sent in the requests with a method of ` + "`" + `WEBHOOK` + "`" + `. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "target_id",
+					Description: `The target ID prefixed with ` + "`" + `target:` + "`" + ` for interpolating into a Wavefront Alert. ### Route The ` + "`" + `route` + "`" + ` mapping supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "method",
@@ -150,7 +154,24 @@ var (
 					Description: `(Required) String that filters the route. Space delimited. Currently only allows a single key value pair. (e.g. ` + "`" + `env prod` + "`" + `) ### Example ` + "`" + `` + "`" + `` + "`" + `hcl resource "wavefront_alert_target" "test_target" { name = "Terraform Test Target" description = "Test target" method = "EMAIL" recipient = "test@example.com" email_subject = "This is a test" is_html_content = true template = "{}" triggers = [ "ALERT_OPENED", "ALERT_RESOLVED" ] } resource "wavefront_alert_target" "test_target" { name = "Terraform Test Target" description = "Test target" method = "WEBHOOK" recipient = "https://hooks.slack.com/services/test/me" content_type = "application/json" custom_headers = { "Testing" = "true" } template = "{}" triggers = [ "ALERT_OPENED", "ALERT_RESOLVED", ] route { method = "WEBHOOK" target = "https://hooks.slack.com/services/test/me/prod" filter = { key = "env" value = "prod" } } route { method = "WEBHOOK" target = "https://hooks.slack.com/services/test/me/dev" filter = { key = "env" value = "dev" } } } ` + "`" + `` + "`" + `` + "`" + ` ## Import Alert Targets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import wavefront_alert_target.alert_target abcdEFGhijKLMNO ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "target_id",
+					Description: `The target ID prefixed with ` + "`" + `target:` + "`" + ` for interpolating into a Wavefront Alert. ### Route The ` + "`" + `route` + "`" + ` mapping supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "method",
+					Description: `(Required) The notification method used for notification target. One of ` + "`" + `WEBHOOK` + "`" + `, ` + "`" + `EMAIL` + "`" + `, ` + "`" + `PAGERDUTY` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Required) The endpoint for the alert route. ` + "`" + `EMAIL` + "`" + `: email address. ` + "`" + `PAGERDUTY` + "`" + `: PagerDuty routing key. ` + "`" + `WEBHOOK` + "`" + `: URL endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Required) String that filters the route. Space delimited. Currently only allows a single key value pair. (e.g. ` + "`" + `env prod` + "`" + `) ### Example ` + "`" + `` + "`" + `` + "`" + `hcl resource "wavefront_alert_target" "test_target" { name = "Terraform Test Target" description = "Test target" method = "EMAIL" recipient = "test@example.com" email_subject = "This is a test" is_html_content = true template = "{}" triggers = [ "ALERT_OPENED", "ALERT_RESOLVED" ] } resource "wavefront_alert_target" "test_target" { name = "Terraform Test Target" description = "Test target" method = "WEBHOOK" recipient = "https://hooks.slack.com/services/test/me" content_type = "application/json" custom_headers = { "Testing" = "true" } template = "{}" triggers = [ "ALERT_OPENED", "ALERT_RESOLVED", ] route { method = "WEBHOOK" target = "https://hooks.slack.com/services/test/me/prod" filter = { key = "env" value = "prod" } } route { method = "WEBHOOK" target = "https://hooks.slack.com/services/test/me/dev" filter = { key = "env" value = "dev" } } } ` + "`" + `` + "`" + `` + "`" + ` ## Import Alert Targets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import wavefront_alert_target.alert_target abcdEFGhijKLMNO ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",

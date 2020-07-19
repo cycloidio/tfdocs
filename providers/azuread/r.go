@@ -80,7 +80,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "oauth2_permissions",
-					Description: `(Optional) A collection of OAuth 2.0 permission scopes that the web API (resource) app exposes to client apps. Each permission is covered by ` + "`" + `oauth2_permissions` + "`" + ` blocks as documented below. --- ` + "`" + `required_resource_access` + "`" + ` supports the following:`,
+					Description: `(Optional) A collection of OAuth 2.0 permission scopes that the web API (resource) app exposes to client apps. Each permission is covered by ` + "`" + `oauth2_permissions` + "`" + ` blocks as documented below. ->`,
+				},
+				resource.Attribute{
+					Name:        "prevent_duplicate_names",
+					Description: `(Optional) If ` + "`" + `true` + "`" + `, will return an error when an existing Application is found with the same name. Defaults to ` + "`" + `false` + "`" + `. --- ` + "`" + `required_resource_access` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "resource_app_id",
@@ -314,6 +318,10 @@ var (
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) The description for the Group. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "prevent_duplicate_names",
+					Description: `(Optional) If ` + "`" + `true` + "`" + `, will return an error when an existing Group is found with the same name. Defaults to ` + "`" + `false` + "`" + `. ->`,
 				},
 				resource.Attribute{
 					Name:        "id",

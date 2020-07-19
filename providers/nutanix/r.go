@@ -70,6 +70,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "data_source_reference",
+					Description: `(Optional) Reference to a data source. ### Version The version attribute supports the following:`,
+				},
+				resource.Attribute{
 					Name:        "api_version",
 					Description: `The version of the API. ### Metadata The metadata attribute exports the following:`,
 				},

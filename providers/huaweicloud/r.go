@@ -494,6 +494,14 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the status of the AS group.`,
+				},
+				resource.Attribute{
+					Name:        "current_instance_number",
+					Description: `Indicates the number of current instances in the AS group.`,
+				},
+				resource.Attribute{
 					Name:        "desire_instance_number",
 					Description: `See Argument Reference above.`,
 				},
@@ -554,6 +562,14 @@ var (
 				resource.Attribute{
 					Name:        "scaling_group_name",
 					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the status of the AS group.`,
+				},
+				resource.Attribute{
+					Name:        "current_instance_number",
+					Description: `Indicates the number of current instances in the AS group.`,
 				},
 				resource.Attribute{
 					Name:        "desire_instance_number",
@@ -3912,7 +3928,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_strategy",
-					Description: `(Optional) Specifies the advanced backup policy. The structure is described below. Changing this creates a new instance. The ` + "`" + `datastore` + "`" + ` block supports:`,
+					Description: `(Optional) Specifies the advanced backup policy. The structure is described below. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "ssl",
+					Description: `(Optional) Specifies whether to enable or disable SSL. Defaults to true. Changing this creates a new instance. The ` + "`" + `datastore` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -3991,6 +4011,10 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "ssl",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
 					Name:        "mode",
 					Description: `See Argument Reference above.`,
 				},
@@ -4008,7 +4032,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Indicates the the DB instance status`,
+					Description: `Indicates the the DB instance status.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Indicates the database port number. The port range is 2100 to 9500.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Indicates the instance nodes information. Structure is documented below. The ` + "`" + `nodes` + "`" + ` block contains: - ` + "`" + `id` + "`" + ` - Indicates the node ID. - ` + "`" + `name` + "`" + ` - Indicates the node name. - ` + "`" + `role` + "`" + ` - Indicates the node role. - ` + "`" + `type` + "`" + ` - Indicates the node type. - ` + "`" + `private_ip` + "`" + ` - Indicates the private IP address of a node. This parameter is valid only for mongos nodes, replica set instances, and single node instances. - ` + "`" + `public_ip` + "`" + ` - Indicates the EIP that has been bound on a node. This parameter is valid only for mongos nodes of cluster instances, primary nodes and secondary nodes of replica set instances, and single node instances. - ` + "`" + `status` + "`" + ` - Indicates the node status.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4049,6 +4081,10 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "ssl",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
 					Name:        "mode",
 					Description: `See Argument Reference above.`,
 				},
@@ -4066,7 +4102,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Indicates the the DB instance status`,
+					Description: `Indicates the the DB instance status.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Indicates the database port number. The port range is 2100 to 9500.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Indicates the instance nodes information. Structure is documented below. The ` + "`" + `nodes` + "`" + ` block contains: - ` + "`" + `id` + "`" + ` - Indicates the node ID. - ` + "`" + `name` + "`" + ` - Indicates the node name. - ` + "`" + `role` + "`" + ` - Indicates the node role. - ` + "`" + `type` + "`" + ` - Indicates the node type. - ` + "`" + `private_ip` + "`" + ` - Indicates the private IP address of a node. This parameter is valid only for mongos nodes, replica set instances, and single node instances. - ` + "`" + `public_ip` + "`" + ` - Indicates the EIP that has been bound on a node. This parameter is valid only for mongos nodes of cluster instances, primary nodes and secondary nodes of replica set instances, and single node instances. - ` + "`" + `status` + "`" + ` - Indicates the node status.`,
 				},
 			},
 		},
@@ -5370,6 +5414,10 @@ var (
 				resource.Attribute{
 					Name:        "period",
 					Description: `(Optional) The charging period of the instance. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "auto_renew",
+					Description: `(Optional) Specifies whether auto renew is enabled. Changing this creates a new server.`,
 				},
 				resource.Attribute{
 					Name:        "auto_recovery",
@@ -6756,6 +6804,463 @@ var (
 				resource.Attribute{
 					Name:        "tenant_id",
 					Description: `See Argument Reference above. ## Import Firewall Rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_fw_rule_v2.rule_1 8dbc0c28-e49c-463f-b712-5c5d1bbac327 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_gaussdb_mysql_instance",
+			Category:         "GaussDB(for Mysql)",
+			ShortDescription: `GaussDB Mysql instance management`,
+			Description:      ``,
+			Keywords: []string{
+				"gaussdb",
+				"for",
+				"mysql",
+				"instance",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the instance name, which can be the same as an existing instance name. The value must be 4 to 64 characters in length and start with a letter. It is case-sensitive and can contain only letters, digits, hyphens (-), and underscores (_). Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `(Required) Specifies the instance specifications. Currently, “gaussdb.mysql.4xlarge.x86.4”, "gaussdb.mysql.8xlarge.x86.4" and "gaussdb.mysql.16xlarge.x86.4" are available. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) Specifies the database password. The value must be 8 to 32 characters in length, including uppercase and lowercase letters, digits, and special characters, such as ~!@#%^`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required) Specifies the VPC ID. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) Specifies the network ID of a subnet. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `(Required) Specifies the security group ID. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "enterprise_project_id",
+					Description: `(Optional) The enterprise project id. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "read_replicas",
+					Description: `(Optional) Specifies the count of read replicas. Defaults to 1. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "time_zone",
+					Description: `(Optional) Specifies the time zone. Defaults to "UTC+08:00". Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "datastore",
+					Description: `(Optional) Specifies the database information. Structure is documented below. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "backup_strategy",
+					Description: `(Optional) Specifies the advanced backup policy. Structure is documented below. Changing this parameter will create a new resource. The ` + "`" + `datastore` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `(Optional) Specifies the database engine. Only "gauss-mysql" is supported now.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) Specifies the database version. Only "8.0" is supported now. The ` + "`" + `backup_strategy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Required) Specifies the backup time window. Automated backups will be triggered during the backup time window. It must be a valid value in the "hh:mm-HH:MM" format. The current time is in the UTC format. The HH value must be 1 greater than the hh value. The values of mm and MM must be the same and must be set to 00. Example value: 08:00-09:00, 03:00-04:00.`,
+				},
+				resource.Attribute{
+					Name:        "keep_days",
+					Description: `(Optional) Specifies the number of days to retain the generated backup files. The value ranges from 0 to 35. If this parameter is set to 0, the automated backup policy is not set. If this parameter is not transferred, the automated backup policy is enabled by default. Backup files are stored for seven days by default. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the DB instance status.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Indicates the region where the DB instance is deployed.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Indicates the database port.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `Indicates the instance mode.`,
+				},
+				resource.Attribute{
+					Name:        "db_user_name",
+					Description: `Indicates the default username.`,
+				},
+				resource.Attribute{
+					Name:        "private_write_ip",
+					Description: `Indicates the private IP address of the DB instance.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Indicates the instance nodes information. Structure is documented below. The ` + "`" + `nodes` + "`" + ` block contains: - ` + "`" + `id` + "`" + ` - Indicates the node ID. - ` + "`" + `name` + "`" + ` - Indicates the node name. - ` + "`" + `type` + "`" + ` - Indicates the node type: master or slave. - ` + "`" + `status` + "`" + ` - Indicates the node status. - ` + "`" + `private_read_ip` + "`" + ` - Indicates the private IP address of a node. ## Import GaussDB instance can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_gaussdb_mysql_instance.instance_1 ee678f40-ce8e-4d0c-8221-38dead426f06 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the DB instance status.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Indicates the region where the DB instance is deployed.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Indicates the database port.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `Indicates the instance mode.`,
+				},
+				resource.Attribute{
+					Name:        "db_user_name",
+					Description: `Indicates the default username.`,
+				},
+				resource.Attribute{
+					Name:        "private_write_ip",
+					Description: `Indicates the private IP address of the DB instance.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Indicates the instance nodes information. Structure is documented below. The ` + "`" + `nodes` + "`" + ` block contains: - ` + "`" + `id` + "`" + ` - Indicates the node ID. - ` + "`" + `name` + "`" + ` - Indicates the node name. - ` + "`" + `type` + "`" + ` - Indicates the node type: master or slave. - ` + "`" + `status` + "`" + ` - Indicates the node status. - ` + "`" + `private_read_ip` + "`" + ` - Indicates the private IP address of a node. ## Import GaussDB instance can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_gaussdb_mysql_instance.instance_1 ee678f40-ce8e-4d0c-8221-38dead426f06 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_gaussdb_opengauss_instance",
+			Category:         "GaussDB(for OpenGauss)",
+			ShortDescription: `GaussDB OpenGauss instance management`,
+			Description:      ``,
+			Keywords: []string{
+				"gaussdb",
+				"for",
+				"opengauss",
+				"instance",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the instance name, which can be the same as an existing instance name. The value must be 4 to 64 characters in length and start with a letter. It is case-sensitive and can contain only letters, digits, hyphens (-), and underscores (_). Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `(Required) Specifies the instance specifications. Please reference the API docs for valid options. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) Specifies the database password. The value must be 8 to 32 characters in length, including uppercase and lowercase letters, digits, and special characters, such as ~!@#%^`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Required) Specifies the Availability Zone information, can be three same or different az like "cn-north-4a,cn-north-4a,cn-north-4a". Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required) Specifies the VPC ID. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) Specifies the network ID of a subnet. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `(Required) Specifies the security group ID. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "volume",
+					Description: `(Required) Specifies the volume storage information. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) Specifies the port information. Defaults to "8000". Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "configuration_id",
+					Description: `(Optional) The parameter template id. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "dsspool_id",
+					Description: `(Optional) The Dec dedicated storage pool id. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "sharding_num",
+					Description: `(Optional) The Sharding num. Values: 1~32.`,
+				},
+				resource.Attribute{
+					Name:        "coordinator_num",
+					Description: `(Optional) The Coordinator num. Values: 1~32.`,
+				},
+				resource.Attribute{
+					Name:        "disk_encryption_id",
+					Description: `(Optional) Specifies the volume encryption KMS id. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "enterprise_project_id",
+					Description: `(Optional) The enterprise project id. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "time_zone",
+					Description: `(Optional) Specifies the time zone. Defaults to "UTC+08:00". Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "datastore",
+					Description: `(Optional) Specifies the datastore information. Structure is documented below. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "ha",
+					Description: `(Optional) Specifies the HA information. Structure is documented below. Changing this parameter will create a new resource. The ` + "`" + `datastore` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `(Required) Specifies the database engine. Only "GaussDB(openGauss)" is supported now.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) Specifies the database version. Only "1.0" is supported now. The ` + "`" + `volume` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Specifies the volume type. Only "ULTRAHIGH" is supported now.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Required) Specifies the volume size (in gigabytes). The value should between sharding_num`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `(Required) Specifies the database mode. Only "enterprise" is supported now.`,
+				},
+				resource.Attribute{
+					Name:        "replication_mode",
+					Description: `(Required) Specifies the database replication mode. Only "sync" is supported now.`,
+				},
+				resource.Attribute{
+					Name:        "consistency",
+					Description: `(Optional) Specifies the database consistency mode. Valid options are "strong" and "eventual". ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates the DB instance ID.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the DB instance status.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Indicates the region where the DB instance is deployed.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Indicates the database type.`,
+				},
+				resource.Attribute{
+					Name:        "private_ips",
+					Description: `Indicates the private IP address of the DB instance.`,
+				},
+				resource.Attribute{
+					Name:        "public_ips",
+					Description: `Indicates the public IP address of the DB instance.`,
+				},
+				resource.Attribute{
+					Name:        "db_user_name",
+					Description: `Indicates the default username.`,
+				},
+				resource.Attribute{
+					Name:        "switch_strategy",
+					Description: `Indicates the switch strategy.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_window",
+					Description: `Indicates the maintenance window.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Indicates the instance nodes information. Structure is documented below. The ` + "`" + `nodes` + "`" + ` block contains: - ` + "`" + `id` + "`" + ` - Indicates the node ID. - ` + "`" + `name` + "`" + ` - Indicates the node name. - ` + "`" + `role` + "`" + ` - Indicates the node role: master or slave. - ` + "`" + `status` + "`" + ` - Indicates the node status. - ` + "`" + `availability_zone` + "`" + ` - Indicates the availability zone of the node. ## Import OpenGaussDB instance can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_gaussdb_opengauss_instance.instance_1 ee678f40-ce8e-4d0c-8221-38dead426f06 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates the DB instance ID.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the DB instance status.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Indicates the region where the DB instance is deployed.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Indicates the database type.`,
+				},
+				resource.Attribute{
+					Name:        "private_ips",
+					Description: `Indicates the private IP address of the DB instance.`,
+				},
+				resource.Attribute{
+					Name:        "public_ips",
+					Description: `Indicates the public IP address of the DB instance.`,
+				},
+				resource.Attribute{
+					Name:        "db_user_name",
+					Description: `Indicates the default username.`,
+				},
+				resource.Attribute{
+					Name:        "switch_strategy",
+					Description: `Indicates the switch strategy.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_window",
+					Description: `Indicates the maintenance window.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Indicates the instance nodes information. Structure is documented below. The ` + "`" + `nodes` + "`" + ` block contains: - ` + "`" + `id` + "`" + ` - Indicates the node ID. - ` + "`" + `name` + "`" + ` - Indicates the node name. - ` + "`" + `role` + "`" + ` - Indicates the node role: master or slave. - ` + "`" + `status` + "`" + ` - Indicates the node status. - ` + "`" + `availability_zone` + "`" + ` - Indicates the availability zone of the node. ## Import OpenGaussDB instance can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_gaussdb_opengauss_instance.instance_1 ee678f40-ce8e-4d0c-8221-38dead426f06 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_geminidb_instance",
+			Category:         "GeminiDB",
+			ShortDescription: `GeminiDB instance management`,
+			Description:      ``,
+			Keywords: []string{
+				"geminidb",
+				"instance",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Required) Specifies the AZ name. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the instance name, which can be the same as an existing instance name. The value must be 4 to 64 characters in length and start with a letter. It is case-sensitive and can contain only letters, digits, hyphens (-), and underscores (_). Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `(Required) Specifies the instance specifications. For details, see [DB Instance Specifications](https://support.huaweicloud.com/intl/en-us/productdesc-geminidb/geminidb_01_0006.html) Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "volume_size",
+					Description: `(Required) Specifies the storage space in GB. The value must be a multiple of 10. For a GeminiDB Cassandra DB instance, the minimum storage space is 100 GB, and the maximum storage space is related to the instance performance specifications. For details, see [DB Instance Specifications](https://support.huaweicloud.com/intl/en-us/productdesc-geminidb/geminidb_01_0006.html) Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) Specifies the database password. The value must be 8 to 32 characters in length, including uppercase and lowercase letters, digits, and special characters, such as ~!@#%^`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required) Specifies the VPC ID. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) Specifies the network ID of a subnet. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `(Required) Specifies the security group ID. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "datastore",
+					Description: `(Optional) Specifies the database information. Structure is documented below. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "backup_strategy",
+					Description: `(Optional) Specifies the advanced backup policy. Structure is documented below. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The key/value pairs to associate with the instance. The ` + "`" + `datastore` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `(Optional) Specifies the database engine. Only "GeminiDB-Cassandra" is supported now.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) Specifies the database version. Only "3.11" is supported now.`,
+				},
+				resource.Attribute{
+					Name:        "storage_engine",
+					Description: `(Optional) Specifies the storage engine. Only "rocksDB" is supported now. The ` + "`" + `backup_strategy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Required) Specifies the backup time window. Automated backups will be triggered during the backup time window. It must be a valid value in the "hh:mm-HH:MM" format. The current time is in the UTC format. The HH value must be 1 greater than the hh value. The values of mm and MM must be the same and must be set to 00. Example value: 08:00-09:00, 03:00-04:00.`,
+				},
+				resource.Attribute{
+					Name:        "keep_days",
+					Description: `(Optional) Specifies the number of days to retain the generated backup files. The value ranges from 0 to 35. If this parameter is set to 0, the automated backup policy is not set. If this parameter is not transferred, the automated backup policy is enabled by default. Backup files are stored for seven days by default. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the DB instance status.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Indicates the region where the DB instance is deployed.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Indicates the database port.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `Indicates the instance type.`,
+				},
+				resource.Attribute{
+					Name:        "db_user_name",
+					Description: `Indicates the default username.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Indicates the instance nodes information. Structure is documented below. The ` + "`" + `nodes` + "`" + ` block contains: - ` + "`" + `id` + "`" + ` - Indicates the node ID. - ` + "`" + `name` + "`" + ` - Indicates the node name. - ` + "`" + `status` + "`" + ` - Indicates the node status. - ` + "`" + `private_ip` + "`" + ` - Indicates the private IP address of a node. ## Import GeminiDB instance can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_geminidb_instance.instance_1 2e045d8b-b226-4aa2-91b9-7e76357655c06 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the DB instance status.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Indicates the region where the DB instance is deployed.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Indicates the database port.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `Indicates the instance type.`,
+				},
+				resource.Attribute{
+					Name:        "db_user_name",
+					Description: `Indicates the default username.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Indicates the instance nodes information. Structure is documented below. The ` + "`" + `nodes` + "`" + ` block contains: - ` + "`" + `id` + "`" + ` - Indicates the node ID. - ` + "`" + `name` + "`" + ` - Indicates the node name. - ` + "`" + `status` + "`" + ` - Indicates the node status. - ` + "`" + `private_ip` + "`" + ` - Indicates the private IP address of a node. ## Import GeminiDB instance can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_geminidb_instance.instance_1 2e045d8b-b226-4aa2-91b9-7e76357655c06 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -11902,10 +12407,6 @@ var (
 					Description: `(Required) Specifies the DB engine. Value: MySQL, PostgreSQL, SQLServer. Changing this parameter will create a new resource.`,
 				},
 				resource.Attribute{
-					Name:        "user_name",
-					Description: `Indicates the default user name of database.`,
-				},
-				resource.Attribute{
 					Name:        "version",
 					Description: `(Required) Specifies the database version. Changing this parameter will create a new resource. Available value for attributes: type | version ---- | --- MySQL| 5.6 <br>5.7 <br>8.0 <br>`,
 				},
@@ -11943,7 +12444,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ips",
-					Description: `Indicates the public IP address list. The ` + "`" + `nodes` + "`" + ` block contains:`,
+					Description: `Indicates the public IP address list.`,
+				},
+				resource.Attribute{
+					Name:        "db",
+					Description: `See Argument Reference above. The db block also contains:`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `Indicates the default user name of database. The ` + "`" + `nodes` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -11981,7 +12490,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ips",
-					Description: `Indicates the public IP address list. The ` + "`" + `nodes` + "`" + ` block contains:`,
+					Description: `Indicates the public IP address list.`,
+				},
+				resource.Attribute{
+					Name:        "db",
+					Description: `See Argument Reference above. The db block also contains:`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `Indicates the default user name of database. The ` + "`" + `nodes` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -13342,12 +13859,24 @@ var (
 					Description: `Specifies whether the cross-tenant sharing is supported.`,
 				},
 				resource.Attribute{
+					Name:        "routes",
+					Description: `Specifies the route information. Structure is documented below.`,
+				},
+				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `See Argument Reference above. ## Import VPCs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_vpc_v1.vpc_v1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `See Argument Reference above. The ` + "`" + `routes` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "destination",
+					Description: `Specifies the destination network segment of a route.`,
+				},
+				resource.Attribute{
+					Name:        "nexthop",
+					Description: `Specifies the next hop of a route. ## Import VPCs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_vpc_v1.vpc_v1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -13372,12 +13901,24 @@ var (
 					Description: `Specifies whether the cross-tenant sharing is supported.`,
 				},
 				resource.Attribute{
+					Name:        "routes",
+					Description: `Specifies the route information. Structure is documented below.`,
+				},
+				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `See Argument Reference above. ## Import VPCs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_vpc_v1.vpc_v1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `See Argument Reference above. The ` + "`" + `routes` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "destination",
+					Description: `Specifies the destination network segment of a route.`,
+				},
+				resource.Attribute{
+					Name:        "nexthop",
+					Description: `Specifies the next hop of a route. ## Import VPCs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_vpc_v1.vpc_v1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -14226,70 +14767,73 @@ var (
 		"huaweicloud_fw_firewall_group_v2":               46,
 		"huaweicloud_fw_policy_v2":                       47,
 		"huaweicloud_fw_rule_v2":                         48,
-		"huaweicloud_ges_graph_v1":                       49,
-		"huaweicloud_iam_agency_v3":                      50,
-		"huaweicloud_identity_group_membership_v3":       51,
-		"huaweicloud_identity_group_v3":                  52,
-		"huaweicloud_identity_project_v3":                53,
-		"huaweicloud_identity_role_assignment_v3":        54,
-		"huaweicloud_identity_user_v3":                   55,
-		"huaweicloud_images_image_v2":                    56,
-		"huaweicloud_kms_key_v1":                         57,
-		"huaweicloud_lb_certificate_v2":                  58,
-		"huaweicloud_lb_l7policy_v2":                     59,
-		"huaweicloud_lb_l7rule_v2":                       60,
-		"huaweicloud_lb_listener_v2":                     61,
-		"huaweicloud_lb_loadbalancer_v2":                 62,
-		"huaweicloud_lb_member_v2":                       63,
-		"huaweicloud_lb_monitor_v2":                      64,
-		"huaweicloud_lb_pool_v2":                         65,
-		"huaweicloud_lb_whitelist_v2":                    66,
-		"huaweicloud_maas_task_v1":                       67,
-		"huaweicloud_mls_instance":                       68,
-		"huaweicloud_mrs_cluster_v1":                     69,
-		"huaweicloud_mrs_job_v1":                         70,
-		"huaweicloud_nat_dnat_rule_v2":                   71,
-		"huaweicloud_nat_gateway_v2":                     72,
-		"huaweicloud_nat_snat_rule_v2":                   73,
-		"huaweicloud_networking_floatingip_associate_v2": 74,
-		"huaweicloud_networking_floatingip_v2":           75,
-		"huaweicloud_networking_network_v2":              76,
-		"huaweicloud_networking_port_v2":                 77,
-		"huaweicloud_networking_router_interface_v2":     78,
-		"huaweicloud_networking_router_route_v2":         79,
-		"huaweicloud_networking_router_v2":               80,
-		"huaweicloud_networking_secgroup_rule_v2":        81,
-		"huaweicloud_networking_secgroup_v2":             82,
-		"huaweicloud_networking_subnet_v2":               83,
-		"huaweicloud_networking_vip_associate_v2":        84,
-		"huaweicloud_networking_vip_v2":                  85,
-		"huaweicloud_obs_bucket":                         86,
-		"huaweicloud_obs_bucket_object":                  87,
-		"huaweicloud_rds_instance_v1":                    88,
-		"huaweicloud_rds_instance_v3":                    89,
-		"huaweicloud_rds_parametergroup_v3":              90,
-		"huaweicloud_rts_software_config_v1":             91,
-		"huaweicloud_rts_stack_v1":                       92,
-		"huaweicloud_s3_bucket":                          93,
-		"huaweicloud_s3_bucket_object":                   94,
-		"huaweicloud_s3_object_policy":                   95,
-		"huaweicloud_sfs_file_system_v2":                 96,
-		"huaweicloud_smn_subscription_v2":                97,
-		"huaweicloud_smn_topic_v2":                       98,
-		"huaweicloud-vbs-backup-policy-v2":               99,
-		"huaweicloud-vbs-backup-v2":                      100,
-		"huaweicloud_vpc_bandwidth_v2":                   101,
-		"huaweicloud_vpc_eip_v1":                         102,
-		"huaweicloud_vpc_peering_connection_accepter_v2": 103,
-		"huaweicloud_vpc_peering_connection_v2":          104,
-		"huaweicloud_vpc_route_v2":                       105,
-		"huaweicloud_vpc_subnet_v1":                      106,
-		"huaweicloud_vpc_v1":                             107,
-		"huaweicloud_vpnaas_endpoint_group_v2":           108,
-		"huaweicloud_vpnaas_ike_policy_v2":               109,
-		"huaweicloud_vpnaas_ipsec_policy_v2":             110,
-		"huaweicloud_vpnaas_service_v2":                  111,
-		"huaweicloud_vpnaas_site_connection_v2":          112,
+		"huaweicloud_gaussdb_mysql_instance":             49,
+		"huaweicloud_gaussdb_opengauss_instance":         50,
+		"huaweicloud_geminidb_instance":                  51,
+		"huaweicloud_ges_graph_v1":                       52,
+		"huaweicloud_iam_agency_v3":                      53,
+		"huaweicloud_identity_group_membership_v3":       54,
+		"huaweicloud_identity_group_v3":                  55,
+		"huaweicloud_identity_project_v3":                56,
+		"huaweicloud_identity_role_assignment_v3":        57,
+		"huaweicloud_identity_user_v3":                   58,
+		"huaweicloud_images_image_v2":                    59,
+		"huaweicloud_kms_key_v1":                         60,
+		"huaweicloud_lb_certificate_v2":                  61,
+		"huaweicloud_lb_l7policy_v2":                     62,
+		"huaweicloud_lb_l7rule_v2":                       63,
+		"huaweicloud_lb_listener_v2":                     64,
+		"huaweicloud_lb_loadbalancer_v2":                 65,
+		"huaweicloud_lb_member_v2":                       66,
+		"huaweicloud_lb_monitor_v2":                      67,
+		"huaweicloud_lb_pool_v2":                         68,
+		"huaweicloud_lb_whitelist_v2":                    69,
+		"huaweicloud_maas_task_v1":                       70,
+		"huaweicloud_mls_instance":                       71,
+		"huaweicloud_mrs_cluster_v1":                     72,
+		"huaweicloud_mrs_job_v1":                         73,
+		"huaweicloud_nat_dnat_rule_v2":                   74,
+		"huaweicloud_nat_gateway_v2":                     75,
+		"huaweicloud_nat_snat_rule_v2":                   76,
+		"huaweicloud_networking_floatingip_associate_v2": 77,
+		"huaweicloud_networking_floatingip_v2":           78,
+		"huaweicloud_networking_network_v2":              79,
+		"huaweicloud_networking_port_v2":                 80,
+		"huaweicloud_networking_router_interface_v2":     81,
+		"huaweicloud_networking_router_route_v2":         82,
+		"huaweicloud_networking_router_v2":               83,
+		"huaweicloud_networking_secgroup_rule_v2":        84,
+		"huaweicloud_networking_secgroup_v2":             85,
+		"huaweicloud_networking_subnet_v2":               86,
+		"huaweicloud_networking_vip_associate_v2":        87,
+		"huaweicloud_networking_vip_v2":                  88,
+		"huaweicloud_obs_bucket":                         89,
+		"huaweicloud_obs_bucket_object":                  90,
+		"huaweicloud_rds_instance_v1":                    91,
+		"huaweicloud_rds_instance_v3":                    92,
+		"huaweicloud_rds_parametergroup_v3":              93,
+		"huaweicloud_rts_software_config_v1":             94,
+		"huaweicloud_rts_stack_v1":                       95,
+		"huaweicloud_s3_bucket":                          96,
+		"huaweicloud_s3_bucket_object":                   97,
+		"huaweicloud_s3_object_policy":                   98,
+		"huaweicloud_sfs_file_system_v2":                 99,
+		"huaweicloud_smn_subscription_v2":                100,
+		"huaweicloud_smn_topic_v2":                       101,
+		"huaweicloud-vbs-backup-policy-v2":               102,
+		"huaweicloud-vbs-backup-v2":                      103,
+		"huaweicloud_vpc_bandwidth_v2":                   104,
+		"huaweicloud_vpc_eip_v1":                         105,
+		"huaweicloud_vpc_peering_connection_accepter_v2": 106,
+		"huaweicloud_vpc_peering_connection_v2":          107,
+		"huaweicloud_vpc_route_v2":                       108,
+		"huaweicloud_vpc_subnet_v1":                      109,
+		"huaweicloud_vpc_v1":                             110,
+		"huaweicloud_vpnaas_endpoint_group_v2":           111,
+		"huaweicloud_vpnaas_ike_policy_v2":               112,
+		"huaweicloud_vpnaas_ipsec_policy_v2":             113,
+		"huaweicloud_vpnaas_service_v2":                  114,
+		"huaweicloud_vpnaas_site_connection_v2":          115,
 	}
 )
 

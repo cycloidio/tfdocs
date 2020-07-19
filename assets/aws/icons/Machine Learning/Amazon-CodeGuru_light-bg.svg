@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="56px" height="56px" viewBox="0 0 56 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>Group 20</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-1264.000000, -2080.000000)">
+            <g id="Group-20" transform="translate(1264.000000, 2080.000000)">
+                <polygon id="Fill-1" fill="#067F68" points="0 56 56 56 56 0 0 0"></polygon>
+                <line x1="28.0004" y1="12.9418" x2="28.0004" y2="9.4998" id="Stroke-2" stroke="#FFFFFF" stroke-width="2"></line>
+                <line x1="15.0932" y1="25.849" x2="11.6512" y2="25.849" id="Stroke-3" stroke="#FFFFFF" stroke-width="2"></line>
+                <line x1="44.349" y1="25.849" x2="40.907" y2="25.849" id="Stroke-4" stroke="#FFFFFF" stroke-width="2"></line>
+                <g id="Group-19" transform="translate(15.000000, 13.000000)" stroke="#FFFFFF" stroke-width="2">
+                    <path d="M23.3256,12.849 C23.3256,7.146 18.7026,2.523 13.0006,2.523 C7.2976,2.523 2.6746,7.146 2.6746,12.849 C2.6746,16.301 4.3746,19.349 6.9766,21.224 L6.9766,26.616 L19.0226,26.616 L19.0226,21.224 C21.6256,19.349 23.3256,16.301 23.3256,12.849 Z" id="Stroke-5" stroke-linejoin="round"></path>
+                    <polygon id="Stroke-7" stroke-linejoin="round" points="16.0112 33.4999 9.9892 33.4999 7.8372 30.0579 18.1622 30.0579"></polygon>
+                    <polyline id="Stroke-9" stroke-linejoin="round" points="9.558 9.4072 6.977 12.8492 9.558 16.2912"></polyline>
+                    <polyline id="Stroke-11" stroke-linejoin="round" points="16.4418 9.4072 19.0228 12.8492 16.4418 16.2912"></polyline>
+                    <line x1="12.1391" y1="18.872" x2="13.8611" y2="6.826" id="Stroke-13" stroke-linejoin="round"></line>
+                    <line x1="22.4653" y1="3.3837" x2="25.0463" y2="0.8017" id="Stroke-15"></line>
+                    <line x1="3.5346" y1="3.3837" x2="0.9536" y2="0.8017" id="Stroke-17"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -28,6 +28,10 @@ Use this data source to access information about an existing Application within 
 					Description: `(Optional) Specifies the Object ID of the Application within Azure Active Directory.`,
 				},
 				resource.Attribute{
+					Name:        "application_id",
+					Description: `(Optional) Specifies the Application ID of the Azure Active Directory Application.`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) Specifies the name of the Application within Azure Active Directory. ->`,
 				},
@@ -834,6 +838,10 @@ Gets Object IDs or UPNs for multiple Azure Active Directory users.
 					Description: `(Optional) The email aliases of the Azure AD Users. ->`,
 				},
 				resource.Attribute{
+					Name:        "ignore_missing",
+					Description: `(Optional) Ignore missing users and return users that were found. The data source will still fail if no users are found. Defaults to false. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
 					Name:        "object_ids",
 					Description: `The Object IDs of the Azure AD Users.`,
 				},
@@ -844,6 +852,50 @@ Gets Object IDs or UPNs for multiple Azure Active Directory users.
 				resource.Attribute{
 					Name:        "mail_nicknames",
 					Description: `The email aliases of the Azure AD Users.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `An Array of Azure AD Users. Each ` + "`" + `user` + "`" + ` object consists of the fields documented below. ___ The ` + "`" + `user` + "`" + ` object consists of:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Object ID of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "user_principal_name",
+					Description: `The User Principal Name of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "account_enabled",
+					Description: `` + "`" + `True` + "`" + ` if the account is enabled; otherwise ` + "`" + `False` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The Display Name of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "mail",
+					Description: `The primary email address of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "mail_nickname",
+					Description: `The email alias of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "onpremises_sam_account_name",
+					Description: `The on premise sam account name of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "onpremises_user_principal_name",
+					Description: `The on premise user principal name of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "usage_location",
+					Description: `The usage location of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "immutable_id",
+					Description: `The value used to associate an on-premises Active Directory user account with their Azure AD user object.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -858,6 +910,50 @@ Gets Object IDs or UPNs for multiple Azure Active Directory users.
 				resource.Attribute{
 					Name:        "mail_nicknames",
 					Description: `The email aliases of the Azure AD Users.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `An Array of Azure AD Users. Each ` + "`" + `user` + "`" + ` object consists of the fields documented below. ___ The ` + "`" + `user` + "`" + ` object consists of:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Object ID of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "user_principal_name",
+					Description: `The User Principal Name of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "account_enabled",
+					Description: `` + "`" + `True` + "`" + ` if the account is enabled; otherwise ` + "`" + `False` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The Display Name of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "mail",
+					Description: `The primary email address of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "mail_nickname",
+					Description: `The email alias of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "onpremises_sam_account_name",
+					Description: `The on premise sam account name of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "onpremises_user_principal_name",
+					Description: `The on premise user principal name of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "usage_location",
+					Description: `The usage location of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "immutable_id",
+					Description: `The value used to associate an on-premises Active Directory user account with their Azure AD user object.`,
 				},
 			},
 		},

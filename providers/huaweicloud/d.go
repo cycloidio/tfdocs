@@ -1118,39 +1118,43 @@ CTS Tracker data source allows access of Cloud Tracker.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V3 dds client.`,
+					Description: `(Optional) Specifies the region in which to obtain the V3 dds client.`,
 				},
 				resource.Attribute{
 					Name:        "engine_name",
-					Description: `(Optional) The engine name of the dds, now only DDS-Community is supported.`,
+					Description: `(Required) Specifies the engine name of the dds, "DDS-Community" and "DDS-Enhanced" are supported.`,
 				},
 				resource.Attribute{
-					Name:        "speccode",
-					Description: `(Optional) The spec code of a dds flavor. ## Available value for attributes engine_name | type | vcpus | ram | speccode ---- | --- | --- | --- | --- DDS-Community | mongos | 1 | 4 | dds.mongodb.c3.medium.4.mongos DDS-Community | mongos | 2 | 8 | dds.mongodb.c3.large.4.mongos DDS-Community | mongos | 4 | 16 | dds.mongodb.c3.xlarge.4.mongos DDS-Community | mongos | 8 | 32 | dds.mongodb.c3.2xlarge.4.mongos DDS-Community | mongos | 16 | 64 | dds.mongodb.c3.4xlarge.4.mongos DDS-Community | shard | 1 | 4 | dds.mongodb.c3.medium.4.shard DDS-Community | shard | 2 | 8 | dds.mongodb.c3.large.4.shard DDS-Community | shard | 4 | 16 | dds.mongodb.c3.xlarge.4.shard DDS-Community | shard | 8 | 32 | dds.mongodb.c3.2xlarge.4.shard DDS-Community | shard | 16 | 64 | dds.mongodb.c3.4xlarge.4.shard DDS-Community | config | 2 | 4 | dds.mongodb.c3.large.2.config DDS-Community | replica | 1 | 4 | dds.mongodb.c3.medium.4.repset DDS-Community | replica | 2 | 8 | dds.mongodb.c3.large.4.repset DDS-Community | replica | 4 | 16 | dds.mongodb.c3.xlarge.4.repset DDS-Community | replica | 8 | 32 | dds.mongodb.c3.2xlarge.4.repset DDS-Community | replica | 16 | 64 | dds.mongodb.c3.4xlarge.4.repset ## Attributes Reference`,
+					Name:        "type",
+					Description: `(Optional) Specifies the type of the dds falvor. "mongos", "shard", "config", "replica" and "single" are supported.`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `(Optional) Specifies the vcpus of the dds flavor.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `(Optional) Specifies the ram of the dds flavor in GB. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "engine_name",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "speccode",
-					Description: `See Argument Reference above.`,
+					Name:        "flavors",
+					Description: `Indicates the flavors information. Structure is documented below. The ` + "`" + `flavors` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The type of the dds flavor.`,
+					Description: `See ` + "`" + `type` + "`" + ` above.`,
 				},
 				resource.Attribute{
 					Name:        "vcpus",
-					Description: `The vcpus of the dds flavor.`,
+					Description: `See ` + "`" + `vcpus` + "`" + ` above.`,
 				},
 				resource.Attribute{
-					Name:        "ram",
-					Description: `The ram of the dds flavor.`,
+					Name:        "memory",
+					Description: `See 'memory' above.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1159,24 +1163,20 @@ CTS Tracker data source allows access of Cloud Tracker.
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "engine_name",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "speccode",
-					Description: `See Argument Reference above.`,
+					Name:        "flavors",
+					Description: `Indicates the flavors information. Structure is documented below. The ` + "`" + `flavors` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The type of the dds flavor.`,
+					Description: `See ` + "`" + `type` + "`" + ` above.`,
 				},
 				resource.Attribute{
 					Name:        "vcpus",
-					Description: `The vcpus of the dds flavor.`,
+					Description: `See ` + "`" + `vcpus` + "`" + ` above.`,
 				},
 				resource.Attribute{
-					Name:        "ram",
-					Description: `The ram of the dds flavor.`,
+					Name:        "memory",
+					Description: `See 'memory' above.`,
 				},
 			},
 		},
@@ -1457,6 +1457,74 @@ CTS Tracker data source allows access of Cloud Tracker.
 				resource.Attribute{
 					Name:        "node_num",
 					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_gaussdb_mysql_flavors",
+			Category:         "Data Sources",
+			ShortDescription: `Get the flavor information on an HuaweiCloud gaussdb mysql.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "engine",
+					Description: `(Optional) Specifies the database engine. Only "gaussdb-mysql" is supported now.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) Specifies the database version. Only "8.0" is supported now. ## Attributes Reference In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "flavors",
+					Description: `Indicates the flavors information. Structure is documented below. The ` + "`" + `flavors` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the gaussdb mysql flavor.`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `Indicates the CPU size.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `Indicates the memory size in GB.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `Indicates the database mode.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Indicates the database version.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "flavors",
+					Description: `Indicates the flavors information. Structure is documented below. The ` + "`" + `flavors` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the gaussdb mysql flavor.`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `Indicates the CPU size.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `Indicates the memory size in GB.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `Indicates the database mode.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Indicates the database version.`,
 				},
 			},
 		},
@@ -3122,13 +3190,13 @@ This resource can be useful for getting back a list of subnet ids for a vpc.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A list of all the subnet ids found. This data source will fail if none are found.`,
+					Description: `A set of all the subnet ids found. This data source will fail if none are found.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A list of all the subnet ids found. This data source will fail if none are found.`,
+					Description: `A set of all the subnet ids found. This data source will fail if none are found.`,
 				},
 			},
 		},
@@ -3275,29 +3343,30 @@ VPC that the subnet belongs to.
 		"huaweicloud_dms_az_v1":                     13,
 		"huaweicloud_dms_maintainwindow_v1":         14,
 		"huaweicloud_dms_product_v1":                15,
-		"huaweicloud_identity_role_v3":              16,
-		"huaweicloud_images_image_v2":               17,
-		"huaweicloud_kms_data_key_v1":               18,
-		"huaweicloud_kms_key_v1":                    19,
-		"huaweicloud_networking_network_v2":         20,
-		"huaweicloud_networking_port_v2":            21,
-		"huaweicloud_networking_secgroup_v2":        22,
-		"huaweicloud_networking_subnet_v2":          23,
-		"huaweicloud_rds_flavors_v1":                24,
-		"huaweicloud_rds_flavors_v3":                25,
-		"huaweicloud_rts_software_config_v1":        26,
-		"huaweicloud_rts_stack_resource_v1":         27,
-		"huaweicloud_rts_stack_v1":                  28,
-		"huaweicloud_s3_bucket_object":              29,
-		"huaweicloud_sfs_file_sharing_v2":           30,
-		"huaweicloud_vbs_backup_policy_v2":          31,
-		"huaweicloud_vbs_backup_v2":                 32,
-		"huaweicloud_vpc_peering_connection_v2":     33,
-		"huaweicloud_vpc_route_ids_v2":              34,
-		"huaweicloud_vpc_route_v2":                  35,
-		"huaweicloud_vpc_subnet_ids_v1":             36,
-		"huaweicloud_vpc_subnet_v1":                 37,
-		"huaweicloud_vpc_v1":                        38,
+		"huaweicloud_gaussdb_mysql_flavors":         16,
+		"huaweicloud_identity_role_v3":              17,
+		"huaweicloud_images_image_v2":               18,
+		"huaweicloud_kms_data_key_v1":               19,
+		"huaweicloud_kms_key_v1":                    20,
+		"huaweicloud_networking_network_v2":         21,
+		"huaweicloud_networking_port_v2":            22,
+		"huaweicloud_networking_secgroup_v2":        23,
+		"huaweicloud_networking_subnet_v2":          24,
+		"huaweicloud_rds_flavors_v1":                25,
+		"huaweicloud_rds_flavors_v3":                26,
+		"huaweicloud_rts_software_config_v1":        27,
+		"huaweicloud_rts_stack_resource_v1":         28,
+		"huaweicloud_rts_stack_v1":                  29,
+		"huaweicloud_s3_bucket_object":              30,
+		"huaweicloud_sfs_file_sharing_v2":           31,
+		"huaweicloud_vbs_backup_policy_v2":          32,
+		"huaweicloud_vbs_backup_v2":                 33,
+		"huaweicloud_vpc_peering_connection_v2":     34,
+		"huaweicloud_vpc_route_ids_v2":              35,
+		"huaweicloud_vpc_route_v2":                  36,
+		"huaweicloud_vpc_subnet_ids_v1":             37,
+		"huaweicloud_vpc_subnet_v1":                 38,
+		"huaweicloud_vpc_v1":                        39,
 	}
 )
 

@@ -211,6 +211,16 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "scaleway_lb_ip_beta",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about a Load Balancer IP.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "scaleway_marketplace_image_beta",
 			Category:         "Data Sources",
 			ShortDescription: `Gets local image ID of an image from its label name.`,
@@ -323,11 +333,12 @@ var (
 		"scaleway_instance_security_group": 5,
 		"scaleway_instance_server":         6,
 		"scaleway_instance_volume":         7,
-		"scaleway_marketplace_image_beta":  8,
-		"scaleway_registry_image_beta":     9,
-		"scaleway_registry_namespace_beta": 10,
-		"scaleway_security_group":          11,
-		"scaleway_volume":                  12,
+		"scaleway_lb_ip_beta":              8,
+		"scaleway_marketplace_image_beta":  9,
+		"scaleway_registry_image_beta":     10,
+		"scaleway_registry_namespace_beta": 11,
+		"scaleway_security_group":          12,
+		"scaleway_volume":                  13,
 	}
 )
 

@@ -889,6 +889,421 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "baiducloud_cce_cluster",
+			Category:         "CCE Resources",
+			ShortDescription: `Use this resource to get information about a CCE Cluster.`,
+			Description:      ``,
+			Keywords: []string{
+				"cce",
+				"cluster",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `(Required, ForceNew) Name of the Cluster. Support for uppercase and lowercase letters, numbers, Chinese and special characters, such as "-","_","/",".", the value must start with a letter, length 1-65.`,
+				},
+				resource.Attribute{
+					Name:        "container_net",
+					Description: `(Required, ForceNew) Container network type of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "worker_config",
+					Description: `(Required) Worker node config of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "advanced_options",
+					Description: `(Optional, ForceNew) Advanced options configuration of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional, ForceNew) Comment information of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "delete_eip_cds",
+					Description: `(Optional) Whether to delete the eip and cds, default to true.`,
+				},
+				resource.Attribute{
+					Name:        "delete_snapshots",
+					Description: `(Optional) Whether to delete the snapshots, default to true.`,
+				},
+				resource.Attribute{
+					Name:        "deploy_mode",
+					Description: `(Optional, ForceNew) Deployment mode of the cce cluster, which can only be BCC.`,
+				},
+				resource.Attribute{
+					Name:        "main_available_zone",
+					Description: `(Optional, ForceNew) Main available zone of the cce cluster, support zoneA, zoneB, etc.`,
+				},
+				resource.Attribute{
+					Name:        "master_config",
+					Description: `(Optional, ForceNew) Master config of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional, ForceNew) Kubernetes version of the cce cluster. The ` + "`" + `advanced_options` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "cni_mode",
+					Description: `(Optional, ForceNew) Mode of the container network interface, which can only be cni or kubenet.`,
+				},
+				resource.Attribute{
+					Name:        "cni_type",
+					Description: `(Optional, ForceNew) Type of the container network interface, which can be VPC_ROUTE_AUTODETECT, VPC_SECONDARY_IP_VETH.`,
+				},
+				resource.Attribute{
+					Name:        "dns_mode",
+					Description: `(Optional, ForceNew) Mode of the dns, which can be coreDNS or kubeDNS.`,
+				},
+				resource.Attribute{
+					Name:        "kube_proxy_mode",
+					Description: `(Optional, ForceNew) Mode of kube-proxy, which can only be iptables or ipvs.`,
+				},
+				resource.Attribute{
+					Name:        "max_pod_num",
+					Description: `(Optional, ForceNew) Maximum number of pods in a node. The ` + "`" + `master_config` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `(Required, ForceNew) Number of cpu cores.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `(Required, ForceNew) Image id of the master node.`,
+				},
+				resource.Attribute{
+					Name:        "image_type",
+					Description: `(Required, ForceNew) Image type of the master node.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `(Required, ForceNew) Instance type of the master node.`,
+				},
+				resource.Attribute{
+					Name:        "logical_zone",
+					Description: `(Required, ForceNew) Logical zone of the master node.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `(Required, ForceNew) Memory capacity(GB) of the master node.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `(Required, ForceNew) ID of the security group.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_uuid",
+					Description: `(Required, ForceNew) Subnet uuid of the master node.`,
+				},
+				resource.Attribute{
+					Name:        "admin_pass",
+					Description: `(Optional, ForceNew) Password of the worker node.`,
+				},
+				resource.Attribute{
+					Name:        "auto_renew_time_unit",
+					Description: `(Optional, ForceNew) Time unit of automatic renewal, the default value is month, It is valid only when the product_type is prepay and auto_renew is true.`,
+				},
+				resource.Attribute{
+					Name:        "auto_renew_time",
+					Description: `(Optional, ForceNew) The time length of automatic renewal. It is valid only when the product_type is prepay and auto_renew is true.`,
+				},
+				resource.Attribute{
+					Name:        "auto_renew",
+					Description: `(Optional, ForceNew) Whether the master is automatically renewed.`,
+				},
+				resource.Attribute{
+					Name:        "gpu_card",
+					Description: `(Optional, ForceNew) Gpu card of the master node.`,
+				},
+				resource.Attribute{
+					Name:        "gpu_count",
+					Description: `(Optional, ForceNew) Count of gpu card.`,
+				},
+				resource.Attribute{
+					Name:        "keypair_id",
+					Description: `(Optional, ForceNew) Instance Key pair Id.`,
+				},
+				resource.Attribute{
+					Name:        "product_type",
+					Description: `(Optional, ForceNew) Product type of the master node, which can be postpay or prepay.`,
+				},
+				resource.Attribute{
+					Name:        "purchase_length",
+					Description: `(Optional, ForceNew) Purchase duration of the master node.`,
+				},
+				resource.Attribute{
+					Name:        "root_disk_size_in_gb",
+					Description: `(Optional, ForceNew) System disk size(GB) of the master node.`,
+				},
+				resource.Attribute{
+					Name:        "root_disk_storage_type",
+					Description: `(Optional, ForceNew) System disk storage type of the master node. The ` + "`" + `worker_config` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "count",
+					Description: `(Required) Count of the worker node.`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `(Required, ForceNew) Number of cpu cores for the worker node.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `(Required, ForceNew) Image id of the worker node.`,
+				},
+				resource.Attribute{
+					Name:        "image_type",
+					Description: `(Required, ForceNew) Image type of the worker node, which can be common, custom, gpuBccImage, gpuBccCustom, sharing.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `(Required, ForceNew) Instance type of the worker node.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `(Required, ForceNew) Memory size of the worker node.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `(Required, ForceNew) ID of the security group.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_uuid",
+					Description: `(Required) Subnet uuid of the worker node.`,
+				},
+				resource.Attribute{
+					Name:        "admin_pass",
+					Description: `(Optional, ForceNew) Password of the worker node.`,
+				},
+				resource.Attribute{
+					Name:        "auto_renew_time_unit",
+					Description: `(Optional, ForceNew) Time unit of automatic renewal, the default value is month, It is valid only when the product_type is prepay and auto_renew is true.`,
+				},
+				resource.Attribute{
+					Name:        "auto_renew_time",
+					Description: `(Optional, ForceNew) The time length of automatic renewal. It is valid only when the product_type is prepay and auto_renew is true.`,
+				},
+				resource.Attribute{
+					Name:        "auto_renew",
+					Description: `(Optional, ForceNew) Whether the worker is automatically renewed.`,
+				},
+				resource.Attribute{
+					Name:        "cds_disks",
+					Description: `(Optional, ForceNew) CDS disks of the worker node.`,
+				},
+				resource.Attribute{
+					Name:        "eip",
+					Description: `(Optional, ForceNew) Eip of the worker node.`,
+				},
+				resource.Attribute{
+					Name:        "gpu_card",
+					Description: `(Optional, ForceNew) Gpu card of the worker node.`,
+				},
+				resource.Attribute{
+					Name:        "gpu_count",
+					Description: `(Optional, ForceNew) Gpu count of the worker node.`,
+				},
+				resource.Attribute{
+					Name:        "keypair_id",
+					Description: `(Optional, ForceNew) Instance Key pair Id.`,
+				},
+				resource.Attribute{
+					Name:        "product_type",
+					Description: `(Optional, ForceNew) Product type of the worker node, which can be postpay or prepay.`,
+				},
+				resource.Attribute{
+					Name:        "purchase_length",
+					Description: `(Optional, ForceNew) Purchase duration of the worker node.`,
+				},
+				resource.Attribute{
+					Name:        "root_disk_size_in_gb",
+					Description: `(Optional, ForceNew) System disk size(GB) of the worker node.`,
+				},
+				resource.Attribute{
+					Name:        "root_disk_storage_type",
+					Description: `(Optional, ForceNew) System disk storage type of the worker node. The ` + "`" + `cds_disks` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "disk_size_in_gb",
+					Description: `(Required, ForceNew) Volume of disk in GB. Default is 0.`,
+				},
+				resource.Attribute{
+					Name:        "volume_type",
+					Description: `(Required, ForceNew) Types of disk，available values: CLOUD_PREMIUM and CLOUD_SSD.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `(Optional, ForceNew) Data disk snapshot ID. The ` + "`" + `eip` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_in_mbps",
+					Description: `(Required, ForceNew) Eip bandwidth(Mbps) of the worker node.`,
+				},
+				resource.Attribute{
+					Name:        "sub_product_type",
+					Description: `(Required, ForceNew) Eip product type of the worker node, which can be bandwidth or netraffic.`,
+				},
+				resource.Attribute{
+					Name:        "eip_name",
+					Description: `(Optional, ForceNew) Eip name of the worker node. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "cluster_node_num",
+					Description: `Number of nodes in the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_uuid",
+					Description: `UUID of cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "create_start_time",
+					Description: `Create time of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "delete_time",
+					Description: `Delete time of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "has_prepay",
+					Description: `Whether to include prepaid nodes.`,
+				},
+				resource.Attribute{
+					Name:        "instance_mode",
+					Description: `Instance mode of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "master_vm_count",
+					Description: `Number of virtual machines in the master node of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "master_zone_subnet_map",
+					Description: `Availability zone of master node.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Region of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_cidr",
+					Description: `VPC cidr of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `VPC id of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_uuid",
+					Description: `VPC uuid of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "worker_instances_list",
+					Description: `List of the worker instances.`,
+				},
+				resource.Attribute{
+					Name:        "available_zone",
+					Description: `Available zone of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "eip",
+					Description: `Eip of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `ID of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "zone_subnet_map",
+					Description: `Subnet of the zone.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_node_num",
+					Description: `Number of nodes in the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_uuid",
+					Description: `UUID of cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "create_start_time",
+					Description: `Create time of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "delete_time",
+					Description: `Delete time of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "has_prepay",
+					Description: `Whether to include prepaid nodes.`,
+				},
+				resource.Attribute{
+					Name:        "instance_mode",
+					Description: `Instance mode of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "master_vm_count",
+					Description: `Number of virtual machines in the master node of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "master_zone_subnet_map",
+					Description: `Availability zone of master node.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Region of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_cidr",
+					Description: `VPC cidr of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `VPC id of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_uuid",
+					Description: `VPC uuid of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "worker_instances_list",
+					Description: `List of the worker instances.`,
+				},
+				resource.Attribute{
+					Name:        "available_zone",
+					Description: `Available zone of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "eip",
+					Description: `Eip of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `ID of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "zone_subnet_map",
+					Description: `Subnet of the zone.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "baiducloud_cds",
 			Category:         "BCC Resources",
 			ShortDescription: `Provide a resource to create a CDS.`,
@@ -1813,7 +2228,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instance_type",
-					Description: `(Optional, ForceNew) Type of the instance to start. Available values are N1, N2, N3, C1, C2, S1, G1, F1. Default to N3.`,
+					Description: `(Optional, ForceNew) Type of the instance to start. Available values are N1, N2, N3, N4, N5, C1, C2, S1, G1, F1. Default to N3.`,
+				},
+				resource.Attribute{
+					Name:        "keypair_id",
+					Description: `(Optional, ForceNew) Key pair id of the instance.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1900,10 +2319,6 @@ var (
 					Description: `Internal IP assigned to the instance.`,
 				},
 				resource.Attribute{
-					Name:        "keypair_id",
-					Description: `Key pair id of the instance.`,
-				},
-				resource.Attribute{
 					Name:        "keypair_name",
 					Description: `Key pair name of the instance.`,
 				},
@@ -1944,10 +2359,6 @@ var (
 				resource.Attribute{
 					Name:        "internal_ip",
 					Description: `Internal IP assigned to the instance.`,
-				},
-				resource.Attribute{
-					Name:        "keypair_id",
-					Description: `Key pair id of the instance.`,
 				},
 				resource.Attribute{
 					Name:        "keypair_name",
@@ -2369,6 +2780,212 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "baiducloud_scs",
+			Category:         "SCS Resources",
+			ShortDescription: `Use this resource to get information about a SCS.`,
+			Description:      ``,
+			Keywords: []string{
+				"scs",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "billing",
+					Description: `(Required) Billing information of the Scs.`,
+				},
+				resource.Attribute{
+					Name:        "instance_name",
+					Description: `(Required) Name of the instance. Support for uppercase and lowercase letters, numbers, Chinese and special characters, such as "-","_","/",".", the value must start with a letter, length 1-65.`,
+				},
+				resource.Attribute{
+					Name:        "node_type",
+					Description: `(Required) Type of the instance. Available values are cache.n1.micro, cache.n1.small, cache.n1.medium...cache.n1hs3.4xlarge.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_type",
+					Description: `(Optional, ForceNew) Type of the instance, Available values are cluster, master_slave.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `(Optional, ForceNew) Engine version of the instance. Available values are 3.2, 4.0.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional, ForceNew) The port used to access a instance.`,
+				},
+				resource.Attribute{
+					Name:        "proxy_num",
+					Description: `(Optional, ForceNew) The number of instance proxy.`,
+				},
+				resource.Attribute{
+					Name:        "purchase_count",
+					Description: `(Optional) Count of the instance to buy`,
+				},
+				resource.Attribute{
+					Name:        "replication_num",
+					Description: `(Optional, ForceNew) The number of instance copies.`,
+				},
+				resource.Attribute{
+					Name:        "shard_num",
+					Description: `(Optional) The number of instance shard. IF cluster_type is cluster, support 2/4/6/8/12/16/24/32/48/64/96/128, if cluster_type is master_slave, support 1.`,
+				},
+				resource.Attribute{
+					Name:        "subnets",
+					Description: `(Optional) Subnets of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Optional, ForceNew) ID of the specific VPC The ` + "`" + `billing` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "payment_timing",
+					Description: `(Required) Payment timing of billing, which can be Prepaid or Postpaid. The default is Postpaid.`,
+				},
+				resource.Attribute{
+					Name:        "reservation",
+					Description: `(Optional) Reservation of the Scs. The ` + "`" + `reservation` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "reservation_length",
+					Description: `(Required) The reservation length that you will pay for your resource. It is valid when payment_timing is Prepaid. Valid values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36].`,
+				},
+				resource.Attribute{
+					Name:        "reservation_time_unit",
+					Description: `(Required) The reservation time unit that you will pay for your resource. It is valid when payment_timing is Prepaid. The value can only be month currently, which is also the default value. The ` + "`" + `subnets` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Optional, ForceNew) ID of the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "zone_name",
+					Description: `(Optional, ForceNew) Zone name of the subnet. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "auto_renew_time_length",
+					Description: `The time length of automatic renewal. It is valid when payment_timing is Prepaid, and the value should be 1-9 when the auto_renew_time_unit is month and 1-3 when the auto_renew_time_unit is year. Default to 1.`,
+				},
+				resource.Attribute{
+					Name:        "auto_renew_time_unit",
+					Description: `Time unit of automatic renewal, the value can be month or year. The default value is empty, indicating no automatic renewal. It is valid only when the payment_timing is Prepaid.`,
+				},
+				resource.Attribute{
+					Name:        "auto_renew",
+					Description: `Whether to automatically renew.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `Memory capacity(GB) of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `Domain of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `Engine of the instance. Available values are redis, memcache.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `Expire time of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `ID of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_status",
+					Description: `Status of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "payment_timing",
+					Description: `SCS payment timing`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags`,
+				},
+				resource.Attribute{
+					Name:        "used_capacity",
+					Description: `Memory capacity(GB) of the instance to be used.`,
+				},
+				resource.Attribute{
+					Name:        "v_net_ip",
+					Description: `The internal ip used to access a instance.`,
+				},
+				resource.Attribute{
+					Name:        "zone_names",
+					Description: `Zone name list ## Import SCS can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import baiducloud_scs.default id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "auto_renew_time_length",
+					Description: `The time length of automatic renewal. It is valid when payment_timing is Prepaid, and the value should be 1-9 when the auto_renew_time_unit is month and 1-3 when the auto_renew_time_unit is year. Default to 1.`,
+				},
+				resource.Attribute{
+					Name:        "auto_renew_time_unit",
+					Description: `Time unit of automatic renewal, the value can be month or year. The default value is empty, indicating no automatic renewal. It is valid only when the payment_timing is Prepaid.`,
+				},
+				resource.Attribute{
+					Name:        "auto_renew",
+					Description: `Whether to automatically renew.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `Memory capacity(GB) of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `Domain of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `Engine of the instance. Available values are redis, memcache.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `Expire time of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `ID of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_status",
+					Description: `Status of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "payment_timing",
+					Description: `SCS payment timing`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags`,
+				},
+				resource.Attribute{
+					Name:        "used_capacity",
+					Description: `Memory capacity(GB) of the instance to be used.`,
+				},
+				resource.Attribute{
+					Name:        "v_net_ip",
+					Description: `The internal ip used to access a instance.`,
+				},
+				resource.Attribute{
+					Name:        "zone_names",
+					Description: `Zone name list ## Import SCS can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import baiducloud_scs.default id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "baiducloud_security_group",
 			Category:         "BCC Resources",
 			ShortDescription: `Provide a resource to create a security group.`,
@@ -2433,7 +3050,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "port_range",
-					Description: `(Optional, ForceNew) SecurityGroup rule's port range, you can set single port like 80, or set a port range, like 1-65535, default 1-65535`,
+					Description: `(Optional, ForceNew) SecurityGroup rule's port range, you can set single port like 80, or set a port range, like 1-65535, default 1-65535. If protocol is all, only support 1-65535`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
@@ -2612,25 +3229,27 @@ var (
 		"baiducloud_auto_snapshot_policy": 4,
 		"baiducloud_bos_bucket":           5,
 		"baiducloud_bos_bucket_object":    6,
-		"baiducloud_cds":                  7,
-		"baiducloud_cds_attachment":       8,
-		"baiducloud_cert":                 9,
-		"baiducloud_cfc_alias":            10,
-		"baiducloud_cfc_function":         11,
-		"baiducloud_cfc_trigger":          12,
-		"baiducloud_cfc_version":          13,
-		"baiducloud_eip":                  14,
-		"baiducloud_eip_association":      15,
-		"baiducloud_instance":             16,
-		"baiducloud_nat_gateway":          17,
-		"baiducloud_peer_conn":            18,
-		"baiducloud_peer_conn_acceptor":   19,
-		"baiducloud_route_rule":           20,
-		"baiducloud_security_group":       21,
-		"baiducloud_security_group_rule":  22,
-		"baiducloud_snapshot":             23,
-		"baiducloud_subnet":               24,
-		"baiducloud_vpc":                  25,
+		"baiducloud_cce_cluster":          7,
+		"baiducloud_cds":                  8,
+		"baiducloud_cds_attachment":       9,
+		"baiducloud_cert":                 10,
+		"baiducloud_cfc_alias":            11,
+		"baiducloud_cfc_function":         12,
+		"baiducloud_cfc_trigger":          13,
+		"baiducloud_cfc_version":          14,
+		"baiducloud_eip":                  15,
+		"baiducloud_eip_association":      16,
+		"baiducloud_instance":             17,
+		"baiducloud_nat_gateway":          18,
+		"baiducloud_peer_conn":            19,
+		"baiducloud_peer_conn_acceptor":   20,
+		"baiducloud_route_rule":           21,
+		"baiducloud_scs":                  22,
+		"baiducloud_security_group":       23,
+		"baiducloud_security_group_rule":  24,
+		"baiducloud_snapshot":             25,
+		"baiducloud_subnet":               26,
+		"baiducloud_vpc":                  27,
 	}
 )
 

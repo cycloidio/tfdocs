@@ -11,6 +11,161 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "aci_local_user",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI Local User`,
+			Description:      ``,
+			Keywords: []string{
+				"local",
+				"user",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object local_user.`,
+				},
+				resource.Attribute{
+					Name:        "account_status",
+					Description: `(Optional) local AAA user account status`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object local_user.`,
+				},
+				resource.Attribute{
+					Name:        "cert_attribute",
+					Description: `(Optional) cert_attribute for object local_user.`,
+				},
+				resource.Attribute{
+					Name:        "clear_pwd_history",
+					Description: `(Optional) clear password history of local user`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `(Optional) email address of the local user`,
+				},
+				resource.Attribute{
+					Name:        "expiration",
+					Description: `(Optional) local user account expiration date`,
+				},
+				resource.Attribute{
+					Name:        "expires",
+					Description: `(Optional) enables local user account expiration`,
+				},
+				resource.Attribute{
+					Name:        "first_name",
+					Description: `(Optional) first name of the local user`,
+				},
+				resource.Attribute{
+					Name:        "last_name",
+					Description: `(Optional) last name of the local user`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object local_user.`,
+				},
+				resource.Attribute{
+					Name:        "otpenable",
+					Description: `(Optional) otpenable for object local_user.`,
+				},
+				resource.Attribute{
+					Name:        "otpkey",
+					Description: `(Optional) otpkey for object local_user.`,
+				},
+				resource.Attribute{
+					Name:        "phone",
+					Description: `(Optional) phone number of the local user`,
+				},
+				resource.Attribute{
+					Name:        "pwd",
+					Description: `(Optional) system user password`,
+				},
+				resource.Attribute{
+					Name:        "pwd_life_time",
+					Description: `(Optional) lifetime of the local user password`,
+				},
+				resource.Attribute{
+					Name:        "pwd_update_required",
+					Description: `(Optional) pwd_update_required for object local_user.`,
+				},
+				resource.Attribute{
+					Name:        "rbac_string",
+					Description: `(Optional) rbac_string for object local_user.`,
+				},
+				resource.Attribute{
+					Name:        "unix_user_id",
+					Description: `(Optional) UNIX identifier of the local user ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Local User. ## Importing ## An existing Local User can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_local_user.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_x509_certificate",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI X509 Certificate`,
+			Description:      ``,
+			Keywords: []string{
+				"x509",
+				"certificate",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "local_user_dn",
+					Description: `(Required) Distinguished name of parent LocalUser object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object x509_certificate.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object x509_certificate.`,
+				},
+				resource.Attribute{
+					Name:        "data",
+					Description: `(Optional) data from the user certificate`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object x509_certificate. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the X509 Certificate. ## Importing ## An existing X509 Certificate can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_x509_certificate.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_cdp_interface_policy",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI CDP Interface Policy`,
+			Description:      ``,
+			Keywords: []string{
+				"cdp",
+				"interface",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object cdp_interface_policy.`,
+				},
+				resource.Attribute{
+					Name:        "admin_st",
+					Description: `(Optional) administrative state`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object cdp_interface_policy.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object cdp_interface_policy. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the CDP Interface Policy. ## Importing ## An existing CDP Interface Policy can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_cdp_interface_policy.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aci_cloud_applicationcontainer",
 			Category:         "Resources",
 			ShortDescription: `Manages ACI Cloud Application container`,
@@ -248,14 +403,13 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "aci_cloud_e_pg",
+			Type:             "aci_cloud_epg",
 			Category:         "Resources",
 			ShortDescription: `Manages ACI Cloud EPg`,
 			Description:      ``,
 			Keywords: []string{
 				"cloud",
-				"e",
-				"pg",
+				"epg",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -264,15 +418,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object cloud_e_pg.`,
+					Description: `(Required) name of Object cloud_epg.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_e_pg.`,
+					Description: `(Optional) annotation for object cloud_epg.`,
 				},
 				resource.Attribute{
 					Name:        "exception_tag",
-					Description: `(Optional) exception_tag for object cloud_e_pg. Allowed value range is "0" to "512".`,
+					Description: `(Optional) exception_tag for object cloud_epg. Allowed value range is "0" to "512".`,
 				},
 				resource.Attribute{
 					Name:        "flood_on_encap",
@@ -284,7 +438,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_e_pg.`,
+					Description: `(Optional) name_alias for object cloud_epg.`,
 				},
 				resource.Attribute{
 					Name:        "pref_gr_memb",
@@ -315,7 +469,7 @@ var (
 					Description: `(Optional) Relation to class vzBrCP. Cardinality - N_TO_M. Type - Set of String.`,
 				},
 				resource.Attribute{
-					Name:        "relation_cloud_rs_cloud_e_pg_ctx",
+					Name:        "relation_cloud_rs_cloud_epg_ctx",
 					Description: `(Optional) Relation to class fvCtx. Cardinality - N_TO_ONE. Type - String.`,
 				},
 				resource.Attribute{
@@ -324,7 +478,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_intra_epg",
-					Description: `(Optional) Relation to class vzBrCP. Cardinality - N_TO_M. Type - Set of String. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Cloud EPg. ## Importing ## An existing Cloud EPg can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_cloud_e_pg.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Relation to class vzBrCP. Cardinality - N_TO_M. Type - Set of String. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Cloud EPg. ## Importing ## An existing Cloud EPg can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_cloud_epg.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -342,7 +496,7 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "cloud_e_pg_dn",
+					Name:        "cloud_epg_dn",
 					Description: `(Required) Distinguished name of parent CloudEPg object.`,
 				},
 				resource.Attribute{
@@ -366,15 +520,14 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "aci_cloud_external_e_pg",
+			Type:             "aci_cloud_external_epg",
 			Category:         "Resources",
 			ShortDescription: `Manages ACI Cloud External EPg`,
 			Description:      ``,
 			Keywords: []string{
 				"cloud",
 				"external",
-				"e",
-				"pg",
+				"epg",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -383,15 +536,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object cloud_external_e_pg.`,
+					Description: `(Required) name of Object cloud_external_epg.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_external_e_pg.`,
+					Description: `(Optional) annotation for object cloud_external_epg.`,
 				},
 				resource.Attribute{
 					Name:        "exception_tag",
-					Description: `(Optional) exception_tag for object cloud_external_e_pg. Allowed value range is "0" to "512".`,
+					Description: `(Optional) exception_tag for object cloud_external_epg. Allowed value range is "0" to "512".`,
 				},
 				resource.Attribute{
 					Name:        "flood_on_encap",
@@ -403,7 +556,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_external_e_pg.`,
+					Description: `(Optional) name_alias for object cloud_external_epg.`,
 				},
 				resource.Attribute{
 					Name:        "pref_gr_memb",
@@ -438,7 +591,7 @@ var (
 					Description: `(Optional) Relation to class vzBrCP. Cardinality - N_TO_M. Type - Set of String.`,
 				},
 				resource.Attribute{
-					Name:        "relation_cloud_rs_cloud_e_pg_ctx",
+					Name:        "relation_cloud_rs_cloud_epg_ctx",
 					Description: `(Optional) Relation to class fvCtx. Cardinality - N_TO_ONE. Type - String.`,
 				},
 				resource.Attribute{
@@ -447,14 +600,14 @@ var (
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_intra_epg",
-					Description: `(Optional) Relation to class vzBrCP. Cardinality - N_TO_M. Type - Set of String. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Cloud External EPg. ## Importing ## An existing Cloud External EPg can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_cloud_external_e_pg.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Relation to class vzBrCP. Cardinality - N_TO_M. Type - Set of String. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Cloud External EPg. ## Importing ## An existing Cloud External EPg can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_cloud_external_epg.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "aci_cloud_endpoint_selectorfor_external_e_pgs",
+			Type:             "aci_cloud_endpoint_selectorfor_external_epgs",
 			Category:         "Resources",
 			ShortDescription: `Manages ACI Cloud Endpoint Selector for External EPgs`,
 			Description:      ``,
@@ -463,21 +616,20 @@ var (
 				"endpoint",
 				"selectorfor",
 				"external",
-				"e",
-				"pgs",
+				"epgs",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "cloud_external_e_pg_dn",
+					Name:        "cloud_external_epg_dn",
 					Description: `(Required) Distinguished name of parent CloudExternalEPg object.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object cloud_endpoint_selectorfor_external_e_pgs.`,
+					Description: `(Required) name of Object cloud_endpoint_selectorfor_external_epgs.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_endpoint_selectorfor_external_e_pgs.`,
+					Description: `(Optional) annotation for object cloud_endpoint_selectorfor_external_epgs.`,
 				},
 				resource.Attribute{
 					Name:        "is_shared",
@@ -485,11 +637,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_endpoint_selectorfor_external_e_pgs.`,
+					Description: `(Optional) name_alias for object cloud_endpoint_selectorfor_external_epgs.`,
 				},
 				resource.Attribute{
 					Name:        "subnet",
-					Description: `(Optional) Subnet from which EP to select. Any valid CIDR block is allowed here. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Cloud Endpoint Selector for External EPgs. ## Importing ## An existing Cloud Endpoint Selector for External EPgs can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_cloud_endpoint_selectorfor_external_e_pgs.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Subnet from which EP to select. Any valid CIDR block is allowed here. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Cloud Endpoint Selector for External EPgs. ## Importing ## An existing Cloud Endpoint Selector for External EPgs can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_cloud_endpoint_selectorfor_external_epgs.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -584,6 +736,10 @@ var (
 					Description: `(Optional) The usage of the port. This property shows how the port is used. Allowed values are "user" and "infra-router". Default is "user".`,
 				},
 				resource.Attribute{
+					Name:        "zone",
+					Description: `(Optional) [AWS Only] Availability zone where the subnet must be deployed. This property can carry both the actual zone or the ACI logical zone name. In the former case, driver directly uses the value of this property. In the latter case, Connector has to first resolve the mapping from ACI logical zone to actual AWS zone. This parameter is required in APIC v5.0 or higher.`,
+				},
+				resource.Attribute{
 					Name:        "relation_cloud_rs_zone_attach",
 					Description: `(Optional) Relation to class cloudZone. Cardinality - N_TO_ONE. Type - String.`,
 				},
@@ -621,6 +777,380 @@ var (
 				resource.Attribute{
 					Name:        "name_alias",
 					Description: `(Optional) name_alias for object cloud_availability_zone. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Cloud Availability Zone. ## Importing ## An existing Cloud Availability Zone can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_cloud_availability_zone.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_configuration_export_policy",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI Configuration Export Policy`,
+			Description:      ``,
+			Keywords: []string{
+				"configuration",
+				"export",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object configuration_export_policy.`,
+				},
+				resource.Attribute{
+					Name:        "admin_st",
+					Description: `(Optional) admin state of the export policy`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object configuration_export_policy.`,
+				},
+				resource.Attribute{
+					Name:        "format",
+					Description: `(Optional) export data format`,
+				},
+				resource.Attribute{
+					Name:        "include_secure_fields",
+					Description: `(Optional) include_secure_fields for object configuration_export_policy.`,
+				},
+				resource.Attribute{
+					Name:        "max_snapshot_count",
+					Description: `(Optional) max_snapshot_count for object configuration_export_policy.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object configuration_export_policy.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot",
+					Description: `(Optional) snapshot for object configuration_export_policy.`,
+				},
+				resource.Attribute{
+					Name:        "target_dn",
+					Description: `(Optional) target export object`,
+				},
+				resource.Attribute{
+					Name:        "relation_config_rs_export_destination",
+					Description: `(Optional) Relation to class fileRemotePath. Cardinality - ONE_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_trig_rs_triggerable",
+					Description: `(Optional) Relation to class trigTriggerable. Cardinality - ONE_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_config_rs_remote_path",
+					Description: `(Optional) Relation to class fileRemotePath. Cardinality - N_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_config_rs_export_scheduler",
+					Description: `(Optional) Relation to class trigSchedP. Cardinality - ONE_TO_ONE. Type - String. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Configuration Export Policy. ## Importing ## An existing Configuration Export Policy can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_configuration_export_policy.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_configuration_import_policy",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI Configuration Import Policy`,
+			Description:      ``,
+			Keywords: []string{
+				"configuration",
+				"import",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object configuration_import_policy.`,
+				},
+				resource.Attribute{
+					Name:        "admin_st",
+					Description: `(Optional) admin state of the import`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object configuration_import_policy.`,
+				},
+				resource.Attribute{
+					Name:        "fail_on_decrypt_errors",
+					Description: `(Optional) fail_on_decrypt_errors for object configuration_import_policy.`,
+				},
+				resource.Attribute{
+					Name:        "file_name",
+					Description: `(Optional) import file name`,
+				},
+				resource.Attribute{
+					Name:        "import_mode",
+					Description: `(Optional) data import mode`,
+				},
+				resource.Attribute{
+					Name:        "import_type",
+					Description: `(Optional) data import type`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object configuration_import_policy.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot",
+					Description: `(Optional) snapshot for object configuration_import_policy.`,
+				},
+				resource.Attribute{
+					Name:        "relation_config_rs_import_source",
+					Description: `(Optional) Relation to class fileRemotePath. Cardinality - ONE_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_trig_rs_triggerable",
+					Description: `(Optional) Relation to class trigTriggerable. Cardinality - ONE_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_config_rs_remote_path",
+					Description: `(Optional) Relation to class fileRemotePath. Cardinality - N_TO_ONE. Type - String. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Configuration Import Policy. ## Importing ## An existing Configuration Import Policy can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_configuration_import_policy.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_epg_to_contract",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI EPG to contract relationship.`,
+			Description:      ``,
+			Keywords: []string{
+				"epg",
+				"to",
+				"contract",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "application_epg_dn",
+					Description: `(Required) Distinguished name of Parent epg.`,
+				},
+				resource.Attribute{
+					Name:        "contract_dn",
+					Description: `(Required) Distinguished name of contract to attach.`,
+				},
+				resource.Attribute{
+					Name:        "contract_type",
+					Description: `(Required) Type of relationship. Allowed values are ` + "`" + `consumer` + "`" + ` and ` + "`" + `provider` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object.`,
+				},
+				resource.Attribute{
+					Name:        "match_t",
+					Description: `(Optional) Provider matching criteria.`,
+				},
+				resource.Attribute{
+					Name:        "prio",
+					Description: `(Optional) Priority of relation object. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the provider/consumer contract.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the provider/consumer contract.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_vpc_explicit_protection_group",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI VPC Explicit Protection Group`,
+			Description:      ``,
+			Keywords: []string{
+				"vpc",
+				"explicit",
+				"protection",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object vpc_explicit_protection_group.`,
+				},
+				resource.Attribute{
+					Name:        "switch1",
+					Description: `(Required) Id of switch 1 to attach.`,
+				},
+				resource.Attribute{
+					Name:        "switch2",
+					Description: `(Required) Id of switch 2 to attach.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object vpc_explicit_protection_group.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_explicit_protection_group_id",
+					Description: `(Optional) explicit protection group ID`,
+				},
+				resource.Attribute{
+					Name:        "vpc_domain_policy",
+					Description: `(Optional) VPC domain policy name. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the VPC Explicit Protection Group. ## Importing ## An existing VPC Explicit Protection Group can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_vpc_explicit_protection_group.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_node_block_firmware",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI Node Block`,
+			Description:      ``,
+			Keywords: []string{
+				"node",
+				"block",
+				"firmware",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "firmware_group_dn",
+					Description: `(Required) Distinguished name of parent FirmwareGroup object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object node_block.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object node_block.`,
+				},
+				resource.Attribute{
+					Name:        "from_",
+					Description: `(Optional) from`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object node_block.`,
+				},
+				resource.Attribute{
+					Name:        "to_",
+					Description: `(Optional) to ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Node Block. ## Importing ## An existing Node Block can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_node_block_firmware.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_fabric_node_member",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI Fabric Node Member`,
+			Description:      ``,
+			Keywords: []string{
+				"fabric",
+				"node",
+				"member",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "serial",
+					Description: `(Required) serial of Object fabric_node_member.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of Fabric Node member.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object fabric_node_member.`,
+				},
+				resource.Attribute{
+					Name:        "ext_pool_id",
+					Description: `(Optional) ext_pool_id for object fabric_node_member.`,
+				},
+				resource.Attribute{
+					Name:        "fabric_id",
+					Description: `(Optional) place holder for a value`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object fabric_node_member.`,
+				},
+				resource.Attribute{
+					Name:        "node_id",
+					Description: `(Optional) node id`,
+				},
+				resource.Attribute{
+					Name:        "node_type",
+					Description: `(Optional) node_type for object fabric_node_member.`,
+				},
+				resource.Attribute{
+					Name:        "pod_id",
+					Description: `(Optional) pod id`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Optional) system role type`,
+				},
+				resource.Attribute{
+					Name:        "serial",
+					Description: `(Optional) serial number ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Fabric Node Member. ## Importing ## An existing Fabric Node Member can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_fabric_node_member.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_fc_domain",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI FC Domain`,
+			Description:      ``,
+			Keywords: []string{
+				"fc",
+				"domain",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object fc_domain.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object fc_domain.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object fc_domain.`,
+				},
+				resource.Attribute{
+					Name:        "relation_infra_rs_vlan_ns",
+					Description: `(Optional) Relation to class fvnsVlanInstP. Cardinality - N_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_fc_rs_vsan_ns",
+					Description: `(Optional) Relation to class fvnsVsanInstP. Cardinality - N_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_fc_rs_vsan_attr",
+					Description: `(Optional) Relation to class fcVsanAttrP. Cardinality - N_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_infra_rs_vlan_ns_def",
+					Description: `(Optional) Relation to class fvnsAInstP. Cardinality - N_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_infra_rs_vip_addr_ns",
+					Description: `(Optional) Relation to class fvnsAddrInst. Cardinality - N_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_infra_rs_dom_vxlan_ns_def",
+					Description: `(Optional) Relation to class fvnsAInstP. Cardinality - N_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_fc_rs_vsan_attr_def",
+					Description: `(Optional) Relation to class fcVsanAttrP. Cardinality - N_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_fc_rs_vsan_ns_def",
+					Description: `(Optional) Relation to class fvnsAVsanInstP. Cardinality - N_TO_ONE. Type - String. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the FC Domain. ## Importing ## An existing FC Domain can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_fc_domain.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -680,6 +1210,161 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aci_firmware_group",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI Firmware Group`,
+			Description:      ``,
+			Keywords: []string{
+				"firmware",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object firmware_group.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object firmware_group.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object firmware_group.`,
+				},
+				resource.Attribute{
+					Name:        "firmware_group_type",
+					Description: `(Optional) component type`,
+				},
+				resource.Attribute{
+					Name:        "relation_firmware_rs_fwgrpp",
+					Description: `(Optional) Relation to class firmwareFwP. Cardinality - N_TO_ONE. Type - String. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Firmware Group. ## Importing ## An existing Firmware Group can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_firmware_group.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_firmware_policy",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI Firmware Policy`,
+			Description:      ``,
+			Keywords: []string{
+				"firmware",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object firmware_policy.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object firmware_policy.`,
+				},
+				resource.Attribute{
+					Name:        "effective_on_reboot",
+					Description: `(Optional) firmware version effective on reboot selection`,
+				},
+				resource.Attribute{
+					Name:        "ignore_compat",
+					Description: `(Optional) whether compatibility check required`,
+				},
+				resource.Attribute{
+					Name:        "internal_label",
+					Description: `(Optional) firmware label`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object firmware_policy.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) firmware version`,
+				},
+				resource.Attribute{
+					Name:        "version_check_override",
+					Description: `(Optional) version check override ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Firmware Policy. ## Importing ## An existing Firmware Policy can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_firmware_policy.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_firmware_download_task",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI Firmware Download Task`,
+			Description:      ``,
+			Keywords: []string{
+				"firmware",
+				"download",
+				"task",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object firmware_download_task.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object firmware_download_task.`,
+				},
+				resource.Attribute{
+					Name:        "auth_pass",
+					Description: `(Optional) authentication type`,
+				},
+				resource.Attribute{
+					Name:        "auth_type",
+					Description: `(Optional) ospf authentication type specifier`,
+				},
+				resource.Attribute{
+					Name:        "dnld_task_flip",
+					Description: `(Optional) dnld_task_flip for object firmware_download_task.`,
+				},
+				resource.Attribute{
+					Name:        "identity_private_key_contents",
+					Description: `(Optional) identity_private_key_contents for object firmware_download_task.`,
+				},
+				resource.Attribute{
+					Name:        "identity_private_key_passphrase",
+					Description: `(Optional) identity_private_key_passphrase for object firmware_download_task.`,
+				},
+				resource.Attribute{
+					Name:        "identity_public_key_contents",
+					Description: `(Optional) identity_public_key_contents for object firmware_download_task.`,
+				},
+				resource.Attribute{
+					Name:        "load_catalog_if_exists_and_newer",
+					Description: `(Optional) tracks to load the contained catalog or newer`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object firmware_download_task.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) password/key string`,
+				},
+				resource.Attribute{
+					Name:        "polling_interval",
+					Description: `(Optional) polling interval`,
+				},
+				resource.Attribute{
+					Name:        "proto",
+					Description: `(Optional) download protocol`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Optional) URL of image of source`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `(Optional) username for source ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Firmware Download Task. ## Importing ## An existing Firmware Download Task can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_firmware_download_task.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aci_application_epg",
 			Category:         "Resources",
 			ShortDescription: `Manages ACI Application EPG`,
@@ -718,7 +1403,7 @@ var (
 					Description: `(Optional) If the source for the EPG is multicast or not. Allowed values are "yes" and "no". Default values is "no".`,
 				},
 				resource.Attribute{
-					Name:        "is_attr_based_e_pg",
+					Name:        "is_attr_based_epg",
 					Description: `(Optional) If the EPG is attribute based or not. Allowed values are "yes" and "no". Default is "yes".`,
 				},
 				resource.Attribute{
@@ -798,15 +1483,11 @@ var (
 					Description: `(Optional) Relation to class fhsTrustCtrlPol. Cardinality - N_TO_ONE. Type - String.`,
 				},
 				resource.Attribute{
-					Name:        "relation_fv_rs_path_att",
-					Description: `(Optional) Relation to class fabricPathEp. Cardinality - N_TO_M. Type - Set of String.`,
-				},
-				resource.Attribute{
 					Name:        "relation_fv_rs_prot_by",
 					Description: `(Optional) Relation to class vzTaboo. Cardinality - N_TO_M. Type - Set of String.`,
 				},
 				resource.Attribute{
-					Name:        "relation_fv_rs_ae_pg_mon_pol",
+					Name:        "relation_fv_rs_aepg_mon_pol",
 					Description: `(Optional) Relation to class monEPGPol. Cardinality - N_TO_ONE. Type - String.`,
 				},
 				resource.Attribute{
@@ -1153,6 +1834,313 @@ var (
 				resource.Attribute{
 					Name:        "remote_ep_age_intvl",
 					Description: `(Optional) The aging interval for all remote endpoints learned in this bridge domain.Allowed value range is "120" - "0xffff". Default is "900". "0" is treated as special value here. Providing interval as "0" is treated as infinite interval. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the End Point Retention Policy. ## Importing ## An existing End Point Retention Policy can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_end_point_retention_policy.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_ranges",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI Ranges`,
+			Description:      ``,
+			Keywords: []string{
+				"ranges",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vlan_pool_dn",
+					Description: `(Required) Distinguished name of parent VLANPool object.`,
+				},
+				resource.Attribute{
+					Name:        "_from",
+					Description: `(Required) _from of Object ranges.`,
+				},
+				resource.Attribute{
+					Name:        "to",
+					Description: `(Required) to of Object ranges.`,
+				},
+				resource.Attribute{
+					Name:        "alloc_mode",
+					Description: `(Optional) alloc_mode for object ranges.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object ranges.`,
+				},
+				resource.Attribute{
+					Name:        "from",
+					Description: `(Optional) encapsulation block start`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object ranges.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Optional) system role type`,
+				},
+				resource.Attribute{
+					Name:        "to",
+					Description: `(Optional) encapsulation block end ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Ranges. ## Importing ## An existing Ranges can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_ranges.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_vlan_pool",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI VLAN Pool`,
+			Description:      ``,
+			Keywords: []string{
+				"vlan",
+				"pool",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object vlan_pool.`,
+				},
+				resource.Attribute{
+					Name:        "allocMode",
+					Description: `(Required) allocMode of Object vlan_pool.`,
+				},
+				resource.Attribute{
+					Name:        "alloc_mode",
+					Description: `(Optional) allocation mode`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object vlan_pool.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object vlan_pool. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the VLAN Pool. ## Importing ## An existing VLAN Pool can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_vlan_pool.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_vsan_pool",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI VSAN Pool`,
+			Description:      ``,
+			Keywords: []string{
+				"vsan",
+				"pool",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object vsan_pool.`,
+				},
+				resource.Attribute{
+					Name:        "allocMode",
+					Description: `(Required) allocMode of Object vsan_pool.`,
+				},
+				resource.Attribute{
+					Name:        "alloc_mode",
+					Description: `(Optional) alloc_mode for object vsan_pool.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object vsan_pool.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object vsan_pool. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the VSAN Pool. ## Importing ## An existing VSAN Pool can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_vsan_pool.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_vxlan_pool",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI VXLAN Pool`,
+			Description:      ``,
+			Keywords: []string{
+				"vxlan",
+				"pool",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object vxlan_pool.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object vxlan_pool.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object vxlan_pool. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the VXLAN Pool. ## Importing ## An existing VXLAN Pool can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_vxlan_pool.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_epg_to_domain",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI epg to Domain`,
+			Description:      ``,
+			Keywords: []string{
+				"epg",
+				"to",
+				"domain",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "application_epg_dn",
+					Description: `(Required) Distinguished name of parent ApplicationEPG object.`,
+				},
+				resource.Attribute{
+					Name:        "t_dn",
+					Description: `(Required) vmm domain instance.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object domain.`,
+				},
+				resource.Attribute{
+					Name:        "binding_type",
+					Description: `(Optional) binding_type for object domain.`,
+				},
+				resource.Attribute{
+					Name:        "class_pref",
+					Description: `(Optional) class_pref for object domain.`,
+				},
+				resource.Attribute{
+					Name:        "delimiter",
+					Description: `(Optional) delimiter for object domain.`,
+				},
+				resource.Attribute{
+					Name:        "encap",
+					Description: `(Optional) port encapsulation`,
+				},
+				resource.Attribute{
+					Name:        "encap_mode",
+					Description: `(Optional) encap_mode for object domain.`,
+				},
+				resource.Attribute{
+					Name:        "epg_cos",
+					Description: `(Optional) epg_cos for object domain.`,
+				},
+				resource.Attribute{
+					Name:        "epg_cos_pref",
+					Description: `(Optional) epg_cos_pref for object domain.`,
+				},
+				resource.Attribute{
+					Name:        "instr_imedcy",
+					Description: `(Optional) determines when policies are pushed to cam`,
+				},
+				resource.Attribute{
+					Name:        "lag_policy_name",
+					Description: `(Optional) lag_policy_name for object domain.`,
+				},
+				resource.Attribute{
+					Name:        "netflow_dir",
+					Description: `(Optional) netflow_dir for object domain.`,
+				},
+				resource.Attribute{
+					Name:        "netflow_pref",
+					Description: `(Optional) netflow_pref for object domain.`,
+				},
+				resource.Attribute{
+					Name:        "num_ports",
+					Description: `(Optional) number of ports existing operationally in module`,
+				},
+				resource.Attribute{
+					Name:        "port_allocation",
+					Description: `(Optional) port_allocation for object domain.`,
+				},
+				resource.Attribute{
+					Name:        "primary_encap",
+					Description: `(Optional) primary_encap for object domain.`,
+				},
+				resource.Attribute{
+					Name:        "primary_encap_inner",
+					Description: `(Optional) primary_encap_inner for object domain.`,
+				},
+				resource.Attribute{
+					Name:        "res_imedcy",
+					Description: `(Optional) policy resolution`,
+				},
+				resource.Attribute{
+					Name:        "secondary_encap_inner",
+					Description: `(Optional) secondary_encap_inner for object domain.`,
+				},
+				resource.Attribute{
+					Name:        "switching_mode",
+					Description: `(Optional) switching_mode for object domain.`,
+				},
+				resource.Attribute{
+					Name:        "vmm_allow_promiscuous",
+					Description: `(Optional) allow_promiscuous for object vmm_security_policy.`,
+				},
+				resource.Attribute{
+					Name:        "vmm_forged_transmits",
+					Description: `(Optional) forged_transmits for object vmm_security_policy.`,
+				},
+				resource.Attribute{
+					Name:        "vmm_mac_changes",
+					Description: `(Optional) mac_changes for object vmm_security_policy. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Domain.`,
+				},
+				resource.Attribute{
+					Name:        "vmm_id",
+					Description: `which is set to the Dn of the VMM Security Policy. ## Importing ## An existing Domain can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_domain.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vmm_id",
+					Description: `which is set to the Dn of the VMM Security Policy. ## Importing ## An existing Domain can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_domain.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_epg_to_static_path",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI Static Path`,
+			Description:      ``,
+			Keywords: []string{
+				"epg",
+				"to",
+				"static",
+				"path",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "application_epg_dn",
+					Description: `(Required) Distinguished name of parent ApplicationEPG object.`,
+				},
+				resource.Attribute{
+					Name:        "tDn",
+					Description: `(Required) tDn of Object static_path.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object static_path.`,
+				},
+				resource.Attribute{
+					Name:        "encap",
+					Description: `(Optional) encapsulation`,
+				},
+				resource.Attribute{
+					Name:        "instr_imedcy",
+					Description: `(Optional) immediacy`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `(Optional) mode of the static association with the path`,
+				},
+				resource.Attribute{
+					Name:        "primary_encap",
+					Description: `(Optional) primary_encap for object static_path. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Static Path. ## Importing ## An existing Static Path can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_static_path.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1612,6 +2600,86 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aci_switch_association",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI Switch Association`,
+			Description:      ``,
+			Keywords: []string{
+				"switch",
+				"association",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "leaf_profile_dn",
+					Description: `(Required) Distinguished name of parent LeafProfile object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object switch_association.`,
+				},
+				resource.Attribute{
+					Name:        "switch_association_type",
+					Description: `(Required) switch_association_type of Object switch_association.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object switch_association.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object switch_association.`,
+				},
+				resource.Attribute{
+					Name:        "switch_association_type",
+					Description: `(Optional) leaf selector type`,
+				},
+				resource.Attribute{
+					Name:        "relation_infra_rs_acc_node_p_grp",
+					Description: `(Optional) Relation to class infraAccNodePGrp. Cardinality - N_TO_ONE. Type - String. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Switch Association. ## Importing ## An existing Switch Association can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_switch_association.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_node_block",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI Node Block`,
+			Description:      ``,
+			Keywords: []string{
+				"node",
+				"block",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "switch_association_dn",
+					Description: `(Required) Distinguished name of parent SwitchAssociation object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object node_block.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object node_block.`,
+				},
+				resource.Attribute{
+					Name:        "from_",
+					Description: `(Optional) from Node ID. Range from 101 to 110`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object node_block.`,
+				},
+				resource.Attribute{
+					Name:        "to_",
+					Description: `(Optional) to node ID. Range from 101 to 110 ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Node Block. ## Importing ## An existing Node Block can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_node_block.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aci_leaf_profile",
 			Category:         "Resources",
 			ShortDescription: `Manages ACI Leaf Profile`,
@@ -1729,6 +2797,62 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aci_access_sub_port_block",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI Access Sub Port Block`,
+			Description:      ``,
+			Keywords: []string{
+				"access",
+				"sub",
+				"port",
+				"block",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "access_port_selector_dn",
+					Description: `(Required) Distinguished name of parent AccessPortSelector object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object access_sub_port_block.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object access_sub_port_block.`,
+				},
+				resource.Attribute{
+					Name:        "from_card",
+					Description: `(Optional) from card`,
+				},
+				resource.Attribute{
+					Name:        "from_port",
+					Description: `(Optional) port block from port`,
+				},
+				resource.Attribute{
+					Name:        "from_sub_port",
+					Description: `(Optional) from_sub_port for object access_sub_port_block.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object access_sub_port_block.`,
+				},
+				resource.Attribute{
+					Name:        "to_card",
+					Description: `(Optional) to card`,
+				},
+				resource.Attribute{
+					Name:        "to_port",
+					Description: `(Optional) to port`,
+				},
+				resource.Attribute{
+					Name:        "to_sub_port",
+					Description: `(Optional) to_sub_port for object access_sub_port_block. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Access Sub Port Block. ## Importing ## An existing Access Sub Port Block can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_access_sub_port_block.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aci_l2_interface_policy",
 			Category:         "Resources",
 			ShortDescription: `Manages ACI L2 Interface Policy`,
@@ -1811,6 +2935,53 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aci_l3_domain_profile",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI L3 Domain Profile`,
+			Description:      ``,
+			Keywords: []string{
+				"l3",
+				"domain",
+				"profile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object l3_domain_profile.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object l3_domain_profile.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object l3_domain_profile.`,
+				},
+				resource.Attribute{
+					Name:        "relation_infra_rs_vlan_ns",
+					Description: `(Optional) Relation to class fvnsVlanInstP. Cardinality - N_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_infra_rs_vlan_ns_def",
+					Description: `(Optional) Relation to class fvnsAInstP. Cardinality - N_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_infra_rs_vip_addr_ns",
+					Description: `(Optional) Relation to class fvnsAddrInst. Cardinality - N_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_extnw_rs_out",
+					Description: `(Optional) Relation to class infraAccGrp. Cardinality - N_TO_M. Type - Set of String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_infra_rs_dom_vxlan_ns_def",
+					Description: `(Optional) Relation to class fvnsAInstP. Cardinality - N_TO_ONE. Type - String. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the L3 Domain Profile. ## Importing ## An existing L3 Domain Profile can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_l3_domain_profile.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aci_external_network_instance_profile",
 			Category:         "Resources",
 			ShortDescription: `Manages ACI External Network Instance Profile`,
@@ -1875,7 +3046,7 @@ var (
 					Description: `(Optional) Relation to class extnwDomP. Cardinality - N_TO_ONE. Type - String.`,
 				},
 				resource.Attribute{
-					Name:        "relation_l3ext_rs_inst_p_to_nat_mapping_e_pg",
+					Name:        "relation_l3ext_rs_inst_p_to_nat_mapping_epg",
 					Description: `(Optional) Relation to class fvAEPg. Cardinality - N_TO_ONE. Type - String.`,
 				},
 				resource.Attribute{
@@ -2010,11 +3181,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target_dscp",
-					Description: `(Optional) Node level Dscp value. Allowed values are "CS0", "CS1", "AF11", "AF12", "AF13", "CS2", "AF21", "AF22", "AF23", "CS3", "AF31", "AF32", "AF33", "CS4", "AF41", "AF42", "AF43", "CS5", "VA", "EF", "CS6", "CS7" and "unspecified". Default is "unspecified".`,
-				},
-				resource.Attribute{
-					Name:        "relation_l3ext_rs_node_l3_out_att",
-					Description: `(Optional) Relation to class fabricNode. Cardinality - N_TO_M. Type - Set of String. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Logical Node Profile. ## Importing ## An existing Logical Node Profile can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_logical_node_profile.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Node level Dscp value. Allowed values are "CS0", "CS1", "AF11", "AF12", "AF13", "CS2", "AF21", "AF22", "AF23", "CS3", "AF31", "AF32", "AF33", "CS4", "AF41", "AF42", "AF43", "CS5", "VA", "EF", "CS6", "CS7" and "unspecified". Default is "unspecified". ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Logical Node Profile. ## Importing ## An existing Logical Node Profile can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_logical_node_profile.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2073,6 +3240,46 @@ var (
 				resource.Attribute{
 					Name:        "relation_l3ext_rs_l3_dom_att",
 					Description: `(Optional) Relation to class extnwDomP. Cardinality - N_TO_ONE. Type - String. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the L3 Outside. ## Importing ## An existing L3 Outside can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_l3_outside.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_logical_node_to_fabric_node",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI Fabric Node`,
+			Description:      ``,
+			Keywords: []string{
+				"logical",
+				"node",
+				"to",
+				"fabric",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "logical_node_profile_dn",
+					Description: `(Required) Distinguished name of parent LogicalNodeProfile object.`,
+				},
+				resource.Attribute{
+					Name:        "tDn",
+					Description: `(Required) tDn of Object fabric_node.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object fabric_node.`,
+				},
+				resource.Attribute{
+					Name:        "config_issues",
+					Description: `(Optional) configuration issues`,
+				},
+				resource.Attribute{
+					Name:        "rtr_id",
+					Description: `(Optional) router identifier`,
+				},
+				resource.Attribute{
+					Name:        "rtr_id_loop_back",
+					Description: `(Optional) ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Fabric Node. ## Importing ## An existing Fabric Node can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_fabric_node.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2203,6 +3410,115 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aci_pod_maintenance_group",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI POD Maintenance Group`,
+			Description:      ``,
+			Keywords: []string{
+				"pod",
+				"maintenance",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object pod_maintenance_group.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object pod_maintenance_group.`,
+				},
+				resource.Attribute{
+					Name:        "fwtype",
+					Description: `(Optional) fwtype for object pod_maintenance_group.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object pod_maintenance_group.`,
+				},
+				resource.Attribute{
+					Name:        "pod_maintenance_group_type",
+					Description: `(Optional) component type`,
+				},
+				resource.Attribute{
+					Name:        "relation_maint_rs_mgrpp",
+					Description: `(Optional) Relation to class maintMaintP. Cardinality - N_TO_ONE. Type - String. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the POD Maintenance Group. ## Importing ## An existing POD Maintenance Group can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_pod_maintenance_group.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_maintenance_policy",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI Maintenance Policy`,
+			Description:      ``,
+			Keywords: []string{
+				"maintenance",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object maintenance_policy.`,
+				},
+				resource.Attribute{
+					Name:        "admin_st",
+					Description: `(Optional) maintenance policy admin state`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object maintenance_policy.`,
+				},
+				resource.Attribute{
+					Name:        "graceful",
+					Description: `(Optional) graceful for object maintenance_policy.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_compat",
+					Description: `(Optional) whether compatibility check required`,
+				},
+				resource.Attribute{
+					Name:        "internal_label",
+					Description: `(Optional) firmware label`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object maintenance_policy.`,
+				},
+				resource.Attribute{
+					Name:        "notif_cond",
+					Description: `(Optional) when to send notifications to the admin`,
+				},
+				resource.Attribute{
+					Name:        "run_mode",
+					Description: `(Optional) maintenance policy run mode`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) compatibility catalog version`,
+				},
+				resource.Attribute{
+					Name:        "version_check_override",
+					Description: `(Optional) version check override`,
+				},
+				resource.Attribute{
+					Name:        "relation_maint_rs_pol_scheduler",
+					Description: `(Optional) Relation to class trigSchedP. Cardinality - N_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_maint_rs_pol_notif",
+					Description: `(Optional) Relation to class maintUserNotif. Cardinality - N_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_trig_rs_triggerable",
+					Description: `(Optional) Relation to class trigTriggerable. Cardinality - ONE_TO_ONE. Type - String. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Maintenance Policy. ## Importing ## An existing Maintenance Policy can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_maintenance_policy.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aci_miscabling_protocol_interface_policy",
 			Category:         "Resources",
 			ShortDescription: `Manages ACI Mis-cabling Protocol Interface Policy`,
@@ -2302,6 +3618,48 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aci_physical_domain",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI Physical Domain`,
+			Description:      ``,
+			Keywords: []string{
+				"physical",
+				"domain",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object physical_domain.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object physical_domain.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object physical_domain.`,
+				},
+				resource.Attribute{
+					Name:        "relation_infra_rs_vlan_ns",
+					Description: `(Optional) Relation to class fvnsVlanInstP. Cardinality - N_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_infra_rs_vlan_ns_def",
+					Description: `(Optional) Relation to class fvnsAInstP. Cardinality - N_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_infra_rs_vip_addr_ns",
+					Description: `(Optional) Relation to class fvnsAddrInst. Cardinality - N_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_infra_rs_dom_vxlan_ns_def",
+					Description: `(Optional) Relation to class fvnsAInstP. Cardinality - N_TO_ONE. Type - String. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Physical Domain. ## Importing ## An existing Physical Domain can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_physical_domain.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aci_rest",
 			Category:         "Resources",
 			ShortDescription: `Manages ACI Model Objects via REST API calls. Any Model Object that is not supported by provider can be created/managed using this resource.`,
@@ -2320,11 +3678,179 @@ var (
 				},
 				resource.Attribute{
 					Name:        "content",
-					Description: `(Required) Map of key-value pairs those needed to be passed to the Model object as parameters. Make sure the key name matches the name with the object parameter in ACI.`,
+					Description: `(Optional) Map of key-value pairs those needed to be passed to the Model object as parameters. Make sure the key name matches the name with the object parameter in ACI.`,
+				},
+				resource.Attribute{
+					Name:        "payload",
+					Description: `(Optional) Freestyle JSON or YAML payload which can directly be passed to the REST endpoint added in path. Either of content or payload is required.`,
 				},
 				resource.Attribute{
 					Name:        "dn",
-					Description: `(Optional) Distinguished name of object being managed. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the object created by it. ## Importing ## This resource does not support import.`,
+					Description: `(Optional) Distinguished name of object being managed. <strong>NOTE:</strong> We don't set the Status field explicitly, as it creates an issue with the relation objects. If you have requirement to pass the status field, pass it in the content. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the object created by it. ## Importing ## This resource does not support import.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_action_rule_profile",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI Action Rule Profile`,
+			Description:      ``,
+			Keywords: []string{
+				"action",
+				"rule",
+				"profile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tenant_dn",
+					Description: `(Required) Distinguished name of parent Tenant object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object action_rule_profile.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object action_rule_profile.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object action_rule_profile. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Action Rule Profile. ## Importing ## An existing Action Rule Profile can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_action_rule_profile.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_span_destination_group",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI SPAN Destination Group`,
+			Description:      ``,
+			Keywords: []string{
+				"span",
+				"destination",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tenant_dn",
+					Description: `(Required) Distinguished name of parent Tenant object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object span_destination_group.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the SPAN Destination Group. ## Importing ## An existing SPAN Destination Group can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_span_destination_group.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_span_sourcedestination_group_match_label",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI SPAN Source-destination Group Match Label`,
+			Description:      ``,
+			Keywords: []string{
+				"span",
+				"sourcedestination",
+				"group",
+				"match",
+				"label",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "span_source_group_dn",
+					Description: `(Required) Distinguished name of parent SPANSourceGroup object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object span_sourcedestination_group_match_label.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) label color ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the SPAN Source-destination Group Match Label. ## Importing ## An existing SPAN Source-destination Group Match Label can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_span_sourcedestination_group_match_label.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_span_source_group",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI SPAN Source Group`,
+			Description:      ``,
+			Keywords: []string{
+				"span",
+				"source",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tenant_dn",
+					Description: `(Required) Distinguished name of parent Tenant object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object span_source_group.`,
+				},
+				resource.Attribute{
+					Name:        "admin_st",
+					Description: `(Optional) administrative state of the object or policy`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "relation_span_rs_src_grp_to_filter_grp",
+					Description: `(Optional) Relation to class spanFilterGrp. Cardinality - N_TO_ONE. Type - String. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the SPAN Source Group. ## Importing ## An existing SPAN Source Group can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_span_source_group.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_trigger_scheduler",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI Trigger Scheduler`,
+			Description:      ``,
+			Keywords: []string{
+				"trigger",
+				"scheduler",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object trigger_scheduler.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object trigger_scheduler.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object trigger_scheduler. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Trigger Scheduler. ## Importing ## An existing Trigger Scheduler can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_trigger_scheduler.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2556,7 +4082,150 @@ var (
 				},
 				resource.Attribute{
 					Name:        "relation_vz_rs_graph_att",
-					Description: `(Optional) Relation to class vnsAbsGraph. Cardinality - N_TO_ONE. Type - String. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Contract. ## Importing ## An existing Contract can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_contract.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Relation to class vnsAbsGraph. Cardinality - N_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) to manage filters from the contract resource. It has the attributes like filter_name, annotation, description and name_alias.`,
+				},
+				resource.Attribute{
+					Name:        "filter.filter_name",
+					Description: `(Required) Name of the filter object.`,
+				},
+				resource.Attribute{
+					Name:        "filter.description",
+					Description: `(Optional) Description for the filter object.`,
+				},
+				resource.Attribute{
+					Name:        "filter.annotation",
+					Description: `(Optional) Annotation for filter object.`,
+				},
+				resource.Attribute{
+					Name:        "filter.name_alias",
+					Description: `(Optional) Name alias for filter object.`,
+				},
+				resource.Attribute{
+					Name:        "filter.filter_entry",
+					Description: `(Optional) to manage filter entries for particular filter from the contract resource. It has following attributes.`,
+				},
+				resource.Attribute{
+					Name:        "filter.filter_entry.filter_entry_name",
+					Description: `(Required) name of Object filter_entry.`,
+				},
+				resource.Attribute{
+					Name:        "filter.filterentry.entry_annotation",
+					Description: `(Optional) annotation for object filter_entry.`,
+				},
+				resource.Attribute{
+					Name:        "filter.filter_entry.entry_description",
+					Description: `(Optional) Description for the filter entry.`,
+				},
+				resource.Attribute{
+					Name:        "filter.filter_entry.apply_to_frag",
+					Description: `(Optional) Flag to determine whether to apply changes to fragment. Allowed values are "yes" and "no". Default is "no".`,
+				},
+				resource.Attribute{
+					Name:        "filter.filter_entry.arp_opc",
+					Description: `(Optional) open peripheral codes. Allowed values are "unspecified", "req" and "reply". Default is "unspecified".`,
+				},
+				resource.Attribute{
+					Name:        "filter.filter_entry.d_from_port",
+					Description: `(Optional) Destination From Port. Accepted values are any valid TCP/UDP port range. Default is "unspecified".`,
+				},
+				resource.Attribute{
+					Name:        "filter.filter_entry.d_to_port",
+					Description: `(Optional) Destination To Port. Accepted values are any valid TCP/UDP port range. Default is "unspecified".`,
+				},
+				resource.Attribute{
+					Name:        "filter.filter_entry.ether_t",
+					Description: `(Optional) ether type for the entry. Allowed values are "unspecified", "ipv4", "trill", "arp", "ipv6", "mpls_ucast", "mac_security", "fcoe" and "ip". Default is "unspecified".`,
+				},
+				resource.Attribute{
+					Name:        "filter.filter_entry.icmpv4_t",
+					Description: `(Optional) ICMPv4 message type; used when ip_protocol is icmp. Allowed values are "echo-rep", "dst-unreach", "src-quench", "echo", "time-exceeded" and "unspecified". Default is "unspecified".`,
+				},
+				resource.Attribute{
+					Name:        "filter.filter_entry.icmpv6_t",
+					Description: `(Optional) ICMPv6 message type; used when ip_protocol is icmpv6. Allowed values are "unspecified", "dst-unreach", "time-exceeded", "echo-req", "echo-rep", "nbr-solicit", "nbr-advert" and "redirect". Default is "unspecified".`,
+				},
+				resource.Attribute{
+					Name:        "filter.filter_entry.match_dscp",
+					Description: `(Optional) The matching differentiated services code point (DSCP) of the path attached to the layer 3 outside profile. Allowed values are "CS0", "CS1", "AF11", "AF12", "AF13", "CS2", "AF21", "AF22", "AF23", "CS3", "AF31", "AF32", "AF33", "CS4", "AF41", "AF42", "AF43", "CS5", "VA", "EF", "CS6", "CS7" and "unspecified". Default is "unspecified".`,
+				},
+				resource.Attribute{
+					Name:        "filter.filter_entry.entry_name_alias",
+					Description: `(Optional) name_alias for object filter_entry.`,
+				},
+				resource.Attribute{
+					Name:        "filter.filter_entry.prot",
+					Description: `(Optional) level 3 ip protocol. Allowed values are "unspecified", "icmp", "igmp", "tcp", "egp", "igp", "udp", "icmpv6", "eigrp", "ospfigp", "pim" and "l2tp". Default is "unspecified".`,
+				},
+				resource.Attribute{
+					Name:        "filter.filter_entry.s_from_port",
+					Description: `(Optional) Source From Port. Accepted values are any valid TCP/UDP port range. Default is "unspecified".`,
+				},
+				resource.Attribute{
+					Name:        "filter.filter_entry.s_to_port",
+					Description: `(Optional) Source To Port. Accepted values are any valid TCP/UDP port range. Default is "unspecified".`,
+				},
+				resource.Attribute{
+					Name:        "filter.filter_entry.stateful",
+					Description: `(Optional) Determines if entry is stateful or not. Allowed values are "yes" and "no". Default is "no".`,
+				},
+				resource.Attribute{
+					Name:        "filter.filter_entry.tcp_rules",
+					Description: `(Optional) TCP Session Rules. Allowed values are "unspecified", "est", "syn", "ack", "fin" and "rst". Default is "unspecified". ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Contract.`,
+				},
+				resource.Attribute{
+					Name:        "filter.id",
+					Description: `exports this attribute for filter object. Set to the Dn for the filter managed by the contract.`,
+				},
+				resource.Attribute{
+					Name:        "filter.filter_entry.id",
+					Description: `exports this attribute for filter entry object of filter object. Set to the Dn for the filter entry managed by the contract. ## Importing ## An existing Contract can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_contract.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter.id",
+					Description: `exports this attribute for filter object. Set to the Dn for the filter managed by the contract.`,
+				},
+				resource.Attribute{
+					Name:        "filter.filter_entry.id",
+					Description: `exports this attribute for filter entry object of filter object. Set to the Dn for the filter entry managed by the contract. ## Importing ## An existing Contract can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_contract.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_imported_contract",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI Imported Contract`,
+			Description:      ``,
+			Keywords: []string{
+				"imported",
+				"contract",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tenant_dn",
+					Description: `(Required) Distinguished name of parent Tenant object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object imported_contract.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object imported_contract.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object imported_contract.`,
+				},
+				resource.Attribute{
+					Name:        "relation_vz_rs_if",
+					Description: `(Optional) Relation to class vzACtrct. Cardinality - N_TO_ONE. Type - String. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Imported Contract. ## Importing ## An existing Imported Contract can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_imported_contract.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2746,58 +4415,122 @@ var (
 			},
 			Attributes: []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_taboo_contract",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI Taboo Contract`,
+			Description:      ``,
+			Keywords: []string{
+				"taboo",
+				"contract",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tenant_dn",
+					Description: `(Required) Distinguished name of parent Tenant object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Object taboo_contract.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) annotation for object taboo_contract.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) name_alias for object taboo_contract. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Taboo Contract. ## Importing ## An existing Taboo Contract can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_taboo_contract.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
 	}
 
 	resourcesMap = map[string]int{
 
-		"aci_cloud_applicationcontainer":                0,
-		"aci_cloud_aws_provider":                        1,
-		"aci_autonomous_system_profile":                 2,
-		"aci_cloud_cidr_pool":                           3,
-		"aci_cloud_context_profile":                     4,
-		"aci_cloud_domain_profile":                      5,
-		"aci_cloud_e_pg":                                6,
-		"aci_cloud_endpoint_selector":                   7,
-		"aci_cloud_external_e_pg":                       8,
-		"aci_cloud_endpoint_selectorfor_external_e_pgs": 9,
-		"aci_cloud_provider_profile":                    10,
-		"aci_cloud_providers_region":                    11,
-		"aci_cloud_subnet":                              12,
-		"aci_cloud_availability_zone":                   13,
-		"aci_app_profileaci_interface_fc_policy":        14,
-		"aci_application_epg":                           15,
-		"aci_application_profile":                       16,
-		"aci_bridge_domain":                             17,
-		"aci_vrf":                                       18,
-		"aci_end_point_retention_policy":                19,
-		"aci_subnet":                                    20,
-		"aci_tenant":                                    21,
-		"aci_pcvpc_interface_policy_group":              22,
-		"aci_leaf_access_port_policy_group":             23,
-		"aci_leaf_interface_profile":                    24,
-		"aci_attachable_access_entity_profile":          25,
-		"aci_access_port_selector":                      26,
-		"aci_leaf_profile":                              27,
-		"aci_access_port_block":                         28,
-		"aci_vlan_encapsulationfor_vxlan_traffic":       29,
-		"aci_l2_interface_policy":                       30,
-		"aci_port_security_policy":                      31,
-		"aci_external_network_instance_profile":         32,
-		"aci_logical_interface_profile":                 33,
-		"aci_logical_node_profile":                      34,
-		"aci_l3_outside":                                35,
-		"aci_l3_ext_subnet":                             36,
-		"aci_lacp_policy":                               37,
-		"aci_lldp_interface_policy":                     38,
-		"aci_miscabling_protocol_interface_policy":      39,
-		"aci_ospf_interface_policy":                     40,
-		"aci_rest":                                      41,
-		"aci_vmm_domain":                                42,
-		"aci_any":                                       43,
-		"aci_contract":                                  44,
-		"aci_filter_entry":                              45,
-		"aci_filter":                                    46,
-		"aci_contract_subject":                          47,
+		"aci_local_user":                               0,
+		"aci_x509_certificate":                         1,
+		"aci_cdp_interface_policy":                     2,
+		"aci_cloud_applicationcontainer":               3,
+		"aci_cloud_aws_provider":                       4,
+		"aci_autonomous_system_profile":                5,
+		"aci_cloud_cidr_pool":                          6,
+		"aci_cloud_context_profile":                    7,
+		"aci_cloud_domain_profile":                     8,
+		"aci_cloud_epg":                                9,
+		"aci_cloud_endpoint_selector":                  10,
+		"aci_cloud_external_epg":                       11,
+		"aci_cloud_endpoint_selectorfor_external_epgs": 12,
+		"aci_cloud_provider_profile":                   13,
+		"aci_cloud_providers_region":                   14,
+		"aci_cloud_subnet":                             15,
+		"aci_cloud_availability_zone":                  16,
+		"aci_configuration_export_policy":              17,
+		"aci_configuration_import_policy":              18,
+		"aci_epg_to_contract":                          19,
+		"aci_vpc_explicit_protection_group":            20,
+		"aci_node_block_firmware":                      21,
+		"aci_fabric_node_member":                       22,
+		"aci_fc_domain":                                23,
+		"aci_app_profileaci_interface_fc_policy":       24,
+		"aci_firmware_group":                           25,
+		"aci_firmware_policy":                          26,
+		"aci_firmware_download_task":                   27,
+		"aci_application_epg":                          28,
+		"aci_application_profile":                      29,
+		"aci_bridge_domain":                            30,
+		"aci_vrf":                                      31,
+		"aci_end_point_retention_policy":               32,
+		"aci_ranges":                                   33,
+		"aci_vlan_pool":                                34,
+		"aci_vsan_pool":                                35,
+		"aci_vxlan_pool":                               36,
+		"aci_epg_to_domain":                            37,
+		"aci_epg_to_static_path":                       38,
+		"aci_subnet":                                   39,
+		"aci_tenant":                                   40,
+		"aci_pcvpc_interface_policy_group":             41,
+		"aci_leaf_access_port_policy_group":            42,
+		"aci_leaf_interface_profile":                   43,
+		"aci_attachable_access_entity_profile":         44,
+		"aci_access_port_selector":                     45,
+		"aci_switch_association":                       46,
+		"aci_node_block":                               47,
+		"aci_leaf_profile":                             48,
+		"aci_access_port_block":                        49,
+		"aci_vlan_encapsulationfor_vxlan_traffic":      50,
+		"aci_access_sub_port_block":                    51,
+		"aci_l2_interface_policy":                      52,
+		"aci_port_security_policy":                     53,
+		"aci_l3_domain_profile":                        54,
+		"aci_external_network_instance_profile":        55,
+		"aci_logical_interface_profile":                56,
+		"aci_logical_node_profile":                     57,
+		"aci_l3_outside":                               58,
+		"aci_logical_node_to_fabric_node":              59,
+		"aci_l3_ext_subnet":                            60,
+		"aci_lacp_policy":                              61,
+		"aci_lldp_interface_policy":                    62,
+		"aci_pod_maintenance_group":                    63,
+		"aci_maintenance_policy":                       64,
+		"aci_miscabling_protocol_interface_policy":     65,
+		"aci_ospf_interface_policy":                    66,
+		"aci_physical_domain":                          67,
+		"aci_rest":                                     68,
+		"aci_action_rule_profile":                      69,
+		"aci_span_destination_group":                   70,
+		"aci_span_sourcedestination_group_match_label": 71,
+		"aci_span_source_group":                        72,
+		"aci_trigger_scheduler":                        73,
+		"aci_vmm_domain":                               74,
+		"aci_any":                                      75,
+		"aci_contract":                                 76,
+		"aci_imported_contract":                        77,
+		"aci_filter_entry":                             78,
+		"aci_filter":                                   79,
+		"aci_contract_subject":                         80,
+		"aci_taboo_contract":                           81,
 	}
 )
 
