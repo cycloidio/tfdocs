@@ -135,6 +135,10 @@ var (
 					Name:        "vars",
 					Description: `(Optional) A mapping of variables to assign to the service.`,
 				},
+				resource.Attribute{
+					Name:        "templates",
+					Description: `(Optional) A list of Icinga2 templates to assign to the service.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},

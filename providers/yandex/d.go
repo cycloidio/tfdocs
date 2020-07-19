@@ -399,7 +399,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nat_ip_version",
-					Description: `IP version for the public address. The ` + "`" + `secondary_disk` + "`" + ` block supports:`,
+					Description: `IP version for the public address.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_ids",
+					Description: `Security group ids for network interface. The ` + "`" + `secondary_disk` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "auto_delete",
@@ -577,7 +581,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nat_ip_version",
-					Description: `IP version for the public address. The ` + "`" + `secondary_disk` + "`" + ` block supports:`,
+					Description: `IP version for the public address.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_ids",
+					Description: `Security group ids for network interface. The ` + "`" + `secondary_disk` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "auto_delete",
@@ -675,7 +683,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of the instance group. --- The ` + "`" + `load_balancer_state` + "`" + ` block supports:`,
+					Description: `Status of the instance group.`,
+				},
+				resource.Attribute{
+					Name:        "deletion_protection",
+					Description: `Flag that protects the instance group from accidental deletion. --- The ` + "`" + `load_balancer_state` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "target_group_id",
@@ -691,11 +703,47 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_scale",
-					Description: `The auto scaling policy of the instance group. The structure is documented below. --- The ` + "`" + `fixed_scale` + "`" + ` block supports:`,
+					Description: `The auto scaling policy of the instance group. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "test_auto_scale",
+					Description: `The test auto scaling policy of the instance group. Use it to test how the auto scale works. The structure is documented below. --- The ` + "`" + `fixed_scale` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "size",
 					Description: `The number of instances in the instance group. --- The ` + "`" + `auto_scale` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "initial_size",
+					Description: `The initial number of instances in the instance group.`,
+				},
+				resource.Attribute{
+					Name:        "measurement_duration",
+					Description: `The amount of time, in seconds, that metrics are averaged for. If the average value at the end of the interval is higher than the ` + "`" + `cpu_utilization_target` + "`" + `, the instance group will increase the number of virtual machines in the group.`,
+				},
+				resource.Attribute{
+					Name:        "min_zone_size",
+					Description: `The minimum number of virtual machines in a single availability zone.`,
+				},
+				resource.Attribute{
+					Name:        "max_size",
+					Description: `The maximum number of virtual machines in the group.`,
+				},
+				resource.Attribute{
+					Name:        "warmup_duration",
+					Description: `The warm-up time of the virtual machine, in seconds. During this time, traffic is fed to the virtual machine, but load metrics are not taken into account.`,
+				},
+				resource.Attribute{
+					Name:        "stabilization_duration",
+					Description: `The minimum time interval, in seconds, to monitor the load before an instance group can reduce the number of virtual machines in the group. During this time, the group will not decrease even if the average load falls below the value of ` + "`" + `cpu_utilization_target` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_utilization_target",
+					Description: `Target CPU load level.`,
+				},
+				resource.Attribute{
+					Name:        "custom_rule",
+					Description: `A list of custom rules. The structure is documented below. --- The ` + "`" + `test_auto_scale` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "initial_size",
@@ -891,7 +939,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nat",
-					Description: `A public address that can be used to access the internet over NAT. --- The ` + "`" + `scheduling_policy` + "`" + ` block supports:`,
+					Description: `A public address that can be used to access the internet over NAT.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_ids",
+					Description: `Security group ids for network interface. --- The ` + "`" + `scheduling_policy` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "preemptible",
@@ -1101,7 +1153,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of the instance group. --- The ` + "`" + `load_balancer_state` + "`" + ` block supports:`,
+					Description: `Status of the instance group.`,
+				},
+				resource.Attribute{
+					Name:        "deletion_protection",
+					Description: `Flag that protects the instance group from accidental deletion. --- The ` + "`" + `load_balancer_state` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "target_group_id",
@@ -1117,11 +1173,47 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_scale",
-					Description: `The auto scaling policy of the instance group. The structure is documented below. --- The ` + "`" + `fixed_scale` + "`" + ` block supports:`,
+					Description: `The auto scaling policy of the instance group. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "test_auto_scale",
+					Description: `The test auto scaling policy of the instance group. Use it to test how the auto scale works. The structure is documented below. --- The ` + "`" + `fixed_scale` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "size",
 					Description: `The number of instances in the instance group. --- The ` + "`" + `auto_scale` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "initial_size",
+					Description: `The initial number of instances in the instance group.`,
+				},
+				resource.Attribute{
+					Name:        "measurement_duration",
+					Description: `The amount of time, in seconds, that metrics are averaged for. If the average value at the end of the interval is higher than the ` + "`" + `cpu_utilization_target` + "`" + `, the instance group will increase the number of virtual machines in the group.`,
+				},
+				resource.Attribute{
+					Name:        "min_zone_size",
+					Description: `The minimum number of virtual machines in a single availability zone.`,
+				},
+				resource.Attribute{
+					Name:        "max_size",
+					Description: `The maximum number of virtual machines in the group.`,
+				},
+				resource.Attribute{
+					Name:        "warmup_duration",
+					Description: `The warm-up time of the virtual machine, in seconds. During this time, traffic is fed to the virtual machine, but load metrics are not taken into account.`,
+				},
+				resource.Attribute{
+					Name:        "stabilization_duration",
+					Description: `The minimum time interval, in seconds, to monitor the load before an instance group can reduce the number of virtual machines in the group. During this time, the group will not decrease even if the average load falls below the value of ` + "`" + `cpu_utilization_target` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_utilization_target",
+					Description: `Target CPU load level.`,
+				},
+				resource.Attribute{
+					Name:        "custom_rule",
+					Description: `A list of custom rules. The structure is documented below. --- The ` + "`" + `test_auto_scale` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "initial_size",
@@ -1317,7 +1409,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nat",
-					Description: `A public address that can be used to access the internet over NAT. --- The ` + "`" + `scheduling_policy` + "`" + ` block supports:`,
+					Description: `A public address that can be used to access the internet over NAT.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_ids",
+					Description: `Security group ids for network interface. --- The ` + "`" + `scheduling_policy` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "preemptible",
@@ -2812,6 +2908,10 @@ var (
 					Description: `Baseline core performance as a percent.`,
 				},
 				resource.Attribute{
+					Name:        "resources.0.gpus",
+					Description: `Number of GPU cores allocated to the instance.`,
+				},
+				resource.Attribute{
 					Name:        "boot_disk",
 					Description: `The specifications for boot disks that will be attached to the instance. The structure is documented below.`,
 				},
@@ -2992,6 +3092,10 @@ var (
 				resource.Attribute{
 					Name:        "resources.0.core_fraction",
 					Description: `Baseline core performance as a percent.`,
+				},
+				resource.Attribute{
+					Name:        "resources.0.gpus",
+					Description: `Number of GPU cores allocated to the instance.`,
 				},
 				resource.Attribute{
 					Name:        "boot_disk",
@@ -4777,6 +4881,38 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "yandex_message_queue",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Yandex Message Queue.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Queue name. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `ARN of the queue. It is used for setting up a [redrive policy](https://cloud.yandex.com/docs/message-queue/concepts/dlq). See [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/SetQueueAttributes).`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `URL of the queue.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `ARN of the queue. It is used for setting up a [redrive policy](https://cloud.yandex.com/docs/message-queue/concepts/dlq). See [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/SetQueueAttributes).`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `URL of the queue.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "yandex_resourcemanager_cloud",
 			Category:         "Data Sources",
 			ShortDescription: `Retrieve Yandex RM Cloud details.`,
@@ -5196,8 +5332,24 @@ var (
 					Description: `The blocks of internal IPv6 addresses owned by this subnet.`,
 				},
 				resource.Attribute{
+					Name:        "dhcp_options",
+					Description: `Options for DHCP client. The structure is documented below.`,
+				},
+				resource.Attribute{
 					Name:        "created_at",
 					Description: `Creation timestamp of this subnet. ~>`,
+				},
+				resource.Attribute{
+					Name:        "domain_name",
+					Description: `Domain name.`,
+				},
+				resource.Attribute{
+					Name:        "domain_name_servers",
+					Description: `Domain name server IP addresses.`,
+				},
+				resource.Attribute{
+					Name:        "ntp_servers",
+					Description: `NTP server IP addresses. [VPC Subnets]: https://cloud.yandex.com/docs/vpc/concepts/network#subnet`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5230,8 +5382,24 @@ var (
 					Description: `The blocks of internal IPv6 addresses owned by this subnet.`,
 				},
 				resource.Attribute{
+					Name:        "dhcp_options",
+					Description: `Options for DHCP client. The structure is documented below.`,
+				},
+				resource.Attribute{
 					Name:        "created_at",
 					Description: `Creation timestamp of this subnet. ~>`,
+				},
+				resource.Attribute{
+					Name:        "domain_name",
+					Description: `Domain name.`,
+				},
+				resource.Attribute{
+					Name:        "domain_name_servers",
+					Description: `Domain name server IP addresses.`,
+				},
+				resource.Attribute{
+					Name:        "ntp_servers",
+					Description: `NTP server IP addresses. [VPC Subnets]: https://cloud.yandex.com/docs/vpc/concepts/network#subnet`,
 				},
 			},
 		},
@@ -5263,12 +5431,13 @@ var (
 		"yandex_mdb_mysql_cluster":        21,
 		"yandex_mdb_postgresql_cluster":   22,
 		"yandex_mdb_redis_cluster":        23,
-		"yandex_resourcemanager_cloud":    24,
-		"yandex_resourcemanager_folder":   25,
-		"yandex_vpc_network":              26,
-		"yandex_vpc_route_table":          27,
-		"yandex_vpc_security_group":       28,
-		"yandex_vpc_subnet":               29,
+		"yandex_message_queue":            24,
+		"yandex_resourcemanager_cloud":    25,
+		"yandex_resourcemanager_folder":   26,
+		"yandex_vpc_network":              27,
+		"yandex_vpc_route_table":          28,
+		"yandex_vpc_security_group":       29,
+		"yandex_vpc_subnet":               30,
 	}
 )
 

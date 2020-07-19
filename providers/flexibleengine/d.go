@@ -1626,6 +1626,114 @@ CTS Tracker data source allows access of Cloud Tracker.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_identity_project_v3",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a FlexibleEngine Project.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the project.`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `(Optional) The domain this project belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "parent_id",
+					Description: `(Optional) The parent of this project. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found project. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "parent_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the project.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Whether the project is available.`,
+				},
+				resource.Attribute{
+					Name:        "is_domain",
+					Description: `Whether this project is a domain.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "parent_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the project.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Whether the project is available.`,
+				},
+				resource.Attribute{
+					Name:        "is_domain",
+					Description: `Whether this project is a domain.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_identity_role_v3",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a FlexibleEngine Role.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the role.`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `(Optional) The domain the role belongs to. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found role. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_images_image_v2",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an FlexibleEngine Image.`,
@@ -3243,28 +3351,30 @@ VPC that the subnet belongs to.
 		"flexibleengine_dcs_product_v1":                     15,
 		"flexibleengine_dds_flavors_v3":                     16,
 		"flexibleengine_dns_zone_v2":                        17,
-		"flexibleengine_images_image_v2":                    18,
-		"flexibleengine_kms_data_key_v1":                    19,
-		"flexibleengine_kms_key_v1":                         20,
-		"flexibleengine_lb_certificate_v2":                  21,
-		"flexibleengine_networking_network_v2":              22,
-		"flexibleengine_networking_secgroup_v2":             23,
-		"flexibleengine_rds_flavors_v1":                     24,
-		"flexibleengine_rds_flavors_v3":                     25,
-		"flexibleengine_rts_software_config_v1":             26,
-		"flexibleengine_rts_stack_resource_v1":              27,
-		"flexibleengine_rts_stack_v1":                       28,
-		"flexibleengine_s3_bucket_object":                   29,
-		"flexibleengine_sdrs_domain_v1":                     30,
-		"flexibleengine_sfs_file_system_v2":                 31,
-		"flexibleengine_vbs_backup_policy_v2":               32,
-		"flexibleengine_vbs_backup_v2":                      33,
-		"flexibleengine_vpc_peering_connection_v2":          34,
-		"flexibleengine_vpc_route_ids_v2":                   35,
-		"flexibleengine_vpc_route_v2":                       36,
-		"flexibleengine_vpc_subnet_ids_v1":                  37,
-		"flexibleengine_vpc_subnet_v1":                      38,
-		"flexibleengine_vpc_v1":                             39,
+		"flexibleengine_identity_project_v3":                18,
+		"flexibleengine_identity_role_v3":                   19,
+		"flexibleengine_images_image_v2":                    20,
+		"flexibleengine_kms_data_key_v1":                    21,
+		"flexibleengine_kms_key_v1":                         22,
+		"flexibleengine_lb_certificate_v2":                  23,
+		"flexibleengine_networking_network_v2":              24,
+		"flexibleengine_networking_secgroup_v2":             25,
+		"flexibleengine_rds_flavors_v1":                     26,
+		"flexibleengine_rds_flavors_v3":                     27,
+		"flexibleengine_rts_software_config_v1":             28,
+		"flexibleengine_rts_stack_resource_v1":              29,
+		"flexibleengine_rts_stack_v1":                       30,
+		"flexibleengine_s3_bucket_object":                   31,
+		"flexibleengine_sdrs_domain_v1":                     32,
+		"flexibleengine_sfs_file_system_v2":                 33,
+		"flexibleengine_vbs_backup_policy_v2":               34,
+		"flexibleengine_vbs_backup_v2":                      35,
+		"flexibleengine_vpc_peering_connection_v2":          36,
+		"flexibleengine_vpc_route_ids_v2":                   37,
+		"flexibleengine_vpc_route_v2":                       38,
+		"flexibleengine_vpc_subnet_ids_v1":                  39,
+		"flexibleengine_vpc_subnet_v1":                      40,
+		"flexibleengine_vpc_v1":                             41,
 	}
 )
 

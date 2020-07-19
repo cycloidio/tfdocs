@@ -5396,7 +5396,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vip_subnet_id",
-					Description: `(Required) The network on which to allocate the Loadbalancer's address. A tenant can only create Loadbalancers on networks authorized by policy (e.g. networks that belong to them or networks that are shared). Changing this creates a new loadbalancer.`,
+					Description: `(Optional) The subnet on which to allocate the Loadbalancer's address. A tenant can only create Loadbalancers on networks authorized by policy (e.g. networks that belong to them or networks that are shared). Changing this creates a new loadbalancer. It is required to Neutron LBaaS but optional for Octavia.`,
+				},
+				resource.Attribute{
+					Name:        "vip_network_id",
+					Description: `(Optional) The network on which to allocate the Loadbalancer's address. A tenant can only create Loadbalancers on networks authorized by policy (e.g. networks that belong to them or networks that are shared). Changing this creates a new loadbalancer. It is available only for Octavia.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -5436,6 +5440,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vip_subnet_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vip_network_id",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -5482,6 +5490,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vip_subnet_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vip_network_id",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -7144,7 +7156,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 networking client. A networking client is needed to create a port. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new port.`,
+					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create a port. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new port.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -7152,7 +7164,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) Human-readable description of the floating IP. Changing this updates the ` + "`" + `description` + "`" + ` of an existing port.`,
+					Description: `(Optional) Human-readable description of the port. Changing this updates the ` + "`" + `description` + "`" + ` of an existing port.`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
@@ -7160,7 +7172,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_state_up",
-					Description: `(Optional) Administrative up/down status for the port (must be "true" or "false" if provided). Changing this updates the ` + "`" + `admin_state_up` + "`" + ` of an existing port.`,
+					Description: `(Optional) Administrative up/down status for the port (must be ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + ` if provided). Changing this updates the ` + "`" + `admin_state_up` + "`" + ` of an existing port.`,
 				},
 				resource.Attribute{
 					Name:        "mac_address",
@@ -7168,11 +7180,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `(Optional) The owner of the Port. Required if admin wants to create a port for another tenant. Changing this creates a new port.`,
+					Description: `(Optional) The owner of the port. Required if admin wants to create a port for another tenant. Changing this creates a new port.`,
 				},
 				resource.Attribute{
 					Name:        "device_owner",
-					Description: `(Optional) The device owner of the Port. Changing this creates a new port.`,
+					Description: `(Optional) The device owner of the port. Changing this creates a new port.`,
 				},
 				resource.Attribute{
 					Name:        "security_group_ids",
@@ -7180,7 +7192,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "no_security_groups",
-					Description: `(Optional - Conflicts with ` + "`" + `security_group_ids` + "`" + `) If set to ` + "`" + `true` + "`" + `, then no security groups are applied to the port. If set to ` + "`" + `false` + "`" + ` and no ` + "`" + `security_group_ids` + "`" + ` are specified, then the Port will yield to the default behavior of the Networking service, which is to usually apply the "default" security group.`,
+					Description: `(Optional - Conflicts with ` + "`" + `security_group_ids` + "`" + `) If set to ` + "`" + `true` + "`" + `, then no security groups are applied to the port. If set to ` + "`" + `false` + "`" + ` and no ` + "`" + `security_group_ids` + "`" + ` are specified, then the port will yield to the default behavior of the Networking service, which is to usually apply the "default" security group.`,
 				},
 				resource.Attribute{
 					Name:        "device_id",
@@ -7204,7 +7216,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "port_security_enabled",
-					Description: `(Optional) Whether to explicitly enable or disable port security on the port. Port Security is usually enabled by default, so omitting argument will usually result in a value of "true". Setting this explicitly to ` + "`" + `false` + "`" + ` will disable port security. In order to disable port security, the port must not have any security groups. Valid values are ` + "`" + `true` + "`" + ` and ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Whether to explicitly enable or disable port security on the port. Port Security is usually enabled by default, so omitting argument will usually result in a value of ` + "`" + `true` + "`" + `. Setting this explicitly to ` + "`" + `false` + "`" + ` will disable port security. In order to disable port security, the port must not have any security groups. Valid values are ` + "`" + `true` + "`" + ` and ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "value_specs",

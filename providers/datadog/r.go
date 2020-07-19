@@ -182,7 +182,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "account_specific_namespace_rules",
-					Description: `(Optional) Enables or disables metric collection for specific AWS namespaces for this AWS account only. A list of namespaces can be found at the [available namespace rules API endpoint](https://docs.datadoghq.com/api/v1/aws-integration/#list-namespace-rules). ### See also`,
+					Description: `(Optional) Enables or disables metric collection for specific AWS namespaces for this AWS account only. A list of namespaces can be found at the [available namespace rules API endpoint](https://docs.datadoghq.com/api/v1/aws-integration/#list-namespace-rules).`,
+				},
+				resource.Attribute{
+					Name:        "excluded_regions",
+					Description: `(Optional) An array of AWS regions to exclude from metrics collection. ### See also`,
 				},
 				resource.Attribute{
 					Name:        "external_id",
@@ -240,6 +244,36 @@ var (
 				resource.Attribute{
 					Name:        "services",
 					Description: `(Required) A list of services to collect logs from. See the [api docs](https://docs.datadoghq.com/api/v1/aws-logs-integration/#get-list-of-aws-log-ready-services) for more details on which services are supported. ### See also`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "datadog_integration_azure",
+			Category:         "Resources",
+			ShortDescription: `Provides a Datadog - Microsoft Azure integration resource. This can be used to create and manage the integrations.`,
+			Description:      ``,
+			Keywords: []string{
+				"integration",
+				"azure",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tenant_name",
+					Description: `(Required) Your Azure Active Directory ID.`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Required) Your Azure web application ID.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `(Required for Initial Creation) Your Azure web application secret key.`,
+				},
+				resource.Attribute{
+					Name:        "host_filters",
+					Description: `(Optional) String of host tag(s) (in the form ` + "`" + `key:value,key:value` + "`" + `) defines a filter that Datadog will use when collecting metrics from Azure. Limit the Azure instances that are pulled into Datadog by using tags. Only hosts that match one of the defined tags are imported into Datadog. e.x. ` + "`" + `env:production,deploymentgroup:red` + "`" + ` ### See also`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -369,6 +403,92 @@ var (
 				resource.Attribute{
 					Name:        "service_key",
 					Description: `(Required) Your Service name associated service key in PagerDuty. Note: Since the Datadog API never returns service keys, it is impossible to detect [drifts](https://www.hashicorp.com/blog/detecting-and-managing-drift-with-terraform). The best way to solve a drift is to manually mark the Service Object resource with [terraform taint](https://www.terraform.io/docs/commands/taint.html) to have it destroyed and recreated.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "datadog_logs_archive",
+			Category:         "Resources",
+			ShortDescription: `Provides a Datadog logs archive resource, which is used to create and manage logs archives.`,
+			Description:      ``,
+			Keywords: []string{
+				"logs",
+				"archive",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Your archive name.`,
+				},
+				resource.Attribute{
+					Name:        "query",
+					Description: `(Required) The archive query/filter. Logs matching this query are included in the archive.`,
+				},
+				resource.Attribute{
+					Name:        "s3",
+					Description: `(Optional) Definition of an s3 archive.`,
+				},
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `(Required) Name of your s3 bucket.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional, default = "") Path where the archive will be stored.`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Required) Your AWS account id.`,
+				},
+				resource.Attribute{
+					Name:        "role_name",
+					Description: `(Required) Your AWS role name.`,
+				},
+				resource.Attribute{
+					Name:        "gcs",
+					Description: `(Optional) Definition of an gcs archive.`,
+				},
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `(Required) Name of your gcs bucket.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional, default = "") Path where the archive will be stored.`,
+				},
+				resource.Attribute{
+					Name:        "client_email",
+					Description: `(Required) Your client email.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) Your project id.`,
+				},
+				resource.Attribute{
+					Name:        "azure",
+					Description: `(Optional) Definition of an azure archive.`,
+				},
+				resource.Attribute{
+					Name:        "container",
+					Description: `(Required) The container where the archive will be stored.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional, default = "") The path where the archive will be stored.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Required) Your tenant id.`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Required) Your client id.`,
+				},
+				resource.Attribute{
+					Name:        "storage_account",
+					Description: `(Required) The associated storage account. An archive definition must have one (and only one) of the three possible types defined: s3, gcs, azure.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1089,21 +1209,23 @@ var (
 		"datadog_integration_aws":                      3,
 		"datadog_integration_aws_lambda_arn":           4,
 		"datadog_integration_aws_log_collection":       5,
-		"datadog_integration_gcp":                      6,
-		"datadog_integration_pagerduty":                7,
-		"datadog_integration_pagerduty_service_object": 8,
-		"datadog_logs_custom_pipeline":                 9,
-		"datadog_logs_index":                           10,
-		"datadog_logs_index_order":                     11,
-		"datadog_logs_integration_pipeline":            12,
-		"datadog_logs_pipeline_order":                  13,
-		"datadog_metric_metadata":                      14,
-		"datadog_monitor":                              15,
-		"datadog_screenboard":                          16,
-		"datadog_service_level_objective":              17,
-		"datadog_synthetics":                           18,
-		"datadog_timeboard":                            19,
-		"datadog_user":                                 20,
+		"datadog_integration_azure":                    6,
+		"datadog_integration_gcp":                      7,
+		"datadog_integration_pagerduty":                8,
+		"datadog_integration_pagerduty_service_object": 9,
+		"datadog_logs_archive":                         10,
+		"datadog_logs_custom_pipeline":                 11,
+		"datadog_logs_index":                           12,
+		"datadog_logs_index_order":                     13,
+		"datadog_logs_integration_pipeline":            14,
+		"datadog_logs_pipeline_order":                  15,
+		"datadog_metric_metadata":                      16,
+		"datadog_monitor":                              17,
+		"datadog_screenboard":                          18,
+		"datadog_service_level_objective":              19,
+		"datadog_synthetics":                           20,
+		"datadog_timeboard":                            21,
+		"datadog_user":                                 22,
 	}
 )
 

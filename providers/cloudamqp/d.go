@@ -1,4 +1,4 @@
-package nomad
+package cloudamqp
 
 import (
 	"fmt"
@@ -11,9 +11,9 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "nomad_acl_policy",
+			Type:             "cloudamqp_alarm",
 			Category:         "Data Sources",
-			ShortDescription: `Retrieve information on an ACL Policy.`,
+			ShortDescription: `Get information on pre-defined or created alarms.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -21,9 +21,9 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "nomad_acl_token",
+			Type:             "cloudamqp_credentials",
 			Category:         "Data Sources",
-			ShortDescription: `Get information on an ACL token.`,
+			ShortDescription: `Get credentials information`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -31,9 +31,9 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "nomad_deployments",
+			Type:             "cloudamqp_instance",
 			Category:         "Data Sources",
-			ShortDescription: `Retrieve a list of deployments and a summary of their attributes.`,
+			ShortDescription: `Get information about an already created CloudAMQP instance`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -41,9 +41,9 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "nomad_job",
+			Type:             "cloudamqp_nodes",
 			Category:         "Data Sources",
-			ShortDescription: `Get information on an job.`,
+			ShortDescription: `Get information about the node(s) in the CloudAMQP instance.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -51,9 +51,9 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "nomad_namespaces",
+			Type:             "cloudamqp_notification",
 			Category:         "Data Sources",
-			ShortDescription: `Retrieve a list of namespaces available in Nomad.`,
+			ShortDescription: `Get information on pre-defined or created recipients.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -61,9 +61,9 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "nomad_plugin",
+			Type:             "cloudamqp_plugins",
 			Category:         "Data Sources",
-			ShortDescription: `Get information on a specific CSI plugin.`,
+			ShortDescription: `Get information installed and available plugins.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -71,9 +71,9 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "nomad_plugins",
+			Type:             "cloudamqp_plugins_community",
 			Category:         "Data Sources",
-			ShortDescription: `Retrieve a list of plugins.`,
+			ShortDescription: `Get information about available community plugins.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -81,19 +81,9 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "nomad_regions",
+			Type:             "cloudamqp_vpc_info",
 			Category:         "Data Sources",
-			ShortDescription: `Retrieve a list of regions available in Nomad.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
-			Attributes:       []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "nomad_volumes",
-			Category:         "Data Sources",
-			ShortDescription: `Retrieve a list of volumes.`,
+			ShortDescription: `Get information about VPC hosted in AWS.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -103,15 +93,14 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"nomad_acl_policy":  0,
-		"nomad_acl_token":   1,
-		"nomad_deployments": 2,
-		"nomad_job":         3,
-		"nomad_namespaces":  4,
-		"nomad_plugin":      5,
-		"nomad_plugins":     6,
-		"nomad_regions":     7,
-		"nomad_volumes":     8,
+		"cloudamqp_alarm":             0,
+		"cloudamqp_credentials":       1,
+		"cloudamqp_instance":          2,
+		"cloudamqp_nodes":             3,
+		"cloudamqp_notification":      4,
+		"cloudamqp_plugins":           5,
+		"cloudamqp_plugins_community": 6,
+		"cloudamqp_vpc_info":          7,
 	}
 )
 

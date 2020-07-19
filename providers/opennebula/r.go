@@ -11,6 +11,31 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "opennebula_acl",
+			Category:         "Resources",
+			ShortDescription: `Provides an OpenNebula acl resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"acl",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "user",
+					Description: `(Required) User component of the new rule. - ` + "`" + `#<id>` + "`" + ` matches a single user id - ` + "`" + `@<id>` + "`" + ` matches a group id - ` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "resource",
+					Description: `(Required) Resource component of the new rule. Any combination of valid resources, separated by a ` + "`" + `+` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "rights",
+					Description: `(Optional) Rights component of the new rule. Any combination of valid Rights, separated by a ` + "`" + `+` + "`" + `. The following rights are valid: - USE - MANAGE - ADMIN - CREATE ## Import To import an existing ACL #134 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_acl" "importacl" { user = "@1" resource = "HOST+CLUSTER+DATASTORE/`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "opennebula_group",
 			Category:         "Resources",
 			ShortDescription: `Provides an OpenNebula group resource.`,
@@ -37,23 +62,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "quotas",
-					Description: `(Optional) See [Quotas parameters](#quotas) below for details ### Quotas parameters ` + "`" + `quotas` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) See [Quotas parameters](#quotas-parameters) below for details ### Quotas parameters ` + "`" + `quotas` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "datastore_quotas",
-					Description: `(Optional) List of datastore quotas. See [Datastore quotas parameters](#datastore-quotas) below for details.`,
+					Description: `(Optional) List of datastore quotas. See [Datastore quotas parameters](#datastore-quotas-parameters) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "network_quotas",
-					Description: `(Optional) List of network quotas. See [Network quotas parameters](#network-quotas) below for details.`,
+					Description: `(Optional) List of network quotas. See [Network quotas parameters](#network-quotas-parameters) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "image_quotas",
-					Description: `(Optional) List of image quotas. See [Image quotas parameters](#image-quotas) below for details`,
+					Description: `(Optional) List of image quotas. See [Image quotas parameters](#image-quotas-parameters) below for details`,
 				},
 				resource.Attribute{
 					Name:        "vm_quotas",
-					Description: `(Optional) See [Virtual Machine quotas parameters](#vm-quotas) below for details #### Datastore quotas parameters ` + "`" + `datastore` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) See [Virtual Machine quotas parameters](#virtual-machine-quotas-parameters) below for details #### Datastore quotas parameters ` + "`" + `datastore` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -85,11 +110,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cpu",
-					Description: `(Optional) Maximum number of CPU allowed (in total). Defaults to ` + "`" + `default quota` + "`" + `.`,
+					Description: `(Optional) Total of CPUs allowed. Defaults to ` + "`" + `default quota` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "memory",
-					Description: `(Optional) Maximum memory (in MB) allowed (in total). Defaults to ` + "`" + `default quota` + "`" + `.`,
+					Description: `(Optional) Total of memory (in MB) allowed. Defaults to ` + "`" + `default quota` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "vms",
@@ -97,29 +122,29 @@ var (
 				},
 				resource.Attribute{
 					Name:        "running_cpu",
-					Description: `(Optional) Number of CPUs of Virtual Machine in ` + "`" + `RUNNING` + "`" + ` state allowed. Defaults to ` + "`" + `default quota` + "`" + `.`,
+					Description: `(Optional) Virtual Machine CPUs allowed in ` + "`" + `RUNNING` + "`" + ` state. Defaults to ` + "`" + `default quota` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "running_memory",
-					Description: `(Optional) Memory (in MB) of Virtual Machine in ` + "`" + `RUNNING` + "`" + ` state allowed. Defaults to ` + "`" + `default quota` + "`" + `.`,
+					Description: `(Optional) Virtual Machine Memory (in MB) allowed in ` + "`" + `RUNNING` + "`" + ` state. Defaults to ` + "`" + `default quota` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "running_vms",
-					Description: `(Optional) Number of Virtual Machines in ` + "`" + `RUNNING` + "`" + ` state allowed. Defaults to ` + "`" + `default quota` + "`" + `.`,
+					Description: `(Optional) Number of Virtual Machines allowed in ` + "`" + `RUNNING` + "`" + ` state. Defaults to ` + "`" + `default quota` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "system_disk_size",
-					Description: `(Optional) Maximum disk size (in MB) on a ` + "`" + `SYSTEM` + "`" + ` datastore allowed (in total). Defaults to ` + "`" + `default quota` + "`" + `. ## Attribute Reference The following attribute is exported:`,
+					Description: `(Optional) Maximum disk global size (in MB) allowed on a ` + "`" + `SYSTEM` + "`" + ` datastore. Defaults to ` + "`" + `default quota` + "`" + `. ## Attribute Reference The following attribute is exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the image. ## Import To import an existing group #134 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_group" "importgroup" { name = "importedgroup" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_group.importgroup 134 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID of the group. ## Import To import an existing group #134 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_group" "importgroup" { name = "importedgroup" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_group.importgroup 134 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the image. ## Import To import an existing group #134 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_group" "importgroup" { name = "importedgroup" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_group.importgroup 134 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID of the group. ## Import To import an existing group #134 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_group" "importgroup" { name = "importedgroup" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_group.importgroup 134 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -143,7 +168,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "permissions",
-					Description: `(Optional) Permissions applied to the image. Defaults to the UMASK in OpenNebula (in UNIX Format: owner-group-other => Use-Manage-Admin.`,
+					Description: `(Optional) Permissions applied to the image. Defaults to the UMASK in OpenNebula (in UNIX Format: owner-group-other => Use-Manage-Admin).`,
 				},
 				resource.Attribute{
 					Name:        "clone_from_image",
@@ -151,7 +176,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "datastore_id",
-					Description: `(Required) ID of the datastore to host new image. The ` + "`" + `datastore_id` + "`" + ` must be an ` + "`" + `IMAGE` + "`" + ` datastore.`,
+					Description: `(Required) ID of the datastore used to store the image. The ` + "`" + `datastore_id` + "`" + ` must be an active ` + "`" + `IMAGE` + "`" + ` datastore.`,
 				},
 				resource.Attribute{
 					Name:        "persistent",
@@ -163,7 +188,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `(Optional) Path or URL of the orinal image to use. Conflicts with ` + "`" + `clone_from_image` + "`" + `.`,
+					Description: `(Optional) Path or URL of the original image to use. Conflicts with ` + "`" + `clone_from_image` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -191,7 +216,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "group",
-					Description: `(Optional) Name of the group which owns the image. Defaults to the caller primary group. ## Attribute Reference The following attributes are exported:`,
+					Description: `(Optional) Name of the group which owns the image. Defaults to the caller primary group.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Image tags (Key = value)`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) Timeout (in Minutes) for Image availability. Defaults to 10 minutes. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -257,7 +290,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "permissions",
-					Description: `(Optional) Permissions applied on security group. Defaults to the UMASK in OpenNebula (in UNIX Format: owner-group-other => Use-Manage-Admin.`,
+					Description: `(Optional) Permissions applied on security group. Defaults to the UMASK in OpenNebula (in UNIX Format: owner-group-other => Use-Manage-Admin).`,
 				},
 				resource.Attribute{
 					Name:        "commit",
@@ -265,11 +298,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rule",
-					Description: `(Required) List of rules. See [Rules parameters](#rules) below for details`,
+					Description: `(Required) List of rules. See [Rule parameters](#rule-parameters) below for details`,
 				},
 				resource.Attribute{
 					Name:        "group",
-					Description: `(Optional) Name of the group which owns the security group. Defaults to the caller primary group. ### Rules parameters ` + "`" + `rules` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) Name of the group which owns the security group. Defaults to the caller primary group.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Security group tags (Key = Value). ### Rule parameters ` + "`" + `rule` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
@@ -277,7 +314,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rule_type",
-					Description: `(Required) Direction of the traffic flow to allow, must be INBOUND or OUTBOUND.`,
+					Description: `(Required) Direction of the traffic flow to allow, must be ` + "`" + `INBOUND` + "`" + ` or ` + "`" + `OUTBOUND` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
@@ -289,7 +326,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `(Optional) Number of IPs to apply the rule from, starting with 'ip'.`,
+					Description: `(Optional) Number of IPs to apply the rule from, starting with ` + "`" + `ip` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "range",
@@ -297,7 +334,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "icmp_type",
-					Description: `(Optional) Type of ICMP traffic to apply to when 'protocol' is ICMP. See https://docs.opennebula.org/5.8/operation/network_management/security_groups.html for more details on allowed values. ## Attribute Reference The following attribute are exported:`,
+					Description: `(Optional) Type of ICMP traffic to apply to when 'protocol' is ` + "`" + `ICMP` + "`" + `. See https://docs.opennebula.org/5.12/operation/network_management/security_groups.html for more details on allowed values. ## Attribute Reference The following attribute are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -358,16 +395,128 @@ var (
 					Description: `(Required) The name of the virtual machine template.`,
 				},
 				resource.Attribute{
-					Name:        "template",
-					Description: `(Required) Text describing the OpenNebula template object, in Opennebula's XML string format.`,
-				},
-				resource.Attribute{
 					Name:        "permissions",
-					Description: `(Optional) Permissions applied on template. Defaults to the UMASK in OpenNebula (in UNIX Format: owner-group-other => Use-Manage-Admin.`,
+					Description: `(Optional) Permissions applied on template. Defaults to the UMASK in OpenNebula (in UNIX Format: owner-group-other => Use-Manage-Admin).`,
 				},
 				resource.Attribute{
 					Name:        "group",
-					Description: `(Optional) Name of the group which owns the template. Defaults to the caller primary group. ## Attribute Reference The following attribute are exported:`,
+					Description: `(Optional) Name of the group which owns the template. Defaults to the caller primary group.`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `(Optional) Amount of CPU shares assigned to the VM.`,
+				},
+				resource.Attribute{
+					Name:        "vpcu",
+					Description: `(Optional) Number of CPU cores presented to the VM.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `(Optional) Amount of RAM assigned to the VM in MB.`,
+				},
+				resource.Attribute{
+					Name:        "context",
+					Description: `(Optional) Array of free form key=value pairs, rendered and added to the CONTEXT variables for the VM. Recommended to include: ` + "`" + `NETWORK = "YES"` + "`" + ` and ` + "`" + `SET_HOSTNAME = "$NAME"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "graphics",
+					Description: `(Optional) See [Graphics parameters](#graphics-parameters) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "os",
+					Description: `(Optional) See [OS parameters](#os-parameters) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `(Optional) Can be specified multiple times to attach several disks. See [Disks parameters](#disks-parameters) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "nic",
+					Description: `(Optional) Can be specified multiple times to attach several NICs. See [Nic parameters](#nic-parameters) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "vmgroup",
+					Description: `(Optional) See [VM group parameters](#vm-group-parameters) below for details. Changing this argument triggers a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Template tags (Key = Value).`,
+				},
+				resource.Attribute{
+					Name:        "template",
+					Description: `(Deprecated) Text describing the OpenNebula template object, in Opennebula's XML string format. ### Graphics parameters ` + "`" + `graphics` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Generally set to VNC.`,
+				},
+				resource.Attribute{
+					Name:        "listen",
+					Description: `(Required) Binding address.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) Binding Port.`,
+				},
+				resource.Attribute{
+					Name:        "keymap",
+					Description: `(Optional) Keyboard mapping. ### OS parameters ` + "`" + `os` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "arch",
+					Description: `(Required) Hardware architecture of the Virtual machine. Must fit the host architecture.`,
+				},
+				resource.Attribute{
+					Name:        "boot",
+					Description: `(Optional) ` + "`" + `OS` + "`" + ` disk to use to boot on. ### Disk parameters ` + "`" + `disk` + "`" + ` supports the following arguments`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `(Required) ID of the image to attach to the virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Optional) Size (in MB) of the image attached to the virtual machine. Not possible to change a cloned image size.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Optional) Target name device on the virtual machine. Depends of the image ` + "`" + `dev_prefix` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "driver",
+					Description: `(Optional) OpenNebula image driver. Minimum 1 item. Maximum 8 items. ### NIC parameters ` + "`" + `nic` + "`" + ` supports the following arguments`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `(Required) ID of the virtual network to attach to the virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Optional) IP of the virtual machine on this network.`,
+				},
+				resource.Attribute{
+					Name:        "mac",
+					Description: `(Optional) MAC of the virtual machine on this network.`,
+				},
+				resource.Attribute{
+					Name:        "model",
+					Description: `(Optional) Nic model driver. Example: ` + "`" + `virtio` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "physical_device",
+					Description: `(Optional) Physical device hosting the virtual network.`,
+				},
+				resource.Attribute{
+					Name:        "security_groups",
+					Description: `(Optional) List of security group IDs to use on the virtual network. Minimum 1 item. Maximum 8 items. ### VM group parameters ` + "`" + `vmgroup` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "vmgroup_id",
+					Description: `(Required) ID of the VM group to use.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Required) role of the VM group to use. ## Attribute Reference The following attribute are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -441,7 +590,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zones",
-					Description: `(Optional) List of zones. See [Zones parameters](#zones) below for details ### Zones parameters ` + "`" + `zones` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) List of zones. See [Zones parameters](#zones-parameters) below for details ### Zones parameters ` + "`" + `zones` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -491,11 +640,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "permissions",
-					Description: `(Optional) Permissions applied on virtual machine. Defaults to the UMASK in OpenNebula (in UNIX Format: owner-group-other => Use-Manage-Admin.`,
+					Description: `(Optional) Permissions applied on virtual machine. Defaults to the UMASK in OpenNebula (in UNIX Format: owner-group-other => Use-Manage-Admin).`,
 				},
 				resource.Attribute{
 					Name:        "template_id",
-					Description: `(Optional) If set, VM are instantiated from the template ID.`,
+					Description: `(Optional) If set, VM are instantiated from the template ID. See [Instantiate from a template](#instantiate-from-a-template) for details. Changing this argument triggers a new resource.`,
 				},
 				resource.Attribute{
 					Name:        "pending",
@@ -515,27 +664,39 @@ var (
 				},
 				resource.Attribute{
 					Name:        "context",
-					Description: `(Optional) Array of free form key=value pairs, rendered and added to the CONTEXT variables for the VM. Recommended to include at a minimum: NETWORK = "YES" and SET_HOSTNAME = "$NAME.`,
+					Description: `(Optional) Array of free form key=value pairs, rendered and added to the CONTEXT variables for the VM. Recommended to include: ` + "`" + `NETWORK = "YES"` + "`" + ` and ` + "`" + `SET_HOSTNAME = "$NAME"` + "`" + `. If a ` + "`" + `template_id` + "`" + ` is set, see [Instantiate from a template](#instantiate-from-a-template) for details.`,
 				},
 				resource.Attribute{
 					Name:        "graphics",
-					Description: `(Optional) See [Graphics parameters](#graphics-vm) below for details.`,
+					Description: `(Optional) See [Graphics parameters](#graphics-parameters) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "os",
-					Description: `(Optional) See [OS parameters](#os-vm) below for details.`,
+					Description: `(Optional) See [OS parameters](#os-parameters) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "disk",
-					Description: `(Optional) Can be specified multiple times to attach several disks. See [Disks parameters](#disks-vm) below for details.`,
+					Description: `(Optional) Can be specified multiple times to attach several disks. See [Disk parameters](#disk-parameters) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "nic",
-					Description: `(Optional) Can be specified multiple times to attach several NICs. See [Nic parameters](#nic-vm) below for details.`,
+					Description: `(Optional) Can be specified multiple times to attach several NICs. See [Nic parameters](#nic-parameters) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "vmgroup",
+					Description: `(Optional) See [VM group parameters](#vm-group-parameters) below for details. Changing this argument triggers a new resource.`,
 				},
 				resource.Attribute{
 					Name:        "group",
-					Description: `(Optional) Name of the group which owns the virtual machine. Defaults to the caller primary group. ### Graphics parameters ` + "`" + `graphics` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) Name of the group which owns the virtual machine. Defaults to the caller primary group.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Virtual Machine tags (Key = Value).`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) Timeout (in Minutes) for VM availability. Defaults to 3 minutes. ### Graphics parameters ` + "`" + `graphics` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -599,7 +760,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "security_groups",
-					Description: `(Optional) List of security group IDs to use on the virtual network. Minimum 1 item. Maximum 8 items. ## Attribute Reference The following attribute are exported:`,
+					Description: `(Optional) List of security group IDs to use on the virtual network. Minimum 1 item. Maximum 8 items. ### VM group parameters ` + "`" + `vmgroup` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "vmgroup_id",
+					Description: `(Required) ID of the VM group to use.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Required) role of the VM group to use. ## Attribute Reference The following attribute are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -631,7 +800,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "lcmstate",
-					Description: `LCM State of the virtual machine. ## Import To import an existing virtual machine #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_machine" "importvm" { name = "importedvm" } And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_machine.importvm 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `LCM State of the virtual machine. ## Instantiate from a template When the attribute ` + "`" + `template_id` + "`" + ` is set, here is the behavior: For all parameters excepted context: parameters present in VM overrides parameters defined in template. For context: it merges them. ## Import To import an existing virtual machine #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_machine" "importvm" { name = "importedvm" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_machine.importvm 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -665,7 +834,121 @@ var (
 				},
 				resource.Attribute{
 					Name:        "lcmstate",
-					Description: `LCM State of the virtual machine. ## Import To import an existing virtual machine #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_machine" "importvm" { name = "importedvm" } And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_machine.importvm 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `LCM State of the virtual machine. ## Instantiate from a template When the attribute ` + "`" + `template_id` + "`" + ` is set, here is the behavior: For all parameters excepted context: parameters present in VM overrides parameters defined in template. For context: it merges them. ## Import To import an existing virtual machine #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_machine" "importvm" { name = "importedvm" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_machine.importvm 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "opennebula_virtual machine group",
+			Category:         "Resources",
+			ShortDescription: `Provides an OpenNebula virtual machine group resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"virtual machine group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the virtual machine group.`,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `(Optional) Permissions applied on virtual machine group. Defaults to the UMASK in OpenNebula (in UNIX Format: owner-group-other => Use-Manage-Admin.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Required) List of roles. See [Role parameters](#role-parameters) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "group",
+					Description: `(Optional) Name of the group which owns the virtual machine group. Defaults to the caller primary group.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Virtual Machine group tags. ### Role parameters ` + "`" + `role` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the role.`,
+				},
+				resource.Attribute{
+					Name:        "host_affined",
+					Description: `(Optional) List of Hosts affined to Virtual Machines using this role.`,
+				},
+				resource.Attribute{
+					Name:        "host_anti_affined",
+					Description: `(Optional) List of Hosts not-affined to Virtual Machines using this role.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Optional) Policy to apply between Virtual Machines using this role. Allowed Values: ` + "`" + `NONE` + "`" + `, ` + "`" + `AFFINED` + "`" + `, ` + "`" + `ANTI_AFFINED` + "`" + `. ## Attribute Reference The following attribute are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `User ID whom owns the virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "gid",
+					Description: `Group ID which owns the virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "uname",
+					Description: `User Name whom owns the virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "gname",
+					Description: `Group Name which owns the virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `See [Role Attribute Reference](#role-attribute-reference) below for details ## Role Attribute Reference The Following attributes are exported under ` + "`" + `role` + "`" + `:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the role.`,
+				},
+				resource.Attribute{
+					Name:        "vms",
+					Description: `List of Virtual Machine IDs using this role. ## Import To import an existing virtual machine group #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_machine_group" "importvmg" { name = "importedvmg" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_machine_group.importvmg 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `User ID whom owns the virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "gid",
+					Description: `Group ID which owns the virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "uname",
+					Description: `User Name whom owns the virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "gname",
+					Description: `Group Name which owns the virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `See [Role Attribute Reference](#role-attribute-reference) below for details ## Role Attribute Reference The Following attributes are exported under ` + "`" + `role` + "`" + `:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the role.`,
+				},
+				resource.Attribute{
+					Name:        "vms",
+					Description: `List of Virtual Machine IDs using this role. ## Import To import an existing virtual machine group #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_machine_group" "importvmg" { name = "importedvmg" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_machine_group.importvmg 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -689,7 +972,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "permissions",
-					Description: `(Optional) Permissions applied on virtual network. Defaults to the UMASK in OpenNebula (in UNIX Format: owner-group-other => Use-Manage-Admin.`,
+					Description: `(Optional) Permissions applied on virtual network. Defaults to the UMASK in OpenNebula (in UNIX Format: owner-group-other => Use-Manage-Admin).`,
 				},
 				resource.Attribute{
 					Name:        "reservation_vnet",
@@ -749,7 +1032,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ar",
-					Description: `(Optional) List of address ranges. See [Address Range Parameters](#ar-vnet) below for more details. Conflicts with ` + "`" + `reservation_vnet` + "`" + ` and ` + "`" + `reservation_size` + "`" + `.`,
+					Description: `(Optional) List of address ranges. See [Address Range Parameters](#address-range-parameters) below for more details. Conflicts with ` + "`" + `reservation_vnet` + "`" + ` and ` + "`" + `reservation_size` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "hold_size",
@@ -761,7 +1044,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "group",
-					Description: `(Optional) Name of the group which owns the virtual network. Defaults to the caller primary group. ### Address Range parameters ` + "`" + `ar` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) Name of the group which owns the virtual network. Defaults to the caller primary group.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Virtual Network tags (Key = Value). ### Address Range parameters ` + "`" + `ar` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "ar_type",
@@ -809,7 +1096,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gname",
-					Description: `Group Name which owns the virtual network. ## Import To import an existing virtual network #1234 into Terraform, add this declaration to your .tf file (don't specify the reservation_size): ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_network" "importtest" { name = "importedvnet" reservation_vnet = 394 # Security group "0" allows open access security_groups = ["0"] } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_network.importtest 1234 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Group Name which owns the virtual network. ## Import To import an existing virtual network #1234 into Terraform, add this declaration to your .tf file (don't specify the reservation_size): ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_network" "importtest" { name = "importedvnet" reservation_vnet = 394 security_groups = ["0"] } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_network.importtest 1234 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -831,7 +1118,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gname",
-					Description: `Group Name which owns the virtual network. ## Import To import an existing virtual network #1234 into Terraform, add this declaration to your .tf file (don't specify the reservation_size): ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_network" "importtest" { name = "importedvnet" reservation_vnet = 394 # Security group "0" allows open access security_groups = ["0"] } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_network.importtest 1234 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Group Name which owns the virtual network. ## Import To import an existing virtual network #1234 into Terraform, add this declaration to your .tf file (don't specify the reservation_size): ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_network" "importtest" { name = "importedvnet" reservation_vnet = 394 security_groups = ["0"] } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_network.importtest 1234 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -839,13 +1126,15 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"opennebula_group":               0,
-		"opennebula_image":               1,
-		"opennebula_security group":      2,
-		"opennebula_template":            3,
-		"opennebula_virtual data center": 4,
-		"opennebula_virtual machine":     5,
-		"opennebula_virtual network":     6,
+		"opennebula_acl":                   0,
+		"opennebula_group":                 1,
+		"opennebula_image":                 2,
+		"opennebula_security group":        3,
+		"opennebula_template":              4,
+		"opennebula_virtual data center":   5,
+		"opennebula_virtual machine":       6,
+		"opennebula_virtual machine group": 7,
+		"opennebula_virtual network":       8,
 	}
 )
 

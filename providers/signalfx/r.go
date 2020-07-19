@@ -1041,7 +1041,7 @@ This chart type displays the specified plot in a heatmap fashion. This format is
 				},
 				resource.Attribute{
 					Name:        "color",
-					Description: `(Required) The color range to use. Hex values are not supported here. Must be either gray, blue, light_blue, navy, dark_orange, orange, dark_yellow, magenta, cerise, pink, violet, purple, gray_blue, dark_green, green, aquamarine, red, yellow, vivid_yellow, light_green, lime_green.`,
+					Description: `(Required) The color range to use. Hex values are not supported here. Must be one of gray, blue, light_blue, navy, dark_orange, orange, dark_yellow, magenta, cerise, pink, violet, purple, gray_blue, dark_green, green, aquamarine, red, yellow, vivid_yellow, light_green, or lime_green.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1178,7 +1178,7 @@ The name of each value in the chart reflects the name of the plot and any associ
 				},
 				resource.Attribute{
 					Name:        "color",
-					Description: `(Optional) Color to use : gray, blue, azure, navy, brown, orange, yellow, iris, magenta, pink, purple, violet, lilac, emerald, green, aquamarine.`,
+					Description: `(Optional) The color to use. Must be one of gray, blue, light_blue, navy, dark_orange, orange, dark_yellow, magenta, cerise, pink, violet, purple, gray_blue, dark_green, green, aquamarine, red, yellow, vivid_yellow, light_green, or lime_green.`,
 				},
 				resource.Attribute{
 					Name:        "value_unit",
@@ -1222,7 +1222,7 @@ The name of each value in the chart reflects the name of the plot and any associ
 				},
 				resource.Attribute{
 					Name:        "color",
-					Description: `(Required) The color range to use. Must be either gray, blue, navy, orange, yellow, magenta, purple, violet, lilac, green, aquamarine.`,
+					Description: `(Required) The color to use. Must be one of gray, blue, light_blue, navy, dark_orange, orange, dark_yellow, magenta, cerise, pink, violet, purple, gray_blue, dark_green, green, aquamarine, red, yellow, vivid_yellow, light_green, or lime_green.`,
 				},
 				resource.Attribute{
 					Name:        "sort_by",
@@ -1449,7 +1449,7 @@ If the time period is in the past, the number represents the value of the metric
 				},
 				resource.Attribute{
 					Name:        "color",
-					Description: `(Required) The color range to use. Must be either gray, blue, navy, orange, yellow, magenta, purple, violet, lilac, green, aquamarine.`,
+					Description: `(Required) The color to use. Must be one of gray, blue, light_blue, navy, dark_orange, orange, dark_yellow, magenta, cerise, pink, violet, purple, gray_blue, dark_green, green, aquamarine, red, yellow, vivid_yellow, light_green, or lime_green.`,
 				},
 				resource.Attribute{
 					Name:        "viz_options",
@@ -1465,7 +1465,7 @@ If the time period is in the past, the number represents the value of the metric
 				},
 				resource.Attribute{
 					Name:        "color",
-					Description: `(Optional) Color to use : gray, blue, azure, navy, brown, orange, yellow, iris, magenta, pink, purple, violet, lilac, emerald, green, aquamarine.`,
+					Description: `(Optional) The color to use. Must be one of gray, blue, light_blue, navy, dark_orange, orange, dark_yellow, magenta, cerise, pink, violet, purple, gray_blue, dark_green, green, aquamarine, red, yellow, vivid_yellow, light_green, or lime_green.`,
 				},
 				resource.Attribute{
 					Name:        "value_unit",

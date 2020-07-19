@@ -229,7 +229,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "default_login_domain",
-					Description: `(Optional) ActiveDirectory defult lgoin domain (string)`,
+					Description: `(Optional) ActiveDirectory defult login domain (string)`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -1564,19 +1564,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_cluster_alerting",
-					Description: `(Optional) Enable built-in cluster alerting. Default ` + "`" + `false` + "`" + ` (bool)`,
+					Description: `(Optional/Computed) Enable built-in cluster alerting (bool)`,
 				},
 				resource.Attribute{
 					Name:        "enable_cluster_monitoring",
-					Description: `(Optional) Enable built-in cluster monitoring. Default ` + "`" + `false` + "`" + ` (bool)`,
+					Description: `(Optional/Computed) Enable built-in cluster monitoring (bool)`,
 				},
 				resource.Attribute{
 					Name:        "enable_cluster_istio",
-					Description: `(Optional) Enable built-in cluster istio. Default ` + "`" + `false` + "`" + `. Just for Rancher v2.3.x and above (bool)`,
+					Description: `(Optional/Computed) Enable built-in cluster istio. Just for Rancher v2.3.x and above (bool)`,
 				},
 				resource.Attribute{
 					Name:        "enable_network_policy",
-					Description: `(Optional) Enable project network isolation. Default ` + "`" + `false` + "`" + ` (bool)`,
+					Description: `(Optional/Computed) Enable project network isolation (bool)`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -1756,11 +1756,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "custom_cloud_provider",
-					Description: `(Optional/Computed) RKE Custom Cloud Provider config for Cloud Provider (string) (string)`,
+					Description: `(Optional/Computed) RKE Custom Cloud Provider config for Cloud Provider (string)`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional/Computed) RKE sans for Cloud Provider. ` + "`" + `aws` + "`" + `, ` + "`" + `azure` + "`" + `, ` + "`" + `custom` + "`" + `, ` + "`" + `openstack` + "`" + `, ` + "`" + `vsphere` + "`" + ` are supported. (string)`,
+					Description: `(Optional/Computed) RKE Cloud Provider name. ` + "`" + `aws` + "`" + `, ` + "`" + `azure` + "`" + `, ` + "`" + `custom` + "`" + `, ` + "`" + `external` + "`" + `, ` + "`" + `openstack` + "`" + ` and ` + "`" + `vsphere` + "`" + ` are supported (string)`,
 				},
 				resource.Attribute{
 					Name:        "openstack_cloud_provider",
@@ -1901,6 +1901,10 @@ var (
 				resource.Attribute{
 					Name:        "cloud_provider_rate_limit_qps",
 					Description: `(Optional/Computed) (int)`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_sku",
+					Description: `(Optional) Allowed values: ` + "`" + `basic` + "`" + ` (default) ` + "`" + `standard` + "`" + ` (string)`,
 				},
 				resource.Attribute{
 					Name:        "location",
@@ -2179,6 +2183,10 @@ var (
 					Description: `(Optional/Computed) (string) #### ` + "`" + `dns` + "`" + ` ##### Arguments`,
 				},
 				resource.Attribute{
+					Name:        "nodelocal",
+					Description: `(Optional) Nodelocal dns config (list Maxitem: 1)`,
+				},
+				resource.Attribute{
 					Name:        "node_selector",
 					Description: `(Optional/Computed) DNS add-on node selector (map)`,
 				},
@@ -2192,7 +2200,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "upstream_nameservers",
-					Description: `(Optional/Computed) DNS add-on upstream nameservers (list) #### ` + "`" + `ingress` + "`" + ` ##### Arguments`,
+					Description: `(Optional/Computed) DNS add-on upstream nameservers (list) ##### ` + "`" + `nodelocal` + "`" + ` ###### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `(required) Nodelocal dns ip address (string)`,
+				},
+				resource.Attribute{
+					Name:        "node_selector",
+					Description: `(Optional) Node selector key pair (map) #### ` + "`" + `ingress` + "`" + ` ##### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "dns_policy",
@@ -2215,12 +2231,40 @@ var (
 					Description: `(Optional/Computed) Provider for RKE Ingress (string) #### ` + "`" + `monitoring` + "`" + ` ##### Arguments`,
 				},
 				resource.Attribute{
+					Name:        "node_selector",
+					Description: `(Optional) RKE monitoring node selector (map)`,
+				},
+				resource.Attribute{
 					Name:        "options",
 					Description: `(Optional/Computed) RKE options for monitoring (map)`,
 				},
 				resource.Attribute{
 					Name:        "provider",
-					Description: `(Optional/Computed) Provider for RKE monitoring (string) #### ` + "`" + `network` + "`" + ` ##### Arguments`,
+					Description: `(Optional/Computed) RKE monitoring provider (string)`,
+				},
+				resource.Attribute{
+					Name:        "replicas",
+					Description: `(Optional/Computed) RKE monitoring replicas (int)`,
+				},
+				resource.Attribute{
+					Name:        "update_strategy",
+					Description: `(Optional) RKE monitoring update strategy (list Maxitems: 1) ##### ` + "`" + `update_strategy` + "`" + ` ###### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "rolling_update",
+					Description: `(Optional) Monitoring deployment rolling update (list Maxitems: 1)`,
+				},
+				resource.Attribute{
+					Name:        "strategy",
+					Description: `(Optional) Monitoring deployment update strategy (string) ###### ` + "`" + `rolling_update` + "`" + ` ###### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "max_surge",
+					Description: `(Optional) Monitoring deployment rolling update max surge. Default: ` + "`" + `1` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "max_unavailable",
+					Description: `(Optional) Monitoring deployment rolling update max unavailable. Default: ` + "`" + `1` + "`" + ` (int) #### ` + "`" + `network` + "`" + ` ##### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "calico_network_provider",
@@ -3052,7 +3096,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_network_policy_config",
-					Description: `(Optional) Enable stackdriver logging. Default ` + "`" + `true` + "`" + ` (bool)`,
+					Description: `(Optional) Enable network policy config for the cluster. Default ` + "`" + `true` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
 					Name:        "enable_nodepool_autoscaling",
@@ -3115,6 +3159,10 @@ var (
 					Description: `(Optional) Whether the nodes are created as preemptible VM instances. Default ` + "`" + `false` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) GKE cluster region. Conflicts with ` + "`" + `zone` + "`" + ` (string)`,
+				},
+				resource.Attribute{
 					Name:        "resource_labels",
 					Description: `(Optional/Computed) The map of Kubernetes labels to be applied to each cluster (map)`,
 				},
@@ -3128,7 +3176,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone",
-					Description: `(Required) Zone GKE cluster (string) ### ` + "`" + `cluster_auth_endpoint` + "`" + ` #### Arguments`,
+					Description: `(Optional) GKE cluster zone. Conflicts with ` + "`" + `region` + "`" + ` (string) ### ` + "`" + `cluster_auth_endpoint` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "ca_certs",
@@ -3414,11 +3462,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "custom_cloud_provider",
-					Description: `(Optional/Computed) RKE Custom Cloud Provider config for Cloud Provider (string) (string)`,
+					Description: `(Optional/Computed) RKE Custom Cloud Provider config for Cloud Provider (string)`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional/Computed) RKE sans for Cloud Provider. ` + "`" + `aws` + "`" + `, ` + "`" + `azure` + "`" + `, ` + "`" + `custom` + "`" + `, ` + "`" + `openstack` + "`" + `, ` + "`" + `vsphere` + "`" + ` are supported. (string)`,
+					Description: `(Optional/Computed) RKE Cloud Provider name. ` + "`" + `aws` + "`" + `, ` + "`" + `azure` + "`" + `, ` + "`" + `custom` + "`" + `, ` + "`" + `external` + "`" + `, ` + "`" + `openstack` + "`" + ` and ` + "`" + `vsphere` + "`" + ` are supported (string)`,
 				},
 				resource.Attribute{
 					Name:        "openstack_cloud_provider",
@@ -3559,6 +3607,10 @@ var (
 				resource.Attribute{
 					Name:        "cloud_provider_rate_limit_qps",
 					Description: `(Optional/Computed) (int)`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_sku",
+					Description: `(Optional) Allowed values: ` + "`" + `basic` + "`" + ` (default) ` + "`" + `standard` + "`" + ` (string)`,
 				},
 				resource.Attribute{
 					Name:        "location",
@@ -3837,6 +3889,10 @@ var (
 					Description: `(Optional/Computed) (string) #### ` + "`" + `dns` + "`" + ` ##### Arguments`,
 				},
 				resource.Attribute{
+					Name:        "nodelocal",
+					Description: `(Optional) Nodelocal dns config (list Maxitem: 1)`,
+				},
+				resource.Attribute{
 					Name:        "node_selector",
 					Description: `(Optional/Computed) DNS add-on node selector (map)`,
 				},
@@ -3850,7 +3906,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "upstream_nameservers",
-					Description: `(Optional/Computed) DNS add-on upstream nameservers (list) #### ` + "`" + `ingress` + "`" + ` ##### Arguments`,
+					Description: `(Optional/Computed) DNS add-on upstream nameservers (list) ##### ` + "`" + `nodelocal` + "`" + ` ###### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `(required) Nodelocal dns ip address (string)`,
+				},
+				resource.Attribute{
+					Name:        "node_selector",
+					Description: `(Optional) Node selector key pair (map) #### ` + "`" + `ingress` + "`" + ` ##### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "dns_policy",
@@ -3873,12 +3937,40 @@ var (
 					Description: `(Optional/Computed) Provider for RKE Ingress (string) #### ` + "`" + `monitoring` + "`" + ` ##### Arguments`,
 				},
 				resource.Attribute{
+					Name:        "node_selector",
+					Description: `(Optional) RKE monitoring node selector (map)`,
+				},
+				resource.Attribute{
 					Name:        "options",
 					Description: `(Optional/Computed) RKE options for monitoring (map)`,
 				},
 				resource.Attribute{
 					Name:        "provider",
-					Description: `(Optional/Computed) Provider for RKE monitoring (string) #### ` + "`" + `network` + "`" + ` ##### Arguments`,
+					Description: `(Optional/Computed) RKE monitoring provider (string)`,
+				},
+				resource.Attribute{
+					Name:        "replicas",
+					Description: `(Optional/Computed) RKE monitoring replicas (int)`,
+				},
+				resource.Attribute{
+					Name:        "update_strategy",
+					Description: `(Optional) RKE monitoring update strategy (list Maxitems: 1) ##### ` + "`" + `update_strategy` + "`" + ` ###### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "rolling_update",
+					Description: `(Optional) Monitoring deployment rolling update (list Maxitems: 1)`,
+				},
+				resource.Attribute{
+					Name:        "strategy",
+					Description: `(Optional) Monitoring deployment update strategy (string) ###### ` + "`" + `rolling_update` + "`" + ` ###### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "max_surge",
+					Description: `(Optional) Monitoring deployment rolling update max surge. Default: ` + "`" + `1` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "max_unavailable",
+					Description: `(Optional) Monitoring deployment rolling update max unavailable. Default: ` + "`" + `1` + "`" + ` (int) #### ` + "`" + `network` + "`" + ` ##### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "calico_network_provider",
@@ -4710,7 +4802,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_network_policy_config",
-					Description: `(Optional) Enable stackdriver logging. Default ` + "`" + `true` + "`" + ` (bool)`,
+					Description: `(Optional) Enable network policy config for the cluster. Default ` + "`" + `true` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
 					Name:        "enable_nodepool_autoscaling",
@@ -4773,6 +4865,10 @@ var (
 					Description: `(Optional) Whether the nodes are created as preemptible VM instances. Default ` + "`" + `false` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) GKE cluster region. Conflicts with ` + "`" + `zone` + "`" + ` (string)`,
+				},
+				resource.Attribute{
 					Name:        "resource_labels",
 					Description: `(Optional/Computed) The map of Kubernetes labels to be applied to each cluster (map)`,
 				},
@@ -4786,7 +4882,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone",
-					Description: `(Required) Zone GKE cluster (string) ### ` + "`" + `cluster_auth_endpoint` + "`" + ` #### Arguments`,
+					Description: `(Optional) GKE cluster zone. Conflicts with ` + "`" + `region` + "`" + ` (string) ### ` + "`" + `cluster_auth_endpoint` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "ca_certs",
@@ -7002,6 +7098,10 @@ var (
 					Description: `(Optional) AWS root device name. Default ` + "`" + `/dev/sda1` + "`" + ` (string)`,
 				},
 				resource.Attribute{
+					Name:        "encrypt_ebs_volume",
+					Description: `(Optional) Encrypt EBS volume. Default ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
 					Name:        "endpoint",
 					Description: `(Optional) Optional endpoint URL (hostname only or fully qualified URI) (string)`,
 				},
@@ -7662,6 +7762,10 @@ var (
 				resource.Attribute{
 					Name:        "device_name",
 					Description: `(Optional) AWS root device name. Default ` + "`" + `/dev/sda1` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "encrypt_ebs_volume",
+					Description: `(Optional) Encrypt EBS volume. Default ` + "`" + `false` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
 					Name:        "endpoint",
@@ -9688,7 +9792,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "verbs",
-					Description: `(Optional) Policy rule verbs. ` + "`" + `create` + "`" + `, ` + "`" + `delete` + "`" + `, ` + "`" + `get` + "`" + `, ` + "`" + `list` + "`" + `, ` + "`" + `patch` + "`" + `, ` + "`" + `update` + "`" + `, ` + "`" + `watch` + "`" + ` and ` + "`" + ``,
+					Description: `(Optional) Policy rule verbs. ` + "`" + `create` + "`" + `, ` + "`" + `delete` + "`" + `, ` + "`" + `get` + "`" + `, ` + "`" + `list` + "`" + `, ` + "`" + `patch` + "`" + `, ` + "`" + `update` + "`" + `, ` + "`" + `view` + "`" + `, ` + "`" + `watch` + "`" + ` and ` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -9718,7 +9822,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "verbs",
-					Description: `(Optional) Policy rule verbs. ` + "`" + `create` + "`" + `, ` + "`" + `delete` + "`" + `, ` + "`" + `get` + "`" + `, ` + "`" + `list` + "`" + `, ` + "`" + `patch` + "`" + `, ` + "`" + `update` + "`" + `, ` + "`" + `watch` + "`" + ` and ` + "`" + ``,
+					Description: `(Optional) Policy rule verbs. ` + "`" + `create` + "`" + `, ` + "`" + `delete` + "`" + `, ` + "`" + `get` + "`" + `, ` + "`" + `list` + "`" + `, ` + "`" + `patch` + "`" + `, ` + "`" + `update` + "`" + `, ` + "`" + `view` + "`" + `, ` + "`" + `watch` + "`" + ` and ` + "`" + ``,
 				},
 			},
 		},

@@ -242,7 +242,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "start_time",
-					Description: `(Optional; Format: ISO 8601) Set a start time for one time tasks.`,
+					Description: `(Optional; Format: ISO 8601; Time Standard: UTC time) Set a start time for one time tasks.`,
 				},
 				resource.Attribute{
 					Name:        "frequency",
@@ -462,31 +462,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "policy_name",
-					Description: `(Required) The name of the policy.`,
+					Description: `(Required) String, the name of the policy.`,
 				},
 				resource.Attribute{
 					Name:        "metric_name",
-					Description: `(Required) The name of the metric, with or without spaces.`,
+					Description: `(Required) String, the name of the metric, with or without spaces.`,
 				},
 				resource.Attribute{
 					Name:        "statistic",
-					Description: `(Optional, Default: ` + "`" + `"average"` + "`" + `) The metric statistics to return. For information about specific statistics go to [Statistics](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/index.html?CHAP_TerminologyandKeyConcepts.html#Statistic) in the Amazon CloudWatch Developer Guide.`,
+					Description: `(Optional, Default: ` + "`" + `"average"` + "`" + `) String, the metric statistics to return. For information about specific statistics go to [Statistics](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/index.html?CHAP_TerminologyandKeyConcepts.html#Statistic) in the Amazon CloudWatch Developer Guide.`,
 				},
 				resource.Attribute{
 					Name:        "unit",
-					Description: `(Required) The unit for the alarm's associated metric. Valid values: ` + "`" + `"percent` + "`" + `, ` + "`" + `"seconds"` + "`" + `, ` + "`" + `"microseconds"` + "`" + `, ` + "`" + `"milliseconds"` + "`" + `, ` + "`" + `"bytes"` + "`" + `, ` + "`" + `"kilobytes"` + "`" + `, ` + "`" + `"megabytes"` + "`" + `, ` + "`" + `"gigabytes"` + "`" + `, ` + "`" + `"terabytes"` + "`" + `, ` + "`" + `"bits"` + "`" + `, ` + "`" + `"kilobits"` + "`" + `, ` + "`" + `"megabits"` + "`" + `, ` + "`" + `"gigabits"` + "`" + `, ` + "`" + `"terabits"` + "`" + `, ` + "`" + `"count"` + "`" + `, ` + "`" + `"bytes/second"` + "`" + `, ` + "`" + `"kilobytes/second"` + "`" + `, ` + "`" + `"megabytes/second"` + "`" + `, ` + "`" + `"gigabytes/second"` + "`" + `, ` + "`" + `"terabytes/second"` + "`" + `, ` + "`" + `"bits/second"` + "`" + `, ` + "`" + `"kilobits/second"` + "`" + `, ` + "`" + `"megabits/second"` + "`" + `, ` + "`" + `"gigabits/second"` + "`" + `, ` + "`" + `"terabits/second"` + "`" + `, ` + "`" + `"count/second"` + "`" + `, ` + "`" + `"none"` + "`" + `.`,
+					Description: `(Required) String, tThe unit for the alarm's associated metric. Valid values: ` + "`" + `"percent` + "`" + `, ` + "`" + `"seconds"` + "`" + `, ` + "`" + `"microseconds"` + "`" + `, ` + "`" + `"milliseconds"` + "`" + `, ` + "`" + `"bytes"` + "`" + `, ` + "`" + `"kilobytes"` + "`" + `, ` + "`" + `"megabytes"` + "`" + `, ` + "`" + `"gigabytes"` + "`" + `, ` + "`" + `"terabytes"` + "`" + `, ` + "`" + `"bits"` + "`" + `, ` + "`" + `"kilobits"` + "`" + `, ` + "`" + `"megabits"` + "`" + `, ` + "`" + `"gigabits"` + "`" + `, ` + "`" + `"terabits"` + "`" + `, ` + "`" + `"count"` + "`" + `, ` + "`" + `"bytes/second"` + "`" + `, ` + "`" + `"kilobytes/second"` + "`" + `, ` + "`" + `"megabytes/second"` + "`" + `, ` + "`" + `"gigabytes/second"` + "`" + `, ` + "`" + `"terabytes/second"` + "`" + `, ` + "`" + `"bits/second"` + "`" + `, ` + "`" + `"kilobits/second"` + "`" + `, ` + "`" + `"megabits/second"` + "`" + `, ` + "`" + `"gigabits/second"` + "`" + `, ` + "`" + `"terabits/second"` + "`" + `, ` + "`" + `"count/second"` + "`" + `, ` + "`" + `"none"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "namespace",
-					Description: `(Required) The namespace for the alarm's associated metric.`,
+					Description: `(Required) String, the namespace for the alarm's associated metric.`,
 				},
 				resource.Attribute{
 					Name:        "cooldown",
-					Description: `(Optional, Default: ` + "`" + `300` + "`" + `) The amount of time, in seconds, after a scaling activity completes and before the next scaling activity can start. If this parameter is not specified, the default cooldown period for the group applies.`,
+					Description: `(Optional, Default: ` + "`" + `300` + "`" + `) Integer the amount of time, in seconds, after a scaling activity completes and before the next scaling activity can start. If this parameter is not specified, the default cooldown period for the group applies.`,
 				},
 				resource.Attribute{
 					Name:        "source",
-					Description: `(Optional) The source of the metric. Valid values: ` + "`" + `"cloudWatch"` + "`" + `, ` + "`" + `"spectrum"` + "`" + `.`,
+					Description: `(Optional) String, the source of the metric. Valid values: ` + "`" + `"cloudWatch"` + "`" + `, ` + "`" + `"spectrum"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "dimensions",
@@ -494,15 +494,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The dimension name.`,
+					Description: `(Required) String, the dimension name.`,
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Required) The dimension value.`,
+					Description: `(Required) String, the dimension value.`,
 				},
 				resource.Attribute{
 					Name:        "target",
-					Description: `(Optional; if using ` + "`" + `updateCapacity` + "`" + `) The target number of instances to have in the group. ` + "`" + `scaling_target_policies` + "`" + ` support predictive scaling:`,
+					Description: `(Optional; if using ` + "`" + `updateCapacity` + "`" + `) The target number of instances to have in the group.`,
+				},
+				resource.Attribute{
+					Name:        "max_capacity_per_scale",
+					Description: `(Optional) String, restrict the maximal number of instances which can be added in each scale-up action. ` + "`" + `scaling_target_policies` + "`" + ` support predictive scaling:`,
 				},
 				resource.Attribute{
 					Name:        "predictive_mode",

@@ -288,7 +288,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "aws_side_as_number",
-					Description: `(Required) BGP Local ASN (Autonomous System Number). Integer between 1-65535. Example: "65001".`,
+					Description: `(Required) BGP Local ASN (Autonomous System Number). Integer between 1-4294967294. Example: "65001".`,
 				},
 				resource.Attribute{
 					Name:        "security_domains",
@@ -606,7 +606,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "remote_as_number",
-					Description: `(Optional) AWS side as a number. Integer between 1-65535. Example: "12".`,
+					Description: `(Optional) AWS side as a number. Integer between 1-4294967294. Example: "12".`,
 				},
 				resource.Attribute{
 					Name:        "remote_cidr",
@@ -2482,11 +2482,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bgp_local_as_num",
-					Description: `(Optional) BGP local ASN (Autonomous System Number). Integer between 1-65535. Required for 'bgp' connection.`,
+					Description: `(Optional) BGP local ASN (Autonomous System Number). Integer between 1-4294967294. Required for 'bgp' connection.`,
 				},
 				resource.Attribute{
 					Name:        "bgp_remote_as_num",
-					Description: `(Optional) BGP remote ASN (Autonomous System Number). Integer between 1-65535. Required for 'bgp' connection.`,
+					Description: `(Optional) BGP remote ASN (Autonomous System Number). Integer between 1-4294967294. Required for 'bgp' connection.`,
 				},
 				resource.Attribute{
 					Name:        "remote_subnet",
@@ -2502,7 +2502,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_bgp_remote_as_num",
-					Description: `(Optional) Backup BGP remote ASN (Autonomous System Number). Integer between 1-65535. Required if HA enabled for 'bgp' connection.`,
+					Description: `(Optional) Backup BGP remote ASN (Autonomous System Number). Integer between 1-4294967294. Required if HA enabled for 'bgp' connection.`,
 				},
 				resource.Attribute{
 					Name:        "backup_pre_shared_key",
@@ -3037,7 +3037,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bgp_local_as_num",
-					Description: `(Required) BGP Local ASN (Autonomous System Number). Integer between 1-65535. Example: "65001". The following arguments are deprecated:`,
+					Description: `(Required) BGP Local ASN (Autonomous System Number). Integer between 1-4294967294. Example: "65001". The following arguments are deprecated:`,
 				},
 				resource.Attribute{
 					Name:        "enable_advertise_transit_cidr",

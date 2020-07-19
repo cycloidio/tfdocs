@@ -120,16 +120,8 @@ var (
 					Description: `(Optional) The name of the metric. A string containing freeform text.`,
 				},
 				resource.Attribute{
-					Name:        "tags",
-					Description: `(Optional) A list of tags assigned to the metric.`,
-				},
-				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) A string containing either ` + "`" + `numeric` + "`" + `, ` + "`" + `text` + "`" + `, ` + "`" + `histogram` + "`" + `, ` + "`" + `composite` + "`" + `, or ` + "`" + `caql` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "units",
-					Description: `(Optional) The unit of measurement the metric represents (e.g., bytes, seconds, milliseconds). A string containing freeform text. ## Supported Check Types Circonus supports a variety of different checks. Each check type has its own set of options that must be configured. Each check type conflicts with every other check type (i.e. a ` + "`" + `circonus_check` + "`" + ` configured for a ` + "`" + `json` + "`" + ` check will conflict with all other check types, therefore a ` + "`" + `postgresql` + "`" + ` check must be a different ` + "`" + `circonus_check` + "`" + ` resource). ### ` + "`" + `caql` + "`" + ` Check Type Attributes`,
+					Description: `(Required) A string containing either ` + "`" + `numeric` + "`" + `, ` + "`" + `text` + "`" + `, ` + "`" + `histogram` + "`" + `, ` + "`" + `composite` + "`" + `, or ` + "`" + `caql` + "`" + `. ## Supported Check Types Circonus supports a variety of different checks. Each check type has its own set of options that must be configured. Each check type conflicts with every other check type (i.e. a ` + "`" + `circonus_check` + "`" + ` configured for a ` + "`" + `json` + "`" + ` check will conflict with all other check types, therefore a ` + "`" + `postgresql` + "`" + ` check must be a different ` + "`" + `circonus_check` + "`" + ` resource). ### ` + "`" + `caql` + "`" + ` Check Type Attributes`,
 				},
 				resource.Attribute{
 					Name:        "query",
@@ -161,7 +153,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `(Optional) The version of the Cloudwatch API to use. Defaults to ` + "`" + `2010-08-01` + "`" + `. Available metrics depend on the payload returned in the ` + "`" + `cloudwatch` + "`" + ` check. See the [` + "`" + `cloudwatch` + "`" + ` check type](https://login.circonus.com/resources/api/calls/check_bundle) for additional details. The ` + "`" + `circonus_check` + "`" + ` ` + "`" + `period` + "`" + ` attribute must be set to either ` + "`" + `60s` + "`" + ` or ` + "`" + `300s` + "`" + ` for CloudWatch metrics. Example CloudWatch check (partial metrics collection): ` + "`" + `` + "`" + `` + "`" + `hcl variable "cloudwatch_rds_tags" { type = "list" default = [ "app:postgresql", "app:rds", "source:cloudwatch", ] } resource "circonus_check" "rds_metrics" { active = true name = "Terraform test: RDS Metrics via CloudWatch" notes = "Collect RDS metrics" period = "60s" collector { id = "/broker/1" } cloudwatch { dimmensions = { DBInstanceIdentifier = "my-db-name", } metric = [ "CPUUtilization", "DatabaseConnections", ] namespace = "AWS/RDS" url = "https://monitoring.us-east-1.amazonaws.com" } metric { name = "CPUUtilization" tags = [ "${var.cloudwatch_rds_tags}" ] type = "numeric" unit = "%" } metric { name = "DatabaseConnections" tags = [ "${var.cloudwatch_rds_tags}" ] type = "numeric" unit = "connections" } } ` + "`" + `` + "`" + `` + "`" + ` ### ` + "`" + `consul` + "`" + ` Check Type Attributes`,
+					Description: `(Optional) The version of the Cloudwatch API to use. Defaults to ` + "`" + `2010-08-01` + "`" + `. Available metrics depend on the payload returned in the ` + "`" + `cloudwatch` + "`" + ` check. See the [` + "`" + `cloudwatch` + "`" + ` check type](https://login.circonus.com/resources/api/calls/check_bundle) for additional details. The ` + "`" + `circonus_check` + "`" + ` ` + "`" + `period` + "`" + ` attribute must be set to either ` + "`" + `60s` + "`" + ` or ` + "`" + `300s` + "`" + ` for CloudWatch metrics. Example CloudWatch check (partial metrics collection): ` + "`" + `` + "`" + `` + "`" + `hcl variable "cloudwatch_rds_tags" { type = "list" default = [ "app:postgresql", "app:rds", "source:cloudwatch", ] } resource "circonus_check" "rds_metrics" { active = true name = "Terraform test: RDS Metrics via CloudWatch" notes = "Collect RDS metrics" period = "60s" collector { id = "/broker/1" } cloudwatch { dimmensions = { DBInstanceIdentifier = "my-db-name", } metric = [ "CPUUtilization", "DatabaseConnections", ] namespace = "AWS/RDS" url = "https://monitoring.us-east-1.amazonaws.com" } metric { name = "CPUUtilization" type = "numeric" } metric { name = "DatabaseConnections" type = "numeric" } tags = "$cloudwatch_rds_tags" } ` + "`" + `` + "`" + `` + "`" + ` ### ` + "`" + `consul` + "`" + ` Check Type Attributes`,
 				},
 				resource.Attribute{
 					Name:        "acl_token",
@@ -221,7 +213,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `(Optional) A Circonus check to monitor Consul checks across the entire Consul cluster. This value may be either ` + "`" + `passing` + "`" + `, ` + "`" + `warning` + "`" + `, or ` + "`" + `critical` + "`" + `. This ` + "`" + `consul` + "`" + ` check mode is intended to act as the cluster check of last resort. This check type is useful when first starting and is intended to act as a check of last resort before transitioning to explicitly defined checks for individual services or nodes. The metrics returned from check will be sorted based on the ` + "`" + `CreateIndex` + "`" + ` of the entry in order to have a stable set of metrics in the array of returned values. See also the ` + "`" + `service_blacklist` + "`" + `, ` + "`" + `node_blacklist` + "`" + `, and ` + "`" + `check_blacklist` + "`" + ` attributes. This attribute conflicts with the ` + "`" + `node` + "`" + ` and ` + "`" + `state` + "`" + ` attributes. Available metrics depend on the consul check being performed (` + "`" + `node` + "`" + `, ` + "`" + `service` + "`" + `, or ` + "`" + `state` + "`" + `). In addition to the data avilable from the endpoints, the ` + "`" + `consul` + "`" + ` check also returns a set of metrics that are a variant of: ` + "`" + `{Num,Pct}{,Passing,Warning,Critical}{Checks,Nodes,Services}` + "`" + ` (see the ` + "`" + `GLOB_BRACE` + "`" + ` section of your local ` + "`" + `glob(3)` + "`" + ` documentation). Example Consul check (partial metrics collection): ` + "`" + `` + "`" + `` + "`" + `hcl resource "circonus_check" "consul_server" { active = true name = "%s" period = "60s" collector { # Collector ID must be an Enterprise broker able to reach the Consul agent # listed in ` + "`" + `http_addr` + "`" + `. id = "/broker/2110" } consul { service = "consul" # Other consul check modes: # node = "consul1" # state = "critical" } metric { name = "NumNodes" tags = [ "source:consul", "lifecycle:unittest" ] type = "numeric" } metric { name = "LastContact" tags = [ "source:consul", "lifecycle:unittest" ] type = "numeric" unit = "seconds" } metric { name = "Index" tags = [ "source:consul", "lifecycle:unittest" ] type = "numeric" unit = "transactions" } metric { name = "KnownLeader" tags = [ "source:consul", "lifecycle:unittest" ] type = "text" } tags = [ "source:consul", "lifecycle:unittest" ] } ` + "`" + `` + "`" + `` + "`" + ` ### ` + "`" + `dns` + "`" + ` Check Type Attributes`,
+					Description: `(Optional) A Circonus check to monitor Consul checks across the entire Consul cluster. This value may be either ` + "`" + `passing` + "`" + `, ` + "`" + `warning` + "`" + `, or ` + "`" + `critical` + "`" + `. This ` + "`" + `consul` + "`" + ` check mode is intended to act as the cluster check of last resort. This check type is useful when first starting and is intended to act as a check of last resort before transitioning to explicitly defined checks for individual services or nodes. The metrics returned from check will be sorted based on the ` + "`" + `CreateIndex` + "`" + ` of the entry in order to have a stable set of metrics in the array of returned values. See also the ` + "`" + `service_blacklist` + "`" + `, ` + "`" + `node_blacklist` + "`" + `, and ` + "`" + `check_blacklist` + "`" + ` attributes. This attribute conflicts with the ` + "`" + `node` + "`" + ` and ` + "`" + `state` + "`" + ` attributes. Available metrics depend on the consul check being performed (` + "`" + `node` + "`" + `, ` + "`" + `service` + "`" + `, or ` + "`" + `state` + "`" + `). In addition to the data avilable from the endpoints, the ` + "`" + `consul` + "`" + ` check also returns a set of metrics that are a variant of: ` + "`" + `{Num,Pct}{,Passing,Warning,Critical}{Checks,Nodes,Services}` + "`" + ` (see the ` + "`" + `GLOB_BRACE` + "`" + ` section of your local ` + "`" + `glob(3)` + "`" + ` documentation). Example Consul check (partial metrics collection): ` + "`" + `` + "`" + `` + "`" + `hcl resource "circonus_check" "consul_server" { active = true name = "%s" period = "60s" collector { # Collector ID must be an Enterprise broker able to reach the Consul agent # listed in ` + "`" + `http_addr` + "`" + `. id = "/broker/2110" } consul { service = "consul" # Other consul check modes: # node = "consul1" # state = "critical" } metric { name = "NumNodes" type = "numeric" } metric { name = "LastContact" type = "numeric" } metric { name = "Index" type = "numeric" } metric { name = "KnownLeader" type = "text" } tags = [ "source:consul", "lifecycle:unittest" ] } ` + "`" + `` + "`" + `` + "`" + ` ### ` + "`" + `dns` + "`" + ` Check Type Attributes`,
 				},
 				resource.Attribute{
 					Name:        "ctype",
@@ -237,7 +229,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rtype",
-					Description: `(Required) The DNS resource record type of the query. Default is A. Available metrics include: ` + "`" + `answer` + "`" + `, ` + "`" + `rtt` + "`" + `, and ` + "`" + `ttl` + "`" + `. See the [` + "`" + `dns` + "`" + ` check type](https://login.circonus.com/resources/api/calls/check_bundle) for additional details. Example DNS check (partial metrics collection): ` + "`" + `` + "`" + `` + "`" + `hcl resource "circonus_check" "dns_google_mx" { active = true name = "%s" period = "60s" collector { id = "/broker/1" } dns { query = "google.com" rtype = "MX" } metric { name = "answer" type = "text" } metric { name = "rtt" type = "numeric" unit = "milliseconds" } metric { name = "ttl" type = "numeric" unit = "seconds" } tags = [ "source:consul", "lifecycle:unittest" ] } ` + "`" + `` + "`" + `` + "`" + ` ### ` + "`" + `http` + "`" + ` Check Type Attributes`,
+					Description: `(Required) The DNS resource record type of the query. Default is A. Available metrics include: ` + "`" + `answer` + "`" + `, ` + "`" + `rtt` + "`" + `, and ` + "`" + `ttl` + "`" + `. See the [` + "`" + `dns` + "`" + ` check type](https://login.circonus.com/resources/api/calls/check_bundle) for additional details. Example DNS check (partial metrics collection): ` + "`" + `` + "`" + `` + "`" + `hcl resource "circonus_check" "dns_google_mx" { active = true name = "%s" period = "60s" collector { id = "/broker/1" } dns { query = "google.com" rtype = "MX" } metric { name = "answer" type = "text" } metric { name = "rtt" type = "numeric" } metric { name = "ttl" type = "numeric" } tags = [ "source:consul", "lifecycle:unittest" ] } ` + "`" + `` + "`" + `` + "`" + ` ### ` + "`" + `http` + "`" + ` Check Type Attributes`,
 				},
 				resource.Attribute{
 					Name:        "auth_method",
@@ -449,7 +441,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tls",
-					Description: `(Optional) When enabled establish a TLS connection. Available metrics include: ` + "`" + `banner` + "`" + `, ` + "`" + `banner_match` + "`" + `, ` + "`" + `cert_end` + "`" + `, ` + "`" + `cert_end_in` + "`" + `, ` + "`" + `cert_error` + "`" + `, ` + "`" + `cert_issuer` + "`" + `, ` + "`" + `cert_start` + "`" + `, ` + "`" + `cert_subject` + "`" + `, ` + "`" + `duration` + "`" + `, ` + "`" + `tt_connect` + "`" + `, ` + "`" + `tt_firstbyte` + "`" + `. See the [` + "`" + `tcp` + "`" + ` check type](https://login.circonus.com/resources/api/calls/check_bundle) for additional details. Sample ` + "`" + `tcp` + "`" + ` check: ` + "`" + `` + "`" + `` + "`" + `hcl resource "circonus_check" "tcp_check" { name = "TCP and TLS check" notes = "Obtains the connect time and TTL for the TLS cert" period = "60s" collector { id = "/broker/1" } tcp { host = "127.0.0.1" port = 443 tls = true } metric { name = "cert_end_in" tags = [ "${var.tcp_check_tags}" ] type = "numeric" unit = "seconds" } metric { name = "tt_connect" tags = [ "${var.tcp_check_tags}" ] type = "numeric" unit = "miliseconds" } tags = [ "${var.tcp_check_tags}" ] } ` + "`" + `` + "`" + `` + "`" + ` ## Out Parameters`,
+					Description: `(Optional) When enabled establish a TLS connection. Available metrics include: ` + "`" + `banner` + "`" + `, ` + "`" + `banner_match` + "`" + `, ` + "`" + `cert_end` + "`" + `, ` + "`" + `cert_end_in` + "`" + `, ` + "`" + `cert_error` + "`" + `, ` + "`" + `cert_issuer` + "`" + `, ` + "`" + `cert_start` + "`" + `, ` + "`" + `cert_subject` + "`" + `, ` + "`" + `duration` + "`" + `, ` + "`" + `tt_connect` + "`" + `, ` + "`" + `tt_firstbyte` + "`" + `. See the [` + "`" + `tcp` + "`" + ` check type](https://login.circonus.com/resources/api/calls/check_bundle) for additional details. Sample ` + "`" + `tcp` + "`" + ` check: ` + "`" + `` + "`" + `` + "`" + `hcl resource "circonus_check" "tcp_check" { name = "TCP and TLS check" notes = "Obtains the connect time and TTL for the TLS cert" period = "60s" collector { id = "/broker/1" } tcp { host = "127.0.0.1" port = 443 tls = true } metric { name = "cert_end_in" type = "numeric" } metric { name = "tt_connect" type = "numeric" } tags = "${var.tcp_check_tags}" } ` + "`" + `` + "`" + `` + "`" + ` ## Out Parameters`,
 				},
 				resource.Attribute{
 					Name:        "check_by_collector",
@@ -611,7 +603,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "webhook_url",
-					Description: `(Required) The PagerDuty webhook URL that PagerDuty uses to notify Circonus of acknowledged actions. ## Supported Contact Group ` + "`" + `slack` + "`" + ` Attributes`,
+					Description: `(Required) The PagerDuty webhook URL that PagerDuty uses to notify Circonus of acknowledged actions.`,
+				},
+				resource.Attribute{
+					Name:        "account",
+					Description: `(Required) The PagerDuty account. This is the prefix to your pagerduty url. The "foo" in "foo.pagerduty.com". ## Supported Contact Group ` + "`" + `slack` + "`" + ` Attributes`,
 				},
 				resource.Attribute{
 					Name:        "contact_group_fallback",
@@ -1106,58 +1102,8 @@ var (
 					Description: `(Required) The name of the metric. A ` + "`" + `name` + "`" + ` must be unique within a ` + "`" + `circonus_check` + "`" + ` and its meaning is ` + "`" + `circonus_check.type` + "`" + ` specific.`,
 				},
 				resource.Attribute{
-					Name:        "tags",
-					Description: `(Optional) A list of tags assigned to the metric.`,
-				},
-				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) The type of metric. This value must be present and can be one of the following values: ` + "`" + `numeric` + "`" + `, ` + "`" + `text` + "`" + `, ` + "`" + `histogram` + "`" + `, ` + "`" + `composite` + "`" + `, or ` + "`" + `caql` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "unit",
-					Description: `(Optional) The unit of measurement for this ` + "`" + `circonus_metric` + "`" + `. ## Import Example ` + "`" + `circonus_metric` + "`" + ` supports importing resources. Supposing the following Terraform: ` + "`" + `` + "`" + `` + "`" + `hcl provider "circonus" { alias = "b8fec159-f9e5-4fe6-ad2c-dc1ec6751586" } resource "circonus_metric" "usage" { name = "_usage` + "`" + `0` + "`" + `_used" type = "numeric" unit = "qty" tags = { source = "circonus" } } ` + "`" + `` + "`" + `` + "`" + ` It is possible to import a ` + "`" + `circonus_metric` + "`" + ` resource with the following command: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import circonus_metric.usage ID ` + "`" + `` + "`" + `` + "`" + ` Where ` + "`" + `ID` + "`" + ` is a random, never before used UUID and ` + "`" + `circonus_metric.usage` + "`" + ` is the name of the resource whose state will be populated as a result of the command.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "circonus_metric_cluster",
-			Category:         "Resources",
-			ShortDescription: `Manages a Circonus Metric Cluster.`,
-			Description:      ``,
-			Keywords: []string{
-				"metric",
-				"cluster",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "description",
-					Description: `(Optional) A long-form description of the metric cluster.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The name of the metric cluster. This name must be unique across all metric clusters in a given Circonus Account.`,
-				},
-				resource.Attribute{
-					Name:        "query",
-					Description: `(Required) One or more ` + "`" + `query` + "`" + ` attributes must be present. Each ` + "`" + `query` + "`" + ` must contain both a ` + "`" + `definition` + "`" + ` and a ` + "`" + `type` + "`" + `. See below for details on supported attributes.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `(Optional) A list of tags attached to the metric cluster. ## Supported Metric Cluster ` + "`" + `query` + "`" + ` Attributes`,
-				},
-				resource.Attribute{
-					Name:        "definition",
-					Description: `(Required) The definition of a metric cluster [query](https://login.circonus.com/resources/api/calls/metric_cluster).`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `(Required) The query type to execute per metric cluster. Valid query types are: ` + "`" + `average` + "`" + `, ` + "`" + `count` + "`" + `, ` + "`" + `counter` + "`" + `, ` + "`" + `counter2` + "`" + `, ` + "`" + `counter2_stddev` + "`" + `, ` + "`" + `counter_stddev` + "`" + `, ` + "`" + `derive` + "`" + `, ` + "`" + `derive2` + "`" + `, ` + "`" + `derive2_stddev` + "`" + `, ` + "`" + `derive_stddev` + "`" + `, ` + "`" + `histogram` + "`" + `, ` + "`" + `stddev` + "`" + `, ` + "`" + `text` + "`" + `. ## Out parameters`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `ID of the Metric Cluster. ## Import Example ` + "`" + `circonus_metric_cluster` + "`" + ` supports importing resources. Supposing the following Terraform: ` + "`" + `` + "`" + `` + "`" + `hcl provider "circonus" { alias = "b8fec159-f9e5-4fe6-ad2c-dc1ec6751586" } resource "circonus_metric_cluster" "mymetriccluster" { name = "Metric Cluster for a particular metric in a job" query { definition = "`,
+					Description: `(Required) The type of metric. This value must be present and can be one of the following values: ` + "`" + `numeric` + "`" + `, ` + "`" + `text` + "`" + `, ` + "`" + `histogram` + "`" + `, ` + "`" + `composite` + "`" + `, or ` + "`" + `caql` + "`" + `. ## Import Example ` + "`" + `circonus_metric` + "`" + ` supports importing resources. Supposing the following Terraform: ` + "`" + `` + "`" + `` + "`" + `hcl provider "circonus" { alias = "b8fec159-f9e5-4fe6-ad2c-dc1ec6751586" } resource "circonus_metric" "usage" { name = "_usage` + "`" + `0` + "`" + `_used" type = "numeric" } ` + "`" + `` + "`" + `` + "`" + ` It is possible to import a ` + "`" + `circonus_metric` + "`" + ` resource with the following command: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import circonus_metric.usage ID ` + "`" + `` + "`" + `` + "`" + ` Where ` + "`" + `ID` + "`" + ` is a random, never before used UUID and ` + "`" + `circonus_metric.usage` + "`" + ` is the name of the resource whose state will be populated as a result of the command.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1223,7 +1169,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "last",
-					Description: `(Optional) A duration for the sliding window. Default ` + "`" + `300s` + "`" + `.`,
+					Description: `(Optional) A duration for the sliding window. Default ` + "`" + `300` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "atleast",
+					Description: `(Optional) A duration for the minimum amount of data to consider in the sliding window. Default ` + "`" + `0` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "using",
@@ -1263,7 +1213,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "severity",
-					Description: `(Optional) The severity level of the notification. This can be set to any value between ` + "`" + `0` + "`" + ` and ` + "`" + `5` + "`" + `. Defaults to ` + "`" + `1` + "`" + `. ## Import Example ` + "`" + `circonus_rule_set` + "`" + ` supports importing resources. Supposing the following Terraform (and that the referenced [` + "`" + `circonus_metric` + "`" + `](metric.html) and [` + "`" + `circonus_check` + "`" + `](check.html) have already been imported): ` + "`" + `` + "`" + `` + "`" + `hcl resource "circonus_rule_set" "icmp-latency-alert" { check = "${circonus_check.api_latency.checks[0]}" metric_name = "maximum" if { value { absent = "600s" } then { notify = [ "${circonus_contact_group.test-trigger.id}" ] severity = 1 } } if { value { over { last = "120s" using = "average" } max_value = 0.5 # units are in miliseconds } then { notify = [ "${circonus_contact_group.test-trigger.id}" ] severity = 2 } } } ` + "`" + `` + "`" + `` + "`" + ` It is possible to import a ` + "`" + `circonus_rule_set` + "`" + ` resource with the following command: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import circonus_rule_set.icmp-latency-alert ID ` + "`" + `` + "`" + `` + "`" + ` Where ` + "`" + `ID` + "`" + ` is the ` + "`" + `_cid` + "`" + ` or Circonus ID of the Rule Set (e.g. ` + "`" + `/rule_set/201285_maximum` + "`" + `) and ` + "`" + `circonus_rule_set.icmp-latency-alert` + "`" + ` is the name of the resource whose state will be populated as a result of the command.`,
+					Description: `(Optional) The severity level of the notification. This can be set to any value between ` + "`" + `0` + "`" + ` and ` + "`" + `5` + "`" + `. Defaults to ` + "`" + `1` + "`" + `. ## Import Example ` + "`" + `circonus_rule_set` + "`" + ` supports importing resources. Supposing the following Terraform (and that the referenced [` + "`" + `circonus_metric` + "`" + `](metric.html) and [` + "`" + `circonus_check` + "`" + `](check.html) have already been imported): ` + "`" + `` + "`" + `` + "`" + `hcl resource "circonus_rule_set" "icmp-latency-alert" { check = "${circonus_check.api_latency.checks[0]}" metric_name = "maximum" if { value { absent = "600" } then { notify = [ "${circonus_contact_group.test-trigger.id}" ] severity = 1 } } if { value { over { last = "120" atleast = "60" using = "average" } max_value = 0.5 # units are in miliseconds } then { notify = [ "${circonus_contact_group.test-trigger.id}" ] severity = 2 } } } ` + "`" + `` + "`" + `` + "`" + ` It is possible to import a ` + "`" + `circonus_rule_set` + "`" + ` resource with the following command: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import circonus_rule_set.icmp-latency-alert ID ` + "`" + `` + "`" + `` + "`" + ` Where ` + "`" + `ID` + "`" + ` is the ` + "`" + `_cid` + "`" + ` or Circonus ID of the Rule Set (e.g. ` + "`" + `/rule_set/201285_maximum` + "`" + `) and ` + "`" + `circonus_rule_set.icmp-latency-alert` + "`" + ` is the name of the resource whose state will be populated as a result of the command.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1382,10 +1332,9 @@ var (
 		"circonus_graph":          3,
 		"circonus_maintenance":    4,
 		"circonus_metric":         5,
-		"circonus_metric_cluster": 6,
-		"circonus_rule_set":       7,
-		"circonus_rule_set_group": 8,
-		"circonus_worksheet":      9,
+		"circonus_rule_set":       6,
+		"circonus_rule_set_group": 7,
+		"circonus_worksheet":      8,
 	}
 )
 

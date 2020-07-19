@@ -1627,6 +1627,342 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "baiducloud_cce_cluster_nodes",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get cce cluster nodes.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_uuid",
+					Description: `(Required, ForceNew) UUID of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "available_zone",
+					Description: `(Optional, ForceNew) Available zone of the cluster node.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Optional, ForceNew) ID of the search instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_name_regex",
+					Description: `(Optional, ForceNew) Regex pattern of the search spec name.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `(Optional, ForceNew) Type of the search instance.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Optional, ForceNew) ID of the subnet. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Result of the cluster nodes list.`,
+				},
+				resource.Attribute{
+					Name:        "available_zone",
+					Description: `CDS disk size, should in [1, 32765], when snapshot_id not set, this parameter is required.`,
+				},
+				resource.Attribute{
+					Name:        "blb",
+					Description: `BLB address of the node.`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `Number of cpu cores.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "delete_time",
+					Description: `Delete time of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `Local disk size of the node.`,
+				},
+				resource.Attribute{
+					Name:        "eip_bandwidth",
+					Description: `Eip bandwidth(Mbps) of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "eip",
+					Description: `Eip of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `Expire time of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "fix_ip",
+					Description: `Fix ip of the node, which is assigned in VPC.`,
+				},
+				resource.Attribute{
+					Name:        "floating_ip",
+					Description: `Floating ip of the node.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `ID of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_name",
+					Description: `Name of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `Type of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_uuid",
+					Description: `UUID of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `Memory capacity(GB) of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "payment_method",
+					Description: `Payment method of the node.`,
+				},
+				resource.Attribute{
+					Name:        "runtime_version",
+					Description: `Version of the instance runtime.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `Subnet id of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_type",
+					Description: `Subnet type of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "sys_disk",
+					Description: `System disk size of the node.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_cidr",
+					Description: `VPC cidr of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `VPC id of the instance.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Result of the cluster nodes list.`,
+				},
+				resource.Attribute{
+					Name:        "available_zone",
+					Description: `CDS disk size, should in [1, 32765], when snapshot_id not set, this parameter is required.`,
+				},
+				resource.Attribute{
+					Name:        "blb",
+					Description: `BLB address of the node.`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `Number of cpu cores.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "delete_time",
+					Description: `Delete time of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `Local disk size of the node.`,
+				},
+				resource.Attribute{
+					Name:        "eip_bandwidth",
+					Description: `Eip bandwidth(Mbps) of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "eip",
+					Description: `Eip of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `Expire time of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "fix_ip",
+					Description: `Fix ip of the node, which is assigned in VPC.`,
+				},
+				resource.Attribute{
+					Name:        "floating_ip",
+					Description: `Floating ip of the node.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `ID of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_name",
+					Description: `Name of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `Type of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_uuid",
+					Description: `UUID of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `Memory capacity(GB) of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "payment_method",
+					Description: `Payment method of the node.`,
+				},
+				resource.Attribute{
+					Name:        "runtime_version",
+					Description: `Version of the instance runtime.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `Subnet id of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_type",
+					Description: `Subnet type of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "sys_disk",
+					Description: `System disk size of the node.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_cidr",
+					Description: `VPC cidr of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `VPC id of the instance.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "baiducloud_cce_container_net",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get cce container network.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vpc_cidr",
+					Description: `(Required, ForceNew) CCE used vpc cidr`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required, ForceNew) CCE used vpc id`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Optional, ForceNew) CCE used max container count ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `container net capacity`,
+				},
+				resource.Attribute{
+					Name:        "container_net",
+					Description: `container net`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `container net capacity`,
+				},
+				resource.Attribute{
+					Name:        "container_net",
+					Description: `container net`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "baiducloud_cce_kubeconfig",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get cce kubeconfig.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_uuid",
+					Description: `(Required, ForceNew) UUID of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "config_type",
+					Description: `(Optional, ForceNew) Config type of the cce cluster.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional, ForceNew) Output file for saving result. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "data",
+					Description: `Data of the cce kubeconfig.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "data",
+					Description: `Data of the cce kubeconfig.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "baiducloud_cce_versions",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to list cce support kubernetes versions.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional, ForceNew) Output file for saving result.`,
+				},
+				resource.Attribute{
+					Name:        "version_regex",
+					Description: `(Optional, ForceNew) Regex pattern of the search version ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "versions",
+					Description: `Useful kubernetes version list`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "versions",
+					Description: `Useful kubernetes version list`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "baiducloud_cdss",
 			Category:         "Data Sources",
 			ShortDescription: `Use this data source to query CDS list.`,
@@ -3239,6 +3575,274 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "baiducloud_scs_specs",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query scs specs list.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_type",
+					Description: `(Required, ForceNew) Type of the instance, Available values are cluster, master_slave.`,
+				},
+				resource.Attribute{
+					Name:        "node_capacity",
+					Description: `(Required, ForceNew) Memory capacity(GB) of the instance node.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional, ForceNew) Output file for saving result. The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "specs",
+					Description: `Useful spec list, when create a scs instance, suggest use node_type/cpu_num/instance_flavor/allowed_nodeNum_list as scs instance parameters`,
+				},
+				resource.Attribute{
+					Name:        "node_capacity",
+					Description: `Memory capacity(GB) of the instance node.`,
+				},
+				resource.Attribute{
+					Name:        "node_type",
+					Description: `Useful node type`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "specs",
+					Description: `Useful spec list, when create a scs instance, suggest use node_type/cpu_num/instance_flavor/allowed_nodeNum_list as scs instance parameters`,
+				},
+				resource.Attribute{
+					Name:        "node_capacity",
+					Description: `Memory capacity(GB) of the instance node.`,
+				},
+				resource.Attribute{
+					Name:        "node_type",
+					Description: `Useful node type`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "baiducloud_scss",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query SCS list.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, ForceNew) only support filter string/int/bool value`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional, ForceNew) Regex pattern of the search name of scs instance`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional, ForceNew) Output file of the instances search result The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) filter variable name`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) filter variable value list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "scss",
+					Description: `The result of the instances list.`,
+				},
+				resource.Attribute{
+					Name:        "auto_renew",
+					Description: `Whether to automatically renew.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `Memory capacity(GB) of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_type",
+					Description: `Type of the instance, Available values are cluster, master_slave.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `Domain of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `Engine version of the instance. Available values are 3.2, 4.0.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `Engine of the instance. Available values are redis, memcache.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `Expire time of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `ID of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_name",
+					Description: `Name of the instance. Support for uppercase and lowercase letters, numbers, Chinese and special characters, such as "-","_","/",".", the value must start with a letter, length 1-65.`,
+				},
+				resource.Attribute{
+					Name:        "instance_status",
+					Description: `Status of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "node_type",
+					Description: `Type of the instance. Available values are cache.n1.micro, cache.n1.small, cache.n1.medium...cache.n1hs3.4xlarge.`,
+				},
+				resource.Attribute{
+					Name:        "payment_timing",
+					Description: `SCS payment timing`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The port used to access a instance.`,
+				},
+				resource.Attribute{
+					Name:        "proxy_num",
+					Description: `The number of instance proxy.`,
+				},
+				resource.Attribute{
+					Name:        "replication_num",
+					Description: `The number of instance copies.`,
+				},
+				resource.Attribute{
+					Name:        "shard_num",
+					Description: `The number of instance shard. IF cluster_type is cluster, support 2/4/6/8/12/16/24/32/48/64/96/128, if cluster_type is master_slave, support 1.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags`,
+				},
+				resource.Attribute{
+					Name:        "used_capacity",
+					Description: `Memory capacity(GB) of the instance to be used.`,
+				},
+				resource.Attribute{
+					Name:        "v_net_ip",
+					Description: `ID of the specific vnet.`,
+				},
+				resource.Attribute{
+					Name:        "zone_names",
+					Description: `Zone name list`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scss",
+					Description: `The result of the instances list.`,
+				},
+				resource.Attribute{
+					Name:        "auto_renew",
+					Description: `Whether to automatically renew.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `Memory capacity(GB) of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_type",
+					Description: `Type of the instance, Available values are cluster, master_slave.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `Domain of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `Engine version of the instance. Available values are 3.2, 4.0.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `Engine of the instance. Available values are redis, memcache.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `Expire time of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `ID of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_name",
+					Description: `Name of the instance. Support for uppercase and lowercase letters, numbers, Chinese and special characters, such as "-","_","/",".", the value must start with a letter, length 1-65.`,
+				},
+				resource.Attribute{
+					Name:        "instance_status",
+					Description: `Status of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "node_type",
+					Description: `Type of the instance. Available values are cache.n1.micro, cache.n1.small, cache.n1.medium...cache.n1hs3.4xlarge.`,
+				},
+				resource.Attribute{
+					Name:        "payment_timing",
+					Description: `SCS payment timing`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The port used to access a instance.`,
+				},
+				resource.Attribute{
+					Name:        "proxy_num",
+					Description: `The number of instance proxy.`,
+				},
+				resource.Attribute{
+					Name:        "replication_num",
+					Description: `The number of instance copies.`,
+				},
+				resource.Attribute{
+					Name:        "shard_num",
+					Description: `The number of instance shard. IF cluster_type is cluster, support 2/4/6/8/12/16/24/32/48/64/96/128, if cluster_type is master_slave, support 1.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags`,
+				},
+				resource.Attribute{
+					Name:        "used_capacity",
+					Description: `Memory capacity(GB) of the instance to be used.`,
+				},
+				resource.Attribute{
+					Name:        "v_net_ip",
+					Description: `ID of the specific vnet.`,
+				},
+				resource.Attribute{
+					Name:        "zone_names",
+					Description: `Zone name list`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "baiducloud_security_group_rules",
 			Category:         "Data Sources",
 			ShortDescription: `Use this data source to query Security Group list.`,
@@ -3936,22 +4540,28 @@ var (
 		"baiducloud_auto_snapshot_policies": 4,
 		"baiducloud_bos_bucket_objects":     5,
 		"baiducloud_bos_buckets":            6,
-		"baiducloud_cdss":                   7,
-		"baiducloud_certs":                  8,
-		"baiducloud_cfc_function":           9,
-		"baiducloud_eips":                   10,
-		"baiducloud_images":                 11,
-		"baiducloud_instances":              12,
-		"baiducloud_nat_gateways":           13,
-		"baiducloud_peer_conns":             14,
-		"baiducloud_route_rules":            15,
-		"baiducloud_security_group_rules":   16,
-		"baiducloud_security_groups":        17,
-		"baiducloud_snapshots":              18,
-		"baiducloud_specs":                  19,
-		"baiducloud_subnets":                20,
-		"baiducloud_vpcs":                   21,
-		"baiducloud_zones":                  22,
+		"baiducloud_cce_cluster_nodes":      7,
+		"baiducloud_cce_container_net":      8,
+		"baiducloud_cce_kubeconfig":         9,
+		"baiducloud_cce_versions":           10,
+		"baiducloud_cdss":                   11,
+		"baiducloud_certs":                  12,
+		"baiducloud_cfc_function":           13,
+		"baiducloud_eips":                   14,
+		"baiducloud_images":                 15,
+		"baiducloud_instances":              16,
+		"baiducloud_nat_gateways":           17,
+		"baiducloud_peer_conns":             18,
+		"baiducloud_route_rules":            19,
+		"baiducloud_scs_specs":              20,
+		"baiducloud_scss":                   21,
+		"baiducloud_security_group_rules":   22,
+		"baiducloud_security_groups":        23,
+		"baiducloud_snapshots":              24,
+		"baiducloud_specs":                  25,
+		"baiducloud_subnets":                26,
+		"baiducloud_vpcs":                   27,
+		"baiducloud_zones":                  28,
 	}
 )
 

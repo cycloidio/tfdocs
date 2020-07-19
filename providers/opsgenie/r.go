@@ -11,6 +11,201 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "opsgenie_alert_policy",
+			Category:         "Resources",
+			ShortDescription: `Manages a Alert Policy within Opsgenie.`,
+			Description:      ``,
+			Keywords: []string{
+				"alert",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the alert policy`,
+				},
+				resource.Attribute{
+					Name:        "team_id",
+					Description: `(Optional) Id of team that this policy belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) If policy should be enabled. Default: true`,
+				},
+				resource.Attribute{
+					Name:        "policy_description",
+					Description: `(Optional) Description of the policy. This can be max 512 characters.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Required) A alert filter which will be applied. This filter can be empty: filter {} - this means 'match-all'. This is a block, structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "time_restriction",
+					Description: `(Optional) Time restrictions specified in this field must be met for this policy to work. This is a block, structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "message",
+					Description: `(Required) Message of the alerts`,
+				},
+				resource.Attribute{
+					Name:        "alias",
+					Description: `(Optional) Alias of the alert. You can use {{alias}} to refer to the original alias. Default value is {{alias}}`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the alert. You can use {{description}} to refer to the original alert description. Default value is {{description}}`,
+				},
+				resource.Attribute{
+					Name:        "entity",
+					Description: `(Optional) Entity field of the alert. You can use {{entity}} to refer to the original entity. Default value is {{entity}}`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Optional) Source field of the alert. You can use {{source}} to refer to the original source. Default value is {{source}}`,
+				},
+				resource.Attribute{
+					Name:        "ignore_original_actions",
+					Description: `(Optional) If set to true, policy will ignore the original actions of the alert. Default value is false`,
+				},
+				resource.Attribute{
+					Name:        "actions",
+					Description: `(Optional) Actions as a list of strings to add to the alerts original actions value. If ignoreOriginalActions field is set to true, this will replace the original actions.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_original_details",
+					Description: `(Optional) If set to true, policy will ignore the original details of the alert. Default value is false`,
+				},
+				resource.Attribute{
+					Name:        "details",
+					Description: `(Optional) Map of key-value pairs to use as custom properties of the alert details. If ignoreOriginalDetails field is set to true, this will replace the original details.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_original_responders",
+					Description: `(Optional) If set to true, policy will ignore the original responders of the alert. Default value is false`,
+				},
+				resource.Attribute{
+					Name:        "responders",
+					Description: `(Optional) Responders to add to the alerts original responders value as a list of teams, users or the reserved word none or all. If ignoreOriginalResponders field is set to true, this will replace the original responders. The possible values for responders are: user, team. This is a block, structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_original_tags",
+					Description: `(Optional) If set to true, policy will ignore the original tags of the alert. Default value is false`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags to add to the alerts original tags value as a list of strings. If ignoreOriginalResponders field is set to true, this will replace the original responders.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority of the alert. Should be one of P1, P2, P3, P4, or P5 The ` + "`" + `filter` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "field",
+					Description: `(Required) Specifies which alert field will be used in condition. Possible values are "message", "alias", "description", "source", "entity", "tags", "actions", "details", "extra-properties", "recipients", "teams", "priority"`,
+				},
+				resource.Attribute{
+					Name:        "operation",
+					Description: `(Required) It is the operation that will be executed for the given field and key. Possible operations are "matches", "contains", "starts-with", "ends-with", "equals", "contains-key", "contains-value", "greater-than", "less-than", "is-empty", "equals-ignore-whitespace".`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) If ` + "`" + `field` + "`" + ` is set as extra-properties, key could be used for key-value pair`,
+				},
+				resource.Attribute{
+					Name:        "not",
+					Description: `(Optional) Indicates behaviour of the given operation. Default: false`,
+				},
+				resource.Attribute{
+					Name:        "expected_value",
+					Description: `(Optional) User defined value that will be compared with alert field according to the operation. Default: empty string`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `(Optional) Order of the condition in conditions list The ` + "`" + `time_restriction` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Defines if restriction should apply daily on given hours or on certain days and hours. Possible values are: "time-of-day", "weekday-and-time-of-day"`,
+				},
+				resource.Attribute{
+					Name:        "restrictions",
+					Description: `(Optional) List of days and hours definitions for field type = "weekday-and-time-of-day". This is a block, structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "restriction",
+					Description: `(Optional) A definition of hourly definition applied daily, this has to be used with combination: type = "time-of-day". This is a block, structure is documented below. The ` + "`" + `restrictions` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "start_day",
+					Description: `(Required) Starting day of restriction (eg. "monday")`,
+				},
+				resource.Attribute{
+					Name:        "end_day",
+					Description: `(Required) Ending day of restriction (eg. "wednesday)`,
+				},
+				resource.Attribute{
+					Name:        "start_hour",
+					Description: `(Required) Starting hour of restriction on defined ` + "`" + `start_day` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "end_hour",
+					Description: `(Required) Ending hour of restriction on defined ` + "`" + `end_day` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "start_minute",
+					Description: `(Required) Staring minute of restriction on defined ` + "`" + `start_hour` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "end_minute",
+					Description: `(Required) Ending minute of restriction on defined ` + "`" + `end_hour` + "`" + ` The ` + "`" + `restriction` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "start_hour",
+					Description: `(Required) Starting hour of restriction.`,
+				},
+				resource.Attribute{
+					Name:        "end_hour",
+					Description: `(Required) Ending hour of restriction.`,
+				},
+				resource.Attribute{
+					Name:        "start_minute",
+					Description: `(Required) Staring minute of restriction on defined ` + "`" + `start_hour` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "end_minute",
+					Description: `(Required) Ending minute of restriction on defined ` + "`" + `end_hour` + "`" + ` The ` + "`" + `responders` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Type of responder. Acceptable values are: user or team`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the responder`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) ID of the responder`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) Username of the responder ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Opsgenie Alert Policy.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Opsgenie Alert Policy.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "opsgenie_api_integration",
 			Category:         "Resources",
 			ShortDescription: `Manages an API Integration within Opsgenie.`,
@@ -654,6 +849,132 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "opsgenie_service",
+			Category:         "Resources",
+			ShortDescription: `Manages a Service within Opsgenie.`,
+			Description:      ``,
+			Keywords: []string{
+				"service",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the service. This field must not be longer than 100 characters.`,
+				},
+				resource.Attribute{
+					Name:        "team_id",
+					Description: `(Required) Team id of the service. This field must not be longer than 512 characters.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description field of the service that is generally used to provide a detailed information about the service. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Opsgenie Service. ## Import Teams can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_service.this 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Opsgenie Service. ## Import Teams can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_service.this 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "opsgenie_service_incident_rule",
+			Category:         "Resources",
+			ShortDescription: `Manages a Service Incident Rule within Opsgenie.`,
+			Description:      ``,
+			Keywords: []string{
+				"service",
+				"incident",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_id",
+					Description: `(Required) ID of the service associated`,
+				},
+				resource.Attribute{
+					Name:        "incident_rule",
+					Description: `(Required) This is the rule configuration for this incident rule. This is a block, structure is documented below. The ` + "`" + `incident_rule` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "condition_match_type",
+					Description: `(Optional) A Condition type, supported types are: "match-all", "match-any-condition", "match-all-conditions". Default: "match-all"`,
+				},
+				resource.Attribute{
+					Name:        "conditions",
+					Description: `(Optional) Conditions applied to incident. This is a block, structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "field",
+					Description: `(Required) Specifies which alert field will be used in condition. Possible values are "message", "alias", "description", "source", "entity", "tags", "actions", "details", "extra-properties", "recipients", "teams", "priority"`,
+				},
+				resource.Attribute{
+					Name:        "operation",
+					Description: `(Required) It is the operation that will be executed for the given field and key. Possible operations are "matches", "contains", "starts-with", "ends-with", "equals", "contains-key", "contains-value", "greater-than", "less-than", "is-empty", "equals-ignore-whitespace".`,
+				},
+				resource.Attribute{
+					Name:        "not",
+					Description: `(Optional) Indicates behaviour of the given operation. Default: false`,
+				},
+				resource.Attribute{
+					Name:        "expected_value",
+					Description: `(Optional) User defined value that will be compared with alert field according to the operation. Default: empty string The ` + "`" + `incident_properties` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "message",
+					Description: `(Required) Message of the related incident rule.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags of the alert.`,
+				},
+				resource.Attribute{
+					Name:        "details",
+					Description: `(Optional) Map of key-value pairs to use as custom properties of the alert.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description field of the incident rule.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Required) Priority level of the alert. Possible values are P1, P2, P3, P4 and P5`,
+				},
+				resource.Attribute{
+					Name:        "stakeholder_properties",
+					Description: `(Required) DEtails about stakeholders for this rule. This is a block, structure is documented below. The ` + "`" + `stakeholder_properties` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "enable",
+					Description: `(Optional) Option to enable stakeholder notifications.Default value is true.`,
+				},
+				resource.Attribute{
+					Name:        "message",
+					Description: `(Required) Message that is to be passed to audience that is generally used to provide a content information about the alert.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description that is generally used to provide a detailed information about the alert. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Opsgenie Service Incident Policy. ## Import Service Incident Rule can be imported using the ` + "`" + `service_id/service_incident_rule_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_service_incident_rule.this 812be1a1-32c8-4666-a7fb-03ecc385106c/b84ed86f-6ce3-4388-91ac-7638ac0a8052` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Opsgenie Service Incident Policy. ## Import Service Incident Rule can be imported using the ` + "`" + `service_id/service_incident_rule_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_service_incident_rule.this 812be1a1-32c8-4666-a7fb-03ecc385106c/b84ed86f-6ce3-4388-91ac-7638ac0a8052` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "opsgenie_team",
 			Category:         "Resources",
 			ShortDescription: `Manages a Team within Opsgenie.`,
@@ -756,7 +1077,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "conditions",
-					Description: `(Optional) List of conditions will be checked before applying team routing rule. ` + "`" + `conditions` + "`" + ` supports the following:`,
+					Description: `(Optional) List of conditions will be checked before applying team routing rule. This field declaration should be omitted if the criteria type is set to match-all. ` + "`" + `conditions` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "field",
@@ -879,18 +1200,21 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"opsgenie_api_integration":     0,
-		"opsgenie_email_integration":   1,
-		"opsgenie_escalation":          2,
-		"opsgenie_heartbeat":           3,
-		"opsgenie_maintenance":         4,
-		"opsgenie_notification_policy": 5,
-		"opsgenie_schedule":            6,
-		"opsgenie_schedule_rotation":   7,
-		"opsgenie_team":                8,
-		"opsgenie_team_routing_rule":   9,
-		"opsgenie_user":                10,
-		"opsgenie_user_contact":        11,
+		"opsgenie_alert_policy":          0,
+		"opsgenie_api_integration":       1,
+		"opsgenie_email_integration":     2,
+		"opsgenie_escalation":            3,
+		"opsgenie_heartbeat":             4,
+		"opsgenie_maintenance":           5,
+		"opsgenie_notification_policy":   6,
+		"opsgenie_schedule":              7,
+		"opsgenie_schedule_rotation":     8,
+		"opsgenie_service":               9,
+		"opsgenie_service_incident_rule": 10,
+		"opsgenie_team":                  11,
+		"opsgenie_team_routing_rule":     12,
+		"opsgenie_user":                  13,
+		"opsgenie_user_contact":          14,
 	}
 )
 

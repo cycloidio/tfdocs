@@ -3203,6 +3203,50 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "mongodbatlas_project_ip_whitelist",
+			Category:         "Data Sources",
+			ShortDescription: `Provides an IP Whitelist resource.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The ID of the project in which to add the whitelist entry.`,
+				},
+				resource.Attribute{
+					Name:        "aws_security_group",
+					Description: `(Optional) ID of the whitelisted AWS security group. Mutually exclusive with ` + "`" + `cidr_block` + "`" + ` and ` + "`" + `ip_address` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "cidr_block",
+					Description: `(Optional) Whitelist entry in Classless Inter-Domain Routing (CIDR) notation. Mutually exclusive with ` + "`" + `aws_security_group` + "`" + ` and ` + "`" + `ip_address` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `(Optional) Whitelisted IP address. Mutually exclusive with ` + "`" + `aws_security_group` + "`" + ` and ` + "`" + `cidr_block` + "`" + `. ->`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique identifier used by Terraform for internal management and can be used to import.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `Comment to add to the whitelist entry. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/whitelist/)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique identifier used by Terraform for internal management and can be used to import.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `Comment to add to the whitelist entry. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/whitelist/)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "mongodbatlas_projects",
 			Category:         "Data Sources",
 			ShortDescription: `Describes a Projects.`,
@@ -3262,11 +3306,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "team_id",
-					Description: `(Required) The unique identifier for the team. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) The unique identifier for the team.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The team name. ~>`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Terraform's unique identifier used internally for state management.`,
+				},
+				resource.Attribute{
+					Name:        "team_id",
+					Description: `The unique identifier for the team.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3281,6 +3333,10 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Terraform's unique identifier used internally for state management.`,
+				},
+				resource.Attribute{
+					Name:        "team_id",
+					Description: `The unique identifier for the team.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3392,9 +3448,10 @@ var (
 		"mongodbatlas_private_endpoint":                      17,
 		"mongodbatlas_private_endpoint_interface_link":       18,
 		"mongodbatlas_project":                               19,
-		"mongodbatlas_projects":                              20,
-		"mongodbatlas_team":                                  21,
-		"mongodbatlas_x509_authentication_database_user":     22,
+		"mongodbatlas_project_ip_whitelist":                  20,
+		"mongodbatlas_projects":                              21,
+		"mongodbatlas_team":                                  22,
+		"mongodbatlas_x509_authentication_database_user":     23,
 	}
 )
 

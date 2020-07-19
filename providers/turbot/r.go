@@ -11,6 +11,18 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "turbot_file",
+			Category:         "File",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"file",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "turbot_folder",
 			Category:         "Folder",
 			ShortDescription: ``,
@@ -204,21 +216,22 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"turbot_folder":                  0,
-		"turbot_google_directory":        1,
-		"turbot_grant":                   2,
-		"turbot_grant_activation":        3,
-		"turbot_local_directory":         4,
-		"turbot_local_directory_user":    5,
-		"turbot_mod":                     6,
-		"turbot_policy_setting":          7,
-		"turbot_profile":                 8,
-		"turbot_resource":                9,
-		"turbot_saml_directory":          10,
-		"turbot_shadow_resource":         11,
-		"turbot_smart_folder":            12,
-		"turbot_smart_folder_attachment": 13,
-		"turbot_turbot_directory":        14,
+		"turbot_file":                    0,
+		"turbot_folder":                  1,
+		"turbot_google_directory":        2,
+		"turbot_grant":                   3,
+		"turbot_grant_activation":        4,
+		"turbot_local_directory":         5,
+		"turbot_local_directory_user":    6,
+		"turbot_mod":                     7,
+		"turbot_policy_setting":          8,
+		"turbot_profile":                 9,
+		"turbot_resource":                10,
+		"turbot_saml_directory":          11,
+		"turbot_shadow_resource":         12,
+		"turbot_smart_folder":            13,
+		"turbot_smart_folder_attachment": 14,
+		"turbot_turbot_directory":        15,
 	}
 )
 

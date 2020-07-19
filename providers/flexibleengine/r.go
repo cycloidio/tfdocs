@@ -818,7 +818,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_version",
-					Description: `(Optional) For the cluster version, possible value is 'v1.11.7-r2' and 'v1.13.10-r0'. If this parameter is not set, the latest version will be used.`,
+					Description: `(Optional) For the cluster version, possible value is 'v1.11.7-r2','v1.13.10-r0' and 'v1.15.6-r1'. If this parameter is not set, the latest version will be used.`,
 				},
 				resource.Attribute{
 					Name:        "cluster_type",
@@ -1681,7 +1681,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_recovery",
-					Description: `(Optional) Configures or deletes automatic recovery of an instance The ` + "`" + `network` + "`" + ` block supports:`,
+					Description: `(Optional) Configures or deletes automatic recovery of an instance`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags key/value pairs to associate with the instance. The ` + "`" + `network` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "uuid",
@@ -1821,6 +1825,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_recovery",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
 					Description: `See Argument Reference above. ## Notes ### Multiple Ephemeral Disks It's possible to specify multiple ` + "`" + `block_device` + "`" + ` entries to create an instance with multiple ephemeral (local) disks. In order to create multiple ephemeral disks, the sum of the total amount of ephemeral space must be less than or equal to what the chosen flavor supports. The following example shows how to create an instance with multiple ephemeral disks: ` + "`" + `` + "`" + `` + "`" + ` resource "flexibleengine_compute_instance_v2" "foo" { name = "terraform-test" security_groups = ["default"] block_device { boot_index = 0 delete_on_termination = true destination_type = "local" source_type = "image" uuid = "<image uuid>" } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } } ` + "`" + `` + "`" + `` + "`" + ` ### Instances and Ports Neutron Ports are a great feature and provide a lot of functionality. However, there are some notes to be aware of when mixing Instances and Ports:`,
 				},
 			},
@@ -1887,6 +1895,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_recovery",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
 					Description: `See Argument Reference above. ## Notes ### Multiple Ephemeral Disks It's possible to specify multiple ` + "`" + `block_device` + "`" + ` entries to create an instance with multiple ephemeral (local) disks. In order to create multiple ephemeral disks, the sum of the total amount of ephemeral space must be less than or equal to what the chosen flavor supports. The following example shows how to create an instance with multiple ephemeral disks: ` + "`" + `` + "`" + `` + "`" + ` resource "flexibleengine_compute_instance_v2" "foo" { name = "terraform-test" security_groups = ["default"] block_device { boot_index = 0 delete_on_termination = true destination_type = "local" source_type = "image" uuid = "<image uuid>" } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } } ` + "`" + `` + "`" + `` + "`" + ` ### Instances and Ports Neutron Ports are a great feature and provide a lot of functionality. However, there are some notes to be aware of when mixing Instances and Ports:`,
 				},
 			},
@@ -2500,6 +2512,146 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_css_cluster_v1",
+			Category:         "CSS Resources",
+			ShortDescription: `CSS cluster management`,
+			Description:      ``,
+			Keywords: []string{
+				"css",
+				"cluster",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Cluster name. It contains 4 to 32 characters. Only letters, digits, hyphens (-), and underscores (_) are allowed. The value must start with a letter. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "engine_type",
+					Description: `(Optional) Engine type. The default value is "elasticsearch". Currently, the value can only be "elasticsearch". Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `(Required) Engine version. Versions 6.5.4 and 7.1.1 are supported. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "node_number",
+					Description: `(Optional) Number of cluster instances. The value range is 1 to 32. Defaults to 1.`,
+				},
+				resource.Attribute{
+					Name:        "node_config",
+					Description: `(Required) Node configuration. Structure is documented below. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "backup_strategy",
+					Description: `(Optional) Specifies the advanced backup policy. Structure is documented below. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The key/value pairs to associate with the cluster. Changing this parameter will create a new resource. The ` + "`" + `node_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Optional) Availability zone (AZ). Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `(Required) Instance flavor name. For example: value range of flavor ess.spec-2u8g: 40 GB to 800 GB, value range of flavor ess.spec-4u16g: 40 GB to 1600 GB, value range of flavor ess.spec-8u32g: 80 GB to 3200 GB, value range of flavor ess.spec-16u64g: 100 GB to 6400 GB, value range of flavor ess.spec-32u128g: 100 GB to 10240 GB. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "network_info",
+					Description: `(Required) Network information. Structure is documented below. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "volume",
+					Description: `(Required) Information about the volume. Structure is documented below. Changing this parameter will create a new resource. The ` + "`" + `network_info` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required) VPC ID, which is used for configuring cluster network. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) Subnet ID. All instances in a cluster must have the same subnet which should be configured with a`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `(Required) Security group ID. All instances in a cluster must have the same security group. Changing this parameter will create a new resource. The ` + "`" + `volume` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Required) Specifies volume size in GB, which must be a multiple of 4 and 10. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "volume_type",
+					Description: `(Required) Specifies the volume type. Supported value: "COMMON": The SATA disk is used; "HIGH": The SAS disk is used; "ULTRAHIGH": The solid-state drive (SSD) is used. Changing this parameter will create a new resource. The ` + "`" + `backup_strategy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Required) Specifies the time when a snapshot is automatically created everyday. Example value: "04:00 GMT+08:00".`,
+				},
+				resource.Attribute{
+					Name:        "keep_days",
+					Description: `(Optional) Specifies the number of days to retain the generated snapshots. Snapshots are reserved for seven days by default.`,
+				},
+				resource.Attribute{
+					Name:        "prefix",
+					Description: `(Optional) Specifies the prefix of the snapshot that is automatically created. The default value is "snapshot". ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `Indicates the IP address and port number.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `Time when a cluster is created. The format is ISO8601: CCYY-MM-DDThh:mm:ss.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `List of node objects. Structure is documented below. The ` + "`" + `nodes` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Instance ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Instance name.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Supported type: ess (indicating the Elasticsearch node). ## Timeouts This resource provides the following timeouts configuration options: - ` + "`" + `create` + "`" + ` - Default is 30 minute. - ` + "`" + `update` + "`" + ` - Default is 30 minute.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `Indicates the IP address and port number.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `Time when a cluster is created. The format is ISO8601: CCYY-MM-DDThh:mm:ss.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `List of node objects. Structure is documented below. The ` + "`" + `nodes` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Instance ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Instance name.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Supported type: ess (indicating the Elasticsearch node). ## Timeouts This resource provides the following timeouts configuration options: - ` + "`" + `create` + "`" + ` - Default is 30 minute. - ` + "`" + `update` + "`" + ` - Default is 30 minute.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_cts_tracker_v1",
 			Category:         "CTS Resources",
 			ShortDescription: `CTS tracker allows you to collect, store, and query cloud resource operation records and use these records for security analysis, compliance auditing, resource tracking, and fault locating.`,
@@ -2594,11 +2746,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "available_zones",
-					Description: `(Required) IDs of the AZs where cache nodes reside. For details on how to query AZs, see Querying AZ Information. Changing this creates a new instance.`,
+					Description: `(Required) IDs or Names of the AZs where cache nodes reside. For details on how to query AZs, see Querying AZ Information. Changing this creates a new instance.`,
 				},
 				resource.Attribute{
 					Name:        "product_id",
-					Description: `(Required) Product ID used to differentiate DCS instance types. For example now there are following values available: - dcs.memcached.master_standby-h, - dcs.memcached.master_standby-m, - dcs.memcached.single_node-h, - dcs.memcached.single_node-m, - dcs.master_standby-h, - dcs.cluster-h, - dcs.single_node-h, - redis.cluster.xu1.large.r1.4-h, - redis.cluster.xu1.large.r2.4-h, - redis.cluster.xu1.large.r1.8-h, - redis.cluster.xu1.large.r2.16-h, - redis.cluster.xu1.large.r1.16-h, - redis.cluster.xu1.large.r2.24-h, - redis.cluster.xu1.large.r2.32-h, - redis.cluster.xu1.large.r1.32-h, - redis.cluster.xu1.large.r2.48-h, - redis.cluster.xu1.large.r1.48-h - redis.cluster.xu1.large.r2.64-h - redis.cluster.xu1.large.r1.64-h - redis.cluster.xu1.large.r2.96-h - redis.cluster.xu1.large.r1.96-h - redis.cluster.xu1.large.r2.128-h - redis.cluster.xu1.large.r1.128-h - redis.cluster.xu1.large.r1.192-h - redis.cluster.xu1.large.r2.192-h - redis.cluster.xu1.large.r2.256-h - redis.cluster.xu1.large.r1.256-h - redis.cluster.xu1.large.r2.384-h - redis.cluster.xu1.large.r1.384-h - redis.cluster.xu1.large.r1.512-h - redis.cluster.xu1.large.r2.512-h ..... For the whole list and the specification of product id please check the DCS API DOC for querying: https://dcs.eu-west-0.prod-cloud-ocb.orange-business.com/v1.0/products Changing this creates a new instance.`,
+					Description: `(Optional) Product ID used to differentiate DCS instance types. For example now there are following values available: - dcs.memcached.master_standby-h, - dcs.memcached.master_standby-m, - dcs.memcached.single_node-h, - dcs.memcached.single_node-m, - dcs.master_standby-h, - dcs.cluster-h, - dcs.single_node-h, - redis.cluster.xu1.large.r1.4-h, - redis.cluster.xu1.large.r2.4-h, - redis.cluster.xu1.large.r1.8-h, - redis.cluster.xu1.large.r2.16-h, - redis.cluster.xu1.large.r1.16-h, - redis.cluster.xu1.large.r2.24-h, - redis.cluster.xu1.large.r2.32-h, - redis.cluster.xu1.large.r1.32-h, - redis.cluster.xu1.large.r2.48-h, - redis.cluster.xu1.large.r1.48-h - redis.cluster.xu1.large.r2.64-h - redis.cluster.xu1.large.r1.64-h - redis.cluster.xu1.large.r2.96-h - redis.cluster.xu1.large.r1.96-h - redis.cluster.xu1.large.r2.128-h - redis.cluster.xu1.large.r1.128-h - redis.cluster.xu1.large.r1.192-h - redis.cluster.xu1.large.r2.192-h - redis.cluster.xu1.large.r2.256-h - redis.cluster.xu1.large.r1.256-h - redis.cluster.xu1.large.r2.384-h - redis.cluster.xu1.large.r1.384-h - redis.cluster.xu1.large.r1.512-h - redis.cluster.xu1.large.r2.512-h ..... For the whole list and the specification of product id please check the DCS API DOC for querying: https://dcs.eu-west-0.prod-cloud-ocb.orange-business.com/v1.0/products Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `(Optional) DCS instance specification code. For example now there are following values available: - dcs.single_node - dcs.master_standby - dcs.cluster`,
 				},
 				resource.Attribute{
 					Name:        "maintain_begin",
@@ -3024,6 +3180,14 @@ var (
 					Name:        "db_username",
 					Description: `Indicates the DB Administator name.`,
 				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Indicates the database port number. The port range is 2100 to 9500.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Indicates the instance nodes information. Structure is documented below. The ` + "`" + `nodes` + "`" + ` block contains: - ` + "`" + `id` + "`" + ` - Indicates the node ID. - ` + "`" + `name` + "`" + ` - Indicates the node name. - ` + "`" + `role` + "`" + ` - Indicates the node role. - ` + "`" + `type` + "`" + ` - Indicates the node type. - ` + "`" + `private_ip` + "`" + ` - Indicates the private IP address of a node. This parameter is valid only for mongos nodes, replica set instances, and single node instances. - ` + "`" + `public_ip` + "`" + ` - Indicates the EIP that has been bound on a node. This parameter is valid only for mongos nodes of cluster instances, primary nodes and secondary nodes of replica set instances, and single node instances. - ` + "`" + `status` + "`" + ` - Indicates the node status.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -3077,6 +3241,14 @@ var (
 				resource.Attribute{
 					Name:        "db_username",
 					Description: `Indicates the DB Administator name.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Indicates the database port number. The port range is 2100 to 9500.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Indicates the instance nodes information. Structure is documented below. The ` + "`" + `nodes` + "`" + ` block contains: - ` + "`" + `id` + "`" + ` - Indicates the node ID. - ` + "`" + `name` + "`" + ` - Indicates the node name. - ` + "`" + `role` + "`" + ` - Indicates the node role. - ` + "`" + `type` + "`" + ` - Indicates the node type. - ` + "`" + `private_ip` + "`" + ` - Indicates the private IP address of a node. This parameter is valid only for mongos nodes, replica set instances, and single node instances. - ` + "`" + `public_ip` + "`" + ` - Indicates the EIP that has been bound on a node. This parameter is valid only for mongos nodes of cluster instances, primary nodes and secondary nodes of replica set instances, and single node instances. - ` + "`" + `status` + "`" + ` - Indicates the node status.`,
 				},
 			},
 		},
@@ -3240,11 +3412,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "router_id",
-					Description: `(Required) The router UUID.`,
+					Description: `(Required) The VPC UUID.`,
 				},
 				resource.Attribute{
 					Name:        "router_region",
-					Description: `(Required) The region of the router. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The region of the VPC. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -4890,6 +5062,380 @@ var (
 				resource.Attribute{
 					Name:        "tenant_id",
 					Description: `See Argument Reference above. ## Import Firewall Rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_fw_rule_v2.rule_1 8dbc0c28-e49c-463f-b712-5c5d1bbac327 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_identity_agency_v3",
+			Category:         "Identity Resources",
+			ShortDescription: `Manages an agency resource within FlexibleEngine.`,
+			Description:      ``,
+			Keywords: []string{
+				"identity",
+				"agency",
+				"v3",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of agency. The name is a string of 1 to 64 characters.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Provides supplementary information about the agency. The value is a string of 0 to 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "delegated_domain_name",
+					Description: `(Required) The name of delegated domain.`,
+				},
+				resource.Attribute{
+					Name:        "project_role",
+					Description: `(Optional) An array of roles and projects which are used to grant permissions to agency on project. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "domain_roles",
+					Description: `(optional) An array of role names which stand for the permissionis to be granted to agency on domain. The ` + "`" + `project_role` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Required) The name of project`,
+				},
+				resource.Attribute{
+					Name:        "roles",
+					Description: `(Required) An array of role names`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The agency ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "delegated_domain_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "project_role",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "domain_roles",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `Validity period of an agency. The default value is null, indicating that the agency is permanently valid.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `The expiration time of agency`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time when the agency was created.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The agency ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "delegated_domain_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "project_role",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "domain_roles",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `Validity period of an agency. The default value is null, indicating that the agency is permanently valid.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `The expiration time of agency`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time when the agency was created.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_identity_group_membership_v3",
+			Category:         "Identity Resources",
+			ShortDescription: `Manages the membership combine User Group resource and User resource within FlexibleEngine IAM service.`,
+			Description:      ``,
+			Keywords: []string{
+				"identity",
+				"group",
+				"membership",
+				"v3",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group",
+					Description: `(Required) The group ID of this membership.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `(Required) A List of user IDs to associate to the group. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "group",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_identity_group_v3",
+			Category:         "Identity Resources",
+			ShortDescription: `Manages a User Group resource within FlexibleEngine IAM service.`,
+			Description:      ``,
+			Keywords: []string{
+				"identity",
+				"group",
+				"v3",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the group.The length is less than or equal to 64 bytes`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A description of the group.`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `(Optional) The domain this group belongs to. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `See Argument Reference above. ## Import Groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_identity_group_v3.group_1 89c60255-9bd6-460c-822a-e2b959ede9d2 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `See Argument Reference above. ## Import Groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_identity_group_v3.group_1 89c60255-9bd6-460c-822a-e2b959ede9d2 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_identity_role_assignment_v3",
+			Category:         "Identity Resources",
+			ShortDescription: `Manages a V3 Policy assignment within FlexibleEngine IAM Service.`,
+			Description:      ``,
+			Keywords: []string{
+				"identity",
+				"role",
+				"assignment",
+				"v3",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "role_id",
+					Description: `(Required) The role to assign.`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `(Optional; Required if ` + "`" + `project_id` + "`" + ` is empty) The domain to assign the role in.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Optional; Required if ` + "`" + `domain_id` + "`" + ` is empty) The project to assign the role in.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Optional; Required if ` + "`" + `user_id` + "`" + ` is empty) The group to assign the role in.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `(Optional; Required if ` + "`" + `group_id` + "`" + ` is empty) The user to assign the role in. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "role_id",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "role_id",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_identity_role_v3",
+			Category:         "Identity Resources",
+			ShortDescription: `custom role management in FlexibleEngine`,
+			Description:      ``,
+			Keywords: []string{
+				"identity",
+				"role",
+				"v3",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specify the name of a role. The value cannot exceed 64 characters.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required) Specify the description of a role. The value cannot exceed 256 characters.`,
+				},
+				resource.Attribute{
+					Name:        "scope",
+					Description: `(Required) Specify the scope layer of a role. The value supports: - domain - A role is displayed at the domain layer. - project - A role is displayed at the project layer.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The policy field contains the ` + "`" + `effect` + "`" + ` and ` + "`" + `action` + "`" + ` elements. Effect indicates whether the policy allows or denies access. Action indicates authorization items. The number of policy cannot exceed 8. Structure is documented below. The ` + "`" + `policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Permission set, which specifies the operation permissions on resources. The number of permission sets cannot exceed 100. Format: The value format is Service name:Resource type:Action, for example, vpc:ports:create. Service name: indicates the product name, such as ecs, evs, or vpc. Only lowercase letters are allowed. Resource type and Action: The values are case-insensitive, and the wildcard (`,
+				},
+				resource.Attribute{
+					Name:        "effect",
+					Description: `(Required) The value can be Allow and Deny. If both Allow and Deny are found in statements, the policy evaluation starts with Deny. - - - ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "catalog",
+					Description: `Directory where a role locates`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `ID of the domain to which a role belongs ## Import Role can be imported using the following format: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_identity_role_v3.default {{ resource id}} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "catalog",
+					Description: `Directory where a role locates`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `ID of the domain to which a role belongs ## Import Role can be imported using the following format: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_identity_role_v3.default {{ resource id}} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_identity_user_v3",
+			Category:         "Identity Resources",
+			ShortDescription: `Manages a User resource within FlexibleEngine IAM service.`,
+			Description:      ``,
+			Keywords: []string{
+				"identity",
+				"user",
+				"v3",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the user. The user name consists of 5 to 32 characters. It can contain only uppercase letters, lowercase letters, digits, spaces, and special characters (-_) and cannot start with a digit.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A description of the user.`,
+				},
+				resource.Attribute{
+					Name:        "default_project_id",
+					Description: `(Optional) The default project this user belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `(Optional) The domain this user belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Whether the user is enabled or disabled. Valid values are ` + "`" + `true` + "`" + ` and ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The password for the user. It must contain at least two of the following character types: uppercase letters, lowercase letters, digits, and special characters. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `See Argument Reference above. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_identity_user_v3.user_1 89c60255-9bd6-460c-822a-e2b959ede9d2 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `See Argument Reference above. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_identity_user_v3.user_1 89c60255-9bd6-460c-822a-e2b959ede9d2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -7218,6 +7764,375 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_mrs_hybrid_cluster_v1",
+			Category:         "MRS Resources",
+			ShortDescription: `Manages resource cluster within FlexibleEngine MRS.`,
+			Description:      ``,
+			Keywords: []string{
+				"mrs",
+				"hybrid",
+				"cluster",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) Cluster region information. Obtain the value from Regions and Endpoints.`,
+				},
+				resource.Attribute{
+					Name:        "available_zone",
+					Description: `(Required) ID or Name of an available zone. Obtain the value from Regions and Endpoints.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `(Required) Cluster name, which is globally unique and contains only 1 to 64 letters, digits, hyphens (-), and underscores (_).`,
+				},
+				resource.Attribute{
+					Name:        "cluster_version",
+					Description: `(Required) Version of the clusters. Currently, MRS 1.6.3, MRS 1.8.9, and MRS 2.0.1 are supported. The latest version of MRS is used by default. Currently, the latest version is MRS 2.0.1.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required) Specifies the id of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) Specifies the id of the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "safe_mode",
+					Description: `(Optional) MRS cluster running mode - 0: common mode The value indicates that the Kerberos authentication is disabled. Users can use all functions provided by the cluster. - 1: safe mode (by default) The value indicates that the Kerberos authentication is enabled. Common users cannot use the file management or job management functions of an MRS cluster and cannot view cluster resource usage or the job records of Hadoop and Spark. To use these functions, the users must obtain the relevant permissions from the MRS Manager administrator. The request has the cluster_admin_secret parameter only when safe_mode is set to 1.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_admin_secret",
+					Description: `(Required) Indicates the password of the MRS Manager administrator. - Must contain 8 to 32 characters. - Must contain at least three types of the following: Lowercase letters, Uppercase letters, Digits, Special characters of ` + "`" + `~!@#$%^&`,
+				},
+				resource.Attribute{
+					Name:        "master_node_key_pair",
+					Description: `(Required) Name of a key pair You can use a key to log in to the Master node in the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `(Optional) Specifies the id of the security group which the cluster belongs to. If this parameter is empty, MRS automatically creates a security group, whose name starts with mrs_{cluster_name}.`,
+				},
+				resource.Attribute{
+					Name:        "log_collection",
+					Description: `(Optional) Indicates whether logs are collected when cluster installation fails. 0: not collected 1: collected The default value is 0. If log_collection is set to 1, OBS buckets will be created to collect the MRS logs. These buckets will be charged.`,
+				},
+				resource.Attribute{
+					Name:        "component_list",
+					Description: `(Required) Component name - Presto, Hadoop, Spark, HBase, Hive, Tez, Hue, Loader, Flume, Kafka and Storm are supported by MRS 2.0.1 or later. - Presto, Hadoop, Spark, HBase, Opentsdb, Hive, Hue, Loader, Flink, Flume, Kafka, KafkaManager and Storm are supported by MRS 1.8.9. - Hadoop, Spark, HBase, Hive, Hue, Loader, Flume, Kafka and Storm are supported by versions earlier than MRS 1.8.9.`,
+				},
+				resource.Attribute{
+					Name:        "master_nodes",
+					Description: `(Required) Specifies the master nodes information.`,
+				},
+				resource.Attribute{
+					Name:        "analysis_core_nodes",
+					Description: `(Required) Specifies the analysis core nodes information.`,
+				},
+				resource.Attribute{
+					Name:        "streaming_core_nodes",
+					Description: `(Required) Specifies the streaming core nodes information.`,
+				},
+				resource.Attribute{
+					Name:        "analysis_task_nodes",
+					Description: `(Optional) Specifies the analysis task nodes information.`,
+				},
+				resource.Attribute{
+					Name:        "streaming_task_nodes",
+					Description: `(Optional) Specifies the streaming task nodes information. The ` + "`" + `master_nodes` + "`" + `, ` + "`" + `analysis_core_nodes` + "`" + `, ` + "`" + `streaming_core_nodes` + "`" + `, ` + "`" + `analysis_task_nodes` + "`" + `, ` + "`" + `streaming_task_nodes` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `(Required) Best match based on several years of commissioning experience. MRS supports specifications of hosts, and host specifications are determined by CPUs, memory, and disks space. - Master nodes support s1.4xlarge and s1.8xlarge, c3.2xlarge.2, c3.xlarge.4, c3.2xlarge.4, c3.4xlarge.2, c3.4xlarge.4, c3.8xlarge.4, c3.15xlarge.4. - Core nodes of a streaming cluster support s1.xlarge, c2.2xlarge, s1.2xlarge, s1.4xlarge, s1.8xlarge, d1.8xlarge, , c3.2xlarge.2, c3.xlarge.4, c3.2xlarge.4, c3.4xlarge.2, c3.4xlarge.4, c3.8xlarge.4, c3.15xlarge.4. - Core nodes of an analysis cluster support all specifications c2.2xlarge, s1.xlarge, s1.4xlarge, s1.8xlarge, d1.xlarge, d1.2xlarge, d1.4xlarge, d1.8xlarge, , c3.2xlarge.2, c3.xlarge.4, c3.2xlarge.4, c3.4xlarge.2, c3.4xlarge.4, c3.8xlarge.4, c3.15xlarge.4, d2.xlarge.8, d2.2xlarge.8, d2.4xlarge.8, d2.8xlarge.8. The following provides specification details. node_size | CPU(core) | Memory(GB) | System Disk | Data Disk | --- | --- | --- | --- | --- | c2.2xlarge.linux.mrs | 8 | 16 | 40 | - cc3.xlarge.4.linux.mrs | 4 | 16 | 40 | - cc3.2xlarge.4.linux.mrs | 8 | 32 | 40 | - cc3.4xlarge.4.linux.mrs | 16 | 64 | 40 | - cc3.8xlarge.4.linux.mrs | 32 | 128 | 40 | - s1.xlarge.linux.mrs | 4 | 16 | 40 | - s1.4xlarge.linux.mrs | 16 | 64 | 40 | - s1.8xlarge.linux.mrs | 32 | 128 | 40 | - s3.xlarge.4.linux.mrs| 4 | 16 | 40 | - s3.2xlarge.4.linux.mrs| 8 | 32 | 40 | - s3.4xlarge.4.linux.mrs| 16 | 64 | 40 | - d1.xlarge.linux.mrs | 6 | 55 | 40 | 1.8 TB x 3 HDDs d1.2xlarge.linux.mrs | 12 | 110 | 40 | 1.8 TB x 6 HDDs d1.4xlarge.linux.mrs | 24 | 220 | 40 | 1.8 TB x 12 HDDs d1.8xlarge.linux.mrs | 48 | 440 | 40 | 1.8 TB x 24 HDDs d2.xlarge.linux.mrs | 4 | 32 | 40 | - d2.2xlarge.linux.mrs | 8 | 64 | 40 | - d2.4xlarge.linux.mrs | 16 | 128 | 40 | 1.8TB`,
+				},
+				resource.Attribute{
+					Name:        "node_number",
+					Description: `(Required) Number of nodes. The value ranges from 0 to 500 and the default value is 0. The total number of Core and Task nodes cannot exceed 500.`,
+				},
+				resource.Attribute{
+					Name:        "data_volume_type",
+					Description: `(Required) Data disk storage type of the node, supporting SATA and SSD currently - SATA: common I/O - SSD: Ultrahigh-speed I/O`,
+				},
+				resource.Attribute{
+					Name:        "data_volume_size",
+					Description: `(Required) Data disk size of the node Value range: 100 GB to 32000 GB`,
+				},
+				resource.Attribute{
+					Name:        "data_volume_count",
+					Description: `(Required) Number of data disks of the node Value range: 0 to 10 ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "available_zone",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_version",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "safe_mode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_admin_secret",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "master_node_key_pair",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "log_collection",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "master_nodes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "analysis_core_nodes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "streaming_core_nodes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "analysis_task_nodes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "streaming_task_nodes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "component_list",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "billing_type",
+					Description: `The value is Metered, indicating on-demand payment.`,
+				},
+				resource.Attribute{
+					Name:        "total_node_number",
+					Description: `Total node number.`,
+				},
+				resource.Attribute{
+					Name:        "master_node_ip",
+					Description: `IP address of a Master node.`,
+				},
+				resource.Attribute{
+					Name:        "internal_ip",
+					Description: `Iternal IP address.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_first",
+					Description: `Primary private IP address.`,
+				},
+				resource.Attribute{
+					Name:        "external_ip",
+					Description: `External IP address.`,
+				},
+				resource.Attribute{
+					Name:        "external_alternate_ip",
+					Description: `Backup external IP address.`,
+				},
+				resource.Attribute{
+					Name:        "vnc",
+					Description: `URI address for remote login of the elastic cloud server.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `Cluster creation fee, which is automatically calculated.`,
+				},
+				resource.Attribute{
+					Name:        "create_at",
+					Description: `Cluster creation time.`,
+				},
+				resource.Attribute{
+					Name:        "update_at",
+					Description: `Cluster update time.`,
+				},
+				resource.Attribute{
+					Name:        "charging_start_time",
+					Description: `Time when charging starts. The components attributes:`,
+				},
+				resource.Attribute{
+					Name:        "component_name",
+					Description: `Component name`,
+				},
+				resource.Attribute{
+					Name:        "component_id",
+					Description: `Component ID Component IDs supported by MRS 1.5.0 include: MRS 1.5.0_001: Hadoop MRS 1.5.0_002: Spark MRS 1.5.0_003: HBase MRS 1.5.0_004: Hive MRS 1.5.0_005: Hue MRS 1.5.0_006: Kafka MRS 1.5.0_007: Storm MRS 1.5.0_008: Loader MRS 1.5.0_009: Flume Component IDs supported by MRS 1.3.0 include: MRS 1.3.0_001: Hadoop MRS 1.3.0_002: Spark MRS 1.3.0_003: HBase MRS 1.3.0_004: Hive MRS 1.3.0_005: Hue MRS 1.3.0_006: Kafka MRS 1.3.0_007: Storm For example, the component ID of Hadoop is MRS 1.5.0_001, or MRS 1.3.0_001.`,
+				},
+				resource.Attribute{
+					Name:        "component_version",
+					Description: `Component version MRS 1.5.0 supports the following component version: Component version of an analysis cluster: Hadoop: 2.7.2 Spark: 2.1.0 HBase: 1.0.2 Hive: 1.2.1 Hue: 3.11.0 Loader: 2.0.0 Component version of a streaming cluster: Kafka: 0.10.0.0 Storm: 1.0.2 Flume: 1.6.0 MRS 1.3.0 supports the following component version: Component version of an analysis cluster: Hadoop: 2.7.2 Spark: 1.5.1 HBase: 1.0.2 Hive: 1.2.1 Hue: 3.11.0 Component version of a streaming cluster: Kafka: 0.10.0.0 Storm: 1.0.2`,
+				},
+				resource.Attribute{
+					Name:        "component_desc",
+					Description: `Component description`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "available_zone",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_version",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "safe_mode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_admin_secret",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "master_node_key_pair",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "log_collection",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "master_nodes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "analysis_core_nodes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "streaming_core_nodes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "analysis_task_nodes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "streaming_task_nodes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "component_list",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "billing_type",
+					Description: `The value is Metered, indicating on-demand payment.`,
+				},
+				resource.Attribute{
+					Name:        "total_node_number",
+					Description: `Total node number.`,
+				},
+				resource.Attribute{
+					Name:        "master_node_ip",
+					Description: `IP address of a Master node.`,
+				},
+				resource.Attribute{
+					Name:        "internal_ip",
+					Description: `Iternal IP address.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_first",
+					Description: `Primary private IP address.`,
+				},
+				resource.Attribute{
+					Name:        "external_ip",
+					Description: `External IP address.`,
+				},
+				resource.Attribute{
+					Name:        "external_alternate_ip",
+					Description: `Backup external IP address.`,
+				},
+				resource.Attribute{
+					Name:        "vnc",
+					Description: `URI address for remote login of the elastic cloud server.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `Cluster creation fee, which is automatically calculated.`,
+				},
+				resource.Attribute{
+					Name:        "create_at",
+					Description: `Cluster creation time.`,
+				},
+				resource.Attribute{
+					Name:        "update_at",
+					Description: `Cluster update time.`,
+				},
+				resource.Attribute{
+					Name:        "charging_start_time",
+					Description: `Time when charging starts. The components attributes:`,
+				},
+				resource.Attribute{
+					Name:        "component_name",
+					Description: `Component name`,
+				},
+				resource.Attribute{
+					Name:        "component_id",
+					Description: `Component ID Component IDs supported by MRS 1.5.0 include: MRS 1.5.0_001: Hadoop MRS 1.5.0_002: Spark MRS 1.5.0_003: HBase MRS 1.5.0_004: Hive MRS 1.5.0_005: Hue MRS 1.5.0_006: Kafka MRS 1.5.0_007: Storm MRS 1.5.0_008: Loader MRS 1.5.0_009: Flume Component IDs supported by MRS 1.3.0 include: MRS 1.3.0_001: Hadoop MRS 1.3.0_002: Spark MRS 1.3.0_003: HBase MRS 1.3.0_004: Hive MRS 1.3.0_005: Hue MRS 1.3.0_006: Kafka MRS 1.3.0_007: Storm For example, the component ID of Hadoop is MRS 1.5.0_001, or MRS 1.3.0_001.`,
+				},
+				resource.Attribute{
+					Name:        "component_version",
+					Description: `Component version MRS 1.5.0 supports the following component version: Component version of an analysis cluster: Hadoop: 2.7.2 Spark: 2.1.0 HBase: 1.0.2 Hive: 1.2.1 Hue: 3.11.0 Loader: 2.0.0 Component version of a streaming cluster: Kafka: 0.10.0.0 Storm: 1.0.2 Flume: 1.6.0 MRS 1.3.0 supports the following component version: Component version of an analysis cluster: Hadoop: 2.7.2 Spark: 1.5.1 HBase: 1.0.2 Hive: 1.2.1 Hue: 3.11.0 Component version of a streaming cluster: Kafka: 0.10.0.0 Storm: 1.0.2`,
+				},
+				resource.Attribute{
+					Name:        "component_desc",
+					Description: `Component description`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_mrs_job_v1",
 			Category:         "MRS Resources",
 			ShortDescription: `Manages resource job within FlexibleEngine MRS.`,
@@ -8817,7 +9732,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_class",
-					Description: `(Optional) Specifies the storage class of the bucket. OBS provides three storage classes: "STANDARD", "WARM" (Infrequent Access) and "COLD" (Archive). Defaults to ` + "`" + `STANDARD` + "`" + `.`,
+					Description: `(Optional) Specifies the storage class of the bucket. OBS provides three storage classes: "STANDARD", "STANDARD_IA" (Infrequent Access) and "GLACIER" (Archive). Defaults to ` + "`" + `STANDARD` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "acl",
@@ -8893,7 +9808,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "transition",
-					Description: `(Optional) Specifies a period when objects that have been last updated are automatically transitioned to ` + "`" + `WARM` + "`" + ` or ` + "`" + `COLD` + "`" + ` storage class (documented below).`,
+					Description: `(Optional) Specifies a period when objects that have been last updated are automatically transitioned to ` + "`" + `STANDARD_IA` + "`" + ` or ` + "`" + `GLACIER` + "`" + ` storage class (documented below).`,
 				},
 				resource.Attribute{
 					Name:        "noncurrent_version_expiration",
@@ -8901,15 +9816,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "noncurrent_version_transition",
-					Description: `(Optional) Specifies a period when noncurrent object versions are automatically transitioned to ` + "`" + `WARM` + "`" + ` or ` + "`" + `COLD` + "`" + ` storage class (documented below). At least one of ` + "`" + `expiration` + "`" + `, ` + "`" + `transition` + "`" + `, ` + "`" + `noncurrent_version_expiration` + "`" + `, ` + "`" + `noncurrent_version_transition` + "`" + ` must be specified. The ` + "`" + `expiration` + "`" + ` object supports the following`,
+					Description: `(Optional) Specifies a period when noncurrent object versions are automatically transitioned to ` + "`" + `STANDARD_IA` + "`" + ` or ` + "`" + `GLACIER` + "`" + ` storage class (documented below). At least one of ` + "`" + `expiration` + "`" + `, ` + "`" + `transition` + "`" + `, ` + "`" + `noncurrent_version_expiration` + "`" + `, ` + "`" + `noncurrent_version_transition` + "`" + ` must be specified. The ` + "`" + `expiration` + "`" + ` object supports the following`,
 				},
 				resource.Attribute{
 					Name:        "storage_class",
-					Description: `(Required) The class of storage used to store the object. Only ` + "`" + `WARM` + "`" + ` and ` + "`" + `COLD` + "`" + ` are supported. The ` + "`" + `noncurrent_version_expiration` + "`" + ` object supports the following`,
+					Description: `(Required) The class of storage used to store the object. Only "STANDARD_IA" and "GLACIER" are supported. The ` + "`" + `noncurrent_version_expiration` + "`" + ` object supports the following`,
 				},
 				resource.Attribute{
 					Name:        "storage_class",
-					Description: `(Required) The class of storage used to store the object. Only ` + "`" + `WARM` + "`" + ` and ` + "`" + `COLD` + "`" + ` are supported. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The class of storage used to store the object. Only "STANDARD_IA" and "GLACIER" are supported. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -9367,10 +10282,6 @@ var (
 					Description: `(Required) Specifies the DB engine. Value: MySQL, PostgreSQL, SQLServer. Changing this parameter will create a new resource.`,
 				},
 				resource.Attribute{
-					Name:        "user_name",
-					Description: `Indicates the default user name of database.`,
-				},
-				resource.Attribute{
 					Name:        "version",
 					Description: `(Required) Specifies the database version. MySQL databases support MySQL 5.6 and 5.7, example values: "5.6", "5.7". PostgreSQL databases support PostgreSQL 9.5, 9.6, 10 and 11, example values: "9.5", "9.6", "10", "11". Microsoft SQL Server databases support 2014 SE and 2014 EE, example values: "2014_SE", "2014_EE". Changing this parameter will create a new resource. The ` + "`" + `volume` + "`" + ` block supports:`,
 				},
@@ -9408,7 +10319,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ips",
-					Description: `Indicates the public IP address list. The ` + "`" + `nodes` + "`" + ` block contains:`,
+					Description: `Indicates the public IP address list.`,
+				},
+				resource.Attribute{
+					Name:        "db",
+					Description: `See Argument Reference above. The ` + "`" + `db` + "`" + ` block also contains:`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `Indicates the default user name of database. The ` + "`" + `nodes` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -9446,7 +10365,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ips",
-					Description: `Indicates the public IP address list. The ` + "`" + `nodes` + "`" + ` block contains:`,
+					Description: `Indicates the public IP address list.`,
+				},
+				resource.Attribute{
+					Name:        "db",
+					Description: `See Argument Reference above. The ` + "`" + `db` + "`" + ` block also contains:`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `Indicates the default user name of database. The ` + "`" + `nodes` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -11099,77 +12026,85 @@ var (
 		"flexibleengine_compute_volume_attach_v2":           15,
 		"flexibleengine_csbs_backup_policy_v1":              16,
 		"flexibleengine_csbs_backup_v1":                     17,
-		"flexibleengine_cts_tracker_v1":                     18,
-		"flexibleengine_dcs_instance_v1":                    19,
-		"flexibleengine_dds_instance_v3":                    20,
-		"flexibleengine_dns_recordset_v2":                   21,
-		"flexibleengine_dns_zone_v2":                        22,
-		"flexibleengine_drs_replication_v2":                 23,
-		"flexibleengine_drs_replicationconsistencygroup_v2": 24,
-		"flexibleengine_dws_cluster_v1":                     25,
-		"flexibleengine_elb_backend":                        26,
-		"flexibleengine_elb_health":                         27,
-		"flexibleengine_elb_listener":                       28,
-		"flexibleengine_elb_loadbalancer":                   29,
-		"flexibleengine_fw_firewall_group_v2":               30,
-		"flexibleengine_fw_policy_v2":                       31,
-		"flexibleengine_fw_rule_v2":                         32,
-		"flexibleengine_images_image_v2":                    33,
-		"flexibleengine_kms_key_v1":                         34,
-		"flexibleengine_lb_certificate_v2":                  35,
-		"flexibleengine_lb_l7policy_v2":                     36,
-		"flexibleengine_lb_l7rule_v2":                       37,
-		"flexibleengine_lb_listener_v2":                     38,
-		"flexibleengine_lb_loadbalancer_v2":                 39,
-		"flexibleengine_lb_member_v2":                       40,
-		"flexibleengine_lb_monitor_v2":                      41,
-		"flexibleengine_lb_pool_v2":                         42,
-		"flexibleengine_lb_whitelist_v2":                    43,
-		"flexibleengine_mls_instance_v1":                    44,
-		"flexibleengine_mrs_cluster_v1":                     45,
-		"flexibleengine_mrs_job_v1":                         46,
-		"flexibleengine_nat_dnat_rule_v2":                   47,
-		"flexibleengine_nat_gateway_v2":                     48,
-		"flexibleengine_nat_snat_rule_v2":                   49,
-		"flexibleengine_networking_floatingip_associate_v2": 50,
-		"flexibleengine_networking_floatingip_v2":           51,
-		"flexibleengine_networking_network_v2":              52,
-		"flexibleengine_networking_port_v2":                 53,
-		"flexibleengine_networking_router_interface_v2":     54,
-		"flexibleengine_networking_router_route_v2":         55,
-		"flexibleengine_networking_router_v2":               56,
-		"flexibleengine_networking_secgroup_rule_v2":        57,
-		"flexibleengine_networking_secgroup_v2":             58,
-		"flexibleengine_networking_subnet_v2":               59,
-		"flexibleengine_networking_vip_associate_v2":        60,
-		"flexibleengine_networking_vip_v2":                  61,
-		"flexibleengine_obs_bucket":                         62,
-		"flexibleengine_obs_bucket_object":                  63,
-		"flexibleengine_rds_instance_v1":                    64,
-		"flexibleengine_rds_instance_v3":                    65,
-		"flexibleengine_rds_parametergroup_v3":              66,
-		"flexibleengine_rds_read_replica_v3":                67,
-		"flexibleengine_rts_software_config_v1":             68,
-		"flexibleengine_resource_rts_stack_v1":              69,
-		"flexibleengine_s3_bucket":                          70,
-		"flexibleengine_s3_bucket_object":                   71,
-		"flexibleengine_s3_bucket_policy":                   72,
-		"flexibleengine_sdrs_drill_v1":                      73,
-		"flexibleengine_sdrs_protectedinstance_v1":          74,
-		"flexibleengine_sdrs_protectiongroup_v1":            75,
-		"flexibleengine_sdrs_replication_attach_v1":         76,
-		"flexibleengine_sdrs_replication_pair_v1":           77,
-		"flexibleengine_sfs_file_system_v2":                 78,
-		"flexibleengine_smn_subscription_v2":                79,
-		"flexibleengine_smn_topic_v2":                       80,
-		"flexibleengine-vbs-backup-policy-v2":               81,
-		"flexibleengine-vbs-backup-v2":                      82,
-		"flexibleengine_vpc_eip_v1":                         83,
-		"flexibleengine_vpc_peering_connection_accepter_v2": 84,
-		"flexibleengine_vpc_peering_connection_v2":          85,
-		"flexibleengine_vpc_route_v2":                       86,
-		"flexibleengine_vpc_subnet_v1":                      87,
-		"flexibleengine_vpc_v1":                             88,
+		"flexibleengine_css_cluster_v1":                     18,
+		"flexibleengine_cts_tracker_v1":                     19,
+		"flexibleengine_dcs_instance_v1":                    20,
+		"flexibleengine_dds_instance_v3":                    21,
+		"flexibleengine_dns_recordset_v2":                   22,
+		"flexibleengine_dns_zone_v2":                        23,
+		"flexibleengine_drs_replication_v2":                 24,
+		"flexibleengine_drs_replicationconsistencygroup_v2": 25,
+		"flexibleengine_dws_cluster_v1":                     26,
+		"flexibleengine_elb_backend":                        27,
+		"flexibleengine_elb_health":                         28,
+		"flexibleengine_elb_listener":                       29,
+		"flexibleengine_elb_loadbalancer":                   30,
+		"flexibleengine_fw_firewall_group_v2":               31,
+		"flexibleengine_fw_policy_v2":                       32,
+		"flexibleengine_fw_rule_v2":                         33,
+		"flexibleengine_identity_agency_v3":                 34,
+		"flexibleengine_identity_group_membership_v3":       35,
+		"flexibleengine_identity_group_v3":                  36,
+		"flexibleengine_identity_role_assignment_v3":        37,
+		"flexibleengine_identity_role_v3":                   38,
+		"flexibleengine_identity_user_v3":                   39,
+		"flexibleengine_images_image_v2":                    40,
+		"flexibleengine_kms_key_v1":                         41,
+		"flexibleengine_lb_certificate_v2":                  42,
+		"flexibleengine_lb_l7policy_v2":                     43,
+		"flexibleengine_lb_l7rule_v2":                       44,
+		"flexibleengine_lb_listener_v2":                     45,
+		"flexibleengine_lb_loadbalancer_v2":                 46,
+		"flexibleengine_lb_member_v2":                       47,
+		"flexibleengine_lb_monitor_v2":                      48,
+		"flexibleengine_lb_pool_v2":                         49,
+		"flexibleengine_lb_whitelist_v2":                    50,
+		"flexibleengine_mls_instance_v1":                    51,
+		"flexibleengine_mrs_cluster_v1":                     52,
+		"flexibleengine_mrs_hybrid_cluster_v1":              53,
+		"flexibleengine_mrs_job_v1":                         54,
+		"flexibleengine_nat_dnat_rule_v2":                   55,
+		"flexibleengine_nat_gateway_v2":                     56,
+		"flexibleengine_nat_snat_rule_v2":                   57,
+		"flexibleengine_networking_floatingip_associate_v2": 58,
+		"flexibleengine_networking_floatingip_v2":           59,
+		"flexibleengine_networking_network_v2":              60,
+		"flexibleengine_networking_port_v2":                 61,
+		"flexibleengine_networking_router_interface_v2":     62,
+		"flexibleengine_networking_router_route_v2":         63,
+		"flexibleengine_networking_router_v2":               64,
+		"flexibleengine_networking_secgroup_rule_v2":        65,
+		"flexibleengine_networking_secgroup_v2":             66,
+		"flexibleengine_networking_subnet_v2":               67,
+		"flexibleengine_networking_vip_associate_v2":        68,
+		"flexibleengine_networking_vip_v2":                  69,
+		"flexibleengine_obs_bucket":                         70,
+		"flexibleengine_obs_bucket_object":                  71,
+		"flexibleengine_rds_instance_v1":                    72,
+		"flexibleengine_rds_instance_v3":                    73,
+		"flexibleengine_rds_parametergroup_v3":              74,
+		"flexibleengine_rds_read_replica_v3":                75,
+		"flexibleengine_rts_software_config_v1":             76,
+		"flexibleengine_resource_rts_stack_v1":              77,
+		"flexibleengine_s3_bucket":                          78,
+		"flexibleengine_s3_bucket_object":                   79,
+		"flexibleengine_s3_bucket_policy":                   80,
+		"flexibleengine_sdrs_drill_v1":                      81,
+		"flexibleengine_sdrs_protectedinstance_v1":          82,
+		"flexibleengine_sdrs_protectiongroup_v1":            83,
+		"flexibleengine_sdrs_replication_attach_v1":         84,
+		"flexibleengine_sdrs_replication_pair_v1":           85,
+		"flexibleengine_sfs_file_system_v2":                 86,
+		"flexibleengine_smn_subscription_v2":                87,
+		"flexibleengine_smn_topic_v2":                       88,
+		"flexibleengine-vbs-backup-policy-v2":               89,
+		"flexibleengine-vbs-backup-v2":                      90,
+		"flexibleengine_vpc_eip_v1":                         91,
+		"flexibleengine_vpc_peering_connection_accepter_v2": 92,
+		"flexibleengine_vpc_peering_connection_v2":          93,
+		"flexibleengine_vpc_route_v2":                       94,
+		"flexibleengine_vpc_subnet_v1":                      95,
+		"flexibleengine_vpc_v1":                             96,
 	}
 )
 

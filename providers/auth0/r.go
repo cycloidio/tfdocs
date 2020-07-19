@@ -697,7 +697,55 @@ var (
 				},
 				resource.Attribute{
 					Name:        "adfs_server",
-					Description: `(Optional) ADFS Metadata source. ## Attribute Reference Attributes exported by this resource include:`,
+					Description: `(Optional) ADFS Metadata source. ### SAML With the ` + "`" + `samlp` + "`" + ` connection strategy, ` + "`" + `options` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "debug",
+					Description: `(Optional) (Boolean) When enabled additional debugging information will be generated.`,
+				},
+				resource.Attribute{
+					Name:        "signing_cert",
+					Description: `The X.509 signing certificate (encoded in PEM or CER) you retrieved from the IdP, Base64-encoded`,
+				},
+				resource.Attribute{
+					Name:        "protocol_binding",
+					Description: `(Optional) The SAML Response Binding - how the SAML token is received by Auth0 from IdP. Two possible values are ` + "`" + `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect` + "`" + ` (default) and ` + "`" + `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "idpinitiated",
+					Description: `(Optional) Configuration Options for IDP Initiated Authentication. This is an object with the properties: ` + "`" + `client_id` + "`" + `, ` + "`" + `client_protocol` + "`" + `, and ` + "`" + `client_authorizequery` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "tenant_domain",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "domain_aliases",
+					Description: `(Optional) List of the domains that can be authenticated using the Identity Provider. Only needed for Identifier First authentication flows.`,
+				},
+				resource.Attribute{
+					Name:        "sign_in_endpoint",
+					Description: `SAML single login URL for the connection.`,
+				},
+				resource.Attribute{
+					Name:        "sign_out_endpoint",
+					Description: `(Optional) SAML single logout URL for the connection.`,
+				},
+				resource.Attribute{
+					Name:        "fields_map",
+					Description: `(Optional) SAML Attributes mapping. If you're configuring a SAML enterprise connection for a non-standard PingFederate Server, you must update the attribute mappings.`,
+				},
+				resource.Attribute{
+					Name:        "sign_saml_request",
+					Description: `(Optional) (Boolean) When enabled, the SAML authentication request will be signed.`,
+				},
+				resource.Attribute{
+					Name:        "signature_algorithm",
+					Description: `(Optional) Sign Request Algorithm`,
+				},
+				resource.Attribute{
+					Name:        "digest_algorithm",
+					Description: `(Optional) Sign Request Algorithm Digest`,
 				},
 				resource.Attribute{
 					Name:        "is_domain_connection",

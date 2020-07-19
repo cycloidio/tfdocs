@@ -203,6 +203,33 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "opsgenie_service",
+			Category:         "Data Sources",
+			ShortDescription: `Manages existing Service within Opsgenie.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the service. This field must not be longer than 100 characters. The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Opsgenie Service.`,
+				},
+				resource.Attribute{
+					Name:        "team_id",
+					Description: `Team id of the service.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description field of the service that is generally used to provide a detailed information about the service.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "opsgenie_team",
 			Category:         "Data Sources",
 			ShortDescription: `Manages existing Team within Opsgenie.`,
@@ -291,8 +318,9 @@ var (
 		"opsgenie_escalation": 0,
 		"opsgenie_heartbeat":  1,
 		"opsgenie_schedule":   2,
-		"opsgenie_team":       3,
-		"opsgenie_user":       4,
+		"opsgenie_service":    3,
+		"opsgenie_team":       4,
+		"opsgenie_user":       5,
 	}
 )
 

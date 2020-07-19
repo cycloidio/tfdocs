@@ -19,10 +19,43 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The OpenNebula group to retrieve information for.`,
+					Description: `(Required) The OpenNebula group to retrieve information for. ## Attribute Reference The following attribute is exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the group.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `List of User IDs part of the group.`,
+				},
+				resource.Attribute{
+					Name:        "admins",
+					Description: `List of Administrator user IDs part of the group.`,
+				},
+				resource.Attribute{
+					Name:        "quotas",
+					Description: `Quotas configured for the group.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the group.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `List of User IDs part of the group.`,
+				},
+				resource.Attribute{
+					Name:        "admins",
+					Description: `List of Administrator user IDs part of the group.`,
+				},
+				resource.Attribute{
+					Name:        "quotas",
+					Description: `Quotas configured for the group.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -34,10 +67,19 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The OpenNebula image to retrieve information for.`,
+					Description: `(Required) The OpenNebula image to retrieve information for. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags associated to the Image.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags associated to the Image.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -49,10 +91,19 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The OpenNebula security group to retrieve information for.`,
+					Description: `(Required) The OpenNebula security group to retrieve information for. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Security group tags.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Security group tags.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -65,6 +116,50 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The OpenNebula template to retrieve information for.`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `(Optional) Amount of CPU shares assigned to the VM.`,
+				},
+				resource.Attribute{
+					Name:        "vpcu",
+					Description: `(Optional) Number of CPU cores presented to the VM.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `(Optional) Amount of RAM assigned to the VM in MB.`,
+				},
+				resource.Attribute{
+					Name:        "context",
+					Description: `(Optional) Array of free form key=value pairs, rendered and added to the CONTEXT variables for the VM. Recommended to include: ` + "`" + `NETWORK = "YES"` + "`" + ` and ` + "`" + `SET_HOSTNAME = "$NAME"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "graphics",
+					Description: `(Optional) Graphics parameters.`,
+				},
+				resource.Attribute{
+					Name:        "os",
+					Description: `(Optional) OS parameters`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `(Optional) Disk parameters`,
+				},
+				resource.Attribute{
+					Name:        "nic",
+					Description: `(Optional) NIC parameters`,
+				},
+				resource.Attribute{
+					Name:        "vmgroup",
+					Description: `(Optional) VM group parameters`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Template tags (Key = Value).`,
+				},
+				resource.Attribute{
+					Name:        "template",
+					Description: `(Deprecated) Text describing the OpenNebula template object, in Opennebula's XML string format.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -86,6 +181,25 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "opennebula_virtual machine group",
+			Category:         "Data Sources",
+			ShortDescription: `Get the virtual machine group information for a given name.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The OpenNebula virtual machine group to retrieve information for.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Virtual Machine group tags.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "opennebula_virtual network",
 			Category:         "Data Sources",
 			ShortDescription: `Get the virtual network information for a given name.`,
@@ -96,6 +210,18 @@ var (
 					Name:        "name",
 					Description: `(Required) The OpenNebula virtual network to retrieve information for.`,
 				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the Virtual Network.`,
+				},
+				resource.Attribute{
+					Name:        "mtu",
+					Description: `(Optional) MTU of the Virtual Network.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Virtual Network tags.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -103,12 +229,13 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"opennebula_group":               0,
-		"opennebula_image":               1,
-		"opennebula_security group":      2,
-		"opennebula_template":            3,
-		"opennebula_virtual data center": 4,
-		"opennebula_virtual network":     5,
+		"opennebula_group":                 0,
+		"opennebula_image":                 1,
+		"opennebula_security group":        2,
+		"opennebula_template":              3,
+		"opennebula_virtual data center":   4,
+		"opennebula_virtual machine group": 5,
+		"opennebula_virtual network":       6,
 	}
 )
 

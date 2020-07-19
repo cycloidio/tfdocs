@@ -11,6 +11,94 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_active_folder",
+			Category:         "Data Sources",
+			ShortDescription: `Get a folder within GCP.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) The folder's display name.`,
+				},
+				resource.Attribute{
+					Name:        "parent",
+					Description: `(Required) The resource name of the parent Folder or Organization. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name of the Folder. This uniquely identifies the folder.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name of the Folder. This uniquely identifies the folder.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_bigquery_default_service_account",
+			Category:         "Data Sources",
+			ShortDescription: `Get the email address of the project's BigQuery service account`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The project the unique service account was created for. If it is not provided, the provider project is used. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `The email address of the service account. This value is often used to refer to the service account in order to grant IAM permissions.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "email",
+					Description: `The email address of the service account. This value is often used to refer to the service account in order to grant IAM permissions.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_billing_account",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Google Billing Account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The billing account ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name of the billing account in the form ` + "`" + `billingAccounts/{billing_account_id}` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "project_ids",
+					Description: `The IDs of any projects associated with the billing account.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The billing account ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name of the billing account in the form ` + "`" + `billingAccounts/{billing_account_id}` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "project_ids",
+					Description: `The IDs of any projects associated with the billing account.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_client_config",
 			Category:         "Data Sources",
 			ShortDescription: `Get information about the configuration of the Google Cloud provider.`,
@@ -50,6 +138,194 @@ var (
 				resource.Attribute{
 					Name:        "access_token",
 					Description: `The OAuth2 access token used by the client to authenticate against the Google Cloud API.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_client_openid_userinfo",
+			Category:         "Data Sources",
+			ShortDescription: `Get OpenID userinfo about the credentials used with the Google provider, specifically the email.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "email",
+					Description: `The email of the account used by the provider to authenticate with GCP.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "email",
+					Description: `The email of the account used by the provider to authenticate with GCP.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_cloud_identity_group_memberships",
+			Category:         "Data Sources",
+			ShortDescription: `Get list of the Cloud Identity Group Memberships within a Group.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group",
+					Description: `The parent Group resource under which to lookup the Membership names. Must be of the form groups/{group_id}. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "memberships",
+					Description: `The list of memberships under the given group. Structure is documented below. The ` + "`" + `memberships` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name of the Membership, of the form groups/{group_id}/memberships/{membership_id}.`,
+				},
+				resource.Attribute{
+					Name:        "roles",
+					Description: `The MembershipRoles that apply to the Membership. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "member_key",
+					Description: `(Optional) EntityKey of the member. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "preferred_member_key",
+					Description: `(Optional) EntityKey of the member. Structure is documented below. The ` + "`" + `roles` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the MembershipRole. One of OWNER, MANAGER, MEMBER. The ` + "`" + `member_key` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the entity. For Google-managed entities, the id is the email address of an existing group or user. For external-identity-mapped entities, the id is a string conforming to the Identity Source's requirements.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `The namespace in which the entity exists. If not populated, the EntityKey represents a Google-managed entity such as a Google user or a Google Group. If populated, the EntityKey represents an external-identity-mapped group. The ` + "`" + `preferred_member_key` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the entity. For Google-managed entities, the id is the email address of an existing group or user. For external-identity-mapped entities, the id is a string conforming to the Identity Source's requirements.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `The namespace in which the entity exists. If not populated, the EntityKey represents a Google-managed entity such as a Google user or a Google Group. If populated, the EntityKey represents an external-identity-mapped group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "memberships",
+					Description: `The list of memberships under the given group. Structure is documented below. The ` + "`" + `memberships` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name of the Membership, of the form groups/{group_id}/memberships/{membership_id}.`,
+				},
+				resource.Attribute{
+					Name:        "roles",
+					Description: `The MembershipRoles that apply to the Membership. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "member_key",
+					Description: `(Optional) EntityKey of the member. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "preferred_member_key",
+					Description: `(Optional) EntityKey of the member. Structure is documented below. The ` + "`" + `roles` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the MembershipRole. One of OWNER, MANAGER, MEMBER. The ` + "`" + `member_key` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the entity. For Google-managed entities, the id is the email address of an existing group or user. For external-identity-mapped entities, the id is a string conforming to the Identity Source's requirements.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `The namespace in which the entity exists. If not populated, the EntityKey represents a Google-managed entity such as a Google user or a Google Group. If populated, the EntityKey represents an external-identity-mapped group. The ` + "`" + `preferred_member_key` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the entity. For Google-managed entities, the id is the email address of an existing group or user. For external-identity-mapped entities, the id is a string conforming to the Identity Source's requirements.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `The namespace in which the entity exists. If not populated, the EntityKey represents a Google-managed entity such as a Google user or a Google Group. If populated, the EntityKey represents an external-identity-mapped group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_cloud_identity_groups",
+			Category:         "Data Sources",
+			ShortDescription: `Get list of the Cloud Identity Groups under a customer or namespace.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "parent",
+					Description: `The parent resource under which to list all Groups. Must be of the form identitysources/{identity_source_id} for external- identity-mapped groups or customers/{customer_id} for Google Groups. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `The list of groups under the provided customer or namespace. Structure is documented below. The ` + "`" + `groups` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Resource name of the Group in the format: groups/{group_id}, where ` + "`" + `group_id` + "`" + ` is the unique ID assigned to the Group.`,
+				},
+				resource.Attribute{
+					Name:        "group_key",
+					Description: `EntityKey of the Group. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The display name of the Group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `An extended description to help users determine the purpose of a Group.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the entity. For Google-managed entities, the id is the email address of an existing group or user. For external-identity-mapped entities, the id is a string conforming to the Identity Source's requirements.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `The namespace in which the entity exists. If not populated, the EntityKey represents a Google-managed entity such as a Google user or a Google Group. If populated, the EntityKey represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of ` + "`" + `identitysources/{identity_source_id}` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "groups",
+					Description: `The list of groups under the provided customer or namespace. Structure is documented below. The ` + "`" + `groups` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Resource name of the Group in the format: groups/{group_id}, where ` + "`" + `group_id` + "`" + ` is the unique ID assigned to the Group.`,
+				},
+				resource.Attribute{
+					Name:        "group_key",
+					Description: `EntityKey of the Group. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The display name of the Group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `An extended description to help users determine the purpose of a Group.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the entity. For Google-managed entities, the id is the email address of an existing group or user. For external-identity-mapped entities, the id is a string conforming to the Identity Source's requirements.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `The namespace in which the entity exists. If not populated, the EntityKey represents a Google-managed entity such as a Google user or a Google Group. If populated, the EntityKey represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of ` + "`" + `identitysources/{identity_source_id}` + "`" + `.`,
 				},
 			},
 		},
@@ -239,6 +515,50 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_composer_image_versions",
+			Category:         "Data Sources",
+			ShortDescription: `Provides available Cloud Composer versions.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project to list versions in. If it is not provided, the provider project is used.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The location to list versions in. If it is not provider, the provider region is used. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "image_versions",
+					Description: `A list of composer image versions available in the given project and location. Each ` + "`" + `image_version` + "`" + ` contains:`,
+				},
+				resource.Attribute{
+					Name:        "image_version_id",
+					Description: `The string identifier of the image version, in the form: "composer-x.y.z-airflow-a.b(.c)"`,
+				},
+				resource.Attribute{
+					Name:        "supported_python_versions",
+					Description: `Supported python versions for this image version`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "image_versions",
+					Description: `A list of composer image versions available in the given project and location. Each ` + "`" + `image_version` + "`" + ` contains:`,
+				},
+				resource.Attribute{
+					Name:        "image_version_id",
+					Description: `The string identifier of the image version, in the form: "composer-x.y.z-airflow-a.b(.c)"`,
+				},
+				resource.Attribute{
+					Name:        "supported_python_versions",
+					Description: `Supported python versions for this image version`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_compute_address",
 			Category:         "Data Sources",
 			ShortDescription: `Get the IP address from a static address.`,
@@ -282,6 +602,254 @@ var (
 				resource.Attribute{
 					Name:        "status",
 					Description: `Indicates if the address is used. Possible values are: RESERVED or IN_USE.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_compute_backend_bucket",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a BackendBucket.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the resource. - - -`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "bucket_name",
+					Description: `Cloud Storage bucket name.`,
+				},
+				resource.Attribute{
+					Name:        "cdn_policy",
+					Description: `Cloud CDN configuration for this Backend Bucket. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `An optional textual description of the resource; provided by the client when the resource is created.`,
+				},
+				resource.Attribute{
+					Name:        "enable_cdn",
+					Description: `Whether Cloud CDN is enabled for this BackendBucket.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/backendBuckets/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "creation_timestamp",
+					Description: `Creation timestamp in RFC3339 text format.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the created resource. The ` + "`" + `cdn_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "signed_url_cache_max_age_sec",
+					Description: `Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a "Cache-Control: public, max-age=[TTL]" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "bucket_name",
+					Description: `Cloud Storage bucket name.`,
+				},
+				resource.Attribute{
+					Name:        "cdn_policy",
+					Description: `Cloud CDN configuration for this Backend Bucket. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `An optional textual description of the resource; provided by the client when the resource is created.`,
+				},
+				resource.Attribute{
+					Name:        "enable_cdn",
+					Description: `Whether Cloud CDN is enabled for this BackendBucket.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/backendBuckets/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "creation_timestamp",
+					Description: `Creation timestamp in RFC3339 text format.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the created resource. The ` + "`" + `cdn_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "signed_url_cache_max_age_sec",
+					Description: `Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a "Cache-Control: public, max-age=[TTL]" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_compute_backend_service",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Backend Service.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Backend Service. - - -`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "connection_draining_timeout_sec",
+					Description: `Time for which instance will be drained (not accept new connections, but still work to finish started ones).`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Textual description for the Backend Service.`,
+				},
+				resource.Attribute{
+					Name:        "enable_cdn",
+					Description: `Whether or not Cloud CDN is enabled on the Backend Service.`,
+				},
+				resource.Attribute{
+					Name:        "fingerprint",
+					Description: `The fingerprint of the Backend Service.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/backendServices/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "port_name",
+					Description: `The name of a service that has been added to an instance group in this backend.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `The protocol for incoming requests.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the Backend Service.`,
+				},
+				resource.Attribute{
+					Name:        "session_affinity",
+					Description: `The Backend Service session stickiness configuration.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_sec",
+					Description: `The number of seconds to wait for a backend to respond to a request before considering the request failed.`,
+				},
+				resource.Attribute{
+					Name:        "backend",
+					Description: `The set of backends that serve this Backend Service.`,
+				},
+				resource.Attribute{
+					Name:        "health_checks",
+					Description: `The set of HTTP/HTTPS health checks used by the Backend Service.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "connection_draining_timeout_sec",
+					Description: `Time for which instance will be drained (not accept new connections, but still work to finish started ones).`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Textual description for the Backend Service.`,
+				},
+				resource.Attribute{
+					Name:        "enable_cdn",
+					Description: `Whether or not Cloud CDN is enabled on the Backend Service.`,
+				},
+				resource.Attribute{
+					Name:        "fingerprint",
+					Description: `The fingerprint of the Backend Service.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/backendServices/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "port_name",
+					Description: `The name of a service that has been added to an instance group in this backend.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `The protocol for incoming requests.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the Backend Service.`,
+				},
+				resource.Attribute{
+					Name:        "session_affinity",
+					Description: `The Backend Service session stickiness configuration.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_sec",
+					Description: `The number of seconds to wait for a backend to respond to a request before considering the request failed.`,
+				},
+				resource.Attribute{
+					Name:        "backend",
+					Description: `The set of backends that serve this Backend Service.`,
+				},
+				resource.Attribute{
+					Name:        "health_checks",
+					Description: `The set of HTTP/HTTPS health checks used by the Backend Service.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_compute_default_service_account",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve default service account used by VMs running in this project`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The project ID. If it is not provided, the provider project is used. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `Email address of the default service account used by VMs running in this project`,
+				},
+				resource.Attribute{
+					Name:        "unique_id",
+					Description: `The unique id of the service account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The fully-qualified name of the service account.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The display name for the service account.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "email",
+					Description: `Email address of the default service account used by VMs running in this project`,
+				},
+				resource.Attribute{
+					Name:        "unique_id",
+					Description: `The unique id of the service account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The fully-qualified name of the service account.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The display name for the service account.`,
 				},
 			},
 		},
@@ -1063,6 +1631,82 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_compute_instance_group",
+			Category:         "Data Sources",
+			ShortDescription: `Get a Compute Instance Group within GCE.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the instance group. Either ` + "`" + `name` + "`" + ` or ` + "`" + `self_link` + "`" + ` must be provided.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `(Optional) The self link of the instance group. Either ` + "`" + `name` + "`" + ` or ` + "`" + `self_link` + "`" + ` must be provided.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Optional) The zone of the instance group. If referencing the instance group by name and ` + "`" + `zone` + "`" + ` is not provided, the provider zone is used. ## Attributes Reference The following arguments are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Textual description of the instance group.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `List of instances in the group.`,
+				},
+				resource.Attribute{
+					Name:        "named_port",
+					Description: `List of named ports in the group.`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `The URL of the network the instance group is in.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The number of instances in the group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `Textual description of the instance group.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `List of instances in the group.`,
+				},
+				resource.Attribute{
+					Name:        "named_port",
+					Description: `List of named ports in the group.`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `The URL of the network the instance group is in.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The number of instances in the group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_compute_instance_serial_port",
 			Category:         "Data Sources",
 			ShortDescription: `Get the serial port output from a Compute Instance.`,
@@ -1179,6 +1823,102 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_compute_network_endpoint_group",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve Network Endpoint Group's details.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project to list versions in. If it is not provided, the provider project is used.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The Network Endpoint Group name. Provide either this or a ` + "`" + `self_link` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Optional) The Network Endpoint Group availability zone.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `(Optional) The Network Endpoint Group self\_link. ## Attributes Reference In addition the arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `The network to which all network endpoints in the NEG belong.`,
+				},
+				resource.Attribute{
+					Name:        "subnetwork",
+					Description: `subnetwork to which all network endpoints in the NEG belong.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The NEG description.`,
+				},
+				resource.Attribute{
+					Name:        "network_endpoint_type",
+					Description: `Type of network endpoints in this network endpoint group.`,
+				},
+				resource.Attribute{
+					Name:        "default_port",
+					Description: `The NEG default port.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `Number of network endpoints in the network endpoint group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "network",
+					Description: `The network to which all network endpoints in the NEG belong.`,
+				},
+				resource.Attribute{
+					Name:        "subnetwork",
+					Description: `subnetwork to which all network endpoints in the NEG belong.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The NEG description.`,
+				},
+				resource.Attribute{
+					Name:        "network_endpoint_type",
+					Description: `Type of network endpoints in this network endpoint group.`,
+				},
+				resource.Attribute{
+					Name:        "default_port",
+					Description: `The NEG default port.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `Number of network endpoints in the network endpoint group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_compute_node_types",
+			Category:         "Data Sources",
+			ShortDescription: `Provides list of available Google Compute Engine node types for sole-tenant nodes.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of node types available in the given zone and project.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of node types available in the given zone and project.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_compute_region_instance_group",
 			Category:         "Data Sources",
 			ShortDescription: `Get the instances inside a Compute Region Instance Group within GCE.`,
@@ -1258,6 +1998,54 @@ var (
 				resource.Attribute{
 					Name:        "status",
 					Description: `String description of current state of the instance.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_compute_regions",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of available Google Compute regions`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of regions available in the given project`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of regions available in the given project`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_compute_resource_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Provide access to a Resource Policy's attributes`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of this Resource Policy.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of this Resource Policy.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the resource.`,
 				},
 			},
 		},
@@ -1529,6 +2317,113 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_compute_zones",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of available Google Compute zones`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of zones available in the given region`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of zones available in the given region`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_container_cluster",
+			Category:         "Data Sources",
+			ShortDescription: `Get info about a Google Kubernetes Engine cluster.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference See [google_container_cluster](https://www.terraform.io/docs/providers/google/r/container_cluster.html) resource for details of the available attributes.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_container_engine_versions",
+			Category:         "Data Sources",
+			ShortDescription: `Provides lists of available Google Kubernetes Engine versions for masters and nodes.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "valid_master_versions",
+					Description: `A list of versions available in the given zone for use with master instances.`,
+				},
+				resource.Attribute{
+					Name:        "valid_node_versions",
+					Description: `A list of versions available in the given zone for use with node instances.`,
+				},
+				resource.Attribute{
+					Name:        "latest_master_version",
+					Description: `The latest version available in the given zone for use with master instances.`,
+				},
+				resource.Attribute{
+					Name:        "latest_node_version",
+					Description: `The latest version available in the given zone for use with node instances.`,
+				},
+				resource.Attribute{
+					Name:        "default_cluster_version",
+					Description: `Version of Kubernetes the service deploys by default.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "valid_master_versions",
+					Description: `A list of versions available in the given zone for use with master instances.`,
+				},
+				resource.Attribute{
+					Name:        "valid_node_versions",
+					Description: `A list of versions available in the given zone for use with node instances.`,
+				},
+				resource.Attribute{
+					Name:        "latest_master_version",
+					Description: `The latest version available in the given zone for use with master instances.`,
+				},
+				resource.Attribute{
+					Name:        "latest_node_version",
+					Description: `The latest version available in the given zone for use with node instances.`,
+				},
+				resource.Attribute{
+					Name:        "default_cluster_version",
+					Description: `Version of Kubernetes the service deploys by default.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_container_registry_image",
+			Category:         "Data Sources",
+			ShortDescription: `Get URLs for a given project's container registry image.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_container_registry_repository",
+			Category:         "Data Sources",
+			ShortDescription: `Get URLs for a given project's container registry repository.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_dns_keys",
 			Category:         "Data Sources",
 			ShortDescription: `Get DNSKEY and DS records of DNSSEC-signed managed zones.`,
@@ -1640,6 +2535,58 @@ var (
 				resource.Attribute{
 					Name:        "public_key",
 					Description: `Base64 encoded public half of this key.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_dns_managed_zone",
+			Category:         "Data Sources",
+			ShortDescription: `Provides access to the attributes of a zone within Google Cloud DNS`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique name for the resource.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project for the Google Cloud DNS zone. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "dns_name",
+					Description: `The fully qualified DNS name of this zone, e.g. ` + "`" + `terraform.io.` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A textual description field.`,
+				},
+				resource.Attribute{
+					Name:        "name_servers",
+					Description: `The list of nameservers that will be authoritative for this domain. Use NS records to redirect from your DNS provider to these names, thus making Google Cloud DNS authoritative for this zone.`,
+				},
+				resource.Attribute{
+					Name:        "visibility",
+					Description: `The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dns_name",
+					Description: `The fully qualified DNS name of this zone, e.g. ` + "`" + `terraform.io.` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A textual description field.`,
+				},
+				resource.Attribute{
+					Name:        "name_servers",
+					Description: `The list of nameservers that will be authoritative for this domain. Use NS records to redirect from your DNS provider to these names, thus making Google Cloud DNS authoritative for this zone.`,
+				},
+				resource.Attribute{
+					Name:        "visibility",
+					Description: `The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.`,
 				},
 			},
 		},
@@ -1765,341 +2712,69 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "google_client_openid_userinfo",
+			Type:             "google_folder",
 			Category:         "Data Sources",
-			ShortDescription: `Get OpenID userinfo about the credentials used with the Google provider, specifically the email.`,
+			ShortDescription: `Get information about a Google Cloud Folder.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "email",
-					Description: `The email of the account used by the provider to authenticate with GCP.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "email",
-					Description: `The email of the account used by the provider to authenticate with GCP.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_composer_image_versions",
-			Category:         "Data Sources",
-			ShortDescription: `Provides available Cloud Composer versions.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "project",
-					Description: `(Optional) The ID of the project to list versions in. If it is not provided, the provider project is used.`,
-				},
-				resource.Attribute{
-					Name:        "region",
-					Description: `(Optional) The location to list versions in. If it is not provider, the provider region is used. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "image_versions",
-					Description: `A list of composer image versions available in the given project and location. Each ` + "`" + `image_version` + "`" + ` contains:`,
-				},
-				resource.Attribute{
-					Name:        "image_version_id",
-					Description: `The string identifier of the image version, in the form: "composer-x.y.z-airflow-a.b(.c)"`,
-				},
-				resource.Attribute{
-					Name:        "supported_python_versions",
-					Description: `Supported python versions for this image version`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "image_versions",
-					Description: `A list of composer image versions available in the given project and location. Each ` + "`" + `image_version` + "`" + ` contains:`,
-				},
-				resource.Attribute{
-					Name:        "image_version_id",
-					Description: `The string identifier of the image version, in the form: "composer-x.y.z-airflow-a.b(.c)"`,
-				},
-				resource.Attribute{
-					Name:        "supported_python_versions",
-					Description: `Supported python versions for this image version`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_compute_backend_bucket",
-			Category:         "Data Sources",
-			ShortDescription: `Get information about a BackendBucket.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Name of the resource. - - -`,
-				},
-				resource.Attribute{
-					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "bucket_name",
-					Description: `Cloud Storage bucket name.`,
-				},
-				resource.Attribute{
-					Name:        "cdn_policy",
-					Description: `Cloud CDN configuration for this Backend Bucket. Structure is documented below.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `An optional textual description of the resource; provided by the client when the resource is created.`,
-				},
-				resource.Attribute{
-					Name:        "enable_cdn",
-					Description: `Whether Cloud CDN is enabled for this BackendBucket.`,
-				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/backendBuckets/{{name}}` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "creation_timestamp",
-					Description: `Creation timestamp in RFC3339 text format.`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `The URI of the created resource. The ` + "`" + `cdn_policy` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "signed_url_cache_max_age_sec",
-					Description: `Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a "Cache-Control: public, max-age=[TTL]" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "bucket_name",
-					Description: `Cloud Storage bucket name.`,
-				},
-				resource.Attribute{
-					Name:        "cdn_policy",
-					Description: `Cloud CDN configuration for this Backend Bucket. Structure is documented below.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `An optional textual description of the resource; provided by the client when the resource is created.`,
-				},
-				resource.Attribute{
-					Name:        "enable_cdn",
-					Description: `Whether Cloud CDN is enabled for this BackendBucket.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/backendBuckets/{{name}}` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "creation_timestamp",
-					Description: `Creation timestamp in RFC3339 text format.`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `The URI of the created resource. The ` + "`" + `cdn_policy` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "signed_url_cache_max_age_sec",
-					Description: `Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a "Cache-Control: public, max-age=[TTL]" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_compute_backend_service",
-			Category:         "Data Sources",
-			ShortDescription: `Get information about a Backend Service.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The name of the Backend Service. - - -`,
-				},
-				resource.Attribute{
-					Name:        "project",
-					Description: `(Optional) The project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "connection_draining_timeout_sec",
-					Description: `Time for which instance will be drained (not accept new connections, but still work to finish started ones).`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `Textual description for the Backend Service.`,
-				},
-				resource.Attribute{
-					Name:        "enable_cdn",
-					Description: `Whether or not Cloud CDN is enabled on the Backend Service.`,
-				},
-				resource.Attribute{
-					Name:        "fingerprint",
-					Description: `The fingerprint of the Backend Service.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/backendServices/{{name}}` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "port_name",
-					Description: `The name of a service that has been added to an instance group in this backend.`,
-				},
-				resource.Attribute{
-					Name:        "protocol",
-					Description: `The protocol for incoming requests.`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `The URI of the Backend Service.`,
-				},
-				resource.Attribute{
-					Name:        "session_affinity",
-					Description: `The Backend Service session stickiness configuration.`,
-				},
-				resource.Attribute{
-					Name:        "timeout_sec",
-					Description: `The number of seconds to wait for a backend to respond to a request before considering the request failed.`,
-				},
-				resource.Attribute{
-					Name:        "backend",
-					Description: `The set of backends that serve this Backend Service.`,
-				},
-				resource.Attribute{
-					Name:        "health_checks",
-					Description: `The set of HTTP/HTTPS health checks used by the Backend Service.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "connection_draining_timeout_sec",
-					Description: `Time for which instance will be drained (not accept new connections, but still work to finish started ones).`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `Textual description for the Backend Service.`,
-				},
-				resource.Attribute{
-					Name:        "enable_cdn",
-					Description: `Whether or not Cloud CDN is enabled on the Backend Service.`,
-				},
-				resource.Attribute{
-					Name:        "fingerprint",
-					Description: `The fingerprint of the Backend Service.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/backendServices/{{name}}` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "port_name",
-					Description: `The name of a service that has been added to an instance group in this backend.`,
-				},
-				resource.Attribute{
-					Name:        "protocol",
-					Description: `The protocol for incoming requests.`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `The URI of the Backend Service.`,
-				},
-				resource.Attribute{
-					Name:        "session_affinity",
-					Description: `The Backend Service session stickiness configuration.`,
-				},
-				resource.Attribute{
-					Name:        "timeout_sec",
-					Description: `The number of seconds to wait for a backend to respond to a request before considering the request failed.`,
-				},
-				resource.Attribute{
-					Name:        "backend",
-					Description: `The set of backends that serve this Backend Service.`,
-				},
-				resource.Attribute{
-					Name:        "health_checks",
-					Description: `The set of HTTP/HTTPS health checks used by the Backend Service.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_compute_network_endpoint_group",
-			Category:         "Data Sources",
-			ShortDescription: `Retrieve Network Endpoint Group's details.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "project",
-					Description: `(Optional) The ID of the project to list versions in. If it is not provided, the provider project is used.`,
+					Description: `The Folder ID.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The Network Endpoint Group name. Provide either this or a ` + "`" + `self_link` + "`" + `.`,
+					Description: `The resource name of the Folder in the form ` + "`" + `folders/{folder_id}` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "zone",
-					Description: `(Optional) The Network Endpoint Group availability zone.`,
+					Name:        "parent",
+					Description: `The resource name of the parent Folder or Organization.`,
 				},
 				resource.Attribute{
-					Name:        "self_link",
-					Description: `(Optional) The Network Endpoint Group self\_link. ## Attributes Reference In addition the arguments listed above, the following attributes are exported:`,
+					Name:        "display_name",
+					Description: `The folder's display name.`,
 				},
 				resource.Attribute{
-					Name:        "network",
-					Description: `The network to which all network endpoints in the NEG belong.`,
+					Name:        "create_time",
+					Description: `Timestamp when the Organization was created. A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".`,
 				},
 				resource.Attribute{
-					Name:        "subnetwork",
-					Description: `subnetwork to which all network endpoints in the NEG belong.`,
+					Name:        "lifecycle_state",
+					Description: `The Folder's current lifecycle state.`,
 				},
 				resource.Attribute{
-					Name:        "description",
-					Description: `The NEG description.`,
-				},
-				resource.Attribute{
-					Name:        "network_endpoint_type",
-					Description: `Type of network endpoints in this network endpoint group.`,
-				},
-				resource.Attribute{
-					Name:        "default_port",
-					Description: `The NEG default port.`,
-				},
-				resource.Attribute{
-					Name:        "size",
-					Description: `Number of network endpoints in the network endpoint group.`,
+					Name:        "organization",
+					Description: `If ` + "`" + `lookup_organization` + "`" + ` is enable, the resource name of the Organization that the folder belongs.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "network",
-					Description: `The network to which all network endpoints in the NEG belong.`,
+					Name:        "id",
+					Description: `The Folder ID.`,
 				},
 				resource.Attribute{
-					Name:        "subnetwork",
-					Description: `subnetwork to which all network endpoints in the NEG belong.`,
+					Name:        "name",
+					Description: `The resource name of the Folder in the form ` + "`" + `folders/{folder_id}` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "description",
-					Description: `The NEG description.`,
+					Name:        "parent",
+					Description: `The resource name of the parent Folder or Organization.`,
 				},
 				resource.Attribute{
-					Name:        "network_endpoint_type",
-					Description: `Type of network endpoints in this network endpoint group.`,
+					Name:        "display_name",
+					Description: `The folder's display name.`,
 				},
 				resource.Attribute{
-					Name:        "default_port",
-					Description: `The NEG default port.`,
+					Name:        "create_time",
+					Description: `Timestamp when the Organization was created. A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".`,
 				},
 				resource.Attribute{
-					Name:        "size",
-					Description: `Number of network endpoints in the network endpoint group.`,
+					Name:        "lifecycle_state",
+					Description: `The Folder's current lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "organization",
+					Description: `If ` + "`" + `lookup_organization` + "`" + ` is enable, the resource name of the Organization that the folder belongs.`,
 				},
 			},
 		},
@@ -2121,6 +2796,122 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_game_services_game_server_deployment_rollout",
+			Category:         "Data Sources",
+			ShortDescription: `Get the rollout state.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "deployment_id",
+					Description: `(Required) The deployment to get the rollout state from. Only 1 rollout must be associated with each deployment. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "default_game_server_config",
+					Description: `This field points to the game server config that is applied by default to all realms and clusters. For example, ` + "`" + `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "game_server_config_overrides",
+					Description: `The game_server_config_overrides contains the per game server config overrides. The overrides are processed in the order they are listed. As soon as a match is found for a cluster, the rest of the list is not processed. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `The ID of the project in which the resource belongs. If it is not provided, the provider project is used. The ` + "`" + `game_server_config_overrides` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "realms_selector",
+					Description: `Selection by realms. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "config_version",
+					Description: `Version of the configuration. The ` + "`" + `realms_selector` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "realms",
+					Description: `List of realms to match against.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/global/gameServerDeployments/{{deployment_id}}/rollout` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource id of the game server deployment eg: ` + "`" + `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "default_game_server_config",
+					Description: `This field points to the game server config that is applied by default to all realms and clusters. For example, ` + "`" + `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "game_server_config_overrides",
+					Description: `The game_server_config_overrides contains the per game server config overrides. The overrides are processed in the order they are listed. As soon as a match is found for a cluster, the rest of the list is not processed. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `The ID of the project in which the resource belongs. If it is not provided, the provider project is used. The ` + "`" + `game_server_config_overrides` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "realms_selector",
+					Description: `Selection by realms. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "config_version",
+					Description: `Version of the configuration. The ` + "`" + `realms_selector` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "realms",
+					Description: `List of realms to match against.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/global/gameServerDeployments/{{deployment_id}}/rollout` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource id of the game server deployment eg: ` + "`" + `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_iam_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Generates an IAM policy that can be referenced by other resources, applying the policy to them.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "condition",
+					Description: `(Optional) An [IAM Condition](https://cloud.google.com/iam/docs/conditions-overview) for a given binding. Structure is documented below. The ` + "`" + `condition` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "expression",
+					Description: `(Required) Textual representation of an expression in Common Expression Language syntax.`,
+				},
+				resource.Attribute{
+					Name:        "title",
+					Description: `(Required) A title for the expression, i.e. a short string describing its purpose.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI. ## Attributes Reference The following attribute is exported:`,
+				},
+				resource.Attribute{
+					Name:        "policy_data",
+					Description: `The above bindings serialized in a format suitable for referencing from a resource that supports IAM.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policy_data",
+					Description: `The above bindings serialized in a format suitable for referencing from a resource that supports IAM.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2155,6 +2946,402 @@ var (
 				resource.Attribute{
 					Name:        "stage",
 					Description: `indicates the stage of a role in the launch lifecycle, such as ` + "`" + `GA` + "`" + `, ` + "`" + `BETA` + "`" + ` or ` + "`" + `ALPHA` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_iam_testable_permissions",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve a list of testable permissions for a resource. Testable permissions mean the permissions that user can add or remove in a role at a given resource. The resource can be referenced either via the full resource name or via a URI.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "full_resource_name",
+					Description: `(Required) See [full resource name documentation](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more detail.`,
+				},
+				resource.Attribute{
+					Name:        "stages",
+					Description: `(Optional) The acceptable release stages of the permission in the output. Note that ` + "`" + `BETA` + "`" + ` does not include permissions in ` + "`" + `GA` + "`" + `, but you can specify both with ` + "`" + `["GA", "BETA"]` + "`" + ` for example. Can be a list of ` + "`" + `"ALPHA"` + "`" + `, ` + "`" + `"BETA"` + "`" + `, ` + "`" + `"GA"` + "`" + `, ` + "`" + `"DEPRECATED"` + "`" + `. Default is ` + "`" + `["GA"]` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "custom_support_level",
+					Description: `(Optional) The level of support for custom roles. Can be one of ` + "`" + `"NOT_SUPPORTED"` + "`" + `, ` + "`" + `"SUPPORTED"` + "`" + `, ` + "`" + `"TESTING"` + "`" + `. Default is ` + "`" + `"SUPPORTED"` + "`" + ` ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `A list of permissions matching the provided input. Structure is defined below. The ` + "`" + `permissions` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the permission.`,
+				},
+				resource.Attribute{
+					Name:        "title",
+					Description: `Human readable title of the permission.`,
+				},
+				resource.Attribute{
+					Name:        "stage",
+					Description: `Release stage of the permission.`,
+				},
+				resource.Attribute{
+					Name:        "custom_support_level",
+					Description: `The the support level of this permission for custom roles.`,
+				},
+				resource.Attribute{
+					Name:        "api_disabled",
+					Description: `Whether the corresponding API has been enabled for the resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `A list of permissions matching the provided input. Structure is defined below. The ` + "`" + `permissions` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the permission.`,
+				},
+				resource.Attribute{
+					Name:        "title",
+					Description: `Human readable title of the permission.`,
+				},
+				resource.Attribute{
+					Name:        "stage",
+					Description: `Release stage of the permission.`,
+				},
+				resource.Attribute{
+					Name:        "custom_support_level",
+					Description: `The the support level of this permission for custom roles.`,
+				},
+				resource.Attribute{
+					Name:        "api_disabled",
+					Description: `Whether the corresponding API has been enabled for the resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_kms_crypto_key",
+			Category:         "Data Sources",
+			ShortDescription: `Provides access to KMS key data with Google Cloud KMS.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The CryptoKey's name. A CryptoKey’s name belonging to the specified Google Cloud Platform KeyRing and match the regular expression ` + "`" + `[a-zA-Z0-9_-]{1,63}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "key_ring",
+					Description: `(Required) The ` + "`" + `self_link` + "`" + ` of the Google Cloud Platform KeyRing to which the key belongs. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "rotation_period",
+					Description: `Every time this period passes, generate a new CryptoKeyVersion and set it as the primary. The first rotation will take place after the specified period. The rotation period has the format of a decimal number with up to 9 fractional digits, followed by the letter s (seconds).`,
+				},
+				resource.Attribute{
+					Name:        "purpose",
+					Description: `Defines the cryptographic capabilities of the key.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The self link of the created CryptoKey. Its format is ` + "`" + `projects/{projectId}/locations/{location}/keyRings/{keyRingName}/cryptoKeys/{cryptoKeyName}` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "rotation_period",
+					Description: `Every time this period passes, generate a new CryptoKeyVersion and set it as the primary. The first rotation will take place after the specified period. The rotation period has the format of a decimal number with up to 9 fractional digits, followed by the letter s (seconds).`,
+				},
+				resource.Attribute{
+					Name:        "purpose",
+					Description: `Defines the cryptographic capabilities of the key.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The self link of the created CryptoKey. Its format is ` + "`" + `projects/{projectId}/locations/{location}/keyRings/{keyRingName}/cryptoKeys/{cryptoKeyName}` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_kms_crypto_key_version",
+			Category:         "Data Sources",
+			ShortDescription: `Provides access to KMS key version data with Google Cloud KMS.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "crypto_key",
+					Description: `(Required) The ` + "`" + `self_link` + "`" + ` of the Google Cloud Platform CryptoKey to which the key version belongs.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) The version number for this CryptoKeyVersion. Defaults to ` + "`" + `1` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `//cloudkms.googleapis.com/v1/{{crypto_key}}/cryptoKeyVersions/{{version}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The current state of the CryptoKeyVersion. See the [state reference](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions#CryptoKeyVersion.CryptoKeyVersionState) for possible outputs.`,
+				},
+				resource.Attribute{
+					Name:        "protection_level",
+					Description: `The ProtectionLevel describing how crypto operations are performed with this CryptoKeyVersion. See the [protection_level reference](https://cloud.google.com/kms/docs/reference/rest/v1/ProtectionLevel) for possible outputs.`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `The CryptoKeyVersionAlgorithm that this CryptoKeyVersion supports. See the [algorithm reference](https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm) for possible outputs.`,
+				},
+				resource.Attribute{
+					Name:        "public_key",
+					Description: `If the enclosing CryptoKey has purpose ` + "`" + `ASYMMETRIC_SIGN` + "`" + ` or ` + "`" + `ASYMMETRIC_DECRYPT` + "`" + `, this block contains details about the public key associated to this CryptoKeyVersion. Structure is documented below. The ` + "`" + `public_key` + "`" + ` block, if present, contains:`,
+				},
+				resource.Attribute{
+					Name:        "pem",
+					Description: `The public key, encoded in PEM format. For more information, see the RFC 7468 sections for General Considerations and Textual Encoding of Subject Public Key Info.`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `The CryptoKeyVersionAlgorithm that this CryptoKeyVersion supports.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `//cloudkms.googleapis.com/v1/{{crypto_key}}/cryptoKeyVersions/{{version}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The current state of the CryptoKeyVersion. See the [state reference](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions#CryptoKeyVersion.CryptoKeyVersionState) for possible outputs.`,
+				},
+				resource.Attribute{
+					Name:        "protection_level",
+					Description: `The ProtectionLevel describing how crypto operations are performed with this CryptoKeyVersion. See the [protection_level reference](https://cloud.google.com/kms/docs/reference/rest/v1/ProtectionLevel) for possible outputs.`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `The CryptoKeyVersionAlgorithm that this CryptoKeyVersion supports. See the [algorithm reference](https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm) for possible outputs.`,
+				},
+				resource.Attribute{
+					Name:        "public_key",
+					Description: `If the enclosing CryptoKey has purpose ` + "`" + `ASYMMETRIC_SIGN` + "`" + ` or ` + "`" + `ASYMMETRIC_DECRYPT` + "`" + `, this block contains details about the public key associated to this CryptoKeyVersion. Structure is documented below. The ` + "`" + `public_key` + "`" + ` block, if present, contains:`,
+				},
+				resource.Attribute{
+					Name:        "pem",
+					Description: `The public key, encoded in PEM format. For more information, see the RFC 7468 sections for General Considerations and Textual Encoding of Subject Public Key Info.`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `The CryptoKeyVersionAlgorithm that this CryptoKeyVersion supports.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_kms_key_ring",
+			Category:         "Data Sources",
+			ShortDescription: `Provides access to KMS key ring data with Google Cloud KMS.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The KeyRing's name. A KeyRing name must exist within the provided location and match the regular expression ` + "`" + `[a-zA-Z0-9_-]{1,63}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) The Google Cloud Platform location for the KeyRing. A full list of valid locations can be found by running ` + "`" + `gcloud kms locations list` + "`" + `. - - -`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The self link of the created KeyRing. Its format is ` + "`" + `projects/{projectId}/locations/{location}/keyRings/{keyRingName}` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The self link of the created KeyRing. Its format is ` + "`" + `projects/{projectId}/locations/{location}/keyRings/{keyRingName}` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_kms_secret",
+			Category:         "Data Sources",
+			ShortDescription: `Provides access to secret data encrypted with Google Cloud KMS`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "plaintext",
+					Description: `Contains the result of decrypting the provided ciphertext.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "plaintext",
+					Description: `Contains the result of decrypting the provided ciphertext.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_kms_secret_ciphertext",
+			Category:         "Data Sources",
+			ShortDescription: `Encrypts secret data with Google Cloud KMS and provides access to the ciphertext`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ciphertext",
+					Description: `Contains the result of encrypting the provided plaintext, encoded in base64. ## User Project Overrides This data source supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ciphertext",
+					Description: `Contains the result of encrypting the provided plaintext, encoded in base64. ## User Project Overrides This data source supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_monitoring_app_engine_service",
+			Category:         "Data Sources",
+			ShortDescription: `An Monitoring Service resource created automatically by GCP to monitor an App Engine service.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "module_id",
+					Description: `(Required) The ID of the App Engine module underlying this service. Corresponds to the moduleId resource label in the [gae_app](https://cloud.google.com/monitoring/api/resources#tag_gae_app) monitored resource, or the service/module name. - - - Other optional fields include:`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The full REST resource name for this channel. The syntax is: ` + "`" + `projects/[PROJECT_ID]/services/[SERVICE_ID]` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Name used for UI elements listing this (Monitoring) Service.`,
+				},
+				resource.Attribute{
+					Name:        "telemetry",
+					Description: `Configuration for how to query telemetry on the Service. Structure is documented below. The ` + "`" + `telemetry` + "`" + ` block includes:`,
+				},
+				resource.Attribute{
+					Name:        "resource_name",
+					Description: `(Optional) The full name of the resource that defines this service. Formatted as described in https://cloud.google.com/apis/design/resource_names.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The full REST resource name for this channel. The syntax is: ` + "`" + `projects/[PROJECT_ID]/services/[SERVICE_ID]` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Name used for UI elements listing this (Monitoring) Service.`,
+				},
+				resource.Attribute{
+					Name:        "telemetry",
+					Description: `Configuration for how to query telemetry on the Service. Structure is documented below. The ` + "`" + `telemetry` + "`" + ` block includes:`,
+				},
+				resource.Attribute{
+					Name:        "resource_name",
+					Description: `(Optional) The full name of the resource that defines this service. Formatted as described in https://cloud.google.com/apis/design/resource_names.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_monitoring_notification_channel",
+			Category:         "Data Sources",
+			ShortDescription: `A NotificationChannel is a medium through which an alert is delivered when a policy violation is detected.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) The display name for this notification channel.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) The type of the notification channel. - - - Other optional fields include:`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) Labels (corresponding to the NotificationChannelDescriptor schema) to filter the notification channels by.`,
+				},
+				resource.Attribute{
+					Name:        "user_labels",
+					Description: `(Optional) User-provided key-value labels to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The full REST resource name for this channel. The syntax is: ` + "`" + `projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "verification_status",
+					Description: `Indicates whether this channel has been verified or not.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `Configuration fields that define the channel and its behavior.`,
+				},
+				resource.Attribute{
+					Name:        "user_labels",
+					Description: `User-supplied key/value data that does not need to conform to the corresponding NotificationChannelDescriptor's schema, unlike the labels field.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `An optional human-readable description of this notification channel.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Whether notifications are forwarded to the described channel.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The full REST resource name for this channel. The syntax is: ` + "`" + `projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "verification_status",
+					Description: `Indicates whether this channel has been verified or not.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `Configuration fields that define the channel and its behavior.`,
+				},
+				resource.Attribute{
+					Name:        "user_labels",
+					Description: `User-supplied key/value data that does not need to conform to the corresponding NotificationChannelDescriptor's schema, unlike the labels field.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `An optional human-readable description of this notification channel.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Whether notifications are forwarded to the described channel.`,
 				},
 			},
 		},
@@ -2199,7 +3386,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "google-netblocks",
-					Description: `Corresponds to IP addresses used for Google services. [More details.](https://support.google.com/a/answer/33786?hl=en)`,
+					Description: `Corresponds to IP addresses used for Google services. [More details.](https://cloud.google.com/compute/docs/faq#where_can_i_find_product_name_short_ip_ranges)`,
 				},
 				resource.Attribute{
 					Name:        "restricted-googleapis",
@@ -2255,6 +3442,73 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_organization",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Google Cloud Organization.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The Organization ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name of the Organization in the form ` + "`" + `organizations/{organization_id}` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "directory_customer_id",
+					Description: `The Google for Work customer ID of the Organization.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Timestamp when the Organization was created. A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_state",
+					Description: `The Organization's current lifecycle state.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The Organization ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name of the Organization in the form ` + "`" + `organizations/{organization_id}` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "directory_customer_id",
+					Description: `The Google for Work customer ID of the Organization.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Timestamp when the Organization was created. A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_state",
+					Description: `The Organization's current lifecycle state.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_project",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve project details`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Optional) The project ID. If it is not provided, the provider project is used. ## Attributes Reference The following attributes are exported: See [google_project](https://www.terraform.io/docs/providers/google/r/google_project.html) resource for details of the available attributes.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_project_organization_policy",
 			Category:         "Data Sources",
 			ShortDescription: `Retrieve Organization policies for a Google Project.`,
@@ -2271,6 +3525,182 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_projects",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve a set of projects based on a filter.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) A string filter as defined in the [REST API](https://cloud.google.com/resource-manager/reference/rest/v1/projects/list#query-parameters). ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "projects",
+					Description: `A list of projects matching the provided filter. Structure is defined below. The ` + "`" + `projects` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `The project id of the project.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "projects",
+					Description: `A list of projects matching the provided filter. Structure is defined below. The ` + "`" + `projects` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `The project id of the project.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_redis_instance",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Google Cloud Redis instance.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of a Redis instance. - - -`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The project in which the resource belongs. If it is not provided, the provider project is used.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which the resource belongs. If it is not provided, the provider region is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "memory_size_gb",
+					Description: `Redis memory size in GiB.`,
+				},
+				resource.Attribute{
+					Name:        "alternative_location_id",
+					Description: `Only applicable to STANDARD_HA tier which protects the instance against zonal failures by provisioning it across two zones. If provided, it must be a different zone from the one provided in [locationId].`,
+				},
+				resource.Attribute{
+					Name:        "authorized_network",
+					Description: `The full name of the Google Compute Engine network to which the instance is connected. If left unspecified, the default network will be used.`,
+				},
+				resource.Attribute{
+					Name:        "connect_mode",
+					Description: `The connection mode of the Redis instance.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `An arbitrary and optional user-provided name for the instance.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `Resource labels to represent user provided metadata.`,
+				},
+				resource.Attribute{
+					Name:        "redis_configs",
+					Description: `Redis configuration parameters, according to http://redis.io/topics/config. Please check Memorystore documentation for the list of supported parameters: https://cloud.google.com/memorystore/docs/redis/reference/rest/v1/projects.locations.instances#Instance.FIELDS.redis_configs`,
+				},
+				resource.Attribute{
+					Name:        "location_id",
+					Description: `The zone where the instance will be provisioned. If not provided, the service will choose a zone for the instance. For STANDARD_HA tier, instances will be created across two zones for protection against zonal failures. If [alternativeLocationId] is also provided, it must be different from [locationId].`,
+				},
+				resource.Attribute{
+					Name:        "redis_version",
+					Description: `The version of Redis software. If not provided, latest supported version will be used. Currently, the supported values are: - REDIS_4_0 for Redis 4.0 compatibility - REDIS_3_2 for Redis 3.2 compatibility`,
+				},
+				resource.Attribute{
+					Name:        "reserved_ip_range",
+					Description: `The CIDR range of internal addresses that are reserved for this instance. If not provided, the service will choose an unused /29 block, for example, 10.0.0.0/29 or 192.168.0.0/29. Ranges must be unique and non-overlapping with existing subnets in an authorized network.`,
+				},
+				resource.Attribute{
+					Name:        "tier",
+					Description: `The service tier of the instance. Must be one of these values: - BASIC: standalone instance - STANDARD_HA: highly available primary/replica instances Default value: ` + "`" + `BASIC` + "`" + ` Possible values are:`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `Hostname or IP address of the exposed Redis endpoint used by clients to connect to the service.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The port number of the exposed Redis endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time the instance was created in RFC3339 UTC "Zulu" format, accurate to nanoseconds.`,
+				},
+				resource.Attribute{
+					Name:        "current_location_id",
+					Description: `The current zone where the Redis endpoint is placed. For Basic Tier instances, this will always be the same as the [locationId] provided by the user at creation time. For Standard Tier instances, this can be either [locationId] or [alternativeLocationId] and can change after a failover event.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "memory_size_gb",
+					Description: `Redis memory size in GiB.`,
+				},
+				resource.Attribute{
+					Name:        "alternative_location_id",
+					Description: `Only applicable to STANDARD_HA tier which protects the instance against zonal failures by provisioning it across two zones. If provided, it must be a different zone from the one provided in [locationId].`,
+				},
+				resource.Attribute{
+					Name:        "authorized_network",
+					Description: `The full name of the Google Compute Engine network to which the instance is connected. If left unspecified, the default network will be used.`,
+				},
+				resource.Attribute{
+					Name:        "connect_mode",
+					Description: `The connection mode of the Redis instance.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `An arbitrary and optional user-provided name for the instance.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `Resource labels to represent user provided metadata.`,
+				},
+				resource.Attribute{
+					Name:        "redis_configs",
+					Description: `Redis configuration parameters, according to http://redis.io/topics/config. Please check Memorystore documentation for the list of supported parameters: https://cloud.google.com/memorystore/docs/redis/reference/rest/v1/projects.locations.instances#Instance.FIELDS.redis_configs`,
+				},
+				resource.Attribute{
+					Name:        "location_id",
+					Description: `The zone where the instance will be provisioned. If not provided, the service will choose a zone for the instance. For STANDARD_HA tier, instances will be created across two zones for protection against zonal failures. If [alternativeLocationId] is also provided, it must be different from [locationId].`,
+				},
+				resource.Attribute{
+					Name:        "redis_version",
+					Description: `The version of Redis software. If not provided, latest supported version will be used. Currently, the supported values are: - REDIS_4_0 for Redis 4.0 compatibility - REDIS_3_2 for Redis 3.2 compatibility`,
+				},
+				resource.Attribute{
+					Name:        "reserved_ip_range",
+					Description: `The CIDR range of internal addresses that are reserved for this instance. If not provided, the service will choose an unused /29 block, for example, 10.0.0.0/29 or 192.168.0.0/29. Ranges must be unique and non-overlapping with existing subnets in an authorized network.`,
+				},
+				resource.Attribute{
+					Name:        "tier",
+					Description: `The service tier of the instance. Must be one of these values: - BASIC: standalone instance - STANDARD_HA: highly available primary/replica instances Default value: ` + "`" + `BASIC` + "`" + ` Possible values are:`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `Hostname or IP address of the exposed Redis endpoint used by clients to connect to the service.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The port number of the exposed Redis endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time the instance was created in RFC3339 UTC "Zulu" format, accurate to nanoseconds.`,
+				},
+				resource.Attribute{
+					Name:        "current_location_id",
+					Description: `The current zone where the Redis endpoint is placed. For Basic Tier instances, this will always be the same as the [locationId] provided by the user at creation time. For Standard Tier instances, this can be either [locationId] or [alternativeLocationId] and can change after a failover event.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2438,6 +3868,58 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_storage_object_signed_url",
+			Category:         "Data Sources",
+			ShortDescription: `Provides signed URL to Google Cloud Storage object.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `(Required) The name of the bucket to read the object from`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) The full path to the object inside the bucket`,
+				},
+				resource.Attribute{
+					Name:        "http_method",
+					Description: `(Optional) What HTTP Method will the signed URL allow (defaults to ` + "`" + `GET` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Optional) For how long shall the signed URL be valid (defaults to 1 hour - i.e. ` + "`" + `1h` + "`" + `). See [here](https://golang.org/pkg/time/#ParseDuration) for info on valid duration formats.`,
+				},
+				resource.Attribute{
+					Name:        "credentials",
+					Description: `(Optional) What Google service account credentials json should be used to sign the URL. This data source checks the following locations for credentials, in order of preference: data source ` + "`" + `credentials` + "`" + ` attribute, provider ` + "`" + `credentials` + "`" + ` attribute and finally the GOOGLE_APPLICATION_CREDENTIALS environment variable. >`,
+				},
+				resource.Attribute{
+					Name:        "content_type",
+					Description: `(Optional) If you specify this in the datasource, the client must provide the ` + "`" + `Content-Type` + "`" + ` HTTP header with the same value in its request.`,
+				},
+				resource.Attribute{
+					Name:        "content_md5",
+					Description: `(Optional) The [MD5 digest](https://cloud.google.com/storage/docs/hashes-etags#_MD5) value in Base64. Typically retrieved from ` + "`" + `google_storage_bucket_object.object.md5hash` + "`" + ` attribute. If you provide this in the datasource, the client (e.g. browser, curl) must provide the ` + "`" + `Content-MD5` + "`" + ` HTTP header with this same value in its request.`,
+				},
+				resource.Attribute{
+					Name:        "extension_headers",
+					Description: `(Optional) As needed. The server checks to make sure that the client provides matching values in requests using the signed URL. Any header starting with ` + "`" + `x-goog-` + "`" + ` is accepted but see the [Google Docs](https://cloud.google.com/storage/docs/xml-api/reference-headers) for list of headers that are supported by Google. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "signed_url",
+					Description: `The signed URL that can be used to access the storage object without authentication.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "signed_url",
+					Description: `The signed URL that can be used to access the storage object without authentication.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_sql_ca_certs",
 			Category:         "Data Sources",
 			ShortDescription: `Get all of the trusted Certificate Authorities (CAs) for the specified SQL database instance.`,
@@ -2509,1152 +3991,6 @@ var (
 				resource.Attribute{
 					Name:        "sha1_fingerprint",
 					Description: `SHA1 fingerprint of the CA cert.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_iam_testable_permissions",
-			Category:         "Data Sources",
-			ShortDescription: `Retrieve a list of testable permissions for a resource. Testable permissions mean the permissions that user can add or remove in a role at a given resource. The resource can be referenced either via the full resource name or via a URI.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "full_resource_name",
-					Description: `(Required) See [full resource name documentation](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more detail.`,
-				},
-				resource.Attribute{
-					Name:        "stages",
-					Description: `(Optional) The acceptable release stages of the permission in the output. Note that ` + "`" + `BETA` + "`" + ` does not include permissions in ` + "`" + `GA` + "`" + `, but you can specify both with ` + "`" + `["GA", "BETA"]` + "`" + ` for example. Can be a list of ` + "`" + `"ALPHA"` + "`" + `, ` + "`" + `"BETA"` + "`" + `, ` + "`" + `"GA"` + "`" + `, ` + "`" + `"DEPRECATED"` + "`" + `. Default is ` + "`" + `["GA"]` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "custom_support_level",
-					Description: `(Optional) The level of support for custom roles. Can be one of ` + "`" + `"NOT_SUPPORTED"` + "`" + `, ` + "`" + `"SUPPORTED"` + "`" + `, ` + "`" + `"TESTING"` + "`" + `. Default is ` + "`" + `"SUPPORTED"` + "`" + ` ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "permissions",
-					Description: `A list of permissions matching the provided input. Structure is defined below. The ` + "`" + `permissions` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Name of the permission.`,
-				},
-				resource.Attribute{
-					Name:        "title",
-					Description: `Human readable title of the permission.`,
-				},
-				resource.Attribute{
-					Name:        "stage",
-					Description: `Release stage of the permission.`,
-				},
-				resource.Attribute{
-					Name:        "custom_support_level",
-					Description: `The the support level of this permission for custom roles.`,
-				},
-				resource.Attribute{
-					Name:        "api_disabled",
-					Description: `Whether the corresponding API has been enabled for the resource.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "permissions",
-					Description: `A list of permissions matching the provided input. Structure is defined below. The ` + "`" + `permissions` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Name of the permission.`,
-				},
-				resource.Attribute{
-					Name:        "title",
-					Description: `Human readable title of the permission.`,
-				},
-				resource.Attribute{
-					Name:        "stage",
-					Description: `Release stage of the permission.`,
-				},
-				resource.Attribute{
-					Name:        "custom_support_level",
-					Description: `The the support level of this permission for custom roles.`,
-				},
-				resource.Attribute{
-					Name:        "api_disabled",
-					Description: `Whether the corresponding API has been enabled for the resource.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_monitoring_app_engine_service",
-			Category:         "Data Sources",
-			ShortDescription: `An Monitoring Service resource created automatically by GCP to monitor an App Engine service.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "module_id",
-					Description: `(Required) The ID of the App Engine module underlying this service. Corresponds to the moduleId resource label in the [gae_app](https://cloud.google.com/monitoring/api/resources#tag_gae_app) monitored resource, or the service/module name. - - - Other optional fields include:`,
-				},
-				resource.Attribute{
-					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The full REST resource name for this channel. The syntax is: ` + "`" + `projects/[PROJECT_ID]/services/[SERVICE_ID]` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "display_name",
-					Description: `Name used for UI elements listing this (Monitoring) Service.`,
-				},
-				resource.Attribute{
-					Name:        "telemetry",
-					Description: `Configuration for how to query telemetry on the Service. Structure is documented below. The ` + "`" + `telemetry` + "`" + ` block includes:`,
-				},
-				resource.Attribute{
-					Name:        "resource_name",
-					Description: `(Optional) The full name of the resource that defines this service. Formatted as described in https://cloud.google.com/apis/design/resource_names.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `The full REST resource name for this channel. The syntax is: ` + "`" + `projects/[PROJECT_ID]/services/[SERVICE_ID]` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "display_name",
-					Description: `Name used for UI elements listing this (Monitoring) Service.`,
-				},
-				resource.Attribute{
-					Name:        "telemetry",
-					Description: `Configuration for how to query telemetry on the Service. Structure is documented below. The ` + "`" + `telemetry` + "`" + ` block includes:`,
-				},
-				resource.Attribute{
-					Name:        "resource_name",
-					Description: `(Optional) The full name of the resource that defines this service. Formatted as described in https://cloud.google.com/apis/design/resource_names.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_monitoring_notification_channel",
-			Category:         "Data Sources",
-			ShortDescription: `A NotificationChannel is a medium through which an alert is delivered when a policy violation is detected.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "display_name",
-					Description: `(Optional) The display name for this notification channel.`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `(Optional) The type of the notification channel. - - - Other optional fields include:`,
-				},
-				resource.Attribute{
-					Name:        "labels",
-					Description: `(Optional) Labels (corresponding to the NotificationChannelDescriptor schema) to filter the notification channels by.`,
-				},
-				resource.Attribute{
-					Name:        "user_labels",
-					Description: `(Optional) User-provided key-value labels to filter by.`,
-				},
-				resource.Attribute{
-					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The full REST resource name for this channel. The syntax is: ` + "`" + `projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "verification_status",
-					Description: `Indicates whether this channel has been verified or not.`,
-				},
-				resource.Attribute{
-					Name:        "labels",
-					Description: `Configuration fields that define the channel and its behavior.`,
-				},
-				resource.Attribute{
-					Name:        "user_labels",
-					Description: `User-supplied key/value data that does not need to conform to the corresponding NotificationChannelDescriptor's schema, unlike the labels field.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `An optional human-readable description of this notification channel.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `Whether notifications are forwarded to the described channel.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `The full REST resource name for this channel. The syntax is: ` + "`" + `projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "verification_status",
-					Description: `Indicates whether this channel has been verified or not.`,
-				},
-				resource.Attribute{
-					Name:        "labels",
-					Description: `Configuration fields that define the channel and its behavior.`,
-				},
-				resource.Attribute{
-					Name:        "user_labels",
-					Description: `User-supplied key/value data that does not need to conform to the corresponding NotificationChannelDescriptor's schema, unlike the labels field.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `An optional human-readable description of this notification channel.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `Whether notifications are forwarded to the described channel.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_tpu_tensorflow_versions",
-			Category:         "Data Sources",
-			ShortDescription: `Get available TensorFlow versions.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "project",
-					Description: `(Optional) The project to list versions for. If it is not provided, the provider project is used.`,
-				},
-				resource.Attribute{
-					Name:        "zone",
-					Description: `(Optional) The zone to list versions for. If it is not provided, the provider zone is used. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "versions",
-					Description: `The list of TensorFlow versions available for the given project and zone.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "versions",
-					Description: `The list of TensorFlow versions available for the given project and zone.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_dns_managed_zone",
-			Category:         "Data Sources",
-			ShortDescription: `Provides access to the attributes of a zone within Google Cloud DNS`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) A unique name for the resource.`,
-				},
-				resource.Attribute{
-					Name:        "project",
-					Description: `(Optional) The ID of the project for the Google Cloud DNS zone. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "dns_name",
-					Description: `The fully qualified DNS name of this zone, e.g. ` + "`" + `terraform.io.` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A textual description field.`,
-				},
-				resource.Attribute{
-					Name:        "name_servers",
-					Description: `The list of nameservers that will be authoritative for this domain. Use NS records to redirect from your DNS provider to these names, thus making Google Cloud DNS authoritative for this zone.`,
-				},
-				resource.Attribute{
-					Name:        "visibility",
-					Description: `The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "dns_name",
-					Description: `The fully qualified DNS name of this zone, e.g. ` + "`" + `terraform.io.` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A textual description field.`,
-				},
-				resource.Attribute{
-					Name:        "name_servers",
-					Description: `The list of nameservers that will be authoritative for this domain. Use NS records to redirect from your DNS provider to these names, thus making Google Cloud DNS authoritative for this zone.`,
-				},
-				resource.Attribute{
-					Name:        "visibility",
-					Description: `The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_active_folder",
-			Category:         "Data Sources",
-			ShortDescription: `Get a folder within GCP.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "display_name",
-					Description: `(Required) The folder's display name.`,
-				},
-				resource.Attribute{
-					Name:        "parent",
-					Description: `(Required) The resource name of the parent Folder or Organization. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The resource name of the Folder. This uniquely identifies the folder.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `The resource name of the Folder. This uniquely identifies the folder.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_bigquery_default_service_account",
-			Category:         "Data Sources",
-			ShortDescription: `Get the email address of the project's BigQuery service account`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "project",
-					Description: `(Optional) The project the unique service account was created for. If it is not provided, the provider project is used. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "email",
-					Description: `The email address of the service account. This value is often used to refer to the service account in order to grant IAM permissions.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "email",
-					Description: `The email address of the service account. This value is often used to refer to the service account in order to grant IAM permissions.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_billing_account",
-			Category:         "Data Sources",
-			ShortDescription: `Get information about a Google Billing Account.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `The billing account ID.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The resource name of the billing account in the form ` + "`" + `billingAccounts/{billing_account_id}` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "project_ids",
-					Description: `The IDs of any projects associated with the billing account.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `The billing account ID.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The resource name of the billing account in the form ` + "`" + `billingAccounts/{billing_account_id}` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "project_ids",
-					Description: `The IDs of any projects associated with the billing account.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_compute_default_service_account",
-			Category:         "Data Sources",
-			ShortDescription: `Retrieve default service account used by VMs running in this project`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "project",
-					Description: `(Optional) The project ID. If it is not provided, the provider project is used. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "email",
-					Description: `Email address of the default service account used by VMs running in this project`,
-				},
-				resource.Attribute{
-					Name:        "unique_id",
-					Description: `The unique id of the service account.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The fully-qualified name of the service account.`,
-				},
-				resource.Attribute{
-					Name:        "display_name",
-					Description: `The display name for the service account.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "email",
-					Description: `Email address of the default service account used by VMs running in this project`,
-				},
-				resource.Attribute{
-					Name:        "unique_id",
-					Description: `The unique id of the service account.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The fully-qualified name of the service account.`,
-				},
-				resource.Attribute{
-					Name:        "display_name",
-					Description: `The display name for the service account.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_compute_instance_group",
-			Category:         "Data Sources",
-			ShortDescription: `Get a Compute Instance Group within GCE.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Optional) The name of the instance group. Either ` + "`" + `name` + "`" + ` or ` + "`" + `self_link` + "`" + ` must be provided.`,
-				},
-				resource.Attribute{
-					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used.`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `(Optional) The self link of the instance group. Either ` + "`" + `name` + "`" + ` or ` + "`" + `self_link` + "`" + ` must be provided.`,
-				},
-				resource.Attribute{
-					Name:        "zone",
-					Description: `(Optional) The zone of the instance group. If referencing the instance group by name and ` + "`" + `zone` + "`" + ` is not provided, the provider zone is used. ## Attributes Reference The following arguments are exported:`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `Textual description of the instance group.`,
-				},
-				resource.Attribute{
-					Name:        "instances",
-					Description: `List of instances in the group.`,
-				},
-				resource.Attribute{
-					Name:        "named_port",
-					Description: `List of named ports in the group.`,
-				},
-				resource.Attribute{
-					Name:        "network",
-					Description: `The URL of the network the instance group is in.`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `The URI of the resource.`,
-				},
-				resource.Attribute{
-					Name:        "size",
-					Description: `The number of instances in the group.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "description",
-					Description: `Textual description of the instance group.`,
-				},
-				resource.Attribute{
-					Name:        "instances",
-					Description: `List of instances in the group.`,
-				},
-				resource.Attribute{
-					Name:        "named_port",
-					Description: `List of named ports in the group.`,
-				},
-				resource.Attribute{
-					Name:        "network",
-					Description: `The URL of the network the instance group is in.`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `The URI of the resource.`,
-				},
-				resource.Attribute{
-					Name:        "size",
-					Description: `The number of instances in the group.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_compute_node_types",
-			Category:         "Data Sources",
-			ShortDescription: `Provides list of available Google Compute Engine node types for sole-tenant nodes.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "names",
-					Description: `A list of node types available in the given zone and project.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "names",
-					Description: `A list of node types available in the given zone and project.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_compute_regions",
-			Category:         "Data Sources",
-			ShortDescription: `Provides a list of available Google Compute regions`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "names",
-					Description: `A list of regions available in the given project`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "names",
-					Description: `A list of regions available in the given project`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_compute_resource_policy",
-			Category:         "Data Sources",
-			ShortDescription: `Provide access to a Resource Policy's attributes`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "description",
-					Description: `Description of this Resource Policy.`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `The URI of the resource.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "description",
-					Description: `Description of this Resource Policy.`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `The URI of the resource.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_compute_zones",
-			Category:         "Data Sources",
-			ShortDescription: `Provides a list of available Google Compute zones`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "names",
-					Description: `A list of zones available in the given region`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "names",
-					Description: `A list of zones available in the given region`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_container_cluster",
-			Category:         "Data Sources",
-			ShortDescription: `Get info about a Google Kubernetes Engine cluster.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "project",
-					Description: `(Optional) The project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference See [google_container_cluster](https://www.terraform.io/docs/providers/google/r/container_cluster.html) resource for details of the available attributes.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_container_engine_versions",
-			Category:         "Data Sources",
-			ShortDescription: `Provides lists of available Google Kubernetes Engine versions for masters and nodes.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "valid_master_versions",
-					Description: `A list of versions available in the given zone for use with master instances.`,
-				},
-				resource.Attribute{
-					Name:        "valid_node_versions",
-					Description: `A list of versions available in the given zone for use with node instances.`,
-				},
-				resource.Attribute{
-					Name:        "latest_master_version",
-					Description: `The latest version available in the given zone for use with master instances.`,
-				},
-				resource.Attribute{
-					Name:        "latest_node_version",
-					Description: `The latest version available in the given zone for use with node instances.`,
-				},
-				resource.Attribute{
-					Name:        "default_cluster_version",
-					Description: `Version of Kubernetes the service deploys by default.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "valid_master_versions",
-					Description: `A list of versions available in the given zone for use with master instances.`,
-				},
-				resource.Attribute{
-					Name:        "valid_node_versions",
-					Description: `A list of versions available in the given zone for use with node instances.`,
-				},
-				resource.Attribute{
-					Name:        "latest_master_version",
-					Description: `The latest version available in the given zone for use with master instances.`,
-				},
-				resource.Attribute{
-					Name:        "latest_node_version",
-					Description: `The latest version available in the given zone for use with node instances.`,
-				},
-				resource.Attribute{
-					Name:        "default_cluster_version",
-					Description: `Version of Kubernetes the service deploys by default.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_container_registry_image",
-			Category:         "Data Sources",
-			ShortDescription: `Get URLs for a given project's container registry image.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
-			Attributes:       []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_container_registry_repository",
-			Category:         "Data Sources",
-			ShortDescription: `Get URLs for a given project's container registry repository.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
-			Attributes:       []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_folder",
-			Category:         "Data Sources",
-			ShortDescription: `Get information about a Google Cloud Folder.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `The Folder ID.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The resource name of the Folder in the form ` + "`" + `folders/{folder_id}` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "parent",
-					Description: `The resource name of the parent Folder or Organization.`,
-				},
-				resource.Attribute{
-					Name:        "display_name",
-					Description: `The folder's display name.`,
-				},
-				resource.Attribute{
-					Name:        "create_time",
-					Description: `Timestamp when the Organization was created. A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".`,
-				},
-				resource.Attribute{
-					Name:        "lifecycle_state",
-					Description: `The Folder's current lifecycle state.`,
-				},
-				resource.Attribute{
-					Name:        "organization",
-					Description: `If ` + "`" + `lookup_organization` + "`" + ` is enable, the resource name of the Organization that the folder belongs.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `The Folder ID.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The resource name of the Folder in the form ` + "`" + `folders/{folder_id}` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "parent",
-					Description: `The resource name of the parent Folder or Organization.`,
-				},
-				resource.Attribute{
-					Name:        "display_name",
-					Description: `The folder's display name.`,
-				},
-				resource.Attribute{
-					Name:        "create_time",
-					Description: `Timestamp when the Organization was created. A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".`,
-				},
-				resource.Attribute{
-					Name:        "lifecycle_state",
-					Description: `The Folder's current lifecycle state.`,
-				},
-				resource.Attribute{
-					Name:        "organization",
-					Description: `If ` + "`" + `lookup_organization` + "`" + ` is enable, the resource name of the Organization that the folder belongs.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_iam_policy",
-			Category:         "Data Sources",
-			ShortDescription: `Generates an IAM policy that can be referenced by other resources, applying the policy to them.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "policy_data",
-					Description: `The above bindings serialized in a format suitable for referencing from a resource that supports IAM.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "policy_data",
-					Description: `The above bindings serialized in a format suitable for referencing from a resource that supports IAM.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_kms_crypto_key",
-			Category:         "Data Sources",
-			ShortDescription: `Provides access to KMS key data with Google Cloud KMS.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The CryptoKey's name. A CryptoKey’s name belonging to the specified Google Cloud Platform KeyRing and match the regular expression ` + "`" + `[a-zA-Z0-9_-]{1,63}` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "key_ring",
-					Description: `(Required) The ` + "`" + `self_link` + "`" + ` of the Google Cloud Platform KeyRing to which the key belongs. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "rotation_period",
-					Description: `Every time this period passes, generate a new CryptoKeyVersion and set it as the primary. The first rotation will take place after the specified period. The rotation period has the format of a decimal number with up to 9 fractional digits, followed by the letter s (seconds).`,
-				},
-				resource.Attribute{
-					Name:        "purpose",
-					Description: `Defines the cryptographic capabilities of the key.`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `The self link of the created CryptoKey. Its format is ` + "`" + `projects/{projectId}/locations/{location}/keyRings/{keyRingName}/cryptoKeys/{cryptoKeyName}` + "`" + `.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "rotation_period",
-					Description: `Every time this period passes, generate a new CryptoKeyVersion and set it as the primary. The first rotation will take place after the specified period. The rotation period has the format of a decimal number with up to 9 fractional digits, followed by the letter s (seconds).`,
-				},
-				resource.Attribute{
-					Name:        "purpose",
-					Description: `Defines the cryptographic capabilities of the key.`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `The self link of the created CryptoKey. Its format is ` + "`" + `projects/{projectId}/locations/{location}/keyRings/{keyRingName}/cryptoKeys/{cryptoKeyName}` + "`" + `.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_kms_crypto_key_version",
-			Category:         "Data Sources",
-			ShortDescription: `Provides access to KMS key version data with Google Cloud KMS.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "crypto_key",
-					Description: `(Required) The ` + "`" + `self_link` + "`" + ` of the Google Cloud Platform CryptoKey to which the key version belongs.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Optional) The version number for this CryptoKeyVersion. Defaults to ` + "`" + `1` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "state",
-					Description: `The current state of the CryptoKeyVersion. See the [state reference](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions#CryptoKeyVersion.CryptoKeyVersionState) for possible outputs.`,
-				},
-				resource.Attribute{
-					Name:        "protection_level",
-					Description: `The ProtectionLevel describing how crypto operations are performed with this CryptoKeyVersion. See the [protection_level reference](https://cloud.google.com/kms/docs/reference/rest/v1/ProtectionLevel) for possible outputs.`,
-				},
-				resource.Attribute{
-					Name:        "algorithm",
-					Description: `The CryptoKeyVersionAlgorithm that this CryptoKeyVersion supports. See the [algorithm reference](https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm) for possible outputs.`,
-				},
-				resource.Attribute{
-					Name:        "public_key",
-					Description: `If the enclosing CryptoKey has purpose ` + "`" + `ASYMMETRIC_SIGN` + "`" + ` or ` + "`" + `ASYMMETRIC_DECRYPT` + "`" + `, this block contains details about the public key associated to this CryptoKeyVersion. Structure is documented below. The ` + "`" + `public_key` + "`" + ` block, if present, contains:`,
-				},
-				resource.Attribute{
-					Name:        "pem",
-					Description: `The public key, encoded in PEM format. For more information, see the RFC 7468 sections for General Considerations and Textual Encoding of Subject Public Key Info.`,
-				},
-				resource.Attribute{
-					Name:        "algorithm",
-					Description: `The CryptoKeyVersionAlgorithm that this CryptoKeyVersion supports.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "state",
-					Description: `The current state of the CryptoKeyVersion. See the [state reference](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions#CryptoKeyVersion.CryptoKeyVersionState) for possible outputs.`,
-				},
-				resource.Attribute{
-					Name:        "protection_level",
-					Description: `The ProtectionLevel describing how crypto operations are performed with this CryptoKeyVersion. See the [protection_level reference](https://cloud.google.com/kms/docs/reference/rest/v1/ProtectionLevel) for possible outputs.`,
-				},
-				resource.Attribute{
-					Name:        "algorithm",
-					Description: `The CryptoKeyVersionAlgorithm that this CryptoKeyVersion supports. See the [algorithm reference](https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm) for possible outputs.`,
-				},
-				resource.Attribute{
-					Name:        "public_key",
-					Description: `If the enclosing CryptoKey has purpose ` + "`" + `ASYMMETRIC_SIGN` + "`" + ` or ` + "`" + `ASYMMETRIC_DECRYPT` + "`" + `, this block contains details about the public key associated to this CryptoKeyVersion. Structure is documented below. The ` + "`" + `public_key` + "`" + ` block, if present, contains:`,
-				},
-				resource.Attribute{
-					Name:        "pem",
-					Description: `The public key, encoded in PEM format. For more information, see the RFC 7468 sections for General Considerations and Textual Encoding of Subject Public Key Info.`,
-				},
-				resource.Attribute{
-					Name:        "algorithm",
-					Description: `The CryptoKeyVersionAlgorithm that this CryptoKeyVersion supports.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_kms_key_ring",
-			Category:         "Data Sources",
-			ShortDescription: `Provides access to KMS key ring data with Google Cloud KMS.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The KeyRing's name. A KeyRing name must exist within the provided location and match the regular expression ` + "`" + `[a-zA-Z0-9_-]{1,63}` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "location",
-					Description: `(Required) The Google Cloud Platform location for the KeyRing. A full list of valid locations can be found by running ` + "`" + `gcloud kms locations list` + "`" + `. - - -`,
-				},
-				resource.Attribute{
-					Name:        "project",
-					Description: `(Optional) The project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `The self link of the created KeyRing. Its format is ` + "`" + `projects/{projectId}/locations/{location}/keyRings/{keyRingName}` + "`" + `.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `The self link of the created KeyRing. Its format is ` + "`" + `projects/{projectId}/locations/{location}/keyRings/{keyRingName}` + "`" + `.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_kms_secret",
-			Category:         "Data Sources",
-			ShortDescription: `Provides access to secret data encrypted with Google Cloud KMS`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "plaintext",
-					Description: `Contains the result of decrypting the provided ciphertext.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "plaintext",
-					Description: `Contains the result of decrypting the provided ciphertext.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_kms_secret_ciphertext",
-			Category:         "Data Sources",
-			ShortDescription: `Encrypts secret data with Google Cloud KMS and provides access to the ciphertext`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "ciphertext",
-					Description: `Contains the result of encrypting the provided plaintext, encoded in base64. ## User Project Overrides This data source supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "ciphertext",
-					Description: `Contains the result of encrypting the provided plaintext, encoded in base64. ## User Project Overrides This data source supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_organization",
-			Category:         "Data Sources",
-			ShortDescription: `Get information about a Google Cloud Organization.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `The Organization ID.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The resource name of the Organization in the form ` + "`" + `organizations/{organization_id}` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "directory_customer_id",
-					Description: `The Google for Work customer ID of the Organization.`,
-				},
-				resource.Attribute{
-					Name:        "create_time",
-					Description: `Timestamp when the Organization was created. A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".`,
-				},
-				resource.Attribute{
-					Name:        "lifecycle_state",
-					Description: `The Organization's current lifecycle state.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `The Organization ID.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The resource name of the Organization in the form ` + "`" + `organizations/{organization_id}` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "directory_customer_id",
-					Description: `The Google for Work customer ID of the Organization.`,
-				},
-				resource.Attribute{
-					Name:        "create_time",
-					Description: `Timestamp when the Organization was created. A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".`,
-				},
-				resource.Attribute{
-					Name:        "lifecycle_state",
-					Description: `The Organization's current lifecycle state.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_project",
-			Category:         "Data Sources",
-			ShortDescription: `Retrieve project details`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Optional) The project ID. If it is not provided, the provider project is used. ## Attributes Reference The following attributes are exported: See [google_project](https://www.terraform.io/docs/providers/google/r/google_project.html) resource for details of the available attributes.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_projects",
-			Category:         "Data Sources",
-			ShortDescription: `Retrieve a set of projects based on a filter.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "filter",
-					Description: `(Optional) A string filter as defined in the [REST API](https://cloud.google.com/resource-manager/reference/rest/v1/projects/list#query-parameters). ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "projects",
-					Description: `A list of projects matching the provided filter. Structure is defined below. The ` + "`" + `projects` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `The project id of the project.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "projects",
-					Description: `A list of projects matching the provided filter. Structure is defined below. The ` + "`" + `projects` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `The project id of the project.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_storage_project_service_account",
-			Category:         "Data Sources",
-			ShortDescription: `Get the email address of the project's Google Cloud Storage service account`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "project",
-					Description: `(Optional) The project the unique service account was created for. If it is not provided, the provider project is used.`,
-				},
-				resource.Attribute{
-					Name:        "user_project",
-					Description: `(Optional) The project the lookup originates from. This field is used if you are making the request from a different account than the one you are finding the service account for. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "email_address",
-					Description: `The email address of the service account. This value is often used to refer to the service account in order to grant IAM permissions.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "email_address",
-					Description: `The email address of the service account. This value is often used to refer to the service account in order to grant IAM permissions.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_storage_transfer_project_service_account",
-			Category:         "Data Sources",
-			ShortDescription: `Retrieve default service account used by Storage Transfer Jobs running in this project`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "project",
-					Description: `(Optional) The project ID. If it is not provided, the provider project is used. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "email",
-					Description: `Email address of the default service account used by Storage Transfer Jobs running in this project`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "email",
-					Description: `Email address of the default service account used by Storage Transfer Jobs running in this project`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_storage_object_signed_url",
-			Category:         "Data Sources",
-			ShortDescription: `Provides signed URL to Google Cloud Storage object.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "bucket",
-					Description: `(Required) The name of the bucket to read the object from`,
-				},
-				resource.Attribute{
-					Name:        "path",
-					Description: `(Required) The full path to the object inside the bucket`,
-				},
-				resource.Attribute{
-					Name:        "http_method",
-					Description: `(Optional) What HTTP Method will the signed URL allow (defaults to ` + "`" + `GET` + "`" + `)`,
-				},
-				resource.Attribute{
-					Name:        "duration",
-					Description: `(Optional) For how long shall the signed URL be valid (defaults to 1 hour - i.e. ` + "`" + `1h` + "`" + `). See [here](https://golang.org/pkg/time/#ParseDuration) for info on valid duration formats.`,
-				},
-				resource.Attribute{
-					Name:        "credentials",
-					Description: `(Optional) What Google service account credentials json should be used to sign the URL. This data source checks the following locations for credentials, in order of preference: data source ` + "`" + `credentials` + "`" + ` attribute, provider ` + "`" + `credentials` + "`" + ` attribute and finally the GOOGLE_APPLICATION_CREDENTIALS environment variable. >`,
-				},
-				resource.Attribute{
-					Name:        "content_type",
-					Description: `(Optional) If you specify this in the datasource, the client must provide the ` + "`" + `Content-Type` + "`" + ` HTTP header with the same value in its request.`,
-				},
-				resource.Attribute{
-					Name:        "content_md5",
-					Description: `(Optional) The [MD5 digest](https://cloud.google.com/storage/docs/hashes-etags#_MD5) value in Base64. Typically retrieved from ` + "`" + `google_storage_bucket_object.object.md5hash` + "`" + ` attribute. If you provide this in the datasource, the client (e.g. browser, curl) must provide the ` + "`" + `Content-MD5` + "`" + ` HTTP header with this same value in its request.`,
-				},
-				resource.Attribute{
-					Name:        "extension_headers",
-					Description: `(Optional) As needed. The server checks to make sure that the client provides matching values in requests using the signed URL. Any header starting with ` + "`" + `x-goog-` + "`" + ` is accepted but see the [Google Docs](https://cloud.google.com/storage/docs/xml-api/reference-headers) for list of headers that are supported by Google. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "signed_url",
-					Description: `The signed URL that can be used to access the storage object without authentication.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "signed_url",
-					Description: `The signed URL that can be used to access the storage object without authentication.`,
 				},
 			},
 		},
@@ -3750,76 +4086,160 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_storage_project_service_account",
+			Category:         "Data Sources",
+			ShortDescription: `Get the email address of the project's Google Cloud Storage service account`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The project the unique service account was created for. If it is not provided, the provider project is used.`,
+				},
+				resource.Attribute{
+					Name:        "user_project",
+					Description: `(Optional) The project the lookup originates from. This field is used if you are making the request from a different account than the one you are finding the service account for. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "email_address",
+					Description: `The email address of the service account. This value is often used to refer to the service account in order to grant IAM permissions.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "email_address",
+					Description: `The email address of the service account. This value is often used to refer to the service account in order to grant IAM permissions.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_storage_transfer_project_service_account",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve default service account used by Storage Transfer Jobs running in this project`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The project ID. If it is not provided, the provider project is used. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `Email address of the default service account used by Storage Transfer Jobs running in this project`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "email",
+					Description: `Email address of the default service account used by Storage Transfer Jobs running in this project`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_tpu_tensorflow_versions",
+			Category:         "Data Sources",
+			ShortDescription: `Get available TensorFlow versions.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The project to list versions for. If it is not provided, the provider project is used.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Optional) The zone to list versions for. If it is not provided, the provider zone is used. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "versions",
+					Description: `The list of TensorFlow versions available for the given project and zone.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "versions",
+					Description: `The list of TensorFlow versions available for the given project and zone.`,
+				},
+			},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
 
-		"google_client_config":                            0,
-		"google_cloudfunctions_function":                  1,
-		"google_compute_address":                          2,
-		"google_compute_forwarding_rule":                  3,
-		"google_compute_global_address":                   4,
-		"google_compute_image":                            5,
-		"google_compute_instance":                         6,
-		"google_compute_instance_serial_port":             7,
-		"google_compute_lb_ip_ranges":                     8,
-		"google_compute_network":                          9,
-		"google_compute_region_instance_group":            10,
-		"google_compute_router":                           11,
-		"google_compute_ssl_certificate":                  12,
-		"google_compute_ssl_policy":                       13,
-		"google_compute_subnetwork":                       14,
-		"google_compute_vpn_gateway":                      15,
-		"google_dns_keys":                                 16,
-		"google_firebase_web_app":                         17,
-		"google_firebase_web_app_config":                  18,
-		"google_client_openid_userinfo":                   19,
-		"google_composer_image_versions":                  20,
-		"google_compute_backend_bucket":                   21,
-		"google_compute_backend_service":                  22,
-		"google_compute_network_endpoint_group":           23,
-		"google_folder_organization_policy":               24,
-		"google_iam_role":                                 25,
-		"google_monitoring_uptime_check_ips":              26,
-		"google_netblock_ip_ranges":                       27,
-		"google_project_organization_policy":              28,
-		"google_secret_manager_secret_version":            29,
-		"google_service_account":                          30,
-		"google_service_account_access_token":             31,
-		"google_service_account_key":                      32,
-		"google_sql_ca_certs":                             33,
-		"google_iam_testable_permissions":                 34,
-		"google_monitoring_app_engine_service":            35,
-		"google_monitoring_notification_channel":          36,
-		"google_tpu_tensorflow_versions":                  37,
-		"google_dns_managed_zone":                         38,
-		"google_active_folder":                            39,
-		"google_bigquery_default_service_account":         40,
-		"google_billing_account":                          41,
-		"google_compute_default_service_account":          42,
-		"google_compute_instance_group":                   43,
-		"google_compute_node_types":                       44,
-		"google_compute_regions":                          45,
-		"google_compute_resource_policy":                  46,
-		"google_compute_zones":                            47,
-		"google_container_cluster":                        48,
-		"google_container_engine_versions":                49,
-		"google_container_registry_image":                 50,
-		"google_container_registry_repository":            51,
-		"google_folder":                                   52,
-		"google_iam_policy":                               53,
-		"google_kms_crypto_key":                           54,
-		"google_kms_crypto_key_version":                   55,
-		"google_kms_key_ring":                             56,
-		"google_kms_secret":                               57,
-		"google_kms_secret_ciphertext":                    58,
-		"google_organization":                             59,
-		"google_project":                                  60,
-		"google_projects":                                 61,
-		"google_storage_project_service_account":          62,
-		"google_storage_transfer_project_service_account": 63,
-		"google_storage_object_signed_url":                64,
-		"google_storage_bucket_object":                    65,
+		"google_active_folder":                                0,
+		"google_bigquery_default_service_account":             1,
+		"google_billing_account":                              2,
+		"google_client_config":                                3,
+		"google_client_openid_userinfo":                       4,
+		"google_cloud_identity_group_memberships":             5,
+		"google_cloud_identity_groups":                        6,
+		"google_cloudfunctions_function":                      7,
+		"google_composer_image_versions":                      8,
+		"google_compute_address":                              9,
+		"google_compute_backend_bucket":                       10,
+		"google_compute_backend_service":                      11,
+		"google_compute_default_service_account":              12,
+		"google_compute_forwarding_rule":                      13,
+		"google_compute_global_address":                       14,
+		"google_compute_image":                                15,
+		"google_compute_instance":                             16,
+		"google_compute_instance_group":                       17,
+		"google_compute_instance_serial_port":                 18,
+		"google_compute_lb_ip_ranges":                         19,
+		"google_compute_network":                              20,
+		"google_compute_network_endpoint_group":               21,
+		"google_compute_node_types":                           22,
+		"google_compute_region_instance_group":                23,
+		"google_compute_regions":                              24,
+		"google_compute_resource_policy":                      25,
+		"google_compute_router":                               26,
+		"google_compute_ssl_certificate":                      27,
+		"google_compute_ssl_policy":                           28,
+		"google_compute_subnetwork":                           29,
+		"google_compute_vpn_gateway":                          30,
+		"google_compute_zones":                                31,
+		"google_container_cluster":                            32,
+		"google_container_engine_versions":                    33,
+		"google_container_registry_image":                     34,
+		"google_container_registry_repository":                35,
+		"google_dns_keys":                                     36,
+		"google_dns_managed_zone":                             37,
+		"google_firebase_web_app":                             38,
+		"google_firebase_web_app_config":                      39,
+		"google_folder":                                       40,
+		"google_folder_organization_policy":                   41,
+		"google_game_services_game_server_deployment_rollout": 42,
+		"google_iam_policy":                                   43,
+		"google_iam_role":                                     44,
+		"google_iam_testable_permissions":                     45,
+		"google_kms_crypto_key":                               46,
+		"google_kms_crypto_key_version":                       47,
+		"google_kms_key_ring":                                 48,
+		"google_kms_secret":                                   49,
+		"google_kms_secret_ciphertext":                        50,
+		"google_monitoring_app_engine_service":                51,
+		"google_monitoring_notification_channel":              52,
+		"google_monitoring_uptime_check_ips":                  53,
+		"google_netblock_ip_ranges":                           54,
+		"google_organization":                                 55,
+		"google_project":                                      56,
+		"google_project_organization_policy":                  57,
+		"google_projects":                                     58,
+		"google_redis_instance":                               59,
+		"google_secret_manager_secret_version":                60,
+		"google_service_account":                              61,
+		"google_service_account_access_token":                 62,
+		"google_service_account_key":                          63,
+		"google_storage_object_signed_url":                    64,
+		"google_sql_ca_certs":                                 65,
+		"google_storage_bucket_object":                        66,
+		"google_storage_project_service_account":              67,
+		"google_storage_transfer_project_service_account":     68,
+		"google_tpu_tensorflow_versions":                      69,
 	}
 )
 
