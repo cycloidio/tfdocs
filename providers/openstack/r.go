@@ -1975,6 +1975,7 @@ var (
 			Category:         "Compute Resources",
 			ShortDescription: `Manages a V2 security group resource within OpenStack.`,
 			Description:      ``,
+			Icon:             "securitygroup-gray.svg",
 			Keywords: []string{
 				"compute",
 				"secgroup",
