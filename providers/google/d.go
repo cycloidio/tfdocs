@@ -335,6 +335,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Get information about a Google Cloud Function.`,
 			Description:      ``,
+			Icon:             "Compute/Cloud_Functions.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -563,6 +564,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Get the IP address from a static address.`,
 			Description:      ``,
+			Icon:             "Storage/Persistent_Disk.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -611,6 +613,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Get information about a BackendBucket.`,
 			Description:      ``,
+			Icon:             "Storage/Cloud_Storage.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -1023,6 +1026,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Get information about a Google Compute Image.`,
 			Description:      ``,
+			Icon:             "Compute/Persistent_Disk.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -1175,6 +1179,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Get a VM instance within GCE.`,
 			Description:      ``,
+			Icon:             "Compute/Compute_Engine.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2055,6 +2060,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Get a Cloud Router within GCE.`,
 			Description:      ``,
+			Icon:             "Networking/Cloud_Router.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2173,6 +2179,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Get a subnetwork within GCE.`,
 			Description:      ``,
+			Icon:             "Networking/Cloud_Network.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2265,6 +2272,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Get a VPN gateway within GCE.`,
 			Description:      ``,
+			Icon:             "Networking/Cloud_VPN.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2341,6 +2349,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Get info about a Google Kubernetes Engine cluster.`,
 			Description:      ``,
+			Icon:             "Compute/Kubernetes_Engine.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2544,6 +2553,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Provides access to the attributes of a zone within Google Cloud DNS`,
 			Description:      ``,
+			Icon:             "Networking/Cloud_DNS.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -3147,6 +3157,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Provides access to KMS key ring data with Google Cloud KMS.`,
 			Description:      ``,
+			Icon:             "Security/Key_Management_Service.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -3199,6 +3210,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Encrypts secret data with Google Cloud KMS and provides access to the ciphertext`,
 			Description:      ``,
+			Icon:             "Security/Key_Management_Service.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -3271,6 +3283,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `A NotificationChannel is a medium through which an alert is delivered when a policy violation is detected.`,
 			Description:      ``,
+			Icon:             "Management_Tools/Monitoring.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -3564,6 +3577,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Get information about a Google Cloud Redis instance.`,
 			Description:      ``,
+			Icon:             "Databases/Cloud_Memorystore.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -4000,6 +4014,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Get information about a Google Cloud Storage bucket object.`,
 			Description:      ``,
+			Icon:             "Storage/Cloud_Storage.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{

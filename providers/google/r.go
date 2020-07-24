@@ -372,6 +372,7 @@ var (
 			Category:         "App Engine",
 			ShortDescription: `Allows management of an App Engine application.`,
 			Description:      ``,
+			Icon:             "Compute/App_Engine.svg",
 			Keywords: []string{
 				"app",
 				"engine",
@@ -508,6 +509,7 @@ var (
 			Category:         "App Engine",
 			ShortDescription: `Rules to match an HTTP request and dispatch that request to a service.`,
 			Description:      ``,
+			Icon:             "Compute/App_Engine.svg",
 			Keywords: []string{
 				"app",
 				"engine",
@@ -555,6 +557,7 @@ var (
 			Category:         "App Engine",
 			ShortDescription: `A domain serving an App Engine application.`,
 			Description:      ``,
+			Icon:             "Compute/App_Engine.svg",
 			Keywords: []string{
 				"app",
 				"engine",
@@ -648,6 +651,7 @@ var (
 			Category:         "App Engine",
 			ShortDescription: `A single firewall rule that is evaluated against incoming traffic and provides an action to take on matched requests.`,
 			Description:      ``,
+			Icon:             "Compute/App_Engine.svg",
 			Keywords: []string{
 				"app",
 				"engine",
@@ -1244,6 +1248,7 @@ var (
 			Category:         "App Engine",
 			ShortDescription: `Standard App Version resource to create a new version of standard GAE Application.`,
 			Description:      ``,
+			Icon:             "Compute/App_Engine.svg",
 			Keywords: []string{
 				"app",
 				"engine",
@@ -1713,6 +1718,7 @@ var (
 			Category:         "BigQuery Data Transfer",
 			ShortDescription: `Represents a data transfer configuration.`,
 			Description:      ``,
+			Icon:             "Data_Analytics/Big_Query.svg",
 			Keywords: []string{
 				"bigquery",
 				"data",
@@ -1786,6 +1792,7 @@ var (
 			Category:         "BigQuery",
 			ShortDescription: `Datasets allow you to organize and control access to your tables.`,
 			Description:      ``,
+			Icon:             "Data_Analytics/Big_Query.svg",
 			Keywords: []string{
 				"bigquery",
 				"dataset",
@@ -2475,6 +2482,7 @@ var (
 			Category:         "BigQuery",
 			ShortDescription: `Creates a table resource in a dataset for Google BigQuery.`,
 			Description:      ``,
+			Icon:             "Data_Analytics/Big_Query.svg",
 			Keywords: []string{
 				"bigquery",
 				"table",
@@ -2682,6 +2690,7 @@ var (
 			Category:         "Cloud Bigtable",
 			ShortDescription: `App profile is a configuration object describing how Cloud Bigtable should treat traffic from a particular end user application.`,
 			Description:      ``,
+			Icon:             "Databases/Cloud_Bigtable.svg",
 			Keywords: []string{
 				"cloud",
 				"bigtable",
@@ -2751,6 +2760,7 @@ var (
 			Category:         "Cloud Bigtable",
 			ShortDescription: `Creates a Google Cloud Bigtable GC Policy inside a family.`,
 			Description:      ``,
+			Icon:             "Databases/Cloud_Bigtable.svg",
 			Keywords: []string{
 				"cloud",
 				"bigtable",
@@ -2803,6 +2813,7 @@ var (
 			Category:         "Cloud Bigtable",
 			ShortDescription: `Creates a Google Bigtable instance.`,
 			Description:      ``,
+			Icon:             "Databases/Cloud_Bigtable.svg",
 			Keywords: []string{
 				"cloud",
 				"bigtable",
@@ -2912,6 +2923,7 @@ var (
 			Category:         "Cloud Bigtable",
 			ShortDescription: `Creates a Google Cloud Bigtable table inside an instance.`,
 			Description:      ``,
+			Icon:             "Databases/Cloud_Bigtable.svg",
 			Keywords: []string{
 				"cloud",
 				"bigtable",
@@ -2960,6 +2972,7 @@ var (
 			Category:         "Billing Budget",
 			ShortDescription: `Budget configuration for a billing account.`,
 			Description:      ``,
+			Icon:             "Management_Tools/Cloud_Billing_API.svg",
 			Keywords: []string{
 				"billing",
 				"budget",
@@ -3429,6 +3442,7 @@ var (
 			Category:         "Cloud Run",
 			ShortDescription: `Resource to hold the state and status of a user's domain mapping.`,
 			Description:      ``,
+			Icon:             "Compute/Cloud_Run.svg",
 			Keywords: []string{
 				"cloud",
 				"run",
@@ -3610,6 +3624,7 @@ var (
 			Category:         "Cloud Run",
 			ShortDescription: `Service acts as a top-level container that manages a set of Routes and Configurations which implement a network service.`,
 			Description:      ``,
+			Icon:             "Compute/Cloud_Run.svg",
 			Keywords: []string{
 				"cloud",
 				"run",
@@ -4239,6 +4254,7 @@ var (
 			Category:         "Cloud Build",
 			ShortDescription: `Configuration for an automated build in response to source repository changes.`,
 			Description:      ``,
+			Icon:             "Developer_Tools/Cloud_Build.svg",
 			Keywords: []string{
 				"cloud",
 				"build",
@@ -4510,6 +4526,7 @@ var (
 			Category:         "Cloud Functions",
 			ShortDescription: `Creates a new Cloud Function.`,
 			Description:      ``,
+			Icon:             "Compute/Cloud_Functions.svg",
 			Keywords: []string{
 				"cloud",
 				"functions",
@@ -4937,6 +4954,7 @@ var (
 			Category:         "Compute Engine",
 			ShortDescription: `Represents an Address resource.`,
 			Description:      ``,
+			Icon:             "Storage/Persistent_Disk.svg",
 			Keywords: []string{
 				"compute",
 				"engine",
@@ -5033,6 +5051,7 @@ var (
 			Category:         "Compute Engine",
 			ShortDescription: `Resource that allows attaching existing persistent disks to compute instances.`,
 			Description:      ``,
+			Icon:             "Storage/Persistent_Disk.svg",
 			Keywords: []string{
 				"compute",
 				"engine",
@@ -5222,6 +5241,7 @@ var (
 			Category:         "Compute Engine",
 			ShortDescription: `Backend buckets allow you to use Google Cloud Storage buckets with HTTP(S) load balancing.`,
 			Description:      ``,
+			Icon:             "Storage/Cloud_Storage.svg",
 			Keywords: []string{
 				"compute",
 				"engine",
@@ -5732,6 +5752,7 @@ var (
 			Category:         "Compute Engine",
 			ShortDescription: `Persistent disks are durable storage devices that function similarly to the physical disks in a desktop or a server.`,
 			Description:      ``,
+			Icon:             "Storage/Persistent_Disk.svg",
 			Keywords: []string{
 				"compute",
 				"engine",
@@ -5955,6 +5976,7 @@ var (
 			Category:         "Compute Engine",
 			ShortDescription: `Represents a VPN gateway managed outside of GCP.`,
 			Description:      ``,
+			Icon:             "Networking/Cloud_VPN.svg",
 			Keywords: []string{
 				"compute",
 				"engine",
@@ -6566,6 +6588,7 @@ var (
 			Category:         "Compute Engine",
 			ShortDescription: `Represents a VPN gateway running in GCP.`,
 			Description:      ``,
+			Icon:             "Networking/Cloud_VPN.svg",
 			Keywords: []string{
 				"compute",
 				"engine",
@@ -7045,6 +7068,7 @@ var (
 			Category:         "Compute Engine",
 			ShortDescription: `Represents an Image resource.`,
 			Description:      ``,
+			Icon:             "Compute/Persistent_Disk.svg",
 			Keywords: []string{
 				"compute",
 				"engine",
@@ -7157,6 +7181,7 @@ var (
 			Category:         "Compute Engine",
 			ShortDescription: `Manages a VM instance resource within GCE.`,
 			Description:      ``,
+			Icon:             "Compute/Compute_Engine.svg",
 			Keywords: []string{
 				"compute",
 				"engine",
@@ -7489,6 +7514,7 @@ var (
 			Category:         "Compute Engine",
 			ShortDescription: `Manages a VM instance resource within GCE.`,
 			Description:      ``,
+			Icon:             "Compute/Compute_Engine.svg",
 			Keywords: []string{
 				"compute",
 				"engine",
@@ -9643,6 +9669,7 @@ var (
 			Category:         "Compute Engine",
 			ShortDescription: `Persistent disks are durable storage devices that function similarly to the physical disks in a desktop or a server.`,
 			Description:      ``,
+			Icon:             "Storage/Persistent_Disk.svg",
 			Keywords: []string{
 				"compute",
 				"engine",
@@ -11623,6 +11650,7 @@ var (
 			Category:         "Compute Engine",
 			ShortDescription: `Represents a Route resource.`,
 			Description:      ``,
+			Icon:             "Networking/Cloud_Routes.svg",
 			Keywords: []string{
 				"compute",
 				"engine",
@@ -11715,6 +11743,7 @@ var (
 			Category:         "Compute Engine",
 			ShortDescription: `Represents a Router resource.`,
 			Description:      ``,
+			Icon:             "Networking/Cloud_Router.svg",
 			Keywords: []string{
 				"compute",
 				"engine",
@@ -11803,6 +11832,7 @@ var (
 			Category:         "Compute Engine",
 			ShortDescription: `BGP information that must be configured into the routing stack to establish BGP peering.`,
 			Description:      ``,
+			Icon:             "Networking/CLoud_Router.svg",
 			Keywords: []string{
 				"compute",
 				"engine",
@@ -11896,6 +11926,7 @@ var (
 			Category:         "Compute Engine",
 			ShortDescription: `Manages a Cloud Router interface.`,
 			Description:      ``,
+			Icon:             "Networking/CLoud_Router.svg",
 			Keywords: []string{
 				"compute",
 				"engine",
@@ -11949,6 +11980,7 @@ var (
 			Category:         "Compute Engine",
 			ShortDescription: `A NAT service created in a router.`,
 			Description:      ``,
+			Icon:             "Networking/Cloud_NAT.svg",
 			Keywords: []string{
 				"compute",
 				"engine",
@@ -12495,6 +12527,7 @@ var (
 			Category:         "Compute Engine",
 			ShortDescription: `A VPC network is a virtual version of the traditional physical networks that exist within and between physical data centers.`,
 			Description:      ``,
+			Icon:             "Networking/Cloud_Network.svg",
 			Keywords: []string{
 				"compute",
 				"engine",
@@ -14347,6 +14380,7 @@ var (
 			Category:         "Compute Engine",
 			ShortDescription: `Represents a VPN gateway running in GCP.`,
 			Description:      ``,
+			Icon:             "Networking/Cloud_VPN.svg",
 			Keywords: []string{
 				"compute",
 				"engine",
@@ -14416,6 +14450,7 @@ var (
 			Category:         "Compute Engine",
 			ShortDescription: `VPN tunnel resource.`,
 			Description:      ``,
+			Icon:             "Networking/Cloud_VPN.svg",
 			Keywords: []string{
 				"compute",
 				"engine",
@@ -14747,6 +14782,7 @@ var (
 			Category:         "Kubernetes (Container) Engine",
 			ShortDescription: `Creates a Google Kubernetes Engine (GKE) cluster.`,
 			Description:      ``,
+			Icon:             "Compute/Kubernetes_Engine.svg",
 			Keywords: []string{
 				"kubernetes",
 				"container",
@@ -15998,6 +16034,7 @@ var (
 			Category:         "Dataflow",
 			ShortDescription: `Creates a job in Dataflow according to a provided config file.`,
 			Description:      ``,
+			Icon:             "Data_Analytics/Cloud_Dataflow.svg",
 			Keywords: []string{
 				"dataflow",
 				"job",
@@ -16097,6 +16134,7 @@ var (
 			Category:         "Dataproc",
 			ShortDescription: `Describes an autoscaling policy for Dataproc cluster autoscaler.`,
 			Description:      ``,
+			Icon:             "Data_Analytics/Cloud_Dataproc.svg",
 			Keywords: []string{
 				"dataproc",
 				"autoscaling",
@@ -16205,6 +16243,7 @@ var (
 			Category:         "Dataproc",
 			ShortDescription: `Manages a Cloud Dataproc cluster resource.`,
 			Description:      ``,
+			Icon:             "Data_Analytics/Cloud_Dataproc.svg",
 			Keywords: []string{
 				"dataproc",
 				"cluster",
@@ -16544,6 +16583,7 @@ var (
 			Category:         "Dataproc",
 			ShortDescription: `Manages a job resource within a Dataproc cluster.`,
 			Description:      ``,
+			Icon:             "Data_Analytics/Cloud_Dataproc.svg",
 			Keywords: []string{
 				"dataproc",
 				"job",
@@ -17232,6 +17272,7 @@ var (
 			Category:         "Cloud DNS",
 			ShortDescription: `A zone is a subtree of the DNS namespace under one administrative responsibility.`,
 			Description:      ``,
+			Icon:             "Networking/Cloud_DNS.svg",
 			Keywords: []string{
 				"cloud",
 				"dns",
@@ -17381,6 +17422,7 @@ var (
 			Category:         "Cloud DNS",
 			ShortDescription: `A policy is a collection of DNS rules applied to one or more Virtual Private Cloud resources.`,
 			Description:      ``,
+			Icon:             "Networking/Cloud_DNS.svg",
 			Keywords: []string{
 				"cloud",
 				"dns",
@@ -17445,6 +17487,7 @@ var (
 			Category:         "Cloud DNS",
 			ShortDescription: `Manages a set of DNS records within Google Cloud DNS.`,
 			Description:      ``,
+			Icon:             "Networking/Cloud_DNS.svg",
 			Keywords: []string{
 				"cloud",
 				"dns",
@@ -17549,6 +17592,7 @@ var (
 			Category:         "Filestore",
 			ShortDescription: `A Google Cloud Filestore instance.`,
 			Description:      ``,
+			Icon:             "Storage/Cloud_Filestore.svg",
 			Keywords: []string{
 				"filestore",
 				"instance",
@@ -17767,6 +17811,7 @@ var (
 			Category:         "Firestore",
 			ShortDescription: `Cloud Firestore indexes enable simple and complex queries against documents in a database.`,
 			Description:      ``,
+			Icon:             "Databases/Cloud_Firestore.svg",
 			Keywords: []string{
 				"firestore",
 				"index",
@@ -18196,6 +18241,7 @@ var (
 			Category:         "Cloud Platform",
 			ShortDescription: `Allows management of a single binding with an IAM policy for a Google Cloud Platform Billing Account.`,
 			Description:      ``,
+			Icon:             "Security/Cloud_IAM.svg",
 			Keywords: []string{
 				"cloud",
 				"platform",
@@ -18235,6 +18281,7 @@ var (
 			Category:         "Cloud Platform",
 			ShortDescription: `Allows management of a single member for a single binding on the IAM policy for a Google Cloud Platform Billing Account.`,
 			Description:      ``,
+			Icon:             "Security/Cloud_IAM.svg",
 			Keywords: []string{
 				"cloud",
 				"platform",
@@ -18274,6 +18321,7 @@ var (
 			Category:         "Cloud Platform",
 			ShortDescription: `Allows management of the entire IAM policy for a Google Cloud Platform Billing Account.`,
 			Description:      ``,
+			Icon:             "Security/Cloud_IAM.svg",
 			Keywords: []string{
 				"cloud",
 				"platform",
@@ -18386,6 +18434,7 @@ var (
 			Category:         "Cloud Platform",
 			ShortDescription: `Allows management of a single binding with an IAM policy for a Google Cloud Platform folder.`,
 			Description:      ``,
+			Icon:             "Security/Cloud_IAM.svg",
 			Keywords: []string{
 				"cloud",
 				"platform",
@@ -18420,6 +18469,7 @@ var (
 			Category:         "Cloud Platform",
 			ShortDescription: `Allows management of a single member for a single binding on the IAM policy for a Google Cloud Platform folder.`,
 			Description:      ``,
+			Icon:             "Security/Cloud_IAM.svg",
 			Keywords: []string{
 				"cloud",
 				"platform",
@@ -18458,6 +18508,7 @@ var (
 			Category:         "Cloud Platform",
 			ShortDescription: `Allows management of the IAM policy for a Google Cloud Platform folders.`,
 			Description:      ``,
+			Icon:             "Security/Cloud_IAM.svg",
 			Keywords: []string{
 				"cloud",
 				"platform",
@@ -18694,6 +18745,7 @@ var (
 			Category:         "Cloud Platform",
 			ShortDescription: `Allows management of audit logging config for a given service for a Google Cloud Platform Organization.`,
 			Description:      ``,
+			Icon:             "Security/Cloud_IAM.svg",
 			Keywords: []string{
 				"cloud",
 				"platform",
@@ -18732,6 +18784,7 @@ var (
 			Category:         "Cloud Platform",
 			ShortDescription: `Allows management of a single binding with an IAM policy for a Google Cloud Platform Organization.`,
 			Description:      ``,
+			Icon:             "Security/Cloud_IAM.svg",
 			Keywords: []string{
 				"cloud",
 				"platform",
@@ -18770,6 +18823,7 @@ var (
 			Category:         "Cloud Platform",
 			ShortDescription: `Allows management of a customized Cloud IAM organization role.`,
 			Description:      ``,
+			Icon:             "Security/Cloud_IAM.svg",
 			Keywords: []string{
 				"cloud",
 				"platform",
@@ -18833,6 +18887,7 @@ var (
 			Category:         "Cloud Platform",
 			ShortDescription: `Allows management of a single member for a single binding on the IAM policy for a Google Cloud Platform Organization.`,
 			Description:      ``,
+			Icon:             "Security/Cloud_IAM.svg",
 			Keywords: []string{
 				"cloud",
 				"platform",
@@ -18871,6 +18926,7 @@ var (
 			Category:         "Cloud Platform",
 			ShortDescription: `Allows management of the entire IAM policy for a Google Cloud Platform Organization.`,
 			Description:      ``,
+			Icon:             "Security/Cloud_IAM.svg",
 			Keywords: []string{
 				"cloud",
 				"platform",
@@ -19114,6 +19170,7 @@ var (
 			Category:         "Cloud Platform",
 			ShortDescription: `Allows management of a customized Cloud IAM project role.`,
 			Description:      ``,
+			Icon:             "Security/Cloud_IAM.svg",
 			Keywords: []string{
 				"cloud",
 				"platform",
@@ -21026,6 +21083,7 @@ var (
 			Category:         "Cloud Key Management Service",
 			ShortDescription: `A ` + "`" + `KeyRing` + "`" + ` is a toplevel logical grouping of ` + "`" + `CryptoKeys` + "`" + `.`,
 			Description:      ``,
+			Icon:             "Security/Key_Management_Service.svg",
 			Keywords: []string{
 				"cloud",
 				"key",
@@ -21174,6 +21232,7 @@ var (
 			Category:         "Cloud Key Management Service",
 			ShortDescription: `Encrypts secret data with Google Cloud KMS and provides access to the ciphertext.`,
 			Description:      ``,
+			Icon:             "Security/Key_Management_Service.svg",
 			Keywords: []string{
 				"cloud",
 				"key",
@@ -21286,6 +21345,7 @@ var (
 			Category:         "Cloud (Stackdriver) Logging",
 			ShortDescription: `Manages a billing_account-level logging exclusion.`,
 			Description:      ``,
+			Icon:             "Management_Tools/Logging.svg",
 			Keywords: []string{
 				"cloud",
 				"stackdriver",
@@ -21333,6 +21393,7 @@ var (
 			Category:         "Cloud (Stackdriver) Logging",
 			ShortDescription: `Manages a billing account logging sink.`,
 			Description:      ``,
+			Icon:             "Management_Tools/Logging.svg",
 			Keywords: []string{
 				"cloud",
 				"stackdriver",
@@ -21455,6 +21516,7 @@ var (
 			Category:         "Cloud (Stackdriver) Logging",
 			ShortDescription: `Manages a folder-level logging exclusion.`,
 			Description:      ``,
+			Icon:             "Management_Tools/Logging.svg",
 			Keywords: []string{
 				"cloud",
 				"stackdriver",
@@ -21501,6 +21563,7 @@ var (
 			Category:         "Cloud (Stackdriver) Logging",
 			ShortDescription: `Manages a folder-level logging sink.`,
 			Description:      ``,
+			Icon:             "Management_Tools/Logging.svg",
 			Keywords: []string{
 				"cloud",
 				"stackdriver",
@@ -21563,6 +21626,7 @@ var (
 			Category:         "Cloud (Stackdriver) Logging",
 			ShortDescription: `Logs-based metric can also be used to extract values from logs and create a a distribution of the values.`,
 			Description:      ``,
+			Icon:             "Management_Tools/Logging.svg",
 			Keywords: []string{
 				"cloud",
 				"stackdriver",
@@ -21755,6 +21819,7 @@ var (
 			Category:         "Cloud (Stackdriver) Logging",
 			ShortDescription: `Manages a organization-level logging exclusion.`,
 			Description:      ``,
+			Icon:             "Management_Tools/Logging.svg",
 			Keywords: []string{
 				"cloud",
 				"stackdriver",
@@ -21801,6 +21866,7 @@ var (
 			Category:         "Cloud (Stackdriver) Logging",
 			ShortDescription: `Manages a organization-level logging sink.`,
 			Description:      ``,
+			Icon:             "Management_Tools/Logging.svg",
 			Keywords: []string{
 				"cloud",
 				"stackdriver",
@@ -21926,6 +21992,7 @@ var (
 			Category:         "Cloud (Stackdriver) Logging",
 			ShortDescription: `Manages a project-level logging exclusion.`,
 			Description:      ``,
+			Icon:             "Management_Tools/Logging.svg",
 			Keywords: []string{
 				"cloud",
 				"stackdriver",
@@ -21972,6 +22039,7 @@ var (
 			Category:         "Cloud (Stackdriver) Logging",
 			ShortDescription: `Manages a project-level logging sink.`,
 			Description:      ``,
+			Icon:             "Management_Tools/Logging.svg",
 			Keywords: []string{
 				"cloud",
 				"stackdriver",
@@ -22181,6 +22249,7 @@ var (
 			Category:         "Cloud (Stackdriver) Monitoring",
 			ShortDescription: `A description of the conditions under which some aspect of your system is considered to be "unhealthy" and the ways to notify people or services about this state.`,
 			Description:      ``,
+			Icon:             "Management_Tools/Monitoring.svg",
 			Keywords: []string{
 				"cloud",
 				"stackdriver",
@@ -22440,6 +22509,7 @@ var (
 			Category:         "Cloud (Stackdriver) Monitoring",
 			ShortDescription: `The description of a dynamic collection of monitored resources.`,
 			Description:      ``,
+			Icon:             "Management_Tools/Monitoring.svg",
 			Keywords: []string{
 				"cloud",
 				"stackdriver",
@@ -22493,6 +22563,7 @@ var (
 			Category:         "Cloud (Stackdriver) Monitoring",
 			ShortDescription: `A NotificationChannel is a medium through which an alert is delivered when a policy violation is detected.`,
 			Description:      ``,
+			Icon:             "Management_Tools/Monitoring.svg",
 			Keywords: []string{
 				"cloud",
 				"stackdriver",
@@ -22882,6 +22953,7 @@ var (
 			Category:         "Cloud (Stackdriver) Monitoring",
 			ShortDescription: `This message configures which resources and services to monitor for availability.`,
 			Description:      ``,
+			Icon:             "Management_Tools/Monitoring.svg",
 			Keywords: []string{
 				"cloud",
 				"stackdriver",
@@ -23921,6 +23993,7 @@ var (
 			Category:         "Cloud Pub/Sub",
 			ShortDescription: `A named resource representing the stream of messages from a single, specific topic, to be delivered to the subscribing application.`,
 			Description:      ``,
+			Icon:             "Data_Analytics/Cloud_PubSub.svg",
 			Keywords: []string{
 				"cloud",
 				"pub",
@@ -24066,6 +24139,7 @@ var (
 			Category:         "Cloud Pub/Sub",
 			ShortDescription: `A named resource to which messages are sent by publishers.`,
 			Description:      ``,
+			Icon:             "Data_Analytics/Cloud_PubSub.svg",
 			Keywords: []string{
 				"cloud",
 				"pub",
@@ -24163,6 +24237,7 @@ var (
 			Category:         "Memorystore (Redis)",
 			ShortDescription: `A Google Cloud Redis instance.`,
 			Description:      ``,
+			Icon:             "Databases/Cloud_Memorystore.svg",
 			Keywords: []string{
 				"memorystore",
 				"redis",
@@ -25212,6 +25287,7 @@ var (
 			Category:         "Cloud Spanner",
 			ShortDescription: `A Cloud Spanner Database which is hosted on a Spanner instance.`,
 			Description:      ``,
+			Icon:             "Databases/Cloud_Spanner.svg",
 			Keywords: []string{
 				"cloud",
 				"spanner",
@@ -25309,6 +25385,7 @@ var (
 			Category:         "Cloud Spanner",
 			ShortDescription: `An isolated set of Cloud Spanner resources on which databases can be hosted.`,
 			Description:      ``,
+			Icon:             "Databases/Cloud_Spanner.svg",
 			Keywords: []string{
 				"cloud",
 				"spanner",
@@ -25410,6 +25487,7 @@ var (
 			Category:         "Cloud SQL",
 			ShortDescription: `Represents a SQL database inside the Cloud SQL instance, hosted in Google's cloud.`,
 			Description:      ``,
+			Icon:             "Databases/Cloud_SQL.svg",
 			Keywords: []string{
 				"cloud",
 				"sql",
@@ -25462,6 +25540,7 @@ var (
 			Category:         "Cloud SQL",
 			ShortDescription: `Creates a new SQL database instance in Google Cloud SQL.`,
 			Description:      ``,
+			Icon:             "Databases/Cloud_SQL.svg",
 			Keywords: []string{
 				"cloud",
 				"sql",
@@ -25837,6 +25916,7 @@ var (
 			Category:         "Cloud SQL",
 			ShortDescription: `Creates a new SQL Ssl Cert in Google Cloud SQL.`,
 			Description:      ``,
+			Icon:             "Databases/Cloud_SQL.svg",
 			Keywords: []string{
 				"cloud",
 				"sql",
@@ -25922,6 +26002,7 @@ var (
 			Category:         "Cloud SQL",
 			ShortDescription: `Creates a new SQL user in Google Cloud SQL.`,
 			Description:      ``,
+			Icon:             "Databases/Cloud_SQL.svg",
 			Keywords: []string{
 				"cloud",
 				"sql",
@@ -25957,6 +26038,7 @@ var (
 			Category:         "Cloud Storage",
 			ShortDescription: `Creates a new bucket in Google Cloud Storage.`,
 			Description:      ``,
+			Icon:             "Storage/Cloud_Storage.svg",
 			Keywords: []string{
 				"cloud",
 				"storage",
@@ -26129,6 +26211,7 @@ var (
 			Category:         "Cloud Storage",
 			ShortDescription: `Bucket ACLs can be managed authoritatively using the [` + "`" + `storage_bucket_acl` + "`" + `](https://www.`,
 			Description:      ``,
+			Icon:             "Storage/Cloud_Storage.svg",
 			Keywords: []string{
 				"cloud",
 				"storage",
@@ -26183,6 +26266,7 @@ var (
 			Category:         "Cloud Storage",
 			ShortDescription: `Creates a new bucket ACL in Google Cloud Storage.`,
 			Description:      ``,
+			Icon:             "Storage/Cloud_Storage.svg",
 			Keywords: []string{
 				"cloud",
 				"storage",
@@ -26276,6 +26360,7 @@ var (
 			Category:         "Cloud Storage",
 			ShortDescription: `Creates a new object inside a specified bucket`,
 			Description:      ``,
+			Icon:             "Storage/Cloud_Storage.svg",
 			Keywords: []string{
 				"cloud",
 				"storage",
@@ -26369,6 +26454,7 @@ var (
 			Category:         "Cloud Storage",
 			ShortDescription: `The DefaultObjectAccessControls resources represent the Access Control Lists (ACLs) applied to a new object within a Google Cloud Storage bucket when no ACL was provided for that object.`,
 			Description:      ``,
+			Icon:             "Storage/Cloud_Storage.svg",
 			Keywords: []string{
 				"cloud",
 				"storage",
@@ -26468,6 +26554,7 @@ var (
 			Category:         "Cloud Storage",
 			ShortDescription: `Authoritatively manages the default object ACLs for a Google Cloud Storage bucket`,
 			Description:      ``,
+			Icon:             "Storage/Cloud_Storage.svg",
 			Keywords: []string{
 				"cloud",
 				"storage",
@@ -26562,6 +26649,7 @@ var (
 			Category:         "Cloud Storage",
 			ShortDescription: `Creates a new notification configuration on a specified bucket.`,
 			Description:      ``,
+			Icon:             "Storage/Cloud_Storage.svg",
 			Keywords: []string{
 				"cloud",
 				"storage",
@@ -26618,6 +26706,7 @@ var (
 			Category:         "Cloud Storage",
 			ShortDescription: `The ObjectAccessControls resources represent the Access Control Lists (ACLs) for objects within Google Cloud Storage.`,
 			Description:      ``,
+			Icon:             "Storage/Cloud_Storage.svg",
 			Keywords: []string{
 				"cloud",
 				"storage",
@@ -26716,6 +26805,7 @@ var (
 			Category:         "Cloud Storage",
 			ShortDescription: `Creates a new object ACL in Google Cloud Storage.`,
 			Description:      ``,
+			Icon:             "Storage/Cloud_Storage.svg",
 			Keywords: []string{
 				"cloud",
 				"storage",
@@ -26748,6 +26838,7 @@ var (
 			Category:         "Storage Transfer Service",
 			ShortDescription: `Creates a new Transfer Job in Google Cloud Storage Transfer.`,
 			Description:      ``,
+			Icon:             "Storage/Cloud_Storage.svg",
 			Keywords: []string{
 				"storage",
 				"transfer",
