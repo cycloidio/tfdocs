@@ -44,7 +44,7 @@ func main() {
 		if provider == "avi" {
 			continue
 		}
-		var icons = make(map[string]string)
+		var icons map[string]string
 		b, err := ioutil.ReadFile(filepath.Join(assetsPath, provider, iconFile))
 		if !os.IsNotExist(err) {
 			err = json.Unmarshal(b, &icons)
@@ -187,8 +187,12 @@ func main() {
 					r.Category = c
 					r.Keywords = categoryAndTypeToKeywords(provider, c, rt)
 				}
-				if ic, ok := icons[rt]; ok {
-					r.Icon = ic
+				if icons != nil {
+					if ic, ok := icons[rt]; ok {
+						r.Icon = ic
+					} else {
+						icons[rt] = ""
+					}
 				}
 				resources = append(resources, r)
 
@@ -228,8 +232,22 @@ func main() {
 
 			io.Copy(out, bytes.NewBuffer(b))
 
-			//io.Copy(out, buff)
 		}
+		if icons != nil {
+			f, err := os.OpenFile(filepath.Join(assetsPath, provider, iconFile), os.O_RDWR|os.O_TRUNC, 0755)
+			if err != nil {
+				log.Fatal(err)
+			}
+			e := json.NewEncoder(f)
+			e.SetEscapeHTML(false)
+			e.SetIndent("", " ")
+			err = e.Encode(icons)
+			if err != nil {
+				log.Fatal(err)
+			}
+			f.Close()
+		}
+
 	}
 }
 
