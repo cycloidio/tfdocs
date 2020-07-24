@@ -1221,6 +1221,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an OpenStack Firewall Policy.`,
 			Description:      ``,
+			Icon:             "firewall-gray.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2590,6 +2591,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an OpenStack Floating IP.`,
 			Description:      ``,
+			Icon:             "floatingip-gray.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -3458,6 +3460,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an OpenStack Floating IP.`,
 			Description:      ``,
+			Icon:             "router-gray.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{

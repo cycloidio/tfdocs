@@ -1145,6 +1145,7 @@ var (
 			Category:         "Compute Resources",
 			ShortDescription: `Associate a floating IP to an instance`,
 			Description:      ``,
+			Icon:             "floatingip-gray.svg",
 			Keywords: []string{
 				"compute",
 				"floatingip",
@@ -2062,6 +2063,7 @@ var (
 			Category:         "Compute Resources",
 			ShortDescription: `Manages a V2 Server Group resource within OpenStack.`,
 			Description:      ``,
+			Icon:             "stack-gray.svg",
 			Keywords: []string{
 				"compute",
 				"servergroup",
@@ -2142,6 +2144,7 @@ var (
 			Category:         "Compute Resources",
 			ShortDescription: `Attaches a Block Storage Volume to an Instance.`,
 			Description:      ``,
+			Icon:             "volume-gray.svg",
 			Keywords: []string{
 				"compute",
 				"volume",
@@ -2251,6 +2254,7 @@ var (
 			Category:         "Database Resources",
 			ShortDescription: `Manages a V1 DB configuration resource within OpenStack.`,
 			Description:      ``,
+			Icon:             "db-gray.svg",
 			Keywords: []string{
 				"database",
 				"db",
@@ -2659,6 +2663,7 @@ var (
 			Category:         "Database Resources",
 			ShortDescription: `Manages a V1 database user resource within OpenStack.`,
 			Description:      ``,
+			Icon:             "db-gray.svg",
 			Keywords: []string{
 				"database",
 				"db",
@@ -3085,6 +3090,7 @@ var (
 			Category:         "Firewall Resources",
 			ShortDescription: `Manages a v1 firewall policy resource within OpenStack.`,
 			Description:      ``,
+			Icon:             "firewall-gray.svg",
 			Keywords: []string{
 				"firewall",
 				"fw",
@@ -3170,6 +3176,7 @@ var (
 			Category:         "Firewall Resources",
 			ShortDescription: `Manages a v1 firewall rule resource within OpenStack.`,
 			Description:      ``,
+			Icon:             "firewall-gray.svg",
 			Keywords: []string{
 				"firewall",
 				"fw",
@@ -3973,6 +3980,7 @@ var (
 			Category:         "Images Resources",
 			ShortDescription: `Manages a V2 Image membership proposal resource within OpenStack Glance.`,
 			Description:      ``,
+			Icon:             "image-gray.svg",
 			Keywords: []string{
 				"images",
 				"image",
@@ -4031,6 +4039,7 @@ var (
 			Category:         "Images Resources",
 			ShortDescription: `Manages a V2 Image member resource within OpenStack Glance.`,
 			Description:      ``,
+			Icon:             "image-gray.svg",
 			Keywords: []string{
 				"images",
 				"image",
@@ -5834,6 +5843,7 @@ var (
 			Category:         "Load Balancer Resources",
 			ShortDescription: `Manages a V1 load balancer monitor resource within OpenStack.`,
 			Description:      ``,
+			Icon:             "lb-gray.svg",
 			Keywords: []string{
 				"load",
 				"balancer",
@@ -5972,6 +5982,7 @@ var (
 			Category:         "Load Balancer Resources",
 			ShortDescription: `Manages a V2 monitor resource within OpenStack.`,
 			Description:      ``,
+			Icon:             "lb-gray.svg",
 			Keywords: []string{
 				"load",
 				"balancer",
@@ -6398,6 +6409,7 @@ var (
 			Category:         "Load Balancer Resources",
 			ShortDescription: `Manages a V1 load balancer vip resource within OpenStack.`,
 			Description:      ``,
+			Icon:             "lb-gray.svg",
 			Keywords: []string{
 				"load",
 				"balancer",
@@ -6664,6 +6676,7 @@ var (
 			Category:         "Networking Resources",
 			ShortDescription: `Associates a Floating IP to a Port`,
 			Description:      ``,
+			Icon:             "floatingip-gray.svg",
 			Keywords: []string{
 				"networking",
 				"floatingip",
@@ -6717,6 +6730,7 @@ var (
 			Category:         "Networking Resources",
 			ShortDescription: `Manages a V2 floating IP resource within OpenStack Neutron (networking).`,
 			Description:      ``,
+			Icon:             "floatingip-gray.svg",
 			Keywords: []string{
 				"networking",
 				"floatingip",
@@ -8085,6 +8099,7 @@ var (
 			Category:         "Networking Resources",
 			ShortDescription: `Creates a routing entry on a OpenStack V2 router.`,
 			Description:      ``,
+			Icon:             "router-gray.svg",
 			Keywords: []string{
 				"networking",
 				"router",
@@ -8150,6 +8165,7 @@ var (
 			Category:         "Networking Resources",
 			ShortDescription: `Manages a V2 router resource within OpenStack.`,
 			Description:      ``,
+			Icon:             "router-gray.svg",
 			Keywords: []string{
 				"networking",
 				"router",
@@ -8583,6 +8599,7 @@ var (
 			Category:         "Networking Resources",
 			ShortDescription: `Creates a routing entry on a OpenStack V2 subnet.`,
 			Description:      ``,
+			Icon:             "network-gray.svg",
 			Keywords: []string{
 				"networking",
 				"subnet",

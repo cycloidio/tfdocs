@@ -613,7 +613,7 @@ Use this data source to get the name and value of a pre-existing API Key, for
 example to supply credentials for a dependency microservice.
 
 `,
-			Icon:     "Networking_Content_Delivery/Amazon-API-Gateway.svg",
+			Icon:     "Networking_and_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -699,7 +699,7 @@ Use this data source to get the id of a Resource in API Gateway.
 To fetch the Resource, you must provide the REST API id as well as the full path.  
 
 `,
-			Icon:     "Networking_Content_Delivery/Amazon-API-Gateway.svg",
+			Icon:     "Networking_and_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -751,7 +751,7 @@ As there is no unique name constraint on REST APIs this data source will
 error if there is more than one match.
 
 `,
-			Icon:     "Networking_Content_Delivery/Amazon-API-Gateway.svg",
+			Icon:     "Networking_and_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -863,7 +863,7 @@ As there is no unique name constraint on API Gateway VPC Links this data source 
 error if there is more than one match.
 
 `,
-			Icon:     "Networking_Content_Delivery/Amazon-API-Gateway.svg",
+			Icon:     "Networking_and_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -1812,7 +1812,7 @@ The CloudFormation Stack data source allows access to stack
 outputs and other useful data including the template body.
 
 `,
-			Icon:     "Management_Governance/AWS-CloudFormation.svg",
+			Icon:     "Management_and_Governance/AWS-CloudFormation.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -1909,7 +1909,7 @@ outputs and other useful data including the template body.
 			Category:         "Data Sources",
 			ShortDescription: `Provides a CloudFront web distribution data source.`,
 			Description:      ``,
-			Icon:             "Networking_Content_Delivery/Amazon-CloudFront.svg",
+			Icon:             "Networking_and_Content_Delivery/Amazon-CloudFront.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2127,7 +2127,7 @@ in a given region for the purpose of allowing CloudTrail to store trail data in 
 Use this data source to get information about an AWS Cloudwatch Log Group
 
 `,
-			Icon:     "Management_Governance/Amazon-CloudWatch.svg",
+			Icon:     "Management_and_Governance/Amazon-CloudWatch.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2357,7 +2357,7 @@ Use this data source to get information on an AWS Cost and Usage Report Definiti
 Get an existing AWS Customer Gateway.
 
 `,
-			Icon:     "Networking_Content_Delivery/Amazon-VPC_Customer-Gateway_light-bg.svg",
+			Icon:     "Networking_and_Content_Delivery/Amazon-VPC_Customer-Gateway_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -3288,7 +3288,7 @@ Get attributes of AWS Directory Service directory (SimpleAD, Managed AD, AD Conn
 Retrieve information about a Direct Connect Gateway.
 
 `,
-			Icon:     "Networking_Content_Delivery/AWS-Direct-Connect.svg",
+			Icon:     "Networking_and_Content_Delivery/AWS-Direct-Connect.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -3391,7 +3391,7 @@ Provides a way to check whether default EBS encryption is enabled for your AWS a
 Use this data source to get information about an EBS Snapshot for use when provisioning EBS Volumes
 
 `,
-			Icon:     "Compute/Amazon-Elastic-Block-Store-EBS_Snapshot_light-bg.svg",
+			Icon:     "Storage/Amazon-Elastic-Block-Store-EBS_Snapshot_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -3561,7 +3561,7 @@ Use this data source to get information about an EBS volume for use in other
 resources.
 
 `,
-			Icon:     "Compute/Amazon-Elastic-Block-Store-EBS_Volume_light-bg.svg",
+			Icon:     "Storage/Amazon-Elastic-Block-Store-EBS_Volume_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -5742,7 +5742,7 @@ Provides information about an Elastic File System Mount Target (EFS).
 Retrieve information about an EKS Cluster.
 
 `,
-			Icon:     "Compute/Amazon-Elastic-Container-Service-for-Kubernetes.svg",
+			Icon:     "Compute/Amazon-Elastic-Kubernetes-Service.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -6628,7 +6628,7 @@ Use this data source to get information about an Elasticsearch Domain
 			Category:         "Data Sources",
 			ShortDescription: `Provides a classic Elastic Load Balancer data source.`,
 			Description:      ``,
-			Icon:             "Compute/Elastic-Load-Balancing-ELB.svg",
+			Icon:             "Networking_and_Content_Delivery/Elastic-Load-Balancing.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -7925,7 +7925,7 @@ and you'd need to re-run ` + "`" + `apply` + "`" + ` every time an instance come
 ` + "`" + `aws_internet_gateway` + "`" + ` provides details about a specific Internet Gateway.
 
 `,
-			Icon:     "Networking_Content_Delivery/Amazon-VPC_Internet-Gateway_light-bg.svg",
+			Icon:     "Networking_and_Content_Delivery/Amazon-VPC_Internet-Gateway_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -9289,7 +9289,7 @@ variable and needs to, for example, determine the security groups associated
 with it, etc.
 
 `,
-			Icon:     "Compute/Elastic-Load-Balancing-ELB.svg",
+			Icon:     "Networking_and_Content_Delivery/Elastic-Load-Balancing.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -9319,7 +9319,7 @@ variable and needs to, for example, determine the security groups associated
 with it, etc.
 
 `,
-			Icon:     "Compute/Elastic-Load-Balancing-ELB.svg",
+			Icon:     "Networking_and_Content_Delivery/Elastic-Load-Balancing.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -9627,7 +9627,7 @@ Get information on an Amazon MSK Configuration.
 Provides details about a specific Nat Gateway.
 
 `,
-			Icon:     "Networking_Content_Delivery/Amazon-VPC_NAT-Gateway_light-bg.svg",
+			Icon:     "Networking_and_Content_Delivery/Amazon-VPC_NAT-Gateway_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -9746,7 +9746,7 @@ Provides details about a specific Nat Gateway.
 			Category:         "Data Sources",
 			ShortDescription: `Get information on a Network Interface resource.`,
 			Description:      ``,
-			Icon:             "Networking_Content_Delivery/Amazon-VPC_Elastic-Network-Interface_light-bg.svg",
+			Icon:             "Networking_and_Content_Delivery/Amazon-VPC_Elastic-Network-Interface_light-bg.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -9969,7 +9969,7 @@ Provides details about a specific Nat Gateway.
 Get information about the organization that the user's account belongs to
 
 `,
-			Icon:     "Security_Identity_and_Compliance/AWS-Organizations.svg",
+			Icon:     "Management_and_Governance/AWS-Organizations.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -11110,7 +11110,7 @@ associated with a CIDR. For example, finding the peering
 connection associated with a CIDR value.
 
 `,
-			Icon:     "Networking_Content_Delivery/Amazon-VPC_Router_light-bg.svg",
+			Icon:     "Networking_and_Content_Delivery/Amazon-VPC_Router_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -11168,7 +11168,7 @@ connection associated with a CIDR value.
 This data source allows to find a list of name servers associated with a specific delegation set.
 
 `,
-			Icon:     "Networking_Content_Delivery/Amazon-Route-53.svg",
+			Icon:     "Networking_and_Content_Delivery/Amazon-Route-53.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -11290,7 +11290,7 @@ This data source allows to find a list of name servers associated with a specifi
 This data source allows to find a Hosted Zone ID given Hosted Zone name and certain search criteria.
 
 `,
-			Icon:     "Networking_Content_Delivery/Amazon-Route-53_Hosted-Zone_light-bg.svg",
+			Icon:     "Networking_and_Content_Delivery/Amazon-Route-53_Hosted-Zone_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -11379,7 +11379,7 @@ an input variable and needs to, for example, add a route in
 the Route Table.
 
 `,
-			Icon:     "Networking_Content_Delivery/Amazon-VPC_Router_light-bg.svg",
+			Icon:     "Networking_and_Content_Delivery/Amazon-VPC_Router_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -12567,7 +12567,7 @@ the ARNs as input.
 Gets the contents of the specified Systems Manager document.
 
 `,
-			Icon:     "Management_Governance/AWS-Systems-Manager_Documents_light-bg.svg",
+			Icon:     "Management_and_Governance/AWS-Systems-Manager_Documents_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -12620,7 +12620,7 @@ Gets the contents of the specified Systems Manager document.
 Provides an SSM Parameter data source.
 
 `,
-			Icon:     "Management_Governance/AWS-Systems-Manager_Parameter-Store_light-bg.svg",
+			Icon:     "Management_and_Governance/AWS-Systems-Manager_Parameter-Store_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -12664,7 +12664,7 @@ Provides an SSM Parameter data source.
 Provides an SSM Patch Baseline data source. Useful if you wish to reuse the default baselines provided.
 
 `,
-			Icon:     "Management_Governance/AWS-Systems-Manager_Patch-Manager_light-bg.svg",
+			Icon:     "Management_and_Governance/AWS-Systems-Manager_Patch-Manager_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -12977,7 +12977,7 @@ an input variable and needs to, for example, determine the CIDR block of that
 VPC.
 
 `,
-			Icon:     "Networking_Content_Delivery/Amazon-VPC.svg",
+			Icon:     "Networking_and_Content_Delivery/Amazon-VPC.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -13231,7 +13231,7 @@ The VPC Endpoint data source provides details about
 a specific VPC endpoint.
 
 `,
-			Icon:     "Networking_Content_Delivery/Amazon-VPC_Endpoints_light-bg.svg",
+			Icon:     "Networking_and_Content_Delivery/Amazon-VPC_Endpoints_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -13401,7 +13401,7 @@ The VPC Endpoint Service data source details about a specific service that
 can be specified when creating a VPC endpoint within the region configured in the provider.
 
 `,
-			Icon:     "Networking_Content_Delivery/Amazon-VPC_Endpoints_light-bg.svg",
+			Icon:     "Networking_and_Content_Delivery/Amazon-VPC_Endpoints_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -13531,7 +13531,7 @@ The VPC Peering Connection data source provides details about
 a specific VPC peering connection.
 
 `,
-			Icon:     "Networking_Content_Delivery/Amazon-VPC_Peering_light-bg.svg",
+			Icon:     "Networking_and_Content_Delivery/Amazon-VPC_Peering_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -13687,7 +13687,7 @@ The VPN Gateway data source provides details about
 a specific VPN gateway.
 
 `,
-			Icon:     "Networking_Content_Delivery/Amazon-VPC_VPN-Gateway_light-bg.svg",
+			Icon:     "Networking_and_Content_Delivery/Amazon-VPC_VPN-Gateway_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{

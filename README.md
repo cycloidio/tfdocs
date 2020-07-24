@@ -33,5 +33,5 @@ Returns the specific DataSource for the resource type, example: `aws_vpcs`
 To add icons we need a JSON that connects the resource name (`aws_lb`) to the actual path (`Compute/Elastic-Load-Balancing-ELB.svg`). This is done inside the `assets/` directory, there we have a folder for each Provider that may have icons. The path to the actual JSON has to be `assets/{{ ProviderName }}/icons.json` and for the format is a simple KV where K == resource name and V == path.
 
 The path has to be the one from the official Provider source after download:
-* aws: https://aws.amazon.com/architecture/icons/
+* aws: https://aws.amazon.com/architecture/icons/ (currently the 20200430)
 * openstack: https://github.com/openstack/horizon/tree/master/openstack_dashboard/static/dashboard/img
