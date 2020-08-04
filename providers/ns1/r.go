@@ -208,7 +208,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "job_type",
-					Description: `(Required) The type of monitoring job to be run. See NS1 API docs for supported values.`,
+					Description: `(Required) The type of monitoring job to be run. Refer to the NS1 API documentation (https://ns1.com/api#monitoring-jobs) for supported values which include ping, tcp, dns, http.`,
 				},
 				resource.Attribute{
 					Name:        "active",
@@ -232,7 +232,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "config",
-					Description: `(Required) A configuration dictionary with keys and values depending on the jobs' type.`,
+					Description: `(Required) A configuration dictionary with keys and values depending on the job_type. Configuration details for each job_type are found by submitting a GET request to https://api.nsone.net/v1/monitoring/jobtypes.`,
 				},
 				resource.Attribute{
 					Name:        "notify_delay",
@@ -252,7 +252,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "notify_list",
-					Description: `(Optional) The id of the notification list to send notifications to.`,
+					Description: `(Optional) The Terraform ID (e.g. ns1_notifylist.my_slack_notifier.id) of the notification list to which monitoring notifications should be sent.`,
 				},
 				resource.Attribute{
 					Name:        "notes",
@@ -260,19 +260,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rules",
-					Description: `(Optional) A list of rules for determining failure conditions. Job Rules are documented below. Monitoring Job Rules (` + "`" + `rules` + "`" + `) support the following:`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `(Required) The output key.`,
-				},
-				resource.Attribute{
-					Name:        "comparison",
-					Description: `(Required) The comparison to perform on the the output.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `(Required) The value to compare to. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions. ## NS1 Documentation [MonitoringJob Api Doc](https://ns1.com/api#monitoring-jobs)`,
+					Description: `(Optional) A list of rules for determining failure conditions. Each rule acts on one of the outputs from the monitoring job. You must specify key (the output key); comparison (a comparison to perform on the the output); and value (the value to compare to). For example, {"key":"rtt", "comparison":"<", "value":100} is a rule requiring the rtt from a job to be under 100ms, or the job will be marked failed. Available output keys, comparators, and value types are are found by submitting a GET request to https://api.nsone.net/v1/monitoring/jobtypes. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions. ## NS1 Documentation [MonitoringJob Api Doc](https://ns1.com/api#monitoring-jobs)`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -592,7 +580,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "account_manage_plan",
-					Description: `(Optional) Whether the user can modify the account plan.`,
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "account_manage_teams",
@@ -644,7 +632,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ipam_manage_ipam",
-					Description: `(Optional) Whether the user can manage IPAM. Only relevant for the DDI product. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions. ## NS1 Documentation [User Api Docs](https://ns1.com/api#user)`,
+					Description: `(Optional) Whether the user can manage IPAM. Only relevant for the DDI product. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions. ## NS1 Documentation [User Api Docs](https://ns1.com/api#user) [Managing user permissions](https://help.ns1.com/hc/en-us/articles/360024409034-Managing-user-permissions)`,
 				},
 			},
 			Attributes: []resource.Attribute{},

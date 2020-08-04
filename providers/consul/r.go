@@ -30,16 +30,44 @@ var (
 					Description: `(Required) The type of the ACL auth method.`,
 				},
 				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) An optional name to use instead of the name attribute when displaying information about this auth method.`,
+				},
+				resource.Attribute{
+					Name:        "max_token_ttl",
+					Description: `(Optional) The maximum life of any token created by this auth method.`,
+				},
+				resource.Attribute{
+					Name:        "token_locality",
+					Description: `(Optional) The kind of token that this auth method produces. This can be either 'local' or 'global'.`,
+				},
+				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) A free form human readable description of the auth method.`,
 				},
 				resource.Attribute{
-					Name:        "config",
+					Name:        "config_json",
 					Description: `(Required) The raw configuration for this ACL auth method.`,
 				},
 				resource.Attribute{
+					Name:        "config",
+					Description: `(Optional) The raw configuration for this ACL auth method. This attribute is deprecated and will be removed in a future version. ` + "`" + `config_json` + "`" + ` should be used instead.`,
+				},
+				resource.Attribute{
 					Name:        "namespace",
-					Description: `(Optional, Enterprise Only) The namespace to create the policy within. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional, Enterprise Only) The namespace to create the policy within.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_rule",
+					Description: `(Optional, Enterprise Only) A set of rules that control which namespace tokens created via this auth method will be created within. Each ` + "`" + `namespace_rule` + "`" + ` can have the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "selector",
+					Description: `(Optional) Specifies the expression used to match this namespace rule against valid identities returned from an auth method validation. Defaults to ` + "`" + `""` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "bind_namespace",
+					Description: `(Required) If the namespace rule's ` + "`" + `selector` + "`" + ` matches then this is used to control the namespace where the token is created. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -54,12 +82,36 @@ var (
 					Description: `The type of the ACL auth method.`,
 				},
 				resource.Attribute{
+					Name:        "display_name",
+					Description: `An optional name to use instead of the name attribute when displaying information about this auth method.`,
+				},
+				resource.Attribute{
+					Name:        "max_token_ttl",
+					Description: `The maximum life of any token created by this auth method.`,
+				},
+				resource.Attribute{
+					Name:        "token_locality",
+					Description: `The kind of token that this auth method produces. This can be either 'local' or 'global'.`,
+				},
+				resource.Attribute{
 					Name:        "description",
 					Description: `A free form human readable description of the auth method.`,
 				},
 				resource.Attribute{
-					Name:        "config",
+					Name:        "config_json",
 					Description: `The raw configuration for this ACL auth method.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `The raw configuration for this ACL auth method. This attribute is deprecated and will be removed in a future version. If the configuration is too complex to be represented as a map of strings it will be blank. ` + "`" + `config_json` + "`" + ` should be used instead.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Enterprise Only) The namespace to create the policy within.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_rule",
+					Description: `(Enterprise Only) A set of rules that control which namespace tokens created via this auth method will be created within.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -76,12 +128,36 @@ var (
 					Description: `The type of the ACL auth method.`,
 				},
 				resource.Attribute{
+					Name:        "display_name",
+					Description: `An optional name to use instead of the name attribute when displaying information about this auth method.`,
+				},
+				resource.Attribute{
+					Name:        "max_token_ttl",
+					Description: `The maximum life of any token created by this auth method.`,
+				},
+				resource.Attribute{
+					Name:        "token_locality",
+					Description: `The kind of token that this auth method produces. This can be either 'local' or 'global'.`,
+				},
+				resource.Attribute{
 					Name:        "description",
 					Description: `A free form human readable description of the auth method.`,
 				},
 				resource.Attribute{
-					Name:        "config",
+					Name:        "config_json",
 					Description: `The raw configuration for this ACL auth method.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `The raw configuration for this ACL auth method. This attribute is deprecated and will be removed in a future version. If the configuration is too complex to be represented as a map of strings it will be blank. ` + "`" + `config_json` + "`" + ` should be used instead.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Enterprise Only) The namespace to create the policy within.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_rule",
+					Description: `(Enterprise Only) A set of rules that control which namespace tokens created via this auth method will be created within.`,
 				},
 			},
 		},
@@ -717,6 +793,45 @@ var (
 				resource.Attribute{
 					Name:        "node",
 					Description: `The ID of the service, defaults to the value of ` + "`" + `name` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "consul_certificate_authority",
+			Category:         "Resources",
+			ShortDescription: `A resource that manage the Consul Connect Certificate Authority`,
+			Description:      ``,
+			Keywords: []string{
+				"certificate",
+				"authority",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "connect_provider",
+					Description: `(Required, string) Specifies the CA provider type to use.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `(Required, map) The raw configuration to use for the chosen provider. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "connect_provider",
+					Description: `Specifies the CA provider type to use.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `The raw configuration to use for the chosen provider. ## Import ` + "`" + `certificate_authority` + "`" + ` can be imported: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import certificate_authority.connect connect-ca ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "connect_provider",
+					Description: `Specifies the CA provider type to use.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `The raw configuration to use for the chosen provider. ## Import ` + "`" + `certificate_authority` + "`" + ` can be imported: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import certificate_authority.connect connect-ca ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1421,6 +1536,10 @@ var (
 					Description: `(Optional, set of strings) A list of values that are opaque to Consul, but can be used to distinguish between services or nodes.`,
 				},
 				resource.Attribute{
+					Name:        "enable_tag_override",
+					Description: `(Optional, boolean) Specifies to disable the anti-entropy feature for this service's tags. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "datacenter",
 					Description: `(Optional) The datacenter to use. This overrides the agent's default datacenter and the datacenter in the provider setup.`,
 				},
@@ -1577,16 +1696,17 @@ var (
 		"consul_agent_service":               6,
 		"consul_autopilot_config":            7,
 		"consul_catalog_entry":               8,
-		"consul_config_entry":                9,
-		"consul_intention":                   10,
-		"consul_key_prefix":                  11,
-		"consul_keys":                        12,
-		"consul_license":                     13,
-		"consul_namespace":                   14,
-		"consul_network_area":                15,
-		"consul_node":                        16,
-		"consul_prepared_query":              17,
-		"consul_service":                     18,
+		"consul_certificate_authority":       9,
+		"consul_config_entry":                10,
+		"consul_intention":                   11,
+		"consul_key_prefix":                  12,
+		"consul_keys":                        13,
+		"consul_license":                     14,
+		"consul_namespace":                   15,
+		"consul_network_area":                16,
+		"consul_node":                        17,
+		"consul_prepared_query":              18,
+		"consul_service":                     19,
 	}
 )
 

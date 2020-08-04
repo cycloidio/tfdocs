@@ -3580,7 +3580,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "maxmemory_policy",
-					Description: `(Optional) Redis key eviction policy for a dataset that reaches maximum memory. Can be any of the listed in [the official RedisDB documentation](https://docs.redislabs.com/latest/rs/administering/database-operations/eviction-policy/). The ` + "`" + `resources` + "`" + ` block supports:`,
+					Description: `(Optional) Redis key eviction policy for a dataset that reaches maximum memory. Can be any of the listed in [the official RedisDB documentation](https://docs.redislabs.com/latest/rs/administering/database-operations/eviction-policy/).`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) Version of Redis (either 5.0 or 6.0). The ` + "`" + `resources` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "resources_preset_id",

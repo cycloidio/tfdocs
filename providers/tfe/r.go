@@ -360,6 +360,69 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "tfe_registry_module",
+			Category:         "Resources",
+			ShortDescription: `Manages registry modules`,
+			Description:      ``,
+			Keywords: []string{
+				"registry",
+				"module",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vcs_repo",
+					Description: `(Required) Settings for the registry module's VCS repository. Forces a new resource if changed. The ` + "`" + `vcs_repo` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "display_identifier",
+					Description: `(Required) The display identifier for your VCS repository. For most VCS providers outside of BitBucket Cloud, this will match the ` + "`" + `identifier` + "`" + ` string.`,
+				},
+				resource.Attribute{
+					Name:        "identifier",
+					Description: `(Required) A reference to your VCS repository in the format ` + "`" + `:org/:repo` + "`" + ` where ` + "`" + `:org` + "`" + ` and ` + "`" + `:repo` + "`" + ` refer to the organization (or project key, for Bitbucket Server) and repository in your VCS provider. The format for Azure DevOps is :org/:project/_git/:repo.`,
+				},
+				resource.Attribute{
+					Name:        "oauth_token_id",
+					Description: `(Required) Token ID of the VCS Connection (OAuth Connection Token) to use. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the registry module.`,
+				},
+				resource.Attribute{
+					Name:        "module_provider",
+					Description: `The provider of the registry module.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of registry module.`,
+				},
+				resource.Attribute{
+					Name:        "organization",
+					Description: `The name of the organization associated with the registry module. ## Import Registry modules can be imported; use ` + "`" + `<ORGANIZATION NAME>/<REGISTRY MODULE NAME>/<REGISTRY MODULE PROVIDER>/<REGISTRY MODULE ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_registry_module.test my-org-name/name/provider/mod-qV9JnKRkmtMa4zcA ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the registry module.`,
+				},
+				resource.Attribute{
+					Name:        "module_provider",
+					Description: `The provider of the registry module.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of registry module.`,
+				},
+				resource.Attribute{
+					Name:        "organization",
+					Description: `The name of the organization associated with the registry module. ## Import Registry modules can be imported; use ` + "`" + `<ORGANIZATION NAME>/<REGISTRY MODULE NAME>/<REGISTRY MODULE PROVIDER>/<REGISTRY MODULE ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_registry_module.test my-org-name/name/provider/mod-qV9JnKRkmtMa4zcA ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "tfe_run_trigger",
 			Category:         "Resources",
 			ShortDescription: `Manages run triggers`,
@@ -807,17 +870,18 @@ var (
 		"tfe_organization_token":         4,
 		"tfe_policy_set":                 5,
 		"tfe_policy_set_parameter":       6,
-		"tfe_run_trigger":                7,
-		"tfe_sentinel_policy":            8,
-		"tfe_ssh_key":                    9,
-		"tfe_team":                       10,
-		"tfe_team_access":                11,
-		"tfe_team_member":                12,
-		"tfe_team_members":               13,
-		"tfe_team_organization_member":   14,
-		"tfe_team_token":                 15,
-		"tfe_variable":                   16,
-		"tfe_workspace":                  17,
+		"tfe_registry_module":            7,
+		"tfe_run_trigger":                8,
+		"tfe_sentinel_policy":            9,
+		"tfe_ssh_key":                    10,
+		"tfe_team":                       11,
+		"tfe_team_access":                12,
+		"tfe_team_member":                13,
+		"tfe_team_members":               14,
+		"tfe_team_organization_member":   15,
+		"tfe_team_token":                 16,
+		"tfe_variable":                   17,
+		"tfe_workspace":                  18,
 	}
 )
 

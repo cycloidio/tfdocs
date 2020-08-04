@@ -11,6 +11,52 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "tfe_organization_membership",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an organization membership.`,
+			Description: `
+
+Use this data source to get information about an organization membership.
+
+~> **NOTE:** This data source requires using the provider with Terraform Cloud or
+an instance of Terraform Enterprise at least as recent as v202004-1.
+
+~> **NOTE:** If a user updates their email address, configurations using the email address should
+be updated manually.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "organization",
+					Description: `(Required) Name of the organization.`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `(Required) Email of the user. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The organization membership ID.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `The ID of the user associated with the organization membership.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The organization membership ID.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `The ID of the user associated with the organization membership.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "tfe_ssh_key",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on a SSH key.`,
@@ -325,11 +371,12 @@ Use this data source to get a map of (external) workspace IDs.
 
 	dataSourcesMap = map[string]int{
 
-		"tfe_ssh_key":       0,
-		"tfe_team":          1,
-		"tfe_team_access":   2,
-		"tfe_workspace":     3,
-		"tfe_workspace_ids": 4,
+		"tfe_organization_membership": 0,
+		"tfe_ssh_key":                 1,
+		"tfe_team":                    2,
+		"tfe_team_access":             3,
+		"tfe_workspace":               4,
+		"tfe_workspace_ids":           5,
 	}
 )
 

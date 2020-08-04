@@ -245,7 +245,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "token_endpoint_auth_method",
-					Description: `(Optional) Requested authentication method for the token endpoint. It can be set to ` + "`" + `"none"` + "`" + `, ` + "`" + `"client_secret_post"` + "`" + `, ` + "`" + `"client_secret_basic"` + "`" + `, ` + "`" + `"client_secret_jwt"` + "`" + `.`,
+					Description: `(Optional) Requested authentication method for the token endpoint. It can be set to ` + "`" + `"none"` + "`" + `, ` + "`" + `"client_secret_post"` + "`" + `, ` + "`" + `"client_secret_basic"` + "`" + `, ` + "`" + `"client_secret_jwt"` + "`" + `, ` + "`" + `"private_key_jwt"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "auto_key_rotation",
@@ -1540,6 +1540,81 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "okta_event_hook",
+			Category:         "Resources",
+			ShortDescription: `Creates an event hook.`,
+			Description:      ``,
+			Keywords: []string{
+				"event",
+				"hook",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The event hook display name.`,
+				},
+				resource.Attribute{
+					Name:        "events",
+					Description: `(Required) The events that will be delivered to this hook. [See here for a list of supported events](https://developer.okta.com/docs/reference/api/event-types/?q=event-hook-eligible).`,
+				},
+				resource.Attribute{
+					Name:        "headers",
+					Description: `(Optional) Map of headers to send along in event hook request.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Header name.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Header value.`,
+				},
+				resource.Attribute{
+					Name:        "auth",
+					Description: `(Optional) Authentication required for event hook request.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Key to use for authentication, usually the header name, for example ` + "`" + `"Authorization"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Authentication secret.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Auth type. Currently only ` + "`" + `"HEADER"` + "`" + ` is supported.`,
+				},
+				resource.Attribute{
+					Name:        "channel",
+					Description: `(Required) Details of the endpoint the event hook will hit.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) The version of the channel. Currently only ` + "`" + `"1.0.0"` + "`" + ` is supported.`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `(Required) The URI the hook will hit.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of hook to trigger. Currently only ` + "`" + `"HTTP"` + "`" + ` is supported. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the event hooks. ## Import An event hook can be imported via the Okta ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import okta_event_hook.example <hook id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the event hooks. ## Import An event hook can be imported via the Okta ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import okta_event_hook.example <hook id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "okta_factor",
 			Category:         "Resources",
 			ShortDescription: `Allows you to manage the activation of Okta MFA methods.`,
@@ -1549,21 +1624,21 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "provider",
-					Description: `(Required) The MFA provider name.`,
+					Name:        "provider_id",
+					Description: `(Required) The MFA provider name. Allowed values are ` + "`" + `"duo"` + "`" + `, ` + "`" + `"fido_u2f"` + "`" + `, ` + "`" + `"fido_webauthn"` + "`" + `, ` + "`" + `"google_otp"` + "`" + `, ` + "`" + `"okta_call"` + "`" + `, ` + "`" + `"okta_otp"` + "`" + `, ` + "`" + `"okta_push"` + "`" + `, ` + "`" + `"okta_question"` + "`" + `, ` + "`" + `"okta_sms"` + "`" + `, ` + "`" + `"rsa_token"` + "`" + `, ` + "`" + `"symantec_vip"` + "`" + ` or ` + "`" + `"yubikey_token"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "active",
 					Description: `(Optional) Whether or not to activate the provider, by default it is set to ` + "`" + `true` + "`" + `. ## Attributes Reference`,
 				},
 				resource.Attribute{
-					Name:        "provider",
+					Name:        "provider_id",
 					Description: `MFA provider name.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "provider",
+					Name:        "provider_id",
 					Description: `MFA provider name.`,
 				},
 			},
@@ -1619,7 +1694,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_roles",
-					Description: `(Required) Admin roles associated with the group. It can be any of the following values ` + "`" + `"SUPER_ADMIN"` + "`" + `, ` + "`" + `"ORG_ADMIN"` + "`" + `, ` + "`" + `"APP_ADMIN"` + "`" + `, ` + "`" + `"USER_ADMIN"` + "`" + `, ` + "`" + `"HELP_DESK_ADMIN"` + "`" + `, ` + "`" + `"READ_ONLY_ADMIN"` + "`" + `, ` + "`" + `"MOBILE_ADMIN"` + "`" + `, ` + "`" + `"API_ACCESS_MANAGEMENT_ADMIN"` + "`" + `, ` + "`" + `"REPORT_ADMIN"` + "`" + `. ## Attributes Reference`,
+					Description: `(Required) Admin roles associated with the group. It can be any of the following values ` + "`" + `"SUPER_ADMIN"` + "`" + `, ` + "`" + `"ORG_ADMIN"` + "`" + `, ` + "`" + `"APP_ADMIN"` + "`" + `, ` + "`" + `"USER_ADMIN"` + "`" + `, ` + "`" + `"HELP_DESK_ADMIN"` + "`" + `, ` + "`" + `"READ_ONLY_ADMIN"` + "`" + `, ` + "`" + `"MOBILE_ADMIN"` + "`" + `, ` + "`" + `"API_ACCESS_MANAGEMENT_ADMIN"` + "`" + `, ` + "`" + `"REPORT_ADMIN"` + "`" + `, ` + "`" + `"GROUP_MEMBERSHIP_ADMIN"` + "`" + `. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2433,13 +2508,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the Policy. ## Import An MFA Policy can be imported via the Okta ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import okta_policy_mfa.example <app id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID of the Policy. ## Import An MFA Policy can be imported via the Okta ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import okta_policy_mfa.example <policy id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the Policy. ## Import An MFA Policy can be imported via the Okta ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import okta_policy_mfa.example <app id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID of the Policy. ## Import An MFA Policy can be imported via the Okta ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import okta_policy_mfa.example <policy id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -3492,30 +3567,31 @@ var (
 		"okta_auth_server_policy":        14,
 		"okta_auth_server_policy_rule":   15,
 		"okta_auth_server_scope":         16,
-		"okta_factor":                    17,
-		"okta_group":                     18,
-		"okta_group_roles":               19,
-		"okta_group_rule":                20,
-		"okta_idp_oidc":                  21,
-		"okta_idp_saml":                  22,
-		"okta_idp_saml_signing_key":      23,
-		"okta_idp_social":                24,
-		"okta_inline_hook":               25,
-		"okta_network_zone":              26,
-		"okta_policy_mfa":                27,
-		"okta_policy_password":           28,
-		"okta_policy_rule_idp_discovery": 29,
-		"okta_policy_rule_mfa":           30,
-		"okta_policy_rule_password":      31,
-		"okta_policy_rule_signon":        32,
-		"okta_policy_signon":             33,
-		"okta_profile_mapping":           34,
-		"okta_template_email":            35,
-		"okta_template_sms":              36,
-		"okta_trusted_origin":            37,
-		"okta_user":                      38,
-		"okta_user_base_schema":          39,
-		"okta_user_schema":               40,
+		"okta_event_hook":                17,
+		"okta_factor":                    18,
+		"okta_group":                     19,
+		"okta_group_roles":               20,
+		"okta_group_rule":                21,
+		"okta_idp_oidc":                  22,
+		"okta_idp_saml":                  23,
+		"okta_idp_saml_signing_key":      24,
+		"okta_idp_social":                25,
+		"okta_inline_hook":               26,
+		"okta_network_zone":              27,
+		"okta_policy_mfa":                28,
+		"okta_policy_password":           29,
+		"okta_policy_rule_idp_discovery": 30,
+		"okta_policy_rule_mfa":           31,
+		"okta_policy_rule_password":      32,
+		"okta_policy_rule_signon":        33,
+		"okta_policy_signon":             34,
+		"okta_profile_mapping":           35,
+		"okta_template_email":            36,
+		"okta_template_sms":              37,
+		"okta_trusted_origin":            38,
+		"okta_user":                      39,
+		"okta_user_base_schema":          40,
+		"okta_user_schema":               41,
 	}
 )
 

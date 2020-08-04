@@ -1998,8 +1998,8 @@ var (
 					Description: `(Required) Distinguished name of parent ApplicationEPG object.`,
 				},
 				resource.Attribute{
-					Name:        "t_dn",
-					Description: `(Required) vmm domain instance.`,
+					Name:        "tdn",
+					Description: `(Required) Distinguished Name of Target Domain object.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",

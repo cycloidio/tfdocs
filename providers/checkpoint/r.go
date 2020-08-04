@@ -12,10 +12,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_hostname",
-			Category:         "Resources",
+			Category:         "GAIA Resources",
 			ShortDescription: `This resource allows you to set the hostname of a Check Point machine.`,
 			Description:      ``,
 			Keywords: []string{
+				"gaia",
 				"hostname",
 			},
 			Arguments: []resource.Attribute{
@@ -29,7 +30,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_access_layer",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Access Layer.`,
 			Description:      ``,
 			Keywords: []string{
@@ -96,7 +97,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_access_role",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Access Role.`,
 			Description:      ``,
 			Keywords: []string{
@@ -175,7 +176,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_access_rule",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to add/update/delete Check Point Access Rule.`,
 			Description:      ``,
 			Keywords: []string{
@@ -374,7 +375,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_access_section",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Access Section.`,
 			Description:      ``,
 			Keywords: []string{
@@ -409,7 +410,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_add_api_key",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Add Api Key.`,
 			Description:      ``,
 			Keywords: []string{
@@ -433,7 +434,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_add_data_center_object",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Add Data Center Object.`,
 			Description:      ``,
 			Keywords: []string{
@@ -494,7 +495,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_add_threat_protections",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Add Threat Protections.`,
 			Description:      ``,
 			Keywords: []string{
@@ -518,7 +519,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_add_updatable_object",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Add Updatable Object.`,
 			Description:      ``,
 			Keywords: []string{
@@ -562,7 +563,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_address_range",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to add/update/delete Check Point Address Range.`,
 			Description:      ``,
 			Keywords: []string{
@@ -612,10 +613,6 @@ var (
 					Description: `(Optional) Comments string.`,
 				},
 				resource.Attribute{
-					Name:        "groups",
-					Description: `(Optional) Collection of group identifiers.`,
-				},
-				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Collection of tag identifiers. ` + "`" + `nat_settings` + "`" + ` supports the following:`,
 				},
@@ -649,7 +646,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_application_site",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Application Site.`,
 			Description:      ``,
 			Keywords: []string{
@@ -699,10 +696,6 @@ var (
 					Description: `(Optional) Comments string.`,
 				},
 				resource.Attribute{
-					Name:        "groups",
-					Description: `(Optional) Collection of group identifiers.groups blocks are documented below.`,
-				},
-				resource.Attribute{
 					Name:        "ignore_warnings",
 					Description: `(Optional) Apply changes ignoring warnings.`,
 				},
@@ -716,7 +709,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_application_site_category",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Application Site Category.`,
 			Description:      ``,
 			Keywords: []string{
@@ -747,10 +740,6 @@ var (
 					Description: `(Optional) Comments string.`,
 				},
 				resource.Attribute{
-					Name:        "groups",
-					Description: `(Optional) Collection of group identifiers.groups blocks are documented below.`,
-				},
-				resource.Attribute{
 					Name:        "ignore_warnings",
 					Description: `(Optional) Apply changes ignoring warnings.`,
 				},
@@ -764,7 +753,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_application_site_group",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Application Site Group.`,
 			Description:      ``,
 			Keywords: []string{
@@ -795,10 +784,6 @@ var (
 					Description: `(Optional) Comments string.`,
 				},
 				resource.Attribute{
-					Name:        "groups",
-					Description: `(Optional) Collection of group identifiers.groups blocks are documented below.`,
-				},
-				resource.Attribute{
 					Name:        "ignore_warnings",
 					Description: `(Optional) Apply changes ignoring warnings.`,
 				},
@@ -812,7 +797,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_assign_global_assignment",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Assign Global Assignment.`,
 			Description:      ``,
 			Keywords: []string{
@@ -836,7 +821,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_backup_domain",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Backup Domain.`,
 			Description:      ``,
 			Keywords: []string{
@@ -859,7 +844,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_delete_api_key",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Delete Api Key.`,
 			Description:      ``,
 			Keywords: []string{
@@ -887,7 +872,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_delete_data_center_object",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Delete Data Center Object.`,
 			Description:      ``,
 			Keywords: []string{
@@ -916,7 +901,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_delete_threat_protections",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Delete Threat Protections.`,
 			Description:      ``,
 			Keywords: []string{
@@ -936,7 +921,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_delete_updatable_object",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Delete Updatable Object.`,
 			Description:      ``,
 			Keywords: []string{
@@ -964,7 +949,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_discard",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Discard.`,
 			Description:      ``,
 			Keywords: []string{
@@ -977,7 +962,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_disconnect",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Disconnect.`,
 			Description:      ``,
 			Keywords: []string{
@@ -995,7 +980,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_dns_domain",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Dns Domain.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1038,7 +1023,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_dynamic_object",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Dynamic Object.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1077,7 +1062,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_exception_group",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Exception Group.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1144,7 +1129,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_export",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Export.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1182,7 +1167,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_group",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to add/update/delete Check Point Group.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1215,10 +1200,6 @@ var (
 					Description: `(Optional) Comments string.`,
 				},
 				resource.Attribute{
-					Name:        "groups",
-					Description: `(Optional) Collection of group identifiers.`,
-				},
-				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Collection of tag identifiers.`,
 				},
@@ -1228,7 +1209,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_group_with_exclusion",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Group With Exclusion.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1263,10 +1244,6 @@ var (
 					Description: `(Optional) Comments string.`,
 				},
 				resource.Attribute{
-					Name:        "groups",
-					Description: `(Optional) Collection of group identifiers.groups blocks are documented below.`,
-				},
-				resource.Attribute{
 					Name:        "ignore_warnings",
 					Description: `(Optional) Apply changes ignoring warnings.`,
 				},
@@ -1280,7 +1257,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_host",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to add/update/delete Check Point Host.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1327,10 +1304,6 @@ var (
 				resource.Attribute{
 					Name:        "comments",
 					Description: `(Optional) Comments string.`,
-				},
-				resource.Attribute{
-					Name:        "groups",
-					Description: `(Optional) Collection of group identifiers.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1438,7 +1411,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_https_layer",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Https Layer.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1481,7 +1454,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_https_rule",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Https Rule.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1580,7 +1553,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_https_section",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Https Section.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1615,7 +1588,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_install_database",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Install Database.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1634,7 +1607,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_install_policy",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `Install the published policy.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1685,7 +1658,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_install_software_package",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Install Software Package.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1725,7 +1698,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_keepalive",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Keepalive.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1738,7 +1711,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_login",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `Log in to the server with username and password.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1792,7 +1765,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_logout",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `Log out from the current session. After logging out the session id is not valid any more.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1805,7 +1778,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_migrate_export_domain",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Migrate Export Domain.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1833,7 +1806,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_migrate_import_domain",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Migrate Import Domain.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1869,7 +1842,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_multicast_address_range",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Multicast Address Range.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1920,10 +1893,6 @@ var (
 					Description: `(Optional) Comments string.`,
 				},
 				resource.Attribute{
-					Name:        "groups",
-					Description: `(Optional) Collection of group identifiers.groups blocks are documented below.`,
-				},
-				resource.Attribute{
 					Name:        "ignore_warnings",
 					Description: `(Optional) Apply changes ignoring warnings.`,
 				},
@@ -1937,7 +1906,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_network",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to add/update/delete Check Point Network Object.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1972,10 +1941,6 @@ var (
 				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Collection of tag identifiers.`,
-				},
-				resource.Attribute{
-					Name:        "groups",
-					Description: `(Optional) Collection of group identifiers.`,
 				},
 				resource.Attribute{
 					Name:        "broadcast",
@@ -2027,7 +1992,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_opsec_application",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Opsec Application.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2106,7 +2071,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_package",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to add/update/delete Check Point Package Object.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2168,7 +2133,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_publish",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `Publish Changes.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2186,7 +2151,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_restore_domain",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Restore Domain.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2221,7 +2186,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_revert_to_revision",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Revert To Revision.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2241,7 +2206,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_run_ips_update",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `Runs IPS database update. If "package-path" is not provided server will try to get the latest package from the User Center.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2261,7 +2226,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_run_script",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Run Script.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2296,7 +2261,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_run_threat_emulation_file_types_offline_update",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Run Threat Emulation File Types Offline Update.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2324,7 +2289,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_security_zone",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Security Zone.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2363,7 +2328,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_service_dce_rpc",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Service Dce Rpc.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2398,10 +2363,6 @@ var (
 					Description: `(Optional) Comments string.`,
 				},
 				resource.Attribute{
-					Name:        "groups",
-					Description: `(Optional) Collection of group identifiers.groups blocks are documented below.`,
-				},
-				resource.Attribute{
 					Name:        "ignore_warnings",
 					Description: `(Optional) Apply changes ignoring warnings.`,
 				},
@@ -2415,7 +2376,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_service_group",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to add/update/delete Check Point Service Group.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2449,10 +2410,6 @@ var (
 					Description: `(Optional) Comments string.`,
 				},
 				resource.Attribute{
-					Name:        "groups",
-					Description: `(Optional) Collection of group identifiers.`,
-				},
-				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Collection of tag identifiers.`,
 				},
@@ -2462,7 +2419,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_service_icmp",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Service Icmp.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2500,10 +2457,6 @@ var (
 					Description: `(Optional) Comments string.`,
 				},
 				resource.Attribute{
-					Name:        "groups",
-					Description: `(Optional) Collection of group identifiers.groups blocks are documented below.`,
-				},
-				resource.Attribute{
 					Name:        "ignore_warnings",
 					Description: `(Optional) Apply changes ignoring warnings.`,
 				},
@@ -2517,7 +2470,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_service_icmp6",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Service Icmp6.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2555,10 +2508,6 @@ var (
 					Description: `(Optional) Comments string.`,
 				},
 				resource.Attribute{
-					Name:        "groups",
-					Description: `(Optional) Collection of group identifiers.groups blocks are documented below.`,
-				},
-				resource.Attribute{
 					Name:        "ignore_warnings",
 					Description: `(Optional) Apply changes ignoring warnings.`,
 				},
@@ -2572,7 +2521,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_service_other",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Service Other.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2642,10 +2591,6 @@ var (
 					Description: `(Optional) Comments string.`,
 				},
 				resource.Attribute{
-					Name:        "groups",
-					Description: `(Optional) Collection of group identifiers.groups blocks are documented below.`,
-				},
-				resource.Attribute{
 					Name:        "ignore_warnings",
 					Description: `(Optional) Apply changes ignoring warnings.`,
 				},
@@ -2675,7 +2620,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_service_rpc",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Service Rpc.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2709,10 +2654,6 @@ var (
 					Description: `(Optional) Comments string.`,
 				},
 				resource.Attribute{
-					Name:        "groups",
-					Description: `(Optional) Collection of group identifiers.groups blocks are documented below.`,
-				},
-				resource.Attribute{
 					Name:        "ignore_warnings",
 					Description: `(Optional) Apply changes ignoring warnings.`,
 				},
@@ -2726,7 +2667,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_service_sctp",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Service Sctp.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2784,10 +2725,6 @@ var (
 					Description: `(Optional) Comments string.`,
 				},
 				resource.Attribute{
-					Name:        "groups",
-					Description: `(Optional) Collection of group identifiers.groups blocks are documented below.`,
-				},
-				resource.Attribute{
 					Name:        "ignore_warnings",
 					Description: `(Optional) Apply changes ignoring warnings.`,
 				},
@@ -2817,7 +2754,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_service_tcp",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to add/update/delete Check Point Service Tcp.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2891,10 +2828,6 @@ var (
 					Description: `(Optional) Comments string.`,
 				},
 				resource.Attribute{
-					Name:        "groups",
-					Description: `(Optional) Collection of group identifiers.`,
-				},
-				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Collection of tag identifiers. ` + "`" + `aggressive_aging` + "`" + ` supports the following:`,
 				},
@@ -2920,7 +2853,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_service_udp",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to add/update/delete Check Point Service Udp.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2998,10 +2931,6 @@ var (
 					Description: `(Optional) Comments string.`,
 				},
 				resource.Attribute{
-					Name:        "groups",
-					Description: `(Optional) Collection of group identifiers.`,
-				},
-				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Collection of tag identifiers. ` + "`" + `aggressive_aging` + "`" + ` supports the following:`,
 				},
@@ -3027,7 +2956,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_set_api_settings",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Set Api Settings.`,
 			Description:      ``,
 			Keywords: []string{
@@ -3051,7 +2980,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_set_global_domain",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Set Global Domain.`,
 			Description:      ``,
 			Keywords: []string{
@@ -3099,7 +3028,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_set_ips_update_schedule",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Set Ips Update Schedule.`,
 			Description:      ``,
 			Keywords: []string{
@@ -3144,7 +3073,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_set_login_message",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Set Login Message.`,
 			Description:      ``,
 			Keywords: []string{
@@ -3176,7 +3105,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_set_threat_protection",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Set Threat Protection.`,
 			Description:      ``,
 			Keywords: []string{
@@ -3224,7 +3153,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_threat_indicator",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to add/update/delete Check Point Threat Indicator.`,
 			Description:      ``,
 			Keywords: []string{
@@ -3343,7 +3272,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_time_group",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Time Group.`,
 			Description:      ``,
 			Keywords: []string{
@@ -3373,10 +3302,6 @@ var (
 					Description: `(Optional) Comments string.`,
 				},
 				resource.Attribute{
-					Name:        "groups",
-					Description: `(Optional) Collection of group identifiers.groups blocks are documented below.`,
-				},
-				resource.Attribute{
 					Name:        "ignore_warnings",
 					Description: `(Optional) Apply changes ignoring warnings.`,
 				},
@@ -3390,7 +3315,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_uninstall_software_package",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Uninstall Software Package.`,
 			Description:      ``,
 			Keywords: []string{
@@ -3430,7 +3355,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_unlock_administrator",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Unlock Administrator.`,
 			Description:      ``,
 			Keywords: []string{
@@ -3449,7 +3374,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_update_updatable_objects_repository_content",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Update Updatable Objects Repository Content.`,
 			Description:      ``,
 			Keywords: []string{
@@ -3466,7 +3391,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_verify_policy",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Verify Policy.`,
 			Description:      ``,
 			Keywords: []string{
@@ -3485,7 +3410,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_verify_revert",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Verify Revert.`,
 			Description:      ``,
 			Keywords: []string{
@@ -3504,7 +3429,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_verify_software_package",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Verify Software Package.`,
 			Description:      ``,
 			Keywords: []string{
@@ -3532,7 +3457,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_vpn_community_meshed",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Vpn Community Meshed.`,
 			Description:      ``,
 			Keywords: []string{
@@ -3640,7 +3565,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_vpn_community_star",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Vpn Community Star.`,
 			Description:      ``,
 			Keywords: []string{
@@ -3756,7 +3681,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_where_used",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Where Used.`,
 			Description:      ``,
 			Keywords: []string{
@@ -3791,7 +3716,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_management_wildcard",
-			Category:         "Resources",
+			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Wildcard.`,
 			Description:      ``,
 			Keywords: []string{
@@ -3832,10 +3757,6 @@ var (
 					Description: `(Optional) Comments string.`,
 				},
 				resource.Attribute{
-					Name:        "groups",
-					Description: `(Optional) Collection of group identifiers.groups blocks are documented below.`,
-				},
-				resource.Attribute{
 					Name:        "ignore_warnings",
 					Description: `(Optional) Apply changes ignoring warnings.`,
 				},
@@ -3849,10 +3770,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_physical_interface",
-			Category:         "Resources",
+			Category:         "GAIA Resources",
 			ShortDescription: `This resource allows you to set a Physical interface.`,
 			Description:      ``,
 			Keywords: []string{
+				"gaia",
 				"physical",
 				"interface",
 			},
@@ -3927,10 +3849,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkpoint_put_file",
-			Category:         "Resources",
+			Category:         "GAIA Resources",
 			ShortDescription: `This resource allows you to add a new file to a Check Point machine.`,
 			Description:      ``,
 			Keywords: []string{
+				"gaia",
 				"put",
 				"file",
 			},

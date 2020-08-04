@@ -22,7 +22,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "server",
-					Description: `(Required) Assign the Floating IP to this server (UUID).`,
+					Description: `(Optional) Assign the Floating IP to this server (UUID).`,
 				},
 				resource.Attribute{
 					Name:        "ip_version",
@@ -139,6 +139,69 @@ var (
 				resource.Attribute{
 					Name:        "uuid",
 					Description: `The UUID of this subnet.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "cloudscale_objects_user",
+			Category:         "Resources",
+			ShortDescription: `Provides a cloudscale.ch Objects User resource. This can be used to create, modify, and delete Objects Users.`,
+			Description:      ``,
+			Keywords: []string{
+				"objects",
+				"user",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) The display name of the objects user. The following arguments are supported when updating Objects Users:`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) The new display name of the objects user. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "href",
+					Description: `The cloudscale.ch API URL of the current resource.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `The unique identifier of the objects user.`,
+				},
+				resource.Attribute{
+					Name:        "keys",
+					Description: `A list of key objects containing the access and secret key associated with the objects user. Currently, only one key object is returned. Each key object has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `The S3 access key of the objects user.`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `The S3 secret key of the objects user.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "href",
+					Description: `The cloudscale.ch API URL of the current resource.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `The unique identifier of the objects user.`,
+				},
+				resource.Attribute{
+					Name:        "keys",
+					Description: `A list of key objects containing the access and secret key associated with the objects user. Currently, only one key object is returned. Each key object has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `The S3 access key of the objects user.`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `The S3 secret key of the objects user.`,
 				},
 			},
 		},
@@ -557,10 +620,11 @@ var (
 
 		"cloudscale_floating_ip":  0,
 		"cloudscale_network":      1,
-		"cloudscale_server":       2,
-		"cloudscale_server_group": 3,
-		"cloudscale_subnet":       4,
-		"cloudscale_volume":       5,
+		"cloudscale_objects_user": 2,
+		"cloudscale_server":       3,
+		"cloudscale_server_group": 4,
+		"cloudscale_subnet":       5,
+		"cloudscale_volume":       6,
 	}
 )
 

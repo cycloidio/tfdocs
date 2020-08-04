@@ -169,7 +169,19 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 				},
 				resource.Attribute{
 					Name:        "create_namespace",
-					Description: `(Optional) Create the namespace if it does not yet exist. Defaults to ` + "`" + `false` + "`" + `. The ` + "`" + `set` + "`" + `, ` + "`" + `set_sensitive` + "`" + ` and ` + "`" + `set_strings` + "`" + ` blocks support:`,
+					Description: `(Optional) Create the namespace if it does not yet exist. Defaults to ` + "`" + `false` + "`" + `. The ` + "`" + `set` + "`" + ` and ` + "`" + `set_sensitive` + "`" + ` blocks support:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) full name of the variable to be set.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) value of the variable to be set.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) type of the variable to be set. Valid options are ` + "`" + `auto` + "`" + ` and ` + "`" + `string` + "`" + `. The ` + "`" + `set_strings` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "name",

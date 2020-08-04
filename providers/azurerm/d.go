@@ -1113,6 +1113,7 @@ Use this data source to access information about an existing App Configuration.
 Use this data source to access information about an existing App Service.
 
 `,
+			Icon:     "Containers/10035-icon-service-App-Services.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2113,6 +2114,7 @@ Use this data source to access information about an existing App Service Plan (f
 Use this data source to access information about an existing Application Insights component.
 
 `,
+			Icon:     "Management_and_Governance/00012-icon-service-Application-Insights.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2201,6 +2203,7 @@ Use this data source to access information about an existing Application Insight
 Use this data source to access information about an existing Application Security Group.
 
 `,
+			Icon:     "Networking/10083-icon-service-Application-Security-Groups.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2257,6 +2260,7 @@ Use this data source to access information about an existing Application Securit
 Use this data source to access information about an existing Automation Account.
 
 `,
+			Icon:     "Management_and_Governance/00022-icon-service-Automation-Accounts.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2597,6 +2601,7 @@ Use this data source to access information about an existing Automation String V
 Use this data source to access information about an existing Availability Set.
 
 `,
+			Icon:     "Compute/10025-icon-service-Availability-Sets.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2729,6 +2734,7 @@ Use this data source to access information about an existing VM Backup Policy.
 Use this data source to access information about an existing Batch Account.
 
 `,
+			Icon:     "Containers/10031-icon-service-Batch-Accounts.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -3085,6 +3091,10 @@ Use this data source to access information about an existing certificate in a Ba
 					Description: `The type of container configuration.`,
 				},
 				resource.Attribute{
+					Name:        "container_image_names",
+					Description: `A list of container image names to use, as would be specified by ` + "`" + `docker pull` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "container_registries",
 					Description: `Additional container registries from which container images can be pulled by the pool's VMs. --- A ` + "`" + `container_registries` + "`" + ` block exports the following:`,
 				},
@@ -3325,6 +3335,7 @@ Use this data source to access information about an existing Azure Blueprint Pub
 Use this data source to access information about an existing CDN Profile.
 
 `,
+			Icon:     "Networking/00056-icon-service-CDN-Profiles.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -3405,6 +3416,7 @@ Use this data source to access the configuration of the AzureRM provider.
 Use this data source to access information about an existing Container Registry.
 
 `,
+			Icon:     "Containers/10105-icon-service-Container-Registries.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -3544,6 +3556,10 @@ Use this data source to access information about an existing CosmosDB (formally 
 					Description: `The current IP Filter for this CosmosDB account`,
 				},
 				resource.Attribute{
+					Name:        "enable_free_tier",
+					Description: `If Free Tier pricing option is enabled for this CosmosDB Account.`,
+				},
+				resource.Attribute{
 					Name:        "enable_automatic_failover",
 					Description: `If automatic failover is enabled for this CosmosDB Account.`,
 				},
@@ -3650,6 +3666,10 @@ Use this data source to access information about an existing CosmosDB (formally 
 					Description: `The current IP Filter for this CosmosDB account`,
 				},
 				resource.Attribute{
+					Name:        "enable_free_tier",
+					Description: `If Free Tier pricing option is enabled for this CosmosDB Account.`,
+				},
+				resource.Attribute{
 					Name:        "enable_automatic_failover",
 					Description: `If automatic failover is enabled for this CosmosDB Account.`,
 				},
@@ -3741,6 +3761,7 @@ Use this data source to access information about an existing CosmosDB (formally 
 Use this data source to access information about an existing Azure Data Factory (Version 2).
 
 `,
+			Icon:     "Integration/00041-icon-service-Data-Factory.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -4021,6 +4042,7 @@ Use this data source to access information about an existing Data Lake Store.
 Use this data source to access information about an existing Data Share.
 
 `,
+			Icon:      "Storage/10098-icon-service-Data-Shares.svg",
 			Keywords:  []string{},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
@@ -4157,6 +4179,45 @@ Use this data source to access information about an existing Data Share Blob Sto
 				resource.Attribute{
 					Name:        "read",
 					Description: `(Defaults to 5 minutes) Used when retrieving the Data Share Blob Storage Dataset.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_data_share_dataset_data_lake_gen1",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing DataShareDataLakeGen1Dataset.`,
+			Description: `
+
+Use this data source to access information about an existing DataShareDataLakeGen1Dataset.
+
+`,
+			Keywords:  []string{},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID of the Data Share Data Lake Gen1 Dataset.`,
+				},
+				resource.Attribute{
+					Name:        "data_lake_store_id",
+					Description: `The resource ID of the Data Lake Store to be shared with the receiver.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The displayed name of the Data Share Dataset.`,
+				},
+				resource.Attribute{
+					Name:        "file_name",
+					Description: `The file name of the data lake store to be shared with the receiver.`,
+				},
+				resource.Attribute{
+					Name:        "folder_path",
+					Description: `The folder path of the data lake store to be shared with the receiver. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the DataShareDataLakeGen1Dataset.`,
 				},
 			},
 		},
@@ -4451,6 +4512,7 @@ Use this data source to access information about an existing Dedicated Host Grou
 Use this data source to access information about an existing Dev Test Lab.
 
 `,
+			Icon:     "DevOps/10264-icon-service-DevTest-Labs.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -4687,6 +4749,7 @@ Use this data source to access information about an existing Dev Test Lab Virtua
 Use this data source to access information about an existing Disk Encryption Set.
 
 `,
+			Icon:     "Other/00398-icon-service-Disk-Encryption-Sets.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -4743,6 +4806,7 @@ Use this data source to access information about an existing Disk Encryption Set
 Use this data source to access information about an existing DNS Zone.
 
 `,
+			Icon:     "Networking/10064-icon-service-DNS-Zones.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -4815,6 +4879,7 @@ Use this data source to access information about an existing DNS Zone.
 Use this data source to access information about an existing EventGrid Topic
 
 `,
+			Icon:     "Integration/10206-icon-service-Event-Grid-Topics.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -4879,6 +4944,7 @@ Use this data source to access information about an existing EventGrid Topic
 Use this data source to access information about an existing EventHub.
 
 `,
+			Icon:      "Analytics/00039-icon-service-Event-Hubs.svg",
 			Keywords:  []string{},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
@@ -5326,6 +5392,7 @@ Use this data source to access information about an Authorization Rule for an Ev
 Use this data source to access information about an existing ExpressRoute circuit.
 
 `,
+			Icon:     "Networking/10079-icon-service-ExpressRoute-Circuits.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -5574,6 +5641,7 @@ Use this data source to access information about an existing Azure Firewall.
 Use this data source to access information about a Function App.
 
 `,
+			Icon:     "IoT/10029-icon-service-Function-Apps.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -5726,6 +5794,7 @@ Use this data source to access information about a Function App.
 Use this data source to access information about an existing HDInsight Cluster.
 
 `,
+			Icon:     "Analytics/00037-icon-service-HD-Insight-Clusters.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -6014,6 +6083,7 @@ Use this data source to access information about an existing Healthcare Service
 Use this data source to access information about an existing Image.
 
 `,
+			Icon:     "Compute/10033-icon-service-Images.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -8048,6 +8118,7 @@ Use this data source to access information about an existing Kusto (also known a
 Use this data source to access information about an existing Load Balancer
 
 `,
+			Icon:     "Networking/10062-icon-service-Load-Balancers.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -8256,6 +8327,7 @@ Use this data source to access information about an existing Load Balancer's Bac
 Use this data source to access information about an existing Log Analytics (formally Operational Insights) Workspace.
 
 `,
+			Icon:     "Analytics/00009-icon-service-Log-Analytics-Workspaces.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -8948,6 +9020,7 @@ Use this data source to access information about an existing Azure Maps Account.
 Use this data source to access information about an existing MariaDB Server.
 
 `,
+			Icon:     "Databases/10123-icon-service-Azure-Database-MariaDB-Server.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -10084,6 +10157,7 @@ Use this data source to access information about an existing SQL database.
 Use this data source to access information about an existing SQL elastic pool.
 
 `,
+			Icon:     "Databases/10134-icon-service-SQL-Elastic-Pools.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -10585,6 +10659,7 @@ Use this data source to access information about an existing Azure Network DDoS 
 Use this data source to access information about an existing Network Interface.
 
 `,
+			Icon:     "Networking/10080-icon-service-Network-Interfaces.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -10801,6 +10876,7 @@ Use this data source to access information about an existing Network Interface.
 Use this data source to access information about an existing Network Security Group.
 
 `,
+			Icon:     "Networking/10067-icon-service-Network-Security-Groups.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -11004,6 +11080,7 @@ Use this data source to access information about Service Tags.
 Use this data source to access information about an existing Network Watcher.
 
 `,
+			Icon:     "Networking/00023-icon-service-Network-Watcher.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -11060,6 +11137,7 @@ Use this data source to access information about an existing Network Watcher.
 Use this data source to access information about an existing Notification Hub within a Notification Hub Namespace.
 
 `,
+			Icon:     "IoT/10045-icon-service-Notification-Hubs.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -11184,6 +11262,7 @@ Use this data source to access information about an existing Notification Hub wi
 Use this data source to access information about an existing Notification Hub Namespace.
 
 `,
+			Icon:     "Web/10053-icon-service-Notification-Hub-Namespaces.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -11500,6 +11579,7 @@ Use this data source to access information about an existing Policy Set Definiti
 Use this data source to access information about an existing PostgreSQL Azure Database Server.
 
 `,
+			Icon:     "Databases/10131-icon-service-Azure-Database-PostgreSQL-Server.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -11744,6 +11824,7 @@ Use this data source to access information about an existing Private Link Servic
 -> **NOTE** Private Link is currently in Public Preview.
 
 `,
+			Icon:     "Networking/01105-icon-service-Private-Link-Service.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -11986,6 +12067,7 @@ Use this data source to access endpoint connection information about an existing
 Use this data source to access information about an existing Proximity Placement Group.
 
 `,
+			Icon:     "Networking/10365-icon-service-Proximity-Placement-Groups.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -12106,6 +12188,7 @@ Use this data source to access information about an existing Public IP Address.
 Use this data source to access information about an existing Public IP Prefix.
 
 `,
+			Icon:     "Networking/10372-icon-service-Public-IP-Prefixes.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -12266,6 +12349,7 @@ Use this data source to access information about a set of existing Public IP Add
 Use this data source to access information about an existing Recovery Services Vault.
 
 `,
+			Icon:     "Storage/00017-icon-service-Recovery-Services-Vaults.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -12346,6 +12430,7 @@ output "hostname" {
 ` + "`" + `` + "`" + `` + "`" + `
 
 `,
+			Icon:     "Databases/10137-icon-service-Cache-Redis.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -12805,6 +12890,7 @@ Use this data source to access information about an existing Role Definition.
 Use this data source to access information about an existing Route Filter.
 
 `,
+			Icon:      "Networking/10071-icon-service-Route-Filters.svg",
 			Keywords:  []string{},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
@@ -13391,6 +13477,7 @@ Use this data source to access information about an existing Shared Image within
 Use this data source to access information about an existing Shared Image Gallery.
 
 `,
+			Icon:     "Compute/10039-icon-service-Shared-Image-Galleries.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -13575,6 +13662,7 @@ Use this data source to access information about an existing Version of a Shared
 Use this data source to access information about existing Versions of a Shared Image within a Shared Image Gallery.
 
 `,
+			Icon:     "Compute/10038-icon-service-Image-Versions.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -14095,6 +14183,7 @@ Use this data source to access information about an existing Spring Cloud Servic
 Use this data source to access information about an existing SQL Azure Database.
 
 `,
+			Icon:     "Databases/10130-icon-service-SQL-Database.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -14251,6 +14340,7 @@ Use this data source to access information about an existing SQL Azure Database.
 Use this data source to access information about an existing SQL Azure Database Server.
 
 `,
+			Icon:     "Databases/10132-icon-service-SQL-Server.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -14363,6 +14453,7 @@ Use this data source to access information about an existing SQL Azure Database 
 Use this data source to access information about an existing Storage Account.
 
 `,
+			Icon:     "Storage/10087-icon-service-Storage-Accounts-(Classic).svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -14978,6 +15069,7 @@ and *not* a [Service SAS](https://docs.microsoft.com/en-us/rest/api/storageservi
 Use this data source to access information about an existing Storage Container.
 
 `,
+			Icon:     "General/10839-icon-service-Storage-Container.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -15182,6 +15274,7 @@ Use this data source to access information about an existing Storage Management 
 Use this data source to access information about an existing Stream Analytics Job.
 
 `,
+			Icon:     "IoT/00042-icon-service-Stream-Analytics-Jobs.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -15590,6 +15683,41 @@ Use this data source to access information about all the Subscriptions currently
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_synapse_workspace",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing Synapse Workspace.`,
+			Description: `
+
+Use this data source to access information about an existing Synapse Workspace.
+
+`,
+			Keywords:  []string{},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the synapse Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure location where the Synapse Workspace exists.`,
+				},
+				resource.Attribute{
+					Name:        "connectivity_endpoints",
+					Description: `A list of Connectivity endpoints for this Synapse Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Synapse Workspace.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_traffic_manager_geographical_location",
 			Category:         "Data Sources",
 			ShortDescription: `Gets information about a specified Traffic Manager Geographical Location within the Geographical Hierarchy.`,
@@ -15770,6 +15898,7 @@ Uses this data source to access information about an existing Virtual Hub.
 Use this data source to access information about an existing Virtual Machine.
 
 `,
+			Icon:     "Compute/10040-icon-service-VM-Images-(Classic).svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -15850,6 +15979,7 @@ Use this data source to access information about an existing Virtual Machine.
 Use this data source to access information about an existing Virtual Machine Scale Set.
 
 `,
+			Icon:      "Compute/10034-icon-service-VM-Scale-Sets.svg",
 			Keywords:  []string{},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
@@ -15889,6 +16019,7 @@ Use this data source to access information about an existing Virtual Machine Sca
 Use this data source to access information about an existing Virtual Network.
 
 `,
+			Icon:     "Networking/10075-icon-service-Virtual-Networks-(Classic).svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -15977,6 +16108,7 @@ Use this data source to access information about an existing Virtual Network.
 Use this data source to access information about an existing Virtual Network Gateway.
 
 `,
+			Icon:     "Networking/10063-icon-service-Virtual-Network-Gateways.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -16465,6 +16597,7 @@ Use this data source to access information about an existing Virtual Network Gat
 Use this data source to access information about an existing Web Application Firewall Policy.
 
 `,
+			Icon:      "Networking/10362-icon-service-Web-Application-Firewall-Policies(WAF).svg",
 			Keywords:  []string{},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
@@ -16518,120 +16651,122 @@ Use this data source to access information about an existing Web Application Fir
 		"azurerm_data_share":                                33,
 		"azurerm_data_share_account":                        34,
 		"azurerm_data_share_dataset_blob_storage":           35,
-		"azurerm_database_migration_project":                36,
-		"azurerm_database_migration_service":                37,
-		"azurerm_dedicated_host":                            38,
-		"azurerm_dedicated_host_group":                      39,
-		"azurerm_dev_test_lab":                              40,
-		"azurerm_dev_test_virtual_network":                  41,
-		"azurerm_disk_encryption_set":                       42,
-		"azurerm_dns_zone":                                  43,
-		"azurerm_eventgrid_topic":                           44,
-		"azurerm_eventhub":                                  45,
-		"azurerm_eventhub_authorization_rule":               46,
-		"azurerm_eventhub_consumer_group":                   47,
-		"azurerm_eventhub_namespace":                        48,
-		"azurerm_eventhub_namespace_authorization_rule":     49,
-		"azurerm_express_route_circuit":                     50,
-		"azurerm_firewall":                                  51,
-		"azurerm_function_app":                              52,
-		"azurerm_hdinsight_cluster":                         53,
-		"azurerm_healthcare_service":                        54,
-		"azurerm_image":                                     55,
-		"azurerm_iothub_dps":                                56,
-		"azurerm_iothub_dps_shared_access_policy":           57,
-		"azurerm_iothub_shared_access_policy":               58,
-		"azurerm_key_vault":                                 59,
-		"azurerm_key_vault_access_policy":                   60,
-		"azurerm_key_vault_certificate":                     61,
-		"azurerm_key_vault_certificate_issuer":              62,
-		"azurerm_key_vault_key":                             63,
-		"azurerm_key_vault_secret":                          64,
-		"azurerm_kubernetes_cluster":                        65,
-		"azurerm_kubernetes_cluster_node_pool":              66,
-		"azurerm_kubernetes_service_versions":               67,
-		"azurerm_kusto_cluster":                             68,
-		"azurerm_lb":                                        69,
-		"azurerm_lb_backend_address_pool":                   70,
-		"azurerm_log_analytics_workspace":                   71,
-		"azurerm_logic_app_integration_account":             72,
-		"azurerm_logic_app_workflow":                        73,
-		"azurerm_machine_learning_workspace":                74,
-		"azurerm_maintenance_configuration":                 75,
-		"azurerm_managed_application_definition":            76,
-		"azurerm_managed_disk":                              77,
-		"azurerm_management_group":                          78,
-		"azurerm_maps_account":                              79,
-		"azurerm_mariadb_server":                            80,
-		"azurerm_monitor_action_group":                      81,
-		"azurerm_monitor_diagnostic_categories":             82,
-		"azurerm_monitor_log_profile":                       83,
-		"azurerm_monitor_scheduled_query_rules_alert":       84,
-		"azurerm_monitor_scheduled_query_rules_log":         85,
-		"azurerm_mssql_database":                            86,
-		"azurerm_mssql_elasticpool":                         87,
-		"azurerm_nat_gateway":                               88,
-		"azurerm_netapp_account":                            89,
-		"azurerm_netapp_pool":                               90,
-		"azurerm_netapp_snapshot":                           91,
-		"azurerm_netapp_volume":                             92,
-		"azurerm_network_ddos_protection_plan":              93,
-		"azurerm_network_interface":                         94,
-		"azurerm_network_security_group":                    95,
-		"azurerm_network_service_tags":                      96,
-		"azurerm_network_watcher":                           97,
-		"azurerm_notification_hub":                          98,
-		"azurerm_notification_hub_namespace":                99,
-		"azurerm_platform_image":                            100,
-		"azurerm_policy_definition":                         101,
-		"azurerm_policy_set_definition":                     102,
-		"azurerm_postgresql_server":                         103,
-		"azurerm_private_dns_zone":                          104,
-		"azurerm_private_endpoint_connection":               105,
-		"azurerm_private_link_service":                      106,
-		"azurerm_private_link_service_endpoint_connections": 107,
-		"azurerm_proximity_placement_group":                 108,
-		"azurerm_public_ip":                                 109,
-		"azurerm_public_ip_prefix":                          110,
-		"azurerm_public_ips":                                111,
-		"azurerm_recovery_services_vault":                   112,
-		"azurerm_redis_cache":                               113,
-		"azurerm_resource_group":                            114,
-		"azurerm_resources":                                 115,
-		"azurerm_role_definition":                           116,
-		"azurerm_route_filter":                              117,
-		"azurerm_route_table":                               118,
-		"azurerm_sentinel_alert_rule":                       119,
-		"azurerm_servicebus_namespace":                      120,
-		"azurerm_servicebus_namespace_authorization_rule":   121,
-		"azurerm_servicebus_topic_authorization_rule":       122,
-		"azurerm_shared_image":                              123,
-		"azurerm_shared_image_gallery":                      124,
-		"azurerm_shared_image_version":                      125,
-		"azurerm_shared_image_versions":                     126,
-		"azurerm_signalr_service":                           127,
-		"azurerm_snapshot":                                  128,
-		"azurerm_spring_cloud_service":                      129,
-		"azurerm_sql_database":                              130,
-		"azurerm_sql_server":                                131,
-		"azurerm_storage_account":                           132,
-		"azurerm_storage_account_blob_container_sas":        133,
-		"azurerm_storage_account_sas":                       134,
-		"azurerm_storage_container":                         135,
-		"azurerm_storage_management_policy":                 136,
-		"azurerm_stream_analytics_job":                      137,
-		"azurerm_subnet":                                    138,
-		"azurerm_subscription":                              139,
-		"azurerm_subscriptions":                             140,
-		"azurerm_traffic_manager_geographical_location":     141,
-		"azurerm_user_assigned_identity":                    142,
-		"azurerm_virtual_hub":                               143,
-		"azurerm_virtual_machine":                           144,
-		"azurerm_virtual_machine_scale_set":                 145,
-		"azurerm_virtual_network":                           146,
-		"azurerm_virtual_network_gateway":                   147,
-		"azurerm_virtual_network_gateway_connection":        148,
-		"azurerm_web_application_firewall_policy":           149,
+		"azurerm_data_share_dataset_data_lake_gen1":         36,
+		"azurerm_database_migration_project":                37,
+		"azurerm_database_migration_service":                38,
+		"azurerm_dedicated_host":                            39,
+		"azurerm_dedicated_host_group":                      40,
+		"azurerm_dev_test_lab":                              41,
+		"azurerm_dev_test_virtual_network":                  42,
+		"azurerm_disk_encryption_set":                       43,
+		"azurerm_dns_zone":                                  44,
+		"azurerm_eventgrid_topic":                           45,
+		"azurerm_eventhub":                                  46,
+		"azurerm_eventhub_authorization_rule":               47,
+		"azurerm_eventhub_consumer_group":                   48,
+		"azurerm_eventhub_namespace":                        49,
+		"azurerm_eventhub_namespace_authorization_rule":     50,
+		"azurerm_express_route_circuit":                     51,
+		"azurerm_firewall":                                  52,
+		"azurerm_function_app":                              53,
+		"azurerm_hdinsight_cluster":                         54,
+		"azurerm_healthcare_service":                        55,
+		"azurerm_image":                                     56,
+		"azurerm_iothub_dps":                                57,
+		"azurerm_iothub_dps_shared_access_policy":           58,
+		"azurerm_iothub_shared_access_policy":               59,
+		"azurerm_key_vault":                                 60,
+		"azurerm_key_vault_access_policy":                   61,
+		"azurerm_key_vault_certificate":                     62,
+		"azurerm_key_vault_certificate_issuer":              63,
+		"azurerm_key_vault_key":                             64,
+		"azurerm_key_vault_secret":                          65,
+		"azurerm_kubernetes_cluster":                        66,
+		"azurerm_kubernetes_cluster_node_pool":              67,
+		"azurerm_kubernetes_service_versions":               68,
+		"azurerm_kusto_cluster":                             69,
+		"azurerm_lb":                                        70,
+		"azurerm_lb_backend_address_pool":                   71,
+		"azurerm_log_analytics_workspace":                   72,
+		"azurerm_logic_app_integration_account":             73,
+		"azurerm_logic_app_workflow":                        74,
+		"azurerm_machine_learning_workspace":                75,
+		"azurerm_maintenance_configuration":                 76,
+		"azurerm_managed_application_definition":            77,
+		"azurerm_managed_disk":                              78,
+		"azurerm_management_group":                          79,
+		"azurerm_maps_account":                              80,
+		"azurerm_mariadb_server":                            81,
+		"azurerm_monitor_action_group":                      82,
+		"azurerm_monitor_diagnostic_categories":             83,
+		"azurerm_monitor_log_profile":                       84,
+		"azurerm_monitor_scheduled_query_rules_alert":       85,
+		"azurerm_monitor_scheduled_query_rules_log":         86,
+		"azurerm_mssql_database":                            87,
+		"azurerm_mssql_elasticpool":                         88,
+		"azurerm_nat_gateway":                               89,
+		"azurerm_netapp_account":                            90,
+		"azurerm_netapp_pool":                               91,
+		"azurerm_netapp_snapshot":                           92,
+		"azurerm_netapp_volume":                             93,
+		"azurerm_network_ddos_protection_plan":              94,
+		"azurerm_network_interface":                         95,
+		"azurerm_network_security_group":                    96,
+		"azurerm_network_service_tags":                      97,
+		"azurerm_network_watcher":                           98,
+		"azurerm_notification_hub":                          99,
+		"azurerm_notification_hub_namespace":                100,
+		"azurerm_platform_image":                            101,
+		"azurerm_policy_definition":                         102,
+		"azurerm_policy_set_definition":                     103,
+		"azurerm_postgresql_server":                         104,
+		"azurerm_private_dns_zone":                          105,
+		"azurerm_private_endpoint_connection":               106,
+		"azurerm_private_link_service":                      107,
+		"azurerm_private_link_service_endpoint_connections": 108,
+		"azurerm_proximity_placement_group":                 109,
+		"azurerm_public_ip":                                 110,
+		"azurerm_public_ip_prefix":                          111,
+		"azurerm_public_ips":                                112,
+		"azurerm_recovery_services_vault":                   113,
+		"azurerm_redis_cache":                               114,
+		"azurerm_resource_group":                            115,
+		"azurerm_resources":                                 116,
+		"azurerm_role_definition":                           117,
+		"azurerm_route_filter":                              118,
+		"azurerm_route_table":                               119,
+		"azurerm_sentinel_alert_rule":                       120,
+		"azurerm_servicebus_namespace":                      121,
+		"azurerm_servicebus_namespace_authorization_rule":   122,
+		"azurerm_servicebus_topic_authorization_rule":       123,
+		"azurerm_shared_image":                              124,
+		"azurerm_shared_image_gallery":                      125,
+		"azurerm_shared_image_version":                      126,
+		"azurerm_shared_image_versions":                     127,
+		"azurerm_signalr_service":                           128,
+		"azurerm_snapshot":                                  129,
+		"azurerm_spring_cloud_service":                      130,
+		"azurerm_sql_database":                              131,
+		"azurerm_sql_server":                                132,
+		"azurerm_storage_account":                           133,
+		"azurerm_storage_account_blob_container_sas":        134,
+		"azurerm_storage_account_sas":                       135,
+		"azurerm_storage_container":                         136,
+		"azurerm_storage_management_policy":                 137,
+		"azurerm_stream_analytics_job":                      138,
+		"azurerm_subnet":                                    139,
+		"azurerm_subscription":                              140,
+		"azurerm_subscriptions":                             141,
+		"azurerm_synapse_workspace":                         142,
+		"azurerm_traffic_manager_geographical_location":     143,
+		"azurerm_user_assigned_identity":                    144,
+		"azurerm_virtual_hub":                               145,
+		"azurerm_virtual_machine":                           146,
+		"azurerm_virtual_machine_scale_set":                 147,
+		"azurerm_virtual_network":                           148,
+		"azurerm_virtual_network_gateway":                   149,
+		"azurerm_virtual_network_gateway_connection":        150,
+		"azurerm_web_application_firewall_policy":           151,
 	}
 )
 

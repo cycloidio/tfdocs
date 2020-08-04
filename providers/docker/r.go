@@ -371,7 +371,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "executable",
-					Description: `(Optional, bool) If true, the file will be uploaded with user executable permission. Defaults to false. <a id="networks_advanced"></a> ### Network advanced ` + "`" + `networks_advanced` + "`" + ` is a block within the configuration that can be repeated to specify advanced options for the container in a specific network. Each ` + "`" + `networks_advanced` + "`" + ` supports the following:`,
+					Description: `(Optional, bool) If true, the file will be uploaded with user executable permission. Defaults to false. <a id="networks_advanced-1"></a> ### Networks advanced ` + "`" + `networks_advanced` + "`" + ` is a block within the configuration that can be repeated to specify advanced options for the container in a specific network. Each ` + "`" + `networks_advanced` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",

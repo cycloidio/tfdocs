@@ -331,6 +331,38 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "packet_device_network_type",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource to manage network type of Packet devices.`,
+			Description:      ``,
+			Keywords: []string{
+				"device",
+				"network",
+				"type",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "device_id",
+					Description: `(Required) The ID of the device on which the network type should be set.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Network type to set. Must be one of ` + "`" + `layer3` + "`" + `, ` + "`" + `hybrid` + "`" + `, ` + "`" + `layer2-individual` + "`" + ` and ` + "`" + `layer2-bonded` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the controlled device. Use this in linked resources, if you need to wait for the network type change. It is the same as ` + "`" + `device_id` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the controlled device. Use this in linked resources, if you need to wait for the network type change. It is the same as ` + "`" + `device_id` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "packet_ip_attachment",
 			Category:         "Resources",
 			ShortDescription: `Provides a Resource for Attaching IP Subnets from a Reserved Block to a Device`,
@@ -1239,17 +1271,18 @@ var (
 
 		"packet_bgp_session":          0,
 		"packet_device":               1,
-		"packet_ip_attachment":        2,
-		"packet_organization":         3,
-		"packet_port_vlan_attachment": 4,
-		"packet_project":              5,
-		"packet_project_ssh_key":      6,
-		"packet_reserved_ip_block":    7,
-		"packet_spot_market_request":  8,
-		"packet_ssh_key":              9,
-		"packet_vlan":                 10,
-		"packet_volume":               11,
-		"packet_volume_attachment":    12,
+		"packet_device_network_type":  2,
+		"packet_ip_attachment":        3,
+		"packet_organization":         4,
+		"packet_port_vlan_attachment": 5,
+		"packet_project":              6,
+		"packet_project_ssh_key":      7,
+		"packet_reserved_ip_block":    8,
+		"packet_spot_market_request":  9,
+		"packet_ssh_key":              10,
+		"packet_vlan":                 11,
+		"packet_volume":               12,
+		"packet_volume_attachment":    13,
 	}
 )
 

@@ -2021,6 +2021,288 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "baiducloud_dts",
+			Category:         "DTS Resources",
+			ShortDescription: `Provide a resource to create a DTS.`,
+			Description:      ``,
+			Keywords: []string{
+				"dts",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cross_region_tag",
+					Description: `(Required, ForceNew) cross region tag of the task. Available value are 0, 1.`,
+				},
+				resource.Attribute{
+					Name:        "data_type",
+					Description: `(Required) Dts task data type`,
+				},
+				resource.Attribute{
+					Name:        "product_type",
+					Description: `(Required, ForceNew) product type of the task. Available value is postpay.`,
+				},
+				resource.Attribute{
+					Name:        "schema_mapping",
+					Description: `(Required) schema mapping`,
+				},
+				resource.Attribute{
+					Name:        "source_instance_type",
+					Description: `(Required, ForceNew) source instance type of the task. Available values are public, bcerds.`,
+				},
+				resource.Attribute{
+					Name:        "standard",
+					Description: `(Required, ForceNew) standard of the task. Available value is Large.`,
+				},
+				resource.Attribute{
+					Name:        "target_instance_type",
+					Description: `(Required, ForceNew) target instance type of the task. Available values are public, bcerds.`,
+				},
+				resource.Attribute{
+					Name:        "task_name",
+					Description: `(Required) Dts task name`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required, ForceNew) type of the task. Available values are migration, sync, subscribe.`,
+				},
+				resource.Attribute{
+					Name:        "dst_connection",
+					Description: `(Optional) Connection`,
+				},
+				resource.Attribute{
+					Name:        "dts_id",
+					Description: `(Optional, ForceNew) Dts task id`,
+				},
+				resource.Attribute{
+					Name:        "granularity",
+					Description: `(Optional) Dts granularity`,
+				},
+				resource.Attribute{
+					Name:        "init_position_type",
+					Description: `(Optional) Dts init position type`,
+				},
+				resource.Attribute{
+					Name:        "init_position",
+					Description: `(Optional) Dts init position`,
+				},
+				resource.Attribute{
+					Name:        "operation",
+					Description: `(Optional) operation of the task. Available values are precheck, getprecheck, start, pause, shutdown.`,
+				},
+				resource.Attribute{
+					Name:        "queue_type",
+					Description: `(Optional) Dts queue type`,
+				},
+				resource.Attribute{
+					Name:        "src_connection",
+					Description: `(Optional) Connection`,
+				},
+				resource.Attribute{
+					Name:        "sub_status",
+					Description: `(Optional) sub status The ` + "`" + `schema_mapping` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "dst",
+					Description: `(Optional) dst`,
+				},
+				resource.Attribute{
+					Name:        "src",
+					Description: `(Optional) src`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) type`,
+				},
+				resource.Attribute{
+					Name:        "where",
+					Description: `(Optional) where The ` + "`" + `sub_status` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "b",
+					Description: `b`,
+				},
+				resource.Attribute{
+					Name:        "i",
+					Description: `i`,
+				},
+				resource.Attribute{
+					Name:        "s",
+					Description: `s ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "base",
+					Description: `schemaInfo`,
+				},
+				resource.Attribute{
+					Name:        "count",
+					Description: `count`,
+				},
+				resource.Attribute{
+					Name:        "current",
+					Description: `current`,
+				},
+				resource.Attribute{
+					Name:        "expect_finish_time",
+					Description: `expect finish time`,
+				},
+				resource.Attribute{
+					Name:        "speed",
+					Description: `speed`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Dts create time`,
+				},
+				resource.Attribute{
+					Name:        "errmsg",
+					Description: `Dts error message`,
+				},
+				resource.Attribute{
+					Name:        "increment",
+					Description: `increment`,
+				},
+				resource.Attribute{
+					Name:        "pay_create_time",
+					Description: `Dts pay create time`,
+				},
+				resource.Attribute{
+					Name:        "pay_end_time",
+					Description: `Dts pay end time`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Dts region`,
+				},
+				resource.Attribute{
+					Name:        "running_time",
+					Description: `Dts task running time`,
+				},
+				resource.Attribute{
+					Name:        "schema",
+					Description: `schemaInfo`,
+				},
+				resource.Attribute{
+					Name:        "count",
+					Description: `count`,
+				},
+				resource.Attribute{
+					Name:        "current",
+					Description: `current`,
+				},
+				resource.Attribute{
+					Name:        "expect_finish_time",
+					Description: `expect finish time`,
+				},
+				resource.Attribute{
+					Name:        "speed",
+					Description: `speed`,
+				},
+				resource.Attribute{
+					Name:        "sdk_realtime_progress",
+					Description: `Dts sdk realtime progress`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Dts task status`,
+				},
+				resource.Attribute{
+					Name:        "sub_end_time",
+					Description: `Dts subDataScope end time`,
+				},
+				resource.Attribute{
+					Name:        "sub_start_time",
+					Description: `Dts subDataScope start time ## Import DTS can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import baiducloud_dts.default dts ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "base",
+					Description: `schemaInfo`,
+				},
+				resource.Attribute{
+					Name:        "count",
+					Description: `count`,
+				},
+				resource.Attribute{
+					Name:        "current",
+					Description: `current`,
+				},
+				resource.Attribute{
+					Name:        "expect_finish_time",
+					Description: `expect finish time`,
+				},
+				resource.Attribute{
+					Name:        "speed",
+					Description: `speed`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Dts create time`,
+				},
+				resource.Attribute{
+					Name:        "errmsg",
+					Description: `Dts error message`,
+				},
+				resource.Attribute{
+					Name:        "increment",
+					Description: `increment`,
+				},
+				resource.Attribute{
+					Name:        "pay_create_time",
+					Description: `Dts pay create time`,
+				},
+				resource.Attribute{
+					Name:        "pay_end_time",
+					Description: `Dts pay end time`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Dts region`,
+				},
+				resource.Attribute{
+					Name:        "running_time",
+					Description: `Dts task running time`,
+				},
+				resource.Attribute{
+					Name:        "schema",
+					Description: `schemaInfo`,
+				},
+				resource.Attribute{
+					Name:        "count",
+					Description: `count`,
+				},
+				resource.Attribute{
+					Name:        "current",
+					Description: `current`,
+				},
+				resource.Attribute{
+					Name:        "expect_finish_time",
+					Description: `expect finish time`,
+				},
+				resource.Attribute{
+					Name:        "speed",
+					Description: `speed`,
+				},
+				resource.Attribute{
+					Name:        "sdk_realtime_progress",
+					Description: `Dts sdk realtime progress`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Dts task status`,
+				},
+				resource.Attribute{
+					Name:        "sub_end_time",
+					Description: `Dts subDataScope end time`,
+				},
+				resource.Attribute{
+					Name:        "sub_start_time",
+					Description: `Dts subDataScope start time ## Import DTS can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import baiducloud_dts.default dts ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "baiducloud_eip",
 			Category:         "EIP Resources",
 			ShortDescription: `Provide a resource to create an EIP.`,
@@ -3237,19 +3519,20 @@ var (
 		"baiducloud_cfc_function":         12,
 		"baiducloud_cfc_trigger":          13,
 		"baiducloud_cfc_version":          14,
-		"baiducloud_eip":                  15,
-		"baiducloud_eip_association":      16,
-		"baiducloud_instance":             17,
-		"baiducloud_nat_gateway":          18,
-		"baiducloud_peer_conn":            19,
-		"baiducloud_peer_conn_acceptor":   20,
-		"baiducloud_route_rule":           21,
-		"baiducloud_scs":                  22,
-		"baiducloud_security_group":       23,
-		"baiducloud_security_group_rule":  24,
-		"baiducloud_snapshot":             25,
-		"baiducloud_subnet":               26,
-		"baiducloud_vpc":                  27,
+		"baiducloud_dts":                  15,
+		"baiducloud_eip":                  16,
+		"baiducloud_eip_association":      17,
+		"baiducloud_instance":             18,
+		"baiducloud_nat_gateway":          19,
+		"baiducloud_peer_conn":            20,
+		"baiducloud_peer_conn_acceptor":   21,
+		"baiducloud_route_rule":           22,
+		"baiducloud_scs":                  23,
+		"baiducloud_security_group":       24,
+		"baiducloud_security_group_rule":  25,
+		"baiducloud_snapshot":             26,
+		"baiducloud_subnet":               27,
+		"baiducloud_vpc":                  28,
 	}
 )
 

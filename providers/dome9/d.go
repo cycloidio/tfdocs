@@ -488,6 +488,82 @@ Use this data source to get information about a GCP cloud account onboarded to D
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "dome9_cloudaccount_kubernetes",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about kubernetes cloud account onboarded to Dome9.`,
+			Description: `
+
+Use this data source to get information about a kubernetes cloud account onboarded to Dome9.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) The Dome9 id for the kubernetes account ## Attributes Reference In addition to all arguments above, the following attributes exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the kubernetes cluster as it appears in Dome9 kubernetes cloud account.`,
+				},
+				resource.Attribute{
+					Name:        "creation_date",
+					Description: `Date account was onboarded to Dome9.`,
+				},
+				resource.Attribute{
+					Name:        "vendor",
+					Description: `The cloud provider ("kubernetes").`,
+				},
+				resource.Attribute{
+					Name:        "organizational_unit_id",
+					Description: `Organizational unit id.`,
+				},
+				resource.Attribute{
+					Name:        "organizational_unit_path",
+					Description: `Organizational unit path.`,
+				},
+				resource.Attribute{
+					Name:        "organizational_unit_name",
+					Description: `Organizational unit name.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_version",
+					Description: `The onboarded cluster version.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the kubernetes cluster as it appears in Dome9 kubernetes cloud account.`,
+				},
+				resource.Attribute{
+					Name:        "creation_date",
+					Description: `Date account was onboarded to Dome9.`,
+				},
+				resource.Attribute{
+					Name:        "vendor",
+					Description: `The cloud provider ("kubernetes").`,
+				},
+				resource.Attribute{
+					Name:        "organizational_unit_id",
+					Description: `Organizational unit id.`,
+				},
+				resource.Attribute{
+					Name:        "organizational_unit_path",
+					Description: `Organizational unit path.`,
+				},
+				resource.Attribute{
+					Name:        "organizational_unit_name",
+					Description: `Organizational unit name.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_version",
+					Description: `The onboarded cluster version.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "dome9_continuous_compliance_notification",
 			Category:         "Data Sources",
 			ShortDescription: `Get information about a Dome9 continuous compliance notification policy.`,
@@ -1032,12 +1108,13 @@ Use this data source to get information about a ruleset in Dome9.
 		"dome9_cloudaccount_aws":                   3,
 		"dome9_cloudaccount_azure":                 4,
 		"dome9_cloudaccount_gcp":                   5,
-		"dome9_continuous_compliance_notification": 6,
-		"dome9_continuous_compliance_policy":       7,
-		"dome9_iplist":                             8,
-		"dome9_organizational_unit":                9,
-		"dome9_role":                               10,
-		"dome9_ruleset":                            11,
+		"dome9_cloudaccount_kubernetes":            6,
+		"dome9_continuous_compliance_notification": 7,
+		"dome9_continuous_compliance_policy":       8,
+		"dome9_iplist":                             9,
+		"dome9_organizational_unit":                10,
+		"dome9_role":                               11,
+		"dome9_ruleset":                            12,
 	}
 )
 

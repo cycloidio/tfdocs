@@ -28,6 +28,10 @@ var (
 					Description: `(Optional) The region where domain will be created. Default value is ` + "`" + `us` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "smtp_password",
+					Description: `(Optional) Password for SMTP authentication`,
+				},
+				resource.Attribute{
 					Name:        "spam_action",
 					Description: `(Optional) ` + "`" + `disabled` + "`" + ` or ` + "`" + `tag` + "`" + ` Disable, no spam filtering will occur for inbound messages. Tag, messages will be tagged with a spam header.`,
 				},
