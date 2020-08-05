@@ -36,3 +36,4 @@ The path has to be the one from the official Provider source after download:
 * aws: https://aws.amazon.com/architecture/icons/ (currently the 20200430)
 * google: https://cloud.google.com/icons
 * openstack: https://github.com/openstack/horizon/tree/master/openstack_dashboard/static/dashboard/img
+* azurerm: https://docs.microsoft.com/en-us/azure/architecture/icons/

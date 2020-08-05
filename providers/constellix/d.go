@@ -1512,6 +1512,22 @@ var (
 					Name:        "check_sites",
 					Description: `(Required) Site ids to check.`,
 				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `(Optional) Check Interval. Allowed values are ` + "`" + `THIRTYSECONDS` + "`" + `, ` + "`" + `ONEMINUTE` + "`" + `, ` + "`" + `TWOMINUTES` + "`" + `, ` + "`" + `THREEMINUTES` + "`" + `, ` + "`" + `FOURMINUTES` + "`" + `, ` + "`" + `FIVEMINUTES` + "`" + `, ` + "`" + `TENMINUTES` + "`" + `, ` + "`" + `THIRTYMINUTES` + "`" + `, ` + "`" + `HALFDAY` + "`" + ` and ` + "`" + `DAY` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "interval_policy",
+					Description: `(Optional) Agent Interval Run Policy. It specifies whether you want to run checks from one location or all. Allowed values are ` + "`" + `PARALLEL` + "`" + `, ` + "`" + `ONCEPERSITE` + "`" + ` and ` + "`" + `ONCEPERREGION` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "verification_policy",
+					Description: `(Optional) Specifies how the check should be validated. Allowed values are ` + "`" + `SIMPLE` + "`" + ` and ` + "`" + `MAJORITY` + "`" + `. This parameter will only work with the ` + "`" + `interval_policy` + "`" + ` set to ` + "`" + `PARALLEL` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "expected_response",
+					Description: `(Optional) Ip Address where DNS provided in the FQDN should resolved to in ideal conditions.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -1529,6 +1545,22 @@ var (
 				resource.Attribute{
 					Name:        "check_sites",
 					Description: `(Required) Site ids to check.`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `(Optional) Check Interval. Allowed values are ` + "`" + `THIRTYSECONDS` + "`" + `, ` + "`" + `ONEMINUTE` + "`" + `, ` + "`" + `TWOMINUTES` + "`" + `, ` + "`" + `THREEMINUTES` + "`" + `, ` + "`" + `FOURMINUTES` + "`" + `, ` + "`" + `FIVEMINUTES` + "`" + `, ` + "`" + `TENMINUTES` + "`" + `, ` + "`" + `THIRTYMINUTES` + "`" + `, ` + "`" + `HALFDAY` + "`" + ` and ` + "`" + `DAY` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "interval_policy",
+					Description: `(Optional) Agent Interval Run Policy. It specifies whether you want to run checks from one location or all. Allowed values are ` + "`" + `PARALLEL` + "`" + `, ` + "`" + `ONCEPERSITE` + "`" + ` and ` + "`" + `ONCEPERREGION` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "verification_policy",
+					Description: `(Optional) Specifies how the check should be validated. Allowed values are ` + "`" + `SIMPLE` + "`" + ` and ` + "`" + `MAJORITY` + "`" + `. This parameter will only work with the ` + "`" + `interval_policy` + "`" + ` set to ` + "`" + `PARALLEL` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "expected_response",
+					Description: `(Optional) Ip Address where DNS provided in the FQDN should resolved to in ideal conditions.`,
 				},
 			},
 		},
@@ -1940,6 +1972,34 @@ var (
 					Name:        "check_sites",
 					Description: `(Optional) Site ids to check.`,
 				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `(Optional) Check Interval. Allowed values are ` + "`" + `THIRTYSECONDS` + "`" + `, ` + "`" + `ONEMINUTE` + "`" + `, ` + "`" + `TWOMINUTES` + "`" + `, ` + "`" + `THREEMINUTES` + "`" + `, ` + "`" + `FOURMINUTES` + "`" + `, ` + "`" + `FIVEMINUTES` + "`" + `, ` + "`" + `TENMINUTES` + "`" + `, ` + "`" + `THIRTYMINUTES` + "`" + `, ` + "`" + `HALFDAY` + "`" + ` and ` + "`" + `DAY` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "interval_policy",
+					Description: `(Optional) Agent Interval Run Policy. It specifies whether you want to run checks from one location or all. Allowed values are ` + "`" + `PARALLEL` + "`" + `, ` + "`" + `ONCEPERSITE` + "`" + ` and ` + "`" + `ONCEPERREGION` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "verification_policy",
+					Description: `(Optional) Specifies how the check should be validated. Allowed values are ` + "`" + `SIMPLE` + "`" + ` and ` + "`" + `MAJORITY` + "`" + `. This parameter will only work with the ` + "`" + `interval_policy` + "`" + ` set to ` + "`" + `PARALLEL` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `(Optional) Fully qualified domain name of the URL should be checked.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional) In case of multi-page site, which path should be checked.`,
+				},
+				resource.Attribute{
+					Name:        "search_string",
+					Description: `(Optional) String to search in the first 2KB of resonse received.`,
+				},
+				resource.Attribute{
+					Name:        "expected_status_code",
+					Description: `(Optional) Expected HTTP status code for this check.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -1965,6 +2025,34 @@ var (
 				resource.Attribute{
 					Name:        "check_sites",
 					Description: `(Optional) Site ids to check.`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `(Optional) Check Interval. Allowed values are ` + "`" + `THIRTYSECONDS` + "`" + `, ` + "`" + `ONEMINUTE` + "`" + `, ` + "`" + `TWOMINUTES` + "`" + `, ` + "`" + `THREEMINUTES` + "`" + `, ` + "`" + `FOURMINUTES` + "`" + `, ` + "`" + `FIVEMINUTES` + "`" + `, ` + "`" + `TENMINUTES` + "`" + `, ` + "`" + `THIRTYMINUTES` + "`" + `, ` + "`" + `HALFDAY` + "`" + ` and ` + "`" + `DAY` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "interval_policy",
+					Description: `(Optional) Agent Interval Run Policy. It specifies whether you want to run checks from one location or all. Allowed values are ` + "`" + `PARALLEL` + "`" + `, ` + "`" + `ONCEPERSITE` + "`" + ` and ` + "`" + `ONCEPERREGION` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "verification_policy",
+					Description: `(Optional) Specifies how the check should be validated. Allowed values are ` + "`" + `SIMPLE` + "`" + ` and ` + "`" + `MAJORITY` + "`" + `. This parameter will only work with the ` + "`" + `interval_policy` + "`" + ` set to ` + "`" + `PARALLEL` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `(Optional) Fully qualified domain name of the URL should be checked.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional) In case of multi-page site, which path should be checked.`,
+				},
+				resource.Attribute{
+					Name:        "search_string",
+					Description: `(Optional) String to search in the first 2KB of resonse received.`,
+				},
+				resource.Attribute{
+					Name:        "expected_status_code",
+					Description: `(Optional) Expected HTTP status code for this check.`,
 				},
 			},
 		},
@@ -2888,6 +2976,26 @@ var (
 					Name:        "check_sites",
 					Description: `(Optional) Site ids to check.`,
 				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `(Optional) Check Interval. Allowed values are ` + "`" + `THIRTYSECONDS` + "`" + `, ` + "`" + `ONEMINUTE` + "`" + `, ` + "`" + `TWOMINUTES` + "`" + `, ` + "`" + `THREEMINUTES` + "`" + `, ` + "`" + `FOURMINUTES` + "`" + `, ` + "`" + `FIVEMINUTES` + "`" + `, ` + "`" + `TENMINUTES` + "`" + `, ` + "`" + `THIRTYMINUTES` + "`" + `, ` + "`" + `HALFDAY` + "`" + ` and ` + "`" + `DAY` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "interval_policy",
+					Description: `(Optional) Agent Interval Run Policy. It specifies whether you want to run checks from one location or all. Allowed values are ` + "`" + `PARALLEL` + "`" + `, ` + "`" + `ONCEPERSITE` + "`" + ` and ` + "`" + `ONCEPERREGION` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "verification_policy",
+					Description: `(Optional) Specifies how the check should be validated. Allowed values are ` + "`" + `SIMPLE` + "`" + ` and ` + "`" + `MAJORITY` + "`" + `. This parameter will only work with the ` + "`" + `interval_policy` + "`" + ` set to ` + "`" + `PARALLEL` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "string_to_send",
+					Description: `(Optional) String to send along with the check. It can be any parameter to the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "string_to_receive",
+					Description: `(Optional) String which should be received as a result of TCP check.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -2909,6 +3017,26 @@ var (
 				resource.Attribute{
 					Name:        "check_sites",
 					Description: `(Optional) Site ids to check.`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `(Optional) Check Interval. Allowed values are ` + "`" + `THIRTYSECONDS` + "`" + `, ` + "`" + `ONEMINUTE` + "`" + `, ` + "`" + `TWOMINUTES` + "`" + `, ` + "`" + `THREEMINUTES` + "`" + `, ` + "`" + `FOURMINUTES` + "`" + `, ` + "`" + `FIVEMINUTES` + "`" + `, ` + "`" + `TENMINUTES` + "`" + `, ` + "`" + `THIRTYMINUTES` + "`" + `, ` + "`" + `HALFDAY` + "`" + ` and ` + "`" + `DAY` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "interval_policy",
+					Description: `(Optional) Agent Interval Run Policy. It specifies whether you want to run checks from one location or all. Allowed values are ` + "`" + `PARALLEL` + "`" + `, ` + "`" + `ONCEPERSITE` + "`" + ` and ` + "`" + `ONCEPERREGION` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "verification_policy",
+					Description: `(Optional) Specifies how the check should be validated. Allowed values are ` + "`" + `SIMPLE` + "`" + ` and ` + "`" + `MAJORITY` + "`" + `. This parameter will only work with the ` + "`" + `interval_policy` + "`" + ` set to ` + "`" + `PARALLEL` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "string_to_send",
+					Description: `(Optional) String to send along with the check. It can be any parameter to the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "string_to_receive",
+					Description: `(Optional) String which should be received as a result of TCP check.`,
 				},
 			},
 		},

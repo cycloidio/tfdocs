@@ -2730,7 +2730,7 @@ var (
 					Description: `(Required) Distinguished name of parent ApplicationEPG object.`,
 				},
 				resource.Attribute{
-					Name:        "t_dn",
+					Name:        "tdn",
 					Description: `(Required) vmm domain instance. ## Attribute Reference`,
 				},
 				resource.Attribute{

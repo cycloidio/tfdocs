@@ -4531,6 +4531,10 @@ var (
 					Name:        "assign_public_ip",
 					Description: `Sets whether the host should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment`,
 				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Role of the host in the cluster.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -4701,6 +4705,10 @@ var (
 					Name:        "assign_public_ip",
 					Description: `Sets whether the host should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment`,
 				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Role of the host in the cluster.`,
+				},
 			},
 		},
 		&resource.Resource{
@@ -4773,7 +4781,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "maxmemory_policy",
-					Description: `Redis key eviction policy for a dataset that reaches maximum memory. The ` + "`" + `resources` + "`" + ` block supports:`,
+					Description: `Redis key eviction policy for a dataset that reaches maximum memory.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version of Redis (either 5.0 or 6.0). The ` + "`" + `resources` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "resources_preset_id",
@@ -4851,7 +4863,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "maxmemory_policy",
-					Description: `Redis key eviction policy for a dataset that reaches maximum memory. The ` + "`" + `resources` + "`" + ` block supports:`,
+					Description: `Redis key eviction policy for a dataset that reaches maximum memory.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version of Redis (either 5.0 or 6.0). The ` + "`" + `resources` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "resources_preset_id",

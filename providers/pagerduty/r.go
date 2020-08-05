@@ -64,7 +64,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Default value is ` + "`" + `business_service` + "`" + `. Can also be set as ` + "`" + `business_service_reference` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Default value is ` + "`" + `business_service` + "`" + `. Can also be set as ` + "`" + `business_service_reference` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "team",
+					Description: `(Optional) ID of the team that owns the business service. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -119,7 +123,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Can be ` + "`" + `user` + "`" + `, ` + "`" + `schedule` + "`" + `, ` + "`" + `user_reference` + "`" + ` or ` + "`" + `schedule_reference` + "`" + `. Defaults to ` + "`" + `user_reference` + "`" + ``,
+					Description: `(Optional) Can be ` + "`" + `user` + "`" + `, ` + "`" + `schedule` + "`" + `, ` + "`" + `user_reference` + "`" + ` or ` + "`" + `schedule_reference` + "`" + `. Defaults to ` + "`" + `user_reference` + "`" + `. For multiple users as example, repeat the target.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -548,7 +552,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "alert_creation",
-					Description: `(Optional) Must be one of two values. PagerDuty receives events from your monitoring systems and can then create incidents in different ways. Value "create_incidents" is default: events will create an incident that cannot be merged. Value "create_alerts_and_incidents" is the alternative: events will create an alert and then add it to a new incident, these incidents can be merged.`,
+					Description: `(Optional) Must be one of two values. PagerDuty receives events from your monitoring systems and can then create incidents in different ways. Value "create_incidents" is default: events will create an incident that cannot be merged. Value "create_alerts_and_incidents" is the alternative: events will create an alert and then add it to a new incident, these incidents can be merged. This option is recommended.`,
 				},
 				resource.Attribute{
 					Name:        "alert_grouping",
@@ -833,7 +837,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "role",
-					Description: `(Optional) The user role. Account must have the ` + "`" + `read_only_users` + "`" + ` ability to set a user as a ` + "`" + `read_only_user` + "`" + `. Can be ` + "`" + `admin` + "`" + `, ` + "`" + `limited_user` + "`" + `, ` + "`" + `observer` + "`" + `, ` + "`" + `owner` + "`" + `, ` + "`" + `read_only_user` + "`" + `, ` + "`" + `restricted_user` + "`" + `, or ` + "`" + `user` + "`" + ``,
+					Description: `(Optional) The user role. Account must have the ` + "`" + `read_only_users` + "`" + ` ability to set a user as a ` + "`" + `read_only_user` + "`" + ` or a ` + "`" + `read_only_limited_user` + "`" + `, and must have advanced permissions abilities to set a user as ` + "`" + `observer` + "`" + ` or ` + "`" + `restricted_access` + "`" + `. Can be ` + "`" + `admin` + "`" + `, ` + "`" + `limited_user` + "`" + `, ` + "`" + `observer` + "`" + `, ` + "`" + `owner` + "`" + `, ` + "`" + `read_only_user` + "`" + `, ` + "`" + `read_only_limited_user` + "`" + `, ` + "`" + `restricted_access` + "`" + `, or ` + "`" + `user` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "job_title",
@@ -842,6 +846,10 @@ var (
 				resource.Attribute{
 					Name:        "teams",
 					Description: `(Optional,`,
+				},
+				resource.Attribute{
+					Name:        "time_zone",
+					Description: `(Optional) The time zone of the user. Default is account default timezone.`,
 				},
 				resource.Attribute{
 					Name:        "description",

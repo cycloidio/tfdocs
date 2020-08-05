@@ -1034,6 +1034,10 @@ var (
 					Description: `(Optional) The project in which the resource belongs. If it is not provided, the provider project is used. If you are using a [public base image][pubimg], be sure to specify the correct Image Project. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the data source with format ` + "`" + `projects/{{project}}/global/images/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "self_link",
 					Description: `The URI of the image.`,
 				},
@@ -1103,6 +1107,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the data source with format ` + "`" + `projects/{{project}}/global/images/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The URI of the image.`,
@@ -4030,6 +4038,503 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_sql_database_instance",
+			Category:         "Data Sources",
+			ShortDescription: `Get a SQL database instance in Google Cloud SQL.`,
+			Description:      ``,
+			Icon:             "Databases/Cloud_SQL.svg",
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(required) The name of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(optional) The ID of the project in which the resource belongs.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(optional) The region the instance exists in. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "settings",
+					Description: `The settings to use for the database. The configuration is detailed below.`,
+				},
+				resource.Attribute{
+					Name:        "database_version",
+					Description: `The MySQL, PostgreSQL or SQL Server (beta) version to use.`,
+				},
+				resource.Attribute{
+					Name:        "master_instance_name",
+					Description: `The name of the instance that will act as the master in the replication setup.`,
+				},
+				resource.Attribute{
+					Name:        "replica_configuration",
+					Description: `The configuration for replication. The configuration is detailed below.`,
+				},
+				resource.Attribute{
+					Name:        "root_password",
+					Description: `Initial root password. Required for MS SQL Server, ignored by MySQL and PostgreSQL.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_key_name",
+					Description: `[Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) The full path to the encryption key used for the CMEK disk encryption. The ` + "`" + `settings` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "tier",
+					Description: `The machine type to use.`,
+				},
+				resource.Attribute{
+					Name:        "activation_policy",
+					Description: `This specifies when the instance should be active. Can be either ` + "`" + `ALWAYS` + "`" + `, ` + "`" + `NEVER` + "`" + ` or ` + "`" + `ON_DEMAND` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "authorized_gae_applications",
+					Description: `(Deprecated) This property is only applicable to First Generation instances. First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen) for information on how to upgrade to Second Generation instances. A list of Google App Engine (GAE) project names that are allowed to access this instance.`,
+				},
+				resource.Attribute{
+					Name:        "availability_type",
+					Description: `The availability type of the Cloud SQL instance, high availability (` + "`" + `REGIONAL` + "`" + `) or single zone (` + "`" + `ZONAL` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "crash_safe_replication",
+					Description: `(Deprecated) This property is only applicable to First Generation instances. First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)`,
+				},
+				resource.Attribute{
+					Name:        "disk_autoresize",
+					Description: `Configuration to increase storage size automatically.`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `The size of data disk, in GB.`,
+				},
+				resource.Attribute{
+					Name:        "disk_type",
+					Description: `The type of data disk.`,
+				},
+				resource.Attribute{
+					Name:        "pricing_plan",
+					Description: `Pricing plan for this instance.`,
+				},
+				resource.Attribute{
+					Name:        "replication_type",
+					Description: `This property is only applicable to First Generation instances. First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)`,
+				},
+				resource.Attribute{
+					Name:        "user_labels",
+					Description: `A set of key/value user label pairs to assign to the instance. The ` + "`" + `settings.database_flags` + "`" + ` sublist contains:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the flag.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Value of the flag. The ` + "`" + `settings.backup_configuration` + "`" + ` subblock contains:`,
+				},
+				resource.Attribute{
+					Name:        "binary_log_enabled",
+					Description: `True if binary logging is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `True if backup configuration is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `` + "`" + `HH:MM` + "`" + ` format time indicating when backup configuration starts. The ` + "`" + `settings.ip_configuration` + "`" + ` subblock contains:`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_enabled",
+					Description: `Whether this Cloud SQL instance should be assigned a public IPV4 address.`,
+				},
+				resource.Attribute{
+					Name:        "private_network",
+					Description: `The VPC network from which the Cloud SQL instance is accessible for private IP.`,
+				},
+				resource.Attribute{
+					Name:        "require_ssl",
+					Description: `True if mysqld default to ` + "`" + `REQUIRE X509` + "`" + ` for users connecting over IP. The ` + "`" + `settings.ip_configuration.authorized_networks[]` + "`" + ` sublist contains:`,
+				},
+				resource.Attribute{
+					Name:        "expiration_time",
+					Description: `The [RFC 3339](https://tools.ietf.org/html/rfc3339) formatted date time string indicating when this whitelist expires.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `A name for this whitelist entry.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `A CIDR notation IPv4 or IPv6 address that is allowed to access this instance. The ` + "`" + `settings.location_preference` + "`" + ` subblock contains:`,
+				},
+				resource.Attribute{
+					Name:        "follow_gae_application",
+					Description: `A GAE application whose zone to remain in.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `The preferred compute engine. The ` + "`" + `settings.maintenance_window` + "`" + ` subblock for instances declares a one-hour [maintenance window](https://cloud.google.com/sql/docs/instance-settings?hl=en#maintenance-window-2ndgen) when an Instance can automatically restart to apply updates. The maintenance window is specified in UTC time. It contains:`,
+				},
+				resource.Attribute{
+					Name:        "day",
+					Description: `Day of week (` + "`" + `1-7` + "`" + `), starting on Monday.`,
+				},
+				resource.Attribute{
+					Name:        "hour",
+					Description: `Hour of day (` + "`" + `0-23` + "`" + `), ignored if ` + "`" + `day` + "`" + ` not set.`,
+				},
+				resource.Attribute{
+					Name:        "update_track",
+					Description: `Receive updates earlier (` + "`" + `canary` + "`" + `) or later (` + "`" + `stable` + "`" + `). The ` + "`" + `replica_configuration` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "ca_certificate",
+					Description: `PEM representation of the trusted CA's x509 certificate.`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate",
+					Description: `PEM representation of the slave's x509 certificate.`,
+				},
+				resource.Attribute{
+					Name:        "client_key",
+					Description: `PEM representation of the slave's private key.`,
+				},
+				resource.Attribute{
+					Name:        "connect_retry_interval",
+					Description: `The number of seconds between connect retries.`,
+				},
+				resource.Attribute{
+					Name:        "dump_file_path",
+					Description: `Path to a SQL file in GCS from which slave instances are created.`,
+				},
+				resource.Attribute{
+					Name:        "failover_target",
+					Description: `Specifies if the replica is the failover target.`,
+				},
+				resource.Attribute{
+					Name:        "master_heartbeat_period",
+					Description: `Time in ms between replication heartbeats.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password for the replication connection.`,
+				},
+				resource.Attribute{
+					Name:        "sslCipher",
+					Description: `Permissible ciphers for use in SSL encryption.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `Username for replication connection.`,
+				},
+				resource.Attribute{
+					Name:        "verify_server_certificate",
+					Description: `True if the master's common name value is checked during the SSL handshake.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the created resource.`,
+				},
+				resource.Attribute{
+					Name:        "connection_name",
+					Description: `The connection name of the instance to be used in connection strings.`,
+				},
+				resource.Attribute{
+					Name:        "service_account_email_address",
+					Description: `The service account email address assigned to the instance.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address.0.ip_address",
+					Description: `The IPv4 address assigned.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address.0.time_to_retire",
+					Description: `The time this IP address will be retired, in RFC 3339 format.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address.0.type",
+					Description: `The type of this IP address.`,
+				},
+				resource.Attribute{
+					Name:        "first_ip_address",
+					Description: `The first IPv4 address of any type assigned.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_address",
+					Description: `The first public (` + "`" + `PRIMARY` + "`" + `) IPv4 address assigned.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_address",
+					Description: `The first private (` + "`" + `PRIVATE` + "`" + `) IPv4 address assigned.`,
+				},
+				resource.Attribute{
+					Name:        "settings.version",
+					Description: `Used to make sure changes to the ` + "`" + `settings` + "`" + ` block are atomic.`,
+				},
+				resource.Attribute{
+					Name:        "server_ca_cert.0.cert",
+					Description: `The CA Certificate used to connect to the SQL Instance via SSL.`,
+				},
+				resource.Attribute{
+					Name:        "server_ca_cert.0.common_name",
+					Description: `The CN valid for the CA Cert.`,
+				},
+				resource.Attribute{
+					Name:        "server_ca_cert.0.create_time",
+					Description: `Creation time of the CA Cert.`,
+				},
+				resource.Attribute{
+					Name:        "server_ca_cert.0.expiration_time",
+					Description: `Expiration time of the CA Cert.`,
+				},
+				resource.Attribute{
+					Name:        "server_ca_cert.0.sha1_fingerprint",
+					Description: `SHA Fingerprint of the CA Cert.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "settings",
+					Description: `The settings to use for the database. The configuration is detailed below.`,
+				},
+				resource.Attribute{
+					Name:        "database_version",
+					Description: `The MySQL, PostgreSQL or SQL Server (beta) version to use.`,
+				},
+				resource.Attribute{
+					Name:        "master_instance_name",
+					Description: `The name of the instance that will act as the master in the replication setup.`,
+				},
+				resource.Attribute{
+					Name:        "replica_configuration",
+					Description: `The configuration for replication. The configuration is detailed below.`,
+				},
+				resource.Attribute{
+					Name:        "root_password",
+					Description: `Initial root password. Required for MS SQL Server, ignored by MySQL and PostgreSQL.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_key_name",
+					Description: `[Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) The full path to the encryption key used for the CMEK disk encryption. The ` + "`" + `settings` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "tier",
+					Description: `The machine type to use.`,
+				},
+				resource.Attribute{
+					Name:        "activation_policy",
+					Description: `This specifies when the instance should be active. Can be either ` + "`" + `ALWAYS` + "`" + `, ` + "`" + `NEVER` + "`" + ` or ` + "`" + `ON_DEMAND` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "authorized_gae_applications",
+					Description: `(Deprecated) This property is only applicable to First Generation instances. First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen) for information on how to upgrade to Second Generation instances. A list of Google App Engine (GAE) project names that are allowed to access this instance.`,
+				},
+				resource.Attribute{
+					Name:        "availability_type",
+					Description: `The availability type of the Cloud SQL instance, high availability (` + "`" + `REGIONAL` + "`" + `) or single zone (` + "`" + `ZONAL` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "crash_safe_replication",
+					Description: `(Deprecated) This property is only applicable to First Generation instances. First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)`,
+				},
+				resource.Attribute{
+					Name:        "disk_autoresize",
+					Description: `Configuration to increase storage size automatically.`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `The size of data disk, in GB.`,
+				},
+				resource.Attribute{
+					Name:        "disk_type",
+					Description: `The type of data disk.`,
+				},
+				resource.Attribute{
+					Name:        "pricing_plan",
+					Description: `Pricing plan for this instance.`,
+				},
+				resource.Attribute{
+					Name:        "replication_type",
+					Description: `This property is only applicable to First Generation instances. First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)`,
+				},
+				resource.Attribute{
+					Name:        "user_labels",
+					Description: `A set of key/value user label pairs to assign to the instance. The ` + "`" + `settings.database_flags` + "`" + ` sublist contains:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the flag.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Value of the flag. The ` + "`" + `settings.backup_configuration` + "`" + ` subblock contains:`,
+				},
+				resource.Attribute{
+					Name:        "binary_log_enabled",
+					Description: `True if binary logging is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `True if backup configuration is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `` + "`" + `HH:MM` + "`" + ` format time indicating when backup configuration starts. The ` + "`" + `settings.ip_configuration` + "`" + ` subblock contains:`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_enabled",
+					Description: `Whether this Cloud SQL instance should be assigned a public IPV4 address.`,
+				},
+				resource.Attribute{
+					Name:        "private_network",
+					Description: `The VPC network from which the Cloud SQL instance is accessible for private IP.`,
+				},
+				resource.Attribute{
+					Name:        "require_ssl",
+					Description: `True if mysqld default to ` + "`" + `REQUIRE X509` + "`" + ` for users connecting over IP. The ` + "`" + `settings.ip_configuration.authorized_networks[]` + "`" + ` sublist contains:`,
+				},
+				resource.Attribute{
+					Name:        "expiration_time",
+					Description: `The [RFC 3339](https://tools.ietf.org/html/rfc3339) formatted date time string indicating when this whitelist expires.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `A name for this whitelist entry.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `A CIDR notation IPv4 or IPv6 address that is allowed to access this instance. The ` + "`" + `settings.location_preference` + "`" + ` subblock contains:`,
+				},
+				resource.Attribute{
+					Name:        "follow_gae_application",
+					Description: `A GAE application whose zone to remain in.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `The preferred compute engine. The ` + "`" + `settings.maintenance_window` + "`" + ` subblock for instances declares a one-hour [maintenance window](https://cloud.google.com/sql/docs/instance-settings?hl=en#maintenance-window-2ndgen) when an Instance can automatically restart to apply updates. The maintenance window is specified in UTC time. It contains:`,
+				},
+				resource.Attribute{
+					Name:        "day",
+					Description: `Day of week (` + "`" + `1-7` + "`" + `), starting on Monday.`,
+				},
+				resource.Attribute{
+					Name:        "hour",
+					Description: `Hour of day (` + "`" + `0-23` + "`" + `), ignored if ` + "`" + `day` + "`" + ` not set.`,
+				},
+				resource.Attribute{
+					Name:        "update_track",
+					Description: `Receive updates earlier (` + "`" + `canary` + "`" + `) or later (` + "`" + `stable` + "`" + `). The ` + "`" + `replica_configuration` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "ca_certificate",
+					Description: `PEM representation of the trusted CA's x509 certificate.`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate",
+					Description: `PEM representation of the slave's x509 certificate.`,
+				},
+				resource.Attribute{
+					Name:        "client_key",
+					Description: `PEM representation of the slave's private key.`,
+				},
+				resource.Attribute{
+					Name:        "connect_retry_interval",
+					Description: `The number of seconds between connect retries.`,
+				},
+				resource.Attribute{
+					Name:        "dump_file_path",
+					Description: `Path to a SQL file in GCS from which slave instances are created.`,
+				},
+				resource.Attribute{
+					Name:        "failover_target",
+					Description: `Specifies if the replica is the failover target.`,
+				},
+				resource.Attribute{
+					Name:        "master_heartbeat_period",
+					Description: `Time in ms between replication heartbeats.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password for the replication connection.`,
+				},
+				resource.Attribute{
+					Name:        "sslCipher",
+					Description: `Permissible ciphers for use in SSL encryption.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `Username for replication connection.`,
+				},
+				resource.Attribute{
+					Name:        "verify_server_certificate",
+					Description: `True if the master's common name value is checked during the SSL handshake.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the created resource.`,
+				},
+				resource.Attribute{
+					Name:        "connection_name",
+					Description: `The connection name of the instance to be used in connection strings.`,
+				},
+				resource.Attribute{
+					Name:        "service_account_email_address",
+					Description: `The service account email address assigned to the instance.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address.0.ip_address",
+					Description: `The IPv4 address assigned.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address.0.time_to_retire",
+					Description: `The time this IP address will be retired, in RFC 3339 format.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address.0.type",
+					Description: `The type of this IP address.`,
+				},
+				resource.Attribute{
+					Name:        "first_ip_address",
+					Description: `The first IPv4 address of any type assigned.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_address",
+					Description: `The first public (` + "`" + `PRIMARY` + "`" + `) IPv4 address assigned.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_address",
+					Description: `The first private (` + "`" + `PRIVATE` + "`" + `) IPv4 address assigned.`,
+				},
+				resource.Attribute{
+					Name:        "settings.version",
+					Description: `Used to make sure changes to the ` + "`" + `settings` + "`" + ` block are atomic.`,
+				},
+				resource.Attribute{
+					Name:        "server_ca_cert.0.cert",
+					Description: `The CA Certificate used to connect to the SQL Instance via SSL.`,
+				},
+				resource.Attribute{
+					Name:        "server_ca_cert.0.common_name",
+					Description: `The CN valid for the CA Cert.`,
+				},
+				resource.Attribute{
+					Name:        "server_ca_cert.0.create_time",
+					Description: `Creation time of the CA Cert.`,
+				},
+				resource.Attribute{
+					Name:        "server_ca_cert.0.expiration_time",
+					Description: `Expiration time of the CA Cert.`,
+				},
+				resource.Attribute{
+					Name:        "server_ca_cert.0.sha1_fingerprint",
+					Description: `SHA Fingerprint of the CA Cert.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_storage_bucket_object",
 			Category:         "Data Sources",
 			ShortDescription: `Get information about a Google Cloud Storage bucket object.`,
@@ -4272,10 +4777,11 @@ var (
 		"google_service_account_key":                          64,
 		"google_storage_object_signed_url":                    65,
 		"google_sql_ca_certs":                                 66,
-		"google_storage_bucket_object":                        67,
-		"google_storage_project_service_account":              68,
-		"google_storage_transfer_project_service_account":     69,
-		"google_tpu_tensorflow_versions":                      70,
+		"google_sql_database_instance":                        67,
+		"google_storage_bucket_object":                        68,
+		"google_storage_project_service_account":              69,
+		"google_storage_transfer_project_service_account":     70,
+		"google_tpu_tensorflow_versions":                      71,
 	}
 )
 

@@ -34,8 +34,28 @@ var (
 					Description: `The type of the ACL Auth Method.`,
 				},
 				resource.Attribute{
-					Name:        "config",
+					Name:        "config_json",
 					Description: `The configuration options of the ACL Auth Method.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `The configuration options of the ACL Auth Method. This attribute is deprecated and will be removed in a future version. If the configuration is too complex to be represented as a map of strings, it will be blank. ` + "`" + `config_json` + "`" + ` should be used instead.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `An optional name to use instead of the name attribute when displaying information about this auth method.`,
+				},
+				resource.Attribute{
+					Name:        "max_token_ttl",
+					Description: `The maximum life of any token created by this auth method.`,
+				},
+				resource.Attribute{
+					Name:        "token_locality",
+					Description: `The kind of token that this auth method produces. This can be either 'local' or 'global'.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_rule",
+					Description: `(Enterprise Only) A set of rules that control which namespace tokens created via this auth method will be created within`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -48,8 +68,28 @@ var (
 					Description: `The type of the ACL Auth Method.`,
 				},
 				resource.Attribute{
-					Name:        "config",
+					Name:        "config_json",
 					Description: `The configuration options of the ACL Auth Method.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `The configuration options of the ACL Auth Method. This attribute is deprecated and will be removed in a future version. If the configuration is too complex to be represented as a map of strings, it will be blank. ` + "`" + `config_json` + "`" + ` should be used instead.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `An optional name to use instead of the name attribute when displaying information about this auth method.`,
+				},
+				resource.Attribute{
+					Name:        "max_token_ttl",
+					Description: `The maximum life of any token created by this auth method.`,
+				},
+				resource.Attribute{
+					Name:        "token_locality",
+					Description: `The kind of token that this auth method produces. This can be either 'local' or 'global'.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_rule",
+					Description: `(Enterprise Only) A set of rules that control which namespace tokens created via this auth method will be created within`,
 				},
 			},
 		},
@@ -833,7 +873,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "namespace",
-					Description: `(Optional, Enterprise Only) The namespace to lookup the service. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional, Enterprise Only) The namespace to lookup the service.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) A filter expression to refine the query, see https://www.consul.io/api-docs/features/filtering and https://www.consul.io/api-docs/catalog#filtering-1. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "datacenter",
@@ -909,7 +953,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "passing",
-					Description: `(Optional) Whether to return only nodes with all checks in the passing state. Defaults to ` + "`" + `true` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Whether to return only nodes with all checks in the passing state. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) A filter expression to refine the list of results, see https://www.consul.io/api-docs/features/filtering and https://www.consul.io/api-docs/health#filtering-2. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "datacenter",

@@ -4464,6 +4464,10 @@ var (
 					Description: `(Optional) (Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
 				},
 				resource.Attribute{
+					Name:        "is_auto_tune_enabled",
+					Description: `(Optional) (Updatable) Specifies whether the auto-tune performance is enabled for this boot volume.`,
+				},
+				resource.Attribute{
 					Name:        "kms_key_id",
 					Description: `(Optional) (Updatable) The OCID of the Key Management key to assign as the master encryption key for the boot volume.`,
 				},
@@ -4486,6 +4490,10 @@ var (
 				resource.Attribute{
 					Name:        "vpus_per_gb",
 					Description: `(Optional) (Updatable) The number of volume performance units (VPUs) that will be applied to this volume per GB, representing the Block Volume service's elastic performance options. See [Block Volume Elastic Performance](https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more information. Allowed values:`,
+				},
+				resource.Attribute{
+					Name:        "auto_tuned_vpus_per_gb",
+					Description: `The number of Volume Performance Units per GB that this boot volume is effectively tuned to when it's idle.`,
 				},
 				resource.Attribute{
 					Name:        "availability_domain",
@@ -4514,6 +4522,10 @@ var (
 				resource.Attribute{
 					Name:        "image_id",
 					Description: `The image OCID used to create the boot volume.`,
+				},
+				resource.Attribute{
+					Name:        "is_auto_tune_enabled",
+					Description: `Specifies whether the auto-tune performance is enabled for this boot volume.`,
 				},
 				resource.Attribute{
 					Name:        "is_hydrated",
@@ -4566,6 +4578,10 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "auto_tuned_vpus_per_gb",
+					Description: `The number of Volume Performance Units per GB that this boot volume is effectively tuned to when it's idle.`,
+				},
+				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `The availability domain of the boot volume. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
 				},
@@ -4592,6 +4608,10 @@ var (
 				resource.Attribute{
 					Name:        "image_id",
 					Description: `The image OCID used to create the boot volume.`,
+				},
+				resource.Attribute{
+					Name:        "is_auto_tune_enabled",
+					Description: `Specifies whether the auto-tune performance is enabled for this boot volume.`,
 				},
 				resource.Attribute{
 					Name:        "is_hydrated",
@@ -5237,6 +5257,180 @@ var (
 				resource.Attribute{
 					Name:        "time_updated",
 					Description: `The date and time the resource was updated, in the format defined by [RFC3339](https://tools.ietf.org/html/rfc3339). Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import ClusterNetworks can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_cluster_network.test_cluster_network "id" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "oci_core_compute_image_capability_schema",
+			Category:         "Core",
+			ShortDescription: `Provides the Compute Image Capability Schema resource in Oracle Cloud Infrastructure Core service`,
+			Description:      ``,
+			Keywords: []string{
+				"core",
+				"compute",
+				"image",
+				"capability",
+				"schema",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `(Required) (Updatable) The OCID of the compartment that contains the resource.`,
+				},
+				resource.Attribute{
+					Name:        "compute_global_image_capability_schema_version_name",
+					Description: `(Required) The name of the compute global image capability schema version`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `(Optional) (Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) (Updatable) A user-friendly name for the compute image capability schema`,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `(Optional) (Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `(Required) The ocid of the image`,
+				},
+				resource.Attribute{
+					Name:        "schema_data",
+					Description: `(Required) (Updatable) The map of each capability name to its ImageCapabilitySchemaDescriptor.`,
+				},
+				resource.Attribute{
+					Name:        "default_value",
+					Description: `(Optional) (Updatable) the default value`,
+				},
+				resource.Attribute{
+					Name:        "descriptor_type",
+					Description: `(Required) (Updatable) The image capability schema descriptor type for the capability`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Required) (Updatable)`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required when descriptor_type=enuminteger | enumstring) (Updatable) the list of values for the enum`,
+				},
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `The OCID of the compartment containing the compute global image capability schema`,
+				},
+				resource.Attribute{
+					Name:        "compute_global_image_capability_schema_id",
+					Description: `The ocid of the compute global image capability schema`,
+				},
+				resource.Attribute{
+					Name:        "compute_global_image_capability_schema_version_name",
+					Description: `The name of the compute global image capability schema version`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `A user-friendly name for the compute global image capability schema`,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The compute image capability schema [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `The OCID of the image associated with this compute image capability schema`,
+				},
+				resource.Attribute{
+					Name:        "schema_data",
+					Description: `The map of each capability name to its ImageCapabilityDescriptor.`,
+				},
+				resource.Attribute{
+					Name:        "default_value",
+					Description: `the default value`,
+				},
+				resource.Attribute{
+					Name:        "descriptor_type",
+					Description: `The image capability schema descriptor type for the capability`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `the list of values for the enum`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `The date and time the compute image capability schema was created, in the format defined by [RFC3339](https://tools.ietf.org/html/rfc3339). Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import ComputeImageCapabilitySchemas can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_compute_image_capability_schema.test_compute_image_capability_schema "id" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `The OCID of the compartment containing the compute global image capability schema`,
+				},
+				resource.Attribute{
+					Name:        "compute_global_image_capability_schema_id",
+					Description: `The ocid of the compute global image capability schema`,
+				},
+				resource.Attribute{
+					Name:        "compute_global_image_capability_schema_version_name",
+					Description: `The name of the compute global image capability schema version`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `A user-friendly name for the compute global image capability schema`,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The compute image capability schema [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `The OCID of the image associated with this compute image capability schema`,
+				},
+				resource.Attribute{
+					Name:        "schema_data",
+					Description: `The map of each capability name to its ImageCapabilityDescriptor.`,
+				},
+				resource.Attribute{
+					Name:        "default_value",
+					Description: `the default value`,
+				},
+				resource.Attribute{
+					Name:        "descriptor_type",
+					Description: `The image capability schema descriptor type for the capability`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `the list of values for the enum`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `The date and time the compute image capability schema was created, in the format defined by [RFC3339](https://tools.ietf.org/html/rfc3339). Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import ComputeImageCapabilitySchemas can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_compute_image_capability_schema.test_compute_image_capability_schema "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -6277,7 +6471,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `VM instances launch with paravirtualized devices using virtio drivers.`,
+					Description: `VM instances launch with paravirtualized devices using VirtIO drivers.`,
 				},
 				resource.Attribute{
 					Name:        "CUSTOM",
@@ -6337,7 +6531,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `VM instances launch with paravirtualized devices using virtio drivers.`,
+					Description: `VM instances launch with paravirtualized devices using VirtIO drivers.`,
 				},
 				resource.Attribute{
 					Name:        "CUSTOM",
@@ -6349,7 +6543,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "boot_volume_type",
-					Description: `Emulation type for volume.`,
+					Description: `Emulation type for the boot volume.`,
 				},
 				resource.Attribute{
 					Name:        "ISCSI",
@@ -6365,11 +6559,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "VFIO",
-					Description: `Direct attached Virtual Function storage. This is the default option for Local data volumes on Oracle provided images.`,
+					Description: `Direct attached Virtual Function storage. This is the default option for local data volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `Paravirtualized disk. This is the default for Boot Volumes and Remote Block Storage volumes on Oracle provided images.`,
+					Description: `Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "firmware",
@@ -6381,7 +6575,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "UEFI_64",
-					Description: `Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the default for Oracle provided images.`,
+					Description: `Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the default for Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "is_consistent_volume_naming_enabled",
@@ -6405,7 +6599,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `VM instances launch with paravirtualized devices using virtio drivers.`,
+					Description: `VM instances launch with paravirtualized devices using VirtIO drivers.`,
 				},
 				resource.Attribute{
 					Name:        "remote_data_volume_type",
@@ -6425,11 +6619,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "VFIO",
-					Description: `Direct attached Virtual Function storage. This is the default option for Local data volumes on Oracle provided images.`,
+					Description: `Direct attached Virtual Function storage. This is the default option for local data volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `Paravirtualized disk.This is the default for Boot Volumes and Remote Block Storage volumes on Oracle provided images.`,
+					Description: `Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "operating_system",
@@ -6507,7 +6701,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `VM instances launch with paravirtualized devices using virtio drivers.`,
+					Description: `VM instances launch with paravirtualized devices using VirtIO drivers.`,
 				},
 				resource.Attribute{
 					Name:        "CUSTOM",
@@ -6519,7 +6713,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "boot_volume_type",
-					Description: `Emulation type for volume.`,
+					Description: `Emulation type for the boot volume.`,
 				},
 				resource.Attribute{
 					Name:        "ISCSI",
@@ -6535,11 +6729,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "VFIO",
-					Description: `Direct attached Virtual Function storage. This is the default option for Local data volumes on Oracle provided images.`,
+					Description: `Direct attached Virtual Function storage. This is the default option for local data volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `Paravirtualized disk. This is the default for Boot Volumes and Remote Block Storage volumes on Oracle provided images.`,
+					Description: `Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "firmware",
@@ -6551,7 +6745,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "UEFI_64",
-					Description: `Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the default for Oracle provided images.`,
+					Description: `Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the default for Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "is_consistent_volume_naming_enabled",
@@ -6575,7 +6769,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `VM instances launch with paravirtualized devices using virtio drivers.`,
+					Description: `VM instances launch with paravirtualized devices using VirtIO drivers.`,
 				},
 				resource.Attribute{
 					Name:        "remote_data_volume_type",
@@ -6595,11 +6789,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "VFIO",
-					Description: `Direct attached Virtual Function storage. This is the default option for Local data volumes on Oracle provided images.`,
+					Description: `Direct attached Virtual Function storage. This is the default option for local data volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `Paravirtualized disk.This is the default for Boot Volumes and Remote Block Storage volumes on Oracle provided images.`,
+					Description: `Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "operating_system",
@@ -6716,7 +6910,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fault_domain",
-					Description: `(Optional) A fault domain is a grouping of hardware and infrastructure within an availability domain. Each availability domain contains three fault domains. Fault domains let you distribute your instances so that they are not on the same physical hardware within a single availability domain. A hardware failure or Compute hardware maintenance that affects one fault domain does not affect instances in other fault domains. If you do not specify the fault domain, the system selects one for you. To change the fault domain for an instance, terminate it and launch a new instance in the preferred fault domain. To get a list of fault domains, use the [ListFaultDomains](https://docs.cloud.oracle.com/iaas/api/#/en/identity/20160918/FaultDomain/ListFaultDomains) operation in the Identity and Access Management Service API. Example: ` + "`" + `FAULT-DOMAIN-1` + "`" + ``,
+					Description: `(Optional) (Updatable) A fault domain is a grouping of hardware and infrastructure within an availability domain. Each availability domain contains three fault domains. Fault domains let you distribute your instances so that they are not on the same physical hardware within a single availability domain. A hardware failure or Compute hardware maintenance that affects one fault domain does not affect instances in other fault domains. If you do not specify the fault domain, the system selects one for you. To get a list of fault domains, use the [ListFaultDomains](https://docs.cloud.oracle.com/iaas/api/#/en/identity/20160918/FaultDomain/ListFaultDomains) operation in the Identity and Access Management Service API. Example: ` + "`" + `FAULT-DOMAIN-1` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "freeform_tags",
@@ -6736,15 +6930,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_pv_encryption_in_transit_enabled",
-					Description: `(Optional) Whether to enable in-transit encryption for the data volume's paravirtualized attachment. The default value is false.`,
+					Description: `(Optional) Whether to enable in-transit encryption for the data volume's paravirtualized attachment. The default value is false. Do not use this field if planning to make update to this field in the future, instead use ` + "`" + `is_pv_encryption_in_transit_enabled` + "`" + ` under ` + "`" + `launch_options` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "launch_options",
-					Description: `(Optional) Options for tuning the compatibility and performance of VM shapes. The values that you specify override any default values.`,
+					Description: `(Optional) (Updatable) Options for tuning the compatibility and performance of VM shapes. The values that you specify override any default values.`,
 				},
 				resource.Attribute{
 					Name:        "boot_volume_type",
-					Description: `(Optional) Emulation type for volume.`,
+					Description: `(Optional) (Updatable) Emulation type for the boot volume.`,
 				},
 				resource.Attribute{
 					Name:        "ISCSI",
@@ -6760,11 +6954,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "VFIO",
-					Description: `Direct attached Virtual Function storage. This is the default option for Local data volumes on Oracle provided images.`,
+					Description: `Direct attached Virtual Function storage. This is the default option for local data volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `Paravirtualized disk. This is the default for Boot Volumes and Remote Block Storage volumes on Oracle provided images.`,
+					Description: `Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "firmware",
@@ -6776,7 +6970,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "UEFI_64",
-					Description: `Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the default for Oracle provided images.`,
+					Description: `Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the default for Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "is_consistent_volume_naming_enabled",
@@ -6784,11 +6978,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_pv_encryption_in_transit_enabled",
-					Description: `(Optional) Deprecated. Instead use ` + "`" + `isPvEncryptionInTransitEnabled` + "`" + ` in [LaunchInstanceDetails](https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/datatypes/LaunchInstanceDetails).`,
+					Description: `(Optional) (Updatable) Deprecated. Instead use ` + "`" + `isPvEncryptionInTransitEnabled` + "`" + ` in [LaunchInstanceDetails](https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/datatypes/LaunchInstanceDetails).`,
 				},
 				resource.Attribute{
 					Name:        "network_type",
-					Description: `(Optional) Emulation type for the physical network interface card (NIC).`,
+					Description: `(Optional) (Updatable) Emulation type for the physical network interface card (NIC).`,
 				},
 				resource.Attribute{
 					Name:        "E1000",
@@ -6800,7 +6994,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `VM instances launch with paravirtualized devices using virtio drivers.`,
+					Description: `VM instances launch with paravirtualized devices using VirtIO drivers.`,
 				},
 				resource.Attribute{
 					Name:        "remote_data_volume_type",
@@ -6820,11 +7014,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "VFIO",
-					Description: `Direct attached Virtual Function storage. This is the default option for Local data volumes on Oracle provided images.`,
+					Description: `Direct attached Virtual Function storage. This is the default option for local data volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `Paravirtualized disk.This is the default for Boot Volumes and Remote Block Storage volumes on Oracle provided images.`,
+					Description: `Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "metadata",
@@ -6916,7 +7110,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fault_domain",
-					Description: `The name of the fault domain the instance is running in. A fault domain is a grouping of hardware and infrastructure within an availability domain. Each availability domain contains three fault domains. Fault domains let you distribute your instances so that they are not on the same physical hardware within a single availability domain. A hardware failure or Compute hardware maintenance that affects one fault domain does not affect instances in other fault domains. If you do not specify the fault domain, the system selects one for you. To change the fault domain for an instance, terminate it and launch a new instance in the preferred fault domain. Example: ` + "`" + `FAULT-DOMAIN-1` + "`" + ``,
+					Description: `The name of the fault domain the instance is running in. A fault domain is a grouping of hardware and infrastructure within an availability domain. Each availability domain contains three fault domains. Fault domains let you distribute your instances so that they are not on the same physical hardware within a single availability domain. A hardware failure or Compute hardware maintenance that affects one fault domain does not affect instances in other fault domains. If you do not specify the fault domain, the system selects one for you. Example: ` + "`" + `FAULT-DOMAIN-1` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "freeform_tags",
@@ -6948,7 +7142,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `VM instances launch with paravirtualized devices using virtio drivers.`,
+					Description: `VM instances launch with paravirtualized devices using VirtIO drivers.`,
 				},
 				resource.Attribute{
 					Name:        "CUSTOM",
@@ -6960,7 +7154,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "boot_volume_type",
-					Description: `Emulation type for volume.`,
+					Description: `Emulation type for the boot volume.`,
 				},
 				resource.Attribute{
 					Name:        "ISCSI",
@@ -6976,11 +7170,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "VFIO",
-					Description: `Direct attached Virtual Function storage. This is the default option for Local data volumes on Oracle provided images.`,
+					Description: `Direct attached Virtual Function storage. This is the default option for local data volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `Paravirtualized disk. This is the default for Boot Volumes and Remote Block Storage volumes on Oracle provided images.`,
+					Description: `Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "firmware",
@@ -6992,7 +7186,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "UEFI_64",
-					Description: `Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the default for Oracle provided images.`,
+					Description: `Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the default for Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "is_consistent_volume_naming_enabled",
@@ -7000,7 +7194,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_pv_encryption_in_transit_enabled",
-					Description: `Deprecated. Instead use ` + "`" + `isPvEncryptionInTransitEnabled` + "`" + ` in [LaunchInstanceDetails](https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/datatypes/LaunchInstanceDetails).`,
+					Description: `Whether to enable in-transit encryption for the data volume's paravirtualized attachment.`,
 				},
 				resource.Attribute{
 					Name:        "network_type",
@@ -7016,7 +7210,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `VM instances launch with paravirtualized devices using virtio drivers.`,
+					Description: `VM instances launch with paravirtualized devices using VirtIO drivers.`,
 				},
 				resource.Attribute{
 					Name:        "remote_data_volume_type",
@@ -7036,11 +7230,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "VFIO",
-					Description: `Direct attached Virtual Function storage. This is the default option for Local data volumes on Oracle provided images.`,
+					Description: `Direct attached Virtual Function storage. This is the default option for local data volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `Paravirtualized disk.This is the default for Boot Volumes and Remote Block Storage volumes on Oracle provided images.`,
+					Description: `Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "metadata",
@@ -7190,7 +7384,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fault_domain",
-					Description: `The name of the fault domain the instance is running in. A fault domain is a grouping of hardware and infrastructure within an availability domain. Each availability domain contains three fault domains. Fault domains let you distribute your instances so that they are not on the same physical hardware within a single availability domain. A hardware failure or Compute hardware maintenance that affects one fault domain does not affect instances in other fault domains. If you do not specify the fault domain, the system selects one for you. To change the fault domain for an instance, terminate it and launch a new instance in the preferred fault domain. Example: ` + "`" + `FAULT-DOMAIN-1` + "`" + ``,
+					Description: `The name of the fault domain the instance is running in. A fault domain is a grouping of hardware and infrastructure within an availability domain. Each availability domain contains three fault domains. Fault domains let you distribute your instances so that they are not on the same physical hardware within a single availability domain. A hardware failure or Compute hardware maintenance that affects one fault domain does not affect instances in other fault domains. If you do not specify the fault domain, the system selects one for you. Example: ` + "`" + `FAULT-DOMAIN-1` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "freeform_tags",
@@ -7222,7 +7416,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `VM instances launch with paravirtualized devices using virtio drivers.`,
+					Description: `VM instances launch with paravirtualized devices using VirtIO drivers.`,
 				},
 				resource.Attribute{
 					Name:        "CUSTOM",
@@ -7234,7 +7428,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "boot_volume_type",
-					Description: `Emulation type for volume.`,
+					Description: `Emulation type for the boot volume.`,
 				},
 				resource.Attribute{
 					Name:        "ISCSI",
@@ -7250,11 +7444,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "VFIO",
-					Description: `Direct attached Virtual Function storage. This is the default option for Local data volumes on Oracle provided images.`,
+					Description: `Direct attached Virtual Function storage. This is the default option for local data volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `Paravirtualized disk. This is the default for Boot Volumes and Remote Block Storage volumes on Oracle provided images.`,
+					Description: `Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "firmware",
@@ -7266,7 +7460,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "UEFI_64",
-					Description: `Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the default for Oracle provided images.`,
+					Description: `Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the default for Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "is_consistent_volume_naming_enabled",
@@ -7274,7 +7468,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_pv_encryption_in_transit_enabled",
-					Description: `Deprecated. Instead use ` + "`" + `isPvEncryptionInTransitEnabled` + "`" + ` in [LaunchInstanceDetails](https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/datatypes/LaunchInstanceDetails).`,
+					Description: `Whether to enable in-transit encryption for the data volume's paravirtualized attachment.`,
 				},
 				resource.Attribute{
 					Name:        "network_type",
@@ -7290,7 +7484,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `VM instances launch with paravirtualized devices using virtio drivers.`,
+					Description: `VM instances launch with paravirtualized devices using VirtIO drivers.`,
 				},
 				resource.Attribute{
 					Name:        "remote_data_volume_type",
@@ -7310,11 +7504,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "VFIO",
-					Description: `Direct attached Virtual Function storage. This is the default option for Local data volumes on Oracle provided images.`,
+					Description: `Direct attached Virtual Function storage. This is the default option for local data volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `Paravirtualized disk.This is the default for Boot Volumes and Remote Block Storage volumes on Oracle provided images.`,
+					Description: `Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "metadata",
@@ -7632,7 +7826,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fault_domain",
-					Description: `(Optional) A fault domain is a grouping of hardware and infrastructure within an availability domain. Each availability domain contains three fault domains. Fault domains let you distribute your instances so that they are not on the same physical hardware within a single availability domain. A hardware failure or Compute hardware maintenance that affects one fault domain does not affect instances in other fault domains. If you do not specify the fault domain, the system selects one for you. To change the fault domain for an instance, terminate it and launch a new instance in the preferred fault domain. To get a list of fault domains, use the [ListFaultDomains](https://docs.cloud.oracle.com/iaas/api/#/en/identity/20160918/FaultDomain/ListFaultDomains) operation in the Identity and Access Management Service API. Example: ` + "`" + `FAULT-DOMAIN-1` + "`" + ``,
+					Description: `(Optional) A fault domain is a grouping of hardware and infrastructure within an availability domain. Each availability domain contains three fault domains. Fault domains let you distribute your instances so that they are not on the same physical hardware within a single availability domain. A hardware failure or Compute hardware maintenance that affects one fault domain does not affect instances in other fault domains. If you do not specify the fault domain, the system selects one for you. To get a list of fault domains, use the [ListFaultDomains](https://docs.cloud.oracle.com/iaas/api/#/en/identity/20160918/FaultDomain/ListFaultDomains) operation in the Identity and Access Management Service API. Example: ` + "`" + `FAULT-DOMAIN-1` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "freeform_tags",
@@ -7660,7 +7854,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `VM instances launch with paravirtualized devices using virtio drivers.`,
+					Description: `VM instances launch with paravirtualized devices using VirtIO drivers.`,
 				},
 				resource.Attribute{
 					Name:        "CUSTOM",
@@ -7672,7 +7866,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "boot_volume_type",
-					Description: `(Optional) Emulation type for volume.`,
+					Description: `(Optional) Emulation type for the boot volume.`,
 				},
 				resource.Attribute{
 					Name:        "ISCSI",
@@ -7688,11 +7882,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "VFIO",
-					Description: `Direct attached Virtual Function storage. This is the default option for Local data volumes on Oracle provided images.`,
+					Description: `Direct attached Virtual Function storage. This is the default option for local data volumes on Oracle provided images.`,
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `Paravirtualized disk. This is the default for Boot Volumes and Remote Block Storage volumes on Oracle provided images.`,
+					Description: `Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "firmware",
@@ -7704,7 +7898,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "UEFI_64",
-					Description: `Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the default for Oracle provided images.`,
+					Description: `Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the default for Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "is_consistent_volume_naming_enabled",
@@ -7728,7 +7922,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `VM instances launch with paravirtualized devices using virtio drivers.`,
+					Description: `VM instances launch with paravirtualized devices using VirtIO drivers.`,
 				},
 				resource.Attribute{
 					Name:        "remote_data_volume_type",
@@ -7748,11 +7942,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "VFIO",
-					Description: `Direct attached Virtual Function storage. This is the default option for Local data volumes on Oracle provided images.`,
+					Description: `Direct attached Virtual Function storage. This is the default option for local data volumes on Oracle provided images.`,
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `Paravirtualized disk. This is the default for Boot Volumes and Remote Block Storage volumes on Oracle provided images.`,
+					Description: `Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "metadata",
@@ -8068,7 +8262,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fault_domain",
-					Description: `A fault domain is a grouping of hardware and infrastructure within an availability domain. Each availability domain contains three fault domains. Fault domains let you distribute your instances so that they are not on the same physical hardware within a single availability domain. A hardware failure or Compute hardware maintenance that affects one fault domain does not affect instances in other fault domains. If you do not specify the fault domain, the system selects one for you. To change the fault domain for an instance, terminate it and launch a new instance in the preferred fault domain. To get a list of fault domains, use the [ListFaultDomains](https://docs.cloud.oracle.com/iaas/api/#/en/identity/20160918/FaultDomain/ListFaultDomains) operation in the Identity and Access Management Service API. Example: ` + "`" + `FAULT-DOMAIN-1` + "`" + ``,
+					Description: `A fault domain is a grouping of hardware and infrastructure within an availability domain. Each availability domain contains three fault domains. Fault domains let you distribute your instances so that they are not on the same physical hardware within a single availability domain. A hardware failure or Compute hardware maintenance that affects one fault domain does not affect instances in other fault domains. If you do not specify the fault domain, the system selects one for you. To get a list of fault domains, use the [ListFaultDomains](https://docs.cloud.oracle.com/iaas/api/#/en/identity/20160918/FaultDomain/ListFaultDomains) operation in the Identity and Access Management Service API. Example: ` + "`" + `FAULT-DOMAIN-1` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "freeform_tags",
@@ -8096,7 +8290,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `VM instances launch with paravirtualized devices using virtio drivers.`,
+					Description: `VM instances launch with paravirtualized devices using VirtIO drivers.`,
 				},
 				resource.Attribute{
 					Name:        "CUSTOM",
@@ -8108,7 +8302,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "boot_volume_type",
-					Description: `Emulation type for volume.`,
+					Description: `Emulation type for the boot volume.`,
 				},
 				resource.Attribute{
 					Name:        "ISCSI",
@@ -8124,11 +8318,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "VFIO",
-					Description: `Direct attached Virtual Function storage. This is the default option for Local data volumes on Oracle provided images.`,
+					Description: `Direct attached Virtual Function storage. This is the default option for local data volumes on Oracle provided images.`,
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `Paravirtualized disk. This is the default for Boot Volumes and Remote Block Storage volumes on Oracle provided images.`,
+					Description: `Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "firmware",
@@ -8140,7 +8334,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "UEFI_64",
-					Description: `Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the default for Oracle provided images.`,
+					Description: `Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the default for Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "is_consistent_volume_naming_enabled",
@@ -8164,7 +8358,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `VM instances launch with paravirtualized devices using virtio drivers.`,
+					Description: `VM instances launch with paravirtualized devices using VirtIO drivers.`,
 				},
 				resource.Attribute{
 					Name:        "remote_data_volume_type",
@@ -8184,11 +8378,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "VFIO",
-					Description: `Direct attached Virtual Function storage. This is the default option for Local data volumes on Oracle provided images.`,
+					Description: `Direct attached Virtual Function storage. This is the default option for local data volumes on Oracle provided images.`,
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `Paravirtualized disk. This is the default for Boot Volumes and Remote Block Storage volumes on Oracle provided images.`,
+					Description: `Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "metadata",
@@ -8502,7 +8696,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fault_domain",
-					Description: `A fault domain is a grouping of hardware and infrastructure within an availability domain. Each availability domain contains three fault domains. Fault domains let you distribute your instances so that they are not on the same physical hardware within a single availability domain. A hardware failure or Compute hardware maintenance that affects one fault domain does not affect instances in other fault domains. If you do not specify the fault domain, the system selects one for you. To change the fault domain for an instance, terminate it and launch a new instance in the preferred fault domain. To get a list of fault domains, use the [ListFaultDomains](https://docs.cloud.oracle.com/iaas/api/#/en/identity/20160918/FaultDomain/ListFaultDomains) operation in the Identity and Access Management Service API. Example: ` + "`" + `FAULT-DOMAIN-1` + "`" + ``,
+					Description: `A fault domain is a grouping of hardware and infrastructure within an availability domain. Each availability domain contains three fault domains. Fault domains let you distribute your instances so that they are not on the same physical hardware within a single availability domain. A hardware failure or Compute hardware maintenance that affects one fault domain does not affect instances in other fault domains. If you do not specify the fault domain, the system selects one for you. To get a list of fault domains, use the [ListFaultDomains](https://docs.cloud.oracle.com/iaas/api/#/en/identity/20160918/FaultDomain/ListFaultDomains) operation in the Identity and Access Management Service API. Example: ` + "`" + `FAULT-DOMAIN-1` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "freeform_tags",
@@ -8530,7 +8724,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `VM instances launch with paravirtualized devices using virtio drivers.`,
+					Description: `VM instances launch with paravirtualized devices using VirtIO drivers.`,
 				},
 				resource.Attribute{
 					Name:        "CUSTOM",
@@ -8542,7 +8736,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "boot_volume_type",
-					Description: `Emulation type for volume.`,
+					Description: `Emulation type for the boot volume.`,
 				},
 				resource.Attribute{
 					Name:        "ISCSI",
@@ -8558,11 +8752,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "VFIO",
-					Description: `Direct attached Virtual Function storage. This is the default option for Local data volumes on Oracle provided images.`,
+					Description: `Direct attached Virtual Function storage. This is the default option for local data volumes on Oracle provided images.`,
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `Paravirtualized disk. This is the default for Boot Volumes and Remote Block Storage volumes on Oracle provided images.`,
+					Description: `Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "firmware",
@@ -8574,7 +8768,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "UEFI_64",
-					Description: `Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the default for Oracle provided images.`,
+					Description: `Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the default for Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "is_consistent_volume_naming_enabled",
@@ -8598,7 +8792,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `VM instances launch with paravirtualized devices using virtio drivers.`,
+					Description: `VM instances launch with paravirtualized devices using VirtIO drivers.`,
 				},
 				resource.Attribute{
 					Name:        "remote_data_volume_type",
@@ -8618,11 +8812,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "VFIO",
-					Description: `Direct attached Virtual Function storage. This is the default option for Local data volumes on Oracle provided images.`,
+					Description: `Direct attached Virtual Function storage. This is the default option for local data volumes on Oracle provided images.`,
 				},
 				resource.Attribute{
 					Name:        "PARAVIRTUALIZED",
-					Description: `Paravirtualized disk. This is the default for Boot Volumes and Remote Block Storage volumes on Oracle provided images.`,
+					Description: `Paravirtualized disk. This is the default for boot volumes and remote block storage volumes on Oracle-provided images.`,
 				},
 				resource.Attribute{
 					Name:        "metadata",
@@ -12859,6 +13053,10 @@ var (
 					Description: `(Optional) (Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
 				},
 				resource.Attribute{
+					Name:        "is_auto_tune_enabled",
+					Description: `(Optional) (Updatable) Specifies whether the auto-tune performance is enabled for this volume.`,
+				},
+				resource.Attribute{
 					Name:        "kms_key_id",
 					Description: `(Optional) (Updatable) The OCID of the Key Management key to assign as the master encryption key for the volume.`,
 				},
@@ -12891,6 +13089,10 @@ var (
 					Description: `(Optional) (Updatable) The number of volume performance units (VPUs) that will be applied to this volume per GB, representing the Block Volume service's elastic performance options. See [Block Volume Elastic Performance](https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more information. Allowed values:`,
 				},
 				resource.Attribute{
+					Name:        "auto_tuned_vpus_per_gb",
+					Description: `The number of Volume Performance Units per GB that this volume is effectively tuned to when it's idle.`,
+				},
+				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `The availability domain of the volume. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
 				},
@@ -12913,6 +13115,10 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The OCID of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "is_auto_tune_enabled",
+					Description: `Specifies whether the auto-tune performance is enabled for this volume.`,
 				},
 				resource.Attribute{
 					Name:        "is_hydrated",
@@ -12965,6 +13171,10 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "auto_tuned_vpus_per_gb",
+					Description: `The number of Volume Performance Units per GB that this volume is effectively tuned to when it's idle.`,
+				},
+				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `The availability domain of the volume. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
 				},
@@ -12987,6 +13197,10 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The OCID of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "is_auto_tune_enabled",
+					Description: `Specifies whether the auto-tune performance is enabled for this volume.`,
 				},
 				resource.Attribute{
 					Name:        "is_hydrated",
@@ -18519,6 +18733,10 @@ var (
 				resource.Attribute{
 					Name:        "is_enabled",
 					Description: `(Optional) (Updatable) If set to false, skips the Maintenance Run.`,
+				},
+				resource.Attribute{
+					Name:        "is_patch_now_enabled",
+					Description: `(Optional) (Updatable) If set to ` + "`" + `TRUE` + "`" + `, starts patching immediately.`,
 				},
 				resource.Attribute{
 					Name:        "maintenance_run_id",
@@ -31586,6 +31804,10 @@ var (
 					Description: `(Optional) Flag indicating whether the instance access is private or public`,
 				},
 				resource.Attribute{
+					Name:        "instance_license_type",
+					Description: `(Optional) (Updatable) Flag indicating whether the instance license is new cloud or bring your own license`,
+				},
+				resource.Attribute{
 					Name:        "instance_usage_type",
 					Description: `(Optional) Instance type based on its usage`,
 				},
@@ -31648,6 +31870,10 @@ var (
 				resource.Attribute{
 					Name:        "instance_access_type",
 					Description: `Flag indicating whether the instance access is private or public`,
+				},
+				resource.Attribute{
+					Name:        "instance_license_type",
+					Description: `Flag indicating whether the instance license is new cloud or bring your own license`,
 				},
 				resource.Attribute{
 					Name:        "instance_usage_type",
@@ -31734,6 +31960,10 @@ var (
 				resource.Attribute{
 					Name:        "instance_access_type",
 					Description: `Flag indicating whether the instance access is private or public`,
+				},
+				resource.Attribute{
+					Name:        "instance_license_type",
+					Description: `Flag indicating whether the instance license is new cloud or bring your own license`,
 				},
 				resource.Attribute{
 					Name:        "instance_usage_type",
@@ -36789,165 +37019,166 @@ var (
 		"oci_core_boot_volume":                                        15,
 		"oci_core_boot_volume_backup":                                 16,
 		"oci_core_cluster_network":                                    17,
-		"oci_core_console_history":                                    18,
-		"oci_core_cpe":                                                19,
-		"oci_core_cross_connect":                                      20,
-		"oci_core_cross_connect_group":                                21,
-		"oci_core_dedicated_vm_host":                                  22,
-		"oci_core_dhcp_options":                                       23,
-		"oci_core_drg":                                                24,
-		"oci_core_drg_attachment":                                     25,
-		"oci_core_image":                                              26,
-		"oci_core_instance":                                           27,
-		"oci_core_instance_configuration":                             28,
-		"oci_core_instance_console_connection":                        29,
-		"oci_core_instance_pool":                                      30,
-		"oci_core_internet_gateway":                                   31,
-		"oci_core_ipsec":                                              32,
-		"oci_core_ipsec_connection_tunnel_management":                 33,
-		"oci_core_local_peering_gateway":                              34,
-		"oci_core_nat_gateway":                                        35,
-		"oci_core_network_security_group":                             36,
-		"oci_core_network_security_group_security_rule":               37,
-		"oci_core_private_ip":                                         38,
-		"oci_core_public_ip":                                          39,
-		"oci_core_remote_peering_connection":                          40,
-		"oci_core_route_table":                                        41,
-		"oci_core_route_table_attachment":                             42,
-		"oci_core_security_list":                                      43,
-		"oci_core_service_gateway":                                    44,
-		"oci_core_subnet":                                             45,
-		"oci_core_vcn":                                                46,
-		"oci_core_virtual_circuit":                                    47,
-		"oci_core_vlan":                                               48,
-		"oci_core_vnic_attachment":                                    49,
-		"oci_core_volume":                                             50,
-		"oci_core_volume_attachment":                                  51,
-		"oci_core_volume_backup":                                      52,
-		"oci_core_volume_backup_policy":                               53,
-		"oci_core_volume_backup_policy_assignment":                    54,
-		"oci_core_volume_group":                                       55,
-		"oci_core_volume_group_backup":                                56,
-		"oci_data_safe_data_safe_configuration":                       57,
-		"oci_data_safe_data_safe_private_endpoint":                    58,
-		"oci_database_autonomous_container_database":                  59,
-		"oci_database_autonomous_data_warehouse":                      60,
-		"oci_database_autonomous_data_warehouse_backup":               61,
-		"oci_database_autonomous_database":                            62,
-		"oci_database_autonomous_database_backup":                     63,
-		"oci_database_autonomous_database_instance_wallet_management": 64,
-		"oci_database_autonomous_database_regional_wallet_management": 65,
-		"oci_database_autonomous_exadata_infrastructure":              66,
-		"oci_database_autonomous_vm_cluster":                          67,
-		"oci_database_backup":                                         68,
-		"oci_database_backup_destination":                             69,
-		"oci_database_data_guard_association":                         70,
-		"oci_database_database":                                       71,
-		"oci_database_db_home":                                        72,
-		"oci_database_db_node_console_connection":                     73,
-		"oci_database_db_system":                                      74,
-		"oci_database_exadata_infrastructure":                         75,
-		"oci_database_exadata_iorm_config":                            76,
-		"oci_database_maintenance_run":                                77,
-		"oci_database_vm_cluster":                                     78,
-		"oci_database_vm_cluster_network":                             79,
-		"oci_datacatalog_catalog":                                     80,
-		"oci_datacatalog_catalog_private_endpoint":                    81,
-		"oci_datacatalog_connection":                                  82,
-		"oci_datacatalog_data_asset":                                  83,
-		"oci_dataflow_application":                                    84,
-		"oci_dataflow_invoke_run":                                     85,
-		"oci_dataintegration_workspace":                               86,
-		"oci_datascience_model":                                       87,
-		"oci_datascience_model_provenance":                            88,
-		"oci_datascience_notebook_session":                            89,
-		"oci_datascience_project":                                     90,
-		"oci_dns_record":                                              91,
-		"oci_dns_rrset":                                               92,
-		"oci_dns_steering_policy":                                     93,
-		"oci_dns_steering_policy_attachment":                          94,
-		"oci_dns_tsig_key":                                            95,
-		"oci_dns_zone":                                                96,
-		"oci_email_sender":                                            97,
-		"oci_email_suppression":                                       98,
-		"oci_events_rule":                                             99,
-		"oci_file_storage_export":                                     100,
-		"oci_file_storage_export_set":                                 101,
-		"oci_file_storage_file_system":                                102,
-		"oci_file_storage_mount_target":                               103,
-		"oci_file_storage_snapshot":                                   104,
-		"oci_functions_application":                                   105,
-		"oci_functions_function":                                      106,
-		"oci_functions_invoke_function":                               107,
-		"oci_health_checks_http_monitor":                              108,
-		"oci_health_checks_http_probe":                                109,
-		"oci_health_checks_ping_monitor":                              110,
-		"oci_health_checks_ping_probe":                                111,
-		"oci_identity_api_key":                                        112,
-		"oci_identity_auth_token":                                     113,
-		"oci_identity_authentication_policy":                          114,
-		"oci_identity_compartment":                                    115,
-		"oci_identity_customer_secret_key":                            116,
-		"oci_identity_dynamic_group":                                  117,
-		"oci_identity_group":                                          118,
-		"oci_identity_identity_provider":                              119,
-		"oci_identity_idp_group_mapping":                              120,
-		"oci_identity_network_source":                                 121,
-		"oci_identity_policy":                                         122,
-		"oci_identity_smtp_credential":                                123,
-		"oci_identity_swift_password":                                 124,
-		"oci_identity_tag":                                            125,
-		"oci_identity_tag_default":                                    126,
-		"oci_identity_tag_namespace":                                  127,
-		"oci_identity_ui_password":                                    128,
-		"oci_identity_user":                                           129,
-		"oci_identity_user_capabilities_management":                   130,
-		"oci_identity_user_group_membership":                          131,
-		"oci_integration_integration_instance":                        132,
-		"oci_kms_encrypted_data":                                      133,
-		"oci_kms_generated_key":                                       134,
-		"oci_kms_key":                                                 135,
-		"oci_kms_key_version":                                         136,
-		"oci_kms_vault":                                               137,
-		"oci_limits_quota":                                            138,
-		"oci_load_balancer_backend":                                   139,
-		"oci_load_balancer_backend_set":                               140,
-		"oci_load_balancer_certificate":                               141,
-		"oci_load_balancer_hostname":                                  142,
-		"oci_load_balancer_listener":                                  143,
-		"oci_load_balancer_load_balancer":                             144,
-		"oci_load_balancer_path_route_set":                            145,
-		"oci_load_balancer_rule_set":                                  146,
-		"oci_marketplace_accepted_agreement":                          147,
-		"oci_metering_computation_usage":                              148,
-		"oci_monitoring_alarm":                                        149,
-		"oci_mysql_mysql_backup":                                      150,
-		"oci_mysql_mysql_db_system":                                   151,
-		"oci_nosql_index":                                             152,
-		"oci_nosql_table":                                             153,
-		"oci_objectstorage_bucket":                                    154,
-		"oci_objectstorage_object":                                    155,
-		"oci_objectstorage_object_lifecycle_policy":                   156,
-		"oci_objectstorage_preauthrequest":                            157,
-		"oci_objectstorage_replication_policy":                        158,
-		"oci_oce_oce_instance":                                        159,
-		"oci_ocvp_esxi_host":                                          160,
-		"oci_ocvp_sddc":                                               161,
-		"oci_oda_oda_instance":                                        162,
-		"oci_ons_notification_topic":                                  163,
-		"oci_ons_subscription":                                        164,
-		"oci_osmanagement_managed_instance_group":                     165,
-		"oci_osmanagement_managed_instance_management":                166,
-		"oci_osmanagement_software_source":                            167,
-		"oci_streaming_connect_harness":                               168,
-		"oci_streaming_stream":                                        169,
-		"oci_streaming_stream_pool":                                   170,
-		"oci_waas_address_list":                                       171,
-		"oci_waas_certificate":                                        172,
-		"oci_waas_custom_protection_rule":                             173,
-		"oci_waas_http_redirect":                                      174,
-		"oci_waas_purge_cache":                                        175,
-		"oci_waas_waas_policy":                                        176,
+		"oci_core_compute_image_capability_schema":                    18,
+		"oci_core_console_history":                                    19,
+		"oci_core_cpe":                                                20,
+		"oci_core_cross_connect":                                      21,
+		"oci_core_cross_connect_group":                                22,
+		"oci_core_dedicated_vm_host":                                  23,
+		"oci_core_dhcp_options":                                       24,
+		"oci_core_drg":                                                25,
+		"oci_core_drg_attachment":                                     26,
+		"oci_core_image":                                              27,
+		"oci_core_instance":                                           28,
+		"oci_core_instance_configuration":                             29,
+		"oci_core_instance_console_connection":                        30,
+		"oci_core_instance_pool":                                      31,
+		"oci_core_internet_gateway":                                   32,
+		"oci_core_ipsec":                                              33,
+		"oci_core_ipsec_connection_tunnel_management":                 34,
+		"oci_core_local_peering_gateway":                              35,
+		"oci_core_nat_gateway":                                        36,
+		"oci_core_network_security_group":                             37,
+		"oci_core_network_security_group_security_rule":               38,
+		"oci_core_private_ip":                                         39,
+		"oci_core_public_ip":                                          40,
+		"oci_core_remote_peering_connection":                          41,
+		"oci_core_route_table":                                        42,
+		"oci_core_route_table_attachment":                             43,
+		"oci_core_security_list":                                      44,
+		"oci_core_service_gateway":                                    45,
+		"oci_core_subnet":                                             46,
+		"oci_core_vcn":                                                47,
+		"oci_core_virtual_circuit":                                    48,
+		"oci_core_vlan":                                               49,
+		"oci_core_vnic_attachment":                                    50,
+		"oci_core_volume":                                             51,
+		"oci_core_volume_attachment":                                  52,
+		"oci_core_volume_backup":                                      53,
+		"oci_core_volume_backup_policy":                               54,
+		"oci_core_volume_backup_policy_assignment":                    55,
+		"oci_core_volume_group":                                       56,
+		"oci_core_volume_group_backup":                                57,
+		"oci_data_safe_data_safe_configuration":                       58,
+		"oci_data_safe_data_safe_private_endpoint":                    59,
+		"oci_database_autonomous_container_database":                  60,
+		"oci_database_autonomous_data_warehouse":                      61,
+		"oci_database_autonomous_data_warehouse_backup":               62,
+		"oci_database_autonomous_database":                            63,
+		"oci_database_autonomous_database_backup":                     64,
+		"oci_database_autonomous_database_instance_wallet_management": 65,
+		"oci_database_autonomous_database_regional_wallet_management": 66,
+		"oci_database_autonomous_exadata_infrastructure":              67,
+		"oci_database_autonomous_vm_cluster":                          68,
+		"oci_database_backup":                                         69,
+		"oci_database_backup_destination":                             70,
+		"oci_database_data_guard_association":                         71,
+		"oci_database_database":                                       72,
+		"oci_database_db_home":                                        73,
+		"oci_database_db_node_console_connection":                     74,
+		"oci_database_db_system":                                      75,
+		"oci_database_exadata_infrastructure":                         76,
+		"oci_database_exadata_iorm_config":                            77,
+		"oci_database_maintenance_run":                                78,
+		"oci_database_vm_cluster":                                     79,
+		"oci_database_vm_cluster_network":                             80,
+		"oci_datacatalog_catalog":                                     81,
+		"oci_datacatalog_catalog_private_endpoint":                    82,
+		"oci_datacatalog_connection":                                  83,
+		"oci_datacatalog_data_asset":                                  84,
+		"oci_dataflow_application":                                    85,
+		"oci_dataflow_invoke_run":                                     86,
+		"oci_dataintegration_workspace":                               87,
+		"oci_datascience_model":                                       88,
+		"oci_datascience_model_provenance":                            89,
+		"oci_datascience_notebook_session":                            90,
+		"oci_datascience_project":                                     91,
+		"oci_dns_record":                                              92,
+		"oci_dns_rrset":                                               93,
+		"oci_dns_steering_policy":                                     94,
+		"oci_dns_steering_policy_attachment":                          95,
+		"oci_dns_tsig_key":                                            96,
+		"oci_dns_zone":                                                97,
+		"oci_email_sender":                                            98,
+		"oci_email_suppression":                                       99,
+		"oci_events_rule":                                             100,
+		"oci_file_storage_export":                                     101,
+		"oci_file_storage_export_set":                                 102,
+		"oci_file_storage_file_system":                                103,
+		"oci_file_storage_mount_target":                               104,
+		"oci_file_storage_snapshot":                                   105,
+		"oci_functions_application":                                   106,
+		"oci_functions_function":                                      107,
+		"oci_functions_invoke_function":                               108,
+		"oci_health_checks_http_monitor":                              109,
+		"oci_health_checks_http_probe":                                110,
+		"oci_health_checks_ping_monitor":                              111,
+		"oci_health_checks_ping_probe":                                112,
+		"oci_identity_api_key":                                        113,
+		"oci_identity_auth_token":                                     114,
+		"oci_identity_authentication_policy":                          115,
+		"oci_identity_compartment":                                    116,
+		"oci_identity_customer_secret_key":                            117,
+		"oci_identity_dynamic_group":                                  118,
+		"oci_identity_group":                                          119,
+		"oci_identity_identity_provider":                              120,
+		"oci_identity_idp_group_mapping":                              121,
+		"oci_identity_network_source":                                 122,
+		"oci_identity_policy":                                         123,
+		"oci_identity_smtp_credential":                                124,
+		"oci_identity_swift_password":                                 125,
+		"oci_identity_tag":                                            126,
+		"oci_identity_tag_default":                                    127,
+		"oci_identity_tag_namespace":                                  128,
+		"oci_identity_ui_password":                                    129,
+		"oci_identity_user":                                           130,
+		"oci_identity_user_capabilities_management":                   131,
+		"oci_identity_user_group_membership":                          132,
+		"oci_integration_integration_instance":                        133,
+		"oci_kms_encrypted_data":                                      134,
+		"oci_kms_generated_key":                                       135,
+		"oci_kms_key":                                                 136,
+		"oci_kms_key_version":                                         137,
+		"oci_kms_vault":                                               138,
+		"oci_limits_quota":                                            139,
+		"oci_load_balancer_backend":                                   140,
+		"oci_load_balancer_backend_set":                               141,
+		"oci_load_balancer_certificate":                               142,
+		"oci_load_balancer_hostname":                                  143,
+		"oci_load_balancer_listener":                                  144,
+		"oci_load_balancer_load_balancer":                             145,
+		"oci_load_balancer_path_route_set":                            146,
+		"oci_load_balancer_rule_set":                                  147,
+		"oci_marketplace_accepted_agreement":                          148,
+		"oci_metering_computation_usage":                              149,
+		"oci_monitoring_alarm":                                        150,
+		"oci_mysql_mysql_backup":                                      151,
+		"oci_mysql_mysql_db_system":                                   152,
+		"oci_nosql_index":                                             153,
+		"oci_nosql_table":                                             154,
+		"oci_objectstorage_bucket":                                    155,
+		"oci_objectstorage_object":                                    156,
+		"oci_objectstorage_object_lifecycle_policy":                   157,
+		"oci_objectstorage_preauthrequest":                            158,
+		"oci_objectstorage_replication_policy":                        159,
+		"oci_oce_oce_instance":                                        160,
+		"oci_ocvp_esxi_host":                                          161,
+		"oci_ocvp_sddc":                                               162,
+		"oci_oda_oda_instance":                                        163,
+		"oci_ons_notification_topic":                                  164,
+		"oci_ons_subscription":                                        165,
+		"oci_osmanagement_managed_instance_group":                     166,
+		"oci_osmanagement_managed_instance_management":                167,
+		"oci_osmanagement_software_source":                            168,
+		"oci_streaming_connect_harness":                               169,
+		"oci_streaming_stream":                                        170,
+		"oci_streaming_stream_pool":                                   171,
+		"oci_waas_address_list":                                       172,
+		"oci_waas_certificate":                                        173,
+		"oci_waas_custom_protection_rule":                             174,
+		"oci_waas_http_redirect":                                      175,
+		"oci_waas_purge_cache":                                        176,
+		"oci_waas_waas_policy":                                        177,
 	}
 )
 

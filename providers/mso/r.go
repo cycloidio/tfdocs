@@ -230,12 +230,115 @@ var (
 					Description: `(Optional) Virtual LAN for port encap. This attribute can only be used with vmmDomain domain association.`,
 				},
 				resource.Attribute{
-					Name:        "enhanced_lagpolicy_name",
+					Name:        "enhanced_lag_policy_name",
 					Description: `(Optional) EPG enhanced lagpolicy name. This attribute can only be used with vmmDomain domain association.`,
 				},
 				resource.Attribute{
-					Name:        "enhanced_lagpolicy_dn",
+					Name:        "enhanced_lag_policy_dn",
 					Description: `(Optional) Distinguished name of EPG lagpolicy. This attribute can only be used with vmmDomain domain association. ## Attribute Reference ## No attributes are exported.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mso_schema_site_anp_epg_selector",
+			Category:         "Resources",
+			ShortDescription: `Manages MSO Schema site Application Network Profiles Endpoint Groups selectors.`,
+			Description:      ``,
+			Keywords: []string{
+				"schema",
+				"site",
+				"anp",
+				"epg",
+				"selector",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "schema_id",
+					Description: `(Required) SchemaID under which you want to deploy Anp Epg Selector.`,
+				},
+				resource.Attribute{
+					Name:        "site_id",
+					Description: `(Required) site ID under which you want to deploy Anp Epg Selector.`,
+				},
+				resource.Attribute{
+					Name:        "template_name",
+					Description: `(Required) Template under above site id where Anp Epg Selector to be created.`,
+				},
+				resource.Attribute{
+					Name:        "anp_name",
+					Description: `(Required) Name of Application Network Profiles.`,
+				},
+				resource.Attribute{
+					Name:        "epg_name",
+					Description: `(Required) Name of Endpoint Group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the selector.`,
+				},
+				resource.Attribute{
+					Name:        "expressions",
+					Description: `(Optional) expressions of Selector.`,
+				},
+				resource.Attribute{
+					Name:        "expressions.key",
+					Description: `(Required) expression key for the selector.`,
+				},
+				resource.Attribute{
+					Name:        "expressions.operator",
+					Description: `(Required) expression operator for the selector. value should be from "equals", "notEquals", "in", "notIn", "keyExist", "keyNotExist".`,
+				},
+				resource.Attribute{
+					Name:        "expressions.value",
+					Description: `(Optional) expression value for the selector. ## Attribute Reference ## No attributes are exported.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mso_schema_site_anp_epg_static_leaf",
+			Category:         "Resources",
+			ShortDescription: `Manages MSO Schema Site Application Network Profiles Endpoint Groups StaticLeaf.`,
+			Description:      ``,
+			Keywords: []string{
+				"schema",
+				"site",
+				"anp",
+				"epg",
+				"static",
+				"leaf",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "schema_id",
+					Description: `(Required) SchemaID under which you want to deploy Anp Epg StaticLeaf.`,
+				},
+				resource.Attribute{
+					Name:        "template_name",
+					Description: `(Required) Template where Anp Epg StaticLeaf to be created.`,
+				},
+				resource.Attribute{
+					Name:        "site_id",
+					Description: `(Required) SiteID under which you want to deploy Anp Epg StaticLeaf.`,
+				},
+				resource.Attribute{
+					Name:        "anp_name",
+					Description: `(Required) Name of Application Network Profiles.`,
+				},
+				resource.Attribute{
+					Name:        "epg_name",
+					Description: `(Required) Name of Endpoint Group to manage.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) Path Given to the StaticLeaf. ForceNew set to true.`,
+				},
+				resource.Attribute{
+					Name:        "port_encap_vlan",
+					Description: `(Required) The VLAN id of the static leaf. ForceNew set to true. ## Attribute Reference ## No attributes are exported.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -277,7 +380,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path_type",
-					Description: `(Required) The type of the static port. Allowed value is ` + "`" + `port` + "`" + `.`,
+					Description: `(Required) The type of the static port. Allowed values are ` + "`" + `port` + "`" + `, ` + "`" + `vpc` + "`" + ` and ` + "`" + `dpc` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "pod",
@@ -304,53 +407,12 @@ var (
 					Description: `(Required) The port encap VLAN id of the static port.`,
 				},
 				resource.Attribute{
-					Name:        "micro_segvlan",
-					Description: `(Optional) The microsegmentation VLAN id of the static port. ## Attribute Reference ## No attributes are exported.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "mso_schema_site_anp_epg_staticleaf",
-			Category:         "Resources",
-			ShortDescription: `Manages MSO Schema Site Application Network Profiles Endpoint Groups StaticLeaf.`,
-			Description:      ``,
-			Keywords: []string{
-				"schema",
-				"site",
-				"anp",
-				"epg",
-				"staticleaf",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "schema_id",
-					Description: `(Required) SchemaID under which you want to deploy Anp Epg StaticLeaf.`,
+					Name:        "micro_seg_vlan",
+					Description: `(Optional) The microsegmentation VLAN id of the static port.`,
 				},
 				resource.Attribute{
-					Name:        "template_name",
-					Description: `(Required) Template where Anp Epg StaticLeaf to be created.`,
-				},
-				resource.Attribute{
-					Name:        "site_id",
-					Description: `(Required) SiteID under which you want to deploy Anp Epg StaticLeaf.`,
-				},
-				resource.Attribute{
-					Name:        "anp_name",
-					Description: `(Required) Name of Application Network Profiles.`,
-				},
-				resource.Attribute{
-					Name:        "epg_name",
-					Description: `(Required) Name of Endpoint Group to manage.`,
-				},
-				resource.Attribute{
-					Name:        "path",
-					Description: `(Required) Path Given to the StaticLeaf. ForceNew set to true.`,
-				},
-				resource.Attribute{
-					Name:        "port_encap_vlan",
-					Description: `(Required) The VLAN id of the static leaf. ForceNew set to true. ## Attribute Reference ## No attributes are exported.`,
+					Name:        "fex",
+					Description: `(Optional) Fex-id to be used. This parameter will work only with the ` + "`" + `path_type` + "`" + ` as ` + "`" + `port` + "`" + `. ## Attribute Reference ## No attributes are exported.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -445,7 +507,7 @@ var (
 					Description: `(Required) Name of Site Bd. The name of the Bd should be present in the Bd list of the given ` + "`" + `schema_id` + "`" + ` and ` + "`" + `template_name` + "`" + ``,
 				},
 				resource.Attribute{
-					Name:        "host",
+					Name:        "host_route",
 					Description: `(Optional) Value to check whether host-based routing is enabled. Default value is ` + "`" + `false` + "`" + `. ## Attribute Reference ## No attributes are exported.`,
 				},
 			},
@@ -545,6 +607,96 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "mso_schema_site_external_epg_selector",
+			Category:         "Resources",
+			ShortDescription: `Manages MSO Schema site external Endpoint Groups selectors.`,
+			Description:      ``,
+			Keywords: []string{
+				"schema",
+				"site",
+				"external",
+				"epg",
+				"selector",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "schema_id",
+					Description: `(Required) SchemaID under which you want to deploy External Epg Selector.`,
+				},
+				resource.Attribute{
+					Name:        "site_id",
+					Description: `(Required) site ID under which you want to deploy External Epg Selector.`,
+				},
+				resource.Attribute{
+					Name:        "template_name",
+					Description: `(Required) Template under above site id where External Epg Selector to be created.`,
+				},
+				resource.Attribute{
+					Name:        "external_epg_name",
+					Description: `(Required) Name of Endpoint Group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the selector.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Required) Ip address associated with the selector. ## Attribute Reference ## No attributes are exported.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mso_schema_site_service_graph_node",
+			Category:         "Resources",
+			ShortDescription: `Manages MSO Schema Site Level Service Graph Node`,
+			Description:      ``,
+			Keywords: []string{
+				"schema",
+				"site",
+				"service",
+				"graph",
+				"node",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "schema_id",
+					Description: `(Required) Schema ID holding Service Graph.`,
+				},
+				resource.Attribute{
+					Name:        "template_name",
+					Description: `(Required) Template Name holding Service Graph.`,
+				},
+				resource.Attribute{
+					Name:        "service_graph_name",
+					Description: `(Required) Name of Service Graph.`,
+				},
+				resource.Attribute{
+					Name:        "service_node_type",
+					Description: `(Required) Type of Service Node to be attached to this Graph.`,
+				},
+				resource.Attribute{
+					Name:        "site_nodes",
+					Description: `(Optional) List of maps to provide Site level Node association. This maps should be provided if site is associated with template.`,
+				},
+				resource.Attribute{
+					Name:        "site_nodes.site_id",
+					Description: `(Optional) Site-Id Attached with the template. Where Service Graph is created. This parameter is required when site is attached with the Template.`,
+				},
+				resource.Attribute{
+					Name:        "site_nodes.tenant_name",
+					Description: `(Optional) Name of Tenant holding the Service Node at site level. This parameter is required when site is attached with the Template.`,
+				},
+				resource.Attribute{
+					Name:        "site_nodes.node_name",
+					Description: `(Optional) Name of Site level Service Node/Device Name. This parameter is required when site is attached with the Template. ## Attribute Reference ## The only Attribute exposed for this resource is ` + "`" + `id` + "`" + `. Which is set to the node name of Service Node created.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "mso_schema_site_vrf",
 			Category:         "Resources",
 			ShortDescription: `Manages MSO Schema Site VRF.`,
@@ -605,7 +757,55 @@ var (
 				},
 				resource.Attribute{
 					Name:        "template_name",
-					Description: `(Required) Template where Vrf Region to be created. ## Attribute Reference ## No attributes are exported.`,
+					Description: `(Required) Template where Vrf Region to be created.`,
+				},
+				resource.Attribute{
+					Name:        "cidr",
+					Description: `(Required) CIDR to set into region`,
+				},
+				resource.Attribute{
+					Name:        "cidr.cidr_ip",
+					Description: `(Required) Ip address for cidr.`,
+				},
+				resource.Attribute{
+					Name:        "cidr.primary",
+					Description: `(Required) primary flag to set above ip as primary for cidr. Only one ip must be set as primary.`,
+				},
+				resource.Attribute{
+					Name:        "cidr.subnet",
+					Description: `(Required) subnets to associate with cidr.`,
+				},
+				resource.Attribute{
+					Name:        "cidr.subnet.ip",
+					Description: `(Required) ip address for subnet.`,
+				},
+				resource.Attribute{
+					Name:        "cidr.subnet.zone",
+					Description: `(Required) zone for the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "cidr.subnet.usage",
+					Description: `(Optional) usage information of particular subnet.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_gateway",
+					Description: `(Optional) VPN gateway flag.`,
+				},
+				resource.Attribute{
+					Name:        "hub_network_enable",
+					Description: `(Optional) Hub Network enable flag. To set hub network in region, this attribute should be true. this parameter is supported in MSO v3.0 or higher with Cloud APIC version 5.0 or higher.`,
+				},
+				resource.Attribute{
+					Name:        "hub_network",
+					Description: `(Optional) Hub Network to set into the region. this parameter is supported in MSO v3.0 or higher with Cloud APIC version 5.0 or higher.`,
+				},
+				resource.Attribute{
+					Name:        "hub_network.name",
+					Description: `(Required) name of the hub network.`,
+				},
+				resource.Attribute{
+					Name:        "hub_network.tenant_name",
+					Description: `(Required) Tenant name for the hub network. ## Attribute Reference ## No attributes are exported.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -836,8 +1036,12 @@ var (
 					Description: `(Optional) Whether intra EPG isolation is enforced. choices: [ enforced, unenforced ]`,
 				},
 				resource.Attribute{
-					Name:        "intersite_multicaste_source",
-					Description: `(Optional) Whether intersite multicast source is enabled.`,
+					Name:        "intersite_multicast_source",
+					Description: `(Optional) Whether intersite multicast source is enabled. Default to false.`,
+				},
+				resource.Attribute{
+					Name:        "proxy_arp",
+					Description: `(Optional) Whether to enable Proxy ARP or not. (For Forwarding control) Default to false.`,
 				},
 				resource.Attribute{
 					Name:        "preferred_group",
@@ -897,6 +1101,59 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "mso_schema_template_anp_epg_selector",
+			Category:         "Resources",
+			ShortDescription: `Manages MSO Schema Template Application Network Profiles Endpoint Groups selectors.`,
+			Description:      ``,
+			Keywords: []string{
+				"schema",
+				"template",
+				"anp",
+				"epg",
+				"selector",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "schema_id",
+					Description: `(Required) SchemaID under which you want to deploy Anp Epg Subnet.`,
+				},
+				resource.Attribute{
+					Name:        "template_name",
+					Description: `(Required) Template where Anp Epg Subnet to be created.`,
+				},
+				resource.Attribute{
+					Name:        "anp_name",
+					Description: `(Required) Name of Application Network Profiles.`,
+				},
+				resource.Attribute{
+					Name:        "epg_name",
+					Description: `(Required) Name of Endpoint Group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the selector.`,
+				},
+				resource.Attribute{
+					Name:        "expressions",
+					Description: `(Optional) expressions of Selector.`,
+				},
+				resource.Attribute{
+					Name:        "expressions.key",
+					Description: `(Required) expression key for the selector.`,
+				},
+				resource.Attribute{
+					Name:        "expressions.operator",
+					Description: `(Required) expression operator for the selector. value should be from "equals", "notEquals", "in", "notIn", "keyExist", "keyNotExist".`,
+				},
+				resource.Attribute{
+					Name:        "expressions.value",
+					Description: `(Optional) expression value for the selector. ## Attribute Reference ## No attributes are exported.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "mso_schema_template_anp_epg_subnet",
 			Category:         "Resources",
 			ShortDescription: `Manages MSO Schema Template Application Network Profiles Endpoint Groups Subnets.`,
@@ -936,6 +1193,68 @@ var (
 				resource.Attribute{
 					Name:        "shared",
 					Description: `(Optional) Whether the subnet should be shared or not. ## Attribute Reference ## No attributes are exported.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mso_schema_template_anp_epg_useg_attr",
+			Category:         "Resources",
+			ShortDescription: `Resource for MSO Schema Template Application Network Profiles Endpoint Groups Useg Attributes.`,
+			Description:      ``,
+			Keywords: []string{
+				"schema",
+				"template",
+				"anp",
+				"epg",
+				"useg",
+				"attr",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "schema_id",
+					Description: `(Required) SchemaID under which you want to create Anp Epg Useg Attributes .`,
+				},
+				resource.Attribute{
+					Name:        "template_name",
+					Description: `(Required) Template where Anp Epg Useg Attributes to be created.`,
+				},
+				resource.Attribute{
+					Name:        "anp_name",
+					Description: `(Required) Name of Application Network Profiles.`,
+				},
+				resource.Attribute{
+					Name:        "epg_name",
+					Description: `(Required) Name of Endpoint Group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of Useg Attributes.`,
+				},
+				resource.Attribute{
+					Name:        "useg_type",
+					Description: `(Required) Type of Useg Attribute. Allowed values are ` + "`" + `ip` + "`" + `, ` + "`" + `mac` + "`" + `, ` + "`" + `dns` + "`" + `, ` + "`" + `vm-name` + "`" + ` (VM Name), ` + "`" + `rootContName` + "`" + ` (VM Data Center), ` + "`" + `hv` + "`" + ` (Hypervisor), ` + "`" + `guest-os` + "`" + ` (VM Operating System), ` + "`" + `tag` + "`" + ` (VM Tag), ` + "`" + `vm` + "`" + ` (VM Identifier), ` + "`" + `domain` + "`" + ` (VMM Domain), ` + "`" + `vnic` + "`" + ` (Vnic DN).`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) String which describes this Useg Attribute.`,
+				},
+				resource.Attribute{
+					Name:        "operator",
+					Description: `(Optional) Comparison Operator used in the Useg Attribute. Allowed values are ` + "`" + `equals` + "`" + `, ` + "`" + `startsWith` + "`" + `, ` + "`" + `endsWith` + "`" + `, and ` + "`" + `contains` + "`" + `. Default to ` + "`" + `equals` + "`" + `. With ` + "`" + `useg_type` + "`" + ` in [ip, mac, dns] only ` + "`" + `equals` + "`" + ` operator will be used. Operator passed in the terraform file will be ignored.`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `(Optional) Classifier Category. It's used with useg_type ` + "`" + `tag` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Value of Useg-Attribute.`,
+				},
+				resource.Attribute{
+					Name:        "useg_subnet",
+					Description: `(Optional) Whether the Useg Subnet is enabled or not. This field only works with the ` + "`" + `useg_type` + "`" + ` Ip. ## Attribute Reference ## The only attribute exported is ` + "`" + `id` + "`" + `. Which is set to the name of Useg Attribute.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1101,6 +1420,115 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "mso_schema_template_contract_service_graph",
+			Category:         "Resources",
+			ShortDescription: `Manages MSO Schema Template Contract service graph.`,
+			Description:      ``,
+			Keywords: []string{
+				"schema",
+				"template",
+				"contract",
+				"service",
+				"graph",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "schema_id",
+					Description: `(Required) SchemaID under which you want to deploy Contract Service Graph.`,
+				},
+				resource.Attribute{
+					Name:        "site_id",
+					Description: `(Required) SiteID under which you want to deploy Contract Service Graph.`,
+				},
+				resource.Attribute{
+					Name:        "template_name",
+					Description: `(Required) Template where Contract Service Graph to be created.`,
+				},
+				resource.Attribute{
+					Name:        "contract_name",
+					Description: `(Required) The name of the contract to manage. There should be an existing contract with this name.`,
+				},
+				resource.Attribute{
+					Name:        "service_graph_name",
+					Description: `(Required) The name of service graph.`,
+				},
+				resource.Attribute{
+					Name:        "service_graph_schema_id",
+					Description: `(Optional) The schema Id in which service graph is created. If not given then ` + "`" + `schema_id` + "`" + ` will be taken.`,
+				},
+				resource.Attribute{
+					Name:        "service_graph_template_name",
+					Description: `(Optional) The Template name in which service graph is created. If not given then ` + "`" + `template_name` + "`" + ` will be taken.`,
+				},
+				resource.Attribute{
+					Name:        "service_graph_site_id",
+					Description: `(Optional) The Site Id for where service graph created. If not given then ` + "`" + `site_id` + "`" + ` will be taken.`,
+				},
+				resource.Attribute{
+					Name:        "node_relationship",
+					Description: `(Required) Service graph node relationship information. You have to define this block for every node of service graph.`,
+				},
+				resource.Attribute{
+					Name:        "node_relationship.provider_connector_bd_name",
+					Description: `(Required) bd name for provider connector at template level.`,
+				},
+				resource.Attribute{
+					Name:        "node_relationship.provider_connector_bd_schema_id",
+					Description: `(Optional) schema id under which above bd is created. If not given then ` + "`" + `schema_id` + "`" + ` will be taken.`,
+				},
+				resource.Attribute{
+					Name:        "node_relationship.provider_connector_bd_template_name",
+					Description: `(Optional) template name under which above bd is created. If not given then ` + "`" + `template_name` + "`" + ` will be taken.`,
+				},
+				resource.Attribute{
+					Name:        "node_relationship.consumer_connector_bd_name",
+					Description: `(Required) bd name for consumer connector at template level.`,
+				},
+				resource.Attribute{
+					Name:        "node_relationship.consumer_connector_bd_schema_id",
+					Description: `(Optional) schema id under which above bd is created. If not given then ` + "`" + `schema_id` + "`" + ` will be taken.`,
+				},
+				resource.Attribute{
+					Name:        "node_relationship.consumer_connector_bd_template_name",
+					Description: `(Optional) template name under which above bd is created. If not given then ` + "`" + `template_name` + "`" + ` will be taken.`,
+				},
+				resource.Attribute{
+					Name:        "node_relationship.provider_connector_cluster_interface",
+					Description: `(Required) cluster interface for provider connector to attach with node at site level.`,
+				},
+				resource.Attribute{
+					Name:        "node_relationship.consumer_connector_cluster_interface",
+					Description: `(Required) cluster interface for consumer connector to attach with node at site level.`,
+				},
+				resource.Attribute{
+					Name:        "node_relationship.provider_connector_redirect_policy_tenant",
+					Description: `(Optional) tenant for redirection policy for provider connector at site level. It is required to set redirection policy for provider connector.`,
+				},
+				resource.Attribute{
+					Name:        "node_relationship.provider_connector_redirect_policy",
+					Description: `(Optional) redirection policy for provider connector at site level.`,
+				},
+				resource.Attribute{
+					Name:        "node_relationship.consumer_connector_redirect_policy_tenant",
+					Description: `(Optional) tenant for redirection policy for consumer connector at site level. It is required to set redirection policy for consumer connector.`,
+				},
+				resource.Attribute{
+					Name:        "node_relationship.consumer_connector_redirect_policy",
+					Description: `(Optional) redirection policy for consumer connector at site level.`,
+				},
+				resource.Attribute{
+					Name:        "node_relationship.provider_subnet_ips",
+					Description: `(Optional) subnet ips which will be associated with provider connector at site level. It should be in CIDR format.`,
+				},
+				resource.Attribute{
+					Name:        "node_relationship.consumer_subnet_ips",
+					Description: `(Optional) subnet ips which will be associated with consumer connector at site level. It should be in CIDR format. ## Attribute Reference ## No attributes are exported.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "mso_schema_template_deploy",
 			Category:         "Resources",
 			ShortDescription: `Manages deploy/undeploy operations for schema template on sites.`,
@@ -1132,14 +1560,15 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "mso_schema_template_externalepg",
+			Type:             "mso_schema_template_external_epg",
 			Category:         "Resources",
 			ShortDescription: `Manages MSO Schema Template External Endpoint Group.`,
 			Description:      ``,
 			Keywords: []string{
 				"schema",
 				"template",
-				"externalepg",
+				"external",
+				"epg",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -1151,12 +1580,16 @@ var (
 					Description: `(Required) Template where External-epg to be created.`,
 				},
 				resource.Attribute{
-					Name:        "externalepg_name",
+					Name:        "external_epg_name",
 					Description: `(Required) Name of External-epg.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `(Required) Display Name of the External-epg on the MSO UI.`,
+				},
+				resource.Attribute{
+					Name:        "external_epg_type",
+					Description: `(Optional) Type of External EPG. Allowed values are ` + "`" + `on-premise` + "`" + ` and ` + "`" + `cloud` + "`" + `. Default to ` + "`" + `on-premise` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "vrf_name",
@@ -1168,21 +1601,62 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vrf_template_name",
-					Description: `(Optional) Template Name of VRF. template_name of External-epg will be used if not provided. ## Attribute Reference ## No attributes are exported.`,
+					Description: `(Optional) Template Name of VRF. template_name of External-epg will be used if not provided.`,
+				},
+				resource.Attribute{
+					Name:        "include_in_preferred_group",
+					Description: `(Optional) This parameter indicates whether EPG is included in preferred group or not. Default to false.`,
+				},
+				resource.Attribute{
+					Name:        "l3out_name",
+					Description: `(Optional) Name of L3out to attach. Should use this parameter with ` + "`" + `external_epg_type` + "`" + ` as ` + "`" + `on-premise` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "l3out_schema_id",
+					Description: `(Optional) SchemaId of L3out. ` + "`" + `schema_id` + "`" + ` will be used if not provided. Should use this parameter with ` + "`" + `external_epg_type` + "`" + ` as ` + "`" + `on-premise` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "l3out_template_name",
+					Description: `(Optional) Template name of L3out. ` + "`" + `template_name` + "`" + ` will be used if not provided. Should use this parameter with ` + "`" + `external_epg_type` + "`" + ` as ` + "`" + `on-premise` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "anp_name",
+					Description: `(Optional) Name of anp to attach.`,
+				},
+				resource.Attribute{
+					Name:        "anp_schema_id",
+					Description: `(Optional) SchemaId of anp. ` + "`" + `schema_id` + "`" + ` will be used if not provided.`,
+				},
+				resource.Attribute{
+					Name:        "anp_template_name",
+					Description: `(Optional) Template name of anp. ` + "`" + `template_name` + "`" + ` will be used if not provided.`,
+				},
+				resource.Attribute{
+					Name:        "site_id",
+					Description: `(Optional) List of ids of sites associated with the schema. Required when ` + "`" + `external_epg_type` + "`" + ` is "cloud".`,
+				},
+				resource.Attribute{
+					Name:        "selector_name",
+					Description: `(Optional) name of the selector for external epg. Required when ` + "`" + `external_epg_type` + "`" + ` is "cloud".`,
+				},
+				resource.Attribute{
+					Name:        "selector_ip",
+					Description: `(Optional) ip address for expression in selector. Required when ` + "`" + `external_epg_type` + "`" + ` is "cloud". NOTE: SchemaID and Template Name for VRF and L3out must be same. ## Attribute Reference ## No attributes are exported.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "mso_schema_template_externalepg_contract",
+			Type:             "mso_schema_template_external_epg_contract",
 			Category:         "Resources",
 			ShortDescription: `Manages MSO Schema Template External Endpoint Group Contract.`,
 			Description:      ``,
 			Keywords: []string{
 				"schema",
 				"template",
-				"externalepg",
+				"external",
+				"epg",
 				"contract",
 			},
 			Arguments: []resource.Attribute{
@@ -1219,14 +1693,56 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "mso_schema_template_externalepg_subnet",
+			Type:             "mso_schema_template_external_epg_selector",
+			Category:         "Resources",
+			ShortDescription: `Manages MSO Schema Template External Endpoint Groups selectors.`,
+			Description:      ``,
+			Keywords: []string{
+				"schema",
+				"template",
+				"external",
+				"epg",
+				"selector",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "schema_id",
+					Description: `(Required) SchemaID under which you want to deploy Anp Epg Subnet.`,
+				},
+				resource.Attribute{
+					Name:        "template_name",
+					Description: `(Required) Template where Anp Epg Subnet to be created.`,
+				},
+				resource.Attribute{
+					Name:        "external_epg_name",
+					Description: `(Required) Name of External Endpoint Group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the selector.`,
+				},
+				resource.Attribute{
+					Name:        "expressions",
+					Description: `(Optional) expressions of Selector.`,
+				},
+				resource.Attribute{
+					Name:        "expressions.value",
+					Description: `(Optional) expression value for the selector. ## Attribute Reference ## No attributes are exported.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mso_schema_template_external_epg_subnet",
 			Category:         "Resources",
 			ShortDescription: `Manages MSO Schema Template External EPG Subnet.`,
 			Description:      ``,
 			Keywords: []string{
 				"schema",
 				"template",
-				"externalepg",
+				"external",
+				"epg",
 				"subnet",
 			},
 			Arguments: []resource.Attribute{
@@ -1239,7 +1755,7 @@ var (
 					Description: `(Required) Template where External EPG Subnet to be created.`,
 				},
 				resource.Attribute{
-					Name:        "externalepg_name",
+					Name:        "external_epg_name",
 					Description: `(Required) Name of External EPG.`,
 				},
 				resource.Attribute{
@@ -1390,6 +1906,102 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "mso_schema_template_service_graph",
+			Category:         "Resources",
+			ShortDescription: `Manages MSO Schema Template Service Graph`,
+			Description:      ``,
+			Keywords: []string{
+				"schema",
+				"template",
+				"service",
+				"graph",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "schema_id",
+					Description: `(Required) Schema ID where Service Graph to be created.`,
+				},
+				resource.Attribute{
+					Name:        "template_name",
+					Description: `(Required) Template Name where Service Graph to be created.`,
+				},
+				resource.Attribute{
+					Name:        "service_graph_name",
+					Description: `(Required) Name of Service Graph.`,
+				},
+				resource.Attribute{
+					Name:        "service_node_type",
+					Description: `(Required) Type of Service Node attached to this Graph.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of Service Graph.`,
+				},
+				resource.Attribute{
+					Name:        "site_nodes",
+					Description: `(Optional) List of maps to provide Site level Node association. This maps should be provided if site is associated with template.`,
+				},
+				resource.Attribute{
+					Name:        "site_nodes.site_id",
+					Description: `(Optional) Site-Id Attached with the template. Where Service Graph will be created. This parameter is required when site is attached with the Template.`,
+				},
+				resource.Attribute{
+					Name:        "site_nodes.tenant_name",
+					Description: `(Optional) Name of Tenant holding the Service Node. This parameter is required when site is attached with the Template.`,
+				},
+				resource.Attribute{
+					Name:        "site_nodes.node_name",
+					Description: `(Optional) Name of Site level Service Node/Device Name. This parameter is required when site is attached with the Template. ## Attribute Reference ## The only Attribute exposed for this resource is ` + "`" + `id` + "`" + `. Which is set to the Name of Service Graph created.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mso_schema_template_vrf_contract",
+			Category:         "Resources",
+			ShortDescription: `Manages MSO Resource Schema Template Vrf Contract.`,
+			Description:      ``,
+			Keywords: []string{
+				"schema",
+				"template",
+				"vrf",
+				"contract",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "schema_id",
+					Description: `(Required) The schema-id where vrf is associated.`,
+				},
+				resource.Attribute{
+					Name:        "template_name",
+					Description: `(Required) template associated with the vrf.`,
+				},
+				resource.Attribute{
+					Name:        "vrf_name",
+					Description: `(Required) name of the vrf with contract to be attached.`,
+				},
+				resource.Attribute{
+					Name:        "relationship_type",
+					Description: `(Required) Type of relation between VRF and Contract. Allowed values are ` + "`" + `provider` + "`" + ` and ` + "`" + `consumer` + "`" + `. Provider contracts cannot be shared across the VRF.`,
+				},
+				resource.Attribute{
+					Name:        "contract_name",
+					Description: `(Required) Name of contract to be attached with the VRF.`,
+				},
+				resource.Attribute{
+					Name:        "contract_schema_id",
+					Description: `(Optional) SchemaId of contract. This parameter should be used when the contract and VRF are in different schemas. ` + "`" + `schema_id` + "`" + ` will be used if not provided.`,
+				},
+				resource.Attribute{
+					Name:        "contract_template_name",
+					Description: `(Optional) Name of template where contract is residing. This parameter should be used when the contract and VRF are in different Templates. ` + "`" + `template_name` + "`" + ` will be used if not provided. ## Attribute Reference ## The only attribute exported is ` + "`" + `id` + "`" + `. Which is set to the name of contract attached.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "mso_schema_site",
 			Category:         "Resources",
 			ShortDescription: `Manages MSO Schema Site`,
@@ -1444,7 +2056,34 @@ var (
 				},
 				resource.Attribute{
 					Name:        "layer3_multicast",
-					Description: `(Optional) Whether to enable L3 multicast. ## Attribute Reference ## No attributes are exported.`,
+					Description: `(Optional) Whether to enable L3 multicast.`,
+				},
+				resource.Attribute{
+					Name:        "vzany",
+					Description: `(Optional) Whether to enable vzany. ## Attribute Reference ## No attributes are exported.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mso_service_node_type",
+			Category:         "Resources",
+			ShortDescription: `Manages MSO Service Node Type`,
+			Description:      ``,
+			Keywords: []string{
+				"service",
+				"node",
+				"type",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the Service Node Type.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) Display name of Service Node Type. ## Attribute Reference ## The only Attribute exposed for this resource is ` + "`" + `id` + "`" + `. Which is set to the id of Service Node Type created.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1474,6 +2113,14 @@ var (
 				resource.Attribute{
 					Name:        "apic_site_id",
 					Description: `(Required) The site ID of the APICs.`,
+				},
+				resource.Attribute{
+					Name:        "login_domain",
+					Description: `(Optional) Name of login domain. This parameter should be used to authenticate remote user with APIC.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_mode",
+					Description: `(Optional) Boolean flag to enable/disable Maintenance Mode on the site. This parameter is supported only in MSO version 3.0 or higher.`,
 				},
 				resource.Attribute{
 					Name:        "urls",
@@ -1601,7 +2248,51 @@ var (
 				},
 				resource.Attribute{
 					Name:        "site_association",
-					Description: `(Optional) A list of associated sites for this tenant. ## Attribute Reference ## The only Attribute exposed for this resource is ` + "`" + `id` + "`" + `. Which is set to the id of tenant created.`,
+					Description: `(Optional) A list of associated sites for this tenant.`,
+				},
+				resource.Attribute{
+					Name:        "site_association.id",
+					Description: `(Optional) Id of site to associate with this Tenant.`,
+				},
+				resource.Attribute{
+					Name:        "site_association.vendor",
+					Description: `(Optional) Name of cloud vendor in the case of Attaching cloud site. Allowed values are ` + "`" + `aws` + "`" + ` and ` + "`" + `azure` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "site_association.aws_account_id",
+					Description: `(Optional) Id of AWS account. It's required when vendor is set to aws. This parameter will only have effect with ` + "`" + `vendor` + "`" + ` = aws`,
+				},
+				resource.Attribute{
+					Name:        "site_association.is_aws_account_trusted",
+					Description: `(Optional) Boolean flag to indicate whether this account is trusted or not. Trusted account does not require aws_access_key_id and aws_secret_key.`,
+				},
+				resource.Attribute{
+					Name:        "site_association.aws_access_key_id",
+					Description: `(Optional) AWS Access Key Id. It must be provided if the AWS account is not trusted. This parameter will only have effect with ` + "`" + `vendor` + "`" + ` = aws.`,
+				},
+				resource.Attribute{
+					Name:        "site_association.aws_secret_key",
+					Description: `(Optional) AWS Secret Key Id. It must be provided if the AWS account is not trusted. This parameter will only have effect with ` + "`" + `vendor` + "`" + ` = aws.`,
+				},
+				resource.Attribute{
+					Name:        "site_association.azure_subscription_id",
+					Description: `(Optional) Azure subscription id. It's required when vendor is set to azure. This parameter will only have effect with ` + "`" + `vendor` + "`" + ` = azure.`,
+				},
+				resource.Attribute{
+					Name:        "site_association.azure_access_type",
+					Description: `(Optional) Type of Azure Account Configuration. Allowed values are ` + "`" + `managed` + "`" + ` and ` + "`" + `credentials` + "`" + `. Default to ` + "`" + `managed` + "`" + `. Other Credentials are not required if azure_access_type is set to managed. This parameter will only have effect with ` + "`" + `vendor` + "`" + ` = azure.`,
+				},
+				resource.Attribute{
+					Name:        "site_association.azure_application_id",
+					Description: `(Optional) Azure Application Id. It must be provided when azure_access_type to credentials. This parameter will only have effect with ` + "`" + `vendor` + "`" + ` = azure.`,
+				},
+				resource.Attribute{
+					Name:        "site_association.azure_client_secret",
+					Description: `(Optional) Azure Client Secret. It must be provided when azure_access_type to credentials. This parameter will only have effect with ` + "`" + `vendor` + "`" + ` = azure.`,
+				},
+				resource.Attribute{
+					Name:        "site_association.azure_active_directory_id",
+					Description: `(Optional) Azure Active Directory Id. It must be provided when azure_access_type to credentials. This parameter will only have effect with ` + "`" + `vendor` + "`" + ` = azure. NOTE: Either of AWS or Azure credentials will be used based on whatever is passed in ` + "`" + `vendor` + "`" + ` argument if both (AWS + Azure) Credentials are provided. ## Attribute Reference ## The only Attribute exposed for this resource is ` + "`" + `id` + "`" + `. Which is set to the id of tenant created.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1667,42 +2358,52 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"mso_label":                                0,
-		"mso_rest":                                 1,
-		"mso_schema":                               2,
-		"mso_schema_site_anp":                      3,
-		"mso_schema_site_anp_epg":                  4,
-		"mso_schema_site_anp_epg_domain":           5,
-		"mso_schema_site_anp_epg_static_port":      6,
-		"mso_schema_site_anp_epg_staticleaf":       7,
-		"mso_schema_site_anp_epg_subnet":           8,
-		"mso_schema_site_bd":                       9,
-		"mso_schema_site_bd_l3out":                 10,
-		"mso_schema_site_bd_subnet":                11,
-		"mso_schema_site_vrf":                      12,
-		"mso_schema_site_vrf_region":               13,
-		"mso_schema_site_vrf_region_cidr":          14,
-		"mso_schema_site_vrf_region_cidr_subnet":   15,
-		"mso_schema_template":                      16,
-		"mso_schema_template_anp":                  17,
-		"mso_schema_template_anp_epg":              18,
-		"mso_schema_template_anp_epg_contract":     19,
-		"mso_schema_template_anp_epg_subnet":       20,
-		"mso_schema_template_bd_subnet":            21,
-		"mso_schema_template_contract":             22,
-		"mso_schema_template_contract_filter":      23,
-		"mso_schema_template_deploy":               24,
-		"mso_schema_template_externalepg":          25,
-		"mso_schema_template_externalepg_contract": 26,
-		"mso_schema_template_externalepg_subnet":   27,
-		"mso_schema_template_filter_entry":         28,
-		"mso_schema_template_l3out":                29,
-		"mso_schema_site":                          30,
-		"mso_schema_template_vrf":                  31,
-		"mso_site":                                 32,
-		"mso_schema_template_bd":                   33,
-		"mso_tenant":                               34,
-		"mso_user":                                 35,
+		"mso_label":                                  0,
+		"mso_rest":                                   1,
+		"mso_schema":                                 2,
+		"mso_schema_site_anp":                        3,
+		"mso_schema_site_anp_epg":                    4,
+		"mso_schema_site_anp_epg_domain":             5,
+		"mso_schema_site_anp_epg_selector":           6,
+		"mso_schema_site_anp_epg_static_leaf":        7,
+		"mso_schema_site_anp_epg_static_port":        8,
+		"mso_schema_site_anp_epg_subnet":             9,
+		"mso_schema_site_bd":                         10,
+		"mso_schema_site_bd_l3out":                   11,
+		"mso_schema_site_bd_subnet":                  12,
+		"mso_schema_site_external_epg_selector":      13,
+		"mso_schema_site_service_graph_node":         14,
+		"mso_schema_site_vrf":                        15,
+		"mso_schema_site_vrf_region":                 16,
+		"mso_schema_site_vrf_region_cidr":            17,
+		"mso_schema_site_vrf_region_cidr_subnet":     18,
+		"mso_schema_template":                        19,
+		"mso_schema_template_anp":                    20,
+		"mso_schema_template_anp_epg":                21,
+		"mso_schema_template_anp_epg_contract":       22,
+		"mso_schema_template_anp_epg_selector":       23,
+		"mso_schema_template_anp_epg_subnet":         24,
+		"mso_schema_template_anp_epg_useg_attr":      25,
+		"mso_schema_template_bd_subnet":              26,
+		"mso_schema_template_contract":               27,
+		"mso_schema_template_contract_filter":        28,
+		"mso_schema_template_contract_service_graph": 29,
+		"mso_schema_template_deploy":                 30,
+		"mso_schema_template_external_epg":           31,
+		"mso_schema_template_external_epg_contract":  32,
+		"mso_schema_template_external_epg_selector":  33,
+		"mso_schema_template_external_epg_subnet":    34,
+		"mso_schema_template_filter_entry":           35,
+		"mso_schema_template_l3out":                  36,
+		"mso_schema_template_service_graph":          37,
+		"mso_schema_template_vrf_contract":           38,
+		"mso_schema_site":                            39,
+		"mso_schema_template_vrf":                    40,
+		"mso_service_node_type":                      41,
+		"mso_site":                                   42,
+		"mso_schema_template_bd":                     43,
+		"mso_tenant":                                 44,
+		"mso_user":                                   45,
 	}
 )
 

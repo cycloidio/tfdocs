@@ -708,6 +708,77 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "dome9_cloudaccount_kubernetes",
+			Category:         "Resources",
+			ShortDescription: `Onboard kubernetes cloud account`,
+			Description:      ``,
+			Keywords: []string{
+				"cloudaccount",
+				"kubernetes",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the kubernetes cluster as it will appear in Dome9 kubernetes cloud account.`,
+				},
+				resource.Attribute{
+					Name:        "organizational_unit_id",
+					Description: `(Optional) The Organizational Unit this cloud account will be attached to ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the account in Dome9.`,
+				},
+				resource.Attribute{
+					Name:        "creation_date",
+					Description: `Date account was onboarded to Dome9.`,
+				},
+				resource.Attribute{
+					Name:        "vendor",
+					Description: `The cloud provider ("kubernetes").`,
+				},
+				resource.Attribute{
+					Name:        "organizational_unit_path",
+					Description: `Organizational unit path.`,
+				},
+				resource.Attribute{
+					Name:        "organizational_unit_name",
+					Description: `Organizational unit name.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_version",
+					Description: `The onboarded cluster version. ## Import Kubernetes cloud account can be imported; use ` + "`" + `<KUBERNETES CLOUD ACCOUNT ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import dome9_cloudaccount_kubernetes.test 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the account in Dome9.`,
+				},
+				resource.Attribute{
+					Name:        "creation_date",
+					Description: `Date account was onboarded to Dome9.`,
+				},
+				resource.Attribute{
+					Name:        "vendor",
+					Description: `The cloud provider ("kubernetes").`,
+				},
+				resource.Attribute{
+					Name:        "organizational_unit_path",
+					Description: `Organizational unit path.`,
+				},
+				resource.Attribute{
+					Name:        "organizational_unit_name",
+					Description: `Organizational unit name.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_version",
+					Description: `The onboarded cluster version. ## Import Kubernetes cloud account can be imported; use ` + "`" + `<KUBERNETES CLOUD ACCOUNT ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import dome9_cloudaccount_kubernetes.test 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "dome9_continuous_compliance_notification",
 			Category:         "Resources",
 			ShortDescription: `Creates continuous compliance notification in Dome9`,
@@ -1344,13 +1415,14 @@ var (
 		"dome9_cloudaccount_aws":                   4,
 		"dome9_cloudaccount_azure":                 5,
 		"dome9_cloudaccount_gcp":                   6,
-		"dome9_continuous_compliance_notification": 7,
-		"dome9_continuous_compliance_policy":       8,
-		"dome9_iam_safe_entity":                    9,
-		"dome9_iplist":                             10,
-		"dome9_organizational_unit":                11,
-		"dome9_role":                               12,
-		"dome9_ruleset":                            13,
+		"dome9_cloudaccount_kubernetes":            7,
+		"dome9_continuous_compliance_notification": 8,
+		"dome9_continuous_compliance_policy":       9,
+		"dome9_iam_safe_entity":                    10,
+		"dome9_iplist":                             11,
+		"dome9_organizational_unit":                12,
+		"dome9_role":                               13,
+		"dome9_ruleset":                            14,
 	}
 )
 

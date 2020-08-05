@@ -34,7 +34,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of this Dashbaord List.`,
+					Description: `(Required) The name of this Dashboard List.`,
 				},
 				resource.Attribute{
 					Name:        "dash_item",
@@ -488,7 +488,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_account",
-					Description: `(Required) The associated storage account. An archive definition must have one (and only one) of the three possible types defined: s3, gcs, azure.`,
+					Description: `(Required) The associated storage account. An archive definition must have one (and only one) of the three possible types defined: s3, gcs, azure. ## Import Logs archives can be imported using their public string ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import datadog_logs_archive.my_s3_archive 1Aabc2_dfQPLnXy3HlfK4hi ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},

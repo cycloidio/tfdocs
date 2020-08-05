@@ -147,6 +147,19 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "profitbricks_private_crossconnect",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages Private Cross Connections between virtual datacenters.`,
+			Description:      ``,
+			Keywords: []string{
+				"private",
+				"crossconnect",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "profitbricks_server",
 			Category:         "Resources",
 			ShortDescription: `Creates and manages ProfitBricks Server objects.`,
@@ -209,21 +222,22 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"profitbricks_datacenter":    0,
-		"profitbricks_firewall":      1,
-		"profitbricks_group":         2,
-		"profitbricks_ipblock":       3,
-		"profitbricks_ipfailover":    4,
-		"profitbricks_k8s_cluster":   5,
-		"profitbricks_k8s_node_pool": 6,
-		"profitbricks_lan":           7,
-		"profitbricks_loadbalancer":  8,
-		"profitbricks_nic":           9,
-		"profitbricks_server":        10,
-		"profitbricks_share":         11,
-		"profitbricks_snapshot":      12,
-		"profitbricks_user":          13,
-		"profitbricks_volume":        14,
+		"profitbricks_datacenter":           0,
+		"profitbricks_firewall":             1,
+		"profitbricks_group":                2,
+		"profitbricks_ipblock":              3,
+		"profitbricks_ipfailover":           4,
+		"profitbricks_k8s_cluster":          5,
+		"profitbricks_k8s_node_pool":        6,
+		"profitbricks_lan":                  7,
+		"profitbricks_loadbalancer":         8,
+		"profitbricks_nic":                  9,
+		"profitbricks_private_crossconnect": 10,
+		"profitbricks_server":               11,
+		"profitbricks_share":                12,
+		"profitbricks_snapshot":             13,
+		"profitbricks_user":                 14,
+		"profitbricks_volume":               15,
 	}
 )
 

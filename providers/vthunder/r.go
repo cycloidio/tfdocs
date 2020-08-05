@@ -205,6 +205,2809 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vthunder_interface_ethernet",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder interface ethernet resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"interface",
+				"ethernet",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "action",
+					Description: `‘enable’: Enable Router Advertisements on this interface; ‘disable’: Disable Router Advertisements on this interface;`,
+				},
+				resource.Attribute{
+					Name:        "auto_neg_enable",
+					Description: `enable auto-negotiation`,
+				},
+				resource.Attribute{
+					Name:        "cpu_process",
+					Description: `All Packets to this port are processed by CPU`,
+				},
+				resource.Attribute{
+					Name:        "cpu_process_dir",
+					Description: `‘primary’: Primary board; ‘blade’: blade board; ‘hash-dip’: Hash based on the Destination IP; ‘hash-sip’: Hash based on the Source IP; ‘hash-dmac’: Hash based on the Destination MAC; ‘hash-smac’: Hash based on the Source MAC;`,
+				},
+				resource.Attribute{
+					Name:        "duplexity",
+					Description: `‘Full’: Full; ‘Half’: Half; ‘auto’: auto;`,
+				},
+				resource.Attribute{
+					Name:        "fec_forced_off",
+					Description: `turn off the FEC`,
+				},
+				resource.Attribute{
+					Name:        "fec_forced_on",
+					Description: `turn on the FEC`,
+				},
+				resource.Attribute{
+					Name:        "flow_control",
+					Description: `Enable 802.3x flow control on full duplex port`,
+				},
+				resource.Attribute{
+					Name:        "ifnum",
+					Description: `Ethernet interface number`,
+				},
+				resource.Attribute{
+					Name:        "load_interval",
+					Description: `Configure Load Interval (Seconds (5-300, Multiple of 5), default 300)`,
+				},
+				resource.Attribute{
+					Name:        "media_type_copper",
+					Description: `Set the media type to copper`,
+				},
+				resource.Attribute{
+					Name:        "mtu",
+					Description: `OSPF interface MTU (MTU size)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name for the interface`,
+				},
+				resource.Attribute{
+					Name:        "remove_vlan_tag",
+					Description: `Remove the vlan tag for egressing packets`,
+				},
+				resource.Attribute{
+					Name:        "speed",
+					Description: `‘10’: 10; ‘100’: 100; ‘1000’: 1000; ‘auto’: auto;`,
+				},
+				resource.Attribute{
+					Name:        "speed_forced_40g",
+					Description: `force the speed to be 40G on 100G link`,
+				},
+				resource.Attribute{
+					Name:        "traffic_distribution_mode",
+					Description: `‘sip’: sip; ‘dip’: dip; ‘primary’: primary; ‘blade’: blade; ‘l4-src-port’: l4-src-port; ‘l4-dst-port’: l4-dst-port;`,
+				},
+				resource.Attribute{
+					Name:        "trap_source",
+					Description: `The trap source`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "allow_promiscuous_vip",
+					Description: `Allow traffic to be associated with promiscuous VIP`,
+				},
+				resource.Attribute{
+					Name:        "cache_spoofing_port",
+					Description: `This interface connects to spoofing cache`,
+				},
+				resource.Attribute{
+					Name:        "client",
+					Description: `Client facing interface for IPv4/v6 traffic`,
+				},
+				resource.Attribute{
+					Name:        "dhcp",
+					Description: `Use DHCP to configure IP address`,
+				},
+				resource.Attribute{
+					Name:        "generate_membership_query",
+					Description: `Enable Membership Query`,
+				},
+				resource.Attribute{
+					Name:        "inside",
+					Description: `Configure LW-4over6 outside interface`,
+				},
+				resource.Attribute{
+					Name:        "max_resp_time",
+					Description: `Maximum Response Time (Max Response Time (Default is 100))`,
+				},
+				resource.Attribute{
+					Name:        "outside",
+					Description: `Configure LW-4over6 inside interface`,
+				},
+				resource.Attribute{
+					Name:        "query_interval",
+					Description: `1 - 255 (Default is 125)`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `Server facing interface for IPv4/v6 traffic`,
+				},
+				resource.Attribute{
+					Name:        "slb_partition_redirect",
+					Description: `Redirect SLB traffic across partition`,
+				},
+				resource.Attribute{
+					Name:        "ttl_ignore",
+					Description: `Ignore TTL decrement for a received packet before sending out`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `ISO routing area tag`,
+				},
+				resource.Attribute{
+					Name:        "helper_address",
+					Description: `Helper address for DHCP packets (IP address)`,
+				},
+				resource.Attribute{
+					Name:        "access_list",
+					Description: `Access-list for traffic from the outside`,
+				},
+				resource.Attribute{
+					Name:        "acl_id",
+					Description: `ACL id`,
+				},
+				resource.Attribute{
+					Name:        "class_list",
+					Description: `Class List (Class List Name)`,
+				},
+				resource.Attribute{
+					Name:        "receive_packet",
+					Description: `Enable receiving packet through the specified interface`,
+				},
+				resource.Attribute{
+					Name:        "send_packet",
+					Description: `Enable sending packets through the specified interface`,
+				},
+				resource.Attribute{
+					Name:        "receive",
+					Description: `Advertisement reception`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `‘1’: RIP version 1; ‘2’: RIP version 2; ‘1-compatible’: RIPv1-compatible; ‘1-2’: RIP version 1 & 2;`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `‘poisoned’: Perform split horizon with poisoned reverse; ‘disable’: Disable split horizon; ‘enable’: Perform split horizon without poisoned reverse;`,
+				},
+				resource.Attribute{
+					Name:        "key_chain",
+					Description: `Authentication key-chain (Name of key-chain)`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `‘md5’: Keyed message digest;`,
+				},
+				resource.Attribute{
+					Name:        "string",
+					Description: `The RIP authentication string`,
+				},
+				resource.Attribute{
+					Name:        "send",
+					Description: `Advertisement transmission`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_address",
+					Description: `IP address`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_netmask",
+					Description: `IP subnet mask`,
+				},
+				resource.Attribute{
+					Name:        "authentication",
+					Description: `Enable authentication`,
+				},
+				resource.Attribute{
+					Name:        "authentication_key",
+					Description: `Authentication password (key) (The OSPF password (key))`,
+				},
+				resource.Attribute{
+					Name:        "cost",
+					Description: `Interface cost`,
+				},
+				resource.Attribute{
+					Name:        "database_filter",
+					Description: `‘all’: Filter all LSA;`,
+				},
+				resource.Attribute{
+					Name:        "dead_interval",
+					Description: `Interval after which a neighbor is declared dead (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "hello_interval",
+					Description: `Time between HELLO packets (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "ip_addr",
+					Description: `Address of interface`,
+				},
+				resource.Attribute{
+					Name:        "mtu_ignore",
+					Description: `Ignores the MTU in DBD packets`,
+				},
+				resource.Attribute{
+					Name:        "out",
+					Description: `Outgoing LSA`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Router priority`,
+				},
+				resource.Attribute{
+					Name:        "retransmit_interval",
+					Description: `Time between retransmitting lost link state advertisements (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "transmit_delay",
+					Description: `Link state transmit delay (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Mesh group number`,
+				},
+				resource.Attribute{
+					Name:        "encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED password string)`,
+				},
+				resource.Attribute{
+					Name:        "md5_value",
+					Description: `The OSPF password (1-16)`,
+				},
+				resource.Attribute{
+					Name:        "message_digest_key",
+					Description: `Message digest authentication password (key) (Key id)`,
+				},
+				resource.Attribute{
+					Name:        "disable",
+					Description: `Disable BFD`,
+				},
+				resource.Attribute{
+					Name:        "broadcast",
+					Description: `Specify OSPF broadcast multi-access network`,
+				},
+				resource.Attribute{
+					Name:        "non_broadcast",
+					Description: `Specify OSPF NBMA network`,
+				},
+				resource.Attribute{
+					Name:        "p2mp_nbma",
+					Description: `Specify non-broadcast point-to-multipoint network`,
+				},
+				resource.Attribute{
+					Name:        "point_to_multipoint",
+					Description: `Specify OSPF point-to-multipoint network`,
+				},
+				resource.Attribute{
+					Name:        "point_to_point",
+					Description: `Specify OSPF point-to-point network`,
+				},
+				resource.Attribute{
+					Name:        "bfd",
+					Description: `Bidirectional Forwarding Detection (BFD)`,
+				},
+				resource.Attribute{
+					Name:        "acl_name",
+					Description: `Access-list Name`,
+				},
+				resource.Attribute{
+					Name:        "lockup",
+					Description: `Enter lockup state when ICMP rate exceeds lockup rate limit (Maximum rate limit. If exceeds this limit, drop all ICMP packet for a time period)`,
+				},
+				resource.Attribute{
+					Name:        "lockup_period",
+					Description: `Lockup period (second)`,
+				},
+				resource.Attribute{
+					Name:        "normal",
+					Description: `Normal rate limit. If exceeds this limit, drop the ICMP packet that goes over the limit`,
+				},
+				resource.Attribute{
+					Name:        "link_aggregation",
+					Description: `Interface link aggregation information`,
+				},
+				resource.Attribute{
+					Name:        "tx_dot1_tlvs",
+					Description: `Interface lldp tx IEEE 802.1 Organizationally specific TLVs configuration`,
+				},
+				resource.Attribute{
+					Name:        "vlan",
+					Description: `Interface vlan information`,
+				},
+				resource.Attribute{
+					Name:        "notif_enable",
+					Description: `Interface lldp notification enable`,
+				},
+				resource.Attribute{
+					Name:        "notification",
+					Description: `Interface lldp notification configuration`,
+				},
+				resource.Attribute{
+					Name:        "exclude",
+					Description: `Configure which TLVs excluded. All basic TLVs will be included by default`,
+				},
+				resource.Attribute{
+					Name:        "management_address",
+					Description: `Interface lldp management address`,
+				},
+				resource.Attribute{
+					Name:        "port_description",
+					Description: `Interface lldp port description`,
+				},
+				resource.Attribute{
+					Name:        "system_capabilities",
+					Description: `Interface lldp system capabilities`,
+				},
+				resource.Attribute{
+					Name:        "system_description",
+					Description: `Interface lldp system description`,
+				},
+				resource.Attribute{
+					Name:        "system_name",
+					Description: `Interface lldp system name`,
+				},
+				resource.Attribute{
+					Name:        "tx_tlvs",
+					Description: `Interface lldp tx TLVs configuration`,
+				},
+				resource.Attribute{
+					Name:        "rt_enable",
+					Description: `Interface lldp enable/disable`,
+				},
+				resource.Attribute{
+					Name:        "rx",
+					Description: `Enable lldp rx`,
+				},
+				resource.Attribute{
+					Name:        "tx",
+					Description: `Enable lldp tx`,
+				},
+				resource.Attribute{
+					Name:        "demand",
+					Description: `Demand mode`,
+				},
+				resource.Attribute{
+					Name:        "echo",
+					Description: `Enable BFD Echo`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `Key ID`,
+				},
+				resource.Attribute{
+					Name:        "method",
+					Description: `‘md5’: Keyed MD5; ‘meticulous-md5’: Meticulous Keyed MD5; ‘meticulous-sha1’: Meticulous Keyed SHA1; ‘sha1’: Keyed SHA1; ‘simple’: Simple Password;`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Configure the authentication password for interface`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Transmit interval between BFD packets (Milliseconds)`,
+				},
+				resource.Attribute{
+					Name:        "min_rx",
+					Description: `Minimum receive interval capability (Milliseconds)`,
+				},
+				resource.Attribute{
+					Name:        "multiplier",
+					Description: `Multiplier value used to compute holddown (value used to multiply the interval)`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘packets_input’: Input packets; ‘bytes_input’: Input bytes; ‘received_broadcasts’: Received broadcasts; ‘received_multicasts’: Received multicasts; ‘received_unicasts’: Received unicasts; ‘input_errors’: Input errors; ‘crc’: CRC; ‘frame’: Frames; ‘runts’: Runts; ‘giants’: Giants; ‘packets_output’: Output packets; ‘bytes_output’: Output bytes; ‘transmitted_broadcasts’: Transmitted braodcasts; ‘transmitted_multicasts’: Transmitted multicasts; ‘transmitted_unicasts’: Transmitted unicasts; ‘output_errors’: Output errors; ‘collisions’: Collisions;`,
+				},
+				resource.Attribute{
+					Name:        "map_t_inside",
+					Description: `Configure MAP inside interface (connected to MAP domains)`,
+				},
+				resource.Attribute{
+					Name:        "map_t_outside",
+					Description: `Configure MAP outside interface`,
+				},
+				resource.Attribute{
+					Name:        "admin_key",
+					Description: `LACP admin key (Admin key value)`,
+				},
+				resource.Attribute{
+					Name:        "port_priority",
+					Description: `Set LACP priority for a port (LACP port priority)`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `‘long’: Set LACP long timeout (default); ‘short’: Set LACP short timeout;`,
+				},
+				resource.Attribute{
+					Name:        "trunk_number",
+					Description: `Trunk Number`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `‘static’: Static (default); ‘lacp’: lacp; ‘lacp-udld’: lacp-udld;`,
+				},
+				resource.Attribute{
+					Name:        "fast",
+					Description: `fast timeout in unit of milli-seconds(default 1000)`,
+				},
+				resource.Attribute{
+					Name:        "slow",
+					Description: `slow timeout in unit of seconds`,
+				},
+				resource.Attribute{
+					Name:        "bind_type",
+					Description: `‘inside’: This interface is connected to NPTv6 inside networks; ‘outside’: This interface is connected to NPTv6 outside networks;`,
+				},
+				resource.Attribute{
+					Name:        "domain_name",
+					Description: `NPTv6 domain name`,
+				},
+				resource.Attribute{
+					Name:        "circuit_type",
+					Description: `‘level-1’: Level-1 only adjacencies are formed; ‘level-1-2’: Level-1-2 adjacencies are formed; ‘level-2-only’: Level-2 only adjacencies are formed;`,
+				},
+				resource.Attribute{
+					Name:        "lsp_interval",
+					Description: `Set LSP transmission interval (LSP transmission interval (milliseconds))`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `‘broadcast’: Specify IS-IS broadcast multi-access network; ‘point-to-point’: Specify IS-IS point-to-point network;`,
+				},
+				resource.Attribute{
+					Name:        "padding",
+					Description: `Add padding to IS-IS hello packets`,
+				},
+				resource.Attribute{
+					Name:        "level",
+					Description: `‘level-1’: Speficy interval for level-1 CSNPs; ‘level-2’: Specify interval for level-2 CSNPs;`,
+				},
+				resource.Attribute{
+					Name:        "hello_interval_minimal",
+					Description: `Set Hello holdtime 1 second, interval depends on multiplier`,
+				},
+				resource.Attribute{
+					Name:        "blocked",
+					Description: `Block LSPs on this interface`,
+				},
+				resource.Attribute{
+					Name:        "send_only",
+					Description: `Authentication send-only`,
+				},
+				resource.Attribute{
+					Name:        "wide_metric",
+					Description: `Configure the wide metric for interface`,
+				},
+				resource.Attribute{
+					Name:        "hello_multiplier",
+					Description: `Set multiplier for Hello holding time (Hello multiplier value)`,
+				},
+				resource.Attribute{
+					Name:        "metric",
+					Description: `Configure the metric for interface (Default metric)`,
+				},
+				resource.Attribute{
+					Name:        "csnp_interval",
+					Description: `Set CSNP interval in seconds (CSNP interval value)`,
+				},
+				resource.Attribute{
+					Name:        "lockup_period_v6",
+					Description: `Lockup period (second)`,
+				},
+				resource.Attribute{
+					Name:        "lockup_v6",
+					Description: `Enter lockup state when ICMP rate exceeds lockup rate limit (Maximum rate limit. If exceeds this limit, drop all ICMP packet for a time period)`,
+				},
+				resource.Attribute{
+					Name:        "normal_v6",
+					Description: `Normal rate limit. If exceeds this limit, drop the ICMP packet that goes over the limit`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_enable",
+					Description: `Enable IPv6 processing`,
+				},
+				resource.Attribute{
+					Name:        "address_type",
+					Description: `‘anycast’: Configure an IPv6 anycast address; ‘link-local’: Configure an IPv6 link local address;`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_addr",
+					Description: `Set the IPv6 address of an interface`,
+				},
+				resource.Attribute{
+					Name:        "rip",
+					Description: `RIP Routing for IPv6`,
+				},
+				resource.Attribute{
+					Name:        "area_id_addr",
+					Description: `OSPF area ID in IP address format`,
+				},
+				resource.Attribute{
+					Name:        "area_id_num",
+					Description: `OSPF area ID as a decimal value`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `Specify the interface instance ID`,
+				},
+				resource.Attribute{
+					Name:        "inbound",
+					Description: `ACL applied on incoming packets to this interface`,
+				},
+				resource.Attribute{
+					Name:        "v6_acl_name",
+					Description: `Apply ACL rules to incoming packets on this interface (Named Access List)`,
+				},
+				resource.Attribute{
+					Name:        "broadcast_type",
+					Description: `‘broadcast’: Specify OSPF broadcast multi-access network; ‘non-broadcast’: Specify OSPF NBMA network; ‘point-to-point’: Specify OSPF point-to-point network; ‘point-to-multipoint’: Specify OSPF point-to-multipoint network;`,
+				},
+				resource.Attribute{
+					Name:        "network_instance_id",
+					Description: `Specify the interface instance ID`,
+				},
+				resource.Attribute{
+					Name:        "neig_inst",
+					Description: `Specify the interface instance ID`,
+				},
+				resource.Attribute{
+					Name:        "neighbor",
+					Description: `OSPFv3 neighbor (Neighbor IPv6 address)`,
+				},
+				resource.Attribute{
+					Name:        "neighbor_cost",
+					Description: `OSPF cost for point-to-multipoint neighbor (metric)`,
+				},
+				resource.Attribute{
+					Name:        "neighbor_poll_interval",
+					Description: `OSPF dead-router polling interval (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "neighbor_priority",
+					Description: `OSPF priority of non-broadcast neighbor`,
+				},
+				resource.Attribute{
+					Name:        "adver_mtu",
+					Description: `Set Router Advertisement MTU Option`,
+				},
+				resource.Attribute{
+					Name:        "adver_mtu_disable",
+					Description: `Disable Router Advertisement MTU Option`,
+				},
+				resource.Attribute{
+					Name:        "adver_vrid",
+					Description: `Specify ha VRRP-A vrid`,
+				},
+				resource.Attribute{
+					Name:        "adver_vrid_default",
+					Description: `Default VRRP-A vrid`,
+				},
+				resource.Attribute{
+					Name:        "default_lifetime",
+					Description: `Set Router Advertisement Default Lifetime (default: 1800) (Default Lifetime (seconds))`,
+				},
+				resource.Attribute{
+					Name:        "floating_ip",
+					Description: `Use a floating IP as the source address for Router advertisements`,
+				},
+				resource.Attribute{
+					Name:        "floating_ip_default_vrid",
+					Description: `Use a floating IP as the source address for Router advertisements`,
+				},
+				resource.Attribute{
+					Name:        "hop_limit",
+					Description: `Set Router Advertisement Hop Limit (default: 255)`,
+				},
+				resource.Attribute{
+					Name:        "managed_config_action",
+					Description: `‘enable’: Enable the Managed Address Configuration flag; ‘disable’: Disable the Managed Address Configuration flag (default);`,
+				},
+				resource.Attribute{
+					Name:        "max_interval",
+					Description: `Set Router Advertisement Max Interval (default: 600) (Max Router Advertisement Interval (seconds))`,
+				},
+				resource.Attribute{
+					Name:        "min_interval",
+					Description: `Set Router Advertisement Min Interval (default: 200) (Min Router Advertisement Interval (seconds))`,
+				},
+				resource.Attribute{
+					Name:        "other_config_action",
+					Description: `‘enable’: Enable the Other Stateful Configuration flag; ‘disable’: Disable the Other Stateful Configuration flag (default);`,
+				},
+				resource.Attribute{
+					Name:        "rate_limit",
+					Description: `Rate Limit the processing of incoming Router Solicitations (Max Number of Router Solicitations to process per second)`,
+				},
+				resource.Attribute{
+					Name:        "reachable_time",
+					Description: `Set Router Advertisement Reachable ime (default: 0) (Reachable Time (milliseconds))`,
+				},
+				resource.Attribute{
+					Name:        "retransmit_timer",
+					Description: `Set Router Advertisement Retransmit Timer (default: 0)`,
+				},
+				resource.Attribute{
+					Name:        "use_floating_ip",
+					Description: `Use a floating IP as the source address for Router advertisements`,
+				},
+				resource.Attribute{
+					Name:        "use_floating_ip_default_vrid",
+					Description: `Use a floating IP as the source address for Router advertisements`,
+				},
+				resource.Attribute{
+					Name:        "not_autonomous",
+					Description: `Specify that the Prefix is not usable for autoconfiguration (default:autonomous)`,
+				},
+				resource.Attribute{
+					Name:        "not_on_link",
+					Description: `Specify that the Prefix is not On-Link (default: on-link)`,
+				},
+				resource.Attribute{
+					Name:        "preferred_lifetime",
+					Description: `Specify Prefix Preferred Lifetime (default:604800) (Prefix Advertised Preferred Lifetime (default: 604800))`,
+				},
+				resource.Attribute{
+					Name:        "prefix",
+					Description: `Set Router Advertisement On-Link Prefix (IPv6 On-Link Prefix)`,
+				},
+				resource.Attribute{
+					Name:        "valid_lifetime",
+					Description: `Specify Valid Lifetime (default:2592000) (Prefix Advertised Valid Lifetime (default: 2592000))`,
+				},
+				resource.Attribute{
+					Name:        "mirror_index",
+					Description: `Mirror index`,
+				},
+				resource.Attribute{
+					Name:        "monitor",
+					Description: `‘input’: Incoming packets; ‘output’: Outgoing packets; ‘both’: Both incoming and outgoing packets;`,
+				},
+				resource.Attribute{
+					Name:        "monitor_vlan",
+					Description: `VLAN number`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_interface_ethernet_bfd",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder interface ethernet bfd resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"interface",
+				"ethernet",
+				"bfd",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ifnum",
+					Description: `Interface no.`,
+				},
+				resource.Attribute{
+					Name:        "demand",
+					Description: `Demand mode`,
+				},
+				resource.Attribute{
+					Name:        "echo",
+					Description: `Enable BFD Echo`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED password string)`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `Key ID`,
+				},
+				resource.Attribute{
+					Name:        "method",
+					Description: `‘md5’: Keyed MD5; ‘meticulous-md5’: Meticulous Keyed MD5; ‘meticulous-sha1’: Meticulous Keyed SHA1; ‘sha1’: Keyed SHA1; ‘simple’: Simple Password;`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Key String`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Transmit interval between BFD packets (Milliseconds)`,
+				},
+				resource.Attribute{
+					Name:        "min_rx",
+					Description: `Minimum receive interval capability (Milliseconds)`,
+				},
+				resource.Attribute{
+					Name:        "multiplier",
+					Description: `Multiplier value used to compute holddown (value used to multiply the interval)`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_interface_ethernet_ipv6",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder interface ethernet ipv6 resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"interface",
+				"ethernet",
+				"ipv6",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "inside",
+					Description: `Inside (private) interface for stateful firewall`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_enable",
+					Description: `Enable IPv6 processing`,
+				},
+				resource.Attribute{
+					Name:        "outside",
+					Description: `Outside (public) interface for stateful firewall`,
+				},
+				resource.Attribute{
+					Name:        "ttl_ignore",
+					Description: `Ignore TTL decrement for a received packet before sending out`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "address_type",
+					Description: `‘anycast’: Configure an IPv6 anycast address; ‘link-local’: Configure an IPv6 link local address;`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_addr",
+					Description: `Set the IPv6 address of an interface`,
+				},
+				resource.Attribute{
+					Name:        "rip",
+					Description: `RIP Routing for IPv6`,
+				},
+				resource.Attribute{
+					Name:        "area_id_addr",
+					Description: `OSPF area ID in IP address format`,
+				},
+				resource.Attribute{
+					Name:        "area_id_num",
+					Description: `OSPF area ID as a decimal value`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `Specify the interface instance ID`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `ISO routing area tag`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `‘poisoned’: Perform split horizon with poisoned reverse; ‘disable’: Disable split horizon; ‘enable’: Perform split horizon without poisoned reverse;`,
+				},
+				resource.Attribute{
+					Name:        "access_list",
+					Description: `Access-list for traffic from the outside`,
+				},
+				resource.Attribute{
+					Name:        "acl_name",
+					Description: `Access-list Name`,
+				},
+				resource.Attribute{
+					Name:        "class_list",
+					Description: `Class List (Class List Name)`,
+				},
+				resource.Attribute{
+					Name:        "inbound",
+					Description: `ACL applied on incoming packets to this interface`,
+				},
+				resource.Attribute{
+					Name:        "v6_acl_name",
+					Description: `Apply ACL rules to incoming packets on this interface (Named Access List)`,
+				},
+				resource.Attribute{
+					Name:        "bfd",
+					Description: `Bidirectional Forwarding Detection (BFD)`,
+				},
+				resource.Attribute{
+					Name:        "disable",
+					Description: `Disable BFD`,
+				},
+				resource.Attribute{
+					Name:        "cost",
+					Description: `Interface cost`,
+				},
+				resource.Attribute{
+					Name:        "hello_interval",
+					Description: `Time between HELLO packets (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Router priority`,
+				},
+				resource.Attribute{
+					Name:        "mtu_ignore",
+					Description: `Ignores the MTU in DBD packets`,
+				},
+				resource.Attribute{
+					Name:        "retransmit_interval",
+					Description: `Time between retransmitting lost link state advertisements (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "broadcast_type",
+					Description: `‘broadcast’: Specify OSPF broadcast multi-access network; ‘non-broadcast’: Specify OSPF NBMA network; ‘point-to-point’: Specify OSPF point-to-point network; ‘point-to-multipoint’: Specify OSPF point-to-multipoint network;`,
+				},
+				resource.Attribute{
+					Name:        "network_instance_id",
+					Description: `Specify the interface instance ID`,
+				},
+				resource.Attribute{
+					Name:        "p2mp_nbma",
+					Description: `Specify non-broadcast point-to-multipoint network`,
+				},
+				resource.Attribute{
+					Name:        "transmit_delay",
+					Description: `Link state transmit delay (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "neig_inst",
+					Description: `Specify the interface instance ID`,
+				},
+				resource.Attribute{
+					Name:        "neighbor",
+					Description: `OSPFv3 neighbor (Neighbor IPv6 address)`,
+				},
+				resource.Attribute{
+					Name:        "neighbor_cost",
+					Description: `OSPF cost for point-to-multipoint neighbor (metric)`,
+				},
+				resource.Attribute{
+					Name:        "neighbor_poll_interval",
+					Description: `OSPF dead-router polling interval (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "neighbor_priority",
+					Description: `OSPF priority of non-broadcast neighbor`,
+				},
+				resource.Attribute{
+					Name:        "dead_interval",
+					Description: `Interval after which a neighbor is declared dead (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `‘enable’: Enable Router Advertisements on this interface; ‘disable’: Disable Router Advertisements on this interface;`,
+				},
+				resource.Attribute{
+					Name:        "adver_mtu",
+					Description: `Set Router Advertisement MTU Option`,
+				},
+				resource.Attribute{
+					Name:        "adver_mtu_disable",
+					Description: `Disable Router Advertisement MTU Option`,
+				},
+				resource.Attribute{
+					Name:        "adver_vrid",
+					Description: `Specify ha VRRP-A vrid`,
+				},
+				resource.Attribute{
+					Name:        "adver_vrid_default",
+					Description: `Default VRRP-A vrid`,
+				},
+				resource.Attribute{
+					Name:        "default_lifetime",
+					Description: `Set Router Advertisement Default Lifetime (default: 1800) (Default Lifetime (seconds))`,
+				},
+				resource.Attribute{
+					Name:        "floating_ip",
+					Description: `Use a floating IP as the source address for Router advertisements`,
+				},
+				resource.Attribute{
+					Name:        "floating_ip_default_vrid",
+					Description: `Use a floating IP as the source address for Router advertisements`,
+				},
+				resource.Attribute{
+					Name:        "hop_limit",
+					Description: `Set Router Advertisement Hop Limit (default: 255)`,
+				},
+				resource.Attribute{
+					Name:        "managed_config_action",
+					Description: `‘enable’: Enable the Managed Address Configuration flag; ‘disable’: Disable the Managed Address Configuration flag (default);`,
+				},
+				resource.Attribute{
+					Name:        "max_interval",
+					Description: `Set Router Advertisement Max Interval (default: 600) (Max Router Advertisement Interval (seconds))`,
+				},
+				resource.Attribute{
+					Name:        "min_interval",
+					Description: `Set Router Advertisement Min Interval (default: 200) (Min Router Advertisement Interval (seconds))`,
+				},
+				resource.Attribute{
+					Name:        "other_config_action",
+					Description: `‘enable’: Enable the Other Stateful Configuration flag; ‘disable’: Disable the Other Stateful Configuration flag (default);`,
+				},
+				resource.Attribute{
+					Name:        "rate_limit",
+					Description: `Rate Limit the processing of incoming Router Solicitations (Max Number of Router Solicitations to process per second)`,
+				},
+				resource.Attribute{
+					Name:        "reachable_time",
+					Description: `Set Router Advertisement Reachable ime (default: 0) (Reachable Time (milliseconds))`,
+				},
+				resource.Attribute{
+					Name:        "retransmit_timer",
+					Description: `Set Router Advertisement Retransmit Timer (default: 0)`,
+				},
+				resource.Attribute{
+					Name:        "use_floating_ip",
+					Description: `Use a floating IP as the source address for Router advertisements`,
+				},
+				resource.Attribute{
+					Name:        "use_floating_ip_default_vrid",
+					Description: `Use a floating IP as the source address for Router advertisements`,
+				},
+				resource.Attribute{
+					Name:        "not_autonomous",
+					Description: `Specify that the Prefix is not usable for autoconfiguration (default:autonomous)`,
+				},
+				resource.Attribute{
+					Name:        "not_on_link",
+					Description: `Specify that the Prefix is not On-Link (default: on-link)`,
+				},
+				resource.Attribute{
+					Name:        "preferred_lifetime",
+					Description: `Specify Prefix Preferred Lifetime (default:604800) (Prefix Advertised Preferred Lifetime (default: 604800))`,
+				},
+				resource.Attribute{
+					Name:        "prefix",
+					Description: `Set Router Advertisement On-Link Prefix (IPv6 On-Link Prefix)`,
+				},
+				resource.Attribute{
+					Name:        "valid_lifetime",
+					Description: `Specify Valid Lifetime (default:2592000) (Prefix Advertised Valid Lifetime (default: 2592000))`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_interface_ethernet_lldp",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder interface ethernet lldp resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"interface",
+				"ethernet",
+				"lldp",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ifnum",
+					Description: `Interface no.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "link_aggregation",
+					Description: `Interface link aggregation information`,
+				},
+				resource.Attribute{
+					Name:        "tx_dot1_tlvs",
+					Description: `Interface lldp tx IEEE 802.1 Organizationally specific TLVs configuration`,
+				},
+				resource.Attribute{
+					Name:        "vlan",
+					Description: `Interface vlan information`,
+				},
+				resource.Attribute{
+					Name:        "notif_enable",
+					Description: `Interface lldp notification enable`,
+				},
+				resource.Attribute{
+					Name:        "notification",
+					Description: `Interface lldp notification configuration`,
+				},
+				resource.Attribute{
+					Name:        "exclude",
+					Description: `Configure which TLVs excluded. All basic TLVs will be included by default`,
+				},
+				resource.Attribute{
+					Name:        "management_address",
+					Description: `Interface lldp management address`,
+				},
+				resource.Attribute{
+					Name:        "port_description",
+					Description: `Interface lldp port description`,
+				},
+				resource.Attribute{
+					Name:        "system_capabilities",
+					Description: `Interface lldp system capabilities`,
+				},
+				resource.Attribute{
+					Name:        "system_description",
+					Description: `Interface lldp system description`,
+				},
+				resource.Attribute{
+					Name:        "system_name",
+					Description: `Interface lldp system name`,
+				},
+				resource.Attribute{
+					Name:        "tx_tlvs",
+					Description: `Interface lldp tx TLVs configuration`,
+				},
+				resource.Attribute{
+					Name:        "rt_enable",
+					Description: `Interface lldp enable/disable`,
+				},
+				resource.Attribute{
+					Name:        "rx",
+					Description: `Enable lldp rx`,
+				},
+				resource.Attribute{
+					Name:        "tx",
+					Description: `Enable lldp tx`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_interface_ethernet_trunk_group",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder interface ethernet trunk group resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"interface",
+				"ethernet",
+				"trunk",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "admin_key",
+					Description: `LACP admin key (Admin key value)`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `‘active’: enable initiation of LACP negotiation on a port(default); ‘passive’: disable initiation of LACP negotiation on a port;`,
+				},
+				resource.Attribute{
+					Name:        "port_priority",
+					Description: `Set LACP priority for a port (LACP port priority)`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `‘long’: Set LACP long timeout (default); ‘short’: Set LACP short timeout;`,
+				},
+				resource.Attribute{
+					Name:        "trunk_number",
+					Description: `Trunk Number`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `‘static’: Static (default); ‘lacp’: lacp; ‘lacp-udld’: lacp-udld;`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "fast",
+					Description: `fast timeout in unit of milli-seconds(default 1000)`,
+				},
+				resource.Attribute{
+					Name:        "slow",
+					Description: `slow timeout in unit of seconds`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_interface_management",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder interface management resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"interface",
+				"management",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "action",
+					Description: `‘enable’: Enable Management Port; ‘disable’: Disable Management Port;`,
+				},
+				resource.Attribute{
+					Name:        "duplexity",
+					Description: `‘Full’: Full; ‘Half’: Half; ‘auto’: Auto;`,
+				},
+				resource.Attribute{
+					Name:        "flow_control",
+					Description: `Enable 802.3x flow control on full duplex port`,
+				},
+				resource.Attribute{
+					Name:        "speed",
+					Description: `‘10’: 10 Mbs/sec; ‘100’: 100 Mbs/sec; ‘1000’: 1 Gb/sec; ‘auto’: Auto Negotiate Speed; (Interface Speed)`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "link_aggregation",
+					Description: `Interface link aggregation information`,
+				},
+				resource.Attribute{
+					Name:        "tx_dot1_tlvs",
+					Description: `Interface lldp tx IEEE 802.1 Organizationally specific TLVs configuration`,
+				},
+				resource.Attribute{
+					Name:        "vlan",
+					Description: `Interface vlan information`,
+				},
+				resource.Attribute{
+					Name:        "notif_enable",
+					Description: `Interface lldp notification enable`,
+				},
+				resource.Attribute{
+					Name:        "notification",
+					Description: `Interface lldp notification configuration`,
+				},
+				resource.Attribute{
+					Name:        "exclude",
+					Description: `Configure which TLVs excluded. All basic TLVs will be included by default`,
+				},
+				resource.Attribute{
+					Name:        "management_address",
+					Description: `Interface lldp management address`,
+				},
+				resource.Attribute{
+					Name:        "port_description",
+					Description: `Interface lldp port description`,
+				},
+				resource.Attribute{
+					Name:        "system_capabilities",
+					Description: `Interface lldp system capabilities`,
+				},
+				resource.Attribute{
+					Name:        "system_description",
+					Description: `Interface lldp system description`,
+				},
+				resource.Attribute{
+					Name:        "system_name",
+					Description: `Interface lldp system name`,
+				},
+				resource.Attribute{
+					Name:        "tx_tlvs",
+					Description: `Interface lldp tx TLVs configuration`,
+				},
+				resource.Attribute{
+					Name:        "rt_enable",
+					Description: `Interface lldp enable/disable`,
+				},
+				resource.Attribute{
+					Name:        "rx",
+					Description: `Enable lldp rx`,
+				},
+				resource.Attribute{
+					Name:        "tx",
+					Description: `Enable lldp tx`,
+				},
+				resource.Attribute{
+					Name:        "bcast_rate_limit_enable",
+					Description: `Rate limit the l2 broadcast packet on mgmt port`,
+				},
+				resource.Attribute{
+					Name:        "rate",
+					Description: `packets per second. Default is 500. (packets per second. Please specify an even number. Default is 500)`,
+				},
+				resource.Attribute{
+					Name:        "address_type",
+					Description: `‘link-local’: Configure an IPv6 link local address;`,
+				},
+				resource.Attribute{
+					Name:        "default_ipv6_gateway",
+					Description: `Set default gateway (Default gateway address)`,
+				},
+				resource.Attribute{
+					Name:        "inbound",
+					Description: `ACL applied on incoming packets to this interface`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_addr",
+					Description: `Set the IPv6 address of an interface`,
+				},
+				resource.Attribute{
+					Name:        "v6_acl_name",
+					Description: `Apply ACL rules to incoming packets on this interface (Named Access List)`,
+				},
+				resource.Attribute{
+					Name:        "control_apps_use_mgmt_port",
+					Description: `Control applications use management port`,
+				},
+				resource.Attribute{
+					Name:        "default_gateway",
+					Description: `Set default gateway (Default gateway address)`,
+				},
+				resource.Attribute{
+					Name:        "dhcp",
+					Description: `Use DHCP to configure IP address`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_address",
+					Description: `IP address`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_netmask",
+					Description: `IP subnet mask`,
+				},
+				resource.Attribute{
+					Name:        "secondary_ip",
+					Description: `Global IP configuration subcommands`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘packets_input’: Input packets; ‘bytes_input’: Input bytes; ‘received_broadcasts’: Received broadcasts; ‘received_multicasts’: Received multicasts; ‘received_unicasts’: Received unicasts; ‘input_errors’: Input errors; ‘crc’: CRC; ‘frame’: Frames; ‘input_err_short’: Runts; ‘input_err_long’: Giants; ‘packets_output’: Output packets; ‘bytes_output’: Output bytes; ‘transmitted_broadcasts’: Transmitted broadcasts; ‘transmitted_multicasts’: Transmitted multicasts; ‘transmitted_unicasts’: Transmitted unicasts; ‘output_errors’: Output errors; ‘collisions’: Collisions;`,
+				},
+				resource.Attribute{
+					Name:        "acl_id",
+					Description: `ACL id`,
+				},
+				resource.Attribute{
+					Name:        "acl_name",
+					Description: `Apply an access list (Named Access List)`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_interface_ve",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder interface ve resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"interface",
+				"ve",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "action",
+					Description: `‘enable’: Enable Router Advertisements on this interface; ‘disable’: Disable Router Advertisements on this interface;`,
+				},
+				resource.Attribute{
+					Name:        "ifnum",
+					Description: `Virtual ethernet interface number`,
+				},
+				resource.Attribute{
+					Name:        "l3_vlan_fwd_disable",
+					Description: `Disable L3 forwarding between VLANs for incoming packets on this interface`,
+				},
+				resource.Attribute{
+					Name:        "mtu",
+					Description: `OSPF interface MTU (MTU size)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name for the interface`,
+				},
+				resource.Attribute{
+					Name:        "trap_source",
+					Description: `The trap source`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "inside",
+					Description: `DDoS inside (trusted) or outside (untrusted) interface`,
+				},
+				resource.Attribute{
+					Name:        "map_t_inside",
+					Description: `Configure MAP inside interface (connected to MAP domains)`,
+				},
+				resource.Attribute{
+					Name:        "map_t_outside",
+					Description: `Configure MAP outside interface`,
+				},
+				resource.Attribute{
+					Name:        "outside",
+					Description: `DDoS inside (trusted) or outside (untrusted) interface`,
+				},
+				resource.Attribute{
+					Name:        "lockup",
+					Description: `Enter lockup state when ICMP rate exceeds lockup rate limit (Maximum rate limit. If exceeds this limit, drop all ICMP packet for a time period)`,
+				},
+				resource.Attribute{
+					Name:        "lockup_period",
+					Description: `Lockup period (second)`,
+				},
+				resource.Attribute{
+					Name:        "normal",
+					Description: `Normal rate limit. If exceeds this limit, drop the ICMP packet that goes over the limit`,
+				},
+				resource.Attribute{
+					Name:        "circuit_type",
+					Description: `‘level-1’: Level-1 only adjacencies are formed; ‘level-1-2’: Level-1-2 adjacencies are formed; ‘level-2-only’: Level-2 only adjacencies are formed;`,
+				},
+				resource.Attribute{
+					Name:        "lsp_interval",
+					Description: `Set LSP transmission interval (LSP transmission interval (milliseconds))`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `‘broadcast’: Specify IS-IS broadcast multi-access network; ‘point-to-point’: Specify IS-IS point-to-point network;`,
+				},
+				resource.Attribute{
+					Name:        "padding",
+					Description: `Add padding to IS-IS hello packets`,
+				},
+				resource.Attribute{
+					Name:        "retransmit_interval",
+					Description: `Time between retransmitting lost link state advertisements (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "level",
+					Description: `‘level-1’: Speficy interval for level-1 CSNPs; ‘level-2’: Specify interval for level-2 CSNPs;`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Router priority`,
+				},
+				resource.Attribute{
+					Name:        "hello_interval_minimal",
+					Description: `Set Hello holdtime 1 second, interval depends on multiplier`,
+				},
+				resource.Attribute{
+					Name:        "blocked",
+					Description: `Block LSPs on this interface`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `‘message-digest’: Use message-digest authentication; ‘null’: Use no authentication;`,
+				},
+				resource.Attribute{
+					Name:        "bfd",
+					Description: `Bidirectional Forwarding Detection (BFD)`,
+				},
+				resource.Attribute{
+					Name:        "disable",
+					Description: `Disable BFD`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Key String`,
+				},
+				resource.Attribute{
+					Name:        "key_chain",
+					Description: `Authentication key-chain (Name of key-chain)`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `‘md5’: Keyed message digest; ‘text’: Clear text authentication;`,
+				},
+				resource.Attribute{
+					Name:        "send_only",
+					Description: `Authentication send-only`,
+				},
+				resource.Attribute{
+					Name:        "wide_metric",
+					Description: `Configure the wide metric for interface`,
+				},
+				resource.Attribute{
+					Name:        "hello_interval",
+					Description: `Time between HELLO packets (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "hello_multiplier",
+					Description: `Set multiplier for Hello holding time (Hello multiplier value)`,
+				},
+				resource.Attribute{
+					Name:        "metric",
+					Description: `Configure the metric for interface (Default metric)`,
+				},
+				resource.Attribute{
+					Name:        "csnp_interval",
+					Description: `Set CSNP interval in seconds (CSNP interval value)`,
+				},
+				resource.Attribute{
+					Name:        "demand",
+					Description: `Demand mode`,
+				},
+				resource.Attribute{
+					Name:        "echo",
+					Description: `Enable BFD Echo`,
+				},
+				resource.Attribute{
+					Name:        "encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED password string)`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `Key ID`,
+				},
+				resource.Attribute{
+					Name:        "method",
+					Description: `‘md5’: Keyed MD5; ‘meticulous-md5’: Meticulous Keyed MD5; ‘meticulous-sha1’: Meticulous Keyed SHA1; ‘sha1’: Keyed SHA1; ‘simple’: Simple Password;`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Transmit interval between BFD packets (Milliseconds)`,
+				},
+				resource.Attribute{
+					Name:        "min_rx",
+					Description: `Minimum receive interval capability (Milliseconds)`,
+				},
+				resource.Attribute{
+					Name:        "multiplier",
+					Description: `Multiplier value used to compute holddown (value used to multiply the interval)`,
+				},
+				resource.Attribute{
+					Name:        "allow_promiscuous_vip",
+					Description: `Allow traffic to be associated with promiscuous VIP`,
+				},
+				resource.Attribute{
+					Name:        "client",
+					Description: `Client facing interface for IPv4/v6 traffic`,
+				},
+				resource.Attribute{
+					Name:        "dhcp",
+					Description: `Use DHCP to configure IP address`,
+				},
+				resource.Attribute{
+					Name:        "generate_membership_query",
+					Description: `Enable Membership Query`,
+				},
+				resource.Attribute{
+					Name:        "max_resp_time",
+					Description: `Maximum Response Time (Max Response Time (Default is 100))`,
+				},
+				resource.Attribute{
+					Name:        "query_interval",
+					Description: `1 - 255 (Default is 125)`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `Server facing interface for IPv4/v6 traffic`,
+				},
+				resource.Attribute{
+					Name:        "slb_partition_redirect",
+					Description: `Redirect SLB traffic across partition`,
+				},
+				resource.Attribute{
+					Name:        "ttl_ignore",
+					Description: `Ignore TTL decrement for a received packet`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_address",
+					Description: `IP address`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_netmask",
+					Description: `IP subnet mask`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `ISO routing area tag`,
+				},
+				resource.Attribute{
+					Name:        "helper_address",
+					Description: `Helper address for DHCP packets (IP address)`,
+				},
+				resource.Attribute{
+					Name:        "access_list",
+					Description: `Access-list for traffic from the outside`,
+				},
+				resource.Attribute{
+					Name:        "acl_id",
+					Description: `ACL id`,
+				},
+				resource.Attribute{
+					Name:        "class_list",
+					Description: `Class List (Class List Name)`,
+				},
+				resource.Attribute{
+					Name:        "receive_packet",
+					Description: `Enable receiving packet through the specified interface`,
+				},
+				resource.Attribute{
+					Name:        "send_packet",
+					Description: `Enable sending packets through the specified interface`,
+				},
+				resource.Attribute{
+					Name:        "receive",
+					Description: `Advertisement reception`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `‘1’: RIP version 1; ‘2’: RIP version 2; ‘1-compatible’: RIPv1-compatible; ‘1-2’: RIP version 1 & 2;`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `‘poisoned’: Perform split horizon with poisoned reverse; ‘disable’: Disable split horizon; ‘enable’: Perform split horizon without poisoned reverse;`,
+				},
+				resource.Attribute{
+					Name:        "string",
+					Description: `The RIP authentication string`,
+				},
+				resource.Attribute{
+					Name:        "send",
+					Description: `Advertisement transmission`,
+				},
+				resource.Attribute{
+					Name:        "authentication",
+					Description: `Enable authentication`,
+				},
+				resource.Attribute{
+					Name:        "authentication_key",
+					Description: `Authentication password (key) (The OSPF password (key))`,
+				},
+				resource.Attribute{
+					Name:        "cost",
+					Description: `Interface cost`,
+				},
+				resource.Attribute{
+					Name:        "database_filter",
+					Description: `‘all’: Filter all LSA;`,
+				},
+				resource.Attribute{
+					Name:        "dead_interval",
+					Description: `Interval after which a neighbor is declared dead (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "ip_addr",
+					Description: `Address of interface`,
+				},
+				resource.Attribute{
+					Name:        "mtu_ignore",
+					Description: `Ignores the MTU in DBD packets`,
+				},
+				resource.Attribute{
+					Name:        "out",
+					Description: `Outgoing LSA`,
+				},
+				resource.Attribute{
+					Name:        "transmit_delay",
+					Description: `Link state transmit delay (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "md5_value",
+					Description: `The OSPF password (1-16)`,
+				},
+				resource.Attribute{
+					Name:        "message_digest_key",
+					Description: `Message digest authentication password (key) (Key id)`,
+				},
+				resource.Attribute{
+					Name:        "broadcast",
+					Description: `Specify OSPF broadcast multi-access network`,
+				},
+				resource.Attribute{
+					Name:        "non_broadcast",
+					Description: `Specify OSPF NBMA network`,
+				},
+				resource.Attribute{
+					Name:        "p2mp_nbma",
+					Description: `Specify non-broadcast point-to-multipoint network`,
+				},
+				resource.Attribute{
+					Name:        "point_to_multipoint",
+					Description: `Specify OSPF point-to-multipoint network`,
+				},
+				resource.Attribute{
+					Name:        "point_to_point",
+					Description: `Specify OSPF point-to-point network`,
+				},
+				resource.Attribute{
+					Name:        "bind_type",
+					Description: `‘inside’: This interface is connected to NPTv6 inside networks; ‘outside’: This interface is connected to NPTv6 outside networks;`,
+				},
+				resource.Attribute{
+					Name:        "domain_name",
+					Description: `NPTv6 domain name`,
+				},
+				resource.Attribute{
+					Name:        "lockup_period_v6",
+					Description: `Lockup period (second)`,
+				},
+				resource.Attribute{
+					Name:        "lockup_v6",
+					Description: `Enter lockup state when ICMP rate exceeds lockup rate limit (Maximum rate limit. If exceeds this limit, drop all ICMP packet for a time period)`,
+				},
+				resource.Attribute{
+					Name:        "normal_v6",
+					Description: `Normal rate limit. If exceeds this limit, drop the ICMP packet that goes over the limit`,
+				},
+				resource.Attribute{
+					Name:        "acl_name",
+					Description: `Access-list Name`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘num_pkts’: Input packets; ‘num_total_bytes’: Input bytes; ‘num_unicast_pkts’: Received unicasts; ‘num_broadcast_pkts’: Received braodcasts; ‘num_multicast_pkts’: Received multicasts; ‘num_tx_pkts’: Transmitted packtes; ‘num_total_tx_bytes’: Transmitte bytes; ‘num_unicast_tx_pkts’: Trasnmitted unicasts; ‘num_broadcast_tx_pkts’: Transmitted broadcasts; ‘num_multicast_tx_pkts’: Transmitted multicasts; ‘rate_pkt_sent’: Packet sent rate packets/sec; ‘rate_byte_sent’: Byte sent rate bits/sec; ‘rate_pkt_rcvd’: Packet received rate packets/sec; ‘rate_byte_rcvd’: Byte received rate bits/sec; ‘load_interval’: Load Interval;`,
+				},
+				resource.Attribute{
+					Name:        "inbound",
+					Description: `ACL applied on incoming packets to this interface`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_enable",
+					Description: `Enable IPv6 processing`,
+				},
+				resource.Attribute{
+					Name:        "v6_acl_name",
+					Description: `Apply ACL rules to incoming packets on this interface (Named Access List)`,
+				},
+				resource.Attribute{
+					Name:        "address_type",
+					Description: `‘anycast’: Configure an IPv6 anycast address; ‘link-local’: Configure an IPv6 link local address;`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_addr",
+					Description: `Set the IPv6 address of an interface`,
+				},
+				resource.Attribute{
+					Name:        "rip",
+					Description: `RIP Routing for IPv6`,
+				},
+				resource.Attribute{
+					Name:        "area_id_addr",
+					Description: `OSPF area ID in IP address format`,
+				},
+				resource.Attribute{
+					Name:        "area_id_num",
+					Description: `OSPF area ID as a decimal value`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `Specify the interface instance ID`,
+				},
+				resource.Attribute{
+					Name:        "broadcast_type",
+					Description: `‘broadcast’: Specify OSPF broadcast multi-access network; ‘non-broadcast’: Specify OSPF NBMA network; ‘point-to-point’: Specify OSPF point-to-point network; ‘point-to-multipoint’: Specify OSPF point-to-multipoint network;`,
+				},
+				resource.Attribute{
+					Name:        "network_instance_id",
+					Description: `Specify the interface instance ID`,
+				},
+				resource.Attribute{
+					Name:        "neig_inst",
+					Description: `Specify the interface instance ID`,
+				},
+				resource.Attribute{
+					Name:        "neighbor",
+					Description: `OSPFv3 neighbor (Neighbor IPv6 address)`,
+				},
+				resource.Attribute{
+					Name:        "neighbor_cost",
+					Description: `OSPF cost for point-to-multipoint neighbor (metric)`,
+				},
+				resource.Attribute{
+					Name:        "neighbor_poll_interval",
+					Description: `OSPF dead-router polling interval (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "neighbor_priority",
+					Description: `OSPF priority of non-broadcast neighbor`,
+				},
+				resource.Attribute{
+					Name:        "adver_mtu",
+					Description: `Set Router Advertisement MTU Option`,
+				},
+				resource.Attribute{
+					Name:        "adver_mtu_disable",
+					Description: `Disable Router Advertisement MTU Option`,
+				},
+				resource.Attribute{
+					Name:        "adver_vrid",
+					Description: `Vrid`,
+				},
+				resource.Attribute{
+					Name:        "adver_vrid_default",
+					Description: `Default VRRP-A vrid`,
+				},
+				resource.Attribute{
+					Name:        "default_lifetime",
+					Description: `Set Router Advertisement Default Lifetime (default: 1800) (Default Lifetime (seconds))`,
+				},
+				resource.Attribute{
+					Name:        "floating_ip",
+					Description: `Use a floating IP as the source address for Router advertisements`,
+				},
+				resource.Attribute{
+					Name:        "floating_ip_default_vrid",
+					Description: `Use a floating IP as the source address for Router advertisements`,
+				},
+				resource.Attribute{
+					Name:        "hop_limit",
+					Description: `Set Router Advertisement Hop Limit (default: 255)`,
+				},
+				resource.Attribute{
+					Name:        "managed_config_action",
+					Description: `‘enable’: Enable the Managed Address Configuration flag; ‘disable’: Disable the Managed Address Configuration flag (default);`,
+				},
+				resource.Attribute{
+					Name:        "max_interval",
+					Description: `Set Router Advertisement Max Interval (default: 600) (Max Router Advertisement Interval (seconds))`,
+				},
+				resource.Attribute{
+					Name:        "min_interval",
+					Description: `Set Router Advertisement Min Interval (default: 200) (Min Router Advertisement Interval (seconds))`,
+				},
+				resource.Attribute{
+					Name:        "other_config_action",
+					Description: `‘enable’: Enable the Other Stateful Configuration flag; ‘disable’: Disable the Other Stateful Configuration flag (default);`,
+				},
+				resource.Attribute{
+					Name:        "rate_limit",
+					Description: `Rate Limit the processing of incoming Router Solicitations (Max Number of Router Solicitations to process per second)`,
+				},
+				resource.Attribute{
+					Name:        "reachable_time",
+					Description: `Set Router Advertisement Reachable ime (default: 0) (Reachable Time (milliseconds))`,
+				},
+				resource.Attribute{
+					Name:        "retransmit_timer",
+					Description: `Set Router Advertisement Retransmit Timer (default: 0)`,
+				},
+				resource.Attribute{
+					Name:        "use_floating_ip",
+					Description: `Use a floating IP as the source address for Router advertisements`,
+				},
+				resource.Attribute{
+					Name:        "use_floating_ip_default_vrid",
+					Description: `Use a floating IP as the source address for Router advertisements`,
+				},
+				resource.Attribute{
+					Name:        "not_autonomous",
+					Description: `Specify that the Prefix is not usable for autoconfiguration (default:autonomous)`,
+				},
+				resource.Attribute{
+					Name:        "not_on_link",
+					Description: `Specify that the Prefix is not On-Link (default: on-link)`,
+				},
+				resource.Attribute{
+					Name:        "preferred_lifetime",
+					Description: `Specify Prefix Preferred Lifetime (default:604800) (Prefix Advertised Preferred Lifetime (default: 604800))`,
+				},
+				resource.Attribute{
+					Name:        "prefix",
+					Description: `Set Router Advertisement On-Link Prefix (IPv6 On-Link Prefix)`,
+				},
+				resource.Attribute{
+					Name:        "valid_lifetime",
+					Description: `Specify Valid Lifetime (default:2592000) (Prefix Advertised Valid Lifetime (default: 2592000))`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_interface_ve_bfd",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder interface ve bfd resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"interface",
+				"ve",
+				"bfd",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "demand",
+					Description: `Demand mode`,
+				},
+				resource.Attribute{
+					Name:        "echo",
+					Description: `Enable BFD Echo`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED password string)`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `Key ID`,
+				},
+				resource.Attribute{
+					Name:        "method",
+					Description: `‘md5’: Keyed MD5; ‘meticulous-md5’: Meticulous Keyed MD5; ‘meticulous-sha1’: Meticulous Keyed SHA1; ‘sha1’: Keyed SHA1; ‘simple’: Simple Password;`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Key String`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Transmit interval between BFD packets (Milliseconds)`,
+				},
+				resource.Attribute{
+					Name:        "min_rx",
+					Description: `Minimum receive interval capability (Milliseconds)`,
+				},
+				resource.Attribute{
+					Name:        "multiplier",
+					Description: `Multiplier value used to compute holddown (value used to multiply the interval)`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_interface_ve_ip",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder interface ve ip resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"interface",
+				"ve",
+				"ip",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "allow_promiscuous_vip",
+					Description: `Allow traffic to be associated with promiscuous VIP`,
+				},
+				resource.Attribute{
+					Name:        "client",
+					Description: `Client facing interface for IPv4/v6 traffic`,
+				},
+				resource.Attribute{
+					Name:        "dhcp",
+					Description: `Use DHCP to configure IP address`,
+				},
+				resource.Attribute{
+					Name:        "generate_membership_query",
+					Description: `Enable Membership Query`,
+				},
+				resource.Attribute{
+					Name:        "inside",
+					Description: `Inside (private) interface for stateful firewall`,
+				},
+				resource.Attribute{
+					Name:        "max_resp_time",
+					Description: `Maximum Response Time (Max Response Time (Default is 100))`,
+				},
+				resource.Attribute{
+					Name:        "outside",
+					Description: `Outside (public) interface for stateful firewall`,
+				},
+				resource.Attribute{
+					Name:        "query_interval",
+					Description: `1 - 255 (Default is 125)`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `Server facing interface for IPv4/v6 traffic`,
+				},
+				resource.Attribute{
+					Name:        "slb_partition_redirect",
+					Description: `Redirect SLB traffic across partition`,
+				},
+				resource.Attribute{
+					Name:        "ttl_ignore",
+					Description: `Ignore TTL decrement for a received packet`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_address",
+					Description: `IP address`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_netmask",
+					Description: `IP subnet mask`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `ISO routing area tag`,
+				},
+				resource.Attribute{
+					Name:        "helper_address",
+					Description: `Helper address for DHCP packets (IP address)`,
+				},
+				resource.Attribute{
+					Name:        "access_list",
+					Description: `Access-list for traffic from the outside`,
+				},
+				resource.Attribute{
+					Name:        "acl_id",
+					Description: `ACL id`,
+				},
+				resource.Attribute{
+					Name:        "class_list",
+					Description: `Class List (Class List Name)`,
+				},
+				resource.Attribute{
+					Name:        "receive_packet",
+					Description: `Enable receiving packet through the specified interface`,
+				},
+				resource.Attribute{
+					Name:        "send_packet",
+					Description: `Enable sending packets through the specified interface`,
+				},
+				resource.Attribute{
+					Name:        "receive",
+					Description: `Advertisement reception`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `‘1’: RIP version 1; ‘2’: RIP version 2; ‘1-compatible’: RIPv1-compatible; ‘1-2’: RIP version 1 & 2;`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `‘poisoned’: Perform split horizon with poisoned reverse; ‘disable’: Disable split horizon; ‘enable’: Perform split horizon without poisoned reverse;`,
+				},
+				resource.Attribute{
+					Name:        "key_chain",
+					Description: `Authentication key-chain (Name of key-chain)`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `‘md5’: Keyed message digest; ‘text’: Clear text authentication;`,
+				},
+				resource.Attribute{
+					Name:        "string",
+					Description: `The RIP authentication string`,
+				},
+				resource.Attribute{
+					Name:        "send",
+					Description: `Advertisement transmission`,
+				},
+				resource.Attribute{
+					Name:        "authentication",
+					Description: `Enable authentication`,
+				},
+				resource.Attribute{
+					Name:        "authentication_key",
+					Description: `Authentication password (key) (The OSPF password (key))`,
+				},
+				resource.Attribute{
+					Name:        "cost",
+					Description: `Interface cost`,
+				},
+				resource.Attribute{
+					Name:        "database_filter",
+					Description: `‘all’: Filter all LSA;`,
+				},
+				resource.Attribute{
+					Name:        "dead_interval",
+					Description: `Interval after which a neighbor is declared dead (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "hello_interval",
+					Description: `Time between HELLO packets (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "ip_addr",
+					Description: `Address of interface`,
+				},
+				resource.Attribute{
+					Name:        "mtu_ignore",
+					Description: `Ignores the MTU in DBD packets`,
+				},
+				resource.Attribute{
+					Name:        "out",
+					Description: `Outgoing LSA`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Router priority`,
+				},
+				resource.Attribute{
+					Name:        "retransmit_interval",
+					Description: `Time between retransmitting lost link state advertisements (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "transmit_delay",
+					Description: `Link state transmit delay (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `‘message-digest’: Use message-digest authentication; ‘null’: Use no authentication;`,
+				},
+				resource.Attribute{
+					Name:        "encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED password string)`,
+				},
+				resource.Attribute{
+					Name:        "md5_value",
+					Description: `The OSPF password (1-16)`,
+				},
+				resource.Attribute{
+					Name:        "message_digest_key",
+					Description: `Message digest authentication password (key) (Key id)`,
+				},
+				resource.Attribute{
+					Name:        "disable",
+					Description: `Disable BFD`,
+				},
+				resource.Attribute{
+					Name:        "mtu",
+					Description: `OSPF interface MTU (MTU size)`,
+				},
+				resource.Attribute{
+					Name:        "broadcast",
+					Description: `Specify OSPF broadcast multi-access network`,
+				},
+				resource.Attribute{
+					Name:        "non_broadcast",
+					Description: `Specify OSPF NBMA network`,
+				},
+				resource.Attribute{
+					Name:        "p2mp_nbma",
+					Description: `Specify non-broadcast point-to-multipoint network`,
+				},
+				resource.Attribute{
+					Name:        "point_to_multipoint",
+					Description: `Specify OSPF point-to-multipoint network`,
+				},
+				resource.Attribute{
+					Name:        "point_to_point",
+					Description: `Specify OSPF point-to-point network`,
+				},
+				resource.Attribute{
+					Name:        "bfd",
+					Description: `Bidirectional Forwarding Detection (BFD)`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_interface_ve_ipv6",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder interface ve ipv6 resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"interface",
+				"ve",
+				"ipv6",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ifnum",
+					Description: `Interface no.`,
+				},
+				resource.Attribute{
+					Name:        "inbound",
+					Description: `ACL applied on incoming packets to this interface`,
+				},
+				resource.Attribute{
+					Name:        "inside",
+					Description: `Inside (private) interface for stateful firewall`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_enable",
+					Description: `Enable IPv6 processing`,
+				},
+				resource.Attribute{
+					Name:        "outside",
+					Description: `Outside (public) interface for stateful firewall`,
+				},
+				resource.Attribute{
+					Name:        "ttl_ignore",
+					Description: `Ignore TTL decrement for a received packet`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "v6_acl_name",
+					Description: `Apply ACL rules to incoming packets on this interface (Named Access List)`,
+				},
+				resource.Attribute{
+					Name:        "address_type",
+					Description: `‘anycast’: Configure an IPv6 anycast address; ‘link-local’: Configure an IPv6 link local address;`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_addr",
+					Description: `Set the IPv6 address of an interface`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `‘poisoned’: Perform split horizon with poisoned reverse; ‘disable’: Disable split horizon; ‘enable’: Perform split horizon without poisoned reverse;`,
+				},
+				resource.Attribute{
+					Name:        "access_list",
+					Description: `Access-list for traffic from the outside`,
+				},
+				resource.Attribute{
+					Name:        "acl_name",
+					Description: `Access-list Name`,
+				},
+				resource.Attribute{
+					Name:        "class_list",
+					Description: `Class List (Class List Name)`,
+				},
+				resource.Attribute{
+					Name:        "rip",
+					Description: `RIP Routing for IPv6`,
+				},
+				resource.Attribute{
+					Name:        "area_id_addr",
+					Description: `OSPF area ID in IP address format`,
+				},
+				resource.Attribute{
+					Name:        "area_id_num",
+					Description: `OSPF area ID as a decimal value`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `Specify the interface instance ID`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `ISO routing area tag`,
+				},
+				resource.Attribute{
+					Name:        "bfd",
+					Description: `Bidirectional Forwarding Detection (BFD)`,
+				},
+				resource.Attribute{
+					Name:        "disable",
+					Description: `Disable BFD`,
+				},
+				resource.Attribute{
+					Name:        "cost",
+					Description: `Interface cost`,
+				},
+				resource.Attribute{
+					Name:        "hello_interval",
+					Description: `Time between HELLO packets (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Router priority`,
+				},
+				resource.Attribute{
+					Name:        "mtu_ignore",
+					Description: `Ignores the MTU in DBD packets`,
+				},
+				resource.Attribute{
+					Name:        "retransmit_interval",
+					Description: `Time between retransmitting lost link state advertisements (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "broadcast_type",
+					Description: `‘broadcast’: Specify OSPF broadcast multi-access network; ‘non-broadcast’: Specify OSPF NBMA network; ‘point-to-point’: Specify OSPF point-to-point network; ‘point-to-multipoint’: Specify OSPF point-to-multipoint network;`,
+				},
+				resource.Attribute{
+					Name:        "network_instance_id",
+					Description: `Specify the interface instance ID`,
+				},
+				resource.Attribute{
+					Name:        "p2mp_nbma",
+					Description: `Specify non-broadcast point-to-multipoint network`,
+				},
+				resource.Attribute{
+					Name:        "transmit_delay",
+					Description: `Link state transmit delay (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "neig_inst",
+					Description: `Specify the interface instance ID`,
+				},
+				resource.Attribute{
+					Name:        "neighbor",
+					Description: `OSPFv3 neighbor (Neighbor IPv6 address)`,
+				},
+				resource.Attribute{
+					Name:        "neighbor_cost",
+					Description: `OSPF cost for point-to-multipoint neighbor (metric)`,
+				},
+				resource.Attribute{
+					Name:        "neighbor_poll_interval",
+					Description: `OSPF dead-router polling interval (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "neighbor_priority",
+					Description: `OSPF priority of non-broadcast neighbor`,
+				},
+				resource.Attribute{
+					Name:        "dead_interval",
+					Description: `Interval after which a neighbor is declared dead (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `‘enable’: Enable Router Advertisements on this interface; ‘disable’: Disable Router Advertisements on this interface;`,
+				},
+				resource.Attribute{
+					Name:        "adver_mtu",
+					Description: `Set Router Advertisement MTU Option`,
+				},
+				resource.Attribute{
+					Name:        "adver_mtu_disable",
+					Description: `Disable Router Advertisement MTU Option`,
+				},
+				resource.Attribute{
+					Name:        "adver_vrid",
+					Description: `Vrid`,
+				},
+				resource.Attribute{
+					Name:        "adver_vrid_default",
+					Description: `Default VRRP-A vrid`,
+				},
+				resource.Attribute{
+					Name:        "default_lifetime",
+					Description: `Set Router Advertisement Default Lifetime (default: 1800) (Default Lifetime (seconds))`,
+				},
+				resource.Attribute{
+					Name:        "floating_ip",
+					Description: `Use a floating IP as the source address for Router advertisements`,
+				},
+				resource.Attribute{
+					Name:        "floating_ip_default_vrid",
+					Description: `Use a floating IP as the source address for Router advertisements`,
+				},
+				resource.Attribute{
+					Name:        "hop_limit",
+					Description: `Set Router Advertisement Hop Limit (default: 255)`,
+				},
+				resource.Attribute{
+					Name:        "managed_config_action",
+					Description: `‘enable’: Enable the Managed Address Configuration flag; ‘disable’: Disable the Managed Address Configuration flag (default);`,
+				},
+				resource.Attribute{
+					Name:        "max_interval",
+					Description: `Set Router Advertisement Max Interval (default: 600) (Max Router Advertisement Interval (seconds))`,
+				},
+				resource.Attribute{
+					Name:        "min_interval",
+					Description: `Set Router Advertisement Min Interval (default: 200) (Min Router Advertisement Interval (seconds))`,
+				},
+				resource.Attribute{
+					Name:        "other_config_action",
+					Description: `‘enable’: Enable the Other Stateful Configuration flag; ‘disable’: Disable the Other Stateful Configuration flag (default);`,
+				},
+				resource.Attribute{
+					Name:        "rate_limit",
+					Description: `Rate Limit the processing of incoming Router Solicitations (Max Number of Router Solicitations to process per second)`,
+				},
+				resource.Attribute{
+					Name:        "reachable_time",
+					Description: `Set Router Advertisement Reachable ime (default: 0) (Reachable Time (milliseconds))`,
+				},
+				resource.Attribute{
+					Name:        "retransmit_timer",
+					Description: `Set Router Advertisement Retransmit Timer (default: 0)`,
+				},
+				resource.Attribute{
+					Name:        "use_floating_ip",
+					Description: `Use a floating IP as the source address for Router advertisements`,
+				},
+				resource.Attribute{
+					Name:        "use_floating_ip_default_vrid",
+					Description: `Use a floating IP as the source address for Router advertisements`,
+				},
+				resource.Attribute{
+					Name:        "not_autonomous",
+					Description: `Specify that the Prefix is not usable for autoconfiguration (default:autonomous)`,
+				},
+				resource.Attribute{
+					Name:        "not_on_link",
+					Description: `Specify that the Prefix is not On-Link (default: on-link)`,
+				},
+				resource.Attribute{
+					Name:        "preferred_lifetime",
+					Description: `Specify Prefix Preferred Lifetime (default:604800) (Prefix Advertised Preferred Lifetime (default: 604800))`,
+				},
+				resource.Attribute{
+					Name:        "prefix",
+					Description: `Set Router Advertisement On-Link Prefix (IPv6 On-Link Prefix)`,
+				},
+				resource.Attribute{
+					Name:        "valid_lifetime",
+					Description: `Specify Valid Lifetime (default:2592000) (Prefix Advertised Valid Lifetime (default: 2592000))`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_ip_address",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder ip address resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"ip",
+				"address",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ip_addr",
+					Description: `IP address`,
+				},
+				resource.Attribute{
+					Name:        "ip_mask",
+					Description: `IP subnet mask`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_ip_dns_primary",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder ip dns primary resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"ip",
+				"dns",
+				"primary",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ip_v4_addr",
+					Description: `DNS server address`,
+				},
+				resource.Attribute{
+					Name:        "ip_v6_addr",
+					Description: `DNS server address`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_ip_dns_secondary",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder ip dns secondary resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"ip",
+				"dns",
+				"secondary",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ip_v4_addr",
+					Description: `DNS server address`,
+				},
+				resource.Attribute{
+					Name:        "ip_v6_addr",
+					Description: `DNS server address`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_ip_dns_suffix",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder ip dns suffix resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"ip",
+				"dns",
+				"suffix",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "domain_name",
+					Description: `DNS suffix`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_ip_frag",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder ip frag resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"ip",
+				"frag",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "buff",
+					Description: `Max buff used for fragmentation (Buffer Value(10000-3000000))`,
+				},
+				resource.Attribute{
+					Name:        "max_packets_per_reassembly",
+					Description: `Max number of fragmented packets allowed per reassembly(0 is unlimited) (default 0)`,
+				},
+				resource.Attribute{
+					Name:        "max_reassembly_sessions",
+					Description: `Max number of pending reassembly sessions allowed (default 100000)`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `Fragmentation timeout (in milliseconds 4 - 16000 (default is 1000))`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘session-inserted’: Session Inserted; ‘session-expired’: Session Expired; ‘icmp-rcv’: ICMP Received; ‘icmpv6-rcv’: ICMPv6 Received; ‘udp-rcv’: UDP Received; ‘tcp-rcv’: TCP Received; ‘ipip-rcv’: IP-in-IP Received; ‘ipv6ip-rcv’: IPv6-in-IP Received; ‘other-rcv’: Other Received; ‘icmp-dropped’: ICMP Dropped; ‘icmpv6-dropped’: ICMPv6 Dropped; ‘udp-dropped’: UDP Dropped; ‘tcp-dropped’: TCP Dropped; ‘ipip-dropped’: IP-in-IP Dropped; ‘ipv6ip-dropped’: IPv6-in-IP Dropped; ‘other-dropped’: Other Dropped; ‘overlap-error’: Overlapping Fragment Dropped; ‘bad-ip-len’: Bad IP Length; ‘too-small’: Fragment Too Small Drop; ‘first-tcp-too-small’: First TCP Fragment Too Small Drop; ‘first-l4-too-small’: First L4 Fragment Too Small Drop; ‘total-sessions-exceeded’: Total Sessions Exceeded Drop; ‘no-session-memory’: Out of Session Memory; ‘fast-aging-set’: Fragmentation Fast Aging Set; ‘fast-aging-unset’: Fragmentation Fast Aging Unset; ‘fragment-queue-success’: Fragment Queue Success; ‘unaligned-len’: Payload Length Unaligned; ‘exceeded-len’: Payload Length Out of Bounds; ‘duplicate-first-frag’: Duplicate First Fragment; ‘duplicate-last-frag’: Duplicate Last Fragment; ‘total-fragments-exceeded’: Total Queued Fragments Exceeded; ‘fragment-queue-failure’: Fragment Queue Failure; ‘reassembly-success’: Fragment Reassembly Success; ‘max-len-exceeded’: Fragment Max Data Length Exceeded; ‘reassembly-failure’: Fragment Reassembly Failure; ‘policy-drop’: MTU Exceeded Policy Drop; ‘error-drop’: Fragment Processing Drop; ‘max-packets-exceeded’: Too Many Packets Per Reassembly Drop; ‘session-packets-exceeded’: Session Max Packets Exceeded; ‘frag-session-count’: Fragmentation Session Count; ‘high-cpu-threshold’: High CPU Threshold Reached; ‘low-cpu-threshold’: Low CPU Threshold Reached; ‘cpu-threshold-drop’: High CPU Drop; ‘ipd-entry-drop’: DDoS Protection Drop; ‘sctp-rcv’: SCTP Received; ‘sctp-dropped’: SCTP Dropped;`,
+				},
+				resource.Attribute{
+					Name:        "high",
+					Description: `When CPU usage reaches this value, it will stop processing fragments (default: 75%)`,
+				},
+				resource.Attribute{
+					Name:        "low",
+					Description: `When CPU usage remains under this value, it will resume processing fragments (default: 60%)`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_ip_icmp",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder ip icmp resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"ip",
+				"icmp",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "redirect",
+					Description: `Disable outbound ICMP redirect messages`,
+				},
+				resource.Attribute{
+					Name:        "unreachable",
+					Description: `Disable outbound ICMP unreachable messages`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_ip_nat_alg_pptp",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder ip nat alg pptp resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"ip",
+				"nat",
+				"alg",
+				"pptp",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "pptp",
+					Description: `‘disable’: Disable PPTP NAT ALG; ‘enable’: Enable PPTP NAT ALG;`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘current-smp-sessions’: current-smp-sessions; ‘current-gre-sessions’: current-gre-sessions; ‘smp-session-creation-failure’: smp-session-creation-failure; ‘truncated-pns-message’: truncated-pns-message; ‘truncated-pac-message’: truncated-pac-message; ‘mismatched-pns-call-id’: mismatched-pns-call-id; ‘mismatched-pac-call-id’: mismatched-pac-call-id; ‘retransmitted-pns-message’: retransmitted-pns-message; ‘retransmitted-pac-message’: retransmitted-pac-message; ‘truncated-gre-packet’: truncated-gre-packet; ‘unknown-gre-version’: unknown-gre-version; ‘no-matching-gre-session’: no-matching-gre-session;`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_ip_nat_global",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder ip nat global resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"ip",
+				"nat",
+				"global",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "reset_idle_tcp_conn",
+					Description: `Reset Idle TCP Connections`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_ip_nat_icmp",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder ip nat icmp resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"ip",
+				"nat",
+				"icmp",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "always_source_nat_errors",
+					Description: `Source NAT intermediate routers’ IPs for ICMP errors (default: disabled)`,
+				},
+				resource.Attribute{
+					Name:        "respond_to_ping",
+					Description: `Respond to ICMP echo requests to NAT pool IPs (default: disabled)`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_ip_prefix_list",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder ip prefix list resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"ip",
+				"prefix",
+				"list",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of a prefix list`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `‘deny’: Specify packets to reject; ‘permit’: Specify packets to forward;`,
+				},
+				resource.Attribute{
+					Name:        "any",
+					Description: `Any prefix match. Same as “0.0.0.0/0 le 32”`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Prefix-list specific description (Up to 80 characters describing this prefix-list)`,
+				},
+				resource.Attribute{
+					Name:        "ge",
+					Description: `Minimum prefix length to be matched`,
+				},
+				resource.Attribute{
+					Name:        "ipaddr",
+					Description: `IP prefix, e.g., 35.0.0.0/8`,
+				},
+				resource.Attribute{
+					Name:        "le",
+					Description: `Maximum prefix length to be matched`,
+				},
+				resource.Attribute{
+					Name:        "seq",
+					Description: `Sequence number of an entry`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_ip_reroute",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder ip reroute resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"ip",
+				"reroute",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "ebgp",
+					Description: `EBGP`,
+				},
+				resource.Attribute{
+					Name:        "ibgp",
+					Description: `IBGP`,
+				},
+				resource.Attribute{
+					Name:        "isis",
+					Description: `ISIS`,
+				},
+				resource.Attribute{
+					Name:        "ospf",
+					Description: `OSPF`,
+				},
+				resource.Attribute{
+					Name:        "rip",
+					Description: `RIP`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_ip_route_static_bfd",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder ip route static bfd resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"ip",
+				"route",
+				"static",
+				"bfd",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "local_ip",
+					Description: `Local IP address`,
+				},
+				resource.Attribute{
+					Name:        "nexthop_ip",
+					Description: `Nexthop IP address`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_ip_tcp",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder ip tcp resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"ip",
+				"tcp",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "threshold",
+					Description: `SYN cookie expire threshold (seconds (default is 4))`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_ipv6_frag",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder ipv6 frag resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"ipv6",
+				"frag",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "frag_timeout",
+					Description: `in milliseconds 4 - 16000 (default is 1000)`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘session-inserted’: Session Inserted; ‘session-expired’: Session Expired; ‘icmp-rcv’: ICMP Received; ‘icmpv6-rcv’: ICMPv6 Received; ‘udp-rcv’: UDP Received; ‘tcp-rcv’: TCP Received; ‘ipip-rcv’: IP-in-IP Received; ‘ipv6ip-rcv’: IPv6-in-IP Received; ‘other-rcv’: Other Received; ‘icmp-dropped’: ICMP Dropped; ‘icmpv6-dropped’: ICMPv6 Dropped; ‘udp-dropped’: UDP Dropped; ‘tcp-dropped’: TCP Dropped; ‘ipip-dropped’: IP-in-IP Dropped; ‘ipv6ip-dropped’: IPv6-in-IP Dropped; ‘other-dropped’: Other Dropped; ‘overlap-error’: Overlapping Fragment Dropped; ‘bad-ip-len’: Bad IP Length; ‘too-small’: Fragment Too Small Drop; ‘first-tcp-too-small’: First TCP Fragment Too Small Drop; ‘first-l4-too-small’: First L4 Fragment Too Small Drop; ‘total-sessions-exceeded’: Total Sessions Exceeded Drop; ‘no-session-memory’: Out of Session Memory; ‘fast-aging-set’: Fragmentation Fast Aging Set; ‘fast-aging-unset’: Fragmentation Fast Aging Unset; ‘fragment-queue-success’: Fragment Queue Success; ‘unaligned-len’: Payload Length Unaligned; ‘exceeded-len’: Payload Length Out of Bounds; ‘duplicate-first-frag’: Duplicate First Fragment; ‘duplicate-last-frag’: Duplicate Last Fragment; ‘total-fragments-exceeded’: Total Queued Fragments Exceeded; ‘fragment-queue-failure’: Fragment Queue Failure; ‘reassembly-success’: Fragment Reassembly Success; ‘max-len-exceeded’: Fragment Max Data Length Exceeded; ‘reassembly-failure’: Fragment Reassembly Failure; ‘policy-drop’: MTU Exceeded Policy Drop; ‘error-drop’: Fragment Processing Drop; ‘max-packets-exceeded’: Too Many Packets Per Reassembly Drop; ‘session-packets-exceeded’: Session Max Packets Exceeded; ‘frag-session-count’: Fragmentation Session Count; ‘high-cpu-threshold’: High CPU Threshold Reached; ‘low-cpu-threshold’: Low CPU Threshold Reached; ‘cpu-threshold-drop’: High CPU Drop; ‘ipd-entry-drop’: DDoS Protection Drop; ‘sctp-rcv’: SCTP Received; ‘sctp-dropped’: SCTP Dropped;`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_ipv6_icmpv6",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder ipv6 icmpv6 resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"ipv6",
+				"icmpv6",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "redirect",
+					Description: `Disable outbound ICMPv6 redirect messages`,
+				},
+				resource.Attribute{
+					Name:        "unreachable",
+					Description: `Disable outbound ICMPv6 unreachable messages`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_ipv6_nat_icmpv6",
+			Category:         "Resources",
+			ShortDescription: `Provides details about vthunder ipv6 nat icmpv6 resource for A10`,
+			Description:      ``,
+			Keywords: []string{
+				"ipv6",
+				"nat",
+				"icmpv6",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "respond_to_ping",
+					Description: `Respond to ICMPv6 echo requests to NAT pool IPs (default: disabled)`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vthunder_overlay_tunnel_options",
 			Category:         "Resources",
 			ShortDescription: `Provides details about vthunder overlay tunnel options resource for A10`,
@@ -3515,100 +6318,126 @@ var (
 		"vthunder_glm":                               3,
 		"vthunder_harmony_controller_profile":        4,
 		"vthunder_import":                            5,
-		"vthunder_overlay_tunnel_options":            6,
-		"vthunder_overlay_tunnel_vtep":               7,
-		"vthunder_partition":                         8,
-		"vthunder_reboot":                            9,
-		"vthunder_rib_route":                         10,
-		"vthunder_server":                            11,
-		"vthunder_service_group":                     12,
-		"vthunder_slb_aflow":                         13,
-		"vthunder_slb_common":                        14,
-		"vthunder_slb_common_conn_rate_limit_src_ip": 15,
-		"vthunder_slb_dns":                           16,
-		"vthunder_slb_dns_cache":                     17,
-		"vthunder_slb_dns_response_rate_limiting":    18,
-		"vthunder_slb_fast_http_proxy":               19,
-		"vthunder_slb_fix":                           20,
-		"vthunder_slb_ftp_ctl":                       21,
-		"vthunder_slb_ftp_data":                      22,
-		"vthunder_slb_ftp_proxy":                     23,
-		"vthunder_slb_generic_proxy":                 24,
-		"vthunder_slb_health_gateway":                25,
-		"vthunder_slb_health_stat":                   26,
-		"vthunder_slb_http2":                         27,
-		"vthunder_slb_http_proxy":                    28,
-		"vthunder_slb_hw_compress":                   29,
-		"vthunder_slb_icap":                          30,
-		"vthunder_slb_icap_http":                     31,
-		"vthunder_slb_imapproxy":                     32,
-		"vthunder_slb_l4":                            33,
-		"vthunder_slb_l7session":                     34,
-		"vthunder_slb_mlb":                           35,
-		"vthunder_slb_mssql":                         36,
-		"vthunder_slb_mysql":                         37,
-		"vthunder_slb_passthrough":                   38,
-		"vthunder_slb_perf":                          39,
-		"vthunder_slb_persist":                       40,
-		"vthunder_slb_player_id_global":              41,
-		"vthunder_slb_pop3_proxy":                    42,
-		"vthunder_slb_proxy":                         43,
-		"vthunder_slb_rate_limit_log":                44,
-		"vthunder_slb_rc_cache_global":               45,
-		"vthunder_slb_resource_usage":                46,
-		"vthunder_slb_sip":                           47,
-		"vthunder_slb_smpp":                          48,
-		"vthunder_slb_smtp":                          49,
-		"vthunder_slb_spdy_proxy":                    50,
-		"vthunder_slb_sport_rate_limit":              51,
-		"vthunder_slb_ssl_cert_revoke":               52,
-		"vthunder_slb_ssl_expire_check":              53,
-		"vthunder_slb_ssl_forward_proxy":             54,
-		"vthunder_slb_svm_source_nat":                55,
-		"vthunder_slb_switch":                        56,
-		"vthunder_slb_template_cache":                57,
-		"vthunder_slb_template_cipher":               58,
-		"vthunder_slb_template_client_ssh":           59,
-		"vthunder_slb_template_client_ssl":           60,
-		"vthunder_slb_template_connection_reuse":     61,
-		"vthunder_slb_template_csv":                  62,
-		"vthunder_slb_template_dblb":                 63,
-		"vthunder_slb_template_diameter":             64,
-		"vthunder_slb_template_dns":                  65,
-		"vthunder_slb_template_dynamic_service":      66,
-		"vthunder_slb_template_external_service":     67,
-		"vthunder_slb_template_fix":                  68,
-		"vthunder_slb_template_ftp":                  69,
-		"vthunder_slb_template_http":                 70,
-		"vthunder_slb_template_http_policy":          71,
-		"vthunder_slb_template_imap_pop3":            72,
-		"vthunder_slb_template_logging":              73,
-		"vthunder_slb_template_monitor":              74,
-		"vthunder_slb_template_mqtt":                 75,
-		"vthunder_slb_template_policy":               76,
-		"vthunder_slb_template_port":                 77,
-		"vthunder_slb_template_reqmod_icap":          78,
-		"vthunder_slb_template_respmod_icap":         79,
-		"vthunder_slb_template_server":               80,
-		"vthunder_slb_template_server_ssh":           81,
-		"vthunder_slb_template_server_ssl":           82,
-		"vthunder_slb_template_sip":                  83,
-		"vthunder_slb_template_smpp":                 84,
-		"vthunder_slb_template_smtp":                 85,
-		"vthunder_slb_template_snmp":                 86,
-		"vthunder_slb_template_ssli":                 87,
-		"vthunder_slb_template_tcp":                  88,
-		"vthunder_slb_template_tcp_proxy":            89,
-		"vthunder_slb_template_udp":                  90,
-		"vthunder_slb_template_virtual_port":         91,
-		"vthunder_slb_template_virtual_server":       92,
-		"vthunder_slb_transparent_acl_template":      93,
-		"vthunder_slb_transparent_tcp_template":      94,
-		"vthunder_virtual_server":                    95,
-		"vthunder_vrrp_common":                       96,
-		"vthunder_vrrp_peer_group":                   97,
-		"vthunder_vrrp_session_sync":                 98,
-		"vthunder_vrrp_vrid":                         99,
+		"vthunder_interface_ethernet":                6,
+		"vthunder_interface_ethernet_bfd":            7,
+		"vthunder_interface_ethernet_ipv6":           8,
+		"vthunder_interface_ethernet_lldp":           9,
+		"vthunder_interface_ethernet_trunk_group":    10,
+		"vthunder_interface_management":              11,
+		"vthunder_interface_ve":                      12,
+		"vthunder_interface_ve_bfd":                  13,
+		"vthunder_interface_ve_ip":                   14,
+		"vthunder_interface_ve_ipv6":                 15,
+		"vthunder_ip_address":                        16,
+		"vthunder_ip_dns_primary":                    17,
+		"vthunder_ip_dns_secondary":                  18,
+		"vthunder_ip_dns_suffix":                     19,
+		"vthunder_ip_frag":                           20,
+		"vthunder_ip_icmp":                           21,
+		"vthunder_ip_nat_alg_pptp":                   22,
+		"vthunder_ip_nat_global":                     23,
+		"vthunder_ip_nat_icmp":                       24,
+		"vthunder_ip_prefix_list":                    25,
+		"vthunder_ip_reroute":                        26,
+		"vthunder_ip_route_static_bfd":               27,
+		"vthunder_ip_tcp":                            28,
+		"vthunder_ipv6_frag":                         29,
+		"vthunder_ipv6_icmpv6":                       30,
+		"vthunder_ipv6_nat_icmpv6":                   31,
+		"vthunder_overlay_tunnel_options":            32,
+		"vthunder_overlay_tunnel_vtep":               33,
+		"vthunder_partition":                         34,
+		"vthunder_reboot":                            35,
+		"vthunder_rib_route":                         36,
+		"vthunder_server":                            37,
+		"vthunder_service_group":                     38,
+		"vthunder_slb_aflow":                         39,
+		"vthunder_slb_common":                        40,
+		"vthunder_slb_common_conn_rate_limit_src_ip": 41,
+		"vthunder_slb_dns":                           42,
+		"vthunder_slb_dns_cache":                     43,
+		"vthunder_slb_dns_response_rate_limiting":    44,
+		"vthunder_slb_fast_http_proxy":               45,
+		"vthunder_slb_fix":                           46,
+		"vthunder_slb_ftp_ctl":                       47,
+		"vthunder_slb_ftp_data":                      48,
+		"vthunder_slb_ftp_proxy":                     49,
+		"vthunder_slb_generic_proxy":                 50,
+		"vthunder_slb_health_gateway":                51,
+		"vthunder_slb_health_stat":                   52,
+		"vthunder_slb_http2":                         53,
+		"vthunder_slb_http_proxy":                    54,
+		"vthunder_slb_hw_compress":                   55,
+		"vthunder_slb_icap":                          56,
+		"vthunder_slb_icap_http":                     57,
+		"vthunder_slb_imapproxy":                     58,
+		"vthunder_slb_l4":                            59,
+		"vthunder_slb_l7session":                     60,
+		"vthunder_slb_mlb":                           61,
+		"vthunder_slb_mssql":                         62,
+		"vthunder_slb_mysql":                         63,
+		"vthunder_slb_passthrough":                   64,
+		"vthunder_slb_perf":                          65,
+		"vthunder_slb_persist":                       66,
+		"vthunder_slb_player_id_global":              67,
+		"vthunder_slb_pop3_proxy":                    68,
+		"vthunder_slb_proxy":                         69,
+		"vthunder_slb_rate_limit_log":                70,
+		"vthunder_slb_rc_cache_global":               71,
+		"vthunder_slb_resource_usage":                72,
+		"vthunder_slb_sip":                           73,
+		"vthunder_slb_smpp":                          74,
+		"vthunder_slb_smtp":                          75,
+		"vthunder_slb_spdy_proxy":                    76,
+		"vthunder_slb_sport_rate_limit":              77,
+		"vthunder_slb_ssl_cert_revoke":               78,
+		"vthunder_slb_ssl_expire_check":              79,
+		"vthunder_slb_ssl_forward_proxy":             80,
+		"vthunder_slb_svm_source_nat":                81,
+		"vthunder_slb_switch":                        82,
+		"vthunder_slb_template_cache":                83,
+		"vthunder_slb_template_cipher":               84,
+		"vthunder_slb_template_client_ssh":           85,
+		"vthunder_slb_template_client_ssl":           86,
+		"vthunder_slb_template_connection_reuse":     87,
+		"vthunder_slb_template_csv":                  88,
+		"vthunder_slb_template_dblb":                 89,
+		"vthunder_slb_template_diameter":             90,
+		"vthunder_slb_template_dns":                  91,
+		"vthunder_slb_template_dynamic_service":      92,
+		"vthunder_slb_template_external_service":     93,
+		"vthunder_slb_template_fix":                  94,
+		"vthunder_slb_template_ftp":                  95,
+		"vthunder_slb_template_http":                 96,
+		"vthunder_slb_template_http_policy":          97,
+		"vthunder_slb_template_imap_pop3":            98,
+		"vthunder_slb_template_logging":              99,
+		"vthunder_slb_template_monitor":              100,
+		"vthunder_slb_template_mqtt":                 101,
+		"vthunder_slb_template_policy":               102,
+		"vthunder_slb_template_port":                 103,
+		"vthunder_slb_template_reqmod_icap":          104,
+		"vthunder_slb_template_respmod_icap":         105,
+		"vthunder_slb_template_server":               106,
+		"vthunder_slb_template_server_ssh":           107,
+		"vthunder_slb_template_server_ssl":           108,
+		"vthunder_slb_template_sip":                  109,
+		"vthunder_slb_template_smpp":                 110,
+		"vthunder_slb_template_smtp":                 111,
+		"vthunder_slb_template_snmp":                 112,
+		"vthunder_slb_template_ssli":                 113,
+		"vthunder_slb_template_tcp":                  114,
+		"vthunder_slb_template_tcp_proxy":            115,
+		"vthunder_slb_template_udp":                  116,
+		"vthunder_slb_template_virtual_port":         117,
+		"vthunder_slb_template_virtual_server":       118,
+		"vthunder_slb_transparent_acl_template":      119,
+		"vthunder_slb_transparent_tcp_template":      120,
+		"vthunder_virtual_server":                    121,
+		"vthunder_vrrp_common":                       122,
+		"vthunder_vrrp_peer_group":                   123,
+		"vthunder_vrrp_session_sync":                 124,
+		"vthunder_vrrp_vrid":                         125,
 	}
 )
 

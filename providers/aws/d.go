@@ -1302,14 +1302,6 @@ which provides some details about a specific availability zone.
 					Description: `(Optional) Set to ` + "`" + `true` + "`" + ` to include all Availability Zones and Local Zones regardless of your opt in status.`,
 				},
 				resource.Attribute{
-					Name:        "blacklisted_names",
-					Description: `(Optional,`,
-				},
-				resource.Attribute{
-					Name:        "blacklisted_zone_ids",
-					Description: `(Optional,`,
-				},
-				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional) Configuration block(s) for filtering. Detailed below.`,
 				},
@@ -7140,7 +7132,7 @@ data "aws_iam_policy_document" "example" {
 resource "aws_iam_policy" "example" {
   name   = "example_policy"
   path   = "/"
-  policy = "${data.aws_iam_policy_document.example.json}"
+  policy = data.aws_iam_policy_document.example.json
 }
 ` + "`" + `` + "`" + `` + "`" + `
 
@@ -7153,13 +7145,13 @@ valid to use literal JSON strings within your configuration, or to use the
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "json",
-					Description: `The above arguments serialized as a standard JSON policy document. ## Example with Multiple Principals Showing how you can use this as an assume role policy as well as showing how you can specify multiple principal blocks with different types. ` + "`" + `` + "`" + `` + "`" + `hcl data "aws_iam_policy_document" "event_stream_bucket_role_assume_role_policy" { statement { actions = ["sts:AssumeRole"] principals { type = "Service" identifiers = ["firehose.amazonaws.com"] } principals { type = "AWS" identifiers = ["${var.trusted_role_arn}"] } principals { type = "Federated" identifiers = ["arn:aws:iam::${var.account_id}:saml-provider/${var.provider_name}", "cognito-identity.amazonaws.com"] } } } ` + "`" + `` + "`" + `` + "`" + ` ## Example with Source and Override Showing how you can use ` + "`" + `source_json` + "`" + ` and ` + "`" + `override_json` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `hcl data "aws_iam_policy_document" "source" { statement { actions = ["ec2:`,
+					Description: `The above arguments serialized as a standard JSON policy document. ## Example with Multiple Principals Showing how you can use this as an assume role policy as well as showing how you can specify multiple principal blocks with different types. ` + "`" + `` + "`" + `` + "`" + `hcl data "aws_iam_policy_document" "event_stream_bucket_role_assume_role_policy" { statement { actions = ["sts:AssumeRole"] principals { type = "Service" identifiers = ["firehose.amazonaws.com"] } principals { type = "AWS" identifiers = [var.trusted_role_arn] } principals { type = "Federated" identifiers = ["arn:aws:iam::${var.account_id}:saml-provider/${var.provider_name}", "cognito-identity.amazonaws.com"] } } } ` + "`" + `` + "`" + `` + "`" + ` ## Example with Source and Override Showing how you can use ` + "`" + `source_json` + "`" + ` and ` + "`" + `override_json` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `hcl data "aws_iam_policy_document" "source" { statement { actions = ["ec2:`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "json",
-					Description: `The above arguments serialized as a standard JSON policy document. ## Example with Multiple Principals Showing how you can use this as an assume role policy as well as showing how you can specify multiple principal blocks with different types. ` + "`" + `` + "`" + `` + "`" + `hcl data "aws_iam_policy_document" "event_stream_bucket_role_assume_role_policy" { statement { actions = ["sts:AssumeRole"] principals { type = "Service" identifiers = ["firehose.amazonaws.com"] } principals { type = "AWS" identifiers = ["${var.trusted_role_arn}"] } principals { type = "Federated" identifiers = ["arn:aws:iam::${var.account_id}:saml-provider/${var.provider_name}", "cognito-identity.amazonaws.com"] } } } ` + "`" + `` + "`" + `` + "`" + ` ## Example with Source and Override Showing how you can use ` + "`" + `source_json` + "`" + ` and ` + "`" + `override_json` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `hcl data "aws_iam_policy_document" "source" { statement { actions = ["ec2:`,
+					Description: `The above arguments serialized as a standard JSON policy document. ## Example with Multiple Principals Showing how you can use this as an assume role policy as well as showing how you can specify multiple principal blocks with different types. ` + "`" + `` + "`" + `` + "`" + `hcl data "aws_iam_policy_document" "event_stream_bucket_role_assume_role_policy" { statement { actions = ["sts:AssumeRole"] principals { type = "Service" identifiers = ["firehose.amazonaws.com"] } principals { type = "AWS" identifiers = [var.trusted_role_arn] } principals { type = "Federated" identifiers = ["arn:aws:iam::${var.account_id}:saml-provider/${var.provider_name}", "cognito-identity.amazonaws.com"] } } } ` + "`" + `` + "`" + `` + "`" + ` ## Example with Source and Override Showing how you can use ` + "`" + `source_json` + "`" + ` and ` + "`" + `override_json` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `hcl data "aws_iam_policy_document" "source" { statement { actions = ["ec2:`,
 				},
 			},
 		},
@@ -7533,6 +7525,10 @@ resources.
 					Description: `The private IP address assigned to the Instance.`,
 				},
 				resource.Attribute{
+					Name:        "secondary_private_ips",
+					Description: `The secondary private IPv4 addresses assigned to the instance's primary network interface (eth0) in a VPC.`,
+				},
+				resource.Attribute{
 					Name:        "public_dns",
 					Description: `The public DNS name assigned to the Instance. For EC2-VPC, this is only available if you've enabled DNS hostnames for your VPC.`,
 				},
@@ -7749,6 +7745,10 @@ resources.
 				resource.Attribute{
 					Name:        "private_ip",
 					Description: `The private IP address assigned to the Instance.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_private_ips",
+					Description: `The secondary private IPv4 addresses assigned to the instance's primary network interface (eth0) in a VPC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns",
@@ -8595,19 +8595,11 @@ invocation type.
 					Name:        "result",
 					Description: `String result of the lambda function invocation.`,
 				},
-				resource.Attribute{
-					Name:        "result_map",
-					Description: `(`,
-				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "result",
 					Description: `String result of the lambda function invocation.`,
-				},
-				resource.Attribute{
-					Name:        "result_map",
-					Description: `(`,
 				},
 			},
 		},
@@ -14189,10 +14181,10 @@ Retrieves the summary of a WAFv2 Web ACL.
 			Name:             "",
 			Type:             "aws_workspaces_bundle",
 			Category:         "Data Sources",
-			ShortDescription: `Get information on a WorkSpaces Bundle.`,
+			ShortDescription: `Retrieve information about an AWS WorkSpaces bundle.`,
 			Description: `
 
-Use this data source to get information about a WorkSpaces Bundle.
+Retrieve information about an AWS WorkSpaces bundle.
 
 `,
 			Keywords: []string{},
@@ -14222,6 +14214,114 @@ Use this data source to get information about a WorkSpaces Bundle.
 				resource.Attribute{
 					Name:        "capacity",
 					Description: `The size of the user storage.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_workspaces_directory",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve information about an AWS WorkSpaces directory.`,
+			Description: `
+
+Retrieve information about an AWS WorkSpaces directory.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "directory_id",
+					Description: `(Required) The directory identifier for registration in WorkSpaces service. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The WorkSpaces directory identifier.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_ids",
+					Description: `The identifiers of the subnets where the directory resides.`,
+				},
+				resource.Attribute{
+					Name:        "workspace_security_group_id",
+					Description: `The identifier of the security group that is assigned to new WorkSpaces.`,
+				},
+				resource.Attribute{
+					Name:        "iam_role_id",
+					Description: `The identifier of the IAM role. This is the role that allows Amazon WorkSpaces to make calls to other services, such as Amazon EC2, on your behalf.`,
+				},
+				resource.Attribute{
+					Name:        "registration_code",
+					Description: `The registration code for the directory. This is the code that users enter in their Amazon WorkSpaces client application to connect to the directory.`,
+				},
+				resource.Attribute{
+					Name:        "directory_name",
+					Description: `The name of the directory.`,
+				},
+				resource.Attribute{
+					Name:        "directory_type",
+					Description: `The directory type.`,
+				},
+				resource.Attribute{
+					Name:        "customer_user_name",
+					Description: `The user name for the service account.`,
+				},
+				resource.Attribute{
+					Name:        "alias",
+					Description: `The directory alias.`,
+				},
+				resource.Attribute{
+					Name:        "ip_group_ids",
+					Description: `The identifiers of the IP access control groups associated with the directory.`,
+				},
+				resource.Attribute{
+					Name:        "dns_ip_addresses",
+					Description: `The IP addresses of the DNS servers for the directory.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The WorkSpaces directory identifier.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_ids",
+					Description: `The identifiers of the subnets where the directory resides.`,
+				},
+				resource.Attribute{
+					Name:        "workspace_security_group_id",
+					Description: `The identifier of the security group that is assigned to new WorkSpaces.`,
+				},
+				resource.Attribute{
+					Name:        "iam_role_id",
+					Description: `The identifier of the IAM role. This is the role that allows Amazon WorkSpaces to make calls to other services, such as Amazon EC2, on your behalf.`,
+				},
+				resource.Attribute{
+					Name:        "registration_code",
+					Description: `The registration code for the directory. This is the code that users enter in their Amazon WorkSpaces client application to connect to the directory.`,
+				},
+				resource.Attribute{
+					Name:        "directory_name",
+					Description: `The name of the directory.`,
+				},
+				resource.Attribute{
+					Name:        "directory_type",
+					Description: `The directory type.`,
+				},
+				resource.Attribute{
+					Name:        "customer_user_name",
+					Description: `The user name for the service account.`,
+				},
+				resource.Attribute{
+					Name:        "alias",
+					Description: `The directory alias.`,
+				},
+				resource.Attribute{
+					Name:        "ip_group_ids",
+					Description: `The identifiers of the IP access control groups associated with the directory.`,
+				},
+				resource.Attribute{
+					Name:        "dns_ip_addresses",
+					Description: `The IP addresses of the DNS servers for the directory.`,
 				},
 			},
 		},
@@ -14419,6 +14519,7 @@ Use this data source to get information about a WorkSpaces Bundle.
 		"aws_wafv2_rule_group":                           187,
 		"aws_wafv2_web_acl":                              188,
 		"aws_workspaces_bundle":                          189,
+		"aws_workspaces_directory":                       190,
 	}
 )
 

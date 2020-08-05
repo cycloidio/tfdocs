@@ -785,7 +785,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target_version",
-					Description: `(Optional) The release version number to which the controller will be upgraded to. If not specified, controller will not be upgraded. If set to "latest", controller will be upgraded to the latest release. Please see the [Controller upgrade guide](https://docs.aviatrix.com/HowTos/inline_upgrade.html) for more information. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) The release version number to which the controller will be upgraded to. If not specified, controller will not be upgraded. If set to "latest", controller will be upgraded to the latest release. Please see the [Controller upgrade guide](https://docs.aviatrix.com/HowTos/inline_upgrade.html) for more information.`,
+				},
+				resource.Attribute{
+					Name:        "enable_vpc_dns_server",
+					Description: `(Optional) Enable VPC/VNET DNS Server for the controller. Valid values: true, false. Default value: false. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -1072,6 +1076,30 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aviatrix_fqdn_pass_through",
+			Category:         "Security",
+			ShortDescription: `Manages Aviatrix FQDN filter pass-through`,
+			Description:      ``,
+			Keywords: []string{
+				"security",
+				"fqdn",
+				"pass",
+				"through",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "gw_name",
+					Description: `(Required) Gateway name to apply pass-through rules to.`,
+				},
+				resource.Attribute{
+					Name:        "pass_through_cidrs",
+					Description: `(Required) List of origin CIDR's to allow to pass-through FQDN filtering rules. Minimum list length: 1. ## Import`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aviatrix_gateway",
 			Category:         "Gateway",
 			ShortDescription: `Creates and manages Aviatrix gateways`,
@@ -1122,7 +1150,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "peering_ha_eip",
-					Description: `(Optional) Public IP address to be assigned to the the HA peering instance. Only available for AWS.`,
+					Description: `(Optional) Public IP address to be assigned to the HA peering instance. Only available for AWS and GCP.`,
 				},
 				resource.Attribute{
 					Name:        "peering_ha_gw_size",
@@ -1262,11 +1290,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allocate_new_eip",
-					Description: `(Optional) If set to false, use an available address in Elastic IP pool for this gateway. Otherwise, allocate a new Elastic IP and use it for this gateway. Available in Controller 2.7+. Valid values: true, false. Default: true. Option not available for GCP, Azure and OCI gateways, they will automatically allocate new EIPs.`,
+					Description: `(Optional) If set to false, use an available address in Elastic IP pool for this gateway. Otherwise, allocate a new Elastic IP and use it for this gateway. Available in Controller 2.7+. Valid values: true, false. Default: true. Option not available for Azure and OCI gateways, they will automatically allocate new EIPs.`,
 				},
 				resource.Attribute{
 					Name:        "eip",
-					Description: `(Optional) Specified EIP to use for gateway creation. Required when ` + "`" + `allocate_new_eip` + "`" + ` is false. Available in Controller version 3.5+. Only supported for AWS gateways.`,
+					Description: `(Optional) Specified EIP to use for gateway creation. Required when ` + "`" + `allocate_new_eip` + "`" + ` is false. Available in Controller version 3.5+. Only supported for AWS and GCP gateways.`,
 				},
 				resource.Attribute{
 					Name:        "tag_list",
@@ -1496,6 +1524,10 @@ var (
 					Description: `(Required) Name of the Aviatrix gateway the custom DNAT will be configured for.`,
 				},
 				resource.Attribute{
+					Name:        "sync_to_ha",
+					Description: `(Optional) Sync the policies to the HA gateway. Valid values: true, false. Default: true.`,
+				},
+				resource.Attribute{
 					Name:        "dnat_policy",
 					Description: `(Required) Policy rule applied for enabling Destination NAT (DNAT), which allows you to change the destination to a virtual address range. Currently only supports AWS(1) and AZURE(8).`,
 				},
@@ -1564,6 +1596,10 @@ var (
 				resource.Attribute{
 					Name:        "snat_mode",
 					Description: `(Optional) NAT mode. Valid values: "customized_snat". Default value: "customized_snat".`,
+				},
+				resource.Attribute{
+					Name:        "sync_to_ha",
+					Description: `(Optional) Sync the policies to the HA gateway. Valid values: true, false. Default: false.`,
 				},
 				resource.Attribute{
 					Name:        "snat_policy",
@@ -1647,6 +1683,33 @@ var (
 				resource.Attribute{
 					Name:        "elb_dns_names",
 					Description: `(Required) List of ELB names to attach to this Geo VPN name. ## Import`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aviatrix_periodic_ping",
+			Category:         "Gateway",
+			ShortDescription: `Manages periodic pings on Aviatrix gateways`,
+			Description:      ``,
+			Keywords: []string{
+				"gateway",
+				"periodic",
+				"ping",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "gw_name",
+					Description: `(Required) Name of the gateway.`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `(Required) Interval between pings in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `(Required) IP Address to ping. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1999,7 +2062,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ha_eip",
-					Description: `(Optional) Public IP address that you want to assign to the HA peering instance. If no value is given, a new EIP will automatically be allocated. Only available for AWS.`,
+					Description: `(Optional) Public IP address that you want to assign to the HA peering instance. If no value is given, a new EIP will automatically be allocated. Only available for AWS and GCP.`,
 				},
 				resource.Attribute{
 					Name:        "ha_gw_size",
@@ -2043,11 +2106,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allocate_new_eip",
-					Description: `(Optional) When value is false, reuse an idle address in Elastic IP pool for this gateway. Otherwise, allocate a new Elastic IP and use it for this gateway. Available in Controller 4.7+. Valid values: true, false. Default: true. Option not available for GCP, AZURE and OCI gateways, they will automatically allocate new EIPs.`,
+					Description: `(Optional) When value is false, reuse an idle address in Elastic IP pool for this gateway. Otherwise, allocate a new Elastic IP and use it for this gateway. Available in Controller 4.7+. Valid values: true, false. Default: true. Option not available for AZURE and OCI gateways, they will automatically allocate new EIPs.`,
 				},
 				resource.Attribute{
 					Name:        "eip",
-					Description: `(Optional) Required when ` + "`" + `allocate_new_eip` + "`" + ` is false. It uses the specified EIP for this gateway. Available in Controller 4.7+. Only available for AWS.`,
+					Description: `(Optional) Required when ` + "`" + `allocate_new_eip` + "`" + ` is false. It uses the specified EIP for this gateway. Available in Controller 4.7+. Only available for AWS and GCP.`,
 				},
 				resource.Attribute{
 					Name:        "tag_list",
@@ -2651,7 +2714,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ha_eip",
-					Description: `(Optional) Public IP address that you want to assign to the HA peering instance. If no value is given, a new EIP will automatically be allocated. Only available for AWS.`,
+					Description: `(Optional) Public IP address that you want to assign to the HA peering instance. If no value is given, a new EIP will automatically be allocated. Only available for AWS and GCP.`,
 				},
 				resource.Attribute{
 					Name:        "ha_gw_size",
@@ -2691,7 +2754,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_transit_firenet",
-					Description: `(Optional) Sign of readiness for [Transit FireNet](https://docs.aviatrix.com/HowTos/transit_firenet_faq.html) connection. Valid values: true, false. Default value: false. ### Encryption`,
+					Description: `(Optional) Sign of readiness for [Transit FireNet](https://docs.aviatrix.com/HowTos/transit_firenet_faq.html) connection. Valid values: true, false. Default value: false.`,
+				},
+				resource.Attribute{
+					Name:        "bgp_polling_time",
+					Description: `(Optional) BGP route polling time. Unit is in seconds. Valid values are between 10 and 50. Default value: "50".`,
+				},
+				resource.Attribute{
+					Name:        "prepend_as_path",
+					Description: `(Optional) List of AS numbers to populate BGP AP_PATH field when it advertises to VGW or peer devices.`,
+				},
+				resource.Attribute{
+					Name:        "local_as_number",
+					Description: `(Optional) Changes the Aviatrix Transit Gateway ASN number before you setup Aviatrix Transit Gateway connection configurations.`,
+				},
+				resource.Attribute{
+					Name:        "bgp_ecmp",
+					Description: `(Optional) Enable Equal Cost Multi Path (ECMP) routing for the next hop. Default value: false. ### Encryption`,
 				},
 				resource.Attribute{
 					Name:        "enable_encrypt_volume",
@@ -2715,11 +2794,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allocate_new_eip",
-					Description: `(Optional) When value is false, reuse an idle address in Elastic IP pool for this gateway. Otherwise, allocate a new Elastic IP and use it for this gateway. Available in Controller 4.7+. Valid values: true, false. Default: true. Option not available for GCP, Azure and OCI gateways, they will automatically allocate new EIPs.`,
+					Description: `(Optional) When value is false, reuse an idle address in Elastic IP pool for this gateway. Otherwise, allocate a new Elastic IP and use it for this gateway. Available in Controller 4.7+. Valid values: true, false. Default: true. Option not available for Azure and OCI gateways, they will automatically allocate new EIPs.`,
 				},
 				resource.Attribute{
 					Name:        "eip",
-					Description: `(Optional) Required when ` + "`" + `allocate_new_eip` + "`" + ` is false. It uses the specified EIP for this gateway. Available in Controller version 4.7+. Only available for AWS.`,
+					Description: `(Optional) Required when ` + "`" + `allocate_new_eip` + "`" + ` is false. It uses the specified EIP for this gateway. Available in Controller version 4.7+. Only available for AWS and GCP.`,
 				},
 				resource.Attribute{
 					Name:        "tag_list",
@@ -2841,7 +2920,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "transit_gateway_name2",
-					Description: `(Required) The second transit gateway name to make a peer pair. ## Import`,
+					Description: `(Required) The second transit gateway name to make a peer pair. ### Optional`,
+				},
+				resource.Attribute{
+					Name:        "gateway1_excluded_network_cidrs",
+					Description: `(Optional) List of excluded network CIDRs for the first transit gateway.`,
+				},
+				resource.Attribute{
+					Name:        "gateway2_excluded_network_cidrs",
+					Description: `(Optional) List of excluded network CIDRs for the second transit gateway.`,
+				},
+				resource.Attribute{
+					Name:        "gateway1_excluded_tgw_connections",
+					Description: `(Optional) List of excluded TGW connections for the first transit gateway.`,
+				},
+				resource.Attribute{
+					Name:        "gateway2_excluded_tgw_connections",
+					Description: `(Optional) List of excluded TGW connections for the second transit gateway. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3308,30 +3403,32 @@ var (
 		"aviatrix_firewall_management_access":           17,
 		"aviatrix_firewall_tag":                         18,
 		"aviatrix_fqdn":                                 19,
-		"aviatrix_gateway":                              20,
-		"aviatrix_gateway_dnat":                         21,
-		"aviatrix_gateway_snat":                         22,
-		"aviatrix_geo_vpn":                              23,
-		"aviatrix_rbac_group":                           24,
-		"aviatrix_rbac_group_access_account_attachment": 25,
-		"aviatrix_rbac_group_permission_attachment":     26,
-		"aviatrix_rbac_group_user_attachment":           27,
-		"aviatrix_saml_endpoint":                        28,
-		"aviatrix_site2cloud":                           29,
-		"aviatrix_spoke_gateway":                        30,
-		"aviatrix_spoke_vpc":                            31,
-		"aviatrix_trans_peer":                           32,
-		"aviatrix_transit_external_device_conn":         33,
-		"aviatrix_transit_firenet_policy":               34,
-		"aviatrix_transit_gateway":                      35,
-		"aviatrix_transit_gateway_peering":              36,
-		"aviatrix_transit_vpc":                          37,
-		"aviatrix_tunnel":                               38,
-		"aviatrix_vgw_conn":                             39,
-		"aviatrix_vpc":                                  40,
-		"aviatrix_vpn_profile":                          41,
-		"aviatrix_vpn_user":                             42,
-		"aviatrix_vpn_user_accelerator":                 43,
+		"aviatrix_fqdn_pass_through":                    20,
+		"aviatrix_gateway":                              21,
+		"aviatrix_gateway_dnat":                         22,
+		"aviatrix_gateway_snat":                         23,
+		"aviatrix_geo_vpn":                              24,
+		"aviatrix_periodic_ping":                        25,
+		"aviatrix_rbac_group":                           26,
+		"aviatrix_rbac_group_access_account_attachment": 27,
+		"aviatrix_rbac_group_permission_attachment":     28,
+		"aviatrix_rbac_group_user_attachment":           29,
+		"aviatrix_saml_endpoint":                        30,
+		"aviatrix_site2cloud":                           31,
+		"aviatrix_spoke_gateway":                        32,
+		"aviatrix_spoke_vpc":                            33,
+		"aviatrix_trans_peer":                           34,
+		"aviatrix_transit_external_device_conn":         35,
+		"aviatrix_transit_firenet_policy":               36,
+		"aviatrix_transit_gateway":                      37,
+		"aviatrix_transit_gateway_peering":              38,
+		"aviatrix_transit_vpc":                          39,
+		"aviatrix_tunnel":                               40,
+		"aviatrix_vgw_conn":                             41,
+		"aviatrix_vpc":                                  42,
+		"aviatrix_vpn_profile":                          43,
+		"aviatrix_vpn_user":                             44,
+		"aviatrix_vpn_user_accelerator":                 45,
 	}
 )
 
