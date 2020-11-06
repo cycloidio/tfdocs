@@ -11,6 +11,66 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "tfe_oauth_client",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an OAuth client.`,
+			Description: `
+
+Use this data source to get information about an OAuth client.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "oauth_client_id",
+					Description: `(Required) ID of the OAuth client. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The OAuth client ID. This will match ` + "`" + `oauth_client_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "api_url",
+					Description: `The client's API URL.`,
+				},
+				resource.Attribute{
+					Name:        "http_url",
+					Description: `The client's HTTP URL.`,
+				},
+				resource.Attribute{
+					Name:        "oauth_token_id",
+					Description: `The ID of the OAuth token associated with the OAuth client.`,
+				},
+				resource.Attribute{
+					Name:        "ssh_key",
+					Description: `The SSH key assigned to the OAuth client.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The OAuth client ID. This will match ` + "`" + `oauth_client_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "api_url",
+					Description: `The client's API URL.`,
+				},
+				resource.Attribute{
+					Name:        "http_url",
+					Description: `The client's HTTP URL.`,
+				},
+				resource.Attribute{
+					Name:        "oauth_token_id",
+					Description: `The ID of the OAuth token associated with the OAuth client.`,
+				},
+				resource.Attribute{
+					Name:        "ssh_key",
+					Description: `The SSH key assigned to the OAuth client.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "tfe_organization_membership",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an organization membership.`,
@@ -240,6 +300,10 @@ Use this data source to get information about a workspace.
 					Description: `Indicates whether all runs should be queued.`,
 				},
 				resource.Attribute{
+					Name:        "speculative_enabled",
+					Description: `Indicates whether this workspace allows speculative plans.`,
+				},
+				resource.Attribute{
 					Name:        "ssh_key_id",
 					Description: `The ID of an SSH key assigned to the workspace.`,
 				},
@@ -292,6 +356,10 @@ Use this data source to get information about a workspace.
 				resource.Attribute{
 					Name:        "queue_all_runs",
 					Description: `Indicates whether all runs should be queued.`,
+				},
+				resource.Attribute{
+					Name:        "speculative_enabled",
+					Description: `Indicates whether this workspace allows speculative plans.`,
 				},
 				resource.Attribute{
 					Name:        "ssh_key_id",
@@ -371,12 +439,13 @@ Use this data source to get a map of (external) workspace IDs.
 
 	dataSourcesMap = map[string]int{
 
-		"tfe_organization_membership": 0,
-		"tfe_ssh_key":                 1,
-		"tfe_team":                    2,
-		"tfe_team_access":             3,
-		"tfe_workspace":               4,
-		"tfe_workspace_ids":           5,
+		"tfe_oauth_client":            0,
+		"tfe_organization_membership": 1,
+		"tfe_ssh_key":                 2,
+		"tfe_team":                    3,
+		"tfe_team_access":             4,
+		"tfe_workspace":               5,
+		"tfe_workspace_ids":           6,
 	}
 )
 

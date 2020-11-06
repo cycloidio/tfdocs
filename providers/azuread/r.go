@@ -120,7 +120,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The unique identifier of the ` + "`" + `app_role` + "`" + `.`,
+					Description: `The unique identifier of the app role. This attribute is computed and cannot be specified manually in this block. If you need to specify a custom ` + "`" + `id` + "`" + `, it's recommended to use the [azuread_application_app_role](application_app_role.html) resource.`,
 				},
 				resource.Attribute{
 					Name:        "allowed_member_types",
@@ -141,6 +141,10 @@ var (
 				resource.Attribute{
 					Name:        "value",
 					Description: `(Optional) Specifies the value of the roles claim that the application should expect in the authentication and access tokens. --- ` + "`" + `oauth2_permissions` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique identifier of the permision. This attribute is computed and cannot be specified manually in this block. If you need to specify a custom ` + "`" + `id` + "`" + `, it's recommended to use the [azuread_application_oauth2_permission](application_oauth2_permission.html) resource.`,
 				},
 				resource.Attribute{
 					Name:        "admin_consent_description",

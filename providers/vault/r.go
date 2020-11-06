@@ -734,7 +734,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resolve_aws_unique_ids",
-					Description: `(Optional, Forces new resource) If set to ` + "`" + `true` + "`" + `, the ` + "`" + `bound_iam_principal_arns` + "`" + ` are resolved to [AWS Unique IDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids) for the bound principal ARN. This field is ignored when a ` + "`" + `bound_iam_principal_arn` + "`" + ` ends in a wildcard. Resolving to unique IDs more closely mimics the behavior of AWS services in that if an IAM user or role is deleted and a new one is recreated with the same name, those new users or roles won't get access to roles in Vault that were permissioned to the prior principals of the same name. Defaults to ` + "`" + `true` + "`" + `. Once set to ` + "`" + `true` + "`" + `, this cannot be changed to ` + "`" + `false` + "`" + ` without recreating the role.`,
+					Description: `(Optional, Forces new resource) Only valid when ` + "`" + `auth_type` + "`" + ` is ` + "`" + `iam` + "`" + `. If set to ` + "`" + `true` + "`" + `, the ` + "`" + `bound_iam_principal_arns` + "`" + ` are resolved to [AWS Unique IDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids) for the bound principal ARN. This field is ignored when a ` + "`" + `bound_iam_principal_arn` + "`" + ` ends in a wildcard. Resolving to unique IDs more closely mimics the behavior of AWS services in that if an IAM user or role is deleted and a new one is recreated with the same name, those new users or roles won't get access to roles in Vault that were permissioned to the prior principals of the same name. Defaults to ` + "`" + `true` + "`" + `. Once set to ` + "`" + `true` + "`" + `, this cannot be changed to ` + "`" + `false` + "`" + ` without recreating the role.`,
 				},
 				resource.Attribute{
 					Name:        "allow_instance_migration",
@@ -3566,6 +3566,10 @@ var (
 					Description: `(Optional) List of alternative IPs`,
 				},
 				resource.Attribute{
+					Name:        "uri_sans",
+					Description: `(Optional) List of alternative URIs`,
+				},
+				resource.Attribute{
 					Name:        "other_sans",
 					Description: `(Optional) List of other SANs`,
 				},
@@ -4462,6 +4466,33 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vault_quota_rate_limit",
+			Category:         "Resources",
+			ShortDescription: `Manage Rate Limit Quota`,
+			Description:      ``,
+			Keywords: []string{
+				"quota",
+				"rate",
+				"limit",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the rate limit quota`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional) Path of the mount or namespace to apply the quota. A blank path configures a global rate limit quota. For example ` + "`" + `namespace1/` + "`" + ` adds a quota to a full namespace, ` + "`" + `namespace1/auth/userpass` + "`" + ` adds a ` + "`" + `quota` + "`" + ` to ` + "`" + `userpass` + "`" + ` in ` + "`" + `namespace1` + "`" + `. Updating this field on an existing quota can have "moving" effects. For example, updating ` + "`" + `auth/userpass` + "`" + ` to ` + "`" + `namespace1/auth/userpass` + "`" + ` moves this quota from being a global mount quota to a namespace specific mount quota.`,
+				},
+				resource.Attribute{
+					Name:        "rate",
+					Description: `(Required) The maximum number of requests at any given second to be allowed by the quota rule. The ` + "`" + `rate` + "`" + ` must be positive. ## Attributes Reference No additional attributes are exported by this resource. ## Import Rate limit quotas can be imported using their names ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_quota_rate_limit.global global ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vault_rabbitmq_secret_backend",
 			Category:         "Resources",
 			ShortDescription: `Creates an RabbitMQ secret backend for Vault.`,
@@ -4874,7 +4905,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Specifies the type of key to create. The currently-supported types are: ` + "`" + `aes256-gcm96` + "`" + ` (default), ` + "`" + `chacha20-poly1305` + "`" + `, ` + "`" + `ed25519` + "`" + `, ` + "`" + `ecdsa-p256` + "`" + `, ` + "`" + `rsa-2048` + "`" + ` and ` + "`" + `rsa-4096` + "`" + `.`,
+					Description: `(Optional) Specifies the type of key to create. The currently-supported types are: ` + "`" + `aes128-gcm96` + "`" + `, ` + "`" + `aes256-gcm96` + "`" + ` (default), ` + "`" + `chacha20-poly1305` + "`" + `, ` + "`" + `ed25519` + "`" + `, ` + "`" + `ecdsa-p256` + "`" + `, ` + "`" + `ecdsa-p384` + "`" + `, ` + "`" + `ecdsa-p521` + "`" + `, ` + "`" + `rsa-2048` + "`" + `, ` + "`" + `rsa-3072` + "`" + ` and ` + "`" + `rsa-4096` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "deletion_allowed",
@@ -5064,14 +5095,15 @@ var (
 		"vault_pki_secret_backend_root_sign_intermediate":    69,
 		"vault_pki_secret_backend_sign":                      70,
 		"vault_policy":                                       71,
-		"vault_rabbitmq_secret_backend":                      72,
-		"vault_rabbitmq_secret_backend_role":                 73,
-		"vault_rgp_policy":                                   74,
-		"vault_ssh_secret_backend_ca":                        75,
-		"vault_ssh_secret_backend_role":                      76,
-		"vault_token":                                        77,
-		"vault_token_auth_backend_role":                      78,
-		"vault_transit_secret_backend_key":                   79,
+		"vault_quota_rate_limit":                             72,
+		"vault_rabbitmq_secret_backend":                      73,
+		"vault_rabbitmq_secret_backend_role":                 74,
+		"vault_rgp_policy":                                   75,
+		"vault_ssh_secret_backend_ca":                        76,
+		"vault_ssh_secret_backend_role":                      77,
+		"vault_token":                                        78,
+		"vault_token_auth_backend_role":                      79,
+		"vault_transit_secret_backend_key":                   80,
 	}
 )
 

@@ -300,7 +300,7 @@ var (
 			Name:             "",
 			Type:             "github_repository",
 			Category:         "Resources",
-			ShortDescription: `Creates and manages repositories within GitHub organizations`,
+			ShortDescription: `Creates and manages repositories within GitHub organizations or personal accounts`,
 			Description:      ``,
 			Keywords: []string{
 				"repository",
@@ -321,6 +321,10 @@ var (
 				resource.Attribute{
 					Name:        "private",
 					Description: `(Optional) Set to ` + "`" + `true` + "`" + ` to create a private repository. Repositories are created as public (e.g. open source) by default.`,
+				},
+				resource.Attribute{
+					Name:        "visibility",
+					Description: `(Optional) Can be ` + "`" + `public` + "`" + ` or ` + "`" + `private` + "`" + `. If your organization is associated with an enterprise account using GitHub Enterprise Cloud or GitHub Enterprise Server 2.20+, visibility can also be ` + "`" + `internal` + "`" + `. The ` + "`" + `visibility` + "`" + ` parameter overrides the ` + "`" + `private` + "`" + ` parameter.`,
 				},
 				resource.Attribute{
 					Name:        "has_issues",
@@ -459,7 +463,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "permission",
-					Description: `(Optional) The permission of the outside collaborator for the repository. Must be one of ` + "`" + `pull` + "`" + `, ` + "`" + `push` + "`" + `, ` + "`" + `maintain` + "`" + `, ` + "`" + `triage` + "`" + ` or ` + "`" + `admin` + "`" + `. Defaults to ` + "`" + `push` + "`" + `. ## Attribute Reference In addition to the above arguments, the following attributes are exported:`,
+					Description: `(Optional) The permission of the outside collaborator for the repository. Must be one of ` + "`" + `pull` + "`" + `, ` + "`" + `push` + "`" + `, ` + "`" + `maintain` + "`" + `, ` + "`" + `triage` + "`" + ` or ` + "`" + `admin` + "`" + ` for organization-owned repositories. Must be ` + "`" + `push` + "`" + ` for personal repositories. Defaults to ` + "`" + `push` + "`" + `. ## Attribute Reference In addition to the above arguments, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "invitation_id",
@@ -594,7 +598,7 @@ var (
 			Name:             "",
 			Type:             "github_repository_webhook",
 			Category:         "Resources",
-			ShortDescription: `Creates and manages repository webhooks within GitHub organizations`,
+			ShortDescription: `Creates and manages repository webhooks within GitHub organizations or personal accounts`,
 			Description:      ``,
 			Keywords: []string{
 				"repository",

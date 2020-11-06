@@ -51,6 +51,10 @@ var (
 					Description: `(Optional) The description for the connection.`,
 				},
 				resource.Attribute{
+					Name:        "customer_asn",
+					Description: `(Optional) The BGP ASN number to use for the customer network`,
+				},
+				resource.Attribute{
 					Name:        "customer_networks",
 					Description: `(Optional) A list of named CIDR block to easily identify a customer network.`,
 				},

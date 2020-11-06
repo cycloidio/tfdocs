@@ -193,7 +193,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "username",
-					Description: `(Required) The username to lookup in the organization. ## Attributes Reference`,
+					Description: `(Required) The username to lookup in the organization.`,
+				},
+				resource.Attribute{
+					Name:        "organization",
+					Description: `(Optional) The organization to check for the above username. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "username",
@@ -220,6 +224,21 @@ var (
 				resource.Attribute{
 					Name:        "etag",
 					Description: `An etag representing the membership object.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "github_organization",
+			Category:         "Data Sources",
+			ShortDescription: `Get an organization.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "plan",
+					Description: `The plan name for the organization account`,
 				},
 			},
 		},
@@ -447,6 +466,10 @@ var (
 					Description: `Whether the repository is private.`,
 				},
 				resource.Attribute{
+					Name:        "visibility",
+					Description: `Whether the repository is public, private or internal.`,
+				},
+				resource.Attribute{
 					Name:        "has_issues",
 					Description: `Whether the repository has GitHub Issues enabled.`,
 				},
@@ -519,6 +542,10 @@ var (
 				resource.Attribute{
 					Name:        "private",
 					Description: `Whether the repository is private.`,
+				},
+				resource.Attribute{
+					Name:        "visibility",
+					Description: `Whether the repository is public, private or internal.`,
 				},
 				resource.Attribute{
 					Name:        "has_issues",
@@ -815,12 +842,13 @@ var (
 		"github_collaborators":                 2,
 		"github_ip_ranges":                     3,
 		"github_membership":                    4,
-		"github_organization_team_sync_groups": 5,
-		"github_release":                       6,
-		"github_repositories":                  7,
-		"github_repository":                    8,
-		"github_team":                          9,
-		"github_user":                          10,
+		"github_organization":                  5,
+		"github_organization_team_sync_groups": 6,
+		"github_release":                       7,
+		"github_repositories":                  8,
+		"github_repository":                    9,
+		"github_team":                          10,
+		"github_user":                          11,
 	}
 )
 

@@ -30,7 +30,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "query",
-					Description: `(Required) The query for the continuous_query. ## Attributes Reference This resource exports no further attributes.`,
+					Description: `(Required) The query for the continuous_query.`,
+				},
+				resource.Attribute{
+					Name:        "resample",
+					Description: `(Optional) The body of the query's RESAMPLE clause. The format is detailed in the InfluxDB documentation. ## Attributes Reference This resource exports no further attributes.`,
 				},
 			},
 			Attributes: []resource.Attribute{},

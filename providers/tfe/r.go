@@ -812,6 +812,10 @@ var (
 					Description: `(Optional) Whether all runs should be queued. When set to ` + "`" + `false` + "`" + `, runs triggered by a VCS change will not be queued until at least one run is manually queued. Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "speculative_enabled",
+					Description: `(Optional) Whether this workspace allows speculative plans. Setting this to ` + "`" + `false` + "`" + ` prevents Terraform Cloud or the Terraform Enterprise instance from running plans on pull requests, which can improve security if the VCS repository is public or includes untrusted contributors. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "ssh_key_id",
 					Description: `(Optional) The ID of an SSH key to assign to the workspace.`,
 				},

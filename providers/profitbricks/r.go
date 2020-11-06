@@ -11,6 +11,19 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "profitbricks_backup_unit",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages Profitbricks Backup Units.`,
+			Description:      ``,
+			Keywords: []string{
+				"backup",
+				"unit",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "profitbricks_datacenter",
 			Category:         "Resources",
 			ShortDescription: `Creates and manages Profitbricks Virtual Data Center.`,
@@ -160,6 +173,19 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "profitbricks_s3_key",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages Profitbricks S3 keys.`,
+			Description:      ``,
+			Keywords: []string{
+				"s3",
+				"key",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "profitbricks_server",
 			Category:         "Resources",
 			ShortDescription: `Creates and manages ProfitBricks Server objects.`,
@@ -222,22 +248,24 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"profitbricks_datacenter":           0,
-		"profitbricks_firewall":             1,
-		"profitbricks_group":                2,
-		"profitbricks_ipblock":              3,
-		"profitbricks_ipfailover":           4,
-		"profitbricks_k8s_cluster":          5,
-		"profitbricks_k8s_node_pool":        6,
-		"profitbricks_lan":                  7,
-		"profitbricks_loadbalancer":         8,
-		"profitbricks_nic":                  9,
-		"profitbricks_private_crossconnect": 10,
-		"profitbricks_server":               11,
-		"profitbricks_share":                12,
-		"profitbricks_snapshot":             13,
-		"profitbricks_user":                 14,
-		"profitbricks_volume":               15,
+		"profitbricks_backup_unit":          0,
+		"profitbricks_datacenter":           1,
+		"profitbricks_firewall":             2,
+		"profitbricks_group":                3,
+		"profitbricks_ipblock":              4,
+		"profitbricks_ipfailover":           5,
+		"profitbricks_k8s_cluster":          6,
+		"profitbricks_k8s_node_pool":        7,
+		"profitbricks_lan":                  8,
+		"profitbricks_loadbalancer":         9,
+		"profitbricks_nic":                  10,
+		"profitbricks_private_crossconnect": 11,
+		"profitbricks_s3_key":               12,
+		"profitbricks_server":               13,
+		"profitbricks_share":                14,
+		"profitbricks_snapshot":             15,
+		"profitbricks_user":                 16,
+		"profitbricks_volume":               17,
 	}
 )
 
