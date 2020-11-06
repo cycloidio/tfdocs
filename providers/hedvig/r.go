@@ -100,11 +100,51 @@ var (
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `(Required) The size of the disk in GB.`,
+					Description: `(Required) The size of the disk in GB`,
 				},
 				resource.Attribute{
 					Name:        "type",
 					Description: `(Required) The type of the disk; can be either ` + "`" + `BLOCK` + "`" + ` or ` + "`" + `NFS` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "scsi3pr",
+					Description: `(Required, defaults to false) Enables SCSI-3 Persistent Reservations for use wwith Clustered Shared Volumes (CSV)`,
+				},
+				resource.Attribute{
+					Name:        "blocksize",
+					Description: `(Optional, defaults to 4096)`,
+				},
+				resource.Attribute{
+					Name:        "cacheenabled",
+					Description: `(Optional, defaults to false) Enables client-side caching support for virtual disk blocks, to cache to local SSD or PCIe devices at the application compute tier`,
+				},
+				resource.Attribute{
+					Name:        "clusteredfilesystem",
+					Description: `(Optional, defaults to false) Formats a clustered file system on top of a virtual disk to be presented to multiple hosts`,
+				},
+				resource.Attribute{
+					Name:        "compressed",
+					Description: `(Optional, defaults to false)`,
+				},
+				resource.Attribute{
+					Name:        "deduplication",
+					Description: `(Optional, defaults to false)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "encryption",
+					Description: `(Optional, defaults to false)`,
+				},
+				resource.Attribute{
+					Name:        "replicationfactor",
+					Description: `(Optional, defaults to 3) Can be any integer 1 - 6`,
+				},
+				resource.Attribute{
+					Name:        "replicationpolicy",
+					Description: `(Optional, defaults to Agnostic) Can be RackAware, DataCenterAware, or Agnostic (RackUnaware)`,
 				},
 			},
 			Attributes: []resource.Attribute{},

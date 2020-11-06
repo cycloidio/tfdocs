@@ -192,10 +192,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "infoblox_network",
-			Category:         "Resources",
+			Category:         "Datasource Resources",
 			ShortDescription: `Creates a network on NIOS.`,
 			Description:      ``,
 			Keywords: []string{
+				"datasource",
 				"network",
 			},
 			Arguments: []resource.Attribute{

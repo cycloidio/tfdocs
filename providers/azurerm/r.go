@@ -101,7 +101,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sku",
-					Description: `(Required) SKU for the Analysis Services Server. Possible values are: ` + "`" + `D1` + "`" + `, ` + "`" + `B1` + "`" + `, ` + "`" + `B2` + "`" + `, ` + "`" + `S0` + "`" + `, ` + "`" + `S1` + "`" + `, ` + "`" + `S2` + "`" + `, ` + "`" + `S4` + "`" + `, ` + "`" + `S8` + "`" + ` and ` + "`" + `S9` + "`" + ``,
+					Description: `(Required) SKU for the Analysis Services Server. Possible values are: ` + "`" + `D1` + "`" + `, ` + "`" + `B1` + "`" + `, ` + "`" + `B2` + "`" + `, ` + "`" + `S0` + "`" + `, ` + "`" + `S1` + "`" + `, ` + "`" + `S2` + "`" + `, ` + "`" + `S4` + "`" + `, ` + "`" + `S8` + "`" + `, ` + "`" + `S9` + "`" + `, ` + "`" + `S8v2` + "`" + ` and ` + "`" + `S9v2` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "admin_users",
@@ -220,7 +220,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sku_name",
-					Description: `(Required) ` + "`" + `sku_name` + "`" + ` is a string consisting of two parts separated by an underscore(\_). The fist part is the ` + "`" + `name` + "`" + `, valid values include: ` + "`" + `Consumption` + "`" + `, ` + "`" + `Developer` + "`" + `, ` + "`" + `Basic` + "`" + `, ` + "`" + `Standard` + "`" + ` and ` + "`" + `Premium` + "`" + `. The second part is the ` + "`" + `capacity` + "`" + ` (e.g. the number of deployed units of the ` + "`" + `sku` + "`" + `), which must be a positive ` + "`" + `integer` + "`" + ` (e.g. ` + "`" + `Developer_1` + "`" + `). ---`,
+					Description: `(Required) ` + "`" + `sku_name` + "`" + ` is a string consisting of two parts separated by an underscore(\_). The first part is the ` + "`" + `name` + "`" + `, valid values include: ` + "`" + `Consumption` + "`" + `, ` + "`" + `Developer` + "`" + `, ` + "`" + `Basic` + "`" + `, ` + "`" + `Standard` + "`" + ` and ` + "`" + `Premium` + "`" + `. The second part is the ` + "`" + `capacity` + "`" + ` (e.g. the number of deployed units of the ` + "`" + `sku` + "`" + `), which must be a positive ` + "`" + `integer` + "`" + ` (e.g. ` + "`" + `Developer_1` + "`" + `). ---`,
 				},
 				resource.Attribute{
 					Name:        "additional_location",
@@ -276,7 +276,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location",
-					Description: `(Required) The name of the Azure Region in which the API Management Service should be expanded to. --- A ` + "`" + `certificate` + "`" + ` block supports the following:`,
+					Description: `(Required) The name of the Azure Region in which the API Management Service should be expanded to.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_network_configuration",
+					Description: `(Optional) A ` + "`" + `virtual_network_configuration` + "`" + ` block as defined below. Required when ` + "`" + `virtual_network_type` + "`" + ` is ` + "`" + `External` + "`" + ` or ` + "`" + `Internal` + "`" + `. --- A ` + "`" + `certificate` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "encoded_certificate",
@@ -312,7 +316,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Specifies the type of Managed Service Identity that should be configured on this API Management Service. Possible values are ` + "`" + `SystemAssigned` + "`" + `, ` + "`" + `UserAssigned` + "`" + ` or ` + "`" + `SystemAssigned, UserAssigned` + "`" + ` (to enable both).`,
+					Description: `(Required) Specifies the type of Managed Service Identity that should be configured on this API Management Service. Possible values are ` + "`" + `SystemAssigned` + "`" + `, ` + "`" + `UserAssigned` + "`" + `, ` + "`" + `SystemAssigned, UserAssigned` + "`" + ` (to enable both).`,
 				},
 				resource.Attribute{
 					Name:        "identity_ids",
@@ -440,7 +444,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "terms_of_service",
-					Description: `(Optional) A ` + "`" + `terms_of_service` + "`" + ` block as defined below. --- A ` + "`" + `virtual_network_configuration` + "`" + ` block supports the following:`,
+					Description: `(Required) A ` + "`" + `terms_of_service` + "`" + ` block as defined below. --- A ` + "`" + `virtual_network_configuration` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
@@ -464,7 +468,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "additional_location",
-					Description: `One or more ` + "`" + `additional_location` + "`" + ` blocks as documented below.`,
+					Description: `Zero or more ` + "`" + `additional_location` + "`" + ` blocks as documented below.`,
 				},
 				resource.Attribute{
 					Name:        "gateway_url",
@@ -495,6 +499,10 @@ var (
 					Description: `The Public IP addresses of the API Management Service.`,
 				},
 				resource.Attribute{
+					Name:        "private_ip_addresses",
+					Description: `The Private IP addresses of the API Management Service.`,
+				},
+				resource.Attribute{
 					Name:        "scm_url",
 					Description: `The URL for the SCM (Source Code Management) Endpoint associated with this API Management service. --- An ` + "`" + `additional_location` + "`" + ` block exports the following:`,
 				},
@@ -504,7 +512,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip_addresses",
-					Description: `Public Static Load Balanced IP addresses of the API Management service in the additional location. Available only for Basic, Standard and Premium SKU. --- An ` + "`" + `identity` + "`" + ` block exports the following:`,
+					Description: `Public Static Load Balanced IP addresses of the API Management service in the additional location. Available only for Basic, Standard and Premium SKU.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_addresses",
+					Description: `The Private IP addresses of the API Management Service. Available only when the API Manager instance is using Virtual Network mode. --- An ` + "`" + `identity` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "principal_id",
@@ -538,7 +550,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "additional_location",
-					Description: `One or more ` + "`" + `additional_location` + "`" + ` blocks as documented below.`,
+					Description: `Zero or more ` + "`" + `additional_location` + "`" + ` blocks as documented below.`,
 				},
 				resource.Attribute{
 					Name:        "gateway_url",
@@ -569,6 +581,10 @@ var (
 					Description: `The Public IP addresses of the API Management Service.`,
 				},
 				resource.Attribute{
+					Name:        "private_ip_addresses",
+					Description: `The Private IP addresses of the API Management Service.`,
+				},
+				resource.Attribute{
 					Name:        "scm_url",
 					Description: `The URL for the SCM (Source Code Management) Endpoint associated with this API Management service. --- An ` + "`" + `additional_location` + "`" + ` block exports the following:`,
 				},
@@ -578,7 +594,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip_addresses",
-					Description: `Public Static Load Balanced IP addresses of the API Management service in the additional location. Available only for Basic, Standard and Premium SKU. --- An ` + "`" + `identity` + "`" + ` block exports the following:`,
+					Description: `Public Static Load Balanced IP addresses of the API Management service in the additional location. Available only for Basic, Standard and Premium SKU.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_addresses",
+					Description: `The Private IP addresses of the API Management Service. Available only when the API Manager instance is using Virtual Network mode. --- An ` + "`" + `identity` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "principal_id",
@@ -654,6 +674,14 @@ var (
 					Description: `(Optional) A ` + "`" + `import` + "`" + ` block as documented below.`,
 				},
 				resource.Attribute{
+					Name:        "oauth2_authorization",
+					Description: `(Optional) An ` + "`" + `oauth2_authorization` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "openid_authentication",
+					Description: `(Optional) An ` + "`" + `openid_authentication` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
 					Name:        "service_url",
 					Description: `(Optional) Absolute URL of the backend service implementing this API.`,
 				},
@@ -687,7 +715,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "wsdl_selector",
-					Description: `(Optional) A ` + "`" + `wsdl_selector` + "`" + ` block as defined below, which allows you to limit the import of a WSDL to only a subset of the document. This can only be specified when ` + "`" + `content_format` + "`" + ` is ` + "`" + `wsdl` + "`" + ` or ` + "`" + `wsdl-link` + "`" + `. --- A ` + "`" + `subscription_key_parameter_names` + "`" + ` block supports the following:`,
+					Description: `(Optional) A ` + "`" + `wsdl_selector` + "`" + ` block as defined below, which allows you to limit the import of a WSDL to only a subset of the document. This can only be specified when ` + "`" + `content_format` + "`" + ` is ` + "`" + `wsdl` + "`" + ` or ` + "`" + `wsdl-link` + "`" + `. --- A ` + "`" + `oauth2_authorization` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "authorization_server_name",
+					Description: `(Required) OAuth authorization server identifier. The name of an [OAuth2 Authorization Server](https://www.terraform.io/docs/providers/azurerm/r/api_management_authorization_server.html).`,
+				},
+				resource.Attribute{
+					Name:        "scope",
+					Description: `(Optional) Operations scope. --- A ` + "`" + `openid_authentication` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "openid_provider_name",
+					Description: `(Required) OpenID Connect provider identifier. The name of an [OpenID Connect Provider](https://www.terraform.io/docs/providers/azurerm/r/api_management_openid_connect_provider.html).`,
+				},
+				resource.Attribute{
+					Name:        "bearer_token_sending_methods",
+					Description: `(Optional) How to send token to the server. A list of zero or more methods. Valid values are ` + "`" + `authorizationHeader` + "`" + ` and ` + "`" + `query` + "`" + `. --- A ` + "`" + `subscription_key_parameter_names` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "header",
@@ -778,6 +822,41 @@ var (
 				resource.Attribute{
 					Name:        "delete",
 					Description: `(Defaults to 30 minutes) Used when deleting the API Management API. ## Import API Management API's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/apis/api1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_api_management_api_diagnostic",
+			Category:         "API Management Resources",
+			ShortDescription: `Manages a API Management Service API Diagnostics Logs.`,
+			Description:      ``,
+			Keywords: []string{
+				"api",
+				"management",
+				"diagnostic",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the API Management Service API Diagnostics Logs. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the API Management Service API Diagnostics Logs.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the API Management Service API Diagnostics Logs.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the API Management Service API Diagnostics Logs.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the API Management Service API Diagnostics Logs. ## Import API Management Service API Diagnostics Logs can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api_diagnostic.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.ApiManagement/service/instance1/apis/api1/diagnostics/diagnostic1/loggers/logger1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -3118,7 +3197,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subscription_id",
-					Description: `(Optional) An Identifier which should used as the ID of this Subscription. If not specified a new Subscription ID will be generated. Changing this forces a new resource to be created. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) An Identifier which should used as the ID of this Subscription. If not specified a new Subscription ID will be generated. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "allow_tracing",
+					Description: `(Optional) Determines whether tracing can be enabled. Defaults to ` + "`" + `true` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -3510,10 +3593,6 @@ var (
 					Description: `(Optional) A ` + "`" + `auth_settings` + "`" + ` block as defined below.`,
 				},
 				resource.Attribute{
-					Name:        "storage_account",
-					Description: `(Optional) One or more ` + "`" + `storage_account` + "`" + ` blocks as defined below.`,
-				},
-				resource.Attribute{
 					Name:        "backup",
 					Description: `(Optional) A ` + "`" + `backup` + "`" + ` block as defined below.`,
 				},
@@ -3534,6 +3613,10 @@ var (
 					Description: `(Optional) Is the App Service Enabled?`,
 				},
 				resource.Attribute{
+					Name:        "identity",
+					Description: `(Optional) A Managed Service Identity block as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "https_only",
 					Description: `(Optional) Can the App Service only be accessed via HTTPS? Defaults to ` + "`" + `false` + "`" + `.`,
 				},
@@ -3542,16 +3625,20 @@ var (
 					Description: `(Optional) A ` + "`" + `logs` + "`" + ` block as defined below.`,
 				},
 				resource.Attribute{
+					Name:        "storage_account",
+					Description: `(Optional) One or more ` + "`" + `storage_account` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "site_config",
 					Description: `(Optional) A ` + "`" + `site_config` + "`" + ` block as defined below.`,
 				},
 				resource.Attribute{
-					Name:        "tags",
-					Description: `(Optional) A mapping of tags to assign to the resource.`,
+					Name:        "source_control",
+					Description: `(Optional) A Source Control block as defined below`,
 				},
 				resource.Attribute{
-					Name:        "identity",
-					Description: `(Optional) A Managed Service Identity block as defined below. --- A ` + "`" + `storage_account` + "`" + ` block supports the following:`,
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. --- A ` + "`" + `storage_account` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3699,7 +3786,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "linux_fx_version",
-					Description: `(Optional) Linux App Framework and version for the App Service. Possible options are a Docker container (` + "`" + `DOCKER|<user/image:tag>` + "`" + `), a base-64 encoded Docker Compose file (` + "`" + `COMPOSE|${filebase64("compose.yml")}` + "`" + `) or a base-64 encoded Kubernetes Manifest (` + "`" + `KUBE|${filebase64("kubernetes.yml")}` + "`" + `).`,
+					Description: `(Optional) Linux App Framework and version for the App Service. Possible options are a Docker container (` + "`" + `DOCKER|<user/image:tag>` + "`" + `), a base-64 encoded Docker Compose file (` + "`" + `COMPOSE|${filebase64("compose.yml")}` + "`" + `) or a base-64 encoded Kubernetes Manifest (` + "`" + `KUBE|${filebase64("kubernetes.yml")}` + "`" + `). ~>`,
 				},
 				resource.Attribute{
 					Name:        "windows_fx_version",
@@ -3847,7 +3934,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "action",
-					Description: `(Optional) Does this restriction ` + "`" + `Allow` + "`" + ` or ` + "`" + `Deny` + "`" + ` access for this IP range. Defaults to ` + "`" + `Allow` + "`" + `. --- --- A ` + "`" + `scm_ip_restriction` + "`" + ` block supports the following:`,
+					Description: `(Optional) Does this restriction ` + "`" + `Allow` + "`" + ` or ` + "`" + `Deny` + "`" + ` access for this IP range. Defaults to ` + "`" + `Allow` + "`" + `. --- A ` + "`" + `scm_ip_restriction` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "ip_address",
@@ -3903,7 +3990,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "start_time",
-					Description: `(Optional) Sets when the schedule should start working. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Sets when the schedule should start working. --- A ` + "`" + `source_control` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "repo_url",
+					Description: `(Required) The URL of the source code repository.`,
+				},
+				resource.Attribute{
+					Name:        "branch",
+					Description: `(Optional) The branch of the remote repository to use. Defaults to 'master'.`,
+				},
+				resource.Attribute{
+					Name:        "manual_integration",
+					Description: `(Optional) Limits to manual integration. Defaults to ` + "`" + `false` + "`" + ` if not specified.`,
+				},
+				resource.Attribute{
+					Name:        "rollback_enabled",
+					Description: `(Optional) Enable roll-back for the repository. Defaults to ` + "`" + `false` + "`" + ` if not specified.`,
+				},
+				resource.Attribute{
+					Name:        "use_mercurial",
+					Description: `(Optional) Use Mercurial if ` + "`" + `true` + "`" + `, otherwise uses Git. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -4444,7 +4551,7 @@ var (
 			Name:             "",
 			Type:             "azurerm_app_service_custom_hostname_binding",
 			Category:         "App Service (Web Apps) Resources",
-			ShortDescription: `Manages a Hostname Binding within an App Service.`,
+			ShortDescription: `Manages a Hostname Binding within an App Service (or Function App).`,
 			Description:      ``,
 			Keywords: []string{
 				"app",
@@ -4651,7 +4758,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "relay_id",
-					Description: `(Required) The Resource ID of Service Bus relay. Changing this forces a new resource to be created.`,
+					Description: `(Required) The ID of the Service Bus Relay. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "hostname",
@@ -5087,15 +5194,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `(Optional) The IP Address used for this IP Restriction.`,
-				},
-				resource.Attribute{
-					Name:        "subnet_mask",
-					Description: `(Optional) The Subnet mask used for this IP Restriction. Defaults to ` + "`" + `255.255.255.255` + "`" + `.`,
+					Description: `(Optional) The IP Address used for this IP Restriction in CIDR notation.`,
 				},
 				resource.Attribute{
 					Name:        "virtual_network_subnet_id",
-					Description: `(Optional.The Virtual Network Subnet ID used for this IP Restriction. ->`,
+					Description: `(Optional) The Virtual Network Subnet ID used for this IP Restriction. ->`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name for this IP Restriction.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority for this IP Restriction. Restrictions are enforced in priority order. By default, priority is set to 65000 if not specified.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Optional) Does this restriction ` + "`" + `Allow` + "`" + ` or ` + "`" + `Deny` + "`" + ` access for this IP range. Defaults to ` + "`" + `Allow` + "`" + `. --- A ` + "`" + `microsoft` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "client_id",
@@ -5261,11 +5376,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "app_service_id",
-					Description: `(Required) The ID of the App Service to associate to the VNet. Changing this forces a new resource to be created.`,
+					Description: `(Required) The ID of the App Service or Function App to associate to the VNet. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "slot_name",
-					Description: `(Required) The name of the App Service Slot. Changing this forces a new resource to be created.`,
+					Description: `(Required) The name of the App Service Slot or Function App Slot. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
@@ -5682,7 +5797,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "host_name",
-					Description: `(Optional) The Hostname which should be used for this HTTP Listener.`,
+					Description: `(Optional) The Hostname which should be used for this HTTP Listener. Setting this value changes Listener Type to 'Multi site'.`,
 				},
 				resource.Attribute{
 					Name:        "host_names",
@@ -5775,6 +5890,10 @@ var (
 				resource.Attribute{
 					Name:        "unhealthy_threshold",
 					Description: `(Required) The Unhealthy Threshold for this Probe, which indicates the amount of retries which should be attempted before a node is deemed unhealthy. Possible values are from 1 - 20 seconds.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) Custom port which will be used for probing the backend servers. The valid value ranges from 1 to 65535. In case not set, port from http settings will be used. This property is valid for Standard_v2 and WAF_v2 only.`,
 				},
 				resource.Attribute{
 					Name:        "pick_host_name_from_backend_http_settings",
@@ -6546,7 +6665,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instrumentation_key",
-					Description: `The Instrumentation Key for this Application Insights component. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Instrumentation Key for this Application Insights component.`,
+				},
+				resource.Attribute{
+					Name:        "connection_string",
+					Description: `The Connection String for this Application Insights component. (Sensitive) ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -6576,7 +6699,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instrumentation_key",
-					Description: `The Instrumentation Key for this Application Insights component. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Instrumentation Key for this Application Insights component.`,
+				},
+				resource.Attribute{
+					Name:        "connection_string",
+					Description: `The Connection String for this Application Insights component. (Sensitive) ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -6929,6 +7056,47 @@ var (
 				resource.Attribute{
 					Name:        "delete",
 					Description: `(Defaults to 30 minutes) Used when deleting the Application Security Group. ## Import Application Security Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_application_security_group.securitygroup1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/applicationSecurityGroups/securitygroup1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_attestation",
+			Category:         "Attestation Resources",
+			ShortDescription: `Manages a Attestation Provider.`,
+			Description:      ``,
+			Keywords: []string{
+				"attestation",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Attestation Provider.`,
+				},
+				resource.Attribute{
+					Name:        "attestation_uri",
+					Description: `The URI of the Attestation Service.`,
+				},
+				resource.Attribute{
+					Name:        "trust_model",
+					Description: `Trust model used for the Attestation Service. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Attestation Provider.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Attestation Provider.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the Attestation Provider.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Attestation Provider. ## Import Attestation Providers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_attestation_provider.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Attestation/attestationProviders/provider1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -8508,7 +8676,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_account_id",
-					Description: `(Required) Azure Resource ID of the storage account to be registered ->`,
+					Description: `(Required) The ID of the Storage Account to be registered ->`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -8713,7 +8881,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "count",
-					Description: `(Required) The number of daily backups to keep. Must be between ` + "`" + `1` + "`" + ` and ` + "`" + `9999` + "`" + ` --- The ` + "`" + `retention_weekly` + "`" + ` block supports:`,
+					Description: `(Required) The number of daily backups to keep. Must be between ` + "`" + `7` + "`" + ` and ` + "`" + `9999` + "`" + `. ~>`,
 				},
 				resource.Attribute{
 					Name:        "count",
@@ -9691,7 +9859,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `the Azure Resource ID of the Blueprint Assignment`,
+					Description: `The ID of the Blueprint Assignment`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -9725,7 +9893,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `the Azure Resource ID of the Blueprint Assignment`,
+					Description: `The ID of the Blueprint Assignment`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -10481,11 +10649,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kind",
-					Description: `(Required) Specifies the type of Cognitive Service Account that should be created. Possible values are ` + "`" + `Academic` + "`" + `, ` + "`" + `Bing.Autosuggest` + "`" + `, ` + "`" + `Bing.Autosuggest.v7` + "`" + `, ` + "`" + `Bing.CustomSearch` + "`" + `, ` + "`" + `Bing.Search` + "`" + `, ` + "`" + `Bing.Search.v7` + "`" + `, ` + "`" + `Bing.Speech` + "`" + `, ` + "`" + `Bing.SpellCheck` + "`" + `, ` + "`" + `Bing.SpellCheck.v7` + "`" + `, ` + "`" + `CognitiveServices` + "`" + `, ` + "`" + `ComputerVision` + "`" + `, ` + "`" + `ContentModerator` + "`" + `, ` + "`" + `CustomSpeech` + "`" + `, ` + "`" + `CustomVision.Prediction` + "`" + `, ` + "`" + `CustomVision.Training` + "`" + `, ` + "`" + `Emotion` + "`" + `, ` + "`" + `Face` + "`" + `,` + "`" + `FormRecognizer` + "`" + `, ` + "`" + `ImmersiveReader` + "`" + `, ` + "`" + `LUIS` + "`" + `, ` + "`" + `LUIS.Authoring` + "`" + `, ` + "`" + `QnAMaker` + "`" + `, ` + "`" + `Recommendations` + "`" + `, ` + "`" + `SpeakerRecognition` + "`" + `, ` + "`" + `Speech` + "`" + `, ` + "`" + `SpeechServices` + "`" + `, ` + "`" + `SpeechTranslation` + "`" + `, ` + "`" + `TextAnalytics` + "`" + `, ` + "`" + `TextTranslation` + "`" + ` and ` + "`" + `WebLM` + "`" + `. Changing this forces a new resource to be created.`,
+					Description: `(Required) Specifies the type of Cognitive Service Account that should be created. Possible values are ` + "`" + `Academic` + "`" + `, ` + "`" + `AnomalyDetector` + "`" + `, ` + "`" + `Bing.Autosuggest` + "`" + `, ` + "`" + `Bing.Autosuggest.v7` + "`" + `, ` + "`" + `Bing.CustomSearch` + "`" + `, ` + "`" + `Bing.Search` + "`" + `, ` + "`" + `Bing.Search.v7` + "`" + `, ` + "`" + `Bing.Speech` + "`" + `, ` + "`" + `Bing.SpellCheck` + "`" + `, ` + "`" + `Bing.SpellCheck.v7` + "`" + `, ` + "`" + `CognitiveServices` + "`" + `, ` + "`" + `ComputerVision` + "`" + `, ` + "`" + `ContentModerator` + "`" + `, ` + "`" + `CustomSpeech` + "`" + `, ` + "`" + `CustomVision.Prediction` + "`" + `, ` + "`" + `CustomVision.Training` + "`" + `, ` + "`" + `Emotion` + "`" + `, ` + "`" + `Face` + "`" + `,` + "`" + `FormRecognizer` + "`" + `, ` + "`" + `ImmersiveReader` + "`" + `, ` + "`" + `LUIS` + "`" + `, ` + "`" + `LUIS.Authoring` + "`" + `, ` + "`" + `QnAMaker` + "`" + `, ` + "`" + `Recommendations` + "`" + `, ` + "`" + `SpeakerRecognition` + "`" + `, ` + "`" + `Speech` + "`" + `, ` + "`" + `SpeechServices` + "`" + `, ` + "`" + `SpeechTranslation` + "`" + `, ` + "`" + `TextAnalytics` + "`" + `, ` + "`" + `TextTranslation` + "`" + ` and ` + "`" + `WebLM` + "`" + `. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "sku_name",
-					Description: `(Required) Specifies the SKU Name for this Cognitive Service Account. Possible values are ` + "`" + `F0` + "`" + `, ` + "`" + `F1` + "`" + `, ` + "`" + `S0` + "`" + `, ` + "`" + `S1` + "`" + `, ` + "`" + `S2` + "`" + `, ` + "`" + `S3` + "`" + `, ` + "`" + `S4` + "`" + `, ` + "`" + `S5` + "`" + `, ` + "`" + `S6` + "`" + `, ` + "`" + `P0` + "`" + `, ` + "`" + `P1` + "`" + `, and ` + "`" + `P2` + "`" + `.`,
+					Description: `(Required) Specifies the SKU Name for this Cognitive Service Account. Possible values are ` + "`" + `F0` + "`" + `, ` + "`" + `F1` + "`" + `, ` + "`" + `S` + "`" + `, ` + "`" + `S0` + "`" + `, ` + "`" + `S1` + "`" + `, ` + "`" + `S2` + "`" + `, ` + "`" + `S3` + "`" + `, ` + "`" + `S4` + "`" + `, ` + "`" + `S5` + "`" + `, ` + "`" + `S6` + "`" + `, ` + "`" + `P0` + "`" + `, ` + "`" + `P1` + "`" + `, and ` + "`" + `P2` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "qna_runtime_endpoint",
@@ -10597,6 +10765,10 @@ var (
 				resource.Attribute{
 					Name:        "os_type",
 					Description: `(Required) The OS for the container group. Allowed values are ` + "`" + `Linux` + "`" + ` and ` + "`" + `Windows` + "`" + `. Changing this forces a new resource to be created. ~>`,
+				},
+				resource.Attribute{
+					Name:        "dns_config",
+					Description: `(Optional) A ` + "`" + `dns_config` + "`" + ` block as documented below.`,
 				},
 				resource.Attribute{
 					Name:        "diagnostics",
@@ -10820,7 +10992,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scheme",
-					Description: `(Optional) Scheme to use for connecting to the host. Possible values are ` + "`" + `Http` + "`" + ` and ` + "`" + `Https` + "`" + `. Changing this forces a new resource to be created. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Scheme to use for connecting to the host. Possible values are ` + "`" + `Http` + "`" + ` and ` + "`" + `Https` + "`" + `. Changing this forces a new resource to be created. --- The ` + "`" + `dns_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "nameservers",
+					Description: `(Required) A list of nameservers the containers will search out to resolve requests.`,
+				},
+				resource.Attribute{
+					Name:        "search_domains",
+					Description: `(Required) A list of search domains that DNS requests will search along.`,
+				},
+				resource.Attribute{
+					Name:        "options",
+					Description: `(Required) A list of [resolver configuration options](https://man7.org/linux/man-pages/man5/resolv.conf.5.html). ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -10912,7 +11096,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_account_id",
-					Description: `(Required for ` + "`" + `Classic` + "`" + ` Sku - Forbidden otherwise) The ID of a Storage Account which must be located in the same Azure Region as the Container Registry.`,
+					Description: `(Required for ` + "`" + `Classic` + "`" + ` Sku - Forbidden otherwise) The ID of a Storage Account which must be located in the same Azure Region as the Container Registry. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "sku",
@@ -11176,7 +11360,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "capabilities",
-					Description: `(Optional) The capabilities which should be enabled for this Cosmos DB account. Possible values are ` + "`" + `EnableAggregationPipeline` + "`" + `, ` + "`" + `EnableCassandra` + "`" + `, ` + "`" + `EnableGremlin` + "`" + `, ` + "`" + `EnableTable` + "`" + `, ` + "`" + `MongoDBv3.4` + "`" + `, and ` + "`" + `mongoEnableDocLevelTTL` + "`" + `.`,
+					Description: `(Optional) The capabilities which should be enabled for this Cosmos DB account. Possible values are ` + "`" + `EnableAggregationPipeline` + "`" + `, ` + "`" + `EnableCassandra` + "`" + `, ` + "`" + `EnableGremlin` + "`" + `, ` + "`" + `EnableTable` + "`" + `, ` + "`" + `MongoDBv3.4` + "`" + `, ` + "`" + `EnableServerless` + "`" + `, and ` + "`" + `mongoEnableDocLevelTTL` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "is_virtual_network_filter_enabled",
@@ -11212,11 +11396,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "failover_priority",
-					Description: `(Required) The failover priority of the region. A failover priority of ` + "`" + `0` + "`" + ` indicates a write region. The maximum value for a failover priority = (total number of regions - 1). Failover priority values must be unique for each of the regions in which the database account exists. Changing this causes the location to be re-provisioned and cannot be changed for the location with failover priority ` + "`" + `0` + "`" + `. ` + "`" + `capabilities` + "`" + ` Configures the capabilities to enable for this Cosmos DB account:`,
+					Description: `(Required) The failover priority of the region. A failover priority of ` + "`" + `0` + "`" + ` indicates a write region. The maximum value for a failover priority = (total number of regions - 1). Failover priority values must be unique for each of the regions in which the database account exists. Changing this causes the location to be re-provisioned and cannot be changed for the location with failover priority ` + "`" + `0` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "zone_redundant",
+					Description: `(Optional) Should zone redundancy be enabled for this region? Defaults to ` + "`" + `false` + "`" + `. ` + "`" + `capabilities` + "`" + ` Configures the capabilities to enable for this Cosmos DB account:`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The capability to enable - Possible values are ` + "`" + `EnableAggregationPipeline` + "`" + `, ` + "`" + `EnableCassandra` + "`" + `, ` + "`" + `EnableGremlin` + "`" + `,` + "`" + `EnableMongo` + "`" + `, ` + "`" + `EnableTable` + "`" + `, ` + "`" + `MongoDBv3.4` + "`" + `, and ` + "`" + `mongoEnableDocLevelTTL` + "`" + `.`,
+					Description: `(Required) The capability to enable - Possible values are ` + "`" + `AllowSelfServeUpgradeToMongo36` + "`" + `, ` + "`" + `DisableRateLimitingResponses` + "`" + `, ` + "`" + `EnableAggregationPipeline` + "`" + `, ` + "`" + `EnableCassandra` + "`" + `, ` + "`" + `EnableGremlin` + "`" + `,` + "`" + `EnableMongo` + "`" + `, ` + "`" + `EnableTable` + "`" + `, ` + "`" + `EnableServerless` + "`" + `, ` + "`" + `MongoDBv3.4` + "`" + ` and ` + "`" + `mongoEnableDocLevelTTL` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -11243,19 +11431,19 @@ var (
 					Description: `A list of write endpoints available for this CosmosDB account.`,
 				},
 				resource.Attribute{
-					Name:        "primary_master_key",
+					Name:        "primary_key",
 					Description: `The Primary master key for the CosmosDB Account.`,
 				},
 				resource.Attribute{
-					Name:        "secondary_master_key",
+					Name:        "secondary_key",
 					Description: `The Secondary master key for the CosmosDB Account.`,
 				},
 				resource.Attribute{
-					Name:        "primary_readonly_master_key",
+					Name:        "primary_readonly_key",
 					Description: `The Primary read-only master Key for the CosmosDB Account.`,
 				},
 				resource.Attribute{
-					Name:        "secondary_readonly_master_key",
+					Name:        "secondary_readonly_key",
 					Description: `The Secondary read-only master key for the CosmosDB Account.`,
 				},
 				resource.Attribute{
@@ -11297,19 +11485,19 @@ var (
 					Description: `A list of write endpoints available for this CosmosDB account.`,
 				},
 				resource.Attribute{
-					Name:        "primary_master_key",
+					Name:        "primary_key",
 					Description: `The Primary master key for the CosmosDB Account.`,
 				},
 				resource.Attribute{
-					Name:        "secondary_master_key",
+					Name:        "secondary_key",
 					Description: `The Secondary master key for the CosmosDB Account.`,
 				},
 				resource.Attribute{
-					Name:        "primary_readonly_master_key",
+					Name:        "primary_readonly_key",
 					Description: `The Primary read-only master Key for the CosmosDB Account.`,
 				},
 				resource.Attribute{
-					Name:        "secondary_readonly_master_key",
+					Name:        "secondary_readonly_key",
 					Description: `The Secondary read-only master key for the CosmosDB Account.`,
 				},
 				resource.Attribute{
@@ -11361,7 +11549,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "throughput",
-					Description: `(Optional) The throughput of Cassandra keyspace (RU/s). Must be set in increments of ` + "`" + `100` + "`" + `. The minimum value is ` + "`" + `400` + "`" + `. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The throughput of Cassandra KeySpace (RU/s). Must be set in increments of ` + "`" + `100` + "`" + `. The minimum value is ` + "`" + `400` + "`" + `. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply.`,
+				},
+				resource.Attribute{
+					Name:        "autoscale_settings",
+					Description: `(Optional) An ` + "`" + `autoscale_settings` + "`" + ` block as defined below. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply. ~>`,
+				},
+				resource.Attribute{
+					Name:        "max_throughput",
+					Description: `(Optional) The maximum throughput of the Cassandra KeySpace (RU/s). Must be between ` + "`" + `4,000` + "`" + ` and ` + "`" + `1,000,000` + "`" + `. Must be set in increments of ` + "`" + `1,000` + "`" + `. Conflicts with ` + "`" + `throughput` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -11434,7 +11630,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "throughput",
-					Description: `(Optional) The throughput of the Gremlin database (RU/s). Must be set in increments of ` + "`" + `100` + "`" + `. The minimum value is ` + "`" + `400` + "`" + `. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The throughput of the Gremlin database (RU/s). Must be set in increments of ` + "`" + `100` + "`" + `. The minimum value is ` + "`" + `400` + "`" + `. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply.`,
+				},
+				resource.Attribute{
+					Name:        "autoscale_settings",
+					Description: `(Optional) An ` + "`" + `autoscale_settings` + "`" + ` block as defined below. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply. ~>`,
+				},
+				resource.Attribute{
+					Name:        "max_throughput",
+					Description: `(Optional) The maximum throughput of the Gremlin database (RU/s). Must be between ` + "`" + `4,000` + "`" + ` and ` + "`" + `1,000,000` + "`" + `. Must be set in increments of ` + "`" + `1,000` + "`" + `. Conflicts with ` + "`" + `throughput` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -11515,7 +11719,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "throughput",
-					Description: `(Optional) The throughput of the Gremlin database (RU/s). Must be set in increments of ` + "`" + `100` + "`" + `. The minimum value is ` + "`" + `400` + "`" + `. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply.`,
+					Description: `(Optional) The throughput of the Gremlin graph (RU/s). Must be set in increments of ` + "`" + `100` + "`" + `. The minimum value is ` + "`" + `400` + "`" + `. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply.`,
+				},
+				resource.Attribute{
+					Name:        "autoscale_settings",
+					Description: `(Optional) An ` + "`" + `autoscale_settings` + "`" + ` block as defined below. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply. Requires ` + "`" + `partition_key_path` + "`" + ` to be set. ~>`,
 				},
 				resource.Attribute{
 					Name:        "index_policy",
@@ -11524,6 +11732,10 @@ var (
 				resource.Attribute{
 					Name:        "conflict_resolution_policy",
 					Description: `(Required) The conflict resolution policy for the graph. One or more ` + "`" + `conflict_resolution_policy` + "`" + ` blocks as defined below. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "max_throughput",
+					Description: `(Optional) The maximum throughput of the Gremlin graph (RU/s). Must be between ` + "`" + `4,000` + "`" + ` and ` + "`" + `1,000,000` + "`" + `. Must be set in increments of ` + "`" + `1,000` + "`" + `. Conflicts with ` + "`" + `throughput` + "`" + `. --- An ` + "`" + `index_policy` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "automatic",
@@ -11640,7 +11852,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "throughput",
-					Description: `(Optional) The throughput of the MongoDB collection (RU/s). Must be set in increments of ` + "`" + `100` + "`" + `. The minimum value is ` + "`" + `400` + "`" + `. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply. --- The ` + "`" + `index` + "`" + ` block supports the following:`,
+					Description: `(Optional) The throughput of the MongoDB collection (RU/s). Must be set in increments of ` + "`" + `100` + "`" + `. The minimum value is ` + "`" + `400` + "`" + `. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply.`,
+				},
+				resource.Attribute{
+					Name:        "autoscale_settings",
+					Description: `(Optional) An ` + "`" + `autoscale_settings` + "`" + ` block as defined below. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply. Requires ` + "`" + `shard_key` + "`" + ` to be set. ~>`,
+				},
+				resource.Attribute{
+					Name:        "max_throughput",
+					Description: `(Optional) The maximum throughput of the MongoDB collection (RU/s). Must be between ` + "`" + `4,000` + "`" + ` and ` + "`" + `1,000,000` + "`" + `. Must be set in increments of ` + "`" + `1,000` + "`" + `. Conflicts with ` + "`" + `throughput` + "`" + `. --- The ` + "`" + `index` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "keys",
@@ -11745,7 +11965,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "throughput",
-					Description: `(Optional) The throughput of the MongoDB collection (RU/s). Must be set in increments of ` + "`" + `100` + "`" + `. The minimum value is ` + "`" + `400` + "`" + `. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The throughput of the MongoDB database (RU/s). Must be set in increments of ` + "`" + `100` + "`" + `. The minimum value is ` + "`" + `400` + "`" + `. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply.`,
+				},
+				resource.Attribute{
+					Name:        "autoscale_settings",
+					Description: `(Optional) An ` + "`" + `autoscale_settings` + "`" + ` block as defined below. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply. ~>`,
+				},
+				resource.Attribute{
+					Name:        "max_throughput",
+					Description: `(Optional) The maximum throughput of the MongoDB database (RU/s). Must be between ` + "`" + `4,000` + "`" + ` and ` + "`" + `1,000,000` + "`" + `. Must be set in increments of ` + "`" + `1,000` + "`" + `. Conflicts with ` + "`" + `throughput` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -11806,11 +12034,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Specifies the name of the Cosmos DB SQL Database. Changing this forces a new resource to be created.`,
+					Description: `(Required) Specifies the name of the Cosmos DB SQL Container. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "resource_group_name",
-					Description: `(Required) The name of the resource group in which the Cosmos DB SQL Database is created. Changing this forces a new resource to be created.`,
+					Description: `(Required) The name of the resource group in which the Cosmos DB SQL Container is created. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "account_name",
@@ -11833,12 +12061,44 @@ var (
 					Description: `(Optional) The throughput of SQL container (RU/s). Must be set in increments of ` + "`" + `100` + "`" + `. The minimum value is ` + "`" + `400` + "`" + `. This must be set upon container creation otherwise it cannot be updated without a manual terraform destroy-apply.`,
 				},
 				resource.Attribute{
+					Name:        "autoscale_settings",
+					Description: `(Optional) An ` + "`" + `autoscale_settings` + "`" + ` block as defined below. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply. Requires ` + "`" + `partition_key_path` + "`" + ` to be set. ~>`,
+				},
+				resource.Attribute{
+					Name:        "indexing_policy",
+					Description: `(Optional) An ` + "`" + `indexing_policy` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "default_ttl",
-					Description: `(Optional) The default time to live of SQL container. If missing, items are not expired automatically. If present and the value is set to ` + "`" + `-1` + "`" + `, it is equal to infinity, and items don’t expire by default. If present and the value is set to some number ` + "`" + `n` + "`" + ` – items will expire ` + "`" + `n` + "`" + ` seconds after their last modified time. --- A ` + "`" + `unique_key` + "`" + ` block supports the following:`,
+					Description: `(Optional) The default time to live of SQL container. If missing, items are not expired automatically. If present and the value is set to ` + "`" + `-1` + "`" + `, it is equal to infinity, and items don’t expire by default. If present and the value is set to some number ` + "`" + `n` + "`" + ` – items will expire ` + "`" + `n` + "`" + ` seconds after their last modified time. --- An ` + "`" + `autoscale_settings` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "max_throughput",
+					Description: `(Optional) The maximum throughput of the SQL container (RU/s). Must be between ` + "`" + `4,000` + "`" + ` and ` + "`" + `1,000,000` + "`" + `. Must be set in increments of ` + "`" + `1,000` + "`" + `. Conflicts with ` + "`" + `throughput` + "`" + `. --- A ` + "`" + `unique_key` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "paths",
-					Description: `(Required) A list of paths to use for this unique key. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) A list of paths to use for this unique key. An ` + "`" + `indexing_policy` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "indexing_mode",
+					Description: `(Optional) Indicates the indexing mode. Possible values include: ` + "`" + `Consistent` + "`" + ` and ` + "`" + `None` + "`" + `. Defaults to ` + "`" + `Consistent` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "included_path",
+					Description: `(Optional) One or more ` + "`" + `included_path` + "`" + ` blocks as defined below. Either ` + "`" + `included_path` + "`" + ` or ` + "`" + `excluded_path` + "`" + ` must contain the ` + "`" + `path` + "`" + ` ` + "`" + `/`,
+				},
+				resource.Attribute{
+					Name:        "excluded_path",
+					Description: `(Optional) One or more ` + "`" + `excluded_path` + "`" + ` blocks as defined below. Either ` + "`" + `included_path` + "`" + ` or ` + "`" + `excluded_path` + "`" + ` must contain the ` + "`" + `path` + "`" + ` ` + "`" + `/`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `Path for which the indexing behavior applies to. An ` + "`" + `excluded_path` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `Path that is excluded from indexing. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -11911,7 +12171,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "throughput",
-					Description: `(Optional) The throughput of SQL database (RU/s). Must be set in increments of ` + "`" + `100` + "`" + `. The minimum value is ` + "`" + `400` + "`" + `. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The throughput of SQL database (RU/s). Must be set in increments of ` + "`" + `100` + "`" + `. The minimum value is ` + "`" + `400` + "`" + `. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply.`,
+				},
+				resource.Attribute{
+					Name:        "autoscale_settings",
+					Description: `(Optional) An ` + "`" + `autoscale_settings` + "`" + ` block as defined below. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply. ~>`,
+				},
+				resource.Attribute{
+					Name:        "max_throughput",
+					Description: `(Optional) The maximum throughput of the SQL database (RU/s). Must be between ` + "`" + `4,000` + "`" + ` and ` + "`" + `1,000,000` + "`" + `. Must be set in increments of ` + "`" + `1,000` + "`" + `. Conflicts with ` + "`" + `throughput` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -11959,6 +12227,88 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_cosmosdb_sql_stored_procedure",
+			Category:         "CosmosDB (DocumentDB) Resources",
+			ShortDescription: `Manages a SQL Stored Procedure within a Cosmos DB Account SQL Database.`,
+			Description:      ``,
+			Keywords: []string{
+				"cosmosdb",
+				"documentdb",
+				"sql",
+				"stored",
+				"procedure",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the Cosmos DB SQL Stored Procedure. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which the Cosmos DB SQL Database is created. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "account_name",
+					Description: `(Required) The name of the Cosmos DB Account to create the stored procedure within. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "database_name",
+					Description: `(Required) The name of the Cosmos DB SQL Database to create the stored procedure within. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "container_name",
+					Description: `(Required) The name of the Cosmos DB SQL Container to create the stored procedure within. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "body",
+					Description: `(Required) The body of the stored procedure. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Cosmos DB SQL Stored Procedure. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the CosmosDB SQL Stored Procedure.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the CosmosDB SQL Stored Procedure.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the CosmosDB SQL Stored Procedure.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the CosmosDB SQL Stored Procedure. ## Import CosmosDB SQL Stored Procedures can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cosmosdb_sql_stored_procedure.db1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.DocumentDB/databaseAccounts/account1/sqlDatabases/db1/containers/c1/storedProcedures/sp1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Cosmos DB SQL Stored Procedure. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the CosmosDB SQL Stored Procedure.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the CosmosDB SQL Stored Procedure.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the CosmosDB SQL Stored Procedure.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the CosmosDB SQL Stored Procedure. ## Import CosmosDB SQL Stored Procedures can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cosmosdb_sql_stored_procedure.db1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.DocumentDB/databaseAccounts/account1/sqlDatabases/db1/containers/c1/storedProcedures/sp1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_cosmosdb_table",
 			Category:         "CosmosDB (DocumentDB) Resources",
 			ShortDescription: `Manages a Table within a Cosmos DB Account.`,
@@ -11983,7 +12333,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "throughput",
-					Description: `(Optional) The throughput of Table (RU/s). Must be set in increments of ` + "`" + `100` + "`" + `. The minimum value is ` + "`" + `400` + "`" + `. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The throughput of Table (RU/s). Must be set in increments of ` + "`" + `100` + "`" + `. The minimum value is ` + "`" + `400` + "`" + `. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply.`,
+				},
+				resource.Attribute{
+					Name:        "autoscale_settings",
+					Description: `(Optional) An ` + "`" + `autoscale_settings` + "`" + ` block as defined below. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply. ~>`,
+				},
+				resource.Attribute{
+					Name:        "max_throughput",
+					Description: `(Optional) The maximum throughput of the Table (RU/s). Must be between ` + "`" + `4,000` + "`" + ` and ` + "`" + `1,000,000` + "`" + `. Must be set in increments of ` + "`" + `1,000` + "`" + `. Conflicts with ` + "`" + `throughput` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -13051,6 +13409,10 @@ var (
 					Description: `(Required) A ` + "`" + `http_server_location` + "`" + ` block as defined below.`,
 				},
 				resource.Attribute{
+					Name:        "azure_blob_storage_location",
+					Description: `(Required) A ` + "`" + `azure_blob_storage_location` + "`" + ` block as defined below. The following supported arguments are specific to Delimited Text Dataset:`,
+				},
+				resource.Attribute{
 					Name:        "encoding",
 					Description: `(Required) The encoding format for the file. --- A ` + "`" + `schema_column` + "`" + ` block supports the following:`,
 				},
@@ -13069,6 +13431,18 @@ var (
 				resource.Attribute{
 					Name:        "relative_url",
 					Description: `(Required) The base URL to the web server hosting the file.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) The folder path to the file on the web server.`,
+				},
+				resource.Attribute{
+					Name:        "filename",
+					Description: `(Required) The filename of the file on the web server. --- A ` + "`" + `azure_blob_storage_location` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "container",
+					Description: `(Required) The container on the Azure Blob Storage Account hosting the file.`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -13689,7 +14063,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "parameters",
-					Description: `(Optional) A map of parameters to associate with the Data Factory Linfked Service.`,
+					Description: `(Optional) A map of parameters to associate with the Data Factory Linked Service.`,
 				},
 				resource.Attribute{
 					Name:        "additional_properties",
@@ -13785,7 +14159,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "parameters",
-					Description: `(Optional) A map of parameters to associate with the Data Factory Linfked Service.`,
+					Description: `(Optional) A map of parameters to associate with the Data Factory Linked Service.`,
 				},
 				resource.Attribute{
 					Name:        "additional_properties",
@@ -13880,7 +14254,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "parameters",
-					Description: `(Optional) A map of parameters to associate with the Data Factory Linfked Service.`,
+					Description: `(Optional) A map of parameters to associate with the Data Factory Linked Service.`,
 				},
 				resource.Attribute{
 					Name:        "additional_properties",
@@ -13940,6 +14314,102 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_data_factory_linked_service_azure_sql_database",
+			Category:         "Data Factory Resources",
+			ShortDescription: `Manages a Linked Service (connection) between Azure SQL Database and Azure Data Factory.`,
+			Description:      ``,
+			Keywords: []string{
+				"data",
+				"factory",
+				"linked",
+				"service",
+				"azure",
+				"sql",
+				"database",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the Data Factory Linked Service Azure SQL Database. Changing this forces a new resource to be created. Must be globally unique. See the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/data-factory/naming-rules) for all restrictions.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which to create the Data Factory Linked Service Azure SQL Database. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "data_factory_name",
+					Description: `(Required) The Data Factory name in which to associate the Linked Service with. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "connection_string",
+					Description: `(Required) The connection string in which to authenticate with Azure SQL Database.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description for the Data Factory Linked Service Azure SQL Database.`,
+				},
+				resource.Attribute{
+					Name:        "integration_runtime_name",
+					Description: `(Optional) The integration runtime reference to associate with the Data Factory Linked Service Azure SQL Database.`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Optional) List of tags that can be used for describing the Data Factory Linked Service Azure SQL Database.`,
+				},
+				resource.Attribute{
+					Name:        "parameters",
+					Description: `(Optional) A map of parameters to associate with the Data Factory Linked Service Azure SQL Database.`,
+				},
+				resource.Attribute{
+					Name:        "additional_properties",
+					Description: `(Optional) A map of additional properties to associate with the Data Factory Linked Service Azure SQL Database. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Data Factory Azure SQL Database Linked Service. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Data Factory Azure SQL Database Linked Service.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the Data Factory Azure SQL Database Linked Service.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Data Factory Azure SQL Database Linked Service.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Data Factory Azure SQL Database Linked Service. ## Import Data Factory Azure SQL Database Linked Service's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_factory_linked_service_azure_sql_database.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/linkedservices/example ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Data Factory Azure SQL Database Linked Service. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Data Factory Azure SQL Database Linked Service.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the Data Factory Azure SQL Database Linked Service.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Data Factory Azure SQL Database Linked Service.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Data Factory Azure SQL Database Linked Service. ## Import Data Factory Azure SQL Database Linked Service's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_factory_linked_service_azure_sql_database.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/linkedservices/example ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_data_factory_linked_service_cosmosdb",
 			Category:         "Data Factory Resources",
 			ShortDescription: `Manages a Linked Service (connection) between an SFTP Server and Azure Data Factory.`,
@@ -13978,7 +14448,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "parameters",
-					Description: `(Optional) A map of parameters to associate with the Data Factory Linfked Service.`,
+					Description: `(Optional) A map of parameters to associate with the Data Factory Linked Service.`,
 				},
 				resource.Attribute{
 					Name:        "additional_properties",
@@ -13986,7 +14456,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "account_endpoint",
-					Description: `(Optional) The endpoint of he Azure CosmosDB account. Required if ` + "`" + `connection_string` + "`" + ` is unspecified.`,
+					Description: `(Optional) The endpoint of the Azure CosmosDB account. Required if ` + "`" + `connection_string` + "`" + ` is unspecified.`,
 				},
 				resource.Attribute{
 					Name:        "account_key",
@@ -14475,7 +14945,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "parameters",
-					Description: `(Optional) A map of parameters to associate with the Data Factory Linfked Service.`,
+					Description: `(Optional) A map of parameters to associate with the Data Factory Linked Service.`,
 				},
 				resource.Attribute{
 					Name:        "additional_properties",
@@ -14680,7 +15150,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "parameters",
-					Description: `(Optional) A map of parameters to associate with the Data Factory Linfked Service.`,
+					Description: `(Optional) A map of parameters to associate with the Data Factory Linked Service.`,
 				},
 				resource.Attribute{
 					Name:        "additional_properties",
@@ -15483,6 +15953,84 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_data_share_dataset_data_lake_gen2",
+			Category:         "Data Share Resources",
+			ShortDescription: `Manages a Data Share Data Lake Gen2 Dataset.`,
+			Description:      ``,
+			Keywords: []string{
+				"data",
+				"share",
+				"dataset",
+				"lake",
+				"gen2",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID of the Data Share Data Lake Gen2 Dataset.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The name of the Data Share Dataset. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Data Share Data Lake Gen2 Dataset.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Data Share Data Lake Gen2 Dataset.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Data Share Data Lake Gen2 Dataset. ## Import Data Share Data Lake Gen2 Datasets can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_share_dataset_data_lake_gen2.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.DataShare/accounts/account1/shares/share1/dataSets/dataSet1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_data_share_dataset_kusto_cluster",
+			Category:         "Data Share Resources",
+			ShortDescription: `Manages a Data Share Kusto Cluster Dataset.`,
+			Description:      ``,
+			Keywords: []string{
+				"data",
+				"share",
+				"dataset",
+				"kusto",
+				"cluster",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID of the Data Share Kusto Cluster Dataset.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The name of the Data Share Dataset.`,
+				},
+				resource.Attribute{
+					Name:        "kusto_cluster_location",
+					Description: `The location of the Kusto Cluster. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Data Share Kusto Cluster Dataset.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Data Share Kusto Cluster Dataset.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Data Share Kusto Cluster Dataset. ## Import Data Share Kusto Cluster Datasets can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_share_dataset_kusto_cluster.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.DataShare/accounts/account1/shares/share1/dataSets/dataSet1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_database_migration_project",
 			Category:         "Database Migration Resources",
 			ShortDescription: `Manage Azure Database Migration Project instance.`,
@@ -15830,7 +16378,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sku_name",
-					Description: `(Required) Specify the sku name of the Dedicated Host. Possible values are ` + "`" + `DSv3-Type1` + "`" + `, ` + "`" + `DSv3-Type2` + "`" + `, ` + "`" + `ESv3-Type1` + "`" + `, ` + "`" + `ESv3-Type2` + "`" + `,` + "`" + `FSv2-Type2` + "`" + `. Changing this forces a new resource to be created.`,
+					Description: `(Required) Specify the sku name of the Dedicated Host. Possible values are ` + "`" + `DSv3-Type1` + "`" + `, ` + "`" + `DSv3-Type2` + "`" + `, ` + "`" + `DSv4-Type1` + "`" + `, ` + "`" + `ESv3-Type1` + "`" + `, ` + "`" + `ESv3-Type2` + "`" + `,` + "`" + `FSv2-Type2` + "`" + `. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "platform_fault_domain",
@@ -17091,7 +17639,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fqdn",
-					Description: `The FQDN of the DNS A Record. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The FQDN of the DNS A Record. ~>`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -17117,7 +17665,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fqdn",
-					Description: `The FQDN of the DNS A Record. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The FQDN of the DNS A Record. ~>`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -18636,7 +19184,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Specifies the name of the EventHub Namespace resource. Changing this forces a new resource to be created.`,
+					Description: `(Required) Specifies the name of the EventHub resource. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "namespace_name",
@@ -19077,6 +19625,10 @@ var (
 					Description: `(Optional) Specifies the ID of the EventHub Dedicated Cluster where this Namespace should created. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
+					Name:        "identity",
+					Description: `(Optional) An ` + "`" + `identity` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "maximum_throughput_units",
 					Description: `(Optional) Specifies the maximum number of throughput units when Auto Inflate is Enabled. Valid values range from ` + "`" + `1` + "`" + ` - ` + "`" + `20` + "`" + `.`,
 				},
@@ -19090,7 +19642,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_rulesets",
-					Description: `(Optional) A ` + "`" + `network_rulesets` + "`" + ` block as defined below. --- A ` + "`" + `network_rulesets` + "`" + ` block supports the following:`,
+					Description: `(Optional) A ` + "`" + `network_rulesets` + "`" + ` block as defined below. --- A ` + "`" + `identity` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The Type of Identity which should be used for this EventHub Namespace. At this time the only possible value is ` + "`" + `SystemAssigned` + "`" + `. ~>`,
 				},
 				resource.Attribute{
 					Name:        "default_action",
@@ -19122,7 +19678,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The EventHub Namespace ID. The following attributes are exported only if there is an authorization rule named ` + "`" + `RootManageSharedAccessKey` + "`" + ` which is created automatically by Azure.`,
+					Description: `The EventHub Namespace ID.`,
+				},
+				resource.Attribute{
+					Name:        "identity",
+					Description: `An ` + "`" + `identity` + "`" + ` block as documented below. The following attributes are exported only if there is an authorization rule named ` + "`" + `RootManageSharedAccessKey` + "`" + ` which is created automatically by Azure.`,
 				},
 				resource.Attribute{
 					Name:        "default_primary_connection_string",
@@ -19146,7 +19706,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "default_secondary_key",
-					Description: `The secondary access key for the authorization rule ` + "`" + `RootManageSharedAccessKey` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The secondary access key for the authorization rule ` + "`" + `RootManageSharedAccessKey` + "`" + `. --- An ` + "`" + `identity` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Client ID of the Service Principal assigned to this EventHub Namespace.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The ID of the Tenant the Service Principal is assigned in. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -19168,7 +19736,11 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The EventHub Namespace ID. The following attributes are exported only if there is an authorization rule named ` + "`" + `RootManageSharedAccessKey` + "`" + ` which is created automatically by Azure.`,
+					Description: `The EventHub Namespace ID.`,
+				},
+				resource.Attribute{
+					Name:        "identity",
+					Description: `An ` + "`" + `identity` + "`" + ` block as documented below. The following attributes are exported only if there is an authorization rule named ` + "`" + `RootManageSharedAccessKey` + "`" + ` which is created automatically by Azure.`,
 				},
 				resource.Attribute{
 					Name:        "default_primary_connection_string",
@@ -19192,7 +19764,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "default_secondary_key",
-					Description: `The secondary access key for the authorization rule ` + "`" + `RootManageSharedAccessKey` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The secondary access key for the authorization rule ` + "`" + `RootManageSharedAccessKey` + "`" + `. --- An ` + "`" + `identity` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Client ID of the Service Principal assigned to this EventHub Namespace.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The ID of the Tenant the Service Principal is assigned in. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -19485,7 +20065,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the ExpressRoute circuit.`,
+					Description: `The ID of the ExpressRoute circuit.`,
 				},
 				resource.Attribute{
 					Name:        "service_provider_provisioning_state",
@@ -19515,7 +20095,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the ExpressRoute circuit.`,
+					Description: `The ID of the ExpressRoute circuit.`,
 				},
 				resource.Attribute{
 					Name:        "service_provider_provisioning_state",
@@ -19571,7 +20151,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the ExpressRoute Circuit Authorization.`,
+					Description: `The ID of the ExpressRoute Circuit Authorization.`,
 				},
 				resource.Attribute{
 					Name:        "authorization_key",
@@ -19601,7 +20181,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the ExpressRoute Circuit Authorization.`,
+					Description: `The ID of the ExpressRoute Circuit Authorization.`,
 				},
 				resource.Attribute{
 					Name:        "authorization_key",
@@ -19697,7 +20277,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the ExpressRoute Circuit Peering.`,
+					Description: `The ID of the ExpressRoute Circuit Peering.`,
 				},
 				resource.Attribute{
 					Name:        "azure_asn",
@@ -19731,7 +20311,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the ExpressRoute Circuit Peering.`,
+					Description: `The ID of the ExpressRoute Circuit Peering.`,
 				},
 				resource.Attribute{
 					Name:        "azure_asn",
@@ -19869,7 +20449,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_configuration",
-					Description: `(Required) A ` + "`" + `ip_configuration` + "`" + ` block as documented below.`,
+					Description: `(Required) An ` + "`" + `ip_configuration` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "management_ip_configuration",
+					Description: `(Optional) A ` + "`" + `management_ip_configuration` + "`" + ` block as documented below, which allows force-tunnelling of traffic to be performed by the firewall. Adding or removing this block or changing the ` + "`" + `subnet_id` + "`" + ` in an existing block forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "threat_intel_mode",
@@ -19881,7 +20465,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A mapping of tags to assign to the resource. --- A ` + "`" + `ip_configuration` + "`" + ` block supports the following:`,
+					Description: `(Optional) A mapping of tags to assign to the resource. --- An ` + "`" + `ip_configuration` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -19893,11 +20477,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip_address_id",
-					Description: `(Required) The Resource ID of the Public IP Address associated with the firewall. ->`,
+					Description: `(Required) The ID of the Public IP Address associated with the firewall. ->`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the IP Configuration.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) Reference to the subnet associated with the IP Configuration. Changing this forces a new resource to be created. ->`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_address_id",
+					Description: `(Required) The ID of the Public IP Address associated with the firewall. ->`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the Azure Firewall.`,
+					Description: `The ID of the Azure Firewall.`,
 				},
 				resource.Attribute{
 					Name:        "ip_configuration",
@@ -19905,7 +20501,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip_address",
-					Description: `The private IP address of the Azure Firewall. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Private IP address of the Azure Firewall. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -19927,7 +20523,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the Azure Firewall.`,
+					Description: `The ID of the Azure Firewall.`,
 				},
 				resource.Attribute{
 					Name:        "ip_configuration",
@@ -19935,7 +20531,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip_address",
-					Description: `The private IP address of the Azure Firewall. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Private IP address of the Azure Firewall. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -20003,11 +20599,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "source_addresses",
-					Description: `(Required) A list of source IP addresses and/or IP ranges.`,
+					Description: `(Optional) A list of source IP addresses and/or IP ranges.`,
+				},
+				resource.Attribute{
+					Name:        "source_ip_groups",
+					Description: `(Optional) A list of source IP Group IDs for the rule. ->`,
 				},
 				resource.Attribute{
 					Name:        "fqdn_tags",
-					Description: `(Optional) A list of FQDN tags. Possible values are ` + "`" + `AppServiceEnvironment` + "`" + `, ` + "`" + `AzureBackup` + "`" + `, ` + "`" + `MicrosoftActiveProtectionService` + "`" + `, ` + "`" + `WindowsDiagnostics` + "`" + ` and ` + "`" + `WindowsUpdate` + "`" + ``,
+					Description: `(Optional) A list of FQDN tags. Possible values are ` + "`" + `AppServiceEnvironment` + "`" + `, ` + "`" + `AzureBackup` + "`" + `, ` + "`" + `AzureKubernetesService` + "`" + `, ` + "`" + `HDInsight` + "`" + `, ` + "`" + `MicrosoftActiveProtectionService` + "`" + `, ` + "`" + `WindowsDiagnostics` + "`" + `, ` + "`" + `WindowsUpdate` + "`" + ` and ` + "`" + `WindowsVirtualDesktop` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "target_fqdns",
@@ -20104,7 +20704,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "source_addresses",
-					Description: `(Required) A list of source IP addresses and/or IP ranges.`,
+					Description: `(Optional) A list of source IP addresses and/or IP ranges.`,
+				},
+				resource.Attribute{
+					Name:        "source_ip_groups",
+					Description: `(Optional) A list of source IP Group IDs for the rule. ->`,
 				},
 				resource.Attribute{
 					Name:        "translated_address",
@@ -20183,8 +20787,16 @@ var (
 					Description: `(Required) A list of source IP addresses and/or IP ranges.`,
 				},
 				resource.Attribute{
+					Name:        "source_ip_groups",
+					Description: `(Optional) A list of IP Group IDs for the rule. ->`,
+				},
+				resource.Attribute{
 					Name:        "destination_addresses",
-					Description: `(Required) A list of destination IP addresses and/or IP ranges.`,
+					Description: `(Optional) Either a list of destination IP addresses and/or IP ranges, or a list of destination [Service Tags](https://docs.microsoft.com/en-us/azure/virtual-network/service-tags-overview#available-service-tags).`,
+				},
+				resource.Attribute{
+					Name:        "destination_ip_groups",
+					Description: `(Optional) A list of destination IP Group IDs for the rule. ->`,
 				},
 				resource.Attribute{
 					Name:        "destination_ports",
@@ -20215,6 +20827,53 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_firewall_policy",
+			Category:         "Network Resources",
+			ShortDescription: `Manages a Firewall Policy.`,
+			Description:      ``,
+			Keywords: []string{
+				"network",
+				"firewall",
+				"policy",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Firewall Policy.`,
+				},
+				resource.Attribute{
+					Name:        "child_policies",
+					Description: `A list of reference to child Firewall Policies of this Firewall Policy.`,
+				},
+				resource.Attribute{
+					Name:        "firewalls",
+					Description: `A list of references to Azure Firewalls that this Firewall Policy is associated with.`,
+				},
+				resource.Attribute{
+					Name:        "rule_collection_groups",
+					Description: `A list of references to Firewall Policy Rule Collection Groups that belongs to this Firewall Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Firewall Policy.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Firewall Policy.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the Firewall Policy.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Firewall Policy. ## Import networks can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_firewall_policy.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/firewallPolicies/policy1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_frontdoor",
 			Category:         "Front Door Resources",
 			ShortDescription: `Manages an Azure Front Door instance.`,
@@ -20229,6 +20888,10 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Front Door service. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created`,
 				},
 				resource.Attribute{
 					Name:        "resource_group_name",
@@ -20288,7 +20951,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "health_probe_name",
-					Description: `(Required) Specifies the name of the ` + "`" + `backend_pool_health_probe` + "`" + ` block whithin this resource to use for this ` + "`" + `Backend Pool` + "`" + `. --- The ` + "`" + `backend` + "`" + ` block supports the following:`,
+					Description: `(Required) Specifies the name of the ` + "`" + `backend_pool_health_probe` + "`" + ` block within this resource to use for this ` + "`" + `Backend Pool` + "`" + `. --- The ` + "`" + `backend` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -20392,7 +21055,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "frontend_endpoints",
-					Description: `(Required) The names of the ` + "`" + `frontend_endpoint` + "`" + ` blocks whithin this resource to associate with this ` + "`" + `routing_rule` + "`" + `.`,
+					Description: `(Required) The names of the ` + "`" + `frontend_endpoint` + "`" + ` blocks within this resource to associate with this ` + "`" + `routing_rule` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "accepted_protocols",
@@ -20476,15 +21139,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the Azure Front Door Backend Pool. ` + "`" + `backend` + "`" + ` exports the following:`,
+					Description: `The ID of the Azure Front Door Backend Pool. --- ` + "`" + `backend` + "`" + ` exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the Azure Front Door Backend. ` + "`" + `frontend_endpoint` + "`" + ` exports the following:`,
+					Description: `The ID of the Azure Front Door Backend. --- ` + "`" + `frontend_endpoint` + "`" + ` exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the Azure Front Door Frontend Endpoint.`,
+					Description: `The ID of the Azure Front Door Frontend Endpoint.`,
 				},
 				resource.Attribute{
 					Name:        "provisioning_state",
@@ -20496,23 +21159,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "web_application_firewall_policy_link_id",
-					Description: `(Optional) The ` + "`" + `id` + "`" + ` of the ` + "`" + `web_application_firewall_policy_link` + "`" + ` to use for this Frontend Endpoint." ` + "`" + `backend_pool_health_probe` + "`" + ` exports the following:`,
+					Description: `(Optional) The ` + "`" + `id` + "`" + ` of the ` + "`" + `web_application_firewall_policy_link` + "`" + ` to use for this Frontend Endpoint." --- ` + "`" + `backend_pool_health_probe` + "`" + ` exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the Azure Front Door Backend Health Probe. ` + "`" + `backend_pool_load_balancing` + "`" + ` exports the following:`,
+					Description: `The ID of the Azure Front Door Backend Health Probe. --- ` + "`" + `backend_pool_load_balancing` + "`" + ` exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the Azure Front Door Backend Load Balancer. ` + "`" + `routing_rule` + "`" + ` exports the following:`,
+					Description: `The ID of the Azure Front Door Backend Load Balancer. --- ` + "`" + `routing_rule` + "`" + ` exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the Azure Front Door Backend Routing Rule. ` + "`" + `custom_https_configuration` + "`" + ` exports the following:`,
+					Description: `The ID of the Azure Front Door Backend Routing Rule. --- ` + "`" + `custom_https_configuration` + "`" + ` exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "minimum_tls_version",
-					Description: `Minimum client TLS version supported. The following attributes are exported:`,
+					Description: `Minimum client TLS version supported. --- The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "cname",
@@ -20546,15 +21209,15 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the Azure Front Door Backend Pool. ` + "`" + `backend` + "`" + ` exports the following:`,
+					Description: `The ID of the Azure Front Door Backend Pool. --- ` + "`" + `backend` + "`" + ` exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the Azure Front Door Backend. ` + "`" + `frontend_endpoint` + "`" + ` exports the following:`,
+					Description: `The ID of the Azure Front Door Backend. --- ` + "`" + `frontend_endpoint` + "`" + ` exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the Azure Front Door Frontend Endpoint.`,
+					Description: `The ID of the Azure Front Door Frontend Endpoint.`,
 				},
 				resource.Attribute{
 					Name:        "provisioning_state",
@@ -20566,23 +21229,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "web_application_firewall_policy_link_id",
-					Description: `(Optional) The ` + "`" + `id` + "`" + ` of the ` + "`" + `web_application_firewall_policy_link` + "`" + ` to use for this Frontend Endpoint." ` + "`" + `backend_pool_health_probe` + "`" + ` exports the following:`,
+					Description: `(Optional) The ` + "`" + `id` + "`" + ` of the ` + "`" + `web_application_firewall_policy_link` + "`" + ` to use for this Frontend Endpoint." --- ` + "`" + `backend_pool_health_probe` + "`" + ` exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the Azure Front Door Backend Health Probe. ` + "`" + `backend_pool_load_balancing` + "`" + ` exports the following:`,
+					Description: `The ID of the Azure Front Door Backend Health Probe. --- ` + "`" + `backend_pool_load_balancing` + "`" + ` exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the Azure Front Door Backend Load Balancer. ` + "`" + `routing_rule` + "`" + ` exports the following:`,
+					Description: `The ID of the Azure Front Door Backend Load Balancer. --- ` + "`" + `routing_rule` + "`" + ` exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the Azure Front Door Backend Routing Rule. ` + "`" + `custom_https_configuration` + "`" + ` exports the following:`,
+					Description: `The ID of the Azure Front Door Backend Routing Rule. --- ` + "`" + `custom_https_configuration` + "`" + ` exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "minimum_tls_version",
-					Description: `Minimum client TLS version supported. The following attributes are exported:`,
+					Description: `Minimum client TLS version supported. --- The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "cname",
@@ -20631,11 +21294,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "frontend_endpoint_id",
-					Description: `(Required) Id of the Front Door Frontend endpoint this configuration refers to.`,
-				},
-				resource.Attribute{
-					Name:        "resource_group_name",
-					Description: `(Required) Specifies the name of the Resource Group in which the Front Door exists`,
+					Description: `(Required) The ID of the FrontDoor Frontend Endpoint which this configuration refers to.`,
 				},
 				resource.Attribute{
 					Name:        "custom_https_provisioning_enabled",
@@ -20663,7 +21322,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the Azure Front Door Custom https configuration. ` + "`" + `custom_https_configuration` + "`" + ` exports the following:`,
+					Description: `The ID of the Azure Front Door Custom Https Configuration.`,
+				},
+				resource.Attribute{
+					Name:        "custom_https_configuration",
+					Description: `A ` + "`" + `custom_https_configuration` + "`" + ` block as defined below. The ` + "`" + `custom_https_configuration` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "minimum_tls_version",
@@ -20683,13 +21346,17 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Defaults to 6 hours) Used when deleting a Custom Https Configuration. ## Import Front Door Custom Https Configurations can be imported using the ` + "`" + `Frontend endpoint name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_frontdoor_custom_https_configuration.example_custom_https_1 /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/mygroup1/providers/Microsoft.Network/frontdoors/frontdoor1/frontendendpoints/exampleFrontendEndpoint2/customHttpsConfiguration/exampleFrontendEndpoint2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Defaults to 6 hours) Used when deleting a Custom Https Configuration. ## Import Front Door Custom Https Configurations can be imported using the ` + "`" + `resource id` + "`" + ` of the Frontend Endpoint, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_frontdoor_custom_https_configuration.example_custom_https_1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/frontdoors/frontdoor1/frontendEndpoints/endpoint1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the Azure Front Door Custom https configuration. ` + "`" + `custom_https_configuration` + "`" + ` exports the following:`,
+					Description: `The ID of the Azure Front Door Custom Https Configuration.`,
+				},
+				resource.Attribute{
+					Name:        "custom_https_configuration",
+					Description: `A ` + "`" + `custom_https_configuration` + "`" + ` block as defined below. The ` + "`" + `custom_https_configuration` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "minimum_tls_version",
@@ -20709,7 +21376,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Defaults to 6 hours) Used when deleting a Custom Https Configuration. ## Import Front Door Custom Https Configurations can be imported using the ` + "`" + `Frontend endpoint name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_frontdoor_custom_https_configuration.example_custom_https_1 /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/mygroup1/providers/Microsoft.Network/frontdoors/frontdoor1/frontendendpoints/exampleFrontendEndpoint2/customHttpsConfiguration/exampleFrontendEndpoint2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Defaults to 6 hours) Used when deleting a Custom Https Configuration. ## Import Front Door Custom Https Configurations can be imported using the ` + "`" + `resource id` + "`" + ` of the Frontend Endpoint, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_frontdoor_custom_https_configuration.example_custom_https_1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/frontdoors/frontdoor1/frontendEndpoints/endpoint1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -20801,7 +21468,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "match_variable",
-					Description: `(Required) The request variable to compare with. Possible values are ` + "`" + `Cookies` + "`" + `, ` + "`" + `PostArgs` + "`" + `, ` + "`" + `QueryString` + "`" + `, ` + "`" + `RemoteAddr` + "`" + `, ` + "`" + `RequestBody` + "`" + `, ` + "`" + `RequestHeader` + "`" + `, ` + "`" + `RequestMethod` + "`" + `, or ` + "`" + `RequestUri` + "`" + `.`,
+					Description: `(Required) The request variable to compare with. Possible values are ` + "`" + `Cookies` + "`" + `, ` + "`" + `PostArgs` + "`" + `, ` + "`" + `QueryString` + "`" + `, ` + "`" + `RemoteAddr` + "`" + `, ` + "`" + `RequestBody` + "`" + `, ` + "`" + `RequestHeader` + "`" + `, ` + "`" + `RequestMethod` + "`" + `, ` + "`" + `RequestUri` + "`" + `, or ` + "`" + `SocketAddr` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "match_values",
@@ -20881,15 +21548,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Resource ID.`,
+					Description: `The ID of the FrontDoor Firewall Policy.`,
 				},
 				resource.Attribute{
 					Name:        "location",
-					Description: `Resource location.`,
+					Description: `The Azure Region where this FrontDoor Firewall Policy exists.`,
 				},
 				resource.Attribute{
 					Name:        "frontend_endpoint_ids",
-					Description: `the Frontend Endpoints associated with this Front Door Web Application Firewall policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Frontend Endpoints associated with this Front Door Web Application Firewall policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -20905,21 +21572,21 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Defaults to 30 minutes) Used when deleting the FrontDoor Web Application Firewall Policy. ## Import FrontDoor Web Application Firewall Policy can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_frontdoor_firewall_policy.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-rg/providers/Microsoft.Network/frontdoorwebapplicationfirewallpolicies/example-fdwafpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Defaults to 30 minutes) Used when deleting the FrontDoor Web Application Firewall Policy. ## Import FrontDoor Web Application Firewall Policy can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_frontdoor_firewall_policy.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-rg/providers/Microsoft.Network/frontDoorWebApplicationFirewallPolicies/example-fdwafpolicy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Resource ID.`,
+					Description: `The ID of the FrontDoor Firewall Policy.`,
 				},
 				resource.Attribute{
 					Name:        "location",
-					Description: `Resource location.`,
+					Description: `The Azure Region where this FrontDoor Firewall Policy exists.`,
 				},
 				resource.Attribute{
 					Name:        "frontend_endpoint_ids",
-					Description: `the Frontend Endpoints associated with this Front Door Web Application Firewall policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Frontend Endpoints associated with this Front Door Web Application Firewall policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -20935,7 +21602,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Defaults to 30 minutes) Used when deleting the FrontDoor Web Application Firewall Policy. ## Import FrontDoor Web Application Firewall Policy can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_frontdoor_firewall_policy.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-rg/providers/Microsoft.Network/frontdoorwebapplicationfirewallpolicies/example-fdwafpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Defaults to 30 minutes) Used when deleting the FrontDoor Web Application Firewall Policy. ## Import FrontDoor Web Application Firewall Policy can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_frontdoor_firewall_policy.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-rg/providers/Microsoft.Network/frontDoorWebApplicationFirewallPolicies/example-fdwafpolicy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -20971,60 +21638,64 @@ var (
 					Description: `(Required) The ID of the App Service Plan within which to create this Function App.`,
 				},
 				resource.Attribute{
-					Name:        "storage_account_name",
-					Description: `(Required) The backend storage account name which will be used by this Function App (such as the dashboard, logs).`,
-				},
-				resource.Attribute{
-					Name:        "storage_account_access_key",
-					Description: `(Required) The access key which will be used to access the backend storage account for the Function App.`,
-				},
-				resource.Attribute{
 					Name:        "app_settings",
-					Description: `(Optional) A map of key-value pairs for [App Settings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-app-settings) and custom values. ~>`,
+					Description: `(Optional) A map of key-value pairs for [App Settings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-app-settings) and custom values.`,
 				},
 				resource.Attribute{
 					Name:        "auth_settings",
 					Description: `(Optional) A ` + "`" + `auth_settings` + "`" + ` block as defined below.`,
 				},
 				resource.Attribute{
-					Name:        "enable_builtin_logging",
-					Description: `(Optional) Should the built-in logging of this Function App be enabled? Defaults to ` + "`" + `true` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "connection_string",
 					Description: `(Optional) An ` + "`" + `connection_string` + "`" + ` block as defined below.`,
-				},
-				resource.Attribute{
-					Name:        "os_type",
-					Description: `(Optional) A string indicating the Operating System type for this function app. ~>`,
 				},
 				resource.Attribute{
 					Name:        "client_affinity_enabled",
 					Description: `(Optional) Should the Function App send session affinity cookies, which route client requests in the same session to the same instance?`,
 				},
 				resource.Attribute{
+					Name:        "daily_memory_time_quota",
+					Description: `(Optional) The amount of memory in gigabyte-seconds that your application is allowed to consume per day. Setting this value only affects function apps under the consumption plan. Defaults to ` + "`" + `0` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "enabled",
 					Description: `(Optional) Is the Function App enabled?`,
+				},
+				resource.Attribute{
+					Name:        "enable_builtin_logging",
+					Description: `(Optional) Should the built-in logging of this Function App be enabled? Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "https_only",
 					Description: `(Optional) Can the Function App only be accessed via HTTPS? Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Optional) The runtime version associated with the Function App. Defaults to ` + "`" + `~1` + "`" + `.`,
+					Name:        "identity",
+					Description: `(Optional) An ` + "`" + `identity` + "`" + ` block as defined below.`,
 				},
 				resource.Attribute{
-					Name:        "daily_memory_time_quota",
-					Description: `(Optional) The amount of memory in gigabyte-seconds that your application is allowed to consume per day. Setting this value only affects function apps under the consumption plan. Defaults to ` + "`" + `0` + "`" + `.`,
+					Name:        "os_type",
+					Description: `(Optional) A string indicating the Operating System type for this function app. ~>`,
 				},
 				resource.Attribute{
 					Name:        "site_config",
 					Description: `(Optional) A ` + "`" + `site_config` + "`" + ` object as defined below.`,
 				},
 				resource.Attribute{
-					Name:        "identity",
-					Description: `(Optional) An ` + "`" + `identity` + "`" + ` block as defined below.`,
+					Name:        "source_control",
+					Description: `(Optional) A ` + "`" + `source_control` + "`" + ` block, as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "storage_account_name",
+					Description: `(Required) The backend storage account name which will be used by this Function App (such as the dashboard, logs).`,
+				},
+				resource.Attribute{
+					Name:        "storage_account_access_key",
+					Description: `(Required) The access key which will be used to access the backend storage account for the Function App. ~>`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) The runtime version associated with the Function App. Defaults to ` + "`" + `~1` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -21047,40 +21718,52 @@ var (
 					Description: `(Optional) Should the Function App be loaded at all times? Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "use_32_bit_worker_process",
-					Description: `(Optional) Should the Function App run in 32 bit mode, rather than 64 bit mode? Defaults to ` + "`" + `true` + "`" + `. ~>`,
-				},
-				resource.Attribute{
-					Name:        "websockets_enabled",
-					Description: `(Optional) Should WebSockets be enabled?`,
-				},
-				resource.Attribute{
-					Name:        "linux_fx_version",
-					Description: `(Optional) Linux App Framework and version for the AppService, e.g. ` + "`" + `DOCKER|(golang:latest)` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "http2_enabled",
-					Description: `(Optional) Specifies whether or not the http2 protocol should be enabled. Defaults to ` + "`" + `false` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "min_tls_version",
-					Description: `(Optional) The minimum supported TLS version for the function app. Possible values are ` + "`" + `1.0` + "`" + `, ` + "`" + `1.1` + "`" + `, and ` + "`" + `1.2` + "`" + `. Defaults to ` + "`" + `1.2` + "`" + ` for new function apps.`,
+					Name:        "cors",
+					Description: `(Optional) A ` + "`" + `cors` + "`" + ` block as defined below.`,
 				},
 				resource.Attribute{
 					Name:        "ftps_state",
 					Description: `(Optional) State of FTP / FTPS service for this function app. Possible values include: ` + "`" + `AllAllowed` + "`" + `, ` + "`" + `FtpsOnly` + "`" + ` and ` + "`" + `Disabled` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "pre_warmed_instance_count",
-					Description: `(Optional) The number of pre-warmed instances for this function app. Only affects apps on the Premium plan.`,
-				},
-				resource.Attribute{
-					Name:        "cors",
-					Description: `(Optional) A ` + "`" + `cors` + "`" + ` block as defined below.`,
+					Name:        "http2_enabled",
+					Description: `(Optional) Specifies whether or not the http2 protocol should be enabled. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ip_restriction",
 					Description: `(Optional) A [List of objects](/docs/configuration/attr-as-blocks.html) representing ip restrictions as defined below. ->`,
+				},
+				resource.Attribute{
+					Name:        "linux_fx_version",
+					Description: `(Optional) Linux App Framework and version for the AppService, e.g. ` + "`" + `DOCKER|(golang:latest)` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "min_tls_version",
+					Description: `(Optional) The minimum supported TLS version for the function app. Possible values are ` + "`" + `1.0` + "`" + `, ` + "`" + `1.1` + "`" + `, and ` + "`" + `1.2` + "`" + `. Defaults to ` + "`" + `1.2` + "`" + ` for new function apps.`,
+				},
+				resource.Attribute{
+					Name:        "pre_warmed_instance_count",
+					Description: `(Optional) The number of pre-warmed instances for this function app. Only affects apps on the Premium plan.`,
+				},
+				resource.Attribute{
+					Name:        "scm_ip_restriction",
+					Description: `(Optional) A [List of objects](/docs/configuration/attr-as-blocks.html) representing ip restrictions as defined below. ->`,
+				},
+				resource.Attribute{
+					Name:        "scm_type",
+					Description: `(Optional) The type of Source Control used by the Function App. Valid values include: ` + "`" + `BitBucketGit` + "`" + `, ` + "`" + `BitBucketHg` + "`" + `, ` + "`" + `CodePlexGit` + "`" + `, ` + "`" + `CodePlexHg` + "`" + `, ` + "`" + `Dropbox` + "`" + `, ` + "`" + `ExternalGit` + "`" + `, ` + "`" + `ExternalHg` + "`" + `, ` + "`" + `GitHub` + "`" + `, ` + "`" + `LocalGit` + "`" + `, ` + "`" + `None` + "`" + ` (dafault), ` + "`" + `OneDrive` + "`" + `, ` + "`" + `Tfs` + "`" + `, ` + "`" + `VSO` + "`" + `, and ` + "`" + `VSTSRM` + "`" + ` ~>`,
+				},
+				resource.Attribute{
+					Name:        "scm_use_main_ip_restriction",
+					Description: `(Optional) IP security restrictions for scm to use main. Defaults to false. ->`,
+				},
+				resource.Attribute{
+					Name:        "use_32_bit_worker_process",
+					Description: `(Optional) Should the Function App run in 32 bit mode, rather than 64 bit mode? Defaults to ` + "`" + `true` + "`" + `. ~>`,
+				},
+				resource.Attribute{
+					Name:        "websockets_enabled",
+					Description: `(Optional) Should WebSockets be enabled? --- A ` + "`" + `cors` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "allowed_origins",
@@ -21188,11 +21871,63 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `(Optional) The IP Address CIDR notation used for this IP Restriction.`,
+					Description: `(Optional) The IP Address used for this IP Restriction in CIDR notation.`,
 				},
 				resource.Attribute{
-					Name:        "subnet_id",
-					Description: `(Optional) The Subnet ID used for this IP Restriction. ->`,
+					Name:        "virtual_network_subnet_id",
+					Description: `(Optional) The Virtual Network Subnet ID used for this IP Restriction. ->`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name for this IP Restriction.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority for this IP Restriction. Restrictions are enforced in priority order. By default, the priority is set to 65000 if not specified.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Optional) Does this restriction ` + "`" + `Allow` + "`" + ` or ` + "`" + `Deny` + "`" + ` access for this IP range. Defaults to ` + "`" + `Allow` + "`" + `. --- A ` + "`" + `scm_ip_restriction` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `(Optional) The IP Address used for this IP Restriction in CIDR notation.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_network_subnet_id",
+					Description: `(Optional) The Virtual Network Subnet ID used for this IP Restriction. ->`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name for this IP Restriction.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority for this IP Restriction. Restrictions are enforced in priority order. By default, priority is set to 65000 if not specified.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Optional) Allow or Deny access for this IP range. Defaults to Allow. --- A ` + "`" + `source_control` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "repo_url",
+					Description: `(Required) The URL of the source code repository.`,
+				},
+				resource.Attribute{
+					Name:        "branch",
+					Description: `(Optional) The branch of the remote repository to use. Defaults to 'master'.`,
+				},
+				resource.Attribute{
+					Name:        "manual_integration",
+					Description: `(Optional) Limits to manual integration. Defaults to ` + "`" + `false` + "`" + ` if not specified.`,
+				},
+				resource.Attribute{
+					Name:        "rollback_enabled",
+					Description: `(Optional) Enable roll-back for the repository. Defaults to ` + "`" + `false` + "`" + ` if not specified.`,
+				},
+				resource.Attribute{
+					Name:        "use_mercurial",
+					Description: `(Optional) Use Mercurial if ` + "`" + `true` + "`" + `, otherwise uses Git. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -21228,7 +21963,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The Tenant ID for the Service Principal associated with the Managed Service Identity of this App Service. The ` + "`" + `site_credential` + "`" + ` block exports the following:`,
+					Description: `The Tenant ID for the Service Principal associated with the Managed Service Identity of this App Service. --- The ` + "`" + `site_credential` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "username",
@@ -21290,7 +22025,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The Tenant ID for the Service Principal associated with the Managed Service Identity of this App Service. The ` + "`" + `site_credential` + "`" + ` block exports the following:`,
+					Description: `The Tenant ID for the Service Principal associated with the Managed Service Identity of this App Service. --- The ` + "`" + `site_credential` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "username",
@@ -21575,11 +22310,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `(Optional) The IP Address CIDR notation used for this IP Restriction.`,
+					Description: `(Optional) The IP Address used for this IP Restriction in CIDR notation.`,
 				},
 				resource.Attribute{
-					Name:        "subnet_id",
-					Description: `(Optional) The Subnet ID used for this IP Restriction. ->`,
+					Name:        "virtual_network_subnet_id",
+					Description: `(Optional) The Virtual Network Subnet ID used for this IP Restriction. ->`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name for this IP Restriction.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority for this IP Restriction. Restrictions are enforced in priority order. By default, priority is set to 65000 if not specified.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Optional) Does this restriction ` + "`" + `Allow` + "`" + ` or ` + "`" + `Deny` + "`" + ` access for this IP range. Defaults to ` + "`" + `Allow` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -24397,7 +25144,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sku_name",
-					Description: `(Required) The SKU of HPC Cache to use. Possible values are ` + "`" + `Standard_2G` + "`" + `, ` + "`" + `Standard_4G` + "`" + ` and ` + "`" + `Standard_8G` + "`" + `. Changing this forces a new resource to be created. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The SKU of HPC Cache to use. Possible values are ` + "`" + `Standard_2G` + "`" + `, ` + "`" + `Standard_4G` + "`" + ` and ` + "`" + `Standard_8G` + "`" + `. Changing this forces a new resource to be created. ---`,
+				},
+				resource.Attribute{
+					Name:        "mtu",
+					Description: `(Optional) The IPv4 maximum transmission unit configured for the subnet of the HPC Cache. Possible values range from 576 - 1500. Defaults to 1500.`,
+				},
+				resource.Attribute{
+					Name:        "root_squash_enabled",
+					Description: `(Optional) Whether root squash property is enabled for this HPC Cache. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -24748,6 +25503,59 @@ var (
 				resource.Attribute{
 					Name:        "delete",
 					Description: `(Defaults to 90 minutes) Used when deleting the Image. ## Import Images can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_image.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/images/image1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_integration_service_environment",
+			Category:         "Logic App Resources",
+			ShortDescription: `Manages private and isolated Logic App instances within an Azure virtual network.`,
+			Description:      ``,
+			Keywords: []string{
+				"logic",
+				"app",
+				"integration",
+				"service",
+				"environment",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Integration Service Environment.`,
+				},
+				resource.Attribute{
+					Name:        "connector_endpoint_ip_addresses",
+					Description: `The list of access endpoint ip addresses of connector.`,
+				},
+				resource.Attribute{
+					Name:        "connector_outbound_ip_addresses",
+					Description: `The list of outgoing ip addresses of connector.`,
+				},
+				resource.Attribute{
+					Name:        "workflow_endpoint_ip_addresses",
+					Description: `The list of access endpoint ip addresses of workflow.`,
+				},
+				resource.Attribute{
+					Name:        "workflow_outbound_ip_addresses",
+					Description: `The list of outgoing ip addresses of workflow. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 5 hours) Used when creating the Integration Service Environment.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Integration Service Environment.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 5 hours) Used when updating the Integration Service Environment.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 5 hours) Used when deleting the Integration Service Environment. ## Import Integration Service Environments can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_integration_service_environment.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Logic/integrationServiceEnvironments/ise1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -25156,6 +25964,10 @@ var (
 				resource.Attribute{
 					Name:        "route",
 					Description: `(Optional) A ` + "`" + `route` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "public_network_access_enabled",
+					Description: `(Optional) Is the IotHub resource accessible from a public network?`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -26393,6 +27205,82 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_ip_group",
+			Category:         "Network Resources",
+			ShortDescription: `Manages an IP group which contains a list of CIDRs and/or IP addresses.`,
+			Description:      ``,
+			Keywords: []string{
+				"network",
+				"ip",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the IP group. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which to create the IP group. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "cidrs",
+					Description: `(Optional) A list of CIDRs or IP addresses.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the IP Group. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the IP Group.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the IP Group.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the IP Group.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the IP Group. ## Import IP Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_ip_group.ipgroup1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/ipGroups/myIpGroup ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the IP Group. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the IP Group.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the IP Group.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the IP Group.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the IP Group. ## Import IP Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_ip_group.ipgroup1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/ipGroups/myIpGroup ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_key_vault",
 			Category:         "Key Vault Resources",
 			ShortDescription: `Manages a Key Vault.`,
@@ -26439,6 +27327,10 @@ var (
 					Description: `(Optional) Boolean flag to specify whether Azure Resource Manager is permitted to retrieve secrets from the key vault. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "enable_rbac_authorization",
+					Description: `(Optional) Boolean flag to specify whether Azure Key Vault uses Role Based Access Control (RBAC) for authorization of data actions. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "network_acls",
 					Description: `(Optional) A ` + "`" + `network_acls` + "`" + ` block as defined below.`,
 				},
@@ -26449,6 +27341,10 @@ var (
 				resource.Attribute{
 					Name:        "soft_delete_enabled",
 					Description: `(Optional) Should Soft Delete be enabled for this Key Vault? Defaults to ` + "`" + `false` + "`" + `. !>`,
+				},
+				resource.Attribute{
+					Name:        "soft_delete_retention_days",
+					Description: `(Optional) The number of days that items should be retained for once soft-deleted. ~>`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -27367,6 +28263,10 @@ var (
 					Description: `(Optional) A list of Kubernetes taints which should be applied to nodes in the agent pool (e.g ` + "`" + `key=value:NoSchedule` + "`" + `). Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
+					Name:        "orchestrator_version",
+					Description: `(Optional) Version of Kubernetes used for the Agents. If not specified, the latest recommended version will be used at provisioning time (but won't auto-upgrade) ->`,
+				},
+				resource.Attribute{
 					Name:        "os_disk_size_gb",
 					Description: `(Optional) The size of the OS Disk which should be used for each agent in the Node Pool. Changing this forces a new resource to be created.`,
 				},
@@ -27397,10 +28297,6 @@ var (
 				resource.Attribute{
 					Name:        "node_count",
 					Description: `(Required) The number of nodes which should exist in this Node Pool. If specified this must be between ` + "`" + `1` + "`" + ` and ` + "`" + `100` + "`" + `. ->`,
-				},
-				resource.Attribute{
-					Name:        "orchestrator_version",
-					Description: `(Optional) Version of Kubernetes used for the Agents. If not specified, the latest recommended version will be used at provisioning time (but won't auto-upgrade) ->`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -27846,19 +28742,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_count",
-					Description: `(Required) The maximum number of nodes which should exist within this Node Pool. Valid values are between ` + "`" + `1` + "`" + ` and ` + "`" + `100` + "`" + ` and must be greater than or equal to ` + "`" + `min_count` + "`" + `.`,
+					Description: `(Required) The maximum number of nodes which should exist within this Node Pool. Valid values are between ` + "`" + `0` + "`" + ` and ` + "`" + `100` + "`" + ` and must be greater than or equal to ` + "`" + `min_count` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "min_count",
-					Description: `(Required) The minimum number of nodes which should exist within this Node Pool. Valid values are between ` + "`" + `1` + "`" + ` and ` + "`" + `100` + "`" + ` and must be less than or equal to ` + "`" + `max_count` + "`" + `.`,
+					Description: `(Required) The minimum number of nodes which should exist within this Node Pool. Valid values are between ` + "`" + `0` + "`" + ` and ` + "`" + `100` + "`" + ` and must be less than or equal to ` + "`" + `max_count` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "node_count",
-					Description: `(Optional) The initial number of nodes which should exist within this Node Pool. Valid values are between ` + "`" + `1` + "`" + ` and ` + "`" + `100` + "`" + ` and must be a value in the range ` + "`" + `min_count` + "`" + ` - ` + "`" + `max_count` + "`" + `. ->`,
+					Description: `(Optional) The initial number of nodes which should exist within this Node Pool. Valid values are between ` + "`" + `0` + "`" + ` and ` + "`" + `100` + "`" + ` and must be a value in the range ` + "`" + `min_count` + "`" + ` - ` + "`" + `max_count` + "`" + `. ->`,
 				},
 				resource.Attribute{
 					Name:        "node_count",
-					Description: `(Required) The number of nodes which should exist within this Node Pool. Valid values are between ` + "`" + `1` + "`" + ` and ` + "`" + `100` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The number of nodes which should exist within this Node Pool. Valid values are between ` + "`" + `0` + "`" + ` and ` + "`" + `100` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -29386,6 +30282,148 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_lighthouse_assignment",
+			Category:         "Lighthouse Resources",
+			ShortDescription: `Manages a Lighthouse Assignment to a subscription or to a resource group.`,
+			Description:      ``,
+			Keywords: []string{
+				"lighthouse",
+				"assignment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) A unique UUID/GUID which identifies this lighthouse assignment- one will be generated if not specified. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "scope",
+					Description: `(Required) The scope at which the Lighthouse Assignment applies too, such as ` + "`" + `/subscriptions/0b1f6471-1bf0-4dda-aec3-111122223333` + "`" + ` or ` + "`" + `/subscriptions/0b1f6471-1bf0-4dda-aec3-111122223333/resourceGroups/myGroup` + "`" + `. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "lighthouse_definition_id",
+					Description: `(Required) A Fully qualified path of the lighthouse definition, such as ` + "`" + `/subscriptions/0afefe50-734e-4610-8c82-a144aff49dea/providers/Microsoft.ManagedServices/registrationDefinitions/26c128c2-fefa-4340-9bb1-8e081c90ada2` + "`" + `. Changing this forces a new resource to be created. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `the fully qualified ID of the Lighthouse Assignment. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Lighthouse Assignment.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Lighthouse Assignment.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Lighthouse Assignment. ## Import Lighthouse Assignments can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lighthouse_assignment.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.ManagedServices/registrationAssignments/00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `the fully qualified ID of the Lighthouse Assignment. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Lighthouse Assignment.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Lighthouse Assignment.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Lighthouse Assignment. ## Import Lighthouse Assignments can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lighthouse_assignment.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.ManagedServices/registrationAssignments/00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_lighthouse_definition",
+			Category:         "Lighthouse Resources",
+			ShortDescription: `Manages a Lighthouse Definition.`,
+			Description:      ``,
+			Keywords: []string{
+				"lighthouse",
+				"definition",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "lighthouse_definition_id",
+					Description: `(Optional) A unique UUID/GUID which identifies this lighthouse definition - one will be generated if not specified. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Lighthouse Definition.`,
+				},
+				resource.Attribute{
+					Name:        "managing_tenant_id",
+					Description: `(Required) The ID of the managing tenant.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A description of the Lighthouse Definition.`,
+				},
+				resource.Attribute{
+					Name:        "authorization",
+					Description: `(Required) An authorization block as defined below. --- An ` + "`" + `authorization` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `(Required) Principal ID of the security group/service principal/user that would be assigned permissions to the projected subscription.`,
+				},
+				resource.Attribute{
+					Name:        "role_definition_id",
+					Description: `(Required) The role definition identifier. This role will define the permissions that are granted to the principal. This cannot be an ` + "`" + `Owner` + "`" + ` role. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `the fully qualified ID of the Lighthouse Definition. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Lighthouse Definition.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the Lighthouse Definition.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Lighthouse Definition.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Lighthouse Definition. ## Import Lighthouse Definitions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lighthouse_definition.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.ManagedServices/registrationDefinitions/00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `the fully qualified ID of the Lighthouse Definition. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Lighthouse Definition.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the Lighthouse Definition.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Lighthouse Definition.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Lighthouse Definition. ## Import Lighthouse Definitions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lighthouse_definition.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.ManagedServices/registrationDefinitions/00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_linux_virtual_machine",
 			Category:         "Compute Resources",
 			ShortDescription: `Manages a Linux Virtual Machine.`,
@@ -29467,6 +30505,10 @@ var (
 					Description: `(Optional) Should Password Authentication be disabled on this Virtual Machine? Defaults to ` + "`" + `true` + "`" + `. Changing this forces a new resource to be created. -> In general we'd recommend using SSH Keys for authentication rather than Passwords - but there's tradeoff's to each - please [see this thread for more information](https://security.stackexchange.com/questions/69407/why-is-using-an-ssh-key-more-secure-than-using-passwords). ->`,
 				},
 				resource.Attribute{
+					Name:        "encryption_at_host_enabled",
+					Description: `(Optional) Should all of the disks (including the temp disk) attached to this Virtual Machine be encrypted by enabling Encryption at Host?`,
+				},
+				resource.Attribute{
 					Name:        "eviction_policy",
 					Description: `(Optional) Specifies what should happen when the Virtual Machine is evicted for price reasons when using a Spot instance. At this time the only supported value is ` + "`" + `Deallocate` + "`" + `. Changing this forces a new resource to be created. ->`,
 				},
@@ -29516,7 +30558,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ultra_ssd_enabled",
-					Description: `(Optional) Should the capacity to enable Data Disks of the ` + "`" + `UltraSSD_LRS` + "`" + ` storage account type be supported on this Virtual Machine? Defaults to ` + "`" + `false` + "`" + `. Changing this forces a new resource to be created. --- A ` + "`" + `admin_ssh_key` + "`" + ` block supports the following:`,
+					Description: `(Optional) Should the capacity to enable Data Disks of the ` + "`" + `UltraSSD_LRS` + "`" + ` storage account type be supported on this Virtual Machine? Defaults to ` + "`" + `false` + "`" + `. --- A ` + "`" + `admin_ssh_key` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "public_key",
@@ -29767,7 +30809,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "automatic_os_upgrade_policy",
-					Description: `(Optional) A ` + "`" + `automatic_os_upgrade_policy` + "`" + ` block as defined below. This is Required and can only be specified when ` + "`" + `upgrade_mode` + "`" + ` is set to ` + "`" + `Automatic` + "`" + `.`,
+					Description: `(Optional) A ` + "`" + `automatic_os_upgrade_policy` + "`" + ` block as defined below. This can only be specified when ` + "`" + `upgrade_mode` + "`" + ` is set to ` + "`" + `Automatic` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "automatic_instance_repair",
@@ -29798,6 +30840,14 @@ var (
 					Description: `(Optional) Should Virtual Machine Extensions be run on Overprovisioned Virtual Machines in the Scale Set? Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "encryption_at_host_enabled",
+					Description: `(Optional) Should all of the disks (including the temp disk) attached to this Virtual Machine be encrypted by enabling Encryption at Host?`,
+				},
+				resource.Attribute{
+					Name:        "extension",
+					Description: `(Optional) One or more ` + "`" + `extension` + "`" + ` blocks as defined below !>`,
+				},
+				resource.Attribute{
 					Name:        "eviction_policy",
 					Description: `(Optional) The Policy which should be used Virtual Machines are Evicted from the Scale Set. Changing this forces a new resource to be created. ->`,
 				},
@@ -29816,6 +30866,10 @@ var (
 				resource.Attribute{
 					Name:        "overprovision",
 					Description: `(Optional) Should Azure over-provision Virtual Machines in this Scale Set? This means that multiple Virtual Machines will be provisioned and Azure will keep the instances which become available first - which improves provisioning success rates and improves deployment time. You're not billed for these over-provisioned VM's and they don't count towards the Subscription Quota. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `(Optional) A ` + "`" + `plan` + "`" + ` block as documented below. ->`,
 				},
 				resource.Attribute{
 					Name:        "priority",
@@ -29938,6 +30992,42 @@ var (
 					Description: `(Optional) Should Write Accelerator be enabled for this Data Disk? Defaults to ` + "`" + `false` + "`" + `. ->`,
 				},
 				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name for the Virtual Machine Scale Set Extension.`,
+				},
+				resource.Attribute{
+					Name:        "publisher",
+					Description: `(Required) Specifies the Publisher of the Extension.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Specifies the Type of the Extension.`,
+				},
+				resource.Attribute{
+					Name:        "type_handler_version",
+					Description: `(Required) Specifies the version of the extension to use, available versions can be found using the Azure CLI.`,
+				},
+				resource.Attribute{
+					Name:        "auto_upgrade_minor_version",
+					Description: `(Optional) Should the latest version of the Extension be used at Deployment Time, if one is available? This won't auto-update the extension on existing installation. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "force_update_tag",
+					Description: `(Optional) A value which, when different to the previous value can be used to force-run the Extension even if the Extension Configuration hasn't changed.`,
+				},
+				resource.Attribute{
+					Name:        "protected_settings",
+					Description: `(Optional) A JSON String which specifies Sensitive Settings (such as Passwords) for the Extension. ~>`,
+				},
+				resource.Attribute{
+					Name:        "provision_after_extensions",
+					Description: `(Optional) An ordered list of Extension names which this should be provisioned after.`,
+				},
+				resource.Attribute{
+					Name:        "settings",
+					Description: `(Optional) A JSON String which specifies Settings for the Extension. ~>`,
+				},
+				resource.Attribute{
 					Name:        "type",
 					Description: `(Required) The type of Managed Identity which should be assigned to the Linux Virtual Machine Scale Set. Possible values are ` + "`" + `SystemAssigned` + "`" + `, ` + "`" + `UserAssigned` + "`" + ` and ` + "`" + `SystemAssigned, UserAssigned` + "`" + `.`,
 				},
@@ -30040,6 +31130,18 @@ var (
 				resource.Attribute{
 					Name:        "write_accelerator_enabled",
 					Description: `(Optional) Should Write Accelerator be Enabled for this OS Disk? Defaults to ` + "`" + `false` + "`" + `. ->`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the image from the marketplace. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "publisher",
+					Description: `(Required) Specifies the publisher of the image. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "product",
+					Description: `(Required) Specifies the product of the image from the marketplace. Changing this forces a new resource to be created. --- A ` + "`" + `public_ip_address` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -30427,6 +31529,91 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_log_analytics_saved_search",
+			Category:         "Log Analytics Resources",
+			ShortDescription: `Manages a Log Analytics (formally Operational Insights) Saved Search.`,
+			Description:      ``,
+			Keywords: []string{
+				"log",
+				"analytics",
+				"saved",
+				"search",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the Log Analytics Saved Search. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "log_analytics_workspace_id",
+					Description: `(Required) Specifies the ID of the Log Analytics Workspace that the Saved Search will be associated with. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) The name that Saved Search will be displayed as. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `(Required) The category that the Saved Search will be listed under. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "query",
+					Description: `(Required) The query expression for the saved search. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "function_alias",
+					Description: `(Optional) The function alias if the query serves as a function. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "function_parameters",
+					Description: `(Optional) The function parameters if the query serves as a function. Changing this forces a new resource to be created. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Log Analytics Saved Search ID. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Log Analytics Saved Search.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the Log Analytics Saved Search.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Log Analytics Saved Search.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Log Analytics Saved Search. ## Import Log Analytics Saved Searches can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_log_analytics_saved_search.search1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.OperationalInsights/workspaces/workspace1/savedSearches/search1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Log Analytics Saved Search ID. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Log Analytics Saved Search.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the Log Analytics Saved Search.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Log Analytics Saved Search.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Log Analytics Saved Search. ## Import Log Analytics Saved Searches can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_log_analytics_saved_search.search1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.OperationalInsights/workspaces/workspace1/savedSearches/search1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_log_analytics_solution",
 			Category:         "Log Analytics Resources",
 			ShortDescription: `Manages a Log Analytics (formally Operational Insights) Solution.`,
@@ -30519,7 +31706,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sku",
-					Description: `(Required) Specifies the Sku of the Log Analytics Workspace. Possible values are ` + "`" + `Free` + "`" + `, ` + "`" + `PerNode` + "`" + `, ` + "`" + `Premium` + "`" + `, ` + "`" + `Standard` + "`" + `, ` + "`" + `Standalone` + "`" + `, ` + "`" + `Unlimited` + "`" + `, and ` + "`" + `PerGB2018` + "`" + ` (new Sku as of ` + "`" + `2018-04-03` + "`" + `). ~>`,
+					Description: `(Optional) Specifies the Sku of the Log Analytics Workspace. Possible values are ` + "`" + `Free` + "`" + `, ` + "`" + `PerNode` + "`" + `, ` + "`" + `Premium` + "`" + `, ` + "`" + `Standard` + "`" + `, ` + "`" + `Standalone` + "`" + `, ` + "`" + `Unlimited` + "`" + `, and ` + "`" + `PerGB2018` + "`" + ` (new Sku as of ` + "`" + `2018-04-03` + "`" + `). Defaults to ` + "`" + `PerGB2018` + "`" + `. ~>`,
 				},
 				resource.Attribute{
 					Name:        "retention_in_days",
@@ -30543,11 +31730,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "workspace_id",
-					Description: `The Workspace (or Customer) ID for the Log Analytics Workspace.`,
-				},
-				resource.Attribute{
-					Name:        "portal_url",
-					Description: `The Portal URL for the Log Analytics Workspace. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Workspace (or Customer) ID for the Log Analytics Workspace. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -30581,11 +31764,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "workspace_id",
-					Description: `The Workspace (or Customer) ID for the Log Analytics Workspace.`,
-				},
-				resource.Attribute{
-					Name:        "portal_url",
-					Description: `The Portal URL for the Log Analytics Workspace. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Workspace (or Customer) ID for the Log Analytics Workspace. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -31050,6 +32229,10 @@ var (
 				resource.Attribute{
 					Name:        "location",
 					Description: `(Required) Specifies the supported Azure location where the Logic App Workflow exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "integration_service_environment_id",
+					Description: `(Optional) The ID of the Integration Service Environment to which this Logic App Workflow belongs. Changing this forces a new Logic App Workflow to be created.`,
 				},
 				resource.Attribute{
 					Name:        "logic_app_integration_account_id",
@@ -32588,7 +33771,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the Marketplace Agreement. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Marketplace Agreement. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -32610,7 +33793,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the Marketplace Agreement. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Marketplace Agreement. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -33783,7 +34966,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_account_id",
-					Description: `(Optional) With this parameter you can specify a storage account which should be used to send the logs to. Parameter must be a valid Azure Resource ID. Changing this forces a new resource to be created. ->`,
+					Description: `(Optional) The ID of the Storage Account where logs should be sent. Changing this forces a new resource to be created. ->`,
 				},
 				resource.Attribute{
 					Name:        "log_analytics_destination_type",
@@ -34442,7 +35625,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "create_mode",
-					Description: `(Optional) The create mode of the database. Possible values are ` + "`" + `Copy` + "`" + `, ` + "`" + `Default` + "`" + `, ` + "`" + `OnlineSecondary` + "`" + `, ` + "`" + `PointInTimeRestore` + "`" + `, ` + "`" + `Restore` + "`" + `, ` + "`" + `RestoreExternalBackup` + "`" + `, ` + "`" + `RestoreExternalBackupSecondary` + "`" + `, ` + "`" + `RestoreLongTermRetentionBackup` + "`" + ` and ` + "`" + `Secondary` + "`" + `.`,
+					Description: `(Optional) The create mode of the database. Possible values are ` + "`" + `Copy` + "`" + `, ` + "`" + `Default` + "`" + `, ` + "`" + `OnlineSecondary` + "`" + `, ` + "`" + `PointInTimeRestore` + "`" + `, ` + "`" + `Recovery` + "`" + `, ` + "`" + `Restore` + "`" + `, ` + "`" + `RestoreExternalBackup` + "`" + `, ` + "`" + `RestoreExternalBackupSecondary` + "`" + `, ` + "`" + `RestoreLongTermRetentionBackup` + "`" + ` and ` + "`" + `Secondary` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "creation_source_database_id",
@@ -34465,6 +35648,10 @@ var (
 					Description: `(Optional) Specifies the license type applied to this database. Possible values are ` + "`" + `LicenseIncluded` + "`" + ` and ` + "`" + `BasePrice` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "long_term_retention_policy",
+					Description: `(Optional) A ` + "`" + `long_term_retention_policy` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "max_size_gb",
 					Description: `(Optional) The max size of the database in gigabytes.`,
 				},
@@ -34475,6 +35662,14 @@ var (
 				resource.Attribute{
 					Name:        "restore_point_in_time",
 					Description: `(Required) Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database. This property is only settable for ` + "`" + `create_mode` + "`" + `= ` + "`" + `PointInTimeRestore` + "`" + ` databases.`,
+				},
+				resource.Attribute{
+					Name:        "recover_database_id",
+					Description: `(Optional) The ID of the database to be recovered. This property is only applicable when the ` + "`" + `create_mode` + "`" + ` is ` + "`" + `Recovery` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "restore_dropped_database_id",
+					Description: `(Optional) The ID of the database to be restored. This property is only applicable when the ` + "`" + `create_mode` + "`" + ` is ` + "`" + `Restore` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "read_replica_count",
@@ -34489,8 +35684,12 @@ var (
 					Description: `(Optional) Specifies the name of the sample schema to apply when creating this database. Possible value is ` + "`" + `AdventureWorksLT` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "short_term_retention_policy",
+					Description: `(Optional) A ` + "`" + `short_term_retention_policy` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "sku_name",
-					Description: `(Optional) Specifies the name of the sku used by the database. Only changing this from tier ` + "`" + `Hyperscale` + "`" + ` to another tier will force a new resource to be created. For example, ` + "`" + `GP_S_Gen5_2` + "`" + `,` + "`" + `HS_Gen4_1` + "`" + `,` + "`" + `BC_Gen5_2` + "`" + `, ` + "`" + `ElasticPool` + "`" + `, ` + "`" + `Basic` + "`" + `,` + "`" + `S0` + "`" + `, ` + "`" + `P2` + "`" + ` ,` + "`" + `DW100c` + "`" + `, ` + "`" + `DS100` + "`" + `. ~>`,
+					Description: `(Optional) Specifies the name of the sku used by the database. Changing this forces a new resource to be created. For example, ` + "`" + `GP_S_Gen5_2` + "`" + `,` + "`" + `HS_Gen4_1` + "`" + `,` + "`" + `BC_Gen5_2` + "`" + `, ` + "`" + `ElasticPool` + "`" + `, ` + "`" + `Basic` + "`" + `,` + "`" + `S0` + "`" + `, ` + "`" + `P2` + "`" + ` ,` + "`" + `DW100c` + "`" + `, ` + "`" + `DS100` + "`" + `. ~>`,
 				},
 				resource.Attribute{
 					Name:        "threat_detection_policy",
@@ -34550,7 +35749,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "retention_in_days",
-					Description: `(Optional) Specifies the number of days to retain logs for in the storage account. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Specifies the number of days to retain logs for in the storage account. --- A ` + "`" + `long_term_retention_policy` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "weekly_retention",
+					Description: `(Optional) The weekly retention policy for an LTR backup in an ISO 8601 format. Valid value is between 1 to 520 weeks. e.g. ` + "`" + `P1Y` + "`" + `, ` + "`" + `P1M` + "`" + `, ` + "`" + `P1W` + "`" + ` or ` + "`" + `P7D` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "monthly_retention",
+					Description: `(Optional) The monthly retention policy for an LTR backup in an ISO 8601 format. Valid value is between 1 to 120 months. e.g. ` + "`" + `P1Y` + "`" + `, ` + "`" + `P1M` + "`" + `, ` + "`" + `P4W` + "`" + ` or ` + "`" + `P30D` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "yearly_retention",
+					Description: `(Optional) The yearly retention policy for an LTR backup in an ISO 8601 format. Valid value is between 1 to 10 years. e.g. ` + "`" + `P1Y` + "`" + `, ` + "`" + `P12M` + "`" + `, ` + "`" + `P52W` + "`" + ` or ` + "`" + `P365D` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "week_of_year",
+					Description: `(Optional) The week of year to take the yearly backup in an ISO 8601 format. Value has to be between ` + "`" + `1` + "`" + ` and ` + "`" + `52` + "`" + `. --- A ` + "`" + `short_term_retention_policy` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "retention_days",
+					Description: `(Required) Point In Time Restore configuration. Value has to be between ` + "`" + `7` + "`" + ` and ` + "`" + `35` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -34593,6 +35812,43 @@ var (
 				resource.Attribute{
 					Name:        "delete",
 					Description: `(Defaults to 60 minutes) Used when deleting the MS SQL Database. ## Import SQL Database can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mssql_database.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Sql/servers/server1/databases/example1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mssql_database_extended_auditing_policy",
+			Category:         "Database Resources",
+			ShortDescription: `Manages a Ms Sql Database Extended Auditing Policy.`,
+			Description:      ``,
+			Keywords: []string{
+				"database",
+				"mssql",
+				"extended",
+				"auditing",
+				"policy",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Ms Sql Database Extended Auditing Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Ms Sql Database Extended Auditing Policy.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Ms Sql Database Extended Auditing Policy.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the Ms Sql Database Extended Auditing Policy.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Ms Sql Database Extended Auditing Policy. ## Import Ms Sql Database Extended Auditing Policys can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mssql_database_extended_auditing_policy.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Sql/servers/sqlServer1/databases/db1/extendedAuditingSettings/default ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -34857,6 +36113,10 @@ var (
 					Description: `(Optional) An ` + "`" + `identity` + "`" + ` block as defined below.`,
 				},
 				resource.Attribute{
+					Name:        "minimum_tls_version",
+					Description: `(Optional) The Minimum TLS Version for all SQL Database and SQL Data Warehouse databases associated with the server. Valid values are: ` + "`" + `1.0` + "`" + `, ` + "`" + `1.1` + "`" + ` and ` + "`" + `1.2` + "`" + `. ~>`,
+				},
+				resource.Attribute{
 					Name:        "public_network_access_enabled",
 					Description: `(Optional) Whether or not public network access is allowed for this server. Defaults to ` + "`" + `true` + "`" + `.`,
 				},
@@ -34874,7 +36134,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fully_qualified_domain_name",
-					Description: `The fully qualified domain name of the Azure SQL Server (e.g. myServerName.database.windows.net) --- ` + "`" + `identity` + "`" + ` exports the following:`,
+					Description: `The fully qualified domain name of the Azure SQL Server (e.g. myServerName.database.windows.net)`,
+				},
+				resource.Attribute{
+					Name:        "restorable_dropped_database_ids",
+					Description: `A list of dropped restorable database IDs on the server. --- ` + "`" + `identity` + "`" + ` exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "principal_id",
@@ -34882,7 +36146,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The Tenant ID for the Service Principal associated with the Identity of this SQL Server. -> You can access the Principal ID via ` + "`" + `${azurerm_sql_server.example.identity.0.principal_id}` + "`" + ` and the Tenant ID via ` + "`" + `${azurerm_sql_server.example.identity.0.tenant_id}` + "`" + ` --- A ` + "`" + `azuread_administrator` + "`" + ` block supports the following:`,
+					Description: `The Tenant ID for the Service Principal associated with the Identity of this SQL Server. -> You can access the Principal ID via ` + "`" + `azurerm_mssql_server.example.identity.0.principal_id` + "`" + ` and the Tenant ID via ` + "`" + `azurerm_mssql_server.example.identity.0.tenant_id` + "`" + ` --- An ` + "`" + `azuread_administrator` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "login_username",
@@ -34894,7 +36158,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `(Optional) The tenant id of the Azure AD Administrator of this SQL Server. --- A ` + "`" + `extended_auditing_policy` + "`" + ` block supports the following:`,
+					Description: `(Optional) The tenant id of the Azure AD Administrator of this SQL Server. --- An ` + "`" + `extended_auditing_policy` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "storage_account_access_key",
@@ -34936,7 +36200,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fully_qualified_domain_name",
-					Description: `The fully qualified domain name of the Azure SQL Server (e.g. myServerName.database.windows.net) --- ` + "`" + `identity` + "`" + ` exports the following:`,
+					Description: `The fully qualified domain name of the Azure SQL Server (e.g. myServerName.database.windows.net)`,
+				},
+				resource.Attribute{
+					Name:        "restorable_dropped_database_ids",
+					Description: `A list of dropped restorable database IDs on the server. --- ` + "`" + `identity` + "`" + ` exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "principal_id",
@@ -34944,7 +36212,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The Tenant ID for the Service Principal associated with the Identity of this SQL Server. -> You can access the Principal ID via ` + "`" + `${azurerm_sql_server.example.identity.0.principal_id}` + "`" + ` and the Tenant ID via ` + "`" + `${azurerm_sql_server.example.identity.0.tenant_id}` + "`" + ` --- A ` + "`" + `azuread_administrator` + "`" + ` block supports the following:`,
+					Description: `The Tenant ID for the Service Principal associated with the Identity of this SQL Server. -> You can access the Principal ID via ` + "`" + `azurerm_mssql_server.example.identity.0.principal_id` + "`" + ` and the Tenant ID via ` + "`" + `azurerm_mssql_server.example.identity.0.tenant_id` + "`" + ` --- An ` + "`" + `azuread_administrator` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "login_username",
@@ -34956,7 +36224,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `(Optional) The tenant id of the Azure AD Administrator of this SQL Server. --- A ` + "`" + `extended_auditing_policy` + "`" + ` block supports the following:`,
+					Description: `(Optional) The tenant id of the Azure AD Administrator of this SQL Server. --- An ` + "`" + `extended_auditing_policy` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "storage_account_access_key",
@@ -34989,6 +36257,44 @@ var (
 				resource.Attribute{
 					Name:        "delete",
 					Description: `(Defaults to 60 minutes) Used when deleting the Microsoft SQL Server. ## Import SQL Servers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mssql_server.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Sql/servers/myserver ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_mssql_server_extended_auditing_policy",
+			Category:         "Database Resources",
+			ShortDescription: `Manages a Ms Sql Server Extended Auditing Policy.`,
+			Description:      ``,
+			Keywords: []string{
+				"database",
+				"mssql",
+				"server",
+				"extended",
+				"auditing",
+				"policy",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Ms Sql Server Extended Auditing Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Ms Sql Server Extended Auditing Policy.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Ms Sql Server Extended Auditing Policy.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the Ms Sql Server Extended Auditing Policy.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Ms Sql Server Extended Auditing Policy. ## Import Ms Sql Server Extended Auditing Policys can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mssql_server_extended_auditing_policy.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Sql/servers/sqlServer1/extendedAuditingSettings/default ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -35227,6 +36533,10 @@ var (
 					Description: `(Optional) The SQL Server sysadmin login to create.`,
 				},
 				resource.Attribute{
+					Name:        "storage_configuration",
+					Description: `(Optional) An ` + "`" + `storage_configuration` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) A mapping of tags to assign to the resource. --- The ` + "`" + `auto_patching` + "`" + ` block supports the following:`,
 				},
@@ -35256,7 +36566,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_principal_secret",
-					Description: `(Required) The service principal name secret to access key vault. Changing this forces a new resource to be created. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The service principal name secret to access key vault. Changing this forces a new resource to be created. --- The ` + "`" + `storage_configuration` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "disk_type",
+					Description: `(Required) The type of disk configuration to apply to the SQL Server. Valid values include ` + "`" + `NEW` + "`" + `, ` + "`" + `EXTEND` + "`" + `, or ` + "`" + `ADD` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "storage_workload_type",
+					Description: `(Required) The type of storage workload. Valid values include ` + "`" + `GENERAL` + "`" + `, ` + "`" + `OLTP` + "`" + `, or ` + "`" + `DW` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "data_settings",
+					Description: `(Optional) An ` + "`" + `storage_settings` + "`" + ` as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "log_settings",
+					Description: `(Optional) An ` + "`" + `storage_settings` + "`" + ` as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "temp_db_settings",
+					Description: `(Optional) An ` + "`" + `storage_settings` + "`" + ` as defined below. --- The ` + "`" + `storage_settings` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "default_file_path",
+					Description: `(Required) The SQL Server default path`,
+				},
+				resource.Attribute{
+					Name:        "luns",
+					Description: `(Required) A list of Logical Unit Numbers for the disks. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -35666,6 +37004,10 @@ var (
 					Description: `(Optional) Turn Geo-redundant server backups on/off. This allows you to choose between locally redundant or geo-redundant backup storage in the General Purpose and Memory Optimized tiers. When the backups are stored in geo-redundant backup storage, they are not only stored within the region in which your server is hosted, but are also replicated to a paired data center. This provides better protection and ability to restore your server in a different region in the event of a disaster. This is not supported for the Basic tier.`,
 				},
 				resource.Attribute{
+					Name:        "identity",
+					Description: `(Optional) An ` + "`" + `identity` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "infrastructure_encryption_enabled",
 					Description: `(Optional) Whether or not infrastructure is encrypted for this server. Defaults to ` + "`" + `false` + "`" + `. Changing this forces a new resource to be created.`,
 				},
@@ -35695,7 +37037,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A mapping of tags to assign to the resource. --- a ` + "`" + `threat_detection_policy` + "`" + ` block supports the following:`,
+					Description: `(Optional) A mapping of tags to assign to the resource. --- A ` + "`" + `identity` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The Type of Identity which should be used for this MySQL Server. At this time the only possible value is ` + "`" + `SystemAssigned` + "`" + `. --- a ` + "`" + `threat_detection_policy` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -35731,7 +37077,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fqdn",
-					Description: `The FQDN of the MySQL Server. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The FQDN of the MySQL Server. --- A ` + "`" + `identity` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Client ID of the Service Principal assigned to this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The ID of the Tenant the Service Principal is assigned in. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -35757,7 +37111,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fqdn",
-					Description: `The FQDN of the MySQL Server. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The FQDN of the MySQL Server. --- A ` + "`" + `identity` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Client ID of the Service Principal assigned to this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The ID of the Tenant the Service Principal is assigned in. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -36415,6 +37777,41 @@ var (
 				resource.Attribute{
 					Name:        "delete",
 					Description: `(Defaults to 30 minutes) Used when deleting the NetApp Volume. ## Import NetApp Volumes can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_netapp_volume.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.NetApp/netAppAccounts/account1/capacityPools/pool1/volumes/volume1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_network_connection_monitor",
+			Category:         "Network Resources",
+			ShortDescription: `Manages a Network Connection Monitor.`,
+			Description:      ``,
+			Keywords: []string{
+				"network",
+				"connection",
+				"monitor",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Network Connection Monitor. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Network Connection Monitor.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Network Connection Monitor.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the Network Connection Monitor.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Network Connection Monitor. ## Import Network Connection Monitors can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_connection_monitor.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/networkWatchers/watcher1/connectionMonitors/connectionMonitor1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -38053,7 +39450,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "single_placement_group",
-					Description: `(Optional /`,
+					Description: `(Optional) Should the Orchestrated Virtual Machine Scale Set use single placement group? Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "zones",
@@ -38494,7 +39891,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `(Required) The policy mode that allows you to specify which resource types will be evaluated. The value can be "All", "Indexed" or "NotSpecified". Changing this resource forces a new resource to be created.`,
+					Description: `(Required) The policy mode that allows you to specify which resource types will be evaluated. Possible values are ` + "`" + `All` + "`" + `, ` + "`" + `Indexed` + "`" + `, ` + "`" + `Microsoft.ContainerService.Data` + "`" + `, ` + "`" + `Microsoft.CustomerLockbox.Data` + "`" + `, ` + "`" + `Microsoft.DataCatalog.Data` + "`" + `, ` + "`" + `Microsoft.KeyVault.Data` + "`" + `, ` + "`" + `Microsoft.Kubernetes.Data` + "`" + `, ` + "`" + `Microsoft.MachineLearningServices.Data` + "`" + `, ` + "`" + `Microsoft.Network.Data` + "`" + ` and ` + "`" + `Microsoft.Synapse.Data` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
@@ -38589,7 +39986,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "policy_assignment_id",
-					Description: `(Required) The resource ID of the policy assignment that should be remediated.`,
+					Description: `(Required) The ID of the Policy Assignment that should be remediated.`,
 				},
 				resource.Attribute{
 					Name:        "policy_definition_reference_id",
@@ -38700,8 +40097,8 @@ var (
 					Description: `(Required) The ID of the policy definition or policy set definition that will be included in this policy set definition.`,
 				},
 				resource.Attribute{
-					Name:        "parameters",
-					Description: `(Required) A mapping of the parameter values for the referenced policy rule. The keys are the parameter names.`,
+					Name:        "parameter_values",
+					Description: `(Optional) Parameter values for the referenced policy rule. This field is a json object that allows you to assign parameters to this policy rule.`,
 				},
 				resource.Attribute{
 					Name:        "reference_id",
@@ -38725,7 +40122,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Defaults to 30 minutes) Used when deleting the Policy Set Definition. ## Import Policy Set Definitions can be imported using the Resource ID, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_set_definition.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/policySetDefinitions/testPolicySet ` + "`" + `` + "`" + `` + "`" + ` or ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_set_definition.example /providers/Microsoft.Management/managementGroups/my-mgmt-group-id/providers/Microsoft.Authorization/policySetDefinitions/testPolicySet ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Defaults to 30 minutes) Used when deleting the Policy Set Definition. ## Import Policy Set Definitions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_set_definition.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/policySetDefinitions/testPolicySet ` + "`" + `` + "`" + `` + "`" + ` or ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_set_definition.example /providers/Microsoft.Management/managementGroups/my-mgmt-group-id/providers/Microsoft.Authorization/policySetDefinitions/testPolicySet ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -38747,7 +40144,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Defaults to 30 minutes) Used when deleting the Policy Set Definition. ## Import Policy Set Definitions can be imported using the Resource ID, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_set_definition.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/policySetDefinitions/testPolicySet ` + "`" + `` + "`" + `` + "`" + ` or ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_set_definition.example /providers/Microsoft.Management/managementGroups/my-mgmt-group-id/providers/Microsoft.Authorization/policySetDefinitions/testPolicySet ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Defaults to 30 minutes) Used when deleting the Policy Set Definition. ## Import Policy Set Definitions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_set_definition.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/policySetDefinitions/testPolicySet ` + "`" + `` + "`" + `` + "`" + ` or ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_set_definition.example /providers/Microsoft.Management/managementGroups/my-mgmt-group-id/providers/Microsoft.Authorization/policySetDefinitions/testPolicySet ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -39115,6 +40512,10 @@ var (
 					Description: `(Optional) Turn Geo-redundant server backups on/off. This allows you to choose between locally redundant or geo-redundant backup storage in the General Purpose and Memory Optimized tiers. When the backups are stored in geo-redundant backup storage, they are not only stored within the region in which your server is hosted, but are also replicated to a paired data center. This provides better protection and ability to restore your server in a different region in the event of a disaster. This is not support for the Basic tier.`,
 				},
 				resource.Attribute{
+					Name:        "identity",
+					Description: `(Optional) An ` + "`" + `identity` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "infrastructure_encryption_enabled",
 					Description: `(Optional) Whether or not infrastructure is encrypted for this server. Defaults to ` + "`" + `false` + "`" + `. Changing this forces a new resource to be created. ~>`,
 				},
@@ -39144,7 +40545,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A mapping of tags to assign to the resource. --- a ` + "`" + `threat_detection_policy` + "`" + ` block supports the following:`,
+					Description: `(Optional) A mapping of tags to assign to the resource. --- A ` + "`" + `identity` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The Type of Identity which should be used for this PostgreSQL Server. At this time the only possible value is ` + "`" + `SystemAssigned` + "`" + `. --- a ` + "`" + `threat_detection_policy` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -39180,7 +40585,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fqdn",
-					Description: `The FQDN of the PostgreSQL Server. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The FQDN of the PostgreSQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "identity",
+					Description: `An ` + "`" + `identity` + "`" + ` block as documented below. --- A ` + "`" + `identity` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Client ID of the Service Principal assigned to this PostgreSQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The ID of the Tenant the Service Principal is assigned in. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -39206,7 +40623,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fqdn",
-					Description: `The FQDN of the PostgreSQL Server. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The FQDN of the PostgreSQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "identity",
+					Description: `An ` + "`" + `identity` + "`" + ` block as documented below. --- A ` + "`" + `identity` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Client ID of the Service Principal assigned to this PostgreSQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The ID of the Tenant the Service Principal is assigned in. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -39223,6 +40652,71 @@ var (
 				resource.Attribute{
 					Name:        "delete",
 					Description: `(Defaults to 60 minutes) Used when deleting the PostgreSQL Server. ## Import PostgreSQL Server's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_postgresql_server.server1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DBforPostgreSQL/servers/server1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_postgresql_server_key",
+			Category:         "Database Resources",
+			ShortDescription: `Manages a PostgreSQL Server Key.`,
+			Description:      ``,
+			Keywords: []string{
+				"database",
+				"postgresql",
+				"server",
+				"key",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "server_id",
+					Description: `(Required) The ID of the PostgreSQL Server. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "key_vault_key_id",
+					Description: `(Required) The URL to a Key Vault Key. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the PostgreSQL Server Key. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the PostgreSQL Server Key.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the PostgreSQL Server Key.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the PostgreSQL Server Key.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the PostgreSQL Server Key. ## Import A PostgreSQL Server Key can be imported using the ` + "`" + `resource id` + "`" + ` of the PostgreSQL Server Key, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_postgresql_server_key.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.DBforPostgreSQL/servers/server1/keys/keyvaultname_key-name_keyversion ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the PostgreSQL Server Key. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the PostgreSQL Server Key.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the PostgreSQL Server Key.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the PostgreSQL Server Key.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the PostgreSQL Server Key. ## Import A PostgreSQL Server Key can be imported using the ` + "`" + `resource id` + "`" + ` of the PostgreSQL Server Key, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_postgresql_server_key.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.DBforPostgreSQL/servers/server1/keys/keyvaultname_key-name_keyversion ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -39402,7 +40896,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_group_name",
-					Description: `(Required) Specifies the resource group where the resource exists. Changing this forces a new resource to be created.`,
+					Description: `(Required) Specifies the resource group where the Private DNS Zone exists. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "zone_name",
@@ -40060,7 +41554,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Prviate DNS Zone ID.`,
+					Description: `The Private DNS Zone ID.`,
 				},
 				resource.Attribute{
 					Name:        "number_of_record_sets",
@@ -40098,7 +41592,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Prviate DNS Zone ID.`,
+					Description: `The Private DNS Zone ID.`,
 				},
 				resource.Attribute{
 					Name:        "number_of_record_sets",
@@ -40159,11 +41653,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_group_name",
-					Description: `(Required) Specifies the resource group where the resource exists. Changing this forces a new resource to be created.`,
+					Description: `(Required) Specifies the resource group where the Private DNS Zone exists. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "virtual_network_id",
-					Description: `(Required) The Resource ID of the Virtual Network that should be linked to the DNS Zone. Changing this forces a new resource to be created.`,
+					Description: `(Required) The ID of the Virtual Network that should be linked to the DNS Zone. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "registration_enabled",
@@ -40175,7 +41669,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the Private DNS Zone Virtual Network Link. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Private DNS Zone Virtual Network Link. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -40197,7 +41691,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of the Private DNS Zone Virtual Network Link. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Private DNS Zone Virtual Network Link. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -40283,11 +41777,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "request_message",
-					Description: `(Optional) A message passed to the owner of the remote resource when the private endpoint attempts to establish the connection to the remote resource. The request message can be a maximum of ` + "`" + `140` + "`" + ` characters in length. Only valid if ` + "`" + `is_manual_connection` + "`" + ` is set to ` + "`" + `true` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "private_ip_address",
-					Description: `(Computed) The private IP address associated with the private endpoint, note that you will have a private IP address assigned to the private endpoint even if the connection request was ` + "`" + `Rejected` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) A message passed to the owner of the remote resource when the private endpoint attempts to establish the connection to the remote resource. The request message can be a maximum of ` + "`" + `140` + "`" + ` characters in length. Only valid if ` + "`" + `is_manual_connection` + "`" + ` is set to ` + "`" + `true` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -40319,7 +41809,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "record_sets",
-					Description: `A ` + "`" + `record_sets` + "`" + ` block as defined below. --- A ` + "`" + `record_sets` + "`" + ` block exports:`,
+					Description: `A ` + "`" + `record_sets` + "`" + ` block as defined below. --- A ` + "`" + `private_service_connection` + "`" + ` block exports:`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_address",
+					Description: `(Computed) The private IP address associated with the private endpoint, note that you will have a private IP address assigned to the private endpoint even if the connection request was ` + "`" + `Rejected` + "`" + `. --- A ` + "`" + `record_sets` + "`" + ` block exports:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -40389,7 +41883,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "record_sets",
-					Description: `A ` + "`" + `record_sets` + "`" + ` block as defined below. --- A ` + "`" + `record_sets` + "`" + ` block exports:`,
+					Description: `A ` + "`" + `record_sets` + "`" + ` block as defined below. --- A ` + "`" + `private_service_connection` + "`" + ` block exports:`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_address",
+					Description: `(Computed) The private IP address associated with the private endpoint, note that you will have a private IP address assigned to the private endpoint even if the connection request was ` + "`" + `Rejected` + "`" + `. --- A ` + "`" + `record_sets` + "`" + ` block exports:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -41230,6 +42728,45 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_redis_linked_server",
+			Category:         "Redis Resources",
+			ShortDescription: `Manages a Redis Linked Server.`,
+			Description:      ``,
+			Keywords: []string{
+				"redis",
+				"linked",
+				"server",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Redis.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the linked server. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Redis.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Redis.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the Redis.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Redis. ## Import Rediss can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_redis_linked_server.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Cache/Redis/cache1/linkedServers/cache2 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_relay_hybrid_connection",
 			Category:         "Messaging Resources",
 			ShortDescription: `Manages an Azure Relay Hybrid Connection.`,
@@ -41452,7 +42989,47 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Defaults to 1 hour and 30 minutes) Used when deleting the Resource Group. ## Import Resource Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_resource_group.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Defaults to 1 hour and 30 minutes) Used when deleting the Resource Group. ## Import Resource Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_resource_group.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_resource_group_template_deployment",
+			Category:         "Template Resources",
+			ShortDescription: `Manages a Resource Group Template Deployment.`,
+			Description:      ``,
+			Keywords: []string{
+				"template",
+				"resource",
+				"group",
+				"deployment",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Resource Group Template Deployment.`,
+				},
+				resource.Attribute{
+					Name:        "output_content",
+					Description: `The JSON Content of the Outputs of the ARM Template Deployment. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 3 hours) Used when creating the Resource Group Template Deployment.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Resource Group Template Deployment.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 3 hours) Used when updating the Resource Group Template Deployment.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 3 hours) Used when deleting the Resource Group Template Deployment. ## Import Resource Group Template Deployments can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_resource_group_template_deployment.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Resources/deployments/template1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -41578,7 +43155,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "assignable_scopes",
-					Description: `(Required) One or more assignable scopes for this Role Definition, such as ` + "`" + `/subscriptions/0b1f6471-1bf0-4dda-aec3-111122223333` + "`" + `, ` + "`" + `/subscriptions/0b1f6471-1bf0-4dda-aec3-111122223333/resourceGroups/myGroup` + "`" + `, or ` + "`" + `/subscriptions/0b1f6471-1bf0-4dda-aec3-111122223333/resourceGroups/myGroup/providers/Microsoft.Compute/virtualMachines/myVM` + "`" + `. A ` + "`" + `permissions` + "`" + ` block as the following properties:`,
+					Description: `(Optional) One or more assignable scopes for this Role Definition, such as ` + "`" + `/subscriptions/0b1f6471-1bf0-4dda-aec3-111122223333` + "`" + `, ` + "`" + `/subscriptions/0b1f6471-1bf0-4dda-aec3-111122223333/resourceGroups/myGroup` + "`" + `, or ` + "`" + `/subscriptions/0b1f6471-1bf0-4dda-aec3-111122223333/resourceGroups/myGroup/providers/Microsoft.Compute/virtualMachines/myVM` + "`" + `. ~>`,
 				},
 				resource.Attribute{
 					Name:        "actions",
@@ -41598,7 +43175,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Role Definition ID. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Role Definition ID.`,
+				},
+				resource.Attribute{
+					Name:        "role_definition_resource_id",
+					Description: `The Azure Resource Manager ID for the resource ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -41614,13 +43195,17 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Defaults to 30 minutes) Used when deleting the Role Definition. ## Import Role Definitions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_role_definition.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Defaults to 30 minutes) Used when deleting the Role Definition. ## Import Role Definitions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_role_definition.example "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/00000000-0000-0000-0000-000000000000|/subscriptions/00000000-0000-0000-0000-000000000000" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Role Definition ID. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Role Definition ID.`,
+				},
+				resource.Attribute{
+					Name:        "role_definition_resource_id",
+					Description: `The Azure Resource Manager ID for the resource ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -41636,7 +43221,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Defaults to 30 minutes) Used when deleting the Role Definition. ## Import Role Definitions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_role_definition.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Defaults to 30 minutes) Used when deleting the Role Definition. ## Import Role Definitions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_role_definition.example "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/00000000-0000-0000-0000-000000000000|/subscriptions/00000000-0000-0000-0000-000000000000" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 		},
@@ -42001,7 +43586,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tier",
-					Description: `(Required) The pricing tier to use. Possible values are ` + "`" + `Free` + "`" + ` and ` + "`" + `Standard` + "`" + `. ~>`,
+					Description: `(Required) The pricing tier to use. Possible values are ` + "`" + `Free` + "`" + ` and ` + "`" + `Standard` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `(Required) The resource type this setting affects. Possible values are ` + "`" + `AppServices` + "`" + `, ` + "`" + `ContainerRegistry` + "`" + `, ` + "`" + `KeyVaults` + "`" + `, ` + "`" + `KubernetesService` + "`" + `, ` + "`" + `SqlServers` + "`" + `, ` + "`" + `SqlServerVirtualMachines` + "`" + `, ` + "`" + `StorageAccounts` + "`" + `, and ` + "`" + `VirtualMachines` + "`" + `. ~>`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -42021,7 +43610,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Defaults to 60 minutes) Used when deleting the Security Center Subscription Pricing. ## Import The pricing tier can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_security_center_subscription_pricing.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Security/pricings/default ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Defaults to 60 minutes) Used when deleting the Security Center Subscription Pricing. ## Import The pricing tier can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_security_center_subscription_pricing.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Security/pricings/<resource_type> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -42043,7 +43632,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Defaults to 60 minutes) Used when deleting the Security Center Subscription Pricing. ## Import The pricing tier can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_security_center_subscription_pricing.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Security/pricings/default ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Defaults to 60 minutes) Used when deleting the Security Center Subscription Pricing. ## Import The pricing tier can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_security_center_subscription_pricing.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Security/pricings/<resource_type> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -42256,7 +43845,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "client_certificate_thumbprint",
-					Description: `(Optional) One or two ` + "`" + `client_certificate_thumbprint` + "`" + ` blocks as defined below.`,
+					Description: `(Optional) One or more ` + "`" + `client_certificate_thumbprint` + "`" + ` blocks as defined below.`,
 				},
 				resource.Attribute{
 					Name:        "client_certificate_common_name",
@@ -42335,7 +43924,7 @@ var (
 					Description: `(Required) Does the Client Certificate have Admin Access to the cluster? Non-admin clients can only perform read only operations on the cluster. --- A ` + "`" + `client_certificate_common_name` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
-					Name:        "certificate_common_name",
+					Name:        "common_name",
 					Description: `(Required) The common or subject name of the certificate.`,
 				},
 				resource.Attribute{
@@ -42483,6 +44072,131 @@ var (
 				resource.Attribute{
 					Name:        "delete",
 					Description: `(Defaults to 30 minutes) Used when deleting the Service Fabric Cluster. ## Import Service Fabric Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_service_fabric_cluster.cluster1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ServiceFabric/clusters/cluster1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_service_fabric_mesh_application",
+			Category:         "Service Fabric Mesh Resources",
+			ShortDescription: `Manages a Service Fabric Mesh Application.`,
+			Description:      ``,
+			Keywords: []string{
+				"service",
+				"fabric",
+				"mesh",
+				"application",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Service Fabric Mesh Application. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the Resource Group in which the Service Fabric Mesh Application exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) Specifies the Azure Region where the Service Fabric Mesh Application should exist. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `(Required) Any number of ` + "`" + `service` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. --- A ` + "`" + `service` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the service resource.`,
+				},
+				resource.Attribute{
+					Name:        "os_type",
+					Description: `(Required) The operating system required by the code in service. Valid values are ` + "`" + `Linux` + "`" + ` or ` + "`" + `Windows` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "code_package",
+					Description: `(Required) Any number ` + "`" + `code_package` + "`" + ` block as described below. --- A ` + "`" + `code_package` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the code package.`,
+				},
+				resource.Attribute{
+					Name:        "image_name",
+					Description: `(Required) The Container image the code package will use.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `(Required) A ` + "`" + `resources` + "`" + ` block as defined below. --- A ` + "`" + `resources` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "requests",
+					Description: `(Required) A ` + "`" + `requests` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "limits",
+					Description: `(Optional) A ` + "`" + `limits` + "`" + ` block as defined below. --- A ` + "`" + `requests` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `(Required) The minimum number of CPU cores the container requires.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `(Required) The minimum memory request in GB the container requires. --- A ` + "`" + `limits` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `(Required) The maximum number of CPU cores the container can use.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `(Required) The maximum memory request in GB the container can use. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Service Fabric Mesh Application. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Service Fabric Mesh Application.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the Service Fabric Mesh Application.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Service Fabric Mesh Application.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Service Fabric Mesh Application. ## Import Service Fabric Mesh Application can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_service_fabric_mesh_application.application1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ServiceFabricMesh/applications/application1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Service Fabric Mesh Application. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Service Fabric Mesh Application.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the Service Fabric Mesh Application.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Service Fabric Mesh Application.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Service Fabric Mesh Application. ## Import Service Fabric Mesh Application can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_service_fabric_mesh_application.application1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ServiceFabricMesh/applications/application1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -42828,32 +44542,12 @@ var (
 					Description: `(Required) The name of the resource group in which to create the namespace. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
-					Name:        "auto_delete_on_idle",
-					Description: `(Optional) The ISO 8601 timespan duration of the idle interval after which the Queue is automatically deleted, minimum of 5 minutes.`,
-				},
-				resource.Attribute{
-					Name:        "default_message_ttl",
-					Description: `(Optional) The ISO 8601 timespan duration of the TTL of messages sent to this queue. This is the default value used when TTL is not set on message itself.`,
-				},
-				resource.Attribute{
-					Name:        "duplicate_detection_history_time_window",
-					Description: `(Optional) The ISO 8601 timespan duration during which duplicates can be detected. Default value is 10 minutes. (` + "`" + `PT10M` + "`" + `)`,
-				},
-				resource.Attribute{
-					Name:        "enable_express",
-					Description: `(Optional) Boolean flag which controls whether Express Entities are enabled. An express queue holds a message in memory temporarily before writing it to persistent storage. Defaults to ` + "`" + `false` + "`" + ` for Basic and Standard. For Premium, it MUST be set to ` + "`" + `false` + "`" + `. ~>`,
-				},
-				resource.Attribute{
-					Name:        "enable_partitioning",
-					Description: `(Optional) Boolean flag which controls whether to enable the queue to be partitioned across multiple message brokers. Changing this forces a new resource to be created. Defaults to ` + "`" + `false` + "`" + ` for Basic and Standard. For Premium, it MUST be set to ` + "`" + `true` + "`" + `. ->`,
-				},
-				resource.Attribute{
 					Name:        "lock_duration",
-					Description: `(Optional) The ISO 8601 timespan duration of a peek-lock; that is, the amount of time that the message is locked for other receivers. Maximum value is 5 minutes. Defaults to 1 minute. (` + "`" + `PT1M` + "`" + `)`,
+					Description: `(Optional) The ISO 8601 timespan duration of a peek-lock; that is, the amount of time that the message is locked for other receivers. Maximum value is 5 minutes. Defaults to 1 minute (` + "`" + `PT1M` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "max_size_in_megabytes",
-					Description: `(Optional) Integer value which controls the size of memory allocated for the queue. For supported values see the "Queue/topic size" section of [this document](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas).`,
+					Description: `(Optional) Integer value which controls the size of memory allocated for the queue. For supported values see the "Queue or topic size" section of [Service Bus Quotas](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas). Defaults to ` + "`" + `1024` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "requires_duplicate_detection",
@@ -42864,12 +44558,48 @@ var (
 					Description: `(Optional) Boolean flag which controls whether the Queue requires sessions. This will allow ordered handling of unbounded sequences of related messages. With sessions enabled a queue can guarantee first-in-first-out delivery of messages. Changing this forces a new resource to be created. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "default_message_ttl",
+					Description: `(Optional) The ISO 8601 timespan duration of the TTL of messages sent to this queue. This is the default value used when TTL is not set on message itself.`,
+				},
+				resource.Attribute{
 					Name:        "dead_lettering_on_message_expiration",
 					Description: `(Optional) Boolean flag which controls whether the Queue has dead letter support when a message expires. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "duplicate_detection_history_time_window",
+					Description: `(Optional) The ISO 8601 timespan duration during which duplicates can be detected. Defaults to 10 minutes (` + "`" + `PT10M` + "`" + `).`,
+				},
+				resource.Attribute{
 					Name:        "max_delivery_count",
-					Description: `(Optional) Integer value which controls when a message is automatically deadlettered. Defaults to ` + "`" + `10` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Integer value which controls when a message is automatically dead lettered. Defaults to ` + "`" + `10` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional) The status of the Queue. Possible values are ` + "`" + `Active` + "`" + `, ` + "`" + `Creating` + "`" + `, ` + "`" + `Deleting` + "`" + `, ` + "`" + `Disabled` + "`" + `, ` + "`" + `ReceiveDisabled` + "`" + `, ` + "`" + `Renaming` + "`" + `, ` + "`" + `SendDisabled` + "`" + `, ` + "`" + `Unknown` + "`" + `. Note that ` + "`" + `Restoring` + "`" + ` is not accepted. Defaults to ` + "`" + `Active` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "enable_batched_operations",
+					Description: `(Optional) Boolean flag which controls whether server-side batched operations are enabled. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "auto_delete_on_idle",
+					Description: `(Optional) The ISO 8601 timespan duration of the idle interval after which the Queue is automatically deleted, minimum of 5 minutes.`,
+				},
+				resource.Attribute{
+					Name:        "enable_partitioning",
+					Description: `(Optional) Boolean flag which controls whether to enable the queue to be partitioned across multiple message brokers. Changing this forces a new resource to be created. Defaults to ` + "`" + `false` + "`" + ` for Basic and Standard. For Premium, it MUST be set to ` + "`" + `true` + "`" + `. ->`,
+				},
+				resource.Attribute{
+					Name:        "enable_express",
+					Description: `(Optional) Boolean flag which controls whether Express Entities are enabled. An express queue holds a message in memory temporarily before writing it to persistent storage. Defaults to ` + "`" + `false` + "`" + ` for Basic and Standard. For Premium, it MUST be set to ` + "`" + `false` + "`" + `. ~>`,
+				},
+				resource.Attribute{
+					Name:        "forward_to",
+					Description: `(Optional) The name of a Queue or Topic to automatically forward messages to. Please [see the documentation](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-auto-forwarding) for more information.`,
+				},
+				resource.Attribute{
+					Name:        "forward_dead_lettered_messages_to",
+					Description: `(Optional) The name of a Queue or Topic to automatically forward dead lettered messages to. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -43082,6 +44812,10 @@ var (
 					Description: `(Optional) Boolean flag which controls whether the Subscription has dead letter support when a message expires. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "dead_lettering_on_filter_evaluation_error",
+					Description: `(Optional) Boolean flag which controls whether the Subscription has dead letter support on filter evaluation exceptions. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "enable_batched_operations",
 					Description: `(Optional) Boolean flag which controls whether the Subscription supports batched operations. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
@@ -43224,7 +44958,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "to",
-					Description: `(Optional) Address to send to. ~>`,
+					Description: `(Optional) Address to send to.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `(Optional) A list of user defined properties to be included in the filter. Specified as a map of name/value pairs. ~>`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -43530,7 +45268,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "os_type",
-					Description: `(Required) The type of Operating System present in this Shared Image. Possible values are ` + "`" + `Linux` + "`" + ` and ` + "`" + `Windows` + "`" + `. Changing this forces a new resource to be created. ---`,
+					Description: `(Required) The type of Operating System present in this Shared Image. Possible values are ` + "`" + `Linux` + "`" + ` and ` + "`" + `Windows` + "`" + `. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "purchase_plan",
+					Description: `(Optional) A ` + "`" + `purchase_plan` + "`" + ` block as defined below. ---`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -43570,7 +45312,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sku",
-					Description: `(Required) The Name of the SKU for this Gallery Image. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The Name of the SKU for this Gallery Image. --- A ` + "`" + `purchase_plan` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The Purchase Plan Name for this Shared Image. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "publisher",
+					Description: `(Optional) The Purchase Plan Publisher for this Gallery Image. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "product",
+					Description: `(Optional) The Purchase Plan Product for this Gallery Image. Changing this forces a new resource to be created. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -44350,7 +46104,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "managed_disk",
-					Description: `(Required) One or more ` + "`" + `managed_disk` + "`" + ` block. --- A ` + "`" + `managed_disk` + "`" + ` block supports the following:`,
+					Description: `(Required) One or more ` + "`" + `managed_disk` + "`" + ` block.`,
+				},
+				resource.Attribute{
+					Name:        "target_network_id",
+					Description: `(Optional) Network to use when a failover is done (recommended to set if any network_interface is configured for failover).`,
+				},
+				resource.Attribute{
+					Name:        "network_interface",
+					Description: `(Optional) One or more ` + "`" + `network_interface` + "`" + ` block. --- A ` + "`" + `managed_disk` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "disk_id",
@@ -44370,7 +46132,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target_replica_disk_type",
-					Description: `(Required) What type should the disk be that holds the replication data. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+					Description: `(Required) What type should the disk be that holds the replication data. --- A ` + "`" + `network_interface` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "source_network_interface_id",
+					Description: `(Required if the network_interface block is specified) Id source network interface.`,
+				},
+				resource.Attribute{
+					Name:        "target_static_ip",
+					Description: `(Optional) Static IP to assign when a failover is done.`,
+				},
+				resource.Attribute{
+					Name:        "target_subnet_name",
+					Description: `(Optional) Name of the subnet to to use when a failover is done. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -44378,7 +46152,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "create",
-					Description: `(Defaults to 80 minutes) Used when creating the Site Recovery Replicated VM.`,
+					Description: `(Defaults to 120 minutes) Used when creating the Site Recovery Replicated VM.`,
 				},
 				resource.Attribute{
 					Name:        "update",
@@ -44400,7 +46174,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "create",
-					Description: `(Defaults to 80 minutes) Used when creating the Site Recovery Replicated VM.`,
+					Description: `(Defaults to 120 minutes) Used when creating the Site Recovery Replicated VM.`,
 				},
 				resource.Attribute{
 					Name:        "update",
@@ -44688,11 +46462,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_name",
-					Description: `(Required) Specifies the name of the Spring Cloud Service resource. Changing this forces a new resource to be created. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) Specifies the name of the Spring Cloud Service resource. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "identity",
+					Description: `(Optional) An ` + "`" + `identity` + "`" + ` block as defined below. --- An ` + "`" + `identity` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Specifies the identity type of the Spring Cloud Application. Possible value is ` + "`" + `SystemAssigned` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Spring Cloud Application. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Spring Cloud Application. --- An ` + "`" + `identity` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Principal ID for the Service Principal associated with the Managed Service Identity of this Spring Cloud Application.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The Tenant ID for the Service Principal associated with the Managed Service Identity of this Spring Cloud Application. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -44701,6 +46491,10 @@ var (
 				resource.Attribute{
 					Name:        "read",
 					Description: `(Defaults to 5 minutes) Used when retrieving the Spring Cloud Application.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the Spring Cloud Application.`,
 				},
 				resource.Attribute{
 					Name:        "delete",
@@ -44710,7 +46504,15 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Spring Cloud Application. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Spring Cloud Application. --- An ` + "`" + `identity` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Principal ID for the Service Principal associated with the Managed Service Identity of this Spring Cloud Application.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The Tenant ID for the Service Principal associated with the Managed Service Identity of this Spring Cloud Application. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -44721,8 +46523,76 @@ var (
 					Description: `(Defaults to 5 minutes) Used when retrieving the Spring Cloud Application.`,
 				},
 				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the Spring Cloud Application.`,
+				},
+				resource.Attribute{
 					Name:        "delete",
 					Description: `(Defaults to 30 minutes) Used when deleting the Spring Cloud Application. ## Import Spring Cloud Application can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_spring_cloud_app.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.AppPlatform/Spring/myservice/apps/myapp ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_spring_cloud_certificate",
+			Category:         "Spring Cloud",
+			ShortDescription: `Manages an Azure Spring Cloud Certificate.`,
+			Description:      ``,
+			Keywords: []string{
+				"spring",
+				"cloud",
+				"certificate",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the Spring Cloud Certificate. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Specifies the name of the resource group in which to create the Spring Cloud Certificate. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) Specifies the name of the Spring Cloud Service resource. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "key_vault_certificate_id",
+					Description: `(Required) Specifies the ID of the Key Vault Certificate resource. Changing this forces a new resource to be created. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Spring Cloud Certificate. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Spring Cloud Certificate.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Spring Cloud Certificate.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Spring Cloud Certificate. ## Import Spring Cloud Certificate can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_spring_cloud_certificate.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resourcegroup1/providers/Microsoft.AppPlatform/Spring/spring1/certificates/cert1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Spring Cloud Certificate. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Spring Cloud Certificate.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Spring Cloud Certificate.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Spring Cloud Certificate. ## Import Spring Cloud Certificate can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_spring_cloud_certificate.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resourcegroup1/providers/Microsoft.AppPlatform/Spring/spring1/certificates/cert1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -44755,6 +46625,10 @@ var (
 					Description: `(Optional) Specifies the SKU Name for this Spring Cloud Service. Possible values are ` + "`" + `B0` + "`" + ` and ` + "`" + `S0` + "`" + `. Defaults to ` + "`" + `S0` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "network",
+					Description: `(Optional) A ` + "`" + `network` + "`" + ` block as defined below. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
 					Name:        "config_server_git_setting",
 					Description: `(Optional) A ` + "`" + `config_server_git_setting` + "`" + ` block as defined below.`,
 				},
@@ -44764,7 +46638,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A mapping of tags to assign to the resource. --- The ` + "`" + `config_server_git_setting` + "`" + ` block supports the following:`,
+					Description: `(Optional) A mapping of tags to assign to the resource. --- The ` + "`" + `network` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "app_subnet_id",
+					Description: `(Required) Specifies the ID of the Subnet which should host the Spring Boot Applications deployed in this Spring Cloud Service. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "service_runtime_subnet_id",
+					Description: `(Required) Specifies the ID of the Subnet where the Service Runtime components of the Spring Cloud Service will exist. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "cidr_ranges",
+					Description: `(Required) A list of (at least 3) CIDR ranges (at least /16) which are used to host the Spring Cloud infrastructure, which must not overlap with any existing CIDR ranges in the Subnet. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "app_network_resource_group",
+					Description: `(Optional) Specifies the Name of the resource group containing network resources of Azure Spring Cloud Apps. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "service_runtime_network_resource_group",
+					Description: `(Optional) Specifies the Name of the resource group containing network resources of Azure Spring Cloud Service Runtime. Changing this forces a new resource to be created. --- The ` + "`" + `config_server_git_setting` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "uri",
@@ -45802,8 +47696,12 @@ var (
 					Description: `(Optional) Boolean flag which forces HTTPS if enabled, see [here](https://docs.microsoft.com/en-us/azure/storage/storage-require-secure-transfer/) for more information. Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "min_tls_version",
+					Description: `(Optional) The minimum supported TLS version for the storage account. Possible values are ` + "`" + `TLS1_0` + "`" + `, ` + "`" + `TLS1_1` + "`" + `, and ` + "`" + `TLS1_2` + "`" + `. Defaults to ` + "`" + `TLS1_0` + "`" + ` for new storage accounts. ->`,
+				},
+				resource.Attribute{
 					Name:        "allow_blob_public_access",
-					Description: `Allow or disallow public access to all blobs or containers in the storage account. Defaults to ` + "`" + `false` + "`" + `.`,
+					Description: `Allow or disallow public access to all blobs or containers in the storage account. Defaults to ` + "`" + `false` + "`" + `. ->`,
 				},
 				resource.Attribute{
 					Name:        "is_hns_enabled",
@@ -45832,6 +47730,10 @@ var (
 				resource.Attribute{
 					Name:        "network_rules",
 					Description: `(Optional) A ` + "`" + `network_rules` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "large_file_share_enabled",
+					Description: `(Optional) Is Large File Share Enabled?`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -45975,7 +47877,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The storage account Resource ID.`,
+					Description: `The ID of the Storage Account.`,
 				},
 				resource.Attribute{
 					Name:        "primary_location",
@@ -46137,7 +48039,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The storage account Resource ID.`,
+					Description: `The ID of the Storage Account.`,
 				},
 				resource.Attribute{
 					Name:        "primary_location",
@@ -46325,7 +48227,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "key_version",
-					Description: `(Required) The version of Key Vault Key. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+					Description: `(Optional) The version of Key Vault Key. Remove or omit this argument to enable Automatic Key Rotation. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -46772,7 +48674,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "blob_types",
-					Description: `An array of predefined values. Only ` + "`" + `blockBlob` + "`" + ` is supported. --- ` + "`" + `actions` + "`" + ` supports the following:`,
+					Description: `An array of predefined values. Valid options are ` + "`" + `blockBlob` + "`" + ` and ` + "`" + `appendBlob` + "`" + `. --- ` + "`" + `actions` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "base_blob",
@@ -47090,6 +48992,71 @@ var (
 				resource.Attribute{
 					Name:        "delete",
 					Description: `(Defaults to 30 minutes) Used when deleting the Storage Share Directory. ## Import Directories within an Azure Storage File Share can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_share_directory.examplehttps://tomdevsa20.file.core.windows.net/share1/directory1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_storage_sync",
+			Category:         "Storage Resources",
+			ShortDescription: `Manages a Storage Sync.`,
+			Description:      ``,
+			Keywords: []string{
+				"storage",
+				"sync",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Storage Sync. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Storage Sync.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Storage Sync.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the Storage Sync.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Storage Sync. ## Import Storage Syncs can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_sync.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.StorageSync/storageSyncServices/sync1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_storage_sync_group",
+			Category:         "Storage Resources",
+			ShortDescription: `Manages a Storage Sync Group.`,
+			Description:      ``,
+			Keywords: []string{
+				"storage",
+				"sync",
+				"group",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Storage Sync Group. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Storage Sync Group.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Storage Sync Group.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Storage Sync Group. ## Import Storage Sync Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_sync_group.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resGroup1/providers/Microsoft.StorageSync/storageSyncServices/sync1/syncGroups/group1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -48452,7 +50419,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of service to delegate to. Possible values include ` + "`" + `Microsoft.BareMetal/AzureVMware` + "`" + `, ` + "`" + `Microsoft.BareMetal/CrayServers` + "`" + `, ` + "`" + `Microsoft.Batch/batchAccounts` + "`" + `, ` + "`" + `Microsoft.ContainerInstance/containerGroups` + "`" + `, ` + "`" + `Microsoft.Databricks/workspaces` + "`" + `, ` + "`" + `Microsoft.DBforPostgreSQL/serversv2` + "`" + `, ` + "`" + `Microsoft.HardwareSecurityModules/dedicatedHSMs` + "`" + `, ` + "`" + `Microsoft.Logic/integrationServiceEnvironments` + "`" + `, ` + "`" + `Microsoft.Netapp/volumes` + "`" + `, ` + "`" + `Microsoft.ServiceFabricMesh/networks` + "`" + `, ` + "`" + `Microsoft.Sql/managedInstances` + "`" + `, ` + "`" + `Microsoft.Sql/servers` + "`" + `, ` + "`" + `Microsoft.StreamAnalytics/streamingJobs` + "`" + `, ` + "`" + `Microsoft.Web/hostingEnvironments` + "`" + ` and ` + "`" + `Microsoft.Web/serverFarms` + "`" + `.`,
+					Description: `(Required) The name of service to delegate to. Possible values include ` + "`" + `Microsoft.ApiManagement/service` + "`" + `, ` + "`" + `Microsoft.AzureCosmosDB/clusters` + "`" + `, ` + "`" + `Microsoft.BareMetal/AzureVMware` + "`" + `, ` + "`" + `Microsoft.BareMetal/CrayServers` + "`" + `, ` + "`" + `Microsoft.Batch/batchAccounts` + "`" + `, ` + "`" + `Microsoft.ContainerInstance/containerGroups` + "`" + `, ` + "`" + `Microsoft.Databricks/workspaces` + "`" + `, ` + "`" + `Microsoft.DBforMySQL/flexibleServers` + "`" + `, ` + "`" + `Microsoft.DBforMySQL/serversv2` + "`" + `, ` + "`" + `Microsoft.DBforPostgreSQL/flexibleServers` + "`" + `, ` + "`" + `Microsoft.DBforPostgreSQL/serversv2` + "`" + `, ` + "`" + `Microsoft.DBforPostgreSQL/singleServers` + "`" + `, ` + "`" + `Microsoft.HardwareSecurityModules/dedicatedHSMs` + "`" + `, ` + "`" + `Microsoft.Kusto/clusters` + "`" + `, ` + "`" + `Microsoft.Logic/integrationServiceEnvironments` + "`" + `, ` + "`" + `Microsoft.MachineLearningServices/workspaces` + "`" + `, ` + "`" + `Microsoft.Netapp/volumes` + "`" + `, ` + "`" + `Microsoft.Network/managedResolvers` + "`" + `, ` + "`" + `Microsoft.PowerPlatform/vnetaccesslinks` + "`" + `, ` + "`" + `Microsoft.ServiceFabricMesh/networks` + "`" + `, ` + "`" + `Microsoft.Sql/managedInstances` + "`" + `, ` + "`" + `Microsoft.Sql/servers` + "`" + `, ` + "`" + `Microsoft.StreamAnalytics/streamingJobs` + "`" + `, ` + "`" + `Microsoft.Synapse/workspaces` + "`" + `, ` + "`" + `Microsoft.Web/hostingEnvironments` + "`" + `, and ` + "`" + `Microsoft.Web/serverFarms` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "actions",
@@ -48737,6 +50704,187 @@ var (
 				resource.Attribute{
 					Name:        "delete",
 					Description: `(Defaults to 30 minutes) Used when deleting the Subnet Route Table Association. ## Import Subnet Route Table Associations can be imported using the ` + "`" + `resource id` + "`" + ` of the Subnet, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_subnet_route_table_association.association1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/virtualNetworks/myvnet1/subnets/mysubnet1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_subscription_template_deployment",
+			Category:         "Template Resources",
+			ShortDescription: `Manages a Subscription Template Deployment.`,
+			Description:      ``,
+			Keywords: []string{
+				"template",
+				"subscription",
+				"deployment",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Subscription Template Deployment.`,
+				},
+				resource.Attribute{
+					Name:        "output_content",
+					Description: `The JSON Content of the Outputs of the ARM Template Deployment. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 3 hours) Used when creating the Subscription Template Deployment.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Subscription Template Deployment.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 3 hours) Used when updating the Subscription Template Deployment.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 3 hours) Used when deleting the Subscription Template Deployment. ## Import Subscription Template Deployments can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_subscription_template_deployment.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Resources/deployments/template1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_synapse_firewall_rule",
+			Category:         "Synapse Resources",
+			ShortDescription: `Manages a Synapse Firewall Rule.`,
+			Description:      ``,
+			Keywords: []string{
+				"synapse",
+				"firewall",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The Name of the firewall rule. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "synapse_workspace_id",
+					Description: `(Required) The ID of the Synapse Workspace on which to create the Firewall Rule. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "start_ip_address",
+					Description: `(Required) The starting IP address to allow through the firewall for this rule.`,
+				},
+				resource.Attribute{
+					Name:        "end_ip_address",
+					Description: `(Required) The ending IP address to allow through the firewall for this rule. ->`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Synapse Firewall Rule ID. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Synapse Firewall Rule.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the Synapse Firewall Rule.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Synapse Firewall Rule.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Synapse Firewall Rule. ## Import Synapse Firewall Rule can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_synapse_firewall_rule.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resourcegroup1/providers/Microsoft.Synapse/workspaces/workspace1/firewallRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Synapse Firewall Rule ID. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Synapse Firewall Rule.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the Synapse Firewall Rule.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Synapse Firewall Rule.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Synapse Firewall Rule. ## Import Synapse Firewall Rule can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_synapse_firewall_rule.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resourcegroup1/providers/Microsoft.Synapse/workspaces/workspace1/firewallRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_synapse_spark_pool",
+			Category:         "Synapse Resources",
+			ShortDescription: `Manages a Synapse Spark Pool.`,
+			Description:      ``,
+			Keywords: []string{
+				"synapse",
+				"spark",
+				"pool",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Synapse Spark Pool. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Synapse Spark Pool.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Synapse Spark Pool.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the Synapse Spark Pool.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Synapse Spark Pool. ## Import Synapse Spark Pool can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_synapse_spark_pool.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Synapse/workspaces/workspace1/bigDataPools/sparkPool1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_synapse_sql_pool",
+			Category:         "Synapse Resources",
+			ShortDescription: `Manages a Synapse Sql Pool.`,
+			Description:      ``,
+			Keywords: []string{
+				"synapse",
+				"sql",
+				"pool",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Synapse Sql Pool. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the Synapse Sql Pool.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Synapse Sql Pool.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 minutes) Used when updating the Synapse Sql Pool.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the Synapse Sql Pool. ## Import Synapse Sql Pool can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_synapse_sql_pool.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Synapse/workspaces/workspace1/sqlPools/sqlPool1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -49275,6 +51423,355 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_virtual_desktop_application_group",
+			Category:         "Desktop Virtualization Resources",
+			ShortDescription: `Manages a Virtual Desktop Application Group.`,
+			Description:      ``,
+			Keywords: []string{
+				"desktop",
+				"virtualization",
+				"virtual",
+				"application",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Virtual Desktop Application Group. Changing the name forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which to create the Virtual Desktop Application Group. Changing the resource group name forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) The location/region where the Virtual Desktop Application Group is located. Changing the location/region forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Type of Virtual Desktop Application Group. Valid options are ` + "`" + `RemoteApp` + "`" + ` or ` + "`" + `Desktop` + "`" + ` application groups.`,
+				},
+				resource.Attribute{
+					Name:        "host_pool_id",
+					Description: `(Required) Resource ID for a Virtual Desktop Host Pool to associate with the Virtual Desktop Application Group.`,
+				},
+				resource.Attribute{
+					Name:        "friendly_name",
+					Description: `(Optional) Option to set a friendly name for the Virtual Desktop Application Group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Option to set a description for the Virtual Desktop Application Group.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Virtual Desktop Application Group. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 60 minutes) Used when creating the Virtual Desktop Application Group.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 60 minutes) Used when updating the Virtual Desktop Application Group.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Virtual Desktop Application Group.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 60 minutes) Used when deleting the Virtual Desktop Application Group. ## Import Virtual Desktop Application Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import virtual_desktop_application_group.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup1/providers/Microsoft.DesktopVirtualization/applicationGroups/myapplicationgroup ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Virtual Desktop Application Group. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 60 minutes) Used when creating the Virtual Desktop Application Group.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 60 minutes) Used when updating the Virtual Desktop Application Group.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Virtual Desktop Application Group.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 60 minutes) Used when deleting the Virtual Desktop Application Group. ## Import Virtual Desktop Application Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import virtual_desktop_application_group.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup1/providers/Microsoft.DesktopVirtualization/applicationGroups/myapplicationgroup ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_virtual_desktop_host_pool",
+			Category:         "Desktop Virtualization Resources",
+			ShortDescription: `Manages a Virtual Desktop Host Pool.`,
+			Description:      ``,
+			Keywords: []string{
+				"desktop",
+				"virtualization",
+				"virtual",
+				"host",
+				"pool",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Virtual Desktop Host Pool. Changing the name forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which to create the Virtual Desktop Host Pool. Changing the resource group name forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) The location/region where the Virtual Desktop Host Pool is located. Changing the location/region forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of the Virtual Desktop Host Pool. Valid options are ` + "`" + `Personal` + "`" + ` or ` + "`" + `Pooled` + "`" + `. Changing the type forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_type",
+					Description: `(Optional) ` + "`" + `Breadthfirst` + "`" + ` load balancing distributes new user sessions across all available session hosts in the host pool. ` + "`" + `Depthfirst` + "`" + ` load balancing distributes new user sessions to an available session host with the highest number of connections but has not reached its maximum session limit threshold. ` + "`" + `Persistent` + "`" + ` should be used if the host pool type is ` + "`" + `Personal` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "friendly_name",
+					Description: `(Optional) A friendly name for the Virtual Desktop Host Pool.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A description for the Virtual Desktop Host Pool.`,
+				},
+				resource.Attribute{
+					Name:        "validation_environment",
+					Description: `(Optional) Allows you to test service changes before they are deployed to production. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "personal_desktop_assignment_type",
+					Description: `(Optional) ` + "`" + `Automatic` + "`" + ` assignment – The service will select an available host and assign it to an user. ` + "`" + `Direct` + "`" + ` Assisnment – Admin selects a specific host to assign to an user. ~>`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. The ` + "`" + `registration_info` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `(Optional) A valid ` + "`" + `RFC3339Time` + "`" + ` for the expiration of the token. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Virtual Desktop Host Pool.`,
+				},
+				resource.Attribute{
+					Name:        "registration_info[0].token",
+					Description: `The registration token generated by the Virtual Desktop Host Pool. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 60 minutes) Used when creating the Virtual Desktop Application Group.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 60 minutes) Used when updating the Virtual Desktop Application Group.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Virtual Desktop Application Group.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 60 minutes) Used when deleting the Virtual Desktop Application Group. ## Import Virtual Desktop Host Pools can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import virtual_desktop_host_pool.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup1/providers/Microsoft.DesktopVirtualization/hostpools/myhostpool ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Virtual Desktop Host Pool.`,
+				},
+				resource.Attribute{
+					Name:        "registration_info[0].token",
+					Description: `The registration token generated by the Virtual Desktop Host Pool. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 60 minutes) Used when creating the Virtual Desktop Application Group.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 60 minutes) Used when updating the Virtual Desktop Application Group.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Virtual Desktop Application Group.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 60 minutes) Used when deleting the Virtual Desktop Application Group. ## Import Virtual Desktop Host Pools can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import virtual_desktop_host_pool.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup1/providers/Microsoft.DesktopVirtualization/hostpools/myhostpool ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_virtual_desktop_workspace",
+			Category:         "Desktop Virtualization Resources",
+			ShortDescription: `Manages a Virtual Desktop Workspace.`,
+			Description:      ``,
+			Keywords: []string{
+				"desktop",
+				"virtualization",
+				"virtual",
+				"workspace",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Virtual Desktop Workspace. Changing the name forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which to create the Virtual Desktop Workspace. Changing the resource group name forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) The location/region where the Virtual Desktop Workspace is located. Changing the location/region forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "friendly_name",
+					Description: `(Optional) A friendly name for the Virtual Desktop Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A description for the Virtual Desktop Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Virtual Desktop Workspace. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 60 minutes) Used when creating the Virtual Desktop Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 60 minutes) Used when updating the Virtual Desktop Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Virtual Desktop Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 60 minutes) Used when deleting the Virtual Desktop Workspace. ## Import Virtual Desktop Workspaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_virtual_desktop_workspace.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/myGroup1/providers/Microsoft.DesktopVirtualization/workspaces/myworkspace ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Virtual Desktop Workspace. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 60 minutes) Used when creating the Virtual Desktop Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 60 minutes) Used when updating the Virtual Desktop Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Virtual Desktop Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 60 minutes) Used when deleting the Virtual Desktop Workspace. ## Import Virtual Desktop Workspaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_virtual_desktop_workspace.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/myGroup1/providers/Microsoft.DesktopVirtualization/workspaces/myworkspace ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_virtual_desktop_workspace_application_group_association",
+			Category:         "Desktop Virtualization Resources",
+			ShortDescription: `Manages a Virtual Desktop Workspace Application Group Association.`,
+			Description:      ``,
+			Keywords: []string{
+				"desktop",
+				"virtualization",
+				"virtual",
+				"workspace",
+				"application",
+				"group",
+				"association",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "workspace_id",
+					Description: `(Required) The resource ID for the Virtual Desktop Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "application_group_id",
+					Description: `(Required) The resource ID for the Virtual Desktop Application Group. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Virtual Desktop Workspace Application Group association. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 60 minutes) Used when creating the Virtual Desktop Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 60 minutes) Used when updating the Virtual Desktop Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Virtual Desktop Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 60 minutes) Used when deleting the Virtual Desktop Workspace. ## Import Associations between Virtual Desktop Workspaces and Virtual Desktop Application Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_interface_security_group_association.association1 "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/myGroup1/providers/Microsoft.DesktopVirtualization/workspaces/myworkspace|/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup1/providers/Microsoft.DesktopVirtualization/applicationGroups/myapplicationgroup" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Virtual Desktop Workspace Application Group association. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 60 minutes) Used when creating the Virtual Desktop Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 60 minutes) Used when updating the Virtual Desktop Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Virtual Desktop Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 60 minutes) Used when deleting the Virtual Desktop Workspace. ## Import Associations between Virtual Desktop Workspaces and Virtual Desktop Application Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_interface_security_group_association.association1 "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/myGroup1/providers/Microsoft.DesktopVirtualization/workspaces/myworkspace|/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup1/providers/Microsoft.DesktopVirtualization/applicationGroups/myapplicationgroup" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_virtual_hub",
 			Category:         "Network Resources",
 			ShortDescription: `Manages a Virtual Hub within a Virtual WAN.`,
@@ -49391,16 +51888,8 @@ var (
 					Description: `(Required) The ID of the Virtual Network which the Virtual Hub should be connected to. Changing this forces a new resource to be created. ---`,
 				},
 				resource.Attribute{
-					Name:        "hub_to_vitual_network_traffic_allowed",
-					Description: `(Optional) Is the Virtual Hub traffic allowed to transit via the Remote Virtual Network? Changing this forces a new resource to be created.`,
-				},
-				resource.Attribute{
-					Name:        "vitual_network_to_hub_gateways_traffic_allowed",
-					Description: `(Optional) Is Remote Virtual Network traffic allowed to transit the Hub's Virtual Network Gateway's? Changing this forces a new resource to be created. ->`,
-				},
-				resource.Attribute{
 					Name:        "internet_security_enabled",
-					Description: `(Optional) Should Internet Security be enabled to secure internet traffic? Changing this forces a new resource to be created. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Should Internet Security be enabled to secure internet traffic? Changing this forces a new resource to be created. Defaults to ` + "`" + `false` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -50619,7 +53108,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Required) The Resource ID of DDoS Protection Plan.`,
+					Description: `(Required) The ID of DDoS Protection Plan.`,
 				},
 				resource.Attribute{
 					Name:        "enable",
@@ -50655,7 +53144,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "address_space",
-					Description: `The address space that is used the virtual network.`,
+					Description: `The list of address spaces used by the virtual network.`,
 				},
 				resource.Attribute{
 					Name:        "guid",
@@ -50701,7 +53190,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "address_space",
-					Description: `The address space that is used the virtual network.`,
+					Description: `The list of address spaces used by the virtual network.`,
 				},
 				resource.Attribute{
 					Name:        "guid",
@@ -50807,24 +53296,36 @@ var (
 					Description: `(Required) The address space out of which ip addresses for vpn clients will be taken. You can provide more than one address space, e.g. in CIDR notation.`,
 				},
 				resource.Attribute{
+					Name:        "aad_tenant",
+					Description: `(Optional) AzureAD Tenant URL This setting is incompatible with the use of ` + "`" + `root_certificate` + "`" + ` and ` + "`" + `revoked_certificate` + "`" + `, ` + "`" + `radius_server_address` + "`" + `, and ` + "`" + `radius_server_secret` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "aad_audience",
+					Description: `(Optional) The client id of the Azure VPN application. See [Create an Active Directory (AD) tenant for P2S OpenVPN protocol connections](https://docs.microsoft.com/en-gb/azure/vpn-gateway/openvpn-azure-ad-tenant-multi-app) for values This setting is incompatible with the use of ` + "`" + `root_certificate` + "`" + ` and ` + "`" + `revoked_certificate` + "`" + `, ` + "`" + `radius_server_address` + "`" + `, and ` + "`" + `radius_server_secret` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "aad_issuer",
+					Description: `(Optional) The STS url for your tenant This setting is incompatible with the use of ` + "`" + `root_certificate` + "`" + ` and ` + "`" + `revoked_certificate` + "`" + `, ` + "`" + `radius_server_address` + "`" + `, and ` + "`" + `radius_server_secret` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "root_certificate",
-					Description: `(Optional) One or more ` + "`" + `root_certificate` + "`" + ` blocks which are defined below. These root certificates are used to sign the client certificate used by the VPN clients to connect to the gateway. This setting is incompatible with the use of ` + "`" + `radius_server_address` + "`" + ` and ` + "`" + `radius_server_secret` + "`" + `.`,
+					Description: `(Optional) One or more ` + "`" + `root_certificate` + "`" + ` blocks which are defined below. These root certificates are used to sign the client certificate used by the VPN clients to connect to the gateway. This setting is incompatible with the use of ` + "`" + `aad_tenant` + "`" + `, ` + "`" + `aad_audience` + "`" + `, ` + "`" + `aad_issuer` + "`" + `, ` + "`" + `radius_server_address` + "`" + `, and ` + "`" + `radius_server_secret` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "revoked_certificate",
-					Description: `(Optional) One or more ` + "`" + `revoked_certificate` + "`" + ` blocks which are defined below. This setting is incompatible with the use of ` + "`" + `radius_server_address` + "`" + ` and ` + "`" + `radius_server_secret` + "`" + `.`,
+					Description: `(Optional) One or more ` + "`" + `revoked_certificate` + "`" + ` blocks which are defined below. This setting is incompatible with the use of ` + "`" + `aad_tenant` + "`" + `, ` + "`" + `aad_audience` + "`" + `, ` + "`" + `aad_issuer` + "`" + `, ` + "`" + `radius_server_address` + "`" + `, and ` + "`" + `radius_server_secret` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "radius_server_address",
-					Description: `(Optional) The address of the Radius server. This setting is incompatible with the use of ` + "`" + `root_certificate` + "`" + ` and ` + "`" + `revoked_certificate` + "`" + `.`,
+					Description: `(Optional) The address of the Radius server. This setting is incompatible with the use of ` + "`" + `aad_tenant` + "`" + `, ` + "`" + `aad_audience` + "`" + `, ` + "`" + `aad_issuer` + "`" + `, ` + "`" + `root_certificate` + "`" + ` and ` + "`" + `revoked_certificate` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "radius_server_secret",
-					Description: `(Optional) The secret used by the Radius server. This setting is incompatible with the use of ` + "`" + `root_certificate` + "`" + ` and ` + "`" + `revoked_certificate` + "`" + `.`,
+					Description: `(Optional) The secret used by the Radius server. This setting is incompatible with the use of ` + "`" + `aad_tenant` + "`" + `, ` + "`" + `aad_audience` + "`" + `, ` + "`" + `aad_issuer` + "`" + `, ` + "`" + `root_certificate` + "`" + ` and ` + "`" + `revoked_certificate` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "vpn_client_protocols",
-					Description: `(Optional) List of the protocols supported by the vpn client. The supported values are ` + "`" + `SSTP` + "`" + `, ` + "`" + `IkeV2` + "`" + ` and ` + "`" + `OpenVPN` + "`" + `. The ` + "`" + `bgp_settings` + "`" + ` block supports:`,
+					Description: `(Optional) List of the protocols supported by the vpn client. The supported values are ` + "`" + `SSTP` + "`" + `, ` + "`" + `IkeV2` + "`" + ` and ` + "`" + `OpenVPN` + "`" + `. Values ` + "`" + `SSTP` + "`" + ` and ` + "`" + `IkeV2` + "`" + ` are incompatible with the use of ` + "`" + `aad_tenant` + "`" + `, ` + "`" + `aad_audience` + "`" + ` and ` + "`" + `aad_issuer` + "`" + `. The ` + "`" + `bgp_settings` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "asn",
@@ -51170,10 +53671,6 @@ var (
 				resource.Attribute{
 					Name:        "allow_branch_to_branch_traffic",
 					Description: `(Optional) Boolean flag to specify whether branch to branch traffic is allowed. Defaults to ` + "`" + `true` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "allow_vnet_to_vnet_traffic",
-					Description: `(Optional) Boolean flag to specify whether VNet to VNet traffic is allowed. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "office365_local_breakout_category",
@@ -51810,6 +54307,10 @@ var (
 					Description: `(Optional) Specifies if Automatic Updates are Enabled for the Windows Virtual Machine. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
+					Name:        "encryption_at_host_enabled",
+					Description: `(Optional) Should all of the disks (including the temp disk) attached to this Virtual Machine be encrypted by enabling Encryption at Host?`,
+				},
+				resource.Attribute{
 					Name:        "eviction_policy",
 					Description: `(Optional) Specifies what should happen when the Virtual Machine is evicted for price reasons when using a Spot instance. At this time the only supported value is ` + "`" + `Deallocate` + "`" + `. Changing this forces a new resource to be created. ->`,
 				},
@@ -51819,7 +54320,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "license_type",
-					Description: `(Optional) Specifies the type of on-premise license (also known as [Azure Hybrid Use Benefit](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-hybrid-use-benefit-licensing)) which should be used for this Virtual Machine. Possible values are ` + "`" + `None` + "`" + `, ` + "`" + `Windows_Client` + "`" + ` and ` + "`" + `Windows_Server` + "`" + `. Changing this forces a new resource to be created.`,
+					Description: `(Optional) Specifies the type of on-premise license (also known as [Azure Hybrid Use Benefit](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-hybrid-use-benefit-licensing)) which should be used for this Virtual Machine. Possible values are ` + "`" + `None` + "`" + `, ` + "`" + `Windows_Client` + "`" + ` and ` + "`" + `Windows_Server` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "max_bid_price",
@@ -51871,7 +54372,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ultra_ssd_enabled",
-					Description: `(Optional) Should the capacity to enable Data Disks of the ` + "`" + `UltraSSD_LRS` + "`" + ` storage account type be supported on this Virtual Machine? Defaults to ` + "`" + `false` + "`" + `. Changing this forces a new resource to be created. --- A ` + "`" + `additional_unattend_content` + "`" + ` block supports the following:`,
+					Description: `(Optional) Should the capacity to enable Data Disks of the ` + "`" + `UltraSSD_LRS` + "`" + ` storage account type be supported on this Virtual Machine? Defaults to ` + "`" + `false` + "`" + `. --- A ` + "`" + `additional_unattend_content` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "content",
@@ -51947,7 +54448,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "key_vault_id",
-					Description: `(Required) The ID of the Key Vault from which all Secrets should be sourced. --- A ` + "`" + `winrm_listener` + "`" + ` block supports the following:`,
+					Description: `(Required) The ID of the Key Vault from which all Secrets should be sourced. --- ` + "`" + `source_image_reference` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "publisher",
+					Description: `(Optional) Specifies the publisher of the image used to create the virtual machines.`,
+				},
+				resource.Attribute{
+					Name:        "offer",
+					Description: `(Optional) Specifies the offer of the image used to create the virtual machines.`,
+				},
+				resource.Attribute{
+					Name:        "sku",
+					Description: `(Optional) Specifies the SKU of the image used to create the virtual machines.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) Specifies the version of the image used to create the virtual machines. --- A ` + "`" + `winrm_listener` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "Protocol",
@@ -51991,23 +54508,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The ID of the Tenant the System Managed Service Principal is assigned in. --- ` + "`" + `source_image_reference` + "`" + ` supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "publisher",
-					Description: `(Optional) Specifies the publisher of the image used to create the virtual machines.`,
-				},
-				resource.Attribute{
-					Name:        "offer",
-					Description: `(Optional) Specifies the offer of the image used to create the virtual machines.`,
-				},
-				resource.Attribute{
-					Name:        "sku",
-					Description: `(Optional) Specifies the SKU of the image used to create the virtual machines.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Optional) Specifies the version of the image used to create the virtual machines. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Tenant the System Managed Service Principal is assigned in. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -52057,23 +54558,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The ID of the Tenant the System Managed Service Principal is assigned in. --- ` + "`" + `source_image_reference` + "`" + ` supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "publisher",
-					Description: `(Optional) Specifies the publisher of the image used to create the virtual machines.`,
-				},
-				resource.Attribute{
-					Name:        "offer",
-					Description: `(Optional) Specifies the offer of the image used to create the virtual machines.`,
-				},
-				resource.Attribute{
-					Name:        "sku",
-					Description: `(Optional) Specifies the SKU of the image used to create the virtual machines.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Optional) Specifies the version of the image used to create the virtual machines. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Tenant the System Managed Service Principal is assigned in. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -52150,7 +54635,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "automatic_os_upgrade_policy",
-					Description: `(Optional) A ` + "`" + `automatic_os_upgrade_policy` + "`" + ` block as defined below. This is Required and can only be specified when ` + "`" + `upgrade_mode` + "`" + ` is set to ` + "`" + `Automatic` + "`" + `.`,
+					Description: `(Optional) A ` + "`" + `automatic_os_upgrade_policy` + "`" + ` block as defined below. This can only be specified when ` + "`" + `upgrade_mode` + "`" + ` is set to ` + "`" + `Automatic` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "automatic_instance_repair",
@@ -52181,6 +54666,14 @@ var (
 					Description: `(Optional) Are automatic updates enabled for this Virtual Machine? Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "encryption_at_host_enabled",
+					Description: `(Optional) Should all of the disks (including the temp disk) attached to this Virtual Machine be encrypted by enabling Encryption at Host?`,
+				},
+				resource.Attribute{
+					Name:        "extension",
+					Description: `(Optional) One or more ` + "`" + `extension` + "`" + ` blocks as defined below !>`,
+				},
+				resource.Attribute{
 					Name:        "eviction_policy",
 					Description: `(Optional) The Policy which should be used Virtual Machines are Evicted from the Scale Set. Changing this forces a new resource to be created. ->`,
 				},
@@ -52203,6 +54696,10 @@ var (
 				resource.Attribute{
 					Name:        "overprovision",
 					Description: `(Optional) Should Azure over-provision Virtual Machines in this Scale Set? This means that multiple Virtual Machines will be provisioned and Azure will keep the instances which become available first - which improves provisioning success rates and improves deployment time. You're not billed for these over-provisioned VM's and they don't count towards the Subscription Quota. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `(Optional) A ` + "`" + `plan` + "`" + ` block as documented below. ->`,
 				},
 				resource.Attribute{
 					Name:        "priority",
@@ -52337,6 +54834,42 @@ var (
 					Description: `(Optional) Should Write Accelerator be enabled for this Data Disk? Defaults to ` + "`" + `false` + "`" + `. ->`,
 				},
 				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name for the Virtual Machine Scale Set Extension.`,
+				},
+				resource.Attribute{
+					Name:        "publisher",
+					Description: `(Required) Specifies the Publisher of the Extension.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Specifies the Type of the Extension.`,
+				},
+				resource.Attribute{
+					Name:        "type_handler_version",
+					Description: `(Required) Specifies the version of the extension to use, available versions can be found using the Azure CLI.`,
+				},
+				resource.Attribute{
+					Name:        "auto_upgrade_minor_version",
+					Description: `(Optional) Should the latest version of the Extension be used at Deployment Time, if one is available? This won't auto-update the extension on existing installation. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "force_update_tag",
+					Description: `(Optional) A value which, when different to the previous value can be used to force-run the Extension even if the Extension Configuration hasn't changed.`,
+				},
+				resource.Attribute{
+					Name:        "protected_settings",
+					Description: `(Optional) A JSON String which specifies Sensitive Settings (such as Passwords) for the Extension. ~>`,
+				},
+				resource.Attribute{
+					Name:        "provision_after_extensions",
+					Description: `(Optional) An ordered list of Extension names which this should be provisioned after.`,
+				},
+				resource.Attribute{
+					Name:        "settings",
+					Description: `(Optional) A JSON String which specifies Settings for the Extension. ~>`,
+				},
+				resource.Attribute{
 					Name:        "type",
 					Description: `(Required) The type of Managed Identity which should be assigned to the Windows Virtual Machine Scale Set. Possible values are ` + "`" + `SystemAssigned` + "`" + `, ` + "`" + `UserAssigned` + "`" + ` and ` + "`" + `SystemAssigned, UserAssigned` + "`" + `.`,
 				},
@@ -52439,6 +54972,18 @@ var (
 				resource.Attribute{
 					Name:        "write_accelerator_enabled",
 					Description: `(Optional) Should Write Accelerator be Enabled for this OS Disk? Defaults to ` + "`" + `false` + "`" + `. ->`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the image from the marketplace. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "publisher",
+					Description: `(Required) Specifies the publisher of the image. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "product",
+					Description: `(Required) Specifies the product of the image from the marketplace. Changing this forces a new resource to be created. --- A ` + "`" + `public_ip_address` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -52584,441 +55129,471 @@ var (
 		"azurerm_analysis_services_server":                                               1,
 		"azurerm_api_management":                                                         2,
 		"azurerm_api_management_api":                                                     3,
-		"azurerm_api_management_api_operation":                                           4,
-		"azurerm_api_management_api_operation_policy":                                    5,
-		"azurerm_api_management_api_policy":                                              6,
-		"azurerm_api_management_api_schema":                                              7,
-		"azurerm_api_management_api_version_set":                                         8,
-		"azurerm_api_management_authorization_server":                                    9,
-		"azurerm_api_management_backend":                                                 10,
-		"azurerm_api_management_certificate":                                             11,
-		"azurerm_api_management_diagnostic":                                              12,
-		"azurerm_api_management_group":                                                   13,
-		"azurerm_api_management_group_user":                                              14,
-		"azurerm_api_management_identity_provider_aad":                                   15,
-		"azurerm_api_management_identity_provider_facebook":                              16,
-		"azurerm_api_management_identity_provider_google":                                17,
-		"azurerm_api_management_identity_provider_microsoft":                             18,
-		"azurerm_api_management_identity_provider_twitter":                               19,
-		"azurerm_api_management_logger":                                                  20,
-		"azurerm_api_management_named_value":                                             21,
-		"azurerm_api_management_openid_connect_provider":                                 22,
-		"azurerm_api_management_product":                                                 23,
-		"azurerm_api_management_product_api":                                             24,
-		"azurerm_api_management_product_group":                                           25,
-		"azurerm_api_management_product_policy":                                          26,
-		"azurerm_api_management_property":                                                27,
-		"azurerm_api_management_subscription":                                            28,
-		"azurerm_api_management_user":                                                    29,
-		"azurerm_app_configuration":                                                      30,
-		"azurerm_app_service":                                                            31,
-		"azurerm_app_service_active_slot":                                                32,
-		"azurerm_app_service_certificate":                                                33,
-		"azurerm_app_service_certificate_order":                                          34,
-		"azurerm_app_service_custom_hostname_binding":                                    35,
-		"azurerm_app_service_environment":                                                36,
-		"azurerm_app_service_hybrid_connection":                                          37,
-		"azurerm_app_service_plan":                                                       38,
-		"azurerm_app_service_slot":                                                       39,
-		"azurerm_app_service_slot_virtual_network_swift_connection":                      40,
-		"azurerm_app_service_source_control_token":                                       41,
-		"azurerm_app_service_virtual_network_swift_connection":                           42,
-		"azurerm_application_gateway":                                                    43,
-		"azurerm_application_insights":                                                   44,
-		"azurerm_application_insights_analytics_item":                                    45,
-		"azurerm_application_insights_api_key":                                           46,
-		"azurerm_application_insights_web_test":                                          47,
-		"azurerm_application_security_group":                                             48,
-		"azurerm_automation_account":                                                     49,
-		"azurerm_automation_certificate":                                                 50,
-		"azurerm_automation_connection":                                                  51,
-		"azurerm_automation_connection_certificate":                                      52,
-		"azurerm_automation_connection_classic_certificate":                              53,
-		"azurerm_automation_connection_service_principal":                                54,
-		"azurerm_automation_credential":                                                  55,
-		"azurerm_automation_dsc_configuration":                                           56,
-		"azurerm_automation_dsc_nodeconfiguration":                                       57,
-		"azurerm_automation_job_schedule":                                                58,
-		"azurerm_automation_module":                                                      59,
-		"azurerm_automation_runbook":                                                     60,
-		"azurerm_automation_schedule":                                                    61,
-		"azurerm_automation_variable_bool":                                               62,
-		"azurerm_automation_variable_datetime":                                           63,
-		"azurerm_automation_variable_int":                                                64,
-		"azurerm_automation_variable_string":                                             65,
-		"azurerm_availability_set":                                                       66,
-		"azurerm_backup_container_storage_account":                                       67,
-		"azurerm_backup_policy_file_share":                                               68,
-		"azurerm_backup_policy_vm":                                                       69,
-		"azurerm_backup_protected_file_share":                                            70,
-		"azurerm_backup_protected_vm":                                                    71,
-		"azurerm_bastion_host":                                                           72,
-		"azurerm_batch_account":                                                          73,
-		"azurerm_batch_application":                                                      74,
-		"azurerm_batch_certificate":                                                      75,
-		"azurerm_batch_pool":                                                             76,
-		"azurerm_blueprint_assignment":                                                   77,
-		"azurerm_bot_channel_directline":                                                 78,
-		"azurerm_bot_channel_email":                                                      79,
-		"azurerm_bot_channel_ms_teams":                                                   80,
-		"azurerm_bot_channel_slack":                                                      81,
-		"azurerm_bot_channels_registration":                                              82,
-		"azurerm_bot_connection":                                                         83,
-		"azurerm_bot_web_app":                                                            84,
-		"azurerm_cdn_endpoint":                                                           85,
-		"azurerm_cdn_profile":                                                            86,
-		"azurerm_cognitive_account":                                                      87,
-		"azurerm_container_group":                                                        88,
-		"azurerm_container_registry":                                                     89,
-		"azurerm_container_registry_webhook":                                             90,
-		"azurerm_cosmosdb_account":                                                       91,
-		"azurerm_cosmosdb_cassandra_keyspace":                                            92,
-		"azurerm_cosmosdb_gremlin_database":                                              93,
-		"azurerm_cosmosdb_gremlin_graph":                                                 94,
-		"azurerm_cosmosdb_mongo_collection":                                              95,
-		"azurerm_cosmosdb_mongo_database":                                                96,
-		"azurerm_cosmosdb_sql_container":                                                 97,
-		"azurerm_cosmosdb_sql_database":                                                  98,
-		"azurerm_cosmosdb_table":                                                         99,
-		"azurerm_cost_management_export_resource_group":                                  100,
-		"azurerm_custom_provider":                                                        101,
-		"azurerm_dashboard":                                                              102,
-		"azurerm_data_factory":                                                           103,
-		"azurerm_data_factory_dataset_azure_blob":                                        104,
-		"azurerm_data_factory_dataset_cosmosdb_sqlapi":                                   105,
-		"azurerm_data_factory_dataset_delimited_text":                                    106,
-		"azurerm_data_factory_dataset_http":                                              107,
-		"azurerm_data_factory_dataset_json":                                              108,
-		"azurerm_data_factory_dataset_mysql":                                             109,
-		"azurerm_data_factory_dataset_postgresql":                                        110,
-		"azurerm_data_factory_dataset_sql_server_table":                                  111,
-		"azurerm_data_factory_integration_runtime_managed":                               112,
-		"azurerm_data_factory_integration_runtime_self_hosted":                           113,
-		"azurerm_data_factory_linked_service_azure_blob_storage":                         114,
-		"azurerm_data_factory_linked_service_azure_file_storage":                         115,
-		"azurerm_data_factory_linked_service_azure_function":                             116,
-		"azurerm_data_factory_linked_service_cosmosdb":                                   117,
-		"azurerm_data_factory_linked_service_data_lake_storage_gen2":                     118,
-		"azurerm_data_factory_linked_service_key_vault":                                  119,
-		"azurerm_data_factory_linked_service_mysql":                                      120,
-		"azurerm_data_factory_linked_service_postgresql":                                 121,
-		"azurerm_data_factory_linked_service_sftp":                                       122,
-		"azurerm_data_factory_linked_service_sql_server":                                 123,
-		"azurerm_data_factory_linked_service_web":                                        124,
-		"azurerm_data_factory_pipeline":                                                  125,
-		"azurerm_data_factory_trigger_schedule":                                          126,
-		"azurerm_data_lake_analytics_account":                                            127,
-		"azurerm_data_lake_analytics_firewall_rule":                                      128,
-		"azurerm_data_lake_store":                                                        129,
-		"azurerm_data_lake_store_file":                                                   130,
-		"azurerm_data_lake_store_firewall_rule":                                          131,
-		"azurerm_data_share":                                                             132,
-		"azurerm_data_share_account":                                                     133,
-		"azurerm_data_share_dataset_blob_storage":                                        134,
-		"azurerm_data_share_dataset_data_lake_gen1":                                      135,
-		"azurerm_database_migration_project":                                             136,
-		"azurerm_database_migration_service":                                             137,
-		"azurerm_databricks_workspace":                                                   138,
-		"azurerm_dedicated_hardware_security_module":                                     139,
-		"azurerm_dedicated_host":                                                         140,
-		"azurerm_dedicated_host_group":                                                   141,
-		"azurerm_dev_test_global_vm_shutdown_schedule":                                   142,
-		"azurerm_dev_test_lab":                                                           143,
-		"azurerm_dev_test_linux_virtual_machine":                                         144,
-		"azurerm_dev_test_policy":                                                        145,
-		"azurerm_dev_test_schedule":                                                      146,
-		"azurerm_dev_test_virtual_network":                                               147,
-		"azurerm_dev_test_windows_virtual_machine":                                       148,
-		"azurerm_devspace_controller":                                                    149,
-		"azurerm_disk_encryption_set":                                                    150,
-		"azurerm_dns_a_record":                                                           151,
-		"azurerm_dns_aaaa_record":                                                        152,
-		"azurerm_dns_caa_record":                                                         153,
-		"azurerm_dns_cname_record":                                                       154,
-		"azurerm_dns_mx_record":                                                          155,
-		"azurerm_dns_ns_record":                                                          156,
-		"azurerm_dns_ptr_record":                                                         157,
-		"azurerm_dns_srv_record":                                                         158,
-		"azurerm_dns_txt_record":                                                         159,
-		"azurerm_dns_zone":                                                               160,
-		"azurerm_eventgrid_domain":                                                       161,
-		"azurerm_eventgrid_domain_topic":                                                 162,
-		"azurerm_eventgrid_event_subscription":                                           163,
-		"azurerm_eventgrid_topic":                                                        164,
-		"azurerm_eventhub":                                                               165,
-		"azurerm_eventhub_authorization_rule":                                            166,
-		"azurerm_eventhub_cluster":                                                       167,
-		"azurerm_eventhub_consumer_group":                                                168,
-		"azurerm_eventhub_namespace":                                                     169,
-		"azurerm_eventhub_namespace_authorization_rule":                                  170,
-		"azurerm_eventhub_namespace_disaster_recovery_config":                            171,
-		"azurerm_express_route_circuit":                                                  172,
-		"azurerm_express_route_circuit_authorization":                                    173,
-		"azurerm_express_route_circuit_peering":                                          174,
-		"azurerm_express_route_gateway":                                                  175,
-		"azurerm_firewall":                                                               176,
-		"azurerm_firewall_application_rule_collection":                                   177,
-		"azurerm_firewall_nat_rule_collection":                                           178,
-		"azurerm_firewall_network_rule_collection":                                       179,
-		"azurerm_frontdoor":                                                              180,
-		"azurerm_frontdoor_custom_https_configuration":                                   181,
-		"azurerm_frontdoor_firewall_policy":                                              182,
-		"azurerm_function_app":                                                           183,
-		"azurerm_function_app_slot":                                                      184,
-		"azurerm_hdinsight_hadoop_cluster":                                               185,
-		"azurerm_hdinsight_hbase_cluster":                                                186,
-		"azurerm_hdinsight_interactive_query_cluster":                                    187,
-		"azurerm_hdinsight_kafka_cluster":                                                188,
-		"azurerm_hdinsight_ml_services_cluster":                                          189,
-		"azurerm_hdinsight_rserver_cluster":                                              190,
-		"azurerm_hdinsight_spark_cluster":                                                191,
-		"azurerm_hdinsight_storm_cluster":                                                192,
-		"azurerm_healthcare_service":                                                     193,
-		"azurerm_hpc_cache":                                                              194,
-		"azurerm_hpc_cache_blob_target":                                                  195,
-		"azurerm_hpc_cache_nfs_target":                                                   196,
-		"azurerm_image":                                                                  197,
-		"azurerm_iot_time_series_insights_access_policy":                                 198,
-		"azurerm_iot_time_series_insights_reference_data_set":                            199,
-		"azurerm_iot_time_series_insights_standard_environment":                          200,
-		"azurerm_iotcentral_application":                                                 201,
-		"azurerm_iothub":                                                                 202,
-		"azurerm_iothub_consumer_group":                                                  203,
-		"azurerm_iothub_dps":                                                             204,
-		"azurerm_iothub_dps_certificate":                                                 205,
-		"azurerm_iothub_dps_shared_access_policy":                                        206,
-		"azurerm_iothub_endpoint_eventhub":                                               207,
-		"azurerm_iothub_endpoint_servicebus_queue":                                       208,
-		"azurerm_iothub_endpoint_servicebus_topic":                                       209,
-		"azurerm_iothub_endpoint_storage_container":                                      210,
-		"azurerm_iothub_fallback_route":                                                  211,
-		"azurerm_iothub_route":                                                           212,
-		"azurerm_iothub_shared_access_policy":                                            213,
-		"azurerm_key_vault":                                                              214,
-		"azurerm_key_vault_access_policy":                                                215,
-		"azurerm_key_vault_certificate":                                                  216,
-		"azurerm_key_vault_certificate_issuer":                                           217,
-		"azurerm_key_vault_key":                                                          218,
-		"azurerm_key_vault_secret":                                                       219,
-		"azurerm_kubernetes_cluster":                                                     220,
-		"azurerm_kubernetes_cluster_node_pool":                                           221,
-		"azurerm_kusto_attached_database_configuration":                                  222,
-		"azurerm_kusto_cluster":                                                          223,
-		"azurerm_kusto_cluster_customer_managed_key":                                     224,
-		"azurerm_kusto_cluster_principal_assignment":                                     225,
-		"azurerm_kusto_database":                                                         226,
-		"azurerm_kusto_database_principal":                                               227,
-		"azurerm_kusto_database_principal_assignment":                                    228,
-		"azurerm_kusto_eventhub_data_connection":                                         229,
-		"azurerm_lb":                                                                     230,
-		"azurerm_lb_backend_address_pool":                                                231,
-		"azurerm_lb_nat_pool":                                                            232,
-		"azurerm_lb_nat_rule":                                                            233,
-		"azurerm_lb_outbound_rule":                                                       234,
-		"azurerm_lb_probe":                                                               235,
-		"azurerm_lb_rule":                                                                236,
-		"azurerm_linux_virtual_machine":                                                  237,
-		"azurerm_linux_virtual_machine_scale_set":                                        238,
-		"azurerm_local_network_gateway":                                                  239,
-		"azurerm_log_analytics_datasource_windows_event":                                 240,
-		"azurerm_log_analytics_datasource_windows_performance_counter":                   241,
-		"azurerm_log_analytics_linked_service":                                           242,
-		"azurerm_log_analytics_solution":                                                 243,
-		"azurerm_log_analytics_workspace":                                                244,
-		"azurerm_logic_app_action_custom":                                                245,
-		"azurerm_logic_app_action_http":                                                  246,
-		"azurerm_logic_app_integration_account":                                          247,
-		"azurerm_logic_app_trigger_custom":                                               248,
-		"azurerm_logic_app_trigger_http_request":                                         249,
-		"azurerm_logic_app_trigger_recurrence":                                           250,
-		"azurerm_logic_app_workflow":                                                     251,
-		"azurerm_machine_learning_workspace":                                             252,
-		"azurerm_maintenance_assignment_dedicated_host":                                  253,
-		"azurerm_maintenance_assignment_virtual_machine":                                 254,
-		"azurerm_maintenance_configuration":                                              255,
-		"azurerm_managed_application":                                                    256,
-		"azurerm_managed_application_definition":                                         257,
-		"azurerm_managed_disk":                                                           258,
-		"azurerm_management_group":                                                       259,
-		"azurerm_management_lock":                                                        260,
-		"azurerm_maps_account":                                                           261,
-		"azurerm_mariadb_configuration":                                                  262,
-		"azurerm_mariadb_database":                                                       263,
-		"azurerm_mariadb_firewall_rule":                                                  264,
-		"azurerm_mariadb_server":                                                         265,
-		"azurerm_mariadb_virtual_network_rule":                                           266,
-		"azurerm_marketplace_agreement":                                                  267,
-		"azurerm_media_services_account":                                                 268,
-		"azurerm_monitor_action_group":                                                   269,
-		"azurerm_monitor_action_rule_action_group":                                       270,
-		"azurerm_monitor_action_rule_suppression":                                        271,
-		"azurerm_monitor_activity_log_alert":                                             272,
-		"azurerm_monitor_autoscale_setting":                                              273,
-		"azurerm_monitor_diagnostic_setting":                                             274,
-		"azurerm_monitor_log_profile":                                                    275,
-		"azurerm_monitor_metric_alert":                                                   276,
-		"azurerm_monitor_scheduled_query_rules_alert":                                    277,
-		"azurerm_monitor_scheduled_query_rules_log":                                      278,
-		"azurerm_mssql_database":                                                         279,
-		"azurerm_mssql_database_vulnerability_assessment_rule_baseline":                  280,
-		"azurerm_mssql_elasticpool":                                                      281,
-		"azurerm_mssql_server":                                                           282,
-		"azurerm_mssql_server_security_alert_policy":                                     283,
-		"azurerm_mssql_server_vulnerability_assessment":                                  284,
-		"azurerm_mssql_virtual_machine":                                                  285,
-		"azurerm_mysql_active_directory_administrator":                                   286,
-		"azurerm_mysql_configuration":                                                    287,
-		"azurerm_mysql_database":                                                         288,
-		"azurerm_mysql_firewall_rule":                                                    289,
-		"azurerm_mysql_server":                                                           290,
-		"azurerm_mysql_virtual_network_rule":                                             291,
-		"azurerm_nat_gateway":                                                            292,
-		"azurerm_nat_gateway_public_ip_association":                                      293,
-		"azurerm_netapp_account":                                                         294,
-		"azurerm_netapp_pool":                                                            295,
-		"azurerm_netapp_snapshot":                                                        296,
-		"azurerm_netapp_volume":                                                          297,
-		"azurerm_network_ddos_protection_plan":                                           298,
-		"azurerm_network_interface":                                                      299,
-		"azurerm_network_interface_application_gateway_backend_address_pool_association": 300,
-		"azurerm_network_interface_application_security_group_association":               301,
-		"azurerm_network_interface_backend_address_pool_association":                     302,
-		"azurerm_network_interface_nat_rule_association":                                 303,
-		"azurerm_network_interface_security_group_association":                           304,
-		"azurerm_network_packet_capture":                                                 305,
-		"azurerm_network_profile":                                                        306,
-		"azurerm_network_security_group":                                                 307,
-		"azurerm_network_security_rule":                                                  308,
-		"azurerm_network_watcher":                                                        309,
-		"azurerm_network_watcher_flow_log":                                               310,
-		"azurerm_notification_hub":                                                       311,
-		"azurerm_notification_hub_authorization_rule":                                    312,
-		"azurerm_notification_hub_namespace":                                             313,
-		"azurerm_orchestrated_virtual_machine_scale_set":                                 314,
-		"azurerm_packet_capture":                                                         315,
-		"azurerm_point_to_site_vpn_gateway":                                              316,
-		"azurerm_policy_assignment":                                                      317,
-		"azurerm_policy_definition":                                                      318,
-		"azurerm_policy_remediation":                                                     319,
-		"azurerm_policy_set_definition":                                                  320,
-		"azurerm_postgresql_active_directory_administrator":                              321,
-		"azurerm_postgresql_configuration":                                               322,
-		"azurerm_postgresql_database":                                                    323,
-		"azurerm_postgresql_firewall_rule":                                               324,
-		"azurerm_postgresql_server":                                                      325,
-		"azurerm_postgresql_virtual_network_rule":                                        326,
-		"azurerm_powerbi_embedded":                                                       327,
-		"azurerm_private_dns_a_record":                                                   328,
-		"azurerm_private_dns_aaaa_record":                                                329,
-		"azurerm_private_dns_cname_record":                                               330,
-		"azurerm_private_dns_mx_record":                                                  331,
-		"azurerm_private_dns_ptr_record":                                                 332,
-		"azurerm_private_dns_srv_record":                                                 333,
-		"azurerm_private_dns_txt_record":                                                 334,
-		"azurerm_private_dns_zone":                                                       335,
-		"azurerm_private_dns_zone_virtual_network_link":                                  336,
-		"azurerm_private_endpoint":                                                       337,
-		"azurerm_private_link_service":                                                   338,
-		"azurerm_proximity_placement_group":                                              339,
-		"azurerm_public_ip":                                                              340,
-		"azurerm_public_ip_prefix":                                                       341,
-		"azurerm_recovery_services_vault":                                                342,
-		"azurerm_redis_cache":                                                            343,
-		"azurerm_redis_firewall_rule":                                                    344,
-		"azurerm_relay_hybrid_connection":                                                345,
-		"azurerm_relay_namespace":                                                        346,
-		"azurerm_resource_group":                                                         347,
-		"azurerm_role_assignment":                                                        348,
-		"azurerm_role_definition":                                                        349,
-		"azurerm_route":                                                                  350,
-		"azurerm_route_filter":                                                           351,
-		"azurerm_route_table":                                                            352,
-		"azurerm_search_service":                                                         353,
-		"azurerm_security_center_contact":                                                354,
-		"azurerm_security_center_subscription_pricing":                                   355,
-		"azurerm_security_center_workspace":                                              356,
-		"azurerm_sentinel_alert_rule_ms_security_incident":                               357,
-		"azurerm_sentinel_alert_rule_scheduled":                                          358,
-		"azurerm_service_fabric_cluster":                                                 359,
-		"azurerm_servicebus_namespace":                                                   360,
-		"azurerm_servicebus_namespace_authorization_rule":                                361,
-		"azurerm_servicebus_namespace_network_rule_set":                                  362,
-		"azurerm_servicebus_queue":                                                       363,
-		"azurerm_servicebus_queue_authorization_rule":                                    364,
-		"azurerm_servicebus_subscription":                                                365,
-		"azurerm_servicebus_subscription_rule":                                           366,
-		"azurerm_servicebus_topic":                                                       367,
-		"azurerm_servicebus_topic_authorization_rule":                                    368,
-		"azurerm_shared_image":                                                           369,
-		"azurerm_shared_image_gallery":                                                   370,
-		"azurerm_shared_image_version":                                                   371,
-		"azurerm_signalr_service":                                                        372,
-		"azurerm_site_recovery_fabric":                                                   373,
-		"azurerm_site_recovery_network_mapping":                                          374,
-		"azurerm_site_recovery_protection_container":                                     375,
-		"azurerm_site_recovery_protection_container_mapping":                             376,
-		"azurerm_site_recovery_replicated_vm":                                            377,
-		"azurerm_site_recovery_replication_policy":                                       378,
-		"azurerm_snapshot":                                                               379,
-		"azurerm_spatial_anchors_account":                                                380,
-		"azurerm_spring_cloud_app":                                                       381,
-		"azurerm_spring_cloud_service":                                                   382,
-		"azurerm_sql_active_directory_administrator":                                     383,
-		"azurerm_sql_database":                                                           384,
-		"azurerm_sql_elasticpool":                                                        385,
-		"azurerm_sql_failover_group":                                                     386,
-		"azurerm_sql_firewall_rule":                                                      387,
-		"azurerm_sql_server":                                                             388,
-		"azurerm_sql_virtual_network_rule":                                               389,
-		"azurerm_storage_account":                                                        390,
-		"azurerm_storage_account_customer_managed_key":                                   391,
-		"azurerm_storage_account_network_rules":                                          392,
-		"azurerm_storage_blob":                                                           393,
-		"azurerm_storage_container":                                                      394,
-		"azurerm_storage_data_lake_gen2_filesystem":                                      395,
-		"azurerm_storage_management_policy":                                              396,
-		"azurerm_storage_queue":                                                          397,
-		"azurerm_storage_share":                                                          398,
-		"azurerm_storage_share_directory":                                                399,
-		"azurerm_storage_table":                                                          400,
-		"azurerm_storage_table_entity":                                                   401,
-		"azurerm_stream_analytics_function_javascript_udf":                               402,
-		"azurerm_stream_analytics_job":                                                   403,
-		"azurerm_stream_analytics_output_blob":                                           404,
-		"azurerm_stream_analytics_output_eventhub":                                       405,
-		"azurerm_stream_analytics_output_mssql":                                          406,
-		"azurerm_stream_analytics_output_servicebus_queue":                               407,
-		"azurerm_stream_analytics_output_servicebus_topic":                               408,
-		"azurerm_stream_analytics_reference_input_blob":                                  409,
-		"azurerm_stream_analytics_stream_input_blob":                                     410,
-		"azurerm_stream_analytics_stream_input_eventhub":                                 411,
-		"azurerm_stream_analytics_stream_input_iothub":                                   412,
-		"azurerm_subnet":                                                                 413,
-		"azurerm_subnet_nat_gateway_association":                                         414,
-		"azurerm_subnet_network_security_group_association":                              415,
-		"azurerm_subnet_route_table_association":                                         416,
-		"azurerm_synapse_workspace":                                                      417,
-		"azurerm_template_deployment":                                                    418,
-		"azurerm_traffic_manager_endpoint":                                               419,
-		"azurerm_traffic_manager_profile":                                                420,
-		"azurerm_user_assigned_identity":                                                 421,
-		"azurerm_virtual_hub":                                                            422,
-		"azurerm_virtual_hub_connection":                                                 423,
-		"azurerm_virtual_machine":                                                        424,
-		"azurerm_virtual_machine_data_disk_attachment":                                   425,
-		"azurerm_virtual_machine_extension":                                              426,
-		"azurerm_virtual_machine_scale_set":                                              427,
-		"azurerm_virtual_machine_scale_set_extension":                                    428,
-		"azurerm_virtual_network":                                                        429,
-		"azurerm_virtual_network_gateway":                                                430,
-		"azurerm_virtual_network_gateway_connection":                                     431,
-		"azurerm_virtual_network_peering":                                                432,
-		"azurerm_virtual_wan":                                                            433,
-		"azurerm_vpn_gateway":                                                            434,
-		"azurerm_vpn_server_configuration":                                               435,
-		"azurerm_web_application_firewall_policy":                                        436,
-		"azurerm_windows_virtual_machine":                                                437,
-		"azurerm_windows_virtual_machine_scale_set":                                      438,
+		"azurerm_api_management_api_diagnostic":                                          4,
+		"azurerm_api_management_api_operation":                                           5,
+		"azurerm_api_management_api_operation_policy":                                    6,
+		"azurerm_api_management_api_policy":                                              7,
+		"azurerm_api_management_api_schema":                                              8,
+		"azurerm_api_management_api_version_set":                                         9,
+		"azurerm_api_management_authorization_server":                                    10,
+		"azurerm_api_management_backend":                                                 11,
+		"azurerm_api_management_certificate":                                             12,
+		"azurerm_api_management_diagnostic":                                              13,
+		"azurerm_api_management_group":                                                   14,
+		"azurerm_api_management_group_user":                                              15,
+		"azurerm_api_management_identity_provider_aad":                                   16,
+		"azurerm_api_management_identity_provider_facebook":                              17,
+		"azurerm_api_management_identity_provider_google":                                18,
+		"azurerm_api_management_identity_provider_microsoft":                             19,
+		"azurerm_api_management_identity_provider_twitter":                               20,
+		"azurerm_api_management_logger":                                                  21,
+		"azurerm_api_management_named_value":                                             22,
+		"azurerm_api_management_openid_connect_provider":                                 23,
+		"azurerm_api_management_product":                                                 24,
+		"azurerm_api_management_product_api":                                             25,
+		"azurerm_api_management_product_group":                                           26,
+		"azurerm_api_management_product_policy":                                          27,
+		"azurerm_api_management_property":                                                28,
+		"azurerm_api_management_subscription":                                            29,
+		"azurerm_api_management_user":                                                    30,
+		"azurerm_app_configuration":                                                      31,
+		"azurerm_app_service":                                                            32,
+		"azurerm_app_service_active_slot":                                                33,
+		"azurerm_app_service_certificate":                                                34,
+		"azurerm_app_service_certificate_order":                                          35,
+		"azurerm_app_service_custom_hostname_binding":                                    36,
+		"azurerm_app_service_environment":                                                37,
+		"azurerm_app_service_hybrid_connection":                                          38,
+		"azurerm_app_service_plan":                                                       39,
+		"azurerm_app_service_slot":                                                       40,
+		"azurerm_app_service_slot_virtual_network_swift_connection":                      41,
+		"azurerm_app_service_source_control_token":                                       42,
+		"azurerm_app_service_virtual_network_swift_connection":                           43,
+		"azurerm_application_gateway":                                                    44,
+		"azurerm_application_insights":                                                   45,
+		"azurerm_application_insights_analytics_item":                                    46,
+		"azurerm_application_insights_api_key":                                           47,
+		"azurerm_application_insights_web_test":                                          48,
+		"azurerm_application_security_group":                                             49,
+		"azurerm_attestation":                                                            50,
+		"azurerm_automation_account":                                                     51,
+		"azurerm_automation_certificate":                                                 52,
+		"azurerm_automation_connection":                                                  53,
+		"azurerm_automation_connection_certificate":                                      54,
+		"azurerm_automation_connection_classic_certificate":                              55,
+		"azurerm_automation_connection_service_principal":                                56,
+		"azurerm_automation_credential":                                                  57,
+		"azurerm_automation_dsc_configuration":                                           58,
+		"azurerm_automation_dsc_nodeconfiguration":                                       59,
+		"azurerm_automation_job_schedule":                                                60,
+		"azurerm_automation_module":                                                      61,
+		"azurerm_automation_runbook":                                                     62,
+		"azurerm_automation_schedule":                                                    63,
+		"azurerm_automation_variable_bool":                                               64,
+		"azurerm_automation_variable_datetime":                                           65,
+		"azurerm_automation_variable_int":                                                66,
+		"azurerm_automation_variable_string":                                             67,
+		"azurerm_availability_set":                                                       68,
+		"azurerm_backup_container_storage_account":                                       69,
+		"azurerm_backup_policy_file_share":                                               70,
+		"azurerm_backup_policy_vm":                                                       71,
+		"azurerm_backup_protected_file_share":                                            72,
+		"azurerm_backup_protected_vm":                                                    73,
+		"azurerm_bastion_host":                                                           74,
+		"azurerm_batch_account":                                                          75,
+		"azurerm_batch_application":                                                      76,
+		"azurerm_batch_certificate":                                                      77,
+		"azurerm_batch_pool":                                                             78,
+		"azurerm_blueprint_assignment":                                                   79,
+		"azurerm_bot_channel_directline":                                                 80,
+		"azurerm_bot_channel_email":                                                      81,
+		"azurerm_bot_channel_ms_teams":                                                   82,
+		"azurerm_bot_channel_slack":                                                      83,
+		"azurerm_bot_channels_registration":                                              84,
+		"azurerm_bot_connection":                                                         85,
+		"azurerm_bot_web_app":                                                            86,
+		"azurerm_cdn_endpoint":                                                           87,
+		"azurerm_cdn_profile":                                                            88,
+		"azurerm_cognitive_account":                                                      89,
+		"azurerm_container_group":                                                        90,
+		"azurerm_container_registry":                                                     91,
+		"azurerm_container_registry_webhook":                                             92,
+		"azurerm_cosmosdb_account":                                                       93,
+		"azurerm_cosmosdb_cassandra_keyspace":                                            94,
+		"azurerm_cosmosdb_gremlin_database":                                              95,
+		"azurerm_cosmosdb_gremlin_graph":                                                 96,
+		"azurerm_cosmosdb_mongo_collection":                                              97,
+		"azurerm_cosmosdb_mongo_database":                                                98,
+		"azurerm_cosmosdb_sql_container":                                                 99,
+		"azurerm_cosmosdb_sql_database":                                                  100,
+		"azurerm_cosmosdb_sql_stored_procedure":                                          101,
+		"azurerm_cosmosdb_table":                                                         102,
+		"azurerm_cost_management_export_resource_group":                                  103,
+		"azurerm_custom_provider":                                                        104,
+		"azurerm_dashboard":                                                              105,
+		"azurerm_data_factory":                                                           106,
+		"azurerm_data_factory_dataset_azure_blob":                                        107,
+		"azurerm_data_factory_dataset_cosmosdb_sqlapi":                                   108,
+		"azurerm_data_factory_dataset_delimited_text":                                    109,
+		"azurerm_data_factory_dataset_http":                                              110,
+		"azurerm_data_factory_dataset_json":                                              111,
+		"azurerm_data_factory_dataset_mysql":                                             112,
+		"azurerm_data_factory_dataset_postgresql":                                        113,
+		"azurerm_data_factory_dataset_sql_server_table":                                  114,
+		"azurerm_data_factory_integration_runtime_managed":                               115,
+		"azurerm_data_factory_integration_runtime_self_hosted":                           116,
+		"azurerm_data_factory_linked_service_azure_blob_storage":                         117,
+		"azurerm_data_factory_linked_service_azure_file_storage":                         118,
+		"azurerm_data_factory_linked_service_azure_function":                             119,
+		"azurerm_data_factory_linked_service_azure_sql_database":                         120,
+		"azurerm_data_factory_linked_service_cosmosdb":                                   121,
+		"azurerm_data_factory_linked_service_data_lake_storage_gen2":                     122,
+		"azurerm_data_factory_linked_service_key_vault":                                  123,
+		"azurerm_data_factory_linked_service_mysql":                                      124,
+		"azurerm_data_factory_linked_service_postgresql":                                 125,
+		"azurerm_data_factory_linked_service_sftp":                                       126,
+		"azurerm_data_factory_linked_service_sql_server":                                 127,
+		"azurerm_data_factory_linked_service_web":                                        128,
+		"azurerm_data_factory_pipeline":                                                  129,
+		"azurerm_data_factory_trigger_schedule":                                          130,
+		"azurerm_data_lake_analytics_account":                                            131,
+		"azurerm_data_lake_analytics_firewall_rule":                                      132,
+		"azurerm_data_lake_store":                                                        133,
+		"azurerm_data_lake_store_file":                                                   134,
+		"azurerm_data_lake_store_firewall_rule":                                          135,
+		"azurerm_data_share":                                                             136,
+		"azurerm_data_share_account":                                                     137,
+		"azurerm_data_share_dataset_blob_storage":                                        138,
+		"azurerm_data_share_dataset_data_lake_gen1":                                      139,
+		"azurerm_data_share_dataset_data_lake_gen2":                                      140,
+		"azurerm_data_share_dataset_kusto_cluster":                                       141,
+		"azurerm_database_migration_project":                                             142,
+		"azurerm_database_migration_service":                                             143,
+		"azurerm_databricks_workspace":                                                   144,
+		"azurerm_dedicated_hardware_security_module":                                     145,
+		"azurerm_dedicated_host":                                                         146,
+		"azurerm_dedicated_host_group":                                                   147,
+		"azurerm_dev_test_global_vm_shutdown_schedule":                                   148,
+		"azurerm_dev_test_lab":                                                           149,
+		"azurerm_dev_test_linux_virtual_machine":                                         150,
+		"azurerm_dev_test_policy":                                                        151,
+		"azurerm_dev_test_schedule":                                                      152,
+		"azurerm_dev_test_virtual_network":                                               153,
+		"azurerm_dev_test_windows_virtual_machine":                                       154,
+		"azurerm_devspace_controller":                                                    155,
+		"azurerm_disk_encryption_set":                                                    156,
+		"azurerm_dns_a_record":                                                           157,
+		"azurerm_dns_aaaa_record":                                                        158,
+		"azurerm_dns_caa_record":                                                         159,
+		"azurerm_dns_cname_record":                                                       160,
+		"azurerm_dns_mx_record":                                                          161,
+		"azurerm_dns_ns_record":                                                          162,
+		"azurerm_dns_ptr_record":                                                         163,
+		"azurerm_dns_srv_record":                                                         164,
+		"azurerm_dns_txt_record":                                                         165,
+		"azurerm_dns_zone":                                                               166,
+		"azurerm_eventgrid_domain":                                                       167,
+		"azurerm_eventgrid_domain_topic":                                                 168,
+		"azurerm_eventgrid_event_subscription":                                           169,
+		"azurerm_eventgrid_topic":                                                        170,
+		"azurerm_eventhub":                                                               171,
+		"azurerm_eventhub_authorization_rule":                                            172,
+		"azurerm_eventhub_cluster":                                                       173,
+		"azurerm_eventhub_consumer_group":                                                174,
+		"azurerm_eventhub_namespace":                                                     175,
+		"azurerm_eventhub_namespace_authorization_rule":                                  176,
+		"azurerm_eventhub_namespace_disaster_recovery_config":                            177,
+		"azurerm_express_route_circuit":                                                  178,
+		"azurerm_express_route_circuit_authorization":                                    179,
+		"azurerm_express_route_circuit_peering":                                          180,
+		"azurerm_express_route_gateway":                                                  181,
+		"azurerm_firewall":                                                               182,
+		"azurerm_firewall_application_rule_collection":                                   183,
+		"azurerm_firewall_nat_rule_collection":                                           184,
+		"azurerm_firewall_network_rule_collection":                                       185,
+		"azurerm_firewall_policy":                                                        186,
+		"azurerm_frontdoor":                                                              187,
+		"azurerm_frontdoor_custom_https_configuration":                                   188,
+		"azurerm_frontdoor_firewall_policy":                                              189,
+		"azurerm_function_app":                                                           190,
+		"azurerm_function_app_slot":                                                      191,
+		"azurerm_hdinsight_hadoop_cluster":                                               192,
+		"azurerm_hdinsight_hbase_cluster":                                                193,
+		"azurerm_hdinsight_interactive_query_cluster":                                    194,
+		"azurerm_hdinsight_kafka_cluster":                                                195,
+		"azurerm_hdinsight_ml_services_cluster":                                          196,
+		"azurerm_hdinsight_rserver_cluster":                                              197,
+		"azurerm_hdinsight_spark_cluster":                                                198,
+		"azurerm_hdinsight_storm_cluster":                                                199,
+		"azurerm_healthcare_service":                                                     200,
+		"azurerm_hpc_cache":                                                              201,
+		"azurerm_hpc_cache_blob_target":                                                  202,
+		"azurerm_hpc_cache_nfs_target":                                                   203,
+		"azurerm_image":                                                                  204,
+		"azurerm_integration_service_environment":                                        205,
+		"azurerm_iot_time_series_insights_access_policy":                                 206,
+		"azurerm_iot_time_series_insights_reference_data_set":                            207,
+		"azurerm_iot_time_series_insights_standard_environment":                          208,
+		"azurerm_iotcentral_application":                                                 209,
+		"azurerm_iothub":                                                                 210,
+		"azurerm_iothub_consumer_group":                                                  211,
+		"azurerm_iothub_dps":                                                             212,
+		"azurerm_iothub_dps_certificate":                                                 213,
+		"azurerm_iothub_dps_shared_access_policy":                                        214,
+		"azurerm_iothub_endpoint_eventhub":                                               215,
+		"azurerm_iothub_endpoint_servicebus_queue":                                       216,
+		"azurerm_iothub_endpoint_servicebus_topic":                                       217,
+		"azurerm_iothub_endpoint_storage_container":                                      218,
+		"azurerm_iothub_fallback_route":                                                  219,
+		"azurerm_iothub_route":                                                           220,
+		"azurerm_iothub_shared_access_policy":                                            221,
+		"azurerm_ip_group":                                                               222,
+		"azurerm_key_vault":                                                              223,
+		"azurerm_key_vault_access_policy":                                                224,
+		"azurerm_key_vault_certificate":                                                  225,
+		"azurerm_key_vault_certificate_issuer":                                           226,
+		"azurerm_key_vault_key":                                                          227,
+		"azurerm_key_vault_secret":                                                       228,
+		"azurerm_kubernetes_cluster":                                                     229,
+		"azurerm_kubernetes_cluster_node_pool":                                           230,
+		"azurerm_kusto_attached_database_configuration":                                  231,
+		"azurerm_kusto_cluster":                                                          232,
+		"azurerm_kusto_cluster_customer_managed_key":                                     233,
+		"azurerm_kusto_cluster_principal_assignment":                                     234,
+		"azurerm_kusto_database":                                                         235,
+		"azurerm_kusto_database_principal":                                               236,
+		"azurerm_kusto_database_principal_assignment":                                    237,
+		"azurerm_kusto_eventhub_data_connection":                                         238,
+		"azurerm_lb":                                                                     239,
+		"azurerm_lb_backend_address_pool":                                                240,
+		"azurerm_lb_nat_pool":                                                            241,
+		"azurerm_lb_nat_rule":                                                            242,
+		"azurerm_lb_outbound_rule":                                                       243,
+		"azurerm_lb_probe":                                                               244,
+		"azurerm_lb_rule":                                                                245,
+		"azurerm_lighthouse_assignment":                                                  246,
+		"azurerm_lighthouse_definition":                                                  247,
+		"azurerm_linux_virtual_machine":                                                  248,
+		"azurerm_linux_virtual_machine_scale_set":                                        249,
+		"azurerm_local_network_gateway":                                                  250,
+		"azurerm_log_analytics_datasource_windows_event":                                 251,
+		"azurerm_log_analytics_datasource_windows_performance_counter":                   252,
+		"azurerm_log_analytics_linked_service":                                           253,
+		"azurerm_log_analytics_saved_search":                                             254,
+		"azurerm_log_analytics_solution":                                                 255,
+		"azurerm_log_analytics_workspace":                                                256,
+		"azurerm_logic_app_action_custom":                                                257,
+		"azurerm_logic_app_action_http":                                                  258,
+		"azurerm_logic_app_integration_account":                                          259,
+		"azurerm_logic_app_trigger_custom":                                               260,
+		"azurerm_logic_app_trigger_http_request":                                         261,
+		"azurerm_logic_app_trigger_recurrence":                                           262,
+		"azurerm_logic_app_workflow":                                                     263,
+		"azurerm_machine_learning_workspace":                                             264,
+		"azurerm_maintenance_assignment_dedicated_host":                                  265,
+		"azurerm_maintenance_assignment_virtual_machine":                                 266,
+		"azurerm_maintenance_configuration":                                              267,
+		"azurerm_managed_application":                                                    268,
+		"azurerm_managed_application_definition":                                         269,
+		"azurerm_managed_disk":                                                           270,
+		"azurerm_management_group":                                                       271,
+		"azurerm_management_lock":                                                        272,
+		"azurerm_maps_account":                                                           273,
+		"azurerm_mariadb_configuration":                                                  274,
+		"azurerm_mariadb_database":                                                       275,
+		"azurerm_mariadb_firewall_rule":                                                  276,
+		"azurerm_mariadb_server":                                                         277,
+		"azurerm_mariadb_virtual_network_rule":                                           278,
+		"azurerm_marketplace_agreement":                                                  279,
+		"azurerm_media_services_account":                                                 280,
+		"azurerm_monitor_action_group":                                                   281,
+		"azurerm_monitor_action_rule_action_group":                                       282,
+		"azurerm_monitor_action_rule_suppression":                                        283,
+		"azurerm_monitor_activity_log_alert":                                             284,
+		"azurerm_monitor_autoscale_setting":                                              285,
+		"azurerm_monitor_diagnostic_setting":                                             286,
+		"azurerm_monitor_log_profile":                                                    287,
+		"azurerm_monitor_metric_alert":                                                   288,
+		"azurerm_monitor_scheduled_query_rules_alert":                                    289,
+		"azurerm_monitor_scheduled_query_rules_log":                                      290,
+		"azurerm_mssql_database":                                                         291,
+		"mssql_database_extended_auditing_policy":                                        292,
+		"azurerm_mssql_database_vulnerability_assessment_rule_baseline":                  293,
+		"azurerm_mssql_elasticpool":                                                      294,
+		"azurerm_mssql_server":                                                           295,
+		"azurerm_mssql_server_extended_auditing_policy":                                  296,
+		"azurerm_mssql_server_security_alert_policy":                                     297,
+		"azurerm_mssql_server_vulnerability_assessment":                                  298,
+		"azurerm_mssql_virtual_machine":                                                  299,
+		"azurerm_mysql_active_directory_administrator":                                   300,
+		"azurerm_mysql_configuration":                                                    301,
+		"azurerm_mysql_database":                                                         302,
+		"azurerm_mysql_firewall_rule":                                                    303,
+		"azurerm_mysql_server":                                                           304,
+		"azurerm_mysql_virtual_network_rule":                                             305,
+		"azurerm_nat_gateway":                                                            306,
+		"azurerm_nat_gateway_public_ip_association":                                      307,
+		"azurerm_netapp_account":                                                         308,
+		"azurerm_netapp_pool":                                                            309,
+		"azurerm_netapp_snapshot":                                                        310,
+		"azurerm_netapp_volume":                                                          311,
+		"azurerm_network_connection_monitor":                                             312,
+		"azurerm_network_ddos_protection_plan":                                           313,
+		"azurerm_network_interface":                                                      314,
+		"azurerm_network_interface_application_gateway_backend_address_pool_association": 315,
+		"azurerm_network_interface_application_security_group_association":               316,
+		"azurerm_network_interface_backend_address_pool_association":                     317,
+		"azurerm_network_interface_nat_rule_association":                                 318,
+		"azurerm_network_interface_security_group_association":                           319,
+		"azurerm_network_packet_capture":                                                 320,
+		"azurerm_network_profile":                                                        321,
+		"azurerm_network_security_group":                                                 322,
+		"azurerm_network_security_rule":                                                  323,
+		"azurerm_network_watcher":                                                        324,
+		"azurerm_network_watcher_flow_log":                                               325,
+		"azurerm_notification_hub":                                                       326,
+		"azurerm_notification_hub_authorization_rule":                                    327,
+		"azurerm_notification_hub_namespace":                                             328,
+		"azurerm_orchestrated_virtual_machine_scale_set":                                 329,
+		"azurerm_packet_capture":                                                         330,
+		"azurerm_point_to_site_vpn_gateway":                                              331,
+		"azurerm_policy_assignment":                                                      332,
+		"azurerm_policy_definition":                                                      333,
+		"azurerm_policy_remediation":                                                     334,
+		"azurerm_policy_set_definition":                                                  335,
+		"azurerm_postgresql_active_directory_administrator":                              336,
+		"azurerm_postgresql_configuration":                                               337,
+		"azurerm_postgresql_database":                                                    338,
+		"azurerm_postgresql_firewall_rule":                                               339,
+		"azurerm_postgresql_server":                                                      340,
+		"azurerm_postgresql_server_key":                                                  341,
+		"azurerm_postgresql_virtual_network_rule":                                        342,
+		"azurerm_powerbi_embedded":                                                       343,
+		"azurerm_private_dns_a_record":                                                   344,
+		"azurerm_private_dns_aaaa_record":                                                345,
+		"azurerm_private_dns_cname_record":                                               346,
+		"azurerm_private_dns_mx_record":                                                  347,
+		"azurerm_private_dns_ptr_record":                                                 348,
+		"azurerm_private_dns_srv_record":                                                 349,
+		"azurerm_private_dns_txt_record":                                                 350,
+		"azurerm_private_dns_zone":                                                       351,
+		"azurerm_private_dns_zone_virtual_network_link":                                  352,
+		"azurerm_private_endpoint":                                                       353,
+		"azurerm_private_link_service":                                                   354,
+		"azurerm_proximity_placement_group":                                              355,
+		"azurerm_public_ip":                                                              356,
+		"azurerm_public_ip_prefix":                                                       357,
+		"azurerm_recovery_services_vault":                                                358,
+		"azurerm_redis_cache":                                                            359,
+		"azurerm_redis_firewall_rule":                                                    360,
+		"azurerm_redis_linked_server":                                                    361,
+		"azurerm_relay_hybrid_connection":                                                362,
+		"azurerm_relay_namespace":                                                        363,
+		"azurerm_resource_group":                                                         364,
+		"azurerm_resource_group_template_deployment":                                     365,
+		"azurerm_role_assignment":                                                        366,
+		"azurerm_role_definition":                                                        367,
+		"azurerm_route":                                                                  368,
+		"azurerm_route_filter":                                                           369,
+		"azurerm_route_table":                                                            370,
+		"azurerm_search_service":                                                         371,
+		"azurerm_security_center_contact":                                                372,
+		"azurerm_security_center_subscription_pricing":                                   373,
+		"azurerm_security_center_workspace":                                              374,
+		"azurerm_sentinel_alert_rule_ms_security_incident":                               375,
+		"azurerm_sentinel_alert_rule_scheduled":                                          376,
+		"azurerm_service_fabric_cluster":                                                 377,
+		"azurerm_service_fabric_mesh_application":                                        378,
+		"azurerm_servicebus_namespace":                                                   379,
+		"azurerm_servicebus_namespace_authorization_rule":                                380,
+		"azurerm_servicebus_namespace_network_rule_set":                                  381,
+		"azurerm_servicebus_queue":                                                       382,
+		"azurerm_servicebus_queue_authorization_rule":                                    383,
+		"azurerm_servicebus_subscription":                                                384,
+		"azurerm_servicebus_subscription_rule":                                           385,
+		"azurerm_servicebus_topic":                                                       386,
+		"azurerm_servicebus_topic_authorization_rule":                                    387,
+		"azurerm_shared_image":                                                           388,
+		"azurerm_shared_image_gallery":                                                   389,
+		"azurerm_shared_image_version":                                                   390,
+		"azurerm_signalr_service":                                                        391,
+		"azurerm_site_recovery_fabric":                                                   392,
+		"azurerm_site_recovery_network_mapping":                                          393,
+		"azurerm_site_recovery_protection_container":                                     394,
+		"azurerm_site_recovery_protection_container_mapping":                             395,
+		"azurerm_site_recovery_replicated_vm":                                            396,
+		"azurerm_site_recovery_replication_policy":                                       397,
+		"azurerm_snapshot":                                                               398,
+		"azurerm_spatial_anchors_account":                                                399,
+		"azurerm_spring_cloud_app":                                                       400,
+		"azurerm_spring_cloud_certificate":                                               401,
+		"azurerm_spring_cloud_service":                                                   402,
+		"azurerm_sql_active_directory_administrator":                                     403,
+		"azurerm_sql_database":                                                           404,
+		"azurerm_sql_elasticpool":                                                        405,
+		"azurerm_sql_failover_group":                                                     406,
+		"azurerm_sql_firewall_rule":                                                      407,
+		"azurerm_sql_server":                                                             408,
+		"azurerm_sql_virtual_network_rule":                                               409,
+		"azurerm_storage_account":                                                        410,
+		"azurerm_storage_account_customer_managed_key":                                   411,
+		"azurerm_storage_account_network_rules":                                          412,
+		"azurerm_storage_blob":                                                           413,
+		"azurerm_storage_container":                                                      414,
+		"azurerm_storage_data_lake_gen2_filesystem":                                      415,
+		"azurerm_storage_management_policy":                                              416,
+		"azurerm_storage_queue":                                                          417,
+		"azurerm_storage_share":                                                          418,
+		"azurerm_storage_share_directory":                                                419,
+		"azurerm_storage_sync":                                                           420,
+		"azurerm_storage_sync_group":                                                     421,
+		"azurerm_storage_table":                                                          422,
+		"azurerm_storage_table_entity":                                                   423,
+		"azurerm_stream_analytics_function_javascript_udf":                               424,
+		"azurerm_stream_analytics_job":                                                   425,
+		"azurerm_stream_analytics_output_blob":                                           426,
+		"azurerm_stream_analytics_output_eventhub":                                       427,
+		"azurerm_stream_analytics_output_mssql":                                          428,
+		"azurerm_stream_analytics_output_servicebus_queue":                               429,
+		"azurerm_stream_analytics_output_servicebus_topic":                               430,
+		"azurerm_stream_analytics_reference_input_blob":                                  431,
+		"azurerm_stream_analytics_stream_input_blob":                                     432,
+		"azurerm_stream_analytics_stream_input_eventhub":                                 433,
+		"azurerm_stream_analytics_stream_input_iothub":                                   434,
+		"azurerm_subnet":                                                                 435,
+		"azurerm_subnet_nat_gateway_association":                                         436,
+		"azurerm_subnet_network_security_group_association":                              437,
+		"azurerm_subnet_route_table_association":                                         438,
+		"azurerm_subscription_template_deployment":                                       439,
+		"azurerm_synapse_firewall_rule":                                                  440,
+		"azurerm_synapse_spark_pool":                                                     441,
+		"azurerm_synapse_sql_pool":                                                       442,
+		"azurerm_synapse_workspace":                                                      443,
+		"azurerm_template_deployment":                                                    444,
+		"azurerm_traffic_manager_endpoint":                                               445,
+		"azurerm_traffic_manager_profile":                                                446,
+		"azurerm_user_assigned_identity":                                                 447,
+		"azurerm_virtual_desktop_application_group":                                      448,
+		"azurerm_virtual_desktop_host_pool":                                              449,
+		"azurerm_virtual_desktop_workspace":                                              450,
+		"azurerm_virtual_desktop_workspace_application_group_association":                451,
+		"azurerm_virtual_hub":                                                            452,
+		"azurerm_virtual_hub_connection":                                                 453,
+		"azurerm_virtual_machine":                                                        454,
+		"azurerm_virtual_machine_data_disk_attachment":                                   455,
+		"azurerm_virtual_machine_extension":                                              456,
+		"azurerm_virtual_machine_scale_set":                                              457,
+		"azurerm_virtual_machine_scale_set_extension":                                    458,
+		"azurerm_virtual_network":                                                        459,
+		"azurerm_virtual_network_gateway":                                                460,
+		"azurerm_virtual_network_gateway_connection":                                     461,
+		"azurerm_virtual_network_peering":                                                462,
+		"azurerm_virtual_wan":                                                            463,
+		"azurerm_vpn_gateway":                                                            464,
+		"azurerm_vpn_server_configuration":                                               465,
+		"azurerm_web_application_firewall_policy":                                        466,
+		"azurerm_windows_virtual_machine":                                                467,
+		"azurerm_windows_virtual_machine_scale_set":                                      468,
 	}
 )
 
