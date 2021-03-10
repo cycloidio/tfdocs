@@ -12,18 +12,18 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "helm_release",
-			Category:         "Helm Provider",
+			Category:         "Resources",
 			ShortDescription: ``,
 			Description: `
 
 A Release is an instance of a chart running in a Kubernetes cluster.
+
 A Chart is a Helm package. It contains all of the resource definitions necessary to run an application, tool, or service inside of a Kubernetes cluster.
 
 ` + "`" + `helm_release` + "`" + ` describes the desired status of a chart in a kubernetes cluster.
 
 `,
 			Keywords: []string{
-				"provider",
 				"release",
 			},
 			Arguments: []resource.Attribute{
@@ -33,7 +33,7 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 				},
 				resource.Attribute{
 					Name:        "chart",
-					Description: `(Required) Chart name to be installed. A path may be used.`,
+					Description: `(Required) Chart name to be installed. The chart name can be local path, a URL to a chart, or the name of the chart if ` + "`" + `repository` + "`" + ` is specified. It is also possible to use the ` + "`" + `<repository>/<chart>` + "`" + ` format here if you are running Terraform on a system that the repository has been added to with ` + "`" + `helm repo add` + "`" + ` but this is not recommended.`,
 				},
 				resource.Attribute{
 					Name:        "repository",
@@ -69,11 +69,11 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 				},
 				resource.Attribute{
 					Name:        "namespace",
-					Description: `(Optional) The namespace to install the release into. Defaults to ` + "`" + `default` + "`" + ``,
+					Description: `(Optional) The namespace to install the release into. Defaults to ` + "`" + `default` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "verify",
-					Description: `(Optional) Verify the package before installing it. Defaults to ` + "`" + `false` + "`" + ``,
+					Description: `(Optional) Verify the package before installing it. Helm uses a provenance file to verify the integrity of the chart; this must be hosted alongside the chart. For more information see the [Helm Documentation](https://helm.sh/docs/topics/provenance/). Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "keyring",
@@ -144,10 +144,6 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 					Description: `(Optional) Value block with custom sensitive values to be merged with the values yaml that won't be exposed in the plan's diff.`,
 				},
 				resource.Attribute{
-					Name:        "set_string",
-					Description: `(Optional) Value block with custom STRING values to be merged with the values yaml.`,
-				},
-				resource.Attribute{
 					Name:        "dependency_update",
 					Description: `(Optional) Runs helm dependency update before installing the chart. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
@@ -181,15 +177,7 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) type of the variable to be set. Valid options are ` + "`" + `auto` + "`" + ` and ` + "`" + `string` + "`" + `. The ` + "`" + `set_strings` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) full name of the variable to be set.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `(Required) value of the variable to be set. The ` + "`" + `postrender` + "`" + ` block supports a single attribute:`,
+					Description: `(Optional) type of the variable to be set. Valid options are ` + "`" + `auto` + "`" + ` and ` + "`" + `string` + "`" + `. The ` + "`" + `postrender` + "`" + ` block supports a single attribute:`,
 				},
 				resource.Attribute{
 					Name:        "binary_path",
@@ -224,6 +212,10 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 					Description: `A SemVer 2 conformant version string of the chart.`,
 				},
 				resource.Attribute{
+					Name:        "app_version",
+					Description: `The version number of the application being deployed.`,
+				},
+				resource.Attribute{
 					Name:        "values",
 					Description: `The compounded values from ` + "`" + `values` + "`" + ` and ` + "`" + `set`,
 				},
@@ -256,6 +248,10 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 				resource.Attribute{
 					Name:        "version",
 					Description: `A SemVer 2 conformant version string of the chart.`,
+				},
+				resource.Attribute{
+					Name:        "app_version",
+					Description: `The version number of the application being deployed.`,
 				},
 				resource.Attribute{
 					Name:        "values",

@@ -382,6 +382,199 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "opennebula_service",
+			Category:         "Resources",
+			ShortDescription: `Provides an OpenNebula service resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"service",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the service.`,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `(Optional) Permissions applied on service. Defaults to the UMASK in OpenNebula (in UNIX Format: owner-group-other => Use-Manage-Admin).`,
+				},
+				resource.Attribute{
+					Name:        "template_id",
+					Description: `(Required) Service will be instantiated from the template ID.`,
+				},
+				resource.Attribute{
+					Name:        "extra_template",
+					Description: `(Optional) Service information to be merged with the template during instantiate.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Set the id of the user owner of the newly created service. The corresponding ` + "`" + `uname` + "`" + ` will be computed.`,
+				},
+				resource.Attribute{
+					Name:        "uname",
+					Description: `(Optional) Set the name of the user owner of the newly created service. The corresponding ` + "`" + `uid` + "`" + ` will be computed.`,
+				},
+				resource.Attribute{
+					Name:        "gid",
+					Description: `(Optional) Set the id of the group owner of the newly created service. The corresponding ` + "`" + `gname` + "`" + ` will be computed.`,
+				},
+				resource.Attribute{
+					Name:        "gname",
+					Description: `(Optional) Set the name of the group owner of the newly created service. The corresponding ` + "`" + `gid` + "`" + ` will be computed. ## Attribute Reference The following attribute are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the service.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `User ID whom owns the service.`,
+				},
+				resource.Attribute{
+					Name:        "gid",
+					Description: `Group ID which owns the service.`,
+				},
+				resource.Attribute{
+					Name:        "uname",
+					Description: `User Name whom owns the service.`,
+				},
+				resource.Attribute{
+					Name:        "gname",
+					Description: `Group Name which owns the service.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `State of the service.`,
+				},
+				resource.Attribute{
+					Name:        "networks",
+					Description: `Map with the service name of each networks along with the id of the network.`,
+				},
+				resource.Attribute{
+					Name:        "roles",
+					Description: `Array with roles information containing: ` + "`" + `cardinality` + "`" + `, ` + "`" + `name` + "`" + `, ` + "`" + `nodes` + "`" + ` and ` + "`" + `state` + "`" + `. ## Import To import an existing service #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_service" "importservice" {} ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_service.importservice 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the service.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `User ID whom owns the service.`,
+				},
+				resource.Attribute{
+					Name:        "gid",
+					Description: `Group ID which owns the service.`,
+				},
+				resource.Attribute{
+					Name:        "uname",
+					Description: `User Name whom owns the service.`,
+				},
+				resource.Attribute{
+					Name:        "gname",
+					Description: `Group Name which owns the service.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `State of the service.`,
+				},
+				resource.Attribute{
+					Name:        "networks",
+					Description: `Map with the service name of each networks along with the id of the network.`,
+				},
+				resource.Attribute{
+					Name:        "roles",
+					Description: `Array with roles information containing: ` + "`" + `cardinality` + "`" + `, ` + "`" + `name` + "`" + `, ` + "`" + `nodes` + "`" + ` and ` + "`" + `state` + "`" + `. ## Import To import an existing service #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_service" "importservice" {} ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_service.importservice 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "opennebula_service_template",
+			Category:         "Resources",
+			ShortDescription: `Provides an OpenNebula service template resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"service",
+				"template",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the service template.`,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `(Optional) Permissions applied on service template. Defaults to the UMASK in OpenNebula (in UNIX Format: owner-group-other => Use-Manage-Admin).`,
+				},
+				resource.Attribute{
+					Name:        "template",
+					Description: `(Optional) Service template definition in JSON format.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Set the id of the user owner of the newly created service template. The corresponding ` + "`" + `uname` + "`" + ` will be computed.`,
+				},
+				resource.Attribute{
+					Name:        "uname",
+					Description: `(Optional) Set the name of the user owner of the newly created service template. The corresponding ` + "`" + `uid` + "`" + ` will be computed.`,
+				},
+				resource.Attribute{
+					Name:        "gid",
+					Description: `(Optional) Set the id of the group owner of the newly created service template. The corresponding ` + "`" + `gname` + "`" + ` will be computed.`,
+				},
+				resource.Attribute{
+					Name:        "gname",
+					Description: `(Optional) Set the name of the group owner of the newly created service template. The corresponding ` + "`" + `gid` + "`" + ` will be computed. ## Attribute Reference The following attribute are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the service.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `User ID whom owns the service.`,
+				},
+				resource.Attribute{
+					Name:        "gid",
+					Description: `Group ID which owns the service.`,
+				},
+				resource.Attribute{
+					Name:        "uname",
+					Description: `User Name whom owns the service.`,
+				},
+				resource.Attribute{
+					Name:        "gname",
+					Description: `Group Name which owns the service. ## Import To import an existing service template #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_service_template" "importservicetmpl" {} ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_service_template.importservicetmpl 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the service.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `User ID whom owns the service.`,
+				},
+				resource.Attribute{
+					Name:        "gid",
+					Description: `Group ID which owns the service.`,
+				},
+				resource.Attribute{
+					Name:        "uname",
+					Description: `User Name whom owns the service.`,
+				},
+				resource.Attribute{
+					Name:        "gname",
+					Description: `Group Name which owns the service. ## Import To import an existing service template #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_service_template" "importservicetmpl" {} ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_service_template.importservicetmpl 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "opennebula_template",
 			Category:         "Resources",
 			ShortDescription: `Provides an OpenNebula template resource.`,
@@ -572,6 +765,124 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "opennebula_user",
+			Category:         "Resources",
+			ShortDescription: `Provides an OpenNebula user resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"user",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the user.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) Password of the user. It is required for all ` + "`" + `auth_driver` + "`" + ` excepted 'ldap'`,
+				},
+				resource.Attribute{
+					Name:        "auth_driver",
+					Description: `(Optional) Authentication Driver for User management. DEfaults to 'core'.`,
+				},
+				resource.Attribute{
+					Name:        "primary_group",
+					Description: `(Optional) Primary group ID of the User. Defaults to 0 (oneadmin).`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `(Optional) List of secondary groups ID of the user.`,
+				},
+				resource.Attribute{
+					Name:        "quotas",
+					Description: `(Optional) See [Quotas parameters](#quotas-parameters) below for details ### Quotas parameters ` + "`" + `quotas` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "datastore_quotas",
+					Description: `(Optional) List of datastore quotas. See [Datastore quotas parameters](#datastore-quotas-parameters) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "network_quotas",
+					Description: `(Optional) List of network quotas. See [Network quotas parameters](#network-quotas-parameters) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "image_quotas",
+					Description: `(Optional) List of image quotas. See [Image quotas parameters](#image-quotas-parameters) below for details`,
+				},
+				resource.Attribute{
+					Name:        "vm_quotas",
+					Description: `(Optional) See [Virtual Machine quotas parameters](#virtual-machine-quotas-parameters) below for details #### Datastore quotas parameters ` + "`" + `datastore` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) Datastore ID.`,
+				},
+				resource.Attribute{
+					Name:        "images",
+					Description: `(Optional) Maximum number of images allowed on the datastore. Defaults to ` + "`" + `default quota` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Optional) Total size in MB allowed on the datastore. Defaults to ` + "`" + `default quota` + "`" + ` #### Network quotas parameters ` + "`" + `network` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) Network ID.`,
+				},
+				resource.Attribute{
+					Name:        "leases",
+					Description: `(Optional) Maximum number of ip leases allowed on the network. Defaults to ` + "`" + `default quota` + "`" + ` #### Image quotas parameters ` + "`" + `image` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) Image ID.`,
+				},
+				resource.Attribute{
+					Name:        "running_vms",
+					Description: `(Optional) Maximum number of Virtual Machines in ` + "`" + `RUNNING` + "`" + ` state with this image ID attached. Defaults to ` + "`" + `default quota` + "`" + ` #### Virtual Machine quotas parameters ` + "`" + `vm` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `(Optional) Total of CPUs allowed. Defaults to ` + "`" + `default quota` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `(Optional) Total of memory (in MB) allowed. Defaults to ` + "`" + `default quota` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vms",
+					Description: `(Optional) Maximum number of Virtual Machines allowed. Defaults to ` + "`" + `default quota` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "running_cpu",
+					Description: `(Optional) Virtual Machine CPUs allowed in ` + "`" + `RUNNING` + "`" + ` state. Defaults to ` + "`" + `default quota` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "running_memory",
+					Description: `(Optional) Virtual Machine Memory (in MB) allowed in ` + "`" + `RUNNING` + "`" + ` state. Defaults to ` + "`" + `default quota` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "running_vms",
+					Description: `(Optional) Number of Virtual Machines allowed in ` + "`" + `RUNNING` + "`" + ` state. Defaults to ` + "`" + `default quota` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "system_disk_size",
+					Description: `(Optional) Maximum disk global size (in MB) allowed on a ` + "`" + `SYSTEM` + "`" + ` datastore. Defaults to ` + "`" + `default quota` + "`" + `. ## Attribute Reference The following attribute is exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the user. ## Import To import an existing user #134 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_user" "importuser" { name = "importeduser" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_user.importuser 134 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the user. ## Import To import an existing user #134 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_user" "importuser" { name = "importeduser" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_user.importuser 134 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "opennebula_virtual data center",
 			Category:         "Resources",
 			ShortDescription: `Provides an OpenNebula virtual data center resource.`,
@@ -724,11 +1035,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "image_id",
-					Description: `(Required) ID of the image to attach to the virtual machine.`,
+					Description: `(Optional) ID of the image to attach to the virtual machine. Defaults to -1 if not set: this skip Image attchment to the VM.`,
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `(Optional) Size (in MB) of the image attached to the virtual machine. Not possible to change a cloned image size.`,
+					Description: `(Optional) Size (in MB) of the image. If set, it will resize the image disk to the targeted size. The size must be greater than the current one.`,
 				},
 				resource.Attribute{
 					Name:        "target",
@@ -736,7 +1047,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "driver",
-					Description: `(Optional) OpenNebula image driver. Minimum 1 item. Maximum 8 items. ### NIC parameters ` + "`" + `nic` + "`" + ` supports the following arguments`,
+					Description: `(Optional) OpenNebula image driver. Minimum 1 item. Maximum 8 items. A disk update will be triggered in adding or removing a ` + "`" + `disk` + "`" + ` section, or by a modification of any of these parameters: ` + "`" + `image_id` + "`" + `, ` + "`" + `target` + "`" + `, ` + "`" + `driver` + "`" + ` ### NIC parameters ` + "`" + `nic` + "`" + ` supports the following arguments`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
@@ -755,12 +1066,16 @@ var (
 					Description: `(Optional) Nic model driver. Example: ` + "`" + `virtio` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "virtio_queues",
+					Description: `(Optional) Virtio multi-queue size. Only if ` + "`" + `model` + "`" + ` is ` + "`" + `virtio` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "physical_device",
 					Description: `(Optional) Physical device hosting the virtual network.`,
 				},
 				resource.Attribute{
 					Name:        "security_groups",
-					Description: `(Optional) List of security group IDs to use on the virtual network. Minimum 1 item. Maximum 8 items. ### VM group parameters ` + "`" + `vmgroup` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) List of security group IDs to use on the virtual network. Minimum 1 item. Maximum 8 items. A NIC update will be triggered in adding or removing a ` + "`" + `nic` + "`" + ` section, or by a modification of any of these parameters: ` + "`" + `network_id` + "`" + `, ` + "`" + `ip` + "`" + `, ` + "`" + `mac` + "`" + `, ` + "`" + `security_groups` + "`" + `, ` + "`" + `physical_device` + "`" + ` ### VM group parameters ` + "`" + `vmgroup` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "vmgroup_id",
@@ -800,7 +1115,119 @@ var (
 				},
 				resource.Attribute{
 					Name:        "lcmstate",
-					Description: `LCM State of the virtual machine. ## Instantiate from a template When the attribute ` + "`" + `template_id` + "`" + ` is set, here is the behavior: For all parameters excepted context: parameters present in VM overrides parameters defined in template. For context: it merges them. ## Import To import an existing virtual machine #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_machine" "importvm" { name = "importedvm" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_machine.importvm 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `LCM State of the virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "template_disk",
+					Description: `when ` + "`" + `template_id` + "`" + ` is used and the template define some disks, this contains the template disks description.`,
+				},
+				resource.Attribute{
+					Name:        "template_nic",
+					Description: `when ` + "`" + `template_id` + "`" + ` is used and the template define some NICs, this contains the template NICs description. ### Template NIC`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `ID of the image attached to the virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "nic_id",
+					Description: `nic attachment identifier`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `network name`,
+				},
+				resource.Attribute{
+					Name:        "computed_ip",
+					Description: `IP of the virtual machine on this network.`,
+				},
+				resource.Attribute{
+					Name:        "computed_mac",
+					Description: `MAC of the virtual machine on this network.`,
+				},
+				resource.Attribute{
+					Name:        "computed_model",
+					Description: `Nic model driver.`,
+				},
+				resource.Attribute{
+					Name:        "computed_virtio_queues",
+					Description: `Virtio multi-queue size.`,
+				},
+				resource.Attribute{
+					Name:        "computed_physical_device",
+					Description: `Physical device hosting the virtual network.`,
+				},
+				resource.Attribute{
+					Name:        "computed_security_groups",
+					Description: `List of security group IDs to use on the virtual. ### Template disk`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `ID of the image attached to the virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "disk_id",
+					Description: `disk attachment identifier`,
+				},
+				resource.Attribute{
+					Name:        "computed_size",
+					Description: `Size (in MB) of the image attached to the virtual machine. Not possible to change a cloned image size.`,
+				},
+				resource.Attribute{
+					Name:        "computed_target",
+					Description: `Target name device on the virtual machine. Depends of the image ` + "`" + `dev_prefix` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "computed_driver",
+					Description: `OpenNebula image driver. ### NIC`,
+				},
+				resource.Attribute{
+					Name:        "nic_id",
+					Description: `nic attachment identifier`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `network name`,
+				},
+				resource.Attribute{
+					Name:        "computed_ip",
+					Description: `IP of the virtual machine on this network.`,
+				},
+				resource.Attribute{
+					Name:        "computed_mac",
+					Description: `MAC of the virtual machine on this network.`,
+				},
+				resource.Attribute{
+					Name:        "computed_model",
+					Description: `Nic model driver.`,
+				},
+				resource.Attribute{
+					Name:        "computed_virtio_queues",
+					Description: `Virtio multi-queue size.`,
+				},
+				resource.Attribute{
+					Name:        "computed_physical_device",
+					Description: `Physical device hosting the virtual network.`,
+				},
+				resource.Attribute{
+					Name:        "computed_security_groups",
+					Description: `List of security group IDs to use on the virtual. ### Disk`,
+				},
+				resource.Attribute{
+					Name:        "disk_id",
+					Description: `disk attachment identifier`,
+				},
+				resource.Attribute{
+					Name:        "computed_size",
+					Description: `Size (in MB) of the image attached to the virtual machine. Not possible to change a cloned image size.`,
+				},
+				resource.Attribute{
+					Name:        "computed_target",
+					Description: `Target name device on the virtual machine. Depends of the image ` + "`" + `dev_prefix` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "computed_driver",
+					Description: `OpenNebula image driver. ## Instantiate from a template When the attribute ` + "`" + `template_id` + "`" + ` is set, here is the behavior: For all parameters excepted context: parameters present in VM overrides parameters defined in template. For context: it merges them. For disks and NICs defined in the template, if they are not overriden, are described in ` + "`" + `template_disk` + "`" + ` and ` + "`" + `template_nic` + "`" + ` attributes of the instantiated VM and are not modifiable anymore. ## Import To import an existing virtual machine #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_machine" "importvm" { name = "importedvm" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_machine.importvm 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -834,7 +1261,119 @@ var (
 				},
 				resource.Attribute{
 					Name:        "lcmstate",
-					Description: `LCM State of the virtual machine. ## Instantiate from a template When the attribute ` + "`" + `template_id` + "`" + ` is set, here is the behavior: For all parameters excepted context: parameters present in VM overrides parameters defined in template. For context: it merges them. ## Import To import an existing virtual machine #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_machine" "importvm" { name = "importedvm" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_machine.importvm 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `LCM State of the virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "template_disk",
+					Description: `when ` + "`" + `template_id` + "`" + ` is used and the template define some disks, this contains the template disks description.`,
+				},
+				resource.Attribute{
+					Name:        "template_nic",
+					Description: `when ` + "`" + `template_id` + "`" + ` is used and the template define some NICs, this contains the template NICs description. ### Template NIC`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `ID of the image attached to the virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "nic_id",
+					Description: `nic attachment identifier`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `network name`,
+				},
+				resource.Attribute{
+					Name:        "computed_ip",
+					Description: `IP of the virtual machine on this network.`,
+				},
+				resource.Attribute{
+					Name:        "computed_mac",
+					Description: `MAC of the virtual machine on this network.`,
+				},
+				resource.Attribute{
+					Name:        "computed_model",
+					Description: `Nic model driver.`,
+				},
+				resource.Attribute{
+					Name:        "computed_virtio_queues",
+					Description: `Virtio multi-queue size.`,
+				},
+				resource.Attribute{
+					Name:        "computed_physical_device",
+					Description: `Physical device hosting the virtual network.`,
+				},
+				resource.Attribute{
+					Name:        "computed_security_groups",
+					Description: `List of security group IDs to use on the virtual. ### Template disk`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `ID of the image attached to the virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "disk_id",
+					Description: `disk attachment identifier`,
+				},
+				resource.Attribute{
+					Name:        "computed_size",
+					Description: `Size (in MB) of the image attached to the virtual machine. Not possible to change a cloned image size.`,
+				},
+				resource.Attribute{
+					Name:        "computed_target",
+					Description: `Target name device on the virtual machine. Depends of the image ` + "`" + `dev_prefix` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "computed_driver",
+					Description: `OpenNebula image driver. ### NIC`,
+				},
+				resource.Attribute{
+					Name:        "nic_id",
+					Description: `nic attachment identifier`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `network name`,
+				},
+				resource.Attribute{
+					Name:        "computed_ip",
+					Description: `IP of the virtual machine on this network.`,
+				},
+				resource.Attribute{
+					Name:        "computed_mac",
+					Description: `MAC of the virtual machine on this network.`,
+				},
+				resource.Attribute{
+					Name:        "computed_model",
+					Description: `Nic model driver.`,
+				},
+				resource.Attribute{
+					Name:        "computed_virtio_queues",
+					Description: `Virtio multi-queue size.`,
+				},
+				resource.Attribute{
+					Name:        "computed_physical_device",
+					Description: `Physical device hosting the virtual network.`,
+				},
+				resource.Attribute{
+					Name:        "computed_security_groups",
+					Description: `List of security group IDs to use on the virtual. ### Disk`,
+				},
+				resource.Attribute{
+					Name:        "disk_id",
+					Description: `disk attachment identifier`,
+				},
+				resource.Attribute{
+					Name:        "computed_size",
+					Description: `Size (in MB) of the image attached to the virtual machine. Not possible to change a cloned image size.`,
+				},
+				resource.Attribute{
+					Name:        "computed_target",
+					Description: `Target name device on the virtual machine. Depends of the image ` + "`" + `dev_prefix` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "computed_driver",
+					Description: `OpenNebula image driver. ## Instantiate from a template When the attribute ` + "`" + `template_id` + "`" + ` is set, here is the behavior: For all parameters excepted context: parameters present in VM overrides parameters defined in template. For context: it merges them. For disks and NICs defined in the template, if they are not overriden, are described in ` + "`" + `template_disk` + "`" + ` and ` + "`" + `template_nic` + "`" + ` attributes of the instantiated VM and are not modifiable anymore. ## Import To import an existing virtual machine #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_machine" "importvm" { name = "importedvm" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_machine.importvm 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1035,12 +1574,16 @@ var (
 					Description: `(Optional) List of address ranges. See [Address Range Parameters](#address-range-parameters) below for more details. Conflicts with ` + "`" + `reservation_vnet` + "`" + ` and ` + "`" + `reservation_size` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "hold_ips",
+					Description: `(Optional) Hold Ips from any Address Range of the Virtual Network. The IP must be available to be held` + "`" + `. Conflicts with ` + "`" + `reservation_vnet` + "`" + ` and ` + "`" + `reservation_size` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "hold_size",
-					Description: `(Optional) Carve a network reservation of this size from the reservation starting from ` + "`" + `ip_hold` + "`" + `. Conflicts with ` + "`" + `reservation_vnet` + "`" + ` and ` + "`" + `reservation_size` + "`" + `.`,
+					Description: `(Deprecated) Carve a network reservation of this size from the reservation starting from ` + "`" + `ip_hold` + "`" + `. Conflicts with ` + "`" + `reservation_vnet` + "`" + ` and ` + "`" + `reservation_size` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ip_hold",
-					Description: `(Optional) Start IP of the range to be held. Conflicts with ` + "`" + `reservation_vnet` + "`" + ` and ` + "`" + `reservation_size` + "`" + `.`,
+					Description: `(Deprecated) Start IP of the range to be held. Conflicts with ` + "`" + `reservation_vnet` + "`" + ` and ` + "`" + `reservation_size` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "group",
@@ -1130,11 +1673,14 @@ var (
 		"opennebula_group":                 1,
 		"opennebula_image":                 2,
 		"opennebula_security group":        3,
-		"opennebula_template":              4,
-		"opennebula_virtual data center":   5,
-		"opennebula_virtual machine":       6,
-		"opennebula_virtual machine group": 7,
-		"opennebula_virtual network":       8,
+		"opennebula_service":               4,
+		"opennebula_service_template":      5,
+		"opennebula_template":              6,
+		"opennebula_user":                  7,
+		"opennebula_virtual data center":   8,
+		"opennebula_virtual machine":       9,
+		"opennebula_virtual machine group": 10,
+		"opennebula_virtual network":       11,
 	}
 )
 

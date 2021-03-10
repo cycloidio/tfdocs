@@ -11,6 +11,90 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "tfe_agent_pool",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an agent pool.`,
+			Description: `
+
+Use this data source to get information about an agent pool.
+
+~> **NOTE:** This data source requires using the provider with Terraform Cloud and a Terraform Cloud 
+for Business account. 
+[Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the agent pool.`,
+				},
+				resource.Attribute{
+					Name:        "organization",
+					Description: `(Required) Name of the organization. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The agent pool ID.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The agent pool ID.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tfe_ip_ranges",
+			Category:         "Data Sources",
+			ShortDescription: `Get Terraform Cloud/Enterprise's IP ranges of its services`,
+			Description: `
+
+Use this data source to retrieve a list of Terraform Cloud's IP ranges. For more information about these IP ranges, view our [documentation about Terraform Cloud IP Ranges](https://www.terraform.io/docs/cloud/architectural-details/ip-ranges.html).
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "api",
+					Description: `The list of IP ranges in CIDR notation used for connections from user site to Terraform Cloud APIs.`,
+				},
+				resource.Attribute{
+					Name:        "notifications",
+					Description: `The list of IP ranges in CIDR notation used for notifications.`,
+				},
+				resource.Attribute{
+					Name:        "sentinel",
+					Description: `The list of IP ranges in CIDR notation used for outbound requests from Sentinel policies.`,
+				},
+				resource.Attribute{
+					Name:        "vcs",
+					Description: `The list of IP ranges in CIDR notation used for connecting to VCS providers.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "api",
+					Description: `The list of IP ranges in CIDR notation used for connections from user site to Terraform Cloud APIs.`,
+				},
+				resource.Attribute{
+					Name:        "notifications",
+					Description: `The list of IP ranges in CIDR notation used for notifications.`,
+				},
+				resource.Attribute{
+					Name:        "sentinel",
+					Description: `The list of IP ranges in CIDR notation used for outbound requests from Sentinel policies.`,
+				},
+				resource.Attribute{
+					Name:        "vcs",
+					Description: `The list of IP ranges in CIDR notation used for connecting to VCS providers.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "tfe_oauth_client",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an OAuth client.`,
@@ -284,6 +368,10 @@ Use this data source to get information about a workspace.
 					Description: `The workspace ID.`,
 				},
 				resource.Attribute{
+					Name:        "allow_destroy_plan",
+					Description: `Indicates whether destroy plans can be queued on the workspace.`,
+				},
+				resource.Attribute{
 					Name:        "auto_apply",
 					Description: `Indicates whether to automatically apply changes when a Terraform plan is successful.`,
 				},
@@ -297,7 +385,7 @@ Use this data source to get information about a workspace.
 				},
 				resource.Attribute{
 					Name:        "queue_all_runs",
-					Description: `Indicates whether all runs should be queued.`,
+					Description: `Indicates whether the workspace will automatically perform runs in response to webhooks immediately after its creation. If ` + "`" + `false` + "`" + `, an initial run must be manually queued to enable future automatic runs.`,
 				},
 				resource.Attribute{
 					Name:        "speculative_enabled",
@@ -325,7 +413,7 @@ Use this data source to get information about a workspace.
 				},
 				resource.Attribute{
 					Name:        "identifier",
-					Description: `A reference to your VCS repository in the format ` + "`" + `:org/:repo` + "`" + ` where ` + "`" + `:org` + "`" + ` and ` + "`" + `:repo` + "`" + ` refer to the organization and repository in your VCS provider.`,
+					Description: `A reference to your VCS repository in the format ` + "`" + `<organization>/<repository>` + "`" + ` where ` + "`" + `<organization>` + "`" + ` and ` + "`" + `<repository>` + "`" + ` refer to the organization and repository in your VCS provider.`,
 				},
 				resource.Attribute{
 					Name:        "ingress_submodules",
@@ -342,6 +430,10 @@ Use this data source to get information about a workspace.
 					Description: `The workspace ID.`,
 				},
 				resource.Attribute{
+					Name:        "allow_destroy_plan",
+					Description: `Indicates whether destroy plans can be queued on the workspace.`,
+				},
+				resource.Attribute{
 					Name:        "auto_apply",
 					Description: `Indicates whether to automatically apply changes when a Terraform plan is successful.`,
 				},
@@ -355,7 +447,7 @@ Use this data source to get information about a workspace.
 				},
 				resource.Attribute{
 					Name:        "queue_all_runs",
-					Description: `Indicates whether all runs should be queued.`,
+					Description: `Indicates whether the workspace will automatically perform runs in response to webhooks immediately after its creation. If ` + "`" + `false` + "`" + `, an initial run must be manually queued to enable future automatic runs.`,
 				},
 				resource.Attribute{
 					Name:        "speculative_enabled",
@@ -383,7 +475,7 @@ Use this data source to get information about a workspace.
 				},
 				resource.Attribute{
 					Name:        "identifier",
-					Description: `A reference to your VCS repository in the format ` + "`" + `:org/:repo` + "`" + ` where ` + "`" + `:org` + "`" + ` and ` + "`" + `:repo` + "`" + ` refer to the organization and repository in your VCS provider.`,
+					Description: `A reference to your VCS repository in the format ` + "`" + `<organization>/<repository>` + "`" + ` where ` + "`" + `<organization>` + "`" + ` and ` + "`" + `<repository>` + "`" + ` refer to the organization and repository in your VCS provider.`,
 				},
 				resource.Attribute{
 					Name:        "ingress_submodules",
@@ -399,10 +491,10 @@ Use this data source to get information about a workspace.
 			Name:             "",
 			Type:             "tfe_workspace_ids",
 			Category:         "Data Sources",
-			ShortDescription: `Get information on (external) workspace IDs.`,
+			ShortDescription: `Get information on workspace IDs.`,
 			Description: `
 
-Use this data source to get a map of (external) workspace IDs.
+Use this data source to get a map of workspace IDs.
 
 `,
 			Keywords: []string{},
@@ -420,7 +512,7 @@ Use this data source to get a map of (external) workspace IDs.
 					Description: `A map of workspace names and their full names, which look like ` + "`" + `<ORGANIZATION>/<WORKSPACE>` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "external_ids",
+					Name:        "ids",
 					Description: `A map of workspace names and their opaque, immutable IDs, which look like ` + "`" + `ws-<RANDOM STRING>` + "`" + `.`,
 				},
 			},
@@ -430,7 +522,7 @@ Use this data source to get a map of (external) workspace IDs.
 					Description: `A map of workspace names and their full names, which look like ` + "`" + `<ORGANIZATION>/<WORKSPACE>` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "external_ids",
+					Name:        "ids",
 					Description: `A map of workspace names and their opaque, immutable IDs, which look like ` + "`" + `ws-<RANDOM STRING>` + "`" + `.`,
 				},
 			},
@@ -439,13 +531,15 @@ Use this data source to get a map of (external) workspace IDs.
 
 	dataSourcesMap = map[string]int{
 
-		"tfe_oauth_client":            0,
-		"tfe_organization_membership": 1,
-		"tfe_ssh_key":                 2,
-		"tfe_team":                    3,
-		"tfe_team_access":             4,
-		"tfe_workspace":               5,
-		"tfe_workspace_ids":           6,
+		"tfe_agent_pool":              0,
+		"tfe_ip_ranges":               1,
+		"tfe_oauth_client":            2,
+		"tfe_organization_membership": 3,
+		"tfe_ssh_key":                 4,
+		"tfe_team":                    5,
+		"tfe_team_access":             6,
+		"tfe_workspace":               7,
+		"tfe_workspace_ids":           8,
 	}
 )
 

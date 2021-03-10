@@ -18,6 +18,18 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "name",
+					Description: `The name on your Vultr account.`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `The email address on your Vultr account.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `The access control list on your Vultr account.`,
+				},
+				resource.Attribute{
 					Name:        "balance",
 					Description: `The current balance on your Vultr account.`,
 				},
@@ -36,6 +48,18 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "name",
+					Description: `The name on your Vultr account.`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `The email address on your Vultr account.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `The access control list on your Vultr account.`,
+				},
+				resource.Attribute{
 					Name:        "balance",
 					Description: `The current balance on your Vultr account.`,
 				},
@@ -50,42 +74,6 @@ var (
 				resource.Attribute{
 					Name:        "last_payment_amount",
 					Description: `The amount of the last payment made on your Vultr account.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vultr_api_key",
-			Category:         "Data Sources",
-			ShortDescription: `Get information about your Vultr API key.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `The name associated with your Vultr API key.`,
-				},
-				resource.Attribute{
-					Name:        "email",
-					Description: `The email associated with your Vultr API key.`,
-				},
-				resource.Attribute{
-					Name:        "acl",
-					Description: `The access control list for your Vultr API key.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `The name associated with your Vultr API key.`,
-				},
-				resource.Attribute{
-					Name:        "email",
-					Description: `The email associated with your Vultr API key.`,
-				},
-				resource.Attribute{
-					Name:        "acl",
-					Description: `The access control list for your Vultr API key.`,
 				},
 			},
 		},
@@ -158,7 +146,7 @@ var (
 					Description: `One or more values filter with. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "BACKUPID",
+					Name:        "id",
 					Description: `The ID of the backup`,
 				},
 				resource.Attribute{
@@ -180,7 +168,7 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "BACKUPID",
+					Name:        "id",
 					Description: `The ID of the backup`,
 				},
 				resource.Attribute{
@@ -222,16 +210,16 @@ var (
 					Description: `One or more values filter with. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `The name of the plan.`,
-				},
-				resource.Attribute{
 					Name:        "cpu_count",
 					Description: `The number of CPUs available on the plan.`,
 				},
 				resource.Attribute{
 					Name:        "cpu_model",
 					Description: `The CPU model of the plan.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_threads",
+					Description: `The number of CPU threads.`,
 				},
 				resource.Attribute{
 					Name:        "ram",
@@ -242,38 +230,34 @@ var (
 					Description: `The description of the disk(s) on the plan.`,
 				},
 				resource.Attribute{
-					Name:        "bandwidth_tb",
-					Description: `The bandwidth available on the plan in TB.`,
+					Name:        "bandwidth",
+					Description: `The bandwidth available on the plan.`,
 				},
 				resource.Attribute{
-					Name:        "price_per_month",
+					Name:        "monthly_cost",
 					Description: `The price per month of the plan in USD.`,
 				},
 				resource.Attribute{
-					Name:        "plan_type",
+					Name:        "type",
 					Description: `The type of plan it is.`,
 				},
 				resource.Attribute{
-					Name:        "available_locations",
-					Description: `A list of DCIDs (used as ` + "`" + `region_id` + "`" + ` in Terraform) where the plan can be deployed.`,
-				},
-				resource.Attribute{
-					Name:        "deprecated",
-					Description: `Indicates that the plan will be going away in the future. New deployments of it will still be accepted, but you should begin to transition away from its usage.`,
+					Name:        "locations",
+					Description: `A list of DCIDs (used as ` + "`" + `region` + "`" + ` in Terraform) where the plan can be deployed.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `The name of the plan.`,
-				},
-				resource.Attribute{
 					Name:        "cpu_count",
 					Description: `The number of CPUs available on the plan.`,
 				},
 				resource.Attribute{
 					Name:        "cpu_model",
 					Description: `The CPU model of the plan.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_threads",
+					Description: `The number of CPU threads.`,
 				},
 				resource.Attribute{
 					Name:        "ram",
@@ -284,24 +268,20 @@ var (
 					Description: `The description of the disk(s) on the plan.`,
 				},
 				resource.Attribute{
-					Name:        "bandwidth_tb",
-					Description: `The bandwidth available on the plan in TB.`,
+					Name:        "bandwidth",
+					Description: `The bandwidth available on the plan.`,
 				},
 				resource.Attribute{
-					Name:        "price_per_month",
+					Name:        "monthly_cost",
 					Description: `The price per month of the plan in USD.`,
 				},
 				resource.Attribute{
-					Name:        "plan_type",
+					Name:        "type",
 					Description: `The type of plan it is.`,
 				},
 				resource.Attribute{
-					Name:        "available_locations",
-					Description: `A list of DCIDs (used as ` + "`" + `region_id` + "`" + ` in Terraform) where the plan can be deployed.`,
-				},
-				resource.Attribute{
-					Name:        "deprecated",
-					Description: `Indicates that the plan will be going away in the future. New deployments of it will still be accepted, but you should begin to transition away from its usage.`,
+					Name:        "locations",
+					Description: `A list of DCIDs (used as ` + "`" + `region` + "`" + ` in Terraform) where the plan can be deployed.`,
 				},
 			},
 		},
@@ -350,8 +330,8 @@ var (
 					Description: `The location of the server.`,
 				},
 				resource.Attribute{
-					Name:        "region_id",
-					Description: `The region ID (` + "`" + `DCID` + "`" + ` in the Vultr API) of the server.`,
+					Name:        "region",
+					Description: `The region ID of the server.`,
 				},
 				resource.Attribute{
 					Name:        "default_password",
@@ -374,7 +354,7 @@ var (
 					Description: `The server's IPv4 gateway.`,
 				},
 				resource.Attribute{
-					Name:        "plan_id",
+					Name:        "plan",
 					Description: `The server's plan ID.`,
 				},
 				resource.Attribute{
@@ -424,8 +404,8 @@ var (
 					Description: `The location of the server.`,
 				},
 				resource.Attribute{
-					Name:        "region_id",
-					Description: `The region ID (` + "`" + `DCID` + "`" + ` in the Vultr API) of the server.`,
+					Name:        "region",
+					Description: `The region ID of the server.`,
 				},
 				resource.Attribute{
 					Name:        "default_password",
@@ -448,7 +428,7 @@ var (
 					Description: `The server's IPv4 gateway.`,
 				},
 				resource.Attribute{
-					Name:        "plan_id",
+					Name:        "plan",
 					Description: `The server's plan ID.`,
 				},
 				resource.Attribute{
@@ -498,7 +478,7 @@ var (
 					Description: `The label of the block storage subscription.`,
 				},
 				resource.Attribute{
-					Name:        "cost_per_month",
+					Name:        "cost",
 					Description: `The cost per month of the block storage subscription in USD.`,
 				},
 				resource.Attribute{
@@ -510,11 +490,11 @@ var (
 					Description: `The size of the block storage subscription in GB.`,
 				},
 				resource.Attribute{
-					Name:        "region_id",
-					Description: `The region ID (` + "`" + `DCID` + "`" + ` in the Vultr API) of the block storage subscription.`,
+					Name:        "region",
+					Description: `The region ID of the block storage subscription.`,
 				},
 				resource.Attribute{
-					Name:        "attached_to_vps",
+					Name:        "attached_to_instance",
 					Description: `The ID of the VPS the block storage subscription is attached to.`,
 				},
 				resource.Attribute{
@@ -528,7 +508,7 @@ var (
 					Description: `The label of the block storage subscription.`,
 				},
 				resource.Attribute{
-					Name:        "cost_per_month",
+					Name:        "cost",
 					Description: `The cost per month of the block storage subscription in USD.`,
 				},
 				resource.Attribute{
@@ -540,11 +520,11 @@ var (
 					Description: `The size of the block storage subscription in GB.`,
 				},
 				resource.Attribute{
-					Name:        "region_id",
-					Description: `The region ID (` + "`" + `DCID` + "`" + ` in the Vultr API) of the block storage subscription.`,
+					Name:        "region",
+					Description: `The region ID of the block storage subscription.`,
 				},
 				resource.Attribute{
-					Name:        "attached_to_vps",
+					Name:        "attached_to_instance",
 					Description: `The ID of the VPS the block storage subscription is attached to.`,
 				},
 				resource.Attribute{
@@ -659,6 +639,294 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vultr_instance",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Vultr instance.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Required) Query parameters for finding instances. The ` + "`" + `filter` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Attribute name to filter with.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `One or more values filter with. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "os",
+					Description: `The operating system of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "ram",
+					Description: `The amount of memory available on the instance in MB.`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `The description of the disk(s) on the server.`,
+				},
+				resource.Attribute{
+					Name:        "main_ip",
+					Description: `The server's main IP address.`,
+				},
+				resource.Attribute{
+					Name:        "vcpu_count",
+					Description: `The number of virtual CPUs available on the server.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region ID of the server.`,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `The date the server was added to your Vultr account.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_bandwidth",
+					Description: `The server's allowed bandwidth usage in GB.`,
+				},
+				resource.Attribute{
+					Name:        "netmask_v4",
+					Description: `The server's IPv4 netmask.`,
+				},
+				resource.Attribute{
+					Name:        "gateway_v4",
+					Description: `The server's IPv4 gateway.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the server's subscription.`,
+				},
+				resource.Attribute{
+					Name:        "power_status",
+					Description: `Whether the server is powered on or not.`,
+				},
+				resource.Attribute{
+					Name:        "server_status",
+					Description: `A more detailed server status (none, locked, installingbooting, isomounting, ok).`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `The server's plan ID.`,
+				},
+				resource.Attribute{
+					Name:        "v6_network",
+					Description: `The IPv6 subnet.`,
+				},
+				resource.Attribute{
+					Name:        "v6_main_ip",
+					Description: `The main IPv6 network address.`,
+				},
+				resource.Attribute{
+					Name:        "v6_network_size",
+					Description: `The IPv6 network size in bits.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The server's label.`,
+				},
+				resource.Attribute{
+					Name:        "internal_ip",
+					Description: `The server's internal IP address.`,
+				},
+				resource.Attribute{
+					Name:        "kvm",
+					Description: `The server's current KVM URL. This URL will change periodically. It is not advised to cache this value.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `The server's tag.`,
+				},
+				resource.Attribute{
+					Name:        "os_id",
+					Description: `The server's operating system ID.`,
+				},
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `The server's application ID.`,
+				},
+				resource.Attribute{
+					Name:        "firewall_group_id",
+					Description: `The ID of the firewall group applied to this server.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Array of which features are enabled.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "os",
+					Description: `The operating system of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "ram",
+					Description: `The amount of memory available on the instance in MB.`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `The description of the disk(s) on the server.`,
+				},
+				resource.Attribute{
+					Name:        "main_ip",
+					Description: `The server's main IP address.`,
+				},
+				resource.Attribute{
+					Name:        "vcpu_count",
+					Description: `The number of virtual CPUs available on the server.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region ID of the server.`,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `The date the server was added to your Vultr account.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_bandwidth",
+					Description: `The server's allowed bandwidth usage in GB.`,
+				},
+				resource.Attribute{
+					Name:        "netmask_v4",
+					Description: `The server's IPv4 netmask.`,
+				},
+				resource.Attribute{
+					Name:        "gateway_v4",
+					Description: `The server's IPv4 gateway.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the server's subscription.`,
+				},
+				resource.Attribute{
+					Name:        "power_status",
+					Description: `Whether the server is powered on or not.`,
+				},
+				resource.Attribute{
+					Name:        "server_status",
+					Description: `A more detailed server status (none, locked, installingbooting, isomounting, ok).`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `The server's plan ID.`,
+				},
+				resource.Attribute{
+					Name:        "v6_network",
+					Description: `The IPv6 subnet.`,
+				},
+				resource.Attribute{
+					Name:        "v6_main_ip",
+					Description: `The main IPv6 network address.`,
+				},
+				resource.Attribute{
+					Name:        "v6_network_size",
+					Description: `The IPv6 network size in bits.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The server's label.`,
+				},
+				resource.Attribute{
+					Name:        "internal_ip",
+					Description: `The server's internal IP address.`,
+				},
+				resource.Attribute{
+					Name:        "kvm",
+					Description: `The server's current KVM URL. This URL will change periodically. It is not advised to cache this value.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `The server's tag.`,
+				},
+				resource.Attribute{
+					Name:        "os_id",
+					Description: `The server's operating system ID.`,
+				},
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `The server's application ID.`,
+				},
+				resource.Attribute{
+					Name:        "firewall_group_id",
+					Description: `The ID of the firewall group applied to this server.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Array of which features are enabled.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vultr_instance_ipv4",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Vultr instance IPv4.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Required) Query parameters for finding IPv4 address. The ` + "`" + `filter` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Attribute name to filter with.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `One or more values to filter with. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `The ID of the instance the IPv4 address.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `The IPv4 address in canonical format.`,
+				},
+				resource.Attribute{
+					Name:        "gateway",
+					Description: `The gateway IP address.`,
+				},
+				resource.Attribute{
+					Name:        "netmask",
+					Description: `The IPv4 netmask in dot-decimal notation.`,
+				},
+				resource.Attribute{
+					Name:        "reverse",
+					Description: `The reverse DNS information for this IP address.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `The ID of the instance the IPv4 address.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `The IPv4 address in canonical format.`,
+				},
+				resource.Attribute{
+					Name:        "gateway",
+					Description: `The gateway IP address.`,
+				},
+				resource.Attribute{
+					Name:        "netmask",
+					Description: `The IPv4 netmask in dot-decimal notation.`,
+				},
+				resource.Attribute{
+					Name:        "reverse",
+					Description: `The reverse DNS information for this IP address.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vultr_iso_private",
 			Category:         "Data Sources",
 			ShortDescription: `Get information about an ISO file uploaded to your Vultr account.`,
@@ -757,6 +1025,10 @@ var (
 					Name:        "description",
 					Description: `The description of the ISO file.`,
 				},
+				resource.Attribute{
+					Name:        "md5sum",
+					Description: `The MD5Sum of the ISO file.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -766,6 +1038,10 @@ var (
 				resource.Attribute{
 					Name:        "description",
 					Description: `The description of the ISO file.`,
+				},
+				resource.Attribute{
+					Name:        "md5sum",
+					Description: `The MD5Sum of the ISO file.`,
 				},
 			},
 		},
@@ -790,7 +1066,7 @@ var (
 					Description: `One or more values filter with. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "region_id",
+					Name:        "region",
 					Description: `The region your load balancer is deployed in.`,
 				},
 				resource.Attribute{
@@ -843,7 +1119,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `The protocol used to traffic requests to the load balancer. Possible values are ` + "`" + `http` + "`" + `, or ` + "`" + `tcp` + "`" + `.`,
+					Description: `The protocol used to traffic requests to the load balancer. Possible values are "http", "https", or "tcp".`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -888,7 +1164,7 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "region_id",
+					Name:        "region",
 					Description: `The region your load balancer is deployed in.`,
 				},
 				resource.Attribute{
@@ -941,7 +1217,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `The protocol used to traffic requests to the load balancer. Possible values are ` + "`" + `http` + "`" + `, or ` + "`" + `tcp` + "`" + `.`,
+					Description: `The protocol used to traffic requests to the load balancer. Possible values are "http", "https", or "tcp".`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -987,15 +1263,15 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vultr_network",
+			Type:             "vultr_object_storage",
 			Category:         "Data Sources",
-			ShortDescription: `Get information about a Vultr private network.`,
+			ShortDescription: `Get information about a Object Storage subscription on Vultr.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `(Required) Query parameters for finding private networks. The ` + "`" + `filter` + "`" + ` block supports the following:`,
+					Description: `(Required) Query parameters for finding operating systems. The ` + "`" + `filter` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1006,38 +1282,78 @@ var (
 					Description: `One or more values filter with. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "region_id",
-					Description: `The ID of the region that the private network is in.`,
+					Name:        "label",
+					Description: `The label of the object storage subscription.`,
 				},
 				resource.Attribute{
-					Name:        "cidr_block",
-					Description: `The CIDR block of the private network.`,
+					Name:        "location",
+					Description: `The location which this subscription resides in.`,
 				},
 				resource.Attribute{
-					Name:        "description",
-					Description: `The private network's description.`,
+					Name:        "cluster_id",
+					Description: `The identifying cluster ID.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region ID of the object storage subscription.`,
+				},
+				resource.Attribute{
+					Name:        "s3_access_key",
+					Description: `Your access key.`,
+				},
+				resource.Attribute{
+					Name:        "s3_hostname",
+					Description: `The hostname for this subscription.`,
+				},
+				resource.Attribute{
+					Name:        "s3_secret_key",
+					Description: `Your secret key.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Current status of this object storage subscription.`,
 				},
 				resource.Attribute{
 					Name:        "date_created",
-					Description: `The date the private network was added to your Vultr account.`,
+					Description: `Date of creation for the object storage subscription.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "region_id",
-					Description: `The ID of the region that the private network is in.`,
+					Name:        "label",
+					Description: `The label of the object storage subscription.`,
 				},
 				resource.Attribute{
-					Name:        "cidr_block",
-					Description: `The CIDR block of the private network.`,
+					Name:        "location",
+					Description: `The location which this subscription resides in.`,
 				},
 				resource.Attribute{
-					Name:        "description",
-					Description: `The private network's description.`,
+					Name:        "cluster_id",
+					Description: `The identifying cluster ID.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region ID of the object storage subscription.`,
+				},
+				resource.Attribute{
+					Name:        "s3_access_key",
+					Description: `Your access key.`,
+				},
+				resource.Attribute{
+					Name:        "s3_hostname",
+					Description: `The hostname for this subscription.`,
+				},
+				resource.Attribute{
+					Name:        "s3_secret_key",
+					Description: `Your secret key.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Current status of this object storage subscription.`,
 				},
 				resource.Attribute{
 					Name:        "date_created",
-					Description: `The date the private network was added to your Vultr account.`,
+					Description: `Date of creation for the object storage subscription.`,
 				},
 			},
 		},
@@ -1073,10 +1389,6 @@ var (
 					Name:        "family",
 					Description: `The family of the operating system.`,
 				},
-				resource.Attribute{
-					Name:        "windows",
-					Description: `If true, a Windows license will be included with the instance, which will increase the cost.`,
-				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -1090,10 +1402,6 @@ var (
 				resource.Attribute{
 					Name:        "family",
 					Description: `The family of the operating system.`,
-				},
-				resource.Attribute{
-					Name:        "windows",
-					Description: `If true, a Windows license will be included with the instance, which will increase the cost.`,
 				},
 			},
 		},
@@ -1118,10 +1426,6 @@ var (
 					Description: `One or more values filter with. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `The name of the plan.`,
-				},
-				resource.Attribute{
 					Name:        "vcpu_count",
 					Description: `The number of virtual CPUs available on the plan.`,
 				},
@@ -1135,35 +1439,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bandwidth",
-					Description: `The bandwidth available on the plan in TB.`,
-				},
-				resource.Attribute{
-					Name:        "bandwidth_gb",
 					Description: `The bandwidth available on the plan in GB.`,
 				},
 				resource.Attribute{
-					Name:        "price_per_month",
+					Name:        "monthly_cost",
 					Description: `The price per month of the plan in USD.`,
 				},
 				resource.Attribute{
-					Name:        "plan_type",
+					Name:        "type",
 					Description: `The type of plan it is.`,
 				},
 				resource.Attribute{
-					Name:        "available_locations",
-					Description: `A list of DCIDs (used as ` + "`" + `region_id` + "`" + ` in Terraform) where the plan can be deployed.`,
-				},
-				resource.Attribute{
-					Name:        "deprecated",
-					Description: `Indicates that the plan will be going away in the future. New deployments of it will still be accepted, but you should begin to transition away from its usage.`,
+					Name:        "locations",
+					Description: `A list of DCIDs (used as ` + "`" + `region` + "`" + ` in Terraform) where the plan can be deployed.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `The name of the plan.`,
-				},
-				resource.Attribute{
 					Name:        "vcpu_count",
 					Description: `The number of virtual CPUs available on the plan.`,
 				},
@@ -1177,27 +1469,83 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bandwidth",
-					Description: `The bandwidth available on the plan in TB.`,
-				},
-				resource.Attribute{
-					Name:        "bandwidth_gb",
 					Description: `The bandwidth available on the plan in GB.`,
 				},
 				resource.Attribute{
-					Name:        "price_per_month",
+					Name:        "monthly_cost",
 					Description: `The price per month of the plan in USD.`,
 				},
 				resource.Attribute{
-					Name:        "plan_type",
+					Name:        "type",
 					Description: `The type of plan it is.`,
 				},
 				resource.Attribute{
-					Name:        "available_locations",
-					Description: `A list of DCIDs (used as ` + "`" + `region_id` + "`" + ` in Terraform) where the plan can be deployed.`,
+					Name:        "locations",
+					Description: `A list of DCIDs (used as ` + "`" + `region` + "`" + ` in Terraform) where the plan can be deployed.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vultr_private_network",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Vultr private network.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Required) Query parameters for finding private networks. The ` + "`" + `filter` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
-					Name:        "deprecated",
-					Description: `Indicates that the plan will be going away in the future. New deployments of it will still be accepted, but you should begin to transition away from its usage.`,
+					Name:        "name",
+					Description: `Attribute name to filter with.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `One or more values filter with. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The ID of the region that the private network is in.`,
+				},
+				resource.Attribute{
+					Name:        "v4_subnet",
+					Description: `The IPv4 network address. For example: 10.1.1.0.`,
+				},
+				resource.Attribute{
+					Name:        "v4_subnet_mask",
+					Description: `The number of bits for the netmask in CIDR notation. Example: 20`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The private network's description.`,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `The date the private network was added to your Vultr account.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `The ID of the region that the private network is in.`,
+				},
+				resource.Attribute{
+					Name:        "v4_subnet",
+					Description: `The IPv4 network address. For example: 10.1.1.0.`,
+				},
+				resource.Attribute{
+					Name:        "v4_subnet_mask",
+					Description: `The number of bits for the netmask in CIDR notation. Example: 20`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The private network's description.`,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `The date the private network was added to your Vultr account.`,
 				},
 			},
 		},
@@ -1222,10 +1570,6 @@ var (
 					Description: `One or more values filter with. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `The name of the region.`,
-				},
-				resource.Attribute{
 					Name:        "continent",
 					Description: `The continent the region is in.`,
 				},
@@ -1234,28 +1578,16 @@ var (
 					Description: `The country the region is in.`,
 				},
 				resource.Attribute{
-					Name:        "state",
-					Description: `The state the region is in.`,
+					Name:        "city",
+					Description: `The city the region is in.`,
 				},
 				resource.Attribute{
-					Name:        "ddos_protection",
-					Description: `Whether the region has DDoS protection.`,
-				},
-				resource.Attribute{
-					Name:        "block_storage",
-					Description: `Whether the region has block storage.`,
-				},
-				resource.Attribute{
-					Name:        "regioncode",
-					Description: `The region code of the region.`,
+					Name:        "options",
+					Description: `Shows whether options like ddos protection or block storage are available in the region.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `The name of the region.`,
-				},
-				resource.Attribute{
 					Name:        "continent",
 					Description: `The continent the region is in.`,
 				},
@@ -1264,20 +1596,12 @@ var (
 					Description: `The country the region is in.`,
 				},
 				resource.Attribute{
-					Name:        "state",
-					Description: `The state the region is in.`,
+					Name:        "city",
+					Description: `The city the region is in.`,
 				},
 				resource.Attribute{
-					Name:        "ddos_protection",
-					Description: `Whether the region has DDoS protection.`,
-				},
-				resource.Attribute{
-					Name:        "block_storage",
-					Description: `Whether the region has block storage.`,
-				},
-				resource.Attribute{
-					Name:        "regioncode",
-					Description: `The region code of the region.`,
+					Name:        "options",
+					Description: `Shows whether options like ddos protection or block storage are available in the region.`,
 				},
 			},
 		},
@@ -1302,7 +1626,7 @@ var (
 					Description: `One or more values filter with. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "region_id",
+					Name:        "region",
 					Description: `The ID of the region that the reserved IP is in.`,
 				},
 				resource.Attribute{
@@ -1322,13 +1646,13 @@ var (
 					Description: `The label of the reserved IP.`,
 				},
 				resource.Attribute{
-					Name:        "attached_to_vps",
+					Name:        "instance_id",
 					Description: `The ID of the VPS the reserved IP is attached to.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "region_id",
+					Name:        "region",
 					Description: `The ID of the region that the reserved IP is in.`,
 				},
 				resource.Attribute{
@@ -1348,22 +1672,22 @@ var (
 					Description: `The label of the reserved IP.`,
 				},
 				resource.Attribute{
-					Name:        "attached_to_vps",
+					Name:        "instance_id",
 					Description: `The ID of the VPS the reserved IP is attached to.`,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vultr_server",
+			Type:             "vultr_reverse_ipv4",
 			Category:         "Data Sources",
-			ShortDescription: `Get information about a Vultr server.`,
+			ShortDescription: `Get information about a Vultr Reverse IPv4.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `(Required) Query parameters for finding servers. The ` + "`" + `filter` + "`" + ` block supports the following:`,
+					Description: `(Required) Query parameters for finding IPv4 reverse DNS records. The ` + "`" + `filter` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1371,233 +1695,97 @@ var (
 				},
 				resource.Attribute{
 					Name:        "values",
-					Description: `One or more values filter with. ## Attributes Reference The following attributes are exported:`,
+					Description: `One or more values to filter with. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "os",
-					Description: `The operating system of the server.`,
+					Name:        "instance_id",
+					Description: `The ID of the instance the IPv4 reverse DNS record was set for.`,
 				},
 				resource.Attribute{
-					Name:        "ram",
-					Description: `The amount of memory available on the server in MB.`,
+					Name:        "ip",
+					Description: `The IPv4 address in canonical format used in the reverse DNS record.`,
 				},
 				resource.Attribute{
-					Name:        "disk",
-					Description: `The description of the disk(s) on the server.`,
+					Name:        "reverse",
+					Description: `The hostname used in the IPv4 reverse DNS record.`,
 				},
 				resource.Attribute{
-					Name:        "main_ip",
-					Description: `The server's main IP address.`,
+					Name:        "gateway",
+					Description: `The gateway IP address.`,
 				},
 				resource.Attribute{
-					Name:        "vps_cpu_count",
-					Description: `The number of virtual CPUs available on the server.`,
-				},
-				resource.Attribute{
-					Name:        "location",
-					Description: `The physical location of the server.`,
-				},
-				resource.Attribute{
-					Name:        "region_id",
-					Description: `The region ID (` + "`" + `DCID` + "`" + ` in the Vultr API) of the server.`,
-				},
-				resource.Attribute{
-					Name:        "default_password",
-					Description: `The server's default password.`,
-				},
-				resource.Attribute{
-					Name:        "date_created",
-					Description: `The date the server was added to your Vultr account.`,
-				},
-				resource.Attribute{
-					Name:        "pending_charges",
-					Description: `Charges pending for this server's subscription in USD.`,
-				},
-				resource.Attribute{
-					Name:        "cost_per_month",
-					Description: `The server's cost per month in USD.`,
-				},
-				resource.Attribute{
-					Name:        "current_bandwidth",
-					Description: `The server's current bandwidth usage in GB.`,
-				},
-				resource.Attribute{
-					Name:        "allowed_bandwidth",
-					Description: `The server's allowed bandwidth usage in GB.`,
-				},
-				resource.Attribute{
-					Name:        "netmask_v4",
-					Description: `The server's IPv4 netmask.`,
-				},
-				resource.Attribute{
-					Name:        "gateway_v4",
-					Description: `The server's IPv4 gateway.`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `The status of the server's subscription.`,
-				},
-				resource.Attribute{
-					Name:        "power_status",
-					Description: `Whether the server is powered on or not.`,
-				},
-				resource.Attribute{
-					Name:        "server_state",
-					Description: `A more detailed server status (none, locked, installingbooting, isomounting, ok).`,
-				},
-				resource.Attribute{
-					Name:        "plan_id",
-					Description: `The server's plan ID.`,
-				},
-				resource.Attribute{
-					Name:        "v6_networks",
-					Description: `A list of the server's IPv6 networks.`,
-				},
-				resource.Attribute{
-					Name:        "label",
-					Description: `The server's label.`,
-				},
-				resource.Attribute{
-					Name:        "internal_ip",
-					Description: `The server's internal IP address.`,
-				},
-				resource.Attribute{
-					Name:        "kvm_url",
-					Description: `The server's current KVM URL. This URL will change periodically. It is not advised to cache this value.`,
-				},
-				resource.Attribute{
-					Name:        "auto_backups",
-					Description: `Whether auto backups are enabled on this server.`,
-				},
-				resource.Attribute{
-					Name:        "tag",
-					Description: `The server's tag.`,
-				},
-				resource.Attribute{
-					Name:        "os_id",
-					Description: `The server's operating system ID.`,
-				},
-				resource.Attribute{
-					Name:        "app_id",
-					Description: `The server's application ID.`,
-				},
-				resource.Attribute{
-					Name:        "firewall_group_id",
-					Description: `The ID of the firewall group applied to this server.`,
+					Name:        "netmask",
+					Description: `The IPv4 netmask in dot-decimal notation.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "os",
-					Description: `The operating system of the server.`,
+					Name:        "instance_id",
+					Description: `The ID of the instance the IPv4 reverse DNS record was set for.`,
 				},
 				resource.Attribute{
-					Name:        "ram",
-					Description: `The amount of memory available on the server in MB.`,
+					Name:        "ip",
+					Description: `The IPv4 address in canonical format used in the reverse DNS record.`,
 				},
 				resource.Attribute{
-					Name:        "disk",
-					Description: `The description of the disk(s) on the server.`,
+					Name:        "reverse",
+					Description: `The hostname used in the IPv4 reverse DNS record.`,
 				},
 				resource.Attribute{
-					Name:        "main_ip",
-					Description: `The server's main IP address.`,
+					Name:        "gateway",
+					Description: `The gateway IP address.`,
 				},
 				resource.Attribute{
-					Name:        "vps_cpu_count",
-					Description: `The number of virtual CPUs available on the server.`,
+					Name:        "netmask",
+					Description: `The IPv4 netmask in dot-decimal notation.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vultr_reverse_ipv6",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Vultr Reverse IPv6.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Required) Query parameters for finding IPv6 reverse DNS records. The ` + "`" + `filter` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
-					Name:        "location",
-					Description: `The physical location of the server.`,
+					Name:        "name",
+					Description: `Attribute name to filter with.`,
 				},
 				resource.Attribute{
-					Name:        "region_id",
-					Description: `The region ID (` + "`" + `DCID` + "`" + ` in the Vultr API) of the server.`,
+					Name:        "values",
+					Description: `One or more values to filter with. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "default_password",
-					Description: `The server's default password.`,
+					Name:        "instance_id",
+					Description: `The ID of the instance the IPv6 reverse DNS record was set for.`,
 				},
 				resource.Attribute{
-					Name:        "date_created",
-					Description: `The date the server was added to your Vultr account.`,
+					Name:        "ip",
+					Description: `The IPv6 address in canonical format used in the reverse DNS record.`,
 				},
 				resource.Attribute{
-					Name:        "pending_charges",
-					Description: `Charges pending for this server's subscription in USD.`,
+					Name:        "reverse",
+					Description: `The hostname used in the IPv6 reverse DNS record.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `The ID of the instance the IPv6 reverse DNS record was set for.`,
 				},
 				resource.Attribute{
-					Name:        "cost_per_month",
-					Description: `The server's cost per month in USD.`,
+					Name:        "ip",
+					Description: `The IPv6 address in canonical format used in the reverse DNS record.`,
 				},
 				resource.Attribute{
-					Name:        "current_bandwidth",
-					Description: `The server's current bandwidth usage in GB.`,
-				},
-				resource.Attribute{
-					Name:        "allowed_bandwidth",
-					Description: `The server's allowed bandwidth usage in GB.`,
-				},
-				resource.Attribute{
-					Name:        "netmask_v4",
-					Description: `The server's IPv4 netmask.`,
-				},
-				resource.Attribute{
-					Name:        "gateway_v4",
-					Description: `The server's IPv4 gateway.`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `The status of the server's subscription.`,
-				},
-				resource.Attribute{
-					Name:        "power_status",
-					Description: `Whether the server is powered on or not.`,
-				},
-				resource.Attribute{
-					Name:        "server_state",
-					Description: `A more detailed server status (none, locked, installingbooting, isomounting, ok).`,
-				},
-				resource.Attribute{
-					Name:        "plan_id",
-					Description: `The server's plan ID.`,
-				},
-				resource.Attribute{
-					Name:        "v6_networks",
-					Description: `A list of the server's IPv6 networks.`,
-				},
-				resource.Attribute{
-					Name:        "label",
-					Description: `The server's label.`,
-				},
-				resource.Attribute{
-					Name:        "internal_ip",
-					Description: `The server's internal IP address.`,
-				},
-				resource.Attribute{
-					Name:        "kvm_url",
-					Description: `The server's current KVM URL. This URL will change periodically. It is not advised to cache this value.`,
-				},
-				resource.Attribute{
-					Name:        "auto_backups",
-					Description: `Whether auto backups are enabled on this server.`,
-				},
-				resource.Attribute{
-					Name:        "tag",
-					Description: `The server's tag.`,
-				},
-				resource.Attribute{
-					Name:        "os_id",
-					Description: `The server's operating system ID.`,
-				},
-				resource.Attribute{
-					Name:        "app_id",
-					Description: `The server's application ID.`,
-				},
-				resource.Attribute{
-					Name:        "firewall_group_id",
-					Description: `The ID of the firewall group applied to this server.`,
+					Name:        "reverse",
+					Description: `The hostname used in the IPv6 reverse DNS record.`,
 				},
 			},
 		},
@@ -1620,6 +1808,10 @@ var (
 				resource.Attribute{
 					Name:        "values",
 					Description: `One or more values filter with. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID for the given snapshot.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1647,6 +1839,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID for the given snapshot.`,
+				},
 				resource.Attribute{
 					Name:        "description",
 					Description: `The description of the snapshot.`,
@@ -1747,7 +1943,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "script",
-					Description: `The contents of the startup script.`,
+					Description: `The contents of the startup script base64 encoded.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -1769,7 +1965,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "script",
-					Description: `The contents of the startup script.`,
+					Description: `The contents of the startup script base64 encoded.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -1846,27 +2042,30 @@ var (
 	dataSourcesMap = map[string]int{
 
 		"vultr_account":           0,
-		"vultr_api_key":           1,
-		"vultr_application":       2,
-		"vultr_backup":            3,
-		"vultr_bare_metal_plan":   4,
-		"vultr_bare_metal_server": 5,
-		"vultr_block_storage":     6,
-		"vultr_dns_domain":        7,
-		"vultr_firewall_group":    8,
-		"vultr_iso_private":       9,
-		"vultr_iso_public":        10,
-		"vultr_load_balancer":     11,
-		"vultr_network":           12,
-		"vultr_os":                13,
-		"vultr_plan":              14,
-		"vultr_region":            15,
-		"vultr_reserved_ip":       16,
-		"vultr_server":            17,
-		"vultr_snapshot":          18,
-		"vultr_ssh_key":           19,
-		"vultr_startup_script":    20,
-		"vultr_user":              21,
+		"vultr_application":       1,
+		"vultr_backup":            2,
+		"vultr_bare_metal_plan":   3,
+		"vultr_bare_metal_server": 4,
+		"vultr_block_storage":     5,
+		"vultr_dns_domain":        6,
+		"vultr_firewall_group":    7,
+		"vultr_instance":          8,
+		"vultr_instance_ipv4":     9,
+		"vultr_iso_private":       10,
+		"vultr_iso_public":        11,
+		"vultr_load_balancer":     12,
+		"vultr_object_storage":    13,
+		"vultr_os":                14,
+		"vultr_plan":              15,
+		"vultr_private_network":   16,
+		"vultr_region":            17,
+		"vultr_reserved_ip":       18,
+		"vultr_reverse_ipv4":      19,
+		"vultr_reverse_ipv6":      20,
+		"vultr_snapshot":          21,
+		"vultr_ssh_key":           22,
+		"vultr_startup_script":    23,
+		"vultr_user":              24,
 	}
 )
 

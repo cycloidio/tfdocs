@@ -57,10 +57,19 @@ Provides a SignalFx resource for managing alert muting rules. See [Mute Notifica
 				},
 				resource.Attribute{
 					Name:        "negated",
-					Description: `(Optional) Determines if this is a "not" filter. Defaults to ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Determines if this is a "not" filter. Defaults to ` + "`" + `false` + "`" + `. ## Attributes Reference In a addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the alert muting rule.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the alert muting rule.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -215,11 +224,15 @@ SignalFx AWS CloudWatch integrations. For help with this integration see [Monito
 				},
 				resource.Attribute{
 					Name:        "poll_rate",
-					Description: `(Optional) AWS poll rate (in seconds). One of ` + "`" + `60` + "`" + ` or ` + "`" + `300` + "`" + `.`,
+					Description: `(Optional) AWS poll rate (in seconds). Value between ` + "`" + `60` + "`" + ` and ` + "`" + `300` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "use_get_metric_data_method",
 					Description: `(Optional) Enable the use of Amazon's ` + "`" + `GetMetricData` + "`" + ` for collecting metrics. Note that this requires the inclusion of the ` + "`" + `"cloudwatch:GetMetricData"` + "`" + ` permission.`,
+				},
+				resource.Attribute{
+					Name:        "enable_check_large_volume",
+					Description: `(Optional) Controls how SignalFx checks for large amounts of data for this AWS integration. If ` + "`" + `true` + "`" + `, SignalFx monitors the amount of data coming in from the integration.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -298,6 +311,18 @@ SignalFx Azure integrations. For help with this integration see [Monitoring Micr
 					Description: `(Required) Azure application ID for the SignalFx app. To learn how to get this ID, see the topic [Connect to Microsoft Azure](https://docs.signalfx.com/en/latest/getting-started/send-data.html#connect-to-microsoft-azure) in the product documentation.`,
 				},
 				resource.Attribute{
+					Name:        "custom_namespaces_per_service",
+					Description: `(Optional) Allows for more fine-grained control of syncing of custom namespaces, should the boolean convenience parameter ` + "`" + `sync_guest_os_namespaces` + "`" + ` be not enough. The customer may specify a map of services to custom namespaces. If they do so, for each service which is a key in this map, we will attempt to sync metrics from namespaces in the value list in addition to the default namespaces.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `(Required) The name of the service.`,
+				},
+				resource.Attribute{
+					Name:        "namespaces",
+					Description: `(Required) The additional namespaces.`,
+				},
+				resource.Attribute{
 					Name:        "poll_rate",
 					Description: `(Optional) AWS poll rate (in seconds). One of ` + "`" + `60` + "`" + ` or ` + "`" + `300` + "`" + `.`,
 				},
@@ -313,8 +338,21 @@ SignalFx Azure integrations. For help with this integration see [Monitoring Micr
 					Name:        "subscriptions",
 					Description: `(Required) List of Azure subscriptions that SignalFx should monitor.`,
 				},
+				resource.Attribute{
+					Name:        "sync_guest_os_namespaces",
+					Description: `(Optional) If enabled, SignalFx will try to sync additional namespaces for VMs (including VMs in scale sets): telegraf/mem, telegraf/cpu, azure.vm.windows.guest (these are namespaces recommended by Azure when enabling their Diagnostic Extension). If there are no metrics there, no new datapoints will be ingested. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration.`,
+				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -345,6 +383,14 @@ A dashboard is a curated collection of specific charts and supports dimensional 
 					Description: `(Optional) Description of the dashboard.`,
 				},
 				resource.Attribute{
+					Name:        "authorized_writer_teams",
+					Description: `(Optional) Team IDs that have write access to this dashboard group. Remember to use an admin's token if using this feature and to include that admin's team (or user id in ` + "`" + `authorized_writer_teams` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "authorized_writer_users",
+					Description: `(Optional) User IDs that have write access to this dashboard group. Remember to use an admin's token if using this feature and to include that admin's user id (or team id in ` + "`" + `authorized_writer_teams` + "`" + `).`,
+				},
+				resource.Attribute{
 					Name:        "charts_resolution",
 					Description: `(Optional) Specifies the chart data display resolution for charts in this dashboard. Value can be one of ` + "`" + `"default"` + "`" + `, ` + "`" + `"low"` + "`" + `, ` + "`" + `"high"` + "`" + `, or ` + "`" + `"highest"` + "`" + `.`,
 				},
@@ -354,11 +400,11 @@ A dashboard is a curated collection of specific charts and supports dimensional 
 				},
 				resource.Attribute{
 					Name:        "start_time",
-					Description: `(Optional) Seconds since epoch. Used for visualization. You must specify time_span_type = ` + "`" + `"absolute"` + "`" + ` too.`,
+					Description: `(Optional) Seconds since epoch. Used for visualization.`,
 				},
 				resource.Attribute{
 					Name:        "end_time",
-					Description: `(Optional) Seconds since epoch. Used for visualization. You must specify time_span_type = ` + "`" + `"absolute"` + "`" + ` too.`,
+					Description: `(Optional) Seconds since epoch. Used for visualization.`,
 				},
 				resource.Attribute{
 					Name:        "filter",
@@ -546,10 +592,27 @@ A dashboard is a curated collection of specific charts and supports dimensional 
 				},
 				resource.Attribute{
 					Name:        "negated",
-					Description: `(Optional) If true, only data that does not match the specified value of the specified property appear in the event overlay. Defaults to ` + "`" + `false` + "`" + `. ## Dashboard Layout Information`,
+					Description: `(Optional) If true, only data that does not match the specified value of the specified property appear in the event overlay. Defaults to ` + "`" + `false` + "`" + `. ## Attributes Reference In a addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the dashboard.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The URL of the dashboard. ## Dashboard Layout Information`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the dashboard.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The URL of the dashboard. ## Dashboard Layout Information`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -634,10 +697,19 @@ In the SignalFx web UI, a [dashboard group](https://developers.signalfx.com/dash
 				},
 				resource.Attribute{
 					Name:        "values_suggested",
-					Description: `(Optional) A list of strings of suggested values for this variable; these suggestions will receive priority when values are autosuggested for this variable.`,
+					Description: `(Optional) A list of strings of suggested values for this variable; these suggestions will receive priority when values are autosuggested for this variable. ## Attributes Reference In a addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -669,10 +741,6 @@ Manage SignalFx [Data Links](https://docs.signalfx.com/en/latest/managing/data-l
 				resource.Attribute{
 					Name:        "target_external_url",
 					Description: `(Optional) Link to an external URL`,
-				},
-				resource.Attribute{
-					Name:        "is_default",
-					Description: `(Optional) Flag that designates a target as the default for a data link object. ` + "`" + `true` + "`" + ` by default.`,
 				},
 				resource.Attribute{
 					Name:        "time_format",
@@ -707,15 +775,20 @@ Manage SignalFx [Data Links](https://docs.signalfx.com/en/latest/managing/data-l
 					Description: `(Optional) Link to an external URL`,
 				},
 				resource.Attribute{
-					Name:        "is_default",
-					Description: `(Optional) Flag that designates a target as the default for a data link object. ` + "`" + `true` + "`" + ` by default`,
+					Name:        "property_key_mapping",
+					Description: `Describes the relationship between SignalFx metadata keys and external system properties when the key names are different. ## Attributes Reference In a addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "property_key_mapping",
-					Description: `Describes the relationship between SignalFx metadata keys and external system properties when the key names are different.`,
+					Name:        "id",
+					Description: `The ID of the link.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the link.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -758,6 +831,10 @@ Provides a SignalFx detector resource. This can be used to create and manage det
 					Description: `(Optional) How long (in seconds) to wait for late datapoints. See [Delayed Datapoints](https://signalfx-product-docs.readthedocs-hosted.com/en/latest/charts/chart-builder.html#delayed-datapoints) for more info. Max value is ` + "`" + `900` + "`" + ` seconds (15 minutes). ` + "`" + `Auto` + "`" + ` (as little as possible) by default.`,
 				},
 				resource.Attribute{
+					Name:        "min_delay",
+					Description: `(Optional) How long (in seconds) to wait even if the datapoints are arriving in a timely fashion. Max value is 900 (15m).`,
+				},
+				resource.Attribute{
 					Name:        "show_data_markers",
 					Description: `(Optional) When ` + "`" + `true` + "`" + `, markers will be drawn for each datapoint within the visualization. ` + "`" + `true` + "`" + ` by default.`,
 				},
@@ -780,6 +857,10 @@ Provides a SignalFx detector resource. This can be used to create and manage det
 				resource.Attribute{
 					Name:        "end_time",
 					Description: `(Optional) Seconds since epoch. Used for visualization. Conflicts with ` + "`" + `time_range` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags associated with the detector.`,
 				},
 				resource.Attribute{
 					Name:        "teams",
@@ -847,13 +928,21 @@ Provides a SignalFx detector resource. This can be used to create and manage det
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the SignalFx detector ## Import Detectors can be imported using their string ID (recoverable from URL: ` + "`" + `/#/detector/v2/abc123/edit` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import signalfx_detector.application_delay abc123 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the detector.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The URL of the detector. ## Import Detectors can be imported using their string ID (recoverable from URL: ` + "`" + `/#/detector/v2/abc123/edit` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import signalfx_detector.application_delay abc123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the SignalFx detector ## Import Detectors can be imported using their string ID (recoverable from URL: ` + "`" + `/#/detector/v2/abc123/edit` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import signalfx_detector.application_delay abc123 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the detector.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The URL of the detector. ## Import Detectors can be imported using their string ID (recoverable from URL: ` + "`" + `/#/detector/v2/abc123/edit` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import signalfx_detector.application_delay abc123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -895,10 +984,27 @@ Displays a listing of events as a widget in a dashboard.
 				},
 				resource.Attribute{
 					Name:        "end_time",
-					Description: `(Optional) Seconds since epoch. Used for visualization. Conflicts with ` + "`" + `time_range` + "`" + `.`,
+					Description: `(Optional) Seconds since epoch. Used for visualization. Conflicts with ` + "`" + `time_range` + "`" + `. ## Attributes Reference In a addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the chart.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The URL of the chart.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the chart.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The URL of the chart.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -939,10 +1045,19 @@ SignalFx GCP Integration
 				},
 				resource.Attribute{
 					Name:        "whilelist",
-					Description: `(Optional) [Compute Metadata Whitelist](https://docs.signalfx.com/en/latest/integrations/google-cloud-platform.html#compute-engine-instance).`,
+					Description: `(Optional) [Compute Metadata Whitelist](https://docs.signalfx.com/en/latest/integrations/google-cloud-platform.html#compute-engine-instance). ## Attributes Reference In a addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -982,6 +1097,10 @@ This chart type displays the specified plot in a heatmap fashion. This format is
 				resource.Attribute{
 					Name:        "max_delay",
 					Description: `(Optional) How long (in seconds) to wait for late datapoints.`,
+				},
+				resource.Attribute{
+					Name:        "timezone",
+					Description: `(Optional) The property value is a string that denotes the geographic region associated with the time zone, (default UTC).`,
 				},
 				resource.Attribute{
 					Name:        "refresh_interval",
@@ -1041,10 +1160,27 @@ This chart type displays the specified plot in a heatmap fashion. This format is
 				},
 				resource.Attribute{
 					Name:        "color",
-					Description: `(Required) The color range to use. Hex values are not supported here. Must be one of gray, blue, light_blue, navy, dark_orange, orange, dark_yellow, magenta, cerise, pink, violet, purple, gray_blue, dark_green, green, aquamarine, red, yellow, vivid_yellow, light_green, or lime_green.`,
+					Description: `(Required) The color range to use. Hex values are not supported here. Must be one of gray, blue, light_blue, navy, dark_orange, orange, dark_yellow, magenta, cerise, pink, violet, purple, gray_blue, dark_green, green, aquamarine, red, yellow, vivid_yellow, light_green, or lime_green. ## Attributes Reference In a addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the chart.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The URL of the chart.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the chart.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The URL of the chart.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1109,10 +1245,19 @@ SignalFx Jira integrations. For help with this integration see [Integration with
 				},
 				resource.Attribute{
 					Name:        "assignee_display_name",
-					Description: `(Optional) Jira display name for the assignee.`,
+					Description: `(Optional) Jira display name for the assignee. ## Attributes Reference In a addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1124,7 +1269,6 @@ SignalFx Jira integrations. For help with this integration see [Integration with
 This chart type displays current data values in a list format.
 
 The name of each value in the chart reflects the name of the plot and any associated dimensions. We recommend you click the Pencil icon and give the plot a meaningful name, as in plot B below. Otherwise, just the raw metric name will be displayed on the chart, as in plot A below.
-
 
 `,
 			Keywords: []string{
@@ -1157,12 +1301,20 @@ The name of each value in the chart reflects the name of the plot and any associ
 					Description: `(Optional) How long (in seconds) to wait for late datapoints.`,
 				},
 				resource.Attribute{
+					Name:        "timezone",
+					Description: `(Optional) The property value is a string that denotes the geographic region associated with the time zone, (default UTC).`,
+				},
+				resource.Attribute{
 					Name:        "disable_sampling",
 					Description: `(Optional) If ` + "`" + `false` + "`" + `, samples a subset of the output MTS, which improves UI performance. ` + "`" + `false` + "`" + ` by default.`,
 				},
 				resource.Attribute{
 					Name:        "refresh_interval",
 					Description: `(Optional) How often (in seconds) to refresh the values of the list.`,
+				},
+				resource.Attribute{
+					Name:        "hide_missing_values",
+					Description: `(Optional) Determines whether to hide missing data points in the chart. If ` + "`" + `true` + "`" + `, missing data points in the chart would be hidden. ` + "`" + `false` + "`" + ` by default.`,
 				},
 				resource.Attribute{
 					Name:        "viz_options",
@@ -1238,10 +1390,27 @@ The name of each value in the chart reflects the name of the plot and any associ
 				},
 				resource.Attribute{
 					Name:        "end_time",
-					Description: `(Optional) Seconds since epoch. Used for visualization. Conflicts with ` + "`" + `time_range` + "`" + `.`,
+					Description: `(Optional) Seconds since epoch. Used for visualization. Conflicts with ` + "`" + `time_range` + "`" + `. ## Attributes Reference In a addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the chart.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The URL of the chart.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the chart.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The URL of the chart.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1274,10 +1443,19 @@ SignalFx Opsgenie integration.
 				},
 				resource.Attribute{
 					Name:        "api_url",
-					Description: `(Optional) Opsgenie API URL. Will default to ` + "`" + `https://api.opsgenie.com` + "`" + `. You might also want ` + "`" + `https://api.eu.opsgenie.com` + "`" + `.`,
+					Description: `(Optional) Opsgenie API URL. Will default to ` + "`" + `https://api.opsgenie.com` + "`" + `. You might also want ` + "`" + `https://api.eu.opsgenie.com` + "`" + `. ## Attributes Reference In a addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1356,10 +1534,27 @@ Manage SignalFx org tokens.
 				},
 				resource.Attribute{
 					Name:        "dpm_limit",
-					Description: `(Required) The datapoints per minute (dpm) limit for this token. If you exceed this limit, SignalFx sends out an alert.`,
+					Description: `(Required) The datapoints per minute (dpm) limit for this token. If you exceed this limit, SignalFx sends out an alert. ## Attributes Reference In a addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the token.`,
+				},
+				resource.Attribute{
+					Name:        "secret",
+					Description: `The assigned token.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the token.`,
+				},
+				resource.Attribute{
+					Name:        "secret",
+					Description: `The assigned token.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1388,10 +1583,19 @@ SignalFx PagerDuty integrations
 				},
 				resource.Attribute{
 					Name:        "api_key",
-					Description: `(Required) PagerDuty API key.`,
+					Description: `(Required) PagerDuty API key. ## Attributes Reference In a addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1497,10 +1701,27 @@ If the time period is in the past, the number represents the value of the metric
 				},
 				resource.Attribute{
 					Name:        "show_spark_line",
-					Description: `(Optional) Whether to show a trend line below the current value. ` + "`" + `false` + "`" + ` by default.`,
+					Description: `(Optional) Whether to show a trend line below the current value. ` + "`" + `false` + "`" + ` by default. ## Attributes Reference In a addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the chart.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The URL of the chart.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the chart.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The URL of the chart.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1529,10 +1750,19 @@ SignalFx Slack integration.
 				},
 				resource.Attribute{
 					Name:        "webhook_url",
-					Description: `(Required) Slack incoming webhook URL.`,
+					Description: `(Required) Slack incoming webhook URL. ## Attributes Reference In a addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1584,10 +1814,27 @@ You can configure [team notification policies](https://docs.signalfx.com/en/late
 				},
 				resource.Attribute{
 					Name:        "notifications_warning",
-					Description: `(Optional) Where to send notifications for warning alerts`,
+					Description: `(Optional) Where to send notifications for warning alerts ## Attributes Reference In a addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the team.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The URL of the team.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the team.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The URL of the team.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1614,10 +1861,27 @@ This special type of chart doesn’t display any metric data. Rather, it lets yo
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) Description of the text note.`,
+					Description: `(Optional) Description of the text note. ## Attributes Reference In a addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the chart.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The URL of the chart.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the chart.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The URL of the chart.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1830,10 +2094,27 @@ Time charts display data points over a period of time.
 				},
 				resource.Attribute{
 					Name:        "timezone",
-					Description: `(Optional) Time zone that SignalFlow uses as the basis of calendar window transformation methods. For example, if you set "timezone": "Europe/Paris" and then use the transformation sum(cycle="week", cycle_start="Monday") in your chart's SignalFlow program, the calendar window starts on Monday, Paris time. See the [full list of timezones for more](https://developers.signalfx.com/signalflow_analytics/signalflow_overview.html#_supported_signalflow_time_zones). ` + "`" + `"UTC"` + "`" + ` by default.`,
+					Description: `(Optional) Time zone that SignalFlow uses as the basis of calendar window transformation methods. For example, if you set "timezone": "Europe/Paris" and then use the transformation sum(cycle="week", cycle_start="Monday") in your chart's SignalFlow program, the calendar window starts on Monday, Paris time. See the [full list of timezones for more](https://developers.signalfx.com/signalflow_analytics/signalflow_overview.html#_supported_signalflow_time_zones). ` + "`" + `"UTC"` + "`" + ` by default. ## Attributes Reference In a addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the chart.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The URL of the chart.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the chart.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The URL of the chart.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1863,10 +2144,19 @@ SignalFx VictorOps integration.
 				},
 				resource.Attribute{
 					Name:        "post_url",
-					Description: `(Optional) Victor Ops REST API URL.`,
+					Description: `(Optional) Victor Ops REST API URL. ## Attributes Reference In a addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1911,10 +2201,19 @@ SignalFx Webhook integration.
 				},
 				resource.Attribute{
 					Name:        "header_value",
-					Description: `(Required) The value of the header to send`,
+					Description: `(Required) The value of the header to send ## Attributes Reference In a addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration.`,
+				},
+			},
 		},
 	}
 

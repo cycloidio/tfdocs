@@ -30,11 +30,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "event_type",
-					Description: `(Required) The type of event that will trigger an alert. Alert type Possible values:`,
+					Description: `(Required) The type of event that will trigger an alert. ->`,
 				},
 				resource.Attribute{
 					Name:        "field_name",
-					Description: `Name of the field in the target object to match on. Host alerts support these fields: - ` + "`" + `TYPE_NAME` + "`" + ` - ` + "`" + `HOSTNAME` + "`" + ` - ` + "`" + `PORT` + "`" + ` - ` + "`" + `HOSTNAME_AND_PORT` + "`" + ` - ` + "`" + `REPLICA_SET_NAME` + "`" + ` Replica set alerts support these fields: - ` + "`" + `REPLICA_SET_NAME` + "`" + ` - ` + "`" + `SHARD_NAME` + "`" + ` - ` + "`" + `CLUSTER_NAME` + "`" + ` Sharded cluster alerts support these fields: - ` + "`" + `CLUSTER_NAME` + "`" + ` - ` + "`" + `SHARD_NAME` + "`" + ` All other types of alerts do not support matchers.`,
+					Description: `Name of the field in the target object to match on. | Host alerts | Replica set alerts | Sharded cluster alerts | |:---------- |:------------- |:------ | | ` + "`" + `TYPE_NAME` + "`" + ` | ` + "`" + `REPLICA_SET_NAME` + "`" + ` | ` + "`" + `CLUSTER_NAME` + "`" + ` | | ` + "`" + `HOSTNAME` + "`" + ` | ` + "`" + `SHARD_NAME` + "`" + ` | ` + "`" + `SHARD_NAME` + "`" + ` | | ` + "`" + `PORT` + "`" + ` | ` + "`" + `CLUSTER_NAME` + "`" + ` | | | ` + "`" + `HOSTNAME_AND_PORT` + "`" + ` | | | | ` + "`" + `REPLICA_SET_NAME` + "`" + ` | | | All other types of alerts do not support matchers.`,
 				},
 				resource.Attribute{
 					Name:        "operator",
@@ -54,7 +54,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metric_name",
-					Description: `Name of the metric to check.`,
+					Description: `Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)`,
 				},
 				resource.Attribute{
 					Name:        "operator",
@@ -70,7 +70,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `This must be set to AVERAGE. Atlas computes the current metric value as an average. ### Notifications Notifications to send when an alert condition is detected.`,
+					Description: `This must be set to AVERAGE. Atlas computes the current metric value as an average. ### Threshold`,
+				},
+				resource.Attribute{
+					Name:        "operator",
+					Description: `Operator to apply when checking the current metric value against the threshold value. Accepted values are: - ` + "`" + `GREATER_THAN` + "`" + ` - ` + "`" + `LESS_THAN` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "threshold",
+					Description: `Threshold value outside of which an alert will be triggered.`,
+				},
+				resource.Attribute{
+					Name:        "units",
+					Description: `The units for the threshold value. Depends on the type of metric. Accepted values are: - ` + "`" + `RAW` + "`" + ` - ` + "`" + `BITS` + "`" + ` - ` + "`" + `BYTES` + "`" + ` - ` + "`" + `KILOBITS` + "`" + ` - ` + "`" + `KILOBYTES` + "`" + ` - ` + "`" + `MEGABITS` + "`" + ` - ` + "`" + `MEGABYTES` + "`" + ` - ` + "`" + `GIGABITS` + "`" + ` - ` + "`" + `GIGABYTES` + "`" + ` - ` + "`" + `TERABYTES` + "`" + ` - ` + "`" + `PETABYTES` + "`" + ` - ` + "`" + `MILLISECONDS` + "`" + ` - ` + "`" + `SECONDS` + "`" + ` - ` + "`" + `MINUTES` + "`" + ` - ` + "`" + `HOURS` + "`" + ` - ` + "`" + `DAYS` + "`" + ` ### Notifications Notifications to send when an alert condition is detected.`,
 				},
 				resource.Attribute{
 					Name:        "api_token",
@@ -158,7 +170,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "Roles",
-					Description: `Roles. Optional. The following roles grant privileges within a project. Accepted values are: - ` + "`" + `GROUP_CHARTS_ADMIN` + "`" + ` - ` + "`" + `GROUP_CLUSTER_MANAGER` + "`" + ` - ` + "`" + `GROUP_DATA_ACCESS_ADMIN` + "`" + ` - ` + "`" + `GROUP_DATA_ACCESS_READ_ONLY` + "`" + ` - ` + "`" + `GROUP_DATA_ACCESS_READ_WRITE` + "`" + ` - ` + "`" + `GROUP_OWNER` + "`" + ` - ` + "`" + `GROUP_READ_ONLY` + "`" + ` ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `Optional. The following roles grant privileges within a project. Accepted values are: | Project roles | Organization roles | |:---------- |:----------- | | ` + "`" + `GROUP_CHARTS_ADMIN` + "`" + ` | ` + "`" + `ORG_OWNER` + "`" + ` | | ` + "`" + `GROUP_CLUSTER_MANAGER` + "`" + ` | ` + "`" + `ORG_MEMBER` + "`" + ` | | ` + "`" + `GROUP_DATA_ACCESS_ADMIN` + "`" + ` | ` + "`" + `ORG_GROUP_CREATOR` + "`" + ` | | ` + "`" + `GROUP_DATA_ACCESS_READ_ONLY` + "`" + ` | ` + "`" + `ORG_BILLING_ADMIN` + "`" + ` | | ` + "`" + `GROUP_DATA_ACCESS_READ_WRITE` + "`" + ` | ` + "`" + `ORG_READ_ONLY` + "`" + ` | | ` + "`" + `GROUP_OWNER` + "`" + ` | | | ` + "`" + `GROUP_READ_ONLY` + "`" + ` | | ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -414,7 +426,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "policies.#.policy_item.#.id",
-					Description: `(Required) Unique identifier of the backup policy item. ` + "`" + `policies.#.policy_item.#.id` + "`" + ` is a value obtained via the mongodbatlas_cluster resource. provider_backup_enabled of the mongodbatlas_cluster resource must be set to true. See the example above for how to refer to the mongodbatlas_cluster resource forpolicies.#.policy_item.#.id`,
+					Description: `(Required) Unique identifier of the backup policy item. ` + "`" + `policies.#.policy_item.#.id` + "`" + ` is a value obtained via the mongodbatlas_cluster resource. provider_backup_enabled of the mongodbatlas_cluster resource must be set to true. See the example above for how to refer to the mongodbatlas_cluster resource for policies.#.policy_item.#.id`,
 				},
 				resource.Attribute{
 					Name:        "policies.#.policy_item.#.frequency_interval",
@@ -678,7 +690,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_type",
-					Description: `(Optional) Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment. ->`,
+					Description: `(Required) Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment. ->`,
 				},
 				resource.Attribute{
 					Name:        "disk_size_gb",
@@ -687,10 +699,6 @@ var (
 				resource.Attribute{
 					Name:        "encryption_at_rest_provider",
 					Description: `(Optional) Possible values are AWS, GCP, AZURE or NONE. Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation. You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted.`,
-				},
-				resource.Attribute{
-					Name:        "labels",
-					Description: `(Optional) Array containing key-value pairs that tag and categorize the cluster. Each key and value has a maximum length of 255 characters. You cannot set the key ` + "`" + `Infrastructure Tool` + "`" + `, it is used for internal purposes to track aggregate usage.`,
 				},
 				resource.Attribute{
 					Name:        "mongo_db_major_version",
@@ -718,11 +726,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_disk_type_name",
-					Description: `(Optional - Azure Only) Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName. Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB. More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.`,
-				},
-				resource.Attribute{
-					Name:        "provider_encrypt_ebs_volume",
-					Description: `(Optional- AWS ONLY) If enabled, the Amazon EBS encryption feature encrypts the server’s root volume for both data at rest within the volume and for data moving between the volume and the cluster.`,
+					Description: `(Optional - Azure Only) Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName. Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB. More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.`,
 				},
 				resource.Attribute{
 					Name:        "provider_region_name",
@@ -734,7 +738,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "replication_factor",
-					Description: `(Optional) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.`,
+					Description: `(Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.`,
 				},
 				resource.Attribute{
 					Name:        "provider_auto_scaling_compute_min_instance_size",
@@ -746,7 +750,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "replication_specs",
-					Description: `(Optional) Configuration for cluster regions. See [Replication Spec](#replication-spec) below for more details. ### Multi-Region Cluster ` + "`" + `` + "`" + `` + "`" + `hcl //Example 3 Multi-Region block replication_specs { num_shards = 1 regions_config { region_name = "US_EAST_1" electable_nodes = 3 priority = 7 read_only_nodes = 0 } regions_config { region_name = "US_EAST_2" electable_nodes = 2 priority = 6 read_only_nodes = 0 } regions_config { region_name = "US_WEST_1" electable_nodes = 2 priority = 5 read_only_nodes = 2 } } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Configuration for cluster regions. See [Replication Spec](#replication-spec) below for more details. ### Multi-Region Cluster ` + "`" + `` + "`" + `` + "`" + `hcl //Example 3 Multi-Region block replication_specs { num_shards = 1 regions_config { region_name = "US_EAST_1" electable_nodes = 3 priority = 7 read_only_nodes = 0 } regions_config { region_name = "US_EAST_2" electable_nodes = 2 priority = 6 read_only_nodes = 0 } regions_config { region_name = "US_WEST_1" electable_nodes = 2 priority = 5 read_only_nodes = 2 } } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "num_shards",
@@ -818,7 +822,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sample_refresh_interval_bi_connector",
-					Description: `(Optional) Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled. ### Labels Contains key-value pairs that tag and categorize the cluster. Each key and value has a maximum length of 255 characters.`,
+					Description: `(Optional) Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled. ### Labels ` + "`" + `` + "`" + `` + "`" + `hcl labels { key = "Key 1" value = "Value 1" } labels { key = "Key 2" value = "Value 2" } ` + "`" + `` + "`" + `` + "`" + ` Key-value pairs that tag and categorize the cluster. Each key and value has a maximum length of 255 characters. You cannot set the key ` + "`" + `Infrastructure Tool` + "`" + `, it is used for internal purposes to track aggregate usage.`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -1097,7 +1101,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "auth_database_name",
-					Description: `(Required) The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.`,
+					Description: `(Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB. Accepted values include:`,
 				},
 				resource.Attribute{
 					Name:        "project_id",
@@ -1129,7 +1133,39 @@ var (
 				},
 				resource.Attribute{
 					Name:        "CUSTOMER",
-					Description: `The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the ` + "`" + `$external` + "`" + ` database. ### Roles Block mapping a user's role to a database / collection. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. ->`,
+					Description: `The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the ` + "`" + `$external` + "`" + ` database.`,
+				},
+				resource.Attribute{
+					Name:        "aws_iam_type",
+					Description: `(Optional) If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:`,
+				},
+				resource.Attribute{
+					Name:        "NONE",
+					Description: `The user does not use AWS IAM credentials.`,
+				},
+				resource.Attribute{
+					Name:        "USER",
+					Description: `New database user has AWS IAM user credentials.`,
+				},
+				resource.Attribute{
+					Name:        "ROLE",
+					Description: `New database user has credentials associated with an AWS IAM role.`,
+				},
+				resource.Attribute{
+					Name:        "ldap_auth_type",
+					Description: `(Optional) Method by which the provided ` + "`" + `username` + "`" + ` is authenticated. If no value is given, Atlas uses the default value of ` + "`" + `NONE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "NONE",
+					Description: `Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.`,
+				},
+				resource.Attribute{
+					Name:        "USER",
+					Description: `LDAP server authenticates this user through the user's LDAP user. ` + "`" + `username` + "`" + ` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).`,
+				},
+				resource.Attribute{
+					Name:        "GROUP",
+					Description: `LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). ` + "`" + `username` + "`" + ` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253). ### Roles Block mapping a user's role to a database / collection. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. ->`,
 				},
 				resource.Attribute{
 					Name:        "role_name",
@@ -1149,7 +1185,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value that you want to write. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `The value that you want to write. ### Scopes Array of clusters and Atlas Data Lakes that this user has access to. If omitted, Atlas grants the user access to all the clusters and Atlas Data Lakes in the project by default.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the cluster or Atlas Data Lake that the user has access to.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Type of resource that the user has access to. Valid values are: ` + "`" + `CLUSTER` + "`" + ` and ` + "`" + `DATA_LAKE` + "`" + ` ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1209,7 +1253,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1 ### azure_key_vault`,
+					Description: `The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1`,
+				},
+				resource.Attribute{
+					Name:        "role_id",
+					Description: `ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the ` + "`" + `role_id` + "`" + ` attribute of the ` + "`" + `mongodbatlas_cloud_provider_access` + "`" + ` resource. ### azure_key_vault`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -1381,7 +1429,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Required AZURE only) Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required AZURE only) Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).`,
+				},
+				resource.Attribute{
+					Name:        "regions",
+					Description: `(Optional GCP only) Atlas regions where the container resides. Provide this field only if you provide an ` + "`" + `atlas_cidr_block` + "`" + ` smaller than ` + "`" + `/18` + "`" + `. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "container_id",

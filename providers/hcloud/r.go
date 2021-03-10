@@ -166,6 +166,18 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "hcloud_snapshot",
+			Category:         "Resources",
+			ShortDescription: `Provides a Hetzner Cloud snapshot to represent a image with type snapshot in the Hetzner Cloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"snapshot",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "hcloud_ssh_key",
 			Category:         "Resources",
 			ShortDescription: `Provides a Hetzner Cloud SSH key resource to manage SSH keys for server access.`,
@@ -218,9 +230,10 @@ var (
 		"hcloud_rdns":                   9,
 		"hcloud_server":                 10,
 		"hcloud_server_network":         11,
-		"hcloud_ssh_key":                12,
-		"hcloud_volume":                 13,
-		"hcloud_volume_attachment":      14,
+		"hcloud_snapshot":               12,
+		"hcloud_ssh_key":                13,
+		"hcloud_volume":                 14,
+		"hcloud_volume_attachment":      15,
 	}
 )
 

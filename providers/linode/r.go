@@ -152,35 +152,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "linodes",
-					Description: `(Required) A list of IDs of Linodes this Firewall should govern it's network traffic for.`,
+					Description: `(Optional) A list of IDs of Linodes this Firewall should govern it's network traffic for.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A list of tags applied to the Kubernetes cluster. Tags are for organizational purposes only. ### inbound The following arguments are supported in the inbound rule block:`,
+					Description: `(Optional) A list of tags applied to the Kubernetes cluster. Tags are for organizational purposes only. ### inbound and outbound The following arguments are supported in the inbound and outbound rule blocks:`,
 				},
 				resource.Attribute{
 					Name:        "ports",
-					Description: `(Required) A list of ports and/or port ranges (i.e. "443" or "80-90").`,
+					Description: `(Optional) A string representation of ports and/or port ranges (i.e. "443" or "80-90, 91").`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
 					Description: `(Required) The network protocol this rule controls.`,
 				},
 				resource.Attribute{
-					Name:        "addresses",
-					Description: `(Required) A list of IP addresses, CIDR blocks, or 0.0.0.0/0 (to whitelist all) this rule applies to. ### outbound The following arguments are supported in the outbound rule block:`,
+					Name:        "ipv4",
+					Description: `(Optional) A list of IP addresses, CIDR blocks, or 0.0.0.0/0 (to allow all) this rule applies to.`,
 				},
 				resource.Attribute{
-					Name:        "ports",
-					Description: `(Required) A list of ports and/or port ranges (i.e. "443" or "80-90").`,
-				},
-				resource.Attribute{
-					Name:        "protocol",
-					Description: `(Required) The network protocol this rule controls.`,
-				},
-				resource.Attribute{
-					Name:        "addresses",
-					Description: `(Required) A list of IP addresses, CIDR blocks, or ` + "`" + `0.0.0.0/0` + "`" + ` (to whitelist all) this rule applies to. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Name:        "ipv6",
+					Description: `(Optional) A list of IPv6 addresses or networks this rule applies to. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -379,7 +371,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "image",
-					Description: `(Optional) An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with ` + "`" + `private/` + "`" + `. See [images](https://api.linode.com/v4/images) for more information on the Images available for you to use. Examples are ` + "`" + `linode/debian9` + "`" + `, ` + "`" + `linode/fedora28` + "`" + `, ` + "`" + `linode/ubuntu16.04lts` + "`" + `, ` + "`" + `linode/arch` + "`" + `, and ` + "`" + `private/12345` + "`" + `. See all images [here](https://api.linode.com/v4/linode/kernels).`,
+					Description: `(Optional) An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with ` + "`" + `private/` + "`" + `. See [images](https://api.linode.com/v4/images) for more information on the Images available for you to use. Examples are ` + "`" + `linode/debian9` + "`" + `, ` + "`" + `linode/fedora28` + "`" + `, ` + "`" + `linode/ubuntu16.04lts` + "`" + `, ` + "`" + `linode/arch` + "`" + `, and ` + "`" + `private/12345` + "`" + `. See all images [here](https://api.linode.com/v4/linode/images) (Requires a personal access token; docs [here](https://developers.linode.com/api/v4/images)).`,
 				},
 				resource.Attribute{
 					Name:        "stackscript_id",
@@ -487,7 +479,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kernel",
-					Description: `(Optional) - A Kernel ID to boot a Linode with. Default is based on image choice. Examples are ` + "`" + `linode/latest-64bit` + "`" + `, ` + "`" + `linode/grub2` + "`" + `, ` + "`" + `linode/direct-disk` + "`" + `, etc. See all kernels [here](https://api.linode.com/v4/linode/kernels).`,
+					Description: `(Optional) - A Kernel ID to boot a Linode with. Default is based on image choice. Examples are ` + "`" + `linode/latest-64bit` + "`" + `, ` + "`" + `linode/grub2` + "`" + `, ` + "`" + `linode/direct-disk` + "`" + `, etc. See all kernels [here](https://api.linode.com/v4/linode/kernels). Note that this is a paginated API endpoint ([docs](https://developers.linode.com/api/v4/linode-kernels)).`,
 				},
 				resource.Attribute{
 					Name:        "run_level",
@@ -575,6 +567,81 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "linode_instance_ip",
+			Category:         "Resources",
+			ShortDescription: `Manages a Linode instance IP.`,
+			Description:      ``,
+			Keywords: []string{
+				"instance",
+				"ip",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "linode_id",
+					Description: `(Required) The ID of the Linode to allocate an IPv4 address for.`,
+				},
+				resource.Attribute{
+					Name:        "public",
+					Description: `(Optional) Whether the IPv4 address is public or private. Defaults to true.`,
+				},
+				resource.Attribute{
+					Name:        "rdns",
+					Description: `(Optional) The reverse DNS assigned to this address. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "gateway",
+					Description: `The default gateway for this address`,
+				},
+				resource.Attribute{
+					Name:        "prefix",
+					Description: `The number of bits set in the subnet mask.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `The resulting IPv4 address.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region this IP resides in.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_mask",
+					Description: `The mask that separates host bits from network bits for this address.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of IP address.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "gateway",
+					Description: `The default gateway for this address`,
+				},
+				resource.Attribute{
+					Name:        "prefix",
+					Description: `The number of bits set in the subnet mask.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `The resulting IPv4 address.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region this IP resides in.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_mask",
+					Description: `The mask that separates host bits from network bits for this address.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of IP address.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -711,7 +778,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "linode_id",
-					Description: `(Optional) The ID of a Linode Instance where the the NodeBalancer should be attached.`,
+					Description: `(Optional) The ID of a Linode Instance where the NodeBalancer should be attached.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -727,7 +794,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ipv6",
-					Description: `The Public IPv6 Address of this NodeBalancer ## Import Linodes NodeBalancers can be imported using the Linode NodeBalancer ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_nodebalancer.mynodebalancer 1234567 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for NodeBalancers and other Linode resource types.`,
+					Description: `The Public IPv6 Address of this NodeBalancer`,
+				},
+				resource.Attribute{
+					Name:        "in",
+					Description: `The total transfer, in MB, used by this NodeBalancer for the current month`,
+				},
+				resource.Attribute{
+					Name:        "out",
+					Description: `The total inbound transfer, in MB, used for this NodeBalancer for the current month`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `The total outbound transfer, in MB, used for this NodeBalancer for the current month ## Import Linodes NodeBalancers can be imported using the Linode NodeBalancer ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_nodebalancer.mynodebalancer 1234567 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for NodeBalancers and other Linode resource types.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -754,6 +833,10 @@ var (
 				resource.Attribute{
 					Name:        "protocol",
 					Description: `(Optional) The protocol this port is configured to serve. If this is set to https you must include an ssl_cert and an ssl_key. (Defaults to "http")`,
+				},
+				resource.Attribute{
+					Name:        "proxy_protocol",
+					Description: `(Optional) The version of ProxyProtocol to use for the underlying NodeBalancer. This requires protocol to be ` + "`" + `tcp` + "`" + `. Valid values are ` + "`" + `none` + "`" + `, ` + "`" + `v1` + "`" + `, and ` + "`" + `v2` + "`" + `. (Defaults to ` + "`" + `none` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "port",
@@ -812,11 +895,11 @@ var (
 					Description: `The fingerprint for the SSL certification this port is serving if this port is not configured to use SSL.`,
 				},
 				resource.Attribute{
-					Name:        "node_status_up",
+					Name:        "up",
 					Description: `The number of backends considered to be 'UP' and healthy, and that are serving requests.`,
 				},
 				resource.Attribute{
-					Name:        "node_status_down",
+					Name:        "down",
 					Description: `The number of backends considered to be 'DOWN' and unhealthy. These are not in rotation, and not serving requests. ## Import NodeBalancer Configs can be imported using the NodeBalancer ` + "`" + `nodebalancer_id` + "`" + ` followed by the NodeBalancer Config ` + "`" + `id` + "`" + ` separated by a comma, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_nodebalancer_config.http-foobar 1234567,7654321 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for NodeBalancer Configs and other Linode resource types.`,
 				},
 			},
@@ -892,6 +975,14 @@ var (
 					Name:        "label",
 					Description: `(Required) The label of the Linode Object Storage Bucket.`,
 				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `(Required) The Base64 encoded and PEM formatted SSL certificate.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `(Required) The private key associated with the TLS/SSL certificate. ## Import Linodes Object Storage Buckets can be imported using the resource ` + "`" + `id` + "`" + ` which is made of ` + "`" + `cluster:label` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_object_storage_bucket.mybucket us-east-1:foobar ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -909,7 +1000,23 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "label",
-					Description: `(Required) The label given to this key. For display purposes only. - - - ## Attributes This resource exports the following attributes:`,
+					Description: `(Required) The label given to this key. For display purposes only. - - -`,
+				},
+				resource.Attribute{
+					Name:        "bucket_access",
+					Description: `(Optional) Defines this key as a Limited Access Key. Limited Access Keys restrict this Object Storage key’s access to only the bucket(s) declared in this array and define their bucket-level permissions. Not providing this block will not limit this Object Storage Key. ### bucket_access The following arguments are supported in the bucket_access block:`,
+				},
+				resource.Attribute{
+					Name:        "bucket_name",
+					Description: `The unique label of the bucket to which the key will grant limited access.`,
+				},
+				resource.Attribute{
+					Name:        "cluster",
+					Description: `The Object Storage cluster where a bucket to which the key is granting access is hosted.`,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `This Limited Access Key’s permissions for the selected bucket. Can be one of ` + "`" + `"read_write"` + "`" + ` or ` + "`" + `"read_only"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "access_key",
@@ -919,8 +1026,107 @@ var (
 					Name:        "secret_key",
 					Description: `This keypair's secret key.`,
 				},
+				resource.Attribute{
+					Name:        "limited",
+					Description: `Whether or not this key is a limited access key.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "linode_object_storage_object",
+			Category:         "Resources",
+			ShortDescription: `Manages a Linode Object Storage Object.`,
+			Description:      ``,
+			Keywords: []string{
+				"object",
+				"storage",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `(Required) The name of the bucket to put the object in.`,
+				},
+				resource.Attribute{
+					Name:        "cluster",
+					Description: `(Required) The cluster the bucket is in.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) They name of the object once it is in the bucket.`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `(Required) The secret key to authenitcate with.`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `(Required) The access key to authenticate with.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Optional, conflicts with ` + "`" + `content` + "`" + ` and ` + "`" + `content_base64` + "`" + `) The path to a file that will be read and uploaded as raw bytes for the object content. The path must either be relative to the root module or absolute.`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Optional, conflicts with ` + "`" + `source` + "`" + ` and ` + "`" + `content_base64` + "`" + `) Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text.`,
+				},
+				resource.Attribute{
+					Name:        "content_base64",
+					Description: `(Optional, conflicts with ` + "`" + `source` + "`" + ` and ` + "`" + `content` + "`" + `) Base64-encoded data that will be decoded and uploaded as raw bytes for the object content. This allows safely uploading non-UTF8 binary data, but is recommended only for small content such as the result of the ` + "`" + `gzipbase64` + "`" + ` function with small text strings. For larger objects, use ` + "`" + `source` + "`" + ` to stream the content from a disk file.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `(Optional) The canned ACL to apply. Can be one of ` + "`" + `private` + "`" + `, ` + "`" + `public-read` + "`" + `, ` + "`" + `authenticated-read` + "`" + `, ` + "`" + `public-read-write` + "`" + `, and ` + "`" + `custom` + "`" + ` (defaults to ` + "`" + `private` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "cache_control",
+					Description: `(Optional) Specifies caching behavior along the request/reply chain Read [w3c cache_control](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9) for further details.`,
+				},
+				resource.Attribute{
+					Name:        "content_disposition",
+					Description: `(Optional) Specifies presentational information for the object. Read [w3c content_disposition](http://www.w3.org/Protocols/rfc2616/rfc2616-sec19.html#sec19.5.1) for further information.`,
+				},
+				resource.Attribute{
+					Name:        "content_encoding",
+					Description: `(Optional) Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field. Read [w3c content encoding](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11) for further information.`,
+				},
+				resource.Attribute{
+					Name:        "content_language",
+					Description: `(Optional) The language the content is in e.g. en-US or en-GB.`,
+				},
+				resource.Attribute{
+					Name:        "content_type",
+					Description: `(Optional) A standard MIME type describing the format of the object data, e.g. application/octet-stream. All Valid MIME Types are valid for this input.`,
+				},
+				resource.Attribute{
+					Name:        "website_redirect",
+					Description: `(Optional) Specifies a target URL for website redirect.`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `(Optional) Used to trigger updates. The only meaningful value is ` + "`" + `${filemd5("path/to/file")}` + "`" + ` (Terraform 0.11.12 or later) or ` + "`" + `${md5(file("path/to/file"))}` + "`" + ` (Terraform 0.11.11 or earlier).`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional) A map of keys/values to provision metadata.`,
+				},
+				resource.Attribute{
+					Name:        "force_destroy",
+					Description: `(Optional) Allow the object to be deleted regardless of any legal hold or object lock (defaults to ` + "`" + `false` + "`" + `). ## Attributes Reference The following attributes are exported`,
+				},
+				resource.Attribute{
+					Name:        "version_id",
+					Description: `A unique version ID value for the object.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "version_id",
+					Description: `A unique version ID value for the object.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1092,6 +1298,102 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "linode_user",
+			Category:         "Resources",
+			ShortDescription: `Manages a Linode User.`,
+			Description:      ``,
+			Keywords: []string{
+				"user",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "username",
+					Description: `(required) The username of the user.`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `(required) The email address of the user.`,
+				},
+				resource.Attribute{
+					Name:        "restricted",
+					Description: `(optional) If true, this user will only have explicit permissions granted. ## Attributes Reference In addition to all the arguments above, the following attributes are exported.`,
+				},
+				resource.Attribute{
+					Name:        "tfa_enabled",
+					Description: `Whether the user has two-factor-authentication enabled.`,
+				},
+				resource.Attribute{
+					Name:        "ssh_keys",
+					Description: `A list of the User's SSH keys.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tfa_enabled",
+					Description: `Whether the user has two-factor-authentication enabled.`,
+				},
+				resource.Attribute{
+					Name:        "ssh_keys",
+					Description: `A list of the User's SSH keys.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "linode_vlan",
+			Category:         "Resources",
+			ShortDescription: `Manages a Linode VLAN.`,
+			Description:      ``,
+			Keywords: []string{
+				"vlan",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(required) The region of where the VLAN is deployed.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the vlan for display purposes only.`,
+				},
+				resource.Attribute{
+					Name:        "linodes",
+					Description: `(Optional) A list of IDs of Linodes to attach to this VLAN.`,
+				},
+				resource.Attribute{
+					Name:        "cidr_block",
+					Description: `(Optional) The CIDR block for this VLAN. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Linode.`,
+				},
+				resource.Attribute{
+					Name:        "mac_address",
+					Description: `The mac address of the Linode.`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_address",
+					Description: `The IPv4 address of the Linode.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Linode.`,
+				},
+				resource.Attribute{
+					Name:        "mac_address",
+					Description: `The mac address of the Linode.`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_address",
+					Description: `The IPv4 address of the Linode.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "linode_volume",
 			Category:         "Resources",
 			ShortDescription: `Manages a Linode Volume.`,
@@ -1114,7 +1416,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "linode_id",
-					Description: `(Optional) The ID of a Linode Instance where the the Volume should be attached.`,
+					Description: `(Optional) The ID of a Linode Instance where the Volume should be attached.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1152,17 +1454,21 @@ var (
 		"linode_firewall":              2,
 		"linode_image":                 3,
 		"linode_instance":              4,
-		"linode_lke_cluster":           5,
-		"linode_nodebalancer":          6,
-		"linode_nodebalancer_config":   7,
-		"linode_nodebalancer_node":     8,
-		"linode_object_storage_bucket": 9,
-		"linode_object_storage_key":    10,
-		"linode_rdns":                  11,
-		"linode_sshkey":                12,
-		"linode_stackscript":           13,
-		"linode_token":                 14,
-		"linode_volume":                15,
+		"linode_instance_ip":           5,
+		"linode_lke_cluster":           6,
+		"linode_nodebalancer":          7,
+		"linode_nodebalancer_config":   8,
+		"linode_nodebalancer_node":     9,
+		"linode_object_storage_bucket": 10,
+		"linode_object_storage_key":    11,
+		"linode_object_storage_object": 12,
+		"linode_rdns":                  13,
+		"linode_sshkey":                14,
+		"linode_stackscript":           15,
+		"linode_token":                 16,
+		"linode_user":                  17,
+		"linode_vlan":                  18,
+		"linode_volume":                19,
 	}
 )
 

@@ -37,7 +37,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_permission",
-					Description: `(Optional) The permission to set for the created file. Expects an a string. The default value is ` + "`" + `"0777"` + "`" + `.`,
+					Description: `(Optional) The permission to set for the created file. Expects a string. The default value is ` + "`" + `"0777"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "directory_permission",

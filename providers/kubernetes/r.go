@@ -30,7 +30,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the API service that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the API service that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -38,7 +38,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the API service.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the API service. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -51,10 +51,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this API service that can be used by clients to determine when API service has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this API service.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -105,6 +101,77 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "kubernetes_certificate_signing_request",
+			Category:         "Resources",
+			ShortDescription: `Use this resource to generate TLS certificates using Kubernetes.`,
+			Description:      ``,
+			Keywords: []string{
+				"certificate",
+				"signing",
+				"request",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "auto_approve",
+					Description: `(Optional) Automatically approve the CertificateSigningRequest. Defaults to 'true'.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Required) Standard certificate signing request's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata)`,
+				},
+				resource.Attribute{
+					Name:        "spec",
+					Description: `(Required) Spec defines the specification of the desired behavior of the deployment. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Optional) An unstructured key value map stored with the certificate signing request that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+				},
+				resource.Attribute{
+					Name:        "generate_name",
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the certificate signing request. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the certificate signing request, must be unique. Cannot be updated. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#names) #### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `The signed certificate PEM data.`,
+				},
+				resource.Attribute{
+					Name:        "generation",
+					Description: `A sequence number representing a specific generation of the desired state.`,
+				},
+				resource.Attribute{
+					Name:        "resource_version",
+					Description: `An opaque value that represents the internal version of this certificate signing request that can be used by clients to determine when certificate signing request has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `The unique in time and space value for this certificate signing request. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#uids) ### ` + "`" + `spec` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "request",
+					Description: `(Required) Base64-encoded PKCS#10 CSR data.`,
+				},
+				resource.Attribute{
+					Name:        "signer_name",
+					Description: `(Optional) Requested signer for the request. It is a qualified name in the form: ` + "`" + `scope-hostname.io/name` + "`" + `. If empty, it will be defaulted: 1. If it's a kubelet client certificate, it is assigned "kubernetes.io/kube-apiserver-client-kubelet". 2. If it's a kubelet serving certificate, it is assigned "kubernetes.io/kubelet-serving". 3. Otherwise, it is assigned "kubernetes.io/legacy-unknown". Distribution of trust for signers happens out of band.`,
+				},
+				resource.Attribute{
+					Name:        "usages",
+					Description: `(Required) Specifies a set of usage contexts the key will be valid for. See https://godoc.org/k8s.io/api/certificates/v1beta1#KeyUsage ## Generating a New Certificate Since the certificate is a logical resource that lives only in the Terraform state, it will persist until it is explicitly destroyed by the user. In order to force the generation of a new certificate within an existing state, the certificate instance can be "tainted": ` + "`" + `` + "`" + `` + "`" + ` terraform taint kubernetes_certificate_signing_request.example ` + "`" + `` + "`" + `` + "`" + ` A new certificate will then be generated on the next ` + "`" + `` + "`" + `terraform apply` + "`" + `` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "kubernetes_cluster_role",
 			Category:         "Resources",
 			ShortDescription: `A ClusterRole creates a role at the cluster level and in all namespaces.`,
@@ -113,7 +180,80 @@ var (
 				"cluster",
 				"role",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Required) Standard kubernetes metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata)`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Optional) The PolicyRoles for this ClusterRole. For more info see [Kubernetes reference](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole)`,
+				},
+				resource.Attribute{
+					Name:        "aggregation_rule",
+					Description: `(Optional) Describes how to build the Rules for this ClusterRole. If AggregationRule is set, then the Rules are controller managed and direct changes to Rules will be overwritten by the controller. . For more info see [Kubernetes reference](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Optional) An unstructured key value map stored with the cluster role binding that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+				},
+				resource.Attribute{
+					Name:        "generate_name",
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the cluster role binding. ~> By default, the provider ignores any labels whose key names end with`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the cluster role binding, must be unique. Cannot be updated. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#names) #### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "generation",
+					Description: `A sequence number representing a specific generation of the desired state.`,
+				},
+				resource.Attribute{
+					Name:        "resource_version",
+					Description: `An opaque value that represents the internal version of this object that can be used by clients to determine when the object has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `The unique in time and space value for this cluster role binding. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#uids) ### ` + "`" + `rule` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "api_groups",
+					Description: `(Optional) APIGroups is the name of the APIGroup that contains the resources. If multiple API groups are specified, any action requested against one of the enumerated resources in any API group will be allowed.`,
+				},
+				resource.Attribute{
+					Name:        "non_resource_urls",
+					Description: `(Optional) NonResourceURLs is a set of partial urls that a user should have access to. \`,
+				},
+				resource.Attribute{
+					Name:        "resource_names",
+					Description: `(Optional) ResourceNames is an optional white list of names that the rule applies to. An empty set means that everything is allowed.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `(Optional) Resources is a list of resources this rule applies to. ResourceAll represents all resources.`,
+				},
+				resource.Attribute{
+					Name:        "verbs",
+					Description: `(Required) Verbs is a list of Verbs that apply to ALL the ResourceKinds and AttributeRestrictions contained in this rule. VerbAll represents all kinds. ### ` + "`" + `aggregation_rule` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "cluster_role_selectors",
+					Description: `(Optional) A list of selectors which will be used to find ClusterRoles and create the rules. ### ` + "`" + `cluster_role_selectors` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "match_expressions",
+					Description: `(Optional) A list of label selector requirements. The requirements are ANDed.`,
+				},
+				resource.Attribute{
+					Name:        "match_labels",
+					Description: `(Optional) A map of ` + "`" + `{key,value}` + "`" + ` pairs. A single ` + "`" + `{key,value}` + "`" + ` in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. ## Import ClusterRole can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_cluster_role.example terraform-name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -142,7 +282,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the cluster role binding that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the cluster role binding that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -150,7 +290,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the cluster role binding.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the cluster role binding. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -163,10 +303,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this object that can be used by clients to determine when the object has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this cluster role binding.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -182,7 +318,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "api_group",
-					Description: `(Optional) The API group to drive authorization decisions. This value must be and defaults to ` + "`" + `rbac.authorization.k8s.io` + "`" + ` ### ` + "`" + `subject` + "`" + ` #### Arguments`,
+					Description: `(Required) The API group to drive authorization decisions. This value must be and defaults to ` + "`" + `rbac.authorization.k8s.io` + "`" + ` ### ` + "`" + `subject` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -198,7 +334,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "api_group",
-					Description: `(Optional) The API group to drive authorization decisions. This value only applies to kind ` + "`" + `User` + "`" + ` and ` + "`" + `Group` + "`" + `. It must be ` + "`" + `rbac.authorization.k8s.io` + "`" + ` ## Import ClusterRoleBinding can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_cluster_role_binding.example terraform-name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The API group to drive authorization decisions. This value only applies to kind ` + "`" + `User` + "`" + ` and ` + "`" + `Group` + "`" + `. It must be ` + "`" + `rbac.authorization.k8s.io` + "`" + ` ## Import ClusterRoleBinding can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_cluster_role_binding.example terraform-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -228,7 +364,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the config map that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the config map that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -236,7 +372,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the config map. May match selectors of replication controllers and services.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the config map. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -253,10 +389,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this config map that can be used by clients to determine when config map has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this config map.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -278,7 +410,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard resource's metadata. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status`,
+					Description: `(Required) Standard resource's metadata. For more info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status`,
 				},
 				resource.Attribute{
 					Name:        "spec",
@@ -286,7 +418,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the resource that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the resource that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -294,11 +426,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Name of the service, must be unique. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names`,
+					Description: `(Optional) Name of the service, must be unique. Cannot be updated. For more info: http://kubernetes.io/docs/user-guide/identifiers#names`,
 				},
 				resource.Attribute{
 					Name:        "namespace",
@@ -313,12 +445,8 @@ var (
 					Description: `An opaque value that represents the internal version of this service that can be used by clients to determine when service has changed. Read more: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency`,
 				},
 				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this service.`,
-				},
-				resource.Attribute{
 					Name:        "uid",
-					Description: `The unique in time and space value for this service. More info: http://kubernetes.io/docs/user-guide/identifiers#uids ### ` + "`" + `spec` + "`" + ` #### Arguments`,
+					Description: `The unique in time and space value for this service. For more info: http://kubernetes.io/docs/user-guide/identifiers#uids ### ` + "`" + `spec` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "concurrency_policy",
@@ -350,11 +478,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard object's metadata of the jobs created from this template. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata`,
+					Description: `(Required) Standard object's metadata of the jobs created from this template. For more info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata`,
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `(Required) Specification of the desired behavior of the job. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status ### ` + "`" + `spec` + "`" + ` #### Arguments`,
+					Description: `(Required) Specification of the desired behavior of the job. For more info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status ### ` + "`" + `spec` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "active_deadline_seconds",
@@ -366,23 +494,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "completions",
-					Description: `(Optional) Specifies the desired number of successfully finished pods the job should be run with. Setting to nil means that the success of any pod signals the success of all pods, and allows parallelism to have any positive value. Setting to 1 means that parallelism is limited to 1 and the success of that pod signals the success of the job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/`,
+					Description: `(Optional) Specifies the desired number of successfully finished pods the job should be run with. Setting to nil means that the success of any pod signals the success of all pods, and allows parallelism to have any positive value. Setting to 1 means that parallelism is limited to 1 and the success of that pod signals the success of the job. For more info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/`,
 				},
 				resource.Attribute{
 					Name:        "manual_selector",
-					Description: `(Optional) Controls generation of pod labels and pod selectors. Leave ` + "`" + `manualSelector` + "`" + ` unset unless you are certain what you are doing. When false or unset, the system pick labels unique to this job and appends those labels to the pod template. When true, the user is responsible for picking unique labels and specifying the selector. Failure to pick a unique label may cause this and other jobs to not function correctly. However, You may see ` + "`" + `manualSelector=true` + "`" + ` in jobs that were created with the old ` + "`" + `extensions/v1beta1` + "`" + ` API. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#specifying-your-own-pod-selector`,
+					Description: `(Optional) Controls generation of pod labels and pod selectors. Leave ` + "`" + `manualSelector` + "`" + ` unset unless you are certain what you are doing. When false or unset, the system pick labels unique to this job and appends those labels to the pod template. When true, the user is responsible for picking unique labels and specifying the selector. Failure to pick a unique label may cause this and other jobs to not function correctly. However, You may see ` + "`" + `manualSelector=true` + "`" + ` in jobs that were created with the old ` + "`" + `extensions/v1beta1` + "`" + ` API. For more info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#specifying-your-own-pod-selector`,
 				},
 				resource.Attribute{
 					Name:        "parallelism",
-					Description: `(Optional) Specifies the maximum desired number of pods the job should run at any given time. The actual number of pods running in steady state will be less than this number when ` + "`" + `((.spec.completions - .status.successful) < .spec.parallelism)` + "`" + `, i.e. when the work left to do is less than max parallelism. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/`,
+					Description: `(Optional) Specifies the maximum desired number of pods the job should run at any given time. The actual number of pods running in steady state will be less than this number when ` + "`" + `((.spec.completions - .status.successful) < .spec.parallelism)` + "`" + `, i.e. when the work left to do is less than max parallelism. For more info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/`,
 				},
 				resource.Attribute{
 					Name:        "selector",
-					Description: `(Optional) A label query over pods that should match the pod count. Normally, the system sets this field for you. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors`,
+					Description: `(Optional) A label query over pods that should match the pod count. Normally, the system sets this field for you. For more info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors`,
 				},
 				resource.Attribute{
 					Name:        "template",
-					Description: `(Optional) Describes the pod that will be created when executing a job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/`,
+					Description: `(Optional) Describes the pod that will be created when executing a job. For more info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/`,
 				},
 				resource.Attribute{
 					Name:        "ttl_seconds_after_finished",
@@ -420,7 +548,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the csi driver that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the csi driver that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -428,7 +556,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the csi driver. May match selectors of replication controllers and services.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the csi driver. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "attach_required",
@@ -449,10 +577,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this csi driver that can be used by clients to determine when csi driver has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this csi driver.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -477,11 +601,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `(Required) Spec defines the specification of the desired behavior of the daemonset. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Required) Spec defines the specification of the desired behavior of the daemonset. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status)`,
+				},
+				resource.Attribute{
+					Name:        "wait_for_rollout",
+					Description: `(Optional) Wait for the deployment to successfully roll out. Defaults to ` + "`" + `true` + "`" + `. ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the deployment that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the deployment that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -489,7 +617,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the deployment.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the deployment. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -506,10 +634,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this deployment that can be used by clients to determine when deployment has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this deployment.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -565,7 +689,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "automount_service_account_token",
-					Description: `(Optional) Indicates whether a service account token should be automatically mounted. Defaults to ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Indicates whether a service account token should be automatically mounted. Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "container",
@@ -582,6 +706,10 @@ var (
 				resource.Attribute{
 					Name:        "dns_config",
 					Description: `(Optional) Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy. Defaults to empty. See ` + "`" + `dns_config` + "`" + ` block definition below.`,
+				},
+				resource.Attribute{
+					Name:        "enable_service_links",
+					Description: `(Optional) Enables generating environment variables for service discovery. Optional: Defaults to true. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/#accessing-the-service).`,
 				},
 				resource.Attribute{
 					Name:        "host_aliases",
@@ -813,7 +941,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "startup_probe",
-					Description: `(Optional) StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes`,
+					Description: `(Optional) StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. For more info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes`,
 				},
 				resource.Attribute{
 					Name:        "stdin",
@@ -997,7 +1125,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "medium",
-					Description: `(Optional) What type of storage medium should back this directory. The default is "" which means to use the node's default medium. Must be an empty string (default) or Memory. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/volumes#emptydir) ### ` + "`" + `env` + "`" + ` #### Arguments`,
+					Description: `(Optional) What type of storage medium should back this directory. The default is "" which means to use the node's default medium. Must be an empty string (default) or Memory. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/volumes#emptydir)`,
+				},
+				resource.Attribute{
+					Name:        "size_limit",
+					Description: `(Optional) Total amount of local storage required for this EmptyDir volume. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes) and [Kubernetes Quantity type](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource?tab=doc#Quantity). ### ` + "`" + `env` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1209,15 +1341,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pre_stop",
-					Description: `(Optional) pre_stop is called immediately before a container is terminated. The container is terminated after the handler completes. The reason for termination is passed to the handler. Regardless of the outcome of the handler, the container is eventually terminated. Other management of the container blocks until the hook completes. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/container-environment#hook-details) ### ` + "`" + `limits` + "`" + ` #### Arguments`,
-				},
-				resource.Attribute{
-					Name:        "cpu",
-					Description: `(Optional) CPU`,
-				},
-				resource.Attribute{
-					Name:        "memory",
-					Description: `(Optional) Memory ### ` + "`" + `liveness_probe` + "`" + ` #### Arguments`,
+					Description: `(Optional) pre_stop is called immediately before a container is terminated. The container is terminated after the handler completes. The reason for termination is passed to the handler. Regardless of the outcome of the handler, the container is eventually terminated. Other management of the container blocks until the hook completes. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/container-environment#hook-details) ### ` + "`" + `liveness_probe` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "exec",
@@ -1413,15 +1537,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "requests",
-					Description: `(Optional) Describes the minimum amount of compute resources required. ### ` + "`" + `requests` + "`" + ` #### Arguments`,
-				},
-				resource.Attribute{
-					Name:        "cpu",
-					Description: `(Optional) CPU`,
-				},
-				resource.Attribute{
-					Name:        "memory",
-					Description: `(Optional) Memory ### ` + "`" + `resource_field_ref` + "`" + ` #### Arguments`,
+					Description: `(Optional) Describes the minimum amount of compute resources required. ### ` + "`" + `resource_field_ref` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "container_name",
@@ -1553,7 +1669,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "supplemental_groups",
-					Description: `(Optional) A list of groups applied to the first process run in each container, in addition to the container's primary GID. If unspecified, no groups will be added to any container. ### ` + "`" + `tcp_socket` + "`" + ` #### Arguments`,
+					Description: `(Optional) A list of groups applied to the first process run in each container, in addition to the container's primary GID. If unspecified, no groups will be added to any container.`,
+				},
+				resource.Attribute{
+					Name:        "sysctl",
+					Description: `(Optional) holds a list of namespaced sysctls used for the pod. see [Sysctl](#sysctl) block. See [official docs](https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/) for more details. ##### Sysctl`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of a property to set.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Value of a property to set. ### ` + "`" + `tcp_socket` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "port",
@@ -1593,7 +1721,43 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Optional) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string. ### ` + "`" + `volume` + "`" + ` #### Arguments`,
+					Description: `(Optional) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string. ### ` + "`" + `projected` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "default_mode",
+					Description: `(Optional) Mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.`,
+				},
+				resource.Attribute{
+					Name:        "sources",
+					Description: `(Required) List of volume projection sources ### ` + "`" + `sources` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "config_map",
+					Description: `(Optional) Adapts a ConfigMap into a projected volume. The contents of the target ConfigMap's Data field will be presented in a projected volume as files using the keys in the Data field as the file names, unless the items element is populated with specific mappings of keys to paths. Note that this is identical to a configmap volume source without the default mode.`,
+				},
+				resource.Attribute{
+					Name:        "downward_api",
+					Description: `(Optional) Represents downward API info for projecting into a projected volume. Note that this is identical to a downward_api volume source without the default mode.`,
+				},
+				resource.Attribute{
+					Name:        "secret",
+					Description: `(Optional) Adapts a secret into a projected volume. The contents of the target Secret's Data field will be presented in a projected volume as files using the keys in the Data field as the file names. Note that this is identical to a secret volume source without the default mode.`,
+				},
+				resource.Attribute{
+					Name:        "service_account_token",
+					Description: `(Optional) Represents a projected service account token volume. This projection can be used to insert a service account token into the pods runtime filesystem for use against APIs (Kubernetes API Server or otherwise). ### ` + "`" + `service_account_token` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "audience",
+					Description: `(Optional) Audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_seconds",
+					Description: `(Optional) The requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) Path is the path relative to the mount point of the file to project the token into. ### ` + "`" + `volume` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "aws_elastic_block_store",
@@ -1758,7 +1922,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the deployment that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the deployment that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -1766,7 +1930,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the deployment.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the deployment. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1783,10 +1947,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this deployment that can be used by clients to determine when deployment has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this deployment.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -1806,7 +1966,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "replicas",
-					Description: `(Optional) The number of desired replicas. Defaults to 1. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#scaling-a-deployment)`,
+					Description: `(Optional) The number of desired replicas. This attribute is a string to be able to distinguish between explicit zero and not specified. Defaults to 1. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#scaling-a-deployment)`,
 				},
 				resource.Attribute{
 					Name:        "revision_history_limit",
@@ -1858,11 +2018,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "automount_service_account_token",
-					Description: `(Optional) Indicates whether a service account token should be automatically mounted. Defaults to ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Indicates whether a service account token should be automatically mounted. Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "container",
 					Description: `(Optional) List of containers belonging to the pod. Containers cannot currently be added or removed. There must be at least one container in a Pod. Cannot be updated. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/containers)`,
+				},
+				resource.Attribute{
+					Name:        "readiness_gate",
+					Description: `(Optional) If specified, all readiness gates will be evaluated for pod readiness. A pod is ready when all its containers are ready AND all conditions specified in the readiness gates have status equal to "True". [More info](https://git.k8s.io/enhancements/keps/sig-network/0007-pod-ready++.md)`,
 				},
 				resource.Attribute{
 					Name:        "init_container",
@@ -1875,6 +2039,10 @@ var (
 				resource.Attribute{
 					Name:        "dns_config",
 					Description: `(Optional) Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy. Defaults to empty. See ` + "`" + `dns_config` + "`" + ` block definition below.`,
+				},
+				resource.Attribute{
+					Name:        "enable_service_links",
+					Description: `(Optional) Enables generating environment variables for service discovery. Optional: Defaults to true. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/#accessing-the-service).`,
 				},
 				resource.Attribute{
 					Name:        "host_aliases",
@@ -2106,7 +2274,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "startup_probe",
-					Description: `(Optional) StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes`,
+					Description: `(Optional) StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. For more info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes`,
 				},
 				resource.Attribute{
 					Name:        "stdin",
@@ -2130,7 +2298,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "working_dir",
-					Description: `(Optional) Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated. ### ` + "`" + `aws_elastic_block_store` + "`" + ` #### Arguments`,
+					Description: `(Optional) Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated. ### ` + "`" + `readiness_gate` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "condition_type",
+					Description: `(Required) refers to a condition in the pod's condition list with matching type. ### ` + "`" + `aws_elastic_block_store` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "fs_type",
@@ -2290,7 +2462,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "medium",
-					Description: `(Optional) What type of storage medium should back this directory. The default is "" which means to use the node's default medium. Must be an empty string (default) or Memory. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/volumes#emptydir) ### ` + "`" + `env` + "`" + ` #### Arguments`,
+					Description: `(Optional) What type of storage medium should back this directory. The default is "" which means to use the node's default medium. Must be an empty string (default) or Memory. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/volumes#emptydir)`,
+				},
+				resource.Attribute{
+					Name:        "size_limit",
+					Description: `(Optional) Total amount of local storage required for this EmptyDir volume. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes) and [Kubernetes Quantity type](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource?tab=doc#Quantity). ### ` + "`" + `env` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -2502,15 +2678,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pre_stop",
-					Description: `(Optional) pre_stop is called immediately before a container is terminated. The container is terminated after the handler completes. The reason for termination is passed to the handler. Regardless of the outcome of the handler, the container is eventually terminated. Other management of the container blocks until the hook completes. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/container-environment#hook-details) ### ` + "`" + `limits` + "`" + ` #### Arguments`,
-				},
-				resource.Attribute{
-					Name:        "cpu",
-					Description: `(Optional) CPU`,
-				},
-				resource.Attribute{
-					Name:        "memory",
-					Description: `(Optional) Memory ### ` + "`" + `liveness_probe` + "`" + ` #### Arguments`,
+					Description: `(Optional) pre_stop is called immediately before a container is terminated. The container is terminated after the handler completes. The reason for termination is passed to the handler. Regardless of the outcome of the handler, the container is eventually terminated. Other management of the container blocks until the hook completes. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/container-environment#hook-details) ### ` + "`" + `liveness_probe` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "exec",
@@ -2706,15 +2874,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "requests",
-					Description: `(Optional) Describes the minimum amount of compute resources required. ### ` + "`" + `requests` + "`" + ` #### Arguments`,
-				},
-				resource.Attribute{
-					Name:        "cpu",
-					Description: `(Optional) CPU`,
-				},
-				resource.Attribute{
-					Name:        "memory",
-					Description: `(Optional) Memory ### ` + "`" + `resource_field_ref` + "`" + ` #### Arguments`,
+					Description: `(Optional) Describes the minimum amount of compute resources required. ### ` + "`" + `resource_field_ref` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "container_name",
@@ -2854,7 +3014,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "supplemental_groups",
-					Description: `(Optional) A list of groups applied to the first process run in each container, in addition to the container's primary GID. If unspecified, no groups will be added to any container. ### ` + "`" + `tcp_socket` + "`" + ` #### Arguments`,
+					Description: `(Optional) A list of groups applied to the first process run in each container, in addition to the container's primary GID. If unspecified, no groups will be added to any container.`,
+				},
+				resource.Attribute{
+					Name:        "sysctl",
+					Description: `(Optional) holds a list of namespaced sysctls used for the pod. see [Sysctl](#sysctl) block. See [official docs](https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/) for more details. ##### Sysctl`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of a property to set.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Value of a property to set. ### ` + "`" + `tcp_socket` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "port",
@@ -2894,7 +3066,43 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Optional) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string. ### ` + "`" + `volume` + "`" + ` #### Arguments`,
+					Description: `(Optional) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string. ### ` + "`" + `projected` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "default_mode",
+					Description: `(Optional) Mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.`,
+				},
+				resource.Attribute{
+					Name:        "sources",
+					Description: `(Required) List of volume projection sources ### ` + "`" + `sources` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "config_map",
+					Description: `(Optional) Adapts a ConfigMap into a projected volume. The contents of the target ConfigMap's Data field will be presented in a projected volume as files using the keys in the Data field as the file names, unless the items element is populated with specific mappings of keys to paths. Note that this is identical to a configmap volume source without the default mode.`,
+				},
+				resource.Attribute{
+					Name:        "downward_api",
+					Description: `(Optional) Represents downward API info for projecting into a projected volume. Note that this is identical to a downward_api volume source without the default mode.`,
+				},
+				resource.Attribute{
+					Name:        "secret",
+					Description: `(Optional) Adapts a secret into a projected volume. The contents of the target Secret's Data field will be presented in a projected volume as files using the keys in the Data field as the file names. Note that this is identical to a secret volume source without the default mode.`,
+				},
+				resource.Attribute{
+					Name:        "service_account_token",
+					Description: `(Optional) Represents a projected service account token volume. This projection can be used to insert a service account token into the pods runtime filesystem for use against APIs (Kubernetes API Server or otherwise). ### ` + "`" + `service_account_token` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "audience",
+					Description: `(Optional) Audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_seconds",
+					Description: `(Optional) The requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) Path is the path relative to the mount point of the file to project the token into. ### ` + "`" + `volume` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "aws_elastic_block_store",
@@ -3055,7 +3263,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the endpoints resource that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the endpoints resource that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -3063,7 +3271,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the endpoints resource. May match selectors of replication controllers and services.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the endpoints resource. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3080,10 +3288,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this endpoints resource that can be used by clients to determine when endpoints resource has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this endpoints resource.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -3162,7 +3366,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the horizontal pod autoscaler that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the horizontal pod autoscaler that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -3170,7 +3374,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the horizontal pod autoscaler. May match selectors of replication controllers and services.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the horizontal pod autoscaler. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3187,10 +3391,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this horizontal pod autoscaler that can be used by clients to determine when horizontal pod autoscaler has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this horizontal pod autoscaler.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -3335,7 +3535,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard ingress's metadata. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata`,
+					Description: `(Required) Standard ingress's metadata. For more info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata`,
 				},
 				resource.Attribute{
 					Name:        "spec",
@@ -3343,11 +3543,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "wait_for_load_balancer",
-					Description: `(Optional) Terraform will wait for the load balancer to have at least 1 endpoint before considering the resource created. ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Optional) Terraform will wait for the load balancer to have at least 1 endpoint before considering the resource created. Defaults to ` + "`" + `false` + "`" + `. ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the ingress that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the ingress that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -3355,11 +3555,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Name of the service, must be unique. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names`,
+					Description: `(Optional) Name of the service, must be unique. Cannot be updated. For more info: http://kubernetes.io/docs/user-guide/identifiers#names`,
 				},
 				resource.Attribute{
 					Name:        "namespace",
@@ -3374,12 +3574,8 @@ var (
 					Description: `An opaque value that represents the internal version of this service that can be used by clients to determine when service has changed. Read more: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency`,
 				},
 				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this service.`,
-				},
-				resource.Attribute{
 					Name:        "uid",
-					Description: `The unique in time and space value for this service. More info: http://kubernetes.io/docs/user-guide/identifiers#uids ### ` + "`" + `spec` + "`" + ` #### Arguments`,
+					Description: `The unique in time and space value for this service. For more info: http://kubernetes.io/docs/user-guide/identifiers#uids ### ` + "`" + `spec` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "backend",
@@ -3427,19 +3623,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secret_name",
-					Description: `(Optional) SecretName is the name of the secret used to terminate SSL traffic on 443. Field is left optional to allow SSL routing based on SNI hostname alone. If the SNI host in a listener conflicts with the \"Host\" header field used by an IngressRule, the SNI host is used for termination and value of the Host header is used for routing. ## Attributes`,
+					Description: `(Optional) SecretName is the name of the secret used to terminate SSL traffic on 443. Field is left optional to allow SSL routing based on SNI hostname alone. If the SNI host in a listener conflicts with the \"Host\" header field used by an IngressRule, the SNI host is used for termination and value of the Host header is used for routing. ## Attributes ### ` + "`" + `status` + "`" + ``,
 				},
 				resource.Attribute{
-					Name:        "load_balancer_ingress",
-					Description: `A list containing ingress points for the load-balancer ### ` + "`" + `load_balancer_ingress` + "`" + ` #### Attributes`,
+					Name:        "status",
+					Description: `Status is the current state of the Ingress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status #### ` + "`" + `load_balancer` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ingress",
+					Description: `Ingress is a list containing ingress points for the load-balancer. Traffic intended for the service should be sent to these ingress points. ###### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "ip",
-					Description: `IP which is set for load-balancer ingress points that are IP based (typically GCE or OpenStack load-balancers)`,
+					Description: `IP is set for load-balancer ingress points that are IP based (typically GCE or OpenStack load-balancers).`,
 				},
 				resource.Attribute{
 					Name:        "hostname",
-					Description: `Hostname which is set for load-balancer ingress points that are DNS based (typically AWS load-balancers) ## Import Ingress can be imported using its namespace and name: ` + "`" + `` + "`" + `` + "`" + ` terraform import kubernetes_ingress.<TERRAFORM_RESOURCE_NAME> <KUBE_NAMESPACE>/<KUBE_INGRESS_NAME> ` + "`" + `` + "`" + `` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_ingress.example default/terraform-name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Hostname is set for load-balancer ingress points that are DNS based (typically AWS load-balancers). ## Import Ingress can be imported using its namespace and name: ` + "`" + `` + "`" + `` + "`" + ` terraform import kubernetes_ingress.<TERRAFORM_RESOURCE_NAME> <KUBE_NAMESPACE>/<KUBE_INGRESS_NAME> ` + "`" + `` + "`" + `` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_ingress.example default/terraform-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3456,19 +3656,19 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard resource's metadata. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status`,
+					Description: `(Required) Standard resource's metadata. For more info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status`,
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `(Required) Specification of the desired behavior of a job. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status`,
+					Description: `(Required) Specification of the desired behavior of a job. For more info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status`,
 				},
 				resource.Attribute{
 					Name:        "wait_for_completion",
-					Description: `(Optional) If ` + "`" + `true` + "`" + ` blocks job ` + "`" + `create` + "`" + ` or ` + "`" + `update` + "`" + ` until the status of the job has a ` + "`" + `Complete` + "`" + ` or ` + "`" + `Failed` + "`" + ` condition. ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Optional) If ` + "`" + `true` + "`" + ` blocks job ` + "`" + `create` + "`" + ` or ` + "`" + `update` + "`" + ` until the status of the job has a ` + "`" + `Complete` + "`" + ` or ` + "`" + `Failed` + "`" + ` condition. Defaults to ` + "`" + `true` + "`" + `. ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the resource that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the resource that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -3476,11 +3676,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Name of the service, must be unique. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names`,
+					Description: `(Optional) Name of the service, must be unique. Cannot be updated. For more info: http://kubernetes.io/docs/user-guide/identifiers#names`,
 				},
 				resource.Attribute{
 					Name:        "namespace",
@@ -3495,12 +3695,8 @@ var (
 					Description: `An opaque value that represents the internal version of this service that can be used by clients to determine when service has changed. Read more: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency`,
 				},
 				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this service.`,
-				},
-				resource.Attribute{
 					Name:        "uid",
-					Description: `The unique in time and space value for this service. More info: http://kubernetes.io/docs/user-guide/identifiers#uids ### ` + "`" + `spec` + "`" + ` #### Arguments`,
+					Description: `The unique in time and space value for this service. For more info: http://kubernetes.io/docs/user-guide/identifiers#uids ### ` + "`" + `spec` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "active_deadline_seconds",
@@ -3512,23 +3708,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "completions",
-					Description: `(Optional) Specifies the desired number of successfully finished pods the job should be run with. Setting to nil means that the success of any pod signals the success of all pods, and allows parallelism to have any positive value. Setting to 1 means that parallelism is limited to 1 and the success of that pod signals the success of the job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/`,
+					Description: `(Optional) Specifies the desired number of successfully finished pods the job should be run with. Setting to nil means that the success of any pod signals the success of all pods, and allows parallelism to have any positive value. Setting to 1 means that parallelism is limited to 1 and the success of that pod signals the success of the job. For more info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/`,
 				},
 				resource.Attribute{
 					Name:        "manual_selector",
-					Description: `(Optional) Controls generation of pod labels and pod selectors. Leave ` + "`" + `manualSelector` + "`" + ` unset unless you are certain what you are doing. When false or unset, the system pick labels unique to this job and appends those labels to the pod template. When true, the user is responsible for picking unique labels and specifying the selector. Failure to pick a unique label may cause this and other jobs to not function correctly. However, You may see ` + "`" + `manualSelector=true` + "`" + ` in jobs that were created with the old ` + "`" + `extensions/v1beta1` + "`" + ` API. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#specifying-your-own-pod-selector`,
+					Description: `(Optional) Controls generation of pod labels and pod selectors. Leave ` + "`" + `manualSelector` + "`" + ` unset unless you are certain what you are doing. When false or unset, the system pick labels unique to this job and appends those labels to the pod template. When true, the user is responsible for picking unique labels and specifying the selector. Failure to pick a unique label may cause this and other jobs to not function correctly. However, You may see ` + "`" + `manualSelector=true` + "`" + ` in jobs that were created with the old ` + "`" + `extensions/v1beta1` + "`" + ` API. For more info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#specifying-your-own-pod-selector`,
 				},
 				resource.Attribute{
 					Name:        "parallelism",
-					Description: `(Optional) Specifies the maximum desired number of pods the job should run at any given time. The actual number of pods running in steady state will be less than this number when ` + "`" + `((.spec.completions - .status.successful) < .spec.parallelism)` + "`" + `, i.e. when the work left to do is less than max parallelism. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/`,
+					Description: `(Optional) Specifies the maximum desired number of pods the job should run at any given time. The actual number of pods running in steady state will be less than this number when ` + "`" + `((.spec.completions - .status.successful) < .spec.parallelism)` + "`" + `, i.e. when the work left to do is less than max parallelism. For more info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/`,
 				},
 				resource.Attribute{
 					Name:        "selector",
-					Description: `(Optional) A label query over pods that should match the pod count. Normally, the system sets this field for you. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors`,
+					Description: `(Optional) A label query over pods that should match the pod count. Normally, the system sets this field for you. For more info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors`,
 				},
 				resource.Attribute{
 					Name:        "template",
-					Description: `(Optional) Describes the pod that will be created when executing a job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/`,
+					Description: `(Optional) Describes the pod that will be created when executing a job. For more info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/`,
 				},
 				resource.Attribute{
 					Name:        "ttl_seconds_after_finished",
@@ -3545,6 +3741,10 @@ var (
 				resource.Attribute{
 					Name:        "create",
 					Description: `(Default ` + "`" + `1 minute` + "`" + `) Used for creating a new job and waiting for a successful job completion.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default ` + "`" + `1 minute` + "`" + `) Used for updating an existing job and waiting for a successful job completion. Note: - Kubernetes provider will treat update operations that change the Job spec resulting in the job re-run as "# forces replacement". In such cases, the ` + "`" + `create` + "`" + ` timeout value is used for both Create and Update operations. - ` + "`" + `wait_for_completion` + "`" + ` is not applicable during Delete operations; thus, there is no "delete" timeout value for Delete operation.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3598,7 +3798,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the limit range that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the limit range that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -3606,7 +3806,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the limit range. May match selectors of replication controllers and services.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the limit range. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3623,10 +3823,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this limit range that can be used by clients to determine when limit range has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this limit range.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -3651,7 +3847,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the namespace that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the namespace that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -3659,7 +3855,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) namespaces. May match selectors of replication controllers and services.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) namespaces. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3672,10 +3868,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this namespace that can be used by clients to determine when namespaces have changed. Read more about [concurrency control and consistency](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency).`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this namespace.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -3701,7 +3893,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the network policy that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the network policy that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -3709,11 +3901,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) network policies. May match selectors of replication controllers and services.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) network policies. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Name of the network policy, must be unique. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names #### Attributes`,
+					Description: `(Optional) Name of the network policy, must be unique. Cannot be updated. For more info: http://kubernetes.io/docs/user-guide/identifiers#names #### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "generation",
@@ -3724,12 +3916,8 @@ var (
 					Description: `An opaque value that represents the internal version of this network policy that can be used by clients to determine when network policies have changed. Read more about [concurrency control and consistency](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency).`,
 				},
 				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this network policy.`,
-				},
-				resource.Attribute{
 					Name:        "uid",
-					Description: `The unique in time and space value for this network policy. More info: http://kubernetes.io/docs/user-guide/identifiers#uids ### ` + "`" + `spec` + "`" + ` #### Arguments`,
+					Description: `The unique in time and space value for this network policy. For more info: http://kubernetes.io/docs/user-guide/identifiers#uids ### ` + "`" + `spec` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "egress",
@@ -3847,7 +4035,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_modes",
-					Description: `(Required) Contains all ways the volume can be mounted. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/persistent-volumes#access-modes)`,
+					Description: `(Required) Contains all ways the volume can be mounted. Valid values are ` + "`" + `ReadWriteOnce` + "`" + `, ` + "`" + `ReadOnlyMany` + "`" + `, ` + "`" + `ReadWriteMany` + "`" + `. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/persistent-volumes#access-modes)`,
 				},
 				resource.Attribute{
 					Name:        "capacity",
@@ -3871,7 +4059,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mount_options",
-					Description: `(Options) A Kubernetes administrator can specify additional mount options for when a Persistent Volume is mounted on a node.`,
+					Description: `(Optional) A Kubernetes administrator can specify additional mount options for when a Persistent Volume is mounted on a node. ~> Not all Persistent Volume types support mount options. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options)`,
+				},
+				resource.Attribute{
+					Name:        "volume_mode",
+					Description: `(Optional) Defines if a volume is used with a formatted filesystem or to remain in raw block state. Possible values are ` + "`" + `Block` + "`" + ` and ` + "`" + `Filesystem` + "`" + `. Default value is ` + "`" + `Filesystem` + "`" + `. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#volume-mode) ### ` + "`" + `node_affinity` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "required",
@@ -3920,6 +4112,10 @@ var (
 				resource.Attribute{
 					Name:        "cinder",
 					Description: `(Optional) Represents a cinder volume attached and mounted on kubelets host machine. For more info see http://releases.k8s.io/HEAD/examples/mysql-cinder-pd/README.md`,
+				},
+				resource.Attribute{
+					Name:        "csi",
+					Description: `(Optional) CSI represents storage that is handled by an external CSI driver. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/storage/volumes/#csi)`,
 				},
 				resource.Attribute{
 					Name:        "fc",
@@ -3995,11 +4191,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "data_disk_uri",
-					Description: `(Required) The URI the data disk in the blob storage`,
+					Description: `(Required) The URI the data disk in the blob storage OR the resource ID of an Azure managed data disk if ` + "`" + `kind` + "`" + ` is ` + "`" + `Managed` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "disk_name",
-					Description: `(Required) The Name of the data disk in the blob storage`,
+					Description: `(Required) The Name of the data disk in the blob storage OR the name of an Azure managed data disk if ` + "`" + `kind` + "`" + ` is ` + "`" + `Managed` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "fs_type",
@@ -4007,7 +4203,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to false (read/write). ### ` + "`" + `azure_file` + "`" + ` #### Arguments`,
+					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to false (read/write).`,
+				},
+				resource.Attribute{
+					Name:        "kind",
+					Description: `(Optional) The type for the data disk. Expected values: ` + "`" + `Shared` + "`" + `, ` + "`" + `Dedicated` + "`" + `, ` + "`" + `Managed` + "`" + `. Defaults to ` + "`" + `Shared` + "`" + `. ### ` + "`" + `azure_file` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "read_only",
@@ -4203,11 +4403,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the persistent volume that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the persistent volume that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the persistent volume. May match selectors of replication controllers and services.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the persistent volume. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -4220,10 +4420,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this persistent volume that can be used by clients to determine when persistent volume has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this persistent volume.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -4346,7 +4542,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the persistent volume claim that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the persistent volume claim that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -4354,7 +4550,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the persistent volume claim. May match selectors of replication controllers and services.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the persistent volume claim. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -4371,10 +4567,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this persistent volume claim that can be used by clients to determine when persistent volume claim has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this persistent volume claim.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -4451,7 +4643,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the pod that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the pod that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -4459,7 +4651,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the pod. May match selectors of replication controllers and services.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the pod. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -4478,10 +4670,6 @@ var (
 					Description: `An opaque value that represents the internal version of this pod that can be used by clients to determine when pod has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this pod.`,
-				},
-				resource.Attribute{
 					Name:        "uid",
 					Description: `The unique in time and space value for this pod. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#uids) ### ` + "`" + `spec` + "`" + ` #### Arguments`,
 				},
@@ -4495,7 +4683,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "automount_service_account_token",
-					Description: `(Optional) Indicates whether a service account token should be automatically mounted. Defaults to ` + "`" + `false` + "`" + ` for Pods.`,
+					Description: `(Optional) Indicates whether a service account token should be automatically mounted. Defaults to ` + "`" + `true` + "`" + ` for Pods.`,
 				},
 				resource.Attribute{
 					Name:        "container",
@@ -4512,6 +4700,10 @@ var (
 				resource.Attribute{
 					Name:        "dns_config",
 					Description: `(Optional) Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy. Defaults to empty. See ` + "`" + `dns_config` + "`" + ` block definition below.`,
+				},
+				resource.Attribute{
+					Name:        "enable_service_links",
+					Description: `(Optional) Enables generating environment variables for service discovery. Optional: Defaults to true. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/#accessing-the-service).`,
 				},
 				resource.Attribute{
 					Name:        "host_aliases",
@@ -4578,8 +4770,16 @@ var (
 					Description: `(Optional) Optional pod node tolerations. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/)`,
 				},
 				resource.Attribute{
+					Name:        "topology_spread_constraint",
+					Description: `(Optional) Describes how a group of pods ought to spread across topology domains. Scheduler will schedule pods in a way which abides by the constraints. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/)`,
+				},
+				resource.Attribute{
 					Name:        "volume",
-					Description: `(Optional) List of volumes that can be mounted by containers belonging to the pod. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/volumes) ### ` + "`" + `affinity` + "`" + ` #### Arguments`,
+					Description: `(Optional) List of volumes that can be mounted by containers belonging to the pod. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/volumes)`,
+				},
+				resource.Attribute{
+					Name:        "readiness_gate",
+					Description: `(Optional) If specified, all readiness gates will be evaluated for pod readiness. A pod is ready when all its containers are ready AND all conditions specified in the readiness gates have status equal to "True". [More info](https://git.k8s.io/enhancements/keps/sig-network/0007-pod-ready++.md) ### ` + "`" + `affinity` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "node_affinity",
@@ -4743,7 +4943,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "startup_probe",
-					Description: `(Optional) StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes`,
+					Description: `(Optional) StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. For more info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes`,
 				},
 				resource.Attribute{
 					Name:        "stdin",
@@ -4756,6 +4956,10 @@ var (
 				resource.Attribute{
 					Name:        "termination_message_path",
 					Description: `(Optional) Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem. Message written is intended to be brief final status, such as an assertion failure message. Defaults to /dev/termination-log. Cannot be updated.`,
+				},
+				resource.Attribute{
+					Name:        "termination_message_policy",
+					Description: `(Optional): Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.`,
 				},
 				resource.Attribute{
 					Name:        "tty",
@@ -4927,7 +5131,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "medium",
-					Description: `(Optional) What type of storage medium should back this directory. The default is "" which means to use the node's default medium. Must be an empty string (default) or Memory. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/volumes#emptydir) ### ` + "`" + `env` + "`" + ` #### Arguments`,
+					Description: `(Optional) What type of storage medium should back this directory. The default is "" which means to use the node's default medium. Must be an empty string (default) or Memory. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/volumes#emptydir)`,
+				},
+				resource.Attribute{
+					Name:        "size_limit",
+					Description: `(Optional) Total amount of local storage required for this EmptyDir volume. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes) and [Kubernetes Quantity type](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource?tab=doc#Quantity). ### ` + "`" + `env` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -5139,15 +5347,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pre_stop",
-					Description: `(Optional) pre_stop is called immediately before a container is terminated. The container is terminated after the handler completes. The reason for termination is passed to the handler. Regardless of the outcome of the handler, the container is eventually terminated. Other management of the container blocks until the hook completes. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/container-environment#hook-details) ### ` + "`" + `limits` + "`" + ` #### Arguments`,
-				},
-				resource.Attribute{
-					Name:        "cpu",
-					Description: `(Optional) CPU`,
-				},
-				resource.Attribute{
-					Name:        "memory",
-					Description: `(Optional) Memory ### ` + "`" + `liveness_probe` + "`" + ` #### Arguments`,
+					Description: `(Optional) pre_stop is called immediately before a container is terminated. The container is terminated after the handler completes. The reason for termination is passed to the handler. Regardless of the outcome of the handler, the container is eventually terminated. Other management of the container blocks until the hook completes. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/container-environment#hook-details) ### ` + "`" + `liveness_probe` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "exec",
@@ -5343,15 +5543,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "requests",
-					Description: `(Optional) Describes the minimum amount of compute resources required. ### ` + "`" + `requests` + "`" + ` #### Arguments`,
-				},
-				resource.Attribute{
-					Name:        "cpu",
-					Description: `(Optional) CPU`,
-				},
-				resource.Attribute{
-					Name:        "memory",
-					Description: `(Optional) Memory ### ` + "`" + `resource_field_ref` + "`" + ` #### Arguments`,
+					Description: `(Optional) Describes the minimum amount of compute resources required. ### ` + "`" + `resource_field_ref` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "container_name",
@@ -5459,7 +5651,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "se_linux_options",
-					Description: `(Optional) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. ### ` + "`" + `capabilities` + "`" + ` #### Arguments`,
+					Description: `(Optional) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.`,
+				},
+				resource.Attribute{
+					Name:        "sysctl",
+					Description: `(Optional) holds a list of namespaced sysctls used for the pod. see [Sysctl](#sysctl) block. See [official docs](https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/) for more details. ##### Sysctl`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of a property to set.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Value of a property to set. ### ` + "`" + `capabilities` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "add",
@@ -5515,7 +5719,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Optional) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string. ### ` + "`" + `value_from` + "`" + ` #### Arguments`,
+					Description: `(Optional) Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string. ### ` + "`" + `topology_spread_constraint` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "max_skew",
+					Description: `(Optional) Describes the degree to which pods may be unevenly distributed. Default value is ` + "`" + `1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "topology_key",
+					Description: `(Optional) The key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology.`,
+				},
+				resource.Attribute{
+					Name:        "when_unsatisfiable",
+					Description: `(Optional) Indicates how to deal with a pod if it doesn't satisfy the spread constraint. Valid values are ` + "`" + `DoNotSchedule` + "`" + ` and ` + "`" + `ScheduleAnyway` + "`" + `. Default value is ` + "`" + `DoNotSchedule` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "label_selector",
+					Description: `(Optional) A label query over a set of resources, in this case pods. ### ` + "`" + `value_from` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "config_map_key_ref",
@@ -5531,7 +5751,43 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secret_key_ref",
-					Description: `(Optional) Selects a key of a secret in the pod's namespace. ### ` + "`" + `volume` + "`" + ` #### Arguments`,
+					Description: `(Optional) Selects a key of a secret in the pod's namespace. ### ` + "`" + `projected` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "default_mode",
+					Description: `(Optional) Mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.`,
+				},
+				resource.Attribute{
+					Name:        "sources",
+					Description: `(Required) List of volume projection sources ### ` + "`" + `sources` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "config_map",
+					Description: `(Optional) Adapts a ConfigMap into a projected volume. The contents of the target ConfigMap's Data field will be presented in a projected volume as files using the keys in the Data field as the file names, unless the items element is populated with specific mappings of keys to paths. Note that this is identical to a configmap volume source without the default mode.`,
+				},
+				resource.Attribute{
+					Name:        "downward_api",
+					Description: `(Optional) Represents downward API info for projecting into a projected volume. Note that this is identical to a downward_api volume source without the default mode.`,
+				},
+				resource.Attribute{
+					Name:        "secret",
+					Description: `(Optional) Adapts a secret into a projected volume. The contents of the target Secret's Data field will be presented in a projected volume as files using the keys in the Data field as the file names. Note that this is identical to a secret volume source without the default mode.`,
+				},
+				resource.Attribute{
+					Name:        "service_account_token",
+					Description: `(Optional) Represents a projected service account token volume. This projection can be used to insert a service account token into the pods runtime filesystem for use against APIs (Kubernetes API Server or otherwise). ### ` + "`" + `service_account_token` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "audience",
+					Description: `(Optional) Audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_seconds",
+					Description: `(Optional) The requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) Path is the path relative to the mount point of the file to project the token into. ### ` + "`" + `volume` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "aws_elastic_block_store",
@@ -5655,7 +5911,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "volume_path",
-					Description: `(Required) Path that identifies vSphere volume vmdk ## Timeouts The following [Timeout](/docs/configuration/resources.html#operation-timeouts) configuration options are available for the ` + "`" + `kubernetes_pod` + "`" + ` resource:`,
+					Description: `(Required) Path that identifies vSphere volume vmdk ### ` + "`" + `readiness_gate` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "condition_type",
+					Description: `(Required) refers to a condition in the pod's condition list with matching type. ## Timeouts The following [Timeout](/docs/configuration/resources.html#operation-timeouts) configuration options are available for the ` + "`" + `kubernetes_pod` + "`" + ` resource:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -5682,7 +5942,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard resource's metadata. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status`,
+					Description: `(Required) Standard resource's metadata. For more info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status`,
 				},
 				resource.Attribute{
 					Name:        "spec",
@@ -5690,7 +5950,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the resource that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the resource that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -5698,11 +5958,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Name of the service, must be unique. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names`,
+					Description: `(Optional) Name of the service, must be unique. Cannot be updated. For more info: http://kubernetes.io/docs/user-guide/identifiers#names`,
 				},
 				resource.Attribute{
 					Name:        "namespace",
@@ -5717,12 +5977,8 @@ var (
 					Description: `An opaque value that represents the internal version of this service that can be used by clients to determine when service has changed. Read more: https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#concurrency-control-and-consistency`,
 				},
 				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this service.`,
-				},
-				resource.Attribute{
 					Name:        "uid",
-					Description: `The unique in time and space value for this service. More info: http://kubernetes.io/docs/user-guide/identifiers#uids ### ` + "`" + `spec` + "`" + ` #### Arguments`,
+					Description: `The unique in time and space value for this service. For more info: http://kubernetes.io/docs/user-guide/identifiers#uids ### ` + "`" + `spec` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "max_unavailable",
@@ -5734,7 +5990,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "selector",
-					Description: `(Optional) A label query over controllers (Deployment, ReplicationController, ReplicaSet, or StatefulSet) that the Pod Disruption Budget should be applied to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors`,
+					Description: `(Optional) A label query over controllers (Deployment, ReplicationController, ReplicaSet, or StatefulSet) that the Pod Disruption Budget should be applied to. For more info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -5761,7 +6017,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the Pod Security Policy that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the Pod Security Policy that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -5769,7 +6025,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the Pod Security Policy.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the Pod Security Policy. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -5782,10 +6038,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this Pod Security Policy that can be used by clients to determine when Pod Security Policy has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this Pod Security Policy.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -5881,7 +6133,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "se_linux_options",
-					Description: `(Optional) required to run as; required for MustRunAs. More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ ### ` + "`" + `supplemental_groups` + "`" + ` #### Arguments`,
+					Description: `(Optional) required to run as; required for MustRunAs. For more info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ ### ` + "`" + `supplemental_groups` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "rule",
@@ -5927,11 +6179,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the resource quota that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the resource quota that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the resource quota. May match selectors of replication controllers and services.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the resource quota. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -5944,10 +6196,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this resource quota that can be used by clients to determine when resource quota has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this resource quota.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -5977,7 +6225,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the replication controller that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the replication controller that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -5985,7 +6233,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the replication controller.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the replication controller. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6002,10 +6250,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this replication controller that can be used by clients to determine when replication controller has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this replication controller.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -6029,11 +6273,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Optional) Standard object's metadata. More info: [Kubernetes reference](https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata). While required by the kubernetes API, this field is marked as optional to allow the usage of the deprecated pod spec fields that were mistakenly placed directly under the ` + "`" + `template` + "`" + ` block.`,
+					Description: `(Optional) Standard object's metadata. For more info: [Kubernetes reference](https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata). While required by the kubernetes API, this field is marked as optional to allow the usage of the deprecated pod spec fields that were mistakenly placed directly under the ` + "`" + `template` + "`" + ` block.`,
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `(Optional) Specification of the desired behavior of the pod. More info: [Kubernetes reference](https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status) ~>`,
+					Description: `(Optional) Specification of the desired behavior of the pod. For more info: [Kubernetes reference](https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status) ~>`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -6079,11 +6323,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the resource quota that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the resource quota that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the resource quota. May match selectors of replication controllers and services.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the resource quota. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6100,10 +6344,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this resource quota that can be used by clients to determine when resource quota has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this resource quota.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -6140,7 +6380,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the role that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the role that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6165,10 +6405,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this role that can be used by clients to determine when role has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this role.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -6218,7 +6454,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the role binding that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the role binding that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6226,7 +6462,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the role binding.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the role binding. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6245,10 +6481,6 @@ var (
 					Description: `An opaque value that represents the internal version of this object that can be used by clients to determine when the object has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this role binding.`,
-				},
-				resource.Attribute{
 					Name:        "uid",
 					Description: `The unique in time and space value for this role binding. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#uids) ### ` + "`" + `role_ref` + "`" + ` #### Arguments`,
 				},
@@ -6262,7 +6494,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "api_group",
-					Description: `(Optional) The API group to drive authorization decisions. This value must be and defaults to ` + "`" + `rbac.authorization.k8s.io` + "`" + ` ### ` + "`" + `subject` + "`" + ` #### Arguments`,
+					Description: `(Required) The API group to drive authorization decisions. This value must be and defaults to ` + "`" + `rbac.authorization.k8s.io` + "`" + ` ### ` + "`" + `subject` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6278,7 +6510,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "api_group",
-					Description: `(Optional) The API group to drive authorization decisions. This value only applies to kind ` + "`" + `User` + "`" + ` and ` + "`" + `Group` + "`" + `. It must be ` + "`" + `rbac.authorization.k8s.io` + "`" + ` ## Import RoleBinding can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_role_binding.example default/terraform-name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The API group to drive authorization decisions. This value only applies to kind ` + "`" + `User` + "`" + ` and ` + "`" + `Group` + "`" + `. It must be ` + "`" + `rbac.authorization.k8s.io` + "`" + ` ## Import RoleBinding can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_role_binding.example default/terraform-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6307,7 +6539,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the secret that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the secret that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6315,7 +6547,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the secret. May match selectors of replication controllers and services.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the secret. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6332,10 +6564,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this secret that can be used by clients to determine when secret has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this secret.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -6360,11 +6588,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `(Required) Spec defines the behavior of a service. [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Required) Spec defines the behavior of a service. [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status)`,
+				},
+				resource.Attribute{
+					Name:        "wait_for_load_balancer",
+					Description: `(Optional) Terraform will wait for the load balancer to have at least 1 endpoint before considering the resource created. Defaults to ` + "`" + `true` + "`" + `. ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the service that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the service that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6372,7 +6604,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6389,10 +6621,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this service that can be used by clients to determine when service has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this service.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -6412,7 +6640,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "external_traffic_policy",
-					Description: `(Optional) Denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints. ` + "`" + `Local` + "`" + ` preserves the client source IP and avoids a second hop for LoadBalancer and Nodeport type services, but risks potentially imbalanced traffic spreading. ` + "`" + `Cluster` + "`" + ` obscures the client source IP and may cause a second hop to another node, but should have good overall load-spreading. More info: https://kubernetes.io/docs/tutorials/services/source-ip/`,
+					Description: `(Optional) Denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints. ` + "`" + `Local` + "`" + ` preserves the client source IP and avoids a second hop for LoadBalancer and Nodeport type services, but risks potentially imbalanced traffic spreading. ` + "`" + `Cluster` + "`" + ` obscures the client source IP and may cause a second hop to another node, but should have good overall load-spreading. For more info: https://kubernetes.io/docs/tutorials/services/source-ip/`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_ip",
@@ -6440,7 +6668,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Determines how the service is exposed. Defaults to ` + "`" + `ClusterIP` + "`" + `. Valid options are ` + "`" + `ExternalName` + "`" + `, ` + "`" + `ClusterIP` + "`" + `, ` + "`" + `NodePort` + "`" + `, and ` + "`" + `LoadBalancer` + "`" + `. ` + "`" + `ExternalName` + "`" + ` maps to the specified ` + "`" + `external_name` + "`" + `. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/services#overview) ### ` + "`" + `port` + "`" + ` #### Arguments`,
+					Description: `(Optional) Determines how the service is exposed. Defaults to ` + "`" + `ClusterIP` + "`" + `. Valid options are ` + "`" + `ExternalName` + "`" + `, ` + "`" + `ClusterIP` + "`" + `, ` + "`" + `NodePort` + "`" + `, and ` + "`" + `LoadBalancer` + "`" + `. ` + "`" + `ExternalName` + "`" + ` maps to the specified ` + "`" + `external_name` + "`" + `. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/services#overview)`,
+				},
+				resource.Attribute{
+					Name:        "health_check_node_port",
+					Description: `(Optional) Specifies the Healthcheck NodePort for the service. Only effects when type is set to ` + "`" + `LoadBalancer` + "`" + ` and external_traffic_policy is set to ` + "`" + `Local` + "`" + `. ### ` + "`" + `port` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6463,16 +6695,24 @@ var (
 					Description: `(Optional) Number or name of the port to access on the pods targeted by the service. Number must be in the range 1 to 65535. This field is ignored for services with ` + "`" + `cluster_ip = "None"` + "`" + `. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/services#defining-a-service) ## Attributes`,
 				},
 				resource.Attribute{
-					Name:        "load_balancer_ingress",
-					Description: `A list containing ingress points for the load-balancer (only valid if ` + "`" + `type = "LoadBalancer"` + "`" + `) ### ` + "`" + `load_balancer_ingress` + "`" + ` #### Attributes`,
+					Name:        "status",
+					Description: `Status is a list containing the most recently observed status of the service. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status ### ` + "`" + `status` + "`" + ` #### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer",
+					Description: `a list containing the current status of the load-balancer, if one is present. ### ` + "`" + `load_balancer` + "`" + ` #### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "ingress",
+					Description: `a list containing ingress points for the load-balancer. Traffic intended for the service should be sent to these ingress points. ### ` + "`" + `ingress` + "`" + ` #### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "ip",
-					Description: `IP which is set for load-balancer ingress points that are IP based (typically GCE or OpenStack load-balancers)`,
+					Description: `IP is set for load-balancer ingress points that are IP based (typically GCE or OpenStack load-balancers).`,
 				},
 				resource.Attribute{
 					Name:        "hostname",
-					Description: `Hostname which is set for load-balancer ingress points that are DNS based (typically AWS load-balancers) ## Import Service can be imported using its namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_service.example default/terraform-name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Hostname is set for load-balancer ingress points that are DNS based (typically AWS load-balancers). ### Timeouts ` + "`" + `kubernetes_service` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default ` + "`" + `10 minutes` + "`" + ` ## Import Service can be imported using its namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_service.example default/terraform-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6502,11 +6742,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "automount_service_account_token",
-					Description: `(Optional) Boolean, ` + "`" + `true` + "`" + ` to enable automatic mounting of the service account token. Defaults to ` + "`" + `false` + "`" + `. ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Optional) Boolean, ` + "`" + `true` + "`" + ` to enable automatic mounting of the service account token. Defaults to ` + "`" + `true` + "`" + `. ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the service account that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the service account that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6514,7 +6754,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service account. May match selectors of replication controllers and services.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service account. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6531,10 +6771,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this service account that can be used by clients to determine when service account has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this service account.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -6581,11 +6817,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "wait_for_rollout",
-					Description: `(Optional) Wait for the StatefulSet to finish rolling out. Defaults to ` + "`" + `false` + "`" + `. ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Optional) Wait for the StatefulSet to finish rolling out. Defaults to ` + "`" + `true` + "`" + `. ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the stateful set that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the stateful set that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6612,10 +6848,6 @@ var (
 					Description: `An opaque value that represents the internal version of this stateful set that can be used by clients to determine when stateful set has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this stateful set.`,
-				},
-				resource.Attribute{
 					Name:        "uid",
 					Description: `The unique in time and space value for this stateful set. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#uids) ### ` + "`" + `spec` + "`" + ` #### Arguments`,
 				},
@@ -6625,7 +6857,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "replicas",
-					Description: `(Optional) The desired number of replicas of the given Template. These are replicas in the sense that they are instantiations of the same Template, but individual replicas also have a consistent identity. If unspecified, defaults to 1.`,
+					Description: `(Optional) The desired number of replicas of the given Template. These are replicas in the sense that they are instantiations of the same Template, but individual replicas also have a consistent identity. If unspecified, defaults to 1. This attribute is a string to be able to distinguish between explicit zero and not specified.`,
 				},
 				resource.Attribute{
 					Name:        "revision_history_limit",
@@ -6653,11 +6885,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard object's metadata. More info: [Kubernetes reference](https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata)`,
+					Description: `(Required) Standard object's metadata. For more info: [Kubernetes reference](https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata)`,
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `(Optional) Specification of the desired behavior of the pod. More info: [Kubernetes reference](https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `spec.template.spec` + "`" + ` #### Arguments These arguments are the same as the for the ` + "`" + `spec` + "`" + ` block of a Pod. Please see the [Pod resource](pod.html#spec-1) for reference. ## Nested Blocks ### ` + "`" + `spec.update_strategy` + "`" + ` #### Arguments`,
+					Description: `(Optional) Specification of the desired behavior of the pod. For more info: [Kubernetes reference](https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `spec.template.spec` + "`" + ` #### Arguments These arguments are the same as the for the ` + "`" + `spec` + "`" + ` block of a Pod. Please see the [Pod resource](pod.html#spec-1) for reference. ## Nested Blocks ### ` + "`" + `spec.update_strategy` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -6669,7 +6901,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "partition",
-					Description: `(Optional) Indicates the ordinal at which the StatefulSet should be partitioned. You can perform a phased roll out (e.g. a linear, geometric, or exponential roll out) using a partitioned rolling update in a similar manner to how you rolled out a canary. To perform a phased roll out, set the partition to the ordinal at which you want the controller to pause the update. By setting the partition to 0, you allow the StatefulSet controller to continue the update process. Default value is ` + "`" + `0` + "`" + `. ## Nested Blocks ### ` + "`" + `spec.volume_claim_template` + "`" + ` One or more ` + "`" + `volume_claim_template` + "`" + ` blocks can be specified. #### Arguments Each takes the same attibutes as a ` + "`" + `kubernetes_persistent_volume_claim` + "`" + ` resource. Please see its [documentation](persistent_volume_claim.html#argument-reference) for reference.`,
+					Description: `(Optional) Indicates the ordinal at which the StatefulSet should be partitioned. You can perform a phased roll out (e.g. a linear, geometric, or exponential roll out) using a partitioned rolling update in a similar manner to how you rolled out a canary. To perform a phased roll out, set the partition to the ordinal at which you want the controller to pause the update. By setting the partition to 0, you allow the StatefulSet controller to continue the update process. Default value is ` + "`" + `0` + "`" + `. ## Nested Blocks ### ` + "`" + `spec.volume_claim_template` + "`" + ` One or more ` + "`" + `volume_claim_template` + "`" + ` blocks can be specified. #### Arguments Each takes the same attibutes as a ` + "`" + `kubernetes_persistent_volume_claim` + "`" + ` resource. Please see its [documentation](persistent_volume_claim.html#argument-reference) for reference. ## Timeouts The following [Timeout](/docs/configuration/resources.html#operation-timeouts) configuration options are available for the ` + "`" + `kubernetes_stateful_set` + "`" + ` resource:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default ` + "`" + `10 minutes` + "`" + `) Used for creating new StatefulSet`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default ` + "`" + `10 minutes` + "`" + `) Used for updating a StatefulSet`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default ` + "`" + `10 minutes` + "`" + `) Used for destroying a StatefulSet`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6711,11 +6955,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mount_options",
-					Description: `(Optional) Persistent Volumes that are dynamically created by a storage class will have the mount options specified. ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Optional) Persistent Volumes that are dynamically created by a storage class will have the mount options specified.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_topologies",
+					Description: `(Optional) Restrict the node topologies where volumes can be dynamically provisioned. See [allowed_topologies](#allowed_topologies) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the storage class that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the storage class that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6723,11 +6971,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the storage class. May match selectors of replication controllers and services.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the storage class. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Name of the storage class, must be unique. Cannot be updated. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#names) #### Attributes`,
+					Description: `(Optional) Name of the storage class, must be unique. Cannot be updated. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#names) ### ` + "`" + `allowed_topologies` + "`" + ` ￼ #### Arguments ￼`,
+				},
+				resource.Attribute{
+					Name:        "match_label_expressions",
+					Description: `(Optional) A list of topology selector requirements by labels. See [match_label_expressions](#match_label_expressions) ### ` + "`" + `match_label_expressions` + "`" + ` ￼ #### Arguments ￼`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) The label key that the selector applies to.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Optional) An array of string values. One value must match the label to be selected. #### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "generation",
@@ -6736,10 +6996,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this storage class that can be used by clients to determine when storage class has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this storage class.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -6752,36 +7008,37 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"kubernetes_api_service":               0,
-		"kubernetes_cluster_role":              1,
-		"kubernetes_cluster_role_binding":      2,
-		"kubernetes_config_map":                3,
-		"kubernetes_cron_job":                  4,
-		"kubernetes_csi_driver":                5,
-		"kubernetes_daemonset":                 6,
-		"kubernetes_deployment":                7,
-		"kubernetes_endpoints":                 8,
-		"kubernetes_horizontal_pod_autoscaler": 9,
-		"kubernetes_ingress":                   10,
-		"kubernetes_job":                       11,
-		"kubernetes_limit_range":               12,
-		"kubernetes_namespace":                 13,
-		"kubernetes_network_policy":            14,
-		"kubernetes_persistent_volume":         15,
-		"kubernetes_persistent_volume_claim":   16,
-		"kubernetes_pod":                       17,
-		"kubernetes_pod_disruption_budget":     18,
-		"kubernetes_pod_security_policy":       19,
-		"kubernetes_priority_class":            20,
-		"kubernetes_replication_controller":    21,
-		"kubernetes_resource_quota":            22,
-		"kubernetes_role":                      23,
-		"kubernetes_role_binding":              24,
-		"kubernetes_secret":                    25,
-		"kubernetes_service":                   26,
-		"kubernetes_service_account":           27,
-		"kubernetes_stateful_set":              28,
-		"kubernetes_storage_class":             29,
+		"kubernetes_api_service":                 0,
+		"kubernetes_certificate_signing_request": 1,
+		"kubernetes_cluster_role":                2,
+		"kubernetes_cluster_role_binding":        3,
+		"kubernetes_config_map":                  4,
+		"kubernetes_cron_job":                    5,
+		"kubernetes_csi_driver":                  6,
+		"kubernetes_daemonset":                   7,
+		"kubernetes_deployment":                  8,
+		"kubernetes_endpoints":                   9,
+		"kubernetes_horizontal_pod_autoscaler":   10,
+		"kubernetes_ingress":                     11,
+		"kubernetes_job":                         12,
+		"kubernetes_limit_range":                 13,
+		"kubernetes_namespace":                   14,
+		"kubernetes_network_policy":              15,
+		"kubernetes_persistent_volume":           16,
+		"kubernetes_persistent_volume_claim":     17,
+		"kubernetes_pod":                         18,
+		"kubernetes_pod_disruption_budget":       19,
+		"kubernetes_pod_security_policy":         20,
+		"kubernetes_priority_class":              21,
+		"kubernetes_replication_controller":      22,
+		"kubernetes_resource_quota":              23,
+		"kubernetes_role":                        24,
+		"kubernetes_role_binding":                25,
+		"kubernetes_secret":                      26,
+		"kubernetes_service":                     27,
+		"kubernetes_service_account":             28,
+		"kubernetes_stateful_set":                29,
+		"kubernetes_storage_class":               30,
 	}
 )
 

@@ -945,8 +945,20 @@ var (
 					Description: `The source for the intention.`,
 				},
 				resource.Attribute{
+					Name:        "source_namespace",
+					Description: `The source namespace of the intention.`,
+				},
+				resource.Attribute{
 					Name:        "destination_name",
 					Description: `The destination for the intention.`,
+				},
+				resource.Attribute{
+					Name:        "destination_namespace",
+					Description: `The destination namespace of the intention.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `The intention action.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -955,6 +967,10 @@ var (
 				resource.Attribute{
 					Name:        "meta",
 					Description: `Key/value pairs associated with the intention.`,
+				},
+				resource.Attribute{
+					Name:        "datacenter",
+					Description: `The datacenter in which the intention is created. ## Import ` + "`" + `consul_intention` + "`" + ` can be imported: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_intention.database 657a57d6-0d56-57e2-31cb-e9f1ed3c18dd ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -967,8 +983,20 @@ var (
 					Description: `The source for the intention.`,
 				},
 				resource.Attribute{
+					Name:        "source_namespace",
+					Description: `The source namespace of the intention.`,
+				},
+				resource.Attribute{
 					Name:        "destination_name",
 					Description: `The destination for the intention.`,
+				},
+				resource.Attribute{
+					Name:        "destination_namespace",
+					Description: `The destination namespace of the intention.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `The intention action.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -977,6 +1005,10 @@ var (
 				resource.Attribute{
 					Name:        "meta",
 					Description: `Key/value pairs associated with the intention.`,
+				},
+				resource.Attribute{
+					Name:        "datacenter",
+					Description: `The datacenter in which the intention is created. ## Import ` + "`" + `consul_intention` + "`" + ` can be imported: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_intention.database 657a57d6-0d56-57e2-31cb-e9f1ed3c18dd ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1144,10 +1176,6 @@ var (
 					Description: `The product for which the license is valid.`,
 				},
 				resource.Attribute{
-					Name:        "flags",
-					Description: `The metadata attached to the license.`,
-				},
-				resource.Attribute{
 					Name:        "features",
 					Description: `The features for which the license is valid.`,
 				},
@@ -1188,10 +1216,6 @@ var (
 				resource.Attribute{
 					Name:        "product",
 					Description: `The product for which the license is valid.`,
-				},
-				resource.Attribute{
-					Name:        "flags",
-					Description: `The metadata attached to the license.`,
 				},
 				resource.Attribute{
 					Name:        "features",
@@ -1372,11 +1396,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "address",
-					Description: `The address of the service.`,
+					Description: `The address of the node.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the service.`,
+					Description: `The name of the node.`,
 				},
 				resource.Attribute{
 					Name:        "meta",
@@ -1386,11 +1410,11 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "address",
-					Description: `The address of the service.`,
+					Description: `The address of the node.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the service.`,
+					Description: `The name of the node.`,
 				},
 				resource.Attribute{
 					Name:        "meta",

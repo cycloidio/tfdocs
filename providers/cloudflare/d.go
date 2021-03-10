@@ -11,6 +11,16 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "cloudflare_api_token_permission_groups",
+			Category:         "Data Sources",
+			ShortDescription: `List available API Token Permission Group IDs.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "cloudflare_ip_ranges",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on Cloudflare IP ranges.`,
@@ -63,11 +73,12 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"cloudflare_ip_ranges":    0,
-		"cloudflare_waf_groups":   1,
-		"cloudflare_waf_packages": 2,
-		"cloudflare_waf_rules":    3,
-		"cloudflare_zones":        4,
+		"cloudflare_api_token_permission_groups": 0,
+		"cloudflare_ip_ranges":                   1,
+		"cloudflare_waf_groups":                  2,
+		"cloudflare_waf_packages":                3,
+		"cloudflare_waf_rules":                   4,
+		"cloudflare_zones":                       5,
 	}
 )
 

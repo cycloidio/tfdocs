@@ -221,11 +221,27 @@ var (
 					Name:        "id",
 					Description: `The ID of the Server`,
 				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `Is this the default server group?`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `The Fully Qualified Domain Name of the server group`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Server`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `Is this the default server group?`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `The Fully Qualified Domain Name of the server group`,
 				},
 			},
 		},

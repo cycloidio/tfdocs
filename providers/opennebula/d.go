@@ -166,6 +166,78 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "opennebula_user",
+			Category:         "Data Sources",
+			ShortDescription: `Get the user information for a given name.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The OpenNebula user to retrieve information for. ## Attribute Reference The following attribute is exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the user.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the user.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password of the user (if set)`,
+				},
+				resource.Attribute{
+					Name:        "auth_driver",
+					Description: `Authentication Driver for User management`,
+				},
+				resource.Attribute{
+					Name:        "primary_group",
+					Description: `Primary group ID of the User.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `List of secondary groups ID of the user.`,
+				},
+				resource.Attribute{
+					Name:        "quotas",
+					Description: `User's quotas`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the user.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the user.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password of the user (if set)`,
+				},
+				resource.Attribute{
+					Name:        "auth_driver",
+					Description: `Authentication Driver for User management`,
+				},
+				resource.Attribute{
+					Name:        "primary_group",
+					Description: `Primary group ID of the User.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `List of secondary groups ID of the user.`,
+				},
+				resource.Attribute{
+					Name:        "quotas",
+					Description: `User's quotas`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "opennebula_virtual data center",
 			Category:         "Data Sources",
 			ShortDescription: `Get the virtual data center information for a given name.`,
@@ -233,9 +305,10 @@ var (
 		"opennebula_image":                 1,
 		"opennebula_security group":        2,
 		"opennebula_template":              3,
-		"opennebula_virtual data center":   4,
-		"opennebula_virtual machine group": 5,
-		"opennebula_virtual network":       6,
+		"opennebula_user":                  4,
+		"opennebula_virtual data center":   5,
+		"opennebula_virtual machine group": 6,
+		"opennebula_virtual network":       7,
 	}
 )
 

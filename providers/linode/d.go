@@ -18,7 +18,7 @@ var (
 
 Provides information about a Linode account.
 
-This data source should not be used in conjuction with the ` + "`" + `LINODE_DEBUG` + "`" + ` option.  See the [debugging notes](/docs/providers/linode/index.html#debugging) for more details.
+This data source should not be used in conjuction with the ` + "`" + `LINODE_DEBUG` + "`" + ` option.  See the [debugging notes](/providers/linode/linode/latest/docs#debugging) for more details.
 
 `,
 			Keywords: []string{},
@@ -272,6 +272,138 @@ Provides information about a Linode instance type
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "linode_lke_cluster",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about an LKE Cluster.`,
+			Description: `\_lke_cluster
+
+Provides details about an LKE Cluster.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) The LKE Cluster's ID. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "k8s_version",
+					Description: `The Kubernetes version for this Kubernetes cluster in the format of ` + "`" + `major.minor` + "`" + ` (e.g. ` + "`" + `1.17` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `This Kubernetes cluster's location.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags applied to the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "api_endpoints",
+					Description: `The endpoints for the Kubernetes API server.`,
+				},
+				resource.Attribute{
+					Name:        "kubeconfig",
+					Description: `The base64 encoded kubeconfig for the Kubernetes cluster.`,
+				},
+				resource.Attribute{
+					Name:        "pools",
+					Description: `Node pools associated with this cluster.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Node Pool.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The linode type for all of the nodes in the Node Pool.`,
+				},
+				resource.Attribute{
+					Name:        "count",
+					Description: `The number of nodes in the Node Pool.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `The nodes in the Node Pool.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the node.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `The ID of the underlying Linode instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the node.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "k8s_version",
+					Description: `The Kubernetes version for this Kubernetes cluster in the format of ` + "`" + `major.minor` + "`" + ` (e.g. ` + "`" + `1.17` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `This Kubernetes cluster's location.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags applied to the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "api_endpoints",
+					Description: `The endpoints for the Kubernetes API server.`,
+				},
+				resource.Attribute{
+					Name:        "kubeconfig",
+					Description: `The base64 encoded kubeconfig for the Kubernetes cluster.`,
+				},
+				resource.Attribute{
+					Name:        "pools",
+					Description: `Node pools associated with this cluster.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Node Pool.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The linode type for all of the nodes in the Node Pool.`,
+				},
+				resource.Attribute{
+					Name:        "count",
+					Description: `The number of nodes in the Node Pool.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `The nodes in the Node Pool.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the node.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `The ID of the underlying Linode instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the node.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -615,14 +747,15 @@ Provides information about a Linode Volume.
 		"linode_domain_record":          2,
 		"linode_image":                  3,
 		"linode_instance_type":          4,
-		"linode_networking_ip":          5,
-		"linode_object_storage_cluster": 6,
-		"linode_profile":                7,
-		"linode_region":                 8,
-		"linode_sshkey":                 9,
-		"linode_stackscript":            10,
-		"linode_user":                   11,
-		"linode_volume":                 12,
+		"linode_lke_cluster":            5,
+		"linode_networking_ip":          6,
+		"linode_object_storage_cluster": 7,
+		"linode_profile":                8,
+		"linode_region":                 9,
+		"linode_sshkey":                 10,
+		"linode_stackscript":            11,
+		"linode_user":                   12,
+		"linode_volume":                 13,
 	}
 )
 

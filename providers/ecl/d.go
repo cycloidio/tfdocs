@@ -151,7 +151,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 Compute client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -279,7 +279,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 Compute client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -315,7 +315,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region of the zone.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "domain_name",
@@ -527,7 +527,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 Network client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "member_status",
@@ -855,6 +855,150 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ecl_network_common_function_pool_v2",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an Enterprise Cloud Common Function Pool.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the Common Function Pool resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the Common Function Pool resource.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) Unique ID of the Common Function Pool resource. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ecl_network_fic_gateway_v2",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an Enterprise Cloud FIC Gateway.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the FIC Gateway resource.`,
+				},
+				resource.Attribute{
+					Name:        "fic_service_id",
+					Description: `(Optional) FIC Service ID of the FIC Gateway resource.`,
+				},
+				resource.Attribute{
+					Name:        "fic_gateway_id",
+					Description: `(Optional) Unique ID of the FIC Gateway resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the FIC Gateway resource.`,
+				},
+				resource.Attribute{
+					Name:        "qos_option_id",
+					Description: `(Optional) QoS Option ID of the FIC Gateway resource.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional) Status of the FIC Gateway resource.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) Tenant ID of the owner (UUID). ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found fic gateway. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "fic_service_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "fic_gateway_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "qos_option_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "fic_service_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "fic_gateway_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "qos_option_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ecl_network_gateway_interface_v2",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an Enterprise Cloud Gateway interface.`,
@@ -863,7 +1007,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 Network client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "aws_gw_id",
@@ -1123,7 +1267,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 Network client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1223,6 +1367,114 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ecl_network_load_balancer_plan_v2",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an Enterprise Cloud Load Balancer Plan.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the Load Balancer Plan.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Whether the Load Balancer Plan is enable or not.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) Unique ID of the Load Balancer Plan.`,
+				},
+				resource.Attribute{
+					Name:        "maximum_syslog_servers",
+					Description: `(Optional) Maximum number of syslog servers.`,
+				},
+				resource.Attribute{
+					Name:        "model",
+					Description: `(Optional) Model of load balancer. The ` + "`" + `model` + "`" + ` object structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the Load Balancer Plan.`,
+				},
+				resource.Attribute{
+					Name:        "vendor",
+					Description: `(Optional) Load Balancer Type.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) Version name. The ` + "`" + `model` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "edition",
+					Description: `(Optional) Edition of Load Balancer Plan.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Optional) Bandwidth of Load Balancer Plan. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found Load Balancer Plan. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "maximum_syslog_servers",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "model",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vendor",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "maximum_syslog_servers",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "model",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vendor",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ecl_network_network_v2",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an Enterprise Cloud Network.`,
@@ -1251,7 +1503,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 Neutron client. A Neutron client is needed to retrieve networks ids. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found network. In addition, the following attributes are exported:`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "admin_state_up",
@@ -1383,7 +1635,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 Neutron client. A Neutron client is needed to retrieve port ids. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "segmentation_id",
@@ -1551,7 +1803,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 Network client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "cidr",
@@ -1663,7 +1915,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 Network client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "aws_gw_id",
@@ -1859,7 +2111,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 Network client. A Network client is needed to retrieve subnet ids. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
@@ -2465,18 +2717,21 @@ var (
 		"ecl_dns_zone_v2":                        5,
 		"ecl_imagestorages_image_v2":             6,
 		"ecl_network_common_function_gateway_v2": 7,
-		"ecl_network_gateway_interface_v2":       8,
-		"ecl_network_internet_gateway_v2":        9,
-		"ecl_network_network_v2":                 10,
-		"ecl_network_port_v2":                    11,
-		"ecl_network_public_ip_v2":               12,
-		"ecl_network_static_route_v2":            13,
-		"ecl_network_subnet_v2":                  14,
-		"ecl_sss_tenant_v1":                      15,
-		"ecl_storage_virtualstorage_v2":          16,
-		"ecl_storage_volume_v1":                  17,
-		"ecl_storage_volumetype_v1":              18,
-		"ecl_vna_appliance_v1":                   19,
+		"ecl_network_common_function_pool_v2":    8,
+		"ecl_network_fic_gateway_v2":             9,
+		"ecl_network_gateway_interface_v2":       10,
+		"ecl_network_internet_gateway_v2":        11,
+		"ecl_network_load_balancer_plan_v2":      12,
+		"ecl_network_network_v2":                 13,
+		"ecl_network_port_v2":                    14,
+		"ecl_network_public_ip_v2":               15,
+		"ecl_network_static_route_v2":            16,
+		"ecl_network_subnet_v2":                  17,
+		"ecl_sss_tenant_v1":                      18,
+		"ecl_storage_virtualstorage_v2":          19,
+		"ecl_storage_volume_v1":                  20,
+		"ecl_storage_volumetype_v1":              21,
+		"ecl_vna_appliance_v1":                   22,
 	}
 )
 

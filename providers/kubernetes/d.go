@@ -48,10 +48,6 @@ var (
 					Description: `An opaque value that represents the internal version of this config map that can be used by clients to determine when config map has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this config map.`,
-				},
-				resource.Attribute{
 					Name:        "uid",
 					Description: `The unique in time and space value for this config map. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#uids) ## Attribute Reference`,
 				},
@@ -112,10 +108,6 @@ var (
 					Description: `An opaque value that represents the internal version of this service that can be used by clients to determine when service has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this service.`,
-				},
-				resource.Attribute{
 					Name:        "uid",
 					Description: `The unique in time and space value for this service. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#uids) ## Attribute Reference ### ` + "`" + `spec` + "`" + ` #### Attributes`,
 				},
@@ -165,19 +157,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secret_name",
-					Description: `SecretName is the name of the secret used to terminate SSL traffic on 443. Field is left optional to allow SSL routing based on SNI hostname alone. If the SNI host in a listener conflicts with the \"Host\" header field used by an IngressRule, the SNI host is used for termination and value of the Host header is used for routing. ## Attributes`,
+					Description: `SecretName is the name of the secret used to terminate SSL traffic on 443. Field is left optional to allow SSL routing based on SNI hostname alone. If the SNI host in a listener conflicts with the \"Host\" header field used by an IngressRule, the SNI host is used for termination and value of the Host header is used for routing. ## Attributes ### ` + "`" + `status` + "`" + ``,
 				},
 				resource.Attribute{
-					Name:        "load_balancer_ingress",
-					Description: `A list containing ingress points for the load-balancer ### ` + "`" + `load_balancer_ingress` + "`" + ` #### Attributes`,
+					Name:        "status",
+					Description: `Status is the current state of the Ingress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status #### ` + "`" + `load_balancer` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ingress",
+					Description: `Ingress is a list containing ingress points for the load-balancer. Traffic intended for the service should be sent to these ingress points. ###### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "ip",
-					Description: `IP which is set for load-balancer ingress points that are IP based (typically GCE or OpenStack load-balancers)`,
+					Description: `IP is set for load-balancer ingress points that are IP based (typically GCE or OpenStack load-balancers).`,
 				},
 				resource.Attribute{
 					Name:        "hostname",
-					Description: `Hostname which is set for load-balancer ingress points that are DNS based (typically AWS load-balancers)`,
+					Description: `Hostname is set for load-balancer ingress points that are DNS based (typically AWS load-balancers).`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -227,19 +223,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secret_name",
-					Description: `SecretName is the name of the secret used to terminate SSL traffic on 443. Field is left optional to allow SSL routing based on SNI hostname alone. If the SNI host in a listener conflicts with the \"Host\" header field used by an IngressRule, the SNI host is used for termination and value of the Host header is used for routing. ## Attributes`,
+					Description: `SecretName is the name of the secret used to terminate SSL traffic on 443. Field is left optional to allow SSL routing based on SNI hostname alone. If the SNI host in a listener conflicts with the \"Host\" header field used by an IngressRule, the SNI host is used for termination and value of the Host header is used for routing. ## Attributes ### ` + "`" + `status` + "`" + ``,
 				},
 				resource.Attribute{
-					Name:        "load_balancer_ingress",
-					Description: `A list containing ingress points for the load-balancer ### ` + "`" + `load_balancer_ingress` + "`" + ` #### Attributes`,
+					Name:        "status",
+					Description: `Status is the current state of the Ingress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status #### ` + "`" + `load_balancer` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ingress",
+					Description: `Ingress is a list containing ingress points for the load-balancer. Traffic intended for the service should be sent to these ingress points. ###### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "ip",
-					Description: `IP which is set for load-balancer ingress points that are IP based (typically GCE or OpenStack load-balancers)`,
+					Description: `IP is set for load-balancer ingress points that are IP based (typically GCE or OpenStack load-balancers).`,
 				},
 				resource.Attribute{
 					Name:        "hostname",
-					Description: `Hostname which is set for load-balancer ingress points that are DNS based (typically AWS load-balancers)`,
+					Description: `Hostname is set for load-balancer ingress points that are DNS based (typically AWS load-balancers).`,
 				},
 			},
 		},
@@ -261,7 +261,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the namespace that may be used to store arbitrary metadata.`,
+					Description: `(Optional) An unstructured key value map stored with the namespace that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generation",
@@ -269,15 +269,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) namespaces. May match selectors of replication controllers and services.`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) namespaces. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this namespace that can be used by clients to determine when namespaces have changed. Read more about [concurrency control and consistency](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency).`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this namespace.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -285,7 +281,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "finalizers",
-					Description: `An opaque list of values that must be empty to permanently remove object from storage. More info: https://kubernetes.io/docs/tasks/administer-cluster/namespaces/`,
+					Description: `An opaque list of values that must be empty to permanently remove object from storage. For more info: https://kubernetes.io/docs/tasks/administer-cluster/namespaces/`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -317,10 +313,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this persistent volume claim that can be used by clients to determine when persistent volume claim has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this persistent volume claim.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -374,10 +366,6 @@ var (
 					Description: `An opaque value that represents the internal version of this pod that can be used by clients to determine when pod has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this pod.`,
-				},
-				resource.Attribute{
 					Name:        "uid",
 					Description: `The unique in time and space value for this pod. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#uids) ### ` + "`" + `spec` + "`" + ` #### Attributes`,
 				},
@@ -391,7 +379,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "automount_service_account_token",
-					Description: `Indicates whether a service account token should be automatically mounted. Defaults to false for Pods.`,
+					Description: `Indicates whether a service account token should be automatically mounted. Defaults to true for Pods.`,
 				},
 				resource.Attribute{
 					Name:        "container",
@@ -623,7 +611,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "medium",
-					Description: `What type of storage medium should back this directory. The default is "" which means to use the node's default medium. Must be an empty string (default) or Memory. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/volumes#emptydir) ### ` + "`" + `env` + "`" + ` #### Attributes`,
+					Description: `What type of storage medium should back this directory. The default is "" which means to use the node's default medium. Must be an empty string (default) or Memory. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/volumes#emptydir)`,
+				},
+				resource.Attribute{
+					Name:        "size_limit",
+					Description: `(Optional) Total amount of local storage required for this EmptyDir volume. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes) and [Kubernetes Quantity type](https://pkg.go.dev/k8s.io/apimachinery/pkg/api/resource?tab=doc#Quantity). ### ` + "`" + `env` + "`" + ` #### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1089,10 +1081,6 @@ var (
 					Description: `An opaque value that represents the internal version of this secret that can be used by clients to determine when secret has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this secret.`,
-				},
-				resource.Attribute{
 					Name:        "uid",
 					Description: `The unique in time and space value for this secret. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#uids) ## Attribute Reference`,
 				},
@@ -1130,11 +1118,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `Spec defines the behavior of a service. [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status)`,
-				},
-				resource.Attribute{
-					Name:        "load_balancer_ingress",
-					Description: `A list containing ingress points for the load-balancer (only valid if ` + "`" + `type = "LoadBalancer"` + "`" + `) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `Spec defines the behavior of a service. [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1159,10 +1143,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this service that can be used by clients to determine when service has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this service.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -1202,7 +1182,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "external_traffic_policy",
-					Description: `(Optional) Denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints. ` + "`" + `Local` + "`" + ` preserves the client source IP and avoids a second hop for LoadBalancer and Nodeport type services, but risks potentially imbalanced traffic spreading. ` + "`" + `Cluster` + "`" + ` obscures the client source IP and may cause a second hop to another node, but should have good overall load-spreading. More info: https://kubernetes.io/docs/tutorials/services/source-ip/`,
+					Description: `(Optional) Denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints. ` + "`" + `Local` + "`" + ` preserves the client source IP and avoids a second hop for LoadBalancer and Nodeport type services, but risks potentially imbalanced traffic spreading. ` + "`" + `Cluster` + "`" + ` obscures the client source IP and may cause a second hop to another node, but should have good overall load-spreading. For more info: https://kubernetes.io/docs/tutorials/services/source-ip/`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_ip",
@@ -1226,15 +1206,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `Determines how the service is exposed. Defaults to ` + "`" + `ClusterIP` + "`" + `. Valid options are ` + "`" + `ExternalName` + "`" + `, ` + "`" + `ClusterIP` + "`" + `, ` + "`" + `NodePort` + "`" + `, and ` + "`" + `LoadBalancer` + "`" + `. ` + "`" + `ExternalName` + "`" + ` maps to the specified ` + "`" + `external_name` + "`" + `. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/services#overview) ### ` + "`" + `load_balancer_ingress` + "`" + ` #### Attributes`,
+					Description: `Determines how the service is exposed. Defaults to ` + "`" + `ClusterIP` + "`" + `. Valid options are ` + "`" + `ExternalName` + "`" + `, ` + "`" + `ClusterIP` + "`" + `, ` + "`" + `NodePort` + "`" + `, and ` + "`" + `LoadBalancer` + "`" + `. ` + "`" + `ExternalName` + "`" + ` maps to the specified ` + "`" + `external_name` + "`" + `. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/services#overview) ## Attributes`,
 				},
 				resource.Attribute{
-					Name:        "hostname",
-					Description: `Hostname which is set for load-balancer ingress points that are DNS based (typically AWS load-balancers)`,
+					Name:        "status",
+					Description: `Status is a list containing the most recently observed status of the service. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status ### ` + "`" + `status` + "`" + ` #### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer",
+					Description: `a list containing the current status of the load-balancer, if one is present. ### ` + "`" + `load_balancer` + "`" + ` #### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "ingress",
+					Description: `a list containing ingress points for the load-balancer. Traffic intended for the service should be sent to these ingress points. ### ` + "`" + `ingress` + "`" + ` #### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "ip",
-					Description: `IP which is set for load-balancer ingress points that are IP based (typically GCE or OpenStack load-balancers)`,
+					Description: `IP is set for load-balancer ingress points that are IP based (typically GCE or OpenStack load-balancers).`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `Hostname is set for load-balancer ingress points that are DNS based (typically AWS load-balancers).`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1266,10 +1258,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this service account that can be used by clients to determine when service account has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this service account.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -1333,7 +1321,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Name of the storage class, must be unique. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#names) #### Attributes`,
+					Description: `(Required) Name of the storage class, must be unique. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#names) ### ` + "`" + `allowed_topologies` + "`" + ` ￼ #### Arguments ￼`,
+				},
+				resource.Attribute{
+					Name:        "match_label_expressions",
+					Description: `(Optional) A list of topology selector requirements by labels. See [match_label_expressions](#match_label_expressions) ### ` + "`" + `match_label_expressions` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) The label key that the selector applies to.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Optional) An array of string values. One value must match the label to be selected. #### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "generation",
@@ -1342,10 +1342,6 @@ var (
 				resource.Attribute{
 					Name:        "resource_version",
 					Description: `An opaque value that represents the internal version of this storage class that can be used by clients to determine when storage class has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `A URL representing this storage class.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -1374,6 +1370,10 @@ var (
 				resource.Attribute{
 					Name:        "mount_options",
 					Description: `Persistent Volumes that are dynamically created by a storage class will have the mount options specified.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_topologies",
+					Description: `(Optional) Restrict the node topologies where volumes can be dynamically provisioned. See [allowed_topologies](#allowed_topologies)`,
 				},
 			},
 			Attributes: []resource.Attribute{},

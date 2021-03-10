@@ -39,7 +39,7 @@ var (
 			Name:             "",
 			Type:             "oktaasa_enrollment_token",
 			Category:         "Resources",
-			ShortDescription: `The oktaasa_token resource creates enrollment tokens which are base64-encoded objects with metadata that Okta's ASA Agent can configure itself from. Enrollment is the process where Okta's ASA agent configures a server to be managed by a specific project.`,
+			ShortDescription: `The oktaasa_enrollment_token resource creates enrollment tokens which are base64-encoded objects with metadata that Okta's ASA Agent can configure itself from. Enrollment is the process where Okta's ASA agent configures a server to be managed by a specific project.`,
 			Description:      ``,
 			Keywords: []string{
 				"enrollment",

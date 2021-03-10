@@ -11,7 +11,7 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "ovh_cloud_region",
+			Type:             "ovh_cloud_project_region",
 			Category:         "Data Sources",
 			ShortDescription: `Get information & status of a region associated with a public cloud project.`,
 			Description:      ``,
@@ -19,7 +19,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used.`,
+					Description: `(Optional) Deprecated. The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used. One of ` + "`" + `service_name` + "`" + ` or ` + "`" + `project_id` + "`" + ` is required. Conflits with ` + "`" + `service_name` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Optional) The id of the public cloud project. If omitted, the ` + "`" + `OVH_CLOUD_PROJECT_SERVICE` + "`" + ` environment variable is used. One of ` + "`" + `service_name` + "`" + ` or ` + "`" + `project_id` + "`" + ` is required. Conflits with ` + "`" + `project_id` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -87,7 +91,115 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "ovh_cloud_regions",
+			Type:             "ovh_cloud_project_regions",
+			Category:         "Data Sources",
+			ShortDescription: `Get the list of regions associated with a public cloud project.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Optional) Deprecated. The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used. One of ` + "`" + `service_name` + "`" + ` or ` + "`" + `project_id` + "`" + ` is required. Conflits with ` + "`" + `service_name` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Optional) The id of the public cloud project. If omitted, the ` + "`" + `OVH_CLOUD_PROJECT_SERVICE` + "`" + ` environment variable is used. One of ` + "`" + `service_name` + "`" + ` or ` + "`" + `project_id` + "`" + ` is required. Conflits with ` + "`" + `project_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "has_services_up",
+					Description: `(Optional) List of services which has to be UP in regions. Example: "image", "instance", "network", "storage", "volume", "workflow", ... If left blank, returns all regions associated with the project_id. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the project. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `The list of regions associated with the project, filtered by services UP.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "names",
+					Description: `The list of regions associated with the project, filtered by services UP.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_cloud_region (deprecated)",
+			Category:         "Data Sources",
+			ShortDescription: `Get information & status of a region associated with a public cloud project.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) The name of the region associated with the public cloud project. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the project concatenated with the name of the region. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "continent_code",
+					Description: `the code of the geographic continent the region is running. E.g.: EU for Europe, US for America...`,
+				},
+				resource.Attribute{
+					Name:        "datacenter_location",
+					Description: `The location code of the datacenter. E.g.: "GRA", meaning Gravelines, for region "GRA1"`,
+				},
+				resource.Attribute{
+					Name:        "continentCode",
+					Description: `(Deprecated) Use ` + "`" + `continent_code` + "`" + ` instead.`,
+				},
+				resource.Attribute{
+					Name:        "datacenterLocation",
+					Description: `(Deprecated) Use ` + "`" + `datacenter_location` + "`" + ` instead.`,
+				},
+				resource.Attribute{
+					Name:        "services",
+					Description: `The list of public cloud services running within the region`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `the name of the public cloud service`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `the status of the service`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "continent_code",
+					Description: `the code of the geographic continent the region is running. E.g.: EU for Europe, US for America...`,
+				},
+				resource.Attribute{
+					Name:        "datacenter_location",
+					Description: `The location code of the datacenter. E.g.: "GRA", meaning Gravelines, for region "GRA1"`,
+				},
+				resource.Attribute{
+					Name:        "continentCode",
+					Description: `(Deprecated) Use ` + "`" + `continent_code` + "`" + ` instead.`,
+				},
+				resource.Attribute{
+					Name:        "datacenterLocation",
+					Description: `(Deprecated) Use ` + "`" + `datacenter_location` + "`" + ` instead.`,
+				},
+				resource.Attribute{
+					Name:        "services",
+					Description: `The list of public cloud services running within the region`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `the name of the public cloud service`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `the status of the service`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_cloud_regions (deprecated)",
 			Category:         "Data Sources",
 			ShortDescription: `Get the list of regions associated with a public cloud project.`,
 			Description:      ``,
@@ -110,6 +222,86 @@ var (
 				resource.Attribute{
 					Name:        "names",
 					Description: `The list of regions associated with the project, filtered by services UP.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_dedicated_ceph",
+			Category:         "Data Sources",
+			ShortDescription: `Get information & status of a dedicated CEPH instance.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) The service name of the dedicated CEPH cluster. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "ceph_mons",
+					Description: `list of CEPH monitors IPs`,
+				},
+				resource.Attribute{
+					Name:        "ceph_version",
+					Description: `CEPH cluster version`,
+				},
+				resource.Attribute{
+					Name:        "crush_tunables",
+					Description: `CRUSH algorithm settings. Possible values`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `CEPH cluster label`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `cluster region`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `Cluster size in TB`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `the state of the cluster`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `the status of the service`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ceph_mons",
+					Description: `list of CEPH monitors IPs`,
+				},
+				resource.Attribute{
+					Name:        "ceph_version",
+					Description: `CEPH cluster version`,
+				},
+				resource.Attribute{
+					Name:        "crush_tunables",
+					Description: `CRUSH algorithm settings. Possible values`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `CEPH cluster label`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `cluster region`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `Cluster size in TB`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `the state of the cluster`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `the status of the service`,
 				},
 			},
 		},
@@ -160,6 +352,10 @@ var (
 				resource.Attribute{
 					Name:        "ip",
 					Description: `dedicated server ip (IPv4)`,
+				},
+				resource.Attribute{
+					Name:        "ips",
+					Description: `dedicated server ip blocks`,
 				},
 				resource.Attribute{
 					Name:        "link_speed",
@@ -270,6 +466,10 @@ var (
 				resource.Attribute{
 					Name:        "ip",
 					Description: `dedicated server ip (IPv4)`,
+				},
+				resource.Attribute{
+					Name:        "ips",
+					Description: `dedicated server ip blocks`,
 				},
 				resource.Attribute{
 					Name:        "link_speed",
@@ -635,6 +835,106 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ovh_me_identity_user",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about identity User.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "user",
+					Description: `(Required) User's login. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "login",
+					Description: `User's login suffix.`,
+				},
+				resource.Attribute{
+					Name:        "creation",
+					Description: `Creation date of this user.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `User description.`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `User's email.`,
+				},
+				resource.Attribute{
+					Name:        "group",
+					Description: `User's group.`,
+				},
+				resource.Attribute{
+					Name:        "last_update",
+					Description: `Last update of this user.`,
+				},
+				resource.Attribute{
+					Name:        "password_last_update",
+					Description: `When the user changed his password for the last time.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Current user's status.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "login",
+					Description: `User's login suffix.`,
+				},
+				resource.Attribute{
+					Name:        "creation",
+					Description: `Creation date of this user.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `User description.`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `User's email.`,
+				},
+				resource.Attribute{
+					Name:        "group",
+					Description: `User's group.`,
+				},
+				resource.Attribute{
+					Name:        "last_update",
+					Description: `Last update of this user.`,
+				},
+				resource.Attribute{
+					Name:        "password_last_update",
+					Description: `When the user changed his password for the last time.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Current user's status.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_me_identity_users",
+			Category:         "Data Sources",
+			ShortDescription: `Get the list of the identity users for the account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "users",
+					Description: `The list of the user's logins of all the identity users.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "users",
+					Description: `The list of the user's logins of all the identity users.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ovh_me_installation_template",
 			Category:         "Data Sources",
 			ShortDescription: `Get a custom installation template available for dedicated servers.`,
@@ -873,110 +1173,6 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "ovh_publiccloud_region",
-			Category:         "Data Sources",
-			ShortDescription: `Get information & status of a region associated with a public cloud project.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used.`,
-				},
-				resource.Attribute{
-					Name:        "region",
-					Description: `(Required) The name of the region associated with the public cloud project. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the project concatenated with the name of the region. In addition, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "continent_code",
-					Description: `the code of the geographic continent the region is running. E.g.: EU for Europe, US for America...`,
-				},
-				resource.Attribute{
-					Name:        "datacenter_location",
-					Description: `The location code of the datacenter. E.g.: "GRA", meaning Gravelines, for region "GRA1"`,
-				},
-				resource.Attribute{
-					Name:        "continentCode",
-					Description: `(Deprecated) Use ` + "`" + `continent_code` + "`" + ` instead.`,
-				},
-				resource.Attribute{
-					Name:        "datacenterLocation",
-					Description: `(Deprecated) Use ` + "`" + `datacenter_location` + "`" + ` instead.`,
-				},
-				resource.Attribute{
-					Name:        "services",
-					Description: `The list of public cloud services running within the region`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `the name of the public cloud service`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `the status of the service`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "continent_code",
-					Description: `the code of the geographic continent the region is running. E.g.: EU for Europe, US for America...`,
-				},
-				resource.Attribute{
-					Name:        "datacenter_location",
-					Description: `The location code of the datacenter. E.g.: "GRA", meaning Gravelines, for region "GRA1"`,
-				},
-				resource.Attribute{
-					Name:        "continentCode",
-					Description: `(Deprecated) Use ` + "`" + `continent_code` + "`" + ` instead.`,
-				},
-				resource.Attribute{
-					Name:        "datacenterLocation",
-					Description: `(Deprecated) Use ` + "`" + `datacenter_location` + "`" + ` instead.`,
-				},
-				resource.Attribute{
-					Name:        "services",
-					Description: `The list of public cloud services running within the region`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `the name of the public cloud service`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `the status of the service`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "ovh_publiccloud_regions",
-			Category:         "Data Sources",
-			ShortDescription: `Get the list of regions associated with a public cloud project.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used.`,
-				},
-				resource.Attribute{
-					Name:        "has_services_up",
-					Description: `(Optional) List of services which has to be UP in regions. Example: "image", "instance", "network", "storage", "volume", "workflow", ... If left blank, returns all regions associated with the project_id. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the project. In addition, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "names",
-					Description: `The list of regions associated with the project, filtered by services UP.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "names",
-					Description: `The list of regions associated with the project, filtered by services UP.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "ovh_vracks",
 			Category:         "Data Sources",
 			ShortDescription: `Get the list of Vrack ids available for your OVH account.`,
@@ -989,27 +1185,30 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"ovh_cloud_region":                     0,
-		"ovh_cloud_regions":                    1,
-		"ovh_dedicated_installation_templates": 2,
-		"ovh_dedicated_server":                 3,
-		"ovh_dedicated_server_boots":           4,
-		"ovh_dedicated_servers":                5,
-		"ovh_domain_zone":                      6,
-		"ovh_iploadbalancing":                  7,
-		"ovh_iploadbalancing_vrack_network":    8,
-		"ovh_iploadbalancing_vrack_networks":   9,
-		"ovh_me_installation_template":         10,
-		"ovh_me_installation_templates":        11,
-		"ovh_me_ipxe_script":                   12,
-		"ovh_me_ipxe_scripts":                  13,
-		"ovh_me_paymentmean_bankaccount":       14,
-		"ovh_me_paymentmean_creditcard":        15,
-		"ovh_me_ssh_key":                       16,
-		"ovh_me_ssh_keys":                      17,
-		"ovh_publiccloud_region":               18,
-		"ovh_publiccloud_regions":              19,
-		"ovh_vracks":                           20,
+		"ovh_cloud_project_region":             0,
+		"ovh_cloud_project_regions":            1,
+		"ovh_cloud_region (deprecated)":        2,
+		"ovh_cloud_regions (deprecated)":       3,
+		"ovh_dedicated_ceph":                   4,
+		"ovh_dedicated_installation_templates": 5,
+		"ovh_dedicated_server":                 6,
+		"ovh_dedicated_server_boots":           7,
+		"ovh_dedicated_servers":                8,
+		"ovh_domain_zone":                      9,
+		"ovh_iploadbalancing":                  10,
+		"ovh_iploadbalancing_vrack_network":    11,
+		"ovh_iploadbalancing_vrack_networks":   12,
+		"ovh_me_identity_user":                 13,
+		"ovh_me_identity_users":                14,
+		"ovh_me_installation_template":         15,
+		"ovh_me_installation_templates":        16,
+		"ovh_me_ipxe_script":                   17,
+		"ovh_me_ipxe_scripts":                  18,
+		"ovh_me_paymentmean_bankaccount":       19,
+		"ovh_me_paymentmean_creditcard":        20,
+		"ovh_me_ssh_key":                       21,
+		"ovh_me_ssh_keys":                      22,
+		"ovh_vracks":                           23,
 	}
 )
 

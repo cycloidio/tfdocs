@@ -143,6 +143,33 @@ This resource is useful if you want to use a non-terraform managed server.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "hcloud_server_type",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a specific Hetzner Cloud Server Type.`,
+			Description: `
+Provides details about a specific Hetzner Cloud Server Type.
+Use this resource to get detailed information about specific Server Type.
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "hcloud_server_types",
+			Category:         "Data Sources",
+			ShortDescription: `List all available Hetzner Cloud Server Types.`,
+			Description: `
+Provides a list of available Hetzner Cloud Server Types.
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "hcloud_ssh_key",
 			Category:         "Data Sources",
 			ShortDescription: `Provides details about a specific Hetzner Cloud SSH Key.`,
@@ -196,9 +223,11 @@ This resource is useful if you want to use a non-terraform managed volume.
 		"hcloud_locations":     7,
 		"hcloud_network":       8,
 		"hcloud_server":        9,
-		"hcloud_ssh_key":       10,
-		"hcloud_ssh_keys":      11,
-		"hcloud_volume":        12,
+		"hcloud_server_type":   10,
+		"hcloud_server_types":  11,
+		"hcloud_ssh_key":       12,
+		"hcloud_ssh_keys":      13,
+		"hcloud_volume":        14,
 	}
 )
 

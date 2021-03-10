@@ -231,6 +231,22 @@ var (
 					Name:        "proactive_ha_provider_ids",
 					Description: `(Optional) The list of IDs for health update providers configured for this cluster. <sup>[\`,
 				},
+				resource.Attribute{
+					Name:        "vsan_enabled",
+					Description: `(Optional) Enables vSAN on the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "vsan_disk_group",
+					Description: `(Optional) Represents the configuration of a host disk group in the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cache",
+					Description: `The canonical name of the disk to use for vSAN cache.`,
+				},
+				resource.Attribute{
+					Name:        "storage",
+					Description: `An array of disk canonical names for vSAN storage. ` + "`" + `` + "`" + `` + "`" + ` resource compute_cluster "compute_cluster" { ... vsan_disk_group { cache = data.vsphere_vmfs_disks.cache_disks[0] storage = data.vsphere_vmfs_disks.storage_disks } ... } ` + "`" + `` + "`" + `` + "`" + ` ## Attribute Reference The following attributes are exported:`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -866,7 +882,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "devices",
-					Description: `(Required) The list of NIC devices to map to uplinks on the DVS, added in order they are specified. ### Netflow arguments The following options control settings that you can use to configure Netflow on the DVS:`,
+					Description: `(Required) The list of NIC devices to map to uplinks on the DVS, added in order they are specified. ### Private VLAN mapping arguments`,
+				},
+				resource.Attribute{
+					Name:        "ignore_other_pvlan_mappings",
+					Description: `(Optional) Whether to ignore existing PVLAN mappings not managed by this resource. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "pvlan_mapping",
+					Description: `(Optional) Use the ` + "`" + `pvlan_mapping` + "`" + ` block to declare a private VLAN mapping. The options are:`,
+				},
+				resource.Attribute{
+					Name:        "primary_vlan_id",
+					Description: `(Required) The primary VLAN ID. The VLAN IDs of 0 and 4095 are reserved and cannot be used in this property.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_vlan_id",
+					Description: `(Required) The secondary VLAN ID. The VLAN IDs of 0 and 4095 are reserved and cannot be used in this property.`,
+				},
+				resource.Attribute{
+					Name:        "pvlan_type",
+					Description: `(Required) The private VLAN type. Valid values are promiscuous, community and isolated. ### Netflow arguments The following options control settings that you can use to configure Netflow on the DVS:`,
 				},
 				resource.Attribute{
 					Name:        "netflow_active_flow_timeout",
@@ -1367,7 +1403,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ports",
-					Description: `A list of ports that currently exist and are used on this port group.`,
+					Description: `A list of ports that currently exist and are used on this port group. ## Importing An existing host port group can be [imported][docs-import] into this resource using the host port group's ID. An example is below: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_host_port_group.management tf-HostPortGroup:host-123:Management ` + "`" + `` + "`" + `` + "`" + ` The above would import the ` + "`" + `Management` + "`" + ` host port group from host with ID ` + "`" + `host-123` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1385,7 +1421,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ports",
-					Description: `A list of ports that currently exist and are used on this port group.`,
+					Description: `A list of ports that currently exist and are used on this port group. ## Importing An existing host port group can be [imported][docs-import] into this resource using the host port group's ID. An example is below: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_host_port_group.management tf-HostPortGroup:host-123:Management ` + "`" + `` + "`" + `` + "`" + ` The above would import the ` + "`" + `Management` + "`" + ` host port group from host with ID ` + "`" + `host-123` + "`" + `.`,
 				},
 			},
 		},
@@ -2423,11 +2459,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "linked_clone",
-					Description: `(Optional) Clone this virtual machine from a snapshot. Templates must have a single snapshot only in order to be eligible. Default: ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Clone this virtual machine from a snapshot or a template. Default: ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "timeout",
-					Description: `(Optional) The timeout, in minutes, to wait for the virtual machine clone to complete. Default: 30 minutes.`,
+					Description: `(Optional) The timeout, in minutes, to wait for the cloning process to complete. Default: 30 minutes.`,
 				},
 				resource.Attribute{
 					Name:        "customize",
@@ -2919,15 +2955,60 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the vNic. ## Importing An existing vNic can be [imported][docs-import] into this resource via supplying the vNic's ID. An example is below: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_vnic.v1 host-123_vmk2 ` + "`" + `` + "`" + `` + "`" + ` The above would import the the vnic ` + "`" + `vmk2` + "`" + ` from host with ID ` + "`" + `host-123` + "`" + `.`,
+					Description: `The ID of the vNic. ## Importing An existing vNic can be [imported][docs-import] into this resource via supplying the vNic's ID. An example is below: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_vnic.v1 host-123_vmk2 ` + "`" + `` + "`" + `` + "`" + ` The above would import the vnic ` + "`" + `vmk2` + "`" + ` from host with ID ` + "`" + `host-123` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the vNic. ## Importing An existing vNic can be [imported][docs-import] into this resource via supplying the vNic's ID. An example is below: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_vnic.v1 host-123_vmk2 ` + "`" + `` + "`" + `` + "`" + ` The above would import the the vnic ` + "`" + `vmk2` + "`" + ` from host with ID ` + "`" + `host-123` + "`" + `.`,
+					Description: `The ID of the vNic. ## Importing An existing vNic can be [imported][docs-import] into this resource via supplying the vNic's ID. An example is below: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_vnic.v1 host-123_vmk2 ` + "`" + `` + "`" + `` + "`" + ` The above would import the vnic ` + "`" + `vmk2` + "`" + ` from host with ID ` + "`" + `host-123` + "`" + `.`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vsphere_entity_permissions",
+			Category:         "Administration Resources",
+			ShortDescription: `Provides CRUD operations on a vsphere entity permissions. Permissions can be created on an entity for a given user or group with the specified roles.`,
+			Description:      ``,
+			Keywords: []string{
+				"administration",
+				"entity",
+				"permissions",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "entity_type",
+					Description: `(Required) The managed object type, types can be found in the managed object type section [here](https://code.vmware.com/apis/968/vsphere).`,
+				},
+				resource.Attribute{
+					Name:        "user_or_group",
+					Description: `(Required) The user/group getting the permission.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vsphere_role",
+			Category:         "Administration Resources",
+			ShortDescription: `Provides CRUD operations on a vsphere role. A role can be created and privileges can be associated with it,`,
+			Description:      ``,
+			Keywords: []string{
+				"administration",
+				"role",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the role.`,
+				},
+				resource.Attribute{
+					Name:        "role_privileges",
+					Description: `(Optional) The privileges to be associated with this role.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -2968,6 +3049,8 @@ var (
 		"vm_storage_policy":                               32,
 		"vsphere_vmfs_datastore":                          33,
 		"vsphere_vnic":                                    34,
+		"vsphere_entity_permissions":                      35,
+		"vsphere_role":                                    36,
 	}
 )
 

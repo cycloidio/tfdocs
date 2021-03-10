@@ -39,6 +39,16 @@ var (
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "sumologic_role",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a way to retrieve Sumo Logic role details (id, names, etc) for a role managed by another terraform stack.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
@@ -46,6 +56,7 @@ var (
 		"sumologic_caller_identity": 0,
 		"sumologic_collector":       1,
 		"sumologic_personal_folder": 2,
+		"sumologic_role":            3,
 	}
 )
 

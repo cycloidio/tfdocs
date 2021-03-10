@@ -43,7 +43,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "source",
-					Description: `(Optional) Specifies attributes of a single source file to include into the archive. The ` + "`" + `source` + "`" + ` block supports the following:`,
+					Description: `(Optional) Specifies attributes of a single source file to include into the archive.`,
+				},
+				resource.Attribute{
+					Name:        "excludes",
+					Description: `(Optional) Specify files to ignore when reading the ` + "`" + `source_dir` + "`" + `. The ` + "`" + `source` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "content",

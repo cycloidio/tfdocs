@@ -11,208 +11,104 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_configure_sync",
+			Type:             "vthunder_thunder_bgp",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder configure sync resource for A10`,
+			ShortDescription: `Provides details about thunder bgp resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"configure",
-				"sync",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "bgp",
+					Description: `Border Gateway Protocol (BGP)`,
+				},
+				resource.Attribute{
+					Name:        "extended-asn-cap",
+					Description: `Enable the router to send 4-octet ASN capabilities`,
+				},
+				resource.Attribute{
+					Name:        "enable",
+					Description: `Enable the nexthop tracking functionality`,
+				},
+				resource.Attribute{
+					Name:        "delay",
+					Description: `Configure nexthop trigger delay time interval (Nexthop Trigger Delay time interval between 1 and 100)`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_configure_sync",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder configure sync resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "address",
+					Description: `Specify the destination ip address to sync`,
+				},
 				resource.Attribute{
 					Name:        "all_partitions",
 					Description: `All partition configurations`,
 				},
 				resource.Attribute{
+					Name:        "auto_authentication",
+					Description: `Authenticate with local username and password`,
+				},
+				resource.Attribute{
+					Name:        "partition_name",
+					Description: `Partition name`,
+				},
+				resource.Attribute{
 					Name:        "private_key",
 					Description: `Use private key for authentication`,
 				},
+				resource.Attribute{
+					Name:        "shared",
+					Description: `Shared partition`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `‘running’: Sync local running to peer’s running configuration; ‘all’: Sync local running to peer’s running configuration, and local startup to peer’s startup configuration;`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_dns_primary",
+			Type:             "vthunder_thunder_dns_primary",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder dns primary resource for A10`,
+			ShortDescription: `Provides details about thunder dns primary resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"dns",
-				"primary",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip_v4_addr",
-					Description: `IP v4 address`,
+					Description: `DNS server address`,
+				},
+				resource.Attribute{
+					Name:        "ip_v6_addr",
+					Description: `DNS server address`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_ethernet",
+			Type:             "vthunder_thunder_ethernet",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder ethernet resource for A10`,
+			ShortDescription: `Provides details about thunder ethernet resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"ethernet",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "ifnum",
-					Description: `Index of the ethernet interface`,
-				},
-				resource.Attribute{
-					Name:        "dhcp",
-					Description: `flag to indicate if dhcp is enabled or disabled`,
-				},
-				resource.Attribute{
-					Name:        "ipv4_address",
-					Description: `ipv4 address to be assigned to the ethernet interface`,
-				},
-				resource.Attribute{
-					Name:        "ipv4_netmask",
-					Description: `ipv4 subnet mask to be assigned to the ethernet interface`,
-				},
-				resource.Attribute{
-					Name:        "action",
-					Description: `flag to indicate if interface is enabled or disabled`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vthunder_glm",
-			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder GLM resource for A10`,
-			Description:      ``,
-			Keywords: []string{
-				"glm",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "token",
-					Description: `License entitlement token`,
-				},
-				resource.Attribute{
-					Name:        "use_mgmt_port",
-					Description: `Use management port to connect to GLM`,
-				},
-				resource.Attribute{
-					Name:        "enable_requests",
-					Description: `Turn on periodic GLM license requests (default license retrieval interval is every 24 hours)`,
-				},
-				resource.Attribute{
-					Name:        "allocate_bandwidth",
-					Description: `Enter the requested bandwidth in Mbps for Capacity Pool`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vthunder_harmony_controller_profile",
-			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder harmony-controller profile resource for A10`,
-			Description:      ``,
-			Keywords: []string{
-				"harmony",
-				"controller",
-				"profile",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "host",
-					Description: `Set harmony controller host adddress`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `Set port for remote Harmony Controller, default is 8443`,
-				},
-				resource.Attribute{
-					Name:        "user_name",
-					Description: `user-name for the tenant`,
-				},
-				resource.Attribute{
-					Name:        "secret_value",
-					Description: `Specify the password for the user`,
-				},
-				resource.Attribute{
-					Name:        "provider2",
-					Description: `provider for the harmony-controller`,
-				},
-				resource.Attribute{
-					Name:        "action",
-					Description: `'register’: Register the device to the controller; 'deregister’: Deregister the device from controller;`,
-				},
-				resource.Attribute{
-					Name:        "use_mgmt_port",
-					Description: `Use management port for connections`,
-				},
-				resource.Attribute{
-					Name:        "region",
-					Description: `region of the thunder-device`,
-				},
-				resource.Attribute{
-					Name:        "availability_zone",
-					Description: `availablity zone of the thunder-device`,
-				},
-				resource.Attribute{
-					Name:        "thunder_mgmt_ip",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "ip_address",
-					Description: `IP address (IPv4 address)`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vthunder_import",
-			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder import resource for A10`,
-			Description:      ``,
-			Keywords: []string{
-				"import",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "password",
-					Description: `password for the remote site`,
-				},
-				resource.Attribute{
-					Name:        "cloud_creds",
-					Description: `Cloud Credentials File`,
-				},
-				resource.Attribute{
-					Name:        "use_mgmt_port",
-					Description: `Use management port as source port`,
-				},
-				resource.Attribute{
-					Name:        "overwrite",
-					Description: `Overwrite existing file`,
-				},
-				resource.Attribute{
-					Name:        "remote_file",
-					Description: `profile name for remote url`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vthunder_interface_ethernet",
-			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder interface ethernet resource for A10`,
-			Description:      ``,
-			Keywords: []string{
-				"interface",
-				"ethernet",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "action",
@@ -883,20 +779,2075 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_interface_ethernet_bfd",
+			Type:             "vthunder_thunder_fw_active_rule_set",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder interface ethernet bfd resource for A10`,
+			ShortDescription: `Provides details about thunder fw active rule set resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"interface",
-				"ethernet",
-				"bfd",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "ifnum",
-					Description: `Interface no.`,
+					Name:        "name",
+					Description: `Rule set name`,
 				},
+				resource.Attribute{
+					Name:        "override_nat_aging",
+					Description: `Override NAT idle-timeout`,
+				},
+				resource.Attribute{
+					Name:        "session_aging",
+					Description: `Session Aging Template`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_alg_dns",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw alg dns resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "default_port_disable",
+					Description: `‘default-port-disable’: Disable DNS ALG default port 53;`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_alg_ftp",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw alg ftp resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "default_port_disable",
+					Description: `‘default-port-disable’: Disable FTP ALG default port 21;`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘client-port-request’: PORT Requests From Client; ‘client-eprt-request’: EPRT Requests From Client; ‘server-pasv-reply’: PASV Replies From Server; ‘server-epsv-reply’: EPSV Replies From Server; ‘port-retransmits’: PORT Retransmits; ‘pasv-retransmits’: PASV Retransmits; ‘smp-app-type-mismatch’: SMP App Type Mismatch; ‘retransmit-sanity-check-failure’: Retransmit Sanity Check Failure; ‘smp-conn-alloc-failure’: SMP Helper Conn Alloc Failure; ‘port-helper-created’: PORT Helper Created; ‘pasv-helper-created’: PASV Helper Created; ‘port-helper-acquire-in-del-q’: PORT Helper Acquire In Del Queue; ‘port-helper-acquire-already-used’: PORT Helper Acquire Already Used; ‘pasv-helper-acquire-in-del-q’: PASV Helper Acquire In Del Queue; ‘pasv-helper-acquire-already-used’: PASV Helper Acquire Already Used; ‘port-helper-freed-used’: PORT Helper Freed Used; ‘port-helper-freed-unused’: PORT Helper Freed Unused; ‘pasv-helper-freed-used’: PASV Helper Freed Used; ‘pasv-helper-freed-unused’: PASV Helper Freed Unused;`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_alg_icmp",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw alg icmp resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "disable",
+					Description: `‘disable’: Disable ICMP ALG which allows ICMP errors to pass the firewall;`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_alg_pptp",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw alg pptp resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "default_port_disable",
+					Description: `‘default-port-disable’: Disable PPTP ALG default port 1723;`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘calls-established’: Calls Established; ‘call-req-pns-call-id-mismatch’: Call ID Mismatch on Call Request; ‘call-reply-pns-call-id-mismatch’: Call ID Mismatch on Call Reply; ‘gre-session-created’: GRE Session Created; ‘gre-session-freed’: GRE Session Freed; ‘call-req-retransmit’: Call Request Retransmit; ‘call-req-new’: Call Request New; ‘call-req-ext-alloc-failure’: Call Request Ext Alloc Failure; ‘call-reply-call-id-unknown’: Call Reply Unknown Client Call ID; ‘call-reply-retransmit’: Call Reply Retransmit; ‘call-reply-ext-ext-alloc-failure’: Call Request Ext Alloc Failure; ‘smp-app-type-mismatch’: SMP App Type Mismatch; ‘smp-client-call-id-mismatch’: SMP Client Call ID Mismatch; ‘smp-sessions-created’: SMP Session Created; ‘smp-sessions-freed’: SMP Session Freed; ‘smp-alloc-failure’: SMP Session Alloc Failure; ‘gre-conn-creation-failure’: GRE Conn Alloc Failure; ‘gre-conn-ext-creation-failure’: GRE Conn Ext Alloc Failure; ‘gre-no-fwd-route’: GRE No Fwd Route; ‘gre-no-rev-route’: GRE No Rev Route; ‘gre-no-control-conn’: GRE No Control Conn; ‘gre-conn-already-exists’: GRE Conn Already Exists; ‘gre-free-no-ext’: GRE Free No Ext; ‘gre-free-no-smp’: GRE Free No SMP; ‘gre-free-smp-app-type-mismatch’: GRE Free SMP App Type Mismatch; ‘control-freed’: Control Session Freed; ‘control-free-no-ext’: Control Free No Ext; ‘control-free-no-smp’: Control Free No SMP; ‘control-free-smp-app-type-mismatch’: Control Free SMP App Type Mismatch;`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_alg_rtsp",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw alg rtsp resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "default_port_disable",
+					Description: `‘default-port-disable’: Disable RTSP ALG default port 554;`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘transport-inserted’: Transport Created; ‘transport-freed’: Transport Freed; ‘transport-alloc-failure’: Transport Alloc Failure; ‘data-session-created’: Data Session Created; ‘data-session-freed’: Data Session Freed; ‘ext-creation-failure’: Extension Creation Failure; ‘transport-add-to-ext’: Transport Added to Extension; ‘transport-removed-from-ext’: Transport Removed from Extension; ‘transport-too-many’: Too Many Transports for Control Conn; ‘transport-already-in-ext’: Transport Already in Extension; ‘transport-exists’: Transport Already Exists; ‘transport-link-ext-failure-control’: Transport Link to Extension Failure Control; ‘transport-link-ext-data’: Transport Link to Extension Data; ‘transport-link-ext-failure-data’: Transport Link to Extension Failure Data; ‘transport-inserted-shadow’: Transport Inserted Shadow; ‘transport-creation-race’: Transport Create Race; ‘transport-alloc-failure-shadow’: Transport Alloc Failure Shadow; ‘transport-put-in-del-q’: Transport Put in Delete Queue; ‘transport-freed-shadow’: Transport Freed Shadow; ‘transport-acquired-from-control’: Transport Acquired Control; ‘transport-found-from-prev-control’: Transport Found From Prev Control; ‘transport-acquire-failure-from-control’: Transport Acquire Failure Control; ‘transport-released-from-control’: Transport Released Control; ‘transport-double-release-from-control’: Transport Double Release Control; ‘transport-acquired-from-data’: Transport Acquired Data; ‘transport-acquire-failure-from-data’: Transport Acquire Failure Data; ‘transport-released-from-data’: Transport Released Data; ‘transport-double-release-from-data’: Transport Double Release Data; ‘transport-retry-lookup-on-data-free’: Transport Retry Lookup Data; ‘transport-not-found-on-data-free’: Transport Not Found Data; ‘data-session-created-shadow’: Data Session Created Shadow; ‘data-session-freed-shadow’: Data Session Freed Shadow; ‘ha-control-ext-creation-failure’: HA Control Extension Creation Failure; ‘ha-control-session-created’: HA Control Session Created; ‘ha-data-session-created’: HA Data Session Created;`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_alg_sip",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw alg sip resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "default_port_disable",
+					Description: `‘default-port-disable’: Disable SIP ALG default port 5060;`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘stat-request’: Request Received; ‘stat-response’: Response Received; ‘method-register’: Method REGISTER; ‘method-invite’: Method INVITE; ‘method-ack’: Method ACK; ‘method-cancel’: Method CANCEL; ‘method-bye’: Method BYE; ‘method-port-config’: Method OPTIONS; ‘method-prack’: Method PRACK; ‘method-subscribe’: Method SUBSCRIBE; ‘method-notify’: Method NOTIFY; ‘method-publish’: Method PUBLISH; ‘method-info’: Method INFO; ‘method-refer’: Method REFER; ‘method-message’: Method MESSAGE; ‘method-update’: Method UPDATE; ‘method-unknown’: Method Unknown; ‘parse-error’: Message Parse Error; ‘keep-alive’: Keep Alive; ‘contact-error’: Contact Process Error; ‘sdp-error’: SDP Process Error; ‘rtp-port-no-op’: RTP Port No Op; ‘rtp-rtcp-port-success’: RTP RTCP Port Success; ‘rtp-port-failure’: RTP Port Failure; ‘rtcp-port-failure’: RTCP Port Failure; ‘contact-port-no-op’: Contact Port No Op; ‘contact-port-success’: Contact Port Success; ‘contact-port-failure’: Contact Port Failure; ‘contact-new’: Contact Alloc; ‘contact-alloc-failure’: Contact Alloc Failure; ‘contact-eim’: Contact EIM; ‘contact-eim-set’: Contact EIM Set; ‘rtp-new’: RTP Alloc; ‘rtp-alloc-failure’: RTP Alloc Failure; ‘rtp-eim’: RTP EIM; ‘helper-found’: SMP Helper Conn Found; ‘helper-created’: SMP Helper Conn Created; ‘helper-deleted’: SMP Helper Conn Already Deleted; ‘helper-freed’: SMP Helper Conn Freed; ‘helper-failure’: SMP Helper Failure;`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_alg_tftp",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw alg tftp resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "default_port_disable",
+					Description: `‘default-port-disable’: Disable TFTP ALG default port 69;`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘session-created’: TFTP Client Sessions Created; ‘helper-created’: TFTP Helper Sessions created; ‘helper-freed’: TFTP Helper Sessions freed; ‘helper-freed-used’: TFTP Helper Sessions freed used; ‘helper-freed-unused’: TFTP Helper Sessions freed unused; ‘helper-already-used’: TFTP Helper Session already used; ‘helper-in-rml’: TFTP Helper Session in Remove List;`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_app",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw app resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘dummy’: Entry for a10countergen;`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_apply_changes",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw apply changes resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "forced",
+					Description: `Force recompile rule-set`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_clear_session_filter",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw clear session filter resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `‘disable’: Disable clear L4 session filter for fw (Default: disabled); ‘enable’: Enable clear L4 session filter for fw;`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_full_cone_session",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw full cone session resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_global",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw global resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "alg_processing",
+					Description: `‘honor-rule-set’: Honors firewall rule-sets; ‘override-rule-set’: Override firewall rule-sets;`,
+				},
+				resource.Attribute{
+					Name:        "disable_ip_fw_sessions",
+					Description: `disable create sessions for non TCP/UDP/ICMP`,
+				},
+				resource.Attribute{
+					Name:        "extended_matching",
+					Description: `‘disable’: Disable extended matching;`,
+				},
+				resource.Attribute{
+					Name:        "listen_on_port_timeout",
+					Description: `STUN timeout (default: 2 minutes)`,
+				},
+				resource.Attribute{
+					Name:        "natip_ddos_protection",
+					Description: `‘enable’: Enable; ‘disable’: Disable;`,
+				},
+				resource.Attribute{
+					Name:        "permit_default_action",
+					Description: `‘forward’: Forward; ‘next-service-mode’: Service to be applied chosen based on configuration;`,
+				},
+				resource.Attribute{
+					Name:        "respond_to_user_mac",
+					Description: `Use the user’s source MAC for the next hop rather than the routing table (default: off)`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘tcp_fullcone_created’: TCP Full-cone Created; ‘tcp_fullcone_freed’: TCP Full-cone Freed; ‘udp_fullcone_created’: UDP Full-cone Created; ‘udp_fullcone_freed’: UDP Full-cone Freed; ‘fullcone_creation_failure’: Full-Cone Creation Failure; ‘data_session_created’: Data Session Created; ‘data_session_freed’: Data Session Freed; ‘fullcone_in_del_q’: Full-cone session found in delete queue; ‘fullcone_retry_lookup’: Full-cone session retry look-up; ‘fullcone_not_found’: Full-cone session not found; ‘fullcone_overflow_eim’: Full-cone Session EIM Overflow; ‘fullcone_overflow_eif’: Full-cone Session EIF Overflow; ‘udp_fullcone_created_shadow’: Total UDP Full-cone sessions created; ‘tcp_fullcone_created_shadow’: Total TCP Full-cone sessions created; ‘udp_fullcone_freed_shadow’: Total UDP Full-cone sessions freed; ‘tcp_fullcone_freed_shadow’: Total TCP Full-cone sessions freed; ‘fullcone_created’: Total Full-cone sessions created; ‘fullcone_freed’: Total Full-cone sessions freed; ‘fullcone_ext_too_many’: Fullcone Extension Too Many; ‘fullcone_ext_mem_allocated’: Fullcone Extension Memory Allocated; ‘fullcone_ext_mem_alloc_failure’: Fullcone Extension Memory Allocate Failure; ‘fullcone_ext_mem_alloc_init_faulure’: Fullcone Extension Initialization Failure; ‘fullcone_ext_mem_freed’: Fullcone Extension Memory Freed; ‘fullcone_ext_added’: Fullcone Extension Added; ‘ha_fullcone_failure’: HA Full-cone Session Failure; ‘data_session_created_shadow’: Total Data Sessions Created; ‘data_session_freed_shadow’: Total Data Sessions Freed; ‘active_fullcone_session’: Total Active Full-cone sessions; ‘limit-entry-failure’: Limit Entry Creation Failure; ‘limit-entry-allocated’: Limit Entry Allocated; ‘limit-entry-mem-freed’: Limit Entry Freed; ‘limit-entry-created’: Limit Entry Created; ‘limit-entry-not-in-bucket’: Limit Entry Not in Bucket; ‘limit-entry-marked-deleted’: Limit Entry Marked Deleted; ‘invalid-lid-drop’: Invalid Lid Drop; ‘src-session-limit-exceeded’: Source Prefix Session Limit Exceeded; ‘limit-exceeded’: Per Second Limit Exceeded; ‘limit-entry-per-cpu-mem-allocated’: Limit Entry Memory Allocated; ‘limit-entry-per-cpu-mem-allocation-failed’: Limit Entry Memory Allocation Failed; ‘limit-entry-per-cpu-mem-freed’: Limit Entry Memory Freed; ‘alg_default_port_disable’: Total ALG packets matching Default Port Disable; ‘no_fwd_route’: No Forward Route; ‘no_rev_route’: No Reverse Route; ‘no_fwd_l2_dst’: No Forward Mac Entry; ‘no_rev_l2_dst’: No Reverse Mac Entry; ‘urpf_pkt_drop’: URPF check packet drop; ‘fwd_ingress_packets_tcp’: Forward Ingress Packets TCP; ‘fwd_egress_packets_tcp’: Forward Egress Packets TCP; ‘rev_ingress_packets_tcp’: Reverse Ingress Packets TCP; ‘rev_egress_packets_tcp’: Reverse Egress Packets TCP; ‘fwd_ingress_bytes_tcp’: Forward Ingress Bytes TCP; ‘fwd_egress_bytes_tcp’: Forward Egress Bytes TCP; ‘rev_ingress_bytes_tcp’: Reverse Ingress Bytes TCP; ‘rev_egress_bytes_tcp’: Reverse Egress Bytes TCP; ‘fwd_ingress_packets_udp’: Forward Ingress Packets UDP; ‘fwd_egress_packets_udp’: Forward Egress Packets UDP; ‘rev_ingress_packets_udp’: Reverse Ingress Packets UDP; ‘rev_egress_packets_udp’: Reverse Egress Packets UDP; ‘fwd_ingress_bytes_udp’: Forward Ingress Bytes UDP; ‘fwd_egress_bytes_udp’: Forward Egress Bytes UDP; ‘rev_ingress_bytes_udp’: Reverse Ingress Bytes UDP; ‘rev_egress_bytes_udp’: Reverse Egress Bytes UDP; ‘fwd_ingress_packets_icmp’: Forward Ingress Packets ICMP; ‘fwd_egress_packets_icmp’: Forward Egress Packets ICMP; ‘rev_ingress_packets_icmp’: Reverse Ingress Packets ICMP; ‘rev_egress_packets_icmp’: Reverse Egress Packets ICMP; ‘fwd_ingress_bytes_icmp’: Forward Ingress Bytes ICMP; ‘fwd_egress_bytes_icmp’: Forward Egress Bytes ICMP; ‘rev_ingress_bytes_icmp’: Reverse Ingress Bytes ICMP; ‘rev_egress_bytes_icmp’: Reverse Egress Bytes ICMP; ‘fwd_ingress_packets_others’: Forward Ingress Packets OTHERS; ‘fwd_egress_packets_others’: Forward Egress Packets OTHERS; ‘rev_ingress_packets_others’: Reverse Ingress Packets OTHERS; ‘rev_egress_packets_others’: Reverse Egress Packets OTHERS; ‘fwd_ingress_bytes_others’: Forward Ingress Bytes OTHERS; ‘fwd_egress_bytes_others’: Forward Egress Bytes OTHERS; ‘rev_ingress_bytes_others’: Reverse Ingress Bytes OTHERS; ‘rev_egress_bytes_others’: Reverse Egress Bytes OTHERS; ‘fwd_ingress_pkt_size_range1’: Forward Ingress Packet size between 0 and 200; ‘fwd_ingress_pkt_size_range2’: Forward Ingress Packet size between 201 and 800; ‘fwd_ingress_pkt_size_range3’: Forward Ingress Packet size between 801 and 1550; ‘fwd_ingress_pkt_size_range4’: Forward Ingress Packet size between 1551 and 9000; ‘fwd_egress_pkt_size_range1’: Forward Egress Packet size between 0 and 200; ‘fwd_egress_pkt_size_range2’: Forward Egress Packet size between 201 and 800; ‘fwd_egress_pkt_size_range3’: Forward Egress Packet size between 801 and 1550; ‘fwd_egress_pkt_size_range4’: Forward Egress Packet size between 1551 and 9000; ‘rev_ingress_pkt_size_range1’: Reverse Ingress Packet size between 0 and 200; ‘rev_ingress_pkt_size_range2’: Reverse Ingress Packet size between 201 and 800; ‘rev_ingress_pkt_size_range3’: Reverse Ingress Packet size between 801 and 1550; ‘rev_ingress_pkt_size_range4’: Reverse Ingress Packet size between 1551 and 9000; ‘rev_egress_pkt_size_range1’: Reverse Egress Packet size between 0 and 200; ‘rev_egress_pkt_size_range2’: Reverse Egress Packet size between 201 and 800; ‘rev_egress_pkt_size_range3’: Reverse Egress Packet size between 801 and 1550; ‘rev_egress_pkt_size_range4’: Reverse Egress Packet size between 1551 and 9000;`,
+				},
+				resource.Attribute{
+					Name:        "disable_application_category",
+					Description: `‘aaa’: Protocol/application used for AAA (Authentification, Authorization and Accounting) purposes.; ‘adult-content’: Adult content.; ‘advertising’: Advertising networks and applications.; ‘analytics-and-statistics’: user-analytics and statistics.; ‘anonymizers-and-proxies’: Traffic-anonymization protocol/application.; ‘audio-chat’: Protocol/application used for Audio Chat.; ‘basic’: Protocols required for basic classification, e.g., ARP, HTTP; ‘blog’: Blogging platform.; ‘cdn’: Protocol/application used for Content-Delivery Networks.; ‘chat’: Protocol/application used for Text Chat.; ‘classified-ads’: Protocol/application used for Classified ads.; ‘cloud-based-services’: SaaS and/or PaaS cloud based services.; ‘database’: Database-specific protocols.; ‘email’: Native email protocol.; ‘enterprise’: Protocol/application used in an enterprise network.; ‘file-management’: Protocol/application designed specifically for file management and exchange, e.g., Dropbox, SMB; ‘file-transfer’: Protocol that offers file transferring as a functionality as a secondary feature. e.g., Skype, Whatsapp; ‘forum’: Online forum.; ‘gaming’: Protocol/application used by games.; ‘instant-messaging-and-multimedia-conferencing’: Protocol/application used for Instant messaging or multiconferencing.; ‘internet-of-things’: Internet Of Things protocol/application.; ‘mobile’: Mobile-specific protocol/application.; ‘multimedia-streaming’: Protocol/application used for multimedia streaming.; ‘networking’: Protocol used for (inter) networking purpose.; ‘news-portal’: Protocol/application used for News Portals.; ‘peer-to-peer’: Protocol/application used for Peer-to-peer purposes.; ‘remote-access’: Protocol/application used for remote access.; ‘scada’: SCADA (Supervisory control and data acquisition) protocols, all generations.; ‘social-networks’: Social networking application.; ‘software-update’: Auto-update protocol.; ‘standards-based’: Protocol issued from standardized bodies such as IETF, ITU, IEEE, ETSI, OIF.; ‘video-chat’: Protocol/application used for Video Chat.; ‘voip’: Application used for Voice over IP.; ‘vpn-tunnels’: Protocol/application used for VPN or tunneling purposes.; ‘web’: Application based on HTTP/HTTPS.; ‘web-e-commerce’: Protocol/application used for E-commerce websites.; ‘web-search-engines’: Protocol/application used for Web search portals.; ‘web-websites’: Protocol/application used for Company Websites.; ‘webmails’: Web email application.; ‘web-ext-adult’: Web Extension Adult; ‘web-ext-auctions’: Web Extension Auctions; ‘web-ext-blogs’: Web Extension Blogs; ‘web-ext-business-and-economy’: Web Extension Business and Economy; ‘web-ext-cdns’: Web Extension CDNs; ‘web-ext-collaboration’: Web Extension Collaboration; ‘web-ext-computer-and-internet-info’: Web Extension Computer and Internet Info; ‘web-ext-computer-and-internet-security’: Web Extension Computer and Internet Security; ‘web-ext-dating’: Web Extension Dating; ‘web-ext-educational-institutions’: Web Extension Educational Institutions; ‘web-ext-entertainment-and-arts’: Web Extension Entertainment and Arts; ‘web-ext-fashion-and-beauty’: Web Extension Fashion and Beauty; ‘web-ext-file-share’: Web Extension File Share; ‘web-ext-financial-services’: Web Extension Financial Services; ‘web-ext-gambling’: Web Extension Gambling; ‘web-ext-games’: Web Extension Games; ‘web-ext-government’: Web Extension Government; ‘web-ext-health-and-medicine’: Web Extension Health and Medicine; ‘web-ext-individual-stock-advice-and-tools’: Web Extension Individual Stock Advice and Tools; ‘web-ext-internet-portals’: Web Extension Internet Portals; ‘web-ext-job-search’: Web Extension Job Search; ‘web-ext-local-information’: Web Extension Local Information; ‘web-ext-malware’: Web Extension Malware; ‘web-ext-motor-vehicles’: Web Extension Motor Vehicles; ‘web-ext-music’: Web Extension Music; ‘web-ext-news’: Web Extension News; ‘web-ext-p2p’: Web Extension P2P; ‘web-ext-parked-sites’: Web Extension Parked Sites; ‘web-ext-proxy-avoid-and-anonymizers’: Web Extension Proxy Avoid and Anonymizers; ‘web-ext-real-estate’: Web Extension Real Estate; ‘web-ext-reference-and-research’: Web Extension Reference and Research; ‘web-ext-search-engines’: Web Extension Search Engines; ‘web-ext-shopping’: Web Extension Shopping; ‘web-ext-social-network’: Web Extension Social Network; ‘web-ext-society’: Web Extension Society; ‘web-ext-software’: Web Extension Software; ‘web-ext-sports’: Web Extension Sports; ‘web-ext-streaming-media’: Web Extension Streaming Media; ‘web-ext-training-and-tools’: Web Extension Training and Tools; ‘web-ext-translation’: Web Extension Translation; ‘web-ext-travel’: Web Extension Travel; ‘web-ext-web-advertisements’: Web Extension Web Advertisements; ‘web-ext-web-based-email’: Web Extension Web based Email; ‘web-ext-web-hosting’: Web Extension Web Hosting; ‘web-ext-web-service’: Web Extension Web Service;`,
+				},
+				resource.Attribute{
+					Name:        "disable_application_protocol",
+					Description: `Disable specific application protocol`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_gtp",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw gtp resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "gtp_value",
+					Description: `‘enable’: Enable GTP Inspection;`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘create-session-request’: Create Session Request; ‘create-session-response’: Create Session Response; ‘path-management-message’: Path Management Message; ‘delete-session-request’: Delete Session Request; ‘delete-session-response’: Delete Session Response; ‘reserved-field-set-drop’: Reserved field set drop; ‘tunnel-id-flag-drop’: Tunnel ID Flag Incorrect; ‘message-filtering-drop’: Message Filtering Drop; ‘reserved-information-element-drop’: Resevered Information Element Field Drop; ‘mandatory-information-element-drop’: Mandatory Information Element Field Drop; ‘filter-list-drop’: APN IMSI Information Filtering Drop; ‘invalid-teid-drop’: Invalid TEID Drop; ‘out-of-state-drop’: Out Of State Drop; ‘message-length-drop’: Message Length Exceeded; ‘unsupported-message-type-v2’: GTP v2 message type is not supported; ‘fast-conn-setup’: Fast Conn Setup Attempt; ‘out-of-session-memory’: Out of Session Memory; ‘no-fwd-route’: No Forward Route; ‘no-rev-route’: NO Reverse Route; ‘invalid-key’: Invalid TEID Field; ‘create-session-request-retransmit’: Retransmitted Create Session Request; ‘delete-session-request-retransmit’: Retransmitted Delete Session Request; ‘response-cause-not-accepted-drop’: Response Cause indicates Request not Accepted; ‘invalid-imsi-len-drop’: Invalid IMSI Length Drop; ‘invalid-apn-len-drop’: Invalid APN Length Drop; ‘create-pdp-context-request-v1’: GTP v1 Create PDP Context Request; ‘create-pdp-context-response-v1’: GTP v1 Create PDP Context Response; ‘path-management-message-v1’: GTP v1 Path Management Message; ‘reserved-field-set-drop-v1’: GTP v1 Reserved field set drop; ‘message-filtering-drop-v1’: GTP v1 Message Filtering Drop; ‘reserved-information-element-drop-v1’: GTP v1 Reserved Information Element Field Drop; ‘mandatory-information-element-drop-v1’: GTP v1 Mandatory Information Element Field Drop; ‘filter-list-drop-v1’: GTP v1 APN IMSI Information Filtering Drop; ‘invalid-teid-drop-v1’: GTP v1 Invalid TEID Drop; ‘message-length-drop-v1’: GTP v1 Message Length Exceeded; ‘version-not-supported’: GTP version is not supported; ‘unsupported-message-type-v1’: GTP v1 message type is not supported; ‘delete-pdp-context-request-v1’: GTP v1 Delete Context PDP Request; ‘delete-pdp-context-response-v1’: GTP v1 Delete Context PDP Response; ‘create-pdp-context-request-v0’: GTP v0 Create PDP Context Request; ‘create-pdp-context-response-v0’: GTP v0 Create PDP Context Response; ‘delete-pdp-context-request-v0’: GTP v0 Delete Context PDP Request; ‘delete-pdp-context-response-v0’: GTP v0 Delete Context PDP Response; ‘path-management-message-v0’: GTP v0 Path Management Message; ‘message-filtering-drop-v0’: GTP v0 Message Filtering Drop; ‘unsupported-message-type-v0’: GTP v0 message type is not supported; ‘invalid-flow-label-drop-v0’: GTP v0 Invalid flow label drop; ‘invalid-tid-drop-v0’: GTP v0 Invalid tid drop; ‘message-length-drop-v0’: GTP v0 Message Length Exceeded; ‘mandatory-information-element-drop-v0’: GTP v0 Mandatory Information Element Field Drop; ‘filter-list-drop-v0’: GTP v0 APN IMSI Information Filtering Drop; ‘gtp-in-gtp-drop’: GTP in GTP Filtering Drop;`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_gtp_in_gtp_filtering",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw gtp in gtp filtering resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "gtp_in_gtp_value",
+					Description: `‘disable’: Disable GTP in GTP filtering, (default:Enabled);`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_gtp_v0",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw gtp v0 resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "gtpv0_value",
+					Description: `‘enable’: Enable GTP v0 Inspection;`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_helper_sessions",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw helper sessions resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "idle_timeout",
+					Description: `helper-sessions idle-timeout time (Idle-timeout in minutes (default: 1 minute))`,
+				},
+				resource.Attribute{
+					Name:        "limit",
+					Description: `Limit number of helper-sessions (Limit helper-sessions number)`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `‘disable’: Disable helper-sessions;`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_limit_entry",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw limit entry resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_local_log",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw local log resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "local_logging",
+					Description: `Enable local logging`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_logging",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw logging resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Logging Template Name`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘log_message_sent’: Log Packet Sent; ‘log_type_reset’: Log Event Type Reset; ‘log_type_deny’: Log Event Type Deny; ‘log_type_session_closed’: Log Event Type Session Close; ‘log_type_session_opened’: Log Event Type Session Open; ‘rule_not_logged’: Firewall Rule Not Logged; ‘log-dropped’: Log Packets Dropped; ‘tcp-session-created’: TCP Session Created; ‘tcp-session-deleted’: TCP Session Deleted; ‘udp-session-created’: UDP Session Created; ‘udp-session-deleted’: UDP Session Deleted; ‘icmp-session-deleted’: ICMP Session Deleted; ‘icmp-session-created’: ICMP Session Created; ‘icmpv6-session-deleted’: ICMPV6 Session Deleted; ‘icmpv6-session-created’: ICMPV6 Session Created; ‘other-session-deleted’: Other Session Deleted; ‘other-session-created’: Other Session Created; ‘http-request-logged’: HTTP Request Logged; ‘http-logging-invalid-format’: HTTP Logging Invalid Format Error; ‘dcmsg_permit’: Dcmsg Permit; ‘alg_override_permit’: Alg Override Permit; ‘template_error’: Template Error; ‘ipv4-frag-applied’: IPv4 Fragmentation Applied; ‘ipv4-frag-failed’: IPv4 Fragmentation Failed; ‘ipv6-frag-applied’: IPv6 Fragmentation Applied; ‘ipv6-frag-failed’: IPv6 Fragmentation Failed; ‘out-of-buffers’: Out of Buffers; ‘add-msg-failed’: Add Message to Buffer Failed; ‘tcp-logging-conn-established’: TCP Logging Conn Established; ‘tcp-logging-conn-create-failed’: TCP Logging Conn Create Failed; ‘tcp-logging-conn-dropped’: TCP Logging Conn Dropped; ‘log-message-too-long’: Log message too long; ‘http-out-of-order-dropped’: HTTP out-of-order dropped; ‘http-alloc-failed’: HTTP Request Info Allocation Failed; ‘sctp-session-created’: SCTP Session Created; ‘sctp-session-deleted’: SCTP Session Deleted; ‘log_type_sctp_inner_proto_filter’: Log Event Type SCTP Inner Proto Filter; ‘log_type_gtp_message_filtering’: Log Event Type GTP Message Filtering; ‘log_type_gtp_apn_filtering’: Log Event Type GTP Apn Filtering; ‘tcp-logging-port-allocated’: TCP Logging Port Allocated; ‘tcp-logging-port-freed’: TCP Logging Port Freed; ‘tcp-logging-port-allocation-failed’: TCP Logging Port Allocation Failed; ‘log_type_gtp_invalid_teid’: Log Event Type GTP Invalid TEID; ‘log_gtp_type_reserved_ie_present’: Log Event Type GTP Reserved Information Element Present; ‘log_type_gtp_mandatory_ie_missing’: Log Event Type GTP Mandatory Information Element Missing;`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_radius_server",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw radius server resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "accounting_interim_update",
+					Description: `‘ignore’: Ignore (default); ‘append-entry’: Append the AVPs to existing entry; ‘replace-entry’: Replace the AVPs of existing entry;`,
+				},
+				resource.Attribute{
+					Name:        "accounting_on",
+					Description: `‘ignore’: Ignore (default); ‘delete-entries-using-attribute’: Delete entries matching attribute in RADIUS Table;`,
+				},
+				resource.Attribute{
+					Name:        "accounting_start",
+					Description: `‘ignore’: Ignore; ‘append-entry’: Append the AVPs to existing entry (default); ‘replace-entry’: Replace the AVPs of existing entry;`,
+				},
+				resource.Attribute{
+					Name:        "accounting_stop",
+					Description: `‘ignore’: Ignore; ‘delete-entry’: Delete the entry (default);`,
+				},
+				resource.Attribute{
+					Name:        "attribute_name",
+					Description: `‘msisdn’: Clear using MSISDN; ‘imei’: Clear using IMEI; ‘imsi’: Clear using IMSI;`,
+				},
+				resource.Attribute{
+					Name:        "custom_attribute_name",
+					Description: `Clear using customized attribute`,
+				},
+				resource.Attribute{
+					Name:        "encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED secret string)`,
+				},
+				resource.Attribute{
+					Name:        "listen_port",
+					Description: `Configure the listen port of RADIUS server (Port number)`,
+				},
+				resource.Attribute{
+					Name:        "secret",
+					Description: `Configure shared secret`,
+				},
+				resource.Attribute{
+					Name:        "secret_string",
+					Description: `The RADIUS secret`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "vrid",
+					Description: `Join a VRRP-A failover group`,
+				},
+				resource.Attribute{
+					Name:        "ip_list_encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED secret string)`,
+				},
+				resource.Attribute{
+					Name:        "ip_list_name",
+					Description: `IP-list name`,
+				},
+				resource.Attribute{
+					Name:        "ip_list_secret",
+					Description: `Configure shared secret`,
+				},
+				resource.Attribute{
+					Name:        "ip_list_secret_string",
+					Description: `The RADIUS secret`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘msisdn-received’: MSISDN Received; ‘imei-received’: IMEI Received; ‘imsi-received’: IMSI Received; ‘custom-received’: Custom attribute Received; ‘radius-request-received’: RADIUS Request Received; ‘radius-request-dropped’: RADIUS Request Dropped (Malformed Packet); ‘request-bad-secret-dropped’: RADIUS Request Bad Secret Dropped; ‘request-no-key-vap-dropped’: RADIUS Request No Key Attribute Dropped; ‘request-malformed-dropped’: RADIUS Request Malformed Dropped; ‘request-ignored’: RADIUS Request Table Full Dropped; ‘radius-table-full’: RADIUS Request Dropped (Table Full); ‘secret-not-configured-dropped’: RADIUS Secret Not Configured Dropped; ‘ha-standby-dropped’: HA Standby Dropped; ‘ipv6-prefix-length-mismatch’: Framed IPV6 Prefix Length Mismatch; ‘invalid-key’: Radius Request has Invalid Key Field; ‘smp-mem-allocated’: RADIUS SMP Memory Allocated; ‘smp-mem-alloc-failed’: RADIUS SMP Memory Allocation Failed; ‘smp-mem-freed’: RADIUS SMP Memory Freed; ‘smp-created’: RADIUS SMP Created; ‘smp-in-rml’: RADIUS SMP in RML; ‘smp-deleted’: RADIUS SMP Deleted; ‘mem-allocated’: RADIUS Memory Allocated; ‘mem-alloc-failed’: RADIUS Memory Allocation Failed; ‘mem-freed’: RADIUS Memory Freed; ‘ha-sync-create-sent’: HA Record Sync Create Sent; ‘ha-sync-delete-sent’: HA Record Sync Delete Sent; ‘ha-sync-create-recv’: HA Record Sync Create Received; ‘ha-sync-delete-recv’: HA Record Sync Delete Received; ‘acct-on-filters-full’: RADIUS Acct On Request Ignored(Filters Full); ‘acct-on-dup-request’: Duplicate RADIUS Acct On Request; ‘ip-mismatch-delete’: Radius Entry IP Mismatch Delete; ‘ip-add-race-drop’: Radius Entry IP Add Race Drop; ‘ha-sync-no-key-vap-dropped’: HA Record Sync No key dropped; ‘inter-card-msg-fail-drop’: Inter-Card Message Fail Drop;`,
+				},
+				resource.Attribute{
+					Name:        "attribute_value",
+					Description: `‘inside-ipv6-prefix’: Framed IPv6 Prefix; ‘inside-ip’: Inside IP address; ‘inside-ipv6’: Inside IPv6 address; ‘imei’: International Mobile Equipment Identity (IMEI); ‘imsi’: International Mobile Subscriber Identity (IMSI); ‘msisdn’: Mobile Subscriber Integrated Services Digital Network-Number (MSISDN); ‘custom1’: Customized attribute 1; ‘custom2’: Customized attribute 2; ‘custom3’: Customized attribute 3;`,
+				},
+				resource.Attribute{
+					Name:        "custom_number",
+					Description: `RADIUS attribute number`,
+				},
+				resource.Attribute{
+					Name:        "custom_vendor",
+					Description: `RADIUS vendor attribute information (RADIUS vendor ID)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Customized attribute name`,
+				},
+				resource.Attribute{
+					Name:        "number",
+					Description: `RADIUS attribute number`,
+				},
+				resource.Attribute{
+					Name:        "prefix_length",
+					Description: `‘32’: Prefix length 32; ‘48’: Prefix length 48; ‘64’: Prefix length 64; ‘80’: Prefix length 80; ‘96’: Prefix length 96; ‘112’: Prefix length 112;`,
+				},
+				resource.Attribute{
+					Name:        "prefix_number",
+					Description: `RADIUS attribute number`,
+				},
+				resource.Attribute{
+					Name:        "prefix_vendor",
+					Description: `RADIUS vendor attribute information (RADIUS vendor ID)`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `‘hexadecimal’: Type of attribute value is hexadecimal;`,
+				},
+				resource.Attribute{
+					Name:        "vendor",
+					Description: `RADIUS vendor attribute information (RADIUS vendor ID)`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_resource_usage",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw resource usage resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_server",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw server resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "action",
+					Description: `‘enable’: enable; ‘disable’: disable;`,
+				},
+				resource.Attribute{
+					Name:        "fqdn_name",
+					Description: `Server hostname`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Health Check (Monitor Name)`,
+				},
+				resource.Attribute{
+					Name:        "health_check_disable",
+					Description: `Disable health check`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `IP Address`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Server Name`,
+				},
+				resource.Attribute{
+					Name:        "resolve_as",
+					Description: `‘resolve-to-ipv4’: Use A Query only to resolve FQDN; ‘resolve-to-ipv6’: Use AAAA Query only to resolve FQDN; ‘resolve-to-ipv4-and-ipv6’: Use A as well as AAAA Query to resolve FQDN;`,
+				},
+				resource.Attribute{
+					Name:        "server_ipv6_addr",
+					Description: `IPV6 address`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "port_number",
+					Description: `Port Number`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `‘tcp’: TCP Port; ‘udp’: UDP Port;`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘curr-conn’: Current connections; ‘total-conn’: Total connections; ‘fwd-pkt’: Forward packets; ‘rev-pkt’: Reverse Packets; ‘peak-conn’: Peak connections;`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_service_group",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw service group resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Health Check (Monitor Name)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Member name`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `‘tcp’: TCP LB service; ‘udp’: UDP LB service;`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘curr_conn’: Current connections; ‘total_fwd_bytes’: Total forward bytes; ‘total_fwd_pkts’: Total forward packets; ‘total_rev_bytes’: Total reverse bytes; ‘total_rev_pkts’: Total reverse packets; ‘total_conn’: Total connections; ‘total_rev_pkts_inspected’: Total reverse packets inspected; ‘total_rev_pkts_inspected_status_code_2xx’: Total reverse packets inspected status code 2xx; ‘total_rev_pkts_inspected_status_code_non_5xx’: Total reverse packets inspected status code non 5xx; ‘curr_req’: Current requests; ‘total_req’: Total requests; ‘total_req_succ’: Total requests success; ‘peak_conn’: Peak connections; ‘response_time’: Response time; ‘fastest_rsp_time’: Fastest response time; ‘slowest_rsp_time’: Slowest response time;`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port number`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_status",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw status resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_system_status",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw system status resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_tap_monitor",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw tap monitor resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `‘enable’: Enable tap monitor mode; ‘disable’: Disable tap monitor mode (Default:Disable);`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "tap_eth",
+					Description: `Ethernet interface number`,
+				},
+				resource.Attribute{
+					Name:        "tap_vlan",
+					Description: `Vlan number`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_tcp_mss_clamp",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw tcp mss clamp resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "min",
+					Description: `Specify the min value allowed for the TCP MSS (Specify the min value allowed for the TCP MSS (default: ((576 - 60 - 60))))`,
+				},
+				resource.Attribute{
+					Name:        "mss_clamp_type",
+					Description: `‘fixed’: Specify a fixed max value for the TCP MSS; ‘subtract’: Specify the value to subtract from the TCP MSS;`,
+				},
+				resource.Attribute{
+					Name:        "mss_subtract",
+					Description: `Specify the value to subtract from the TCP MSS (default: not configured)`,
+				},
+				resource.Attribute{
+					Name:        "mss_value",
+					Description: `The max value allowed for the TCP MSS (default: not configured)}`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_tcp_reset_on_error",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw tcp reset on error resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "enable",
+					Description: `Enable send TCP reset on error`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_tcp_rst_close_immediate",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw tcp rst close immediate resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `‘enable’: Enable TCP RST close immediate (default); ‘disable’: Disable TCP RST close immediate;`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_tcp_window_check",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw tcp window check resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `‘enable’: Enable TCP window check (default); ‘disable’: Disable TCP window check;`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘outside-window’: packet dropped for outside of tcp window;`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_template_logging",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw template logging resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "facility",
+					Description: `‘kernel’: 0: Kernel; ‘user’: 1: User-level; ‘mail’: 2: Mail; ‘daemon’: 3: System daemons; ‘security-authorization’: 4: Security/authorization; ‘syslog’: 5: Syslog internal; ‘line-printer’: 6: Line printer; ‘news’: 7: Network news; ‘uucp’: 8: UUCP subsystem; ‘cron’: 9: Time-related; ‘security-authorization-private’: 10: Private security/authorization; ‘ftp’: 11: FTP; ‘ntp’: 12: NTP; ‘audit’: 13: Audit; ‘alert’: 14: Alert; ‘clock’: 15: Clock-related; ‘local0’: 16: Local use 0; ‘local1’: 17: Local use 1; ‘local2’: 18: Local use 2; ‘local3’: 19: Local use 3; ‘local4’: 20: Local use 4; ‘local5’: 21: Local use 5; ‘local6’: 22: Local use 6; ‘local7’: 23: Local use 7;`,
+				},
+				resource.Attribute{
+					Name:        "format",
+					Description: `‘ascii’: A10 Text logging format (ASCII); ‘cef’: Common Event Format for logging (default);`,
+				},
+				resource.Attribute{
+					Name:        "include_dest_fqdn",
+					Description: `Include destination FQDN string`,
+				},
+				resource.Attribute{
+					Name:        "merged_style",
+					Description: `Merge creation and deletion of session logs to one`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Logging Template Name`,
+				},
+				resource.Attribute{
+					Name:        "resolution",
+					Description: `‘seconds’: Logging timestamp resolution in seconds (default); ‘10-milliseconds’: Logging timestamp resolution in 10s of milli-seconds;`,
+				},
+				resource.Attribute{
+					Name:        "service_group",
+					Description: `Bind a Service Group to the logging template (Service Group Name)`,
+				},
+				resource.Attribute{
+					Name:        "severity",
+					Description: `‘emergency’: 0: Emergency; ‘alert’: 1: Alert; ‘critical’: 2: Critical; ‘error’: 3: Error; ‘warning’: 4: Warning; ‘notice’: 5: Notice; ‘informational’: 6: Informational; ‘debug’: 7: Debug;`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `Specify source IP address`,
+				},
+				resource.Attribute{
+					Name:        "ipv6",
+					Description: `Specify source IPv6 address`,
+				},
+				resource.Attribute{
+					Name:        "framed_ipv6_prefix",
+					Description: `Include radius attributes for the prefix`,
+				},
+				resource.Attribute{
+					Name:        "insert_if_not_existing",
+					Description: `Configure what string is to be inserted for custom RADIUS attributes`,
+				},
+				resource.Attribute{
+					Name:        "no_quote",
+					Description: `No quotation marks for RADIUS attributes in logs`,
+				},
+				resource.Attribute{
+					Name:        "prefix_length",
+					Description: `‘32’: Prefix length 32; ‘48’: Prefix length 48; ‘64’: Prefix length 64; ‘80’: Prefix length 80; ‘96’: Prefix length 96; ‘112’: Prefix length 112;`,
+				},
+				resource.Attribute{
+					Name:        "zero_in_custom_attr",
+					Description: `Insert 0000 for standard and custom attributes in log string`,
+				},
+				resource.Attribute{
+					Name:        "attr",
+					Description: `‘imei’: Include IMEI; ‘imsi’: Include IMSI; ‘msisdn’: Include MSISDN; ‘custom1’: Customized attribute 1; ‘custom2’: Customized attribute 2; ‘custom3’: Customized attribute 3;`,
+				},
+				resource.Attribute{
+					Name:        "attr_event",
+					Description: `‘http-requests’: Include in HTTP request logs; ‘sessions’: Include in session logs;`,
+				},
+				resource.Attribute{
+					Name:        "disable_sequence_check",
+					Description: `Disable http packet sequence check and don’t drop out of order packets`,
+				},
+				resource.Attribute{
+					Name:        "include_all_headers",
+					Description: `Include all configured headers despite of absence in HTTP request`,
+				},
+				resource.Attribute{
+					Name:        "log_every_http_request",
+					Description: `Log every HTTP request in an HTTP 1.1 session (Default: Log the first HTTP request in a session)`,
+				},
+				resource.Attribute{
+					Name:        "max_url_len",
+					Description: `Max length of URL log (Max URL length (Default: 100 char))`,
+				},
+				resource.Attribute{
+					Name:        "include_byte_count",
+					Description: `Include the byte count of HTTP Request/Response in FW session deletion logs`,
+				},
+				resource.Attribute{
+					Name:        "file_extension",
+					Description: `HTTP file extension`,
+				},
+				resource.Attribute{
+					Name:        "l4_session_info",
+					Description: `Log the L4 session information of the HTTP request`,
+				},
+				resource.Attribute{
+					Name:        "method",
+					Description: `Log the HTTP Request Method`,
+				},
+				resource.Attribute{
+					Name:        "request_number",
+					Description: `HTTP Request Number`,
+				},
+				resource.Attribute{
+					Name:        "custom_header_name",
+					Description: `Header name`,
+				},
+				resource.Attribute{
+					Name:        "custom_max_length",
+					Description: `Max length for a HTTP request log (Max header length (Default: 100 char))`,
+				},
+				resource.Attribute{
+					Name:        "http_header",
+					Description: `‘cookie’: Log HTTP Cookie Header; ‘referer’: Log HTTP Referer Header; ‘user-agent’: Log HTTP User-Agent Header; ‘header1’: Log HTTP Header 1; ‘header2’: Log HTTP Header 2; ‘header3’: Log HTTP Header 3;`,
+				},
+				resource.Attribute{
+					Name:        "max_length",
+					Description: `Max length for a HTTP request log (Max header length (Default: 100 char))`,
+				},
+				resource.Attribute{
+					Name:        "http_requests",
+					Description: `‘host’: Log the HTTP Host Header; ‘url’: Log the HTTP Request URL;`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_top_k_rules",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw top k rules resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_urpf",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw urpf resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `‘disabled’: Disable urpf (Default: disabled); ‘strict’: Perform Strict Check; ‘loose’: Perform Loose Check;`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_fw_vrid",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder fw vrid resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "vrid",
+					Description: `Vrrp group (VRRP-A vrid)`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_glm",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder glm resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "allocate_bandwidth",
+					Description: `Enter the requested bandwidth in Mbps for Capacity Pool`,
+				},
+				resource.Attribute{
+					Name:        "appliance_name",
+					Description: `Helpful identifier for this appliance`,
+				},
+				resource.Attribute{
+					Name:        "enable_requests",
+					Description: `Enable connection to the GLM`,
+				},
+				resource.Attribute{
+					Name:        "enterprise",
+					Description: `Enter the ELM hostname or IP`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Enter the desired ping interval in hours`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Proxy server port`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `License entitlement token`,
+				},
+				resource.Attribute{
+					Name:        "use_mgmt_port",
+					Description: `Use management port to connect to GLM`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "license_request",
+					Description: `Do a single GLM license retrieval`,
+				},
+				resource.Attribute{
+					Name:        "encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED secret string)`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `Proxy server hostname or IP address`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password for proxy authentication`,
+				},
+				resource.Attribute{
+					Name:        "secret_string",
+					Description: `password value`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `Username for proxy authentication`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_glm_send",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder glm send resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "license_request",
+					Description: `Do a single GLM license retrieval`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_harmony_controller_profile",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder harmony-controller profile resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "host",
+					Description: `Set harmony controller host adddress`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Set port for remote Harmony Controller, default is 8443`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `user-name for the tenant`,
+				},
+				resource.Attribute{
+					Name:        "secret_value",
+					Description: `Specify the password for the user`,
+				},
+				resource.Attribute{
+					Name:        "provider2",
+					Description: `provider for the harmony-controller`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `'register’: Register the device to the controller; 'deregister’: Deregister the device from controller;`,
+				},
+				resource.Attribute{
+					Name:        "use_mgmt_port",
+					Description: `Use management port for connections`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `region of the thunder-device`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `availablity zone of the thunder-device`,
+				},
+				resource.Attribute{
+					Name:        "thunder_mgmt_ip",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `IP address (IPv4 address)`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_hostname",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder hostname resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `This System’s Network Name`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_import",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder import resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "aflex",
+					Description: `aFleX Script Source File`,
+				},
+				resource.Attribute{
+					Name:        "auth_jwks",
+					Description: `JSON web key`,
+				},
+				resource.Attribute{
+					Name:        "auth_portal",
+					Description: `Portal file for http authentication`,
+				},
+				resource.Attribute{
+					Name:        "auth_portal_image",
+					Description: `Image file for default portal`,
+				},
+				resource.Attribute{
+					Name:        "bw_list",
+					Description: `Black white List File`,
+				},
+				resource.Attribute{
+					Name:        "ca_cert",
+					Description: `CA Cert File(enter bulk when import an archive file)`,
+				},
+				resource.Attribute{
+					Name:        "certificate_type",
+					Description: `‘pem’: pem; ‘der’: der; ‘pfx’: pfx; ‘p7b’: p7b;`,
+				},
+				resource.Attribute{
+					Name:        "class_list",
+					Description: `Class List File`,
+				},
+				resource.Attribute{
+					Name:        "class_list_convert",
+					Description: `Convert Class List File to A10 format`,
+				},
+				resource.Attribute{
+					Name:        "class_list_type",
+					Description: `‘ac’: ac; ‘ipv4’: ipv4; ‘ipv6’: ipv6; ‘string’: string; ‘string-case-insensitive’: string-case-insensitive;`,
+				},
+				resource.Attribute{
+					Name:        "dnssec_dnskey",
+					Description: `DNSSEC DNSKEY(KSK) file for child zone`,
+				},
+				resource.Attribute{
+					Name:        "dnssec_ds",
+					Description: `DNSSEC DS file for child zone`,
+				},
+				resource.Attribute{
+					Name:        "file_inspection_bw_list",
+					Description: `Black white List File`,
+				},
+				resource.Attribute{
+					Name:        "geo_location",
+					Description: `Geo-location CSV File`,
+				},
+				resource.Attribute{
+					Name:        "glm_cert",
+					Description: `GLM certificate`,
+				},
+				resource.Attribute{
+					Name:        "glm_license",
+					Description: `License File`,
+				},
+				resource.Attribute{
+					Name:        "ip_map_list",
+					Description: `IP Map List File`,
+				},
+				resource.Attribute{
+					Name:        "local_uri_file",
+					Description: `Local URI files for http response`,
+				},
+				resource.Attribute{
+					Name:        "lw_4o6",
+					Description: `LW-4over6 Binding Table File`,
+				},
+				resource.Attribute{
+					Name:        "overwrite",
+					Description: `Overwrite existing file`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `password for the remote site`,
+				},
+				resource.Attribute{
+					Name:        "pfx_password",
+					Description: `The password for certificate file (pfx type only)`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `WAF policy File`,
+				},
+				resource.Attribute{
+					Name:        "remote_file",
+					Description: `Profile name for remote url`,
+				},
+				resource.Attribute{
+					Name:        "ssl_cert",
+					Description: `SSL Cert File(enter bulk when import an archive file)`,
+				},
+				resource.Attribute{
+					Name:        "ssl_cert_key",
+					Description: `‘bulk’: import an archive file;`,
+				},
+				resource.Attribute{
+					Name:        "ssl_crl",
+					Description: `SSL Crl File`,
+				},
+				resource.Attribute{
+					Name:        "ssl_key",
+					Description: `SSL Key File(enter bulk when import an archive file)`,
+				},
+				resource.Attribute{
+					Name:        "store_name",
+					Description: `Import store name`,
+				},
+				resource.Attribute{
+					Name:        "terminal",
+					Description: `terminal vi`,
+				},
+				resource.Attribute{
+					Name:        "thales_kmdata",
+					Description: `Thales Kmdata files`,
+				},
+				resource.Attribute{
+					Name:        "thales_secworld",
+					Description: `Thales security world files`,
+				},
+				resource.Attribute{
+					Name:        "usb_license",
+					Description: `USB License File`,
+				},
+				resource.Attribute{
+					Name:        "use_mgmt_port",
+					Description: `Use management port as source port`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "web_category_license",
+					Description: `License file to enable web-category feature`,
+				},
+				resource.Attribute{
+					Name:        "wsdl",
+					Description: `Web Service Definition Language File`,
+				},
+				resource.Attribute{
+					Name:        "xml_schema",
+					Description: `XML-Schema File`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Describe the Program Function briefly`,
+				},
+				resource.Attribute{
+					Name:        "externalfilename",
+					Description: `Specify the Program Name`,
+				},
+				resource.Attribute{
+					Name:        "postfilename",
+					Description: `Specify the File Name`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `Create an import store profile`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `Delete an import store profile`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `profile name to store remote url`,
+				},
+				resource.Attribute{
+					Name:        "device",
+					Description: `Device (Device ID)`,
+				},
+				resource.Attribute{
+					Name:        "saml_idp_name",
+					Description: `Metadata name`,
+				},
+				resource.Attribute{
+					Name:        "verify_xml_signature",
+					Description: `Verify metadata’s XML signature`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_interface_ethernet",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder interface ethernet resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "action",
+					Description: `‘enable’: Enable Router Advertisements on this interface; ‘disable’: Disable Router Advertisements on this interface;`,
+				},
+				resource.Attribute{
+					Name:        "auto_neg_enable",
+					Description: `enable auto-negotiation`,
+				},
+				resource.Attribute{
+					Name:        "cpu_process",
+					Description: `All Packets to this port are processed by CPU`,
+				},
+				resource.Attribute{
+					Name:        "cpu_process_dir",
+					Description: `‘primary’: Primary board; ‘blade’: blade board; ‘hash-dip’: Hash based on the Destination IP; ‘hash-sip’: Hash based on the Source IP; ‘hash-dmac’: Hash based on the Destination MAC; ‘hash-smac’: Hash based on the Source MAC;`,
+				},
+				resource.Attribute{
+					Name:        "duplexity",
+					Description: `‘Full’: Full; ‘Half’: Half; ‘auto’: auto;`,
+				},
+				resource.Attribute{
+					Name:        "fec_forced_off",
+					Description: `turn off the FEC`,
+				},
+				resource.Attribute{
+					Name:        "fec_forced_on",
+					Description: `turn on the FEC`,
+				},
+				resource.Attribute{
+					Name:        "flow_control",
+					Description: `Enable 802.3x flow control on full duplex port`,
+				},
+				resource.Attribute{
+					Name:        "ifnum",
+					Description: `Ethernet interface number`,
+				},
+				resource.Attribute{
+					Name:        "load_interval",
+					Description: `Configure Load Interval (Seconds (5-300, Multiple of 5), default 300)`,
+				},
+				resource.Attribute{
+					Name:        "media_type_copper",
+					Description: `Set the media type to copper`,
+				},
+				resource.Attribute{
+					Name:        "mtu",
+					Description: `OSPF interface MTU (MTU size)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name for the interface`,
+				},
+				resource.Attribute{
+					Name:        "remove_vlan_tag",
+					Description: `Remove the vlan tag for egressing packets`,
+				},
+				resource.Attribute{
+					Name:        "speed",
+					Description: `‘10’: 10; ‘100’: 100; ‘1000’: 1000; ‘auto’: auto;`,
+				},
+				resource.Attribute{
+					Name:        "speed_forced_40g",
+					Description: `force the speed to be 40G on 100G link`,
+				},
+				resource.Attribute{
+					Name:        "traffic_distribution_mode",
+					Description: `‘sip’: sip; ‘dip’: dip; ‘primary’: primary; ‘blade’: blade; ‘l4-src-port’: l4-src-port; ‘l4-dst-port’: l4-dst-port;`,
+				},
+				resource.Attribute{
+					Name:        "trap_source",
+					Description: `The trap source`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "allow_promiscuous_vip",
+					Description: `Allow traffic to be associated with promiscuous VIP`,
+				},
+				resource.Attribute{
+					Name:        "cache_spoofing_port",
+					Description: `This interface connects to spoofing cache`,
+				},
+				resource.Attribute{
+					Name:        "client",
+					Description: `Client facing interface for IPv4/v6 traffic`,
+				},
+				resource.Attribute{
+					Name:        "dhcp",
+					Description: `Use DHCP to configure IP address`,
+				},
+				resource.Attribute{
+					Name:        "generate_membership_query",
+					Description: `Enable Membership Query`,
+				},
+				resource.Attribute{
+					Name:        "inside",
+					Description: `Configure LW-4over6 outside interface`,
+				},
+				resource.Attribute{
+					Name:        "max_resp_time",
+					Description: `Maximum Response Time (Max Response Time (Default is 100))`,
+				},
+				resource.Attribute{
+					Name:        "outside",
+					Description: `Configure LW-4over6 inside interface`,
+				},
+				resource.Attribute{
+					Name:        "query_interval",
+					Description: `1 - 255 (Default is 125)`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `Server facing interface for IPv4/v6 traffic`,
+				},
+				resource.Attribute{
+					Name:        "slb_partition_redirect",
+					Description: `Redirect SLB traffic across partition`,
+				},
+				resource.Attribute{
+					Name:        "ttl_ignore",
+					Description: `Ignore TTL decrement for a received packet before sending out`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `ISO routing area tag`,
+				},
+				resource.Attribute{
+					Name:        "helper_address",
+					Description: `Helper address for DHCP packets (IP address)`,
+				},
+				resource.Attribute{
+					Name:        "access_list",
+					Description: `Access-list for traffic from the outside`,
+				},
+				resource.Attribute{
+					Name:        "acl_id",
+					Description: `ACL id`,
+				},
+				resource.Attribute{
+					Name:        "class_list",
+					Description: `Class List (Class List Name)`,
+				},
+				resource.Attribute{
+					Name:        "receive_packet",
+					Description: `Enable receiving packet through the specified interface`,
+				},
+				resource.Attribute{
+					Name:        "send_packet",
+					Description: `Enable sending packets through the specified interface`,
+				},
+				resource.Attribute{
+					Name:        "receive",
+					Description: `Advertisement reception`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `‘1’: RIP version 1; ‘2’: RIP version 2; ‘1-compatible’: RIPv1-compatible; ‘1-2’: RIP version 1 & 2;`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `‘poisoned’: Perform split horizon with poisoned reverse; ‘disable’: Disable split horizon; ‘enable’: Perform split horizon without poisoned reverse;`,
+				},
+				resource.Attribute{
+					Name:        "key_chain",
+					Description: `Authentication key-chain (Name of key-chain)`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `‘md5’: Keyed message digest;`,
+				},
+				resource.Attribute{
+					Name:        "string",
+					Description: `The RIP authentication string`,
+				},
+				resource.Attribute{
+					Name:        "send",
+					Description: `Advertisement transmission`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_address",
+					Description: `IP address`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_netmask",
+					Description: `IP subnet mask`,
+				},
+				resource.Attribute{
+					Name:        "authentication",
+					Description: `Enable authentication`,
+				},
+				resource.Attribute{
+					Name:        "authentication_key",
+					Description: `Authentication password (key) (The OSPF password (key))`,
+				},
+				resource.Attribute{
+					Name:        "cost",
+					Description: `Interface cost`,
+				},
+				resource.Attribute{
+					Name:        "database_filter",
+					Description: `‘all’: Filter all LSA;`,
+				},
+				resource.Attribute{
+					Name:        "dead_interval",
+					Description: `Interval after which a neighbor is declared dead (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "hello_interval",
+					Description: `Time between HELLO packets (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "ip_addr",
+					Description: `Address of interface`,
+				},
+				resource.Attribute{
+					Name:        "mtu_ignore",
+					Description: `Ignores the MTU in DBD packets`,
+				},
+				resource.Attribute{
+					Name:        "out",
+					Description: `Outgoing LSA`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Router priority`,
+				},
+				resource.Attribute{
+					Name:        "retransmit_interval",
+					Description: `Time between retransmitting lost link state advertisements (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "transmit_delay",
+					Description: `Link state transmit delay (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Mesh group number`,
+				},
+				resource.Attribute{
+					Name:        "encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED password string)`,
+				},
+				resource.Attribute{
+					Name:        "md5_value",
+					Description: `The OSPF password (1-16)`,
+				},
+				resource.Attribute{
+					Name:        "message_digest_key",
+					Description: `Message digest authentication password (key) (Key id)`,
+				},
+				resource.Attribute{
+					Name:        "disable",
+					Description: `Disable BFD`,
+				},
+				resource.Attribute{
+					Name:        "broadcast",
+					Description: `Specify OSPF broadcast multi-access network`,
+				},
+				resource.Attribute{
+					Name:        "non_broadcast",
+					Description: `Specify OSPF NBMA network`,
+				},
+				resource.Attribute{
+					Name:        "p2mp_nbma",
+					Description: `Specify non-broadcast point-to-multipoint network`,
+				},
+				resource.Attribute{
+					Name:        "point_to_multipoint",
+					Description: `Specify OSPF point-to-multipoint network`,
+				},
+				resource.Attribute{
+					Name:        "point_to_point",
+					Description: `Specify OSPF point-to-point network`,
+				},
+				resource.Attribute{
+					Name:        "bfd",
+					Description: `Bidirectional Forwarding Detection (BFD)`,
+				},
+				resource.Attribute{
+					Name:        "acl_name",
+					Description: `Access-list Name`,
+				},
+				resource.Attribute{
+					Name:        "lockup",
+					Description: `Enter lockup state when ICMP rate exceeds lockup rate limit (Maximum rate limit. If exceeds this limit, drop all ICMP packet for a time period)`,
+				},
+				resource.Attribute{
+					Name:        "lockup_period",
+					Description: `Lockup period (second)`,
+				},
+				resource.Attribute{
+					Name:        "normal",
+					Description: `Normal rate limit. If exceeds this limit, drop the ICMP packet that goes over the limit`,
+				},
+				resource.Attribute{
+					Name:        "link_aggregation",
+					Description: `Interface link aggregation information`,
+				},
+				resource.Attribute{
+					Name:        "tx_dot1_tlvs",
+					Description: `Interface lldp tx IEEE 802.1 Organizationally specific TLVs configuration`,
+				},
+				resource.Attribute{
+					Name:        "vlan",
+					Description: `Interface vlan information`,
+				},
+				resource.Attribute{
+					Name:        "notif_enable",
+					Description: `Interface lldp notification enable`,
+				},
+				resource.Attribute{
+					Name:        "notification",
+					Description: `Interface lldp notification configuration`,
+				},
+				resource.Attribute{
+					Name:        "exclude",
+					Description: `Configure which TLVs excluded. All basic TLVs will be included by default`,
+				},
+				resource.Attribute{
+					Name:        "management_address",
+					Description: `Interface lldp management address`,
+				},
+				resource.Attribute{
+					Name:        "port_description",
+					Description: `Interface lldp port description`,
+				},
+				resource.Attribute{
+					Name:        "system_capabilities",
+					Description: `Interface lldp system capabilities`,
+				},
+				resource.Attribute{
+					Name:        "system_description",
+					Description: `Interface lldp system description`,
+				},
+				resource.Attribute{
+					Name:        "system_name",
+					Description: `Interface lldp system name`,
+				},
+				resource.Attribute{
+					Name:        "tx_tlvs",
+					Description: `Interface lldp tx TLVs configuration`,
+				},
+				resource.Attribute{
+					Name:        "rt_enable",
+					Description: `Interface lldp enable/disable`,
+				},
+				resource.Attribute{
+					Name:        "rx",
+					Description: `Enable lldp rx`,
+				},
+				resource.Attribute{
+					Name:        "tx",
+					Description: `Enable lldp tx`,
+				},
+				resource.Attribute{
+					Name:        "demand",
+					Description: `Demand mode`,
+				},
+				resource.Attribute{
+					Name:        "echo",
+					Description: `Enable BFD Echo`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `Key ID`,
+				},
+				resource.Attribute{
+					Name:        "method",
+					Description: `‘md5’: Keyed MD5; ‘meticulous-md5’: Meticulous Keyed MD5; ‘meticulous-sha1’: Meticulous Keyed SHA1; ‘sha1’: Keyed SHA1; ‘simple’: Simple Password;`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Configure the authentication password for interface`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Transmit interval between BFD packets (Milliseconds)`,
+				},
+				resource.Attribute{
+					Name:        "min_rx",
+					Description: `Minimum receive interval capability (Milliseconds)`,
+				},
+				resource.Attribute{
+					Name:        "multiplier",
+					Description: `Multiplier value used to compute holddown (value used to multiply the interval)`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘packets_input’: Input packets; ‘bytes_input’: Input bytes; ‘received_broadcasts’: Received broadcasts; ‘received_multicasts’: Received multicasts; ‘received_unicasts’: Received unicasts; ‘input_errors’: Input errors; ‘crc’: CRC; ‘frame’: Frames; ‘runts’: Runts; ‘giants’: Giants; ‘packets_output’: Output packets; ‘bytes_output’: Output bytes; ‘transmitted_broadcasts’: Transmitted braodcasts; ‘transmitted_multicasts’: Transmitted multicasts; ‘transmitted_unicasts’: Transmitted unicasts; ‘output_errors’: Output errors; ‘collisions’: Collisions;`,
+				},
+				resource.Attribute{
+					Name:        "map_t_inside",
+					Description: `Configure MAP inside interface (connected to MAP domains)`,
+				},
+				resource.Attribute{
+					Name:        "map_t_outside",
+					Description: `Configure MAP outside interface`,
+				},
+				resource.Attribute{
+					Name:        "admin_key",
+					Description: `LACP admin key (Admin key value)`,
+				},
+				resource.Attribute{
+					Name:        "port_priority",
+					Description: `Set LACP priority for a port (LACP port priority)`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `‘long’: Set LACP long timeout (default); ‘short’: Set LACP short timeout;`,
+				},
+				resource.Attribute{
+					Name:        "trunk_number",
+					Description: `Trunk Number`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `‘static’: Static (default); ‘lacp’: lacp; ‘lacp-udld’: lacp-udld;`,
+				},
+				resource.Attribute{
+					Name:        "fast",
+					Description: `fast timeout in unit of milli-seconds(default 1000)`,
+				},
+				resource.Attribute{
+					Name:        "slow",
+					Description: `slow timeout in unit of seconds`,
+				},
+				resource.Attribute{
+					Name:        "bind_type",
+					Description: `‘inside’: This interface is connected to NPTv6 inside networks; ‘outside’: This interface is connected to NPTv6 outside networks;`,
+				},
+				resource.Attribute{
+					Name:        "domain_name",
+					Description: `NPTv6 domain name`,
+				},
+				resource.Attribute{
+					Name:        "circuit_type",
+					Description: `‘level-1’: Level-1 only adjacencies are formed; ‘level-1-2’: Level-1-2 adjacencies are formed; ‘level-2-only’: Level-2 only adjacencies are formed;`,
+				},
+				resource.Attribute{
+					Name:        "lsp_interval",
+					Description: `Set LSP transmission interval (LSP transmission interval (milliseconds))`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `‘broadcast’: Specify IS-IS broadcast multi-access network; ‘point-to-point’: Specify IS-IS point-to-point network;`,
+				},
+				resource.Attribute{
+					Name:        "padding",
+					Description: `Add padding to IS-IS hello packets`,
+				},
+				resource.Attribute{
+					Name:        "level",
+					Description: `‘level-1’: Speficy interval for level-1 CSNPs; ‘level-2’: Specify interval for level-2 CSNPs;`,
+				},
+				resource.Attribute{
+					Name:        "hello_interval_minimal",
+					Description: `Set Hello holdtime 1 second, interval depends on multiplier`,
+				},
+				resource.Attribute{
+					Name:        "blocked",
+					Description: `Block LSPs on this interface`,
+				},
+				resource.Attribute{
+					Name:        "send_only",
+					Description: `Authentication send-only`,
+				},
+				resource.Attribute{
+					Name:        "wide_metric",
+					Description: `Configure the wide metric for interface`,
+				},
+				resource.Attribute{
+					Name:        "hello_multiplier",
+					Description: `Set multiplier for Hello holding time (Hello multiplier value)`,
+				},
+				resource.Attribute{
+					Name:        "metric",
+					Description: `Configure the metric for interface (Default metric)`,
+				},
+				resource.Attribute{
+					Name:        "csnp_interval",
+					Description: `Set CSNP interval in seconds (CSNP interval value)`,
+				},
+				resource.Attribute{
+					Name:        "lockup_period_v6",
+					Description: `Lockup period (second)`,
+				},
+				resource.Attribute{
+					Name:        "lockup_v6",
+					Description: `Enter lockup state when ICMP rate exceeds lockup rate limit (Maximum rate limit. If exceeds this limit, drop all ICMP packet for a time period)`,
+				},
+				resource.Attribute{
+					Name:        "normal_v6",
+					Description: `Normal rate limit. If exceeds this limit, drop the ICMP packet that goes over the limit`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_enable",
+					Description: `Enable IPv6 processing`,
+				},
+				resource.Attribute{
+					Name:        "address_type",
+					Description: `‘anycast’: Configure an IPv6 anycast address; ‘link-local’: Configure an IPv6 link local address;`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_addr",
+					Description: `Set the IPv6 address of an interface`,
+				},
+				resource.Attribute{
+					Name:        "rip",
+					Description: `RIP Routing for IPv6`,
+				},
+				resource.Attribute{
+					Name:        "area_id_addr",
+					Description: `OSPF area ID in IP address format`,
+				},
+				resource.Attribute{
+					Name:        "area_id_num",
+					Description: `OSPF area ID as a decimal value`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `Specify the interface instance ID`,
+				},
+				resource.Attribute{
+					Name:        "inbound",
+					Description: `ACL applied on incoming packets to this interface`,
+				},
+				resource.Attribute{
+					Name:        "v6_acl_name",
+					Description: `Apply ACL rules to incoming packets on this interface (Named Access List)`,
+				},
+				resource.Attribute{
+					Name:        "broadcast_type",
+					Description: `‘broadcast’: Specify OSPF broadcast multi-access network; ‘non-broadcast’: Specify OSPF NBMA network; ‘point-to-point’: Specify OSPF point-to-point network; ‘point-to-multipoint’: Specify OSPF point-to-multipoint network;`,
+				},
+				resource.Attribute{
+					Name:        "network_instance_id",
+					Description: `Specify the interface instance ID`,
+				},
+				resource.Attribute{
+					Name:        "neig_inst",
+					Description: `Specify the interface instance ID`,
+				},
+				resource.Attribute{
+					Name:        "neighbor",
+					Description: `OSPFv3 neighbor (Neighbor IPv6 address)`,
+				},
+				resource.Attribute{
+					Name:        "neighbor_cost",
+					Description: `OSPF cost for point-to-multipoint neighbor (metric)`,
+				},
+				resource.Attribute{
+					Name:        "neighbor_poll_interval",
+					Description: `OSPF dead-router polling interval (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "neighbor_priority",
+					Description: `OSPF priority of non-broadcast neighbor`,
+				},
+				resource.Attribute{
+					Name:        "adver_mtu",
+					Description: `Set Router Advertisement MTU Option`,
+				},
+				resource.Attribute{
+					Name:        "adver_mtu_disable",
+					Description: `Disable Router Advertisement MTU Option`,
+				},
+				resource.Attribute{
+					Name:        "adver_vrid",
+					Description: `Specify ha VRRP-A vrid`,
+				},
+				resource.Attribute{
+					Name:        "adver_vrid_default",
+					Description: `Default VRRP-A vrid`,
+				},
+				resource.Attribute{
+					Name:        "default_lifetime",
+					Description: `Set Router Advertisement Default Lifetime (default: 1800) (Default Lifetime (seconds))`,
+				},
+				resource.Attribute{
+					Name:        "floating_ip",
+					Description: `Use a floating IP as the source address for Router advertisements`,
+				},
+				resource.Attribute{
+					Name:        "floating_ip_default_vrid",
+					Description: `Use a floating IP as the source address for Router advertisements`,
+				},
+				resource.Attribute{
+					Name:        "hop_limit",
+					Description: `Set Router Advertisement Hop Limit (default: 255)`,
+				},
+				resource.Attribute{
+					Name:        "managed_config_action",
+					Description: `‘enable’: Enable the Managed Address Configuration flag; ‘disable’: Disable the Managed Address Configuration flag (default);`,
+				},
+				resource.Attribute{
+					Name:        "max_interval",
+					Description: `Set Router Advertisement Max Interval (default: 600) (Max Router Advertisement Interval (seconds))`,
+				},
+				resource.Attribute{
+					Name:        "min_interval",
+					Description: `Set Router Advertisement Min Interval (default: 200) (Min Router Advertisement Interval (seconds))`,
+				},
+				resource.Attribute{
+					Name:        "other_config_action",
+					Description: `‘enable’: Enable the Other Stateful Configuration flag; ‘disable’: Disable the Other Stateful Configuration flag (default);`,
+				},
+				resource.Attribute{
+					Name:        "rate_limit",
+					Description: `Rate Limit the processing of incoming Router Solicitations (Max Number of Router Solicitations to process per second)`,
+				},
+				resource.Attribute{
+					Name:        "reachable_time",
+					Description: `Set Router Advertisement Reachable ime (default: 0) (Reachable Time (milliseconds))`,
+				},
+				resource.Attribute{
+					Name:        "retransmit_timer",
+					Description: `Set Router Advertisement Retransmit Timer (default: 0)`,
+				},
+				resource.Attribute{
+					Name:        "use_floating_ip",
+					Description: `Use a floating IP as the source address for Router advertisements`,
+				},
+				resource.Attribute{
+					Name:        "use_floating_ip_default_vrid",
+					Description: `Use a floating IP as the source address for Router advertisements`,
+				},
+				resource.Attribute{
+					Name:        "not_autonomous",
+					Description: `Specify that the Prefix is not usable for autoconfiguration (default:autonomous)`,
+				},
+				resource.Attribute{
+					Name:        "not_on_link",
+					Description: `Specify that the Prefix is not On-Link (default: on-link)`,
+				},
+				resource.Attribute{
+					Name:        "preferred_lifetime",
+					Description: `Specify Prefix Preferred Lifetime (default:604800) (Prefix Advertised Preferred Lifetime (default: 604800))`,
+				},
+				resource.Attribute{
+					Name:        "prefix",
+					Description: `Set Router Advertisement On-Link Prefix (IPv6 On-Link Prefix)`,
+				},
+				resource.Attribute{
+					Name:        "valid_lifetime",
+					Description: `Specify Valid Lifetime (default:2592000) (Prefix Advertised Valid Lifetime (default: 2592000))`,
+				},
+				resource.Attribute{
+					Name:        "mirror_index",
+					Description: `Mirror index`,
+				},
+				resource.Attribute{
+					Name:        "monitor",
+					Description: `‘input’: Incoming packets; ‘output’: Outgoing packets; ‘both’: Both incoming and outgoing packets;`,
+				},
+				resource.Attribute{
+					Name:        "monitor_vlan",
+					Description: `VLAN number`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_interface_ethernet_bfd",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder interface ethernet bfd resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "demand",
 					Description: `Demand mode`,
@@ -942,15 +2893,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_interface_ethernet_ipv6",
+			Type:             "vthunder_thunder_interface_ethernet_ipv6",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder interface ethernet ipv6 resource for A10`,
+			ShortDescription: `Provides details about thunder interface ethernet ipv6 resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"interface",
-				"ethernet",
-				"ipv6",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "inside",
@@ -1189,20 +3136,12 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_interface_ethernet_lldp",
+			Type:             "vthunder_thunder_interface_ethernet_lldp",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder interface ethernet lldp resource for A10`,
+			ShortDescription: `Provides details about thunder interface ethernet lldp resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"interface",
-				"ethernet",
-				"lldp",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "ifnum",
-					Description: `Interface no.`,
-				},
 				resource.Attribute{
 					Name:        "uuid",
 					Description: `uuid of the object`,
@@ -1272,16 +3211,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_interface_ethernet_trunk_group",
+			Type:             "vthunder_thunder_interface_ethernet_trunk_group",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder interface ethernet trunk group resource for A10`,
+			ShortDescription: `Provides details about thunder interface ethernet trunk group resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"interface",
-				"ethernet",
-				"trunk",
-				"group",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "admin_key",
@@ -1328,14 +3262,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_interface_management",
+			Type:             "vthunder_thunder_interface_management",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder interface management resource for A10`,
+			ShortDescription: `Provides details about thunder interface management resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"interface",
-				"management",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "action",
@@ -1486,14 +3417,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_interface_ve",
+			Type:             "vthunder_thunder_interface_ve",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder interface ve resource for A10`,
+			ShortDescription: `Provides details about thunder interface ve resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"interface",
-				"ve",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "action",
@@ -2012,15 +3940,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_interface_ve_bfd",
+			Type:             "vthunder_thunder_interface_ve_bfd",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder interface ve bfd resource for A10`,
+			ShortDescription: `Provides details about thunder interface ve bfd resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"interface",
-				"ve",
-				"bfd",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "demand",
@@ -2067,15 +3991,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_interface_ve_ip",
+			Type:             "vthunder_thunder_interface_ve_ip",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder interface ve ip resource for A10`,
+			ShortDescription: `Provides details about thunder interface ve ip resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"interface",
-				"ve",
-				"ip",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allow_promiscuous_vip",
@@ -2290,15 +4210,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_interface_ve_ipv6",
+			Type:             "vthunder_thunder_interface_ve_ipv6",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder interface ve ipv6 resource for A10`,
+			ShortDescription: `Provides details about thunder interface ve ipv6 resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"interface",
-				"ve",
-				"ipv6",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ifnum",
@@ -2541,14 +4457,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_ip_address",
+			Type:             "vthunder_thunder_ip_address",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder ip address resource for A10`,
+			ShortDescription: `Provides details about thunder ip address resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"ip",
-				"address",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip_addr",
@@ -2567,15 +4480,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_ip_dns_primary",
+			Type:             "vthunder_thunder_ip_dns_primary",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder ip dns primary resource for A10`,
+			ShortDescription: `Provides details about thunder ip dns primary resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"ip",
-				"dns",
-				"primary",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip_v4_addr",
@@ -2594,15 +4503,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_ip_dns_secondary",
+			Type:             "vthunder_thunder_ip_dns_secondary",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder ip dns secondary resource for A10`,
+			ShortDescription: `Provides details about thunder ip dns secondary resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"ip",
-				"dns",
-				"secondary",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip_v4_addr",
@@ -2621,15 +4526,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_ip_dns_suffix",
+			Type:             "vthunder_thunder_ip_dns_suffix",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder ip dns suffix resource for A10`,
+			ShortDescription: `Provides details about thunder ip dns suffix resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"ip",
-				"dns",
-				"suffix",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_name",
@@ -2644,14 +4545,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_ip_frag",
+			Type:             "vthunder_thunder_ip_frag",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder ip frag resource for A10`,
+			ShortDescription: `Provides details about thunder ip frag resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"ip",
-				"frag",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "buff",
@@ -2690,14 +4588,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_ip_icmp",
+			Type:             "vthunder_thunder_ip_icmp",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder ip icmp resource for A10`,
+			ShortDescription: `Provides details about thunder ip icmp resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"ip",
-				"icmp",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "redirect",
@@ -2716,16 +4611,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_ip_nat_alg_pptp",
+			Type:             "vthunder_thunder_ip_nat_alg_pptp",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder ip nat alg pptp resource for A10`,
+			ShortDescription: `Provides details about thunder ip nat alg pptp resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"ip",
-				"nat",
-				"alg",
-				"pptp",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "pptp",
@@ -2744,15 +4634,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_ip_nat_global",
+			Type:             "vthunder_thunder_ip_nat_global",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder ip nat global resource for A10`,
+			ShortDescription: `Provides details about thunder ip nat global resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"ip",
-				"nat",
-				"global",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "reset_idle_tcp_conn",
@@ -2767,15 +4653,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_ip_nat_icmp",
+			Type:             "vthunder_thunder_ip_nat_icmp",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder ip nat icmp resource for A10`,
+			ShortDescription: `Provides details about thunder ip nat icmp resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"ip",
-				"nat",
-				"icmp",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "always_source_nat_errors",
@@ -2794,15 +4676,97 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_ip_prefix_list",
+			Type:             "vthunder_thunder_ip_nat_pool",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder ip prefix list resource for A10`,
+			ShortDescription: `Provides details about thunder ip nat pool resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"ip",
-				"prefix",
-				"list",
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "end_address",
+					Description: `Configure end IP address of NAT pool`,
+				},
+				resource.Attribute{
+					Name:        "ethernet",
+					Description: `Ethernet interface`,
+				},
+				resource.Attribute{
+					Name:        "gateway",
+					Description: `Configure gateway IP`,
+				},
+				resource.Attribute{
+					Name:        "ip_rr",
+					Description: `Use IP address round-robin behavior`,
+				},
+				resource.Attribute{
+					Name:        "netmask",
+					Description: `Configure mask for pool`,
+				},
+				resource.Attribute{
+					Name:        "pool_name",
+					Description: `Specify pool name or pool group`,
+				},
+				resource.Attribute{
+					Name:        "scaleout_device_id",
+					Description: `Configure Scaleout device id to which this NAT pool is to be bound (Specify Scaleout device id)`,
+				},
+				resource.Attribute{
+					Name:        "start_address",
+					Description: `Configure start IP address of NAT pool`,
+				},
+				resource.Attribute{
+					Name:        "use_if_ip",
+					Description: `Use Interface IP`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "vrid",
+					Description: `Configure VRRP-A vrid (Specify ha VRRP-A vrid)`,
+				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_ip_nat_pool_group",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder ip nat pool group resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "pool_group_name",
+					Description: `Specify pool group name`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "vrid",
+					Description: `Specify VRRP-A vrid (Specify ha VRRP-A vrid)`,
+				},
+				resource.Attribute{
+					Name:        "pool_name",
+					Description: `Specify NAT pool name`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_ip_prefix_list",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder ip prefix list resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -2845,14 +4809,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_ip_reroute",
+			Type:             "vthunder_thunder_ip_reroute",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder ip reroute resource for A10`,
+			ShortDescription: `Provides details about thunder ip reroute resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"ip",
-				"reroute",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "uuid",
@@ -2883,16 +4844,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_ip_route_static_bfd",
+			Type:             "vthunder_thunder_ip_route_static_bfd",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder ip route static bfd resource for A10`,
+			ShortDescription: `Provides details about thunder ip route static bfd resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"ip",
-				"route",
-				"static",
-				"bfd",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "local_ip",
@@ -2911,14 +4867,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_ip_tcp",
+			Type:             "vthunder_thunder_ip_tcp",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder ip tcp resource for A10`,
+			ShortDescription: `Provides details about thunder ip tcp resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"ip",
-				"tcp",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "uuid",
@@ -2933,14 +4886,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_ipv6_frag",
+			Type:             "vthunder_thunder_ipv6_frag",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder ipv6 frag resource for A10`,
+			ShortDescription: `Provides details about thunder ipv6 frag resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"ipv6",
-				"frag",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "frag_timeout",
@@ -2959,14 +4909,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_ipv6_icmpv6",
+			Type:             "vthunder_thunder_ipv6_icmpv6",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder ipv6 icmpv6 resource for A10`,
+			ShortDescription: `Provides details about thunder ipv6 icmpv6 resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"ipv6",
-				"icmpv6",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "redirect",
@@ -2985,15 +4932,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_ipv6_nat_icmpv6",
+			Type:             "vthunder_thunder_ipv6_nat_icmpv6",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder ipv6 nat icmpv6 resource for A10`,
+			ShortDescription: `Provides details about thunder ipv6 nat icmpv6 resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"ipv6",
-				"nat",
-				"icmpv6",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "respond_to_ping",
@@ -3008,15 +4951,96 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_overlay_tunnel_options",
+			Type:             "vthunder_thunder_ntp_auth_key",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder overlay tunnel options resource for A10`,
+			ShortDescription: `Provides details about thunder ntp auth key resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"overlay",
-				"tunnel",
-				"options",
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "alg_type",
+					Description: `‘M’: encryption using MD5; ‘SHA’: encryption using SHA; ‘SHA1’: encryption using SHA1;`,
+				},
+				resource.Attribute{
+					Name:        "encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED password string)`,
+				},
+				resource.Attribute{
+					Name:        "hex_encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED password string)`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `authentication key`,
+				},
+				resource.Attribute{
+					Name:        "key_type",
+					Description: `‘ascii’: key string in ASCII form; ‘hex’: key string in hex form;`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_ntp_server_hostname",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder ntp server hostname resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "action",
+					Description: `‘enable’: Enable this NTP server; ‘disable’: Disable this NTP server;`,
+				},
+				resource.Attribute{
+					Name:        "host_servername",
+					Description: `IPV4 address, IPV6 address or host name of NTP server(string1~63)`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Use trusted key to authenticate this NTP server (The trusted key number to use)`,
+				},
+				resource.Attribute{
+					Name:        "prefer",
+					Description: `Set this NTP server as preferred`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_ntp_trusted_key",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder ntp trusted key resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key",
+					Description: `trusted key`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_overlay_tunnel_options",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder overlay tunnel options resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tcp_mss_adjust_disable",
@@ -3051,43 +5075,59 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_overlay_tunnel_vtep",
+			Type:             "vthunder_thunder_overlay_tunnel_vtep",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder overlay tunnel vtep resource for A10`,
+			ShortDescription: `Provides details about thunder overlay tunnel vtep resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"overlay",
-				"tunnel",
-				"vtep",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "encap",
+					Description: `‘nvgre’: Tunnel Encapsulation Type is NVGRE; ‘vxlan’: Tunnel Encapsulation Type is VXLAN;`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `VTEP Identifier`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘cfg_err_count’: Config errors; ‘flooded_pkt_count’: Flooded packet count; ‘encap_unresolved_count’: Encap unresolved failures; ‘unknown_encap_rx_pkt’: Encap miss rx pkts; ‘unknown_encap_tx_pkt’: Encap miss tx pkts; ‘arp_req_sent’: Arp request sent; ‘vtep_host_learned’: Hosts learned; ‘vtep_host_learn_error’: Host learn error; ‘invalid_lif_rx’: Invalid Lif pkts in; ‘invalid_lif_tx’: Invalid Lif pkts out; ‘unknown_vtep_tx’: Vtep unknown tx; ‘unknown_vtep_rx’: Vtep Unkown rx; ‘unhandled_pkt_rx’: Unhandled packets in; ‘unhandled_pkt_tx’: Unhandled packets out; ‘total_pkts_rx’: Total packets out; ‘total_bytes_rx’: Total packet bytes in; ‘unicast_pkt_rx’: Total unicast packets in; ‘bcast_pkt_rx’: Total broadcast packets in; ‘mcast_pkt_rx’: Total multicast packets in; ‘dropped_pkt_rx’: Dropped received packets; ‘encap_miss_pkts_rx’: Encap missed in received packets; ‘bad_chksum_pks_rx’: Bad checksum in received packets; ‘requeue_pkts_in’: Requeued packets in; ‘pkts_out’: Packets out; ‘total_bytes_tx’: Packet bytes out; ‘unicast_pkt_tx’: Unicast packets out; ‘bcast_pkt_tx’: Broadcast packets out; ‘mcast_pkt_tx’: Multicast packets out; ‘dropped_pkts_tx’: Dropped packets out; ‘large_pkts_rx’: Too large packets in; ‘dot1q_pkts_rx’: Dot1q packets in; ‘frag_pkts_tx’: Frag packets out; ‘reassembled_pkts_rx’: Reassembled packets in; ‘bad_inner_ipv4_len_rx’: bad inner ipv4 packet len; ‘bad_inner_ipv6_len_rx’: Bad inner ipv6 packet len; ‘lif_un_init_rx’: Lif uninitialized packets in;`,
+				},
+				resource.Attribute{
 					Name:        "ip_address",
-					Description: `Source Tunnel End Point IPv4 address`,
+					Description: `IP Address of the remote VTEP`,
+				},
+				resource.Attribute{
+					Name:        "gateway",
+					Description: `This is a Gateway segment id`,
+				},
+				resource.Attribute{
+					Name:        "lif",
+					Description: `Logical interface binding the Provider Partition to the User Partition (logical interface number)`,
+				},
+				resource.Attribute{
+					Name:        "partition",
+					Description: `Name of the Partition with the L2 segment being extended (Name of the User Partition with the L2 segment being extended)`,
 				},
 				resource.Attribute{
 					Name:        "segment",
 					Description: `VNI configured for the remote VTEP`,
 				},
 				resource.Attribute{
-					Name:        "partition",
-					Description: `Logical interface binding the Provider Partition to the User Partition (logical interface number)`,
-				},
-				resource.Attribute{
-					Name:        "lif",
-					Description: `Name of the Partition with the L2 segment being extended (Name of the User Partition with the L2 segment being extended)`,
-				},
-				resource.Attribute{
-					Name:        "encap",
-					Description: `'nvgre’: Tunnel Encapsulation Type is NVGRE; 'vxlan’: Tunnel Encapsulation Type is VXLAN;`,
+					Name:        "destination_vtep",
+					Description: `Configure the VTEP IP address (IPv4 address of the VTEP for the remote host)`,
 				},
 				resource.Attribute{
 					Name:        "ip_addr",
-					Description: `uuid of the object`,
-				},
-				resource.Attribute{
-					Name:        "destination_vtep",
-					Description: `Configure the VTEP IP address (IPv4 address of the VTEP for the remote host)`,
+					Description: `IPv4 address of the overlay host`,
 				},
 				resource.Attribute{
 					Name:        "overlay_mac_addr",
@@ -3097,34 +5137,16 @@ var (
 					Name:        "vni",
 					Description: `Configure the segment id ( VNI of the remote host)`,
 				},
-				resource.Attribute{
-					Name:        "id2",
-					Description: `Disable TCP MSS adjustment in SYN packet for tunnels`,
-				},
-				resource.Attribute{
-					Name:        "ip_address",
-					Description: `Disable Flow-ID computation for NVGRE`,
-				},
-				resource.Attribute{
-					Name:        "ip_address",
-					Description: `IPv4 address of the overlay host`,
-				},
-				resource.Attribute{
-					Name:        "segment",
-					Description: `Configure the segment id ( VNI of the remote host)`,
-				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_partition",
+			Type:             "vthunder_thunder_partition",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder partition resource for A10`,
+			ShortDescription: `Provides details about thunder partition resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"partition",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user_tag",
@@ -3147,120 +5169,3778 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_reboot",
+			Type:             "vthunder_thunder_reboot",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder reboot resource for A10`,
+			ShortDescription: `Provides details about thunder reboot resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"reboot",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "all",
 					Description: `Reboot all devices when VCS is enabled, or only this device itself if VCS is not enabled`,
 				},
+				resource.Attribute{
+					Name:        "at",
+					Description: `Reboot at a Specific time/date`,
+				},
+				resource.Attribute{
+					Name:        "cancel",
+					Description: `Cancel Pending Reboot`,
+				},
+				resource.Attribute{
+					Name:        "day_of_month",
+					Description: `Day of the Month`,
+				},
+				resource.Attribute{
+					Name:        "day_of_month_2",
+					Description: `Day of the Month`,
+				},
+				resource.Attribute{
+					Name:        "device",
+					Description: `Reboot a specific device when VCS is enabled (device id)`,
+				},
+				resource.Attribute{
+					Name:        "in",
+					Description: `Reboot after a time interval (Time in hours and minutes)`,
+				},
+				resource.Attribute{
+					Name:        "month",
+					Description: `‘January’: Month of the year; ‘February’: Month of the year; ‘March’: Month of the year; ‘April’: Month of the year; ‘May’: Month of the year; ‘June’: Month of the year; ‘July’: Month of the year; ‘August’: Month of the year; ‘September’: Month of the year; ‘October’: Month of the year; ‘November’: Month of the year; ‘December’: Month of the year;`,
+				},
+				resource.Attribute{
+					Name:        "month_2",
+					Description: `‘January’: Month of the year; ‘February’: Month of the year; ‘March’: Month of the year; ‘April’: Month of the year; ‘May’: Month of the year; ‘June’: Month of the year; ‘July’: Month of the r; ‘August’: Month of the year; ‘September’: Month of the year; ‘October’: Month of the year; ‘November’: Month of the year; ‘December’: Month of the year;`,
+				},
+				resource.Attribute{
+					Name:        "reason",
+					Description: `Reason for Reboot`,
+				},
+				resource.Attribute{
+					Name:        "reason_2",
+					Description: `Reason for Reboot`,
+				},
+				resource.Attribute{
+					Name:        "reason_3",
+					Description: `Reason for Reboot`,
+				},
+				resource.Attribute{
+					Name:        "time",
+					Description: `Time to Reboot (hh:mm)`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_rib_route",
+			Type:             "vthunder_thunder_rib_route",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder rib route resource for A10`,
+			ShortDescription: `Provides details about thunder rib route resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"rib",
-				"route",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip_dest_addr",
-					Description: `Destination ip address`,
+					Description: `Destination prefix`,
 				},
 				resource.Attribute{
 					Name:        "ip_mask",
-					Description: `Ip address subnet mask`,
+					Description: `Destination prefix mask`,
 				},
 				resource.Attribute{
-					Name:        "ip_next_hop",
-					Description: `Ip next hop`,
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "description_nexthop_lif",
+					Description: `Description for static route`,
+				},
+				resource.Attribute{
+					Name:        "lif",
+					Description: `LIF Interface (Logical tunnel interface number)`,
+				},
+				resource.Attribute{
+					Name:        "description_nexthop_ip",
+					Description: `Description for static route`,
 				},
 				resource.Attribute{
 					Name:        "distance_nexthop_ip",
-					Description: `Distance of next hop ip address`,
+					Description: `Distance value for this route`,
+				},
+				resource.Attribute{
+					Name:        "ip_next_hop",
+					Description: `Forwarding router’s address`,
+				},
+				resource.Attribute{
+					Name:        "description_nexthop_tunnel",
+					Description: `Description for static route`,
+				},
+				resource.Attribute{
+					Name:        "distance_nexthop_tunnel",
+					Description: `Distance value for this route`,
+				},
+				resource.Attribute{
+					Name:        "ip_next_hop_tunnel",
+					Description: `Forwarding router’s address`,
+				},
+				resource.Attribute{
+					Name:        "tunnel",
+					Description: `Tunnel interface (Tunnel interface number)`,
+				},
+				resource.Attribute{
+					Name:        "description_nexthop_partition",
+					Description: `Description for static route`,
+				},
+				resource.Attribute{
+					Name:        "description_partition_vrid",
+					Description: `Description for static route`,
+				},
+				resource.Attribute{
+					Name:        "partition_name",
+					Description: `Name of network partition`,
+				},
+				resource.Attribute{
+					Name:        "vrid_num_in_partition",
+					Description: `Specify ha VRRP-A vrid`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_server",
+			Type:             "vthunder_thunder_route_map",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder server resource for A10`,
+			ShortDescription: `Provides details about thunder route map resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"server",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "health_check_disable",
-					Description: `Disable configured health check configuration`,
+					Name:        "route-map",
+					Description: `Configure route-map`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `Route map tag`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `'permit': Route map permits set operations; 'deny': Route map denies set operations;`,
+				},
+				resource.Attribute{
+					Name:        "sequence",
+					Description: `Sequence to insert to/delete from existing route-map entry`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "user-tag",
+					Description: `Customized tag`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `Server name`,
+					Description: `Community-list name`,
+				},
+				resource.Attribute{
+					Name:        "exact-match",
+					Description: `Do exact matching of ecommunities`,
+				},
+				resource.Attribute{
+					Name:        "group-id",
+					Description: `HA or VRRP-A group id`,
+				},
+				resource.Attribute{
+					Name:        "ha-state",
+					Description: `'active': HA or VRRP-A in Active State; 'standby': HA or VRRP-A in Standby State;`,
+				},
+				resource.Attribute{
+					Name:        "cluster-id",
+					Description: `Scaleout Cluster-id`,
+				},
+				resource.Attribute{
+					Name:        "operational-state",
+					Description: `'up': Scaleout is up and running; 'down': Scaleout is down or disabled;`,
+				},
+				resource.Attribute{
+					Name:        "ethernet",
+					Description: `Ethernet interface (Port number)`,
+				},
+				resource.Attribute{
+					Name:        "loopback",
+					Description: `Loopback interface (Port number)`,
+				},
+				resource.Attribute{
+					Name:        "trunk",
+					Description: `Trunk Interface (Trunk interface number)`,
+				},
+				resource.Attribute{
+					Name:        "ve",
+					Description: `Virtual ethernet interface (Virtual ethernet interface number)`,
+				},
+				resource.Attribute{
+					Name:        "tunnel",
+					Description: `Tunnel interface (Tunnel interface number)`,
+				},
+				resource.Attribute{
+					Name:        "val",
+					Description: `Preference value`,
+				},
+				resource.Attribute{
+					Name:        "egp",
+					Description: `remote EGP`,
+				},
+				resource.Attribute{
+					Name:        "igp",
+					Description: `local IGP`,
+				},
+				resource.Attribute{
+					Name:        "incomplete",
+					Description: `unknown heritage`,
+				},
+				resource.Attribute{
+					Name:        "acl1",
+					Description: `IPv6 access-list number`,
+				},
+				resource.Attribute{
+					Name:        "acl2",
+					Description: `IP access-list number (expanded range)`,
+				},
+				resource.Attribute{
+					Name:        "exact",
+					Description: `Exact match a prefix (Prefix IPv6 address)`,
+				},
+				resource.Attribute{
+					Name:        "reachable",
+					Description: `IPv6 address is reachable`,
+				},
+				resource.Attribute{
+					Name:        "unreachable",
+					Description: `IPv6 address is unreachable`,
+				},
+				resource.Attribute{
+					Name:        "next-hop-acl-name",
+					Description: `IPv6 access-list name`,
+				},
+				resource.Attribute{
+					Name:        "v6-addr",
+					Description: `IPv6 address of next hop`,
+				},
+				resource.Attribute{
+					Name:        "prefix-list-name",
+					Description: `IPv6 prefix-list name`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `VPN extended community`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `IPv6 address of next hop`,
+				},
+				resource.Attribute{
+					Name:        "class-list-name",
+					Description: `Class-List Name`,
+				},
+				resource.Attribute{
+					Name:        "class-list-cid",
+					Description: `Class-List Cid`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `Zone Name`,
+				},
+				resource.Attribute{
+					Name:        "asn",
+					Description: `AS number`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `IP address of aggregator`,
+				},
+				resource.Attribute{
+					Name:        "prepend",
+					Description: `Prepend to the as-path (AS number)`,
+				},
+				resource.Attribute{
+					Name:        "num",
+					Description: `AS number`,
+				},
+				resource.Attribute{
+					Name:        "num2",
+					Description: `AS number`,
+				},
+				resource.Attribute{
+					Name:        "atomic-aggregate",
+					Description: `BGP atomic aggregate attribute`,
+				},
+				resource.Attribute{
+					Name:        "v-std",
+					Description: `Community-list number (standard)`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `Delete matching communities`,
+				},
+				resource.Attribute{
+					Name:        "v-exp",
+					Description: `Community-list number (expanded)`,
+				},
+				resource.Attribute{
+					Name:        "v-exp-delete",
+					Description: `Delete matching communities`,
+				},
+				resource.Attribute{
+					Name:        "name-delete",
+					Description: `Delete matching communities`,
+				},
+				resource.Attribute{
+					Name:        "community",
+					Description: `BGP community attribute`,
+				},
+				resource.Attribute{
+					Name:        "dampening",
+					Description: `Enable route-flap dampening`,
+				},
+				resource.Attribute{
+					Name:        "dampening-half-time",
+					Description: `Reachability Half-life time for the penalty(minutes)`,
+				},
+				resource.Attribute{
+					Name:        "dampening-reuse",
+					Description: `Value to start reusing a route`,
+				},
+				resource.Attribute{
+					Name:        "dampening-supress",
+					Description: `Value to start suppressing a route`,
+				},
+				resource.Attribute{
+					Name:        "dampening-max-supress",
+					Description: `Maximum duration to suppress a stable route(minutes)`,
+				},
+				resource.Attribute{
+					Name:        "dampening-penalty",
+					Description: `Un-reachability Half-life time for the penalty(minutes)`,
+				},
+				resource.Attribute{
+					Name:        "originator-ip",
+					Description: `IP address of originator`,
+				},
+				resource.Attribute{
+					Name:        "weight-val",
+					Description: `Weight value`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_bgp",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router bgp resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "bgp",
+					Description: `Border Gateway Protocol (BGP)`,
+				},
+				resource.Attribute{
+					Name:        "as-number",
+					Description: `AS number`,
+				},
+				resource.Attribute{
+					Name:        "aggregate-address",
+					Description: `Configure BGP aggregate entries (Aggregate IPv6 prefix)`,
+				},
+				resource.Attribute{
+					Name:        "as-set",
+					Description: `Generate AS set path information`,
+				},
+				resource.Attribute{
+					Name:        "summary-only",
+					Description: `Filter more specific routes from updates`,
+				},
+				resource.Attribute{
+					Name:        "always-compare-med",
+					Description: `Allow comparing MED from different neighbors`,
+				},
+				resource.Attribute{
+					Name:        "ignore",
+					Description: `Ignore as-path length in selecting a route`,
+				},
+				resource.Attribute{
+					Name:        "compare-routerid",
+					Description: `Compare router-id for identical EBGP paths`,
+				},
+				resource.Attribute{
+					Name:        "remove-recv-med",
+					Description: `To remove rcvd MED attribute`,
+				},
+				resource.Attribute{
+					Name:        "remove-send-med",
+					Description: `To remove send MED attribute`,
+				},
+				resource.Attribute{
+					Name:        "missing-as-worst",
+					Description: `Treat missing MED as the least preferred one`,
+				},
+				resource.Attribute{
+					Name:        "dampening",
+					Description: `Enable route-flap dampening`,
+				},
+				resource.Attribute{
+					Name:        "dampening-half-time",
+					Description: `Reachability Half-life time for the penalty(minutes)`,
+				},
+				resource.Attribute{
+					Name:        "dampening-reuse",
+					Description: `Value to start reusing a route`,
+				},
+				resource.Attribute{
+					Name:        "dampening-supress",
+					Description: `Value to start suppressing a route`,
+				},
+				resource.Attribute{
+					Name:        "dampening-max-supress",
+					Description: `Maximum duration to suppress a stable route(minutes)`,
+				},
+				resource.Attribute{
+					Name:        "dampening-penalty",
+					Description: `Un-reachability Half-life time for the penalty(minutes)`,
+				},
+				resource.Attribute{
+					Name:        "route-map",
+					Description: `Route map reference (Pointer to route-map entries)`,
+				},
+				resource.Attribute{
+					Name:        "local-preference-value",
+					Description: `Configure default local preference value`,
+				},
+				resource.Attribute{
+					Name:        "deterministic-med",
+					Description: `Pick the best-MED path among paths advertised from the neighboring AS`,
+				},
+				resource.Attribute{
+					Name:        "enforce-first-as",
+					Description: `Enforce the first AS for EBGP routes`,
+				},
+				resource.Attribute{
+					Name:        "fast-external-failover",
+					Description: `Immediately reset session if a link to a directly connected external peer goes down`,
+				},
+				resource.Attribute{
+					Name:        "log-neighbor-changes",
+					Description: `Log neighbor up/down and reset reason`,
+				},
+				resource.Attribute{
+					Name:        "nexthop-trigger-count",
+					Description: `BGP nexthop-tracking status (count)`,
+				},
+				resource.Attribute{
+					Name:        "router-id",
+					Description: `Override current router identifier (peers will reset) (Manually configured router identifier)`,
+				},
+				resource.Attribute{
+					Name:        "override-validation",
+					Description: `override router-id validation`,
+				},
+				resource.Attribute{
+					Name:        "scan-time",
+					Description: `Configure background scan interval (Scan interval (sec) [Default:60 Disable:0])`,
+				},
+				resource.Attribute{
+					Name:        "graceful-restart",
+					Description: `enable graceful-restart helper for this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "bgp-restart-time",
+					Description: `BGP Peer Graceful Restart time in seconds (default 90)`,
+				},
+				resource.Attribute{
+					Name:        "bgp-stalepath-time",
+					Description: `BGP Graceful Restart Stalepath retention time in seconds (default 360)`,
+				},
+				resource.Attribute{
+					Name:        "admin-distance",
+					Description: `Define an administrative distance`,
+				},
+				resource.Attribute{
+					Name:        "src-prefix",
+					Description: `IP source prefix`,
+				},
+				resource.Attribute{
+					Name:        "acl-str",
+					Description: `Access list name`,
+				},
+				resource.Attribute{
+					Name:        "ext-routes-dist",
+					Description: `Distance for routes external to the AS`,
+				},
+				resource.Attribute{
+					Name:        "int-routes-dist",
+					Description: `Distance for routes internal to the AS`,
+				},
+				resource.Attribute{
+					Name:        "local-routes-dist",
+					Description: `Distance for local routes`,
+				},
+				resource.Attribute{
+					Name:        "maximum-paths-value",
+					Description: `Supported BGP multipath numbers`,
+				},
+				resource.Attribute{
+					Name:        "originate",
+					Description: `Distribute an IPv6 default route`,
+				},
+				resource.Attribute{
+					Name:        "bgp-keepalive",
+					Description: `Keepalive interval`,
+				},
+				resource.Attribute{
+					Name:        "bgp-holdtime",
+					Description: `Holdtime`,
+				},
+				resource.Attribute{
+					Name:        "synchronization",
+					Description: `Perform IGP synchronization`,
+				},
+				resource.Attribute{
+					Name:        "auto-summary",
+					Description: `Enable automatic network number summarization`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "user-tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "network-synchronization",
+					Description: `Perform IGP synchronization`,
+				},
+				resource.Attribute{
+					Name:        "network-ipv4-cidr",
+					Description: `Specify network mask`,
+				},
+				resource.Attribute{
+					Name:        "backdoor",
+					Description: `Specify a BGP backdoor route`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Network specific description (Up to 80 characters describing this network)`,
+				},
+				resource.Attribute{
+					Name:        "comm-value",
+					Description: `community value in the format 1-4294967295|AA:NN|internet|local-AS|no-advertise|no-export`,
+				},
+				resource.Attribute{
+					Name:        "peer-group",
+					Description: `Neighbor tag`,
+				},
+				resource.Attribute{
+					Name:        "activate",
+					Description: `Enable the Address Family for this Neighbor`,
+				},
+				resource.Attribute{
+					Name:        "allowas-in",
+					Description: `Accept as-path with my AS present in it`,
+				},
+				resource.Attribute{
+					Name:        "allowas-in-count",
+					Description: `Number of occurrences of AS number`,
+				},
+				resource.Attribute{
+					Name:        "prefix-list-direction",
+					Description: `'both': both; 'receive': receive; 'send': send;`,
+				},
+				resource.Attribute{
+					Name:        "default-originate",
+					Description: `Originate default route to this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "distribute-list",
+					Description: `Filter updates to/from this neighbor (IP standard/extended/named access list)`,
+				},
+				resource.Attribute{
+					Name:        "distribute-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "filter-list",
+					Description: `Establish BGP filters (AS path access-list name)`,
+				},
+				resource.Attribute{
+					Name:        "filter-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "maximum-prefix",
+					Description: `Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))`,
+				},
+				resource.Attribute{
+					Name:        "maximum-prefix-thres",
+					Description: `threshold-value, 1 to 100 percent`,
+				},
+				resource.Attribute{
+					Name:        "next-hop-self",
+					Description: `Disable the next hop calculation for this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "nbr-prefix-list",
+					Description: `Filter updates to/from this neighbor (Name of a prefix list)`,
+				},
+				resource.Attribute{
+					Name:        "nbr-prefix-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "remove-private-as",
+					Description: `Remove private AS number from outbound updates`,
+				},
+				resource.Attribute{
+					Name:        "nbr-route-map",
+					Description: `Apply route map to neighbor (Name of route map)`,
+				},
+				resource.Attribute{
+					Name:        "nbr-rmap-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "send-community-val",
+					Description: `'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;`,
+				},
+				resource.Attribute{
+					Name:        "inbound",
+					Description: `Allow inbound soft reconfiguration for this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "unsuppress-map",
+					Description: `Route-map to selectively unsuppress suppressed routes (Name of route map)`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Set default weight for routes from this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "neighbor-ipv4",
+					Description: `Neighbor address`,
+				},
+				resource.Attribute{
+					Name:        "peer-group-name",
+					Description: `Configure peer-group (peer-group name)`,
+				},
+				resource.Attribute{
+					Name:        "neighbor-ipv6",
+					Description: `Neighbor IPv6 address`,
+				},
+				resource.Attribute{
+					Name:        "ethernet",
+					Description: `Ethernet interface number`,
+				},
+				resource.Attribute{
+					Name:        "ve",
+					Description: `Virtual ethernet interface number`,
+				},
+				resource.Attribute{
+					Name:        "trunk",
+					Description: `Trunk interface number`,
+				},
+				resource.Attribute{
+					Name:        "connected",
+					Description: `Connected`,
+				},
+				resource.Attribute{
+					Name:        "floating-ip",
+					Description: `Floating IP`,
+				},
+				resource.Attribute{
+					Name:        "lw4o6",
+					Description: `LW4O6 Prefix`,
+				},
+				resource.Attribute{
+					Name:        "static-nat",
+					Description: `Static NAT Prefix`,
+				},
+				resource.Attribute{
+					Name:        "ip-nat",
+					Description: `IP NAT`,
+				},
+				resource.Attribute{
+					Name:        "ip-nat-list",
+					Description: `IP NAT list`,
+				},
+				resource.Attribute{
+					Name:        "isis",
+					Description: `ISO IS-IS`,
+				},
+				resource.Attribute{
+					Name:        "ospf",
+					Description: `Open Shortest Path First (OSPF)`,
+				},
+				resource.Attribute{
+					Name:        "rip",
+					Description: `Routing Information Protocol (RIP)`,
+				},
+				resource.Attribute{
+					Name:        "static",
+					Description: `Static routes`,
+				},
+				resource.Attribute{
+					Name:        "nat-map",
+					Description: `NAT MAP Prefix`,
+				},
+				resource.Attribute{
+					Name:        "only-flagged",
+					Description: `Selected Virtual IP (VIP)`,
+				},
+				resource.Attribute{
+					Name:        "only-not-flagged",
+					Description: `Only not flagged`,
+				},
+				resource.Attribute{
+					Name:        "dampening-half",
+					Description: `Reachability Half-life time for the penalty(minutes)`,
+				},
+				resource.Attribute{
+					Name:        "dampening-start-reuse",
+					Description: `Value to start reusing a route`,
+				},
+				resource.Attribute{
+					Name:        "dampening-start-supress",
+					Description: `Value to start suppressing a route`,
+				},
+				resource.Attribute{
+					Name:        "dampening-unreachability",
+					Description: `Un-reachability Half-life time for the penalty(minutes)`,
+				},
+				resource.Attribute{
+					Name:        "distance-ext",
+					Description: `Distance for routes external to the AS`,
+				},
+				resource.Attribute{
+					Name:        "distance-int",
+					Description: `Distance for routes internal to the AS`,
+				},
+				resource.Attribute{
+					Name:        "distance-local",
+					Description: `Distance for local routes`,
+				},
+				resource.Attribute{
+					Name:        "network-ipv6",
+					Description: `Specify a network to announce via BGP`,
+				},
+				resource.Attribute{
+					Name:        "nat64",
+					Description: `NAT64 Prefix`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_bgp_address_family_ipv6",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router bgp address family ipv6 resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ipv6",
+					Description: `ipv6 Address family`,
+				},
+				resource.Attribute{
+					Name:        "dampening",
+					Description: `Enable route-flap dampening`,
+				},
+				resource.Attribute{
+					Name:        "dampening-half",
+					Description: `Reachability Half-life time for the penalty(minutes)`,
+				},
+				resource.Attribute{
+					Name:        "dampening-start-reuse",
+					Description: `Value to start reusing a route`,
+				},
+				resource.Attribute{
+					Name:        "dampening-start-supress",
+					Description: `Value to start suppressing a route`,
+				},
+				resource.Attribute{
+					Name:        "dampening-max-supress",
+					Description: `Maximum duration to suppress a stable route(minutes)`,
+				},
+				resource.Attribute{
+					Name:        "dampening-unreachability",
+					Description: `Un-reachability Half-life time for the penalty(minutes)`,
+				},
+				resource.Attribute{
+					Name:        "route-map",
+					Description: `Route map reference (Pointer to route-map entries)`,
+				},
+				resource.Attribute{
+					Name:        "distance-ext",
+					Description: `Distance for routes external to the AS`,
+				},
+				resource.Attribute{
+					Name:        "distance-int",
+					Description: `Distance for routes internal to the AS`,
+				},
+				resource.Attribute{
+					Name:        "distance-local",
+					Description: `Distance for local routes`,
+				},
+				resource.Attribute{
+					Name:        "maximum-paths-value",
+					Description: `Supported BGP multipath numbers`,
+				},
+				resource.Attribute{
+					Name:        "originate",
+					Description: `Distribute an IPv6 default route`,
+				},
+				resource.Attribute{
+					Name:        "aggregate-address",
+					Description: `Configure BGP aggregate entries (Aggregate IPv6 prefix)`,
+				},
+				resource.Attribute{
+					Name:        "as-set",
+					Description: `Generate AS set path information`,
+				},
+				resource.Attribute{
+					Name:        "summary-only",
+					Description: `Filter more specific routes from updates`,
+				},
+				resource.Attribute{
+					Name:        "auto-summary",
+					Description: `Enable automatic network number summarization`,
+				},
+				resource.Attribute{
+					Name:        "synchronization",
+					Description: `Perform IGP synchronization`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "network-synchronization",
+					Description: `Perform IGP synchronization`,
+				},
+				resource.Attribute{
+					Name:        "network-ipv6",
+					Description: `Specify a network to announce via BGP`,
+				},
+				resource.Attribute{
+					Name:        "backdoor",
+					Description: `Specify a BGP backdoor route`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Network specific description (Up to 80 characters describing this network)`,
+				},
+				resource.Attribute{
+					Name:        "comm-value",
+					Description: `community value in the format 1-4294967295|AA:NN|internet|local-AS|no-advertise|no-export`,
+				},
+				resource.Attribute{
+					Name:        "peer-group",
+					Description: `Neighbor tag`,
+				},
+				resource.Attribute{
+					Name:        "activate",
+					Description: `Enable the Address Family for this Neighbor`,
+				},
+				resource.Attribute{
+					Name:        "allowas-in",
+					Description: `Accept as-path with my AS present in it`,
+				},
+				resource.Attribute{
+					Name:        "allowas-in-count",
+					Description: `Number of occurrences of AS number`,
+				},
+				resource.Attribute{
+					Name:        "prefix-list-direction",
+					Description: `'both': both; 'receive': receive; 'send': send;`,
+				},
+				resource.Attribute{
+					Name:        "default-originate",
+					Description: `Originate default route to this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "distribute-list",
+					Description: `Filter updates to/from this neighbor (IP standard/extended/named access list)`,
+				},
+				resource.Attribute{
+					Name:        "distribute-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "filter-list",
+					Description: `Establish BGP filters (AS path access-list name)`,
+				},
+				resource.Attribute{
+					Name:        "filter-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "maximum-prefix",
+					Description: `Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))`,
+				},
+				resource.Attribute{
+					Name:        "maximum-prefix-thres",
+					Description: `threshold-value, 1 to 100 percent`,
+				},
+				resource.Attribute{
+					Name:        "next-hop-self",
+					Description: `Disable the next hop calculation for this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "nbr-prefix-list",
+					Description: `Filter updates to/from this neighbor (Name of a prefix list)`,
+				},
+				resource.Attribute{
+					Name:        "nbr-prefix-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "remove-private-as",
+					Description: `Remove private AS number from outbound updates`,
+				},
+				resource.Attribute{
+					Name:        "nbr-route-map",
+					Description: `Apply route map to neighbor (Name of route map)`,
+				},
+				resource.Attribute{
+					Name:        "nbr-rmap-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "send-community-val",
+					Description: `'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;`,
+				},
+				resource.Attribute{
+					Name:        "inbound",
+					Description: `Allow inbound soft reconfiguration for this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "unsuppress-map",
+					Description: `Route-map to selectively unsuppress suppressed routes (Name of route map)`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Set default weight for routes from this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "neighbor-ipv4",
+					Description: `Neighbor address`,
+				},
+				resource.Attribute{
+					Name:        "peer-group-name",
+					Description: `Configure peer-group (peer-group name)`,
+				},
+				resource.Attribute{
+					Name:        "graceful-restart",
+					Description: `enable graceful-restart helper for this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "neighbor-ipv6",
+					Description: `Neighbor IPv6 address`,
+				},
+				resource.Attribute{
+					Name:        "ethernet",
+					Description: `Ethernet interface number`,
+				},
+				resource.Attribute{
+					Name:        "ve",
+					Description: `Virtual ethernet interface number`,
+				},
+				resource.Attribute{
+					Name:        "trunk",
+					Description: `Trunk interface number`,
+				},
+				resource.Attribute{
+					Name:        "connected",
+					Description: `Connected`,
+				},
+				resource.Attribute{
+					Name:        "floating-ip",
+					Description: `Floating IP`,
+				},
+				resource.Attribute{
+					Name:        "nat64",
+					Description: `NAT64 Prefix`,
+				},
+				resource.Attribute{
+					Name:        "nat-map",
+					Description: `NAT MAP Prefix`,
+				},
+				resource.Attribute{
+					Name:        "lw4o6",
+					Description: `LW4O6 Prefix`,
+				},
+				resource.Attribute{
+					Name:        "static-nat",
+					Description: `Static NAT Prefix`,
+				},
+				resource.Attribute{
+					Name:        "ip-nat",
+					Description: `IP NAT`,
+				},
+				resource.Attribute{
+					Name:        "ip-nat-list",
+					Description: `IP NAT list`,
+				},
+				resource.Attribute{
+					Name:        "isis",
+					Description: `ISO IS-IS`,
+				},
+				resource.Attribute{
+					Name:        "ospf",
+					Description: `Open Shortest Path First (OSPF)`,
+				},
+				resource.Attribute{
+					Name:        "rip",
+					Description: `Routing Information Protocol (RIP)`,
+				},
+				resource.Attribute{
+					Name:        "static",
+					Description: `Static routes`,
+				},
+				resource.Attribute{
+					Name:        "only-flagged",
+					Description: `Selected Virtual IP (VIP)`,
+				},
+				resource.Attribute{
+					Name:        "only-not-flagged",
+					Description: `Only not flagged`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_bgp_address_family_ipv6_neighbor_ethernet_neighbor_ipv6",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router bgp address family ipv6 neighbor ethernet neighbor ipv6 resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ethernet-neighbor-ipv6",
+					Description: `Specify an ethernet unnumbered neighbor`,
+				},
+				resource.Attribute{
+					Name:        "ethernet",
+					Description: `Ethernet interface number`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_bgp_address_family_ipv6_neighbor_ipv4_neighbor",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router bgp address family ipv6 neighbor ipv4 neighbor resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ipv4-neighbor",
+					Description: `Specify a peer-group neighbor router`,
+				},
+				resource.Attribute{
+					Name:        "neighbor-ipv4",
+					Description: `Neighbor address`,
+				},
+				resource.Attribute{
+					Name:        "peer-group-name",
+					Description: `Configure peer-group (peer-group name)`,
+				},
+				resource.Attribute{
+					Name:        "activate",
+					Description: `Enable the Address Family for this Neighbor`,
+				},
+				resource.Attribute{
+					Name:        "allowas-in",
+					Description: `Accept as-path with my AS present in it`,
+				},
+				resource.Attribute{
+					Name:        "allowas-in-count",
+					Description: `Number of occurrences of AS number`,
+				},
+				resource.Attribute{
+					Name:        "prefix-list-direction",
+					Description: `'both': both; 'receive': receive; 'send': send;`,
+				},
+				resource.Attribute{
+					Name:        "graceful-restart",
+					Description: `enable graceful-restart helper for this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "default-originate",
+					Description: `Originate default route to this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "route-map",
+					Description: `Route-map to specify criteria to originate default (route-map name)`,
+				},
+				resource.Attribute{
+					Name:        "distribute-list",
+					Description: `Filter updates to/from this neighbor (IP standard/extended/named access list)`,
+				},
+				resource.Attribute{
+					Name:        "distribute-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "filter-list",
+					Description: `Establish BGP filters (AS path access-list name)`,
+				},
+				resource.Attribute{
+					Name:        "filter-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "maximum-prefix",
+					Description: `Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))`,
+				},
+				resource.Attribute{
+					Name:        "maximum-prefix-thres",
+					Description: `threshold-value, 1 to 100 percent`,
+				},
+				resource.Attribute{
+					Name:        "next-hop-self",
+					Description: `Disable the next hop calculation for this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "nbr-prefix-list",
+					Description: `Filter updates to/from this neighbor (Name of a prefix list)`,
+				},
+				resource.Attribute{
+					Name:        "nbr-prefix-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "remove-private-as",
+					Description: `Remove private AS number from outbound updates`,
+				},
+				resource.Attribute{
+					Name:        "nbr-route-map",
+					Description: `Apply route map to neighbor (Name of route map)`,
+				},
+				resource.Attribute{
+					Name:        "nbr-rmap-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "send-community-val",
+					Description: `'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;`,
+				},
+				resource.Attribute{
+					Name:        "inbound",
+					Description: `Allow inbound soft reconfiguration for this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "unsuppress-map",
+					Description: `Route-map to selectively unsuppress suppressed routes (Name of route map)`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Set default weight for routes from this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_bgp_address_family_ipv6_neighbor_ipv6_neighbor",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router bgp address family ipv6 neighbor ipv6 neighbor resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ipv6-neighbor",
+					Description: `Specify a peer-group neighbor router`,
+				},
+				resource.Attribute{
+					Name:        "neighbor-ipv6",
+					Description: `Neighbor IPv6 address`,
+				},
+				resource.Attribute{
+					Name:        "peer-group-name",
+					Description: `Configure peer-group (peer-group name)`,
+				},
+				resource.Attribute{
+					Name:        "activate",
+					Description: `Enable the Address Family for this Neighbor`,
+				},
+				resource.Attribute{
+					Name:        "allowas-in",
+					Description: `Accept as-path with my AS present in it`,
+				},
+				resource.Attribute{
+					Name:        "allowas-in-count",
+					Description: `Number of occurrences of AS number`,
+				},
+				resource.Attribute{
+					Name:        "prefix-list-direction",
+					Description: `'both': both; 'receive': receive; 'send': send;`,
+				},
+				resource.Attribute{
+					Name:        "graceful-restart",
+					Description: `enable graceful-restart helper for this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "default-originate",
+					Description: `Originate default route to this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "route-map",
+					Description: `Route-map to specify criteria to originate default (route-map name)`,
+				},
+				resource.Attribute{
+					Name:        "distribute-list",
+					Description: `Filter updates to/from this neighbor (IP standard/extended/named access list)`,
+				},
+				resource.Attribute{
+					Name:        "distribute-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "filter-list",
+					Description: `Establish BGP filters (AS path access-list name)`,
+				},
+				resource.Attribute{
+					Name:        "filter-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "maximum-prefix",
+					Description: `Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))`,
+				},
+				resource.Attribute{
+					Name:        "maximum-prefix-thres",
+					Description: `threshold-value, 1 to 100 percent`,
+				},
+				resource.Attribute{
+					Name:        "next-hop-self",
+					Description: `Disable the next hop calculation for this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "nbr-prefix-list",
+					Description: `Filter updates to/from this neighbor (Name of a prefix list)`,
+				},
+				resource.Attribute{
+					Name:        "nbr-prefix-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "remove-private-as",
+					Description: `Remove private AS number from outbound updates`,
+				},
+				resource.Attribute{
+					Name:        "nbr-route-map",
+					Description: `Apply route map to neighbor (Name of route map)`,
+				},
+				resource.Attribute{
+					Name:        "nbr-rmap-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "send-community-val",
+					Description: `'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;`,
+				},
+				resource.Attribute{
+					Name:        "inbound",
+					Description: `Allow inbound soft reconfiguration for this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "unsuppress-map",
+					Description: `Route-map to selectively unsuppress suppressed routes (Name of route map)`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Set default weight for routes from this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_bgp_address_family_ipv6_neighbor_peer_group_neighbor",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router bgp address family ipv6 neighbor peer group neighbor resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "peer-group-neighbor",
+					Description: `Specify a peer-group neighbor router`,
+				},
+				resource.Attribute{
+					Name:        "peer-group",
+					Description: `Neighbor tag`,
+				},
+				resource.Attribute{
+					Name:        "activate",
+					Description: `Enable the Address Family for this Neighbor`,
+				},
+				resource.Attribute{
+					Name:        "allowas-in",
+					Description: `Accept as-path with my AS present in it`,
+				},
+				resource.Attribute{
+					Name:        "allowas-in-count",
+					Description: `Number of occurrences of AS number`,
+				},
+				resource.Attribute{
+					Name:        "prefix-list-direction",
+					Description: `'both': both; 'receive': receive; 'send': send;`,
+				},
+				resource.Attribute{
+					Name:        "default-originate",
+					Description: `Originate default route to this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "route-map",
+					Description: `Route-map to specify criteria to originate default (route-map name)`,
+				},
+				resource.Attribute{
+					Name:        "distribute-list",
+					Description: `Filter updates to/from this neighbor (IP standard/extended/named access list)`,
+				},
+				resource.Attribute{
+					Name:        "distribute-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "filter-list",
+					Description: `Establish BGP filters (AS path access-list name)`,
+				},
+				resource.Attribute{
+					Name:        "filter-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "maximum-prefix",
+					Description: `Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))`,
+				},
+				resource.Attribute{
+					Name:        "maximum-prefix-thres",
+					Description: `threshold-value, 1 to 100 percent`,
+				},
+				resource.Attribute{
+					Name:        "next-hop-self",
+					Description: `Disable the next hop calculation for this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "nbr-prefix-list",
+					Description: `Filter updates to/from this neighbor (Name of a prefix list)`,
+				},
+				resource.Attribute{
+					Name:        "nbr-prefix-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "remove-private-as",
+					Description: `Remove private AS number from outbound updates`,
+				},
+				resource.Attribute{
+					Name:        "nbr-route-map",
+					Description: `Apply route map to neighbor (Name of route map)`,
+				},
+				resource.Attribute{
+					Name:        "nbr-rmap-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "send-community-val",
+					Description: `'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;`,
+				},
+				resource.Attribute{
+					Name:        "inbound",
+					Description: `Allow inbound soft reconfiguration for this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "unsuppress-map",
+					Description: `Route-map to selectively unsuppress suppressed routes (Name of route map)`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Set default weight for routes from this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_bgp_address_family_ipv6_neighbor_trunk_neighbor_ipv6",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router bgp address family ipv6 neighbor trunk neighbor ipv6 resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "trunk-neighbor-ipv6",
+					Description: `Specify a trunk unnumbered neighbor`,
+				},
+				resource.Attribute{
+					Name:        "trunk",
+					Description: `Trunk interface number`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_bgp_address_family_ipv6_neighbor_ve_neighbor_ipv6",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router bgp address family ipv6 neighbor ve neighbor ipv6 resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ve-neighbor-ipv6",
+					Description: `Specify a VE unnumbered neighbor`,
+				},
+				resource.Attribute{
+					Name:        "ve",
+					Description: `Virtual ethernet interface number`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_bgp_address_family_ipv6_network_ipv6_network",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router bgp address family ipv6 network ipv6 network resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ipv6-network",
+					Description: `Specify a ip address mask network to announce via BGP`,
+				},
+				resource.Attribute{
+					Name:        "network-ipv6",
+					Description: `Specify a network to announce via BGP`,
+				},
+				resource.Attribute{
+					Name:        "route-map",
+					Description: `Route-map to modify the attributes (Name of the route map)`,
+				},
+				resource.Attribute{
+					Name:        "backdoor",
+					Description: `Specify a BGP backdoor route`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Network specific description (Up to 80 characters describing this network)`,
+				},
+				resource.Attribute{
+					Name:        "comm-value",
+					Description: `community value in the format 1-4294967295|AA:NN|internet|local-AS|no-advertise|no-export`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_bgp_address_family_ipv6_network_synchronization",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router bgp address family ipv6 network synchronization resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "synchronization",
+					Description: `help Perform IGP synchronization`,
+				},
+				resource.Attribute{
+					Name:        "network-synchronization",
+					Description: `Perform IGP synchronization`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_bgp_address_family_ipv6_redistribute",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router bgp address family ipv6 redistribute resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "redistribute",
+					Description: `Redistribute information from another routing protocol`,
+				},
+				resource.Attribute{
+					Name:        "connected",
+					Description: `Connected`,
+				},
+				resource.Attribute{
+					Name:        "route-map",
+					Description: `Route map reference (Pointer to route-map entries)`,
+				},
+				resource.Attribute{
+					Name:        "floating-ip",
+					Description: `Floating IP`,
+				},
+				resource.Attribute{
+					Name:        "nat64",
+					Description: `NAT64 Prefix`,
+				},
+				resource.Attribute{
+					Name:        "nat-map",
+					Description: `NAT MAP Prefix`,
+				},
+				resource.Attribute{
+					Name:        "lw4o6",
+					Description: `LW4O6 Prefix`,
+				},
+				resource.Attribute{
+					Name:        "static-nat",
+					Description: `Static NAT Prefix`,
+				},
+				resource.Attribute{
+					Name:        "ip-nat",
+					Description: `IP NAT`,
+				},
+				resource.Attribute{
+					Name:        "ip-nat-list",
+					Description: `IP NAT list`,
+				},
+				resource.Attribute{
+					Name:        "isis",
+					Description: `ISO IS-IS`,
+				},
+				resource.Attribute{
+					Name:        "ospf",
+					Description: `Open Shortest Path First (OSPF)`,
+				},
+				resource.Attribute{
+					Name:        "rip",
+					Description: `Routing Information Protocol (RIP)`,
+				},
+				resource.Attribute{
+					Name:        "static",
+					Description: `Static routes`,
+				},
+				resource.Attribute{
+					Name:        "only-flagged",
+					Description: `Selected Virtual IP (VIP)`,
+				},
+				resource.Attribute{
+					Name:        "only-not-flagged",
+					Description: `Only not flagged`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_bgp_neighbor_ethernet_neighbor",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router bgp neighbor ethernet neighbor resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ethernet-neighbor",
+					Description: `Specify an ethernet unnumbered neighbor`,
+				},
+				resource.Attribute{
+					Name:        "ethernet",
+					Description: `Ethernet interface number`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_bgp_neighbor_ipv4_neighbor",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router bgp neighbor ipv4 neighbor resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ipv4-neighbor",
+					Description: `Specify a ipv4 neighbor router`,
+				},
+				resource.Attribute{
+					Name:        "neighbor-ipv4",
+					Description: `Neighbor address`,
+				},
+				resource.Attribute{
+					Name:        "nbr-remote-as",
+					Description: `Specify AS number of BGP neighbor`,
+				},
+				resource.Attribute{
+					Name:        "peer-group-name",
+					Description: `Configure peer-group (peer-group name)`,
+				},
+				resource.Attribute{
+					Name:        "activate",
+					Description: `Enable the Address Family for this Neighbor`,
+				},
+				resource.Attribute{
+					Name:        "advertisement-interval",
+					Description: `Minimum interval between sending BGP routing updates (time in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "allowas-in",
+					Description: `Accept as-path with my AS present in it`,
+				},
+				resource.Attribute{
+					Name:        "allowas-in-count",
+					Description: `Number of occurrences of AS number`,
+				},
+				resource.Attribute{
+					Name:        "as-origination-interval",
+					Description: `Minimum interval between sending AS-origination routing updates (time in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "dynamic",
+					Description: `Advertise dynamic capability to this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "prefix-list-direction",
+					Description: `'both': both; 'receive': receive; 'send': send;`,
+				},
+				resource.Attribute{
+					Name:        "route-refresh",
+					Description: `Advertise route-refresh capability to this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "graceful-restart",
+					Description: `enable graceful-restart helper for this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "collide-established",
+					Description: `Include Neighbor in Established State for Collision Detection`,
+				},
+				resource.Attribute{
+					Name:        "default-originate",
+					Description: `Originate default route to this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "route-map",
+					Description: `Route-map to specify criteria to originate default (route-map name)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Neighbor specific description (Up to 80 characters describing this neighbor)`,
+				},
+				resource.Attribute{
+					Name:        "disallow-infinite-holdtime",
+					Description: `BGP per neighbor disallow-infinite-holdtime`,
+				},
+				resource.Attribute{
+					Name:        "distribute-list",
+					Description: `Filter updates to/from this neighbor (IP standard/extended/named access list)`,
+				},
+				resource.Attribute{
+					Name:        "distribute-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "acos-application-only",
+					Description: `Send BGP update to ACOS application`,
+				},
+				resource.Attribute{
+					Name:        "dont-capability-negotiate",
+					Description: `Do not perform capability negotiation`,
+				},
+				resource.Attribute{
+					Name:        "ebgp-multihop",
+					Description: `Allow EBGP neighbors not on directly connected networks`,
+				},
+				resource.Attribute{
+					Name:        "ebgp-multihop-hop-count",
+					Description: `maximum hop count`,
+				},
+				resource.Attribute{
+					Name:        "enforce-multihop",
+					Description: `Enforce EBGP neighbors to perform multihop`,
+				},
+				resource.Attribute{
+					Name:        "bfd",
+					Description: `Bidirectional Forwarding Detection (BFD)`,
+				},
+				resource.Attribute{
+					Name:        "multihop",
+					Description: `Enable multihop`,
+				},
+				resource.Attribute{
+					Name:        "key-id",
+					Description: `Key ID`,
+				},
+				resource.Attribute{
+					Name:        "key-type",
+					Description: `'md5': md5; 'meticulous-md5': meticulous-md5; 'meticulous-sha1': meticulous-sha1; 'sha1': sha1; 'simple': simple; (Keyed MD5/Meticulous Keyed MD5/Meticulous Keyed SHA1/Keyed SHA1/Simple Password)`,
+				},
+				resource.Attribute{
+					Name:        "bfd-value",
+					Description: `Key String`,
+				},
+				resource.Attribute{
+					Name:        "bfd-encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED password string)`,
+				},
+				resource.Attribute{
+					Name:        "filter-list",
+					Description: `Establish BGP filters (AS path access-list name)`,
+				},
+				resource.Attribute{
+					Name:        "filter-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "maximum-prefix",
+					Description: `Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))`,
+				},
+				resource.Attribute{
+					Name:        "maximum-prefix-thres",
+					Description: `threshold-value, 1 to 100 percent`,
+				},
+				resource.Attribute{
+					Name:        "next-hop-self",
+					Description: `Disable the next hop calculation for this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "override-capability",
+					Description: `Override capability negotiation result`,
+				},
+				resource.Attribute{
+					Name:        "pass-value",
+					Description: `Key String`,
+				},
+				resource.Attribute{
+					Name:        "passive",
+					Description: `Don't send open messages to this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "nbr-prefix-list",
+					Description: `Filter updates to/from this neighbor (Name of a prefix list)`,
+				},
+				resource.Attribute{
+					Name:        "nbr-prefix-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "remove-private-as",
+					Description: `Remove private AS number from outbound updates`,
+				},
+				resource.Attribute{
+					Name:        "nbr-route-map",
+					Description: `Apply route map to neighbor (Name of route map)`,
+				},
+				resource.Attribute{
+					Name:        "nbr-rmap-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "send-community-val",
+					Description: `'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;`,
+				},
+				resource.Attribute{
+					Name:        "inbound",
+					Description: `Allow inbound soft reconfiguration for this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "shutdown",
+					Description: `Administratively shut down this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "strict-capability-match",
+					Description: `Strict capability negotiation match`,
+				},
+				resource.Attribute{
+					Name:        "timers-keepalive",
+					Description: `Keepalive interval`,
+				},
+				resource.Attribute{
+					Name:        "timers-holdtime",
+					Description: `Holdtime`,
+				},
+				resource.Attribute{
+					Name:        "connect",
+					Description: `BGP connect timer`,
+				},
+				resource.Attribute{
+					Name:        "unsuppress-map",
+					Description: `Route-map to selectively unsuppress suppressed routes (Name of route map)`,
+				},
+				resource.Attribute{
+					Name:        "update-source-ip",
+					Description: `IP address`,
+				},
+				resource.Attribute{
+					Name:        "update-source-ipv6",
+					Description: `IPv6 address`,
+				},
+				resource.Attribute{
+					Name:        "ethernet",
+					Description: `Ethernet interface (Port number)`,
+				},
+				resource.Attribute{
+					Name:        "loopback",
+					Description: `Loopback interface (Port number)`,
+				},
+				resource.Attribute{
+					Name:        "ve",
+					Description: `Virtual ethernet interface (Virtual ethernet interface number)`,
+				},
+				resource.Attribute{
+					Name:        "trunk",
+					Description: `Trunk interface (Trunk interface number)`,
+				},
+				resource.Attribute{
+					Name:        "lif",
+					Description: `Logical interface (Lif interface number)`,
+				},
+				resource.Attribute{
+					Name:        "tunnel",
+					Description: `Tunnel interface (Tunnel interface number)`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Set default weight for routes from this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_bgp_neighbor_ipv6_neighbor",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router bgp neighbor ipv6 neighbor resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ipv6-neighbor",
+					Description: `Specify a ipv6 neighbor router`,
+				},
+				resource.Attribute{
+					Name:        "neighbor-ipv6",
+					Description: `Neighbor IPv6 address`,
+				},
+				resource.Attribute{
+					Name:        "nbr-remote-as",
+					Description: `Specify AS number of BGP neighbor`,
+				},
+				resource.Attribute{
+					Name:        "peer-group-name",
+					Description: `Configure peer-group (peer-group name)`,
+				},
+				resource.Attribute{
+					Name:        "activate",
+					Description: `Enable the Address Family for this Neighbor`,
+				},
+				resource.Attribute{
+					Name:        "advertisement-interval",
+					Description: `Minimum interval between sending BGP routing updates (time in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "allowas-in",
+					Description: `Accept as-path with my AS present in it`,
+				},
+				resource.Attribute{
+					Name:        "allowas-in-count",
+					Description: `Number of occurrences of AS number`,
+				},
+				resource.Attribute{
+					Name:        "as-origination-interval",
+					Description: `Minimum interval between sending AS-origination routing updates (time in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "dynamic",
+					Description: `Advertise dynamic capability to this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "prefix-list-direction",
+					Description: `'both': both; 'receive': receive; 'send': send;`,
+				},
+				resource.Attribute{
+					Name:        "route-refresh",
+					Description: `Advertise route-refresh capability to this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "graceful-restart",
+					Description: `enable graceful-restart helper for this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "extended-nexthop",
+					Description: `Advertise extended-nexthop capability to this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "collide-established",
+					Description: `Include Neighbor in Established State for Collision Detection`,
+				},
+				resource.Attribute{
+					Name:        "default-originate",
+					Description: `Originate default route to this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "route-map",
+					Description: `Route-map to specify criteria to originate default (route-map name)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Neighbor specific description (Up to 80 characters describing this neighbor)`,
+				},
+				resource.Attribute{
+					Name:        "disallow-infinite-holdtime",
+					Description: `BGP per neighbor disallow-infinite-holdtime`,
+				},
+				resource.Attribute{
+					Name:        "distribute-list",
+					Description: `Filter updates to/from this neighbor (IP standard/extended/named access list)`,
+				},
+				resource.Attribute{
+					Name:        "distribute-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "acos-application-only",
+					Description: `Send BGP update to ACOS application`,
+				},
+				resource.Attribute{
+					Name:        "dont-capability-negotiate",
+					Description: `Do not perform capability negotiation`,
+				},
+				resource.Attribute{
+					Name:        "ebgp-multihop",
+					Description: `Allow EBGP neighbors not on directly connected networks`,
+				},
+				resource.Attribute{
+					Name:        "ebgp-multihop-hop-count",
+					Description: `maximum hop count`,
+				},
+				resource.Attribute{
+					Name:        "enforce-multihop",
+					Description: `Enforce EBGP neighbors to perform multihop`,
+				},
+				resource.Attribute{
+					Name:        "bfd",
+					Description: `Bidirectional Forwarding Detection (BFD)`,
+				},
+				resource.Attribute{
+					Name:        "multihop",
+					Description: `Enable multihop`,
+				},
+				resource.Attribute{
+					Name:        "key-id",
+					Description: `Key ID`,
+				},
+				resource.Attribute{
+					Name:        "key-type",
+					Description: `'md5': md5; 'meticulous-md5': meticulous-md5; 'meticulous-sha1': meticulous-sha1; 'sha1': sha1; 'simple': simple; (Keyed MD5/Meticulous Keyed MD5/Meticulous Keyed SHA1/Keyed SHA1/Simple Password)`,
+				},
+				resource.Attribute{
+					Name:        "bfd-value",
+					Description: `Key String`,
+				},
+				resource.Attribute{
+					Name:        "bfd-encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED password string)`,
+				},
+				resource.Attribute{
+					Name:        "filter-list",
+					Description: `Establish BGP filters (AS path access-list name)`,
+				},
+				resource.Attribute{
+					Name:        "filter-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "maximum-prefix",
+					Description: `Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))`,
+				},
+				resource.Attribute{
+					Name:        "maximum-prefix-thres",
+					Description: `threshold-value, 1 to 100 percent`,
+				},
+				resource.Attribute{
+					Name:        "next-hop-self",
+					Description: `Disable the next hop calculation for this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "override-capability",
+					Description: `Override capability negotiation result`,
+				},
+				resource.Attribute{
+					Name:        "pass-value",
+					Description: `Key String`,
+				},
+				resource.Attribute{
+					Name:        "passive",
+					Description: `Don't send open messages to this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "nbr-prefix-list",
+					Description: `Filter updates to/from this neighbor (Name of a prefix list)`,
+				},
+				resource.Attribute{
+					Name:        "nbr-prefix-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "remove-private-as",
+					Description: `Remove private AS number from outbound updates`,
+				},
+				resource.Attribute{
+					Name:        "nbr-route-map",
+					Description: `Apply route map to neighbor (Name of route map)`,
+				},
+				resource.Attribute{
+					Name:        "nbr-rmap-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "send-community-val",
+					Description: `'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;`,
+				},
+				resource.Attribute{
+					Name:        "inbound",
+					Description: `Allow inbound soft reconfiguration for this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "shutdown",
+					Description: `Administratively shut down this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "strict-capability-match",
+					Description: `Strict capability negotiation match`,
+				},
+				resource.Attribute{
+					Name:        "timers-keepalive",
+					Description: `Keepalive interval`,
+				},
+				resource.Attribute{
+					Name:        "timers-holdtime",
+					Description: `Holdtime`,
+				},
+				resource.Attribute{
+					Name:        "connect",
+					Description: `BGP connect timer`,
+				},
+				resource.Attribute{
+					Name:        "unsuppress-map",
+					Description: `Route-map to selectively unsuppress suppressed routes (Name of route map)`,
+				},
+				resource.Attribute{
+					Name:        "update-source-ip",
+					Description: `IP address`,
+				},
+				resource.Attribute{
+					Name:        "update-source-ipv6",
+					Description: `IPv6 address`,
+				},
+				resource.Attribute{
+					Name:        "ethernet",
+					Description: `Ethernet interface (Port number)`,
+				},
+				resource.Attribute{
+					Name:        "loopback",
+					Description: `Loopback interface (Port number)`,
+				},
+				resource.Attribute{
+					Name:        "ve",
+					Description: `Virtual ethernet interface (Virtual ethernet interface number)`,
+				},
+				resource.Attribute{
+					Name:        "trunk",
+					Description: `Trunk interface (Trunk interface number)`,
+				},
+				resource.Attribute{
+					Name:        "lif",
+					Description: `Logical interface (Lif interface number)`,
+				},
+				resource.Attribute{
+					Name:        "tunnel",
+					Description: `Tunnel interface (Tunnel interface number)`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Set default weight for routes from this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_bgp_neighbor_peer_group_neighbor",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router bgp neighbor peer group neighbor resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "peer-group-neighbor",
+					Description: `Specify a peer-group neighbor router`,
+				},
+				resource.Attribute{
+					Name:        "peer-group",
+					Description: `Neighbor tag`,
+				},
+				resource.Attribute{
+					Name:        "peer-group-key",
+					Description: `Configure peer-group`,
+				},
+				resource.Attribute{
+					Name:        "peer-group-remote-as",
+					Description: `Specify AS number of BGP neighbor`,
+				},
+				resource.Attribute{
+					Name:        "activate",
+					Description: `Enable the Address Family for this Neighbor`,
+				},
+				resource.Attribute{
+					Name:        "advertisement-interval",
+					Description: `Minimum interval between sending BGP routing updates (time in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "allowas-in",
+					Description: `Accept as-path with my AS present in it`,
+				},
+				resource.Attribute{
+					Name:        "allowas-in-count",
+					Description: `Number of occurrences of AS number`,
+				},
+				resource.Attribute{
+					Name:        "as-origination-interval",
+					Description: `Minimum interval between sending AS-origination routing updates (time in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "dynamic",
+					Description: `Advertise dynamic capability to this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "prefix-list-direction",
+					Description: `'both': both; 'receive': receive; 'send': send;`,
+				},
+				resource.Attribute{
+					Name:        "route-refresh",
+					Description: `Advertise route-refresh capability to this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "extended-nexthop",
+					Description: `Advertise extended-nexthop capability to this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "collide-established",
+					Description: `Include Neighbor in Established State for Collision Detection`,
+				},
+				resource.Attribute{
+					Name:        "default-originate",
+					Description: `Originate default route to this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "route-map",
+					Description: `Route-map to specify criteria to originate default (route-map name)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Neighbor specific description (Up to 80 characters describing this neighbor)`,
+				},
+				resource.Attribute{
+					Name:        "disallow-infinite-holdtime",
+					Description: `BGP per neighbor disallow-infinite-holdtime`,
+				},
+				resource.Attribute{
+					Name:        "distribute-list",
+					Description: `Filter updates to/from this neighbor (IP standard/extended/named access list)`,
+				},
+				resource.Attribute{
+					Name:        "distribute-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "dont-capability-negotiate",
+					Description: `Do not perform capability negotiation`,
+				},
+				resource.Attribute{
+					Name:        "ebgp-multihop",
+					Description: `Allow EBGP neighbors not on directly connected networks`,
+				},
+				resource.Attribute{
+					Name:        "ebgp-multihop-hop-count",
+					Description: `maximum hop count`,
+				},
+				resource.Attribute{
+					Name:        "enforce-multihop",
+					Description: `Enforce EBGP neighbors to perform multihop`,
+				},
+				resource.Attribute{
+					Name:        "bfd",
+					Description: `Bidirectional Forwarding Detection (BFD)`,
+				},
+				resource.Attribute{
+					Name:        "multihop",
+					Description: `Enable multihop`,
+				},
+				resource.Attribute{
+					Name:        "filter-list",
+					Description: `Establish BGP filters (AS path access-list name)`,
+				},
+				resource.Attribute{
+					Name:        "filter-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "maximum-prefix",
+					Description: `Maximum number of prefix accept from this peer (maximum no. of prefix limit (various depends on model))`,
+				},
+				resource.Attribute{
+					Name:        "maximum-prefix-thres",
+					Description: `threshold-value, 1 to 100 percent`,
+				},
+				resource.Attribute{
+					Name:        "next-hop-self",
+					Description: `Disable the next hop calculation for this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "override-capability",
+					Description: `Override capability negotiation result`,
+				},
+				resource.Attribute{
+					Name:        "pass-value",
+					Description: `Key String`,
+				},
+				resource.Attribute{
+					Name:        "passive",
+					Description: `Don't send open messages to this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "nbr-prefix-list",
+					Description: `Filter updates to/from this neighbor (Name of a prefix list)`,
+				},
+				resource.Attribute{
+					Name:        "nbr-prefix-list-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "remove-private-as",
+					Description: `Remove private AS number from outbound updates`,
+				},
+				resource.Attribute{
+					Name:        "nbr-route-map",
+					Description: `Apply route map to neighbor (Name of route map)`,
+				},
+				resource.Attribute{
+					Name:        "nbr-rmap-direction",
+					Description: `'in': in; 'out': out;`,
+				},
+				resource.Attribute{
+					Name:        "send-community-val",
+					Description: `'both': Send Standard and Extended Community attributes; 'none': Disable Sending Community attributes; 'standard': Send Standard Community attributes; 'extended': Send Extended Community attributes;`,
+				},
+				resource.Attribute{
+					Name:        "inbound",
+					Description: `Allow inbound soft reconfiguration for this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "shutdown",
+					Description: `Administratively shut down this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "strict-capability-match",
+					Description: `Strict capability negotiation match`,
+				},
+				resource.Attribute{
+					Name:        "timers-keepalive",
+					Description: `Keepalive interval`,
+				},
+				resource.Attribute{
+					Name:        "timers-holdtime",
+					Description: `Holdtime`,
+				},
+				resource.Attribute{
+					Name:        "connect",
+					Description: `BGP connect timer`,
+				},
+				resource.Attribute{
+					Name:        "unsuppress-map",
+					Description: `Route-map to selectively unsuppress suppressed routes (Name of route map)`,
+				},
+				resource.Attribute{
+					Name:        "update-source-ip",
+					Description: `IP address`,
+				},
+				resource.Attribute{
+					Name:        "update-source-ipv6",
+					Description: `IPv6 address`,
+				},
+				resource.Attribute{
+					Name:        "ethernet",
+					Description: `Ethernet interface (Port number)`,
+				},
+				resource.Attribute{
+					Name:        "loopback",
+					Description: `Loopback interface (Port number)`,
+				},
+				resource.Attribute{
+					Name:        "ve",
+					Description: `Virtual ethernet interface (Virtual ethernet interface number)`,
+				},
+				resource.Attribute{
+					Name:        "trunk",
+					Description: `Trunk interface (Trunk interface number)`,
+				},
+				resource.Attribute{
+					Name:        "lif",
+					Description: `Logical interface (Lif interface number)`,
+				},
+				resource.Attribute{
+					Name:        "tunnel",
+					Description: `Tunnel interface (Tunnel interface number)`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Set default weight for routes from this neighbor`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_bgp_neighbor_trunk_neighbor",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router bgp neighbor trunk neighbor resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "trunk-neighbor",
+					Description: `Specify a trunk unnumbered neighbor`,
+				},
+				resource.Attribute{
+					Name:        "trunk",
+					Description: `Trunk interface number`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_bgp_neighbor_ve_neighbor",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router bgp neighbor ve neighbor resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ve-neighbor",
+					Description: `Specify a VE unnumbered neighbor`,
+				},
+				resource.Attribute{
+					Name:        "ve",
+					Description: `Virtual ethernet interface number`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_bgp_network_ip_cidr",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router bgp network ip cidr resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ip-cidr",
+					Description: `Specify a ip network to announce via BGP`,
+				},
+				resource.Attribute{
+					Name:        "network-ipv4-cidr",
+					Description: `Specify network mask`,
+				},
+				resource.Attribute{
+					Name:        "route-map",
+					Description: `Route-map to modify the attributes (Name of the route map)`,
+				},
+				resource.Attribute{
+					Name:        "backdoor",
+					Description: `Specify a BGP backdoor route`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Network specific description (Up to 80 characters describing this network)`,
+				},
+				resource.Attribute{
+					Name:        "comm-value",
+					Description: `community value in the format 1-4294967295|AA:NN|internet|local-AS|no-advertise|no-export`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_bgp_network_synchronization",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router bgp network synchronization resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "synchronization",
+					Description: `help Perform IGP synchronization`,
+				},
+				resource.Attribute{
+					Name:        "network-synchronization",
+					Description: `Perform IGP synchronization`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_bgp_redistribute",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router bgp redistribute resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "redistribute",
+					Description: `Redistribute information from another routing protocol`,
+				},
+				resource.Attribute{
+					Name:        "connected",
+					Description: `Connected`,
+				},
+				resource.Attribute{
+					Name:        "route-map",
+					Description: `Route map reference (Pointer to route-map entries)`,
+				},
+				resource.Attribute{
+					Name:        "floating-ip",
+					Description: `Floating IP`,
+				},
+				resource.Attribute{
+					Name:        "lw4o6",
+					Description: `LW4O6 Prefix`,
+				},
+				resource.Attribute{
+					Name:        "static-nat",
+					Description: `Static NAT Prefix`,
+				},
+				resource.Attribute{
+					Name:        "ip-nat",
+					Description: `IP NAT`,
+				},
+				resource.Attribute{
+					Name:        "ip-nat-list",
+					Description: `IP NAT list`,
+				},
+				resource.Attribute{
+					Name:        "isis",
+					Description: `ISO IS-IS`,
+				},
+				resource.Attribute{
+					Name:        "ospf",
+					Description: `Open Shortest Path First (OSPF)`,
+				},
+				resource.Attribute{
+					Name:        "rip",
+					Description: `Routing Information Protocol (RIP)`,
+				},
+				resource.Attribute{
+					Name:        "static",
+					Description: `Static routes`,
+				},
+				resource.Attribute{
+					Name:        "nat-map",
+					Description: `NAT MAP Prefix`,
+				},
+				resource.Attribute{
+					Name:        "only-flagged",
+					Description: `Selected Virtual IP (VIP)`,
+				},
+				resource.Attribute{
+					Name:        "only-not-flagged",
+					Description: `Only not flagged`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_ospf",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router ospf resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ospf",
+					Description: `Open Shortest Path First (OSPF)`,
+				},
+				resource.Attribute{
+					Name:        "process-id",
+					Description: `OSPF process ID`,
+				},
+				resource.Attribute{
+					Name:        "auto-cost-reference-bandwidth",
+					Description: `Use reference bandwidth method to assign OSPF cost (The reference bandwidth in terms of Mbits per second)`,
+				},
+				resource.Attribute{
+					Name:        "bfd-all-interfaces",
+					Description: `Enable BFD on all interfaces`,
+				},
+				resource.Attribute{
+					Name:        "rfc1583-compatible",
+					Description: `Compatible with RFC 1583`,
+				},
+				resource.Attribute{
+					Name:        "default-metric",
+					Description: `Set metric of redistributed routes (Default metric)`,
+				},
+				resource.Attribute{
+					Name:        "distance-value",
+					Description: `OSPF Administrative distance`,
+				},
+				resource.Attribute{
+					Name:        "distance-external",
+					Description: `External routes (Distance for external routes)`,
+				},
+				resource.Attribute{
+					Name:        "distance-inter-area",
+					Description: `Inter-area routes (Distance for inter-area routes)`,
+				},
+				resource.Attribute{
+					Name:        "distance-intra-area",
+					Description: `Intra-area routes (Distance for intra-area routes)`,
+				},
+				resource.Attribute{
+					Name:        "di-type",
+					Description: `'lw4o6': LW4O6 Prefix; 'floating-ip': Floating IP; 'ip-nat': IP NAT; 'ip-nat-list': IP NAT list; 'static-nat': Static NAT; 'vip': Only not flagged Virtual IP (VIP); 'vip-only-flagged': Selected Virtual IP (VIP);`,
+				},
+				resource.Attribute{
+					Name:        "di-area-ipv4",
+					Description: `OSPF area ID as a IP address format`,
+				},
+				resource.Attribute{
+					Name:        "di-area-num",
+					Description: `OSPF area ID as a decimal value`,
+				},
+				resource.Attribute{
+					Name:        "di-cost",
+					Description: `Cost of route`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `OSPF router-id in IPv4 address format`,
+				},
+				resource.Attribute{
+					Name:        "direction",
+					Description: `'in': Filter incoming routing updates; 'out': Filter outgoing routing updates;`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `'bgp': Border Gateway Protocol (BGP); 'connected': Connected; 'floating-ip': Floating IP; 'lw4o6': LW4O6 Prefix; 'ip-nat': IP NAT; 'ip-nat-list': IP NAT list; 'static-nat': Static NAT; 'isis': ISO IS-IS; 'ospf': Open Shortest Path First (OSPF); 'rip': Routing Information Protocol (RIP); 'static': Static routes;`,
+				},
+				resource.Attribute{
+					Name:        "ospf-id",
+					Description: `OSPF process ID`,
+				},
+				resource.Attribute{
+					Name:        "option",
+					Description: `'advertise': Advertise this range (default); 'not-advertise': DoNotAdvertise this range;`,
+				},
+				resource.Attribute{
+					Name:        "extra-cost",
+					Description: `The extra cost value`,
+				},
+				resource.Attribute{
+					Name:        "group",
+					Description: `Group (Group ID)`,
+				},
+				resource.Attribute{
+					Name:        "host-address",
+					Description: `Host address`,
+				},
+				resource.Attribute{
+					Name:        "area-ipv4",
+					Description: `OSPF area ID in IP address format`,
+				},
+				resource.Attribute{
+					Name:        "area-num",
+					Description: `OSPF area ID as a decimal value`,
+				},
+				resource.Attribute{
+					Name:        "cost",
+					Description: `OSPF cost for point-to-multipoint neighbor (Metric)`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `'detail': Log changes in adjacency state; 'disable': Disable logging;`,
+				},
+				resource.Attribute{
+					Name:        "max-concurrent-dd",
+					Description: `Maximum number allowed to process DD concurrently (Number of DD process)`,
+				},
+				resource.Attribute{
+					Name:        "maximum-area",
+					Description: `Maximum number of non-backbone areas (OSPF area limit)`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `Neighbor address`,
+				},
+				resource.Attribute{
+					Name:        "poll-interval",
+					Description: `OSPF dead-router polling interval (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `OSPF priority of non-broadcast neighbor`,
+				},
+				resource.Attribute{
+					Name:        "network-ipv4",
+					Description: `Network number`,
+				},
+				resource.Attribute{
+					Name:        "network-ipv4-mask",
+					Description: `OSPF wild card bits`,
+				},
+				resource.Attribute{
+					Name:        "network-ipv4-cidr",
+					Description: `OSPF network prefix`,
+				},
+				resource.Attribute{
+					Name:        "network-area-ipv4",
+					Description: `OSPF area ID in IP address format`,
+				},
+				resource.Attribute{
+					Name:        "network-area-num",
+					Description: `OSPF area ID as a decimal value`,
+				},
+				resource.Attribute{
+					Name:        "instance-value",
+					Description: `Instance ID`,
+				},
+				resource.Attribute{
+					Name:        "count",
+					Description: `Maximum number of LSAs`,
+				},
+				resource.Attribute{
+					Name:        "limit",
+					Description: `'hard': Hard limit: Instance will be shutdown if exceeded; 'soft': Soft limit: Warning will be given if exceeded;`,
+				},
+				resource.Attribute{
+					Name:        "db-external",
+					Description: `Maximum number of LSAs`,
+				},
+				resource.Attribute{
+					Name:        "recovery-time",
+					Description: `Time to recover (0 not recover)`,
+				},
+				resource.Attribute{
+					Name:        "loopback",
+					Description: `Loopback interface (Port number)`,
+				},
+				resource.Attribute{
+					Name:        "loopback-address",
+					Description: `Address of Interface`,
+				},
+				resource.Attribute{
+					Name:        "trunk",
+					Description: `Trunk interface (Trunk interface number)`,
+				},
+				resource.Attribute{
+					Name:        "trunk-address",
+					Description: `Address of Interface`,
+				},
+				resource.Attribute{
+					Name:        "ve",
+					Description: `Virtual ethernet interface (Virtual ethernet interface number)`,
+				},
+				resource.Attribute{
+					Name:        "ve-address",
+					Description: `Address of Interface`,
+				},
+				resource.Attribute{
+					Name:        "tunnel",
+					Description: `Tunnel interface (Tunnel interface number)`,
+				},
+				resource.Attribute{
+					Name:        "tunnel-address",
+					Description: `Address of Interface`,
+				},
+				resource.Attribute{
+					Name:        "lif",
+					Description: `Logical interface (Lif interface number)`,
+				},
+				resource.Attribute{
+					Name:        "lif-address",
+					Description: `Address of Interface`,
+				},
+				resource.Attribute{
+					Name:        "ethernet",
+					Description: `Ethernet interface (Port number)`,
+				},
+				resource.Attribute{
+					Name:        "eth-address",
+					Description: `Address of Interface`,
+				},
+				resource.Attribute{
+					Name:        "summary-address",
+					Description: `Configure IP address summaries (Summary prefix)`,
+				},
+				resource.Attribute{
+					Name:        "not-advertise",
+					Description: `Suppress routes that match the prefix`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `Set tag for routes redistributed into OSPF (32-bit tag value)`,
+				},
+				resource.Attribute{
+					Name:        "min-delay",
+					Description: `Minimum delay between receiving a change to SPF calculation in milliseconds`,
+				},
+				resource.Attribute{
+					Name:        "max-delay",
+					Description: `Maximum delay between receiving a change to SPF calculation in milliseconds`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "user-tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "originate",
+					Description: `Distribute a default route`,
+				},
+				resource.Attribute{
+					Name:        "always",
+					Description: `Always advertise default route`,
+				},
+				resource.Attribute{
+					Name:        "metric",
+					Description: `OSPF default metric (OSPF metric)`,
+				},
+				resource.Attribute{
+					Name:        "metric-type",
+					Description: `'1': Set OSPF External Type 1 metrics; '2': Set OSPF External Type 2 metrics;`,
+				},
+				resource.Attribute{
+					Name:        "route-map",
+					Description: `Route map reference (Pointer to route-map entries)`,
+				},
+				resource.Attribute{
+					Name:        "authentication",
+					Description: `Enable authentication`,
+				},
+				resource.Attribute{
+					Name:        "message-digest",
+					Description: `Use message-digest authentication`,
+				},
+				resource.Attribute{
+					Name:        "filter-list",
+					Description: `Filter networks between OSPF areas`,
+				},
+				resource.Attribute{
+					Name:        "acl-name",
+					Description: `Filter networks by access-list (Name of an access-list)`,
+				},
+				resource.Attribute{
+					Name:        "acl-direction",
+					Description: `'in': Filter networks sent to this area; 'out': Filter networks sent from this area;`,
+				},
+				resource.Attribute{
+					Name:        "plist-name",
+					Description: `Filter networks by prefix-list (Name of an IP prefix-list)`,
+				},
+				resource.Attribute{
+					Name:        "plist-direction",
+					Description: `'in': Filter networks sent to this area; 'out': Filter networks sent from this area;`,
+				},
+				resource.Attribute{
+					Name:        "nssa",
+					Description: `Specify a NSSA area`,
+				},
+				resource.Attribute{
+					Name:        "no-redistribution",
+					Description: `No redistribution into this NSSA area`,
+				},
+				resource.Attribute{
+					Name:        "no-summary",
+					Description: `Do not inject inter-area routes into area`,
+				},
+				resource.Attribute{
+					Name:        "translator-role",
+					Description: `'always': Translate always; 'candidate': Candidate for translator (default); 'never': Do not translate;`,
+				},
+				resource.Attribute{
+					Name:        "default-information-originate",
+					Description: `Originate Type 7 default into NSSA area`,
+				},
+				resource.Attribute{
+					Name:        "default-cost",
+					Description: `Set the summary-default cost of a NSSA or stub area (Stub's advertised default summary cost)`,
+				},
+				resource.Attribute{
+					Name:        "area-range-prefix",
+					Description: `Area range for IPv4 prefix`,
+				},
+				resource.Attribute{
+					Name:        "shortcut",
+					Description: `'default': Set default shortcutting behavior; 'disable': Disable shortcutting through the area; 'enable': Enable shortcutting through the area;`,
+				},
+				resource.Attribute{
+					Name:        "stub",
+					Description: `Configure OSPF area as stub`,
+				},
+				resource.Attribute{
+					Name:        "virtual-link-ip-addr",
+					Description: `ID (IP addr) associated with virtual link neighbor`,
+				},
+				resource.Attribute{
+					Name:        "bfd",
+					Description: `Bidirectional Forwarding Detection (BFD)`,
+				},
+				resource.Attribute{
+					Name:        "hello-interval",
+					Description: `Hello packet interval (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "dead-interval",
+					Description: `Dead router detection time (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "retransmit-interval",
+					Description: `LSA retransmit interval (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "transmit-delay",
+					Description: `LSA transmission delay (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "virtual-link-authentication",
+					Description: `Enable authentication`,
+				},
+				resource.Attribute{
+					Name:        "virtual-link-auth-type",
+					Description: `'message-digest': Use message-digest authentication; 'null': Use null authentication;`,
+				},
+				resource.Attribute{
+					Name:        "authentication-key",
+					Description: `Set authentication key (Authentication key (8 chars))`,
+				},
+				resource.Attribute{
+					Name:        "message-digest-key",
+					Description: `Set message digest key (Key ID)`,
+				},
+				resource.Attribute{
+					Name:        "md5",
+					Description: `Use MD5 algorithm (Authentication key (16 chars))`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `'bgp': Border Gateway Protocol (BGP); 'connected': Connected; 'floating-ip': Floating IP; 'ip-nat-list': IP NAT list; 'lw4o6': LW4O6 Prefix; 'nat-map': NAT MAP Prefix; 'static-nat': Static NAT; 'isis': ISO IS-IS; 'rip': Routing Information Protocol (RIP); 'static': Static routes;`,
+				},
+				resource.Attribute{
+					Name:        "metric-ospf",
+					Description: `OSPF default metric (OSPF metric)`,
+				},
+				resource.Attribute{
+					Name:        "metric-type-ospf",
+					Description: `'1': Set OSPF External Type 1 metrics; '2': Set OSPF External Type 2 metrics;`,
+				},
+				resource.Attribute{
+					Name:        "route-map-ospf",
+					Description: `Route map reference (Pointer to route-map entries)`,
+				},
+				resource.Attribute{
+					Name:        "tag-ospf",
+					Description: `Set tag for routes redistributed into OSPF (32-bit tag value)`,
+				},
+				resource.Attribute{
+					Name:        "ip-nat",
+					Description: `IP-NAT`,
+				},
+				resource.Attribute{
+					Name:        "metric-ip-nat",
+					Description: `OSPF default metric (OSPF metric)`,
+				},
+				resource.Attribute{
+					Name:        "metric-type-ip-nat",
+					Description: `'1': Set OSPF External Type 1 metrics; '2': Set OSPF External Type 2 metrics;`,
+				},
+				resource.Attribute{
+					Name:        "route-map-ip-nat",
+					Description: `Route map reference (Pointer to route-map entries)`,
+				},
+				resource.Attribute{
+					Name:        "tag-ip-nat",
+					Description: `Set tag for routes redistributed into OSPF (32-bit tag value)`,
+				},
+				resource.Attribute{
+					Name:        "ip-nat-prefix",
+					Description: `Address`,
+				},
+				resource.Attribute{
+					Name:        "ip-nat-floating-IP-forward",
+					Description: `Floating-IP as forward address`,
+				},
+				resource.Attribute{
+					Name:        "type-vip",
+					Description: `'only-flagged': Selected Virtual IP (VIP); 'only-not-flagged': Only not flagged;`,
+				},
+				resource.Attribute{
+					Name:        "metric-vip",
+					Description: `OSPF default metric (OSPF metric)`,
+				},
+				resource.Attribute{
+					Name:        "metric-type-vip",
+					Description: `'1': Set OSPF External Type 1 metrics; '2': Set OSPF External Type 2 metrics;`,
+				},
+				resource.Attribute{
+					Name:        "route-map-vip",
+					Description: `Route map reference (Pointer to route-map entries)`,
+				},
+				resource.Attribute{
+					Name:        "tag-vip",
+					Description: `Set tag for routes redistributed into OSPF (32-bit tag value)`,
+				},
+				resource.Attribute{
+					Name:        "vip-address",
+					Description: `Address`,
+				},
+				resource.Attribute{
+					Name:        "vip-floating-IP-forward",
+					Description: `Floating-IP as forward address`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_ospf_area",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router ospf area resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "area",
+					Description: `OSPF area parameters`,
+				},
+				resource.Attribute{
+					Name:        "area-ipv4",
+					Description: `OSPF area ID in IP address format`,
+				},
+				resource.Attribute{
+					Name:        "area-num",
+					Description: `OSPF area ID as a decimal value`,
+				},
+				resource.Attribute{
+					Name:        "authentication",
+					Description: `Enable authentication`,
+				},
+				resource.Attribute{
+					Name:        "message-digest",
+					Description: `Use message-digest authentication`,
+				},
+				resource.Attribute{
+					Name:        "filter-list",
+					Description: `Filter networks between OSPF areas`,
+				},
+				resource.Attribute{
+					Name:        "acl-name",
+					Description: `Filter networks by access-list (Name of an access-list)`,
+				},
+				resource.Attribute{
+					Name:        "acl-direction",
+					Description: `'in': Filter networks sent to this area; 'out': Filter networks sent from this area;`,
+				},
+				resource.Attribute{
+					Name:        "plist-name",
+					Description: `Filter networks by prefix-list (Name of an IP prefix-list)`,
+				},
+				resource.Attribute{
+					Name:        "plist-direction",
+					Description: `'in': Filter networks sent to this area; 'out': Filter networks sent from this area;`,
+				},
+				resource.Attribute{
+					Name:        "nssa",
+					Description: `Specify a NSSA area`,
+				},
+				resource.Attribute{
+					Name:        "no-redistribution",
+					Description: `No redistribution into this NSSA area`,
+				},
+				resource.Attribute{
+					Name:        "no-summary",
+					Description: `Do not inject inter-area routes into area`,
+				},
+				resource.Attribute{
+					Name:        "translator-role",
+					Description: `'always': Translate always; 'candidate': Candidate for translator (default); 'never': Do not translate;`,
+				},
+				resource.Attribute{
+					Name:        "default-information-originate",
+					Description: `Originate Type 7 default into NSSA area`,
+				},
+				resource.Attribute{
+					Name:        "metric",
+					Description: `OSPF default metric (OSPF metric)`,
+				},
+				resource.Attribute{
+					Name:        "metric-type",
+					Description: `OSPF metric type (OSPF metric type for default routes)`,
+				},
+				resource.Attribute{
+					Name:        "default-cost",
+					Description: `Set the summary-default cost of a NSSA or stub area (Stub's advertised default summary cost)`,
+				},
+				resource.Attribute{
+					Name:        "area-range-prefix",
+					Description: `Area range for IPv4 prefix`,
+				},
+				resource.Attribute{
+					Name:        "option",
+					Description: `'advertise': Advertise this range (default); 'not-advertise': DoNotAdvertise this range;`,
+				},
+				resource.Attribute{
+					Name:        "shortcut",
+					Description: `'default': Set default shortcutting behavior; 'disable': Disable shortcutting through the area; 'enable': Enable shortcutting through the area;`,
+				},
+				resource.Attribute{
+					Name:        "stub",
+					Description: `Configure OSPF area as stub`,
+				},
+				resource.Attribute{
+					Name:        "virtual-link-ip-addr",
+					Description: `ID (IP addr) associated with virtual link neighbor`,
+				},
+				resource.Attribute{
+					Name:        "bfd",
+					Description: `Bidirectional Forwarding Detection (BFD)`,
+				},
+				resource.Attribute{
+					Name:        "hello-interval",
+					Description: `Hello packet interval (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "dead-interval",
+					Description: `Dead router detection time (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "retransmit-interval",
+					Description: `LSA retransmit interval (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "transmit-delay",
+					Description: `LSA transmission delay (Seconds)`,
+				},
+				resource.Attribute{
+					Name:        "virtual-link-authentication",
+					Description: `Enable authentication`,
+				},
+				resource.Attribute{
+					Name:        "virtual-link-auth-type",
+					Description: `'message-digest': Use message-digest authentication; 'null': Use null authentication;`,
+				},
+				resource.Attribute{
+					Name:        "authentication-key",
+					Description: `Set authentication key (Authentication key (8 chars))`,
+				},
+				resource.Attribute{
+					Name:        "message-digest-key",
+					Description: `Set message digest key (Key ID)`,
+				},
+				resource.Attribute{
+					Name:        "md5",
+					Description: `Use MD5 algorithm (Authentication key (16 chars))`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_ospf_default_information",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router ospf default information resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "default-information",
+					Description: `Control distribution of default information`,
+				},
+				resource.Attribute{
+					Name:        "originate",
+					Description: `Distribute a default route`,
+				},
+				resource.Attribute{
+					Name:        "always",
+					Description: `Always advertise default route`,
+				},
+				resource.Attribute{
+					Name:        "metric",
+					Description: `OSPF default metric (OSPF metric)`,
+				},
+				resource.Attribute{
+					Name:        "metric-type",
+					Description: `OSPF metric type for default routes`,
+				},
+				resource.Attribute{
+					Name:        "route-map",
+					Description: `Route map reference (Pointer to route-map entries)`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_router_ospf_redistribute",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder router ospf redistribute resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "redistribute",
+					Description: `Redistribute information from another routing protocol`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `'bgp': Border Gateway Protocol (BGP); 'connected': Connected; 'floating-ip': Floating IP; 'ip-nat-list': IP NAT list; 'lw4o6': LW4O6 Prefix; 'nat-map': NAT MAP Prefix; 'static-nat': Static NAT; 'isis': ISO IS-IS; 'rip': Routing Information Protocol (RIP); 'static': Static routes;`,
+				},
+				resource.Attribute{
+					Name:        "metric",
+					Description: `OSPF default metric (OSPF metric)`,
+				},
+				resource.Attribute{
+					Name:        "metric-type",
+					Description: `'1': Set OSPF External Type 1 metrics; '2': Set OSPF External Type 2 metrics;`,
+				},
+				resource.Attribute{
+					Name:        "route-map",
+					Description: `Route map reference (Pointer to route-map entries)`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `Set tag for routes redistributed into OSPF (32-bit tag value)`,
+				},
+				resource.Attribute{
+					Name:        "ospf",
+					Description: `Open Shortest Path First (OSPF)`,
+				},
+				resource.Attribute{
+					Name:        "process-id",
+					Description: `OSPF process ID`,
+				},
+				resource.Attribute{
+					Name:        "metric-ospf",
+					Description: `OSPF default metric (OSPF metric)`,
+				},
+				resource.Attribute{
+					Name:        "metric-type-ospf",
+					Description: `'1': Set OSPF External Type 1 metrics; '2': Set OSPF External Type 2 metrics;`,
+				},
+				resource.Attribute{
+					Name:        "route-map-ospf",
+					Description: `Route map reference (Pointer to route-map entries)`,
+				},
+				resource.Attribute{
+					Name:        "tag-ospf",
+					Description: `Set tag for routes redistributed into OSPF (32-bit tag value)`,
+				},
+				resource.Attribute{
+					Name:        "ip-nat",
+					Description: `IP-NAT`,
+				},
+				resource.Attribute{
+					Name:        "metric-ip-nat",
+					Description: `OSPF default metric (OSPF metric)`,
+				},
+				resource.Attribute{
+					Name:        "metric-type-ip-nat",
+					Description: `'1': Set OSPF External Type 1 metrics; '2': Set OSPF External Type 2 metrics;`,
+				},
+				resource.Attribute{
+					Name:        "route-map-ip-nat",
+					Description: `Route map reference (Pointer to route-map entries)`,
+				},
+				resource.Attribute{
+					Name:        "tag-ip-nat",
+					Description: `Set tag for routes redistributed into OSPF (32-bit tag value)`,
+				},
+				resource.Attribute{
+					Name:        "ip-nat-prefix",
+					Description: `Address`,
+				},
+				resource.Attribute{
+					Name:        "ip-nat-floating-IP-forward",
+					Description: `Floating-IP as forward address`,
+				},
+				resource.Attribute{
+					Name:        "type-vip",
+					Description: `'only-flagged': Selected Virtual IP (VIP); 'only-not-flagged': Only not flagged;`,
+				},
+				resource.Attribute{
+					Name:        "metric-vip",
+					Description: `OSPF default metric (OSPF metric)`,
+				},
+				resource.Attribute{
+					Name:        "metric-type-vip",
+					Description: `'1': Set OSPF External Type 1 metrics; '2': Set OSPF External Type 2 metrics;`,
+				},
+				resource.Attribute{
+					Name:        "route-map-vip",
+					Description: `Route map reference (Pointer to route-map entries)`,
+				},
+				resource.Attribute{
+					Name:        "tag-vip",
+					Description: `Set tag for routes redistributed into OSPF (32-bit tag value)`,
+				},
+				resource.Attribute{
+					Name:        "vip-address",
+					Description: `Address`,
+				},
+				resource.Attribute{
+					Name:        "vip-floating-IP-forward",
+					Description: `Floating-IP as forward address`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_server",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder server resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "action",
+					Description: `‘enable’: enable; ‘disable’: disable; ‘disable-with-health-check’: disable port, but health check work;`,
+				},
+				resource.Attribute{
+					Name:        "conn_limit",
+					Description: `Connection Limit`,
+				},
+				resource.Attribute{
+					Name:        "conn_resume",
+					Description: `Connection Resume`,
+				},
+				resource.Attribute{
+					Name:        "extended_stats",
+					Description: `Enable extended statistics on real server port`,
+				},
+				resource.Attribute{
+					Name:        "external_ip",
+					Description: `External IP address for NAT of GSLB`,
+				},
+				resource.Attribute{
+					Name:        "fqdn_name",
+					Description: `Server hostname`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Health Check (Monitor Name)`,
+				},
+				resource.Attribute{
+					Name:        "health_check_disable",
+					Description: `Disable health check`,
+				},
+				resource.Attribute{
+					Name:        "health_check_shared",
+					Description: `Health Check Monitor (Health monitor name)`,
 				},
 				resource.Attribute{
 					Name:        "host",
-					Description: `Server host IP Address`,
+					Description: `IP Address`,
+				},
+				resource.Attribute{
+					Name:        "ipv6",
+					Description: `IPv6 address Mapping of GSLB`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Server Name`,
+				},
+				resource.Attribute{
+					Name:        "no_logging",
+					Description: `Do not log connection over limit event`,
+				},
+				resource.Attribute{
+					Name:        "resolve_as",
+					Description: `‘resolve-to-ipv4’: Use A Query only to resolve FQDN; ‘resolve-to-ipv6’: Use AAAA Query only to resolve FQDN; ‘resolve-to-ipv4-and-ipv6’: Use A as well as AAAA Query to resolve FQDN;`,
+				},
+				resource.Attribute{
+					Name:        "server_ipv6_addr",
+					Description: `IPV6 address`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_health_check",
+					Description: `Reference a health-check from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "slow_start",
+					Description: `Slowly ramp up the connection number after server is up (start from 128, then double every 10 sec till 4096)`,
+				},
+				resource.Attribute{
+					Name:        "spoofing_cache",
+					Description: `This server is a spoofing cache`,
+				},
+				resource.Attribute{
+					Name:        "stats_data_action",
+					Description: `‘stats-data-enable’: Enable statistical data collection for real server port; ‘stats-data-disable’: Disable statistical data collection for real server port;`,
+				},
+				resource.Attribute{
+					Name:        "template_server",
+					Description: `Server template (Server template name)`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Port Weight (Connection Weight)`,
+				},
+				resource.Attribute{
+					Name:        "follow_port_protocol",
+					Description: `‘tcp’: TCP Port; ‘udp’: UDP Port;`,
+				},
+				resource.Attribute{
+					Name:        "health_check_follow_port",
+					Description: `Specify which port to follow for health status (Port Number)`,
+				},
+				resource.Attribute{
+					Name:        "no_ssl",
+					Description: `No SSL`,
 				},
 				resource.Attribute{
 					Name:        "port_number",
-					Description: `Port number`,
+					Description: `Port Number`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `protocol`,
+					Description: `‘tcp’: TCP Port; ‘udp’: UDP Port;`,
+				},
+				resource.Attribute{
+					Name:        "range",
+					Description: `Port range (Port range value - used for vip-to-rport-mapping)`,
+				},
+				resource.Attribute{
+					Name:        "rport_health_check_shared",
+					Description: `Health Check (Monitor Name)`,
+				},
+				resource.Attribute{
+					Name:        "shared_rport_health_check",
+					Description: `Reference a health-check from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "support_http2",
+					Description: `Starting HTTP/2 with Prior Knowledge`,
+				},
+				resource.Attribute{
+					Name:        "template_port",
+					Description: `Port template (Port template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_server_ssl",
+					Description: `Server side SSL template (Server side SSL Name)`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘total-conn’: Total connections; ‘fwd-pkt’: Forward packets; ‘rev-pkt’: Reverse packets; ‘peak-conn’: Peak connections; ‘total_req’: Total Requests; ‘total_req_succ’: Total requests succ; ‘curr_ssl_conn’: Current SSL connections; ‘total_ssl_conn’: Total SSL connections;`,
+				},
+				resource.Attribute{
+					Name:        "alternate",
+					Description: `Alternate Server (Alternate Server Number)`,
+				},
+				resource.Attribute{
+					Name:        "alternate_name",
+					Description: `Alternate Name`,
+				},
+				resource.Attribute{
+					Name:        "alternate_server_port",
+					Description: `Port (Alternate Server Port Value)`,
+				},
+				resource.Attribute{
+					Name:        "service_principal_name",
+					Description: `Service Principal Name (Kerberos principal name)`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_service_group",
+			Type:             "vthunder_thunder_service_group",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder service group resource for A10`,
+			ShortDescription: `Provides details about thunder service group resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"service",
-				"group",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "backup_server_event_log",
+					Description: `Send log info on back up server events`,
+				},
+				resource.Attribute{
+					Name:        "conn_rate",
+					Description: `Dynamically enable stateless method by conn-rate (Rate to trigger stateless method(conn/sec))`,
+				},
+				resource.Attribute{
+					Name:        "conn_rate_duration",
+					Description: `Period that trigger condition consistently happens(seconds)`,
+				},
+				resource.Attribute{
+					Name:        "conn_rate_grace_period",
+					Description: `Define the grace period during transition (Define the grace period during transition(seconds))`,
+				},
+				resource.Attribute{
+					Name:        "conn_rate_log",
+					Description: `Send log if transition happens`,
+				},
+				resource.Attribute{
+					Name:        "conn_rate_revert_duration",
+					Description: `Period that revert condition consistently happens(seconds)`,
+				},
+				resource.Attribute{
+					Name:        "conn_revert_rate",
+					Description: `Rate to revert to statelful method (conn/sec)`,
+				},
+				resource.Attribute{
+					Name:        "extended_stats",
+					Description: `Enable extended statistics on service group`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Health Check (Monitor Name)`,
+				},
+				resource.Attribute{
+					Name:        "health_check_disable",
+					Description: `Disable health check`,
+				},
+				resource.Attribute{
+					Name:        "l4_session_revert_duration",
+					Description: `Period that revert condition consistently happens(seconds)`,
+				},
+				resource.Attribute{
+					Name:        "l4_session_usage",
+					Description: `Dynamically enable stateless method by session usage (Usage to trigger stateless method)`,
+				},
+				resource.Attribute{
+					Name:        "l4_session_usage_duration",
+					Description: `Period that trigger condition consistently happens(seconds)`,
+				},
+				resource.Attribute{
+					Name:        "l4_session_usage_grace_period",
+					Description: `Define the grace period during transition (Define the grace period during transition(seconds))`,
+				},
+				resource.Attribute{
+					Name:        "l4_session_usage_log",
+					Description: `Send log if transition happens`,
+				},
+				resource.Attribute{
+					Name:        "l4_session_usage_revert_rate",
+					Description: `Usage to revert to statelful method`,
+				},
+				resource.Attribute{
+					Name:        "lb_method",
+					Description: `‘dst-ip-hash’: Load-balancing based on only Dst IP and Port hash; ‘dst-ip-only-hash’: Load-balancing based on only Dst IP hash; ‘fastest-response’: Fastest response time on service port level; ‘least-request’: Least request on service port level; ‘src-ip-hash’: Load-balancing based on only Src IP and Port hash; ‘src-ip-only-hash’: Load-balancing based on only Src IP hash; ‘weighted-rr’: Weighted round robin on server level; ‘round-robin’: Round robin on server level; ‘round-robin-strict’: Strict mode round robin on server level; ‘odd-even-hash’: odd/even hash based of client src-ip;`,
+				},
+				resource.Attribute{
+					Name:        "lc_method",
+					Description: `‘least-connection’: Least connection on server level; ‘service-least-connection’: Least connection on service port level; ‘weighted-least-connection’: Weighted least connection on server level; ‘service-weighted-least-connection’: Weighted least connection on service port level;`,
+				},
+				resource.Attribute{
+					Name:        "min_active_member",
+					Description: `Minimum Active Member Per Priority (Minimum Active Member before Action)`,
+				},
+				resource.Attribute{
+					Name:        "min_active_member_action",
+					Description: `‘dynamic-priority’: dynamic change member priority to met the min-active-member requirement; ‘skip-pri-set’: Skip Current Priority Set If Min not met;`,
+				},
+				resource.Attribute{
 					Name:        "name",
-					Description: `Name of service group`,
+					Description: `Member name`,
+				},
+				resource.Attribute{
+					Name:        "priority_affinity",
+					Description: `Priority affinity. Persist to the same priority if possible.`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `protocol`,
+					Description: `‘tcp’: TCP LB service; ‘udp’: UDP LB service;`,
+				},
+				resource.Attribute{
+					Name:        "pseudo_round_robin",
+					Description: `PRR, select the oldest node for sub-select`,
+				},
+				resource.Attribute{
+					Name:        "report_delay",
+					Description: `Reporting frequency (in minutes)`,
+				},
+				resource.Attribute{
+					Name:        "reset_on_server_selection_fail",
+					Description: `Send reset to client if server selection fails`,
+				},
+				resource.Attribute{
+					Name:        "reset_priority_affinity",
+					Description: `Reset`,
+				},
+				resource.Attribute{
+					Name:        "rpt_ext_server",
+					Description: `Report top 10 fastest/slowest servers`,
+				},
+				resource.Attribute{
+					Name:        "sample_rsp_time",
+					Description: `sample server response time`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_policy_template",
+					Description: `Reference a policy template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_svcgrp_health_check",
+					Description: `Reference a health-check from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "stateless_auto_switch",
+					Description: `Enable auto stateless method`,
+				},
+				resource.Attribute{
+					Name:        "stateless_lb_method",
+					Description: `‘stateless-dst-ip-hash’: Stateless load-balancing based on Dst IP and Dst port hash; ‘stateless-per-pkt-round-robin’: Stateless load-balancing using per-packet round-robin; ‘stateless-src-dst-ip-hash’: Stateless load-balancing based on IP and port hash for both Src and Dst; ‘stateless-src-dst-ip-only-hash’: Stateless load-balancing based on only IP hash for both Src and Dst; ‘stateless-src-ip-hash’: Stateless load-balancing based on Src IP and Src port hash; ‘stateless-src-ip-only-hash’: Stateless load-balancing based on only Src IP hash;`,
+				},
+				resource.Attribute{
+					Name:        "stateless_lb_method2",
+					Description: `‘stateless-dst-ip-hash’: Stateless load-balancing based on Dst IP and Dst port hash; ‘stateless-per-pkt-round-robin’: Stateless load-balancing using per-packet round-robin; ‘stateless-src-dst-ip-hash’: Stateless load-balancing based on IP and port hash for both Src and Dst; ‘stateless-src-dst-ip-only-hash’: Stateless load-balancing based on only IP hash for both Src and Dst; ‘stateless-src-ip-hash’: Stateless load-balancing based on Src IP and Src port hash; ‘stateless-src-ip-only-hash’: Stateless load-balancing based on only Src IP hash;`,
+				},
+				resource.Attribute{
+					Name:        "stats_data_action",
+					Description: `‘stats-data-enable’: Enable statistical data collection for service group; ‘stats-data-disable’: Disable statistical data collection for service group;`,
+				},
+				resource.Attribute{
+					Name:        "strict_select",
+					Description: `strict selection`,
+				},
+				resource.Attribute{
+					Name:        "svcgrp_health_check_shared",
+					Description: `Health Check (Monitor Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_policy",
+					Description: `Policy template (Policy template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_policy_shared",
+					Description: `Policy template`,
+				},
+				resource.Attribute{
+					Name:        "template_port",
+					Description: `Port template (Port template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_server",
+					Description: `Server template (Server template name)`,
+				},
+				resource.Attribute{
+					Name:        "top_fastest",
+					Description: `Report top 10 fastest servers`,
+				},
+				resource.Attribute{
+					Name:        "top_slowest",
+					Description: `Report top 10 slowest servers`,
+				},
+				resource.Attribute{
+					Name:        "traffic_replication_mirror",
+					Description: `Mirror Bi-directional Packet`,
+				},
+				resource.Attribute{
+					Name:        "traffic_replication_mirror_da_repl",
+					Description: `Replace Destination MAC`,
+				},
+				resource.Attribute{
+					Name:        "traffic_replication_mirror_ip_repl",
+					Description: `Replaces IP with server-IP`,
+				},
+				resource.Attribute{
+					Name:        "traffic_replication_mirror_sa_da_repl",
+					Description: `Replace Source MAC and Destination MAC`,
+				},
+				resource.Attribute{
+					Name:        "traffic_replication_mirror_sa_repl",
+					Description: `Replace Source MAC`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "fqdn_name",
+					Description: `Server hostname - Not applicable if real server is already defined`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `IP Address - Not applicable if real server is already defined`,
+				},
+				resource.Attribute{
+					Name:        "member_priority",
+					Description: `Priority of Port in the Group (Priority of Port in the Group, default is 1)`,
+				},
+				resource.Attribute{
+					Name:        "member_state",
+					Description: `‘enable’: Enable member service port; ‘disable’: Disable member service port; ‘disable-with-health-check’: disable member service port, but health check work;`,
+				},
+				resource.Attribute{
+					Name:        "member_stats_data_disable",
+					Description: `Disable statistical data collection`,
+				},
+				resource.Attribute{
+					Name:        "member_template",
+					Description: `Real server port template (Real server port template name)`,
 				},
 				resource.Attribute{
 					Name:        "port",
 					Description: `Port number`,
 				},
+				resource.Attribute{
+					Name:        "resolve_as",
+					Description: `‘resolve-to-ipv4’: Use A Query only to resolve FQDN; ‘resolve-to-ipv6’: Use AAAA Query only to resolve FQDN; ‘resolve-to-ipv4-and-ipv6’: Use A as well as AAAA Query to resolve FQDN;`,
+				},
+				resource.Attribute{
+					Name:        "server_ipv6_addr",
+					Description: `IPV6 Address - Not applicable if real server is already defined`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘server_selection_fail_drop’: Service selection fail drop; ‘server_selection_fail_reset’: Service selection fail reset; ‘service_peak_conn’: Service peak connection;`,
+				},
+				resource.Attribute{
+					Name:        "auto_switch",
+					Description: `Reset auto stateless state`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Priority option. Define different action for each priority node. (Priority in the Group)`,
+				},
+				resource.Attribute{
+					Name:        "priority_action",
+					Description: `‘drop’: Drop request when all priority nodes fail; ‘drop-if-exceed-limit’: Drop request when connection over limit; ‘proceed’: Proceed to next priority when all priority nodes fail(default); ‘reset’: Send client reset when all priority nodes fail; ‘reset-if-exceed-limit’: Send client reset when connection over limit;`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_aflow",
+			Type:             "vthunder_thunder_slb_aflow",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB aflow resource for A10`,
+			ShortDescription: `Provides details about thunder SLB aflow resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"aflow",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "sampling_enable",
@@ -3275,70 +8955,291 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_common",
+			Type:             "vthunder_thunder_slb_common",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB common resource for A10`,
+			ShortDescription: `Provides details about thunder slb common resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"common",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "low_latency",
-					Description: `Enable low latency mode`,
+					Name:        "after_disable",
+					Description: `Graceful shutdown after disable server/port and/or virtual server/port`,
 				},
 				resource.Attribute{
-					Name:        "use_mss_tab",
-					Description: `Use MSS based on internal table for SLB processing`,
+					Name:        "auto_nat_no_ip_refresh",
+					Description: `‘enable’: enable; ‘disable’: disable;`,
 				},
 				resource.Attribute{
-					Name:        "stats_data_disable",
-					Description: `Disable global slb data statistics`,
+					Name:        "buff_thresh",
+					Description: `Set buffer threshold`,
+				},
+				resource.Attribute{
+					Name:        "buff_thresh_hw_buff",
+					Description: `Set hardware buffer threshold`,
+				},
+				resource.Attribute{
+					Name:        "buff_thresh_relieve_thresh",
+					Description: `Relieve threshold`,
+				},
+				resource.Attribute{
+					Name:        "buff_thresh_sys_buff_high",
+					Description: `Set high water mark of system buffer`,
+				},
+				resource.Attribute{
+					Name:        "buff_thresh_sys_buff_low",
+					Description: `Set low water mark of system buffer`,
 				},
 				resource.Attribute{
 					Name:        "compress_block_size",
 					Description: `Set compression block size (Compression block size in bytes)`,
 				},
 				resource.Attribute{
-					Name:        "player_id_check_enable",
-					Description: `Enable the Player id check`,
+					Name:        "disable_adaptive_resource_check",
+					Description: `Disable adaptive resource check based on buffer usage`,
 				},
 				resource.Attribute{
-					Name:        "msl_time",
-					Description: `Configure maximum session life, default is 2 seconds (1-40 seconds, default is 2 seconds)`,
+					Name:        "disable_server_auto_reselect",
+					Description: `Disable auto reselection of server`,
+				},
+				resource.Attribute{
+					Name:        "dns_cache_age",
+					Description: `Set DNS cache entry age, default is 300 seconds (1-1000000 seconds, default is 300 seconds)`,
+				},
+				resource.Attribute{
+					Name:        "dns_cache_enable",
+					Description: `Enable DNS cache`,
+				},
+				resource.Attribute{
+					Name:        "dns_cache_entry_size",
+					Description: `Set DNS cache entry size, default is 256 bytes (1-4096 bytes, default is 256 bytes)`,
+				},
+				resource.Attribute{
+					Name:        "dns_vip_stateless",
+					Description: `Enable DNS VIP stateless mode`,
+				},
+				resource.Attribute{
+					Name:        "drop_icmp_to_vip_when_vip_down",
+					Description: `Drop ICMP to VIP when VIP down`,
+				},
+				resource.Attribute{
+					Name:        "dsr_health_check_enable",
+					Description: `Enable dsr-health-check (direct server return health check)`,
+				},
+				resource.Attribute{
+					Name:        "enable_l7_req_acct",
+					Description: `Enable L7 request accounting`,
+				},
+				resource.Attribute{
+					Name:        "entity",
+					Description: `‘server’: Graceful shutdown server/port only; ‘virtual-server’: Graceful shutdown virtual server/port only;`,
+				},
+				resource.Attribute{
+					Name:        "exclude_destination",
+					Description: `‘local’: Maximum local rate; ‘remote’: Maximum remote rate; (Maximum rates)`,
+				},
+				resource.Attribute{
+					Name:        "extended_stats",
+					Description: `Enable global slb extended statistics`,
+				},
+				resource.Attribute{
+					Name:        "fast_path_disable",
+					Description: `Disable fast path in SLB processing`,
+				},
+				resource.Attribute{
+					Name:        "gateway_health_check",
+					Description: `Enable gateway health check`,
+				},
+				resource.Attribute{
+					Name:        "graceful_shutdown",
+					Description: `1-65535, in unit of seconds`,
 				},
 				resource.Attribute{
 					Name:        "graceful_shutdown_enable",
 					Description: `Enable graceful shutdown`,
 				},
 				resource.Attribute{
+					Name:        "honor_server_response_ttl",
+					Description: `Honor the server reponse TTL`,
+				},
+				resource.Attribute{
+					Name:        "hw_compression",
+					Description: `Use hardware compression`,
+				},
+				resource.Attribute{
 					Name:        "hw_syn_rr",
 					Description: `Configure hardware SYN round robin (range 1-500000)`,
 				},
 				resource.Attribute{
-					Name:        "conn_rate_limit",
-					Description: ``,
+					Name:        "interval",
+					Description: `Specify the healthcheck interval, default is 5 seconds (Interval Value, in seconds (default 5))`,
 				},
 				resource.Attribute{
-					Name:        "src_ip_list",
-					Description: ``,
+					Name:        "l2l3_trunk_lb_disable",
+					Description: `Disable L2/L3 trunk LB`,
 				},
 				resource.Attribute{
-					Name:        "protocol",
-					Description: `'tcp’: Set TCP connection rate limit; 'udp’: Set UDP packet rate limit;`,
+					Name:        "log_for_reset_unknown_conn",
+					Description: `Log when rate exceed`,
 				},
 				resource.Attribute{
-					Name:        "limit_period",
-					Description: `'100’: 100 ms; '1000’: 1000 ms;`,
+					Name:        "low_latency",
+					Description: `Enable low latency mode`,
+				},
+				resource.Attribute{
+					Name:        "max_buff_queued_per_conn",
+					Description: `Set per connection buffer threshold (Buffer value range 128-4096)`,
+				},
+				resource.Attribute{
+					Name:        "max_http_header_count",
+					Description: `Set maximum number of HTTP headers allowed`,
+				},
+				resource.Attribute{
+					Name:        "max_local_rate",
+					Description: `Set maximum local rate`,
+				},
+				resource.Attribute{
+					Name:        "max_remote_rate",
+					Description: `Set maximum remote rate`,
+				},
+				resource.Attribute{
+					Name:        "msl_time",
+					Description: `Configure maximum session life, default is 2 seconds (1-40 seconds, default is 2 seconds)`,
+				},
+				resource.Attribute{
+					Name:        "mss_table",
+					Description: `Set MSS table (128-750, default is 536)`,
+				},
+				resource.Attribute{
+					Name:        "no_auto_up_on_aflex",
+					Description: `Don’t automatically mark vport up when aFleX is bound`,
+				},
+				resource.Attribute{
+					Name:        "override_port",
+					Description: `Enable override port in DSR health check mode`,
+				},
+				resource.Attribute{
+					Name:        "player_id_check_enable",
+					Description: `Enable the Player id check`,
+				},
+				resource.Attribute{
+					Name:        "range",
+					Description: `auto translate port range`,
+				},
+				resource.Attribute{
+					Name:        "range_end",
+					Description: `port range end`,
+				},
+				resource.Attribute{
+					Name:        "range_start",
+					Description: `port range start`,
+				},
+				resource.Attribute{
+					Name:        "rate_limit_logging",
+					Description: `Configure rate limit logging`,
+				},
+				resource.Attribute{
+					Name:        "reset_stale_session",
+					Description: `Send reset if session in delete queue receives a SYN packet`,
+				},
+				resource.Attribute{
+					Name:        "resolve_port_conflict",
+					Description: `Enable client port service port conflicts`,
+				},
+				resource.Attribute{
+					Name:        "response_type",
+					Description: `‘single-answer’: Only cache DNS response with single answer; ‘round-robin’: Round robin;`,
+				},
+				resource.Attribute{
+					Name:        "scale_out",
+					Description: `Enable SLB scale out`,
+				},
+				resource.Attribute{
+					Name:        "snat_gwy_for_l3",
+					Description: `Use source NAT gateway for L3 traffic`,
+				},
+				resource.Attribute{
+					Name:        "snat_on_vip",
+					Description: `Enable source NAT traffic against VIP`,
+				},
+				resource.Attribute{
+					Name:        "software",
+					Description: `Software`,
+				},
+				resource.Attribute{
+					Name:        "sort_res",
+					Description: `Enable SLB sorting of resource names`,
+				},
+				resource.Attribute{
+					Name:        "ssli_sni_hash_enable",
+					Description: `Enable SSLi SNI hash table`,
+				},
+				resource.Attribute{
+					Name:        "stateless_sg_multi_binding",
+					Description: `Enable stateless service groups to be assigned to multiple L2/L3 DSR VIPs`,
+				},
+				resource.Attribute{
+					Name:        "stats_data_disable",
+					Description: `Disable global slb data statistics`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `Specify the healthcheck timeout value, default is 15 seconds (Timeout Value, in seconds (default 15))`,
+				},
+				resource.Attribute{
+					Name:        "ttl_threshold",
+					Description: `Only cache DNS response with longer TTL`,
+				},
+				resource.Attribute{
+					Name:        "use_mss_tab",
+					Description: `Use MSS based on internal table for SLB processing`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "max_table_entries",
+					Description: `Maximum number of entries allowed`,
+				},
+				resource.Attribute{
+					Name:        "ipd_enable_toggle",
+					Description: `‘enable’: Enable SLB DDoS protection; ‘disable’: Disable SLB DDoS protection (default);`,
+				},
+				resource.Attribute{
+					Name:        "ipd_tcp",
+					Description: `Configure packets-per-second threshold per TCP port (default: 200)`,
+				},
+				resource.Attribute{
+					Name:        "ipd_udp",
+					Description: `Configure packets-per-second threshold per UDP port (default: 200)`,
+				},
+				resource.Attribute{
+					Name:        "ipd_logging_toggle",
+					Description: `‘enable’: Enable SLB DDoS protection logging (default); ‘disable’: Disable SLB DDoS protection logging;`,
+				},
+				resource.Attribute{
+					Name:        "exceed_action",
+					Description: `Set action if threshold exceeded`,
 				},
 				resource.Attribute{
 					Name:        "limit",
 					Description: `Set max connections per period`,
 				},
 				resource.Attribute{
-					Name:        "exceed_action",
-					Description: `Set action if threshold exceeded`,
+					Name:        "limit_period",
+					Description: `‘100’: 100 ms; ‘1000’: 1000 ms;`,
+				},
+				resource.Attribute{
+					Name:        "lock_out",
+					Description: `Set lockout period in seconds if threshold exceeded`,
+				},
+				resource.Attribute{
+					Name:        "log",
+					Description: `Send log if threshold exceeded`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `‘tcp’: Set TCP connection rate limit; ‘udp’: Set UDP packet rate limit;`,
 				},
 				resource.Attribute{
 					Name:        "shared",
@@ -3349,53 +9250,54 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_common_conn_rate_limit_src_ip",
+			Type:             "vthunder_thunder_slb_common_conn_rate_limit_src_ip",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB common conn-rate-limit src-ip resource for A10`,
+			ShortDescription: `Provides details about thunder slb common conn rate limit src ip resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"common",
-				"conn",
-				"rate",
-				"limit",
-				"src",
-				"ip",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "protocol",
-					Description: `'tcp’: Set TCP connection rate limit; 'udp’: Set UDP packet rate limit;`,
-				},
-				resource.Attribute{
-					Name:        "limit_period",
-					Description: `'100’: 100 ms; '1000’: 1000 ms;`,
+					Name:        "exceed_action",
+					Description: `Set action if threshold exceeded`,
 				},
 				resource.Attribute{
 					Name:        "limit",
 					Description: `Set max connections per period`,
 				},
 				resource.Attribute{
-					Name:        "exceed_action",
-					Description: `Set action if threshold exceeded`,
+					Name:        "limit_period",
+					Description: `‘100’: 100 ms; ‘1000’: 1000 ms;`,
+				},
+				resource.Attribute{
+					Name:        "lock_out",
+					Description: `Set lockout period in seconds if threshold exceeded`,
+				},
+				resource.Attribute{
+					Name:        "log",
+					Description: `Send log if threshold exceeded`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `‘tcp’: Set TCP connection rate limit; ‘udp’: Set UDP packet rate limit;`,
 				},
 				resource.Attribute{
 					Name:        "shared",
 					Description: `Set threshold shared amongst all virtual ports`,
 				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_dns",
+			Type:             "vthunder_thunder_slb_connection_reuse",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB dns resource for A10`,
+			ShortDescription: `Provides details about thunder SLB connection_reuse resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"dns",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "sampling_enable",
@@ -3410,15 +9312,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_dns_cache",
+			Type:             "vthunder_thunder_slb_crl_srcip",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB dns-cache resource for A10`,
+			ShortDescription: `Provides details about thunder SLB crl-srcip resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"dns",
-				"cache",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "sampling_enable",
@@ -3433,17 +9331,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_dns_response_rate_limiting",
+			Type:             "vthunder_thunder_slb_dns",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB dns-response-rate-limiting resource for A10`,
+			ShortDescription: `Provides details about thunder SLB dns resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"dns",
-				"response",
-				"rate",
-				"limiting",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "sampling_enable",
@@ -3458,16 +9350,49 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_fast_http_proxy",
+			Type:             "vthunder_thunder_slb_dns_cache",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB fast-http-proxy resource for A10`,
+			ShortDescription: `Provides details about thunder SLB dns-cache resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"fast",
-				"http",
-				"proxy",
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "sampling_enable",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `'all’: all; 'hits’: Cache hits; 'miss’: Cache misses; 'bytes_served’: Bytes served from cache; 'total_req’: Total requests received; 'caching_req’: Total requests to cache; 'nc_req_header’: nc_req_header; 'nc_res_header’: nc_res_header; 'rv_success’: rv_success; 'rv_failure’: rv_failure; 'ims_request’: ims_request; 'nm_response’: nm_response; 'rsp_type_CL’: rsp_type_CL; 'rsp_type_CE’: rsp_type_CE; 'rsp_type_304’: rsp_type_304; 'rsp_type_other’: rsp_type_other; 'rsp_no_compress’: rsp_no_compress; 'rsp_gzip’: rsp_gzip; 'rsp_deflate’: rsp_deflate; 'rsp_other’: rsp_other; 'nocache_match’: nocache_match; 'match’: match; 'invalidate_match’: invalidate_match; 'content_toobig’: content_toobig; 'content_toosmall’: content_toosmall; 'entry_create_failures’: entry_create_failures; 'mem_size’: mem_size; 'entry_num’: entry_num; 'replaced_entry’: replaced_entry; 'aging_entry’: aging_entry; 'cleaned_entry’: cleaned_entry;`,
+				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_slb_dns_response_rate_limiting",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder SLB dns-response-rate-limiting resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "sampling_enable",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `'all’: all; 'hits’: Cache hits; 'miss’: Cache misses; 'bytes_served’: Bytes served from cache; 'total_req’: Total requests received; 'caching_req’: Total requests to cache; 'nc_req_header’: nc_req_header; 'nc_res_header’: nc_res_header; 'rv_success’: rv_success; 'rv_failure’: rv_failure; 'ims_request’: ims_request; 'nm_response’: nm_response; 'rsp_type_CL’: rsp_type_CL; 'rsp_type_CE’: rsp_type_CE; 'rsp_type_304’: rsp_type_304; 'rsp_type_other’: rsp_type_other; 'rsp_no_compress’: rsp_no_compress; 'rsp_gzip’: rsp_gzip; 'rsp_deflate’: rsp_deflate; 'rsp_other’: rsp_other; 'nocache_match’: nocache_match; 'match’: match; 'invalidate_match’: invalidate_match; 'content_toobig’: content_toobig; 'content_toosmall’: content_toosmall; 'entry_create_failures’: entry_create_failures; 'mem_size’: mem_size; 'entry_num’: entry_num; 'replaced_entry’: replaced_entry; 'aging_entry’: aging_entry; 'cleaned_entry’: cleaned_entry;`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_slb_fast_http_proxy",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder SLB fast-http-proxy resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "sampling_enable",
@@ -3486,14 +9411,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_fix",
+			Type:             "vthunder_thunder_slb_fix",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB fix resource for A10`,
+			ShortDescription: `Provides details about thunder SLB fix resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"fix",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "sampling_enable",
@@ -3508,15 +9430,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_ftp_ctl",
+			Type:             "vthunder_thunder_slb_ftp_ctl",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB ftp-ctl resource for A10`,
+			ShortDescription: `Provides details about thunder SLB ftp-ctl resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"ftp",
-				"ctl",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "sampling_enable",
@@ -3531,15 +9449,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_ftp_data",
+			Type:             "vthunder_thunder_slb_ftp_data",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB ftp-data resource for A10`,
+			ShortDescription: `Provides details about thunder SLB ftp-data resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"ftp",
-				"data",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "sampling_enable",
@@ -3554,15 +9468,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_ftp_proxy",
+			Type:             "vthunder_thunder_slb_ftp_proxy",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB ftp-proxy resource for A10`,
+			ShortDescription: `Provides details about thunder SLB ftp-proxy resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"ftp",
-				"proxy",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "sampling_enable",
@@ -3577,15 +9487,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_generic_proxy",
+			Type:             "vthunder_thunder_slb_generic_proxy",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB generic-proxy resource for A10`,
+			ShortDescription: `Provides details about thunder SLB generic-proxy resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"generic",
-				"proxy",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "sampling_enable",
@@ -3600,15 +9506,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_health_gateway",
+			Type:             "vthunder_thunder_slb_health_gateway",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB health-gateway resource for A10`,
+			ShortDescription: `Provides details about thunder SLB health-gateway resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"health",
-				"gateway",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "sampling_enable",
@@ -3623,15 +9525,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_health_stat",
+			Type:             "vthunder_thunder_slb_health_stat",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB health-stat resource for A10`,
+			ShortDescription: `Provides details about thunder SLB health-stat resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"health",
-				"stat",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "sampling_enable",
@@ -3646,14 +9544,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_http2",
+			Type:             "vthunder_thunder_slb_http2",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB http2 resource for A10`,
+			ShortDescription: `Provides details about thunder SLB http2 resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"http2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "sampling_enable",
@@ -3668,15 +9563,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_http_proxy",
+			Type:             "vthunder_thunder_slb_http_proxy",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB http-proxy resource for A10`,
+			ShortDescription: `Provides details about thunder SLB http-proxy resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"http",
-				"proxy",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "sampling_enable",
@@ -3695,15 +9586,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_hw_compress",
+			Type:             "vthunder_thunder_slb_hw_compress",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB hw-compress resource for A10`,
+			ShortDescription: `Provides details about thunder SLB hw-compress resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"hw",
-				"compress",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "sampling_enable",
@@ -3718,14 +9605,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_icap",
+			Type:             "vthunder_thunder_slb_icap",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB icap resource for A10`,
+			ShortDescription: `Provides details about thunder SLB icap resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"icap",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "counters1",
@@ -3736,15 +9620,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_icap_http",
+			Type:             "vthunder_thunder_slb_icap_http",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB icap http resource for A10`,
+			ShortDescription: `Provides details about thunder SLB icap http resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"icap",
-				"http",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "counters1",
@@ -3755,14 +9635,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_imapproxy",
+			Type:             "vthunder_thunder_slb_imapproxy",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB imapproxy resource for A10`,
+			ShortDescription: `Provides details about thunder SLB imapproxy resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"imapproxy",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "counters1",
@@ -3773,14 +9650,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_l4",
+			Type:             "vthunder_thunder_slb_l4",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB l4 resource for A10`,
+			ShortDescription: `Provides details about thunder SLB l4 resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"l4",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "counters1",
@@ -3791,14 +9665,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_l7session",
+			Type:             "vthunder_thunder_slb_l7session",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB l7session resource for A10`,
+			ShortDescription: `Provides details about thunder SLB l7session resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"l7session",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "counters1",
@@ -3809,14 +9680,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_mlb",
+			Type:             "vthunder_thunder_slb_mlb",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB mlb resource for A10`,
+			ShortDescription: `Provides details about thunder SLB mlb resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"mlb",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "counters1",
@@ -3827,14 +9695,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_mssql",
+			Type:             "vthunder_thunder_slb_mssql",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB mssql resource for A10`,
+			ShortDescription: `Provides details about thunder SLB mssql resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"mssql",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "counters1",
@@ -3845,14 +9710,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_mysql",
+			Type:             "vthunder_thunder_slb_mysql",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB mysql resource for A10`,
+			ShortDescription: `Provides details about thunder SLB mysql resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"mysql",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "counters1",
@@ -3863,14 +9725,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_passthrough",
+			Type:             "vthunder_thunder_slb_passthrough",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB passthrough resource for A10`,
+			ShortDescription: `Provides details about thunder SLB passthrough resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"passthrough",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "counters1",
@@ -3881,14 +9740,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_perf",
+			Type:             "vthunder_thunder_slb_perf",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB perf resource for A10`,
+			ShortDescription: `Provides details about thunder SLB perf resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"perf",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "counters1",
@@ -3899,14 +9755,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_persist",
+			Type:             "vthunder_thunder_slb_persist",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB persist resource for A10`,
+			ShortDescription: `Provides details about thunder SLB persist resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"persist",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "counters1",
@@ -3917,16 +9770,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_player_id_global",
+			Type:             "vthunder_thunder_slb_player_id_global",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB player id global resource for A10`,
+			ShortDescription: `Provides details about thunder SLB player id global resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"player",
-				"id",
-				"global",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "enforcement_timer",
@@ -3961,15 +9809,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_pop3_proxy",
+			Type:             "vthunder_thunder_slb_pop3_proxy",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB pop3 proxy resource for A10`,
+			ShortDescription: `Provides details about thunder SLB pop3 proxy resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"pop3",
-				"proxy",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "counters1",
@@ -3980,14 +9824,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_proxy",
+			Type:             "vthunder_thunder_slb_proxy",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB proxy resource for A10`,
+			ShortDescription: `Provides details about thunder SLB proxy resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"proxy",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "counters1",
@@ -3998,16 +9839,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_rate_limit_log",
+			Type:             "vthunder_thunder_slb_rate_limit_log",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB rate limit log resource for A10`,
+			ShortDescription: `Provides details about thunder SLB rate limit log resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"rate",
-				"limit",
-				"log",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "counters1",
@@ -4018,16 +9854,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_rc_cache_global",
+			Type:             "vthunder_thunder_slb_rc_cache_global",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB rc cache global resource for A10`,
+			ShortDescription: `Provides details about thunder SLB rc cache global resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"rc",
-				"cache",
-				"global",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "counters1",
@@ -4038,35 +9869,67 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_resource_usage",
+			Type:             "vthunder_thunder_slb_resource_usage",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB resource usage resource for A10`,
+			ShortDescription: `Provides details about thunder slb resource usage resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"resource",
-				"usage",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "real_server_count",
-					Description: `Total Real Servers in the System`,
+					Name:        "cache_template_count",
+					Description: `Total configurable HTTP Cache Templates in the System`,
 				},
 				resource.Attribute{
-					Name:        "stream_template_count",
-					Description: `Total configurable Streaming media in the System`,
+					Name:        "client_ssl_template_count",
+					Description: `Total configurable Client SSL Templates in the System`,
 				},
 				resource.Attribute{
-					Name:        "proxy_template_count",
-					Description: `Total configurable Proxy Templates in the System`,
+					Name:        "conn_reuse_template_count",
+					Description: `Total configurable Connection reuse Templates in the System`,
+				},
+				resource.Attribute{
+					Name:        "fast_tcp_template_count",
+					Description: `Total configurable Fast TCP Templates in the System`,
+				},
+				resource.Attribute{
+					Name:        "fast_udp_template_count",
+					Description: `Total configurable Fast UDP Templates in the System`,
+				},
+				resource.Attribute{
+					Name:        "health_monitor_count",
+					Description: `Total Health Monitors in the System`,
 				},
 				resource.Attribute{
 					Name:        "http_template_count",
 					Description: `Total configurable HTTP Templates in the System`,
 				},
 				resource.Attribute{
+					Name:        "nat_pool_addr_count",
+					Description: `Total configurable NAT Pool addresses in the System`,
+				},
+				resource.Attribute{
+					Name:        "pbslb_subnet_count",
+					Description: `Total PBSLB Subnets in the System`,
+				},
+				resource.Attribute{
+					Name:        "persist_cookie_template_count",
+					Description: `Total configurable Persistent cookie Templates in the System`,
+				},
+				resource.Attribute{
 					Name:        "persist_srcip_template_count",
 					Description: `Total configurable Source IP Persistent Templates in the System`,
+				},
+				resource.Attribute{
+					Name:        "proxy_template_count",
+					Description: `Total configurable Proxy Templates in the System`,
+				},
+				resource.Attribute{
+					Name:        "real_port_count",
+					Description: `Total Real Server Ports in the System`,
+				},
+				resource.Attribute{
+					Name:        "real_server_count",
+					Description: `Total Real Servers in the System`,
 				},
 				resource.Attribute{
 					Name:        "server_ssl_template_count",
@@ -4077,58 +9940,154 @@ var (
 					Description: `Total Service Groups in the System`,
 				},
 				resource.Attribute{
-					Name:        "persist_cookie_template_count",
-					Description: `Total configurable Persistent cookie Templates in the System`,
+					Name:        "slb_threshold_res_usage_percent",
+					Description: `Enter the threshold as a percentage (Threshold in percentage(default is 0%))`,
 				},
 				resource.Attribute{
-					Name:        "virtual_server_count",
-					Description: `Total Virtual Servers in the System`,
+					Name:        "stream_template_count",
+					Description: `Total configurable Streaming media in the System`,
 				},
 				resource.Attribute{
-					Name:        "fast_udp_template_count",
-					Description: `Total configurable Fast UDP Templates in the System`,
-				},
-				resource.Attribute{
-					Name:        "fast_tcp_template_count",
-					Description: `Total configurable Fast TCP Templates in the System`,
+					Name:        "uuid",
+					Description: `uuid of the object`,
 				},
 				resource.Attribute{
 					Name:        "virtual_port_count",
 					Description: `Total Virtual Server Ports in the System`,
 				},
 				resource.Attribute{
-					Name:        "conn_reuse_template_count",
-					Description: `Total configurable Connection reuse Templates in the System`,
-				},
-				resource.Attribute{
-					Name:        "real_port_count",
-					Description: `Total Real Server Ports in the System`,
-				},
-				resource.Attribute{
-					Name:        "client_ssl_template_count",
-					Description: `Total configurable Client SSL Templates in the System`,
-				},
-				resource.Attribute{
-					Name:        "nat_pool_addr_count",
-					Description: `Total configurable NAT Pool addresses in the System (deprecated)`,
-				},
-				resource.Attribute{
-					Name:        "pbslb_subnet_count",
-					Description: `Total PBSLB Subnets in the System`,
+					Name:        "virtual_server_count",
+					Description: `Total Virtual Servers in the System`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_sip",
+			Type:             "vthunder_thunder_slb_server_port",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB sip resource for A10`,
+			ShortDescription: `Provides details about thunder slb server port resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"sip",
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "action",
+					Description: `‘enable’: enable; ‘disable’: disable; ‘disable-with-health-check’: disable port, but health check work;`,
+				},
+				resource.Attribute{
+					Name:        "conn_limit",
+					Description: `Connection Limit`,
+				},
+				resource.Attribute{
+					Name:        "conn_resume",
+					Description: `Connection Resume`,
+				},
+				resource.Attribute{
+					Name:        "extended_stats",
+					Description: `Enable extended statistics on real server port`,
+				},
+				resource.Attribute{
+					Name:        "follow_port_protocol",
+					Description: `‘tcp’: TCP Port; ‘udp’: UDP Port;`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Health Check (Monitor Name)`,
+				},
+				resource.Attribute{
+					Name:        "health_check_disable",
+					Description: `Disable health check`,
+				},
+				resource.Attribute{
+					Name:        "health_check_follow_port",
+					Description: `Specify which port to follow for health status (Port Number)`,
+				},
+				resource.Attribute{
+					Name:        "no_logging",
+					Description: `Do not log connection over limit event`,
+				},
+				resource.Attribute{
+					Name:        "no_ssl",
+					Description: `No SSL`,
+				},
+				resource.Attribute{
+					Name:        "port_number",
+					Description: `Port Number`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `‘tcp’: TCP Port; ‘udp’: UDP Port;`,
+				},
+				resource.Attribute{
+					Name:        "range",
+					Description: `Port range (Port range value - used for vip-to-rport-mapping)`,
+				},
+				resource.Attribute{
+					Name:        "rport_health_check_shared",
+					Description: `Health Check (Monitor Name)`,
+				},
+				resource.Attribute{
+					Name:        "shared_rport_health_check",
+					Description: `Reference a health-check from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "stats_data_action",
+					Description: `‘stats-data-enable’: Enable statistical data collection for real server port; ‘stats-data-disable’: Disable statistical data collection for real server port;`,
+				},
+				resource.Attribute{
+					Name:        "support_http2",
+					Description: `Starting HTTP/2 with Prior Knowledge`,
+				},
+				resource.Attribute{
+					Name:        "template_port",
+					Description: `Port template (Port template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_server_ssl",
+					Description: `Server side SSL template (Server side SSL Name)`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Port Weight (Connection Weight)`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘curr_req’: Current requests; ‘total_req’: Total Requests; ‘total_req_succ’: Total requests succ; ‘total_fwd_bytes’: Forward bytes; ‘total_fwd_pkts’: Forward packets; ‘total_rev_bytes’: Reverse bytes; ‘total_rev_pkts’: Reverse packets; ‘total_conn’: Total connections; ‘last_total_conn’: Last total connections; ‘peak_conn’: Peak connections; ‘es_resp_200’: Response status 200; ‘es_resp_300’: Response status 300; ‘es_resp_400’: Response status 400; ‘es_resp_500’: Response status 500; ‘es_resp_other’: Response status other; ‘es_req_count’: Total proxy request; ‘es_resp_count’: Total proxy response; ‘es_resp_invalid_http’: Total non-http response; ‘total_rev_pkts_inspected’: Total reverse packets inspected; ‘total_rev_pkts_inspected_good_status_code’: Total reverse packets with good status code inspected; ‘response_time’: Response time; ‘fastest_rsp_time’: Fastest response time; ‘slowest_rsp_time’: Slowest response time; ‘curr_ssl_conn’: Current SSL connections; ‘total_ssl_conn’: Total SSL connections;`,
+				},
+				resource.Attribute{
+					Name:        "alternate",
+					Description: `Alternate Server Number`,
+				},
+				resource.Attribute{
+					Name:        "alternate_name",
+					Description: `Alternate Name`,
+				},
+				resource.Attribute{
+					Name:        "alternate_server_port",
+					Description: `Port (Alternate Server Port Value)`,
+				},
+				resource.Attribute{
+					Name:        "service_principal_name",
+					Description: `Service Principal Name (Kerberos principal name)`,
+				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_slb_sip",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder SLB sip resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "counters1",
@@ -4139,14 +10098,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_smpp",
+			Type:             "vthunder_thunder_slb_smpp",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB smpp resource for A10`,
+			ShortDescription: `Provides details about thunder SLB smpp resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"smpp",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "counters1",
@@ -4157,14 +10113,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_smtp",
+			Type:             "vthunder_thunder_slb_smtp",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB smtp resource for A10`,
+			ShortDescription: `Provides details about thunder SLB smtp resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"smtp",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "counters1",
@@ -4175,15 +10128,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_spdy_proxy",
+			Type:             "vthunder_thunder_slb_spdy_proxy",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB spdy proxy resource for A10`,
+			ShortDescription: `Provides details about thunder SLB spdy proxy resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"spdy",
-				"proxy",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "counters1",
@@ -4194,16 +10143,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_sport_rate_limit",
+			Type:             "vthunder_thunder_slb_sport_rate_limit",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB sport rate limit resource for A10`,
+			ShortDescription: `Provides details about thunder SLB sport rate limit resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"sport",
-				"rate",
-				"limit",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "counters1",
@@ -4214,16 +10158,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_ssl_cert_revoke",
+			Type:             "vthunder_thunder_slb_ssl_cert_revoke",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB ssl cert revoke resource for A10`,
+			ShortDescription: `Provides details about thunder SLB ssl cert revoke resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"ssl",
-				"cert",
-				"revoke",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "counters1",
@@ -4234,48 +10173,50 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_ssl_expire_check",
+			Type:             "vthunder_thunder_slb_ssl_expire_check",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB ssl expire check resource for A10`,
+			ShortDescription: `Provides details about thunder slb ssl expire check resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"ssl",
-				"expire",
-				"check",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "ssl_expire_email_address",
-					Description: `Config Email address for certificate expiration check`,
-				},
 				resource.Attribute{
 					Name:        "before",
 					Description: `The number of days in advance notice before expiration, default is 5`,
+				},
+				resource.Attribute{
+					Name:        "expire_address1",
+					Description: `Email address for certificate expiration check`,
 				},
 				resource.Attribute{
 					Name:        "interval_days",
 					Description: `The interval of days notice after expiration, default is 2`,
 				},
 				resource.Attribute{
-					Name:        "expire_address1",
-					Description: `Email address for certificate expiration check`,
+					Name:        "ssl_expire_email_address",
+					Description: `Config Email address for certificate expiration check`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `‘add’: Add an exception; ‘delete’: Delete an exception; ‘clean’: Delete all exception;`,
+				},
+				resource.Attribute{
+					Name:        "certificate_name",
+					Description: `The certificate name`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_ssl_forward_proxy",
+			Type:             "vthunder_thunder_slb_ssl_forward_proxy",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB ssl forward proxy resource for A10`,
+			ShortDescription: `Provides details about thunder SLB ssl forward proxy resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"ssl",
-				"forward",
-				"proxy",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "counters1",
@@ -4286,16 +10227,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_svm_source_nat",
+			Type:             "vthunder_thunder_slb_svm_source_nat",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB svm source nat resource for A10`,
+			ShortDescription: `Provides details about thunder SLB svm source nat resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"svm",
-				"source",
-				"nat",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "pool",
@@ -4306,14 +10242,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_switch",
+			Type:             "vthunder_thunder_slb_switch",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB switch resource for A10`,
+			ShortDescription: `Provides details about thunder SLB switch resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"switch",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "counters1",
@@ -4324,86 +10257,106 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_cache",
+			Type:             "vthunder_thunder_slb_template_cache",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB template cache resource for A10`,
+			ShortDescription: `Provides details about thunder slb template cache resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"cache",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `Specify cache template name`,
-				},
-				resource.Attribute{
-					Name:        "user_tag",
-					Description: `Customized tag`,
-				},
 				resource.Attribute{
 					Name:        "accept_reload_req",
 					Description: `Accept reload requests via cache-control directives in HTTP headers`,
-				},
-				resource.Attribute{
-					Name:        "default_policy_nocache",
-					Description: `Specify default policy to be to not cache`,
 				},
 				resource.Attribute{
 					Name:        "age",
 					Description: `Specify duration in seconds cached content valid, default is 3600 seconds (seconds that the cached content is valid (default 3600 seconds))`,
 				},
 				resource.Attribute{
-					Name:        "disable_insert_via",
-					Description: `Disable insertion of via header in response served from RAM cache`,
-				},
-				resource.Attribute{
-					Name:        "replacement_policy",
-					Description: `'LFU’: LFU;`,
+					Name:        "default_policy_nocache",
+					Description: `Specify default policy to be to not cache`,
 				},
 				resource.Attribute{
 					Name:        "disable_insert_age",
 					Description: `Disable insertion of age header in response served from RAM cache`,
 				},
 				resource.Attribute{
-					Name:        "max_content_size",
-					Description: `Maximum size (bytes) of response that can be cached - default 81920 (80KB)`,
+					Name:        "disable_insert_via",
+					Description: `Disable insertion of via header in response served from RAM cache`,
+				},
+				resource.Attribute{
+					Name:        "logging",
+					Description: `Specify logging template (Logging Config name)`,
 				},
 				resource.Attribute{
 					Name:        "max_cache_size",
 					Description: `Specify maximum cache size in megabytes, default is 80MB (RAM cache size in megabytes (default 80MB))`,
 				},
 				resource.Attribute{
-					Name:        "remove_cookies",
-					Description: `Remove cookies in response and cache`,
-				},
-				resource.Attribute{
-					Name:        "verify_host",
-					Description: `Verify request using host before sending response from RAM cache`,
+					Name:        "max_content_size",
+					Description: `Maximum size (bytes) of response that can be cached - default 81920 (80KB)`,
 				},
 				resource.Attribute{
 					Name:        "min_content_size",
 					Description: `Minimum size (bytes) of response that can be cached - default 512`,
 				},
 				resource.Attribute{
+					Name:        "name",
+					Description: `Specify cache template name`,
+				},
+				resource.Attribute{
+					Name:        "remove_cookies",
+					Description: `Remove cookies in response and cache`,
+				},
+				resource.Attribute{
+					Name:        "replacement_policy",
+					Description: `‘LFU’: LFU;`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "verify_host",
+					Description: `Verify request using host before sending response from RAM cache`,
+				},
+				resource.Attribute{
+					Name:        "local_uri",
+					Description: `Specify Local URI for caching (Specify URI pattern that the policy should be applied to, maximum 63 charaters)`,
+				},
+				resource.Attribute{
 					Name:        "counters1",
-					Description: `'all’: all; 'hits’: Cache hits; 'miss’: Cache misses; 'bytes_served’: Bytes served from cache; 'total_req’: Total requests received; 'caching_req’: Total requests to cache; 'nc_req_header’: nc_req_header; 'nc_res_header’: nc_res_header; 'rv_success’: rv_success; 'rv_failure’: rv_failure; 'ims_request’: ims_request; 'nm_response’: nm_response; 'rsp_type_CL’: rsp_type_CL; 'rsp_type_CE’: rsp_type_CE; 'rsp_type_304’: rsp_type_304; 'rsp_type_other’: rsp_type_other; 'rsp_no_compress’: rsp_no_compress; 'rsp_gzip’: rsp_gzip; 'rsp_deflate’: rsp_deflate; 'rsp_other’: rsp_other; 'nocache_match’: nocache_match; 'match’: match; 'invalidate_match’: invalidate_match; 'content_toobig’: content_toobig; 'content_toosmall’: content_toosmall; 'entry_create_failures’: entry_create_failures; 'mem_size’: mem_size; 'entry_num’: entry_num; 'replaced_entry’: replaced_entry; 'aging_entry’: aging_entry; 'cleaned_entry’: cleaned_entry;`,
+					Description: `‘all’: all; ‘hits’: hits; ‘miss’: miss; ‘bytes_served’: bytes_served; ‘total_req’: total_req; ‘caching_req’: caching_req; ‘nc_req_header’: nc_req_header; ‘nc_res_header’: nc_res_header; ‘rv_success’: rv_success; ‘rv_failure’: rv_failure; ‘ims_request’: ims_request; ‘nm_response’: nm_response; ‘rsp_type_CL’: rsp_type_CL; ‘rsp_type_CE’: rsp_type_CE; ‘rsp_type_304’: rsp_type_304; ‘rsp_type_other’: rsp_type_other; ‘rsp_no_compress’: rsp_no_compress; ‘rsp_gzip’: rsp_gzip; ‘rsp_deflate’: rsp_deflate; ‘rsp_other’: rsp_other; ‘nocache_match’: nocache_match; ‘match’: match; ‘invalidate_match’: invalidate_match; ‘content_toobig’: content_toobig; ‘content_toosmall’: content_toosmall; ‘entry_create_failures’: entry_create_failures; ‘mem_size’: mem_size; ‘entry_num’: entry_num; ‘replaced_entry’: replaced_entry; ‘aging_entry’: aging_entry; ‘cleaned_entry’: cleaned_entry;`,
+				},
+				resource.Attribute{
+					Name:        "cache_action",
+					Description: `‘cache’: Specify if certain URIs should be cached; ‘nocache’: Specify if certain URIs should not be cached;`,
+				},
+				resource.Attribute{
+					Name:        "cache_value",
+					Description: `Specify seconds that content should be cached, default is age specified in cache template`,
+				},
+				resource.Attribute{
+					Name:        "invalidate",
+					Description: `Specify if URI should invalidate cache entries matching pattern (pattern that would match entries to be invalidated (64 chars max))`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `Specify URI for cache policy (Specify URI pattern that the policy should be applied to, maximum 63 charaters)`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_cipher",
+			Type:             "vthunder_thunder_slb_template_cipher",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB template cipher resource for A10`,
+			ShortDescription: `Provides details about thunder slb template cipher resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"cipher",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -4414,36 +10367,31 @@ var (
 					Description: `Customized tag`,
 				},
 				resource.Attribute{
-					Name:        "priority",
-					Description: `Cipher priority (Cipher priority (default 1))`,
+					Name:        "uuid",
+					Description: `uuid of the object`,
 				},
 				resource.Attribute{
 					Name:        "cipher_suite",
-					Description: `'SSL3_RSA_DES_192_CBC3_SHA’: SSL3_RSA_DES_192_CBC3_SHA; 'SSL3_RSA_RC4_128_MD5’: SSL3_RSA_RC4_128_MD5; 'SSL3_RSA_RC4_128_SHA’: SSL3_RSA_RC4_128_SHA; 'TLS1_RSA_AES_128_SHA’: TLS1_RSA_AES_128_SHA; 'TLS1_RSA_AES_256_SHA’: TLS1_RSA_AES_256_SHA; 'TLS1_RSA_AES_128_SHA256’: TLS1_RSA_AES_128_SHA256; 'TLS1_RSA_AES_256_SHA256’: TLS1_RSA_AES_256_SHA256; 'TLS1_DHE_RSA_AES_128_GCM_SHA256’: TLS1_DHE_RSA_AES_128_GCM_SHA256; 'TLS1_DHE_RSA_AES_128_SHA’: TLS1_DHE_RSA_AES_128_SHA; 'TLS1_DHE_RSA_AES_128_SHA256’: TLS1_DHE_RSA_AES_128_SHA256; 'TLS1_DHE_RSA_AES_256_GCM_SHA384’: TLS1_DHE_RSA_AES_256_GCM_SHA384; 'TLS1_DHE_RSA_AES_256_SHA’: TLS1_DHE_RSA_AES_256_SHA; 'TLS1_DHE_RSA_AES_256_SHA256’: TLS1_DHE_RSA_AES_256_SHA256; 'TLS1_ECDHE_ECDSA_AES_128_GCM_SHA256’: TLS1_ECDHE_ECDSA_AES_128_GCM_SHA256; 'TLS1_ECDHE_ECDSA_AES_128_SHA’: TLS1_ECDHE_ECDSA_AES_128_SHA; 'TLS1_ECDHE_ECDSA_AES_128_SHA256’: TLS1_ECDHE_ECDSA_AES_128_SHA256; 'TLS1_ECDHE_ECDSA_AES_256_GCM_SHA384’: TLS1_ECDHE_ECDSA_AES_256_GCM_SHA384; 'TLS1_ECDHE_ECDSA_AES_256_SHA’: TLS1_ECDHE_ECDSA_AES_256_SHA; 'TLS1_ECDHE_RSA_AES_128_GCM_SHA256’: TLS1_ECDHE_RSA_AES_128_GCM_SHA256; 'TLS1_ECDHE_RSA_AES_128_SHA’: TLS1_ECDHE_RSA_AES_128_SHA; 'TLS1_ECDHE_RSA_AES_128_SHA256’: TLS1_ECDHE_RSA_AES_128_SHA256; 'TLS1_ECDHE_RSA_AES_256_GCM_SHA384’: TLS1_ECDHE_RSA_AES_256_GCM_SHA384; 'TLS1_ECDHE_RSA_AES_256_SHA’: TLS1_ECDHE_RSA_AES_256_SHA; 'TLS1_RSA_AES_128_GCM_SHA256’: TLS1_RSA_AES_128_GCM_SHA256; 'TLS1_RSA_AES_256_GCM_SHA384’: TLS1_RSA_AES_256_GCM_SHA384; 'TLS1_ECDHE_RSA_AES_256_SHA384’: TLS1_ECDHE_RSA_AES_256_SHA384; 'TLS1_ECDHE_ECDSA_AES_256_SHA384’: TLS1_ECDHE_ECDSA_AES_256_SHA384; 'TLS1_ECDHE_RSA_CHACHA20_POLY1305_SHA256’: TLS1_ECDHE_RSA_CHACHA20_POLY1305_SHA256; 'TLS1_ECDHE_ECDSA_CHACHA20_POLY1305_SHA256’: TLS1_ECDHE_ECDSA_CHACHA20_POLY1305_SHA256; 'TLS1_DHE_RSA_CHACHA20_POLY1305_SHA256’: TLS1_DHE_RSA_CHACHA20_POLY1305_SHA256;`,
+					Description: `‘SSL3_RSA_DES_192_CBC3_SHA’: SSL3_RSA_DES_192_CBC3_SHA; ‘SSL3_RSA_RC4_128_MD5’: SSL3_RSA_RC4_128_MD5; ‘SSL3_RSA_RC4_128_SHA’: SSL3_RSA_RC4_128_SHA; ‘TLS1_RSA_AES_128_SHA’: TLS1_RSA_AES_128_SHA; ‘TLS1_RSA_AES_256_SHA’: TLS1_RSA_AES_256_SHA; ‘TLS1_RSA_AES_128_SHA256’: TLS1_RSA_AES_128_SHA256; ‘TLS1_RSA_AES_256_SHA256’: TLS1_RSA_AES_256_SHA256; ‘TLS1_DHE_RSA_AES_128_GCM_SHA256’: TLS1_DHE_RSA_AES_128_GCM_SHA256; ‘TLS1_DHE_RSA_AES_128_SHA’: TLS1_DHE_RSA_AES_128_SHA; ‘TLS1_DHE_RSA_AES_128_SHA256’: TLS1_DHE_RSA_AES_128_SHA256; ‘TLS1_DHE_RSA_AES_256_GCM_SHA384’: TLS1_DHE_RSA_AES_256_GCM_SHA384; ‘TLS1_DHE_RSA_AES_256_SHA’: TLS1_DHE_RSA_AES_256_SHA; ‘TLS1_DHE_RSA_AES_256_SHA256’: TLS1_DHE_RSA_AES_256_SHA256; ‘TLS1_ECDHE_ECDSA_AES_128_GCM_SHA256’: TLS1_ECDHE_ECDSA_AES_128_GCM_SHA256; ‘TLS1_ECDHE_ECDSA_AES_128_SHA’: TLS1_ECDHE_ECDSA_AES_128_SHA; ‘TLS1_ECDHE_ECDSA_AES_128_SHA256’: TLS1_ECDHE_ECDSA_AES_128_SHA256; ‘TLS1_ECDHE_ECDSA_AES_256_GCM_SHA384’: TLS1_ECDHE_ECDSA_AES_256_GCM_SHA384; ‘TLS1_ECDHE_ECDSA_AES_256_SHA’: TLS1_ECDHE_ECDSA_AES_256_SHA; ‘TLS1_ECDHE_RSA_AES_128_GCM_SHA256’: TLS1_ECDHE_RSA_AES_128_GCM_SHA256; ‘TLS1_ECDHE_RSA_AES_128_SHA’: TLS1_ECDHE_RSA_AES_128_SHA; ‘TLS1_ECDHE_RSA_AES_128_SHA256’: TLS1_ECDHE_RSA_AES_128_SHA256; ‘TLS1_ECDHE_RSA_AES_256_GCM_SHA384’: TLS1_ECDHE_RSA_AES_256_GCM_SHA384; ‘TLS1_ECDHE_RSA_AES_256_SHA’: TLS1_ECDHE_RSA_AES_256_SHA; ‘TLS1_RSA_AES_128_GCM_SHA256’: TLS1_RSA_AES_128_GCM_SHA256; ‘TLS1_RSA_AES_256_GCM_SHA384’: TLS1_RSA_AES_256_GCM_SHA384;`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Cipher priority (Cipher priority (default 1))`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_client_ssh",
+			Type:             "vthunder_thunder_slb_template_client_ssh",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder slb template client-ssh resource for A10`,
+			ShortDescription: `Provides details about thunder slb template client ssh resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"client",
-				"ssh",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `Client SSH Template Name`,
-				},
-				resource.Attribute{
-					Name:        "user_tag",
-					Description: `Customized tag`,
+					Name:        "encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED password string)`,
 				},
 				resource.Attribute{
 					Name:        "forward_proxy_enable",
@@ -4451,68 +10399,1142 @@ var (
 				},
 				resource.Attribute{
 					Name:        "forward_proxy_hostkey",
-					Description: `Specify private-key`,
+					Description: `Specify private-key (Key Name)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Client SSH Template Name`,
 				},
 				resource.Attribute{
 					Name:        "passphrase",
 					Description: `Password Phrase`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vthunder_slb_template_client_ssl",
-			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder slb template client-ssl resource for A10`,
-			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"client",
-				"ssl",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `Client SSL Template Name`,
 				},
 				resource.Attribute{
 					Name:        "user_tag",
 					Description: `Customized tag`,
 				},
 				resource.Attribute{
-					Name:        "forward_proxy_ssl_version",
-					Description: `TLS/SSL version, default is TLS1.2 (TLS/SSL version: 31-TLSv1.0, 32-TLSv1.1 and 33-TLSv1.2)`,
-				},
-				resource.Attribute{
-					Name:        "forward_proxy_crl_disable",
-					Description: `Disable Certificate Revocation List checking for forward proxy`,
-				},
-				resource.Attribute{
-					Name:        "fp_cert_ext_aia_ocsp",
-					Description: `OCSP (Authority Information Access URI)`,
+					Name:        "uuid",
+					Description: `uuid of the object`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_connection_reuse",
+			Type:             "vthunder_thunder_slb_template_client_ssl",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder slb template connection-reuse resource for A10`,
+			ShortDescription: `Provides details about thunder slb template client ssl resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"connection",
-				"reuse",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `Connection Reuse Template Name`,
+					Name:        "ad_group_list",
+					Description: `Forward proxy bypass if ad-group matches class-list`,
 				},
+				resource.Attribute{
+					Name:        "alert_type",
+					Description: `‘fatal’: Log fatal alerts;`,
+				},
+				resource.Attribute{
+					Name:        "auth_sg",
+					Description: `Specify authorization LDAP service group`,
+				},
+				resource.Attribute{
+					Name:        "auth_sg_dn",
+					Description: `Use Subject DN as LDAP search base DN`,
+				},
+				resource.Attribute{
+					Name:        "auth_sg_filter",
+					Description: `Specify LDAP search filter`,
+				},
+				resource.Attribute{
+					Name:        "auth_username",
+					Description: `Specify the Username Field in the Client Certificate(If multi-fields are specificed, prior one has higher priority)`,
+				},
+				resource.Attribute{
+					Name:        "auth_username_attribute",
+					Description: `Specify attribute name of username for client SSL authorization`,
+				},
+				resource.Attribute{
+					Name:        "authen_name",
+					Description: `Specify authorization LDAP server name`,
+				},
+				resource.Attribute{
+					Name:        "authorization",
+					Description: `Specify LDAP server for client SSL authorizaiton`,
+				},
+				resource.Attribute{
+					Name:        "bypass_cert_issuer_class_list_name",
+					Description: `Class List Name`,
+				},
+				resource.Attribute{
+					Name:        "bypass_cert_san_class_list_name",
+					Description: `Class List Name`,
+				},
+				resource.Attribute{
+					Name:        "bypass_cert_subject_class_list_name",
+					Description: `Class List Name`,
+				},
+				resource.Attribute{
+					Name:        "cache_persistence_list_name",
+					Description: `Class List Name`,
+				},
+				resource.Attribute{
+					Name:        "case_insensitive",
+					Description: `Case insensitive forward proxy bypass`,
+				},
+				resource.Attribute{
+					Name:        "cert_alternate",
+					Description: `Specify the second certificate (Certificate Name)`,
+				},
+				resource.Attribute{
+					Name:        "cert_revoke_action",
+					Description: `‘bypass’: bypass SSLi processing; ‘continue’: continue the connection; ‘drop’: close the connection;`,
+				},
+				resource.Attribute{
+					Name:        "cert_shared_str",
+					Description: `Certificate Name`,
+				},
+				resource.Attribute{
+					Name:        "cert_str",
+					Description: `Certificate Name`,
+				},
+				resource.Attribute{
+					Name:        "cert_unknown_action",
+					Description: `‘bypass’: bypass SSLi processing; ‘continue’: continue the connection; ‘drop’: close the connection;`,
+				},
+				resource.Attribute{
+					Name:        "chain_cert",
+					Description: `Chain Certificate (Chain Certificate Name)`,
+				},
+				resource.Attribute{
+					Name:        "chain_cert_shared_str",
+					Description: `Chain Certificate Name`,
+				},
+				resource.Attribute{
+					Name:        "class_list_name",
+					Description: `Class List Name`,
+				},
+				resource.Attribute{
+					Name:        "client_auth_case_insensitive",
+					Description: `Case insensitive forward proxy client auth bypass`,
+				},
+				resource.Attribute{
+					Name:        "client_auth_class_list",
+					Description: `Forward proxy client auth bypass if SNI string matches class-list (Class List Name)`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate",
+					Description: `‘Ignore’: Don’t request client certificate; ‘Require’: Require client certificate; ‘Request’: Request client certificate;`,
+				},
+				resource.Attribute{
+					Name:        "close_notify",
+					Description: `Send close notification when terminate connection`,
+				},
+				resource.Attribute{
+					Name:        "dgversion",
+					Description: `Lower TLS/SSL version can be downgraded`,
+				},
+				resource.Attribute{
+					Name:        "dh_type",
+					Description: `‘1024’: 1024; ‘1024-dsa’: 1024-dsa; ‘2048’: 2048;`,
+				},
+				resource.Attribute{
+					Name:        "direct_client_server_auth",
+					Description: `Let backend server does SSL client authentication directly`,
+				},
+				resource.Attribute{
+					Name:        "disable_sslv3",
+					Description: `Reject Client requests for SSL version 3`,
+				},
+				resource.Attribute{
+					Name:        "enable_tls_alert_logging",
+					Description: `Enable TLS alert logging`,
+				},
+				resource.Attribute{
+					Name:        "exception_ad_group_list",
+					Description: `Exceptions to forward proxy bypass if ad-group matches class-list`,
+				},
+				resource.Attribute{
+					Name:        "exception_certificate_issuer_cl_name",
+					Description: `Exceptions to forward-proxy-bypass`,
+				},
+				resource.Attribute{
+					Name:        "exception_certificate_san_cl_name",
+					Description: `Exceptions to forward-proxy-bypass`,
+				},
+				resource.Attribute{
+					Name:        "exception_certificate_subject_cl_name",
+					Description: `Exceptions to forward-proxy-bypass`,
+				},
+				resource.Attribute{
+					Name:        "exception_sni_cl_name",
+					Description: `Exceptions to forward-proxy-bypass`,
+				},
+				resource.Attribute{
+					Name:        "exception_user_name_list",
+					Description: `Exceptions to forward proxy bypass if user-name matches class-list`,
+				},
+				resource.Attribute{
+					Name:        "expire_hours",
+					Description: `Certificate lifetime in hours`,
+				},
+				resource.Attribute{
+					Name:        "forward_encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED password string)`,
+				},
+				resource.Attribute{
+					Name:        "forward_passphrase",
+					Description: `Password Phrase`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_alt_sign",
+					Description: `Forward proxy alternate signing cert and key`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_block_message",
+					Description: `Message to be included on the block page (Message, enclose in quotes if spaces are present)`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_ca_cert",
+					Description: `CA Certificate for forward proxy (SSL forward proxy CA Certificate Name)`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_ca_key",
+					Description: `CA Private Key for forward proxy (SSL forward proxy CA Key Name)`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_cert_cache_limit",
+					Description: `Certificate cache size limit, default is 524288 (set to 0 for unlimited size)`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_cert_cache_timeout",
+					Description: `Certificate cache timeout, default is 1 hour (seconds, set to 0 for never timeout)`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_cert_expiry",
+					Description: `Adjust certificate expiry relative to the time when it is created on the device`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_cert_not_ready_action",
+					Description: `‘bypass’: bypass the connection; ‘reset’: reset the connection;`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_cert_revoke_action",
+					Description: `Action taken if a certificate is irreversibly revoked, bypass SSLi processing by default`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_cert_unknown_action",
+					Description: `Action taken if a certificate revocation status is unknown, bypass SSLi processing by default`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_crl_disable",
+					Description: `Disable Certificate Revocation List checking for forward proxy`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_decrypted_dscp",
+					Description: `Apply a DSCP to decrypted and bypassed traffic (DSCP to apply to decrypted traffic)`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_decrypted_dscp_bypass",
+					Description: `DSCP to apply to bypassed traffic`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_enable",
+					Description: `Enable SSL forward proxy`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_failsafe_disable",
+					Description: `Disable Failsafe for SSL forward proxy`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_log_disable",
+					Description: `Disable SSL forward proxy logging`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_no_shared_cipher_action",
+					Description: `Action taken if handshake fails due to no shared ciper, close the connection by default`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_no_sni_action",
+					Description: `‘intercept’: intercept in no SNI case; ‘bypass’: bypass in no SNI case; ‘reset’: reset in no SNI case;`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_ocsp_disable",
+					Description: `Disable ocsp-stapling for forward proxy`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_selfsign_redir",
+					Description: `Redirect connections to pages with self signed certs to a warning page`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_ssl_version",
+					Description: `TLS/SSL version, default is TLS1.2 (TLS/SSL version: 31-TLSv1.0, 32-TLSv1.1 and 33-TLSv1.2)`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_verify_cert_fail_action",
+					Description: `Action taken if certificate verification fails, close the connection by default`,
+				},
+				resource.Attribute{
+					Name:        "fp_alt_cert",
+					Description: `CA Certificate for forward proxy alternate signing (Certificate name)`,
+				},
+				resource.Attribute{
+					Name:        "fp_alt_encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED password string)`,
+				},
+				resource.Attribute{
+					Name:        "fp_alt_key",
+					Description: `CA Private Key for forward proxy alternate signing (Key name)`,
+				},
+				resource.Attribute{
+					Name:        "fp_alt_passphrase",
+					Description: `Password Phrase`,
+				},
+				resource.Attribute{
+					Name:        "fp_cert_ext_aia_ca_issuers",
+					Description: `CA Issuers (Authority Information Access URI)`,
+				},
+				resource.Attribute{
+					Name:        "fp_cert_ext_aia_ocsp",
+					Description: `OCSP (Authority Information Access URI)`,
+				},
+				resource.Attribute{
+					Name:        "fp_cert_ext_crldp",
+					Description: `CRL Distribution Point (CRL Distribution Point URI)`,
+				},
+				resource.Attribute{
+					Name:        "fp_cert_fetch_autonat",
+					Description: `‘auto’: Configure auto NAT for server certificate fetching;`,
+				},
+				resource.Attribute{
+					Name:        "fp_cert_fetch_autonat_precedence",
+					Description: `Set this NAT pool as higher precedence than other source NAT like configued under template policy`,
+				},
+				resource.Attribute{
+					Name:        "fp_cert_fetch_natpool_name",
+					Description: `Specify NAT pool or pool group`,
+				},
+				resource.Attribute{
+					Name:        "fp_cert_fetch_natpool_name_shared",
+					Description: `Specify NAT pool or pool group`,
+				},
+				resource.Attribute{
+					Name:        "fp_cert_fetch_natpool_precedence",
+					Description: `Set this NAT pool as higher precedence than other source NAT like configued under template policy`,
+				},
+				resource.Attribute{
+					Name:        "handshake_logging_enable",
+					Description: `Enable SSL handshake logging`,
+				},
+				resource.Attribute{
+					Name:        "hsm_type",
+					Description: `‘thales-embed’: Thales embed key; ‘thales-hwcrhk’: Thales hwcrhk Key;`,
+				},
+				resource.Attribute{
+					Name:        "inspect_certificate_issuer_cl_name",
+					Description: `Forward proxy Inspect if Certificate issuer matches class-list`,
+				},
+				resource.Attribute{
+					Name:        "inspect_certificate_san_cl_name",
+					Description: `Forward proxy Inspect if Certificate Subject Alternative Name matches class-list`,
+				},
+				resource.Attribute{
+					Name:        "inspect_certificate_subject_cl_name",
+					Description: `Forward proxy Inspect if Certificate Subject matches class-list`,
+				},
+				resource.Attribute{
+					Name:        "inspect_list_name",
+					Description: `Class List Name`,
+				},
+				resource.Attribute{
+					Name:        "key_alt_encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED password string)`,
+				},
+				resource.Attribute{
+					Name:        "key_alt_passphrase",
+					Description: `Password Phrase`,
+				},
+				resource.Attribute{
+					Name:        "key_alternate",
+					Description: `Specify the second private key (Key Name)`,
+				},
+				resource.Attribute{
+					Name:        "key_encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED password string)`,
+				},
+				resource.Attribute{
+					Name:        "key_passphrase",
+					Description: `Password Phrase`,
+				},
+				resource.Attribute{
+					Name:        "key_shared_encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED password string)`,
+				},
+				resource.Attribute{
+					Name:        "key_shared_passphrase",
+					Description: `Password Phrase`,
+				},
+				resource.Attribute{
+					Name:        "key_shared_str",
+					Description: `Key Name`,
+				},
+				resource.Attribute{
+					Name:        "key_str",
+					Description: `Key Name`,
+				},
+				resource.Attribute{
+					Name:        "ldap_base_dn_from_cert",
+					Description: `Use Subject DN as LDAP search base DN`,
+				},
+				resource.Attribute{
+					Name:        "ldap_search_filter",
+					Description: `Specify LDAP search filter`,
+				},
+				resource.Attribute{
+					Name:        "local_logging",
+					Description: `Enable local logging`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Client SSL Template Name`,
+				},
+				resource.Attribute{
+					Name:        "no_shared_cipher_action",
+					Description: `‘bypass’: bypass SSLi processing; ‘drop’: close the connection;`,
+				},
+				resource.Attribute{
+					Name:        "non_ssl_bypass_l4session",
+					Description: `Handle the non-ssl session as L4 for performance optimization`,
+				},
+				resource.Attribute{
+					Name:        "non_ssl_bypass_service_group",
+					Description: `Service Group for Bypass non-ssl traffic (Service Group Name)`,
+				},
+				resource.Attribute{
+					Name:        "notafter",
+					Description: `notAfter date`,
+				},
+				resource.Attribute{
+					Name:        "notafterday",
+					Description: `Day`,
+				},
+				resource.Attribute{
+					Name:        "notaftermonth",
+					Description: `Month`,
+				},
+				resource.Attribute{
+					Name:        "notafteryear",
+					Description: `Year`,
+				},
+				resource.Attribute{
+					Name:        "notbefore",
+					Description: `notBefore date`,
+				},
+				resource.Attribute{
+					Name:        "notbeforeday",
+					Description: `Day`,
+				},
+				resource.Attribute{
+					Name:        "notbeforemonth",
+					Description: `Month`,
+				},
+				resource.Attribute{
+					Name:        "notbeforeyear",
+					Description: `Year`,
+				},
+				resource.Attribute{
+					Name:        "ocsp_stapling",
+					Description: `Config OCSP stapling support`,
+				},
+				resource.Attribute{
+					Name:        "ocspst_ca_cert",
+					Description: `CA certificate`,
+				},
+				resource.Attribute{
+					Name:        "ocspst_ocsp",
+					Description: `Specify OCSP Authentication`,
+				},
+				resource.Attribute{
+					Name:        "ocspst_sg",
+					Description: `Specify authentication service group`,
+				},
+				resource.Attribute{
+					Name:        "ocspst_sg_days",
+					Description: `Specify update period, in days`,
+				},
+				resource.Attribute{
+					Name:        "ocspst_sg_hours",
+					Description: `Specify update period, in hours`,
+				},
+				resource.Attribute{
+					Name:        "ocspst_sg_minutes",
+					Description: `Specify update period, in minutes`,
+				},
+				resource.Attribute{
+					Name:        "ocspst_sg_timeout",
+					Description: `Specify retry timeout (Default is 30 mins)`,
+				},
+				resource.Attribute{
+					Name:        "ocspst_srvr",
+					Description: `Specify OCSP authentication server`,
+				},
+				resource.Attribute{
+					Name:        "ocspst_srvr_days",
+					Description: `Specify update period, in days`,
+				},
+				resource.Attribute{
+					Name:        "ocspst_srvr_hours",
+					Description: `Specify update period, in hours`,
+				},
+				resource.Attribute{
+					Name:        "ocspst_srvr_minutes",
+					Description: `Specify update period, in minutes`,
+				},
+				resource.Attribute{
+					Name:        "ocspst_srvr_timeout",
+					Description: `Specify retry timeout (Default is 30 mins)`,
+				},
+				resource.Attribute{
+					Name:        "renegotiation_disable",
+					Description: `Disable SSL renegotiation`,
+				},
+				resource.Attribute{
+					Name:        "require_web_category",
+					Description: `Wait for web category to be resolved before taking bypass decision`,
+				},
+				resource.Attribute{
+					Name:        "server_name_auto_map",
+					Description: `Enable automatic mapping of server name indication in Client hello extension`,
+				},
+				resource.Attribute{
+					Name:        "session_cache_size",
+					Description: `Session Cache Size (Specify 0 to disable Session ID reuse.)`,
+				},
+				resource.Attribute{
+					Name:        "session_cache_timeout",
+					Description: `Session Cache Timeout (Timeout value, in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "session_ticket_lifetime",
+					Description: `Session ticket lieftime in seconds from stateless session resumption (Lifetime value in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_cipher_template",
+					Description: `Reference a cipher template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_pool",
+					Description: `Reference a NAT pool or pool group from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "sni_enable_log",
+					Description: `Enable logging of sni-auto-map failures. Disable by default`,
+				},
+				resource.Attribute{
+					Name:        "ssl_false_start_disable",
+					Description: `disable SSL False Start`,
+				},
+				resource.Attribute{
+					Name:        "ssli_logging",
+					Description: `SSLi logging level, default is error logging only`,
+				},
+				resource.Attribute{
+					Name:        "sslilogging",
+					Description: `‘disable’: Disable all logging; ‘all’: enable all logging(error, info);`,
+				},
+				resource.Attribute{
+					Name:        "sslv2_bypass_service_group",
+					Description: `Service Group for Bypass SSLV2 (Service Group Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_cipher",
+					Description: `Cipher Template (Cipher Config Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_cipher_shared",
+					Description: `Cipher Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_hsm",
+					Description: `HSM Template (HSM Template Name)`,
+				},
+				resource.Attribute{
+					Name:        "user_name_list",
+					Description: `Forward proxy bypass if user-name matches class-list`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "verify_cert_fail_action",
+					Description: `‘bypass’: bypass SSLi processing; ‘continue’: continue the connection; ‘drop’: close the connection;`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `TLS/SSL version, default is the highest number supported (TLS/SSL version: 30-SSLv3.0, 31-TLSv1.0, 32-TLSv1.1 and 33-TLSv1.2)`,
+				},
+				resource.Attribute{
+					Name:        "bypass_cert_subject_multi_class_list_name",
+					Description: `Class List Name`,
+				},
+				resource.Attribute{
+					Name:        "certificate_san_contains",
+					Description: `Forward proxy bypass if Certificate SAN contains another string`,
+				},
+				resource.Attribute{
+					Name:        "equals",
+					Description: `Forward proxy bypass if SNI string equals another string`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_trusted_ca",
+					Description: `Forward proxy trusted CA file (CA file name)`,
+				},
+				resource.Attribute{
+					Name:        "ec",
+					Description: `‘secp256r1’: X9_62_prime256v1; ‘secp384r1’: secp384r1;`,
+				},
+				resource.Attribute{
+					Name:        "contains",
+					Description: `Forward proxy bypass if SNI string contains another string`,
+				},
+				resource.Attribute{
+					Name:        "ends_with",
+					Description: `Forward proxy bypass if SNI string ends with another string`,
+				},
+				resource.Attribute{
+					Name:        "ca_cert",
+					Description: `CA Certificate (CA Certificate Name)`,
+				},
+				resource.Attribute{
+					Name:        "ca_shared",
+					Description: `CA Certificate Partition Shared`,
+				},
+				resource.Attribute{
+					Name:        "client_ocsp",
+					Description: `Specify ocsp authentication server(s) for client certificate verification`,
+				},
+				resource.Attribute{
+					Name:        "client_ocsp_sg",
+					Description: `Specify service-group (Service group name)`,
+				},
+				resource.Attribute{
+					Name:        "client_ocsp_srvr",
+					Description: `Specify authentication server`,
+				},
+				resource.Attribute{
+					Name:        "client_auth_contains",
+					Description: `Forward proxy bypass if SNI string contains another string`,
+				},
+				resource.Attribute{
+					Name:        "certificate_subject_contains",
+					Description: `Forward proxy bypass if Certificate Subject contains another string`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate_Request_CA",
+					Description: `Send CA lists in certificate request (CA Certificate Name)`,
+				},
+				resource.Attribute{
+					Name:        "certificate_subject_starts",
+					Description: `Forward proxy bypass if Certificate Subject starts with another string`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘real-estate’: real estate category; ‘computer-and-internet-security’: computer and internet security category; ‘financial-services’: financial services category; ‘business-and-economy’: business and economy category; ‘computer-and-internet-info’: computer and internet info category; ‘auctions’: auctions category; ‘shopping’: shopping category; ‘cult-and-occult’: cult and occult category; ‘travel’: travel category; ‘drugs’: drugs category; ‘adult-and-pornography’: adult and pornography category; ‘home-and-garden’: home and garden category; ‘military’: military category; ‘social-network’: social network category; ‘dead-sites’: dead sites category; ‘stock-advice-and-tools’: stock advice and tools category; ‘training-and-tools’: training and tools category; ‘dating’: dating category; ‘sex-education’: sex education category; ‘religion’: religion category; ‘entertainment-and-arts’: entertainment and arts category; ‘personal-sites-and-blogs’: personal sites and blogs category; ‘legal’: legal category; ‘local-information’: local information category; ‘streaming-media’: streaming media category; ‘job-search’: job search category; ‘gambling’: gambling category; ‘translation’: translation category; ‘reference-and-research’: reference and research category; ‘shareware-and-freeware’: shareware and freeware category; ‘peer-to-peer’: peer to peer category; ‘marijuana’: marijuana category; ‘hacking’: hacking category; ‘games’: games category; ‘philosophy-and-politics’: philosophy and politics category; ‘weapons’: weapons category; ‘pay-to-surf’: pay to surf category; ‘hunting-and-fishing’: hunting and fishing category; ‘society’: society category; ‘educational-institutions’: educational institutions category; ‘online-greeting-cards’: online greeting cards category; ‘sports’: sports category; ‘swimsuits-and-intimate-apparel’: swimsuits and intimate apparel category; ‘questionable’: questionable category; ‘kids’: kids category; ‘hate-and-racism’: hate and racism category; ‘personal-storage’: personal storage category; ‘violence’: violence category; ‘keyloggers-and-monitoring’: keyloggers and monitoring category; ‘search-engines’: search engines category; ‘internet-portals’: internet portals category; ‘web-advertisements’: web advertisements category; ‘cheating’: cheating category; ‘gross’: gross category; ‘web-based-email’: web based email category; ‘malware-sites’: malware sites category; ‘phishing-and-other-fraud’: phishing and other fraud category; ‘proxy-avoid-and-anonymizers’: proxy avoid and anonymizers category; ‘spyware-and-adware’: spyware and adware category; ‘music’: music category; ‘government’: government category; ‘nudity’: nudity category; ‘news-and-media’: news and media category; ‘illegal’: illegal category; ‘CDNs’: content delivery networks category; ‘internet-communications’: internet communications category; ‘bot-nets’: bot nets category; ‘abortion’: abortion category; ‘health-and-medicine’: health and medicine category; ‘confirmed-SPAM-sources’: confirmed SPAM sources category; ‘SPAM-URLs’: SPAM URLs category; ‘unconfirmed-SPAM-sources’: unconfirmed SPAM sources category; ‘open-HTTP-proxies’: open HTTP proxies category; ‘dynamic-comment’: dynamic comment category; ‘parked-domains’: parked domains category; ‘alcohol-and-tobacco’: alcohol and tobacco category; ‘private-IP-addresses’: private IP addresses category; ‘image-and-video-search’: image and video search category; ‘fashion-and-beauty’: fashion and beauty category; ‘recreation-and-hobbies’: recreation and hobbies category; ‘motor-vehicles’: motor vehicles category; ‘web-hosting-sites’: web hosting sites category; ‘food-and-dining’: food and dining category; ‘uncategorised’: uncategorised; ‘other-category’: other category;`,
+				},
+				resource.Attribute{
+					Name:        "bypass_cert_issuer_multi_class_list_name",
+					Description: `Class List Name`,
+				},
+				resource.Attribute{
+					Name:        "client_auth_equals",
+					Description: `Forward proxy bypass if SNI string equals another string`,
+				},
+				resource.Attribute{
+					Name:        "certificate_issuer_equals",
+					Description: `Forward proxy bypass if Certificate issuer equals another string`,
+				},
+				resource.Attribute{
+					Name:        "certificate_san_ends_with",
+					Description: `Forward proxy bypass if Certificate SAN ends with another string`,
+				},
+				resource.Attribute{
+					Name:        "crl",
+					Description: `Certificate Revocation Lists (Certificate Revocation Lists file name)`,
+				},
+				resource.Attribute{
+					Name:        "crl_shared",
+					Description: `Certificate Revocation Lists Partition Shared`,
+				},
+				resource.Attribute{
+					Name:        "multi_clist_name",
+					Description: `Class List Name`,
+				},
+				resource.Attribute{
+					Name:        "certificate_issuer_ends_with",
+					Description: `Forward proxy bypass if Certificate issuer ends with another string`,
+				},
+				resource.Attribute{
+					Name:        "abortion",
+					Description: `Category Abortion`,
+				},
+				resource.Attribute{
+					Name:        "adult_and_pornography",
+					Description: `Category Adult and Pornography`,
+				},
+				resource.Attribute{
+					Name:        "alcohol_and_tobacco",
+					Description: `Category Alcohol and Tobacco`,
+				},
+				resource.Attribute{
+					Name:        "auctions",
+					Description: `Category Auctions`,
+				},
+				resource.Attribute{
+					Name:        "bot_nets",
+					Description: `Category Bot Nets`,
+				},
+				resource.Attribute{
+					Name:        "business_and_economy",
+					Description: `Category Business and Economy`,
+				},
+				resource.Attribute{
+					Name:        "cdns",
+					Description: `Category CDNs`,
+				},
+				resource.Attribute{
+					Name:        "cheating",
+					Description: `Category Cheating`,
+				},
+				resource.Attribute{
+					Name:        "computer_and_internet_info",
+					Description: `Category Computer and Internet Info`,
+				},
+				resource.Attribute{
+					Name:        "computer_and_internet_security",
+					Description: `Category Computer and Internet Security`,
+				},
+				resource.Attribute{
+					Name:        "confirmed_spam_sources",
+					Description: `Category Confirmed SPAM Sources`,
+				},
+				resource.Attribute{
+					Name:        "cult_and_occult",
+					Description: `Category Cult and Occult`,
+				},
+				resource.Attribute{
+					Name:        "dating",
+					Description: `Category Dating`,
+				},
+				resource.Attribute{
+					Name:        "dead_sites",
+					Description: `Category Dead Sites (db Ops only)`,
+				},
+				resource.Attribute{
+					Name:        "drugs",
+					Description: `Category Abused Drugs`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_comment",
+					Description: `Category Dynamic Comment`,
+				},
+				resource.Attribute{
+					Name:        "educational_institutions",
+					Description: `Category Educational Institutions`,
+				},
+				resource.Attribute{
+					Name:        "entertainment_and_arts",
+					Description: `Category Entertainment and Arts`,
+				},
+				resource.Attribute{
+					Name:        "fashion_and_beauty",
+					Description: `Category Fashion and Beauty`,
+				},
+				resource.Attribute{
+					Name:        "financial_services",
+					Description: `Category Financial Services`,
+				},
+				resource.Attribute{
+					Name:        "food_and_dining",
+					Description: `Category Food and Dining`,
+				},
+				resource.Attribute{
+					Name:        "gambling",
+					Description: `Category Gambling`,
+				},
+				resource.Attribute{
+					Name:        "games",
+					Description: `Category Games`,
+				},
+				resource.Attribute{
+					Name:        "government",
+					Description: `Category Government`,
+				},
+				resource.Attribute{
+					Name:        "gross",
+					Description: `Category Gross`,
+				},
+				resource.Attribute{
+					Name:        "hacking",
+					Description: `Category Hacking`,
+				},
+				resource.Attribute{
+					Name:        "hate_and_racism",
+					Description: `Category Hate and Racism`,
+				},
+				resource.Attribute{
+					Name:        "health_and_medicine",
+					Description: `Category Health and Medicine`,
+				},
+				resource.Attribute{
+					Name:        "home_and_garden",
+					Description: `Category Home and Garden`,
+				},
+				resource.Attribute{
+					Name:        "hunting_and_fishing",
+					Description: `Category Hunting and Fishing`,
+				},
+				resource.Attribute{
+					Name:        "illegal",
+					Description: `Category Illegal`,
+				},
+				resource.Attribute{
+					Name:        "image_and_video_search",
+					Description: `Category Image and Video Search`,
+				},
+				resource.Attribute{
+					Name:        "internet_communications",
+					Description: `Category Internet Communications`,
+				},
+				resource.Attribute{
+					Name:        "internet_portals",
+					Description: `Category Internet Portals`,
+				},
+				resource.Attribute{
+					Name:        "job_search",
+					Description: `Category Job Search`,
+				},
+				resource.Attribute{
+					Name:        "keyloggers_and_monitoring",
+					Description: `Category Keyloggers and Monitoring`,
+				},
+				resource.Attribute{
+					Name:        "kids",
+					Description: `Category Kids`,
+				},
+				resource.Attribute{
+					Name:        "legal",
+					Description: `Category Legal`,
+				},
+				resource.Attribute{
+					Name:        "local_information",
+					Description: `Category Local Information`,
+				},
+				resource.Attribute{
+					Name:        "malware_sites",
+					Description: `Category Malware Sites`,
+				},
+				resource.Attribute{
+					Name:        "marijuana",
+					Description: `Category Marijuana`,
+				},
+				resource.Attribute{
+					Name:        "military",
+					Description: `Category Military`,
+				},
+				resource.Attribute{
+					Name:        "motor_vehicles",
+					Description: `Category Motor Vehicles`,
+				},
+				resource.Attribute{
+					Name:        "music",
+					Description: `Category Music`,
+				},
+				resource.Attribute{
+					Name:        "news_and_media",
+					Description: `Category News and Media`,
+				},
+				resource.Attribute{
+					Name:        "nudity",
+					Description: `Category Nudity`,
+				},
+				resource.Attribute{
+					Name:        "online_greeting_cards",
+					Description: `Category Online Greeting cards`,
+				},
+				resource.Attribute{
+					Name:        "open_http_proxies",
+					Description: `Category Open HTTP Proxies`,
+				},
+				resource.Attribute{
+					Name:        "parked_domains",
+					Description: `Category Parked Domains`,
+				},
+				resource.Attribute{
+					Name:        "pay_to_surf",
+					Description: `Category Pay to Surf`,
+				},
+				resource.Attribute{
+					Name:        "peer_to_peer",
+					Description: `Category Peer to Peer`,
+				},
+				resource.Attribute{
+					Name:        "personal_sites_and_blogs",
+					Description: `Category Personal sites and Blogs`,
+				},
+				resource.Attribute{
+					Name:        "personal_storage",
+					Description: `Category Personal Storage`,
+				},
+				resource.Attribute{
+					Name:        "philosophy_and_politics",
+					Description: `Category Philosophy and Political Advocacy`,
+				},
+				resource.Attribute{
+					Name:        "phishing_and_other_fraud",
+					Description: `Category Phishing and Other Frauds`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_addresses",
+					Description: `Category Private IP Addresses`,
+				},
+				resource.Attribute{
+					Name:        "proxy_avoid_and_anonymizers",
+					Description: `Category Proxy Avoid and Anonymizers`,
+				},
+				resource.Attribute{
+					Name:        "questionable",
+					Description: `Category Questionable`,
+				},
+				resource.Attribute{
+					Name:        "real_estate",
+					Description: `Category Real Estate`,
+				},
+				resource.Attribute{
+					Name:        "recreation_and_hobbies",
+					Description: `Category Recreation and Hobbies`,
+				},
+				resource.Attribute{
+					Name:        "reference_and_research",
+					Description: `Category Reference and Research`,
+				},
+				resource.Attribute{
+					Name:        "religion",
+					Description: `Category Religion`,
+				},
+				resource.Attribute{
+					Name:        "search_engines",
+					Description: `Category Search Engines`,
+				},
+				resource.Attribute{
+					Name:        "sex_education",
+					Description: `Category Sex Education`,
+				},
+				resource.Attribute{
+					Name:        "shareware_and_freeware",
+					Description: `Category Shareware and Freeware`,
+				},
+				resource.Attribute{
+					Name:        "shopping",
+					Description: `Category Shopping`,
+				},
+				resource.Attribute{
+					Name:        "social_network",
+					Description: `Category Social Network`,
+				},
+				resource.Attribute{
+					Name:        "society",
+					Description: `Category Society`,
+				},
+				resource.Attribute{
+					Name:        "spam_urls",
+					Description: `Category SPAM URLs`,
+				},
+				resource.Attribute{
+					Name:        "sports",
+					Description: `Category Sports`,
+				},
+				resource.Attribute{
+					Name:        "spyware_and_adware",
+					Description: `Category Spyware and Adware`,
+				},
+				resource.Attribute{
+					Name:        "stock_advice_and_tools",
+					Description: `Category Stock Advice and Tools`,
+				},
+				resource.Attribute{
+					Name:        "streaming_media",
+					Description: `Category Streaming Media`,
+				},
+				resource.Attribute{
+					Name:        "swimsuits_and_intimate_apparel",
+					Description: `Category Swimsuits and Intimate Apparel`,
+				},
+				resource.Attribute{
+					Name:        "training_and_tools",
+					Description: `Category Training and Tools`,
+				},
+				resource.Attribute{
+					Name:        "translation",
+					Description: `Category Translation`,
+				},
+				resource.Attribute{
+					Name:        "travel",
+					Description: `Category Travel`,
+				},
+				resource.Attribute{
+					Name:        "uncategorized",
+					Description: `Uncategorized URLs`,
+				},
+				resource.Attribute{
+					Name:        "unconfirmed_spam_sources",
+					Description: `Category Unconfirmed SPAM Sources`,
+				},
+				resource.Attribute{
+					Name:        "violence",
+					Description: `Category Violence`,
+				},
+				resource.Attribute{
+					Name:        "weapons",
+					Description: `Category Weapons`,
+				},
+				resource.Attribute{
+					Name:        "web_advertisements",
+					Description: `Category Web Advertisements`,
+				},
+				resource.Attribute{
+					Name:        "web_based_email",
+					Description: `Category Web based email`,
+				},
+				resource.Attribute{
+					Name:        "web_hosting_sites",
+					Description: `Category Web Hosting Sites`,
+				},
+				resource.Attribute{
+					Name:        "certificate_san_equals",
+					Description: `Forward proxy bypass if Certificate SAN equals another string`,
+				},
+				resource.Attribute{
+					Name:        "certificate_issuer_contains",
+					Description: `Forward proxy bypass if Certificate issuer contains another string (Certificate issuer)`,
+				},
+				resource.Attribute{
+					Name:        "client_auth_starts_with",
+					Description: `Forward proxy bypass if SNI string starts with another string`,
+				},
+				resource.Attribute{
+					Name:        "certificate_subject_ends_with",
+					Description: `Forward proxy bypass if Certificate Subject ends with another string`,
+				},
+				resource.Attribute{
+					Name:        "bypass_cert_san_multi_class_list_name",
+					Description: `Class List Name`,
+				},
+				resource.Attribute{
+					Name:        "server_cert",
+					Description: `Server Certificate associated to SNI (Server Certificate Name)`,
+				},
+				resource.Attribute{
+					Name:        "server_cert_regex",
+					Description: `Server Certificate associated to SNI regex (Server Certificate Name)`,
+				},
+				resource.Attribute{
+					Name:        "server_chain",
+					Description: `Server Certificate Chain associated to SNI (Server Certificate Chain Name)`,
+				},
+				resource.Attribute{
+					Name:        "server_chain_regex",
+					Description: `Server Certificate Chain associated to SNI regex (Server Certificate Chain Name)`,
+				},
+				resource.Attribute{
+					Name:        "server_encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED password string)`,
+				},
+				resource.Attribute{
+					Name:        "server_encrypted_regex",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED password string)`,
+				},
+				resource.Attribute{
+					Name:        "server_key",
+					Description: `Server Private Key associated to SNI (Server Private Key Name)`,
+				},
+				resource.Attribute{
+					Name:        "server_key_regex",
+					Description: `Server Private Key associated to SNI regex (Server Private Key Name)`,
+				},
+				resource.Attribute{
+					Name:        "server_name",
+					Description: `Server name indication in Client hello extension (Server name String)`,
+				},
+				resource.Attribute{
+					Name:        "server_name_alternate",
+					Description: `Specific the second certifcate`,
+				},
+				resource.Attribute{
+					Name:        "server_name_regex",
+					Description: `Server name indication in Client hello extension with regular expression (Server name String with regex)`,
+				},
+				resource.Attribute{
+					Name:        "server_name_regex_alternate",
+					Description: `Specific the second certifcate`,
+				},
+				resource.Attribute{
+					Name:        "server_passphrase",
+					Description: `help Password Phrase`,
+				},
+				resource.Attribute{
+					Name:        "server_passphrase_regex",
+					Description: `help Password Phrase`,
+				},
+				resource.Attribute{
+					Name:        "server_shared",
+					Description: `Server Name Partition Shared`,
+				},
+				resource.Attribute{
+					Name:        "server_shared_regex",
+					Description: `Server Name Partition Shared`,
+				},
+				resource.Attribute{
+					Name:        "certificate_issuer_starts",
+					Description: `Forward proxy bypass if Certificate issuer starts with another string`,
+				},
+				resource.Attribute{
+					Name:        "certificate_san_starts",
+					Description: `Forward proxy bypass if Certificate SAN starts with another string`,
+				},
+				resource.Attribute{
+					Name:        "client_auth_ends_with",
+					Description: `Forward proxy bypass if SNI string ends with another string`,
+				},
+				resource.Attribute{
+					Name:        "certificate_subject_equals",
+					Description: `Forward proxy bypass if Certificate Subject equals another string`,
+				},
+				resource.Attribute{
+					Name:        "cipher_wo_prio",
+					Description: `‘SSL3_RSA_DES_192_CBC3_SHA’: SSL3_RSA_DES_192_CBC3_SHA; ‘SSL3_RSA_RC4_128_MD5’: SSL3_RSA_RC4_128_MD5; ‘SSL3_RSA_RC4_128_SHA’: SSL3_RSA_RC4_128_SHA; ‘TLS1_RSA_AES_128_SHA’: TLS1_RSA_AES_128_SHA; ‘TLS1_RSA_AES_256_SHA’: TLS1_RSA_AES_256_SHA; ‘TLS1_RSA_AES_128_SHA256’: TLS1_RSA_AES_128_SHA256; ‘TLS1_RSA_AES_256_SHA256’: TLS1_RSA_AES_256_SHA256; ‘TLS1_DHE_RSA_AES_128_GCM_SHA256’: TLS1_DHE_RSA_AES_128_GCM_SHA256; ‘TLS1_DHE_RSA_AES_128_SHA’: TLS1_DHE_RSA_AES_128_SHA; ‘TLS1_DHE_RSA_AES_128_SHA256’: TLS1_DHE_RSA_AES_128_SHA256; ‘TLS1_DHE_RSA_AES_256_GCM_SHA384’: TLS1_DHE_RSA_AES_256_GCM_SHA384; ‘TLS1_DHE_RSA_AES_256_SHA’: TLS1_DHE_RSA_AES_256_SHA; ‘TLS1_DHE_RSA_AES_256_SHA256’: TLS1_DHE_RSA_AES_256_SHA256; ‘TLS1_ECDHE_ECDSA_AES_128_GCM_SHA256’: TLS1_ECDHE_ECDSA_AES_128_GCM_SHA256; ‘TLS1_ECDHE_ECDSA_AES_128_SHA’: TLS1_ECDHE_ECDSA_AES_128_SHA; ‘TLS1_ECDHE_ECDSA_AES_128_SHA256’: TLS1_ECDHE_ECDSA_AES_128_SHA256; ‘TLS1_ECDHE_ECDSA_AES_256_GCM_SHA384’: TLS1_ECDHE_ECDSA_AES_256_GCM_SHA384; ‘TLS1_ECDHE_ECDSA_AES_256_SHA’: TLS1_ECDHE_ECDSA_AES_256_SHA; ‘TLS1_ECDHE_RSA_AES_128_GCM_SHA256’: TLS1_ECDHE_RSA_AES_128_GCM_SHA256; ‘TLS1_ECDHE_RSA_AES_128_SHA’: TLS1_ECDHE_RSA_AES_128_SHA; ‘TLS1_ECDHE_RSA_AES_128_SHA256’: TLS1_ECDHE_RSA_AES_128_SHA256; ‘TLS1_ECDHE_RSA_AES_256_GCM_SHA384’: TLS1_ECDHE_RSA_AES_256_GCM_SHA384; ‘TLS1_ECDHE_RSA_AES_256_SHA’: TLS1_ECDHE_RSA_AES_256_SHA; ‘TLS1_RSA_AES_128_GCM_SHA256’: TLS1_RSA_AES_128_GCM_SHA256; ‘TLS1_RSA_AES_256_GCM_SHA384’: TLS1_RSA_AES_256_GCM_SHA384;`,
+				},
+				resource.Attribute{
+					Name:        "starts_with",
+					Description: `Forward proxy bypass if SNI string starts with another string`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_slb_template_connection_reuse",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder slb template connection reuse resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "keep_alive_conn",
 					Description: `Keep a number of server connections open`,
@@ -4522,27 +11544,39 @@ var (
 					Description: `Max Server Connections allowed (Connections per Server Port (default 1000))`,
 				},
 				resource.Attribute{
+					Name:        "name",
+					Description: `Connection Reuse Template Name`,
+				},
+				resource.Attribute{
+					Name:        "num_conn_per_port",
+					Description: `Connections per Server Port (default 100)`,
+				},
+				resource.Attribute{
+					Name:        "preopen",
+					Description: `Preopen server connection`,
+				},
+				resource.Attribute{
 					Name:        "timeout",
-					Description: `Timeout in seconds. Multiple of 60 (default 2400)`,
+					Description: `Timeout in seconds. Multiple of 60 (def 2400)`,
 				},
 				resource.Attribute{
 					Name:        "user_tag",
 					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_csv",
+			Type:             "vthunder_thunder_slb_template_csv",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder slb template csv resource for A10`,
+			ShortDescription: `Provides details about thunder slb template csv resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"csv",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "csv_name",
@@ -4577,193 +11611,300 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_dblb",
+			Type:             "vthunder_thunder_slb_template_dblb",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB template dblb resource for A10`,
+			ShortDescription: `Provides details about thunder slb template dblb resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"dblb",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "class_list",
+					Description: `Specify user/password string class list (Class list name)`,
+				},
+				resource.Attribute{
 					Name:        "name",
-					Description: `BDLB Template Name`,
+					Description: `DBLB template name`,
+				},
+				resource.Attribute{
+					Name:        "server_version",
+					Description: `‘MSSQL2008’: MSSQL server 2008 or 2008 R2; ‘MSSQL2012’: MSSQL server 2012; ‘MySQL’: MySQL server (any version);`,
 				},
 				resource.Attribute{
 					Name:        "user_tag",
 					Description: `Customized tag`,
 				},
 				resource.Attribute{
-					Name:        "server_version",
-					Description: `'MSSQL2008’: MSSQL server 2008 or 2008 R2; 'MSSQL2012’: MSSQL server 2012; 'MySQL’: MySQL server (any version)`,
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "sha1_value",
+					Description: `Cleartext password`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_diameter",
+			Type:             "vthunder_thunder_slb_template_diameter",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder slb template diameter resource for A10`,
+			ShortDescription: `Provides details about thunder slb template diameter resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"diameter",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `diameter template Name`,
+					Name:        "avp_code",
+					Description: `avp code`,
 				},
 				resource.Attribute{
-					Name:        "user_tag",
-					Description: `Customized tag`,
-				},
-				resource.Attribute{
-					Name:        "terminate_on_cca_t",
-					Description: `remove diameter session when receiving CCA-T message`,
-				},
-				resource.Attribute{
-					Name:        "message_code_list",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "message_code",
-					Description: `minimum: 1, maximum: 2147483647`,
-				},
-				resource.Attribute{
-					Name:        "avp_list",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "int32",
-					Description: `32 bits integer`,
-				},
-				resource.Attribute{
-					Name:        "mandatory",
-					Description: `mandatory avp`,
-				},
-				resource.Attribute{
-					Name:        "avp",
-					Description: `customize avps for cer to the server (avp number)`,
-				},
-				resource.Attribute{
-					Name:        "idle_timeout",
-					Description: `user sesison idle timeout (in minutes, default is 5)`,
+					Name:        "avp_string",
+					Description: `pattern to be matched in the avp string name, max length 127 bytes`,
 				},
 				resource.Attribute{
 					Name:        "customize_cea",
 					Description: `customizing cea response`,
 				},
 				resource.Attribute{
-					Name:        "product_name",
-					Description: `product name avp`,
+					Name:        "dwr_time",
+					Description: `dwr health-check timer interval (in 100 milli second unit, default is 100, 0 means unset this option)`,
 				},
 				resource.Attribute{
 					Name:        "dwr_up_retry",
 					Description: `number of successful dwr health-check before declaring target up`,
 				},
 				resource.Attribute{
+					Name:        "forward_to_latest_server",
+					Description: `Forward client message to the latest server that sends message with the same session id`,
+				},
+				resource.Attribute{
 					Name:        "forward_unknown_session_id",
 					Description: `Forward server message even it has unknown session id`,
 				},
 				resource.Attribute{
-					Name:        "vendor_id",
-					Description: `vendor-id avp (Vendor Id)`,
-				},
-				resource.Attribute{
-					Name:        "session_age",
-					Description: `user session age allowed (default 10), this is not idle-time (in minutes)`,
+					Name:        "idle_timeout",
+					Description: `user sesison idle timeout (in minutes, default is 5)`,
 				},
 				resource.Attribute{
 					Name:        "load_balance_on_session_id",
 					Description: `Load balance based on the session id`,
 				},
 				resource.Attribute{
-					Name:        "dwr_time",
-					Description: `dwr health-check timer interval (in 100 milli second unit, default is 100, 0 means unset this option)`,
+					Name:        "multiple_origin_host",
+					Description: `allowing multiple origin-host to a single server`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `diameter template Name`,
 				},
 				resource.Attribute{
 					Name:        "origin_realm",
 					Description: `origin-realm name avp`,
 				},
 				resource.Attribute{
-					Name:        "origin_host",
-					Description: ``,
+					Name:        "product_name",
+					Description: `product name avp`,
+				},
+				resource.Attribute{
+					Name:        "service_group_name",
+					Description: `service group name, this is the service group that the message needs to be copied to`,
+				},
+				resource.Attribute{
+					Name:        "session_age",
+					Description: `user session age allowed (default 10), this is not idle-time (in minutes)`,
+				},
+				resource.Attribute{
+					Name:        "terminate_on_cca_t",
+					Description: `remove diameter session when receiving CCA-T message`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "vendor_id",
+					Description: `vendor-id avp (Vendon Id)`,
+				},
+				resource.Attribute{
+					Name:        "avp",
+					Description: `customize avps for cer to the server (avp number)`,
+				},
+				resource.Attribute{
+					Name:        "int32",
+					Description: `32 bits integer`,
+				},
+				resource.Attribute{
+					Name:        "int64",
+					Description: `64 bits integer`,
+				},
+				resource.Attribute{
+					Name:        "mandatory",
+					Description: `mandatory avp`,
+				},
+				resource.Attribute{
+					Name:        "string",
+					Description: `String (string name, max length 127 bytes)`,
 				},
 				resource.Attribute{
 					Name:        "origin_host_name",
 					Description: `origin-host name avp`,
-				},
-				resource.Attribute{
-					Name:        "multiple_origin_host",
-					Description: `allowing multiple origin-host to a single server`,
-				},
-				resource.Attribute{
-					Name:        "forward_to_latest_server",
-					Description: `Forward client message to the latest server that sends message with the same session id`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_dns",
+			Type:             "vthunder_thunder_slb_template_dns",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB template DNS resource for A10`,
+			ShortDescription: `Provides details about thunder slb template dns resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"dns",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "default_policy",
+					Description: `‘nocache’: Cache disable; ‘cache’: Cache enable;`,
+				},
+				resource.Attribute{
+					Name:        "disable_dns_template",
+					Description: `Disable DNS template`,
+				},
+				resource.Attribute{
+					Name:        "dnssec_service_group",
+					Description: `Use different service group if DNSSEC DO bit set (Service Group Name)`,
+				},
+				resource.Attribute{
+					Name:        "drop",
+					Description: `Drop the malformed query`,
+				},
+				resource.Attribute{
+					Name:        "enable_cache_sharing",
+					Description: `Enable DNS cache sharing`,
+				},
+				resource.Attribute{
+					Name:        "forward",
+					Description: `Forward to service group (Service group name)`,
+				},
+				resource.Attribute{
+					Name:        "max_cache_entry_size",
+					Description: `Define maximum cache entry size (Maximum cache entry size per VIP)`,
+				},
+				resource.Attribute{
+					Name:        "max_cache_size",
+					Description: `Define maximum cache size (Maximum cache entry per VIP)`,
+				},
+				resource.Attribute{
+					Name:        "max_query_length",
+					Description: `Define Maximum DNS Query Length, default is unlimited (Specify Maximum Length)`,
+				},
+				resource.Attribute{
 					Name:        "name",
-					Description: `DNS Template Name`,
+					Description: `Specify a class list name`,
+				},
+				resource.Attribute{
+					Name:        "period",
+					Description: `Period in minutes`,
+				},
+				resource.Attribute{
+					Name:        "query_id_switch",
+					Description: `Use DNS query ID to create sesion`,
+				},
+				resource.Attribute{
+					Name:        "redirect_to_tcp_port",
+					Description: `Direct the client to retry with TCP for DNS UDP request`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "action_value",
+					Description: `‘dns-cache-disable’: Disable DNS cache when it exceeds limit; ‘dns-cache-enable’: Enable DNS cache when it exceeds limit; ‘forward’: Forward the traffic even it exceeds limit;`,
+				},
+				resource.Attribute{
+					Name:        "conn_rate_limit",
+					Description: `Connection rate limit`,
+				},
+				resource.Attribute{
+					Name:        "lidnum",
+					Description: `Specify a limit ID`,
+				},
+				resource.Attribute{
+					Name:        "lockout",
+					Description: `Don’t accept any new connection for certain time (Lockout duration in minutes)`,
+				},
+				resource.Attribute{
+					Name:        "log",
+					Description: `Log a message`,
+				},
+				resource.Attribute{
+					Name:        "log_interval",
+					Description: `Log interval (minute, by default system will log every over limit instance)`,
+				},
+				resource.Attribute{
+					Name:        "over_limit_action",
+					Description: `Action when exceeds limit`,
+				},
+				resource.Attribute{
+					Name:        "per",
+					Description: `Per (Number of 100ms)`,
+				},
+				resource.Attribute{
+					Name:        "cache_action",
+					Description: `‘cache-disable’: Disable dns cache; ‘cache-enable’: Enable dns cache;`,
+				},
+				resource.Attribute{
+					Name:        "honor_server_response_ttl",
+					Description: `Honor the server reponse TTL`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `TTL for cache entry (TTL in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Weight for cache entry`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `‘log-only’: Only log rate-limiting, do not actually rate limit. Requires enable-log configuration; ‘rate-limit’: Rate-Limit based on configuration (Default); ‘whitelist’: Whitelist, disable rate-limiting;`,
 				},
 				resource.Attribute{
 					Name:        "enable_log",
-					Description: `Use private key for authentication`,
+					Description: `Enable logging`,
 				},
 				resource.Attribute{
 					Name:        "filter_response_rate",
 					Description: `Maximum allowed request rate for the filter. This should match average traffic. (default 20 per two seconds)`,
 				},
 				resource.Attribute{
-					Name:        "slip_rate",
-					Description: `Every n’th response that would be rate-limited will be let through instead`,
-				},
-				resource.Attribute{
 					Name:        "response_rate",
 					Description: `Responses exceeding this rate within the window will be dropped (default 5 per second)`,
 				},
 				resource.Attribute{
-					Name:        "window",
-					Description: `Rate-Limiting Interval in Seconds (default is one)`,
+					Name:        "slip_rate",
+					Description: `Every n’th response that would be rate-limited will be let through instead`,
 				},
 				resource.Attribute{
-					Name:        "action",
-					Description: `'log-only’: Only log rate-limiting, do not actually rate limit. Requires enable-log configuration; 'rate-limit’: Rate-Limit based on configuration (Default); 'whitelist’: Whitelist, disable rate-limiting;`,
+					Name:        "window",
+					Description: `Rate-Limiting Interval in Seconds (default is one)`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_dynamic_service",
+			Type:             "vthunder_thunder_slb_template_dynamic_service",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder slb template dynamic-service resource for A10`,
+			ShortDescription: `Provides details about thunder slb template dynamic service resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"dynamic",
-				"service",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -4774,56 +11915,91 @@ var (
 					Description: `Customized tag`,
 				},
 				resource.Attribute{
-					Name:        "dns_server",
-					Description: `blade parameter priority`,
+					Name:        "uuid",
+					Description: `uuid of the object`,
 				},
 				resource.Attribute{
 					Name:        "ipv4_dns_server",
 					Description: `DNS Server IPv4 Address`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_dns_server",
+					Description: `DNS Server IPv6 Address`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_external_service",
+			Type:             "vthunder_thunder_slb_template_external_service",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder slb template external-service resource for A10`,
+			ShortDescription: `Provides details about thunder slb template external service resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"external",
-				"service",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "action",
+					Description: `‘continue’: Continue; ‘drop’: Drop; ‘reset’: Reset;`,
+				},
+				resource.Attribute{
+					Name:        "failure_action",
+					Description: `‘continue’: Continue; ‘drop’: Drop; ‘reset’: Reset;`,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `External Service Template Name`,
 				},
 				resource.Attribute{
-					Name:        "user_tag",
-					Description: `Customized tag`,
+					Name:        "service_group",
+					Description: `Bind a Service Group to the template (Service Group Name)`,
 				},
 				resource.Attribute{
-					Name:        "type",
-					Description: `'skyfire-icap’: Skyfire ICAP service; 'url-filter’: URL filtering service;`,
+					Name:        "shared_partition_persist_source_ip_template",
+					Description: `Reference a persist source ip template from shared partition`,
 				},
 				resource.Attribute{
-					Name:        "action",
-					Description: `'continue’: Continue; 'drop’: Drop; 'reset’: Reset;`,
+					Name:        "shared_partition_tcp_proxy_template",
+					Description: `Reference a TCP Proxy template from shared partition`,
 				},
 				resource.Attribute{
-					Name:        "failure_action",
-					Description: `'continue’: Continue; 'drop’: Drop; 'reset’: Reset;`,
+					Name:        "source_ip",
+					Description: `Source IP persistence template (Source IP persistence template name)`,
+				},
+				resource.Attribute{
+					Name:        "tcp_proxy",
+					Description: `TCP proxy template (TCP proxy template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_persist_source_ip_shared",
+					Description: `Source IP Persistence Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_tcp_proxy_shared",
+					Description: `TCP Proxy Template name`,
 				},
 				resource.Attribute{
 					Name:        "timeout",
 					Description: `Timeout value 1 - 200 in units of 200ms, default is 5 (default is 1000ms) (1 - 200 in units of 200ms, default is 5 (1000ms))`,
 				},
 				resource.Attribute{
-					Name:        "request_header_forward_list",
-					Description: ``,
+					Name:        "type",
+					Description: `‘skyfire-icap’: Skyfire ICAP service; ‘url-filter’: URL filtering service;`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "bypass_ip",
+					Description: `ip address to bypass external service`,
+				},
+				resource.Attribute{
+					Name:        "mask",
+					Description: `IP prefix mask`,
 				},
 				resource.Attribute{
 					Name:        "request_header_forward",
@@ -4834,23 +12010,35 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_fix",
+			Type:             "vthunder_thunder_slb_template_fix",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB template fix resource for A10`,
+			ShortDescription: `Provides details about thunder slb template fix resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"fix",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "insert_client_ip",
+					Description: `Insert client ip to tag 11447`,
+				},
+				resource.Attribute{
+					Name:        "logging",
+					Description: `‘init’: init only log; ‘term’: termination only log; ‘both’: both initial and termination log;`,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `FIX Template Name`,
 				},
 				resource.Attribute{
-					Name:        "logging",
-					Description: `'init’: init only log; 'term’: termination only log; 'both’: both initial and termination log`,
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "equals",
+					Description: `Equals (Tag String)`,
 				},
 				resource.Attribute{
 					Name:        "service_group",
@@ -4858,35 +12046,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "switching_type",
-					Description: `'sender-comp-id’: Select service group based on SenderCompID; 'target-comp-id’: Select service group based on TargetComp`,
-				},
-				resource.Attribute{
-					Name:        "insert_client_ip",
-					Description: `Insert client ip to tag 11447`,
-				},
-				resource.Attribute{
-					Name:        "user_tag",
-					Description: `Customized tag`,
+					Description: `‘sender-comp-id’: Select service group based on SenderCompID; ‘target-comp-id’: Select service group based on TargetCompID;`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_ftp",
+			Type:             "vthunder_thunder_slb_template_ftp",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB template ftp resource for A10`,
+			ShortDescription: `Provides details about thunder slb template ftp resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"ftp",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `FTP Template Name`,
-				},
 				resource.Attribute{
 					Name:        "active_mode_port",
 					Description: `Non-Standard FTP Active mode port`,
@@ -4896,6 +12068,14 @@ var (
 					Description: `Non-Standard FTP Active mode port`,
 				},
 				resource.Attribute{
+					Name:        "any",
+					Description: `Allow any FTP Active mode port`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `FTP template name`,
+				},
+				resource.Attribute{
 					Name:        "to",
 					Description: `End range of FTP Active mode port`,
 				},
@@ -4903,53 +12083,300 @@ var (
 					Name:        "user_tag",
 					Description: `Customized tag`,
 				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_http",
+			Type:             "vthunder_thunder_slb_template_http",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB template http resource for A10`,
+			ShortDescription: `Provides details about thunder slb template http resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"http",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `HTTP Template Name`,
+					Name:        "100_cont_wait_for_req_complete",
+					Description: `When REQ has Expect 100 and response is not 100, then wait for whole request to be sent`,
+				},
+				resource.Attribute{
+					Name:        "bypass_sg",
+					Description: `Select service group for non-http traffic (Service Group Name)`,
+				},
+				resource.Attribute{
+					Name:        "client_ip_hdr_replace",
+					Description: `Replace the existing header`,
+				},
+				resource.Attribute{
+					Name:        "client_port_hdr_replace",
+					Description: `Replace the existing header`,
+				},
+				resource.Attribute{
+					Name:        "compression_auto_disable_on_high_cpu",
+					Description: `Auto-disable software compression on high cpu usage (Disable compression if cpu usage is above threshold. Default is off.)`,
+				},
+				resource.Attribute{
+					Name:        "compression_enable",
+					Description: `Enable Compression`,
+				},
+				resource.Attribute{
+					Name:        "compression_keep_accept_encoding",
+					Description: `Keep accept encoding`,
+				},
+				resource.Attribute{
+					Name:        "compression_keep_accept_encoding_enable",
+					Description: `Enable Server Accept Encoding`,
+				},
+				resource.Attribute{
+					Name:        "compression_level",
+					Description: `compression level, default 1 (compression level value, default is 1)`,
+				},
+				resource.Attribute{
+					Name:        "compression_minimum_content_length",
+					Description: `Minimum Content Length (Minimum content length for compression in bytes. Default is 120.)`,
+				},
+				resource.Attribute{
+					Name:        "cookie_format",
+					Description: `‘rfc6265’: Follow rfc6265;`,
+				},
+				resource.Attribute{
+					Name:        "failover_url",
+					Description: `Failover to this URL (Failover URL Name)`,
+				},
+				resource.Attribute{
+					Name:        "insert_client_ip",
+					Description: `Insert Client IP address into HTTP header`,
+				},
+				resource.Attribute{
+					Name:        "insert_client_ip_header_name",
+					Description: `HTTP Header Name for inserting Client IP`,
+				},
+				resource.Attribute{
+					Name:        "insert_client_port",
+					Description: `Insert Client Port address into HTTP header`,
+				},
+				resource.Attribute{
+					Name:        "insert_client_port_header_name",
+					Description: `HTTP Header Name for inserting Client Port`,
 				},
 				resource.Attribute{
 					Name:        "keep_client_alive",
 					Description: `Keep client alive`,
 				},
 				resource.Attribute{
+					Name:        "log_retry",
+					Description: `log when HTTP request retry`,
+				},
+				resource.Attribute{
+					Name:        "max_concurrent_streams",
+					Description: `(http2 only) Max concurrent streams, default 100`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `HTTP Template Name`,
+				},
+				resource.Attribute{
+					Name:        "non_http_bypass",
+					Description: `Bypass non-http traffic instead of dropping`,
+				},
+				resource.Attribute{
+					Name:        "persist_on_401",
+					Description: `Persist to the same server if the response code is 401`,
+				},
+				resource.Attribute{
+					Name:        "rd_port",
+					Description: `Port (Port Number)`,
+				},
+				resource.Attribute{
+					Name:        "rd_resp_code",
+					Description: `‘301’: Moved Permanently; ‘302’: Found; ‘303’: See Other; ‘307’: Temporary Redirect;`,
+				},
+				resource.Attribute{
+					Name:        "rd_secure",
+					Description: `Use HTTPS`,
+				},
+				resource.Attribute{
+					Name:        "rd_simple_loc",
+					Description: `Redirect location tag absolute URI string`,
+				},
+				resource.Attribute{
+					Name:        "redirect",
+					Description: `Automatically send a redirect response`,
+				},
+				resource.Attribute{
 					Name:        "req_hdr_wait_time",
 					Description: `HTTP request header wait time before abort connection`,
 				},
 				resource.Attribute{
+					Name:        "req_hdr_wait_time_val",
+					Description: `Number of seconds wait for client request header (default is 7)`,
+				},
+				resource.Attribute{
+					Name:        "request_line_case_insensitive",
+					Description: `Parse http request line as case insensitive`,
+				},
+				resource.Attribute{
+					Name:        "request_timeout",
+					Description: `Request timeout if response not received (timeout in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "retry_on_5xx",
+					Description: `Retry http request on HTTP 5xx code`,
+				},
+				resource.Attribute{
+					Name:        "retry_on_5xx_per_req",
+					Description: `Retry http request on HTTP 5xx code for each request`,
+				},
+				resource.Attribute{
+					Name:        "retry_on_5xx_per_req_val",
+					Description: `Number of times to retry (default is 3)`,
+				},
+				resource.Attribute{
+					Name:        "retry_on_5xx_val",
+					Description: `Number of times to retry (default is 3)`,
+				},
+				resource.Attribute{
+					Name:        "strict_transaction_switch",
+					Description: `Force server selection on every HTTP request`,
+				},
+				resource.Attribute{
+					Name:        "term_11client_hdr_conn_close",
+					Description: `Terminate HTTP 1.1 client when req has Connection: close`,
+				},
+				resource.Attribute{
+					Name:        "url_hash_first",
+					Description: `Use the begining part of URL to calculate hash value (URL string length to calculate hash value)`,
+				},
+				resource.Attribute{
+					Name:        "url_hash_last",
+					Description: `Use the end part of URL to calculate hash value (URL string length to calculate hash value)`,
+				},
+				resource.Attribute{
+					Name:        "url_hash_offset",
+					Description: `Skip part of URL to calculate hash value (Offset of the URL string)`,
+				},
+				resource.Attribute{
+					Name:        "url_hash_persist",
+					Description: `Use URL’s hash value to select server`,
+				},
+				resource.Attribute{
+					Name:        "use_server_status",
+					Description: `Use Server-Status header to do URL hashing`,
+				},
+				resource.Attribute{
 					Name:        "user_tag",
 					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "request_header_erase",
+					Description: `Erase a header from HTTP request (Header Name)`,
+				},
+				resource.Attribute{
+					Name:        "redirect_secure",
+					Description: `Use HTTPS`,
+				},
+				resource.Attribute{
+					Name:        "redirect_secure_port",
+					Description: `Port (Port Number)`,
+				},
+				resource.Attribute{
+					Name:        "redirect_match",
+					Description: `URL Matching (Pattern URL String)`,
+				},
+				resource.Attribute{
+					Name:        "rewrite_to",
+					Description: `Rewrite to Destination URL String`,
+				},
+				resource.Attribute{
+					Name:        "response_header_insert",
+					Description: `Insert a header into HTTP response (Header Content (Format: “[name]: [value]”))`,
+				},
+				resource.Attribute{
+					Name:        "response_header_insert_type",
+					Description: `‘insert-if-not-exist’: Only insert the header when it does not exist; ‘insert-always’: Always insert the header even when there is a header with the same name;`,
+				},
+				resource.Attribute{
+					Name:        "response_header_erase",
+					Description: `Erase a header from HTTP response (Header Name)`,
+				},
+				resource.Attribute{
+					Name:        "logging",
+					Description: `Logging template (Logging Config name)`,
+				},
+				resource.Attribute{
+					Name:        "url_match_string",
+					Description: `URL String`,
+				},
+				resource.Attribute{
+					Name:        "url_service_group",
+					Description: `Create a Service Group comprising Servers (Service Group Name)`,
+				},
+				resource.Attribute{
+					Name:        "url_switching_type",
+					Description: `‘contains’: Select service group if URL string contains another string; ‘ends-with’: Select service group if URL string ends with another string; ‘equals’: Select service group if URL string equals another string; ‘starts-with’: Select service group if URL string starts with another string; ‘url-case-insensitive’: Case insensitive URL switching; ‘url-hits-enable’: Enables URL Hits;`,
+				},
+				resource.Attribute{
+					Name:        "host_match_string",
+					Description: `Hostname String`,
+				},
+				resource.Attribute{
+					Name:        "host_service_group",
+					Description: `Create a Service Group comprising Servers (Service Group Name)`,
+				},
+				resource.Attribute{
+					Name:        "host_switching_type",
+					Description: `‘contains’: Select service group if hostname contains another string; ‘ends-with’: Select service group if hostname ends with another string; ‘equals’: Select service group if hostname equals another string; ‘starts-with’: Select service group if hostname starts with another string; ‘host-hits-enable’: Enables Host Hits counters;`,
+				},
+				resource.Attribute{
+					Name:        "response_content_replace",
+					Description: `replace the data from HTTP response content (String in the http content need to be replaced)`,
+				},
+				resource.Attribute{
+					Name:        "response_new_string",
+					Description: `String will be in the http content`,
+				},
+				resource.Attribute{
+					Name:        "request_header_insert",
+					Description: `Insert a header into HTTP request (Header Content (Format: “[name]: [value]”))`,
+				},
+				resource.Attribute{
+					Name:        "request_header_insert_type",
+					Description: `‘insert-if-not-exist’: Only insert the header when it does not exist; ‘insert-always’: Always insert the header even when there is a header with the same name;`,
+				},
+				resource.Attribute{
+					Name:        "content_type",
+					Description: `Compression content-type`,
+				},
+				resource.Attribute{
+					Name:        "exclude_uri",
+					Description: `Compression exclude uri`,
+				},
+				resource.Attribute{
+					Name:        "exclude_content_type",
+					Description: `Compression exclude content-type (Compression exclude content type)`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_http_policy",
+			Type:             "vthunder_thunder_slb_template_http_policy",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder slb template http-policy resource for A10`,
+			ShortDescription: `Provides details about thunder slb template http policy resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"http",
-				"policy",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cookie_name",
+					Description: `name of cookie to match (Cookie Name)`,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `http-policy template name`,
@@ -4959,24 +12386,59 @@ var (
 					Description: `Customized tag`,
 				},
 				resource.Attribute{
-					Name:        "cookie_name",
-					Description: `name of cookie to match (Cookie Name)`,
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "match_string",
+					Description: `URL String`,
+				},
+				resource.Attribute{
+					Name:        "match_type",
+					Description: `‘contains’: Select service group if URL string contains another string; ‘ends-with’: Select service group if URL string ends with another string; ‘equals’: Select service group if URL string equals another string; ‘starts-with’: Select service group if URL string starts with another string;`,
+				},
+				resource.Attribute{
+					Name:        "service_group",
+					Description: `Service Group to be used (Service Group Name)`,
+				},
+				resource.Attribute{
+					Name:        "template",
+					Description: `‘waf’: waf; (WAF template to be used)`,
+				},
+				resource.Attribute{
+					Name:        "template_name",
+					Description: `WAF template to be used (Template Name)`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `‘cookie’: cookie value match; ‘host’: hostname match; ‘url’: URL match;`,
+				},
+				resource.Attribute{
+					Name:        "geo_location",
+					Description: `Geolocation name`,
+				},
+				resource.Attribute{
+					Name:        "geo_location_service_group",
+					Description: `Service Group to be used (Service Group Name)`,
+				},
+				resource.Attribute{
+					Name:        "geo_location_template",
+					Description: `‘waf’: waf; (WAF template to be used)`,
+				},
+				resource.Attribute{
+					Name:        "geo_location_template_name",
+					Description: `WAF template to be used (Template Name)`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_imap_pop3",
+			Type:             "vthunder_thunder_slb_template_imap_pop3",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder slb template imap-pop3 resource for A10`,
+			ShortDescription: `Provides details about thunder slb template imap-pop3 resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"imap",
-				"pop3",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -4999,50 +12461,174 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_logging",
+			Type:             "vthunder_thunder_slb_template_logging",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder slb template logging resource for A10`,
+			ShortDescription: `Provides details about thunder slb template logging resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"logging",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "auto",
+					Description: `‘auto’: Configure auto NAT for logging, default is auto enabled;`,
+				},
+				resource.Attribute{
+					Name:        "format",
+					Description: `Specfiy a format string for web logging (format string(less than 250 characters) for web logging)`,
+				},
+				resource.Attribute{
+					Name:        "keep_end",
+					Description: `Number of unmasked characters at the end (default: 0)`,
+				},
+				resource.Attribute{
+					Name:        "keep_start",
+					Description: `Number of unmasked characters at the beginning (default: 0)`,
+				},
+				resource.Attribute{
+					Name:        "local_logging",
+					Description: `1 to enable local logging (1 to enable local logging, default 0)`,
+				},
+				resource.Attribute{
+					Name:        "mask",
+					Description: `Character to mask the matched pattern (default: X)`,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `Logging Template Name`,
 				},
 				resource.Attribute{
-					Name:        "format",
-					Description: `Specify a format string for web logging (format string(less than 250 characters) for web logging)`,
+					Name:        "pcre_mask",
+					Description: `Mask matched PCRE pattern in the log`,
 				},
 				resource.Attribute{
-					Name:        "local_logging",
-					Description: `1 to enable local logging (1 to enable local logging, default 0)`,
+					Name:        "pool",
+					Description: `Specify NAT pool or pool group`,
+				},
+				resource.Attribute{
+					Name:        "pool_shared",
+					Description: `Specify NAT pool or pool group`,
+				},
+				resource.Attribute{
+					Name:        "service_group",
+					Description: `Bind a Service Group to the logging template (Service Group Name)`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_pool",
+					Description: `Reference a NAT pool or pool group from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_tcp_proxy_template",
+					Description: `Reference a TCP Proxy template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "tcp_proxy",
+					Description: `TCP proxy template (TCP Proxy Config name)`,
+				},
+				resource.Attribute{
+					Name:        "template_tcp_proxy_shared",
+					Description: `TCP Proxy Template name`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_monitor",
+			Type:             "vthunder_thunder_slb_template_monitor",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB template monitor resource for A10`,
+			ShortDescription: `Provides details about thunder slb template monitor resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"monitor",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `Monitor template ID Number`,
+				},
+				resource.Attribute{
 					Name:        "monitor_relation",
-					Description: `'monitor-and’: Configures the monitors in current template to work with AND logic; 'monitor-or’: Configures the monitors in current template to work with OR logic;`,
+					Description: `‘monitor-and’: Configures the monitors in current template to work with AND logic; ‘monitor-or’: Configures the monitors in current template to work with OR logic;`,
 				},
 				resource.Attribute{
 					Name:        "user_tag",
 					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "clear_all_sequence",
+					Description: `Sequence number (Specify the port physical port number)`,
+				},
+				resource.Attribute{
+					Name:        "clear_sequence",
+					Description: `Specify the port physical port number`,
+				},
+				resource.Attribute{
+					Name:        "sessions",
+					Description: `‘all’: Clear all sessions; ‘sequence’: Sequence number;`,
+				},
+				resource.Attribute{
+					Name:        "ena_sequence",
+					Description: `Sequence number (Specify the physical port number)`,
+				},
+				resource.Attribute{
+					Name:        "enaeth",
+					Description: `Specify the physical port number (Ethernet interface number)`,
+				},
+				resource.Attribute{
+					Name:        "link_up_sequence1",
+					Description: `Sequence number (Specify the port physical port number)`,
+				},
+				resource.Attribute{
+					Name:        "link_up_sequence2",
+					Description: `Sequence number (Specify the port physical port number)`,
+				},
+				resource.Attribute{
+					Name:        "link_up_sequence3",
+					Description: `Sequence number (Specify the port physical port number)`,
+				},
+				resource.Attribute{
+					Name:        "linkup_ethernet1",
+					Description: `Specify the port physical port number (Ethernet interface number)`,
+				},
+				resource.Attribute{
+					Name:        "linkup_ethernet2",
+					Description: `Specify the port physical port number (Ethernet interface number)`,
+				},
+				resource.Attribute{
+					Name:        "linkup_ethernet3",
+					Description: `Specify the port physical port number (Ethernet interface number)`,
+				},
+				resource.Attribute{
+					Name:        "link_down_sequence1",
+					Description: `Sequence number (Specify the port physical port number)`,
+				},
+				resource.Attribute{
+					Name:        "link_down_sequence2",
+					Description: `Sequence number (Specify the port physical port number)`,
+				},
+				resource.Attribute{
+					Name:        "link_down_sequence3",
+					Description: `Sequence number (Specify the port physical port number)`,
+				},
+				resource.Attribute{
+					Name:        "linkdown_ethernet1",
+					Description: `Specify the port physical port number (Ethernet interface number)`,
+				},
+				resource.Attribute{
+					Name:        "linkdown_ethernet2",
+					Description: `Specify the port physical port number (Ethernet interface number)`,
+				},
+				resource.Attribute{
+					Name:        "linkdown_ethernet3",
+					Description: `Specify the port physical port number (Ethernet interface number)`,
 				},
 				resource.Attribute{
 					Name:        "dis_sequence",
@@ -5052,24 +12638,16 @@ var (
 					Name:        "diseth",
 					Description: `Specify the physical port number (Ethernet interface number)`,
 				},
-				resource.Attribute{
-					Name:        "id2",
-					Description: `Monitor template ID Number`,
-				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_mqtt",
+			Type:             "vthunder_thunder_slb_template_mqtt",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB template mqtt resource for A10`,
+			ShortDescription: `Provides details about thunder SLB template mqtt resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"mqtt",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -5088,39 +12666,205 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_policy",
+			Type:             "vthunder_thunder_slb_template_persist_cookie",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB template policy resource for A10`,
+			ShortDescription: `Provides details about thunder slb template persist cookie resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"policy",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "cookie_name",
+					Description: `Set cookie name (Cookie name, default “sto-id”)`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `Set cookie domain`,
+				},
+				resource.Attribute{
+					Name:        "dont_honor_conn_rules",
+					Description: `Do not observe connection rate rules`,
+				},
+				resource.Attribute{
+					Name:        "encrypt_level",
+					Description: `Encryption level for cookie name / value`,
+				},
+				resource.Attribute{
+					Name:        "encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED password string)`,
+				},
+				resource.Attribute{
+					Name:        "expire",
+					Description: `Set cookie expiration time (Expiration in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "httponly",
+					Description: `Enable HttpOnly attribute`,
+				},
+				resource.Attribute{
+					Name:        "insert_always",
+					Description: `Insert persist cookie to every reponse`,
+				},
+				resource.Attribute{
+					Name:        "match_type",
+					Description: `Persist for server, default is port`,
+				},
+				resource.Attribute{
 					Name:        "name",
-					Description: `Policy template name`,
+					Description: `Cookie persistence (Cookie persistence template name)`,
+				},
+				resource.Attribute{
+					Name:        "pass_phrase",
+					Description: `Set passphrase for encryption`,
+				},
+				resource.Attribute{
+					Name:        "pass_thru",
+					Description: `Pass thru mode - Server sends the persist cookie`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `Set cookie path (Cookie path, default is “/”)`,
+				},
+				resource.Attribute{
+					Name:        "scan_all_members",
+					Description: `Persist within the same server SCAN`,
+				},
+				resource.Attribute{
+					Name:        "secure",
+					Description: `Enable secure attribute`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `Persist to the same server, default is port`,
+				},
+				resource.Attribute{
+					Name:        "server_service_group",
+					Description: `Persist to the same server and within the same service group`,
+				},
+				resource.Attribute{
+					Name:        "service_group",
+					Description: `Persist within the same service group`,
 				},
 				resource.Attribute{
 					Name:        "user_tag",
 					Description: `Customized tag`,
 				},
 				resource.Attribute{
-					Name:        "use_destination_ip",
-					Description: `Use destination IP to match the policy`,
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_slb_template_persist_source_ip",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder slb template persist source ip resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dont_honor_conn_rules",
+					Description: `Do not observe connection rate rules`,
+				},
+				resource.Attribute{
+					Name:        "enforce_higher_priority",
+					Description: `Enforce to use high priority node if available`,
+				},
+				resource.Attribute{
+					Name:        "hash_persist",
+					Description: `Use hash value of source IP address`,
+				},
+				resource.Attribute{
+					Name:        "incl_dst_ip",
+					Description: `Include destination IP on the persist`,
+				},
+				resource.Attribute{
+					Name:        "incl_sport",
+					Description: `Include source port on the persist`,
+				},
+				resource.Attribute{
+					Name:        "match_type",
+					Description: `Persistence type`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Source IP persistence template name`,
+				},
+				resource.Attribute{
+					Name:        "netmask",
+					Description: `IP subnet mask`,
+				},
+				resource.Attribute{
+					Name:        "netmask6",
+					Description: `IPV6 subnet mask`,
+				},
+				resource.Attribute{
+					Name:        "primary_port",
+					Description: `Primary port to create the persist session`,
+				},
+				resource.Attribute{
+					Name:        "scan_all_members",
+					Description: `Persist with SCAN of all members`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `Persist to the same server, default is port`,
+				},
+				resource.Attribute{
+					Name:        "service_group",
+					Description: `Persist within the same service group`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `Persistence timeout (in minutes)`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_slb_template_policy",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder slb template policy resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "bw_list_name",
+					Description: `Specify a blacklist/whitelist name`,
+				},
+				resource.Attribute{
+					Name:        "full_domain_tree",
+					Description: `Share counters between geo-location and sub regions`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Specify log interval in minutes, by default system will log every over limit instance`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Class list name or geo-location-class-list name`,
 				},
 				resource.Attribute{
 					Name:        "over_limit",
 					Description: `Specify operation in case over limit`,
 				},
 				resource.Attribute{
-					Name:        "timeout",
-					Description: `Define timeout value of PBSLB dynamic entry (Timeout value (minute, default is 5))`,
-				},
-				resource.Attribute{
 					Name:        "over_limit_lockup",
 					Description: `Don’t accept any new connection for certain time (Lockup duration (minute))`,
+				},
+				resource.Attribute{
+					Name:        "over_limit_logging",
+					Description: `Log a message`,
 				},
 				resource.Attribute{
 					Name:        "over_limit_reset",
@@ -5130,284 +12874,841 @@ var (
 					Name:        "overlap",
 					Description: `Use overlap mode for geo-location to do longest match`,
 				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vthunder_slb_template_port",
-			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB template port resource for A10`,
-			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"port",
-			},
-			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `PORT Template Name`,
+					Name:        "share",
+					Description: `Share counters between virtual ports and virtual servers`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `Define timeout value of PBSLB dynamic entry (Timeout value (minute, default is 5))`,
+				},
+				resource.Attribute{
+					Name:        "use_destination_ip",
+					Description: `Use destination IP to match the policy`,
 				},
 				resource.Attribute{
 					Name:        "user_tag",
 					Description: `Customized tag`,
 				},
 				resource.Attribute{
-					Name:        "slow_start",
-					Description: `Slowly ramp up the connection number after port is up`,
+					Name:        "uuid",
+					Description: `uuid of the object`,
 				},
 				resource.Attribute{
-					Name:        "conn_limit",
-					Description: `Connection limit`,
+					Name:        "acos_event_log",
+					Description: `Enable acos event logging`,
 				},
 				resource.Attribute{
-					Name:        "weight",
-					Description: `Weight (port weight)`,
+					Name:        "local_logging",
+					Description: `Enable local logging`,
 				},
 				resource.Attribute{
-					Name:        "extended_stats",
-					Description: `Enable extended statistics on real server port`,
+					Name:        "no_client_conn_reuse",
+					Description: `Inspects only first request of a connection`,
 				},
 				resource.Attribute{
-					Name:        "del_session_on_server_down",
-					Description: `Delete session if the server/port goes down (either disabled/hm down)`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vthunder_slb_template_reqmod_icap",
-			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder slb template reqmod-icap resource for A10`,
-			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"reqmod",
-				"icap",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `Reqmod ICAP Template Name`,
+					Name:        "require_web_category",
+					Description: `Wait for web category to be resolved before taking proxy decision`,
 				},
 				resource.Attribute{
-					Name:        "user_tag",
-					Description: `Customized tag`,
+					Name:        "ssli_url_filtering",
+					Description: `‘bypassed-sni-disable’: Disable SNI filtering for bypassed URL’s(enabled by default); ‘intercepted-sni-enable’: Enable SNI filtering for intercepted URL’s(disabled by default); ‘intercepted-http-disable’: Disable HTTP(host/URL) filtering for intercepted URL’s(enabled by default); ‘no-sni-allow’: Allow connection if SNI filtering is enabled and SNI header is not present(Drop by default);`,
 				},
 				resource.Attribute{
-					Name:        "min_payload_size",
-					Description: `min-payload-size value 0 - 65535, default is 0`,
+					Name:        "ssli_url_filtering_san",
+					Description: `‘enable-san’: Enable SAN filtering(disabled by default); ‘bypassed-san-disable’: Disable SAN filtering for bypassed URL’s(enabled by default); ‘intercepted-san-enable’: Enable SAN filtering for intercepted URL’s(disabled by default); ‘no-san-allow’: Allow connection if SAN filtering is enabled and SAN field is not present(Drop by default);`,
 				},
 				resource.Attribute{
-					Name:        "allowed_http_methods",
-					Description: `List of allowed HTTP methods. Default is "Allow All". (List of HTTP methods allowed (default “Allow All”))`,
+					Name:        "action1",
+					Description: `‘forward-to-internet’: Forward request to Internet; ‘forward-to-service-group’: Forward request to service group; ‘drop’: Drop request;`,
 				},
 				resource.Attribute{
-					Name:        "service_url",
-					Description: `URL to send to ICAP server (Service URL Name)`,
+					Name:        "drop_message",
+					Description: `drop-message sent to the client as webpage(html tags are included and quotation marks are required for white spaces)`,
 				},
 				resource.Attribute{
-					Name:        "preview",
-					Description: `Preview value 1 - 32768, default is 32768`,
+					Name:        "drop_redirect_url",
+					Description: `Specify URL to which client request is redirected upon being dropped`,
 				},
 				resource.Attribute{
-					Name:        "disable_http_server_reset",
-					Description: `Don’t reset http server`,
+					Name:        "drop_response_code",
+					Description: `Specify response code for drop action`,
 				},
 				resource.Attribute{
-					Name:        "fail_close",
-					Description: `When template sg is down mark vport down`,
+					Name:        "fake_sg",
+					Description: `service group to forward the packets to Internet`,
 				},
 				resource.Attribute{
-					Name:        "include_protocol_in_uri",
-					Description: `Include protocol and port in HTTP URI`,
+					Name:        "fall_back",
+					Description: `Fallback service group for Internet`,
 				},
 				resource.Attribute{
-					Name:        "log_only_allowed_method",
-					Description: `Only log allowed HTTP method`,
+					Name:        "fall_back_snat",
+					Description: `Source NAT pool or pool group for fallback server`,
 				},
 				resource.Attribute{
-					Name:        "cylance",
-					Description: `cylance external server`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vthunder_slb_template_respmod_icap",
-			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder slb template respmod-icap resource for A10`,
-			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"respmod",
-				"icap",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `Respmod ICAP Template Name`,
+					Name:        "forward_snat",
+					Description: `Source NAT pool or pool group`,
 				},
 				resource.Attribute{
-					Name:        "user_tag",
-					Description: `Customized tag`,
+					Name:        "http_status_code",
+					Description: `‘301’: Moved permanently; ‘302’: Found;`,
 				},
 				resource.Attribute{
-					Name:        "min_payload_size",
-					Description: `min-payload-size value 0 - 65535, default is 0`,
+					Name:        "log",
+					Description: `Log a message`,
 				},
 				resource.Attribute{
-					Name:        "preview",
-					Description: `Preview value 1 - 32768, default is 32768`,
+					Name:        "real_sg",
+					Description: `service group to forward the packets`,
 				},
 				resource.Attribute{
-					Name:        "disable_http_server_reset",
-					Description: `Don’t reset http server`,
+					Name:        "counters1",
+					Description: `‘all’: all; ‘fwd-policy-dns-unresolved’: Forward-policy unresolved DNS queries; ‘fwd-policy-dns-outstanding’: Forward-policy current DNS outstanding requests; ‘fwd-policy-snat-fail’: Forward-policy source-nat translation failure; ‘fwd-policy-hits’: Number of forward-policy requests for this policy template; ‘fwd-policy-forward-to-internet’: Number of forward-policy requests forwarded to internet; ‘fwd-policy-forward-to-service-group’: Number of forward-policy requests forwarded to service group; ‘fwd-policy-policy-drop’: Number of forward-policy requests dropped; ‘fwd-policy-source-match-not-found’: Forward-policy requests without matching source rule; ‘exp_client_hello_not_found’: Expected Client HELLO requests not found;`,
 				},
 				resource.Attribute{
-					Name:        "fail_close",
-					Description: `When template sg is down mark vport down`,
+					Name:        "match_any",
+					Description: `Match any source`,
 				},
 				resource.Attribute{
-					Name:        "include_protocol_in_uri",
-					Description: `Include protocol and port in HTTP URI`,
+					Name:        "match_authorize_policy",
+					Description: `Authorize-policy for user and group based policy`,
 				},
 				resource.Attribute{
-					Name:        "log_only_allowed_method",
-					Description: `Only log allowed HTTP method`,
+					Name:        "match_class_list",
+					Description: `Class List Name`,
 				},
 				resource.Attribute{
-					Name:        "cylance",
-					Description: `cylance external server`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vthunder_slb_template_server",
-			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB template server resource for A10`,
-			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"server",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `Server template name`,
+					Name:        "priority",
+					Description: `Priority value of the action(higher the number higher the priority)`,
 				},
 				resource.Attribute{
-					Name:        "user_tag",
-					Description: `Customized tag`,
+					Name:        "action",
+					Description: `Action to be performed`,
 				},
 				resource.Attribute{
-					Name:        "stats_data_action",
-					Description: `'stats-data-enable’: Enable statistical data collection for real server; 'stats-data-disable’: Disable statistical data collection for real server;`,
+					Name:        "dest_class_list",
+					Description: `Destination Class List Name`,
 				},
 				resource.Attribute{
-					Name:        "slow_start",
-					Description: `Slowly ramp up the connection number after server is up`,
+					Name:        "type",
+					Description: `‘host’: Match hostname; ‘url’: match URL;`,
 				},
 				resource.Attribute{
-					Name:        "weight",
-					Description: `Weight for the Real Servers (Connection Weight (default is 1))`,
+					Name:        "web_category_list",
+					Description: `Destination Class List Name`,
+				},
+				resource.Attribute{
+					Name:        "client_ip_l3_dest",
+					Description: `Use destination IP as client IP address`,
+				},
+				resource.Attribute{
+					Name:        "client_ip_l7_header",
+					Description: `Use extract client IP address from L7 header`,
+				},
+				resource.Attribute{
+					Name:        "header_name",
+					Description: `Specify L7 header name`,
+				},
+				resource.Attribute{
+					Name:        "action_value",
+					Description: `‘forward’: Forward the traffic even it exceeds limit; ‘reset’: Reset the connection when it exceeds limit;`,
+				},
+				resource.Attribute{
+					Name:        "bw_per",
+					Description: `Per (Specify interval in number of 100ms)`,
 				},
 				resource.Attribute{
 					Name:        "bw_rate_limit",
-					Description: `Configure bandwidth rate limit on real server (Bandwidth rate limit in Kbps)`,
-				},
-				resource.Attribute{
-					Name:        "spoofing_cache",
-					Description: `Servers under the template are spoofing cache`,
+					Description: `Specify bandwidth rate limit (Bandwidth rate limit in bytes)`,
 				},
 				resource.Attribute{
 					Name:        "conn_limit",
 					Description: `Connection limit`,
 				},
 				resource.Attribute{
-					Name:        "resume",
-					Description: `Resume accepting new connection after connection number drops below threshold (Connection resume threshold)`,
+					Name:        "conn_per",
+					Description: `Per (Specify interval in number of 100ms)`,
 				},
 				resource.Attribute{
-					Name:        "max_dynamic_server",
-					Description: `Maximum dynamic server number (Maximum dynamic server number (default is 255))`,
+					Name:        "conn_rate_limit",
+					Description: `Specify connection rate limit`,
 				},
 				resource.Attribute{
-					Name:        "rate_interval",
-					Description: `'100ms’: Use 100 ms as sampling interval; 'second’: Use 1 second as sampling interval;`,
+					Name:        "direct_action",
+					Description: `Set action when match the lid`,
 				},
 				resource.Attribute{
-					Name:        "min_ttl_ratio",
-					Description: `Minimum TTL to DNS query interval ratio (Minimum TTL ratio (default is 2))`,
+					Name:        "direct_action_interval",
+					Description: `Specify logging interval in minute (default is 3)`,
 				},
 				resource.Attribute{
-					Name:        "bw_rate_limit_no_logging",
-					Description: `Do not log bandwidth rate limit related state transitions`,
+					Name:        "direct_action_value",
+					Description: `‘drop’: drop the packet; ‘reset’: Send reset back;`,
 				},
 				resource.Attribute{
-					Name:        "dynamic_server_prefix",
-					Description: `Prefix of dynamic server (Prefix of dynamic server (default is “DRS”))`,
+					Name:        "direct_fail",
+					Description: `Only log unsuccessful connections`,
 				},
 				resource.Attribute{
-					Name:        "conn_limit_no_logging",
-					Description: `Do not log connection over limit event`,
+					Name:        "direct_logging_drp_rst",
+					Description: `Configure PBSLB logging`,
 				},
 				resource.Attribute{
-					Name:        "extended_stats",
-					Description: `Enable extended statistics on real server`,
+					Name:        "direct_pbslb_interval",
+					Description: `Specify logging interval in minutes(default is 3)`,
 				},
 				resource.Attribute{
-					Name:        "conn_rate_limit_no_logging",
-					Description: `Do not log connection over limit event`,
+					Name:        "direct_pbslb_logging",
+					Description: `Configure PBSLB logging`,
+				},
+				resource.Attribute{
+					Name:        "direct_service_group",
+					Description: `Specify a service group (Specify the service group name)`,
+				},
+				resource.Attribute{
+					Name:        "lidnum",
+					Description: `Specify a limit ID`,
+				},
+				resource.Attribute{
+					Name:        "lockout",
+					Description: `Don’t accept any new connection for certain time (Lockout duration in minutes)`,
+				},
+				resource.Attribute{
+					Name:        "over_limit_action",
+					Description: `Set action when exceeds limit`,
+				},
+				resource.Attribute{
+					Name:        "request_limit",
+					Description: `Request limit (Specify request limit)`,
+				},
+				resource.Attribute{
+					Name:        "request_per",
+					Description: `Per (Specify interval in number of 100ms)`,
+				},
+				resource.Attribute{
+					Name:        "request_rate_limit",
+					Description: `Request rate limit (Specify request rate limit)`,
+				},
+				resource.Attribute{
+					Name:        "disable",
+					Description: `Disable`,
+				},
+				resource.Attribute{
+					Name:        "exclusive_answer",
+					Description: `Exclusive Answer in DNS Response`,
+				},
+				resource.Attribute{
+					Name:        "prefix",
+					Description: `IPv6 prefix`,
+				},
+				resource.Attribute{
+					Name:        "code_range_end",
+					Description: `server response code range end`,
+				},
+				resource.Attribute{
+					Name:        "code_range_start",
+					Description: `server response code range start`,
+				},
+				resource.Attribute{
+					Name:        "period",
+					Description: `seconds`,
+				},
+				resource.Attribute{
+					Name:        "threshold",
+					Description: `the times of getting the response code`,
+				},
+				resource.Attribute{
+					Name:        "action_interval",
+					Description: `Specify logging interval in minute (default is 3)`,
+				},
+				resource.Attribute{
+					Name:        "bw_list_action",
+					Description: `‘drop’: drop the packet; ‘reset’: Send reset back;`,
+				},
+				resource.Attribute{
+					Name:        "fail",
+					Description: `Only log unsuccessful connections`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Specify id that maps to service group (The id number)`,
+				},
+				resource.Attribute{
+					Name:        "logging_drp_rst",
+					Description: `Configure PBSLB logging`,
+				},
+				resource.Attribute{
+					Name:        "pbslb_interval",
+					Description: `Specify logging interval in minutes`,
+				},
+				resource.Attribute{
+					Name:        "pbslb_logging",
+					Description: `Configure PBSLB logging`,
+				},
+				resource.Attribute{
+					Name:        "service_group",
+					Description: `Specify a service group (Specify the service group name)`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_slb_template_port",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder slb template port resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "add",
+					Description: `Slow start connection limit add by a number every interval (Add by this number every interval)`,
+				},
+				resource.Attribute{
+					Name:        "bw_rate_limit",
+					Description: `Configure bandwidth rate limit on real server port (Bandwidth rate limit in Kbps)`,
 				},
 				resource.Attribute{
 					Name:        "bw_rate_limit_duration",
 					Description: `Duration in seconds the observed rate needs to honor`,
 				},
 				resource.Attribute{
+					Name:        "bw_rate_limit_no_logging",
+					Description: `Do not log bandwidth rate limit related state transitions`,
+				},
+				resource.Attribute{
 					Name:        "bw_rate_limit_resume",
 					Description: `Resume server selection after bandwidth drops below this threshold (in Kbps) (Bandwidth rate limit resume threshold (in Kbps))`,
 				},
 				resource.Attribute{
-					Name:        "bw_rate_limit_acct",
-					Description: `'to-server-only’: Only account for traffic sent to server; 'from-server-only’: Only account for traffic received from server; 'all’: Account for all traffic sent to and received from server;`,
+					Name:        "conn_limit",
+					Description: `Connection limit`,
 				},
 				resource.Attribute{
-					Name:        "log_selection_failure",
-					Description: `Enable real-time logging for server selection failure event`,
+					Name:        "conn_limit_no_logging",
+					Description: `Do not log connection over limit event`,
 				},
 				resource.Attribute{
 					Name:        "conn_rate_limit",
 					Description: `Connection rate limit`,
 				},
 				resource.Attribute{
-					Name:        "dns_query_interval",
-					Description: `The interval to query DNS server for the hostname (DNS query interval (in minute, default is 10))`,
+					Name:        "conn_rate_limit_no_logging",
+					Description: `Do not log connection over limit event`,
+				},
+				resource.Attribute{
+					Name:        "dampening_flaps",
+					Description: `service dampening flaps count (max-flaps allowed in flap period)`,
+				},
+				resource.Attribute{
+					Name:        "decrement",
+					Description: `Decrease after every round of DNS query (default is 0)`,
+				},
+				resource.Attribute{
+					Name:        "del_session_on_server_down",
+					Description: `Delete session if the server/port goes down (either disabled/hm down)`,
+				},
+				resource.Attribute{
+					Name:        "dest_nat",
+					Description: `Destination NAT`,
+				},
+				resource.Attribute{
+					Name:        "down_grace_period",
+					Description: `Port down grace period`,
+				},
+				resource.Attribute{
+					Name:        "down_timer",
+					Description: `The timer to bring the marked down server/port to up (default is 0, never bring up) (The timer to bring up server (in second, default is 0))`,
+				},
+				resource.Attribute{
+					Name:        "dscp",
+					Description: `Differentiated Services Code Point (DSCP to Real Server IP Mapping Value)`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_member_priority",
+					Description: `Set dynamic member’s priority (Initial priority (default is 16))`,
+				},
+				resource.Attribute{
+					Name:        "every",
+					Description: `Slow start connection limit increment interval (default 10)`,
+				},
+				resource.Attribute{
+					Name:        "extended_stats",
+					Description: `Enable extended statistics on real server port`,
+				},
+				resource.Attribute{
+					Name:        "flap_period",
+					Description: `take service out of rotation if max-flaps exceeded within time in seconds`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Health Check Monitor (Health monitor name)`,
+				},
+				resource.Attribute{
+					Name:        "health_check_disable",
+					Description: `Disable configured health check configuration`,
+				},
+				resource.Attribute{
+					Name:        "inband_health_check",
+					Description: `Use inband traffic to detect port’s health status`,
+				},
+				resource.Attribute{
+					Name:        "initial_slow_start",
+					Description: `Initial slow start connection limit (default 128)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Port template name`,
+				},
+				resource.Attribute{
+					Name:        "no_ssl",
+					Description: `No SSL`,
+				},
+				resource.Attribute{
+					Name:        "rate_interval",
+					Description: `‘100ms’: Use 100 ms as sampling interval; ‘second’: Use 1 second as sampling interval;`,
+				},
+				resource.Attribute{
+					Name:        "reassign",
+					Description: `Maximum reassign times before declear the server/port down (default is 25) (The maximum reassign number)`,
+				},
+				resource.Attribute{
+					Name:        "request_rate_interval",
+					Description: `‘100ms’: Use 100 ms as sampling interval; ‘second’: Use 1 second as sampling interval;`,
+				},
+				resource.Attribute{
+					Name:        "request_rate_limit",
+					Description: `Request rate limit`,
+				},
+				resource.Attribute{
+					Name:        "request_rate_no_logging",
+					Description: `Do not log connection over limit event`,
+				},
+				resource.Attribute{
+					Name:        "resel_on_reset",
+					Description: `When receiving reset from server, do the server/port reselection (default is 0, don’t do reselection)`,
+				},
+				resource.Attribute{
+					Name:        "reset",
+					Description: `Send client reset when connection rate over limit`,
+				},
+				resource.Attribute{
+					Name:        "restore_svc_time",
+					Description: `put the service back to the rotation after time in seconds`,
+				},
+				resource.Attribute{
+					Name:        "resume",
+					Description: `Resume accepting new connection after connection number drops below threshold (Connection resume threshold)`,
+				},
+				resource.Attribute{
+					Name:        "retry",
+					Description: `Maximum retry times before reassign this connection to another server/port (default is 2) (The maximum retry number)`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_pool",
+					Description: `Reference a NAT pool or pool-group from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "slow_start",
+					Description: `Slowly ramp up the connection number after port is up`,
+				},
+				resource.Attribute{
+					Name:        "source_nat",
+					Description: `Source NAT (IP NAT Pool or pool group name)`,
+				},
+				resource.Attribute{
+					Name:        "stats_data_action",
+					Description: `‘stats-data-enable’: Enable statistical data collection for real server port; ‘stats-data-disable’: Disable statistical data collection for real server port;`,
+				},
+				resource.Attribute{
+					Name:        "sub_group",
+					Description: `Divide service group members into different sub groups (Sub group ID (default is 0))`,
+				},
+				resource.Attribute{
+					Name:        "template_port_pool_shared",
+					Description: `Source NAT (IP NAT Pool or pool group name)`,
+				},
+				resource.Attribute{
+					Name:        "till",
+					Description: `Slow start ends when slow start connection limit reaches a number (default 4096) (Slow start ends when connection limit reaches this number)`,
+				},
+				resource.Attribute{
+					Name:        "times",
+					Description: `Slow start connection limit multiply by a number every interval (default 2) (Multiply by this number every interval)`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Weight (port weight)`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_server_ssh",
+			Type:             "vthunder_thunder_slb_template_reqmod_icap",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder slb template server-ssh resource for A10`,
+			ShortDescription: `Provides details about thunder slb template reqmod icap resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"server",
-				"ssh",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "action",
+					Description: `‘continue’: Continue; ‘drop’: Drop; ‘reset’: Reset;`,
+				},
+				resource.Attribute{
+					Name:        "allowed_http_methods",
+					Description: `List of allowed HTTP methods. Default is “Allow All”. (List of HTTP methods allowed (default “Allow All”))`,
+				},
+				resource.Attribute{
+					Name:        "cylance",
+					Description: `cylance external server`,
+				},
+				resource.Attribute{
+					Name:        "disable_http_server_reset",
+					Description: `Don’t reset http server`,
+				},
+				resource.Attribute{
+					Name:        "fail_close",
+					Description: `When template sg is down mark vport down`,
+				},
+				resource.Attribute{
+					Name:        "include_protocol_in_uri",
+					Description: `Include protocol and port in HTTP URI`,
+				},
+				resource.Attribute{
+					Name:        "log_only_allowed_method",
+					Description: `Only log allowed HTTP method`,
+				},
+				resource.Attribute{
+					Name:        "logging",
+					Description: `logging template (Logging template name)`,
+				},
+				resource.Attribute{
+					Name:        "min_payload_size",
+					Description: `min-payload-size value 1 - 65536, default is 4096`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Reqmod ICAP Template Name`,
+				},
+				resource.Attribute{
+					Name:        "preview",
+					Description: `Preview value 1 - 32768, default is 32768`,
+				},
+				resource.Attribute{
+					Name:        "server_ssl",
+					Description: `Server SSL template (Server SSL template name)`,
+				},
+				resource.Attribute{
+					Name:        "service_group",
+					Description: `Bind a Service Group to the template (Service Group Name)`,
+				},
+				resource.Attribute{
+					Name:        "service_url",
+					Description: `URL to send to ICAP server (Service URL Name)`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_persist_source_ip_template",
+					Description: `Reference a persist source ip template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_tcp_proxy_template",
+					Description: `Reference a TCP Proxy template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "source_ip",
+					Description: `Source IP persistence template (Source IP persistence template name)`,
+				},
+				resource.Attribute{
+					Name:        "tcp_proxy",
+					Description: `TCP proxy template (TCP proxy template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_persist_source_ip_shared",
+					Description: `Source IP Persistence Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_tcp_proxy_shared",
+					Description: `TCP Proxy Template name`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "bypass_ip",
+					Description: `ip address to bypass reqmod-icap service`,
+				},
+				resource.Attribute{
+					Name:        "mask",
+					Description: `IP prefix mask`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_slb_template_respmod_icap",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder slb template respmod icap resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "action",
+					Description: `‘continue’: Continue; ‘drop’: Drop; ‘reset’: Reset;`,
+				},
+				resource.Attribute{
+					Name:        "cylance",
+					Description: `cylance external server`,
+				},
+				resource.Attribute{
+					Name:        "disable_http_server_reset",
+					Description: `Don’t reset http server`,
+				},
+				resource.Attribute{
+					Name:        "fail_close",
+					Description: `When template sg is down mark vport down`,
+				},
+				resource.Attribute{
+					Name:        "include_protocol_in_uri",
+					Description: `Include protocol and port in HTTP URI`,
+				},
+				resource.Attribute{
+					Name:        "log_only_allowed_method",
+					Description: `Only log allowed HTTP method`,
+				},
+				resource.Attribute{
+					Name:        "logging",
+					Description: `logging template (Logging template name)`,
+				},
+				resource.Attribute{
+					Name:        "min_payload_size",
+					Description: `min-payload-size value 1 - 65536, default is 4096`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Reqmod ICAP Template Name`,
+				},
+				resource.Attribute{
+					Name:        "preview",
+					Description: `Preview value 1 - 32768, default is 32768`,
+				},
+				resource.Attribute{
+					Name:        "server_ssl",
+					Description: `Server SSL template (Server SSL template name)`,
+				},
+				resource.Attribute{
+					Name:        "service_group",
+					Description: `Bind a Service Group to the template (Service Group Name)`,
+				},
+				resource.Attribute{
+					Name:        "service_url",
+					Description: `URL to send to ICAP server (Service URL Name)`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_persist_source_ip_template",
+					Description: `Reference a persist source ip template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_tcp_proxy_template",
+					Description: `Reference a TCP Proxy template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "source_ip",
+					Description: `Source IP persistence template (Source IP persistence template name)`,
+				},
+				resource.Attribute{
+					Name:        "tcp_proxy",
+					Description: `TCP proxy template (TCP proxy template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_persist_source_ip_shared",
+					Description: `Source IP Persistence Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_tcp_proxy_shared",
+					Description: `TCP Proxy Template name`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "bypass_ip",
+					Description: `ip address to bypass respmod-icap service`,
+				},
+				resource.Attribute{
+					Name:        "mask",
+					Description: `IP prefix mask`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_slb_template_server",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder slb template server resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "add",
+					Description: `Slow start connection limit add by a number every interval (Add by this number every interval)`,
+				},
+				resource.Attribute{
+					Name:        "bw_rate_limit",
+					Description: `Configure bandwidth rate limit on real server (Bandwidth rate limit in Kbps)`,
+				},
+				resource.Attribute{
+					Name:        "bw_rate_limit_acct",
+					Description: `‘to-server-only’: Only account for traffic sent to server; ‘from-server-only’: Only account for traffic received from server; ‘all’: Account for all traffic sent to and received from server;`,
+				},
+				resource.Attribute{
+					Name:        "bw_rate_limit_duration",
+					Description: `Duration in seconds the observed rate needs to honor`,
+				},
+				resource.Attribute{
+					Name:        "bw_rate_limit_no_logging",
+					Description: `Do not log bandwidth rate limit related state transitions`,
+				},
+				resource.Attribute{
+					Name:        "bw_rate_limit_resume",
+					Description: `Resume server selection after bandwidth drops below this threshold (in Kbps) (Bandwidth rate limit resume threshold (in Kbps))`,
+				},
+				resource.Attribute{
+					Name:        "conn_limit",
+					Description: `Connection limit`,
+				},
+				resource.Attribute{
+					Name:        "conn_limit_no_logging",
+					Description: `Do not log connection over limit event`,
+				},
+				resource.Attribute{
+					Name:        "conn_rate_limit",
+					Description: `Connection rate limit`,
+				},
+				resource.Attribute{
+					Name:        "conn_rate_limit_no_logging",
+					Description: `Do not log connection over limit event`,
+				},
+				resource.Attribute{
+					Name:        "dns_query_interval",
+					Description: `The interval to query DNS server for the hostname (DNS query interval (in minute, default is 10))`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_server_prefix",
+					Description: `Prefix of dynamic server (Prefix of dynamic server (default is “DRS”))`,
+				},
+				resource.Attribute{
+					Name:        "every",
+					Description: `Slow start connection limit increment interval (default 10)`,
+				},
+				resource.Attribute{
+					Name:        "extended_stats",
+					Description: `Enable extended statistics on real server`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Health Check Monitor (Health monitor name)`,
+				},
+				resource.Attribute{
+					Name:        "health_check_disable",
+					Description: `Disable configured health check configuration`,
+				},
+				resource.Attribute{
+					Name:        "initial_slow_start",
+					Description: `Initial slow start connection limit (default 128)`,
+				},
+				resource.Attribute{
+					Name:        "log_selection_failure",
+					Description: `Enable real-time logging for server selection failure event`,
+				},
+				resource.Attribute{
+					Name:        "max_dynamic_server",
+					Description: `Maximum dynamic server number (Maximum dynamic server number (default is 255))`,
+				},
+				resource.Attribute{
+					Name:        "min_ttl_ratio",
+					Description: `Minimum TTL to DNS query interval ratio (Minimum TTL ratio (default is 2))`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Server template name`,
+				},
+				resource.Attribute{
+					Name:        "rate_interval",
+					Description: `‘100ms’: Use 100 ms as sampling interval; ‘second’: Use 1 second as sampling interval;`,
+				},
+				resource.Attribute{
+					Name:        "resume",
+					Description: `Resume accepting new connection after connection number drops below threshold (Connection resume threshold)`,
+				},
+				resource.Attribute{
+					Name:        "slow_start",
+					Description: `Slowly ramp up the connection number after server is up`,
+				},
+				resource.Attribute{
+					Name:        "spoofing_cache",
+					Description: `Servers under the template are spoofing cache`,
+				},
+				resource.Attribute{
+					Name:        "stats_data_action",
+					Description: `‘stats-data-enable’: Enable statistical data collection for real server; ‘stats-data-disable’: Disable statistical data collection for real server;`,
+				},
+				resource.Attribute{
+					Name:        "till",
+					Description: `Slow start ends when slow start connection limit reaches a number (default 4096) (Slow start ends when connection limit reaches this number)`,
+				},
+				resource.Attribute{
+					Name:        "times",
+					Description: `Slow start connection limit multiply by a number every interval (default 2) (Multiply by this number every interval)`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Weight for the Real Servers (Connection Weight)`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_slb_template_server_ssh",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder slb template server ssh resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "forward_proxy_enable",
+					Description: `Enable SSH forward proxy`,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `Server SSH Template Name`,
@@ -5417,224 +13718,475 @@ var (
 					Description: `Customized tag`,
 				},
 				resource.Attribute{
-					Name:        "forward_proxy_enable",
-					Description: `Enable SSH forward proxy`,
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘successful_handshakes’: successful_handshakes; ‘failed_handshakes’: failed_handshakes; ‘forwarding_errors’: forwarding_errors;`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_server_ssl",
+			Type:             "vthunder_thunder_slb_template_server_ssl",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder slb template server-ssl resource for A10`,
+			ShortDescription: `Provides details about thunder slb template server-ssl resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"server",
-				"ssl",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `Server SSL Template Name`,
+					Name:        "alert_type",
+					Description: `‘fatal’: Log fatal alerts;`,
 				},
 				resource.Attribute{
-					Name:        "user_tag",
-					Description: `Customized tag`,
+					Name:        "cert",
+					Description: `Specify Client certificate (Certificate Name)`,
 				},
 				resource.Attribute{
-					Name:        "sslilogging",
-					Description: `'disable’: Disable all logging; 'all’: enable all logging(error, info);`,
+					Name:        "cert_shared_str",
+					Description: `Certificate Name`,
 				},
 				resource.Attribute{
-					Name:        "ocsp_stapling",
-					Description: `Enable ocsp-stapling support`,
+					Name:        "cipher_template",
+					Description: `Cipher Template (Cipher Config Name)`,
 				},
 				resource.Attribute{
-					Name:        "ssli_logging",
-					Description: `SSLi logging level, default is error logging only`,
+					Name:        "close_notify",
+					Description: `Send close notification when terminate connection`,
 				},
 				resource.Attribute{
-					Name:        "session_cache_size",
-					Description: `Session Cache Size (Maximum cache size. Default value 0 (Session ID reuse disabled))`,
+					Name:        "dgversion",
+					Description: `Lower TLS/SSL version can be downgraded`,
+				},
+				resource.Attribute{
+					Name:        "dh_type",
+					Description: `‘1024’: 1024; ‘1024-dsa’: 1024-dsa; ‘2048’: 2048;`,
+				},
+				resource.Attribute{
+					Name:        "enable_tls_alert_logging",
+					Description: `Enable TLS alert logging`,
+				},
+				resource.Attribute{
+					Name:        "encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED password string)`,
+				},
+				resource.Attribute{
+					Name:        "forward_proxy_enable",
+					Description: `Enable SSL forward proxy`,
 				},
 				resource.Attribute{
 					Name:        "handshake_logging_enable",
 					Description: `Enable SSL handshake logging`,
 				},
 				resource.Attribute{
-					Name:        "close_notify",
-					Description: `Send close notification when terminate connection`,
+					Name:        "key",
+					Description: `Client private-key (Key Name)`,
 				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vthunder_slb_template_sip",
-			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB template sip resource for A10`,
-			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"sip",
-			},
-			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key_shared_encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED password string)`,
+				},
+				resource.Attribute{
+					Name:        "key_shared_passphrase",
+					Description: `Password Phrase`,
+				},
+				resource.Attribute{
+					Name:        "key_shared_str",
+					Description: `Key Name`,
+				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `SIP Template Name`,
+					Description: `Server SSL Template Name`,
+				},
+				resource.Attribute{
+					Name:        "ocsp_stapling",
+					Description: `Enable ocsp-stapling support`,
+				},
+				resource.Attribute{
+					Name:        "passphrase",
+					Description: `Password Phrase`,
+				},
+				resource.Attribute{
+					Name:        "renegotiation_disable",
+					Description: `Disable SSL renegotiation`,
+				},
+				resource.Attribute{
+					Name:        "session_cache_size",
+					Description: `Session Cache Size (Specify 0 to disable Session ID reuse.)`,
+				},
+				resource.Attribute{
+					Name:        "session_cache_timeout",
+					Description: `Session Cache Timeout (Timeout value, in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "session_ticket_enable",
+					Description: `Enable server side session ticket support`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_cipher_template",
+					Description: `Reference a cipher template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "ssli_logging",
+					Description: `SSLi logging level, default is error logging only`,
+				},
+				resource.Attribute{
+					Name:        "sslilogging",
+					Description: `‘disable’: Disable all logging; ‘all’: enable all logging(error, info);`,
+				},
+				resource.Attribute{
+					Name:        "template_cipher_shared",
+					Description: `Cipher Template Name`,
+				},
+				resource.Attribute{
+					Name:        "use_client_sni",
+					Description: `use client SNI`,
 				},
 				resource.Attribute{
 					Name:        "user_tag",
 					Description: `Customized tag`,
 				},
 				resource.Attribute{
-					Name:        "smp_call_id_rtp_session",
-					Description: `Create the across cpu call-id rtp session`,
+					Name:        "uuid",
+					Description: `uuid of the object`,
 				},
 				resource.Attribute{
-					Name:        "client_keep_alive",
-					Description: `Respond client keep-alive packet directly instead of forwarding to server`,
+					Name:        "version",
+					Description: `TLS/SSL version, default is the highest number supported (TLS/SSL version: 30-SSLv3.0, 31-TLSv1.0, 32-TLSv1.1 and 33-TLSv1.2)`,
 				},
 				resource.Attribute{
-					Name:        "alg_source_nat",
-					Description: `Translate source IP to NAT IP in SIP message when source NAT is used`,
+					Name:        "crl",
+					Description: `Certificate Revocation Lists (Certificate Revocation Lists file name)`,
+				},
+				resource.Attribute{
+					Name:        "ec",
+					Description: `‘secp256r1’: X9_62_prime256v1; ‘secp384r1’: secp384r1;`,
+				},
+				resource.Attribute{
+					Name:        "error_type",
+					Description: `‘email’: Notify the error via email; ‘ignore’: Ignore the error, which mean the connection can continue; ‘logging’: Log the error; ‘trap’: Notify the error by SNMP trap;`,
+				},
+				resource.Attribute{
+					Name:        "ca_cert",
+					Description: `Specify CA certificate`,
+				},
+				resource.Attribute{
+					Name:        "ca_cert_partition_shared",
+					Description: `CA Certificate Partition Shared`,
+				},
+				resource.Attribute{
+					Name:        "server_ocsp_sg",
+					Description: `Specify service-group (Service group name)`,
+				},
+				resource.Attribute{
+					Name:        "server_ocsp_srvr",
+					Description: `Specify authentication server`,
+				},
+				resource.Attribute{
+					Name:        "cipher_wo_prio",
+					Description: `‘SSL3_RSA_DES_192_CBC3_SHA’: SSL3_RSA_DES_192_CBC3_SHA; ‘SSL3_RSA_RC4_128_MD5’: SSL3_RSA_RC4_128_MD5; ‘SSL3_RSA_RC4_128_SHA’: SSL3_RSA_RC4_128_SHA; ‘TLS1_RSA_AES_128_SHA’: TLS1_RSA_AES_128_SHA; ‘TLS1_RSA_AES_256_SHA’: TLS1_RSA_AES_256_SHA; ‘TLS1_RSA_AES_128_SHA256’: TLS1_RSA_AES_128_SHA256; ‘TLS1_RSA_AES_256_SHA256’: TLS1_RSA_AES_256_SHA256; ‘TLS1_DHE_RSA_AES_128_GCM_SHA256’: TLS1_DHE_RSA_AES_128_GCM_SHA256; ‘TLS1_DHE_RSA_AES_128_SHA’: TLS1_DHE_RSA_AES_128_SHA; ‘TLS1_DHE_RSA_AES_128_SHA256’: TLS1_DHE_RSA_AES_128_SHA256; ‘TLS1_DHE_RSA_AES_256_GCM_SHA384’: TLS1_DHE_RSA_AES_256_GCM_SHA384; ‘TLS1_DHE_RSA_AES_256_SHA’: TLS1_DHE_RSA_AES_256_SHA; ‘TLS1_DHE_RSA_AES_256_SHA256’: TLS1_DHE_RSA_AES_256_SHA256; ‘TLS1_ECDHE_ECDSA_AES_128_GCM_SHA256’: TLS1_ECDHE_ECDSA_AES_128_GCM_SHA256; ‘TLS1_ECDHE_ECDSA_AES_128_SHA’: TLS1_ECDHE_ECDSA_AES_128_SHA; ‘TLS1_ECDHE_ECDSA_AES_128_SHA256’: TLS1_ECDHE_ECDSA_AES_128_SHA256; ‘TLS1_ECDHE_ECDSA_AES_256_GCM_SHA384’: TLS1_ECDHE_ECDSA_AES_256_GCM_SHA384; ‘TLS1_ECDHE_ECDSA_AES_256_SHA’: TLS1_ECDHE_ECDSA_AES_256_SHA; ‘TLS1_ECDHE_RSA_AES_128_GCM_SHA256’: TLS1_ECDHE_RSA_AES_128_GCM_SHA256; ‘TLS1_ECDHE_RSA_AES_128_SHA’: TLS1_ECDHE_RSA_AES_128_SHA; ‘TLS1_ECDHE_RSA_AES_128_SHA256’: TLS1_ECDHE_RSA_AES_128_SHA256; ‘TLS1_ECDHE_RSA_AES_256_GCM_SHA384’: TLS1_ECDHE_RSA_AES_256_GCM_SHA384; ‘TLS1_ECDHE_RSA_AES_256_SHA’: TLS1_ECDHE_RSA_AES_256_SHA; ‘TLS1_RSA_AES_128_GCM_SHA256’: TLS1_RSA_AES_128_GCM_SHA256; ‘TLS1_RSA_AES_256_GCM_SHA384’: TLS1_RSA_AES_256_GCM_SHA384;`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_slb_template_sip",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder slb template sip resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "acl_id",
+					Description: `ACL id`,
+				},
+				resource.Attribute{
+					Name:        "acl_name_value",
+					Description: `IPv4 Access List Name`,
 				},
 				resource.Attribute{
 					Name:        "alg_dest_nat",
 					Description: `Translate VIP to real server IP in SIP message when destination NAT is used`,
 				},
 				resource.Attribute{
-					Name:        "server_keep_alive",
-					Description: `Send server keep-alive packet for every persist connection when enable conn-reuse`,
+					Name:        "alg_source_nat",
+					Description: `Translate source IP to NAT IP in SIP message when source NAT is used`,
 				},
 				resource.Attribute{
-					Name:        "interval",
-					Description: `The interval of keep-alive packet for each persist connection (second)`,
+					Name:        "call_id_persist_disable",
+					Description: `Disable call-ID persistence`,
+				},
+				resource.Attribute{
+					Name:        "client_keep_alive",
+					Description: `Respond client keep-alive packet directly instead of forwarding to server`,
 				},
 				resource.Attribute{
 					Name:        "dialog_aware",
 					Description: `Permit system processes dialog session`,
 				},
 				resource.Attribute{
+					Name:        "drop_when_client_fail",
+					Description: `Drop current SIP message when select client fail`,
+				},
+				resource.Attribute{
+					Name:        "drop_when_server_fail",
+					Description: `Drop current SIP message when select server fail`,
+				},
+				resource.Attribute{
+					Name:        "failed_client_selection",
+					Description: `Define action when select client fail`,
+				},
+				resource.Attribute{
+					Name:        "failed_client_selection_message",
+					Description: `Send SIP message (includs status code) to server when select client fail(Format: 3 digits(1XX~6XX) space reason)`,
+				},
+				resource.Attribute{
 					Name:        "failed_server_selection",
 					Description: `Define action when select server fail`,
+				},
+				resource.Attribute{
+					Name:        "failed_server_selection_message",
+					Description: `Send SIP message (includs status code) to client when select server fail(Format: 3 digits(1XX~6XX) space reason)`,
+				},
+				resource.Attribute{
+					Name:        "insert_client_ip",
+					Description: `Insert Client IP address into SIP header`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `The interval of keep-alive packet for each persist connection (second)`,
+				},
+				resource.Attribute{
+					Name:        "keep_server_ip_if_match_acl",
+					Description: `Use Real Server IP for addresses matching the ACL for a Call-Id`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `SIP Template Name`,
+				},
+				resource.Attribute{
+					Name:        "pstn_gw",
+					Description: `configure pstn gw host name for tel: uri translate to sip: uri (Hostname String, default is “pstn”)`,
+				},
+				resource.Attribute{
+					Name:        "server_keep_alive",
+					Description: `Send server keep-alive packet for every persist connection when enable conn-reuse`,
+				},
+				resource.Attribute{
+					Name:        "server_selection_per_request",
+					Description: `Force server selection on every SIP request`,
+				},
+				resource.Attribute{
+					Name:        "service_group",
+					Description: `service group name`,
+				},
+				resource.Attribute{
+					Name:        "smp_call_id_rtp_session",
+					Description: `Create the across cpu call-id rtp session`,
 				},
 				resource.Attribute{
 					Name:        "timeout",
 					Description: `Time in minutes`,
 				},
 				resource.Attribute{
-					Name:        "drop_when_server_fail",
-					Description: `Drop current SIP message when select server fail`,
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "insert_condition_server_request",
+					Description: `‘insert-if-not-exist’: Only insert the header when it does not exist; ‘insert-always’: Always insert the header even when there is a header with the same name;`,
+				},
+				resource.Attribute{
+					Name:        "server_request_erase_all",
+					Description: `Erase all headers`,
+				},
+				resource.Attribute{
+					Name:        "server_request_header_erase",
+					Description: `Erase a SIP header (Header Name)`,
+				},
+				resource.Attribute{
+					Name:        "server_request_header_insert",
+					Description: `Insert a SIP header (Header Content (Format: “name: value”))`,
+				},
+				resource.Attribute{
+					Name:        "insert_condition_server_response",
+					Description: `‘insert-if-not-exist’: Only insert the header when it does not exist; ‘insert-always’: Always insert the header even when there is a header with the same name;`,
+				},
+				resource.Attribute{
+					Name:        "server_response_erase_all",
+					Description: `Erase all headers`,
+				},
+				resource.Attribute{
+					Name:        "server_response_header_erase",
+					Description: `Erase a SIP header (Header Name)`,
+				},
+				resource.Attribute{
+					Name:        "server_response_header_insert",
+					Description: `Insert a SIP header (Header Content (Format: “name: value”))`,
+				},
+				resource.Attribute{
+					Name:        "client_request_erase_all",
+					Description: `Erase all headers`,
+				},
+				resource.Attribute{
+					Name:        "client_request_header_erase",
+					Description: `Erase a SIP header (Header Name)`,
+				},
+				resource.Attribute{
+					Name:        "client_request_header_insert",
+					Description: `Insert a SIP header (Header Content (Format: “name: value”))`,
+				},
+				resource.Attribute{
+					Name:        "insert_condition_client_request",
+					Description: `‘insert-if-not-exist’: Only insert the header when it does not exist; ‘insert-always’: Always insert the header even when there is a header with the same name;`,
+				},
+				resource.Attribute{
+					Name:        "client_response_erase_all",
+					Description: `Erase all headers`,
+				},
+				resource.Attribute{
+					Name:        "client_response_header_erase",
+					Description: `Erase a SIP header (Header Name)`,
+				},
+				resource.Attribute{
+					Name:        "client_response_header_insert",
+					Description: `Insert a SIP header (Header Content (Format: “name: value”))`,
+				},
+				resource.Attribute{
+					Name:        "insert_condition_client_response",
+					Description: `‘insert-if-not-exist’: Only insert the header when it does not exist; ‘insert-always’: Always insert the header even when there is a header with the same name;`,
+				},
+				resource.Attribute{
+					Name:        "header_string",
+					Description: `SIP header name`,
+				},
+				resource.Attribute{
+					Name:        "translation_value",
+					Description: `‘start-line’: SIP request line or status line; ‘header’: SIP message headers; ‘body’: SIP message body;`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_smpp",
+			Type:             "vthunder_thunder_slb_template_smpp",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB template smpp resource for A10`,
+			ShortDescription: `Provides details about thunder slb template smpp resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"smpp",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "client_enquire_link",
+					Description: `Respond client ENQUIRE_LINK packet directly instead of forwarding to server`,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `SMPP Template Name`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Configure the password used to bind`,
 				},
 				resource.Attribute{
 					Name:        "server_enquire_link",
 					Description: `Send server ENQUIRE_LINK packet for every persist connection when enable conn-reuse`,
 				},
 				resource.Attribute{
-					Name:        "server_selection_per_request",
-					Description: `Force server selection on every SMPP request when enable conn-reuse`,
-				},
-				resource.Attribute{
-					Name:        "client_enquire_link",
-					Description: `Respond client ENQUIRE_LINK packet directly instead of forwarding to server`,
-				},
-				resource.Attribute{
-					Name:        "user_tag",
-					Description: `Customized tag`,
-				},
-				resource.Attribute{
 					Name:        "server_enquire_link_val",
 					Description: `Set interval of keep-alive packet for each persistent connection (second, default is 30)`,
+				},
+				resource.Attribute{
+					Name:        "server_selection_per_request",
+					Description: `Force server selection on every SMPP request when enable conn-reuse`,
 				},
 				resource.Attribute{
 					Name:        "user",
 					Description: `Configure the user to bind (The name used to bind)`,
 				},
 				resource.Attribute{
-					Name:        "password",
-					Description: `Configure the password used to bind`,
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_smtp",
+			Type:             "vthunder_thunder_slb_template_smtp",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB template smtp resource for A10`,
+			ShortDescription: `Provides details about thunder slb template smtp resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"smtp",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "client_starttls_type",
+					Description: `‘optional’: STARTTLS is optional requirement; ‘enforced’: Must issue STARTTLS command before mail transaction;`,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `SMTP Template Name`,
-				},
-				resource.Attribute{
-					Name:        "user_tag",
-					Description: `Customized tag`,
 				},
 				resource.Attribute{
 					Name:        "server_domain",
 					Description: `Config the domain of the email servers (Server’s domain, default is “mail-server-domain”)`,
 				},
 				resource.Attribute{
-					Name:        "client_starttls_type",
-					Description: `'optional’: STARTTLS is optional requirement; 'enforced’: Must issue STARTTLS command before mail transaction`,
-				},
-				resource.Attribute{
-					Name:        "disable_type",
-					Description: `'optional’: STARTTLS is optional requirement; 'enforced’: Must issue STARTTLS command before mail transaction`,
-				},
-				resource.Attribute{
 					Name:        "server_starttls_type",
-					Description: `'optional’: STARTTLS is optional requirement; 'enforced’: Must issue STARTTLS command before mail transaction;`,
+					Description: `‘optional’: STARTTLS is optional requirement; ‘enforced’: Must issue STARTTLS command before mail transaction;`,
 				},
 				resource.Attribute{
 					Name:        "service_ready_msg",
 					Description: `Set SMTP service ready message (SMTP service ready message, default is “ESMTP mail service ready”)`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "match_string",
+					Description: `Domain name string`,
+				},
+				resource.Attribute{
+					Name:        "service_group",
+					Description: `Select service group (Service group name)`,
+				},
+				resource.Attribute{
+					Name:        "switching_type",
+					Description: `‘contains’: Specify domain name string if domain contains another string; ‘ends-with’: Specify domain name string if domain ends with another string; ‘starts-with’: Specify domain string if domain starts with another string;`,
+				},
+				resource.Attribute{
+					Name:        "logging",
+					Description: `Logging template (Logging Config name)`,
+				},
+				resource.Attribute{
+					Name:        "disable_type",
+					Description: `‘expn’: Disable SMTP EXPN commands; ‘turn’: Disable SMTP TURN commands; ‘vrfy’: Disable SMTP VRFY commands;`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_snmp",
+			Type:             "vthunder_thunder_slb_template_snmp",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder slb template snmp resource for A10`,
+			ShortDescription: `Provides details about thunder slb template snmp resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"snmp",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user_tag",
@@ -5685,15 +14237,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_ssli",
+			Type:             "vthunder_thunder_slb_template_ssli",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder slb template ssli resource for A10`,
+			ShortDescription: `Provides details about thunder slb template ssli resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"ssli",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -5712,27 +14260,75 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_tcp",
+			Type:             "vthunder_thunder_slb_template_tcp",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB template tcp resource for A10`,
+			ShortDescription: `Provides details about thunder slb template tcp resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"tcp",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `TCP Template Name`,
+					Name:        "alive_if_active",
+					Description: `keep connection alive if active traffic`,
+				},
+				resource.Attribute{
+					Name:        "del_session_on_server_down",
+					Description: `Delete session if the server/port goes down (either disabled/hm down)`,
+				},
+				resource.Attribute{
+					Name:        "disable",
+					Description: `send reset to client when server is disabled`,
+				},
+				resource.Attribute{
+					Name:        "down",
+					Description: `send reset to client when server is down`,
+				},
+				resource.Attribute{
+					Name:        "force_delete_timeout",
+					Description: `The maximum time that a session can stay in the system before being delete (number (second))`,
+				},
+				resource.Attribute{
+					Name:        "force_delete_timeout_100ms",
+					Description: `The maximum time that a session can stay in the system before being delete (number in 100ms)`,
+				},
+				resource.Attribute{
+					Name:        "half_close_idle_timeout",
+					Description: `TCP Half Close Idle Timeout (sec), default off (half close idle timeout in second, default off)`,
+				},
+				resource.Attribute{
+					Name:        "half_open_idle_timeout",
+					Description: `TCP Half Open Idle Timeout (sec), default off (half open idle timeout in second, default off)`,
 				},
 				resource.Attribute{
 					Name:        "idle_timeout",
 					Description: `Idle Timeout value (Interval of 60 seconds), default 120 seconds (idle timeout in second, default 120)`,
 				},
 				resource.Attribute{
+					Name:        "initial_window_size",
+					Description: `Set the initial window size (number)`,
+				},
+				resource.Attribute{
 					Name:        "insert_client_ip",
 					Description: `Insert client ip into TCP option`,
+				},
+				resource.Attribute{
+					Name:        "lan_fast_ack",
+					Description: `Enable fast TCP ack on LAN`,
+				},
+				resource.Attribute{
+					Name:        "logging",
+					Description: `‘init’: init only log; ‘term’: termination only log; ‘both’: both initial and termination log;`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Fast TCP Template Name`,
+				},
+				resource.Attribute{
+					Name:        "qos",
+					Description: `QOS level (number)`,
+				},
+				resource.Attribute{
+					Name:        "reset_follow_fin",
+					Description: `send reset to client or server upon receiving first fin`,
 				},
 				resource.Attribute{
 					Name:        "reset_fwd",
@@ -5743,411 +14339,479 @@ var (
 					Description: `send reset to client if error happens`,
 				},
 				resource.Attribute{
-					Name:        "del_session_on_server_down",
-					Description: `Delete session if the server/port goes down (either disabled/hm down)`,
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_tcp_proxy",
+			Type:             "vthunder_thunder_slb_template_tcp_proxy",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder slb template tcp-proxy resource for A10`,
+			ShortDescription: `Provides details about thunder slb template tcp proxy resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"tcp",
-				"proxy",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `TCP Proxy Template Name`,
-				},
-				resource.Attribute{
-					Name:        "user_tag",
-					Description: `Customized tag`,
-				},
-				resource.Attribute{
-					Name:        "qos",
-					Description: `QOS level (number)`,
-				},
-				resource.Attribute{
-					Name:        "init_cwnd",
-					Description: `The initial congestion control window size (packets), default is 10 (init-cwnd in packets, default 10)`,
-				},
-				resource.Attribute{
-					Name:        "idle_timeout",
-					Description: `Idle Timeout (Interval of 60 seconds), default is 600 (idle timeout in second, default 600)`,
-				},
-				resource.Attribute{
-					Name:        "fin_timeout",
-					Description: `FIN timeout (sec), default is disabled (number)`,
-				},
-				resource.Attribute{
-					Name:        "half_open_idle_timeout",
-					Description: `TCP Half Open Idle Timeout (sec), default is off (number)`,
-				},
-				resource.Attribute{
-					Name:        "reno",
-					Description: `Enable Reno Congestion Control Algorithm`,
-				},
-				resource.Attribute{
-					Name:        "early_retransmit",
-					Description: `Configure the Early-Retransmit Algorithm (RFC 5827) (Early-Retransmit is disabled by default)`,
-				},
-				resource.Attribute{
-					Name:        "server_down_action",
-					Description: `'FIN’: FIN Connection; 'RST’: Reset Connection;`,
-				},
-				resource.Attribute{
-					Name:        "timewait",
-					Description: `Timewait Threshold (sec), default 5 (number)`,
-				},
-				resource.Attribute{
-					Name:        "min_rto",
-					Description: `The minmum retransmission timeout, default is 200ms (number)`,
-				},
-				resource.Attribute{
-					Name:        "dynamic_buffer_allocation",
-					Description: `Optimally adjust the transmit and receive buffer sizes of TCP proxy while keeping their sum constant`,
-				},
-				resource.Attribute{
-					Name:        "limited_slowstart",
-					Description: `RFC 3742 Limited Slow-Start for TCP with Large Congestion Windows (number)`,
-				},
-				resource.Attribute{
-					Name:        "disable_sack",
-					Description: `disable Selective Ack Option`,
-				},
-				resource.Attribute{
-					Name:        "disable_window_scale",
-					Description: `disable TCP Window-Scale Option`,
+					Name:        "ack_aggressiveness",
+					Description: `‘low’: Delayed ACK; ‘medium’: Delayed ACK, with ACK on each packet with PUSH flag; ‘high’: ACK on each packet;`,
 				},
 				resource.Attribute{
 					Name:        "alive_if_active",
 					Description: `keep connection alive if active traffic`,
 				},
 				resource.Attribute{
-					Name:        "mss",
-					Description: `Responding MSS to use if client MSS is large, default is off (number)`,
-				},
-				resource.Attribute{
-					Name:        "keepalive_interval",
-					Description: `Interval between keepalive probes (sec), default is off (number (seconds))`,
-				},
-				resource.Attribute{
-					Name:        "retransmit_retries",
-					Description: `Number of Retries for Retransmit, default is 5`,
-				},
-				resource.Attribute{
-					Name:        "insert_client_ip",
-					Description: `Insert client ip into TCP option`,
-				},
-				resource.Attribute{
-					Name:        "transmit_buffer",
-					Description: `TCP Transmit Buffer (default 200k) (number default 200000 bytes)`,
-				},
-				resource.Attribute{
-					Name:        "nagle",
-					Description: `Enable Nagle Algorithm`,
-				},
-				resource.Attribute{
-					Name:        "initial_window_size",
-					Description: `Set the initial window size, default is off (number)`,
-				},
-				resource.Attribute{
-					Name:        "keepalive_probes",
-					Description: `Number of keepalive probes sent, default is off`,
-				},
-				resource.Attribute{
-					Name:        "psh_flag_optimization",
-					Description: `Enable Optimized PSH Flag Use`,
-				},
-				resource.Attribute{
-					Name:        "ack_aggressiveness",
-					Description: `'low’: Delayed ACK; 'medium’: Delayed ACK, with ACK on each packet with PUSH flag; 'high’: ACK on each packet;`,
-				},
-				resource.Attribute{
 					Name:        "backend_wscale",
 					Description: `The TCP window scale used for the server side, default is off (number)`,
-				},
-				resource.Attribute{
-					Name:        "reset_rev",
-					Description: `send reset to client if error happens`,
-				},
-				resource.Attribute{
-					Name:        "maxburst",
-					Description: `The max packet count sent per transmission event (number)`,
-				},
-				resource.Attribute{
-					Name:        "receive_buffer",
-					Description: `TCP Receive Buffer (default 200k) (number default 200000 bytes)`,
 				},
 				resource.Attribute{
 					Name:        "del_session_on_server_down",
 					Description: `Delete session if the server/port goes down (either disabled/hm down)`,
 				},
 				resource.Attribute{
-					Name:        "reassembly_timeout",
-					Description: `The reassembly timeout, default is 30sec (number)`,
-				},
-				resource.Attribute{
-					Name:        "reset_fwd",
-					Description: `send reset to server if error happens`,
-				},
-				resource.Attribute{
-					Name:        "disable_tcp_timestamps",
-					Description: `disable TCP Timestamps Option`,
-				},
-				resource.Attribute{
-					Name:        "syn_retries",
-					Description: `SYN Retry Numbers, default is 5`,
-				},
-				resource.Attribute{
-					Name:        "force_delete_timeout",
-					Description: `The maximum time that a session can stay in the system before being deleted, default is off (number (second))`,
-				},
-				resource.Attribute{
-					Name:        "reassembly_limit",
-					Description: `The reassembly queuing limit, default is 25 segments (number)`,
-				},
-				resource.Attribute{
-					Name:        "invalid_rate_limit",
-					Description: `Invalid Packet Response Rate Limit (ms), default is 500 (number default 500 challenges)`,
+					Name:        "disable",
+					Description: `send reset to client when server is disabled`,
 				},
 				resource.Attribute{
 					Name:        "disable_abc",
 					Description: `Appropriate Byte Counting RFC 3465 Disabled, default is enabled (Appropriate Byte Counting (ABC) is enabled by default)`,
 				},
 				resource.Attribute{
+					Name:        "disable_sack",
+					Description: `disable Selective Ack Option`,
+				},
+				resource.Attribute{
+					Name:        "disable_tcp_timestamps",
+					Description: `disable TCP Timestamps Option`,
+				},
+				resource.Attribute{
+					Name:        "disable_window_scale",
+					Description: `disable TCP Window-Scale Option`,
+				},
+				resource.Attribute{
+					Name:        "down",
+					Description: `send reset to client when server is down`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_buffer_allocation",
+					Description: `Optimally adjust the transmit and receive buffer sizes of TCP proxy while keeping their sum constant`,
+				},
+				resource.Attribute{
+					Name:        "early_retransmit",
+					Description: `Configure the Early-Retransmit Algorithm (RFC 5827) (Early-Retransmit is disabled by default)`,
+				},
+				resource.Attribute{
+					Name:        "fin_timeout",
+					Description: `FIN timeout (sec), default is 5 (number)`,
+				},
+				resource.Attribute{
+					Name:        "force_delete_timeout",
+					Description: `The maximum time that a session can stay in the system before being deleted, default is off (number (second))`,
+				},
+				resource.Attribute{
+					Name:        "force_delete_timeout_100ms",
+					Description: `The maximum time that a session can stay in the system before being deleted, default is off (number in 100ms)`,
+				},
+				resource.Attribute{
 					Name:        "half_close_idle_timeout",
-					Description: `TCP Half Close Idle Timeout (sec), default is off (cmd is deprecated, use fin-timeout instead) (number)`,
+					Description: `TCP Half Close Idle Timeout (sec), default is off (number)`,
+				},
+				resource.Attribute{
+					Name:        "half_open_idle_timeout",
+					Description: `TCP Half Open Idle Timeout (sec), default is off (number)`,
+				},
+				resource.Attribute{
+					Name:        "idle_timeout",
+					Description: `Idle Timeout (Interval of 60 seconds), default is 600 (idle timeout in second, default 600)`,
+				},
+				resource.Attribute{
+					Name:        "init_cwnd",
+					Description: `The initial congestion control window size (packets), default is 10 (number)`,
+				},
+				resource.Attribute{
+					Name:        "initial_window_size",
+					Description: `Set the initial window size, default is off (number)`,
+				},
+				resource.Attribute{
+					Name:        "insert_client_ip",
+					Description: `Insert client ip into TCP option`,
+				},
+				resource.Attribute{
+					Name:        "invalid_rate_limit",
+					Description: `Invalid Packet Response Rate Limit (ms), default is 500 (number default 500 challenges)`,
+				},
+				resource.Attribute{
+					Name:        "keepalive_interval",
+					Description: `Interval between keepalive probes (sec), default is off (number)`,
+				},
+				resource.Attribute{
+					Name:        "keepalive_probes",
+					Description: `Number of keepalive probes sent, default is off`,
+				},
+				resource.Attribute{
+					Name:        "limited_slowstart",
+					Description: `RFC 3742 Limited Slow-Start for TCP with Large Congestion Windows (number)`,
+				},
+				resource.Attribute{
+					Name:        "maxburst",
+					Description: `The max packet count sent per transmission event (number)`,
+				},
+				resource.Attribute{
+					Name:        "min_rto",
+					Description: `The minmum retransmission timeout, default is 200ms (number)`,
+				},
+				resource.Attribute{
+					Name:        "mss",
+					Description: `Responding MSS to use if client MSS is large, default is off (number)`,
+				},
+				resource.Attribute{
+					Name:        "nagle",
+					Description: `Enable Nagle Algorithm`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `TCP Proxy Template Name`,
+				},
+				resource.Attribute{
+					Name:        "psh_flag_optimization",
+					Description: `Enable Optimized PSH Flag Use`,
+				},
+				resource.Attribute{
+					Name:        "qos",
+					Description: `QOS level (number)`,
+				},
+				resource.Attribute{
+					Name:        "reassembly_limit",
+					Description: `The reassembly queuing limit, default is 25 segments (number)`,
+				},
+				resource.Attribute{
+					Name:        "reassembly_timeout",
+					Description: `The reassembly timeout, default is 30sec (number)`,
+				},
+				resource.Attribute{
+					Name:        "receive_buffer",
+					Description: `TCP Receive Buffer (default 200k) (number)`,
+				},
+				resource.Attribute{
+					Name:        "reno",
+					Description: `Enable Reno Congestion Control Algorithm`,
+				},
+				resource.Attribute{
+					Name:        "reset_fwd",
+					Description: `send reset to server if error happens`,
+				},
+				resource.Attribute{
+					Name:        "reset_rev",
+					Description: `send reset to client if error happens`,
+				},
+				resource.Attribute{
+					Name:        "retransmit_retries",
+					Description: `Number of Retries for Retransmit, default is 5`,
+				},
+				resource.Attribute{
+					Name:        "server_down_action",
+					Description: `‘FIN’: FIN Connection; ‘RST’: Reset Connection;`,
+				},
+				resource.Attribute{
+					Name:        "syn_retries",
+					Description: `SYN Retry Numbers, default is 5`,
+				},
+				resource.Attribute{
+					Name:        "timewait",
+					Description: `Timewait Threshold (sec), default 5 (number)`,
+				},
+				resource.Attribute{
+					Name:        "transmit_buffer",
+					Description: `TCP Transmit Buffer (default 200k) (number)`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_udp",
+			Type:             "vthunder_thunder_slb_template_udp",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB template udp resource for A10`,
+			ShortDescription: `Provides details about thunder slb template udp resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"udp",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "qos",
-					Description: `QOS level (number)`,
+					Name:        "age",
+					Description: `short age (in sec), default is 31`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `Fast UDP Template Name`,
-				},
-				resource.Attribute{
-					Name:        "stateless_conn_timeout",
-					Description: `Stateless Current Connection Timeout value (5 - 120 seconds) (idle timeout in second, default 120)`,
+					Name:        "disable_clear_session",
+					Description: `Disable immediate clearing of session`,
 				},
 				resource.Attribute{
 					Name:        "idle_timeout",
 					Description: `Idle Timeout value (Interval of 60 seconds), default 120 seconds (idle timeout in second, default 120)`,
 				},
 				resource.Attribute{
-					Name:        "re_select_if_server_down",
-					Description: `re-select another server if service port is down`,
-				},
-				resource.Attribute{
 					Name:        "immediate",
 					Description: `Immediate Removal after Transaction`,
 				},
 				resource.Attribute{
+					Name:        "name",
+					Description: `Fast UDP Template Name`,
+				},
+				resource.Attribute{
+					Name:        "qos",
+					Description: `QOS level (number)`,
+				},
+				resource.Attribute{
+					Name:        "re_select_if_server_down",
+					Description: `re-select another server if service port is down`,
+				},
+				resource.Attribute{
+					Name:        "short",
+					Description: `Short lived session`,
+				},
+				resource.Attribute{
+					Name:        "stateless_conn_timeout",
+					Description: `Stateless Current Connection Timeout value (5 - 120 seconds) (idle timeout in second, default 120)`,
+				},
+				resource.Attribute{
 					Name:        "user_tag",
 					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_template_virtual_port",
+			Type:             "vthunder_thunder_slb_template_virtual_port",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder slb template virtual-port resource for A10`,
+			ShortDescription: `Provides details about thunder slb template virtual port resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"virtual",
-				"port",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `Virtual port template name`,
-				},
-				resource.Attribute{
-					Name:        "user_tag",
-					Description: `Customized tag`,
-				},
-				resource.Attribute{
-					Name:        "reset_unknown_conn",
-					Description: `Send reset back if receives TCP packet without SYN or RST flag and it does not belong to any existing connections`,
-				},
-				resource.Attribute{
-					Name:        "ignore_tcp_msl",
-					Description: `reclaim TCP resource immediately without MSL`,
-				},
-				resource.Attribute{
-					Name:        "rate",
-					Description: `Source IP and port rate limit (Packet rate limit)`,
-				},
-				resource.Attribute{
-					Name:        "snat_msl",
-					Description: `Source NAT MSL (Source NAT MSL value (seconds))`,
+					Name:        "aflow",
+					Description: `Use aFlow to eliminate the traffic surge`,
 				},
 				resource.Attribute{
 					Name:        "allow_syn_otherflags",
 					Description: `Allow initial SYN packet with other flags`,
 				},
 				resource.Attribute{
-					Name:        "aflow",
-					Description: `Use aFlow to eliminate the traffic surge`,
+					Name:        "allow_vip_to_rport_mapping",
+					Description: `Allow mapping of VIP to real port`,
 				},
 				resource.Attribute{
 					Name:        "conn_limit",
 					Description: `Connection limit`,
-				},
-				resource.Attribute{
-					Name:        "drop_unknown_conn",
-					Description: `Drop conection if receives TCP packet without SYN or RST flag and it does not belong to any existing connections`,
-				},
-				resource.Attribute{
-					Name:        "reset_l7_on_failover",
-					Description: `Send reset to L7 client and server connection upon a failover`,
-				},
-				resource.Attribute{
-					Name:        "pkt_rate_type",
-					Description: `'src-ip-port’: Source IP and port rate limit; 'src-port’: Source port rate limit;`,
-				},
-				resource.Attribute{
-					Name:        "rate_interval",
-					Description: `'100ms’: Use 100 ms as sampling interval; 'second’: Use 1 second as sampling interval;`,
-				},
-				resource.Attribute{
-					Name:        "snat_port_preserve",
-					Description: `Source NAT Port Preservation`,
-				},
-				resource.Attribute{
-					Name:        "conn_rate_limit_reset",
-					Description: `Send client reset when connection rate over limit`,
-				},
-				resource.Attribute{
-					Name:        "when_rr_enable",
-					Description: `Only do rate limit if CPU RR triggered`,
-				},
-				resource.Attribute{
-					Name:        "non_syn_initiation",
-					Description: `Allow initial TCP packet to be non-SYN`,
-				},
-				resource.Attribute{
-					Name:        "conn_limit_reset",
-					Description: `Send client reset when connection over limit`,
-				},
-				resource.Attribute{
-					Name:        "dscp",
-					Description: `Differentiated Services Code Point (DSCP to Real Server IP Mapping Value)`,
-				},
-				resource.Attribute{
-					Name:        "pkt_rate_limit_reset",
-					Description: `send client-side reset (reset after packet limit)`,
 				},
 				resource.Attribute{
 					Name:        "conn_limit_no_logging",
 					Description: `Do not log connection over limit event`,
 				},
 				resource.Attribute{
-					Name:        "conn_rate_limit_no_logging",
-					Description: `Do not log connection over limit event`,
-				},
-				resource.Attribute{
-					Name:        "log_options",
-					Description: `'no-logging’: Do not log over limit event; 'no-repeat-logging’: log once for over limit event. Default is log once per minute;`,
-				},
-				resource.Attribute{
-					Name:        "allow_vip_to_rport_mapping",
-					Description: `Allow mapping of VIP to real port`,
-				},
-				resource.Attribute{
-					Name:        "pkt_rate_interval",
-					Description: `'100ms’: Source IP and port rate limit per 100ms; 'second’: Source IP and port rate limit per second (default);`,
+					Name:        "conn_limit_reset",
+					Description: `Send client reset when connection over limit`,
 				},
 				resource.Attribute{
 					Name:        "conn_rate_limit",
 					Description: `Connection rate limit`,
 				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vthunder_slb_template_virtual_server",
-			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder slb template virtual-server resource for A10`,
-			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"template",
-				"virtual",
-				"server",
-			},
-			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "conn_rate_limit_no_logging",
+					Description: `Do not log connection over limit event`,
+				},
+				resource.Attribute{
+					Name:        "conn_rate_limit_reset",
+					Description: `Send client reset when connection rate over limit`,
+				},
+				resource.Attribute{
+					Name:        "drop_unknown_conn",
+					Description: `Drop conection if receives TCP packet without SYN or RST flag and it does not belong to any existing connections`,
+				},
+				resource.Attribute{
+					Name:        "dscp",
+					Description: `Differentiated Services Code Point (DSCP to Real Server IP Mapping Value)`,
+				},
+				resource.Attribute{
+					Name:        "ignore_tcp_msl",
+					Description: `reclaim TCP resource immediately without MSL`,
+				},
+				resource.Attribute{
+					Name:        "log_options",
+					Description: `‘no-logging’: Do not log over limit event; ‘no-repeat-logging’: log once for over limit event. Default is log once per minute;`,
+				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `Virtual server template name`,
+					Description: `Virtual port template name`,
+				},
+				resource.Attribute{
+					Name:        "non_syn_initiation",
+					Description: `Allow initial TCP packet to be non-SYN`,
+				},
+				resource.Attribute{
+					Name:        "pkt_rate_interval",
+					Description: `‘100ms’: Source IP and port rate limit per 100ms; ‘second’: Source IP and port rate limit per second (default);`,
+				},
+				resource.Attribute{
+					Name:        "pkt_rate_limit_reset",
+					Description: `send client-side reset (reset after packet limit)`,
+				},
+				resource.Attribute{
+					Name:        "pkt_rate_type",
+					Description: `‘src-ip-port’: Source IP and port rate limit; ‘src-port’: Source port rate limit;`,
+				},
+				resource.Attribute{
+					Name:        "rate",
+					Description: `Source IP and port rate limit (Packet rate limit)`,
+				},
+				resource.Attribute{
+					Name:        "rate_interval",
+					Description: `‘100ms’: Use 100 ms as sampling interval; ‘second’: Use 1 second as sampling interval;`,
+				},
+				resource.Attribute{
+					Name:        "reset_l7_on_failover",
+					Description: `Send reset to L7 client and server connection upon a failover`,
+				},
+				resource.Attribute{
+					Name:        "reset_unknown_conn",
+					Description: `Send reset back if receives TCP packet without SYN or RST flag and it does not belong to any existing connections`,
+				},
+				resource.Attribute{
+					Name:        "snat_msl",
+					Description: `Source NAT MSL (Source NAT MSL value)`,
+				},
+				resource.Attribute{
+					Name:        "snat_port_preserve",
+					Description: `Source NAT Port Preservation`,
 				},
 				resource.Attribute{
 					Name:        "user_tag",
 					Description: `Customized tag`,
 				},
 				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "when_rr_enable",
+					Description: `Only do rate limit if CPU RR triggered`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_slb_template_virtual_server",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder slb template virtual server resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
 					Name:        "conn_limit",
 					Description: `Connection limit`,
+				},
+				resource.Attribute{
+					Name:        "conn_limit_no_logging",
+					Description: `Do not log connection over limit event`,
 				},
 				resource.Attribute{
 					Name:        "conn_limit_reset",
 					Description: `Send client reset when connection over limit`,
 				},
 				resource.Attribute{
+					Name:        "conn_rate_limit",
+					Description: `Connection rate limit`,
+				},
+				resource.Attribute{
+					Name:        "conn_rate_limit_no_logging",
+					Description: `Do not log connection over limit event`,
+				},
+				resource.Attribute{
+					Name:        "conn_rate_limit_reset",
+					Description: `Send client reset when connection rate over limit`,
+				},
+				resource.Attribute{
+					Name:        "icmp_lockup",
+					Description: `Enter lockup state when ICMP rate exceeds lockup rate limit (Maximum rate limit. If exceeds this limit, drop all ICMP packet for a time period)`,
+				},
+				resource.Attribute{
+					Name:        "icmp_lockup_period",
+					Description: `Lockup period (second)`,
+				},
+				resource.Attribute{
+					Name:        "icmp_rate_limit",
+					Description: `ICMP rate limit (Normal rate limit. If exceeds this limit, drop the ICMP packet that goes over the limit)`,
+				},
+				resource.Attribute{
+					Name:        "icmpv6_lockup",
+					Description: `Enter lockup state when ICMP rate exceeds lockup rate limit (Maximum rate limit. If exceeds this limit, drop all ICMP packet for a time period)`,
+				},
+				resource.Attribute{
+					Name:        "icmpv6_lockup_period",
+					Description: `Lockup period (second)`,
+				},
+				resource.Attribute{
 					Name:        "icmpv6_rate_limit",
 					Description: `ICMPv6 rate limit (Normal rate limit. If exceeds this limit, drop the ICMP packet that goes over the limit)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Virtual server template name`,
+				},
+				resource.Attribute{
+					Name:        "rate_interval",
+					Description: `‘100ms’: Use 100 ms as sampling interval; ‘second’: Use 1 second as sampling interval;`,
 				},
 				resource.Attribute{
 					Name:        "subnet_gratuitous_arp",
 					Description: `Send gratuitous ARP for every IP in the subnet virtual server`,
 				},
 				resource.Attribute{
+					Name:        "tcp_stack_tfo_active_conn_limit",
+					Description: `The allowed active layer 7 tcp fast-open connection limit, default is zero (number)`,
+				},
+				resource.Attribute{
 					Name:        "tcp_stack_tfo_backoff_time",
 					Description: `The time tcp stack will wait before allowing new fast-open requests after security condition, default 600 seconds (number)`,
 				},
+				resource.Attribute{
+					Name:        "tcp_stack_tfo_cookie_time_limit",
+					Description: `The time limit (in seconds) that a layer 7 tcp fast-open cookie is valid, default is 60 seconds (number)`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_transparent_acl_template",
+			Type:             "vthunder_thunder_slb_transparent_acl_template",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB transparent acl template resource for A10`,
+			ShortDescription: `Provides details about thunder SLB transparent acl template resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"transparent",
-				"acl",
-				"template",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -6158,16 +14822,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_slb_transparent_tcp_template",
+			Type:             "vthunder_thunder_slb_transparent_tcp_template",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder SLB transparent tcp template resource for A10`,
+			ShortDescription: `Provides details about thunder SLB transparent tcp template resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"slb",
-				"transparent",
-				"tcp",
-				"template",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -6178,102 +14837,3140 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_virtual_server",
+			Type:             "vthunder_thunder_slb_virtual_server_port",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder virtual server resource for A10`,
+			ShortDescription: `Provides details about thunder slb virtual server port resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"virtual",
-				"server",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `Name of virtual server`,
+					Name:        "action",
+					Description: `‘enable’: Enable; ‘disable’: Disable;`,
 				},
 				resource.Attribute{
-					Name:        "ip_address",
-					Description: `IP address`,
+					Name:        "alt_protocol1",
+					Description: `‘http’: HTTP Port;`,
+				},
+				resource.Attribute{
+					Name:        "alt_protocol2",
+					Description: `‘tcp’: TCP LB service;`,
+				},
+				resource.Attribute{
+					Name:        "alternate_port",
+					Description: `Alternate Virtual Port`,
+				},
+				resource.Attribute{
+					Name:        "alternate_port_number",
+					Description: `Virtual Port`,
 				},
 				resource.Attribute{
 					Name:        "auto",
 					Description: `Configure auto NAT for the vport`,
 				},
 				resource.Attribute{
+					Name:        "clientip_sticky_nat",
+					Description: `Prefer to use same source NAT address for a client`,
+				},
+				resource.Attribute{
+					Name:        "conn_limit",
+					Description: `Connection Limit`,
+				},
+				resource.Attribute{
+					Name:        "def_selection_if_pref_failed",
+					Description: `‘def-selection-if-pref-failed’: Use default server selection method if prefer method failed; ‘def-selection-if-pref-failed-disable’: Stop using default server selection method if prefer method failed;`,
+				},
+				resource.Attribute{
+					Name:        "enable_playerid_check",
+					Description: `Enable playerid checks on UDP packets once the AX is in active mode`,
+				},
+				resource.Attribute{
+					Name:        "eth_fwd",
+					Description: `Ethernet interface number`,
+				},
+				resource.Attribute{
+					Name:        "eth_rev",
+					Description: `Ethernet interface number`,
+				},
+				resource.Attribute{
+					Name:        "expand",
+					Description: `expand syn-cookie with timestamp and wscale`,
+				},
+				resource.Attribute{
+					Name:        "extended_stats",
+					Description: `Enable extended statistics on virtual port`,
+				},
+				resource.Attribute{
+					Name:        "force_routing_mode",
+					Description: `Force routing mode`,
+				},
+				resource.Attribute{
+					Name:        "gslb_enable",
+					Description: `Enable Global Server Load Balancing`,
+				},
+				resource.Attribute{
+					Name:        "ha_conn_mirror",
+					Description: `Enable for HA Conn sync`,
+				},
+				resource.Attribute{
+					Name:        "ip_map_list",
+					Description: `Enter name of IP Map List to be bound (IP Map List Name)`,
+				},
+				resource.Attribute{
+					Name:        "ipinip",
+					Description: `Enable IP in IP`,
+				},
+				resource.Attribute{
+					Name:        "l7_hardware_assist",
+					Description: `FPGA assist L7 packet parsing`,
+				},
+				resource.Attribute{
+					Name:        "message_switching",
+					Description: `Message switching`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `SLB Virtual Service Name`,
+				},
+				resource.Attribute{
+					Name:        "no_auto_up_on_aflex",
+					Description: `Don’t automatically mark vport up when aFleX is bound`,
+				},
+				resource.Attribute{
+					Name:        "no_dest_nat",
+					Description: `Disable destination NAT, this option only supports in wildcard VIP or when a connection is operated in SSLi + EP mode`,
+				},
+				resource.Attribute{
+					Name:        "no_logging",
+					Description: `Do not log connection over limit event`,
+				},
+				resource.Attribute{
+					Name:        "on_syn",
+					Description: `Enable for HA Conn sync for l4 tcp sessions on SYN`,
+				},
+				resource.Attribute{
+					Name:        "optimization_level",
+					Description: `‘0’: No optimization; ‘1’: Optimization level 1 (Experimental);`,
+				},
+				resource.Attribute{
+					Name:        "persist_type",
+					Description: `‘src-dst-ip-swap-persist’: Create persist session after source IP and destination IP swap; ‘use-src-ip-for-dst-persist’: Use the source IP to create a destination persist session; ‘use-dst-ip-for-src-persist’: Use the destination IP to create source IP persist session;`,
+				},
+				resource.Attribute{
+					Name:        "pool",
+					Description: `Specify NAT pool or pool group`,
+				},
+				resource.Attribute{
+					Name:        "pool_shared",
+					Description: `Specify NAT pool or pool group`,
+				},
+				resource.Attribute{
 					Name:        "port_number",
-					Description: `Port number`,
+					Description: `Port`,
+				},
+				resource.Attribute{
+					Name:        "port_translation",
+					Description: `Enable port translation under no-dest-nat`,
+				},
+				resource.Attribute{
+					Name:        "precedence",
+					Description: `Set auto NAT pool as higher precedence for source NAT`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `protocol`,
+					Description: `‘tcp’: TCP LB service; ‘udp’: UDP Port; ‘others’: for no tcp/udp protocol, do IP load balancing; ‘diameter’: diameter port; ‘dns-tcp’: DNS service over TCP; ‘dns-udp’: DNS service over UDP; ‘fast-http’: Fast HTTP Port; ‘fix’: FIX Port; ‘ftp’: File Transfer Protocol Port; ‘ftp-proxy’: ftp proxy port; ‘http’: HTTP Port; ‘https’: HTTPS port; ‘imap’: imap proxy port; ‘mlb’: Message based load balancing; ‘mms’: Microsoft Multimedia Service Port; ‘mysql’: mssql port; ‘mssql’: mssql; ‘pop3’: pop3 proxy port; ‘radius’: RADIUS Port; ‘rtsp’: Real Time Streaming Protocol Port; ‘sip’: Session initiation protocol over UDP; ‘sip-tcp’: Session initiation protocol over TCP; ‘sips’: Session initiation protocol over TLS; ‘smpp-tcp’: SMPP service over TCP; ‘spdy’: spdy port; ‘spdys’: spdys port; ‘smtp’: SMTP Port; ‘ssl-proxy’: Generic SSL proxy; ‘ssli’: SSL insight; ‘tcp-proxy’: Generic TCP proxy; ‘tftp’: TFTP Port;`,
+				},
+				resource.Attribute{
+					Name:        "range",
+					Description: `Virtual Port range (Virtual Port range value)`,
+				},
+				resource.Attribute{
+					Name:        "rate",
+					Description: `Specify the log message rate`,
+				},
+				resource.Attribute{
+					Name:        "redirect_to_https",
+					Description: `Redirect HTTP to HTTPS`,
+				},
+				resource.Attribute{
+					Name:        "req_fail",
+					Description: `Use alternate virtual port when L7 request fail`,
+				},
+				resource.Attribute{
+					Name:        "reset",
+					Description: `Send client reset when connection number over limit`,
+				},
+				resource.Attribute{
+					Name:        "reset_on_server_selection_fail",
+					Description: `Send client reset when server selection fails`,
+				},
+				resource.Attribute{
+					Name:        "rtp_sip_call_id_match",
+					Description: `rtp traffic try to match the real server of sip smp call-id session`,
+				},
+				resource.Attribute{
+					Name:        "scaleout_bucket_count",
+					Description: `Number of traffic buckets`,
+				},
+				resource.Attribute{
+					Name:        "scaleout_device_group",
+					Description: `Device group id`,
+				},
+				resource.Attribute{
+					Name:        "secs",
+					Description: `Specify the interval in seconds`,
+				},
+				resource.Attribute{
+					Name:        "serv_sel_fail",
+					Description: `Use alternate virtual port when server selection failure`,
 				},
 				resource.Attribute{
 					Name:        "service_group",
-					Description: `Service group name`,
+					Description: `Bind a Service Group to this Virtual Server (Service Group Name)`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_cache_template",
+					Description: `Reference a Cache template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_client_ssl_template",
+					Description: `Reference a Client SSL template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_connection_reuse_template",
+					Description: `Reference a connection reuse template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_diameter_template",
+					Description: `Reference a Diameter template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_dns_template",
+					Description: `Reference a dns template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_dynamic_service_template",
+					Description: `Reference a dynamic service template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_external_service_template",
+					Description: `Reference a external service template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_http_policy_template",
+					Description: `Reference a http policy template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_http_template",
+					Description: `Reference a HTTP template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_persist_cookie_template",
+					Description: `Reference a persist cookie template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_persist_destination_ip_template",
+					Description: `Reference a persist destination ip template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_persist_source_ip_template",
+					Description: `Reference a persist source ip template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_persist_ssl_sid_template",
+					Description: `Reference a persist SSL SID template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_policy_template",
+					Description: `Reference a policy template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_pool",
+					Description: `Specify NAT pool or pool group from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_server_ssl_template",
+					Description: `Reference a SSL Server template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_tcp",
+					Description: `Reference a tcp template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_tcp_proxy_template",
+					Description: `Reference a TCP Proxy template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_udp",
+					Description: `Reference a UDP template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_virtual_port_template",
+					Description: `Reference a Virtual Port template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "skip_rev_hash",
+					Description: `Skip rev tuple hash insertion`,
 				},
 				resource.Attribute{
 					Name:        "snat_on_vip",
 					Description: `Enable source NAT traffic against VIP`,
+				},
+				resource.Attribute{
+					Name:        "stats_data_action",
+					Description: `‘stats-data-enable’: Enable statistical data collection for virtual port; ‘stats-data-disable’: Disable statistical data collection for virtual port;`,
+				},
+				resource.Attribute{
+					Name:        "support_http2",
+					Description: `Support HTTP2`,
+				},
+				resource.Attribute{
+					Name:        "syn_cookie",
+					Description: `Enable syn-cookie`,
+				},
+				resource.Attribute{
+					Name:        "template_cache",
+					Description: `RAM caching template (Cache Template Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_cache_shared",
+					Description: `Cache Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_client_ssh",
+					Description: `Client SSH Template (Client SSH Config Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_client_ssl",
+					Description: `Client SSL Template (Client SSL Config Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_client_ssl_shared",
+					Description: `Client SSL Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_connection_reuse",
+					Description: `Connection Reuse Template (Connection Reuse Template Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_connection_reuse_shared",
+					Description: `Connection Reuse Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_dblb",
+					Description: `DBLB Template (DBLB template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_diameter",
+					Description: `Diameter Template (diameter template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_diameter_shared",
+					Description: `Diameter Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_dns",
+					Description: `DNS template (DNS template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_dns_shared",
+					Description: `DNS Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_dynamic_service",
+					Description: `Dynamic Service Template (dynamic-service template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_dynamic_service_shared",
+					Description: `Dynamic Service Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_external_service",
+					Description: `External service template (external-service template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_external_service_shared",
+					Description: `External Service Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_file_inspection",
+					Description: `File Inspection service template (file-inspection template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_fix",
+					Description: `FIX template (FIX Template Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_ftp",
+					Description: `FTP port template (Ftp template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_http",
+					Description: `HTTP Template (HTTP Config Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_http_policy",
+					Description: `http-policy template (http-policy template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_http_policy_shared",
+					Description: `Http Policy Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_http_shared",
+					Description: `HTTP Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_imap_pop3",
+					Description: `IMAP/POP3 Template (IMAP/POP3 Config Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_persist_cookie",
+					Description: `Cookie persistence (Cookie persistence template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_persist_cookie_shared",
+					Description: `Cookie Persistence Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_persist_destination_ip",
+					Description: `Destination IP persistence (Destination IP persistence template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_persist_destination_ip_shared",
+					Description: `Destination IP Persistence Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_persist_source_ip",
+					Description: `Source IP persistence (Source IP persistence template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_persist_source_ip_shared",
+					Description: `Source IP Persistence Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_persist_ssl_sid",
+					Description: `SSL session ID persistence (Source IP Persistence Config name)`,
+				},
+				resource.Attribute{
+					Name:        "template_persist_ssl_sid_shared",
+					Description: `SSL SID Persistence Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_policy",
+					Description: `Policy Template (Policy template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_policy_shared",
+					Description: `Policy Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_reqmod_icap",
+					Description: `ICAP reqmod template (reqmod-icap template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_respmod_icap",
+					Description: `ICAP respmod service template (respmod-icap template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_scaleout",
+					Description: `Scaleout template (Scaleout template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_server_ssh",
+					Description: `Server SSH Template (Server SSH Config Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_server_ssl",
+					Description: `Server Side SSL Template (Server SSL Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_server_ssl_shared",
+					Description: `Server SSL Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_sip",
+					Description: `SIP template`,
+				},
+				resource.Attribute{
+					Name:        "template_smpp",
+					Description: `SMPP template`,
+				},
+				resource.Attribute{
+					Name:        "template_smtp",
+					Description: `SMTP Template (SMTP Config Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_ssli",
+					Description: `SSLi template (SSLi Template Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_tcp",
+					Description: `L4 TCP Template (TCP Config Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_tcp_proxy",
+					Description: `TCP Proxy Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_tcp_proxy_client",
+					Description: `TCP Proxy Config Client (TCP Proxy Config name)`,
+				},
+				resource.Attribute{
+					Name:        "template_tcp_proxy_server",
+					Description: `TCP Proxy Config Server (TCP Proxy Config name)`,
+				},
+				resource.Attribute{
+					Name:        "template_tcp_proxy_shared",
+					Description: `TCP Proxy Template name`,
+				},
+				resource.Attribute{
+					Name:        "template_tcp_shared",
+					Description: `TCP Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_udp",
+					Description: `L4 UDP Template (UDP Config Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_udp_shared",
+					Description: `UDP Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_virtual_port",
+					Description: `Virtual port template (Virtual port template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_virtual_port_shared",
+					Description: `Virtual Port Template Name`,
+				},
+				resource.Attribute{
+					Name:        "trunk_fwd",
+					Description: `Trunk interface number`,
+				},
+				resource.Attribute{
+					Name:        "trunk_rev",
+					Description: `Trunk interface number`,
+				},
+				resource.Attribute{
+					Name:        "use_alternate_port",
+					Description: `Use alternate virtual port`,
+				},
+				resource.Attribute{
+					Name:        "use_cgnv6",
+					Description: `Follow CGNv6 source NAT configuration`,
+				},
+				resource.Attribute{
+					Name:        "use_default_if_no_server",
+					Description: `Use default forwarding if server selection failed`,
+				},
+				resource.Attribute{
+					Name:        "use_rcv_hop_for_resp",
+					Description: `Use receive hop for response to client(For packets on default-vlan, also config “vlan-global enable-def-vlan-l2-forwarding”.)`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "view",
+					Description: `Specify a GSLB View (ID)`,
+				},
+				resource.Attribute{
+					Name:        "waf_template",
+					Description: `WAF template (WAF Template Name)`,
+				},
+				resource.Attribute{
+					Name:        "when_down",
+					Description: `Use alternate virtual port when down`,
+				},
+				resource.Attribute{
+					Name:        "when_down_protocol2",
+					Description: `Use alternate virtual port when down`,
+				},
+				resource.Attribute{
+					Name:        "acl_name",
+					Description: `Apply an access list name (Named Access List)`,
+				},
+				resource.Attribute{
+					Name:        "acl_name_seq_num",
+					Description: `Specify ACL precedence (sequence-number)`,
+				},
+				resource.Attribute{
+					Name:        "acl_name_seq_num_shared",
+					Description: `Specify ACL precedence (sequence-number)`,
+				},
+				resource.Attribute{
+					Name:        "acl_name_src_nat_pool",
+					Description: `Policy based Source NAT (NAT Pool or Pool Group)`,
+				},
+				resource.Attribute{
+					Name:        "acl_name_src_nat_pool_shared",
+					Description: `Policy based Source NAT (NAT Pool or Pool Group)`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_pool_name",
+					Description: `Policy based Source NAT from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘curr_conn’: Current connections; ‘total_l4_conn’: Total L4 connections; ‘total_l7_conn’: Total L7 connections; ‘total_tcp_conn’: Total TCP connections; ‘total_conn’: Total connections; ‘total_fwd_bytes’: Total forward bytes; ‘total_fwd_pkts’: Total forward packets; ‘total_rev_bytes’: Total reverse bytes; ‘total_rev_pkts’: Total reverse packets; ‘total_dns_pkts’: Total DNS packets; ‘total_mf_dns_pkts’: Total MF DNS packets; ‘es_total_failure_actions’: Total failure actions; ‘compression_bytes_before’: Data into compression engine; ‘compression_bytes_after’: Data out of compression engine; ‘compression_hit’: Number of requests compressed; ‘compression_miss’: Number of requests NOT compressed; ‘compression_miss_no_client’: Compression miss no client; ‘compression_miss_template_exclusion’: Compression miss template exclusion; ‘curr_req’: Current requests; ‘total_req’: Total requests; ‘total_req_succ’: Total successful requests; ‘peak_conn’: Peak connections; ‘curr_conn_rate’: Current connection rate; ‘last_rsp_time’: Last response time; ‘fastest_rsp_time’: Fastest response time; ‘slowest_rsp_time’: Slowest response time; ‘loc_permit’: Permit number; ‘loc_deny’: Deny number; ‘loc_conn’: Connection number; ‘curr_ssl_conn’: Current SSL connections; ‘total_ssl_conn’: Total SSL connections;`,
+				},
+				resource.Attribute{
+					Name:        "acl_id",
+					Description: `ACL id VPORT`,
+				},
+				resource.Attribute{
+					Name:        "acl_id_seq_num",
+					Description: `Specify ACL precedence (sequence-number)`,
+				},
+				resource.Attribute{
+					Name:        "acl_id_seq_num_shared",
+					Description: `Specify ACL precedence (sequence-number)`,
+				},
+				resource.Attribute{
+					Name:        "acl_id_src_nat_pool",
+					Description: `Policy based Source NAT (NAT Pool or Pool Group)`,
+				},
+				resource.Attribute{
+					Name:        "acl_id_src_nat_pool_shared",
+					Description: `Policy based Source NAT (NAT Pool or Pool Group)`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_pool_id",
+					Description: `Policy based Source NAT from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "aflex",
+					Description: `Bind aFleX Script to the Virtual Port (aFleX Script Name)`,
+				},
+				resource.Attribute{
+					Name:        "aflex_shared",
+					Description: `aFleX Script Name`,
+				},
+				resource.Attribute{
+					Name:        "aaa_policy",
+					Description: `Specify AAA policy name to bind to the virtual port`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_vrrp_common",
+			Type:             "vthunder_thunder_snmp_server_SNMPv1_v2c_user",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder vrrp common resource for A10`,
+			ShortDescription: `Provides details about thunder snmp server SNMPv1 v2c user resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"vrrp",
-				"common",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "set_id",
-					Description: `Set-ID for HA configuration (Set id from 1 to 15)`,
+					Name:        "encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED community string)`,
+				},
+				resource.Attribute{
+					Name:        "passwd",
+					Description: `define value of community string`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `SNMPv1/v2c community configuration key`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "dns_host",
+					Description: `DNS remote host`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_mask",
+					Description: `IPV4 mask`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_host",
+					Description: `IPV4 remote host`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_host",
+					Description: `IPV6 remote host`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_mask",
+					Description: `IPV6 mask`,
+				},
+				resource.Attribute{
+					Name:        "oid_val",
+					Description: `specific the oid (The oid value, object-key)`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_SNMPv1_v2c_user_oid",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server SNMPv1 v2c user oid resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "oid_val",
+					Description: `specific the oid (The oid value, object-key)`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "dns_host",
+					Description: `DNS remote host`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_mask",
+					Description: `IPV4 mask`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_host",
+					Description: `IPV4 remote host`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_host",
+					Description: `IPV6 remote host`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_mask",
+					Description: `IPV6 mask`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_SNMPv3_user",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server SNMPv3 user resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "auth_val",
+					Description: `‘md5’: Use HMAC MD5 algorithm for authentication; ‘sha’: Use HMAC SHA algorithm for authentication;`,
+				},
+				resource.Attribute{
+					Name:        "encpasswd",
+					Description: `Passphrase for encryption`,
+				},
+				resource.Attribute{
+					Name:        "group",
+					Description: `Group to which the user belongs`,
+				},
+				resource.Attribute{
+					Name:        "passwd",
+					Description: `Password of this user`,
+				},
+				resource.Attribute{
+					Name:        "priv",
+					Description: `‘des’: DES encryption alogrithm; ‘aes’: AES encryption alogrithm; (Encryption type)`,
+				},
+				resource.Attribute{
+					Name:        "priv_pw_encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED passphrase string)`,
+				},
+				resource.Attribute{
+					Name:        "pw_encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED passphrase string)`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `Name of the user`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "v3",
+					Description: `‘auth’: Using the authNoPriv Security Level; ‘noauth’: Using the noAuthNoPriv Security Level;`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_community_read",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server community read resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "user",
+					Description: `SNMPv1/v2c community string`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "oid_val",
+					Description: `specific the oid (The oid value, object-key)`,
+				},
+				resource.Attribute{
+					Name:        "dns_host",
+					Description: `DNS remote host`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_mask",
+					Description: `IPV4 mask`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_host",
+					Description: `IPV4 remote host`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_host",
+					Description: `IPV6 remote host`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_mask",
+					Description: `IPV6 mask`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_community_read_oid",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server community read oid resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "oid_val",
+					Description: `specific the oid (The oid value, object-key)`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "dns_host",
+					Description: `DNS remote host`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_mask",
+					Description: `IPV4 mask`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_host",
+					Description: `IPV4 remote host`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_host",
+					Description: `IPV6 remote host`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_mask",
+					Description: `IPV6 mask`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_contact",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server contact resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "contact_name",
+					Description: `Identification of the contact person for this managed node`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_disable_traps",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server disable traps resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "all",
+					Description: `Disable all traps on this partition`,
+				},
+				resource.Attribute{
+					Name:        "gslb",
+					Description: `Disable all gslb traps on this partition`,
+				},
+				resource.Attribute{
+					Name:        "slb",
+					Description: `Disable all slb traps on this partition`,
+				},
+				resource.Attribute{
+					Name:        "slb_change",
+					Description: `Disable all slb-change traps on this partition`,
+				},
+				resource.Attribute{
+					Name:        "snmp",
+					Description: `Disable all snmp traps on this partition`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "vrrp_a",
+					Description: `Disable all vrrp-a on this partition`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_enable_traps",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server enable traps resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "all",
+					Description: `Enable all SLB traps`,
+				},
+				resource.Attribute{
+					Name:        "lldp",
+					Description: `Enable lldp traps`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "connection_resource_event",
+					Description: `Enable system connection resource event trap`,
+				},
+				resource.Attribute{
+					Name:        "resource_usage_warning",
+					Description: `Enable partition resource usage warning trap`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `Enable slb server create/delete trap`,
+				},
+				resource.Attribute{
+					Name:        "server_port",
+					Description: `Enable slb server port create/delete trap`,
+				},
+				resource.Attribute{
+					Name:        "ssl_cert_change",
+					Description: `Enable SSL certificate change trap`,
+				},
+				resource.Attribute{
+					Name:        "ssl_cert_expire",
+					Description: `Enable SSL certificate expiring trap`,
+				},
+				resource.Attribute{
+					Name:        "system_threshold",
+					Description: `Enable slb system threshold trap`,
+				},
+				resource.Attribute{
+					Name:        "vip",
+					Description: `Enable slb vip create/delete trap`,
+				},
+				resource.Attribute{
+					Name:        "vip_port",
+					Description: `Enable slb vip-port create/delete trap`,
+				},
+				resource.Attribute{
+					Name:        "fixed_nat_port_mapping_file_change",
+					Description: `Enable LSN trap when fixed nat port mapping file change`,
+				},
+				resource.Attribute{
+					Name:        "max_ipport_threshold",
+					Description: `Maximum threshold`,
+				},
+				resource.Attribute{
+					Name:        "max_port_threshold",
+					Description: `Maximum threshold`,
+				},
+				resource.Attribute{
+					Name:        "per_ip_port_usage_threshold",
+					Description: `Enable LSN trap when IP total port usage reaches the threshold (default 64512)`,
+				},
+				resource.Attribute{
+					Name:        "total_port_usage_threshold",
+					Description: `Enable LSN trap when NAT total port usage reaches the threshold (default 655350000)`,
+				},
+				resource.Attribute{
+					Name:        "traffic_exceeded",
+					Description: `Enable LSN trap when NAT pool reaches the threshold`,
+				},
+				resource.Attribute{
+					Name:        "active",
+					Description: `Enable VRRP-A active trap`,
+				},
+				resource.Attribute{
+					Name:        "standby",
+					Description: `Enable VRRP-A standby trap`,
+				},
+				resource.Attribute{
+					Name:        "linkdown",
+					Description: `Enable SNMP link-down trap`,
+				},
+				resource.Attribute{
+					Name:        "linkup",
+					Description: `Enable SNMP link-up trap`,
+				},
+				resource.Attribute{
+					Name:        "control_cpu_high",
+					Description: `Enable control CPU usage high trap`,
+				},
+				resource.Attribute{
+					Name:        "data_cpu_high",
+					Description: `Enable data CPU usage high trap`,
+				},
+				resource.Attribute{
+					Name:        "fan",
+					Description: `Enable system fan trap`,
+				},
+				resource.Attribute{
+					Name:        "file_sys_read_only",
+					Description: `Enable file system read-only trap`,
+				},
+				resource.Attribute{
+					Name:        "high_disk_use",
+					Description: `Enable system high disk usage trap`,
+				},
+				resource.Attribute{
+					Name:        "high_memory_use",
+					Description: `Enable system high memory usage trap`,
+				},
+				resource.Attribute{
+					Name:        "high_temp",
+					Description: `Enable system high temperature trap`,
+				},
+				resource.Attribute{
+					Name:        "license_management",
+					Description: `Enable system license management traps`,
+				},
+				resource.Attribute{
+					Name:        "low_temp",
+					Description: `Enable system low temperature trap`,
+				},
+				resource.Attribute{
+					Name:        "packet_drop",
+					Description: `Enable system packet dropped trap`,
+				},
+				resource.Attribute{
+					Name:        "power",
+					Description: `Enable system power supply trap`,
+				},
+				resource.Attribute{
+					Name:        "pri_disk",
+					Description: `Enable system primary hard disk trap`,
+				},
+				resource.Attribute{
+					Name:        "restart",
+					Description: `Enable system restart trap`,
+				},
+				resource.Attribute{
+					Name:        "sec_disk",
+					Description: `Enable system secondary hard disk trap`,
+				},
+				resource.Attribute{
+					Name:        "shutdown",
+					Description: `Enable system shutdown trap`,
+				},
+				resource.Attribute{
+					Name:        "smp_resource_event",
+					Description: `Enable system smp resource event trap`,
+				},
+				resource.Attribute{
+					Name:        "start",
+					Description: `Enable system start trap`,
+				},
+				resource.Attribute{
+					Name:        "tacacs_server_up_down",
+					Description: `Enable system TACACS monitor server up/down trap`,
+				},
+				resource.Attribute{
+					Name:        "server_certificate_error",
+					Description: `Enable SSL server certificate error trap`,
+				},
+				resource.Attribute{
+					Name:        "state_change",
+					Description: `Enable VCS state change trap`,
+				},
+				resource.Attribute{
+					Name:        "bgp_backward_trans_notification",
+					Description: `Enable bgpBackwardTransNotification traps`,
+				},
+				resource.Attribute{
+					Name:        "bgp_established_notification",
+					Description: `Enable bgp_established_notification traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_if_auth_failure",
+					Description: `Enable ospfIfAuthFailure traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_if_config_error",
+					Description: `Enable ospfIfConfigError traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_if_rx_bad_packet",
+					Description: `Enable ospfIfRxBadPacket traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_if_state_change",
+					Description: `Enable ospfIfStateChange traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_lsdb_approaching_overflow",
+					Description: `Enable ospfLsdbApproachingOverflow traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_lsdb_overflow",
+					Description: `Enable ospfLsdbOverflow traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_max_age_lsa",
+					Description: `Enable ospfMaxAgeLsa traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_nbr_state_change",
+					Description: `Enable ospfNbrStateChange traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_originate_lsa",
+					Description: `Enable ospfOriginateLsa traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_tx_retransmit",
+					Description: `Enable ospfTxRetransmit traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_virt_if_auth_failure",
+					Description: `Enable ospfVirtIfAuthFailure traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_virt_if_config_error",
+					Description: `Enable ospfVirtIfConfigError traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_virt_if_rx_bad_packet",
+					Description: `Enable ospfVirtIfRxBadPacket traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_virt_if_state_change",
+					Description: `Enable ospfVirtIfStateChange traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_virt_if_tx_retransmit",
+					Description: `Enable ospfVirtIfTxRetransmit traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_virt_nbr_state_change",
+					Description: `Enable ospfVirtNbrStateChange traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_adjacency_change",
+					Description: `Enable isisAdjacencyChange traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_area_mismatch",
+					Description: `Enable isisAreaMismatch traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_attempt_to_exceed_max_sequence",
+					Description: `Enable isisAttemptToExceedMaxSequence traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_authentication_failure",
+					Description: `Enable isisAuthenticationFailure traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_authentication_type_failure",
+					Description: `Enable isisAuthenticationTypeFailure traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_corrupted_lsp_detected",
+					Description: `Enable isisCorruptedLSPDetected traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_database_overload",
+					Description: `Enable isisDatabaseOverload traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_id_len_mismatch",
+					Description: `Enable isisIDLenMismatch traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_lsp_too_large_to_propagate",
+					Description: `Enable isisLSPTooLargeToPropagate traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_manual_address_drops",
+					Description: `Enable isisManualAddressDrops traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_max_area_addresses_mismatch",
+					Description: `Enable isisMaxAreaAddressesMismatch traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_originating_lsp_buffer_size_mismatch",
+					Description: `Enable isisOriginatingLSPBufferSizeMismatch traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_own_lsp_purge",
+					Description: `Enable isisOwnLSPPurge traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_protocols_supported_mismatch",
+					Description: `Enable isisProtocolsSupportedMismatch traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_rejected_adjacency",
+					Description: `Enable isisRejectedAdjacency traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_sequence_number_skip",
+					Description: `Enable isisSequenceNumberSkip traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_version_skew",
+					Description: `Enable isisVersionSkew traps`,
+				},
+				resource.Attribute{
+					Name:        "group",
+					Description: `Enable GSLB group related traps`,
+				},
+				resource.Attribute{
+					Name:        "service_ip",
+					Description: `Enable GSLB service-ip related traps`,
+				},
+				resource.Attribute{
+					Name:        "site",
+					Description: `Enable GSLB site related traps`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `Enable GSLB zone related traps`,
+				},
+				resource.Attribute{
+					Name:        "application_buffer_limit",
+					Description: `Enable application buffer reach limit trap`,
+				},
+				resource.Attribute{
+					Name:        "bw_rate_limit_exceed",
+					Description: `Enable SLB server/port bandwidth rate limit exceed trap`,
+				},
+				resource.Attribute{
+					Name:        "bw_rate_limit_resume",
+					Description: `Enable SLB server/port bandwidth rate limit resume trap`,
+				},
+				resource.Attribute{
+					Name:        "gateway_down",
+					Description: `Enable SLB server gateway down trap`,
+				},
+				resource.Attribute{
+					Name:        "gateway_up",
+					Description: `Enable SLB server gateway up trap`,
+				},
+				resource.Attribute{
+					Name:        "server_conn_limit",
+					Description: `Enable SLB server connection limit trap`,
+				},
+				resource.Attribute{
+					Name:        "server_conn_resume",
+					Description: `Enable SLB server connection resume trap`,
+				},
+				resource.Attribute{
+					Name:        "server_disabled",
+					Description: `Enable SLB server-disabled trap`,
+				},
+				resource.Attribute{
+					Name:        "server_down",
+					Description: `Enable SLB server-down trap`,
+				},
+				resource.Attribute{
+					Name:        "server_selection_failure",
+					Description: `Enable SLB server selection failure trap`,
+				},
+				resource.Attribute{
+					Name:        "server_up",
+					Description: `Enable slb server up trap`,
+				},
+				resource.Attribute{
+					Name:        "service_conn_limit",
+					Description: `Enable SLB service connection limit trap`,
+				},
+				resource.Attribute{
+					Name:        "service_conn_resume",
+					Description: `Enable SLB service connection resume trap`,
+				},
+				resource.Attribute{
+					Name:        "service_down",
+					Description: `Enable SLB service-down trap`,
+				},
+				resource.Attribute{
+					Name:        "service_group_down",
+					Description: `Enable SLB service-group-down trap`,
+				},
+				resource.Attribute{
+					Name:        "service_group_member_down",
+					Description: `Enable SLB service-group-member-down trap`,
+				},
+				resource.Attribute{
+					Name:        "service_group_member_up",
+					Description: `Enable SLB service-group-member-up trap`,
+				},
+				resource.Attribute{
+					Name:        "service_group_up",
+					Description: `Enable SLB service-group-up trap`,
+				},
+				resource.Attribute{
+					Name:        "service_up",
+					Description: `Enable SLB service-up trap`,
+				},
+				resource.Attribute{
+					Name:        "vip_connlimit",
+					Description: `Enable the virtual server reach conn-limit trap`,
+				},
+				resource.Attribute{
+					Name:        "vip_connratelimit",
+					Description: `Enable the virtual server reach conn-rate-limit trap`,
+				},
+				resource.Attribute{
+					Name:        "vip_down",
+					Description: `Enable SLB virtual server down trap`,
+				},
+				resource.Attribute{
+					Name:        "vip_port_connlimit",
+					Description: `Enable the virtual port reach conn-limit trap`,
+				},
+				resource.Attribute{
+					Name:        "vip_port_connratelimit",
+					Description: `Enable the virtual port reach conn-rate-limit trap`,
+				},
+				resource.Attribute{
+					Name:        "vip_port_down",
+					Description: `Enable SLB virtual port down trap`,
+				},
+				resource.Attribute{
+					Name:        "vip_port_up",
+					Description: `Enable SLB virtual port up trap`,
+				},
+				resource.Attribute{
+					Name:        "vip_up",
+					Description: `Enable SLB virtual server up trap`,
+				},
+				resource.Attribute{
+					Name:        "trunk_port_threshold",
+					Description: `Enable network trunk-port-threshold trap`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_enable_traps_gslb",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server enable traps gslb resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "all",
+					Description: `Enable all GSLB traps`,
+				},
+				resource.Attribute{
+					Name:        "group",
+					Description: `Enable GSLB group related traps`,
+				},
+				resource.Attribute{
+					Name:        "service_ip",
+					Description: `Enable GSLB service-ip related traps`,
+				},
+				resource.Attribute{
+					Name:        "site",
+					Description: `Enable GSLB site related traps`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `Enable GSLB zone related traps`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_enable_traps_lsn",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server enable traps lsn resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "all",
+					Description: `Enable all LSN group traps`,
+				},
+				resource.Attribute{
+					Name:        "fixed_nat_port_mapping_file_change",
+					Description: `Enable LSN trap when fixed nat port mapping file change`,
+				},
+				resource.Attribute{
+					Name:        "max_ipport_threshold",
+					Description: `Maximum threshold`,
+				},
+				resource.Attribute{
+					Name:        "max_port_threshold",
+					Description: `Maximum threshold`,
+				},
+				resource.Attribute{
+					Name:        "per_ip_port_usage_threshold",
+					Description: `Enable LSN trap when IP total port usage reaches the threshold (default 64512)`,
+				},
+				resource.Attribute{
+					Name:        "total_port_usage_threshold",
+					Description: `Enable LSN trap when NAT total port usage reaches the threshold (default 655350000)`,
+				},
+				resource.Attribute{
+					Name:        "traffic_exceeded",
+					Description: `Enable LSN trap when NAT pool reaches the threshold`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_enable_traps_network",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server enable traps network resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "trunk_port_threshold",
+					Description: `Enable network trunk-port-threshold trap`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_enable_traps_routing_bgp",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server enable traps routing bgp resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "bgp_backward_trans_notification",
+					Description: `Enable bgpBackwardTransNotification traps`,
+				},
+				resource.Attribute{
+					Name:        "bgp_established_notification",
+					Description: `Enable bgpEstablishedNotification traps`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_enable_traps_routing_isis",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server enable traps routing isis resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "isis_adjacency_change",
+					Description: `Enable isisAdjacencyChange traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_area_mismatch",
+					Description: `Enable isisAreaMismatch traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_attempt_to_exceed_max_sequence",
+					Description: `Enable isisAttemptToExceedMaxSequence traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_authentication_failure",
+					Description: `Enable isisAuthenticationFailure traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_authentication_type_failure",
+					Description: `Enable isisAuthenticationTypeFailure traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_corrupted_lsp_detected",
+					Description: `Enable isisCorruptedLSPDetected traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_database_overload",
+					Description: `Enable isisDatabaseOverload traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_id_len_mismatch",
+					Description: `Enable isisIDLenMismatch traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_lsp_too_large_to_propagate",
+					Description: `Enable isisLSPTooLargeToPropagate traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_manual_address_drops",
+					Description: `Enable isisManualAddressDrops traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_max_area_addresses_mismatch",
+					Description: `Enable isisMaxAreaAddressesMismatch traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_originating_lsp_buffer_size_mismatch",
+					Description: `Enable isisOriginatingLSPBufferSizeMismatch traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_own_lsp_purge",
+					Description: `Enable isisOwnLSPPurge traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_protocols_supported_mismatch",
+					Description: `Enable isisProtocolsSupportedMismatch traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_rejected_adjacency",
+					Description: `Enable isisRejectedAdjacency traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_sequence_number_skip",
+					Description: `Enable isisSequenceNumberSkip traps`,
+				},
+				resource.Attribute{
+					Name:        "isis_version_skew",
+					Description: `Enable isisVersionSkew traps`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_enable_traps_routing_ospf",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server enable traps routing ospf resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ospf_if_auth_failure",
+					Description: `Enable ospfIfAuthFailure traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_if_config_error",
+					Description: `Enable ospfIfConfigError traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_if_rx_bad_packet",
+					Description: `Enable ospfIfRxBadPacket traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_if_state_change",
+					Description: `Enable ospfIfStateChange traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_lsdb_approaching_overflow",
+					Description: `Enable ospfLsdbApproachingOverflow traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_lsdb_overflow",
+					Description: `Enable ospfLsdbOverflow traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_max_age_lsa",
+					Description: `Enable ospfMaxAgeLsa traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_nbr_state_change",
+					Description: `Enable ospfNbrStateChange traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_originate_lsa",
+					Description: `Enable ospfOriginateLsa traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_tx_retransmit",
+					Description: `Enable ospfTxRetransmit traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_virt_if_auth_failure",
+					Description: `Enable ospfVirtIfAuthFailure traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_virt_if_config_error",
+					Description: `Enable ospfVirtIfConfigError traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_virt_if_rx_bad_packet",
+					Description: `Enable ospfVirtIfRxBadPacket traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_virt_if_state_change",
+					Description: `Enable ospfVirtIfStateChange traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_virt_if_tx_retransmit",
+					Description: `Enable ospfVirtIfTxRetransmit traps`,
+				},
+				resource.Attribute{
+					Name:        "ospf_virt_nbr_state_change",
+					Description: `Enable ospfVirtNbrStateChange traps`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_enable_traps_slb",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server enable traps slb resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "all",
+					Description: `Enable all SLB traps`,
+				},
+				resource.Attribute{
+					Name:        "application_buffer_limit",
+					Description: `Enable application buffer reach limit trap`,
+				},
+				resource.Attribute{
+					Name:        "bw_rate_limit_exceed",
+					Description: `Enable SLB server/port bandwidth rate limit exceed trap`,
+				},
+				resource.Attribute{
+					Name:        "bw_rate_limit_resume",
+					Description: `Enable SLB server/port bandwidth rate limit resume trap`,
+				},
+				resource.Attribute{
+					Name:        "gateway_down",
+					Description: `Enable SLB server gateway down trap`,
+				},
+				resource.Attribute{
+					Name:        "gateway_up",
+					Description: `Enable SLB server gateway up trap`,
+				},
+				resource.Attribute{
+					Name:        "server_conn_limit",
+					Description: `Enable SLB server connection limit trap`,
+				},
+				resource.Attribute{
+					Name:        "server_conn_resume",
+					Description: `Enable SLB server connection resume trap`,
+				},
+				resource.Attribute{
+					Name:        "server_disabled",
+					Description: `Enable SLB server-disabled trap`,
+				},
+				resource.Attribute{
+					Name:        "server_down",
+					Description: `Enable SLB server-down trap`,
+				},
+				resource.Attribute{
+					Name:        "server_selection_failure",
+					Description: `Enable SLB server selection failure trap`,
+				},
+				resource.Attribute{
+					Name:        "server_up",
+					Description: `Enable slb server up trap`,
+				},
+				resource.Attribute{
+					Name:        "service_conn_limit",
+					Description: `Enable SLB service connection limit trap`,
+				},
+				resource.Attribute{
+					Name:        "service_conn_resume",
+					Description: `Enable SLB service connection resume trap`,
+				},
+				resource.Attribute{
+					Name:        "service_down",
+					Description: `Enable SLB service-down trap`,
+				},
+				resource.Attribute{
+					Name:        "service_group_down",
+					Description: `Enable SLB service-group-down trap`,
+				},
+				resource.Attribute{
+					Name:        "service_group_member_down",
+					Description: `Enable SLB service-group-member-down trap`,
+				},
+				resource.Attribute{
+					Name:        "service_group_member_up",
+					Description: `Enable SLB service-group-member-up trap`,
+				},
+				resource.Attribute{
+					Name:        "service_group_up",
+					Description: `Enable SLB service-group-up trap`,
+				},
+				resource.Attribute{
+					Name:        "service_up",
+					Description: `Enable SLB service-up trap`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "vip_connlimit",
+					Description: `Enable the virtual server reach conn-limit trap`,
+				},
+				resource.Attribute{
+					Name:        "vip_connratelimit",
+					Description: `Enable the virtual server reach conn-rate-limit trap`,
+				},
+				resource.Attribute{
+					Name:        "vip_down",
+					Description: `Enable SLB virtual server down trap`,
+				},
+				resource.Attribute{
+					Name:        "vip_port_connlimit",
+					Description: `Enable the virtual port reach conn-limit trap`,
+				},
+				resource.Attribute{
+					Name:        "vip_port_connratelimit",
+					Description: `Enable the virtual port reach conn-rate-limit trap`,
+				},
+				resource.Attribute{
+					Name:        "vip_port_down",
+					Description: `Enable SLB virtual port down trap`,
+				},
+				resource.Attribute{
+					Name:        "vip_port_up",
+					Description: `Enable SLB virtual port up trap`,
+				},
+				resource.Attribute{
+					Name:        "vip_up",
+					Description: `Enable SLB virtual server up trap`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_enable_traps_slb_change",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server enable traps slb change resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "all",
+					Description: `Enable all system group traps`,
+				},
+				resource.Attribute{
+					Name:        "connection_resource_event",
+					Description: `Enable system connection resource event trap`,
+				},
+				resource.Attribute{
+					Name:        "resource_usage_warning",
+					Description: `Enable partition resource usage warning trap`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `Enable slb server create/delete trap`,
+				},
+				resource.Attribute{
+					Name:        "server_port",
+					Description: `Enable slb server port create/delete trap`,
+				},
+				resource.Attribute{
+					Name:        "ssl_cert_change",
+					Description: `Enable SSL certificate change trap`,
+				},
+				resource.Attribute{
+					Name:        "ssl_cert_expire",
+					Description: `Enable SSL certificate expiring trap`,
+				},
+				resource.Attribute{
+					Name:        "system_threshold",
+					Description: `Enable slb system threshold trap`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "vip",
+					Description: `Enable slb vip create/delete trap`,
+				},
+				resource.Attribute{
+					Name:        "vip_port",
+					Description: `Enable slb vip-port create/delete trap`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_enable_traps_snmp",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server enable traps snmp resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "all",
+					Description: `Enable all SNMP group traps`,
+				},
+				resource.Attribute{
+					Name:        "linkdown",
+					Description: `Enable SNMP link-down trap`,
+				},
+				resource.Attribute{
+					Name:        "linkup",
+					Description: `Enable SNMP link-up trap`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_enable_traps_ssl",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server enable traps ssl resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "server_certificate_error",
+					Description: `Enable SSL server certificate error trap`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_enable_traps_system",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server enable traps system resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "all",
+					Description: `Enable all system group traps`,
+				},
+				resource.Attribute{
+					Name:        "control_cpu_high",
+					Description: `Enable control CPU usage high trap`,
+				},
+				resource.Attribute{
+					Name:        "data_cpu_high",
+					Description: `Enable data CPU usage high trap`,
+				},
+				resource.Attribute{
+					Name:        "fan",
+					Description: `Enable system fan trap`,
+				},
+				resource.Attribute{
+					Name:        "file_sys_read_only",
+					Description: `Enable file system read-only trap`,
+				},
+				resource.Attribute{
+					Name:        "high_disk_use",
+					Description: `Enable system high disk usage trap`,
+				},
+				resource.Attribute{
+					Name:        "high_memory_use",
+					Description: `Enable system high memory usage trap`,
+				},
+				resource.Attribute{
+					Name:        "high_temp",
+					Description: `Enable system high temperature trap`,
+				},
+				resource.Attribute{
+					Name:        "license_management",
+					Description: `Enable system license management traps`,
+				},
+				resource.Attribute{
+					Name:        "low_temp",
+					Description: `Enable system low temperature trap`,
+				},
+				resource.Attribute{
+					Name:        "packet_drop",
+					Description: `Enable system packet dropped trap`,
+				},
+				resource.Attribute{
+					Name:        "power",
+					Description: `Enable system power supply trap`,
+				},
+				resource.Attribute{
+					Name:        "pri_disk",
+					Description: `Enable system primary hard disk trap`,
+				},
+				resource.Attribute{
+					Name:        "restart",
+					Description: `Enable system restart trap`,
+				},
+				resource.Attribute{
+					Name:        "sec_disk",
+					Description: `Enable system secondary hard disk trap`,
+				},
+				resource.Attribute{
+					Name:        "shutdown",
+					Description: `Enable system shutdown trap`,
+				},
+				resource.Attribute{
+					Name:        "smp_resource_event",
+					Description: `Enable system smp resource event trap`,
+				},
+				resource.Attribute{
+					Name:        "start",
+					Description: `Enable system start trap`,
+				},
+				resource.Attribute{
+					Name:        "tacacs_server_up_down",
+					Description: `Enable system TACACS monitor server up/down trap`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_enable_traps_vcs",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server enable traps vcs resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "state_change",
+					Description: `Enable VCS state change trap`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_enable_traps_vrrp_a",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server enable traps vrrp a resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "active",
+					Description: `Enable VRRP-A active trap`,
+				},
+				resource.Attribute{
+					Name:        "all",
+					Description: `Enable all VRRP-A group traps`,
+				},
+				resource.Attribute{
+					Name:        "standby",
+					Description: `Enable VRRP-A standby trap`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_engineID",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server engineID resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "engId",
+					Description: `Define local engineID HEX WORD`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_group",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server group resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "groupname",
+					Description: `Name of the group`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `specify a read view for the group (read view name)`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "v3",
+					Description: `‘auth’: group using the authNoPriv Security Level; ‘noauth’: group using the noAuthNoPriv Security Level; ‘priv’: group using SNMPv3 authPriv security level;`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_host_host_name",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server host host name resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `Hostname of SNMP trap host`,
+				},
+				resource.Attribute{
+					Name:        "udp_port",
+					Description: `The trap host’s UDP port number(default: 162)`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `SNMPv3 user to send traps (User Name)`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "v1_v2c_comm",
+					Description: `SNMPv1/v2c community string`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `‘v1’: Use SNMPv1; ‘v2c’: Use SNMPv2c; ‘v3’: User SNMPv3;`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_host_ipv4_host",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server host ipv4 host resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ipv4_addr",
+					Description: `help IPV4 address of SNMP trap host`,
+				},
+				resource.Attribute{
+					Name:        "udp_port",
+					Description: `The trap host’s UDP port number(default: 162)`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `SNMPv3 user to send traps (User Name)`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "v1_v2c_comm",
+					Description: `SNMPv1/v2c community string`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `‘v1’: Use SNMPv1; ‘v2c’: Use SNMPv2c; ‘v3’: User SNMPv3;`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_host_ipv6_host",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server host ipv6 host resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ipv6_addr",
+					Description: `help IPV6 address of SNMP trap host`,
+				},
+				resource.Attribute{
+					Name:        "udp_port",
+					Description: `The trap host’s UDP port number(default: 162)`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `SNMPv3 user to send traps (User Name)`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "v1_v2c_comm",
+					Description: `SNMPv1/v2c community string`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `‘v1’: Use SNMPv1; ‘v2c’: Use SNMPv2c; ‘v3’: User SNMPv3;`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_location",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server location resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "loc",
+					Description: `The physical location of this node`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_management_index",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server management index resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "mgmt_index",
+					Description: `index number`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_slb_data_cache_timeout",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server slb data cache timeout resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "slblimit",
+					Description: `Cache time-out in seconds, default as 60 seconds`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_user",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server user resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "auth_val",
+					Description: `‘md5’: Use HMAC MD5 algorithm for authentication; ‘sha’: Use HMAC SHA algorithm for authentication;`,
+				},
+				resource.Attribute{
+					Name:        "encpasswd",
+					Description: `Passphrase for encryption`,
+				},
+				resource.Attribute{
+					Name:        "group",
+					Description: `Group to which the user belongs`,
+				},
+				resource.Attribute{
+					Name:        "passwd",
+					Description: `Password of this user`,
+				},
+				resource.Attribute{
+					Name:        "priv",
+					Description: `‘des’: DES encryption alogrithm; ‘aes’: AES encryption alogrithm; (Encryption type)`,
+				},
+				resource.Attribute{
+					Name:        "priv_pw_encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED passphrase string)`,
+				},
+				resource.Attribute{
+					Name:        "pw_encrypted",
+					Description: `Do NOT use this option manually. (This is an A10 reserved keyword.) (The ENCRYPTED passphrase string)`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `Name of the user`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "v3",
+					Description: `‘auth’: Using the authNoPriv Security Level; ‘noauth’: Using the noAuthNoPriv Security Level;`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_snmp_server_view",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder snmp server view resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "mask",
+					Description: `Hex octets, separated by ‘.’, mask of oid`,
+				},
+				resource.Attribute{
+					Name:        "oid",
+					Description: `MIB view family name or oid`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `‘included’: MIB family is included in the view; ‘excluded’: MIB family is excluded from the view;`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "viewname",
+					Description: `Name of the view`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_virtual_server",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder virtual server resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "acl_id",
+					Description: `ACL id VPORT`,
+				},
+				resource.Attribute{
+					Name:        "acl_id_shared",
+					Description: `acl id`,
+				},
+				resource.Attribute{
+					Name:        "acl_name",
+					Description: `Apply an access list name (Named Access List)`,
+				},
+				resource.Attribute{
+					Name:        "acl_name_shared",
+					Description: `Access List name (IPv4 Access List Name)`,
+				},
+				resource.Attribute{
+					Name:        "arp_disable",
+					Description: `Disable Respond to Virtual Server ARP request`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Create a description for VIP`,
+				},
+				resource.Attribute{
+					Name:        "disable_vip_adv",
+					Description: `Disable virtual server GARP`,
+				},
+				resource.Attribute{
+					Name:        "enable_disable_action",
+					Description: `‘enable’: Enable Virtual Server (default); ‘disable’: Disable Virtual Server; ‘disable-when-all-ports-down’: Disable Virtual Server when all member ports are down; ‘disable-when-any-port-down’: Disable Virtual Server when any member port is down;`,
+				},
+				resource.Attribute{
+					Name:        "ethernet",
+					Description: `Ethernet interface`,
+				},
+				resource.Attribute{
+					Name:        "extended_stats",
+					Description: `Enable extended statistics on virtual port`,
+				},
+				resource.Attribute{
+					Name:        "ha_dynamic",
+					Description: `Dynamic failover based on vip status`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `IP Address`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_acl",
+					Description: `ipv6 acl name`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_acl_shared",
+					Description: `ipv6 acl name`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_address",
+					Description: `IPV6 address`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `SLB Virtual Service Name`,
+				},
+				resource.Attribute{
+					Name:        "netmask",
+					Description: `IP subnet mask`,
+				},
+				resource.Attribute{
+					Name:        "redistribute_route_map",
+					Description: `Route map reference (Name of route-map)`,
+				},
+				resource.Attribute{
+					Name:        "redistribution_flagged",
+					Description: `Flag VIP for special redistribution handling`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_policy_template",
+					Description: `Reference a policy template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "stats_data_action",
+					Description: `‘stats-data-enable’: Enable statistical data collection for virtual port; ‘stats-data-disable’: Disable statistical data collection for virtual port;`,
+				},
+				resource.Attribute{
+					Name:        "template_logging",
+					Description: `NAT Logging template (NAT Logging template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_policy",
+					Description: `Policy Template (Policy template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_policy_shared",
+					Description: `Policy Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_scaleout",
+					Description: `Scaleout template (Scaleout template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_virtual_server",
+					Description: `Virtual server template (Virtual server template name)`,
+				},
+				resource.Attribute{
+					Name:        "use_if_ip",
+					Description: `Use Interface IP`,
+				},
+				resource.Attribute{
+					Name:        "user_tag",
+					Description: `Customized tag`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "vrid",
+					Description: `Join a vrrp group (Specify ha VRRP-A vrid)`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `‘enable’: Enable; ‘disable’: Disable;`,
+				},
+				resource.Attribute{
+					Name:        "alt_protocol1",
+					Description: `‘http’: HTTP Port;`,
+				},
+				resource.Attribute{
+					Name:        "alt_protocol2",
+					Description: `‘tcp’: TCP LB service;`,
+				},
+				resource.Attribute{
+					Name:        "alternate_port",
+					Description: `Alternate Virtual Port`,
+				},
+				resource.Attribute{
+					Name:        "alternate_port_number",
+					Description: `Virtual Port`,
+				},
+				resource.Attribute{
+					Name:        "auto",
+					Description: `Configure auto NAT for the vport`,
+				},
+				resource.Attribute{
+					Name:        "clientip_sticky_nat",
+					Description: `Prefer to use same source NAT address for a client`,
+				},
+				resource.Attribute{
+					Name:        "conn_limit",
+					Description: `Connection Limit`,
+				},
+				resource.Attribute{
+					Name:        "def_selection_if_pref_failed",
+					Description: `‘def-selection-if-pref-failed’: Use default server selection method if prefer method failed; ‘def-selection-if-pref-failed-disable’: Stop using default server selection method if prefer method failed;`,
+				},
+				resource.Attribute{
+					Name:        "enable_playerid_check",
+					Description: `Enable playerid checks on UDP packets once the AX is in active mode`,
+				},
+				resource.Attribute{
+					Name:        "eth_fwd",
+					Description: `Ethernet interface number`,
+				},
+				resource.Attribute{
+					Name:        "eth_rev",
+					Description: `Ethernet interface number`,
+				},
+				resource.Attribute{
+					Name:        "expand",
+					Description: `expand syn-cookie with timestamp and wscale`,
+				},
+				resource.Attribute{
+					Name:        "force_routing_mode",
+					Description: `Force routing mode`,
+				},
+				resource.Attribute{
+					Name:        "gslb_enable",
+					Description: `Enable Global Server Load Balancing`,
+				},
+				resource.Attribute{
+					Name:        "ha_conn_mirror",
+					Description: `Enable for HA Conn sync`,
+				},
+				resource.Attribute{
+					Name:        "ip_map_list",
+					Description: `Enter name of IP Map List to be bound (IP Map List Name)`,
+				},
+				resource.Attribute{
+					Name:        "ipinip",
+					Description: `Enable IP in IP`,
+				},
+				resource.Attribute{
+					Name:        "l7_hardware_assist",
+					Description: `FPGA assist L7 packet parsing`,
+				},
+				resource.Attribute{
+					Name:        "message_switching",
+					Description: `Message switching`,
+				},
+				resource.Attribute{
+					Name:        "no_auto_up_on_aflex",
+					Description: `Don’t automatically mark vport up when aFleX is bound`,
+				},
+				resource.Attribute{
+					Name:        "no_dest_nat",
+					Description: `Disable destination NAT, this option only supports in wildcard VIP or when a connection is operated in SSLi + EP mode`,
+				},
+				resource.Attribute{
+					Name:        "no_logging",
+					Description: `Do not log connection over limit event`,
+				},
+				resource.Attribute{
+					Name:        "on_syn",
+					Description: `Enable for HA Conn sync for l4 tcp sessions on SYN`,
+				},
+				resource.Attribute{
+					Name:        "optimization_level",
+					Description: `‘0’: No optimization; ‘1’: Optimization level 1 (Experimental);`,
+				},
+				resource.Attribute{
+					Name:        "persist_type",
+					Description: `‘src-dst-ip-swap-persist’: Create persist session after source IP and destination IP swap; ‘use-src-ip-for-dst-persist’: Use the source IP to create a destination persist session; ‘use-dst-ip-for-src-persist’: Use the destination IP to create source IP persist session;`,
+				},
+				resource.Attribute{
+					Name:        "pool",
+					Description: `Specify NAT pool or pool group`,
+				},
+				resource.Attribute{
+					Name:        "pool_shared",
+					Description: `Specify NAT pool or pool group`,
+				},
+				resource.Attribute{
+					Name:        "port_number",
+					Description: `Port`,
+				},
+				resource.Attribute{
+					Name:        "port_translation",
+					Description: `Enable port translation under no-dest-nat`,
+				},
+				resource.Attribute{
+					Name:        "precedence",
+					Description: `Set auto NAT pool as higher precedence for source NAT`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `‘tcp’: TCP LB service; ‘udp’: UDP Port; ‘others’: for no tcp/udp protocol, do IP load balancing; ‘diameter’: diameter port; ‘dns-tcp’: DNS service over TCP; ‘dns-udp’: DNS service over UDP; ‘fast-http’: Fast HTTP Port; ‘fix’: FIX Port; ‘ftp’: File Transfer Protocol Port; ‘ftp-proxy’: ftp proxy port; ‘http’: HTTP Port; ‘https’: HTTPS port; ‘imap’: imap proxy port; ‘mlb’: Message based load balancing; ‘mms’: Microsoft Multimedia Service Port; ‘mysql’: mssql port; ‘mssql’: mssql; ‘pop3’: pop3 proxy port; ‘radius’: RADIUS Port; ‘rtsp’: Real Time Streaming Protocol Port; ‘sip’: Session initiation protocol over UDP; ‘sip-tcp’: Session initiation protocol over TCP; ‘sips’: Session initiation protocol over TLS; ‘smpp-tcp’: SMPP service over TCP; ‘spdy’: spdy port; ‘spdys’: spdys port; ‘smtp’: SMTP Port; ‘ssl-proxy’: Generic SSL proxy; ‘ssli’: SSL insight; ‘ssh’: SSH Port; ‘tcp-proxy’: Generic TCP proxy; ‘tftp’: TFTP Port;`,
+				},
+				resource.Attribute{
+					Name:        "range",
+					Description: `Virtual Port range (Virtual Port range value)`,
+				},
+				resource.Attribute{
+					Name:        "rate",
+					Description: `Specify the log message rate`,
+				},
+				resource.Attribute{
+					Name:        "redirect_to_https",
+					Description: `Redirect HTTP to HTTPS`,
+				},
+				resource.Attribute{
+					Name:        "req_fail",
+					Description: `Use alternate virtual port when L7 request fail`,
+				},
+				resource.Attribute{
+					Name:        "reset",
+					Description: `Send client reset when connection number over limit`,
+				},
+				resource.Attribute{
+					Name:        "reset_on_server_selection_fail",
+					Description: `Send client reset when server selection fails`,
+				},
+				resource.Attribute{
+					Name:        "rtp_sip_call_id_match",
+					Description: `rtp traffic try to match the real server of sip smp call-id session`,
+				},
+				resource.Attribute{
+					Name:        "scaleout_bucket_count",
+					Description: `Number of traffic buckets`,
+				},
+				resource.Attribute{
+					Name:        "scaleout_device_group",
+					Description: `Device group id`,
+				},
+				resource.Attribute{
+					Name:        "secs",
+					Description: `Specify the interval in seconds`,
+				},
+				resource.Attribute{
+					Name:        "serv_sel_fail",
+					Description: `Use alternate virtual port when server selection failure`,
+				},
+				resource.Attribute{
+					Name:        "service_group",
+					Description: `Bind a Service Group to this Virtual Server (Service Group Name)`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_cache_template",
+					Description: `Reference a Cache template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_client_ssl_template",
+					Description: `Reference a Client SSL template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_connection_reuse_template",
+					Description: `Reference a connection reuse template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_diameter_template",
+					Description: `Reference a Diameter template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_dns_template",
+					Description: `Reference a dns template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_dynamic_service_template",
+					Description: `Reference a dynamic service template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_external_service_template",
+					Description: `Reference a external service template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_http_policy_template",
+					Description: `Reference a http policy template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_http_template",
+					Description: `Reference a HTTP template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_persist_cookie_template",
+					Description: `Reference a persist cookie template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_persist_destination_ip_template",
+					Description: `Reference a persist destination ip template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_persist_source_ip_template",
+					Description: `Reference a persist source ip template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_persist_ssl_sid_template",
+					Description: `Reference a persist SSL SID template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_pool",
+					Description: `Specify NAT pool or pool group from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_server_ssl_template",
+					Description: `Reference a SSL Server template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_tcp",
+					Description: `Reference a tcp template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_tcp_proxy_template",
+					Description: `Reference a TCP Proxy template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_udp",
+					Description: `Reference a UDP template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_virtual_port_template",
+					Description: `Reference a Virtual Port template from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "skip_rev_hash",
+					Description: `Skip rev tuple hash insertion`,
+				},
+				resource.Attribute{
+					Name:        "snat_on_vip",
+					Description: `Enable source NAT traffic against VIP`,
+				},
+				resource.Attribute{
+					Name:        "support_http2",
+					Description: `Support HTTP2`,
+				},
+				resource.Attribute{
+					Name:        "syn_cookie",
+					Description: `Enable syn-cookie`,
+				},
+				resource.Attribute{
+					Name:        "template_cache",
+					Description: `RAM caching template (Cache Template Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_cache_shared",
+					Description: `Cache Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_client_ssh",
+					Description: `Client SSH Template (Client SSH Config Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_client_ssl",
+					Description: `Client SSL Template (Client SSL Config Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_client_ssl_shared",
+					Description: `Client SSL Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_connection_reuse",
+					Description: `Connection Reuse Template (Connection Reuse Template Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_connection_reuse_shared",
+					Description: `Connection Reuse Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_dblb",
+					Description: `DBLB Template (DBLB template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_diameter",
+					Description: `Diameter Template (diameter template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_diameter_shared",
+					Description: `Diameter Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_dns",
+					Description: `DNS template (DNS template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_dns_shared",
+					Description: `DNS Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_dynamic_service",
+					Description: `Dynamic Service Template (dynamic-service template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_dynamic_service_shared",
+					Description: `Dynamic Service Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_external_service",
+					Description: `External service template (external-service template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_external_service_shared",
+					Description: `External Service Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_file_inspection",
+					Description: `File Inspection service template (file-inspection template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_fix",
+					Description: `FIX template (FIX Template Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_ftp",
+					Description: `FTP port template (Ftp template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_http",
+					Description: `HTTP Template (HTTP Config Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_http_policy",
+					Description: `http-policy template (http-policy template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_http_policy_shared",
+					Description: `Http Policy Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_http_shared",
+					Description: `HTTP Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_imap_pop3",
+					Description: `IMAP/POP3 Template (IMAP/POP3 Config Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_persist_cookie",
+					Description: `Cookie persistence (Cookie persistence template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_persist_cookie_shared",
+					Description: `Cookie Persistence Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_persist_destination_ip",
+					Description: `Destination IP persistence (Destination IP persistence template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_persist_destination_ip_shared",
+					Description: `Destination IP Persistence Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_persist_source_ip",
+					Description: `Source IP persistence (Source IP persistence template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_persist_source_ip_shared",
+					Description: `Source IP Persistence Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_persist_ssl_sid",
+					Description: `SSL session ID persistence (Source IP Persistence Config name)`,
+				},
+				resource.Attribute{
+					Name:        "template_persist_ssl_sid_shared",
+					Description: `SSL SID Persistence Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_reqmod_icap",
+					Description: `ICAP reqmod template (reqmod-icap template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_respmod_icap",
+					Description: `ICAP respmod service template (respmod-icap template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_server_ssh",
+					Description: `Server SSH Template (Server SSH Config Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_server_ssl",
+					Description: `Server Side SSL Template (Server SSL Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_server_ssl_shared",
+					Description: `Server SSL Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_sip",
+					Description: `SIP template`,
+				},
+				resource.Attribute{
+					Name:        "template_smpp",
+					Description: `SMPP template`,
+				},
+				resource.Attribute{
+					Name:        "template_smtp",
+					Description: `SMTP Template (SMTP Config Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_ssli",
+					Description: `SSLi template (SSLi Template Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_tcp",
+					Description: `L4 TCP Template (TCP Config Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_tcp_proxy",
+					Description: `TCP Proxy Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_tcp_proxy_client",
+					Description: `TCP Proxy Config Client (TCP Proxy Config name)`,
+				},
+				resource.Attribute{
+					Name:        "template_tcp_proxy_server",
+					Description: `TCP Proxy Config Server (TCP Proxy Config name)`,
+				},
+				resource.Attribute{
+					Name:        "template_tcp_proxy_shared",
+					Description: `TCP Proxy Template name`,
+				},
+				resource.Attribute{
+					Name:        "template_tcp_shared",
+					Description: `TCP Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_udp",
+					Description: `L4 UDP Template (UDP Config Name)`,
+				},
+				resource.Attribute{
+					Name:        "template_udp_shared",
+					Description: `UDP Template Name`,
+				},
+				resource.Attribute{
+					Name:        "template_virtual_port",
+					Description: `Virtual port template (Virtual port template name)`,
+				},
+				resource.Attribute{
+					Name:        "template_virtual_port_shared",
+					Description: `Virtual Port Template Name`,
+				},
+				resource.Attribute{
+					Name:        "trunk_fwd",
+					Description: `Trunk interface number`,
+				},
+				resource.Attribute{
+					Name:        "trunk_rev",
+					Description: `Trunk interface number`,
+				},
+				resource.Attribute{
+					Name:        "use_alternate_port",
+					Description: `Use alternate virtual port`,
+				},
+				resource.Attribute{
+					Name:        "use_cgnv6",
+					Description: `Follow CGNv6 source NAT configuration`,
+				},
+				resource.Attribute{
+					Name:        "use_default_if_no_server",
+					Description: `Use default forwarding if server selection failed`,
+				},
+				resource.Attribute{
+					Name:        "use_rcv_hop_for_resp",
+					Description: `Use receive hop for response to client(For packets on default-vlan, also config “vlan-global enable-def-vlan-l2-forwarding”.)`,
+				},
+				resource.Attribute{
+					Name:        "view",
+					Description: `Specify a GSLB View (ID)`,
+				},
+				resource.Attribute{
+					Name:        "waf_template",
+					Description: `WAF template (WAF Template Name)`,
+				},
+				resource.Attribute{
+					Name:        "when_down",
+					Description: `Use alternate virtual port when down`,
+				},
+				resource.Attribute{
+					Name:        "when_down_protocol2",
+					Description: `Use alternate virtual port when down`,
+				},
+				resource.Attribute{
+					Name:        "acl_name_seq_num",
+					Description: `Specify ACL precedence (sequence-number)`,
+				},
+				resource.Attribute{
+					Name:        "acl_name_seq_num_shared",
+					Description: `Specify ACL precedence (sequence-number)`,
+				},
+				resource.Attribute{
+					Name:        "acl_name_src_nat_pool",
+					Description: `Policy based Source NAT (NAT Pool or Pool Group)`,
+				},
+				resource.Attribute{
+					Name:        "acl_name_src_nat_pool_shared",
+					Description: `Policy based Source NAT (NAT Pool or Pool Group)`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_pool_name",
+					Description: `Policy based Source NAT from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "counters1",
+					Description: `‘all’: all; ‘curr_conn’: Current connections; ‘total_l4_conn’: Total L4 connections; ‘total_l7_conn’: Total L7 connections; ‘total_tcp_conn’: Total TCP connections; ‘total_conn’: Total connections; ‘total_fwd_bytes’: Total forward bytes; ‘total_fwd_pkts’: Total forward packets; ‘total_rev_bytes’: Total reverse bytes; ‘total_rev_pkts’: Total reverse packets; ‘total_dns_pkts’: Total DNS packets; ‘total_mf_dns_pkts’: Total MF DNS packets; ‘es_total_failure_actions’: Total failure actions; ‘compression_bytes_before’: Data into compression engine; ‘compression_bytes_after’: Data out of compression engine; ‘compression_hit’: Number of requests compressed; ‘compression_miss’: Number of requests NOT compressed; ‘compression_miss_no_client’: Compression miss no client; ‘compression_miss_template_exclusion’: Compression miss template exclusion; ‘curr_req’: Current requests; ‘total_req’: Total requests; ‘total_req_succ’: Total successful requests; ‘peak_conn’: Peak connections; ‘curr_conn_rate’: Current connection rate; ‘last_rsp_time’: Last response time; ‘fastest_rsp_time’: Fastest response time; ‘slowest_rsp_time’: Slowest response time; ‘loc_permit’: Permit number; ‘loc_deny’: Deny number; ‘loc_conn’: Connection number; ‘curr_ssl_conn’: Current SSL connections; ‘total_ssl_conn’: Total SSL connections;`,
+				},
+				resource.Attribute{
+					Name:        "acl_id_seq_num",
+					Description: `Specify ACL precedence (sequence-number)`,
+				},
+				resource.Attribute{
+					Name:        "acl_id_seq_num_shared",
+					Description: `Specify ACL precedence (sequence-number)`,
+				},
+				resource.Attribute{
+					Name:        "acl_id_src_nat_pool",
+					Description: `Policy based Source NAT (NAT Pool or Pool Group)`,
+				},
+				resource.Attribute{
+					Name:        "acl_id_src_nat_pool_shared",
+					Description: `Policy based Source NAT (NAT Pool or Pool Group)`,
+				},
+				resource.Attribute{
+					Name:        "shared_partition_pool_id",
+					Description: `Policy based Source NAT from shared partition`,
+				},
+				resource.Attribute{
+					Name:        "aflex",
+					Description: `Bind aFleX Script to the Virtual Port (aFleX Script Name)`,
+				},
+				resource.Attribute{
+					Name:        "aflex_shared",
+					Description: `aFleX Script Name`,
+				},
+				resource.Attribute{
+					Name:        "aaa_policy",
+					Description: `Specify AAA policy name to bind to the virtual port`,
+				},
+				resource.Attribute{
+					Name:        "cancel_migration",
+					Description: `Cancel migration`,
+				},
+				resource.Attribute{
+					Name:        "finish_migration",
+					Description: `Complete the migration`,
+				},
+				resource.Attribute{
+					Name:        "target_data_cpu",
+					Description: `Number of CPUs on the target platform`,
+				},
+				resource.Attribute{
+					Name:        "target_floating_ipv4",
+					Description: `Specify IP address`,
+				},
+				resource.Attribute{
+					Name:        "target_floating_ipv6",
+					Description: `Specify IPv6 address`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_vrrp_common",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder vrrp common resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "action",
+					Description: `‘enable’: enable vrrp-a; ‘disable’: disable vrrp-a;`,
+				},
+				resource.Attribute{
+					Name:        "arp_retry",
+					Description: `Number of additional gratuitous ARPs sent out after HA failover (1-255, default is 4)`,
+				},
+				resource.Attribute{
+					Name:        "dead_timer",
+					Description: `VRRP-A dead timer in terms of how many hello messages missed, default is 5 (2-255, default is 5)`,
 				},
 				resource.Attribute{
 					Name:        "device_id",
 					Description: `Unique ID for each VRRP-A box (Device-id number)`,
 				},
 				resource.Attribute{
-					Name:        "action",
-					Description: `'enable'= enable vrrp-a; 'disable'= disable vrrp-a;`,
+					Name:        "disable_default_vrid",
+					Description: `Disable default vrid`,
+				},
+				resource.Attribute{
+					Name:        "forward_l4_packet_on_standby",
+					Description: `Enables Layer 2/3 forwarding of Layer 4 traffic on the Standby ACOS device`,
+				},
+				resource.Attribute{
+					Name:        "get_ready_time",
+					Description: `set get ready time after ax starting up (60-1200, in unit of 100millisec, default is 60)`,
+				},
+				resource.Attribute{
+					Name:        "hello_interval",
+					Description: `VRRP-A Hello Interval (1-255, in unit of 100millisec, default is 2)`,
+				},
+				resource.Attribute{
+					Name:        "preemption_delay",
+					Description: `Delay before changing state from Active to Standby (1-255, in unit of 100millisec, default is 60)`,
+				},
+				resource.Attribute{
+					Name:        "restart_time",
+					Description: `Time between restarting ports on standby system after transition`,
+				},
+				resource.Attribute{
+					Name:        "set_id",
+					Description: `Set-ID for HA configuration (Set id from 1 to 15)`,
+				},
+				resource.Attribute{
+					Name:        "track_event_delay",
+					Description: `Delay before changing state after up/down event (Units of 100 milliseconds (default 30))`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "hostid_append_to_vrid_default",
+					Description: `hostid append to vrid default`,
+				},
+				resource.Attribute{
+					Name:        "hostid_append_to_vrid_value",
+					Description: `hostid append to vrid num`,
+				},
+				resource.Attribute{
+					Name:        "inline_mode",
+					Description: `Enable Layer 2 Inline Hot Standby Mode`,
+				},
+				resource.Attribute{
+					Name:        "preferred_port",
+					Description: `Preferred ethernet Port`,
+				},
+				resource.Attribute{
+					Name:        "preferred_trunk",
+					Description: `Preferred trunk Port`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_vrrp_peer_group",
+			Type:             "vthunder_thunder_vrrp_peer_group",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder vrrp peer group resource for A10`,
+			ShortDescription: `Provides details about thunder vrrp peer group resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"vrrp",
-				"peer",
-				"group",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
 					Name:        "ip_peer_address",
-					Description: `IP address of peer`,
+					Description: `IP Address`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_peer_address",
+					Description: `IPV6 address`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_vrrp_session_sync",
+			Type:             "vthunder_thunder_vrrp_session_sync",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder vrrp session sync resource for A10`,
+			ShortDescription: `Provides details about thunder vrrp session sync resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"vrrp",
-				"session",
-				"sync",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "action",
@@ -6284,26 +17981,146 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vthunder_vrrp_vrid",
+			Type:             "vthunder_thunder_vrrp_vrid",
 			Category:         "Resources",
-			ShortDescription: `Provides details about vthunder vrrp vrid resource for A10`,
+			ShortDescription: `Provides details about thunder vrrp vrid resource for A10`,
 			Description:      ``,
-			Keywords: []string{
-				"vrrp",
-				"vrid",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "vrid_val",
-					Description: `"Specify ha VRRP-A vrid"`,
+					Name:        "user_tag",
+					Description: `Customized tag`,
 				},
 				resource.Attribute{
-					Name:        "ip_address",
-					Description: `IP address field`,
+					Name:        "uuid",
+					Description: `uuid of the object`,
+				},
+				resource.Attribute{
+					Name:        "vrid_val",
+					Description: `Specify ha VRRP-A vrid`,
+				},
+				resource.Attribute{
+					Name:        "fail_over_policy_template",
+					Description: `Apply a fail over policy template (VRRP-A fail over policy template name)`,
 				},
 				resource.Attribute{
 					Name:        "priority",
-					Description: `blade parameter priority`,
+					Description: `VRRP-A priorty (Priority, default is 150)`,
+				},
+				resource.Attribute{
+					Name:        "priority_cost",
+					Description: `The amount the priority will decrease`,
+				},
+				resource.Attribute{
+					Name:        "vlan",
+					Description: `VLAN tracking (VLAN id)`,
+				},
+				resource.Attribute{
+					Name:        "distance",
+					Description: `Route’s administrative distance (default: match any)`,
+				},
+				resource.Attribute{
+					Name:        "gatewayv6",
+					Description: `Match the route’s gateway (next-hop) (default: match any)`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_destination",
+					Description: `IPv6 Destination Prefix`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `‘any’: Match any routing protocol (default); ‘static’: Match only static routes (added by user); ‘dynamic’: Match routes added by dynamic routing protocols (e.g. OSPF);`,
+				},
+				resource.Attribute{
+					Name:        "gateway",
+					Description: `Match the route’s gateway (next-hop) (default: match any)`,
+				},
+				resource.Attribute{
+					Name:        "ip_destination",
+					Description: `Destination prefix`,
+				},
+				resource.Attribute{
+					Name:        "mask",
+					Description: `Destination prefix mask`,
+				},
+				resource.Attribute{
+					Name:        "bgp_ipv4_address",
+					Description: `bgp IP Address`,
+				},
+				resource.Attribute{
+					Name:        "bgp_ipv6_address",
+					Description: `IPV6 address`,
+				},
+				resource.Attribute{
+					Name:        "ethernet",
+					Description: `Ethernet (for link-local address only)`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `IP Address`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_address",
+					Description: `IPV6 address`,
+				},
+				resource.Attribute{
+					Name:        "per_port_pri",
+					Description: `per port priority`,
+				},
+				resource.Attribute{
+					Name:        "trunk",
+					Description: `Trunk interface (for link-local address only)`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_address_partition",
+					Description: `IPV6 address`,
+				},
+				resource.Attribute{
+					Name:        "ve",
+					Description: `VE interface (for link-local address only)`,
+				},
+				resource.Attribute{
+					Name:        "ip_address_partition",
+					Description: `IP Address`,
+				},
+				resource.Attribute{
+					Name:        "disable",
+					Description: `disable preemption`,
+				},
+				resource.Attribute{
+					Name:        "threshold",
+					Description: `preemption threshold (preemption threshhold (0-255), default 0)`,
+				},
+				resource.Attribute{
+					Name:        "vrid_lead",
+					Description: `Define a VRRP-A VRID leader`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vthunder_thunder_write_memory",
+			Category:         "Resources",
+			ShortDescription: `Provides details about thunder write memory resource for A10`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "destination",
+					Description: `‘primary’: Write to default Primary Configuration; ‘secondary’: Write to default Secondary Configuration; ‘local’: Local Configuration Profile Name;`,
+				},
+				resource.Attribute{
+					Name:        "partition",
+					Description: `‘all’: All partition configurations; ‘shared’: Shared partition; ‘specified’: Specified partition;`,
+				},
+				resource.Attribute{
+					Name:        "profile",
+					Description: `Local Configuration Profile Name`,
+				},
+				resource.Attribute{
+					Name:        "specified_partition",
+					Description: `Specified partition`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6312,132 +18129,238 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"vthunder_configure_sync":                    0,
-		"vthunder_dns_primary":                       1,
-		"vthunder_ethernet":                          2,
-		"vthunder_glm":                               3,
-		"vthunder_harmony_controller_profile":        4,
-		"vthunder_import":                            5,
-		"vthunder_interface_ethernet":                6,
-		"vthunder_interface_ethernet_bfd":            7,
-		"vthunder_interface_ethernet_ipv6":           8,
-		"vthunder_interface_ethernet_lldp":           9,
-		"vthunder_interface_ethernet_trunk_group":    10,
-		"vthunder_interface_management":              11,
-		"vthunder_interface_ve":                      12,
-		"vthunder_interface_ve_bfd":                  13,
-		"vthunder_interface_ve_ip":                   14,
-		"vthunder_interface_ve_ipv6":                 15,
-		"vthunder_ip_address":                        16,
-		"vthunder_ip_dns_primary":                    17,
-		"vthunder_ip_dns_secondary":                  18,
-		"vthunder_ip_dns_suffix":                     19,
-		"vthunder_ip_frag":                           20,
-		"vthunder_ip_icmp":                           21,
-		"vthunder_ip_nat_alg_pptp":                   22,
-		"vthunder_ip_nat_global":                     23,
-		"vthunder_ip_nat_icmp":                       24,
-		"vthunder_ip_prefix_list":                    25,
-		"vthunder_ip_reroute":                        26,
-		"vthunder_ip_route_static_bfd":               27,
-		"vthunder_ip_tcp":                            28,
-		"vthunder_ipv6_frag":                         29,
-		"vthunder_ipv6_icmpv6":                       30,
-		"vthunder_ipv6_nat_icmpv6":                   31,
-		"vthunder_overlay_tunnel_options":            32,
-		"vthunder_overlay_tunnel_vtep":               33,
-		"vthunder_partition":                         34,
-		"vthunder_reboot":                            35,
-		"vthunder_rib_route":                         36,
-		"vthunder_server":                            37,
-		"vthunder_service_group":                     38,
-		"vthunder_slb_aflow":                         39,
-		"vthunder_slb_common":                        40,
-		"vthunder_slb_common_conn_rate_limit_src_ip": 41,
-		"vthunder_slb_dns":                           42,
-		"vthunder_slb_dns_cache":                     43,
-		"vthunder_slb_dns_response_rate_limiting":    44,
-		"vthunder_slb_fast_http_proxy":               45,
-		"vthunder_slb_fix":                           46,
-		"vthunder_slb_ftp_ctl":                       47,
-		"vthunder_slb_ftp_data":                      48,
-		"vthunder_slb_ftp_proxy":                     49,
-		"vthunder_slb_generic_proxy":                 50,
-		"vthunder_slb_health_gateway":                51,
-		"vthunder_slb_health_stat":                   52,
-		"vthunder_slb_http2":                         53,
-		"vthunder_slb_http_proxy":                    54,
-		"vthunder_slb_hw_compress":                   55,
-		"vthunder_slb_icap":                          56,
-		"vthunder_slb_icap_http":                     57,
-		"vthunder_slb_imapproxy":                     58,
-		"vthunder_slb_l4":                            59,
-		"vthunder_slb_l7session":                     60,
-		"vthunder_slb_mlb":                           61,
-		"vthunder_slb_mssql":                         62,
-		"vthunder_slb_mysql":                         63,
-		"vthunder_slb_passthrough":                   64,
-		"vthunder_slb_perf":                          65,
-		"vthunder_slb_persist":                       66,
-		"vthunder_slb_player_id_global":              67,
-		"vthunder_slb_pop3_proxy":                    68,
-		"vthunder_slb_proxy":                         69,
-		"vthunder_slb_rate_limit_log":                70,
-		"vthunder_slb_rc_cache_global":               71,
-		"vthunder_slb_resource_usage":                72,
-		"vthunder_slb_sip":                           73,
-		"vthunder_slb_smpp":                          74,
-		"vthunder_slb_smtp":                          75,
-		"vthunder_slb_spdy_proxy":                    76,
-		"vthunder_slb_sport_rate_limit":              77,
-		"vthunder_slb_ssl_cert_revoke":               78,
-		"vthunder_slb_ssl_expire_check":              79,
-		"vthunder_slb_ssl_forward_proxy":             80,
-		"vthunder_slb_svm_source_nat":                81,
-		"vthunder_slb_switch":                        82,
-		"vthunder_slb_template_cache":                83,
-		"vthunder_slb_template_cipher":               84,
-		"vthunder_slb_template_client_ssh":           85,
-		"vthunder_slb_template_client_ssl":           86,
-		"vthunder_slb_template_connection_reuse":     87,
-		"vthunder_slb_template_csv":                  88,
-		"vthunder_slb_template_dblb":                 89,
-		"vthunder_slb_template_diameter":             90,
-		"vthunder_slb_template_dns":                  91,
-		"vthunder_slb_template_dynamic_service":      92,
-		"vthunder_slb_template_external_service":     93,
-		"vthunder_slb_template_fix":                  94,
-		"vthunder_slb_template_ftp":                  95,
-		"vthunder_slb_template_http":                 96,
-		"vthunder_slb_template_http_policy":          97,
-		"vthunder_slb_template_imap_pop3":            98,
-		"vthunder_slb_template_logging":              99,
-		"vthunder_slb_template_monitor":              100,
-		"vthunder_slb_template_mqtt":                 101,
-		"vthunder_slb_template_policy":               102,
-		"vthunder_slb_template_port":                 103,
-		"vthunder_slb_template_reqmod_icap":          104,
-		"vthunder_slb_template_respmod_icap":         105,
-		"vthunder_slb_template_server":               106,
-		"vthunder_slb_template_server_ssh":           107,
-		"vthunder_slb_template_server_ssl":           108,
-		"vthunder_slb_template_sip":                  109,
-		"vthunder_slb_template_smpp":                 110,
-		"vthunder_slb_template_smtp":                 111,
-		"vthunder_slb_template_snmp":                 112,
-		"vthunder_slb_template_ssli":                 113,
-		"vthunder_slb_template_tcp":                  114,
-		"vthunder_slb_template_tcp_proxy":            115,
-		"vthunder_slb_template_udp":                  116,
-		"vthunder_slb_template_virtual_port":         117,
-		"vthunder_slb_template_virtual_server":       118,
-		"vthunder_slb_transparent_acl_template":      119,
-		"vthunder_slb_transparent_tcp_template":      120,
-		"vthunder_virtual_server":                    121,
-		"vthunder_vrrp_common":                       122,
-		"vthunder_vrrp_peer_group":                   123,
-		"vthunder_vrrp_session_sync":                 124,
-		"vthunder_vrrp_vrid":                         125,
+		"vthunder_thunder_bgp":                            0,
+		"vthunder_thunder_configure_sync":                 1,
+		"vthunder_thunder_dns_primary":                    2,
+		"vthunder_thunder_ethernet":                       3,
+		"vthunder_thunder_fw_active_rule_set":             4,
+		"vthunder_thunder_fw_alg_dns":                     5,
+		"vthunder_thunder_fw_alg_ftp":                     6,
+		"vthunder_thunder_fw_alg_icmp":                    7,
+		"vthunder_thunder_fw_alg_pptp":                    8,
+		"vthunder_thunder_fw_alg_rtsp":                    9,
+		"vthunder_thunder_fw_alg_sip":                     10,
+		"vthunder_thunder_fw_alg_tftp":                    11,
+		"vthunder_thunder_fw_app":                         12,
+		"vthunder_thunder_fw_apply_changes":               13,
+		"vthunder_thunder_fw_clear_session_filter":        14,
+		"vthunder_thunder_fw_full_cone_session":           15,
+		"vthunder_thunder_fw_global":                      16,
+		"vthunder_thunder_fw_gtp":                         17,
+		"vthunder_thunder_fw_gtp_in_gtp_filtering":        18,
+		"vthunder_thunder_fw_gtp_v0":                      19,
+		"vthunder_thunder_fw_helper_sessions":             20,
+		"vthunder_thunder_fw_limit_entry":                 21,
+		"vthunder_thunder_fw_local_log":                   22,
+		"vthunder_thunder_fw_logging":                     23,
+		"vthunder_thunder_fw_radius_server":               24,
+		"vthunder_thunder_fw_resource_usage":              25,
+		"vthunder_thunder_fw_server":                      26,
+		"vthunder_thunder_fw_service_group":               27,
+		"vthunder_thunder_fw_status":                      28,
+		"vthunder_thunder_fw_system_status":               29,
+		"vthunder_thunder_fw_tap_monitor":                 30,
+		"vthunder_thunder_fw_tcp_mss_clamp":               31,
+		"vthunder_thunder_fw_tcp_reset_on_error":          32,
+		"vthunder_thunder_fw_tcp_rst_close_immediate":     33,
+		"vthunder_thunder_fw_tcp_window_check":            34,
+		"vthunder_thunder_fw_template_logging":            35,
+		"vthunder_thunder_fw_top_k_rules":                 36,
+		"vthunder_thunder_fw_urpf":                        37,
+		"vthunder_thunder_fw_vrid":                        38,
+		"vthunder_thunder_glm":                            39,
+		"vthunder_thunder_glm_send":                       40,
+		"vthunder_thunder_harmony_controller_profile":     41,
+		"vthunder_thunder_hostname":                       42,
+		"vthunder_thunder_import":                         43,
+		"vthunder_thunder_interface_ethernet":             44,
+		"vthunder_thunder_interface_ethernet_bfd":         45,
+		"vthunder_thunder_interface_ethernet_ipv6":        46,
+		"vthunder_thunder_interface_ethernet_lldp":        47,
+		"vthunder_thunder_interface_ethernet_trunk_group": 48,
+		"vthunder_thunder_interface_management":           49,
+		"vthunder_thunder_interface_ve":                   50,
+		"vthunder_thunder_interface_ve_bfd":               51,
+		"vthunder_thunder_interface_ve_ip":                52,
+		"vthunder_thunder_interface_ve_ipv6":              53,
+		"vthunder_thunder_ip_address":                     54,
+		"vthunder_thunder_ip_dns_primary":                 55,
+		"vthunder_thunder_ip_dns_secondary":               56,
+		"vthunder_thunder_ip_dns_suffix":                  57,
+		"vthunder_thunder_ip_frag":                        58,
+		"vthunder_thunder_ip_icmp":                        59,
+		"vthunder_thunder_ip_nat_alg_pptp":                60,
+		"vthunder_thunder_ip_nat_global":                  61,
+		"vthunder_thunder_ip_nat_icmp":                    62,
+		"vthunder_thunder_ip_nat_pool":                    63,
+		"vthunder_thunder_ip_nat_pool_group":              64,
+		"vthunder_thunder_ip_prefix_list":                 65,
+		"vthunder_thunder_ip_reroute":                     66,
+		"vthunder_thunder_ip_route_static_bfd":            67,
+		"vthunder_thunder_ip_tcp":                         68,
+		"vthunder_thunder_ipv6_frag":                      69,
+		"vthunder_thunder_ipv6_icmpv6":                    70,
+		"vthunder_thunder_ipv6_nat_icmpv6":                71,
+		"vthunder_thunder_ntp_auth_key":                   72,
+		"vthunder_thunder_ntp_server_hostname":            73,
+		"vthunder_thunder_ntp_trusted_key":                74,
+		"vthunder_thunder_overlay_tunnel_options":         75,
+		"vthunder_thunder_overlay_tunnel_vtep":            76,
+		"vthunder_thunder_partition":                      77,
+		"vthunder_thunder_reboot":                         78,
+		"vthunder_thunder_rib_route":                      79,
+		"vthunder_thunder_route_map":                      80,
+		"vthunder_thunder_router_bgp":                     81,
+		"vthunder_thunder_router_bgp_address_family_ipv6": 82,
+		"vthunder_thunder_router_bgp_address_family_ipv6_neighbor_ethernet_neighbor_ipv6": 83,
+		"vthunder_thunder_router_bgp_address_family_ipv6_neighbor_ipv4_neighbor":          84,
+		"vthunder_thunder_router_bgp_address_family_ipv6_neighbor_ipv6_neighbor":          85,
+		"vthunder_thunder_router_bgp_address_family_ipv6_neighbor_peer_group_neighbor":    86,
+		"vthunder_thunder_router_bgp_address_family_ipv6_neighbor_trunk_neighbor_ipv6":    87,
+		"vthunder_thunder_router_bgp_address_family_ipv6_neighbor_ve_neighbor_ipv6":       88,
+		"vthunder_thunder_router_bgp_address_family_ipv6_network_ipv6_network":            89,
+		"vthunder_thunder_router_bgp_address_family_ipv6_network_synchronization":         90,
+		"vthunder_thunder_router_bgp_address_family_ipv6_redistribute":                    91,
+		"vthunder_thunder_router_bgp_neighbor_ethernet_neighbor":                          92,
+		"vthunder_thunder_router_bgp_neighbor_ipv4_neighbor":                              93,
+		"vthunder_thunder_router_bgp_neighbor_ipv6_neighbor":                              94,
+		"vthunder_thunder_router_bgp_neighbor_peer_group_neighbor":                        95,
+		"vthunder_thunder_router_bgp_neighbor_trunk_neighbor":                             96,
+		"vthunder_thunder_router_bgp_neighbor_ve_neighbor":                                97,
+		"vthunder_thunder_router_bgp_network_ip_cidr":                                     98,
+		"vthunder_thunder_router_bgp_network_synchronization":                             99,
+		"vthunder_thunder_router_bgp_redistribute":                                        100,
+		"vthunder_thunder_router_ospf":                                                    101,
+		"vthunder_thunder_router_ospf_area":                                               102,
+		"vthunder_thunder_router_ospf_default_information":                                103,
+		"vthunder_thunder_router_ospf_redistribute":                                       104,
+		"vthunder_thunder_server":                                                         105,
+		"vthunder_thunder_service_group":                                                  106,
+		"vthunder_thunder_slb_aflow":                                                      107,
+		"vthunder_thunder_slb_common":                                                     108,
+		"vthunder_thunder_slb_common_conn_rate_limit_src_ip":                              109,
+		"vthunder_thunder_slb_connection_reuse":                                           110,
+		"vthunder_thunder_slb_crl_srcip":                                                  111,
+		"vthunder_thunder_slb_dns":                                                        112,
+		"vthunder_thunder_slb_dns_cache":                                                  113,
+		"vthunder_thunder_slb_dns_response_rate_limiting":                                 114,
+		"vthunder_thunder_slb_fast_http_proxy":                                            115,
+		"vthunder_thunder_slb_fix":                                                        116,
+		"vthunder_thunder_slb_ftp_ctl":                                                    117,
+		"vthunder_thunder_slb_ftp_data":                                                   118,
+		"vthunder_thunder_slb_ftp_proxy":                                                  119,
+		"vthunder_thunder_slb_generic_proxy":                                              120,
+		"vthunder_thunder_slb_health_gateway":                                             121,
+		"vthunder_thunder_slb_health_stat":                                                122,
+		"vthunder_thunder_slb_http2":                                                      123,
+		"vthunder_thunder_slb_http_proxy":                                                 124,
+		"vthunder_thunder_slb_hw_compress":                                                125,
+		"vthunder_thunder_slb_icap":                                                       126,
+		"vthunder_thunder_slb_icap_http":                                                  127,
+		"vthunder_thunder_slb_imapproxy":                                                  128,
+		"vthunder_thunder_slb_l4":                                                         129,
+		"vthunder_thunder_slb_l7session":                                                  130,
+		"vthunder_thunder_slb_mlb":                                                        131,
+		"vthunder_thunder_slb_mssql":                                                      132,
+		"vthunder_thunder_slb_mysql":                                                      133,
+		"vthunder_thunder_slb_passthrough":                                                134,
+		"vthunder_thunder_slb_perf":                                                       135,
+		"vthunder_thunder_slb_persist":                                                    136,
+		"vthunder_thunder_slb_player_id_global":                                           137,
+		"vthunder_thunder_slb_pop3_proxy":                                                 138,
+		"vthunder_thunder_slb_proxy":                                                      139,
+		"vthunder_thunder_slb_rate_limit_log":                                             140,
+		"vthunder_thunder_slb_rc_cache_global":                                            141,
+		"vthunder_thunder_slb_resource_usage":                                             142,
+		"vthunder_thunder_slb_server_port":                                                143,
+		"vthunder_thunder_slb_sip":                                                        144,
+		"vthunder_thunder_slb_smpp":                                                       145,
+		"vthunder_thunder_slb_smtp":                                                       146,
+		"vthunder_thunder_slb_spdy_proxy":                                                 147,
+		"vthunder_thunder_slb_sport_rate_limit":                                           148,
+		"vthunder_thunder_slb_ssl_cert_revoke":                                            149,
+		"vthunder_thunder_slb_ssl_expire_check":                                           150,
+		"vthunder_thunder_slb_ssl_forward_proxy":                                          151,
+		"vthunder_thunder_slb_svm_source_nat":                                             152,
+		"vthunder_thunder_slb_switch":                                                     153,
+		"vthunder_thunder_slb_template_cache":                                             154,
+		"vthunder_thunder_slb_template_cipher":                                            155,
+		"vthunder_thunder_slb_template_client_ssh":                                        156,
+		"vthunder_thunder_slb_template_client_ssl":                                        157,
+		"vthunder_thunder_slb_template_connection_reuse":                                  158,
+		"vthunder_thunder_slb_template_csv":                                               159,
+		"vthunder_thunder_slb_template_dblb":                                              160,
+		"vthunder_thunder_slb_template_diameter":                                          161,
+		"vthunder_thunder_slb_template_dns":                                               162,
+		"vthunder_thunder_slb_template_dynamic_service":                                   163,
+		"vthunder_thunder_slb_template_external_service":                                  164,
+		"vthunder_thunder_slb_template_fix":                                               165,
+		"vthunder_thunder_slb_template_ftp":                                               166,
+		"vthunder_thunder_slb_template_http":                                              167,
+		"vthunder_thunder_slb_template_http_policy":                                       168,
+		"vthunder_thunder_slb_template_imap_pop3":                                         169,
+		"vthunder_thunder_slb_template_logging":                                           170,
+		"vthunder_thunder_slb_template_monitor":                                           171,
+		"vthunder_thunder_slb_template_mqtt":                                              172,
+		"vthunder_thunder_slb_template_persist_cookie":                                    173,
+		"vthunder_thunder_slb_template_persist_source_ip":                                 174,
+		"vthunder_thunder_slb_template_policy":                                            175,
+		"vthunder_thunder_slb_template_port":                                              176,
+		"vthunder_thunder_slb_template_reqmod_icap":                                       177,
+		"vthunder_thunder_slb_template_respmod_icap":                                      178,
+		"vthunder_thunder_slb_template_server":                                            179,
+		"vthunder_thunder_slb_template_server_ssh":                                        180,
+		"vthunder_thunder_slb_template_server_ssl":                                        181,
+		"vthunder_thunder_slb_template_sip":                                               182,
+		"vthunder_thunder_slb_template_smpp":                                              183,
+		"vthunder_thunder_slb_template_smtp":                                              184,
+		"vthunder_thunder_slb_template_snmp":                                              185,
+		"vthunder_thunder_slb_template_ssli":                                              186,
+		"vthunder_thunder_slb_template_tcp":                                               187,
+		"vthunder_thunder_slb_template_tcp_proxy":                                         188,
+		"vthunder_thunder_slb_template_udp":                                               189,
+		"vthunder_thunder_slb_template_virtual_port":                                      190,
+		"vthunder_thunder_slb_template_virtual_server":                                    191,
+		"vthunder_thunder_slb_transparent_acl_template":                                   192,
+		"vthunder_thunder_slb_transparent_tcp_template":                                   193,
+		"vthunder_thunder_slb_virtual_server_port":                                        194,
+		"vthunder_thunder_snmp_server_SNMPv1_v2c_user":                                    195,
+		"vthunder_thunder_snmp_server_SNMPv1_v2c_user_oid":                                196,
+		"vthunder_thunder_snmp_server_SNMPv3_user":                                        197,
+		"vthunder_thunder_snmp_server_community_read":                                     198,
+		"vthunder_thunder_snmp_server_community_read_oid":                                 199,
+		"vthunder_thunder_snmp_server_contact":                                            200,
+		"vthunder_thunder_snmp_server_disable_traps":                                      201,
+		"vthunder_thunder_snmp_server_enable_traps":                                       202,
+		"vthunder_thunder_snmp_server_enable_traps_gslb":                                  203,
+		"vthunder_thunder_snmp_server_enable_traps_lsn":                                   204,
+		"vthunder_thunder_snmp_server_enable_traps_network":                               205,
+		"vthunder_thunder_snmp_server_enable_traps_routing_bgp":                           206,
+		"vthunder_thunder_snmp_server_enable_traps_routing_isis":                          207,
+		"vthunder_thunder_snmp_server_enable_traps_routing_ospf":                          208,
+		"vthunder_thunder_snmp_server_enable_traps_slb":                                   209,
+		"vthunder_thunder_snmp_server_enable_traps_slb_change":                            210,
+		"vthunder_thunder_snmp_server_enable_traps_snmp":                                  211,
+		"vthunder_thunder_snmp_server_enable_traps_ssl":                                   212,
+		"vthunder_thunder_snmp_server_enable_traps_system":                                213,
+		"vthunder_thunder_snmp_server_enable_traps_vcs":                                   214,
+		"vthunder_thunder_snmp_server_enable_traps_vrrp_a":                                215,
+		"vthunder_thunder_snmp_server_engineID":                                           216,
+		"vthunder_thunder_snmp_server_group":                                              217,
+		"vthunder_thunder_snmp_server_host_host_name":                                     218,
+		"vthunder_thunder_snmp_server_host_ipv4_host":                                     219,
+		"vthunder_thunder_snmp_server_host_ipv6_host":                                     220,
+		"vthunder_thunder_snmp_server_location":                                           221,
+		"vthunder_thunder_snmp_server_management_index":                                   222,
+		"vthunder_thunder_snmp_server_slb_data_cache_timeout":                             223,
+		"vthunder_thunder_snmp_server_user":                                               224,
+		"vthunder_thunder_snmp_server_view":                                               225,
+		"vthunder_thunder_virtual_server":                                                 226,
+		"vthunder_thunder_vrrp_common":                                                    227,
+		"vthunder_thunder_vrrp_peer_group":                                                228,
+		"vthunder_thunder_vrrp_session_sync":                                              229,
+		"vthunder_thunder_vrrp_vrid":                                                      230,
+		"vthunder_thunder_write_memory":                                                   231,
 	}
 )
 

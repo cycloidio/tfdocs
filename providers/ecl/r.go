@@ -234,7 +234,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to create the server instance. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new server.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -474,7 +474,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 Compute client. Keypairs are associated with accounts, but a Compute client is needed to create one. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new keypair.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -535,7 +535,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 Compute client. A Compute client is needed to create a volume attachment. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new volume attachment.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "server_id",
@@ -583,7 +583,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to create the volume. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new volume.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "size",
@@ -974,7 +974,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 Imagestorage client. Images are associated with accounts, but a Imagestroage client is needed to create one. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new image.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "container_format",
@@ -1128,7 +1128,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 Imagestorage client. Images are associated with accounts, but a Imagestroage client is needed to create one. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new image.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "image_member_id",
@@ -1165,7 +1165,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 Imagestorage client. Images are associated with accounts, but a Imagestroage client is needed to create one. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new image.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "image_id",
@@ -1316,39 +1316,39 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 Network client. Gateway interfaces are associated with accounts, but a Network client is needed to create one. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new gateway interface.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "aws_gw_id",
-					Description: `(Optional) AWS Gateway to which this port is connected. Conflicts with "azure_gw_id", "gcp_gw_id", "interdc_gw_id", "internet_gw_id" and "vpn_gw_id".`,
+					Description: `(Optional) AWS Gateway to which this port is connected. Conflicts with "azure_gw_id", "fic_gw_id", "gcp_gw_id", "interdc_gw_id", "internet_gw_id" and "vpn_gw_id".`,
 				},
 				resource.Attribute{
 					Name:        "azure_gw_id",
-					Description: `(Optional) Azure Gateway to which this port is connected. Conflicts with "aws_gw_id", "gcp_gw_id", "interdc_gw_id", "internet_gw_id" and "vpn_gw_id".`,
+					Description: `(Optional) Azure Gateway to which this port is connected. Conflicts with "aws_gw_id", "fic_gw_id", "gcp_gw_id", "interdc_gw_id", "internet_gw_id" and "vpn_gw_id".`,
 				},
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) Description of the Gateway Interface resource.`,
 				},
 				resource.Attribute{
+					Name:        "fic_gw_id",
+					Description: `(Optional) FIC Gateway to which this port is connected. Conflicts with "aws_gw_id", "azure_gw_id", "gcp_gw_id", "interdc_gw_id", "internet_gw_id" and "vpn_gw_id".`,
+				},
+				resource.Attribute{
 					Name:        "gcp_gw_id",
-					Description: `(Optional) GCP Gateway to which this port is connected. Conflicts with "aws_gw_id", "azure_gw_id", "interdc_gw_id", "internet_gw_id" and "vpn_gw_id".`,
+					Description: `(Optional) GCP Gateway to which this port is connected. Conflicts with "aws_gw_id", "azure_gw_id", "fic_gw_id", "interdc_gw_id", "internet_gw_id" and "vpn_gw_id".`,
 				},
 				resource.Attribute{
 					Name:        "gw_vipv4",
 					Description: `(Required) IP version 4 address to be assigned virtual router on VRRP.`,
 				},
 				resource.Attribute{
-					Name:        "gw_vipv6",
-					Description: `(Optional) IP version 6 address to be assigned virtual router on VRRP.`,
-				},
-				resource.Attribute{
 					Name:        "interdc_gw_id",
-					Description: `(Optional) Inter DC Gateway to which this port is connected. Conflicts with "aws_gw_id", "azure_gw_id", "gcp_gw_id", "internet_gw_id" and "vpn_gw_id".`,
+					Description: `(Optional) Inter DC Gateway to which this port is connected. Conflicts with "aws_gw_id", "azure_gw_id", "fic_gw_id", "gcp_gw_id", "internet_gw_id" and "vpn_gw_id".`,
 				},
 				resource.Attribute{
 					Name:        "internet_gw_id",
-					Description: `(Optional) Internet GW to which this port is connected. Conflicts with "aws_gw_id", "azure_gw_id", "gcp_gw_id", "interdc_gw_id" and "vpn_gw_id".`,
+					Description: `(Optional) Internet GW to which this port is connected. Conflicts with "aws_gw_id", "azure_gw_id", "fic_gw_id", "gcp_gw_id", "interdc_gw_id" and "vpn_gw_id".`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1367,20 +1367,12 @@ var (
 					Description: `(Required) IP version 4 address to be assigned to primary device on VRRP.`,
 				},
 				resource.Attribute{
-					Name:        "primary_ipv6",
-					Description: `(Optional) IP version 6 address to be assigned to primary device on VRRP.`,
-				},
-				resource.Attribute{
 					Name:        "secondary_ipv4",
 					Description: `(Required) IP version 4 address to be assigned to secondary device on VRRP.`,
 				},
 				resource.Attribute{
-					Name:        "secondary_ipv6",
-					Description: `(Optional) IP version 6 address to be assigned to secondary device on VRRP.`,
-				},
-				resource.Attribute{
 					Name:        "service_type",
-					Description: `(Required) Service type for this interface. Must be one of "aws", "azure", "gcp", "interdc", "internet" and "vpn".`,
+					Description: `(Required) Service type for this interface. Must be one of "aws", "azure", "fic", "gcp", "interdc", "internet" and "vpn".`,
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
@@ -1388,7 +1380,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpn_gw_id",
-					Description: `(Optional) VPN Gateway to which this port is connected. Conflicts with "aws_gw_id", "azure_gw_id", "gcp_gw_id", "interdc_gw_id" and "internet_gw_id".`,
+					Description: `(Optional) VPN Gateway to which this port is connected. Conflicts with "aws_gw_id", "azure_gw_id", "fic_gw_id", "gcp_gw_id", "interdc_gw_id" and "internet_gw_id".`,
 				},
 				resource.Attribute{
 					Name:        "vrid",
@@ -1400,7 +1392,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `See Argument Reference above. ## Import Gateway interfaces can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ecl_network_gateway_interface_v2.gateway_interface_1 Terraform_Test_Gateway_Interface_01 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "gw_vipv6",
+					Description: `IP version 6 address to be assigned virtual router on VRRP.`,
+				},
+				resource.Attribute{
+					Name:        "primary_ipv6",
+					Description: `IP version 6 address to be assigned to primary device on VRRP.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_ipv6",
+					Description: `IP version 6 address to be assigned to secondary device on VRRP. ## Import Gateway interfaces can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ecl_network_gateway_interface_v2.gateway_interface_1 12610e1b-f675-437b-8b1a-f4d19f92421e ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1410,7 +1414,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `See Argument Reference above. ## Import Gateway interfaces can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ecl_network_gateway_interface_v2.gateway_interface_1 Terraform_Test_Gateway_Interface_01 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "gw_vipv6",
+					Description: `IP version 6 address to be assigned virtual router on VRRP.`,
+				},
+				resource.Attribute{
+					Name:        "primary_ipv6",
+					Description: `IP version 6 address to be assigned to primary device on VRRP.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_ipv6",
+					Description: `IP version 6 address to be assigned to secondary device on VRRP. ## Import Gateway interfaces can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ecl_network_gateway_interface_v2.gateway_interface_1 12610e1b-f675-437b-8b1a-f4d19f92421e ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1429,7 +1445,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 Network client. Internet gateways are associated with accounts, but a Network client is needed to create one. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new internet gateway.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1473,6 +1489,351 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ecl_network_load_balancer_v2",
+			Category:         "Network Resources",
+			ShortDescription: `Manages a V2 Load Balancer resource within Enterprise Cloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"network",
+				"load",
+				"balancer",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Optional) The availability zone in which to create the Load Balancer. Changing this creates a new Load Balancer.`,
+				},
+				resource.Attribute{
+					Name:        "default_gateway",
+					Description: `(Optional) IP address of default gateway. The default gateway IP address must be in the network connected to the Load Balancer Interface defined as the argument ` + "`" + `interfaces` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Load Balancer description.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_plan_id",
+					Description: `(Required) The UUID of Load Balancer Plan uses by the Load Balancer.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the Load Balancer.`,
+				},
+				resource.Attribute{
+					Name:        "interfaces",
+					Description: `(Optional) An array of connected interfaces in Load Balancer. The ` + "`" + `interfaces` + "`" + ` object structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "syslog_servers",
+					Description: `(Optional) An array of running syslog servers included in Load Balancer. The ` + "`" + `syslog_servers` + "`" + ` object structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) The owner of the Load Balancer. Required if admin wants to create a Load Balancer for another tenant. Changing this creates a new Load Balancer. The ` + "`" + `interfaces` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Load Balancer Interface description.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `(Optional) The physical IP address associated with the interface. The IP address must be in the network specified as the argument ` + "`" + `network_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the Load Balancer Interface.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `(Optional) The UUID of the network associated with the interface.`,
+				},
+				resource.Attribute{
+					Name:        "slot_number",
+					Description: `(Required) The slot number of interface.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_ip_address",
+					Description: `(Optional; Required if ` + "`" + `virtual_ip_properties` + "`" + ` is not empty) The virtual IP address associated with the interface. The IP address must be in the network specified as the argument ` + "`" + `network_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_ip_properties",
+					Description: `(Optional; Required if ` + "`" + `virtual_ip_address` + "`" + ` is not empty) Properties used for virtual IP address. The ` + "`" + `virtual_ip_properties` + "`" + ` object structure is documented below. The ` + "`" + `virtual_ip_properties` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Required) Redundancy Protocol. Must be "vrrp".`,
+				},
+				resource.Attribute{
+					Name:        "vrid",
+					Description: `(Required) VRRP group identifier. This value is integer, no less than 1 and no more than 255. The ` + "`" + `syslog_servers` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "acl_logging",
+					Description: `(Optional) Should syslog record acl info. Must be one of "ENABLED" and "DISABLED".`,
+				},
+				resource.Attribute{
+					Name:        "appflow_logging",
+					Description: `(Optional) Should syslog record appflow info. Must be one of "ENABLED" and "DISABLED".`,
+				},
+				resource.Attribute{
+					Name:        "date_format",
+					Description: `(Optional) Date format utilized by syslog. Must be one of "DDMMYYYY", "MMDDYYYY" and "YYYYMMDD".`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Load Balancer Syslog Server description.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `(Required) IP address of syslog server. The syslog server IP address must be in the network connected to the Load Balancer Interface defined as the argument ` + "`" + `interfaces` + "`" + `. Changing this creates a new syslog server.`,
+				},
+				resource.Attribute{
+					Name:        "log_facility",
+					Description: `(Optional) Log facility for syslog. Must be one of "LOCAL0", "LOCAL1", "LOCAL2", "LOCAL3", "LOCAL4", "LOCAL5", "LOCAL6" and "LOCAL7".`,
+				},
+				resource.Attribute{
+					Name:        "log_level",
+					Description: `(Optional) Valid elements for log_level are "ALERT", "CRITICAL", "EMERGENCY", "INFORMATIONAL", "NOTICE", "ALL", "DEBUG", "ERROR", "NONE", "WARNING". ` + "`" + `log_level` + "`" + ` value can be assigned combining multiple elements as "ALERT|CRITICAL|EMERGENCY". Caution: Can not combine "ALL" or "NONE" with the others.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Load Balancer Syslog Server. Changing this creates a new syslog server.`,
+				},
+				resource.Attribute{
+					Name:        "port_number",
+					Description: `(Optional) The port number of syslog server. This value is integer, no less than 1 and no more than 65535. Changing this creates a new syslog server.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority of syslog server. This value is integer, no less than 0 and no more than 255.`,
+				},
+				resource.Attribute{
+					Name:        "tcp_logging",
+					Description: `(Optional) Should syslog record tcp protocol info. Must be one of "NONE" and "ALL".`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) The owner of the syslog server. Required if admin wants to create a syslog server for another tenant. Changing this creates a new syslog server.`,
+				},
+				resource.Attribute{
+					Name:        "time_zone",
+					Description: `(Optional) Time zone utilized by syslog. Must be one of "GMT_TIME" and "LOCAL_TIME".`,
+				},
+				resource.Attribute{
+					Name:        "transport_type",
+					Description: `(Optional) Protocol for syslog transport. Must be "UDP".`,
+				},
+				resource.Attribute{
+					Name:        "user_configurable_log_messages",
+					Description: `(Optional) Can user configure log messages. Must be one of "YES" and "NO". ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Load Balancer unique ID.`,
+				},
+				resource.Attribute{
+					Name:        "admin_password",
+					Description: `Admin’s password placeholder.`,
+				},
+				resource.Attribute{
+					Name:        "admin_username",
+					Description: `Username with admin access to Load Balancer VM instance.`,
+				},
+				resource.Attribute{
+					Name:        "interfaces",
+					Description: `An array of connected interfaces in Load Balancer. This excludes disconnected interfaces. The ` + "`" + `interfaces` + "`" + ` object structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of Load Balancer.`,
+				},
+				resource.Attribute{
+					Name:        "syslog_servers",
+					Description: `An array of running syslog servers included in Load Balancer. The ` + "`" + `syslog_servers` + "`" + ` object structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "user_password",
+					Description: `User’s password placeholder.`,
+				},
+				resource.Attribute{
+					Name:        "user_username",
+					Description: `Username with user access to Load Balancer VM instance. The ` + "`" + `interfaces` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Load Balancer Interface unique ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of Load Balancer Interface. The ` + "`" + `syslog_servers` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Load Balancer Syslog Server unique ID.`,
+				},
+				resource.Attribute{
+					Name:        "acl_logging",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "appflow_logging",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "date_format",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "log_facility",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "log_level",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "port_number",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of Load Balancer Syslog Server.`,
+				},
+				resource.Attribute{
+					Name:        "tcp_logging",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "time_zone",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "transport_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "user_configurable_log_messages",
+					Description: `See Argument Reference above. ## Import Load Balancer can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ecl_network_load_balancer_v2.load_balancer_1 da4faf16-5546-41e4-8330-4d0002b74048 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Load Balancer unique ID.`,
+				},
+				resource.Attribute{
+					Name:        "admin_password",
+					Description: `Admin’s password placeholder.`,
+				},
+				resource.Attribute{
+					Name:        "admin_username",
+					Description: `Username with admin access to Load Balancer VM instance.`,
+				},
+				resource.Attribute{
+					Name:        "interfaces",
+					Description: `An array of connected interfaces in Load Balancer. This excludes disconnected interfaces. The ` + "`" + `interfaces` + "`" + ` object structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of Load Balancer.`,
+				},
+				resource.Attribute{
+					Name:        "syslog_servers",
+					Description: `An array of running syslog servers included in Load Balancer. The ` + "`" + `syslog_servers` + "`" + ` object structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "user_password",
+					Description: `User’s password placeholder.`,
+				},
+				resource.Attribute{
+					Name:        "user_username",
+					Description: `Username with user access to Load Balancer VM instance. The ` + "`" + `interfaces` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Load Balancer Interface unique ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of Load Balancer Interface. The ` + "`" + `syslog_servers` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Load Balancer Syslog Server unique ID.`,
+				},
+				resource.Attribute{
+					Name:        "acl_logging",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "appflow_logging",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "date_format",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "log_facility",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "log_level",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "port_number",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of Load Balancer Syslog Server.`,
+				},
+				resource.Attribute{
+					Name:        "tcp_logging",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "time_zone",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "transport_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "user_configurable_log_messages",
+					Description: `See Argument Reference above. ## Import Load Balancer can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ecl_network_load_balancer_v2.load_balancer_1 da4faf16-5546-41e4-8330-4d0002b74048 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ecl_network_network_v2",
 			Category:         "Network Resources",
 			ShortDescription: `Manages a V2 network resource within Enterprise Cloud.`,
@@ -1500,7 +1861,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create a Neutron network. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new network.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1636,7 +1997,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 network client. A network client is needed to create a port. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new port.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1821,7 +2182,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 Network client. Public ips are associated with accounts, but a Network client is needed to create one. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new public ip.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1886,15 +2247,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 Network client. Public ips are associated with accounts, but a Network client is needed to create one. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new public ip.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "aws_gw_id",
-					Description: `(Optional) AWS Gateway on which this static route will be set. Conflicts with "azure_gw_id", "gcp_gw_id", "interdc_gw_id", "internet_gw_id" and "vpn_gw_id".`,
+					Description: `(Optional) AWS Gateway on which this static route will be set. Conflicts with "azure_gw_id", "fic_gw_id", "gcp_gw_id", "interdc_gw_id", "internet_gw_id" and "vpn_gw_id".`,
 				},
 				resource.Attribute{
 					Name:        "azure_gw_id",
-					Description: `(Optional) Azure Gateway on which this static route will be set. Conflicts with "aws_gw_id", "gcp_gw_id", "interdc_gw_id", "internet_gw_id" and "vpn_gw_id".`,
+					Description: `(Optional) Azure Gateway on which this static route will be set. Conflicts with "aws_gw_id", "fic_gw_id", "gcp_gw_id", "interdc_gw_id", "internet_gw_id" and "vpn_gw_id".`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1905,16 +2266,20 @@ var (
 					Description: `(Required) CIDR this static route points to.`,
 				},
 				resource.Attribute{
+					Name:        "fic_gw_id",
+					Description: `(Optional) FIC Gateway on which this static route will be set. Conflicts with "aws_gw_id", "azure_gw_id", "gcp_gw_id", "interdc_gw_id", "internet_gw_id" and "vpn_gw_id".`,
+				},
+				resource.Attribute{
 					Name:        "gcp_gw_id",
-					Description: `(Optional) GCP Gateway on which this static route will be set. Conflicts with "aws_gw_id", "azure_gw_id", "interdc_gw_id", "internet_gw_id" and "vpn_gw_id".`,
+					Description: `(Optional) GCP Gateway on which this static route will be set. Conflicts with "aws_gw_id", "azure_gw_id", "fic_gw_id", "interdc_gw_id", "internet_gw_id" and "vpn_gw_id".`,
 				},
 				resource.Attribute{
 					Name:        "interdc_gw_id",
-					Description: `(Optional) Inter DC Gateway on which this static route will be set. Conflicts with "aws_gw_id", "azure_gw_id", "gcp_gw_id", "internet_gw_id" and "vpn_gw_id".`,
+					Description: `(Optional) Inter DC Gateway on which this static route will be set. Conflicts with "aws_gw_id", "azure_gw_id", "fic_gw_id", "gcp_gw_id", "internet_gw_id" and "vpn_gw_id".`,
 				},
 				resource.Attribute{
 					Name:        "internet_gw_id",
-					Description: `(Required) Internet Gateway on which this static route will be set. Conflicts with "aws_gw_id", "azure_gw_id", "gcp_gw_id", "interdc_gw_id" and "vpn_gw_id".`,
+					Description: `(Optional) Internet Gateway on which this static route will be set. Conflicts with "aws_gw_id", "azure_gw_id", "fic_gw_id", "gcp_gw_id", "interdc_gw_id" and "vpn_gw_id".`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1934,7 +2299,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpn_gw_id",
-					Description: `(Optional) VPN Gateway on which this static route will be set. Conflicts with "aws_gw_id", "azure_gw_id", "gcp_gw_id", "interdc_gw_id" and "internet_gw_id". ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) VPN Gateway on which this static route will be set. Conflicts with "aws_gw_id", "azure_gw_id", "fic_gw_id", "gcp_gw_id", "interdc_gw_id" and "internet_gw_id". ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -2002,7 +2367,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create a Neutron subnet. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new subnet.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3661,24 +4026,25 @@ var (
 		"ecl_network_common_function_gateway_v2":             13,
 		"ecl_network_gateway_interface_v2":                   14,
 		"ecl_network_internet_gateway_v2":                    15,
-		"ecl_network_network_v2":                             16,
-		"ecl_network_port_v2":                                17,
-		"ecl_network_public_ip_v2":                           18,
-		"ecl_network_static_route_v2":                        19,
-		"ecl_network_subnet_v2":                              20,
-		"provider_connectivity_tenant_connection_request_v2": 21,
-		"ecl_provider_connectivity_tenant_connection_v2":     22,
-		"ecl_rca_user_v1":                                    23,
-		"ecl_security_host_based_v1":                         24,
-		"ecl_security_network_based_device_ha_v1":            25,
-		"ecl_security_network_based_device_single_v1":        26,
-		"ecl_security_network_based_waf_single_v1":           27,
-		"ecl_sss_approval_request_v1":                        28,
-		"ecl_sss_tenant_v1":                                  29,
-		"ecl_sss_user_v1":                                    30,
-		"ecl_storage_virtualstorage_v1":                      31,
-		"ecl_storage_volume_v1":                              32,
-		"ecl_vna_appliance_v1":                               33,
+		"ecl_network_load_balancer_v2":                       16,
+		"ecl_network_network_v2":                             17,
+		"ecl_network_port_v2":                                18,
+		"ecl_network_public_ip_v2":                           19,
+		"ecl_network_static_route_v2":                        20,
+		"ecl_network_subnet_v2":                              21,
+		"provider_connectivity_tenant_connection_request_v2": 22,
+		"ecl_provider_connectivity_tenant_connection_v2":     23,
+		"ecl_rca_user_v1":                                    24,
+		"ecl_security_host_based_v1":                         25,
+		"ecl_security_network_based_device_ha_v1":            26,
+		"ecl_security_network_based_device_single_v1":        27,
+		"ecl_security_network_based_waf_single_v1":           28,
+		"ecl_sss_approval_request_v1":                        29,
+		"ecl_sss_tenant_v1":                                  30,
+		"ecl_sss_user_v1":                                    31,
+		"ecl_storage_virtualstorage_v1":                      32,
+		"ecl_storage_volume_v1":                              33,
+		"ecl_vna_appliance_v1":                               34,
 	}
 )
 

@@ -11,7 +11,7 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "vsphere_compute_cluster",
+			Type:             "vsphere_content_library_item",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a vSphere cluster data source. This can be used to get the general attributes of a vSphere cluster.`,
 			Description:      ``,
@@ -153,6 +153,29 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vsphere_host_thumbprint",
+			Category:         "Data Sources",
+			ShortDescription: `A data source that can be used to get the thumbprint of an ESXi host.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "address",
+					Description: `(Required) The address of the ESXi host to retrieve the thumbprint from.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) The port to use connecting to the ESXi host. Default: 443`,
+				},
+				resource.Attribute{
+					Name:        "insecure",
+					Description: `(Optional) Boolean that can be set to true to disable SSL certificate verification. Default: false ## Attribute Reference The only exported attribute is ` + "`" + `id` + "`" + `, which is the thumbprint of the ESXi host.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vsphere_network",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a vSphere network data source. This can be used to get the general attributes of a vSphere network.`,
@@ -260,6 +283,30 @@ var (
 					Description: `The alternate guest name of the virtual machine when guest_id is a non-specific operating system, like ` + "`" + `otherGuest` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "annotation",
+					Description: `The user-provided description of this virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `The size of the virtual machine's memory, in MB.`,
+				},
+				resource.Attribute{
+					Name:        "num_cpus",
+					Description: `The total number of virtual processor cores assigned to this virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "num_cores_per_socket",
+					Description: `The number of cores per socket for this virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "firmware",
+					Description: `The firmware interface that is used by this virtual machine. Can be either ` + "`" + `bios` + "`" + ` or ` + "`" + `EFI` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "hardware_version",
+					Description: `The hardware version number on this virtual machine.`,
+				},
+				resource.Attribute{
 					Name:        "scsi_type",
 					Description: `The common type of all SCSI controllers on this virtual machine. Will be one of ` + "`" + `lsilogic` + "`" + ` (LSI Logic Parallel), ` + "`" + `lsilogic-sas` + "`" + ` (LSI Logic SAS), ` + "`" + `pvscsi` + "`" + ` (VMware Paravirtual), ` + "`" + `buslogic` + "`" + ` (BusLogic), or ` + "`" + `mixed` + "`" + ` when there are multiple controller types. Only the first number of controllers defined by ` + "`" + `scsi_controller_scan_count` + "`" + ` are scanned.`,
 				},
@@ -272,6 +319,10 @@ var (
 					Description: `Information about each of the disks on this virtual machine or template. These are sorted by bus and unit number so that they can be applied to a ` + "`" + `vsphere_virtual_machine` + "`" + ` resource in the order the resource expects while cloning. This is useful for discovering certain disk settings while performing a linked clone, as all settings that are output by this data source must be the same on the destination virtual machine as the source. Only the first number of controllers defined by ` + "`" + `scsi_controller_scan_count` + "`" + ` are scanned for disks. The sub-attributes are:`,
 				},
 				resource.Attribute{
+					Name:        "label",
+					Description: `The label for the disk.`,
+				},
+				resource.Attribute{
 					Name:        "size",
 					Description: `The size of the disk, in GIB.`,
 				},
@@ -282,6 +333,10 @@ var (
 				resource.Attribute{
 					Name:        "thin_provisioned",
 					Description: `Set to ` + "`" + `true` + "`" + ` if the disk has been thin provisioned.`,
+				},
+				resource.Attribute{
+					Name:        "unit_number",
+					Description: `The disk number on the storage bus.`,
 				},
 				resource.Attribute{
 					Name:        "network_interface_types",
@@ -310,6 +365,30 @@ var (
 					Description: `The alternate guest name of the virtual machine when guest_id is a non-specific operating system, like ` + "`" + `otherGuest` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "annotation",
+					Description: `The user-provided description of this virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `The size of the virtual machine's memory, in MB.`,
+				},
+				resource.Attribute{
+					Name:        "num_cpus",
+					Description: `The total number of virtual processor cores assigned to this virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "num_cores_per_socket",
+					Description: `The number of cores per socket for this virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "firmware",
+					Description: `The firmware interface that is used by this virtual machine. Can be either ` + "`" + `bios` + "`" + ` or ` + "`" + `EFI` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "hardware_version",
+					Description: `The hardware version number on this virtual machine.`,
+				},
+				resource.Attribute{
 					Name:        "scsi_type",
 					Description: `The common type of all SCSI controllers on this virtual machine. Will be one of ` + "`" + `lsilogic` + "`" + ` (LSI Logic Parallel), ` + "`" + `lsilogic-sas` + "`" + ` (LSI Logic SAS), ` + "`" + `pvscsi` + "`" + ` (VMware Paravirtual), ` + "`" + `buslogic` + "`" + ` (BusLogic), or ` + "`" + `mixed` + "`" + ` when there are multiple controller types. Only the first number of controllers defined by ` + "`" + `scsi_controller_scan_count` + "`" + ` are scanned.`,
 				},
@@ -322,6 +401,10 @@ var (
 					Description: `Information about each of the disks on this virtual machine or template. These are sorted by bus and unit number so that they can be applied to a ` + "`" + `vsphere_virtual_machine` + "`" + ` resource in the order the resource expects while cloning. This is useful for discovering certain disk settings while performing a linked clone, as all settings that are output by this data source must be the same on the destination virtual machine as the source. Only the first number of controllers defined by ` + "`" + `scsi_controller_scan_count` + "`" + ` are scanned for disks. The sub-attributes are:`,
 				},
 				resource.Attribute{
+					Name:        "label",
+					Description: `The label for the disk.`,
+				},
+				resource.Attribute{
 					Name:        "size",
 					Description: `The size of the disk, in GIB.`,
 				},
@@ -332,6 +415,10 @@ var (
 				resource.Attribute{
 					Name:        "thin_provisioned",
 					Description: `Set to ` + "`" + `true` + "`" + ` if the disk has been thin provisioned.`,
+				},
+				resource.Attribute{
+					Name:        "unit_number",
+					Description: `The disk number on the storage bus.`,
 				},
 				resource.Attribute{
 					Name:        "network_interface_types",
@@ -379,23 +466,73 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vsphere_role",
+			Category:         "Data Sources",
+			ShortDescription: `A data source that can be used to fetch details of a vsphere role given its name/label.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) The label of the role. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the role.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the role.`,
+				},
+				resource.Attribute{
+					Name:        "role_privileges",
+					Description: `The privileges associated with the role.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The display label of the role.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the role.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the role.`,
+				},
+				resource.Attribute{
+					Name:        "role_privileges",
+					Description: `The privileges associated with the role.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The display label of the role.`,
+				},
+			},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
 
-		"vsphere_compute_cluster":            0,
+		"vsphere_content_library_item":       0,
 		"vsphere_custom_attribute":           1,
 		"vsphere_datacenter":                 2,
 		"vsphere_datastore":                  3,
 		"vsphere_datastore_cluster":          4,
 		"vsphere_distributed_virtual_switch": 5,
 		"vsphere_host":                       6,
-		"vsphere_network":                    7,
-		"vsphere_resource_pool":              8,
-		"vsphere_tag":                        9,
-		"vsphere_tag_category":               10,
-		"vsphere_virtual_machine":            11,
-		"vsphere_vmfs_disks":                 12,
+		"vsphere_host_thumbprint":            7,
+		"vsphere_network":                    8,
+		"vsphere_resource_pool":              9,
+		"vsphere_tag":                        10,
+		"vsphere_tag_category":               11,
+		"vsphere_virtual_machine":            12,
+		"vsphere_vmfs_disks":                 13,
+		"vsphere_role":                       14,
 	}
 )
 

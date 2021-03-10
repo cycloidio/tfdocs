@@ -67,14 +67,59 @@ Use this data source to get a list of GCP service names.
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "signalfx_pagerduty_integration",
+			Category:         "Data Sources",
+			ShortDescription: `Provides information on an existing PagerDuty integration.`,
+			Description: `
+
+Use this data source to get information on an existing PagerDuty integration.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Specify the exact name of the desired PagerDuty integration ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the integration.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Whether the integration is enabled.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the integration.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Whether the integration is enabled.`,
+				},
+			},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
 
-		"signalfx_aws_services":     0,
-		"signalfx_azure_services":   1,
-		"signalfx_dimension_values": 2,
-		"signalfx_gcp_services":     3,
+		"signalfx_aws_services":          0,
+		"signalfx_azure_services":        1,
+		"signalfx_dimension_values":      2,
+		"signalfx_gcp_services":          3,
+		"signalfx_pagerduty_integration": 4,
 	}
 )
 
