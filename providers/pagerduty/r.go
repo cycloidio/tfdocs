@@ -267,6 +267,133 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "pagerduty_response_play",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages a response play in PagerDuty.`,
+			Description:      ``,
+			Keywords: []string{
+				"response",
+				"play",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the response play.`,
+				},
+				resource.Attribute{
+					Name:        "from",
+					Description: `(Required) The email of the user attributed to the request. Needs to be a valid email address of a user in the PagerDuty account.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A human-friendly description of the response play. If not set, a placeholder of "Managed by Terraform" will be set.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) A string that determines the schema of the object. If not set, the default value is "response_play".`,
+				},
+				resource.Attribute{
+					Name:        "team",
+					Description: `(Optional) The ID of the team associated with the response play.`,
+				},
+				resource.Attribute{
+					Name:        "subscriber",
+					Description: `(Required) A user and/or team to be added as a subscriber to any incident on which this response play is run. There can be multiple subscribers defined on a single response play.`,
+				},
+				resource.Attribute{
+					Name:        "subscribers_message",
+					Description: `(Optional) The content of the notification that will be sent to all incident subscribers upon the running of this response play. Note that this includes any users who may have already been subscribed to the incident prior to the running of this response play. If empty, no notifications will be sent.`,
+				},
+				resource.Attribute{
+					Name:        "responder",
+					Description: `(Required) A user and/or escalation policy to be requested as a responder to any incident on which this response play is run. There can be multiple responders defined on a single response play.`,
+				},
+				resource.Attribute{
+					Name:        "responders_message",
+					Description: `(Optional) The message body of the notification that will be sent to this response play's set of responders. If empty, a default response request notification will be sent.`,
+				},
+				resource.Attribute{
+					Name:        "runnability",
+					Description: `(Optional) String representing how this response play is allowed to be run. Valid options are:`,
+				},
+				resource.Attribute{
+					Name:        "conference_number",
+					Description: `(Optional) The telephone number that will be set as the conference number for any incident on which this response play is run.`,
+				},
+				resource.Attribute{
+					Name:        "conference_url",
+					Description: `(Optional) The URL that will be set as the conference URL for any incident on which this response play is run. ### Responders (` + "`" + `responder` + "`" + `) can have two different objects and supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the user defined as the responder`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Should be set as ` + "`" + `user_reference` + "`" + ` for user responders. ` + "`" + `escalation_policy` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the user defined as the responder`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Should be set as ` + "`" + `escalation_policy` + "`" + ` for escalation policy responders.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the escalation policy`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of escalation policy`,
+				},
+				resource.Attribute{
+					Name:        "num_loops",
+					Description: `The number of times the escalation policy will repeat after reaching the end of its escalation.`,
+				},
+				resource.Attribute{
+					Name:        "on_call_handoff_notifications",
+					Description: `Determines how on call handoff notifications will be sent for users on the escalation policy. Defaults to "if_has_services". Could be "if_has_services", "always`,
+				},
+				resource.Attribute{
+					Name:        "escalation_rule",
+					Description: `The escalation rules`,
+				},
+				resource.Attribute{
+					Name:        "escalation_delay_in_minutes",
+					Description: `The number of minutes before an unacknowledged incident escalates away from this rule.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `The targets an incident should be assigned to upon reaching this rule.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of object of the target. Supported types are ` + "`" + `user` + "`" + `, ` + "`" + `schedule` + "`" + `, ` + "`" + `user_reference` + "`" + `, ` + "`" + `schedule_reference` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `There can be multiple services associated with a policy.`,
+				},
+				resource.Attribute{
+					Name:        "team",
+					Description: `(Optional) Teams associated with the policy. Account must have the ` + "`" + `teams` + "`" + ` ability to use this parameter. There can be multiple teams associated with a policy. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the response play. ## Import Response Plays can be imported using the ` + "`" + `id.from(email)` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_response_play.main 16208303-022b-f745-f2f5-560e537a2a74.user@email.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the response play. ## Import Response Plays can be imported using the ` + "`" + `id.from(email)` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_response_play.main 16208303-022b-f745-f2f5-560e537a2a74.user@email.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "pagerduty_ruleset",
 			Category:         "Resources",
 			ShortDescription: `Creates and manages an ruleset in PagerDuty.`,
@@ -344,7 +471,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "actions",
-					Description: `(Optional) Actions to apply to an event if the conditions match. ### Conditions (` + "`" + `conditions` + "`" + `) supports the following:`,
+					Description: `(Optional) Actions to apply to an event if the conditions match.`,
+				},
+				resource.Attribute{
+					Name:        "variable",
+					Description: `(Optional) Populate variables from event payloads and use those variables in other event actions.`,
 				},
 				resource.Attribute{
 					Name:        "operator",
@@ -388,7 +519,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "threshold_time_unit",
-					Description: `The ` + "`" + `minutes` + "`" + `,` + "`" + `hours` + "`" + `, or ` + "`" + `days` + "`" + ` that the ` + "`" + `threshold_time_amount` + "`" + ` should be measured. ### Time Frame (` + "`" + `time_frame` + "`" + `) supports the following:`,
+					Description: `The ` + "`" + `minutes` + "`" + `,` + "`" + `hours` + "`" + `, or ` + "`" + `days` + "`" + ` that the ` + "`" + `threshold_time_amount` + "`" + ` should be measured.`,
 				},
 				resource.Attribute{
 					Name:        "weekdays",
@@ -1021,17 +1152,18 @@ var (
 		"pagerduty_event_rule":             3,
 		"pagerduty_extension":              4,
 		"pagerduty_maintenance_window":     5,
-		"pagerduty_ruleset":                6,
-		"pagerduty_ruleset_rule":           7,
-		"pagerduty_schedule":               8,
-		"pagerduty_service":                9,
-		"pagerduty_service_dependency":     10,
-		"pagerduty_service_integration":    11,
-		"pagerduty_team":                   12,
-		"pagerduty_team_membership":        13,
-		"pagerduty_user":                   14,
-		"pagerduty_user_contact_method":    15,
-		"pagerduty_user_notification_rule": 16,
+		"pagerduty_response_play":          6,
+		"pagerduty_ruleset":                7,
+		"pagerduty_ruleset_rule":           8,
+		"pagerduty_schedule":               9,
+		"pagerduty_service":                10,
+		"pagerduty_service_dependency":     11,
+		"pagerduty_service_integration":    12,
+		"pagerduty_team":                   13,
+		"pagerduty_team_membership":        14,
+		"pagerduty_user":                   15,
+		"pagerduty_user_contact_method":    16,
+		"pagerduty_user_notification_rule": 17,
 	}
 )
 

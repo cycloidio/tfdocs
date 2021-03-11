@@ -454,6 +454,10 @@ var (
 					Description: `(Optional) Full name of the repository (in ` + "`" + `org/name` + "`" + ` format). ## Attributes Reference`,
 				},
 				resource.Attribute{
+					Name:        "node_id",
+					Description: `the Node ID of the repository.`,
+				},
+				resource.Attribute{
 					Name:        "description",
 					Description: `A description of the repository.`,
 				},
@@ -506,6 +510,10 @@ var (
 					Description: `Whether the repository is archived.`,
 				},
 				resource.Attribute{
+					Name:        "pages",
+					Description: `The repository's GitHub Pages configuration.`,
+				},
+				resource.Attribute{
 					Name:        "topics",
 					Description: `The list of topics of the repository.`,
 				},
@@ -528,84 +536,152 @@ var (
 				resource.Attribute{
 					Name:        "svn_url",
 					Description: `URL that can be provided to ` + "`" + `svn checkout` + "`" + ` to check out the repository via GitHub's Subversion protocol emulation.`,
+				},
+				resource.Attribute{
+					Name:        "node_id",
+					Description: `GraphQL global node id for use with v4 API`,
+				},
+				resource.Attribute{
+					Name:        "repo_id",
+					Description: `Github ID for the repository`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "node_id",
+					Description: `the Node ID of the repository.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the repository.`,
+				},
+				resource.Attribute{
+					Name:        "homepage_url",
+					Description: `URL of a page describing the project.`,
+				},
+				resource.Attribute{
+					Name:        "private",
+					Description: `Whether the repository is private.`,
+				},
+				resource.Attribute{
+					Name:        "visibility",
+					Description: `Whether the repository is public, private or internal.`,
+				},
+				resource.Attribute{
+					Name:        "has_issues",
+					Description: `Whether the repository has GitHub Issues enabled.`,
+				},
+				resource.Attribute{
+					Name:        "has_projects",
+					Description: `Whether the repository has the GitHub Projects enabled.`,
+				},
+				resource.Attribute{
+					Name:        "has_wiki",
+					Description: `Whether the repository has the GitHub Wiki enabled.`,
+				},
+				resource.Attribute{
+					Name:        "allow_merge_commit",
+					Description: `Whether the repository allows merge commits.`,
+				},
+				resource.Attribute{
+					Name:        "allow_squash_merge",
+					Description: `Whether the repository allows squash merges.`,
+				},
+				resource.Attribute{
+					Name:        "allow_rebase_merge",
+					Description: `Whether the repository allows rebase merges.`,
+				},
+				resource.Attribute{
+					Name:        "has_downloads",
+					Description: `Whether the repository has Downloads feature enabled.`,
+				},
+				resource.Attribute{
+					Name:        "default_branch",
+					Description: `The name of the default branch of the repository.`,
+				},
+				resource.Attribute{
+					Name:        "archived",
+					Description: `Whether the repository is archived.`,
+				},
+				resource.Attribute{
+					Name:        "pages",
+					Description: `The repository's GitHub Pages configuration.`,
+				},
+				resource.Attribute{
+					Name:        "topics",
+					Description: `The list of topics of the repository.`,
+				},
+				resource.Attribute{
+					Name:        "html_url",
+					Description: `URL to the repository on the web.`,
+				},
+				resource.Attribute{
+					Name:        "ssh_clone_url",
+					Description: `URL that can be provided to ` + "`" + `git clone` + "`" + ` to clone the repository via SSH.`,
+				},
+				resource.Attribute{
+					Name:        "http_clone_url",
+					Description: `URL that can be provided to ` + "`" + `git clone` + "`" + ` to clone the repository via HTTPS.`,
+				},
+				resource.Attribute{
+					Name:        "git_clone_url",
+					Description: `URL that can be provided to ` + "`" + `git clone` + "`" + ` to clone the repository anonymously via the git protocol.`,
+				},
+				resource.Attribute{
+					Name:        "svn_url",
+					Description: `URL that can be provided to ` + "`" + `svn checkout` + "`" + ` to check out the repository via GitHub's Subversion protocol emulation.`,
+				},
+				resource.Attribute{
+					Name:        "node_id",
+					Description: `GraphQL global node id for use with v4 API`,
+				},
+				resource.Attribute{
+					Name:        "repo_id",
+					Description: `Github ID for the repository`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "github_repository_milestone",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a GitHub Repository Milestone.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the milestone.`,
+				},
+				resource.Attribute{
+					Name:        "due_date",
+					Description: `The milestone due date (in ISO-8601 ` + "`" + `yyyy-mm-dd` + "`" + ` format).`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `State of the milestone.`,
+				},
+				resource.Attribute{
+					Name:        "title",
+					Description: `Title of the milestone.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
-					Description: `A description of the repository.`,
+					Description: `Description of the milestone.`,
 				},
 				resource.Attribute{
-					Name:        "homepage_url",
-					Description: `URL of a page describing the project.`,
+					Name:        "due_date",
+					Description: `The milestone due date (in ISO-8601 ` + "`" + `yyyy-mm-dd` + "`" + ` format).`,
 				},
 				resource.Attribute{
-					Name:        "private",
-					Description: `Whether the repository is private.`,
+					Name:        "state",
+					Description: `State of the milestone.`,
 				},
 				resource.Attribute{
-					Name:        "visibility",
-					Description: `Whether the repository is public, private or internal.`,
-				},
-				resource.Attribute{
-					Name:        "has_issues",
-					Description: `Whether the repository has GitHub Issues enabled.`,
-				},
-				resource.Attribute{
-					Name:        "has_projects",
-					Description: `Whether the repository has the GitHub Projects enabled.`,
-				},
-				resource.Attribute{
-					Name:        "has_wiki",
-					Description: `Whether the repository has the GitHub Wiki enabled.`,
-				},
-				resource.Attribute{
-					Name:        "allow_merge_commit",
-					Description: `Whether the repository allows merge commits.`,
-				},
-				resource.Attribute{
-					Name:        "allow_squash_merge",
-					Description: `Whether the repository allows squash merges.`,
-				},
-				resource.Attribute{
-					Name:        "allow_rebase_merge",
-					Description: `Whether the repository allows rebase merges.`,
-				},
-				resource.Attribute{
-					Name:        "has_downloads",
-					Description: `Whether the repository has Downloads feature enabled.`,
-				},
-				resource.Attribute{
-					Name:        "default_branch",
-					Description: `The name of the default branch of the repository.`,
-				},
-				resource.Attribute{
-					Name:        "archived",
-					Description: `Whether the repository is archived.`,
-				},
-				resource.Attribute{
-					Name:        "topics",
-					Description: `The list of topics of the repository.`,
-				},
-				resource.Attribute{
-					Name:        "html_url",
-					Description: `URL to the repository on the web.`,
-				},
-				resource.Attribute{
-					Name:        "ssh_clone_url",
-					Description: `URL that can be provided to ` + "`" + `git clone` + "`" + ` to clone the repository via SSH.`,
-				},
-				resource.Attribute{
-					Name:        "http_clone_url",
-					Description: `URL that can be provided to ` + "`" + `git clone` + "`" + ` to clone the repository via HTTPS.`,
-				},
-				resource.Attribute{
-					Name:        "git_clone_url",
-					Description: `URL that can be provided to ` + "`" + `git clone` + "`" + ` to clone the repository anonymously via the git protocol.`,
-				},
-				resource.Attribute{
-					Name:        "svn_url",
-					Description: `URL that can be provided to ` + "`" + `svn checkout` + "`" + ` to check out the repository via GitHub's Subversion protocol emulation.`,
+					Name:        "title",
+					Description: `Title of the milestone.`,
 				},
 			},
 		},
@@ -624,6 +700,10 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `the ID of the team.`,
+				},
+				resource.Attribute{
+					Name:        "node_id",
+					Description: `the Node ID of the team.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -650,6 +730,10 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `the ID of the team.`,
+				},
+				resource.Attribute{
+					Name:        "node_id",
+					Description: `the Node ID of the team.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -683,7 +767,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "username",
-					Description: `(Required) The username. ## Attributes Reference`,
+					Description: `(Required) The username. Use an empty string ` + "`" + `""` + "`" + ` to retrieve information about the currently authenticated user. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "node_id",
+					Description: `the Node ID of the user.`,
 				},
 				resource.Attribute{
 					Name:        "login",
@@ -759,6 +847,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "node_id",
+					Description: `the Node ID of the user.`,
+				},
 				resource.Attribute{
 					Name:        "login",
 					Description: `the user's login.`,
@@ -847,8 +939,9 @@ var (
 		"github_release":                       7,
 		"github_repositories":                  8,
 		"github_repository":                    9,
-		"github_team":                          10,
-		"github_user":                          11,
+		"github_repository_milestone":          10,
+		"github_team":                          11,
+		"github_user":                          12,
 	}
 )
 

@@ -90,11 +90,12 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sumologic_extraction_rule",
+			Type:             "sumologic_field_extraction_rule",
 			Category:         "Resources",
 			ShortDescription: `Provides a Sumologic Field Extraction Rule`,
 			Description:      ``,
 			Keywords: []string{
+				"field",
 				"extraction",
 				"rule",
 			},
@@ -246,19 +247,19 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"sumologic_cloudsyslog_source": 0,
-		"sumologic_collector":          1,
-		"sumologic_connection":         2,
-		"sumologic_content":            3,
-		"sumologic_extraction_rule":    4,
-		"sumologic_folder":             5,
-		"sumologic_http_source":        6,
-		"sumologic_ingest_budget":      7,
-		"sumologic_partition":          8,
-		"sumologic_polling_source":     9,
-		"sumologic_role":               10,
-		"sumologic_scheduled_view":     11,
-		"sumologic_user":               12,
+		"sumologic_cloudsyslog_source":    0,
+		"sumologic_collector":             1,
+		"sumologic_connection":            2,
+		"sumologic_content":               3,
+		"sumologic_field_extraction_rule": 4,
+		"sumologic_folder":                5,
+		"sumologic_http_source":           6,
+		"sumologic_ingest_budget":         7,
+		"sumologic_partition":             8,
+		"sumologic_polling_source":        9,
+		"sumologic_role":                  10,
+		"sumologic_scheduled_view":        11,
+		"sumologic_user":                  12,
 	}
 )
 

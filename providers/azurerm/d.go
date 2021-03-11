@@ -12,14 +12,17 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_advisor_recommendations",
-			Category:         "Data Sources",
+			Category:         "Advisor",
 			ShortDescription: `Gets information about an existing Advisor Recommendations.`,
 			Description: `
 
 Use this data source to access information about an existing Advisor Recommendations.
 
 `,
-			Keywords:  []string{},
+			Keywords: []string{
+				"advisor",
+				"recommendations",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -75,14 +78,17 @@ Use this data source to access information about an existing Advisor Recommendat
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_api_management",
-			Category:         "Data Sources",
+			Category:         "API Management",
 			ShortDescription: `Gets information about an existing API Management Service.`,
 			Description: `
 
 Use this data source to access information about an existing API Management Service.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"api",
+				"management",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -499,14 +505,17 @@ Use this data source to access information about an existing API Management Serv
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_api_management_api",
-			Category:         "Data Sources",
+			Category:         "API Management",
 			ShortDescription: `Gets information about an existing API Management API.`,
 			Description: `
 
 Use this data source to access information about an existing API Management API.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"api",
+				"management",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -675,14 +684,19 @@ Use this data source to access information about an existing API Management API.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_api_management_api_version_set",
-			Category:         "Data Sources",
+			Category:         "API Management",
 			ShortDescription: `Gets information about an existing API Version Set within an existing API Management Service.`,
 			Description: `
 
 Uses this data source to access information about an API Version Set within an API Management Service.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"api",
+				"management",
+				"version",
+				"set",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -759,14 +773,18 @@ Uses this data source to access information about an API Version Set within an A
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_api_management_group",
-			Category:         "Data Sources",
+			Category:         "API Management",
 			ShortDescription: `Gets information about an existing API Management Group.`,
 			Description: `
 
 Use this data source to access information about an existing API Management Group.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"api",
+				"management",
+				"group",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_management_name",
@@ -835,14 +853,18 @@ Use this data source to access information about an existing API Management Grou
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_api_management_product",
-			Category:         "Data Sources",
+			Category:         "API Management",
 			ShortDescription: `Gets information about an existing API Management Product.`,
 			Description: `
 
 Use this data source to access information about an existing API Management Product.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"api",
+				"management",
+				"product",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_management_name",
@@ -935,14 +957,18 @@ Use this data source to access information about an existing API Management Prod
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_api_management_user",
-			Category:         "Data Sources",
+			Category:         "API Management",
 			ShortDescription: `Gets information about an existing API Management User.`,
 			Description: `
 
 Use this data source to access information about an existing API Management User.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"api",
+				"management",
+				"user",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_management_name",
@@ -1019,14 +1045,17 @@ Use this data source to access information about an existing API Management User
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_app_configuration",
-			Category:         "Data Sources",
+			Category:         "App Configuration",
 			ShortDescription: `Gets information about an existing App Configuration.`,
 			Description: `
 
 Use this data source to access information about an existing App Configuration.
 
 `,
-			Keywords:  []string{},
+			Keywords: []string{
+				"app",
+				"configuration",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -1122,15 +1151,20 @@ Use this data source to access information about an existing App Configuration.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_app_service",
-			Category:         "Data Sources",
+			Category:         "App Service (Web Apps)",
 			ShortDescription: `Gets information about an existing App Service.`,
 			Description: `
 
 Use this data source to access information about an existing App Service.
 
 `,
-			Icon:     "Containers/10035-icon-service-App-Services.svg",
-			Keywords: []string{},
+			Icon: "Containers/10035-icon-service-App-Services.svg",
+			Keywords: []string{
+				"app",
+				"service",
+				"web",
+				"apps",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -1165,6 +1199,10 @@ Use this data source to access information about an existing App Service.
 					Description: `Does the App Service send session affinity cookies, which route client requests in the same session to the same instance?`,
 				},
 				resource.Attribute{
+					Name:        "custom_domain_verification_id",
+					Description: `An identifier used by App Service to perform domain ownership verification via DNS TXT record.`,
+				},
+				resource.Attribute{
 					Name:        "enabled",
 					Description: `Is the App Service Enabled?`,
 				},
@@ -1193,8 +1231,16 @@ Use this data source to access information about an existing App Service.
 					Description: `A comma separated list of outbound IP addresses - such as ` + "`" + `52.23.25.3,52.143.43.12` + "`" + ``,
 				},
 				resource.Attribute{
+					Name:        "outbound_ip_address_list",
+					Description: `A list of outbound IP addresses - such as ` + "`" + `["52.23.25.3", "52.143.43.12"]` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "possible_outbound_ip_addresses",
 					Description: `A comma separated list of outbound IP addresses - such as ` + "`" + `52.23.25.3,52.143.43.12,52.143.43.17` + "`" + ` - not all of which are necessarily in use. Superset of ` + "`" + `outbound_ip_addresses` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "possible_outbound_ip_address_list",
+					Description: `A list of outbound IP addresses - such as ` + "`" + `["52.23.25.3", "52.143.43.12", "52.143.43.17"]` + "`" + ` - not all of which are necessarily in use. Superset of ` + "`" + `outbound_ip_address_list` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "source_control",
@@ -1225,6 +1271,10 @@ Use this data source to access information about an existing App Service.
 					Description: `The IP Address used for this IP Restriction.`,
 				},
 				resource.Attribute{
+					Name:        "service_tag",
+					Description: `The Service Tag used for this IP Restriction.`,
+				},
+				resource.Attribute{
 					Name:        "subnet_mask",
 					Description: `The Subnet mask used for this IP Restriction.`,
 				},
@@ -1243,6 +1293,10 @@ Use this data source to access information about an existing App Service.
 				resource.Attribute{
 					Name:        "ip_address",
 					Description: `The IP Address used for this IP Restriction in CIDR notation.`,
+				},
+				resource.Attribute{
+					Name:        "service_tag",
+					Description: `The Service Tag used for this IP Restriction.`,
 				},
 				resource.Attribute{
 					Name:        "virtual_network_subnet_id",
@@ -1291,6 +1345,10 @@ Use this data source to access information about an existing App Service.
 				resource.Attribute{
 					Name:        "health_check_path",
 					Description: `The health check path to be pinged by App Service.`,
+				},
+				resource.Attribute{
+					Name:        "number_of_workers",
+					Description: `The scaled number of workers (for per site scaling) of this App Service.`,
 				},
 				resource.Attribute{
 					Name:        "ip_restriction",
@@ -1415,6 +1473,10 @@ Use this data source to access information about an existing App Service.
 					Description: `Does the App Service send session affinity cookies, which route client requests in the same session to the same instance?`,
 				},
 				resource.Attribute{
+					Name:        "custom_domain_verification_id",
+					Description: `An identifier used by App Service to perform domain ownership verification via DNS TXT record.`,
+				},
+				resource.Attribute{
 					Name:        "enabled",
 					Description: `Is the App Service Enabled?`,
 				},
@@ -1443,8 +1505,16 @@ Use this data source to access information about an existing App Service.
 					Description: `A comma separated list of outbound IP addresses - such as ` + "`" + `52.23.25.3,52.143.43.12` + "`" + ``,
 				},
 				resource.Attribute{
+					Name:        "outbound_ip_address_list",
+					Description: `A list of outbound IP addresses - such as ` + "`" + `["52.23.25.3", "52.143.43.12"]` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "possible_outbound_ip_addresses",
 					Description: `A comma separated list of outbound IP addresses - such as ` + "`" + `52.23.25.3,52.143.43.12,52.143.43.17` + "`" + ` - not all of which are necessarily in use. Superset of ` + "`" + `outbound_ip_addresses` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "possible_outbound_ip_address_list",
+					Description: `A list of outbound IP addresses - such as ` + "`" + `["52.23.25.3", "52.143.43.12", "52.143.43.17"]` + "`" + ` - not all of which are necessarily in use. Superset of ` + "`" + `outbound_ip_address_list` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "source_control",
@@ -1475,6 +1545,10 @@ Use this data source to access information about an existing App Service.
 					Description: `The IP Address used for this IP Restriction.`,
 				},
 				resource.Attribute{
+					Name:        "service_tag",
+					Description: `The Service Tag used for this IP Restriction.`,
+				},
+				resource.Attribute{
 					Name:        "subnet_mask",
 					Description: `The Subnet mask used for this IP Restriction.`,
 				},
@@ -1493,6 +1567,10 @@ Use this data source to access information about an existing App Service.
 				resource.Attribute{
 					Name:        "ip_address",
 					Description: `The IP Address used for this IP Restriction in CIDR notation.`,
+				},
+				resource.Attribute{
+					Name:        "service_tag",
+					Description: `The Service Tag used for this IP Restriction.`,
 				},
 				resource.Attribute{
 					Name:        "virtual_network_subnet_id",
@@ -1541,6 +1619,10 @@ Use this data source to access information about an existing App Service.
 				resource.Attribute{
 					Name:        "health_check_path",
 					Description: `The health check path to be pinged by App Service.`,
+				},
+				resource.Attribute{
+					Name:        "number_of_workers",
+					Description: `The scaled number of workers (for per site scaling) of this App Service.`,
 				},
 				resource.Attribute{
 					Name:        "ip_restriction",
@@ -1643,14 +1725,20 @@ Use this data source to access information about an existing App Service.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_app_service_certificate",
-			Category:         "Data Sources",
+			Category:         "App Service (Web Apps)",
 			ShortDescription: `Gets information about an existing App Service Certificate.`,
 			Description: `
 
 Use this data source to access information about an App Service Certificate.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"app",
+				"service",
+				"web",
+				"apps",
+				"certificate",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -1739,14 +1827,21 @@ Use this data source to access information about an App Service Certificate.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_app_service_certificate_order",
-			Category:         "Data Sources",
+			Category:         "App Service (Web Apps)",
 			ShortDescription: `Gets information about an existing App Service Certificate Order.`,
 			Description: `
 
 Use this data source to access information about an existing App Service Certificate Order.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"app",
+				"service",
+				"web",
+				"apps",
+				"certificate",
+				"order",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -1947,28 +2042,85 @@ Use this data source to access information about an existing App Service Certifi
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_app_service_environment",
-			Category:         "Data Sources",
+			Category:         "App Service (Web Apps)",
 			ShortDescription: `Gets information about an existing App Service Environment.`,
 			Description: `
 
 Use this data source to access information about an existing App Service Environment.
 
 `,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
-			Attributes: []resource.Attribute{},
+			Keywords: []string{
+				"app",
+				"service",
+				"web",
+				"apps",
+				"environment",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the App Service Environment.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_setting",
+					Description: `Zero or more ` + "`" + `cluster_setting` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "front_end_scale_factor",
+					Description: `The number of app instances per App Service Environment Front End.`,
+				},
+				resource.Attribute{
+					Name:        "internal_ip_address",
+					Description: `IP address of internal load balancer of the App Service Environment.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure Region where the App Service Environment exists.`,
+				},
+				resource.Attribute{
+					Name:        "outbound_ip_addresses",
+					Description: `List of outbound IP addresses of the App Service Environment.`,
+				},
+				resource.Attribute{
+					Name:        "pricing_tier",
+					Description: `The Pricing Tier (Isolated SKU) of the App Service Environment.`,
+				},
+				resource.Attribute{
+					Name:        "service_ip_address",
+					Description: `IP address of service endpoint of the App Service Environment.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the App Service Environment. --- A ` + "`" + `cluster_setting` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the Cluster Setting.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value for the Cluster Setting. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions: - ` + "`" + `read` + "`" + ` - (Defaults to 5 minutes) Used when retrieving the App Service Environment.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_app_service_plan",
-			Category:         "Data Sources",
+			Category:         "App Service (Web Apps)",
 			ShortDescription: `Gets information about an existing App Service Plan.`,
 			Description: `
 
 Use this data source to access information about an existing App Service Plan (formerly known as a ` + "`" + `Server Farm` + "`" + `).
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"app",
+				"service",
+				"web",
+				"apps",
+				"plan",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -2112,16 +2264,67 @@ Use this data source to access information about an existing App Service Plan (f
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_application_gateway",
+			Category:         "Network",
+			ShortDescription: `Gets information about an existing Application Gateway.`,
+			Description: `
+
+Use this data source to access information about an existing Application Gateway.
+
+`,
+			Icon: "Other/10076-icon-service-Application-Gateways.svg",
+			Keywords: []string{
+				"network",
+				"application",
+				"gateway",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Application Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "identity",
+					Description: `A ` + "`" + `identity` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure Region where the Application Gateway exists.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the Application Gateway. --- A ` + "`" + `identity` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "identity_ids",
+					Description: `A list of Managed Identity ID's assigned to this Application Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of Managed Identity assigned to this Application Gateway. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Application Gateway.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_application_insights",
-			Category:         "Data Sources",
+			Category:         "Application Insights",
 			ShortDescription: `Gets information about an existing Application Insights component.`,
 			Description: `
 
 Use this data source to access information about an existing Application Insights component.
 
 `,
-			Icon:     "Management_and_Governance/00012-icon-service-Application-Insights.svg",
-			Keywords: []string{},
+			Icon: "Management_and_Governance/00012-icon-service-Application-Insights.svg",
+			Keywords: []string{
+				"application",
+				"insights",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -2210,15 +2413,20 @@ Use this data source to access information about an existing Application Insight
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_application_security_group",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Gets information about an existing Application Security Group.`,
 			Description: `
 
 Use this data source to access information about an existing Application Security Group.
 
 `,
-			Icon:     "Networking/10083-icon-service-Application-Security-Groups.svg",
-			Keywords: []string{},
+			Icon: "Networking/10083-icon-service-Application-Security-Groups.svg",
+			Keywords: []string{
+				"network",
+				"application",
+				"security",
+				"group",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -2267,14 +2475,16 @@ Use this data source to access information about an existing Application Securit
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_attestation",
-			Category:         "Data Sources",
+			Category:         "Attestation",
 			ShortDescription: `Gets information about an existing Attestation Provider.`,
 			Description: `
 
 Use this data source to access information about an existing Attestation Provider.
 
 `,
-			Keywords:  []string{},
+			Keywords: []string{
+				"attestation",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -2306,15 +2516,18 @@ Use this data source to access information about an existing Attestation Provide
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_automation_account",
-			Category:         "Data Sources",
+			Category:         "Automation",
 			ShortDescription: `Gets information about an existing Automation Account.`,
 			Description: `
 
 Use this data source to access information about an existing Automation Account.
 
 `,
-			Icon:     "Management_and_Governance/00022-icon-service-Automation-Accounts.svg",
-			Keywords: []string{},
+			Icon: "Management_and_Governance/00022-icon-service-Automation-Accounts.svg",
+			Keywords: []string{
+				"automation",
+				"account",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -2371,7 +2584,7 @@ Use this data source to access information about an existing Automation Account.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_automation_variable_bool",
-			Category:         "Data Sources",
+			Category:         "Automation",
 			ShortDescription: `Gets information about an existing Automation Bool Variable`,
 			Description: `
 
@@ -2379,7 +2592,11 @@ Use this data source to access information about an existing Automation Bool Var
 
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"automation",
+				"variable",
+				"bool",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -2440,7 +2657,7 @@ Use this data source to access information about an existing Automation Bool Var
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_automation_variable_datetime",
-			Category:         "Data Sources",
+			Category:         "Automation",
 			ShortDescription: `Gets information about an existing Automation Datetime Variable`,
 			Description: `
 
@@ -2448,7 +2665,11 @@ Use this data source to access information about an existing Automation Datetime
 
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"automation",
+				"variable",
+				"datetime",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -2509,7 +2730,7 @@ Use this data source to access information about an existing Automation Datetime
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_automation_variable_int",
-			Category:         "Data Sources",
+			Category:         "Automation",
 			ShortDescription: `Gets information about an existing Automation Int Variable`,
 			Description: `
 
@@ -2517,7 +2738,11 @@ Use this data source to access information about an existing Automation Int Vari
 
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"automation",
+				"variable",
+				"int",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -2578,7 +2803,7 @@ Use this data source to access information about an existing Automation Int Vari
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_automation_variable_string",
-			Category:         "Data Sources",
+			Category:         "Automation",
 			ShortDescription: `Gets information about an existing Automation String Variable`,
 			Description: `
 
@@ -2586,7 +2811,11 @@ Use this data source to access information about an existing Automation String V
 
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"automation",
+				"variable",
+				"string",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -2647,15 +2876,19 @@ Use this data source to access information about an existing Automation String V
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_availability_set",
-			Category:         "Data Sources",
+			Category:         "Compute",
 			ShortDescription: `Gets information about an existing Availability Set.`,
 			Description: `
 
 Use this data source to access information about an existing Availability Set.
 
 `,
-			Icon:     "Compute/10025-icon-service-Availability-Sets.svg",
-			Keywords: []string{},
+			Icon: "Compute/10025-icon-service-Availability-Sets.svg",
+			Keywords: []string{
+				"compute",
+				"availability",
+				"set",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -2728,14 +2961,20 @@ Use this data source to access information about an existing Availability Set.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_backup_policy_vm",
-			Category:         "Data Sources",
+			Category:         "Recovery Services",
 			ShortDescription: `Gets information about an existing existing VM Backup Policy.`,
 			Description: `
 
 Use this data source to access information about an existing VM Backup Policy.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"recovery",
+				"services",
+				"backup",
+				"policy",
+				"vm",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -2780,15 +3019,18 @@ Use this data source to access information about an existing VM Backup Policy.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_batch_account",
-			Category:         "Data Sources",
+			Category:         "Batch",
 			ShortDescription: `Get information about an existing Batch Account`,
 			Description: `
 
 Use this data source to access information about an existing Batch Account.
 
 `,
-			Icon:     "Containers/10031-icon-service-Batch-Accounts.svg",
-			Keywords: []string{},
+			Icon: "Containers/10031-icon-service-Batch-Accounts.svg",
+			Keywords: []string{
+				"batch",
+				"account",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -2909,14 +3151,17 @@ Use this data source to access information about an existing Batch Account.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_batch_certificate",
-			Category:         "Data Sources",
+			Category:         "Batch",
 			ShortDescription: `Get information about an existing certificate in a Batch Account`,
 			Description: `
 
 Use this data source to access information about an existing certificate in a Batch Account.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"batch",
+				"certificate",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -2985,11 +3230,14 @@ Use this data source to access information about an existing certificate in a Ba
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_batch_pool",
-			Category:         "Data Sources",
+			Category:         "Batch",
 			ShortDescription: `Get information about an existing Azure Batch pool.`,
 			Description:      ``,
-			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
+			Keywords: []string{
+				"batch",
+				"pool",
+			},
+			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -3211,8 +3459,64 @@ Use this data source to access information about an existing certificate in a Ba
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_billing_enrollment_account_scope",
+			Category:         "Billing",
+			ShortDescription: `This is a helper Data Source to provide a correctly formatted Billing Scope ID for an Enterprise Account Enrollment.`,
+			Description: `
+
+Use this data source to access information about an existing Enrollment Account Billing Scope.
+
+`,
+			Keywords: []string{
+				"billing",
+				"enrollment",
+				"account",
+				"scope",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Enrollment Account Billing Scope. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Enrollment Account Billing Scope.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_billing_mca_account_scope",
+			Category:         "Billing",
+			ShortDescription: `This is a helper Data Source to provide a correctly formatted Billing Scope ID for a Microsoft Customer Agreement Account.`,
+			Description: `
+
+Use this data source to access an ID for your MCA Account billing scope.
+
+`,
+			Keywords: []string{
+				"billing",
+				"mca",
+				"account",
+				"scope",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Billing Scope. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Billing Scope.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_blueprint_definition",
-			Category:         "Data Sources",
+			Category:         "Blueprints",
 			ShortDescription: `Gets information about an existing Blueprint Definition`,
 			Description: `
 
@@ -3221,7 +3525,11 @@ Use this data source to access information about an existing Azure Blueprint Def
 ~> **NOTE:** Azure Blueprints are in Preview and potentially subject to breaking change without notice.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"blueprints",
+				"blueprint",
+				"definition",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -3302,7 +3610,7 @@ Use this data source to access information about an existing Azure Blueprint Def
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_blueprint_published_version",
-			Category:         "Data Sources",
+			Category:         "Blueprints",
 			ShortDescription: `Gets information about an existing Blueprint Published Version`,
 			Description: `
 
@@ -3311,7 +3619,12 @@ Use this data source to access information about an existing Blueprint Published
 ~> **NOTE:** Azure Blueprints are in Preview and potentially subject to breaking change without notice.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"blueprints",
+				"blueprint",
+				"published",
+				"version",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "blueprint_name",
@@ -3380,15 +3693,18 @@ Use this data source to access information about an existing Blueprint Published
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_cdn_profile",
-			Category:         "Data Sources",
+			Category:         "CDN",
 			ShortDescription: `Gets information about an existing CDN Profile`,
 			Description: `
 
 Use this data source to access information about an existing CDN Profile.
 
 `,
-			Icon:     "Networking/00056-icon-service-CDN-Profiles.svg",
-			Keywords: []string{},
+			Icon: "Networking/00056-icon-service-CDN-Profiles.svg",
+			Keywords: []string{
+				"cdn",
+				"profile",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -3437,14 +3753,18 @@ Use this data source to access information about an existing CDN Profile.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_client_config",
-			Category:         "Data Sources",
+			Category:         "Base",
 			ShortDescription: `Gets information about the configuration of the azurerm provider.`,
 			Description: `
 
 Use this data source to access the configuration of the AzureRM provider.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"base",
+				"client",
+				"config",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "read",
@@ -3460,16 +3780,119 @@ Use this data source to access the configuration of the AzureRM provider.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_cognitive_account",
+			Category:         "Cognitive Services",
+			ShortDescription: `Gets information about an existing Cognitive Services Account.`,
+			Description: `
+
+Use this data source to access information about an existing Cognitive Services Account.
+
+`,
+			Keywords: []string{
+				"cognitive",
+				"services",
+				"account",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the Cognitive Services Account.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Specifies the name of the resource group where the Cognitive Services Account resides. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure location where the Cognitive Services Account exists`,
+				},
+				resource.Attribute{
+					Name:        "kind",
+					Description: `The kind of the Cognitive Services Account`,
+				},
+				resource.Attribute{
+					Name:        "sku_name",
+					Description: `The sku name of the Cognitive Services Account`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `The endpoint of the Cognitive Services Account`,
+				},
+				resource.Attribute{
+					Name:        "qna_runtime_endpoint",
+					Description: `If ` + "`" + `kind` + "`" + ` is ` + "`" + `QnAMaker` + "`" + ` the link to the QNA runtime.`,
+				},
+				resource.Attribute{
+					Name:        "primary_access_key",
+					Description: `The primary access key of the Cognitive Services Account`,
+				},
+				resource.Attribute{
+					Name:        "secondary_access_key",
+					Description: `The secondary access key of the Cognitive Services Account`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Cognitive Services Account.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure location where the Cognitive Services Account exists`,
+				},
+				resource.Attribute{
+					Name:        "kind",
+					Description: `The kind of the Cognitive Services Account`,
+				},
+				resource.Attribute{
+					Name:        "sku_name",
+					Description: `The sku name of the Cognitive Services Account`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `The endpoint of the Cognitive Services Account`,
+				},
+				resource.Attribute{
+					Name:        "qna_runtime_endpoint",
+					Description: `If ` + "`" + `kind` + "`" + ` is ` + "`" + `QnAMaker` + "`" + ` the link to the QNA runtime.`,
+				},
+				resource.Attribute{
+					Name:        "primary_access_key",
+					Description: `The primary access key of the Cognitive Services Account`,
+				},
+				resource.Attribute{
+					Name:        "secondary_access_key",
+					Description: `The secondary access key of the Cognitive Services Account`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Cognitive Services Account.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_container_registry",
-			Category:         "Data Sources",
+			Category:         "Container",
 			ShortDescription: `Get information about an existing Container Registry`,
 			Description: `
 
 Use this data source to access information about an existing Container Registry.
 
 `,
-			Icon:     "Containers/10105-icon-service-Container-Registries.svg",
-			Keywords: []string{},
+			Icon: "Containers/10105-icon-service-Container-Registries.svg",
+			Keywords: []string{
+				"container",
+				"registry",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -3566,14 +3989,18 @@ Use this data source to access information about an existing Container Registry.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_cosmosdb_account",
-			Category:         "Data Sources",
+			Category:         "CosmosDB (DocumentDB)",
 			ShortDescription: `Gets information about an existing CosmosDB (formally DocumentDB) Account.`,
 			Description: `
 
 Use this data source to access information about an existing CosmosDB (formally DocumentDB) Account.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"cosmosdb",
+				"documentdb",
+				"account",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -3602,6 +4029,10 @@ Use this data source to access information about an existing CosmosDB (formally 
 				resource.Attribute{
 					Name:        "kind",
 					Description: `The Kind of the CosmosDB account.`,
+				},
+				resource.Attribute{
+					Name:        "key_vault_key_id",
+					Description: `The Key Vault key URI for CMK encryption. ~>`,
 				},
 				resource.Attribute{
 					Name:        "ip_range_filter",
@@ -3712,6 +4143,10 @@ Use this data source to access information about an existing CosmosDB (formally 
 				resource.Attribute{
 					Name:        "kind",
 					Description: `The Kind of the CosmosDB account.`,
+				},
+				resource.Attribute{
+					Name:        "key_vault_key_id",
+					Description: `The Key Vault key URI for CMK encryption. ~>`,
 				},
 				resource.Attribute{
 					Name:        "ip_range_filter",
@@ -3806,29 +4241,36 @@ Use this data source to access information about an existing CosmosDB (formally 
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_data_factory",
-			Category:         "Data Sources",
+			Category:         "Data Factory",
 			ShortDescription: `Gets information about an existing Azure Data Factory (Version 2).`,
 			Description: `
 
 Use this data source to access information about an existing Azure Data Factory (Version 2).
 
 `,
-			Icon:       "Integration/00041-icon-service-Data-Factory.svg",
-			Keywords:   []string{},
+			Icon: "Integration/00041-icon-service-Data-Factory.svg",
+			Keywords: []string{
+				"data",
+				"factory",
+			},
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_data_lake_store",
-			Category:         "Data Sources",
+			Category:         "Data Lake",
 			ShortDescription: `Gets information about an existing Data Lake Store`,
 			Description: `
 
 Use this data source to access information about an existing Data Lake Store.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"data",
+				"lake",
+				"store",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -3909,15 +4351,18 @@ Use this data source to access information about an existing Data Lake Store.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_data_share",
-			Category:         "Data Sources",
+			Category:         "Data Share",
 			ShortDescription: `Gets information about an existing Data Share.`,
 			Description: `
 
 Use this data source to access information about an existing Data Share.
 
 `,
-			Icon:      "Storage/10098-icon-service-Data-Shares.svg",
-			Keywords:  []string{},
+			Icon: "Storage/10098-icon-service-Data-Shares.svg",
+			Keywords: []string{
+				"data",
+				"share",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -3961,14 +4406,18 @@ Use this data source to access information about an existing Data Share.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_data_share_account",
-			Category:         "Data Sources",
+			Category:         "Data Share",
 			ShortDescription: `Gets information about an existing Data Share Account.`,
 			Description: `
 
 Use this data source to access information about an existing Data Share Account.
 
 `,
-			Keywords:  []string{},
+			Keywords: []string{
+				"data",
+				"share",
+				"account",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -4004,14 +4453,20 @@ Use this data source to access information about an existing Data Share Account.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_data_share_dataset_blob_storage",
-			Category:         "Data Sources",
+			Category:         "Data Share",
 			ShortDescription: `Gets information about an existing Data Share Blob Storage Dataset.`,
 			Description: `
 
 Use this data source to access information about an existing Data Share Blob Storage Dataset.
 
 `,
-			Keywords:  []string{},
+			Keywords: []string{
+				"data",
+				"share",
+				"dataset",
+				"blob",
+				"storage",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -4059,14 +4514,20 @@ Use this data source to access information about an existing Data Share Blob Sto
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_data_share_dataset_data_lake_gen1",
-			Category:         "Data Sources",
+			Category:         "Data Share",
 			ShortDescription: `Gets information about an existing DataShareDataLakeGen1Dataset.`,
 			Description: `
 
 Use this data source to access information about an existing DataShareDataLakeGen1Dataset.
 
 `,
-			Keywords:  []string{},
+			Keywords: []string{
+				"data",
+				"share",
+				"dataset",
+				"lake",
+				"gen1",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -4098,14 +4559,20 @@ Use this data source to access information about an existing DataShareDataLakeGe
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_data_share_dataset_data_lake_gen2",
-			Category:         "Data Sources",
+			Category:         "Data Share",
 			ShortDescription: `Gets information about an existing Data Share Data Lake Gen2 Dataset.`,
 			Description: `
 
 Use this data source to access information about an existing Data Share Data Lake Gen2 Dataset.
 
 `,
-			Keywords:  []string{},
+			Keywords: []string{
+				"data",
+				"share",
+				"dataset",
+				"lake",
+				"gen2",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -4141,14 +4608,20 @@ Use this data source to access information about an existing Data Share Data Lak
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_data_share_dataset_kusto_cluster",
-			Category:         "Data Sources",
+			Category:         "Data Share",
 			ShortDescription: `Gets information about an existing Data Share Kusto Cluster Dataset.`,
 			Description: `
 
 Use this data source to access information about an existing Data Share Kusto Cluster Dataset.
 
 `,
-			Keywords:  []string{},
+			Keywords: []string{
+				"data",
+				"share",
+				"dataset",
+				"kusto",
+				"cluster",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -4175,15 +4648,60 @@ Use this data source to access information about an existing Data Share Kusto Cl
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_data_share_dataset_kusto_database",
+			Category:         "Data Share",
+			ShortDescription: `Gets information about an existing Data Share Kusto Database Dataset.`,
+			Description: `
+
+Use this data source to access information about an existing Data Share Kusto Database Dataset.
+
+`,
+			Keywords: []string{
+				"data",
+				"share",
+				"dataset",
+				"kusto",
+				"database",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID of the Data Share Kusto Database Dataset.`,
+				},
+				resource.Attribute{
+					Name:        "kusto_database_id",
+					Description: `The resource ID of the Kusto Cluster Database to be shared with the receiver.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The name of the Data Share Dataset.`,
+				},
+				resource.Attribute{
+					Name:        "kusto_cluster_location",
+					Description: `The location of the Kusto Cluster. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Data Share Kusto Database Dataset.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_database_migration_project",
-			Category:         "Data Sources",
+			Category:         "Database Migration",
 			ShortDescription: `Gets information about an existing Database Migration Project`,
 			Description: `
 
 Use this data source to access information about an existing Database Migration Project.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"database",
+				"migration",
+				"project",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -4252,7 +4770,7 @@ Use this data source to access information about an existing Database Migration 
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_database_migration_service",
-			Category:         "Data Sources",
+			Category:         "Database Migration",
 			ShortDescription: `Gets information about an existing Database Migration Service`,
 			Description: `
 
@@ -4260,7 +4778,11 @@ Use this data source to access information about an existing Database Migration 
 
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"database",
+				"migration",
+				"service",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -4324,15 +4846,102 @@ Use this data source to access information about an existing Database Migration 
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_databricks_workspace",
+			Category:         "Databricks",
+			ShortDescription: `Gets information on an existing Databricks Workspace`,
+			Description: `
+
+Use this data source to access information about an existing Databricks workspace.
+
+`,
+			Keywords: []string{
+				"databricks",
+				"workspace",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the Databricks Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `The Name of the Resource Group where the Databricks Workspace exists. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Databricks Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure location where the Databricks Workspace exists.`,
+				},
+				resource.Attribute{
+					Name:        "sku",
+					Description: `SKU of this Databricks Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "workspace_id",
+					Description: `Unique ID of this Databricks Workspace in Databricks management plane.`,
+				},
+				resource.Attribute{
+					Name:        "workspace_url",
+					Description: `URL this Databricks Workspace is accessible on.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the Databricks Workspace. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Databricks Workspace.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Databricks Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure location where the Databricks Workspace exists.`,
+				},
+				resource.Attribute{
+					Name:        "sku",
+					Description: `SKU of this Databricks Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "workspace_id",
+					Description: `Unique ID of this Databricks Workspace in Databricks management plane.`,
+				},
+				resource.Attribute{
+					Name:        "workspace_url",
+					Description: `URL this Databricks Workspace is accessible on.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the Databricks Workspace. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Databricks Workspace.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_dedicated_host",
-			Category:         "Data Sources",
+			Category:         "Compute",
 			ShortDescription: `Gets information about an existing Dedicated Host`,
 			Description: `
 
 Use this data source to access information about an existing Dedicated Host.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"compute",
+				"dedicated",
+				"host",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -4385,14 +4994,19 @@ Use this data source to access information about an existing Dedicated Host.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_dedicated_host_group",
-			Category:         "Data Sources",
+			Category:         "Compute",
 			ShortDescription: `Gets information about an existing Dedicated Host Group`,
 			Description: `
 
 Use this data source to access information about an existing Dedicated Host Group.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"compute",
+				"dedicated",
+				"host",
+				"group",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -4457,15 +5071,19 @@ Use this data source to access information about an existing Dedicated Host Grou
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_dev_test_lab",
-			Category:         "Data Sources",
+			Category:         "Dev Test",
 			ShortDescription: `Gets information about an existing Dev Test Lab.`,
 			Description: `
 
 Use this data source to access information about an existing Dev Test Lab.
 
 `,
-			Icon:     "DevOps/10264-icon-service-DevTest-Labs.svg",
-			Keywords: []string{},
+			Icon: "DevOps/10264-icon-service-DevTest-Labs.svg",
+			Keywords: []string{
+				"dev",
+				"test",
+				"lab",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -4570,14 +5188,19 @@ Use this data source to access information about an existing Dev Test Lab.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_dev_test_virtual_network",
-			Category:         "Data Sources",
+			Category:         "Dev Test",
 			ShortDescription: `Gets information about an existing Dev Test Lab Virtual Network.`,
 			Description: `
 
 Use this data source to access information about an existing Dev Test Lab Virtual Network.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"dev",
+				"test",
+				"virtual",
+				"network",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -4693,16 +5316,87 @@ Use this data source to access information about an existing Dev Test Lab Virtua
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_digital_twins_instance",
+			Category:         "Digital Twins",
+			ShortDescription: `Gets information about an existing Digital Twins instance.`,
+			Description: `
+
+Use this data source to access information about an existing Digital Twins instance.
+
+`,
+			Keywords: []string{
+				"digital",
+				"twins",
+				"instance",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Digital Twins instance.`,
+				},
+				resource.Attribute{
+					Name:        "host_name",
+					Description: `The Api endpoint to work with this Digital Twins instance.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure Region where the Digital Twins instance exists.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the Digital Twins instance. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Digital Twins instance.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_disk_access",
+			Category:         "Compute",
+			ShortDescription: `Gets information about an existing Disk Access.`,
+			Description: `
+
+Use this data source to access information about an existing Disk Access.
+
+`,
+			Keywords: []string{
+				"compute",
+				"disk",
+				"access",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Disk Access. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Disk.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_disk_encryption_set",
-			Category:         "Data Sources",
+			Category:         "Compute",
 			ShortDescription: `Gets information about an existing Disk Encryption Set`,
 			Description: `
 
 Use this data source to access information about an existing Disk Encryption Set.
 
 `,
-			Icon:     "Other/00398-icon-service-Disk-Encryption-Sets.svg",
-			Keywords: []string{},
+			Icon: "Other/00398-icon-service-Disk-Encryption-Sets.svg",
+			Keywords: []string{
+				"compute",
+				"disk",
+				"encryption",
+				"set",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -4751,15 +5445,18 @@ Use this data source to access information about an existing Disk Encryption Set
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_dns_zone",
-			Category:         "Data Sources",
+			Category:         "DNS",
 			ShortDescription: `Gets information about an existing DNS Zone.`,
 			Description: `
 
 Use this data source to access information about an existing DNS Zone.
 
 `,
-			Icon:     "Networking/10064-icon-service-DNS-Zones.svg",
-			Keywords: []string{},
+			Icon: "Networking/10064-icon-service-DNS-Zones.svg",
+			Keywords: []string{
+				"dns",
+				"zone",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -4823,16 +5520,77 @@ Use this data source to access information about an existing DNS Zone.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_eventgrid_domain_topic",
+			Category:         "Messaging",
+			ShortDescription: `Gets information about an existing EventGrid Domain Topic`,
+			Description: `
+
+Use this data source to access information about an existing EventGrid Domain Topic
+
+`,
+			Keywords: []string{
+				"messaging",
+				"eventgrid",
+				"domain",
+				"topic",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the EventGrid Domain Topic resource.`,
+				},
+				resource.Attribute{
+					Name:        "domain_name",
+					Description: `The name of the EventGrid Domain Topic domain.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `The name of the resource group in which the EventGrid Domain Topic exists. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The EventGrid Domain Topic ID.`,
+				},
+				resource.Attribute{
+					Name:        "domain_name",
+					Description: `The EventGrid Domain Topic Domain name. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the EventGrid Domain Topic.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The EventGrid Domain Topic ID.`,
+				},
+				resource.Attribute{
+					Name:        "domain_name",
+					Description: `The EventGrid Domain Topic Domain name. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the EventGrid Domain Topic.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_eventgrid_topic",
-			Category:         "Data Sources",
+			Category:         "Messaging",
 			ShortDescription: `Gets information about an existing EventGrid Topic`,
 			Description: `
 
 Use this data source to access information about an existing EventGrid Topic
 
 `,
-			Icon:     "Integration/10206-icon-service-Event-Grid-Topics.svg",
-			Keywords: []string{},
+			Icon: "Integration/10206-icon-service-Event-Grid-Topics.svg",
+			Keywords: []string{
+				"messaging",
+				"eventgrid",
+				"topic",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -4889,15 +5647,18 @@ Use this data source to access information about an existing EventGrid Topic
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_eventhub",
-			Category:         "Data Sources",
+			Category:         "Messaging",
 			ShortDescription: `Gets information about an existing EventHub.`,
 			Description: `
 
 Use this data source to access information about an existing EventHub.
 
 `,
-			Icon:      "Analytics/00039-icon-service-Event-Hubs.svg",
-			Keywords:  []string{},
+			Icon: "Analytics/00039-icon-service-Event-Hubs.svg",
+			Keywords: []string{
+				"messaging",
+				"eventhub",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -4921,10 +5682,15 @@ Use this data source to access information about an existing EventHub.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_eventhub_authorization_rule",
-			Category:         "Data Sources",
+			Category:         "Messaging",
 			ShortDescription: `Gets information about an Event Hubs Authorization Rule within an Event Hub.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"messaging",
+				"eventhub",
+				"authorization",
+				"rule",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -5013,14 +5779,19 @@ Use this data source to access information about an existing EventHub.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_eventhub_consumer_group",
-			Category:         "Data Sources",
+			Category:         "Messaging",
 			ShortDescription: `Gets information about an Event Hubs Consumer Group within an Event Hub.`,
 			Description: `
 
 Use this data source to access information about an existing Event Hubs Consumer Group within an Event Hub.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"messaging",
+				"eventhub",
+				"consumer",
+				"group",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -5069,14 +5840,18 @@ Use this data source to access information about an existing Event Hubs Consumer
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_eventhub_namespace",
-			Category:         "Data Sources",
+			Category:         "Messaging",
 			ShortDescription: `Gets information about an existing EventHub Namespace.`,
 			Description: `
 
 Use this data source to access information about an existing EventHub Namespace.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"messaging",
+				"eventhub",
+				"namespace",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -5221,14 +5996,20 @@ Use this data source to access information about an existing EventHub Namespace.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_eventhub_namespace_authorization_rule",
-			Category:         "Data Sources",
+			Category:         "Messaging",
 			ShortDescription: `Gets information about an existing Authorization Rule for an Event Hub Namespace.`,
 			Description: `
 
 Use this data source to access information about an Authorization Rule for an Event Hub Namespace.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"messaging",
+				"eventhub",
+				"namespace",
+				"authorization",
+				"rule",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -5337,15 +6118,20 @@ Use this data source to access information about an Authorization Rule for an Ev
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_express_route_circuit",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Gets information about an existing ExpressRoute circuit.`,
 			Description: `
 
 Use this data source to access information about an existing ExpressRoute circuit.
 
 `,
-			Icon:     "Networking/10079-icon-service-ExpressRoute-Circuits.svg",
-			Keywords: []string{},
+			Icon: "Networking/10079-icon-service-ExpressRoute-Circuits.svg",
+			Keywords: []string{
+				"network",
+				"express",
+				"route",
+				"circuit",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -5522,14 +6308,17 @@ Use this data source to access information about an existing ExpressRoute circui
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_firewall",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Gets information about an existing Azure Firewall.`,
 			Description: `
 
 Use this data source to access information about an existing Azure Firewall.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"network",
+				"firewall",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -5544,8 +6333,48 @@ Use this data source to access information about an existing Azure Firewall.
 					Description: `The ID of the Azure Firewall.`,
 				},
 				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure location where the Azure Firewall exists.`,
+				},
+				resource.Attribute{
+					Name:        "sku_name",
+					Description: `The sku name of the Azure Firewall.`,
+				},
+				resource.Attribute{
+					Name:        "sku_tier",
+					Description: `The sku tier of the Azure Firewall.`,
+				},
+				resource.Attribute{
+					Name:        "firewall_policy_id",
+					Description: `The ID of the Firewall Policy applied to the Azure Firewall.`,
+				},
+				resource.Attribute{
 					Name:        "ip_configuration",
-					Description: `A ` + "`" + `ip_configuration` + "`" + ` block as defined below. --- A ` + "`" + `ip_configuration` + "`" + ` block exports the following:`,
+					Description: `A ` + "`" + `ip_configuration` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "dns_servers",
+					Description: `The list of DNS servers that the Azure Firewall will direct DNS traffic to the for name resolution.`,
+				},
+				resource.Attribute{
+					Name:        "management_ip_configuration",
+					Description: `A ` + "`" + `management_ip_configuration` + "`" + ` block as defined below, which allows force-tunnelling of traffic to be performed by the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "threat_intel_mode",
+					Description: `The operation mode for threat intelligence-based filtering.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_hub",
+					Description: `A ` + "`" + `virtual_hub` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `The availability zones in which the Azure Firewall is created.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the Azure Firewall. --- A ` + "`" + `ip_configuration` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
@@ -5554,6 +6383,30 @@ Use this data source to access information about an existing Azure Firewall.
 				resource.Attribute{
 					Name:        "private_ip_address",
 					Description: `The Private IP Address of the Azure Firewall.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of the Subnet where the Azure Firewall is deployed.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_address",
+					Description: `The Private IP Address of the Azure Firewall.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_hub_id",
+					Description: `The ID of the Virtual Hub where the Azure Firewall resides in.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_count",
+					Description: `The number of public IPs assigned to the Azure Firewall.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_addresses",
+					Description: `The list of public IP addresses associated with the Azure Firewall.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_address",
+					Description: `The private IP address associated with the Azure Firewall. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -5566,8 +6419,48 @@ Use this data source to access information about an existing Azure Firewall.
 					Description: `The ID of the Azure Firewall.`,
 				},
 				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure location where the Azure Firewall exists.`,
+				},
+				resource.Attribute{
+					Name:        "sku_name",
+					Description: `The sku name of the Azure Firewall.`,
+				},
+				resource.Attribute{
+					Name:        "sku_tier",
+					Description: `The sku tier of the Azure Firewall.`,
+				},
+				resource.Attribute{
+					Name:        "firewall_policy_id",
+					Description: `The ID of the Firewall Policy applied to the Azure Firewall.`,
+				},
+				resource.Attribute{
 					Name:        "ip_configuration",
-					Description: `A ` + "`" + `ip_configuration` + "`" + ` block as defined below. --- A ` + "`" + `ip_configuration` + "`" + ` block exports the following:`,
+					Description: `A ` + "`" + `ip_configuration` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "dns_servers",
+					Description: `The list of DNS servers that the Azure Firewall will direct DNS traffic to the for name resolution.`,
+				},
+				resource.Attribute{
+					Name:        "management_ip_configuration",
+					Description: `A ` + "`" + `management_ip_configuration` + "`" + ` block as defined below, which allows force-tunnelling of traffic to be performed by the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "threat_intel_mode",
+					Description: `The operation mode for threat intelligence-based filtering.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_hub",
+					Description: `A ` + "`" + `virtual_hub` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `The availability zones in which the Azure Firewall is created.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the Azure Firewall. --- A ` + "`" + `ip_configuration` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
@@ -5578,6 +6471,30 @@ Use this data source to access information about an existing Azure Firewall.
 					Description: `The Private IP Address of the Azure Firewall.`,
 				},
 				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of the Subnet where the Azure Firewall is deployed.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_address",
+					Description: `The Private IP Address of the Azure Firewall.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_hub_id",
+					Description: `The ID of the Virtual Hub where the Azure Firewall resides in.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_count",
+					Description: `The number of public IPs assigned to the Azure Firewall.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_addresses",
+					Description: `The list of public IP addresses associated with the Azure Firewall.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_address",
+					Description: `The private IP address associated with the Azure Firewall. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
 					Name:        "read",
 					Description: `(Defaults to 5 minutes) Used when retrieving the Firewall.`,
 				},
@@ -5586,14 +6503,18 @@ Use this data source to access information about an existing Azure Firewall.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_firewall_policy",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Gets information about an existing Firewall Policy.`,
 			Description: `
 
 Use this data source to access information about an existing Firewall Policy.
 
 `,
-			Keywords:  []string{},
+			Keywords: []string{
+				"network",
+				"firewall",
+				"policy",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -5613,15 +6534,21 @@ Use this data source to access information about an existing Firewall Policy.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_function_app",
-			Category:         "Data Sources",
+			Category:         "App Service (Web Apps)",
 			ShortDescription: `Gets information about an existing Function App.`,
 			Description: `
 
 Use this data source to access information about a Function App.
 
 `,
-			Icon:     "IoT/10029-icon-service-Function-Apps.svg",
-			Keywords: []string{},
+			Icon: "IoT/10029-icon-service-Function-Apps.svg",
+			Keywords: []string{
+				"app",
+				"service",
+				"web",
+				"apps",
+				"function",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -5646,6 +6573,10 @@ Use this data source to access information about a Function App.
 				resource.Attribute{
 					Name:        "connection_string",
 					Description: `An ` + "`" + `connection_string` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "custom_domain_verification_id",
+					Description: `An identifier used by App Service to perform domain ownership verification via DNS TXT record.`,
 				},
 				resource.Attribute{
 					Name:        "default_hostname",
@@ -5704,6 +6635,10 @@ Use this data source to access information about a Function App.
 					Description: `The IP Address used for this IP Restriction.`,
 				},
 				resource.Attribute{
+					Name:        "service_tag",
+					Description: `The Service Tag used for this IP Restriction.`,
+				},
+				resource.Attribute{
 					Name:        "subnet_mask",
 					Description: `The Subnet mask used for this IP Restriction.`,
 				},
@@ -5722,6 +6657,10 @@ Use this data source to access information about a Function App.
 				resource.Attribute{
 					Name:        "ip_address",
 					Description: `The IP Address used for this IP Restriction in CIDR notation.`,
+				},
+				resource.Attribute{
+					Name:        "service_tag",
+					Description: `The Service Tag used for this IP Restriction.`,
 				},
 				resource.Attribute{
 					Name:        "virtual_network_subnet_id",
@@ -5846,6 +6785,10 @@ Use this data source to access information about a Function App.
 					Description: `An ` + "`" + `connection_string` + "`" + ` block as defined below.`,
 				},
 				resource.Attribute{
+					Name:        "custom_domain_verification_id",
+					Description: `An identifier used by App Service to perform domain ownership verification via DNS TXT record.`,
+				},
+				resource.Attribute{
 					Name:        "default_hostname",
 					Description: `The default hostname associated with the Function App.`,
 				},
@@ -5902,6 +6845,10 @@ Use this data source to access information about a Function App.
 					Description: `The IP Address used for this IP Restriction.`,
 				},
 				resource.Attribute{
+					Name:        "service_tag",
+					Description: `The Service Tag used for this IP Restriction.`,
+				},
+				resource.Attribute{
 					Name:        "subnet_mask",
 					Description: `The Subnet mask used for this IP Restriction.`,
 				},
@@ -5920,6 +6867,10 @@ Use this data source to access information about a Function App.
 				resource.Attribute{
 					Name:        "ip_address",
 					Description: `The IP Address used for this IP Restriction in CIDR notation.`,
+				},
+				resource.Attribute{
+					Name:        "service_tag",
+					Description: `The Service Tag used for this IP Restriction.`,
 				},
 				resource.Attribute{
 					Name:        "virtual_network_subnet_id",
@@ -6030,7 +6981,7 @@ Use this data source to access information about a Function App.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_function_app_host_keys",
-			Category:         "Data Sources",
+			Category:         "Resources",
 			ShortDescription: `Gets the Host Keys of an existing Function App.`,
 			Description: `
 
@@ -6044,15 +6995,18 @@ Use this data source to fetch the Host Keys of an existing Function App
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_hdinsight_cluster",
-			Category:         "Data Sources",
+			Category:         "HDInsight",
 			ShortDescription: `Gets information about an existing HDInsight Cluster.`,
 			Description: `
 
 Use this data source to access information about an existing HDInsight Cluster.
 
 `,
-			Icon:     "Analytics/00037-icon-service-HD-Insight-Clusters.svg",
-			Keywords: []string{},
+			Icon: "Analytics/00037-icon-service-HD-Insight-Clusters.svg",
+			Keywords: []string{
+				"hdinsight",
+				"cluster",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -6085,6 +7039,10 @@ Use this data source to access information about an existing HDInsight Cluster.
 				resource.Attribute{
 					Name:        "https_endpoint",
 					Description: `The HTTPS Endpoint for this HDInsight Cluster.`,
+				},
+				resource.Attribute{
+					Name:        "kafka_rest_proxy_endpoint",
+					Description: `The Kafka Rest Proxy Endpoint for this HDInsight Cluster.`,
 				},
 				resource.Attribute{
 					Name:        "kind",
@@ -6149,6 +7107,10 @@ Use this data source to access information about an existing HDInsight Cluster.
 					Description: `The HTTPS Endpoint for this HDInsight Cluster.`,
 				},
 				resource.Attribute{
+					Name:        "kafka_rest_proxy_endpoint",
+					Description: `The Kafka Rest Proxy Endpoint for this HDInsight Cluster.`,
+				},
+				resource.Attribute{
 					Name:        "kind",
 					Description: `The kind of HDInsight Cluster this is, such as a Spark or Storm cluster.`,
 				},
@@ -6189,14 +7151,17 @@ Use this data source to access information about an existing HDInsight Cluster.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_healthcare_service",
-			Category:         "Data Sources",
+			Category:         "Healthcare",
 			ShortDescription: `Get information about an existing Healthcare Service`,
 			Description: `
 
 Use this data source to access information about an existing Healthcare Service
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"healthcare",
+				"service",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -6333,15 +7298,18 @@ Use this data source to access information about an existing Healthcare Service
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_image",
-			Category:         "Data Sources",
+			Category:         "Compute",
 			ShortDescription: `Gets information about an existing Image`,
 			Description: `
 
 Use this data source to access information about an existing Image.
 
 `,
-			Icon:     "Compute/10033-icon-service-Images.svg",
-			Keywords: []string{},
+			Icon: "Compute/10033-icon-service-Images.svg",
+			Keywords: []string{
+				"compute",
+				"image",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -6509,15 +7477,226 @@ Use this data source to access information about an existing Image.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_images",
+			Category:         "Compute",
+			ShortDescription: `Gets information about existing Images within a Resource Group.`,
+			Description: `
+
+Use this data source to access information about existing Images within a Resource Group.
+
+`,
+			Keywords: []string{
+				"compute",
+				"images",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `The name of the Resource Group in which the Image exists.`,
+				},
+				resource.Attribute{
+					Name:        "tags_filter",
+					Description: `A mapping of tags to filter the list of images against. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "images",
+					Description: `One or more ` + "`" + `images` + "`" + ` blocks as defined below: --- A ` + "`" + `images` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the Image.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The supported Azure location where the Image exists.`,
+				},
+				resource.Attribute{
+					Name:        "zone_resilient",
+					Description: `Is zone resiliency enabled?`,
+				},
+				resource.Attribute{
+					Name:        "os_disk",
+					Description: `An ` + "`" + `os_disk` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "data_disk",
+					Description: `One or more ` + "`" + `data_disk` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the Image. --- The ` + "`" + `os_disk` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "blob_uri",
+					Description: `the URI in Azure storage of the blob used to create the image.`,
+				},
+				resource.Attribute{
+					Name:        "caching",
+					Description: `the caching mode for the OS Disk.`,
+				},
+				resource.Attribute{
+					Name:        "managed_disk_id",
+					Description: `the ID of the Managed Disk used as the OS Disk Image.`,
+				},
+				resource.Attribute{
+					Name:        "os_state",
+					Description: `the State of the OS used in the Image.`,
+				},
+				resource.Attribute{
+					Name:        "os_type",
+					Description: `the type of Operating System used on the OS Disk.`,
+				},
+				resource.Attribute{
+					Name:        "size_gb",
+					Description: `the size of the OS Disk in GB. --- The ` + "`" + `data_disk` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "blob_uri",
+					Description: `the URI in Azure storage of the blob used to create the image.`,
+				},
+				resource.Attribute{
+					Name:        "caching",
+					Description: `the caching mode for the Data Disk.`,
+				},
+				resource.Attribute{
+					Name:        "lun",
+					Description: `the logical unit number of the data disk.`,
+				},
+				resource.Attribute{
+					Name:        "managed_disk_id",
+					Description: `the ID of the Managed Disk used as the Data Disk Image.`,
+				},
+				resource.Attribute{
+					Name:        "size_gb",
+					Description: `the size of this Data Disk in GB. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Images within a Resource Group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "images",
+					Description: `One or more ` + "`" + `images` + "`" + ` blocks as defined below: --- A ` + "`" + `images` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the Image.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The supported Azure location where the Image exists.`,
+				},
+				resource.Attribute{
+					Name:        "zone_resilient",
+					Description: `Is zone resiliency enabled?`,
+				},
+				resource.Attribute{
+					Name:        "os_disk",
+					Description: `An ` + "`" + `os_disk` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "data_disk",
+					Description: `One or more ` + "`" + `data_disk` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the Image. --- The ` + "`" + `os_disk` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "blob_uri",
+					Description: `the URI in Azure storage of the blob used to create the image.`,
+				},
+				resource.Attribute{
+					Name:        "caching",
+					Description: `the caching mode for the OS Disk.`,
+				},
+				resource.Attribute{
+					Name:        "managed_disk_id",
+					Description: `the ID of the Managed Disk used as the OS Disk Image.`,
+				},
+				resource.Attribute{
+					Name:        "os_state",
+					Description: `the State of the OS used in the Image.`,
+				},
+				resource.Attribute{
+					Name:        "os_type",
+					Description: `the type of Operating System used on the OS Disk.`,
+				},
+				resource.Attribute{
+					Name:        "size_gb",
+					Description: `the size of the OS Disk in GB. --- The ` + "`" + `data_disk` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "blob_uri",
+					Description: `the URI in Azure storage of the blob used to create the image.`,
+				},
+				resource.Attribute{
+					Name:        "caching",
+					Description: `the caching mode for the Data Disk.`,
+				},
+				resource.Attribute{
+					Name:        "lun",
+					Description: `the logical unit number of the data disk.`,
+				},
+				resource.Attribute{
+					Name:        "managed_disk_id",
+					Description: `the ID of the Managed Disk used as the Data Disk Image.`,
+				},
+				resource.Attribute{
+					Name:        "size_gb",
+					Description: `the size of this Data Disk in GB. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Images within a Resource Group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_iothub",
+			Category:         "IoT Hub",
+			ShortDescription: `Gets information about an existing IoTHub.`,
+			Description: `
+
+Use this data source to access information about an existing IoTHub.
+
+`,
+			Keywords: []string{
+				"iot",
+				"hub",
+				"iothub",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the IoTHub. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the IoTHub.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_iothub_dps",
-			Category:         "Data Sources",
+			Category:         "IoT Hub",
 			ShortDescription: `Gets information about an existing IoT Hub Device Provisioning Service.`,
 			Description: `
 
 Use this data source to access information about an existing IotHub Device Provisioning Service.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"iot",
+				"hub",
+				"iothub",
+				"dps",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -6590,14 +7769,22 @@ Use this data source to access information about an existing IotHub Device Provi
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_iothub_dps_shared_access_policy",
-			Category:         "Data Sources",
+			Category:         "IoT Hub",
 			ShortDescription: `Gets information about an existing IotHub Device Provisioning Service Shared Access Policy`,
 			Description: `
 
 Use this data source to access information about an existing IotHub Device Provisioning Service Shared Access Policy
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"iot",
+				"hub",
+				"iothub",
+				"dps",
+				"shared",
+				"access",
+				"policy",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -6666,14 +7853,21 @@ Use this data source to access information about an existing IotHub Device Provi
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_iothub_shared_access_policy",
-			Category:         "Data Sources",
+			Category:         "IoT Hub",
 			ShortDescription: `Gets information about an existing IotHub Shared Access Policy`,
 			Description: `
 
 Use this data source to access information about an existing IotHub Shared Access Policy
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"iot",
+				"hub",
+				"iothub",
+				"shared",
+				"access",
+				"policy",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -6742,14 +7936,18 @@ Use this data source to access information about an existing IotHub Shared Acces
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_ip_group",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Gets information about an existing IP Group.`,
 			Description: `
 
 Use this data source to access information about an existing IP Group.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"network",
+				"ip",
+				"group",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -6806,14 +8004,17 @@ Use this data source to access information about an existing IP Group.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_key_vault",
-			Category:         "Data Sources",
+			Category:         "Key Vault",
 			ShortDescription: `Gets information about an existing Key Vault.`,
 			Description: `
 
 Use this data source to access information about an existing Key Vault.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"key",
+				"vault",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -6858,10 +8059,6 @@ Use this data source to access information about an existing Key Vault.
 				resource.Attribute{
 					Name:        "enabled_for_template_deployment",
 					Description: `Can Azure Resource Manager retrieve secrets from the Key Vault?`,
-				},
-				resource.Attribute{
-					Name:        "soft_delete_enabled",
-					Description: `Is soft delete enabled on this Key Vault?`,
 				},
 				resource.Attribute{
 					Name:        "purge_protection_enabled",
@@ -6942,10 +8139,6 @@ Use this data source to access information about an existing Key Vault.
 					Description: `Can Azure Resource Manager retrieve secrets from the Key Vault?`,
 				},
 				resource.Attribute{
-					Name:        "soft_delete_enabled",
-					Description: `Is soft delete enabled on this Key Vault?`,
-				},
-				resource.Attribute{
 					Name:        "purge_protection_enabled",
 					Description: `Is purge protection enabled on this Key Vault?`,
 				},
@@ -6990,14 +8183,19 @@ Use this data source to access information about an existing Key Vault.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_key_vault_access_policy",
-			Category:         "Data Sources",
+			Category:         "Key Vault",
 			ShortDescription: `Get information about the templated Access Policies for Key Vault.`,
 			Description: `
 
 Use this data source to access information about the permissions from the Management Key Vault Templates.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"key",
+				"vault",
+				"access",
+				"policy",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -7050,7 +8248,7 @@ Use this data source to access information about the permissions from the Manage
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_key_vault_certificate",
-			Category:         "Data Sources",
+			Category:         "Key Vault",
 			ShortDescription: `Gets information about an existing Key Vault Certificate.`,
 			Description: `
 
@@ -7060,11 +8258,15 @@ Use this data source to access information about an existing Key Vault Certifica
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"key",
+				"vault",
+				"certificate",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `Specifies the name of the Key Vault Secret.`,
+					Description: `Specifies the name of the Key Vault Certificate.`,
 				},
 				resource.Attribute{
 					Name:        "key_vault_id",
@@ -7073,6 +8275,34 @@ Use this data source to access information about an existing Key Vault Certifica
 				resource.Attribute{
 					Name:        "version",
 					Description: `(Optional) Specifies the version of the certificate to look up. (Defaults to latest)`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Key Vault Certificate ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Specifies the name of the Key Vault Certificate.`,
+				},
+				resource.Attribute{
+					Name:        "secret_id",
+					Description: `The ID of the associated Key Vault Secret.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The current version of the Key Vault Certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_data",
+					Description: `The raw Key Vault Certificate data represented as a hexadecimal string.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_data_base64",
+					Description: `The raw Key Vault Certificate data represented as a base64 string.`,
+				},
+				resource.Attribute{
+					Name:        "thumbprint",
+					Description: `The X509 Thumbprint of the Key Vault Certificate represented as a hexadecimal string.`,
 				},
 				resource.Attribute{
 					Name:        "certificate_policy",
@@ -7185,6 +8415,34 @@ Use this data source to access information about an existing Key Vault Certifica
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `The Key Vault Certificate ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Specifies the name of the Key Vault Certificate.`,
+				},
+				resource.Attribute{
+					Name:        "secret_id",
+					Description: `The ID of the associated Key Vault Secret.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The current version of the Key Vault Certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_data",
+					Description: `The raw Key Vault Certificate data represented as a hexadecimal string.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_data_base64",
+					Description: `The raw Key Vault Certificate data represented as a base64 string.`,
+				},
+				resource.Attribute{
+					Name:        "thumbprint",
+					Description: `The X509 Thumbprint of the Key Vault Certificate represented as a hexadecimal string.`,
+				},
+				resource.Attribute{
 					Name:        "certificate_policy",
 					Description: `A ` + "`" + `certificate_policy` + "`" + ` block as defined below.`,
 				},
@@ -7296,15 +8554,106 @@ Use this data source to access information about an existing Key Vault Certifica
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_key_vault_certificate_data",
+			Category:         "Key Vault",
+			ShortDescription: `Gets data contained in an existing Key Vault Certificate.`,
+			Description: `
+
+Use this data source to access data stored in an existing Key Vault Certificate.
+
+~> **Note:** All arguments including the secret value will be stored in the raw state as plain-text.
+[Read more about sensitive data in state](/docs/state/sensitive-data.html).
+
+~> **Note:** This data source uses the ` + "`" + `GetSecret` + "`" + ` function of the Azure API, to get the key of the certificate. Therefore you need secret/get permission
+
+`,
+			Keywords: []string{
+				"key",
+				"vault",
+				"certificate",
+				"data",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the Key Vault Secret.`,
+				},
+				resource.Attribute{
+					Name:        "key_vault_id",
+					Description: `(Required) Specifies the ID of the Key Vault instance where the Secret resides, available on the ` + "`" + `azurerm_key_vault` + "`" + ` Data Source / Resource.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) Specifies the version of the certificate to look up. (Defaults to latest) ~>`,
+				},
+				resource.Attribute{
+					Name:        "hex",
+					Description: `The raw Key Vault Certificate data represented as a hexadecimal string.`,
+				},
+				resource.Attribute{
+					Name:        "pem",
+					Description: `The Key Vault Certificate in PEM format.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The Key Vault Certificate Key.`,
+				},
+				resource.Attribute{
+					Name:        "expires",
+					Description: `Expiry date of certificate in RFC3339 format.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Key Vault Certificate.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "hex",
+					Description: `The raw Key Vault Certificate data represented as a hexadecimal string.`,
+				},
+				resource.Attribute{
+					Name:        "pem",
+					Description: `The Key Vault Certificate in PEM format.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The Key Vault Certificate Key.`,
+				},
+				resource.Attribute{
+					Name:        "expires",
+					Description: `Expiry date of certificate in RFC3339 format.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Key Vault Certificate.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_key_vault_certificate_issuer",
-			Category:         "Data Sources",
+			Category:         "Key Vault",
 			ShortDescription: `Gets information about an existing Key Vault Certificate Issuer.`,
 			Description: `
 
 Use this data source to access information about an existing Key Vault Certificate Issuer.
 
 `,
-			Keywords:  []string{},
+			Keywords: []string{
+				"key",
+				"vault",
+				"certificate",
+				"issuer",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -7352,7 +8701,7 @@ Use this data source to access information about an existing Key Vault Certifica
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_key_vault_key",
-			Category:         "Data Sources",
+			Category:         "Key Vault",
 			ShortDescription: `Gets information about an existing Key Vault Key.`,
 			Description: `
 
@@ -7362,7 +8711,10 @@ Use this data source to access information about an existing Key Vault Key.
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"key",
+				"vault",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -7402,7 +8754,11 @@ Use this data source to access information about an existing Key Vault Key.
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `The current version of the Key Vault Key. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The current version of the Key Vault Key.`,
+				},
+				resource.Attribute{
+					Name:        "versionless_id",
+					Description: `The Base ID of the Key Vault Key. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -7440,7 +8796,11 @@ Use this data source to access information about an existing Key Vault Key.
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `The current version of the Key Vault Key. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The current version of the Key Vault Key.`,
+				},
+				resource.Attribute{
+					Name:        "versionless_id",
+					Description: `The Base ID of the Key Vault Key. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -7451,7 +8811,7 @@ Use this data source to access information about an existing Key Vault Key.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_key_vault_secret",
-			Category:         "Data Sources",
+			Category:         "Key Vault",
 			ShortDescription: `Gets information about an existing Key Vault Secret.`,
 			Description: `
 
@@ -7461,7 +8821,11 @@ Use this data source to access information about an existing Key Vault Secret.
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"key",
+				"vault",
+				"secret",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -7526,7 +8890,7 @@ Use this data source to access information about an existing Key Vault Secret.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_kubernetes_cluster",
-			Category:         "Data Sources",
+			Category:         "Container",
 			ShortDescription: `Gets information about an existing Managed Kubernetes Cluster (AKS)`,
 			Description: `
 
@@ -7536,7 +8900,11 @@ Use this data source to access information about an existing Managed Kubernetes 
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"container",
+				"kubernetes",
+				"cluster",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -7691,10 +9059,6 @@ Use this data source to access information about an existing Managed Kubernetes 
 					Description: `The name assigned to this pool of agents.`,
 				},
 				resource.Attribute{
-					Name:        "node_taints",
-					Description: `The list of Kubernetes taints which are applied to nodes in the agent pool`,
-				},
-				resource.Attribute{
 					Name:        "os_disk_size_gb",
 					Description: `The size of the Agent VM's Operating System Disk in GB.`,
 				},
@@ -7711,12 +9075,20 @@ Use this data source to access information about an existing Managed Kubernetes 
 					Description: `Kubernetes version used for the Agents.`,
 				},
 				resource.Attribute{
+					Name:        "upgrade_settings",
+					Description: `A ` + "`" + `upgrade_settings` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
 					Name:        "vm_size",
 					Description: `The size of each VM in the Agent Pool (e.g. ` + "`" + `Standard_F1` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "vnet_subnet_id",
-					Description: `The ID of the Subnet where the Agents in the Pool are provisioned. --- A ` + "`" + `azure_active_directory` + "`" + ` block exports the following:`,
+					Description: `The ID of the Subnet where the Agents in the Pool are provisioned. --- A ` + "`" + `upgrade_settings` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "max_surge",
+					Description: `The maximum number or percentage of nodes which will be added to the Node Pool size during an upgrade. --- A ` + "`" + `azure_active_directory` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "admin_group_object_ids",
@@ -7797,6 +9169,10 @@ Use this data source to access information about an existing Managed Kubernetes 
 				resource.Attribute{
 					Name:        "network_policy",
 					Description: `Network policy to be used with Azure CNI. Eg: ` + "`" + `calico` + "`" + ` or ` + "`" + `azure` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "network_mode",
+					Description: `Network mode to be used with Azure CNI. Eg: ` + "`" + `bridge` + "`" + ` or ` + "`" + `transparent` + "`" + ` ->`,
 				},
 				resource.Attribute{
 					Name:        "pod_cidr",
@@ -8029,10 +9405,6 @@ Use this data source to access information about an existing Managed Kubernetes 
 					Description: `The name assigned to this pool of agents.`,
 				},
 				resource.Attribute{
-					Name:        "node_taints",
-					Description: `The list of Kubernetes taints which are applied to nodes in the agent pool`,
-				},
-				resource.Attribute{
 					Name:        "os_disk_size_gb",
 					Description: `The size of the Agent VM's Operating System Disk in GB.`,
 				},
@@ -8049,12 +9421,20 @@ Use this data source to access information about an existing Managed Kubernetes 
 					Description: `Kubernetes version used for the Agents.`,
 				},
 				resource.Attribute{
+					Name:        "upgrade_settings",
+					Description: `A ` + "`" + `upgrade_settings` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
 					Name:        "vm_size",
 					Description: `The size of each VM in the Agent Pool (e.g. ` + "`" + `Standard_F1` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "vnet_subnet_id",
-					Description: `The ID of the Subnet where the Agents in the Pool are provisioned. --- A ` + "`" + `azure_active_directory` + "`" + ` block exports the following:`,
+					Description: `The ID of the Subnet where the Agents in the Pool are provisioned. --- A ` + "`" + `upgrade_settings` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "max_surge",
+					Description: `The maximum number or percentage of nodes which will be added to the Node Pool size during an upgrade. --- A ` + "`" + `azure_active_directory` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "admin_group_object_ids",
@@ -8135,6 +9515,10 @@ Use this data source to access information about an existing Managed Kubernetes 
 				resource.Attribute{
 					Name:        "network_policy",
 					Description: `Network policy to be used with Azure CNI. Eg: ` + "`" + `calico` + "`" + ` or ` + "`" + `azure` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "network_mode",
+					Description: `Network mode to be used with Azure CNI. Eg: ` + "`" + `bridge` + "`" + ` or ` + "`" + `transparent` + "`" + ` ->`,
 				},
 				resource.Attribute{
 					Name:        "pod_cidr",
@@ -8225,14 +9609,20 @@ Use this data source to access information about an existing Managed Kubernetes 
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_kubernetes_cluster_node_pool",
-			Category:         "Data Sources",
+			Category:         "Container",
 			ShortDescription: `Gets information about an existing Kubernetes Cluster Node Pool.`,
 			Description: `
 
 Use this data source to access information about an existing Kubernetes Cluster Node Pool.
 
 `,
-			Keywords:  []string{},
+			Keywords: []string{
+				"container",
+				"kubernetes",
+				"cluster",
+				"node",
+				"pool",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -8292,12 +9682,20 @@ Use this data source to access information about an existing Kubernetes Cluster 
 					Description: `The size of the OS Disk on each Node in this Node Pool.`,
 				},
 				resource.Attribute{
+					Name:        "os_disk_type",
+					Description: `The type of the OS Disk on each Node in this Node Pool.`,
+				},
+				resource.Attribute{
 					Name:        "os_type",
 					Description: `The operating system used on each Node in this Node Pool.`,
 				},
 				resource.Attribute{
 					Name:        "priority",
 					Description: `The priority of the Virtual Machines in the Virtual Machine Scale Set backing this Node Pool.`,
+				},
+				resource.Attribute{
+					Name:        "proximity_placement_group_id",
+					Description: `The ID of the Proximity Placement Group where the Virtual Machine Scale Set backing this Node Pool will be placed.`,
 				},
 				resource.Attribute{
 					Name:        "spot_max_price",
@@ -8308,12 +9706,20 @@ Use this data source to access information about an existing Kubernetes Cluster 
 					Description: `A mapping of tags assigned to the Kubernetes Cluster Node Pool.`,
 				},
 				resource.Attribute{
+					Name:        "upgrade_settings",
+					Description: `A ` + "`" + `upgrade_settings` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
 					Name:        "vm_size",
 					Description: `The size of the Virtual Machines used in the Virtual Machine Scale Set backing this Node Pool.`,
 				},
 				resource.Attribute{
 					Name:        "vnet_subnet_id",
-					Description: `The ID of the Subnet in which this Node Pool exists. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Subnet in which this Node Pool exists. --- A ` + "`" + `upgrade_settings` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "max_surge",
+					Description: `The maximum number or percentage of nodes which will be added to the Node Pool size during an upgrade. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -8324,14 +9730,19 @@ Use this data source to access information about an existing Kubernetes Cluster 
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_kubernetes_service_versions",
-			Category:         "Data Sources",
+			Category:         "Container",
 			ShortDescription: `Gets the available versions of Kubernetes supported by Azure Kubernetes Service.`,
 			Description: `
 
 Use this data source to retrieve the version of Kubernetes supported by Azure Kubernetes Service.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"container",
+				"kubernetes",
+				"service",
+				"versions",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "location",
@@ -8376,14 +9787,19 @@ Use this data source to retrieve the version of Kubernetes supported by Azure Ku
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_kusto_cluster",
-			Category:         "Data Sources",
+			Category:         "Data Explorer",
 			ShortDescription: `Get information about an existing Kusto (also known as Azure Data Explorer) Cluster`,
 			Description: `
 
 Use this data source to access information about an existing Kusto (also known as Azure Data Explorer) Cluster
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"data",
+				"explorer",
+				"kusto",
+				"cluster",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -8432,15 +9848,18 @@ Use this data source to access information about an existing Kusto (also known a
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_lb",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Get information about an existing Load Balancer`,
 			Description: `
 
 Use this data source to access information about an existing Load Balancer
 
 `,
-			Icon:     "Networking/10062-icon-service-Load-Balancers.svg",
-			Keywords: []string{},
+			Icon: "Networking/10062-icon-service-Load-Balancers.svg",
+			Keywords: []string{
+				"network",
+				"lb",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -8456,7 +9875,7 @@ Use this data source to access information about an existing Load Balancer
 				},
 				resource.Attribute{
 					Name:        "frontend_ip_configuration",
-					Description: `(Optional) A ` + "`" + `frontend_ip_configuration` + "`" + ` block as documented below.`,
+					Description: `A ` + "`" + `frontend_ip_configuration` + "`" + ` block as documented below.`,
 				},
 				resource.Attribute{
 					Name:        "location",
@@ -8522,7 +9941,7 @@ Use this data source to access information about an existing Load Balancer
 				},
 				resource.Attribute{
 					Name:        "frontend_ip_configuration",
-					Description: `(Optional) A ` + "`" + `frontend_ip_configuration` + "`" + ` block as documented below.`,
+					Description: `A ` + "`" + `frontend_ip_configuration` + "`" + ` block as documented below.`,
 				},
 				resource.Attribute{
 					Name:        "location",
@@ -8585,14 +10004,20 @@ Use this data source to access information about an existing Load Balancer
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_lb_backend_address_pool",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Get information about an existing Load Balancer Backend Address Pool`,
 			Description: `
 
 Use this data source to access information about an existing Load Balancer's Backend Address Pool.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"network",
+				"lb",
+				"backend",
+				"address",
+				"pool",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -8611,8 +10036,32 @@ Use this data source to access information about an existing Load Balancer's Bac
 					Description: `The name of the Backend Address Pool.`,
 				},
 				resource.Attribute{
+					Name:        "backend_address",
+					Description: `A list of ` + "`" + `backend_address` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "backend_ip_configurations",
-					Description: `An array of references to IP addresses defined in network interfaces. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A list of references to IP addresses defined in network interfaces.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancing_rules",
+					Description: `A list of the Load Balancing Rules associated with this Backend Address Pool.`,
+				},
+				resource.Attribute{
+					Name:        "outbound_rules",
+					Description: `A list of the Load Balancing Outbound Rules associated with this Backend Address Pool. --- A ` + "`" + `backend_address` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the Backend Address.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_network_id",
+					Description: `The ID of the Virtual Network where the Backend Address of the Load Balancer exists.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `The Static IP address for this Load Balancer within the Virtual Network. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -8629,8 +10078,32 @@ Use this data source to access information about an existing Load Balancer's Bac
 					Description: `The name of the Backend Address Pool.`,
 				},
 				resource.Attribute{
+					Name:        "backend_address",
+					Description: `A list of ` + "`" + `backend_address` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "backend_ip_configurations",
-					Description: `An array of references to IP addresses defined in network interfaces. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A list of references to IP addresses defined in network interfaces.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancing_rules",
+					Description: `A list of the Load Balancing Rules associated with this Backend Address Pool.`,
+				},
+				resource.Attribute{
+					Name:        "outbound_rules",
+					Description: `A list of the Load Balancing Outbound Rules associated with this Backend Address Pool. --- A ` + "`" + `backend_address` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the Backend Address.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_network_id",
+					Description: `The ID of the Virtual Network where the Backend Address of the Load Balancer exists.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `The Static IP address for this Load Balancer within the Virtual Network. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -8640,16 +10113,92 @@ Use this data source to access information about an existing Load Balancer's Bac
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_lb_rule",
+			Category:         "Load Balancer",
+			ShortDescription: `Gets information about an existing Load Balancer Rule.`,
+			Description: `
+
+Use this data source to access information about an existing Load Balancer Rule.
+
+`,
+			Keywords: []string{
+				"load",
+				"balancer",
+				"lb",
+				"rule",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Load Balancer Rule.`,
+				},
+				resource.Attribute{
+					Name:        "backend_address_pool_id",
+					Description: `A reference to a Backend Address Pool over which this Load Balancing Rule operates.`,
+				},
+				resource.Attribute{
+					Name:        "probe_id",
+					Description: `A reference to a Probe used by this Load Balancing Rule.`,
+				},
+				resource.Attribute{
+					Name:        "frontend_ip_configuration_name",
+					Description: `The name of the frontend IP configuration to which the rule is associated.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `The transport protocol for the external endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "frontend_port",
+					Description: `The port for the external endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "backend_port",
+					Description: `The port used for internal connections on the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "enable_floating_ip",
+					Description: `If Floating IPs are enabled for this Load Balancer Rule`,
+				},
+				resource.Attribute{
+					Name:        "idle_timeout_in_minutes",
+					Description: `Specifies the idle timeout in minutes for TCP connections.`,
+				},
+				resource.Attribute{
+					Name:        "load_distribution",
+					Description: `Specifies the load balancing distribution type used by the Load Balancer.`,
+				},
+				resource.Attribute{
+					Name:        "disable_outbound_snat",
+					Description: `If outbound SNAT is enabled for this Load Balancer Rule.`,
+				},
+				resource.Attribute{
+					Name:        "enable_tcp_reset",
+					Description: `If TCP Reset is enabled for this Load Balancer Rule. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Load Balancer Rule.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_log_analytics_workspace",
-			Category:         "Data Sources",
+			Category:         "Log Analytics",
 			ShortDescription: `Gets information about an existing Log Analytics (formally Operational Insights) Workspace.`,
 			Description: `
 
 Use this data source to access information about an existing Log Analytics (formally Operational Insights) Workspace.
 
 `,
-			Icon:     "Analytics/00009-icon-service-Log-Analytics-Workspaces.svg",
-			Keywords: []string{},
+			Icon: "Analytics/00009-icon-service-Log-Analytics-Workspaces.svg",
+			Keywords: []string{
+				"log",
+				"analytics",
+				"workspace",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -8684,6 +10233,10 @@ Use this data source to access information about an existing Log Analytics (form
 					Description: `The workspace data retention in days.`,
 				},
 				resource.Attribute{
+					Name:        "daily_quota_gb",
+					Description: `The workspace daily quota for ingestion in GB.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
@@ -8718,6 +10271,10 @@ Use this data source to access information about an existing Log Analytics (form
 					Description: `The workspace data retention in days.`,
 				},
 				resource.Attribute{
+					Name:        "daily_quota_gb",
+					Description: `The workspace daily quota for ingestion in GB.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
@@ -8730,14 +10287,19 @@ Use this data source to access information about an existing Log Analytics (form
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_logic_app_integration_account",
-			Category:         "Data Sources",
+			Category:         "Logic App",
 			ShortDescription: `Gets information about an existing Logic App Integration Account.`,
 			Description: `
 
 Use this data source to access information about an existing Logic App Integration Account.
 
 `,
-			Keywords:  []string{},
+			Keywords: []string{
+				"logic",
+				"app",
+				"integration",
+				"account",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -8765,14 +10327,18 @@ Use this data source to access information about an existing Logic App Integrati
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_logic_app_workflow",
-			Category:         "Data Sources",
+			Category:         "Logic App",
 			ShortDescription: `Gets information about an existing Logic App Workflow.`,
 			Description: `
 
 Use this data source to access information about an existing Logic App Workflow.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"logic",
+				"app",
+				"workflow",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -8893,14 +10459,18 @@ Use this data source to access information about an existing Logic App Workflow.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_machine_learning_workspace",
-			Category:         "Data Sources",
+			Category:         "Machine Learning",
 			ShortDescription: `Gets information about an existing Machine Learning Workspace`,
 			Description: `
 
 Use this data source to access information about an existing Machine Learning Workspace.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"machine",
+				"learning",
+				"workspace",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -8949,14 +10519,17 @@ Use this data source to access information about an existing Machine Learning Wo
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_maintenance_configuration",
-			Category:         "Data Sources",
+			Category:         "Maintenance",
 			ShortDescription: `Get information about an existing Maintenance Configuration.`,
 			Description: `
 
 Use this data source to access information about an existing Maintenance Configuration.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"maintenance",
+				"configuration",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -9005,14 +10578,19 @@ Use this data source to access information about an existing Maintenance Configu
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_managed_application_definition",
-			Category:         "Data Sources",
+			Category:         "Managed Applications",
 			ShortDescription: `Gets information about an existing Managed Application Definition`,
 			Description: `
 
 Uses this data source to access information about an existing Managed Application Definition.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"managed",
+				"applications",
+				"application",
+				"definition",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -9049,14 +10627,18 @@ Uses this data source to access information about an existing Managed Applicatio
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_managed_disk",
-			Category:         "Data Sources",
+			Category:         "Compute",
 			ShortDescription: `Get information about an existing Managed Disk.`,
 			Description: `
 
 Use this data source to access information about an existing Managed Disk.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"compute",
+				"managed",
+				"disk",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -9177,14 +10759,17 @@ Use this data source to access information about an existing Managed Disk.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_management_group",
-			Category:         "Data Sources",
+			Category:         "Management",
 			ShortDescription: `Gets information about an existing Management Group.`,
 			Description: `
 
 Use this data source to access information about an existing Management Group.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"management",
+				"group",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -9237,14 +10822,17 @@ Use this data source to access information about an existing Management Group.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_maps_account",
-			Category:         "Data Sources",
+			Category:         "Maps",
 			ShortDescription: `Gets information about an existing Azure Maps Account.`,
 			Description: `
 
 Use this data source to access information about an existing Azure Maps Account.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"maps",
+				"account",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -9309,15 +10897,19 @@ Use this data source to access information about an existing Azure Maps Account.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_mariadb_server",
-			Category:         "Data Sources",
+			Category:         "Database",
 			ShortDescription: `Gets information about an existing MariaDB Server.`,
 			Description: `
 
 Use this data source to access information about an existing MariaDB Server.
 
 `,
-			Icon:     "Databases/10123-icon-service-Azure-Database-MariaDB-Server.svg",
-			Keywords: []string{},
+			Icon: "Databases/10123-icon-service-Azure-Database-MariaDB-Server.svg",
+			Keywords: []string{
+				"database",
+				"mariadb",
+				"server",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -9446,14 +11038,18 @@ Use this data source to access information about an existing MariaDB Server.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_monitor_action_group",
-			Category:         "Data Sources",
+			Category:         "Monitor",
 			ShortDescription: `Get information about the specified Action Group.`,
 			Description: `
 
 Use this data source to access the properties of an Action Group.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"monitor",
+				"action",
+				"group",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -9886,14 +11482,18 @@ Use this data source to access the properties of an Action Group.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_monitor_diagnostic_categories",
-			Category:         "Data Sources",
+			Category:         "Monitor",
 			ShortDescription: `Gets information about an the Monitor Diagnostics Categories supported by an existing Resource.`,
 			Description: `
 
 Use this data source to access information about the Monitor Diagnostics Categories supported by an existing Resource.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"monitor",
+				"diagnostic",
+				"categories",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "resource_id",
@@ -9938,14 +11538,18 @@ Use this data source to access information about the Monitor Diagnostics Categor
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_monitor_log_profile",
-			Category:         "Data Sources",
+			Category:         "Monitor",
 			ShortDescription: `Get information about the specified Log Profile.`,
 			Description: `
 
 Use this data source to access the properties of a Log Profile.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"monitor",
+				"log",
+				"profile",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -10022,14 +11626,20 @@ Use this data source to access the properties of a Log Profile.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_monitor_scheduled_query_rules_alert",
-			Category:         "Data Sources",
+			Category:         "Monitor",
 			ShortDescription: `Get information about the specified AlertingAction Scheduled Query Rules resource.`,
 			Description: `
 
 Use this data source to access the properties of an AlertingAction scheduled query rule.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"monitor",
+				"scheduled",
+				"query",
+				"rules",
+				"alert",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -10230,14 +11840,20 @@ Use this data source to access the properties of an AlertingAction scheduled que
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_monitor_scheduled_query_rules_log",
-			Category:         "Data Sources",
+			Category:         "Monitor",
 			ShortDescription: `Get information about the specified LogToMetricAction Scheduled Query Rules resource.`,
 			Description: `
 
 Use this data source to access the properties of a LogToMetricAction scheduled query rule.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"monitor",
+				"scheduled",
+				"query",
+				"rules",
+				"log",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -10342,14 +11958,17 @@ Use this data source to access the properties of a LogToMetricAction scheduled q
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_mssql_database",
-			Category:         "Data Sources",
+			Category:         "Database",
 			ShortDescription: `Gets information about an existing SQL database.`,
 			Description: `
 
 Use this data source to access information about an existing SQL database.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"database",
+				"mssql",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -10386,6 +12005,10 @@ Use this data source to access information about an existing SQL database.
 				resource.Attribute{
 					Name:        "sku_name",
 					Description: `The name of the sku of the database.`,
+				},
+				resource.Attribute{
+					Name:        "storage_account_type",
+					Description: `The storage account type used to store backups for this database.`,
 				},
 				resource.Attribute{
 					Name:        "zone_redundant",
@@ -10430,6 +12053,10 @@ Use this data source to access information about an existing SQL database.
 					Description: `The name of the sku of the database.`,
 				},
 				resource.Attribute{
+					Name:        "storage_account_type",
+					Description: `The storage account type used to store backups for this database.`,
+				},
+				resource.Attribute{
 					Name:        "zone_redundant",
 					Description: `Whether or not this database is zone redundant, which means the replicas of this database will be spread across multiple availability zones.`,
 				},
@@ -10446,15 +12073,19 @@ Use this data source to access information about an existing SQL database.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_mssql_elasticpool",
-			Category:         "Data Sources",
+			Category:         "Database",
 			ShortDescription: `Gets information about an existing SQL elastic pool.`,
 			Description: `
 
 Use this data source to access information about an existing SQL elastic pool.
 
 `,
-			Icon:     "Databases/10134-icon-service-SQL-Elastic-Pools.svg",
-			Keywords: []string{},
+			Icon: "Databases/10134-icon-service-SQL-Elastic-Pools.svg",
+			Keywords: []string{
+				"database",
+				"mssql",
+				"elasticpool",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -10547,14 +12178,18 @@ Use this data source to access information about an existing SQL elastic pool.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_mssql_server",
-			Category:         "Data Sources",
+			Category:         "Database",
 			ShortDescription: `Gets information about an existing Microsoft SQL Server.`,
 			Description: `
 
 Use this data source to access information about an existing Microsoft SQL Server.
 
 `,
-			Keywords:  []string{},
+			Keywords: []string{
+				"database",
+				"mssql",
+				"server",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -10609,15 +12244,268 @@ Use this data source to access information about an existing Microsoft SQL Serve
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_mysql_server",
+			Category:         "Database",
+			ShortDescription: `Gets information about an existing MySQL Server.`,
+			Description:      ``,
+			Icon:             "Databases/10122-icon-service-Azure-Database-MySQL-Server.svg",
+			Keywords: []string{
+				"database",
+				"mysql",
+				"server",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group for the MySQL Server. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `The FQDN of the MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure location where the resource exists.`,
+				},
+				resource.Attribute{
+					Name:        "sku_name",
+					Description: `The SKU Name for this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The version of this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "administrator_login",
+					Description: `The Administrator Login for the MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "auto_grow_enabled",
+					Description: `The auto grow setting for this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "backup_retention_days",
+					Description: `The backup retention days for this MySQL server.`,
+				},
+				resource.Attribute{
+					Name:        "geo_redundant_backup_enabled",
+					Description: `The geo redundant backup setting for this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "identity",
+					Description: `An ` + "`" + `identity` + "`" + ` block for this MySQL server as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "infrastructure_encryption_enabled",
+					Description: `Whether or not infrastructure is encrypted for this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "public_network_access_enabled",
+					Description: `Whether or not public network access is allowed for this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_enforcement_enabled",
+					Description: `Specifies if SSL should be enforced on connections for this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_minimal_tls_version_enforced",
+					Description: `The minimum TLS version to support for this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "storage_mb",
+					Description: `Max storage allowed for this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "threat_detection_policy",
+					Description: `Threat detection policy configuration, known in the API as Server Security Alerts Policy. The ` + "`" + `threat_detection_policy` + "`" + ` block exports fields documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the resource. --- An ` + "`" + `identity` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The Type of Identity used for this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Client ID of the Service Principal assigned to this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The ID of the Tenant the Service Principal is assigned in. --- A ` + "`" + `threat_detection_policy` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Is the policy enabled?`,
+				},
+				resource.Attribute{
+					Name:        "disabled_alerts",
+					Description: `Specifies a list of alerts which should be disabled. Possible values include ` + "`" + `Access_Anomaly` + "`" + `, ` + "`" + `Sql_Injection` + "`" + ` and ` + "`" + `Sql_Injection_Vulnerability` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "email_account_admins",
+					Description: `Should the account administrators be emailed when this alert is triggered?`,
+				},
+				resource.Attribute{
+					Name:        "email_addresses",
+					Description: `A list of email addresses which alerts should be sent to.`,
+				},
+				resource.Attribute{
+					Name:        "retention_days",
+					Description: `Specifies the number of days to keep in the Threat Detection audit logs.`,
+				},
+				resource.Attribute{
+					Name:        "storage_account_access_key",
+					Description: `Specifies the identifier key of the Threat Detection audit storage account.`,
+				},
+				resource.Attribute{
+					Name:        "storage_endpoint",
+					Description: `Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). This blob storage will hold all Threat Detection audit logs. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the MySQL Server.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `The FQDN of the MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure location where the resource exists.`,
+				},
+				resource.Attribute{
+					Name:        "sku_name",
+					Description: `The SKU Name for this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The version of this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "administrator_login",
+					Description: `The Administrator Login for the MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "auto_grow_enabled",
+					Description: `The auto grow setting for this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "backup_retention_days",
+					Description: `The backup retention days for this MySQL server.`,
+				},
+				resource.Attribute{
+					Name:        "geo_redundant_backup_enabled",
+					Description: `The geo redundant backup setting for this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "identity",
+					Description: `An ` + "`" + `identity` + "`" + ` block for this MySQL server as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "infrastructure_encryption_enabled",
+					Description: `Whether or not infrastructure is encrypted for this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "public_network_access_enabled",
+					Description: `Whether or not public network access is allowed for this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_enforcement_enabled",
+					Description: `Specifies if SSL should be enforced on connections for this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_minimal_tls_version_enforced",
+					Description: `The minimum TLS version to support for this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "storage_mb",
+					Description: `Max storage allowed for this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "threat_detection_policy",
+					Description: `Threat detection policy configuration, known in the API as Server Security Alerts Policy. The ` + "`" + `threat_detection_policy` + "`" + ` block exports fields documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the resource. --- An ` + "`" + `identity` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The Type of Identity used for this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Client ID of the Service Principal assigned to this MySQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The ID of the Tenant the Service Principal is assigned in. --- A ` + "`" + `threat_detection_policy` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Is the policy enabled?`,
+				},
+				resource.Attribute{
+					Name:        "disabled_alerts",
+					Description: `Specifies a list of alerts which should be disabled. Possible values include ` + "`" + `Access_Anomaly` + "`" + `, ` + "`" + `Sql_Injection` + "`" + ` and ` + "`" + `Sql_Injection_Vulnerability` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "email_account_admins",
+					Description: `Should the account administrators be emailed when this alert is triggered?`,
+				},
+				resource.Attribute{
+					Name:        "email_addresses",
+					Description: `A list of email addresses which alerts should be sent to.`,
+				},
+				resource.Attribute{
+					Name:        "retention_days",
+					Description: `Specifies the number of days to keep in the Threat Detection audit logs.`,
+				},
+				resource.Attribute{
+					Name:        "storage_account_access_key",
+					Description: `Specifies the identifier key of the Threat Detection audit storage account.`,
+				},
+				resource.Attribute{
+					Name:        "storage_endpoint",
+					Description: `Specifies the blob storage endpoint (e.g. https://MyAccount.blob.core.windows.net). This blob storage will hold all Threat Detection audit logs. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the MySQL Server.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_nat_gateway",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Gets information about an existing NAT Gateway`,
 			Description: `
 
 Use this data source to access information about an existing NAT Gateway.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"network",
+				"nat",
+				"gateway",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -10706,14 +12594,17 @@ Use this data source to access information about an existing NAT Gateway.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_netapp_account",
-			Category:         "Data Sources",
+			Category:         "NetApp",
 			ShortDescription: `Gets information about an existing NetApp Account`,
 			Description: `
 
 Uses this data source to access information about an existing NetApp Account.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"netapp",
+				"account",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -10746,7 +12637,7 @@ Uses this data source to access information about an existing NetApp Account.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_netapp_pool",
-			Category:         "Data Sources",
+			Category:         "NetApp",
 			ShortDescription: `Gets information about an existing NetApp Pool`,
 			Description: `
 
@@ -10754,7 +12645,10 @@ Uses this data source to access information about an existing NetApp Pool.
 
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"netapp",
+				"pool",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -10807,14 +12701,17 @@ Uses this data source to access information about an existing NetApp Pool.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_netapp_snapshot",
-			Category:         "Data Sources",
+			Category:         "NetApp",
 			ShortDescription: `Gets information about an existing NetApp Snapshot`,
 			Description: `
 
 Uses this data source to access information about an existing NetApp Snapshot.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"netapp",
+				"snapshot",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -10859,14 +12756,17 @@ Uses this data source to access information about an existing NetApp Snapshot.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_netapp_volume",
-			Category:         "Data Sources",
+			Category:         "NetApp",
 			ShortDescription: `Gets information about an existing NetApp Volume`,
 			Description: `
 
 Uses this data source to access information about an existing NetApp Volume.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"netapp",
+				"volume",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -10947,14 +12847,19 @@ Uses this data source to access information about an existing NetApp Volume.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_network_ddos_protection_plan",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Use this data source to access information about an existing Azure Network DDoS Protection Plan.`,
 			Description: `
 
 Use this data source to access information about an existing Azure Network DDoS Protection Plan.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"network",
+				"ddos",
+				"protection",
+				"plan",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -11011,15 +12916,18 @@ Use this data source to access information about an existing Azure Network DDoS 
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_network_interface",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Gets information about an existing Network Interface.`,
 			Description: `
 
 Use this data source to access information about an existing Network Interface.
 
 `,
-			Icon:     "Networking/10080-icon-service-Network-Interfaces.svg",
-			Keywords: []string{},
+			Icon: "Networking/10080-icon-service-Network-Interfaces.svg",
+			Keywords: []string{
+				"network",
+				"interface",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -11228,15 +13136,19 @@ Use this data source to access information about an existing Network Interface.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_network_security_group",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Gets information about an existing Network Security Group.`,
 			Description: `
 
 Use this data source to access information about an existing Network Security Group.
 
 `,
-			Icon:     "Networking/10067-icon-service-Network-Security-Groups.svg",
-			Keywords: []string{},
+			Icon: "Networking/10067-icon-service-Network-Security-Groups.svg",
+			Keywords: []string{
+				"network",
+				"security",
+				"group",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -11405,14 +13317,18 @@ Use this data source to access information about an existing Network Security Gr
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_network_service_tags",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Gets information about Service Tags for a specific service type.`,
 			Description: `
 
 Use this data source to access information about Service Tags.
 
 `,
-			Keywords:  []string{},
+			Keywords: []string{
+				"network",
+				"service",
+				"tags",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -11432,15 +13348,18 @@ Use this data source to access information about Service Tags.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_network_watcher",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Gets information about an existing Network Watcher.`,
 			Description: `
 
 Use this data source to access information about an existing Network Watcher.
 
 `,
-			Icon:     "Networking/00023-icon-service-Network-Watcher.svg",
-			Keywords: []string{},
+			Icon: "Networking/00023-icon-service-Network-Watcher.svg",
+			Keywords: []string{
+				"network",
+				"watcher",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -11489,15 +13408,19 @@ Use this data source to access information about an existing Network Watcher.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_notification_hub",
-			Category:         "Data Sources",
+			Category:         "Messaging",
 			ShortDescription: `Gets information about an existing Notification Hub within a Notification Hub Namespace.`,
 			Description: `
 
 Use this data source to access information about an existing Notification Hub within a Notification Hub Namespace.
 
 `,
-			Icon:     "IoT/10045-icon-service-Notification-Hubs.svg",
-			Keywords: []string{},
+			Icon: "IoT/10045-icon-service-Notification-Hubs.svg",
+			Keywords: []string{
+				"messaging",
+				"notification",
+				"hub",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -11614,15 +13537,20 @@ Use this data source to access information about an existing Notification Hub wi
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_notification_hub_namespace",
-			Category:         "Data Sources",
+			Category:         "Messaging",
 			ShortDescription: `Gets information about an existing Notification Hub Namespace.`,
 			Description: `
 
 Use this data source to access information about an existing Notification Hub Namespace.
 
 `,
-			Icon:     "Web/10053-icon-service-Notification-Hub-Namespaces.svg",
-			Keywords: []string{},
+			Icon: "Web/10053-icon-service-Notification-Hub-Namespaces.svg",
+			Keywords: []string{
+				"messaging",
+				"notification",
+				"hub",
+				"namespace",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -11703,14 +13631,18 @@ Use this data source to access information about an existing Notification Hub Na
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_platform_image",
-			Category:         "Data Sources",
+			Category:         "Compute",
 			ShortDescription: `Gets information about a Platform Image.`,
 			Description: `
 
 Use this data source to access information about a Platform Image.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"compute",
+				"platform",
+				"image",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "location",
@@ -11755,14 +13687,17 @@ Use this data source to access information about a Platform Image.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_policy_definition",
-			Category:         "Data Sources",
+			Category:         "Policy",
 			ShortDescription: `Get information about a Policy Definition.`,
 			Description: `
 
 Use this data source to access information about a Policy Definition, both custom and built in. Retrieves Policy Definitions from your current subscription by default.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"policy",
+				"definition",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -11847,14 +13782,18 @@ Use this data source to access information about a Policy Definition, both custo
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_policy_set_definition",
-			Category:         "Data Sources",
+			Category:         "Policy",
 			ShortDescription: `Get information about a Policy Set Definition.`,
 			Description: `
 
 Use this data source to access information about an existing Policy Set Definition.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"policy",
+				"set",
+				"definition",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -11889,6 +13828,10 @@ Use this data source to access information about an existing Policy Set Definiti
 					Description: `One or more ` + "`" + `policy_definition_reference` + "`" + ` blocks as defined below.`,
 				},
 				resource.Attribute{
+					Name:        "policy_definition_group",
+					Description: `One or more ` + "`" + `policy_definition_group` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "parameters",
 					Description: `Any Parameters defined in the Policy Set Definition.`,
 				},
@@ -11910,7 +13853,31 @@ Use this data source to access information about an existing Policy Set Definiti
 				},
 				resource.Attribute{
 					Name:        "reference_id",
-					Description: `The unique ID within this policy set definition for this policy definition reference. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The unique ID within this policy set definition for this policy definition reference.`,
+				},
+				resource.Attribute{
+					Name:        "group_names",
+					Description: `The list of names of the policy definition groups that this policy definition reference belongs to. --- An ` + "`" + `policy_definition_group` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of this policy definition group.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The display name of this policy definition group.`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `The category of this policy definition group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of this policy definition group.`,
+				},
+				resource.Attribute{
+					Name:        "additional_metadata_id",
+					Description: `The ID of a resource that contains additional metadata about this policy definition group. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -11939,6 +13906,10 @@ Use this data source to access information about an existing Policy Set Definiti
 					Description: `One or more ` + "`" + `policy_definition_reference` + "`" + ` blocks as defined below.`,
 				},
 				resource.Attribute{
+					Name:        "policy_definition_group",
+					Description: `One or more ` + "`" + `policy_definition_group` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "parameters",
 					Description: `Any Parameters defined in the Policy Set Definition.`,
 				},
@@ -11960,7 +13931,31 @@ Use this data source to access information about an existing Policy Set Definiti
 				},
 				resource.Attribute{
 					Name:        "reference_id",
-					Description: `The unique ID within this policy set definition for this policy definition reference. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The unique ID within this policy set definition for this policy definition reference.`,
+				},
+				resource.Attribute{
+					Name:        "group_names",
+					Description: `The list of names of the policy definition groups that this policy definition reference belongs to. --- An ` + "`" + `policy_definition_group` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of this policy definition group.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The display name of this policy definition group.`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `The category of this policy definition group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of this policy definition group.`,
+				},
+				resource.Attribute{
+					Name:        "additional_metadata_id",
+					Description: `The ID of a resource that contains additional metadata about this policy definition group. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -11971,15 +13966,19 @@ Use this data source to access information about an existing Policy Set Definiti
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_postgresql_server",
-			Category:         "Data Sources",
+			Category:         "Database",
 			ShortDescription: `Gets information about an existing PostgreSQL Azure Database Server.`,
 			Description: `
 
 Use this data source to access information about an existing PostgreSQL Azure Database Server.
 
 `,
-			Icon:     "Databases/10131-icon-service-Azure-Database-PostgreSQL-Server.svg",
-			Keywords: []string{},
+			Icon: "Databases/10131-icon-service-Azure-Database-PostgreSQL-Server.svg",
+			Keywords: []string{
+				"database",
+				"postgresql",
+				"server",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -12084,14 +14083,18 @@ Use this data source to access information about an existing PostgreSQL Azure Da
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_private_dns_zone",
-			Category:         "Data Sources",
+			Category:         "Private DNS",
 			ShortDescription: `Gets information about an existing Private DNS Zone.`,
 			Description: `
 
 Use this data source to access information about an existing Private DNS Zone.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"private",
+				"dns",
+				"zone",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -12164,14 +14167,19 @@ Use this data source to access information about an existing Private DNS Zone.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_private_endpoint_connection",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Gets the connection status information about an existing Private Endpoint`,
 			Description: `
 
 Use this data source to access the connection status information about an existing Private Endpoint Connection.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"network",
+				"private",
+				"endpoint",
+				"connection",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -12244,15 +14252,20 @@ Use this data source to access the connection status information about an existi
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_private_link_service",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Use this data source to access information about an existing Private Link Service.`,
 			Description: `
 
 Use this data source to access information about an existing Private Link Service.
 
 `,
-			Icon:     "Networking/01105-icon-service-Private-Link-Service.svg",
-			Keywords: []string{},
+			Icon: "Networking/01105-icon-service-Private-Link-Service.svg",
+			Keywords: []string{
+				"network",
+				"private",
+				"link",
+				"service",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -12389,14 +14402,21 @@ Use this data source to access information about an existing Private Link Servic
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_private_link_service_endpoint_connections",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Use this data source to access endpoint connection information about an existing Private Link Service.`,
 			Description: `
 
 Use this data source to access endpoint connection information about an existing Private Link Service.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"network",
+				"private",
+				"link",
+				"service",
+				"endpoint",
+				"connections",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_id",
@@ -12485,15 +14505,20 @@ Use this data source to access endpoint connection information about an existing
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_proximity_placement_group",
-			Category:         "Data Sources",
+			Category:         "Compute",
 			ShortDescription: `Gets information about an existing Proximity Placement Group.`,
 			Description: `
 
 Use this data source to access information about an existing Proximity Placement Group.
 
 `,
-			Icon:     "Networking/10365-icon-service-Proximity-Placement-Groups.svg",
-			Keywords: []string{},
+			Icon: "Networking/10365-icon-service-Proximity-Placement-Groups.svg",
+			Keywords: []string{
+				"compute",
+				"proximity",
+				"placement",
+				"group",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -12526,14 +14551,18 @@ Use this data source to access information about an existing Proximity Placement
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_public_ip",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Gets information about an existing Public IP Address.`,
 			Description: `
 
 Use this data source to access information about an existing Public IP Address.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"network",
+				"public",
+				"ip",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -12562,6 +14591,10 @@ Use this data source to access information about an existing Public IP Address.
 				resource.Attribute{
 					Name:        "ip_version",
 					Description: `The IP version being used, for example ` + "`" + `IPv4` + "`" + ` or ` + "`" + `IPv6` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sku",
+					Description: `The SKU of the Public IP.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -12594,6 +14627,10 @@ Use this data source to access information about an existing Public IP Address.
 					Description: `The IP version being used, for example ` + "`" + `IPv4` + "`" + ` or ` + "`" + `IPv6` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "sku",
+					Description: `The SKU of the Public IP.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `A mapping of tags to assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
@@ -12606,15 +14643,20 @@ Use this data source to access information about an existing Public IP Address.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_public_ip_prefix",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Gets information about an existing Public IP Prefix.`,
 			Description: `
 
 Use this data source to access information about an existing Public IP Prefix.
 
 `,
-			Icon:     "Networking/10372-icon-service-Public-IP-Prefixes.svg",
-			Keywords: []string{},
+			Icon: "Networking/10372-icon-service-Public-IP-Prefixes.svg",
+			Keywords: []string{
+				"network",
+				"public",
+				"ip",
+				"prefix",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -12687,14 +14729,18 @@ Use this data source to access information about an existing Public IP Prefix.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_public_ips",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Gets information about a set of existing Public IP Addresses.`,
 			Description: `
 
 Use this data source to access information about a set of existing Public IP Addresses.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"network",
+				"public",
+				"ips",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "resource_group_name",
@@ -12730,7 +14776,11 @@ Use this data source to access information about a set of existing Public IP Add
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The Name of the Public IP Address ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Name of the Public IP Address`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `The IP address of the Public IP Address ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -12756,7 +14806,11 @@ Use this data source to access information about a set of existing Public IP Add
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The Name of the Public IP Address ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Name of the Public IP Address`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `The IP address of the Public IP Address ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -12767,15 +14821,19 @@ Use this data source to access information about a set of existing Public IP Add
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_recovery_services_vault",
-			Category:         "Data Sources",
+			Category:         "Recovery Services",
 			ShortDescription: `Gets information about an existing Recovery Services Vault.`,
 			Description: `
 
 Use this data source to access information about an existing Recovery Services Vault.
 
 `,
-			Icon:     "Storage/00017-icon-service-Recovery-Services-Vaults.svg",
-			Keywords: []string{},
+			Icon: "Storage/00017-icon-service-Recovery-Services-Vaults.svg",
+			Keywords: []string{
+				"recovery",
+				"services",
+				"vault",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -12832,15 +14890,18 @@ Use this data source to access information about an existing Recovery Services V
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_redis_cache",
-			Category:         "Data Sources",
+			Category:         "Redis",
 			ShortDescription: `Gets information about an existing Azure Redis Cache.`,
 			Description: `
 
 Use this data source to access information about an existing Redis Cache
 
 `,
-			Icon:     "Databases/10137-icon-service-Cache-Redis.svg",
-			Keywords: []string{},
+			Icon: "Databases/10137-icon-service-Cache-Redis.svg",
+			Keywords: []string{
+				"redis",
+				"cache",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -12880,7 +14941,7 @@ Use this data source to access information about an existing Redis Cache
 				},
 				resource.Attribute{
 					Name:        "patch_schedule",
-					Description: `A list of ` + "`" + `patch_schedule` + "`" + ` blocks as defined below - only available for Premium SKU's.`,
+					Description: `A list of ` + "`" + `patch_schedule` + "`" + ` blocks as defined below.`,
 				},
 				resource.Attribute{
 					Name:        "hostname",
@@ -12912,7 +14973,7 @@ Use this data source to access information about an existing Redis Cache
 				},
 				resource.Attribute{
 					Name:        "redis_configuration",
-					Description: `A ` + "`" + `redis_configuration` + "`" + ` block as defined below. --- A ` + "`" + `patch_schedule` + "`" + ` block supports the following (Requires Premium SKU's, attempting to access this value on Basic or Standard SKU's will result in an error):`,
+					Description: `A ` + "`" + `redis_configuration` + "`" + ` block as defined below. --- A ` + "`" + `patch_schedule` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "day_of_week",
@@ -12994,7 +15055,7 @@ Use this data source to access information about an existing Redis Cache
 				},
 				resource.Attribute{
 					Name:        "patch_schedule",
-					Description: `A list of ` + "`" + `patch_schedule` + "`" + ` blocks as defined below - only available for Premium SKU's.`,
+					Description: `A list of ` + "`" + `patch_schedule` + "`" + ` blocks as defined below.`,
 				},
 				resource.Attribute{
 					Name:        "hostname",
@@ -13026,7 +15087,7 @@ Use this data source to access information about an existing Redis Cache
 				},
 				resource.Attribute{
 					Name:        "redis_configuration",
-					Description: `A ` + "`" + `redis_configuration` + "`" + ` block as defined below. --- A ` + "`" + `patch_schedule` + "`" + ` block supports the following (Requires Premium SKU's, attempting to access this value on Basic or Standard SKU's will result in an error):`,
+					Description: `A ` + "`" + `redis_configuration` + "`" + ` block as defined below. --- A ` + "`" + `patch_schedule` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "day_of_week",
@@ -13081,14 +15142,18 @@ Use this data source to access information about an existing Redis Cache
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_resource_group",
-			Category:         "Data Sources",
+			Category:         "Base",
 			ShortDescription: `Gets information about an existing Resource Group.`,
 			Description: `
 
 Use this data source to access information about an existing Resource Group.
 
 `,
-			Keywords:  []string{},
+			Keywords: []string{
+				"base",
+				"resource",
+				"group",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -13112,14 +15177,16 @@ Use this data source to access information about an existing Resource Group.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_resources",
-			Category:         "Data Sources",
+			Category:         "Base",
 			ShortDescription: `Gets information about an existing Resources.`,
 			Description: `
 
 Use this data source to access information about existing resources.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"base",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -13200,14 +15267,18 @@ Use this data source to access information about existing resources.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_role_definition",
-			Category:         "Data Sources",
+			Category:         "Authorization",
 			ShortDescription: `Get information about an existing Role Definition.`,
 			Description: `
 
 Use this data source to access information about an existing Role Definition.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"authorization",
+				"role",
+				"definition",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -13292,15 +15363,19 @@ Use this data source to access information about an existing Role Definition.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_route_filter",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Gets information about an existing Route Filter.`,
 			Description: `
 
 Use this data source to access information about an existing Route Filter.
 
 `,
-			Icon:      "Networking/10071-icon-service-Route-Filters.svg",
-			Keywords:  []string{},
+			Icon: "Networking/10071-icon-service-Route-Filters.svg",
+			Keywords: []string{
+				"network",
+				"route",
+				"filter",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -13344,14 +15419,18 @@ Use this data source to access information about an existing Route Filter.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_route_table",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Gets information about an existing Route Table`,
 			Description: `
 
 Use this data source to access information about an existing Route Table.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"network",
+				"route",
+				"table",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -13447,15 +15526,90 @@ Use this data source to access information about an existing Route Table.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_search_service",
+			Category:         "Search",
+			ShortDescription: `Manages a Search Service.`,
+			Description:      ``,
+			Icon:             "App_Services/10044-icon-service-Search-Services.svg",
+			Keywords: []string{
+				"search",
+				"service",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Search Service.`,
+				},
+				resource.Attribute{
+					Name:        "primary_key",
+					Description: `The Primary Key used for Search Service Administration.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_key",
+					Description: `The Secondary Key used for Search Service Administration.`,
+				},
+				resource.Attribute{
+					Name:        "query_keys",
+					Description: `A ` + "`" + `query_keys` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "public_network_access_enabled",
+					Description: `Whether or not public network access is enabled for this resource.`,
+				},
+				resource.Attribute{
+					Name:        "partition_count",
+					Description: `The number of partitions which have been created.`,
+				},
+				resource.Attribute{
+					Name:        "replica_count",
+					Description: `The number of replica's which have been created.`,
+				},
+				resource.Attribute{
+					Name:        "identity",
+					Description: `An ` + "`" + `identity` + "`" + ` block as defined below. --- A ` + "`" + `identity` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The Type of Managed Identity which is used for the Search Service. --- A ` + "`" + `query_keys` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The value of this Query Key.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of this Query Key. --- A ` + "`" + `identity` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The (Client) ID of the Service Principal.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The ID of the Tenant the Service Principal is assigned in. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Search Service.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_sentinel_alert_rule",
-			Category:         "Data Sources",
+			Category:         "Sentinel",
 			ShortDescription: `Gets information about an existing Sentinel Alert Rule.`,
 			Description: `
 
 Use this data source to access information about an existing Sentinel Alert Rule.
 
 `,
-			Keywords:  []string{},
+			Keywords: []string{
+				"sentinel",
+				"alert",
+				"rule",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -13470,15 +15624,95 @@ Use this data source to access information about an existing Sentinel Alert Rule
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_sentinel_alert_rule_template",
+			Category:         "Sentinel",
+			ShortDescription: `Gets information about an existing Sentinel Alert Rule Template.`,
+			Description: `
+
+Use this data source to access information about an existing Sentinel Alert Rule Template.
+
+`,
+			Keywords: []string{
+				"sentinel",
+				"alert",
+				"rule",
+				"template",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Sentinel.`,
+				},
+				resource.Attribute{
+					Name:        "security_incident_template",
+					Description: `A ` + "`" + `security_incident_template` + "`" + ` block as defined below. This only applies to Sentinel MS Security Incident Alert Rule Template.`,
+				},
+				resource.Attribute{
+					Name:        "scheduled_template",
+					Description: `A ` + "`" + `scheduled_template` + "`" + ` block as defined below. This only applies to Sentinel Scheduled Alert Rule Template. --- A ` + "`" + `security_incident_template` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of this Sentinel MS Security Incident Alert Rule Template.`,
+				},
+				resource.Attribute{
+					Name:        "product_filter",
+					Description: `The Microsoft Security Service from where the alert will be generated. --- A ` + "`" + `scheduled_template` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of this Sentinel Scheduled Alert Rule Template.`,
+				},
+				resource.Attribute{
+					Name:        "query",
+					Description: `The query of this Sentinel Scheduled Alert Rule Template.`,
+				},
+				resource.Attribute{
+					Name:        "query_frequency",
+					Description: `The ISO 8601 timespan duration between two consecutive queries.`,
+				},
+				resource.Attribute{
+					Name:        "query_period",
+					Description: `The ISO 8601 timespan duration, which determine the time period of the data covered by the query.`,
+				},
+				resource.Attribute{
+					Name:        "severity",
+					Description: `The alert severity of this Sentinel Scheduled Alert Rule Template.`,
+				},
+				resource.Attribute{
+					Name:        "tactics",
+					Description: `A list of categories of attacks by which to classify the rule.`,
+				},
+				resource.Attribute{
+					Name:        "trigger_operator",
+					Description: `The alert trigger operator, combined with ` + "`" + `trigger_threshold` + "`" + `, setting alert threshold of this Sentinel Scheduled Alert Rule Template.`,
+				},
+				resource.Attribute{
+					Name:        "trigger_threshold",
+					Description: `The baseline number of query results generated, combined with ` + "`" + `trigger_operator` + "`" + `, setting alert threshold of this Sentinel Scheduled Alert Rule Template. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Sentinel.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_servicebus_namespace",
-			Category:         "Data Sources",
+			Category:         "Messaging",
 			ShortDescription: `Gets information about an existing ServiceBus Namespace.`,
 			Description: `
 
 Use this data source to access information about an existing ServiceBus Namespace.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"messaging",
+				"servicebus",
+				"namespace",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -13575,14 +15809,20 @@ Use this data source to access information about an existing ServiceBus Namespac
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_servicebus_namespace_authorization_rule",
-			Category:         "Data Sources",
+			Category:         "Messaging",
 			ShortDescription: `Gets information about an existing ServiceBus Namespace Authorization Rule.`,
 			Description: `
 
 Use this data source to access information about an existing ServiceBus Namespace Authorization Rule.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"messaging",
+				"servicebus",
+				"namespace",
+				"authorization",
+				"rule",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -13650,15 +15890,190 @@ Use this data source to access information about an existing ServiceBus Namespac
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_servicebus_queue_authorization_rule",
+			Category:         "Messaging",
+			ShortDescription: `Gets information about an existing ServiceBus Queue Authorisation Rule within a ServiceBus Queue.`,
+			Description: `
+
+Use this data source to access information about an existing ServiceBus Queue Authorisation Rule within a ServiceBus Queue.
+
+`,
+			Keywords: []string{
+				"messaging",
+				"servicebus",
+				"queue",
+				"authorization",
+				"rule",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the ServiceBus Queue Authorisation Rule.`,
+				},
+				resource.Attribute{
+					Name:        "primary_key",
+					Description: `The Primary Key for the ServiceBus Queue authorization Rule.`,
+				},
+				resource.Attribute{
+					Name:        "primary_connection_string",
+					Description: `The Primary Connection String for the ServiceBus Queue authorization Rule.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_key",
+					Description: `The Secondary Key for the ServiceBus Queue authorization Rule.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_connection_string",
+					Description: `The Secondary Connection String for the ServiceBus Queue authorization Rule. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the ServiceBus Queue Authorisation Rule.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_servicebus_subscription",
+			Category:         "Messaging",
+			ShortDescription: `Gets information about an existing ServiceBus Subscription.`,
+			Description: `
+
+Use this data source to access information about an existing ServiceBus Subscription.
+
+`,
+			Keywords: []string{
+				"messaging",
+				"servicebus",
+				"subscription",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the ServiceBus Subscription.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Specifies the name of the Resource Group where the ServiceBus Namespace exists.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_name",
+					Description: `(Required) The name of the ServiceBus Namespace.`,
+				},
+				resource.Attribute{
+					Name:        "topic_name",
+					Description: `(Required) The name of the ServiceBus Topic. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "max_delivery_count",
+					Description: `The maximum number of deliveries.`,
+				},
+				resource.Attribute{
+					Name:        "auto_delete_on_idle",
+					Description: `The idle interval after which the topic is automatically deleted.`,
+				},
+				resource.Attribute{
+					Name:        "default_message_ttl",
+					Description: `The Default message timespan to live. This is the duration after which the message expires, starting from when the message is sent to Service Bus. This is the default value used when TimeToLive is not set on a message itself.`,
+				},
+				resource.Attribute{
+					Name:        "lock_duration",
+					Description: `The lock duration for the subscription.`,
+				},
+				resource.Attribute{
+					Name:        "dead_lettering_on_message_expiration",
+					Description: `Does the Service Bus Subscription have dead letter support when a message expires?`,
+				},
+				resource.Attribute{
+					Name:        "dead_lettering_on_filter_evaluation_error",
+					Description: `Does the ServiceBus Subscription have dead letter support on filter evaluation exceptions?`,
+				},
+				resource.Attribute{
+					Name:        "enable_batched_operations",
+					Description: `Are batched operations enabled on this ServiceBus Subscription?`,
+				},
+				resource.Attribute{
+					Name:        "requires_session",
+					Description: `Whether or not this ServiceBus Subscription supports session.`,
+				},
+				resource.Attribute{
+					Name:        "forward_to",
+					Description: `The name of a ServiceBus Queue or ServiceBus Topic where messages are automatically forwarded.`,
+				},
+				resource.Attribute{
+					Name:        "forward_dead_lettered_messages_to",
+					Description: `The name of a Queue or Topic to automatically forward Dead Letter messages to. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the ServiceBus Subscription.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "max_delivery_count",
+					Description: `The maximum number of deliveries.`,
+				},
+				resource.Attribute{
+					Name:        "auto_delete_on_idle",
+					Description: `The idle interval after which the topic is automatically deleted.`,
+				},
+				resource.Attribute{
+					Name:        "default_message_ttl",
+					Description: `The Default message timespan to live. This is the duration after which the message expires, starting from when the message is sent to Service Bus. This is the default value used when TimeToLive is not set on a message itself.`,
+				},
+				resource.Attribute{
+					Name:        "lock_duration",
+					Description: `The lock duration for the subscription.`,
+				},
+				resource.Attribute{
+					Name:        "dead_lettering_on_message_expiration",
+					Description: `Does the Service Bus Subscription have dead letter support when a message expires?`,
+				},
+				resource.Attribute{
+					Name:        "dead_lettering_on_filter_evaluation_error",
+					Description: `Does the ServiceBus Subscription have dead letter support on filter evaluation exceptions?`,
+				},
+				resource.Attribute{
+					Name:        "enable_batched_operations",
+					Description: `Are batched operations enabled on this ServiceBus Subscription?`,
+				},
+				resource.Attribute{
+					Name:        "requires_session",
+					Description: `Whether or not this ServiceBus Subscription supports session.`,
+				},
+				resource.Attribute{
+					Name:        "forward_to",
+					Description: `The name of a ServiceBus Queue or ServiceBus Topic where messages are automatically forwarded.`,
+				},
+				resource.Attribute{
+					Name:        "forward_dead_lettered_messages_to",
+					Description: `The name of a Queue or Topic to automatically forward Dead Letter messages to. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the ServiceBus Subscription.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_servicebus_topic_authorization_rule",
-			Category:         "Data Sources",
+			Category:         "Messaging",
 			ShortDescription: `Gets information about a ServiceBus Topic authorization Rule within a ServiceBus Topic.`,
 			Description: `
 
 Use this data source to access information about a ServiceBus Topic Authorization Rule within a ServiceBus Topic.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"messaging",
+				"servicebus",
+				"topic",
+				"authorization",
+				"rule",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -13731,14 +16146,18 @@ Use this data source to access information about a ServiceBus Topic Authorizatio
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_shared_image",
-			Category:         "Data Sources",
+			Category:         "Compute",
 			ShortDescription: `Gets information about an existing Shared Image a Shared Image Gallery.`,
 			Description: `
 
 Use this data source to access information about an existing Shared Image within a Shared Image Gallery.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"compute",
+				"shared",
+				"image",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -13879,15 +16298,20 @@ Use this data source to access information about an existing Shared Image within
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_shared_image_gallery",
-			Category:         "Data Sources",
+			Category:         "Compute",
 			ShortDescription: `Gets information about an existing Shared Image Gallery.`,
 			Description: `
 
 Use this data source to access information about an existing Shared Image Gallery.
 
 `,
-			Icon:     "Compute/10039-icon-service-Shared-Image-Galleries.svg",
-			Keywords: []string{},
+			Icon: "Compute/10039-icon-service-Shared-Image-Galleries.svg",
+			Keywords: []string{
+				"compute",
+				"shared",
+				"image",
+				"gallery",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -13944,14 +16368,19 @@ Use this data source to access information about an existing Shared Image Galler
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_shared_image_version",
-			Category:         "Data Sources",
+			Category:         "Compute",
 			ShortDescription: `Gets information about an existing Version of a Shared Image within a Shared Image Gallery.`,
 			Description: `
 
 Use this data source to access information about an existing Version of a Shared Image within a Shared Image Gallery.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"compute",
+				"shared",
+				"image",
+				"version",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -13992,6 +16421,10 @@ Use this data source to access information about an existing Version of a Shared
 				resource.Attribute{
 					Name:        "os_disk_snapshot_id",
 					Description: `The ID of the OS disk snapshot which was the source of this Shared Image Version.`,
+				},
+				resource.Attribute{
+					Name:        "os_disk_image_size_gb",
+					Description: `The size of the OS disk snapshot (in Gigabytes) which was the source of this Shared Image Version.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -14040,6 +16473,10 @@ Use this data source to access information about an existing Version of a Shared
 					Description: `The ID of the OS disk snapshot which was the source of this Shared Image Version.`,
 				},
 				resource.Attribute{
+					Name:        "os_disk_image_size_gb",
+					Description: `The size of the OS disk snapshot (in Gigabytes) which was the source of this Shared Image Version.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `A mapping of tags assigned to the Shared Image. --- The ` + "`" + `target_region` + "`" + ` block exports the following:`,
 				},
@@ -14064,15 +16501,20 @@ Use this data source to access information about an existing Version of a Shared
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_shared_image_versions",
-			Category:         "Data Sources",
+			Category:         "Compute",
 			ShortDescription: `Gets information about existing Versions of a Shared Image within a Shared Image Gallery.`,
 			Description: `
 
 Use this data source to access information about existing Versions of a Shared Image within a Shared Image Gallery.
 
 `,
-			Icon:     "Compute/10038-icon-service-Image-Versions.svg",
-			Keywords: []string{},
+			Icon: "Compute/10038-icon-service-Image-Versions.svg",
+			Keywords: []string{
+				"compute",
+				"shared",
+				"image",
+				"versions",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "image_name",
@@ -14177,14 +16619,18 @@ Use this data source to access information about existing Versions of a Shared I
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_signalr_service",
-			Category:         "Data Sources",
+			Category:         "Messaging",
 			ShortDescription: `Gets information about an existing Azure SignalR service.`,
 			Description: `
 
 Use this data source to access information about an existing Azure SignalR service.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"messaging",
+				"signalr",
+				"service",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -14289,14 +16735,17 @@ Use this data source to access information about an existing Azure SignalR servi
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_snapshot",
-			Category:         "Data Sources",
+			Category:         "Compute",
 			ShortDescription: `Get information about an existing Snapshot`,
 			Description: `
 
 Use this data source to access information about an existing Snapshot.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"compute",
+				"snapshot",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -14368,15 +16817,155 @@ Use this data source to access information about an existing Snapshot.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_spring_cloud_app",
+			Category:         "Spring Cloud",
+			ShortDescription: `Gets information about an existing Spring Cloud Application`,
+			Description: `
+
+Use this data source to access information about an existing Spring Cloud Application.
+
+`,
+			Keywords: []string{
+				"spring",
+				"cloud",
+				"app",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Spring Cloud Application.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the Resource Group where the Spring Cloud Application exists.`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) The name of the Spring Cloud Service. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of Spring Cloud Application.`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `The Fully Qualified DNS Name.`,
+				},
+				resource.Attribute{
+					Name:        "https_only",
+					Description: `Is only https allowed?`,
+				},
+				resource.Attribute{
+					Name:        "identity",
+					Description: `An ` + "`" + `identity` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "is_public",
+					Description: `Does the Spring Cloud Application have public endpoint?`,
+				},
+				resource.Attribute{
+					Name:        "persistent_disk",
+					Description: `A ` + "`" + `persistent_disk` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The public endpoint of the Spring Cloud Application. --- The ` + "`" + `identity` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Principal ID for the Service Principal associated with the Managed Service Identity of this Spring Cloud Application.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The Tenant ID for the Service Principal associated with the Managed Service Identity of this Spring Cloud Application.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The Type of Managed Identity assigned to the Spring Cloud Application. --- The ` + "`" + `persistent_disk` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "mount_path",
+					Description: `The mount path of the persistent disk.`,
+				},
+				resource.Attribute{
+					Name:        "size_in_gb",
+					Description: `The size of the persistent disk in GB. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Spring Cloud Application.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of Spring Cloud Application.`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `The Fully Qualified DNS Name.`,
+				},
+				resource.Attribute{
+					Name:        "https_only",
+					Description: `Is only https allowed?`,
+				},
+				resource.Attribute{
+					Name:        "identity",
+					Description: `An ` + "`" + `identity` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "is_public",
+					Description: `Does the Spring Cloud Application have public endpoint?`,
+				},
+				resource.Attribute{
+					Name:        "persistent_disk",
+					Description: `A ` + "`" + `persistent_disk` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The public endpoint of the Spring Cloud Application. --- The ` + "`" + `identity` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Principal ID for the Service Principal associated with the Managed Service Identity of this Spring Cloud Application.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The Tenant ID for the Service Principal associated with the Managed Service Identity of this Spring Cloud Application.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The Type of Managed Identity assigned to the Spring Cloud Application. --- The ` + "`" + `persistent_disk` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "mount_path",
+					Description: `The mount path of the persistent disk.`,
+				},
+				resource.Attribute{
+					Name:        "size_in_gb",
+					Description: `The size of the persistent disk in GB. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Spring Cloud Application.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_spring_cloud_service",
-			Category:         "Data Sources",
+			Category:         "Spring Cloud",
 			ShortDescription: `Gets information about an existing Spring Cloud Service`,
 			Description: `
 
 Use this data source to access information about an existing Spring Cloud Service.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"spring",
+				"cloud",
+				"service",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -14391,12 +16980,16 @@ Use this data source to access information about an existing Spring Cloud Servic
 					Description: `The ID of Spring Cloud Service.`,
 				},
 				resource.Attribute{
+					Name:        "config_server_git_setting",
+					Description: `A ` + "`" + `config_server_git_setting` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "location",
 					Description: `The location of Spring Cloud Service.`,
 				},
 				resource.Attribute{
-					Name:        "config_server_git_setting",
-					Description: `A ` + "`" + `config_server_git_setting` + "`" + ` block as defined below.`,
+					Name:        "outbound_public_ip_addresses",
+					Description: `A list of the outbound Public IP Addresses used by this Spring Cloud Service.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -14489,12 +17082,16 @@ Use this data source to access information about an existing Spring Cloud Servic
 					Description: `The ID of Spring Cloud Service.`,
 				},
 				resource.Attribute{
+					Name:        "config_server_git_setting",
+					Description: `A ` + "`" + `config_server_git_setting` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "location",
 					Description: `The location of Spring Cloud Service.`,
 				},
 				resource.Attribute{
-					Name:        "config_server_git_setting",
-					Description: `A ` + "`" + `config_server_git_setting` + "`" + ` block as defined below.`,
+					Name:        "outbound_public_ip_addresses",
+					Description: `A list of the outbound Public IP Addresses used by this Spring Cloud Service.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -14585,15 +17182,18 @@ Use this data source to access information about an existing Spring Cloud Servic
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_sql_database",
-			Category:         "Data Sources",
+			Category:         "Database",
 			ShortDescription: `Gets information about an existing SQL Azure Database.`,
 			Description: `
 
 Use this data source to access information about an existing SQL Azure Database.
 
 `,
-			Icon:     "Databases/10130-icon-service-SQL-Database.svg",
-			Keywords: []string{},
+			Icon: "Databases/10130-icon-service-SQL-Database.svg",
+			Keywords: []string{
+				"database",
+				"sql",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -14742,15 +17342,19 @@ Use this data source to access information about an existing SQL Azure Database.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_sql_server",
-			Category:         "Data Sources",
+			Category:         "Database",
 			ShortDescription: `Gets information about an existing SQL Azure Database Server.`,
 			Description: `
 
 Use this data source to access information about an existing SQL Azure Database Server.
 
 `,
-			Icon:     "Databases/10132-icon-service-SQL-Server.svg",
-			Keywords: []string{},
+			Icon: "Databases/10132-icon-service-SQL-Server.svg",
+			Keywords: []string{
+				"database",
+				"sql",
+				"server",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -14854,16 +17458,51 @@ Use this data source to access information about an existing SQL Azure Database 
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_ssh_public_key",
+			Category:         "Compute",
+			ShortDescription: `Gets information about an existing SSH Public Key.`,
+			Description: `
+
+Use this data source to access information about an existing SSH Public Key.
+
+`,
+			Keywords: []string{
+				"compute",
+				"ssh",
+				"public",
+				"key",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the SSH Public Key.`,
+				},
+				resource.Attribute{
+					Name:        "public_key",
+					Description: `The SSH public key used to authenticate to a virtual machine through ssh. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the SSH Public Key.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_storage_account",
-			Category:         "Data Sources",
+			Category:         "Storage",
 			ShortDescription: `Gets information about an existing Storage Account.`,
 			Description: `
 
 Use this data source to access information about an existing Storage Account.
 
 `,
-			Icon:     "Storage/10087-icon-service-Storage-Accounts-(Classic).svg",
-			Keywords: []string{},
+			Icon: "Storage/10087-icon-service-Storage-Accounts-(Classic).svg",
+			Keywords: []string{
+				"storage",
+				"account",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -15248,7 +17887,7 @@ Use this data source to access information about an existing Storage Account.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_storage_account_blob_container_sas",
-			Category:         "Data Sources",
+			Category:         "Storage",
 			ShortDescription: `Gets a Shared Access Signature (SAS Token) for an existing Storage Account Blob Container.`,
 			Description: `
 
@@ -15257,7 +17896,13 @@ Use this data source to obtain a Shared Access Signature (SAS Token) for an exis
 Shared access signatures allow fine-grained, ephemeral access control to various aspects of an Azure Storage Account Blob Container.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"storage",
+				"account",
+				"blob",
+				"container",
+				"sas",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "connection_string",
@@ -15354,7 +17999,7 @@ Shared access signatures allow fine-grained, ephemeral access control to various
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_storage_account_sas",
-			Category:         "Data Sources",
+			Category:         "Storage",
 			ShortDescription: `Gets a Shared Access Signature (SAS Token) for an existing Storage Account.`,
 			Description: `
 
@@ -15366,7 +18011,11 @@ Note that this is an [Account SAS](https://docs.microsoft.com/en-us/rest/api/sto
 and *not* a [Service SAS](https://docs.microsoft.com/en-us/rest/api/storageservices/constructing-a-service-sas).
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"storage",
+				"account",
+				"sas",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "connection_string",
@@ -15483,15 +18132,18 @@ and *not* a [Service SAS](https://docs.microsoft.com/en-us/rest/api/storageservi
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_storage_container",
-			Category:         "Data Sources",
+			Category:         "Storage",
 			ShortDescription: `Gets information about an existing Storage Container.`,
 			Description: `
 
 Use this data source to access information about an existing Storage Container.
 
 `,
-			Icon:     "General/10839-icon-service-Storage-Container.svg",
-			Keywords: []string{},
+			Icon: "General/10839-icon-service-Storage-Container.svg",
+			Keywords: []string{
+				"storage",
+				"container",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -15547,15 +18199,54 @@ Use this data source to access information about an existing Storage Container.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_storage_encryption_scope",
+			Category:         "Storage",
+			ShortDescription: `Gets information about an existing Storage Encryption Scope.`,
+			Description: `
+
+Use this data source to access information about an existing Storage Encryption Scope.
+
+`,
+			Keywords: []string{
+				"storage",
+				"encryption",
+				"scope",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Storage Encryption Scope.`,
+				},
+				resource.Attribute{
+					Name:        "key_vault_key_id",
+					Description: `The ID of the Key Vault Key.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `The source of the Storage Encryption Scope. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Storage Encryption Scope.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_storage_management_policy",
-			Category:         "Data Sources",
+			Category:         "Storage",
 			ShortDescription: `Gets information about an existing Storage Management Policy.`,
 			Description: `
 
 Use this data source to access information about an existing Storage Management Policy.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"storage",
+				"management",
+				"policy",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "storage_account_id",
@@ -15688,14 +18379,17 @@ Use this data source to access information about an existing Storage Management 
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_storage_sync",
-			Category:         "Data Sources",
+			Category:         "Storage",
 			ShortDescription: `Gets information about an existing Storage Sync.`,
 			Description: `
 
 Use this data source to access information about an existing Storage Sync.
 
 `,
-			Keywords:  []string{},
+			Keywords: []string{
+				"storage",
+				"sync",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -15723,14 +18417,18 @@ Use this data source to access information about an existing Storage Sync.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_storage_sync_group",
-			Category:         "Data Sources",
+			Category:         "Storage",
 			ShortDescription: `Gets information about an existing Storage Sync Group.`,
 			Description: `
 
 Use this data source to access information about an existing Storage Sync Group.
 
 `,
-			Keywords:  []string{},
+			Keywords: []string{
+				"storage",
+				"sync",
+				"group",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -15746,15 +18444,19 @@ Use this data source to access information about an existing Storage Sync Group.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_stream_analytics_job",
-			Category:         "Data Sources",
+			Category:         "Stream Analytics",
 			ShortDescription: `Gets information about an existing Stream Analytics Job.`,
 			Description: `
 
 Use this data source to access information about an existing Stream Analytics Job.
 
 `,
-			Icon:     "IoT/00042-icon-service-Stream-Analytics-Jobs.svg",
-			Keywords: []string{},
+			Icon: "IoT/00042-icon-service-Stream-Analytics-Jobs.svg",
+			Keywords: []string{
+				"stream",
+				"analytics",
+				"job",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -15867,14 +18569,17 @@ Use this data source to access information about an existing Stream Analytics Jo
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_subnet",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Gets information about an existing Subnet located within a Virtual Network.`,
 			Description: `
 
 Use this data source to access information about an existing Subnet within a Virtual Network.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"network",
+				"subnet",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -15975,14 +18680,17 @@ Use this data source to access information about an existing Subnet within a Vir
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_subscription",
-			Category:         "Data Sources",
+			Category:         "Base",
 			ShortDescription: `Gets information about an existing Subscription.`,
 			Description: `
 
 Use this data source to access information about an existing Subscription.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"base",
+				"subscription",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "subscription_id",
@@ -16018,7 +18726,11 @@ Use this data source to access information about an existing Subscription.
 				},
 				resource.Attribute{
 					Name:        "spending_limit",
-					Description: `The subscription spending limit. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The subscription spending limit.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the Subscription. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -16056,7 +18768,11 @@ Use this data source to access information about an existing Subscription.
 				},
 				resource.Attribute{
 					Name:        "spending_limit",
-					Description: `The subscription spending limit. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The subscription spending limit.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the Subscription. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -16067,14 +18783,17 @@ Use this data source to access information about an existing Subscription.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_subscriptions",
-			Category:         "Data Sources",
+			Category:         "Base",
 			ShortDescription: `Get information about the available subscriptions.`,
 			Description: `
 
 Use this data source to access information about all the Subscriptions currently available.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"base",
+				"subscriptions",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "display_name_prefix",
@@ -16089,6 +18808,10 @@ Use this data source to access information about all the Subscriptions currently
 					Description: `One or more ` + "`" + `subscription` + "`" + ` blocks as defined below. The ` + "`" + `subscription` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of this subscription.`,
+				},
+				resource.Attribute{
 					Name:        "subscription_id",
 					Description: `The subscription GUID.`,
 				},
@@ -16114,7 +18837,11 @@ Use this data source to access information about all the Subscriptions currently
 				},
 				resource.Attribute{
 					Name:        "spending_limit",
-					Description: `The subscription spending limit. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The subscription spending limit.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -16127,6 +18854,10 @@ Use this data source to access information about all the Subscriptions currently
 					Description: `One or more ` + "`" + `subscription` + "`" + ` blocks as defined below. The ` + "`" + `subscription` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of this subscription.`,
+				},
+				resource.Attribute{
 					Name:        "subscription_id",
 					Description: `The subscription GUID.`,
 				},
@@ -16152,7 +18883,11 @@ Use this data source to access information about all the Subscriptions currently
 				},
 				resource.Attribute{
 					Name:        "spending_limit",
-					Description: `The subscription spending limit. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The subscription spending limit.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -16163,14 +18898,17 @@ Use this data source to access information about all the Subscriptions currently
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_synapse_workspace",
-			Category:         "Data Sources",
+			Category:         "Synapse",
 			ShortDescription: `Gets information about an existing Synapse Workspace.`,
 			Description: `
 
 Use this data source to access information about an existing Synapse Workspace.
 
 `,
-			Keywords:  []string{},
+			Keywords: []string{
+				"synapse",
+				"workspace",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -16198,14 +18936,20 @@ Use this data source to access information about an existing Synapse Workspace.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_traffic_manager_geographical_location",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Gets information about a specified Traffic Manager Geographical Location within the Geographical Hierarchy.`,
 			Description: `
 
 Use this data source to access the ID of a specified Traffic Manager Geographical Location within the Geographical Hierarchy.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"network",
+				"traffic",
+				"manager",
+				"geographical",
+				"location",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -16233,15 +18977,226 @@ Use this data source to access the ID of a specified Traffic Manager Geographica
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_traffic_manager_profile",
+			Category:         "Network",
+			ShortDescription: `Gets information about a specified Traffic Manager Profile.`,
+			Description: `
+
+Use this data source to access information about an existing Traffic Manager Profile.
+
+`,
+			Icon: "Networking/10065-icon-service-Traffic-Manager-Profiles.svg",
+			Keywords: []string{
+				"network",
+				"traffic",
+				"manager",
+				"profile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Specifies the name of the Traffic Manager Profile.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `Specifies the name of the resource group the Traffic Manager Profile is located in. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Traffic Manager Profile.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure location where the Traffic Manager Profile exists.`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `The FQDN of the created Profile.`,
+				},
+				resource.Attribute{
+					Name:        "profile_status",
+					Description: `The status of the profile.`,
+				},
+				resource.Attribute{
+					Name:        "traffic_routing_method",
+					Description: `Specifies the algorithm used to route traffic.`,
+				},
+				resource.Attribute{
+					Name:        "traffic_view_enabled",
+					Description: `Indicates whether Traffic View is enabled for the Traffic Manager profile.`,
+				},
+				resource.Attribute{
+					Name:        "dns_config",
+					Description: `This block specifies the DNS configuration of the Profile.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_config",
+					Description: `This block specifies the Endpoint monitoring configuration for the Profile.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the resource. The ` + "`" + `dns_config` + "`" + ` block provides:`,
+				},
+				resource.Attribute{
+					Name:        "relative_name",
+					Description: `The relative domain name, this is combined with the domain name used by Traffic Manager to form the FQDN which is exported as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `The TTL value of the Profile used by Local DNS resolvers and clients. The ` + "`" + `monitor_config` + "`" + ` block provides:`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `The protocol used by the monitoring checks.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The port number used by the monitoring checks.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The path used by the monitoring checks.`,
+				},
+				resource.Attribute{
+					Name:        "expected_status_code_ranges",
+					Description: `A list of status code ranges.`,
+				},
+				resource.Attribute{
+					Name:        "custom_header",
+					Description: `One or more ` + "`" + `custom_header` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "interval_in_seconds",
+					Description: `The interval used to check the endpoint health from a Traffic Manager probing agent.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_in_seconds",
+					Description: `The amount of time the Traffic Manager probing agent should wait before considering that check a failure when a health check probe is sent to the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "tolerated_number_of_failures",
+					Description: `The number of failures a Traffic Manager probing agent tolerates before marking that endpoint as unhealthy. A ` + "`" + `custom_header` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the custom header.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of custom header. Applicable for Http and Https protocol. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Location.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Traffic Manager Profile.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure location where the Traffic Manager Profile exists.`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `The FQDN of the created Profile.`,
+				},
+				resource.Attribute{
+					Name:        "profile_status",
+					Description: `The status of the profile.`,
+				},
+				resource.Attribute{
+					Name:        "traffic_routing_method",
+					Description: `Specifies the algorithm used to route traffic.`,
+				},
+				resource.Attribute{
+					Name:        "traffic_view_enabled",
+					Description: `Indicates whether Traffic View is enabled for the Traffic Manager profile.`,
+				},
+				resource.Attribute{
+					Name:        "dns_config",
+					Description: `This block specifies the DNS configuration of the Profile.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_config",
+					Description: `This block specifies the Endpoint monitoring configuration for the Profile.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the resource. The ` + "`" + `dns_config` + "`" + ` block provides:`,
+				},
+				resource.Attribute{
+					Name:        "relative_name",
+					Description: `The relative domain name, this is combined with the domain name used by Traffic Manager to form the FQDN which is exported as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `The TTL value of the Profile used by Local DNS resolvers and clients. The ` + "`" + `monitor_config` + "`" + ` block provides:`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `The protocol used by the monitoring checks.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The port number used by the monitoring checks.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The path used by the monitoring checks.`,
+				},
+				resource.Attribute{
+					Name:        "expected_status_code_ranges",
+					Description: `A list of status code ranges.`,
+				},
+				resource.Attribute{
+					Name:        "custom_header",
+					Description: `One or more ` + "`" + `custom_header` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "interval_in_seconds",
+					Description: `The interval used to check the endpoint health from a Traffic Manager probing agent.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_in_seconds",
+					Description: `The amount of time the Traffic Manager probing agent should wait before considering that check a failure when a health check probe is sent to the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "tolerated_number_of_failures",
+					Description: `The number of failures a Traffic Manager probing agent tolerates before marking that endpoint as unhealthy. A ` + "`" + `custom_header` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the custom header.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of custom header. Applicable for Http and Https protocol. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Location.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_user_assigned_identity",
-			Category:         "Data Sources",
+			Category:         "Authorization",
 			ShortDescription: `Gets information about an existing User Assigned Identity.`,
 			Description: `
 
 Use this data source to access information about an existing User Assigned Identity.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"authorization",
+				"user",
+				"assigned",
+				"identity",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -16306,14 +19261,18 @@ Use this data source to access information about an existing User Assigned Ident
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_virtual_hub",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Gets information about an existing Virtual Hub`,
 			Description: `
 
 Uses this data source to access information about an existing Virtual Hub.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"network",
+				"virtual",
+				"hub",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -16370,15 +19329,19 @@ Uses this data source to access information about an existing Virtual Hub.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_virtual_machine",
-			Category:         "Data Sources",
+			Category:         "Compute",
 			ShortDescription: `Gets information about an existing Virtual Machine.`,
 			Description: `
 
 Use this data source to access information about an existing Virtual Machine.
 
 `,
-			Icon:     "Compute/10040-icon-service-VM-Images-(Classic).svg",
-			Keywords: []string{},
+			Icon: "Compute/10040-icon-service-VM-Images-(Classic).svg",
+			Keywords: []string{
+				"compute",
+				"virtual",
+				"machine",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -16451,15 +19414,21 @@ Use this data source to access information about an existing Virtual Machine.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_virtual_machine_scale_set",
-			Category:         "Data Sources",
+			Category:         "Compute",
 			ShortDescription: `Gets information about an existing Virtual Machine Scale Set.`,
 			Description: `
 
 Use this data source to access information about an existing Virtual Machine Scale Set.
 
 `,
-			Icon:      "Compute/10034-icon-service-VM-Scale-Sets.svg",
-			Keywords:  []string{},
+			Icon: "Compute/10034-icon-service-VM-Scale-Sets.svg",
+			Keywords: []string{
+				"compute",
+				"virtual",
+				"machine",
+				"scale",
+				"set",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -16491,15 +19460,18 @@ Use this data source to access information about an existing Virtual Machine Sca
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_virtual_network",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Gets information about an existing Virtual Network.`,
 			Description: `
 
 Use this data source to access information about an existing Virtual Network.
 
 `,
-			Icon:     "Networking/10075-icon-service-Virtual-Networks-(Classic).svg",
-			Keywords: []string{},
+			Icon: "Networking/10075-icon-service-Virtual-Networks-(Classic).svg",
+			Keywords: []string{
+				"network",
+				"virtual",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -16580,15 +19552,19 @@ Use this data source to access information about an existing Virtual Network.
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_virtual_network_gateway",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Gets information about an existing Virtual Network Gateway.`,
 			Description: `
 
 Use this data source to access information about an existing Virtual Network Gateway.
 
 `,
-			Icon:     "Networking/10063-icon-service-Virtual-Network-Gateways.svg",
-			Keywords: []string{},
+			Icon: "Networking/10063-icon-service-Virtual-Network-Gateways.svg",
+			Keywords: []string{
+				"network",
+				"virtual",
+				"gateway",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -16623,6 +19599,10 @@ Use this data source to access information about an existing Virtual Network Gat
 					Description: `Is this an Active-Active Gateway?`,
 				},
 				resource.Attribute{
+					Name:        "private_ip_address_enabled",
+					Description: `Whether a private IP will be used for this gateway for connections.`,
+				},
+				resource.Attribute{
 					Name:        "default_local_network_gateway_id",
 					Description: `The ID of the local network gateway through which outbound Internet traffic from the virtual network in which the gateway is created will be routed (`,
 				},
@@ -16708,7 +19688,11 @@ Use this data source to access information about an existing Virtual Network Gat
 				},
 				resource.Attribute{
 					Name:        "peer_weight",
-					Description: `The weight added to routes which have been learned through BGP peering. The ` + "`" + `root_certificate` + "`" + ` block supports:`,
+					Description: `The weight added to routes which have been learned through BGP peering. A ` + "`" + `custom_route` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "address_prefixes",
+					Description: `A list of address blocks reserved for this virtual network in CIDR notation. The ` + "`" + `root_certificate` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -16757,6 +19741,10 @@ Use this data source to access information about an existing Virtual Network Gat
 					Description: `Is this an Active-Active Gateway?`,
 				},
 				resource.Attribute{
+					Name:        "private_ip_address_enabled",
+					Description: `Whether a private IP will be used for this gateway for connections.`,
+				},
+				resource.Attribute{
 					Name:        "default_local_network_gateway_id",
 					Description: `The ID of the local network gateway through which outbound Internet traffic from the virtual network in which the gateway is created will be routed (`,
 				},
@@ -16842,7 +19830,11 @@ Use this data source to access information about an existing Virtual Network Gat
 				},
 				resource.Attribute{
 					Name:        "peer_weight",
-					Description: `The weight added to routes which have been learned through BGP peering. The ` + "`" + `root_certificate` + "`" + ` block supports:`,
+					Description: `The weight added to routes which have been learned through BGP peering. A ` + "`" + `custom_route` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "address_prefixes",
+					Description: `A list of address blocks reserved for this virtual network in CIDR notation. The ` + "`" + `root_certificate` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -16869,14 +19861,19 @@ Use this data source to access information about an existing Virtual Network Gat
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_virtual_network_gateway_connection",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Gets information about an existing Virtual Network Gateway Connection.`,
 			Description: `
 
 Use this data source to access information about an existing Virtual Network Gateway Connection.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"network",
+				"virtual",
+				"gateway",
+				"connection",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -16907,12 +19904,20 @@ Use this data source to access information about an existing Virtual Network Gat
 					Description: `The authorization key associated with the Express Route Circuit. This field is present only if the type is an ExpressRoute connection.`,
 				},
 				resource.Attribute{
+					Name:        "dpd_timeout_seconds",
+					Description: `The dead peer detection timeout of this connection in seconds.`,
+				},
+				resource.Attribute{
 					Name:        "express_route_circuit_id",
 					Description: `The ID of the Express Route Circuit (i.e. when ` + "`" + `type` + "`" + ` is ` + "`" + `ExpressRoute` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "peer_virtual_network_gateway_id",
 					Description: `The ID of the peer virtual network gateway when a VNet-to-VNet connection (i.e. when ` + "`" + `type` + "`" + ` is ` + "`" + `Vnet2Vnet` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "local_azure_ip_address_enabled",
+					Description: `Use private local Azure IP for the connection.`,
 				},
 				resource.Attribute{
 					Name:        "local_network_gateway_id",
@@ -17009,12 +20014,20 @@ Use this data source to access information about an existing Virtual Network Gat
 					Description: `The authorization key associated with the Express Route Circuit. This field is present only if the type is an ExpressRoute connection.`,
 				},
 				resource.Attribute{
+					Name:        "dpd_timeout_seconds",
+					Description: `The dead peer detection timeout of this connection in seconds.`,
+				},
+				resource.Attribute{
 					Name:        "express_route_circuit_id",
 					Description: `The ID of the Express Route Circuit (i.e. when ` + "`" + `type` + "`" + ` is ` + "`" + `ExpressRoute` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "peer_virtual_network_gateway_id",
 					Description: `The ID of the peer virtual network gateway when a VNet-to-VNet connection (i.e. when ` + "`" + `type` + "`" + ` is ` + "`" + `Vnet2Vnet` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "local_azure_ip_address_enabled",
+					Description: `Use private local Azure IP for the connection.`,
 				},
 				resource.Attribute{
 					Name:        "local_network_gateway_id",
@@ -17092,16 +20105,156 @@ Use this data source to access information about an existing Virtual Network Gat
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_virtual_wan",
+			Category:         "Network",
+			ShortDescription: `Gets information about an existing Virtual Wan.`,
+			Description: `
+
+Use this data source to access information about an existing Virtual Wan.
+
+`,
+			Keywords: []string{
+				"network",
+				"virtual",
+				"wan",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_vmware_private_cloud",
+			Category:         "VMware (AVS)",
+			ShortDescription: `Gets information about an existing Vmware Private Cloud.`,
+			Description: `
+
+Use this data source to access information about an existing Vmware Private Cloud.
+
+`,
+			Keywords: []string{
+				"vmware",
+				"avs",
+				"private",
+				"cloud",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Vmware Private Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure Region where the Vmware Private Cloud exists.`,
+				},
+				resource.Attribute{
+					Name:        "circuit",
+					Description: `A ` + "`" + `circuit` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "internet_connection_enabled",
+					Description: `Is the Vmware Private Cluster connected to the internet?`,
+				},
+				resource.Attribute{
+					Name:        "management_cluster",
+					Description: `A ` + "`" + `management_cluster` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "network_subnet_cidr",
+					Description: `The subnet cidr of the Vmware Private Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "hcx_cloud_manager_endpoint",
+					Description: `The endpoint for the HCX Cloud Manager.`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_manager_endpoint",
+					Description: `The endpoint for the NSX-T Data Center manager.`,
+				},
+				resource.Attribute{
+					Name:        "vcsa_endpoint",
+					Description: `The endpoint for Virtual Center Server Appliance.`,
+				},
+				resource.Attribute{
+					Name:        "sku_name",
+					Description: `The Name of the SKU used for this Private Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_certificate_thumbprint",
+					Description: `The thumbprint of the NSX-T Manager SSL certificate.`,
+				},
+				resource.Attribute{
+					Name:        "vcenter_certificate_thumbprint",
+					Description: `The thumbprint of the vCenter Server SSL certificate.`,
+				},
+				resource.Attribute{
+					Name:        "management_subnet_cidr",
+					Description: `The network used to access vCenter Server and NSX-T Manager.`,
+				},
+				resource.Attribute{
+					Name:        "provisioning_subnet_cidr",
+					Description: `The network which isused for virtual machine cold migration, cloning, and snapshot migration.`,
+				},
+				resource.Attribute{
+					Name:        "vmotion_subnet_cidr",
+					Description: `The network which is used for live migration of virtual machines.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the Vmware Private Cloud. --- A ` + "`" + `circuit` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "express_route_id",
+					Description: `The ID of the ExpressRoute Circuit.`,
+				},
+				resource.Attribute{
+					Name:        "express_route_private_peering_id",
+					Description: `The ID of the ExpressRoute Circuit private peering.`,
+				},
+				resource.Attribute{
+					Name:        "primary_subnet_cidr",
+					Description: `The CIDR of the primary subnet.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_subnet_cidr",
+					Description: `The CIDR of the secondary subnet. --- A ` + "`" + `management_cluster` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the management cluster.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The size of the management cluster.`,
+				},
+				resource.Attribute{
+					Name:        "hosts",
+					Description: `The list of the hosts in the management cluster. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Vmware Private Cloud.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_web_application_firewall_policy",
-			Category:         "Data Sources",
+			Category:         "Network",
 			ShortDescription: `Gets information about an existing Web Application Firewall Policy.`,
 			Description: `
 
 Use this data source to access information about an existing Web Application Firewall Policy.
 
 `,
-			Icon:      "Networking/10362-icon-service-Web-Application-Firewall-Policies(WAF).svg",
-			Keywords:  []string{},
+			Icon: "Networking/10362-icon-service-Web-Application-Firewall-Policies(WAF).svg",
+			Keywords: []string{
+				"network",
+				"web",
+				"application",
+				"firewall",
+				"policy",
+			},
 			Arguments: []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -17131,154 +20284,178 @@ Use this data source to access information about an existing Web Application Fir
 		"azurerm_app_service_certificate_order":             10,
 		"azurerm_app_service_environment":                   11,
 		"azurerm_app_service_plan":                          12,
-		"azurerm_application_insights":                      13,
-		"azurerm_application_security_group":                14,
-		"azurerm_attestation":                               15,
-		"azurerm_automation_account":                        16,
-		"azurerm_automation_variable_bool":                  17,
-		"azurerm_automation_variable_datetime":              18,
-		"azurerm_automation_variable_int":                   19,
-		"azurerm_automation_variable_string":                20,
-		"azurerm_availability_set":                          21,
-		"azurerm_backup_policy_vm":                          22,
-		"azurerm_batch_account":                             23,
-		"azurerm_batch_certificate":                         24,
-		"azurerm_batch_pool":                                25,
-		"azurerm_blueprint_definition":                      26,
-		"azurerm_blueprint_published_version":               27,
-		"azurerm_cdn_profile":                               28,
-		"azurerm_client_config":                             29,
-		"azurerm_container_registry":                        30,
-		"azurerm_cosmosdb_account":                          31,
-		"azurerm_data_factory":                              32,
-		"azurerm_data_lake_store":                           33,
-		"azurerm_data_share":                                34,
-		"azurerm_data_share_account":                        35,
-		"azurerm_data_share_dataset_blob_storage":           36,
-		"azurerm_data_share_dataset_data_lake_gen1":         37,
-		"azurerm_data_share_dataset_data_lake_gen2":         38,
-		"azurerm_data_share_dataset_kusto_cluster":          39,
-		"azurerm_database_migration_project":                40,
-		"azurerm_database_migration_service":                41,
-		"azurerm_dedicated_host":                            42,
-		"azurerm_dedicated_host_group":                      43,
-		"azurerm_dev_test_lab":                              44,
-		"azurerm_dev_test_virtual_network":                  45,
-		"azurerm_disk_encryption_set":                       46,
-		"azurerm_dns_zone":                                  47,
-		"azurerm_eventgrid_topic":                           48,
-		"azurerm_eventhub":                                  49,
-		"azurerm_eventhub_authorization_rule":               50,
-		"azurerm_eventhub_consumer_group":                   51,
-		"azurerm_eventhub_namespace":                        52,
-		"azurerm_eventhub_namespace_authorization_rule":     53,
-		"azurerm_express_route_circuit":                     54,
-		"azurerm_firewall":                                  55,
-		"azurerm_firewall_policy":                           56,
-		"azurerm_function_app":                              57,
-		"azurerm_function_app_host_keys":                    58,
-		"azurerm_hdinsight_cluster":                         59,
-		"azurerm_healthcare_service":                        60,
-		"azurerm_image":                                     61,
-		"azurerm_iothub_dps":                                62,
-		"azurerm_iothub_dps_shared_access_policy":           63,
-		"azurerm_iothub_shared_access_policy":               64,
-		"azurerm_ip_group":                                  65,
-		"azurerm_key_vault":                                 66,
-		"azurerm_key_vault_access_policy":                   67,
-		"azurerm_key_vault_certificate":                     68,
-		"azurerm_key_vault_certificate_issuer":              69,
-		"azurerm_key_vault_key":                             70,
-		"azurerm_key_vault_secret":                          71,
-		"azurerm_kubernetes_cluster":                        72,
-		"azurerm_kubernetes_cluster_node_pool":              73,
-		"azurerm_kubernetes_service_versions":               74,
-		"azurerm_kusto_cluster":                             75,
-		"azurerm_lb":                                        76,
-		"azurerm_lb_backend_address_pool":                   77,
-		"azurerm_log_analytics_workspace":                   78,
-		"azurerm_logic_app_integration_account":             79,
-		"azurerm_logic_app_workflow":                        80,
-		"azurerm_machine_learning_workspace":                81,
-		"azurerm_maintenance_configuration":                 82,
-		"azurerm_managed_application_definition":            83,
-		"azurerm_managed_disk":                              84,
-		"azurerm_management_group":                          85,
-		"azurerm_maps_account":                              86,
-		"azurerm_mariadb_server":                            87,
-		"azurerm_monitor_action_group":                      88,
-		"azurerm_monitor_diagnostic_categories":             89,
-		"azurerm_monitor_log_profile":                       90,
-		"azurerm_monitor_scheduled_query_rules_alert":       91,
-		"azurerm_monitor_scheduled_query_rules_log":         92,
-		"azurerm_mssql_database":                            93,
-		"azurerm_mssql_elasticpool":                         94,
-		"azurerm_mssql_server":                              95,
-		"azurerm_nat_gateway":                               96,
-		"azurerm_netapp_account":                            97,
-		"azurerm_netapp_pool":                               98,
-		"azurerm_netapp_snapshot":                           99,
-		"azurerm_netapp_volume":                             100,
-		"azurerm_network_ddos_protection_plan":              101,
-		"azurerm_network_interface":                         102,
-		"azurerm_network_security_group":                    103,
-		"azurerm_network_service_tags":                      104,
-		"azurerm_network_watcher":                           105,
-		"azurerm_notification_hub":                          106,
-		"azurerm_notification_hub_namespace":                107,
-		"azurerm_platform_image":                            108,
-		"azurerm_policy_definition":                         109,
-		"azurerm_policy_set_definition":                     110,
-		"azurerm_postgresql_server":                         111,
-		"azurerm_private_dns_zone":                          112,
-		"azurerm_private_endpoint_connection":               113,
-		"azurerm_private_link_service":                      114,
-		"azurerm_private_link_service_endpoint_connections": 115,
-		"azurerm_proximity_placement_group":                 116,
-		"azurerm_public_ip":                                 117,
-		"azurerm_public_ip_prefix":                          118,
-		"azurerm_public_ips":                                119,
-		"azurerm_recovery_services_vault":                   120,
-		"azurerm_redis_cache":                               121,
-		"azurerm_resource_group":                            122,
-		"azurerm_resources":                                 123,
-		"azurerm_role_definition":                           124,
-		"azurerm_route_filter":                              125,
-		"azurerm_route_table":                               126,
-		"azurerm_sentinel_alert_rule":                       127,
-		"azurerm_servicebus_namespace":                      128,
-		"azurerm_servicebus_namespace_authorization_rule":   129,
-		"azurerm_servicebus_topic_authorization_rule":       130,
-		"azurerm_shared_image":                              131,
-		"azurerm_shared_image_gallery":                      132,
-		"azurerm_shared_image_version":                      133,
-		"azurerm_shared_image_versions":                     134,
-		"azurerm_signalr_service":                           135,
-		"azurerm_snapshot":                                  136,
-		"azurerm_spring_cloud_service":                      137,
-		"azurerm_sql_database":                              138,
-		"azurerm_sql_server":                                139,
-		"azurerm_storage_account":                           140,
-		"azurerm_storage_account_blob_container_sas":        141,
-		"azurerm_storage_account_sas":                       142,
-		"azurerm_storage_container":                         143,
-		"azurerm_storage_management_policy":                 144,
-		"azurerm_storage_sync":                              145,
-		"azurerm_storage_sync_group":                        146,
-		"azurerm_stream_analytics_job":                      147,
-		"azurerm_subnet":                                    148,
-		"azurerm_subscription":                              149,
-		"azurerm_subscriptions":                             150,
-		"azurerm_synapse_workspace":                         151,
-		"azurerm_traffic_manager_geographical_location":     152,
-		"azurerm_user_assigned_identity":                    153,
-		"azurerm_virtual_hub":                               154,
-		"azurerm_virtual_machine":                           155,
-		"azurerm_virtual_machine_scale_set":                 156,
-		"azurerm_virtual_network":                           157,
-		"azurerm_virtual_network_gateway":                   158,
-		"azurerm_virtual_network_gateway_connection":        159,
-		"azurerm_web_application_firewall_policy":           160,
+		"azurerm_application_gateway":                       13,
+		"azurerm_application_insights":                      14,
+		"azurerm_application_security_group":                15,
+		"azurerm_attestation":                               16,
+		"azurerm_automation_account":                        17,
+		"azurerm_automation_variable_bool":                  18,
+		"azurerm_automation_variable_datetime":              19,
+		"azurerm_automation_variable_int":                   20,
+		"azurerm_automation_variable_string":                21,
+		"azurerm_availability_set":                          22,
+		"azurerm_backup_policy_vm":                          23,
+		"azurerm_batch_account":                             24,
+		"azurerm_batch_certificate":                         25,
+		"azurerm_batch_pool":                                26,
+		"azurerm_billing_enrollment_account_scope":          27,
+		"azurerm_billing_mca_account_scope":                 28,
+		"azurerm_blueprint_definition":                      29,
+		"azurerm_blueprint_published_version":               30,
+		"azurerm_cdn_profile":                               31,
+		"azurerm_client_config":                             32,
+		"azurerm_cognitive_account":                         33,
+		"azurerm_container_registry":                        34,
+		"azurerm_cosmosdb_account":                          35,
+		"azurerm_data_factory":                              36,
+		"azurerm_data_lake_store":                           37,
+		"azurerm_data_share":                                38,
+		"azurerm_data_share_account":                        39,
+		"azurerm_data_share_dataset_blob_storage":           40,
+		"azurerm_data_share_dataset_data_lake_gen1":         41,
+		"azurerm_data_share_dataset_data_lake_gen2":         42,
+		"azurerm_data_share_dataset_kusto_cluster":          43,
+		"azurerm_data_share_dataset_kusto_database":         44,
+		"azurerm_database_migration_project":                45,
+		"azurerm_database_migration_service":                46,
+		"azurerm_databricks_workspace":                      47,
+		"azurerm_dedicated_host":                            48,
+		"azurerm_dedicated_host_group":                      49,
+		"azurerm_dev_test_lab":                              50,
+		"azurerm_dev_test_virtual_network":                  51,
+		"azurerm_digital_twins_instance":                    52,
+		"azurerm_disk_access":                               53,
+		"azurerm_disk_encryption_set":                       54,
+		"azurerm_dns_zone":                                  55,
+		"azurerm_eventgrid_domain_topic":                    56,
+		"azurerm_eventgrid_topic":                           57,
+		"azurerm_eventhub":                                  58,
+		"azurerm_eventhub_authorization_rule":               59,
+		"azurerm_eventhub_consumer_group":                   60,
+		"azurerm_eventhub_namespace":                        61,
+		"azurerm_eventhub_namespace_authorization_rule":     62,
+		"azurerm_express_route_circuit":                     63,
+		"azurerm_firewall":                                  64,
+		"azurerm_firewall_policy":                           65,
+		"azurerm_function_app":                              66,
+		"azurerm_function_app_host_keys":                    67,
+		"azurerm_hdinsight_cluster":                         68,
+		"azurerm_healthcare_service":                        69,
+		"azurerm_image":                                     70,
+		"azurerm_images":                                    71,
+		"azurerm_iothub":                                    72,
+		"azurerm_iothub_dps":                                73,
+		"azurerm_iothub_dps_shared_access_policy":           74,
+		"azurerm_iothub_shared_access_policy":               75,
+		"azurerm_ip_group":                                  76,
+		"azurerm_key_vault":                                 77,
+		"azurerm_key_vault_access_policy":                   78,
+		"azurerm_key_vault_certificate":                     79,
+		"azurerm_key_vault_certificate_data":                80,
+		"azurerm_key_vault_certificate_issuer":              81,
+		"azurerm_key_vault_key":                             82,
+		"azurerm_key_vault_secret":                          83,
+		"azurerm_kubernetes_cluster":                        84,
+		"azurerm_kubernetes_cluster_node_pool":              85,
+		"azurerm_kubernetes_service_versions":               86,
+		"azurerm_kusto_cluster":                             87,
+		"azurerm_lb":                                        88,
+		"azurerm_lb_backend_address_pool":                   89,
+		"azurerm_lb_rule":                                   90,
+		"azurerm_log_analytics_workspace":                   91,
+		"azurerm_logic_app_integration_account":             92,
+		"azurerm_logic_app_workflow":                        93,
+		"azurerm_machine_learning_workspace":                94,
+		"azurerm_maintenance_configuration":                 95,
+		"azurerm_managed_application_definition":            96,
+		"azurerm_managed_disk":                              97,
+		"azurerm_management_group":                          98,
+		"azurerm_maps_account":                              99,
+		"azurerm_mariadb_server":                            100,
+		"azurerm_monitor_action_group":                      101,
+		"azurerm_monitor_diagnostic_categories":             102,
+		"azurerm_monitor_log_profile":                       103,
+		"azurerm_monitor_scheduled_query_rules_alert":       104,
+		"azurerm_monitor_scheduled_query_rules_log":         105,
+		"azurerm_mssql_database":                            106,
+		"azurerm_mssql_elasticpool":                         107,
+		"azurerm_mssql_server":                              108,
+		"azurerm_mysql_server":                              109,
+		"azurerm_nat_gateway":                               110,
+		"azurerm_netapp_account":                            111,
+		"azurerm_netapp_pool":                               112,
+		"azurerm_netapp_snapshot":                           113,
+		"azurerm_netapp_volume":                             114,
+		"azurerm_network_ddos_protection_plan":              115,
+		"azurerm_network_interface":                         116,
+		"azurerm_network_security_group":                    117,
+		"azurerm_network_service_tags":                      118,
+		"azurerm_network_watcher":                           119,
+		"azurerm_notification_hub":                          120,
+		"azurerm_notification_hub_namespace":                121,
+		"azurerm_platform_image":                            122,
+		"azurerm_policy_definition":                         123,
+		"azurerm_policy_set_definition":                     124,
+		"azurerm_postgresql_server":                         125,
+		"azurerm_private_dns_zone":                          126,
+		"azurerm_private_endpoint_connection":               127,
+		"azurerm_private_link_service":                      128,
+		"azurerm_private_link_service_endpoint_connections": 129,
+		"azurerm_proximity_placement_group":                 130,
+		"azurerm_public_ip":                                 131,
+		"azurerm_public_ip_prefix":                          132,
+		"azurerm_public_ips":                                133,
+		"azurerm_recovery_services_vault":                   134,
+		"azurerm_redis_cache":                               135,
+		"azurerm_resource_group":                            136,
+		"azurerm_resources":                                 137,
+		"azurerm_role_definition":                           138,
+		"azurerm_route_filter":                              139,
+		"azurerm_route_table":                               140,
+		"azurerm_search_service":                            141,
+		"azurerm_sentinel_alert_rule":                       142,
+		"azurerm_sentinel_alert_rule_template":              143,
+		"azurerm_servicebus_namespace":                      144,
+		"azurerm_servicebus_namespace_authorization_rule":   145,
+		"azurerm_servicebus_queue_authorization_rule":       146,
+		"azurerm_servicebus_subscription":                   147,
+		"azurerm_servicebus_topic_authorization_rule":       148,
+		"azurerm_shared_image":                              149,
+		"azurerm_shared_image_gallery":                      150,
+		"azurerm_shared_image_version":                      151,
+		"azurerm_shared_image_versions":                     152,
+		"azurerm_signalr_service":                           153,
+		"azurerm_snapshot":                                  154,
+		"azurerm_spring_cloud_app":                          155,
+		"azurerm_spring_cloud_service":                      156,
+		"azurerm_sql_database":                              157,
+		"azurerm_sql_server":                                158,
+		"azurerm_ssh_public_key":                            159,
+		"azurerm_storage_account":                           160,
+		"azurerm_storage_account_blob_container_sas":        161,
+		"azurerm_storage_account_sas":                       162,
+		"azurerm_storage_container":                         163,
+		"azurerm_storage_encryption_scope":                  164,
+		"azurerm_storage_management_policy":                 165,
+		"azurerm_storage_sync":                              166,
+		"azurerm_storage_sync_group":                        167,
+		"azurerm_stream_analytics_job":                      168,
+		"azurerm_subnet":                                    169,
+		"azurerm_subscription":                              170,
+		"azurerm_subscriptions":                             171,
+		"azurerm_synapse_workspace":                         172,
+		"azurerm_traffic_manager_geographical_location":     173,
+		"azurerm_traffic_manager_profile":                   174,
+		"azurerm_user_assigned_identity":                    175,
+		"azurerm_virtual_hub":                               176,
+		"azurerm_virtual_machine":                           177,
+		"azurerm_virtual_machine_scale_set":                 178,
+		"azurerm_virtual_network":                           179,
+		"azurerm_virtual_network_gateway":                   180,
+		"azurerm_virtual_network_gateway_connection":        181,
+		"azurerm_virtual_wan":                               182,
+		"azurerm_vmware_private_cloud":                      183,
+		"azurerm_web_application_firewall_policy":           184,
 	}
 )
 

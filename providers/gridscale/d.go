@@ -11,6 +11,202 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "gridscale_backup_list",
+			Category:         "Data Sources",
+			ShortDescription: `Gets a backup list of a specific storage.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "storage_uuid",
+					Description: `(Required) UUID of the storage that the backups belong to. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "storage_uuid",
+					Description: `UUID of the storage that the backups belong to.`,
+				},
+				resource.Attribute{
+					Name:        "storage_backups",
+					Description: `Backups of the given storage.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the backup.`,
+				},
+				resource.Attribute{
+					Name:        "object_uuid",
+					Description: `UUID of the backup.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The date and time the backup was initially created.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `The size of a backup in GB.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "storage_uuid",
+					Description: `UUID of the storage that the backups belong to.`,
+				},
+				resource.Attribute{
+					Name:        "storage_backups",
+					Description: `Backups of the given storage.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the backup.`,
+				},
+				resource.Attribute{
+					Name:        "object_uuid",
+					Description: `UUID of the backup.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The date and time the backup was initially created.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `The size of a backup in GB.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "gridscale_backupschedule",
+			Category:         "Data Sources",
+			ShortDescription: `Gets data of a storage backup schedule.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `(Required) UUID of the backup schedule.`,
+				},
+				resource.Attribute{
+					Name:        "storage_uuid",
+					Description: `(Required) UUID of the storage that the backup schedule belongs to. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of the backup schedule.`,
+				},
+				resource.Attribute{
+					Name:        "storage_uuid",
+					Description: `UUID of the storage that the backup schedule belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the backup schedule.`,
+				},
+				resource.Attribute{
+					Name:        "active",
+					Description: `The status of the schedule active or not.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The human-readable name of the backup schedule.`,
+				},
+				resource.Attribute{
+					Name:        "next_runtime",
+					Description: `The date and time that the backup schedule will be run.`,
+				},
+				resource.Attribute{
+					Name:        "keep_backups",
+					Description: `The amount of Snapshots to keep before overwriting the last created Snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "run_interval",
+					Description: `The interval at which the schedule will run (in minutes).`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The date and time the backup schedule was initially created.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `The date and time of the last backup schedule change.`,
+				},
+				resource.Attribute{
+					Name:        "storage_backups",
+					Description: `Related backups.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the backup.`,
+				},
+				resource.Attribute{
+					Name:        "object_uuid",
+					Description: `UUID of the backup.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The date and time the backup was initially created.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of the backup schedule.`,
+				},
+				resource.Attribute{
+					Name:        "storage_uuid",
+					Description: `UUID of the storage that the backup schedule belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the backup schedule.`,
+				},
+				resource.Attribute{
+					Name:        "active",
+					Description: `The status of the schedule active or not.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The human-readable name of the backup schedule.`,
+				},
+				resource.Attribute{
+					Name:        "next_runtime",
+					Description: `The date and time that the backup schedule will be run.`,
+				},
+				resource.Attribute{
+					Name:        "keep_backups",
+					Description: `The amount of Snapshots to keep before overwriting the last created Snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "run_interval",
+					Description: `The interval at which the schedule will run (in minutes).`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The date and time the backup schedule was initially created.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `The date and time of the last backup schedule change.`,
+				},
+				resource.Attribute{
+					Name:        "storage_backups",
+					Description: `Related backups.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the backup.`,
+				},
+				resource.Attribute{
+					Name:        "object_uuid",
+					Description: `UUID of the backup.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The date and time the backup was initially created.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "gridscale_firewall",
 			Category:         "Data Sources",
 			ShortDescription: `Gets data of a firewall by its UUID.`,
@@ -35,7 +231,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default (Only for inbound).`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -71,7 +267,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2.`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -107,7 +303,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default (Only for inbound).`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -143,7 +339,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2.`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -199,7 +395,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_name",
-					Description: `The human-readable name of the location. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `The human-readable name of the location. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -241,7 +437,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default (Only for inbound).`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -277,7 +473,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2.`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -313,7 +509,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default (Only for inbound).`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -349,7 +545,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2.`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -405,7 +601,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_name",
-					Description: `The human-readable name of the location. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `The human-readable name of the location. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -447,15 +643,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The UUID of the ip.`,
+					Description: `The UUID of the IP.`,
 				},
 				resource.Attribute{
 					Name:        "ip",
-					Description: `Defines the IP Address (v4 or v6) the ip.`,
+					Description: `Defines the IP address (v4 or v6).`,
 				},
 				resource.Attribute{
 					Name:        "prefix",
-					Description: `The IP prefix of the ip.`,
+					Description: `The prefix of the IP or subnet.`,
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
@@ -463,15 +659,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "failover",
-					Description: `failover mode of this ip. If true, then this IP is no longer available for DHCP and can no longer be related to any server..`,
+					Description: `failover mode of this ip. If true, then this IP is no longer available for DHCP and can no longer be related to any server.`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of the ip.`,
+					Description: `The status of the IP.`,
 				},
 				resource.Attribute{
 					Name:        "reverse_dns",
-					Description: `The reverse DNS of the ip.`,
+					Description: `The reverse DNS of the IP.`,
 				},
 				resource.Attribute{
 					Name:        "location_iata",
@@ -479,15 +675,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_country",
-					Description: `The human-readable name of the country of the ip.`,
+					Description: `The human-readable name of the country of the IP.`,
 				},
 				resource.Attribute{
 					Name:        "location_name",
-					Description: `The human-readable name of the location of the ip.`,
+					Description: `The human-readable name of the location of the IP.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
-					Description: `The date and time the ip was initially created.`,
+					Description: `The date and time the IP was initially created.`,
 				},
 				resource.Attribute{
 					Name:        "change_time",
@@ -495,11 +691,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete_block",
-					Description: `Defines if the ip is administratively blocked.`,
+					Description: `Defines if the IP is administratively blocked.`,
 				},
 				resource.Attribute{
 					Name:        "usage_in_minutes",
-					Description: `Total minutes the ip has been running.`,
+					Description: `Total minutes the IP has been running.`,
 				},
 				resource.Attribute{
 					Name:        "current_price",
@@ -513,15 +709,15 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The UUID of the ip.`,
+					Description: `The UUID of the IP.`,
 				},
 				resource.Attribute{
 					Name:        "ip",
-					Description: `Defines the IP Address (v4 or v6) the ip.`,
+					Description: `Defines the IP address (v4 or v6).`,
 				},
 				resource.Attribute{
 					Name:        "prefix",
-					Description: `The IP prefix of the ip.`,
+					Description: `The prefix of the IP or subnet.`,
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
@@ -529,15 +725,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "failover",
-					Description: `failover mode of this ip. If true, then this IP is no longer available for DHCP and can no longer be related to any server..`,
+					Description: `failover mode of this ip. If true, then this IP is no longer available for DHCP and can no longer be related to any server.`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of the ip.`,
+					Description: `The status of the IP.`,
 				},
 				resource.Attribute{
 					Name:        "reverse_dns",
-					Description: `The reverse DNS of the ip.`,
+					Description: `The reverse DNS of the IP.`,
 				},
 				resource.Attribute{
 					Name:        "location_iata",
@@ -545,15 +741,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_country",
-					Description: `The human-readable name of the country of the ip.`,
+					Description: `The human-readable name of the country of the IP.`,
 				},
 				resource.Attribute{
 					Name:        "location_name",
-					Description: `The human-readable name of the location of the ip.`,
+					Description: `The human-readable name of the location of the IP.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
-					Description: `The date and time the ip was initially created.`,
+					Description: `The date and time the IP was initially created.`,
 				},
 				resource.Attribute{
 					Name:        "change_time",
@@ -561,11 +757,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete_block",
-					Description: `Defines if the ip is administratively blocked.`,
+					Description: `Defines if the IP is administratively blocked.`,
 				},
 				resource.Attribute{
 					Name:        "usage_in_minutes",
-					Description: `Total minutes the ip has been running.`,
+					Description: `Total minutes the IP has been running.`,
 				},
 				resource.Attribute{
 					Name:        "current_price",
@@ -635,7 +831,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_name",
-					Description: `The human-readable name of the location. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `The human-readable name of the location. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -659,7 +855,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `Description of the Template.`,
+					Description: `Description of the template.`,
 				},
 				resource.Attribute{
 					Name:        "usage_in_minutes",
@@ -725,7 +921,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_name",
-					Description: `The human-readable name of the location. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `The human-readable name of the location. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -749,7 +945,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `Description of the Template.`,
+					Description: `Description of the template.`,
 				},
 				resource.Attribute{
 					Name:        "usage_in_minutes",
@@ -779,15 +975,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "resource_id",
-					Description: `(Required) The UUID of the loadbalancer. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The UUID of the load balancer. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The UUID of the loadbalancer.`,
+					Description: `The UUID of the load balancer.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The human-readable name of the loadbalancer.`,
+					Description: `The human-readable name of the load balancer.`,
 				},
 				resource.Attribute{
 					Name:        "algorithm",
@@ -795,7 +991,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of the loadbalancer.`,
+					Description: `The status of the load balancer.`,
 				},
 				resource.Attribute{
 					Name:        "redirect_http_to_https",
@@ -803,19 +999,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "listen_ipv4_uuid",
-					Description: `The UUID of the IPv4 address the loadbalancer will listen to for incoming requests.`,
+					Description: `The UUID of the IPv4 address the load balancer will listen to for incoming requests.`,
 				},
 				resource.Attribute{
 					Name:        "listen_ipv6_uuid",
-					Description: `The UUID of the IPv6 address the loadbalancer will listen to for incoming requests.`,
+					Description: `The UUID of the IPv6 address the load balancer will listen to for incoming requests.`,
 				},
 				resource.Attribute{
 					Name:        "forwarding_rule",
-					Description: `The forwarding rules of the loadbalancer.`,
+					Description: `The forwarding rules of the load balancer.`,
 				},
 				resource.Attribute{
 					Name:        "backend_server",
-					Description: `The servers that the loadbalancer can communicate with.`,
+					Description: `The servers that the load balancer can communicate with.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -825,11 +1021,11 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The UUID of the loadbalancer.`,
+					Description: `The UUID of the load balancer.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The human-readable name of the loadbalancer.`,
+					Description: `The human-readable name of the load balancer.`,
 				},
 				resource.Attribute{
 					Name:        "algorithm",
@@ -837,7 +1033,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of the loadbalancer.`,
+					Description: `The status of the load balancer.`,
 				},
 				resource.Attribute{
 					Name:        "redirect_http_to_https",
@@ -845,23 +1041,287 @@ var (
 				},
 				resource.Attribute{
 					Name:        "listen_ipv4_uuid",
-					Description: `The UUID of the IPv4 address the loadbalancer will listen to for incoming requests.`,
+					Description: `The UUID of the IPv4 address the load balancer will listen to for incoming requests.`,
 				},
 				resource.Attribute{
 					Name:        "listen_ipv6_uuid",
-					Description: `The UUID of the IPv6 address the loadbalancer will listen to for incoming requests.`,
+					Description: `The UUID of the IPv6 address the load balancer will listen to for incoming requests.`,
 				},
 				resource.Attribute{
 					Name:        "forwarding_rule",
-					Description: `The forwarding rules of the loadbalancer.`,
+					Description: `The forwarding rules of the load balancer.`,
 				},
 				resource.Attribute{
 					Name:        "backend_server",
-					Description: `The servers that the loadbalancer can communicate with.`,
+					Description: `The servers that the load balancer can communicate with.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
 					Description: `The list of labels.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "gridscale_marketplace_application",
+			Category:         "Data Sources",
+			ShortDescription: `Get data of a marketplace application.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `(Required) The UUID of the marketplace application. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of the marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `Category of marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "object_storage_path",
+					Description: `Path to the images for the application.`,
+				},
+				resource.Attribute{
+					Name:        "setup_cores",
+					Description: `Number of server's cores.`,
+				},
+				resource.Attribute{
+					Name:        "setup_memory",
+					Description: `The capacity of server's memory in GB.`,
+				},
+				resource.Attribute{
+					Name:        "setup_storage_capacity",
+					Description: `The capacity of server's storage in GB.`,
+				},
+				resource.Attribute{
+					Name:        "meta_license",
+					Description: `License number.`,
+				},
+				resource.Attribute{
+					Name:        "meta_os",
+					Description: `Operating system.`,
+				},
+				resource.Attribute{
+					Name:        "meta_components",
+					Description: `Components (e.g: MySql, Apache, etc.).`,
+				},
+				resource.Attribute{
+					Name:        "meta_overview",
+					Description: `Describes the main function of the application.`,
+				},
+				resource.Attribute{
+					Name:        "meta_hints",
+					Description: `Hints.`,
+				},
+				resource.Attribute{
+					Name:        "meta_terms_of_use",
+					Description: `Terms of use.`,
+				},
+				resource.Attribute{
+					Name:        "meta_icon",
+					Description: `base64 encoded image of the icon.`,
+				},
+				resource.Attribute{
+					Name:        "meta_features",
+					Description: `List of functions.`,
+				},
+				resource.Attribute{
+					Name:        "meta_author",
+					Description: `Author.`,
+				},
+				resource.Attribute{
+					Name:        "meta_advices",
+					Description: `User manual; Wiki URL; ...`,
+				},
+				resource.Attribute{
+					Name:        "unique_hash",
+					Description: `Unique hash to allow user to import the self-created marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "is_application_owner",
+					Description: `Whether the you are the owner of application or not.`,
+				},
+				resource.Attribute{
+					Name:        "is_published",
+					Description: `Whether the template is published by the partner to their tenant".`,
+				},
+				resource.Attribute{
+					Name:        "published_date",
+					Description: `The date when the template is published into other tenant in the same partner.`,
+				},
+				resource.Attribute{
+					Name:        "is_publish_requested",
+					Description: `Whether the tenants want their template to be published or not.`,
+				},
+				resource.Attribute{
+					Name:        "publish_requested_date",
+					Description: `The date when the tenant requested their template to be published.`,
+				},
+				resource.Attribute{
+					Name:        "is_publish_global_requested",
+					Description: `Whether a partner wants their tenant template published to other partners.`,
+				},
+				resource.Attribute{
+					Name:        "publish_global_requested_date",
+					Description: `The date when a partner requested their tenants template to be published.`,
+				},
+				resource.Attribute{
+					Name:        "is_publish_global",
+					Description: `Whether a template is published to other partner or not.`,
+				},
+				resource.Attribute{
+					Name:        "published_global_date",
+					Description: `The date when a template is published to other partner.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of template.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The date and time the marketplace application was initially created.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `The date and time of the last marketplace application change.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of the marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `Category of marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "object_storage_path",
+					Description: `Path to the images for the application.`,
+				},
+				resource.Attribute{
+					Name:        "setup_cores",
+					Description: `Number of server's cores.`,
+				},
+				resource.Attribute{
+					Name:        "setup_memory",
+					Description: `The capacity of server's memory in GB.`,
+				},
+				resource.Attribute{
+					Name:        "setup_storage_capacity",
+					Description: `The capacity of server's storage in GB.`,
+				},
+				resource.Attribute{
+					Name:        "meta_license",
+					Description: `License number.`,
+				},
+				resource.Attribute{
+					Name:        "meta_os",
+					Description: `Operating system.`,
+				},
+				resource.Attribute{
+					Name:        "meta_components",
+					Description: `Components (e.g: MySql, Apache, etc.).`,
+				},
+				resource.Attribute{
+					Name:        "meta_overview",
+					Description: `Describes the main function of the application.`,
+				},
+				resource.Attribute{
+					Name:        "meta_hints",
+					Description: `Hints.`,
+				},
+				resource.Attribute{
+					Name:        "meta_terms_of_use",
+					Description: `Terms of use.`,
+				},
+				resource.Attribute{
+					Name:        "meta_icon",
+					Description: `base64 encoded image of the icon.`,
+				},
+				resource.Attribute{
+					Name:        "meta_features",
+					Description: `List of functions.`,
+				},
+				resource.Attribute{
+					Name:        "meta_author",
+					Description: `Author.`,
+				},
+				resource.Attribute{
+					Name:        "meta_advices",
+					Description: `User manual; Wiki URL; ...`,
+				},
+				resource.Attribute{
+					Name:        "unique_hash",
+					Description: `Unique hash to allow user to import the self-created marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "is_application_owner",
+					Description: `Whether the you are the owner of application or not.`,
+				},
+				resource.Attribute{
+					Name:        "is_published",
+					Description: `Whether the template is published by the partner to their tenant".`,
+				},
+				resource.Attribute{
+					Name:        "published_date",
+					Description: `The date when the template is published into other tenant in the same partner.`,
+				},
+				resource.Attribute{
+					Name:        "is_publish_requested",
+					Description: `Whether the tenants want their template to be published or not.`,
+				},
+				resource.Attribute{
+					Name:        "publish_requested_date",
+					Description: `The date when the tenant requested their template to be published.`,
+				},
+				resource.Attribute{
+					Name:        "is_publish_global_requested",
+					Description: `Whether a partner wants their tenant template published to other partners.`,
+				},
+				resource.Attribute{
+					Name:        "publish_global_requested_date",
+					Description: `The date when a partner requested their tenants template to be published.`,
+				},
+				resource.Attribute{
+					Name:        "is_publish_global",
+					Description: `Whether a template is published to other partner or not.`,
+				},
+				resource.Attribute{
+					Name:        "published_global_date",
+					Description: `The date when a template is published to other partner.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of template.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The date and time the marketplace application was initially created.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `The date and time of the last marketplace application change.`,
 				},
 			},
 		},
@@ -1347,7 +1807,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The human-readable name of the object. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
@@ -1393,7 +1853,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The human-readable name of the object. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
@@ -1567,7 +2027,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default (Only for inbound).`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -1603,7 +2063,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2.`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -1639,7 +2099,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default (Only for inbound).`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -1675,7 +2135,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2.`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -1735,7 +2195,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "legacy",
-					Description: `Legacy-Hardware emulation instead of virtio hardware. If enabled, hotplugging cores, memory, storage, network, etc. will not work, but the server will most likely run every x86 compatible operating system. This mode comes with a performance penalty, as emulated hardware does not benefit from the virtio driver infrastructure.`,
+					Description: `Legacy-Hardware emulation instead of virtio hardware. If enabled, hot-plugging cores, memory, storage, network, etc. will not work, but the server will most likely run every x86 compatible operating system. This mode comes with a performance penalty, as emulated hardware does not benefit from the virtio driver infrastructure.`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -1885,7 +2345,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default (Only for inbound).`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -1921,7 +2381,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2.`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -1957,7 +2417,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default (Only for inbound).`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -1993,7 +2453,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2.`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -2053,7 +2513,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "legacy",
-					Description: `Legacy-Hardware emulation instead of virtio hardware. If enabled, hotplugging cores, memory, storage, network, etc. will not work, but the server will most likely run every x86 compatible operating system. This mode comes with a performance penalty, as emulated hardware does not benefit from the virtio driver infrastructure.`,
+					Description: `Legacy-Hardware emulation instead of virtio hardware. If enabled, hot-plugging cores, memory, storage, network, etc. will not work, but the server will most likely run every x86 compatible operating system. This mode comes with a performance penalty, as emulated hardware does not benefit from the virtio driver infrastructure.`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -2357,7 +2817,7 @@ var (
 			Name:             "",
 			Type:             "gridscale_sshkey",
 			Category:         "Data Sources",
-			ShortDescription: `Gets data of an sshkey.`,
+			ShortDescription: `Gets data of an SSH key.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -2367,27 +2827,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The UUID of the sshkey.`,
+					Description: `The UUID of the SSH key.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The human-readable name of the sshkey.`,
+					Description: `The human-readable name of the SSH key.`,
 				},
 				resource.Attribute{
 					Name:        "sshkey",
-					Description: `The OpenSSH public key string of the sshkey.`,
+					Description: `The OpenSSH public key string of the SSH key.`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of the sshkey.`,
+					Description: `The status of the SSH key.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
-					Description: `The date and time of the sshkey was initially created.`,
+					Description: `The date and time that this SSH key was initially created.`,
 				},
 				resource.Attribute{
 					Name:        "change_time",
-					Description: `The date and time of the last sshkey change.`,
+					Description: `The date and time of the last change.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -2397,27 +2857,27 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The UUID of the sshkey.`,
+					Description: `The UUID of the SSH key.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The human-readable name of the sshkey.`,
+					Description: `The human-readable name of the SSH key.`,
 				},
 				resource.Attribute{
 					Name:        "sshkey",
-					Description: `The OpenSSH public key string of the sshkey.`,
+					Description: `The OpenSSH public key string of the SSH key.`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of the sshkey.`,
+					Description: `The status of the SSH key.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
-					Description: `The date and time of the sshkey was initially created.`,
+					Description: `The date and time that this SSH key was initially created.`,
 				},
 				resource.Attribute{
 					Name:        "change_time",
-					Description: `The date and time of the last sshkey change.`,
+					Description: `The date and time of the last change.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -2577,193 +3037,27 @@ var (
 				},
 			},
 		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "gridscale_template",
-			Category:         "Data Sources",
-			ShortDescription: `Gets data of a template by name.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The exact name of the template as show in [the expert panel of gridscale](https://my.gridscale.io/Expert/Template). ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The name of the template.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `The UUID of the template.`,
-				},
-				resource.Attribute{
-					Name:        "location_uuid",
-					Description: `Helps to identify which datacenter an object belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "location_country",
-					Description: `Formatted by the 2 digit country code (ISO 3166-2) of the host country.`,
-				},
-				resource.Attribute{
-					Name:        "location_iata",
-					Description: `Uses IATA airport code, which works as a location identifier.`,
-				},
-				resource.Attribute{
-					Name:        "location_name",
-					Description: `The human-readable name of the location. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `Status indicates the status of the object.`,
-				},
-				resource.Attribute{
-					Name:        "ostype",
-					Description: `The operating system installed in the template.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `The version of the template.`,
-				},
-				resource.Attribute{
-					Name:        "private",
-					Description: `The object is private, the value will be true. Otherwise the value will be false.`,
-				},
-				resource.Attribute{
-					Name:        "license_product_no",
-					Description: `If a template has been used that requires a license key (e.g. Windows Servers) this shows the product_no of the license (see the /prices endpoint for more details).`,
-				},
-				resource.Attribute{
-					Name:        "create_time",
-					Description: `The date and time the object was initially created.`,
-				},
-				resource.Attribute{
-					Name:        "change_time",
-					Description: `The date and time of the last object change.`,
-				},
-				resource.Attribute{
-					Name:        "distro",
-					Description: `The OS distrobution that the Template contains.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `Description of the Template.`,
-				},
-				resource.Attribute{
-					Name:        "usage_in_minutes",
-					Description: `Total minutes the object has been running.`,
-				},
-				resource.Attribute{
-					Name:        "capacity",
-					Description: `The capacity of a storage/ISO Image/template/snapshot in GB.`,
-				},
-				resource.Attribute{
-					Name:        "current_price",
-					Description: `Defines the price for the current period since the last bill.`,
-				},
-				resource.Attribute{
-					Name:        "labels",
-					Description: `List of labels.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `The name of the template.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `The UUID of the template.`,
-				},
-				resource.Attribute{
-					Name:        "location_uuid",
-					Description: `Helps to identify which datacenter an object belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "location_country",
-					Description: `Formatted by the 2 digit country code (ISO 3166-2) of the host country.`,
-				},
-				resource.Attribute{
-					Name:        "location_iata",
-					Description: `Uses IATA airport code, which works as a location identifier.`,
-				},
-				resource.Attribute{
-					Name:        "location_name",
-					Description: `The human-readable name of the location. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `Status indicates the status of the object.`,
-				},
-				resource.Attribute{
-					Name:        "ostype",
-					Description: `The operating system installed in the template.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `The version of the template.`,
-				},
-				resource.Attribute{
-					Name:        "private",
-					Description: `The object is private, the value will be true. Otherwise the value will be false.`,
-				},
-				resource.Attribute{
-					Name:        "license_product_no",
-					Description: `If a template has been used that requires a license key (e.g. Windows Servers) this shows the product_no of the license (see the /prices endpoint for more details).`,
-				},
-				resource.Attribute{
-					Name:        "create_time",
-					Description: `The date and time the object was initially created.`,
-				},
-				resource.Attribute{
-					Name:        "change_time",
-					Description: `The date and time of the last object change.`,
-				},
-				resource.Attribute{
-					Name:        "distro",
-					Description: `The OS distrobution that the Template contains.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `Description of the Template.`,
-				},
-				resource.Attribute{
-					Name:        "usage_in_minutes",
-					Description: `Total minutes the object has been running.`,
-				},
-				resource.Attribute{
-					Name:        "capacity",
-					Description: `The capacity of a storage/ISO Image/template/snapshot in GB.`,
-				},
-				resource.Attribute{
-					Name:        "current_price",
-					Description: `Defines the price for the current period since the last bill.`,
-				},
-				resource.Attribute{
-					Name:        "labels",
-					Description: `List of labels.`,
-				},
-			},
-		},
 	}
 
 	dataSourcesMap = map[string]int{
 
-		"gridscale_firewall":                 0,
-		"gridscale_ip":                       1,
-		"gridscale_isoimage":                 2,
-		"gridscale_loadbalancer":             3,
-		"gridscale_network":                  4,
-		"gridscale_object_storage_accesskey": 5,
-		"gridscale_paas":                     6,
-		"gridscale_public_network":           7,
-		"gridscale_paas_securityzone":        8,
-		"gridscale_server":                   9,
-		"gridscale_snapshot":                 10,
-		"gridscale_snapshotschedule":         11,
-		"gridscale_sshkey":                   12,
-		"gridscale_storage":                  13,
-		"gridscale_template":                 14,
+		"gridscale_backup_list":              0,
+		"gridscale_backupschedule":           1,
+		"gridscale_firewall":                 2,
+		"gridscale_ip":                       3,
+		"gridscale_isoimage":                 4,
+		"gridscale_loadbalancer":             5,
+		"gridscale_marketplace_application":  6,
+		"gridscale_network":                  7,
+		"gridscale_object_storage_accesskey": 8,
+		"gridscale_paas":                     9,
+		"gridscale_public_network":           10,
+		"gridscale_paas_securityzone":        11,
+		"gridscale_server":                   12,
+		"gridscale_snapshot":                 13,
+		"gridscale_snapshotschedule":         14,
+		"gridscale_sshkey":                   15,
+		"gridscale_storage":                  16,
 	}
 )
 

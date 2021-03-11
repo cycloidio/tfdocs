@@ -2251,7 +2251,7 @@ var (
 					Description: `(Optional) A list of associated sites for this tenant.`,
 				},
 				resource.Attribute{
-					Name:        "site_association.id",
+					Name:        "site_association.site_id",
 					Description: `(Optional) Id of site to associate with this Tenant.`,
 				},
 				resource.Attribute{
@@ -2280,7 +2280,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "site_association.azure_access_type",
-					Description: `(Optional) Type of Azure Account Configuration. Allowed values are ` + "`" + `managed` + "`" + ` and ` + "`" + `credentials` + "`" + `. Default to ` + "`" + `managed` + "`" + `. Other Credentials are not required if azure_access_type is set to managed. This parameter will only have effect with ` + "`" + `vendor` + "`" + ` = azure.`,
+					Description: `(Optional) Type of Azure Account Configuration. Allowed values are ` + "`" + `managed` + "`" + `, ` + "`" + `shared` + "`" + ` and ` + "`" + `credentials` + "`" + `. Default to ` + "`" + `managed` + "`" + `. Other Credentials are not required if azure_access_type is set to managed. This parameter will only have effect with ` + "`" + `vendor` + "`" + ` = azure.`,
 				},
 				resource.Attribute{
 					Name:        "site_association.azure_application_id",
@@ -2292,7 +2292,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "site_association.azure_active_directory_id",
-					Description: `(Optional) Azure Active Directory Id. It must be provided when azure_access_type to credentials. This parameter will only have effect with ` + "`" + `vendor` + "`" + ` = azure. NOTE: Either of AWS or Azure credentials will be used based on whatever is passed in ` + "`" + `vendor` + "`" + ` argument if both (AWS + Azure) Credentials are provided. ## Attribute Reference ## The only Attribute exposed for this resource is ` + "`" + `id` + "`" + `. Which is set to the id of tenant created.`,
+					Description: `(Optional) Azure Active Directory Id. It must be provided when azure_access_type to credentials. This parameter will only have effect with ` + "`" + `vendor` + "`" + ` = azure.`,
+				},
+				resource.Attribute{
+					Name:        "site_association.azure_shared_account_id",
+					Description: `(Optional) Azure shared account Id. It must be provided when azure_access_type to shared. This parameter will only have effect with ` + "`" + `vendor` + "`" + ` = azure. NOTE: Either of AWS or Azure credentials will be used based on whatever is passed in ` + "`" + `vendor` + "`" + ` argument if both (AWS + Azure) Credentials are provided. ## Attribute Reference ## The only Attribute exposed for this resource is ` + "`" + `id` + "`" + `. Which is set to the id of tenant created.`,
 				},
 			},
 			Attributes: []resource.Attribute{},

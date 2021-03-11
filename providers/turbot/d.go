@@ -11,6 +11,66 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "turbot_control",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `\_control
+
+This data source can be used to fetch information about a specific control.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The id of the control.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) The type of the control.`,
+				},
+				resource.Attribute{
+					Name:        "resource",
+					Description: `(Optional) The unique identifier of the resource which the control is targeting.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the control.`,
+				},
+				resource.Attribute{
+					Name:        "reason",
+					Description: `Message explaining the state of the control.`,
+				},
+				resource.Attribute{
+					Name:        "details",
+					Description: `Additional information regarding the control state.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags set on the control.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the control.`,
+				},
+				resource.Attribute{
+					Name:        "reason",
+					Description: `Message explaining the state of the control.`,
+				},
+				resource.Attribute{
+					Name:        "details",
+					Description: `Additional information regarding the control state.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags set on the control.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "turbot_policy",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -154,8 +214,9 @@ This data source can be used to fetch information about a specific resource.
 
 	dataSourcesMap = map[string]int{
 
-		"turbot_policy":   0,
-		"turbot_resource": 1,
+		"turbot_control":  0,
+		"turbot_policy":   1,
+		"turbot_resource": 2,
 	}
 )
 

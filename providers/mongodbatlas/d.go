@@ -43,11 +43,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "event_type",
-					Description: `The type of event that will trigger an alert. Alert type. Possible values: - Host - ` + "`" + `OUTSIDE_METRIC_THRESHOLD` + "`" + ` - ` + "`" + `HOST_RESTARTED` + "`" + ` - ` + "`" + `HOST_UPGRADED` + "`" + ` - ` + "`" + `HOST_NOW_SECONDARY` + "`" + ` - ` + "`" + `HOST_NOW_PRIMARY` + "`" + ` - Replica set - ` + "`" + `NO_PRIMARY` + "`" + ` - ` + "`" + `TOO_MANY_ELECTIONS` + "`" + ` Sharded cluster - ` + "`" + `CLUSTER_MONGOS_IS_MISSING` + "`" + ` - ` + "`" + `User` + "`" + ` - ` + "`" + `JOINED_GROUP` + "`" + ` - ` + "`" + `REMOVED_FROM_GROUP` + "`" + ` - ` + "`" + `USER_ROLES_CHANGED_AUDIT` + "`" + ` - Project - ` + "`" + `USERS_AWAITING_APPROVAL` + "`" + ` - ` + "`" + `USERS_WITHOUT_MULTI_FACTOR_AUTH` + "`" + ` - ` + "`" + `GROUP_CREATED` + "`" + ` - Team - ` + "`" + `JOINED_TEAM` + "`" + ` - ` + "`" + `REMOVED_FROM_TEAM` + "`" + ` - Organization - ` + "`" + `INVITED_TO_ORG` + "`" + ` - ` + "`" + `JOINED_ORG` + "`" + ` - Data Explorer - ` + "`" + `DATA_EXPLORER` + "`" + ` - ` + "`" + `DATA_EXPLORER_CRUD` + "`" + ` - Billing - ` + "`" + `CREDIT_CARD_ABOUT_TO_EXPIRE` + "`" + ` - ` + "`" + `CHARGE_SUCCEEDED` + "`" + ` - ` + "`" + `INVOICE_CLOSED` + "`" + ` ->`,
+					Description: `The type of event that will trigger an alert. ->`,
 				},
 				resource.Attribute{
 					Name:        "field_name",
-					Description: `Name of the field in the target object to match on. Host alerts support these fields: - ` + "`" + `TYPE_NAME` + "`" + ` - ` + "`" + `HOSTNAME` + "`" + ` - ` + "`" + `PORT` + "`" + ` - ` + "`" + `HOSTNAME_AND_PORT` + "`" + ` - ` + "`" + `REPLICA_SET_NAME` + "`" + ` Replica set alerts support these fields: - ` + "`" + `REPLICA_SET_NAME` + "`" + ` - ` + "`" + `SHARD_NAME` + "`" + ` - ` + "`" + `CLUSTER_NAME` + "`" + ` Sharded cluster alerts support these fields: - ` + "`" + `CLUSTER_NAME` + "`" + ` - ` + "`" + `SHARD_NAME` + "`" + ` All other types of alerts do not support matchers.`,
+					Description: `Name of the field in the target object to match on. | Host alerts | Replica set alerts | Sharded cluster alerts | |:-------------- |:------------- |:------ | | ` + "`" + `TYPE_NAME` + "`" + ` | ` + "`" + `REPLICA_SET_NAME` + "`" + ` | ` + "`" + `CLUSTER_NAME` + "`" + ` | | ` + "`" + `HOSTNAME` + "`" + ` | ` + "`" + `SHARD_NAME` + "`" + ` | ` + "`" + `SHARD_NAME` + "`" + ` | | ` + "`" + `PORT` + "`" + ` | ` + "`" + `CLUSTER_NAME` + "`" + ` | | | ` + "`" + `HOSTNAME_AND_PORT` + "`" + ` | | | | ` + "`" + `REPLICA_SET_NAME` + "`" + ` | | | All other types of alerts do not support matchers.`,
 				},
 				resource.Attribute{
 					Name:        "operator",
@@ -67,7 +67,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metric_name",
-					Description: `Name of the metric to check.`,
+					Description: `Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)`,
 				},
 				resource.Attribute{
 					Name:        "operator",
@@ -83,7 +83,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `This must be set to AVERAGE. Atlas computes the current metric value as an average. ### Notifications Notifications to send when an alert condition is detected.`,
+					Description: `This must be set to AVERAGE. Atlas computes the current metric value as an average. ### Threshold`,
+				},
+				resource.Attribute{
+					Name:        "operator",
+					Description: `Operator to apply when checking the current metric value against the threshold value. Accepted values are: - ` + "`" + `GREATER_THAN` + "`" + ` - ` + "`" + `LESS_THAN` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "threshold",
+					Description: `Threshold value outside of which an alert will be triggered.`,
+				},
+				resource.Attribute{
+					Name:        "units",
+					Description: `The units for the threshold value. Depends on the type of metric. Accepted values are: - ` + "`" + `RAW` + "`" + ` - ` + "`" + `BITS` + "`" + ` - ` + "`" + `BYTES` + "`" + ` - ` + "`" + `KILOBITS` + "`" + ` - ` + "`" + `KILOBYTES` + "`" + ` - ` + "`" + `MEGABITS` + "`" + ` - ` + "`" + `MEGABYTES` + "`" + ` - ` + "`" + `GIGABITS` + "`" + ` - ` + "`" + `GIGABYTES` + "`" + ` - ` + "`" + `TERABYTES` + "`" + ` - ` + "`" + `PETABYTES` + "`" + ` - ` + "`" + `MILLISECONDS` + "`" + ` - ` + "`" + `SECONDS` + "`" + ` - ` + "`" + `MINUTES` + "`" + ` - ` + "`" + `HOURS` + "`" + ` - ` + "`" + `DAYS` + "`" + ` ### Notifications Notifications to send when an alert condition is detected.`,
 				},
 				resource.Attribute{
 					Name:        "api_token",
@@ -167,7 +179,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "victor_ops_routing_key",
-					Description: `VictorOps routing key. Optional for the ` + "`" + `VICTOR_OPS` + "`" + ` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key. See detailed information for arguments and attributes: [MongoDB API Alert Configuration](https://docs.atlas.mongodb.com/reference/api/alert-configurations-get-config/)`,
+					Description: `VictorOps routing key. Optional for the ` + "`" + `VICTOR_OPS` + "`" + ` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.`,
+				},
+				resource.Attribute{
+					Name:        "Roles",
+					Description: `The following roles grant privileges within a project. | Project roles | Organization roles | |:---------- |:----------- | | ` + "`" + `GROUP_CHARTS_ADMIN` + "`" + ` | ` + "`" + `ORG_OWNER` + "`" + ` | | ` + "`" + `GROUP_CLUSTER_MANAGER` + "`" + ` | ` + "`" + `ORG_MEMBER` + "`" + ` | | ` + "`" + `GROUP_DATA_ACCESS_ADMIN` + "`" + ` | ` + "`" + `ORG_GROUP_CREATOR` + "`" + ` | | ` + "`" + `GROUP_DATA_ACCESS_READ_ONLY` + "`" + ` | ` + "`" + `ORG_BILLING_ADMIN` + "`" + ` | | ` + "`" + `GROUP_DATA_ACCESS_READ_WRITE` + "`" + ` | ` + "`" + `ORG_READ_ONLY` + "`" + ` | | ` + "`" + `GROUP_OWNER` + "`" + ` | | | ` + "`" + `GROUP_READ_ONLY` + "`" + ` | | See detailed information for arguments and attributes: [MongoDB API Alert Configuration](https://docs.atlas.mongodb.com/reference/api/alert-configurations-get-config/)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -189,11 +205,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "event_type",
-					Description: `The type of event that will trigger an alert. Alert type. Possible values: - Host - ` + "`" + `OUTSIDE_METRIC_THRESHOLD` + "`" + ` - ` + "`" + `HOST_RESTARTED` + "`" + ` - ` + "`" + `HOST_UPGRADED` + "`" + ` - ` + "`" + `HOST_NOW_SECONDARY` + "`" + ` - ` + "`" + `HOST_NOW_PRIMARY` + "`" + ` - Replica set - ` + "`" + `NO_PRIMARY` + "`" + ` - ` + "`" + `TOO_MANY_ELECTIONS` + "`" + ` Sharded cluster - ` + "`" + `CLUSTER_MONGOS_IS_MISSING` + "`" + ` - ` + "`" + `User` + "`" + ` - ` + "`" + `JOINED_GROUP` + "`" + ` - ` + "`" + `REMOVED_FROM_GROUP` + "`" + ` - ` + "`" + `USER_ROLES_CHANGED_AUDIT` + "`" + ` - Project - ` + "`" + `USERS_AWAITING_APPROVAL` + "`" + ` - ` + "`" + `USERS_WITHOUT_MULTI_FACTOR_AUTH` + "`" + ` - ` + "`" + `GROUP_CREATED` + "`" + ` - Team - ` + "`" + `JOINED_TEAM` + "`" + ` - ` + "`" + `REMOVED_FROM_TEAM` + "`" + ` - Organization - ` + "`" + `INVITED_TO_ORG` + "`" + ` - ` + "`" + `JOINED_ORG` + "`" + ` - Data Explorer - ` + "`" + `DATA_EXPLORER` + "`" + ` - ` + "`" + `DATA_EXPLORER_CRUD` + "`" + ` - Billing - ` + "`" + `CREDIT_CARD_ABOUT_TO_EXPIRE` + "`" + ` - ` + "`" + `CHARGE_SUCCEEDED` + "`" + ` - ` + "`" + `INVOICE_CLOSED` + "`" + ` ->`,
+					Description: `The type of event that will trigger an alert. ->`,
 				},
 				resource.Attribute{
 					Name:        "field_name",
-					Description: `Name of the field in the target object to match on. Host alerts support these fields: - ` + "`" + `TYPE_NAME` + "`" + ` - ` + "`" + `HOSTNAME` + "`" + ` - ` + "`" + `PORT` + "`" + ` - ` + "`" + `HOSTNAME_AND_PORT` + "`" + ` - ` + "`" + `REPLICA_SET_NAME` + "`" + ` Replica set alerts support these fields: - ` + "`" + `REPLICA_SET_NAME` + "`" + ` - ` + "`" + `SHARD_NAME` + "`" + ` - ` + "`" + `CLUSTER_NAME` + "`" + ` Sharded cluster alerts support these fields: - ` + "`" + `CLUSTER_NAME` + "`" + ` - ` + "`" + `SHARD_NAME` + "`" + ` All other types of alerts do not support matchers.`,
+					Description: `Name of the field in the target object to match on. | Host alerts | Replica set alerts | Sharded cluster alerts | |:-------------- |:------------- |:------ | | ` + "`" + `TYPE_NAME` + "`" + ` | ` + "`" + `REPLICA_SET_NAME` + "`" + ` | ` + "`" + `CLUSTER_NAME` + "`" + ` | | ` + "`" + `HOSTNAME` + "`" + ` | ` + "`" + `SHARD_NAME` + "`" + ` | ` + "`" + `SHARD_NAME` + "`" + ` | | ` + "`" + `PORT` + "`" + ` | ` + "`" + `CLUSTER_NAME` + "`" + ` | | | ` + "`" + `HOSTNAME_AND_PORT` + "`" + ` | | | | ` + "`" + `REPLICA_SET_NAME` + "`" + ` | | | All other types of alerts do not support matchers.`,
 				},
 				resource.Attribute{
 					Name:        "operator",
@@ -213,7 +229,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metric_name",
-					Description: `Name of the metric to check.`,
+					Description: `Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)`,
 				},
 				resource.Attribute{
 					Name:        "operator",
@@ -229,7 +245,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `This must be set to AVERAGE. Atlas computes the current metric value as an average. ### Notifications Notifications to send when an alert condition is detected.`,
+					Description: `This must be set to AVERAGE. Atlas computes the current metric value as an average. ### Threshold`,
+				},
+				resource.Attribute{
+					Name:        "operator",
+					Description: `Operator to apply when checking the current metric value against the threshold value. Accepted values are: - ` + "`" + `GREATER_THAN` + "`" + ` - ` + "`" + `LESS_THAN` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "threshold",
+					Description: `Threshold value outside of which an alert will be triggered.`,
+				},
+				resource.Attribute{
+					Name:        "units",
+					Description: `The units for the threshold value. Depends on the type of metric. Accepted values are: - ` + "`" + `RAW` + "`" + ` - ` + "`" + `BITS` + "`" + ` - ` + "`" + `BYTES` + "`" + ` - ` + "`" + `KILOBITS` + "`" + ` - ` + "`" + `KILOBYTES` + "`" + ` - ` + "`" + `MEGABITS` + "`" + ` - ` + "`" + `MEGABYTES` + "`" + ` - ` + "`" + `GIGABITS` + "`" + ` - ` + "`" + `GIGABYTES` + "`" + ` - ` + "`" + `TERABYTES` + "`" + ` - ` + "`" + `PETABYTES` + "`" + ` - ` + "`" + `MILLISECONDS` + "`" + ` - ` + "`" + `SECONDS` + "`" + ` - ` + "`" + `MINUTES` + "`" + ` - ` + "`" + `HOURS` + "`" + ` - ` + "`" + `DAYS` + "`" + ` ### Notifications Notifications to send when an alert condition is detected.`,
 				},
 				resource.Attribute{
 					Name:        "api_token",
@@ -313,7 +341,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "victor_ops_routing_key",
-					Description: `VictorOps routing key. Optional for the ` + "`" + `VICTOR_OPS` + "`" + ` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key. See detailed information for arguments and attributes: [MongoDB API Alert Configuration](https://docs.atlas.mongodb.com/reference/api/alert-configurations-get-config/)`,
+					Description: `VictorOps routing key. Optional for the ` + "`" + `VICTOR_OPS` + "`" + ` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.`,
+				},
+				resource.Attribute{
+					Name:        "Roles",
+					Description: `The following roles grant privileges within a project. | Project roles | Organization roles | |:---------- |:----------- | | ` + "`" + `GROUP_CHARTS_ADMIN` + "`" + ` | ` + "`" + `ORG_OWNER` + "`" + ` | | ` + "`" + `GROUP_CLUSTER_MANAGER` + "`" + ` | ` + "`" + `ORG_MEMBER` + "`" + ` | | ` + "`" + `GROUP_DATA_ACCESS_ADMIN` + "`" + ` | ` + "`" + `ORG_GROUP_CREATOR` + "`" + ` | | ` + "`" + `GROUP_DATA_ACCESS_READ_ONLY` + "`" + ` | ` + "`" + `ORG_BILLING_ADMIN` + "`" + ` | | ` + "`" + `GROUP_DATA_ACCESS_READ_WRITE` + "`" + ` | ` + "`" + `ORG_READ_ONLY` + "`" + ` | | ` + "`" + `GROUP_OWNER` + "`" + ` | | | ` + "`" + `GROUP_READ_ONLY` + "`" + ` | | See detailed information for arguments and attributes: [MongoDB API Alert Configuration](https://docs.atlas.mongodb.com/reference/api/alert-configurations-get-config/)`,
 				},
 			},
 		},
@@ -1099,7 +1131,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "connection_strings",
-					Description: `Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster. - ` + "`" + `connection_strings.standard` + "`" + ` - Public mongodb:// connection string for this cluster. - ` + "`" + `connection_strings.standard_srv` + "`" + ` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard. - ` + "`" + `connection_strings.aws_private_link` + "`" + ` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. - ` + "`" + `connection_strings.aws_private_link_srv` + "`" + ` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink. - ` + "`" + `connection_strings.private` + "`" + ` - [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster. - ` + "`" + `connection_strings.private_srv` + "`" + ` - [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.`,
+					Description: `Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster. - ` + "`" + `connection_strings.standard` + "`" + ` - Public mongodb:// connection string for this cluster. - ` + "`" + `connection_strings.standard_srv` + "`" + ` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard. - ` + "`" + `connection_strings.aws_private_link` + "`" + ` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "disk_size_gb",
@@ -1146,10 +1178,6 @@ var (
 					Description: `Describes Azure disk type of the server’s root volume (Azure Only).`,
 				},
 				resource.Attribute{
-					Name:        "provider_encrypt_ebs_volume",
-					Description: `Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance.`,
-				},
-				resource.Attribute{
 					Name:        "provider_region_name",
 					Description: `Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).`,
 				},
@@ -1159,7 +1187,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "replication_factor",
-					Description: `Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.`,
+					Description: `(Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.`,
 				},
 				resource.Attribute{
 					Name:        "provider_auto_scaling_compute_min_instance_size",
@@ -1219,7 +1247,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "analytics_nodes",
-					Description: `Indicates the number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. ### Labels Contains key-value pairs that tag and categorize the cluster. Each key and value has a maximum length of 255 characters.`,
+					Description: `Indicates the number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. ### Labels Key-value pairs that tag and categorize the cluster. Each key and value has a maximum length of 255 characters. Note: the key ` + "`" + `Infrastructure Tool` + "`" + `, is used for internal purposes to track aggregate usage.`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -1361,7 +1389,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "connection_strings",
-					Description: `Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster. - ` + "`" + `connection_strings.standard` + "`" + ` - Public mongodb:// connection string for this cluster. - ` + "`" + `connection_strings.standard_srv` + "`" + ` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard. - ` + "`" + `connection_strings.aws_private_link` + "`" + ` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. - ` + "`" + `connection_strings.aws_private_link_srv` + "`" + ` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink. - ` + "`" + `connection_strings.private` + "`" + ` - [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster. - ` + "`" + `connection_strings.private_srv` + "`" + ` - [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.`,
+					Description: `Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster. - ` + "`" + `connection_strings.standard` + "`" + ` - Public mongodb:// connection string for this cluster. - ` + "`" + `connection_strings.standard_srv` + "`" + ` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard. - ` + "`" + `connection_strings.aws_private_link` + "`" + ` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "disk_size_gb",
@@ -1408,10 +1436,6 @@ var (
 					Description: `Describes Azure disk type of the server’s root volume (Azure Only).`,
 				},
 				resource.Attribute{
-					Name:        "provider_encrypt_ebs_volume",
-					Description: `Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance.`,
-				},
-				resource.Attribute{
 					Name:        "provider_region_name",
 					Description: `Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).`,
 				},
@@ -1421,7 +1445,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "replication_factor",
-					Description: `Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.`,
+					Description: `(Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.`,
 				},
 				resource.Attribute{
 					Name:        "provider_auto_scaling_compute_min_instance_size",
@@ -1481,7 +1505,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "analytics_nodes",
-					Description: `Indicates the number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. ### Labels Contains key-value pairs that tag and categorize the cluster. Each key and value has a maximum length of 255 characters.`,
+					Description: `Indicates the number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. ### Labels Key-value pairs that tag and categorize the cluster. Each key and value has a maximum length of 255 characters. Note: the key ` + "`" + `Infrastructure Tool` + "`" + `, is used for internal purposes to track aggregate usage.`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -1643,7 +1667,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "connection_strings",
-					Description: `Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster. - ` + "`" + `connection_strings.standard` + "`" + ` - Public mongodb:// connection string for this cluster. - ` + "`" + `connection_strings.standard_srv` + "`" + ` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard. - ` + "`" + `connection_strings.aws_private_link` + "`" + ` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. - ` + "`" + `connection_strings.aws_private_link_srv` + "`" + ` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink. - ` + "`" + `connection_strings.private` + "`" + ` - [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster. - ` + "`" + `connection_strings.private_srv` + "`" + ` - [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.`,
+					Description: `Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster. - ` + "`" + `connection_strings.standard` + "`" + ` - Public mongodb:// connection string for this cluster. - ` + "`" + `connection_strings.standard_srv` + "`" + ` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard. - ` + "`" + `connection_strings.aws_private_link` + "`" + ` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "disk_size_gb",
@@ -1686,10 +1710,6 @@ var (
 					Description: `Describes Azure disk type of the server’s root volume (Azure Only).`,
 				},
 				resource.Attribute{
-					Name:        "provider_encrypt_ebs_volume",
-					Description: `Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance.`,
-				},
-				resource.Attribute{
 					Name:        "provider_region_name",
 					Description: `Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).`,
 				},
@@ -1707,7 +1727,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "replication_factor",
-					Description: `Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.`,
+					Description: `(Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.`,
 				},
 				resource.Attribute{
 					Name:        "replication_specs",
@@ -1759,7 +1779,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "analytics_nodes",
-					Description: `Indicates the number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. ### Labels Contains key-value pairs that tag and categorize the cluster. Each key and value has a maximum length of 255 characters.`,
+					Description: `Indicates the number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. ### Labels Key-value pairs that tag and categorize the cluster. Each key and value has a maximum length of 255 characters. Note: the key ` + "`" + `Infrastructure Tool` + "`" + `, is used for internal purposes to track aggregate usage.`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -1909,7 +1929,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "connection_strings",
-					Description: `Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster. - ` + "`" + `connection_strings.standard` + "`" + ` - Public mongodb:// connection string for this cluster. - ` + "`" + `connection_strings.standard_srv` + "`" + ` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard. - ` + "`" + `connection_strings.aws_private_link` + "`" + ` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. - ` + "`" + `connection_strings.aws_private_link_srv` + "`" + ` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink. - ` + "`" + `connection_strings.private` + "`" + ` - [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster. - ` + "`" + `connection_strings.private_srv` + "`" + ` - [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.`,
+					Description: `Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster. - ` + "`" + `connection_strings.standard` + "`" + ` - Public mongodb:// connection string for this cluster. - ` + "`" + `connection_strings.standard_srv` + "`" + ` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard. - ` + "`" + `connection_strings.aws_private_link` + "`" + ` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "disk_size_gb",
@@ -1952,10 +1972,6 @@ var (
 					Description: `Describes Azure disk type of the server’s root volume (Azure Only).`,
 				},
 				resource.Attribute{
-					Name:        "provider_encrypt_ebs_volume",
-					Description: `Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance.`,
-				},
-				resource.Attribute{
 					Name:        "provider_region_name",
 					Description: `Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).`,
 				},
@@ -1973,7 +1989,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "replication_factor",
-					Description: `Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.`,
+					Description: `(Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.`,
 				},
 				resource.Attribute{
 					Name:        "replication_specs",
@@ -2025,7 +2041,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "analytics_nodes",
-					Description: `Indicates the number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. ### Labels Contains key-value pairs that tag and categorize the cluster. Each key and value has a maximum length of 255 characters.`,
+					Description: `Indicates the number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. ### Labels Key-value pairs that tag and categorize the cluster. Each key and value has a maximum length of 255 characters. Note: the key ` + "`" + `Infrastructure Tool` + "`" + `, is used for internal purposes to track aggregate usage.`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -2187,7 +2203,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The database user's name.`,
+					Description: `Autogenerated Unique ID for this data source.`,
 				},
 				resource.Attribute{
 					Name:        "roles",
@@ -2195,7 +2211,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "x509_type",
-					Description: `X.509 method by which the provided username is authenticated. ### Roles Block mapping a user's role to a database / collection. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. ->`,
+					Description: `X.509 method by which the provided username is authenticated.`,
+				},
+				resource.Attribute{
+					Name:        "aws_iam_type",
+					Description: `The new database user authenticates with AWS IAM credentials. Default is ` + "`" + `NONE` + "`" + `, ` + "`" + `USER` + "`" + ` means user has AWS IAM user credentials, ` + "`" + `ROLE` + "`" + ` - means user has credentials associated with an AWS IAM role.`,
+				},
+				resource.Attribute{
+					Name:        "ldap_auth_type",
+					Description: `Method by which the provided username is authenticated. Default is ` + "`" + `NONE` + "`" + `. Other valid values are: ` + "`" + `USER` + "`" + `, ` + "`" + `GROUP` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "scopes",
+					Description: `Array of clusters and Atlas Data Lakes that this user has access to.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the cluster or Atlas Data Lake that the user has access to.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of resource that the user has access to. Valid values are: ` + "`" + `CLUSTER` + "`" + ` and ` + "`" + `DATA_LAKE` + "`" + ` ### Roles Block mapping a user's role to a database / collection. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. ->`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -2221,7 +2257,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The database user's name.`,
+					Description: `Autogenerated Unique ID for this data source.`,
 				},
 				resource.Attribute{
 					Name:        "roles",
@@ -2229,7 +2265,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "x509_type",
-					Description: `X.509 method by which the provided username is authenticated. ### Roles Block mapping a user's role to a database / collection. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. ->`,
+					Description: `X.509 method by which the provided username is authenticated.`,
+				},
+				resource.Attribute{
+					Name:        "aws_iam_type",
+					Description: `The new database user authenticates with AWS IAM credentials. Default is ` + "`" + `NONE` + "`" + `, ` + "`" + `USER` + "`" + ` means user has AWS IAM user credentials, ` + "`" + `ROLE` + "`" + ` - means user has credentials associated with an AWS IAM role.`,
+				},
+				resource.Attribute{
+					Name:        "ldap_auth_type",
+					Description: `Method by which the provided username is authenticated. Default is ` + "`" + `NONE` + "`" + `. Other valid values are: ` + "`" + `USER` + "`" + `, ` + "`" + `GROUP` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "scopes",
+					Description: `Array of clusters and Atlas Data Lakes that this user has access to.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the cluster or Atlas Data Lake that the user has access to.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of resource that the user has access to. Valid values are: ` + "`" + `CLUSTER` + "`" + ` and ` + "`" + `DATA_LAKE` + "`" + ` ### Roles Block mapping a user's role to a database / collection. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. ->`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -2287,11 +2343,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auth_database_name",
-					Description: `The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.`,
+					Description: `(Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB. Possible values include:`,
+				},
+				resource.Attribute{
+					Name:        "ldap_auth_type",
+					Description: `is USER or GROUP.`,
 				},
 				resource.Attribute{
 					Name:        "x509_type",
-					Description: `X.509 method by which the provided username is authenticated. ### Roles Block mapping a user's role to a database / collection. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. ->`,
+					Description: `X.509 method by which the provided username is authenticated.`,
+				},
+				resource.Attribute{
+					Name:        "aws_iam_type",
+					Description: `The new database user authenticates with AWS IAM credentials. Default is ` + "`" + `NONE` + "`" + `, ` + "`" + `USER` + "`" + ` means user has AWS IAM user credentials, ` + "`" + `ROLE` + "`" + ` - means user has credentials associated with an AWS IAM role.`,
+				},
+				resource.Attribute{
+					Name:        "ldap_auth_type",
+					Description: `Method by which the provided username is authenticated. Default is ` + "`" + `NONE` + "`" + `. Other valid values are: ` + "`" + `USER` + "`" + `, ` + "`" + `GROUP` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "scopes",
+					Description: `Array of clusters and Atlas Data Lakes that this user has access to.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the cluster or Atlas Data Lake that the user has access to.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of resource that the user has access to. Valid values are: ` + "`" + `CLUSTER` + "`" + ` and ` + "`" + `DATA_LAKE` + "`" + ` ### Roles Block mapping a user's role to a database / collection. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. ->`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -2337,11 +2417,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auth_database_name",
-					Description: `The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.`,
+					Description: `(Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB. Possible values include:`,
+				},
+				resource.Attribute{
+					Name:        "ldap_auth_type",
+					Description: `is USER or GROUP.`,
 				},
 				resource.Attribute{
 					Name:        "x509_type",
-					Description: `X.509 method by which the provided username is authenticated. ### Roles Block mapping a user's role to a database / collection. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. ->`,
+					Description: `X.509 method by which the provided username is authenticated.`,
+				},
+				resource.Attribute{
+					Name:        "aws_iam_type",
+					Description: `The new database user authenticates with AWS IAM credentials. Default is ` + "`" + `NONE` + "`" + `, ` + "`" + `USER` + "`" + ` means user has AWS IAM user credentials, ` + "`" + `ROLE` + "`" + ` - means user has credentials associated with an AWS IAM role.`,
+				},
+				resource.Attribute{
+					Name:        "ldap_auth_type",
+					Description: `Method by which the provided username is authenticated. Default is ` + "`" + `NONE` + "`" + `. Other valid values are: ` + "`" + `USER` + "`" + `, ` + "`" + `GROUP` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "scopes",
+					Description: `Array of clusters and Atlas Data Lakes that this user has access to.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the cluster or Atlas Data Lake that the user has access to.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of resource that the user has access to. Valid values are: ` + "`" + `CLUSTER` + "`" + ` and ` + "`" + `DATA_LAKE` + "`" + ` ### Roles Block mapping a user's role to a database / collection. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. ->`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -2467,7 +2571,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vnet_name",
-					Description: `The name of the Azure VNet. This value is null until you provision an Azure VNet in the container. See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)`,
+					Description: `The name of the Azure VNet. This value is null until you provision an Azure VNet in the container.`,
+				},
+				resource.Attribute{
+					Name:        "regions",
+					Description: `Atlas GCP regions where the container resides. See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2509,7 +2617,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vnet_name",
-					Description: `The name of the Azure VNet. This value is null until you provision an Azure VNet in the container. See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)`,
+					Description: `The name of the Azure VNet. This value is null until you provision an Azure VNet in the container.`,
+				},
+				resource.Attribute{
+					Name:        "regions",
+					Description: `Atlas GCP regions where the container resides. See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)`,
 				},
 			},
 		},
@@ -2575,7 +2687,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vnet_name",
-					Description: `The name of the Azure VNet. This value is null until you provision an Azure VNet in the container. See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-get-containers-list/)`,
+					Description: `The name of the Azure VNet. This value is null until you provision an Azure VNet in the container.`,
+				},
+				resource.Attribute{
+					Name:        "regions",
+					Description: `Atlas GCP regions where the container resides. See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-get-containers-list/)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2625,7 +2741,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vnet_name",
-					Description: `The name of the Azure VNet. This value is null until you provision an Azure VNet in the container. See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-get-containers-list/)`,
+					Description: `The name of the Azure VNet. This value is null until you provision an Azure VNet in the container.`,
+				},
+				resource.Attribute{
+					Name:        "regions",
+					Description: `Atlas GCP regions where the container resides. See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-get-containers-list/)`,
 				},
 			},
 		},
@@ -3019,7 +3139,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of the AWS PrivateLink connection. Returns one of the following values:`,
+					Description: `Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values: AWS:`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3041,7 +3161,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of the AWS PrivateLink connection. Returns one of the following values:`,
+					Description: `Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values: AWS:`,
 				},
 			},
 		},

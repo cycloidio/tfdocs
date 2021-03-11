@@ -70,6 +70,10 @@ var (
 					Description: `(Optional) drop flag. Default is false.`,
 				},
 				resource.Attribute{
+					Name:        "geo_location.geo_ip_failover",
+					Description: `(Optional) Flag to enable/disable Failover to nearest proximity when all the host fails. Works with the record type pools. It requires Geo Proximity to be enabled at the Domain level. Default is false.`,
+				},
+				resource.Attribute{
 					Name:        "geo_location.geo_ip_proximity",
 					Description: `(Optional) for Geo IP Filter, geoipProximity must not be provided. please create an A record with "World (Default)" IP Filter first before a more specific IP Filter is applied. The "World (Default)" record would only be used if no matching Filter or Proximity records are found.`,
 				},
@@ -190,6 +194,10 @@ var (
 				resource.Attribute{
 					Name:        "geo_location.drop",
 					Description: `(Optional) drop flag. Default is false.`,
+				},
+				resource.Attribute{
+					Name:        "geo_location.geo_ip_failover",
+					Description: `(Optional) Flag to enable/disable Failover to nearest proximity when all the host fails. Works with the record type pools. It requires Geo Proximity to be enabled at the Domain level. Default is false.`,
 				},
 				resource.Attribute{
 					Name:        "geo_location.geo_ip_proximity",
@@ -334,6 +342,10 @@ var (
 					Description: `(Optional) drop flag. Default is false.`,
 				},
 				resource.Attribute{
+					Name:        "geo_location.geo_ip_failover",
+					Description: `(Optional) Flag to enable/disable Failover to nearest proximity when all the host fails. Works with the record type pools. It requires Geo Proximity to be enabled at the Domain level. Default is false.`,
+				},
+				resource.Attribute{
 					Name:        "geo_location.geo_ip_proximity",
 					Description: `(Optional) for Geo IP Filter, geoipProximity must not be provided. please create an A record with "World (Default)" IP Filter first before a more specific IP Filter is applied. The "World (Default)" record would only be used if no matching Filter or Proximity records are found.`,
 				},
@@ -454,6 +466,10 @@ var (
 				resource.Attribute{
 					Name:        "geo_location.drop",
 					Description: `(Optional) drop flag. Default is false.`,
+				},
+				resource.Attribute{
+					Name:        "geo_location.geo_ip_failover",
+					Description: `(Optional) Flag to enable/disable Failover to nearest proximity when all the host fails. Works with the record type pools. It requires Geo Proximity to be enabled at the Domain level. Default is false.`,
 				},
 				resource.Attribute{
 					Name:        "geo_location.geo_ip_proximity",
@@ -1181,6 +1197,10 @@ var (
 					Description: `(Optional) drop flag. Default is false.`,
 				},
 				resource.Attribute{
+					Name:        "geo_location.geo_ip_failover",
+					Description: `(Optional) Flag to enable/disable Failover to nearest proximity when all the host fails. Works with the record type pools. It requires Geo Proximity to be enabled at the Domain level. Default is false.`,
+				},
+				resource.Attribute{
 					Name:        "geo_location.geo_ip_proximity",
 					Description: `(Optional) for Geo IP Filter, geoipProximity must not be provided. please create an A record with "World (Default)" IP Filter first before a more specific IP Filter is applied. The "World (Default)" record would only be used if no matching Filter or Proximity records are found.`,
 				},
@@ -1273,6 +1293,10 @@ var (
 				resource.Attribute{
 					Name:        "geo_location.drop",
 					Description: `(Optional) drop flag. Default is false.`,
+				},
+				resource.Attribute{
+					Name:        "geo_location.geo_ip_failover",
+					Description: `(Optional) Flag to enable/disable Failover to nearest proximity when all the host fails. Works with the record type pools. It requires Geo Proximity to be enabled at the Domain level. Default is false.`,
 				},
 				resource.Attribute{
 					Name:        "geo_location.geo_ip_proximity",

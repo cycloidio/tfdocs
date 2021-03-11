@@ -189,6 +189,21 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_external_network_v2",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a VMware Cloud Director External Network data source (version 2). New version of this data source uses new VCD API and is capable of creating NSX-T backed external networks as well as port group backed ones.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) external network name ## Attribute Reference All properties defined in [vcd_external_network_v2](/docs/providers/vcd/r/external_network_v2.html) resource are available.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_independent_disk",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a independent disk data source.`,
@@ -445,6 +460,33 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_network_isolated_v2",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a VMware Cloud Director Org VDC isolated Network data source to read data or reference existing network.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique name for the network (optional when ` + "`" + `filter` + "`" + ` is used)`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Retrieves the data source using one or more filter parameters ## Attribute reference All attributes defined in [isolated network resource](/docs/providers/vcd/r/network_isolated_v2.html#attribute-reference) are supported. ## Filter arguments`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_network_routed",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a vCloud Director Org VDC routed Network. This can be used to reference internal networks for vApps to connect.`,
@@ -466,6 +508,175 @@ var (
 				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional;`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_network_routed_v2",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a VMware Cloud Director Org VDC routed Network data source to read data or reference existing network (backed by NSX-T or NSX-V).`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique name for the network (optional when ` + "`" + `filter` + "`" + ` is used)`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Retrieves the data source using one or more filter parameters ## Attribute reference All attributes defined in [routed network resource](/docs/providers/vcd/r/network_routed_v2.html#attribute-reference) are supported. ## Filter arguments`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_edge_cluster",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data source for available NSX-T Edge Clusters.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) NSX-T Edge Cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Edge Cluster description in NSX-T manager.`,
+				},
+				resource.Attribute{
+					Name:        "node_count",
+					Description: `Number of nodes in Edge Cluster.`,
+				},
+				resource.Attribute{
+					Name:        "node_type",
+					Description: `Type of nodes in Edge Cluster.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type",
+					Description: `Deployment type of Edge Cluster.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_edgegateway",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a VMware Cloud Director NSX-T edge gateway data source. This can be used to read NSX-T edge gateway configurations.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to which the edge gatweway belongs. Optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC that owns the edge gateway. Optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) NSX-T Edge Gateway name. ## Attribute reference All properties defined in [vcd_nsxt_edgegateway](/docs/providers/vcd/r/nsxt_edgegateway.html) resource are available.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_manager",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data source for available NSX-T manager.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) NSX-T manager name ## Attribute reference Only ID is set to be able and reference in other resources or data sources.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_network_dhcp",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data source to read DHCP pools for NSX-T Org VDC Routed network.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "org_network_id",
+					Description: `(Required) ID of parent Org VDC Routed network ## Attribute Reference All the attributes defined in [` + "`" + `vcd_nsxt_network_dhcp` + "`" + `](/docs/providers/vcd/r/nsxt_network_dhcp.html) resource are available.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_network_imported",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a VMware Cloud Director Org VDC NSX-T Imported Network data source to read data or reference existing network.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique name for the network (optional when ` + "`" + `filter` + "`" + ` is used)`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Retrieves the data source using one or more filter parameters ## Attribute reference All attributes defined in [imported network resource](/docs/providers/vcd/r/nsxt_network_imported.html#attribute-reference) are supported. ## Filter arguments`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_tier0_router",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data source for available NSX-T Tier-0 routers.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) NSX-T Tier-0 router name.`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_manager_id",
+					Description: `(Required) NSX-T manager should be referenced. ## Attribute reference`,
+				},
+				resource.Attribute{
+					Name:        "is_assigned",
+					Description: `Boolean value reflecting if Tier-0 router is already consumed by external network.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -712,6 +923,81 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_org_user",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a vCloud Director Organization user data source. This can be used to read organization users.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to which the user belongs. Optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the user. Required if ` + "`" + `user_id` + "`" + ` is not set.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `(Optional) The ID of the user. Required if ` + "`" + `name` + "`" + ` is not set. ## Attribute reference ~>`,
+				},
+				resource.Attribute{
+					Name:        "provider_type",
+					Description: `Identity provider type for this user.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `The role of the user.`,
+				},
+				resource.Attribute{
+					Name:        "full_name",
+					Description: `The full name of the user.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `An optional description of the user.`,
+				},
+				resource.Attribute{
+					Name:        "telephone",
+					Description: `The Org User telephone number.`,
+				},
+				resource.Attribute{
+					Name:        "email_address",
+					Description: `The Org User email address.`,
+				},
+				resource.Attribute{
+					Name:        "instant_messaging",
+					Description: `The Org User instant messaging.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `True if the user is enabled and can log in.`,
+				},
+				resource.Attribute{
+					Name:        "is_group_role",
+					Description: `True if this user has a group role.`,
+				},
+				resource.Attribute{
+					Name:        "is_locked",
+					Description: `If the user account has been locked due to too many invalid login attempts, the value will be true.`,
+				},
+				resource.Attribute{
+					Name:        "deployed_vm_quota",
+					Description: `Quota of vApps that this user can deploy. A value of 0 specifies an unlimited quota.`,
+				},
+				resource.Attribute{
+					Name:        "stored_vm_quota",
+					Description: `Quota of vApps that this user can store. A value of 0 specifies an unlimited quota.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Organization user`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_org_vdc",
 			Category:         "Data Sources",
 			ShortDescription: `Provides an organization VDC data source.`,
@@ -725,6 +1011,176 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Organization VDC name ## Attribute reference All attributes defined in [organization VDC resource](/docs/providers/vcd/r/org_vdc.html#attribute-reference) are supported.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_portgroup",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data source for available vCenter Port Groups.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Organization VDC name`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) ` + "`" + `NETWORK` + "`" + ` for vSwitch port group or ` + "`" + `DV_PORTGROUP` + "`" + ` for distributed port group. ## Attribute reference Only ID is set to be able and reference in other resources or data sources.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_resource_list",
+			Category:         "Data Sources",
+			ShortDescription: `Provides lists of VCD resources`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) An unique name to identify the data source`,
+				},
+				resource.Attribute{
+					Name:        "list",
+					Description: `(Computed) The list of requested resources in the chosen format.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "list",
+					Description: `(Computed) The list of requested resources in the chosen format.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_resource_schema",
+			Category:         "Data Sources",
+			ShortDescription: `Provides information about a vCD resource structure`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) An unique name to identify the data source`,
+				},
+				resource.Attribute{
+					Name:        "attributes",
+					Description: `(Computed) The list of attributes for the resource. Each attribute is made of:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the attribute`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `an optional description of the attribute`,
+				},
+				resource.Attribute{
+					Name:        "required",
+					Description: `whether the attribute is required`,
+				},
+				resource.Attribute{
+					Name:        "optional",
+					Description: `whether the attribute is optional`,
+				},
+				resource.Attribute{
+					Name:        "computed",
+					Description: `whether the attribute is computed`,
+				},
+				resource.Attribute{
+					Name:        "sensitive",
+					Description: `whether the attribute is sensitive`,
+				},
+				resource.Attribute{
+					Name:        "block_attributes",
+					Description: `(Computed) The list of compound attributes Each bock attribute is made of:`,
+				},
+				resource.Attribute{
+					Name:        "nesting_type",
+					Description: `(Computed) How the block is organized (one of ` + "`" + `NestingSet` + "`" + `, ` + "`" + `NestingList` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "attributes",
+					Description: `(Computed) Same composition of the simple ` + "`" + `attributes` + "`" + ` above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "attributes",
+					Description: `(Computed) The list of attributes for the resource. Each attribute is made of:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the attribute`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `an optional description of the attribute`,
+				},
+				resource.Attribute{
+					Name:        "required",
+					Description: `whether the attribute is required`,
+				},
+				resource.Attribute{
+					Name:        "optional",
+					Description: `whether the attribute is optional`,
+				},
+				resource.Attribute{
+					Name:        "computed",
+					Description: `whether the attribute is computed`,
+				},
+				resource.Attribute{
+					Name:        "sensitive",
+					Description: `whether the attribute is sensitive`,
+				},
+				resource.Attribute{
+					Name:        "block_attributes",
+					Description: `(Computed) The list of compound attributes Each bock attribute is made of:`,
+				},
+				resource.Attribute{
+					Name:        "nesting_type",
+					Description: `(Computed) How the block is organized (one of ` + "`" + `NestingSet` + "`" + `, ` + "`" + `NestingList` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "attributes",
+					Description: `(Computed) Same composition of the simple ` + "`" + `attributes` + "`" + ` above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_storage_profile",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data source for VDC storage profile.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Storage profile name. ## Attribute reference This data source exports only ` + "`" + `id` + "`" + ` field.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -902,6 +1358,72 @@ var (
 					Name:        "internal_disk",
 					Description: `(`,
 				},
+				resource.Attribute{
+					Name:        "os_type",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "hardware_version",
+					Description: `(`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_vcenter",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data source for vCenter server attached to VCD.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) vCenter name ## Attribute reference`,
+				},
+				resource.Attribute{
+					Name:        "connection_status",
+					Description: `vCenter connection status (e.g. ` + "`" + `CONNECTED` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `Boolean value if vCenter is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `vCenter status (e.g. ` + "`" + `READY` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "vcenter_host",
+					Description: `Hostname of configured vCenter.`,
+				},
+				resource.Attribute{
+					Name:        "vcenter_version",
+					Description: `vCenter version (e.g. ` + "`" + `6.7.0` + "`" + `)`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_vm",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a VMware Cloud Director VM data source. This can be used to access standalone VMs.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A name or ID for the standalone VM in VDC ## Attributes reference This data source provides all attributes available for ` + "`" + `vcd_vapp_vm` + "`" + `.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -936,36 +1458,72 @@ var (
 			},
 			Attributes: []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_vm_sizing_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a vCloud Director VM sizing policy data source. This can be used to read VM sizing policy.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name VM sizing policy All arguments defined in [` + "`" + `vcd_vm_sizing_policy` + "`" + `](/docs/providers/vcd/r/vm_sizing_policy.html#argument-reference) are supported.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
 
-		"vcd_catalog":            0,
-		"vcd_catalog_item":       1,
-		"vcd_catalog_media":      2,
-		"vcd_edgegateway":        3,
-		"vcd_external_network":   4,
-		"vcd_independent_disk":   5,
-		"vcd_nsxv_ip_set":        6,
-		"vcd_lb_app_profile":     7,
-		"vcd_lb_app_rule":        8,
-		"vcd_lb_server_pool":     9,
-		"vcd_lb_service_monitor": 10,
-		"vcd_lb_virtual_server":  11,
-		"vcd_network_direct":     12,
-		"vcd_network_isolated":   13,
-		"vcd_network_routed":     14,
-		"vcd_nsxv_dhcp_relay":    15,
-		"vcd_nsxv_dnat":          16,
-		"vcd_nsxv_firewall_rule": 17,
-		"vcd_nsxv_snat":          18,
-		"vcd_org":                19,
-		"vcd_org_vdc":            20,
-		"vcd_vapp":               21,
-		"vcd_vapp_network":       22,
-		"vcd_vapp_org_network":   23,
-		"vcd_vapp_vm":            24,
-		"vcd_vm_affinity_rule":   25,
+		"vcd_catalog":               0,
+		"vcd_catalog_item":          1,
+		"vcd_catalog_media":         2,
+		"vcd_edgegateway":           3,
+		"vcd_external_network":      4,
+		"vcd_external_network_v2":   5,
+		"vcd_independent_disk":      6,
+		"vcd_nsxv_ip_set":           7,
+		"vcd_lb_app_profile":        8,
+		"vcd_lb_app_rule":           9,
+		"vcd_lb_server_pool":        10,
+		"vcd_lb_service_monitor":    11,
+		"vcd_lb_virtual_server":     12,
+		"vcd_network_direct":        13,
+		"vcd_network_isolated":      14,
+		"vcd_network_isolated_v2":   15,
+		"vcd_network_routed":        16,
+		"vcd_network_routed_v2":     17,
+		"vcd_nsxt_edge_cluster":     18,
+		"vcd_nsxt_edgegateway":      19,
+		"vcd_nsxt_manager":          20,
+		"vcd_nsxt_network_dhcp":     21,
+		"vcd_nsxt_network_imported": 22,
+		"vcd_nsxt_tier0_router":     23,
+		"vcd_nsxv_dhcp_relay":       24,
+		"vcd_nsxv_dnat":             25,
+		"vcd_nsxv_firewall_rule":    26,
+		"vcd_nsxv_snat":             27,
+		"vcd_org":                   28,
+		"vcd_org_user":              29,
+		"vcd_org_vdc":               30,
+		"vcd_portgroup":             31,
+		"vcd_resource_list":         32,
+		"vcd_resource_schema":       33,
+		"vcd_storage_profile":       34,
+		"vcd_vapp":                  35,
+		"vcd_vapp_network":          36,
+		"vcd_vapp_org_network":      37,
+		"vcd_vapp_vm":               38,
+		"vcd_vcenter":               39,
+		"vcd_vm":                    40,
+		"vcd_vm_affinity_rule":      41,
+		"vcd_vm_sizing_policy":      42,
 	}
 )
 

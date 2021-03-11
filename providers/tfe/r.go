@@ -11,6 +11,100 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "tfe_agent_pool",
+			Category:         "Resources",
+			ShortDescription: `Manages agent pools`,
+			Description:      ``,
+			Keywords: []string{
+				"agent",
+				"pool",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the agent pool.`,
+				},
+				resource.Attribute{
+					Name:        "organization",
+					Description: `(Required) Name of the organization. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the agent pool.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of agent pool.`,
+				},
+				resource.Attribute{
+					Name:        "organization",
+					Description: `The name of the organization associated with the agent pool. ## Import Agent pools can be imported; use ` + "`" + `<AGENT POOL ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_agent_pool.test apool-rW0KoLSlnuNb5adB ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the agent pool.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of agent pool.`,
+				},
+				resource.Attribute{
+					Name:        "organization",
+					Description: `The name of the organization associated with the agent pool. ## Import Agent pools can be imported; use ` + "`" + `<AGENT POOL ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_agent_pool.test apool-rW0KoLSlnuNb5adB ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tfe_agent_token",
+			Category:         "Resources",
+			ShortDescription: `Manages agent tokens`,
+			Description:      ``,
+			Keywords: []string{
+				"agent",
+				"token",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "agent_pool_id",
+					Description: `(Required) ID of the agent pool.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required) Description of the agent token. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the agent token.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of agent token.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `The generated token.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the agent token.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of agent token.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `The generated token.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "tfe_notification_configuration",
 			Category:         "Resources",
 			ShortDescription: `Manages notifications configurations.`,
@@ -54,7 +148,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "workspace_id",
-					Description: `The id of the workspace that owns the notification configuration. This value _must not_ be provided if ` + "`" + `workspace_external_id` + "`" + ` is provided.`,
+					Description: `(Required) The id of the workspace that owns the notification configuration. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -155,7 +249,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "owners_team_saml_role_id",
-					Description: `(Optional) The name of the "owners" team. ## Attributes Reference`,
+					Description: `(Optional) The name of the "owners" team.`,
+				},
+				resource.Attribute{
+					Name:        "cost_estimation_enabled",
+					Description: `(Optional) Whether or not the cost estimation feature is enabled for all workspaces in the organization. Defaults to true. In a Terraform Cloud organization which does not have Teams & Governance features, this value is always false and cannot be changed. In Terraform Enterprise, Cost Estimation must also be enabled in Site Administration. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -268,7 +366,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global",
-					Description: `(Optional) Whether or not policies in this set will apply to all workspaces. Defaults to ` + "`" + `false` + "`" + `. This value _must not_ be provided if ` + "`" + `workspace_ids` + "`" + ` or ` + "`" + `workspace_external_ids` + "`" + ` are provided.`,
+					Description: `(Optional) Whether or not policies in this set will apply to all workspaces. Defaults to ` + "`" + `false` + "`" + `. This value _must not_ be provided if ` + "`" + `workspace_ids` + "`" + ` is provided.`,
 				},
 				resource.Attribute{
 					Name:        "organization",
@@ -288,11 +386,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "workspace_ids",
-					Description: `(Optional) A list of workspace IDs. This value _must not_ be provided if ` + "`" + `global` + "`" + ` or ` + "`" + `workspace_external_ids` + "`" + ` is provided.`,
+					Description: `(Optional) A list of workspace IDs. This value _must not_ be provided if ` + "`" + `global` + "`" + ` is provided. ->`,
 				},
 				resource.Attribute{
 					Name:        "identifier",
-					Description: `(Required) A reference to your VCS repository in the format ` + "`" + `:org/:repo` + "`" + ` where ` + "`" + `:org` + "`" + ` and ` + "`" + `:repo` + "`" + ` refer to the organization and repository in your VCS provider.`,
+					Description: `(Required) A reference to your VCS repository in the format ` + "`" + `<organization>/<repository>` + "`" + ` where ` + "`" + `<organization>` + "`" + ` and ` + "`" + `<repository>` + "`" + ` refer to the organization and repository in your VCS provider.`,
 				},
 				resource.Attribute{
 					Name:        "branch",
@@ -379,7 +477,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "identifier",
-					Description: `(Required) A reference to your VCS repository in the format ` + "`" + `:org/:repo` + "`" + ` where ` + "`" + `:org` + "`" + ` and ` + "`" + `:repo` + "`" + ` refer to the organization (or project key, for Bitbucket Server) and repository in your VCS provider. The format for Azure DevOps is :org/:project/_git/:repo.`,
+					Description: `(Required) A reference to your VCS repository in the format ` + "`" + `<organization>/<repository>` + "`" + ` where ` + "`" + `<organization>` + "`" + ` and ` + "`" + `<repository>` + "`" + ` refer to the organization (or project key, for Bitbucket Server) and repository in your VCS provider. The format for Azure DevOps is <organization>/<project>/_git/<repository>.`,
 				},
 				resource.Attribute{
 					Name:        "oauth_token_id",
@@ -434,11 +532,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "workspace_id",
-					Description: `The id of the workspace that owns the run trigger. This is the workspace where runs will be triggered. This value _must not_ be provided if ` + "`" + `workspace_external_id` + "`" + ` is provided.`,
+					Description: `(Required) The id of the workspace that owns the run trigger. This is the workspace where runs will be triggered.`,
 				},
 				resource.Attribute{
 					Name:        "sourceable_id",
-					Description: `(Required) The id of the sourceable. The sourceable must be a workspace. ->`,
+					Description: `(Required) The id of the sourceable. The sourceable must be a workspace. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -796,20 +894,28 @@ var (
 					Description: `(Required) Name of the organization.`,
 				},
 				resource.Attribute{
+					Name:        "agent_pool_id",
+					Description: `(Optional) The ID of an agent pool to assign to the workspace. Requires ` + "`" + `execution_mode` + "`" + ` to be set to ` + "`" + `agent` + "`" + `. This value _must not_ be provided if ` + "`" + `execution_mode` + "`" + ` is set to any other value or if ` + "`" + `operations` + "`" + ` is provided.`,
+				},
+				resource.Attribute{
+					Name:        "allow_destroy_plan",
+					Description: `(Optional) Whether destroy plans can be queued on the workspace.`,
+				},
+				resource.Attribute{
 					Name:        "auto_apply",
 					Description: `(Optional) Whether to automatically apply changes when a Terraform plan is successful. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "execution_mode",
+					Description: `(Optional) Which [execution mode](https://www.terraform.io/docs/cloud/workspaces/settings.html#execution-mode) to use. Using Terraform Cloud, valid values are ` + "`" + `remote` + "`" + `, ` + "`" + `local` + "`" + ` or ` + "`" + `agent` + "`" + `. Using Terraform Enterprise, only ` + "`" + `remote` + "`" + ` and ` + "`" + `local` + "`" + ` execution modes are valid. When set to ` + "`" + `local` + "`" + `, the workspace will be used for state storage only. Defaults to ` + "`" + `remote` + "`" + `. This value _must not_ be provided if ` + "`" + `operations` + "`" + ` is provided.`,
 				},
 				resource.Attribute{
 					Name:        "file_triggers_enabled",
 					Description: `(Optional) Whether to filter runs based on the changed files in a VCS push. If enabled, the working directory and trigger prefixes describe a set of paths which must contain changes for a VCS push to trigger a run. If disabled, any push will trigger a run. Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "operations",
-					Description: `(Optional) Whether to use remote execution mode. When set to ` + "`" + `false` + "`" + `, the workspace will be used for state storage only. Defaults to ` + "`" + `true` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "queue_all_runs",
-					Description: `(Optional) Whether all runs should be queued. When set to ` + "`" + `false` + "`" + `, runs triggered by a VCS change will not be queued until at least one run is manually queued. Defaults to ` + "`" + `true` + "`" + `.`,
+					Description: `(Optional) Whether the workspace should start automatically performing runs immediately after its creation. When set to ` + "`" + `false` + "`" + `, runs triggered by a webhook (such as a commit in VCS) will not be queued until at least one run has been manually queued. Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "speculative_enabled",
@@ -833,11 +939,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vcs_repo",
-					Description: `(Optional) Settings for the workspace's VCS repository. The ` + "`" + `vcs_repo` + "`" + ` block supports:`,
+					Description: `(Optional) Settings for the workspace's VCS repository, enabling the [UI/VCS-driven run workflow](https://www.terraform.io/docs/cloud/run/ui.html). Omit this argument to utilize the [CLI-driven](https://www.terraform.io/docs/cloud/run/cli.html) and [API-driven](https://www.terraform.io/docs/cloud/run/api.html) workflows, where runs are not driven by webhooks on your VCS provider. The ` + "`" + `vcs_repo` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "identifier",
-					Description: `(Required) A reference to your VCS repository in the format ` + "`" + `:org/:repo` + "`" + ` where ` + "`" + `:org` + "`" + ` and ` + "`" + `:repo` + "`" + ` refer to the organization and repository in your VCS provider.`,
+					Description: `(Required) A reference to your VCS repository in the format ` + "`" + `<organization>/<repository>` + "`" + ` where ` + "`" + `<organization>` + "`" + ` and ` + "`" + `<repository>` + "`" + ` refer to the organization and repository in your VCS provider.`,
 				},
 				resource.Attribute{
 					Name:        "branch",
@@ -849,7 +955,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "oauth_token_id",
-					Description: `(Required) Token ID of the VCS Connection (OAuth Connection Token) to use. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required) The VCS Connection (OAuth Connection + Token) to use. This ID can be obtained from a ` + "`" + `tfe_oauth_client` + "`" + ` resource. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -867,25 +973,27 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"tfe_notification_configuration": 0,
-		"tfe_oauth_client":               1,
-		"tfe_organization":               2,
-		"tfe_organization_membership":    3,
-		"tfe_organization_token":         4,
-		"tfe_policy_set":                 5,
-		"tfe_policy_set_parameter":       6,
-		"tfe_registry_module":            7,
-		"tfe_run_trigger":                8,
-		"tfe_sentinel_policy":            9,
-		"tfe_ssh_key":                    10,
-		"tfe_team":                       11,
-		"tfe_team_access":                12,
-		"tfe_team_member":                13,
-		"tfe_team_members":               14,
-		"tfe_team_organization_member":   15,
-		"tfe_team_token":                 16,
-		"tfe_variable":                   17,
-		"tfe_workspace":                  18,
+		"tfe_agent_pool":                 0,
+		"tfe_agent_token":                1,
+		"tfe_notification_configuration": 2,
+		"tfe_oauth_client":               3,
+		"tfe_organization":               4,
+		"tfe_organization_membership":    5,
+		"tfe_organization_token":         6,
+		"tfe_policy_set":                 7,
+		"tfe_policy_set_parameter":       8,
+		"tfe_registry_module":            9,
+		"tfe_run_trigger":                10,
+		"tfe_sentinel_policy":            11,
+		"tfe_ssh_key":                    12,
+		"tfe_team":                       13,
+		"tfe_team_access":                14,
+		"tfe_team_member":                15,
+		"tfe_team_members":               16,
+		"tfe_team_organization_member":   17,
+		"tfe_team_token":                 18,
+		"tfe_variable":                   19,
+		"tfe_workspace":                  20,
 	}
 )
 

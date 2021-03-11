@@ -11,6 +11,50 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "vault_ad_access_credentials",
+			Category:         "Data Sources",
+			ShortDescription: `Reads Active Directory credentials from an AD secret backend in Vault`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "backend",
+					Description: `(Required) The path to the AD secret backend to read credentials from, with no leading or trailing ` + "`" + `/` + "`" + `s.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Required) The name of the AD secret backend role to read credentials from, with no leading or trailing ` + "`" + `/` + "`" + `s. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "current_password",
+					Description: `The current set password on the Active Directory service account.`,
+				},
+				resource.Attribute{
+					Name:        "last_password",
+					Description: `The current set password on the Active Directory service account, provided because AD is eventually consistent.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `The Active Directory service account username.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "current_password",
+					Description: `The current set password on the Active Directory service account.`,
+				},
+				resource.Attribute{
+					Name:        "last_password",
+					Description: `The current set password on the Active Directory service account, provided because AD is eventually consistent.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `The Active Directory service account username.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vault_approle_auth_backend_role_id",
 			Category:         "Data Sources",
 			ShortDescription: `Manages AppRole auth backend roles in Vault.`,
@@ -131,7 +175,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "role_arn",
-					Description: `(Required if role has multiple ARNs) The specific AWS ARN to use from the configured role. If the role does not have multiple ARNs, this does not need to be specified. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+					Description: `(Required if role has multiple ARNs) The specific AWS ARN to use from the configured role. If the role does not have multiple ARNs, this does not need to be specified.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `(Optional) Specifies the TTL for the use of the STS token. This is specified as a string with a duration suffix. Valid only when ` + "`" + `credential_type` + "`" + ` is ` + "`" + `assumed_role` + "`" + ` or ` + "`" + `federation_token` + "`" + ` ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "access_key",
@@ -907,7 +955,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) Description of the rule. Will be added as a commend to rendered rule.`,
+					Description: `(Optional) Description of the rule. Will be added as a comment to rendered rule.`,
 				},
 				resource.Attribute{
 					Name:        "required_parameters",
@@ -953,16 +1001,17 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"vault_approle_auth_backend_role_id":   0,
-		"vault_auth_backend":                   1,
-		"vault_aws_access_credentials":         2,
-		"vault_azure_access_credentials":       3,
-		"vault_generic_secret":                 4,
-		"vault_identity_entity":                5,
-		"vault_identity_group":                 6,
-		"vault_kubernetes_auth_backend_config": 7,
-		"vault_kubernetes_auth_backend_role":   8,
-		"vault_policy_document":                9,
+		"vault_ad_access_credentials":          0,
+		"vault_approle_auth_backend_role_id":   1,
+		"vault_auth_backend":                   2,
+		"vault_aws_access_credentials":         3,
+		"vault_azure_access_credentials":       4,
+		"vault_generic_secret":                 5,
+		"vault_identity_entity":                6,
+		"vault_identity_group":                 7,
+		"vault_kubernetes_auth_backend_config": 8,
+		"vault_kubernetes_auth_backend_role":   9,
+		"vault_policy_document":                10,
 	}
 )
 

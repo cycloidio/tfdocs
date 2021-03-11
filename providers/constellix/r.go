@@ -30,15 +30,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "roundrobin",
-					Description: `(Required) Object.`,
+					Description: `(Optional) Object.`,
 				},
 				resource.Attribute{
 					Name:        "roundrobin.value",
-					Description: `(Required) IPv4 address.`,
+					Description: `(Optional) IPv4 address.`,
 				},
 				resource.Attribute{
 					Name:        "roundrobin.disable_flag",
-					Description: `(Required) enable or disable the roundrobin object. Default is false. Atleast one roundrobin object should be false.`,
+					Description: `(Optional) enable or disable the roundrobin object. Default is false. Atleast one roundrobin object should be false.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -67,6 +67,10 @@ var (
 				resource.Attribute{
 					Name:        "geo_location.drop",
 					Description: `(Optional) drop flag. Default is false.`,
+				},
+				resource.Attribute{
+					Name:        "geo_location.geo_ip_failover",
+					Description: `(Optional) Flag to enable/disable Failover to nearest proximity when all the host fails. Works with the record type pools. It requires Geo Proximity to be enabled at the Domain level. Default is false.`,
 				},
 				resource.Attribute{
 					Name:        "geo_location.geo_ip_proximity",
@@ -106,15 +110,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "roundrobin_failover.value",
-					Description: `(Required) IPv4 address.`,
+					Description: `(Required for failover) IPv4 address.`,
 				},
 				resource.Attribute{
 					Name:        "roundrobin_failover.disable_flag",
-					Description: `(Required) enable or disable the recordFailover value object. Default is false (Active). Atleast one recordFailover value object should be false.`,
+					Description: `(Required for failover) enable or disable the recordFailover value object. Default is false (Active). Atleast one recordFailover value object should be false.`,
 				},
 				resource.Attribute{
 					Name:        "roundrobin_failover.sort_order",
-					Description: `(Required) Integer value which decides in which order the rounrobinfailover should be sorted.`,
+					Description: `(Requiredfor failover) Integer value which decides in which order the rounrobinfailover should be sorted.`,
 				},
 				resource.Attribute{
 					Name:        "record_failover",
@@ -122,11 +126,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "record_failover_values",
-					Description: `(Required) Set.`,
+					Description: `(Required for failover) Set.`,
 				},
 				resource.Attribute{
 					Name:        "record_failover_values.value",
-					Description: `(Required) IPv4 address.`,
+					Description: `(Required for failover) IPv4 address.`,
 				},
 				resource.Attribute{
 					Name:        "record_failover_values.check_id",
@@ -134,19 +138,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "record_failover_values.sort_order",
-					Description: `(Required) Integer value which decides in which order the recordfailover should be sorted.`,
+					Description: `(Required for failover) Integer value which decides in which order the recordfailover should be sorted.`,
 				},
 				resource.Attribute{
 					Name:        "record_failover_values.disable_flag",
-					Description: `(Required) enable or disable the recordFailover value object. Default is false (Active). Atleast one recordFailover value object should be false.`,
+					Description: `(Required for failover) enable or disable the recordFailover value object. Default is false (Active). Atleast one recordFailover value object should be false.`,
 				},
 				resource.Attribute{
 					Name:        "record_failover_failover_type",
-					Description: `(Required) 1 for Normal (always lowest level). 2 for Off on any Failover event. 3 for One Way (move to higher level).`,
+					Description: `(Required for failover) 1 for Normal (always lowest level). 2 for Off on any Failover event. 3 for One Way (move to higher level).`,
 				},
 				resource.Attribute{
 					Name:        "record_failover_disable_flag",
-					Description: `(Required) enable or disable the recordFailover object. Default is false (Active). Atleast one recordFailover object should be false. ## Attributes Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of the A resource.`,
+					Description: `(Required for failover) enable or disable the recordFailover object. Default is false (Active). Atleast one recordFailover object should be false. ## Attributes Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of the A resource. ## Importing ## An existing Record can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_a_record.example <source>:<parent-id>:<record-id> ` + "`" + `` + "`" + `` + "`" + ` Where source can be either domains or templates; parent-id is domain-id or template-id based on the source provided and record-id is the Id of record calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -211,6 +215,10 @@ var (
 					Description: `(Optional) drop flag. Default is false.`,
 				},
 				resource.Attribute{
+					Name:        "geo_location.geo_ip_failover",
+					Description: `(Optional) Flag to enable/disable Failover to nearest proximity when all the host fails. Works with the record type pools. It requires Geo Proximity to be enabled at the Domain level. Default is false.`,
+				},
+				resource.Attribute{
 					Name:        "geo_location.geo_ip_proximity",
 					Description: `(Optional) for Geo IP Filter, geoipProximity must not be provided. please create an A record with "World (Default)" IP Filter first before a more specific IP Filter is applied. The "World (Default)" record would only be used if no matching Filter or Proximity records are found.`,
 				},
@@ -248,15 +256,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "roundrobin_failover.value",
-					Description: `(Required) IPv6 address.`,
+					Description: `(Required for failover) IPv6 address.`,
 				},
 				resource.Attribute{
 					Name:        "roundrobin_failover.disable_flag",
-					Description: `(Required) enable or disable the recordFailover value object. Default is false (Active). Atleast one recordFailover value object should be false.`,
+					Description: `(Required for failover) enable or disable the recordFailover value object. Default is false (Active). Atleast one recordFailover value object should be false.`,
 				},
 				resource.Attribute{
 					Name:        "roundrobin_failover.sort_order",
-					Description: `(Required) Integer value which decides in which order the roundrobinfailover should be sorted.`,
+					Description: `(Required for failover) Integer value which decides in which order the roundrobinfailover should be sorted.`,
 				},
 				resource.Attribute{
 					Name:        "record_failover",
@@ -264,11 +272,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "record_failover_values",
-					Description: `(Required) Set.`,
+					Description: `(Required for failover) Set.`,
 				},
 				resource.Attribute{
 					Name:        "record_failover_values.value",
-					Description: `(Required) IPv6 address.`,
+					Description: `(Required for failover) IPv6 address.`,
 				},
 				resource.Attribute{
 					Name:        "record_failover_values.check_id",
@@ -276,19 +284,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "record_failover_values.sort_order",
-					Description: `(Required) Integer value which decides in which order the recordfailover should be sorted`,
+					Description: `(Required for failover) Integer value which decides in which order the recordfailover should be sorted`,
 				},
 				resource.Attribute{
 					Name:        "record_failover_values.disable_flag",
-					Description: `(Required) enable or disable the recordFailover value object. Default is false (Active). Atleast one recordFailover value object should be false.`,
+					Description: `(Required for failover) enable or disable the recordFailover value object. Default is false (Active). Atleast one recordFailover value object should be false.`,
 				},
 				resource.Attribute{
 					Name:        "record_failover_failover_type",
-					Description: `(Required) 1 for Normal (always lowest level). 2 for Off on any Failover event. 3 for One Way (move to higher level).`,
+					Description: `(Required for failover) 1 for Normal (always lowest level). 2 for Off on any Failover event. 3 for One Way (move to higher level).`,
 				},
 				resource.Attribute{
 					Name:        "record_failover_disable_flag",
-					Description: `(Required) enable or disable the recordFailover object. Default is false (Active). Atleast one recordFailover object should be false. ## Attributes Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of the AAAA resource.`,
+					Description: `(Required for failover) enable or disable the recordFailover object. Default is false (Active). Atleast one recordFailover object should be false. ## Attributes Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of the AAAA resource. ## Importing ## An existing Record can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_aaaa_record.example <source>:<parent-id>:<record-id> ` + "`" + `` + "`" + `` + "`" + ` Where source can be either domains or templates; parent-id is domain-id or template-id based on the source provided and record-id is the Id of record calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -351,7 +359,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "note",
-					Description: `(Optional) Description. ## Attributes Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of the aaaa record pool resource.`,
+					Description: `(Optional) Description. ## Attributes Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of the aaaa record pool resource. ## Importing ## An existing Pool can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_aaaa_record_pool.example <pool-id> ` + "`" + `` + "`" + `` + "`" + ` Where pool-id is the Id of record calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -374,6 +382,38 @@ var (
 				resource.Attribute{
 					Name:        "source_type",
 					Description: `(Required) "domains" for Domain records and "template" for Template records`,
+				},
+				resource.Attribute{
+					Name:        "geo_location",
+					Description: `(Optional) Details of IP filter / Geo proximity to be applied. Default is null.`,
+				},
+				resource.Attribute{
+					Name:        "geo_location.geo_ip_user_region",
+					Description: `(Optional) For Geo proximity to be applied. geoipUserRegion should not be provided.`,
+				},
+				resource.Attribute{
+					Name:        "geo_location.drop",
+					Description: `(Optional) drop flag. Default is false.`,
+				},
+				resource.Attribute{
+					Name:        "geo_location.geo_ip_proximity",
+					Description: `(Optional) a valid geoipProximity id.`,
+				},
+				resource.Attribute{
+					Name:        "geo_location.geo_ip_user_region",
+					Description: `(Optional) For Geo IP Filter to be applied. geoipUserRegion should be [1].`,
+				},
+				resource.Attribute{
+					Name:        "geo_location.drop",
+					Description: `(Optional) drop flag. Default is false.`,
+				},
+				resource.Attribute{
+					Name:        "geo_location.geo_ip_failover",
+					Description: `(Optional) Flag to enable/disable Failover to nearest proximity when all the host fails. Works with the record type pools. It requires Geo Proximity to be enabled at the Domain level. Default is false.`,
+				},
+				resource.Attribute{
+					Name:        "geo_location.geo_ip_proximity",
+					Description: `(Optional) for Geo IP Filter, geoipProximity must not be provided. please create an A record with "World (Default)" IP Filter first before a more specific IP Filter is applied. The "World (Default)" record would only be used if no matching Filter or Proximity records are found.`,
 				},
 				resource.Attribute{
 					Name:        "roundrobin",
@@ -445,7 +485,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "record_failover_disable_flag",
-					Description: `(Optional) Enable or Disable the recordfailover object. Default is false. Atleast one recordfailover object should be false. ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of aname resource.`,
+					Description: `(Optional) Enable or Disable the recordfailover object. Default is false. Atleast one recordfailover object should be false. ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of aname resource. ## Importing ## An existing Record can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_aname_record.example <source>:<parent-id>:<record-id> ` + "`" + `` + "`" + `` + "`" + ` Where source can be either domains or templates; parent-id is domain-id or template-id based on the source provided and record-id is the Id of record calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -512,7 +552,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "note",
-					Description: `(Optional) Description. ## Attributes Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of the A record pool resource.`,
+					Description: `(Optional) Description. ## Attributes Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of the A record pool resource. ## Importing ## An existing Pool can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_a_record_pool.example <pool-id> ` + "`" + `` + "`" + `` + "`" + ` Where pool-id is the Id of pool calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -578,7 +618,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Record type CAA ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of caa resource.`,
+					Description: `(Optional) Record type CAA ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of caa resource. ## Importing ## An existing Record can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_caa_record.example <source>:<parent-id>:<record-id> ` + "`" + `` + "`" + `` + "`" + ` Where source can be either domains or templates; parent-id is domain-id or template-id based on the source provided and record-id is the Id of record calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -644,7 +684,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Record type CERT. ## Attributes Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of the CERT resource.`,
+					Description: `(Optional) Record type CERT. ## Attributes Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of the CERT resource. ## Importing ## An existing Record can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_cert_record.example <source>:<parent-id>:<record-id> ` + "`" + `` + "`" + `` + "`" + ` Where source can be either domains or templates; parent-id is domain-id or template-id based on the source provided and record-id is the Id of record calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -673,6 +713,10 @@ var (
 					Description: `(Optional) Name of record. Name should be unique.`,
 				},
 				resource.Attribute{
+					Name:        "host",
+					Description: `(Required for standard CNAME) Value/"alias to" of the CNAME record.`,
+				},
+				resource.Attribute{
 					Name:        "geo_location",
 					Description: `(Optional) Details of IP filter / Geo proximity to be applied. Default is null.`,
 				},
@@ -690,11 +734,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "geo_location.geo_ip_user_region",
-					Description: `(Optional) For Geo IP Filter to be applied. geoipUserRegion should be [1].`,
+					Description: `(Optional) For Geo IP Filter to be applied geo_ip_proximity must not be provided. Before applying a specific IP Filter you must first create a record with the same name that has IP Filter setting of "World Default". geoipUserRegion should be [1] for "World Default". Otherwise, use a valid IP Filter id number.`,
 				},
 				resource.Attribute{
 					Name:        "geo_location.drop",
 					Description: `(Optional) drop flag. Default is false.`,
+				},
+				resource.Attribute{
+					Name:        "geo_location.geo_ip_failover",
+					Description: `(Optional) Flag to enable/disable Failover to nearest proximity when all the host fails. Works with the record type pools and Failover. It requires Geo Proximity to be enabled at the Domain level and applied to the record you are enabeling the geo_ip_filter option on. Default is "false" mark "true" to enable.`,
 				},
 				resource.Attribute{
 					Name:        "geo_location.geo_ip_proximity",
@@ -718,7 +766,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Record type A.`,
+					Description: `(Optional) Record type CNAME.`,
 				},
 				resource.Attribute{
 					Name:        "contact_ids",
@@ -734,11 +782,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "record_failover_values",
-					Description: `(Required) Set.`,
+					Description: `(Required for failover) Set.`,
 				},
 				resource.Attribute{
 					Name:        "record_failover_values.value",
-					Description: `(Required) Host name.`,
+					Description: `(Required for failover) Host name.`,
 				},
 				resource.Attribute{
 					Name:        "record_failover_values.check_id",
@@ -746,19 +794,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "record_failover_values.sort_order",
-					Description: `(Required) Integer value which decides in which order the recordfailover should be sorted.`,
+					Description: `(Required for failover) Integer value which decides in which order the recordfailover should be sorted.`,
 				},
 				resource.Attribute{
 					Name:        "record_failover_values.disable_flag",
-					Description: `(Required) enable or disable the recordFailover value object. Default is false (Active). Atleast one recordFailover value object should be false.`,
+					Description: `(Required for failover) enable or disable the recordFailover value object. Default is false (Active). Atleast one recordFailover value object should be false.`,
 				},
 				resource.Attribute{
 					Name:        "record_failover_failover_type",
-					Description: `(Required) 1 for Normal (always lowest level). 2 for Off on any Failover event. 3 for One Way (move to higher level).`,
+					Description: `(Required for failover) 1 for Normal (always lowest level). 2 for Off on any Failover event. 3 for One Way (move to higher level).`,
 				},
 				resource.Attribute{
 					Name:        "record_failover_disable_flag",
-					Description: `(Required) enable or disable the recordFailover object. Default is false (Active). Atleast one recordFailover object should be false. ## Attributes Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of the CName resource.`,
+					Description: `(Required for failover) enable or disable the recordFailover object. Default is false (Active). Atleast one recordFailover object should be false. ## Attributes Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of the CName resource. ## Importing ## An existing Record can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_cname_record.example <source>:<parent-id>:<record-id> ` + "`" + `` + "`" + `` + "`" + ` Where source can be either domains or templates; parent-id is domain-id or template-id based on the source provided and record-id is the Id of record calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -825,7 +873,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "note",
-					Description: `(Optional) Description. ## Attributes Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of the cname record pool resource.`,
+					Description: `(Optional) Description. ## Attributes Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of the cname record pool resource. ## Importing ## An existing pool can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_cname_record_pool.example <pool-id> ` + "`" + `` + "`" + `` + "`" + ` Where pool-id is the Id of pool calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -847,7 +895,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "email_addresses",
-					Description: `(Required) List of email addresses ## Attribute Reference ## No attributes are exported`,
+					Description: `(Required) List of email addresses ## Attribute Reference ## No attributes are exported ## Importing ## An existing Contact list can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_contact_lists.example <list-id> ` + "`" + `` + "`" + `` + "`" + ` Where list-id is the Id of Cotact List calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -893,7 +941,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "expected_response",
-					Description: `(Optional) Ip Address where DNS provided in the FQDN should resolved to in ideal conditions. ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of DNS check resource.`,
+					Description: `(Optional) Ip Address where DNS provided in the FQDN should resolved to in ideal conditions. ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of DNS check resource. ## Importing ## An existing Check can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_dns_check.example <check-id> ` + "`" + `` + "`" + `` + "`" + ` Where check-id is the Id of check calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -966,7 +1014,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "soa.negcache",
-					Description: `(Optional) The amount of time a record not found is cached. Recommended values can vary, between 180 and 172800 (3 min – 2 days). The default value is 180 ## Attribute Reference ## No attributes are exported`,
+					Description: `(Optional) The amount of time a record not found is cached. Recommended values can vary, between 180 and 172800 (3 min – 2 days). The default value is 180 ## Attribute Reference ## No attributes are exported ## Importing ## An existing Record can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_domain.example <record-id> ` + "`" + `` + "`" + `` + "`" + ` Where record-id is the Id of record calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1012,7 +1060,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "filter_rules_limit",
-					Description: `(Optional) Default is 100. For more than 100 rules, parameter should be set explicitly for ADD and Update API calls. Value should be in mulitple of 100 like 200, 300 ...upto the quota limit assigned to the account. Check quota details for IP Filter Rule Limit. ## Attributes Reference No attributes are exported.`,
+					Description: `(Optional) Default is 100. For more than 100 rules, parameter should be set explicitly for ADD and Update API calls. Value should be in mulitple of 100 like 200, 300 ...upto the quota limit assigned to the account. Check quota details for IP Filter Rule Limit. ## Attributes Reference No attributes are exported. ## Importing ## An existing Geo Filter can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_geo_filter.example <filter-id> ` + "`" + `` + "`" + `` + "`" + ` Where filter-id is the Id of filter calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1050,7 +1098,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "city",
-					Description: `(Optional)City code. Default is null. ## Attributes Reference No attributes are exported.`,
+					Description: `(Optional)City code. Default is null. ## Attributes Reference No attributes are exported. ## Importing ## An existing Geo Proximity can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_geo_proximity.example <geoproxy-id> ` + "`" + `` + "`" + `` + "`" + ` Where geoproxy-id is the Id of geoproxy calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1108,7 +1156,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Record type HINFO ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of hinfo resource.`,
+					Description: `(Optional) Record type HINFO ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of hinfo resource. ## Importing ## An existing Record can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_hinfo_record.example <source>:<parent-id>:<record-id> ` + "`" + `` + "`" + `` + "`" + ` Where source can be either domains or templates; parent-id is domain-id or template-id based on the source provided and record-id is the Id of record calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1174,7 +1222,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "expected_status_code",
-					Description: `(Optional) Expected HTTP status code for this check. ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of HTTP check resource.`,
+					Description: `(Optional) Expected HTTP status code for this check. ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of HTTP check resource. ## Importing ## An existing check can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_http_check.example <check-id> ` + "`" + `` + "`" + `` + "`" + ` Where check-id is the Id of check calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1237,7 +1285,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Record type HTTP Redirection ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of httpredirection resource.`,
+					Description: `(Optional) Record type HTTP Redirection ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of httpredirection resource. ## Importing ## An existing Record can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_http_redirection.example <source>:<parent-id>:<record-id> ` + "`" + `` + "`" + `` + "`" + ` Where source can be either domains or templates; parent-id is domain-id or template-id based on the source provided and record-id is the Id of record calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1295,7 +1343,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Record type MX ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of mx resource.`,
+					Description: `(Optional) Record type MX ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of mx resource. ## Importing ## An existing Record can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_mx_record.example <source>:<parent-id>:<record-id> ` + "`" + `` + "`" + `` + "`" + ` Where source can be either domains or templates; parent-id is domain-id or template-id based on the source provided and record-id is the Id of record calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1369,7 +1417,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "roundrobin.disable_flag",
-					Description: `(Required) disable flag. Default is false ## Attributes Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of the NAPTR resource.`,
+					Description: `(Required) disable flag. Default is false ## Attributes Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of the NAPTR resource. ## Importing ## An existing Record can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_naptr_record.example <source>:<parent-id>:<record-id> ` + "`" + `` + "`" + `` + "`" + ` Where source can be either domains or templates; parent-id is domain-id or template-id based on the source provided and record-id is the Id of record calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1423,7 +1471,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "roundrobin.disable_flag",
-					Description: `(Required) disable flag. Default is false ## Attributes Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of the NS resource.`,
+					Description: `(Required) disable flag. Default is false ## Attributes Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of the NS resource. ## Importing ## An existing Record can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_ns_record.example <source>:<parent-id>:<record-id> ` + "`" + `` + "`" + `` + "`" + ` Where source can be either domains or templates; parent-id is domain-id or template-id based on the source provided and record-id is the Id of record calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1477,7 +1525,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "roundrobin.disable_flag",
-					Description: `(Optional) enable or disable the roundrobin object. Default is false. Atleast one roundrobin object should be false. ## Attributes Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of the PTR resource.`,
+					Description: `(Optional) enable or disable the roundrobin object. Default is false. Atleast one roundrobin object should be false. ## Attributes Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of the PTR resource. ## Importing ## An existing Record can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_ptr_record.example <source>:<parent-id>:<record-id> ` + "`" + `` + "`" + `` + "`" + ` Where source can be either domains or templates; parent-id is domain-id or template-id based on the source provided and record-id is the Id of record calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1535,7 +1583,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Record type RP ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of rp resource.`,
+					Description: `(Optional) Record type RP ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of rp resource. ## Importing ## An existing Record can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_rp_record.example <source>:<parent-id>:<record-id> ` + "`" + `` + "`" + `` + "`" + ` Where source can be either domains or templates; parent-id is domain-id or template-id based on the source provided and record-id is the Id of record calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1589,7 +1637,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "roundrobin.disable_flag",
-					Description: `(Optional) enable or disable the roundrobin object. Default is false. Atleast one roundrobin object should be false. ## Attributes Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of the SPF resource.`,
+					Description: `(Optional) enable or disable the roundrobin object. Default is false. Atleast one roundrobin object should be false. ## Attributes Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of the SPF resource. ## Importing ## An existing Record can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_spf_record.example <source>:<parent-id>:<record-id> ` + "`" + `` + "`" + `` + "`" + ` Where source can be either domains or templates; parent-id is domain-id or template-id based on the source provided and record-id is the Id of record calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1655,7 +1703,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Record type SRV ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of srv resource.`,
+					Description: `(Optional) Record type SRV ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of srv resource. ## Importing ## An existing Record can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_srv_record.example <source>:<parent-id>:<record-id> ` + "`" + `` + "`" + `` + "`" + ` Where source can be either domains or templates; parent-id is domain-id or template-id based on the source provided and record-id is the Id of record calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1672,7 +1720,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Name of record. Name should be unique. ## Attribute Reference ## No attributes are exported`,
+					Description: `(Required) Name of record. Name should be unique. ## Attribute Reference ## No attributes are exported ## Importing ## An existing Tag can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_tags.example <tag-id> ` + "`" + `` + "`" + `` + "`" + ` Where tag-id is the Id of tag calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1726,7 +1774,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "string_to_receive",
-					Description: `(Optional) String which should be received as a result of TCP check. ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of TCP check resource.`,
+					Description: `(Optional) String which should be received as a result of TCP check. ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of TCP check resource. ## Importing ## An existing Check can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_tcp_check.example <check-id> ` + "`" + `` + "`" + `` + "`" + ` Where check-id is the Id of check calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1759,7 +1807,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `(Optional) System generated template history version. ## Attributes Reference No attributes are exported.`,
+					Description: `(Optional) System generated template history version. ## Attributes Reference No attributes are exported. ## Importing ## An existing Template can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_template.example <template-id> ` + "`" + `` + "`" + `` + "`" + ` Where template-id is the Id of template calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1813,7 +1861,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Record type TXT ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of txt resource.`,
+					Description: `(Optional) Record type TXT ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of txt resource. ## Importing ## An existing Record can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_txt_record.example <source>:<parent-id>:<record-id> ` + "`" + `` + "`" + `` + "`" + ` Where source can be either domains or templates; parent-id is domain-id or template-id based on the source provided and record-id is the Id of record calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1851,7 +1899,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nameserver_group_name",
-					Description: `(Optional) Name server group name ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of vanitynameserver resource.`,
+					Description: `(Optional) Name server group name ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the constellix calculated id of vanitynameserver resource. ## Importing ## An existing Vanity Name Server can be [imported][docs-import] into this resource using its Id, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import constellix_vanity_nameserver.example <nameserver-id> ` + "`" + `` + "`" + `` + "`" + ` Where nameserver-id is the Id of nameserver calculated via Constellix API.`,
 				},
 			},
 			Attributes: []resource.Attribute{},

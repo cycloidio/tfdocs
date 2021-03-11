@@ -33,11 +33,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "host_instance_type",
-					Description: `(Optional) The instance type for the esx hosts added to this cluster. Possible values are: I3_METAL, I3EN.metal and R5_METAL. Default value: I3_METAL.`,
+					Description: `(Optional) The instance type for the esx hosts added to this cluster. Possible values are: I3_METAL, I3EN_METAL and R5_METAL. Default value: I3_METAL.`,
 				},
 				resource.Attribute{
 					Name:        "storage_capacity",
-					Description: `(Optional) For EBS-backed instances i.e: for R5.METAL only, the requested storage capacity in GiB. ## Attributes Reference In addition to arguments listed above, the following attributes are exported after cluster creation:`,
+					Description: `(Optional) For EBS-backed instances i.e: for R5_METAL only, the requested storage capacity in GiB.`,
+				},
+				resource.Attribute{
+					Name:        "microsoft_licensing_config",
+					Description: `(Optional) Indicates the desired licensing support, if any, of Microsoft software. ## Attributes Reference In addition to arguments listed above, the following attributes are exported after cluster creation:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -45,7 +49,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_info",
-					Description: `Information about cluster like name, state, host instance type and cluster identifier.`,
+					Description: `Information about cluster like name, state, host instance type and cluster identifier. ## Import Cluster resource can be imported using the ` + "`" + `id` + "`" + ` and ` + "`" + `sddc_id` + "`" + `, e.g. ` + "`" + `$ terraform import vmc_cluster.cluster_1 id,sddc_id` + "`" + ` - id = Cluster Identifier - sddc_id = SDDC Identifier ` + "`" + `$ terraform import vmc_cluster.cluster_1 afe7a0fd-3f0a-48b2-9ddb-0489c22732ae,45495963-d24d-469b-830a-9003bfe132b5` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -55,7 +59,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_info",
-					Description: `Information about cluster like name, state, host instance type and cluster identifier.`,
+					Description: `Information about cluster like name, state, host instance type and cluster identifier. ## Import Cluster resource can be imported using the ` + "`" + `id` + "`" + ` and ` + "`" + `sddc_id` + "`" + `, e.g. ` + "`" + `$ terraform import vmc_cluster.cluster_1 id,sddc_id` + "`" + ` - id = Cluster Identifier - sddc_id = SDDC Identifier ` + "`" + `$ terraform import vmc_cluster.cluster_1 afe7a0fd-3f0a-48b2-9ddb-0489c22732ae,45495963-d24d-469b-830a-9003bfe132b5` + "`" + ``,
 				},
 			},
 		},
@@ -88,7 +92,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `Display name for public IP.`,
+					Description: `Display name for public IP. ## Import Public IP resource can be imported using the ` + "`" + `nsxt_reverse_proxy_url` + "`" + ` and ` + "`" + `id` + "`" + ` , e.g. ` + "`" + `$ terraform import vmc_public_ip.public_ip_1 nsxt_reverse_proxy_url,id` + "`" + ` - nsxt_reverse_proxy_url = NSX API public endpoint url used for public IP resource management - id = Public IP Identifier ` + "`" + `$ terraform import vmc_public_ip.public_ip_1 'https://nsx-44-228-76-55.rp.vmwarevmc.com/vmc/reverse-proxy/api/orgs/{orgI}/sddcs/afe7a0fd-3f0a-48b2-9ddb-0489c22732ae/sks-nsxt-manager,8d730ad4-aa6b-4f9f-9679-ec17beeaceaf' ` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -102,7 +106,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `Display name for public IP.`,
+					Description: `Display name for public IP. ## Import Public IP resource can be imported using the ` + "`" + `nsxt_reverse_proxy_url` + "`" + ` and ` + "`" + `id` + "`" + ` , e.g. ` + "`" + `$ terraform import vmc_public_ip.public_ip_1 nsxt_reverse_proxy_url,id` + "`" + ` - nsxt_reverse_proxy_url = NSX API public endpoint url used for public IP resource management - id = Public IP Identifier ` + "`" + `$ terraform import vmc_public_ip.public_ip_1 'https://nsx-44-228-76-55.rp.vmwarevmc.com/vmc/reverse-proxy/api/orgs/{orgI}/sddcs/afe7a0fd-3f0a-48b2-9ddb-0489c22732ae/sks-nsxt-manager,8d730ad4-aa6b-4f9f-9679-ec17beeaceaf' ` + "`" + ``,
 				},
 			},
 		},
@@ -130,11 +134,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_capacity",
-					Description: `(Optional) The storage capacity value to be requested for the SDDC primary cluster. This variable is only for R5.METAL. Possible values are 15TB, 20TB, 25TB, 30TB, 35TB per host.`,
+					Description: `(Optional) The storage capacity value to be requested for the SDDC primary cluster. This variable is only for R5_METAL. Possible values are 15TB, 20TB, 25TB, 30TB, 35TB per host.`,
 				},
 				resource.Attribute{
 					Name:        "num_host",
 					Description: `(Required) The number of hosts.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Optional) The size of the vCenter and NSX appliances. 'large' or 'LARGE' SDDC size corresponds to a large vCenter appliance and large NSX appliance. 'medium' or 'MEDIUM' SDDC size corresponds to medium vCenter appliance and medium NSX appliance. Default : 'medium'.`,
 				},
 				resource.Attribute{
 					Name:        "account_link_sddc_config",
@@ -142,7 +150,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "host_instance_type",
-					Description: `(Optional) The instance type for the esx hosts in the primary cluster of the SDDC. Possible values : I3_METAL, R5_METAL.`,
+					Description: `(Optional) The instance type for the esx hosts in the primary cluster of the SDDC. Possible values : I3_METAL, I3EN_METAL and R5_METAL. Default value : I3_METAL. Currently I3EN_METAL host_instance_type does not support 1NODE and 2 node SDDC deployment.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_cidr",
@@ -182,7 +190,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_id",
-					Description: `(Optional) Cluster identifier. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Optional) Cluster identifier.`,
+				},
+				resource.Attribute{
+					Name:        "microsoft_licensing_config",
+					Description: `(Optional) Indicates the desired licensing support, if any, of Microsoft software. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -195,6 +207,14 @@ var (
 				resource.Attribute{
 					Name:        "cluster_info",
 					Description: `Information about cluster like id, name, state, host instance type.`,
+				},
+				resource.Attribute{
+					Name:        "sddc_size",
+					Description: `Size information of vCenter appliance and NSX appliance.`,
+				},
+				resource.Attribute{
+					Name:        "intranet_uplink_mtu",
+					Description: `Uplink MTU of direct connect, sddc-grouping and outposts traffic in edge tier-0 router port. This field can be updated only after an SDDC is created. Range : 1500 - 8900. Default : 1500. ## Import SDDC resource can be imported using the ` + "`" + `id` + "`" + ` , e.g. ` + "`" + `$ terraform import vmc_sddc.sddc_1 id` + "`" + ` For this example: - id = SDDC Identifier ` + "`" + `$ terraform import vmc_sddc.sddc_1 afe7a0fd-3f0a-48b2-9ddb-0489c22732ae` + "`" + ` Note : Running plan/apply after importing an SDDC causes the SDDC to be re-created. This is due to a limitation in the current Get and Update SDDC APIs. Hence, the import functionality is only partially supported.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -209,6 +229,14 @@ var (
 				resource.Attribute{
 					Name:        "cluster_info",
 					Description: `Information about cluster like id, name, state, host instance type.`,
+				},
+				resource.Attribute{
+					Name:        "sddc_size",
+					Description: `Size information of vCenter appliance and NSX appliance.`,
+				},
+				resource.Attribute{
+					Name:        "intranet_uplink_mtu",
+					Description: `Uplink MTU of direct connect, sddc-grouping and outposts traffic in edge tier-0 router port. This field can be updated only after an SDDC is created. Range : 1500 - 8900. Default : 1500. ## Import SDDC resource can be imported using the ` + "`" + `id` + "`" + ` , e.g. ` + "`" + `$ terraform import vmc_sddc.sddc_1 id` + "`" + ` For this example: - id = SDDC Identifier ` + "`" + `$ terraform import vmc_sddc.sddc_1 afe7a0fd-3f0a-48b2-9ddb-0489c22732ae` + "`" + ` Note : Running plan/apply after importing an SDDC causes the SDDC to be re-created. This is due to a limitation in the current Get and Update SDDC APIs. Hence, the import functionality is only partially supported.`,
 				},
 			},
 		},
@@ -241,7 +269,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vr_node",
-					Description: `VR node created after site recovery activation.`,
+					Description: `VR node created after site recovery activation. ## Import Site recovery resource can be imported using the ` + "`" + `sddc_id` + "`" + ` , e.g. ` + "`" + `$ terraform import vmc_site_recovery.site_recovery_1 sddc_id` + "`" + ` - sddc_id = SDDC Identifier ` + "`" + `$ terraform import vmc_site_recovery.site_recovery_1 afe7a0fd-3f0a-48b2-9ddb-0489c22732ae` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -255,7 +283,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vr_node",
-					Description: `VR node created after site recovery activation.`,
+					Description: `VR node created after site recovery activation. ## Import Site recovery resource can be imported using the ` + "`" + `sddc_id` + "`" + ` , e.g. ` + "`" + `$ terraform import vmc_site_recovery.site_recovery_1 sddc_id` + "`" + ` - sddc_id = SDDC Identifier ` + "`" + `$ terraform import vmc_site_recovery.site_recovery_1 afe7a0fd-3f0a-48b2-9ddb-0489c22732ae` + "`" + ``,
 				},
 			},
 		},
@@ -288,7 +316,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vr_node",
-					Description: `VR node information.`,
+					Description: `VR node information. ## Import SRM node resource can be imported using the ` + "`" + `id` + "`" + ` and ` + "`" + `sddc_id` + "`" + ` , e.g. ` + "`" + `$ terraform import vmc_srm_node.srm_node_1 id,sddc_id` + "`" + ` - id = SRM Node Identifier - sddc_id = SDDC Identifier ` + "`" + `$ terraform import vmc_srm_node.srm_node_1 7aad97e9-9a4f-4e43-8817-5c8d8c0e87a5,afe7a0fd-3f0a-48b2-9ddb-0489c22732ae` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -302,7 +330,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vr_node",
-					Description: `VR node information.`,
+					Description: `VR node information. ## Import SRM node resource can be imported using the ` + "`" + `id` + "`" + ` and ` + "`" + `sddc_id` + "`" + ` , e.g. ` + "`" + `$ terraform import vmc_srm_node.srm_node_1 id,sddc_id` + "`" + ` - id = SRM Node Identifier - sddc_id = SDDC Identifier ` + "`" + `$ terraform import vmc_srm_node.srm_node_1 7aad97e9-9a4f-4e43-8817-5c8d8c0e87a5,afe7a0fd-3f0a-48b2-9ddb-0489c22732ae` + "`" + ``,
 				},
 			},
 		},

@@ -12,10 +12,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_certificate",
-			Category:         "Data Sources",
+			Category:         "Manager",
 			ShortDescription: `A certificate data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"manager",
+				"certificate",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -40,10 +43,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_edge_cluster",
-			Category:         "Data Sources",
+			Category:         "Manager",
 			ShortDescription: `An Edge Cluster data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"manager",
+				"edge",
+				"cluster",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -84,10 +91,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_firewall_section",
-			Category:         "Data Sources",
+			Category:         "Manager",
 			ShortDescription: `A firewall section data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"manager",
+				"firewall",
+				"section",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -112,10 +123,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_ip_pool",
-			Category:         "Data Sources",
+			Category:         "Manager",
 			ShortDescription: `A IP pool data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"manager",
+				"ip",
+				"pool",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -140,90 +155,104 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_logical_tier0_router",
-			Category:         "Data Sources",
+			Category:         "Manager",
 			ShortDescription: `A logical Tier 0 router data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"manager",
+				"logical",
+				"tier0",
+				"router",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Optional) The ID of Logical Tier 0 Router to retrieve.`,
+					Description: `(Optional) The ID of Logical Router to retrieve.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `(Optional) The Display Name prefix of the Logical Tier 0 Router to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Optional) The Display Name prefix of Logical Router to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `The description of the logical Tier 0 router.`,
+					Description: `The description of the Logical Router.`,
 				},
 				resource.Attribute{
 					Name:        "edge_cluster_id",
-					Description: `The id of the Edge cluster where this logical router is placed.`,
+					Description: `The id of the Edge Cluster where this Logical Router is placed.`,
 				},
 				resource.Attribute{
 					Name:        "high_availability_mode",
-					Description: `The high availability mode of this logical router.`,
+					Description: `The high availability mode of this Logical Router.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
-					Description: `The description of the logical Tier 0 router.`,
+					Description: `The description of the Logical Router.`,
 				},
 				resource.Attribute{
 					Name:        "edge_cluster_id",
-					Description: `The id of the Edge cluster where this logical router is placed.`,
+					Description: `The id of the Edge Cluster where this Logical Router is placed.`,
 				},
 				resource.Attribute{
 					Name:        "high_availability_mode",
-					Description: `The high availability mode of this logical router.`,
+					Description: `The high availability mode of this Logical Router.`,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_logical_tier1_router",
-			Category:         "Data Sources",
+			Category:         "Manager",
 			ShortDescription: `A logical Tier 1 router data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"manager",
+				"logical",
+				"tier1",
+				"router",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Optional) The ID of Logical Tier 1 Router to retrieve.`,
+					Description: `(Optional) The ID of Logical Router to retrieve.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `(Optional) The Display Name prefix of the Logical Tier 1 Router to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Optional) The Display Name prefix of Logical Router to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `The description of the logical Tier 0 router.`,
+					Description: `The description of the Logical Router.`,
 				},
 				resource.Attribute{
 					Name:        "edge_cluster_id",
-					Description: `The id of the Edge cluster where this logical router is placed.`,
+					Description: `The id of the Edge cluster where this Logical Router is placed.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
-					Description: `The description of the logical Tier 0 router.`,
+					Description: `The description of the Logical Router.`,
 				},
 				resource.Attribute{
 					Name:        "edge_cluster_id",
-					Description: `The id of the Edge cluster where this logical router is placed.`,
+					Description: `The id of the Edge cluster where this Logical Router is placed.`,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_mac_pool",
-			Category:         "Data Sources",
+			Category:         "Manager",
 			ShortDescription: `A MAC pool data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"manager",
+				"mac",
+				"pool",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -247,11 +276,38 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nsxt_management_cluster",
+			Category:         "Manager",
+			ShortDescription: `A NSX-T management cluster data source.`,
+			Description:      ``,
+			Keywords: []string{
+				"manager",
+				"management",
+				"cluster",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique identifier of this cluster.`,
+				},
+				resource.Attribute{
+					Name:        "node_sha256_thumbprint",
+					Description: `SHA256 of certificate thumbprint of this manager node.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nsxt_ns_group",
-			Category:         "Data Sources",
+			Category:         "Manager",
 			ShortDescription: `A networking and security group data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"manager",
+				"ns",
+				"group",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -276,10 +332,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_ns_service",
-			Category:         "Data Sources",
+			Category:         "Manager",
 			ShortDescription: `A networking and security service data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"manager",
+				"ns",
+				"service",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -303,11 +363,58 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nsxt_policy_bfd_profile",
+			Category:         "Policy - Gateways and Routing",
+			ShortDescription: `Policy BFD Profile data source.`,
+			Description:      ``,
+			Keywords: []string{
+				"policy",
+				"gateways",
+				"and",
+				"routing",
+				"bfd",
+				"profile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The ID of Profile to retrieve.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) The Display Name prefix of the Profile to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nsxt_policy_certificate",
-			Category:         "Data Sources",
+			Category:         "Policy - Certificates",
 			ShortDescription: `Policy Certificate data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"certificates",
+				"certificate",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -339,11 +446,97 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nsxt_policy_context_profile",
+			Category:         "Policy - Firewall",
+			ShortDescription: `Policy Context Profile Profile data source.`,
+			Description:      ``,
+			Keywords: []string{
+				"policy",
+				"firewall",
+				"context",
+				"profile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The ID of Profile to retrieve.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) The Display Name prefix of the Profile to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nsxt_policy_dhcp_server",
+			Category:         "Policy - DHCP",
+			ShortDescription: `A policy DHCP server data source.`,
+			Description:      ``,
+			Keywords: []string{
+				"policy",
+				"dhcp",
+				"server",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The ID of DHCP server to retrieve.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) The Display Name prefix of DHCP server to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nsxt_policy_edge_cluster",
-			Category:         "Data Sources",
+			Category:         "Policy - Fabric",
 			ShortDescription: `A policy Edge Cluster data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"fabric",
+				"edge",
+				"cluster",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -351,7 +544,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `(Optional) The Display Name prefix of the edge cluster to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Optional) The Display Name prefix of the edge cluster to retrieve.`,
+				},
+				resource.Attribute{
+					Name:        "site_path",
+					Description: `(Optional) The path of the site which the Edge Cluster belongs to, this configuration is required for global manager only. ` + "`" + `path` + "`" + ` field of the existing ` + "`" + `nsxt_policy_site` + "`" + ` can be used here. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -376,10 +573,15 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_policy_edge_node",
-			Category:         "Data Sources",
+			Category:         "Policy - Fabric",
 			ShortDescription: `A policy Edge Node data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"fabric",
+				"edge",
+				"node",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "edge_cluster_path",
@@ -419,11 +621,67 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nsxt_policy_gateway_policy",
+			Category:         "Policy - Firewall",
+			ShortDescription: `A policy Gateway Policy data source.`,
+			Description:      ``,
+			Keywords: []string{
+				"policy",
+				"firewall",
+				"gateway",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The ID of the gateway policy to retrieve.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `(Optional) The domain of the policy, defaults to ` + "`" + `default` + "`" + `. Needs to be specified in VMC environment.`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `(Optional) Category of the policy to retrieve. May be useful to retrieve default policy.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) The Display Name prefix of the policy to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nsxt_policy_gateway_qos_profile",
-			Category:         "Data Sources",
+			Category:         "Policy - Gateways and Routing",
 			ShortDescription: `Policy GatewayQosProfile data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"gateways",
+				"and",
+				"routing",
+				"gateway",
+				"qos",
+				"profile",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -455,19 +713,112 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "nsxt_policy_ip_block",
-			Category:         "Data Sources",
-			ShortDescription: `Policy IP Block Config data source.`,
+			Type:             "nsxt_policy_group",
+			Category:         "Policy - Grouping and Tagging",
+			ShortDescription: `Policy Group data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"grouping",
+				"and",
+				"tagging",
+				"group",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Optional) The ID of IP Block Config to retrieve.`,
+					Description: `(Optional) The ID of Group to retrieve.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `(Optional) The Display Name prefix of the IP Block Config to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Optional) The Display Name prefix of the Group to retrieve.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `(Optional) The domain this Group belongs to. For VMware Cloud on AWS use ` + "`" + `cgw` + "`" + `. For Global Manager, please use site id for this field. If not specified, this field is default to ` + "`" + `default` + "`" + `. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nsxt_policy_intrusion_service_profile",
+			Category:         "Policy - Firewall",
+			ShortDescription: `Policy Intrusion Service Profile data source.`,
+			Description:      ``,
+			Keywords: []string{
+				"policy",
+				"firewall",
+				"intrusion",
+				"service",
+				"profile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The ID of Profile to retrieve.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) The Display Name prefix of the Profile to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nsxt_policy_ip_block",
+			Category:         "Policy - IPAM",
+			ShortDescription: `Policy IP Block data source.`,
+			Description:      ``,
+			Keywords: []string{
+				"policy",
+				"ipam",
+				"ip",
+				"block",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The ID of IP Block to retrieve.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) The Display Name prefix of the IP Block to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -492,18 +843,24 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_policy_ip_discovery_profile",
-			Category:         "Data Sources",
-			ShortDescription: `Policy IpDiscoveryProfile data source.`,
+			Category:         "Policy - Segments",
+			ShortDescription: `Policy IP Discovery Profile data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"segments",
+				"ip",
+				"discovery",
+				"profile",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Optional) The ID of IpDiscoveryProfile to retrieve.`,
+					Description: `(Optional) The ID of Profile to retrieve.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `(Optional) The Display Name prefix of the IpDiscoveryProfile to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Optional) The Display Name prefix of the Profile to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -528,10 +885,15 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_policy_ip_pool",
-			Category:         "Data Sources",
+			Category:         "Policy - IPAM",
 			ShortDescription: `Policy IP Pool Config data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"ipam",
+				"ip",
+				"pool",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -564,18 +926,26 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_policy_ipv6_dad_profile",
-			Category:         "Data Sources",
-			ShortDescription: `Policy Ipv6DadProfile data source.`,
+			Category:         "Policy - Gateways and Routing",
+			ShortDescription: `Policy IPv6 DAD Profile data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"gateways",
+				"and",
+				"routing",
+				"ipv6",
+				"dad",
+				"profile",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Optional) The ID of Ipv6DadProfile to retrieve.`,
+					Description: `(Optional) The ID of Profile to retrieve.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `(Optional) The Display Name prefix of the Ipv6DadProfile to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Optional) The Display Name prefix of the Profile to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -600,18 +970,26 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_policy_ipv6_ndra_profile",
-			Category:         "Data Sources",
-			ShortDescription: `Policy Ipv6NdraProfile data source.`,
+			Category:         "Policy - Gateways and Routing",
+			ShortDescription: `Policy IPv6 NDRA Profile data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"gateways",
+				"and",
+				"routing",
+				"ipv6",
+				"ndra",
+				"profile",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Optional) The ID of Ipv6NdraProfile to retrieve.`,
+					Description: `(Optional) The ID of Profile to retrieve.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `(Optional) The Display Name prefix of the Ipv6NdraProfile to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Optional) The Display Name prefix of the Profile to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -636,10 +1014,17 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_policy_lb_app_profile",
-			Category:         "Data Sources",
+			Category:         "Policy - Load Balancer",
 			ShortDescription: `Policy Load Balancer Application Profile data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"load",
+				"balancer",
+				"lb",
+				"app",
+				"profile",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -676,10 +1061,18 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_policy_lb_client_ssl_profile",
-			Category:         "Data Sources",
+			Category:         "Policy - Load Balancer",
 			ShortDescription: `Policy Load Balancer Client SSL Profile data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"load",
+				"balancer",
+				"lb",
+				"client",
+				"ssl",
+				"profile",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -712,10 +1105,16 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_policy_lb_monitor",
-			Category:         "Data Sources",
+			Category:         "Policy - Load Balancer",
 			ShortDescription: `Policy Load Balancer Monitor data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"load",
+				"balancer",
+				"lb",
+				"monitor",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -752,18 +1151,25 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_policy_lb_persistence_profile",
-			Category:         "Data Sources",
+			Category:         "Policy - Load Balancer",
 			ShortDescription: `Policy Load Balancer Persistence Profile data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"load",
+				"balancer",
+				"lb",
+				"persistence",
+				"profile",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Optional) The ID of Load Balanacer Persistence Profile to retrieve.`,
+					Description: `(Optional) The ID of Profile to retrieve.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `(Optional) The Display Name prefix of the Load Balancer Persistence Profile to retrieve.`,
+					Description: `(Optional) The Display Name prefix of Profile to retrieve.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -792,10 +1198,18 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_policy_lb_server_ssl_profile",
-			Category:         "Data Sources",
+			Category:         "Policy - Load Balancer",
 			ShortDescription: `Policy Load Balancer Server SSL Profile data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"load",
+				"balancer",
+				"lb",
+				"server",
+				"ssl",
+				"profile",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -828,18 +1242,24 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_policy_mac_discovery_profile",
-			Category:         "Data Sources",
+			Category:         "Policy - Segments",
 			ShortDescription: `Policy MacDiscoveryProfile data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"segments",
+				"mac",
+				"discovery",
+				"profile",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Optional) The ID of MacDiscoveryProfile to retrieve.`,
+					Description: `(Optional) The ID of Profile to retrieve.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `(Optional) The Display Name prefix of the MacDiscoveryProfile to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Optional) The Display Name prefix of Profile to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -864,18 +1284,23 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_policy_qos_profile",
-			Category:         "Data Sources",
+			Category:         "Policy - Segments",
 			ShortDescription: `Policy QosProfile data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"segments",
+				"qos",
+				"profile",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Optional) The ID of QosProfile to retrieve.`,
+					Description: `(Optional) The ID of Profile to retrieve.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `(Optional) The Display Name prefix of the QosProfile to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Optional) The Display Name prefix of the Profile to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -900,10 +1325,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_policy_realization_info",
-			Category:         "Data Sources",
+			Category:         "Policy - Realization",
 			ShortDescription: `A policy resource realization information.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"realization",
+				"info",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "path",
@@ -911,7 +1340,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "entity_type",
-					Description: `(Optional) The entity type of realized resource. If not set, on of the realized resources of the policy resource will be retrieved. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Optional) The entity type of realized resource. If not set, on of the realized resources of the policy resource will be retrieved.`,
+				},
+				resource.Attribute{
+					Name:        "site_path",
+					Description: `(Optional) The path of the site which the resource belongs to, this configuration is required for global manager only. ` + "`" + `path` + "`" + ` field of the existing ` + "`" + `nsxt_policy_site` + "`" + ` can be used here. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -935,11 +1368,67 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nsxt_policy_security_policy",
+			Category:         "Policy - Firewall",
+			ShortDescription: `A policy Security Policy data source.`,
+			Description:      ``,
+			Keywords: []string{
+				"policy",
+				"firewall",
+				"security",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The ID of Security Policy to retrieve.`,
+				},
+				resource.Attribute{
+					Name:        "is_default",
+					Description: `(Optional) Whether this is a default policy. Default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `(Optional) The domain of the policy, defaults to ` + "`" + `default` + "`" + `. Needs to be specified in VMC environment.`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `(Optional) Category of the policy to retrieve.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) The Display Name of the policy to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nsxt_policy_segment_realization",
-			Category:         "Data Sources",
+			Category:         "Policy - Realization",
 			ShortDescription: `State of segment realization on hypervisors.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"realization",
+				"segment",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "path",
@@ -968,10 +1457,16 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_policy_segment_security_profile",
-			Category:         "Data Sources",
+			Category:         "Policy - Segments",
 			ShortDescription: `Policy SegmentSecurityProfile data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"segments",
+				"segment",
+				"security",
+				"profile",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -1004,10 +1499,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_policy_service",
-			Category:         "Data Sources",
+			Category:         "Policy - Firewall",
 			ShortDescription: `A policy service data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"firewall",
+				"service",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -1039,11 +1538,56 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nsxt_policy_site",
+			Category:         "Policy - Fabric",
+			ShortDescription: `Policy Site data source.`,
+			Description:      ``,
+			Keywords: []string{
+				"policy",
+				"fabric",
+				"site",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The ID of Site to retrieve.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) The Display Name prefix of the Site to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. This attribute can serve as ` + "`" + `site_path` + "`" + ` field of ` + "`" + `nsxt_policy_transport_zone` + "`" + ` data source.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. This attribute can serve as ` + "`" + `site_path` + "`" + ` field of ` + "`" + `nsxt_policy_transport_zone` + "`" + ` data source.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nsxt_policy_spoofguard_profile",
-			Category:         "Data Sources",
+			Category:         "Policy - Segments",
 			ShortDescription: `Policy SpoofGuardProfile data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"segments",
+				"spoofguard",
+				"profile",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -1076,10 +1620,17 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_policy_tier0_gateway",
-			Category:         "Data Sources",
+			Category:         "Policy - Gateways and Routing",
 			ShortDescription: `A policy Tier-0 gateway data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"gateways",
+				"and",
+				"routing",
+				"tier0",
+				"gateway",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -1095,7 +1646,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "edge_cluster_path",
-					Description: `The path of the Edge cluster where this Tier-0 gateway is placed.`,
+					Description: `The path of the Edge cluster where this Tier-0 gateway is placed. This attribute is not set for NSX Global Manager, where gateway can spawn across multiple sites.`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -1109,7 +1660,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "edge_cluster_path",
-					Description: `The path of the Edge cluster where this Tier-0 gateway is placed.`,
+					Description: `The path of the Edge cluster where this Tier-0 gateway is placed. This attribute is not set for NSX Global Manager, where gateway can spawn across multiple sites.`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -1120,10 +1671,17 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_policy_tier1_gateway",
-			Category:         "Data Sources",
+			Category:         "Policy - Gateways and Routing",
 			ShortDescription: `A policy Tier-1 gateway data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"gateways",
+				"and",
+				"routing",
+				"tier1",
+				"gateway",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -1164,10 +1722,15 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_policy_transport_zone",
-			Category:         "Data Sources",
+			Category:         "Policy - Fabric",
 			ShortDescription: `A Policy Transport Zone data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"fabric",
+				"transport",
+				"zone",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -1183,7 +1746,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_default",
-					Description: `(Optional) May be set together with ` + "`" + `transport_type` + "`" + ` in order to retrieve default Transport Zone for for this transport type. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Optional) May be set together with ` + "`" + `transport_type` + "`" + ` in order to retrieve default Transport Zone for for this transport type.`,
+				},
+				resource.Attribute{
+					Name:        "site_path",
+					Description: `(Optional) The path of the site which the Transport Zone belongs to, this configuration is required for global manager only. ` + "`" + `path` + "`" + ` field of the existing ` + "`" + `nsxt_policy_site` + "`" + ` can be used here. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1224,10 +1791,16 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_policy_vm",
-			Category:         "Data Sources",
-			ShortDescription: `A Policy Virtual Machine ID data source.`,
+			Category:         "Policy - Grouping and Tagging",
+			ShortDescription: `A Discovered Policy Virtual Machine data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"grouping",
+				"and",
+				"tagging",
+				"vm",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "display_name",
@@ -1260,10 +1833,15 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_policy_vni_pool",
-			Category:         "Data Sources",
+			Category:         "Policy - Segments",
 			ShortDescription: `Policy VNI Pool Config data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"policy",
+				"segments",
+				"vni",
+				"pool",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -1312,10 +1890,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_switching_profile",
-			Category:         "Data Sources",
+			Category:         "Manager",
 			ShortDescription: `A switching profile data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"manager",
+				"switching",
+				"profile",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -1348,10 +1930,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_transport_zone",
-			Category:         "Data Sources",
+			Category:         "Manager",
 			ShortDescription: `A transport zone data source.`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"manager",
+				"transport",
+				"zone",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -1393,43 +1979,52 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"nsxt_certificate":                     0,
-		"nsxt_edge_cluster":                    1,
-		"nsxt_firewall_section":                2,
-		"nsxt_ip_pool":                         3,
-		"nsxt_logical_tier0_router":            4,
-		"nsxt_logical_tier1_router":            5,
-		"nsxt_mac_pool":                        6,
-		"nsxt_ns_group":                        7,
-		"nsxt_ns_service":                      8,
-		"nsxt_policy_certificate":              9,
-		"nsxt_policy_edge_cluster":             10,
-		"nsxt_policy_edge_node":                11,
-		"nsxt_policy_gateway_qos_profile":      12,
-		"nsxt_policy_ip_block":                 13,
-		"nsxt_policy_ip_discovery_profile":     14,
-		"nsxt_policy_ip_pool":                  15,
-		"nsxt_policy_ipv6_dad_profile":         16,
-		"nsxt_policy_ipv6_ndra_profile":        17,
-		"nsxt_policy_lb_app_profile":           18,
-		"nsxt_policy_lb_client_ssl_profile":    19,
-		"nsxt_policy_lb_monitor":               20,
-		"nsxt_policy_lb_persistence_profile":   21,
-		"nsxt_policy_lb_server_ssl_profile":    22,
-		"nsxt_policy_mac_discovery_profile":    23,
-		"nsxt_policy_qos_profile":              24,
-		"nsxt_policy_realization_info":         25,
-		"nsxt_policy_segment_realization":      26,
-		"nsxt_policy_segment_security_profile": 27,
-		"nsxt_policy_service":                  28,
-		"nsxt_policy_spoofguard_profile":       29,
-		"nsxt_policy_tier0_gateway":            30,
-		"nsxt_policy_tier1_gateway":            31,
-		"nsxt_policy_transport_zone":           32,
-		"nsxt_policy_vm":                       33,
-		"nsxt_policy_vni_pool":                 34,
-		"nsxt_switching_profile":               35,
-		"nsxt_transport_zone":                  36,
+		"nsxt_certificate":                      0,
+		"nsxt_edge_cluster":                     1,
+		"nsxt_firewall_section":                 2,
+		"nsxt_ip_pool":                          3,
+		"nsxt_logical_tier0_router":             4,
+		"nsxt_logical_tier1_router":             5,
+		"nsxt_mac_pool":                         6,
+		"nsxt_management_cluster":               7,
+		"nsxt_ns_group":                         8,
+		"nsxt_ns_service":                       9,
+		"nsxt_policy_bfd_profile":               10,
+		"nsxt_policy_certificate":               11,
+		"nsxt_policy_context_profile":           12,
+		"nsxt_policy_dhcp_server":               13,
+		"nsxt_policy_edge_cluster":              14,
+		"nsxt_policy_edge_node":                 15,
+		"nsxt_policy_gateway_policy":            16,
+		"nsxt_policy_gateway_qos_profile":       17,
+		"nsxt_policy_group":                     18,
+		"nsxt_policy_intrusion_service_profile": 19,
+		"nsxt_policy_ip_block":                  20,
+		"nsxt_policy_ip_discovery_profile":      21,
+		"nsxt_policy_ip_pool":                   22,
+		"nsxt_policy_ipv6_dad_profile":          23,
+		"nsxt_policy_ipv6_ndra_profile":         24,
+		"nsxt_policy_lb_app_profile":            25,
+		"nsxt_policy_lb_client_ssl_profile":     26,
+		"nsxt_policy_lb_monitor":                27,
+		"nsxt_policy_lb_persistence_profile":    28,
+		"nsxt_policy_lb_server_ssl_profile":     29,
+		"nsxt_policy_mac_discovery_profile":     30,
+		"nsxt_policy_qos_profile":               31,
+		"nsxt_policy_realization_info":          32,
+		"nsxt_policy_security_policy":           33,
+		"nsxt_policy_segment_realization":       34,
+		"nsxt_policy_segment_security_profile":  35,
+		"nsxt_policy_service":                   36,
+		"nsxt_policy_site":                      37,
+		"nsxt_policy_spoofguard_profile":        38,
+		"nsxt_policy_tier0_gateway":             39,
+		"nsxt_policy_tier1_gateway":             40,
+		"nsxt_policy_transport_zone":            41,
+		"nsxt_policy_vm":                        42,
+		"nsxt_policy_vni_pool":                  43,
+		"nsxt_switching_profile":                44,
+		"nsxt_transport_zone":                   45,
 	}
 )
 

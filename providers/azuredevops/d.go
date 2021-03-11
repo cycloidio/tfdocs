@@ -39,6 +39,34 @@ Use this data source to access information about existing Agent Pools within Azu
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azuredevops_agent_queue",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to access information about an existing Agent Queue within Azure DevOps.`,
+			Description: `
+
+Use this data source to access information about an existing Agent Queue within Azure DevOps.
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuredevops_area",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to access information about an existing Area (Component) within Azure DevOps.`,
+			Description: `
+
+Use this data source to access information about an existing Area (Component) within Azure DevOps.
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azuredevops_client_config",
 			Category:         "Data Sources",
 			ShortDescription: `Use this data source to access information about the Azure DevOps organization configured for the provider.`,
@@ -55,10 +83,26 @@ Use this data source to access information about the Azure DevOps organization c
 			Name:             "",
 			Type:             "azuredevops_git_repositories",
 			Category:         "Data Sources",
-			ShortDescription: `Use this data source to access information about an existing Projects within Azure DevOps.`,
+			ShortDescription: `Use this data source to access information about existing Git Repositories within Azure DevOps.`,
 			Description: `
 
-Use this data source to access information about an existing Git Repositories within Azure DevOps.
+Use this data source to access information about **multiple** existing Git Repositories within Azure DevOps.
+To read informations about a **single** Git Repository use the data source [` + "`" + `azuredevops_git_repository` + "`" + `](data_git_repository.html)
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuredevops_git_repository",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to access information about an existing Git Repository within Azure DevOps.`,
+			Description: `
+
+Use this data source to access information about a **single** (existing) Git Repository within Azure DevOps.
+To read information about **multiple** Git Repositories use the data source [` + "`" + `azuredevops_git_repositories` + "`" + `](data_git_repositories.html)
 
 `,
 			Keywords:   []string{},
@@ -71,38 +115,27 @@ Use this data source to access information about an existing Git Repositories wi
 			Category:         "Data Sources",
 			ShortDescription: `Use this data source to access information about an existing Group within Azure DevOps.`,
 			Description: `
+
 Use this data source to access information about an existing Group within Azure DevOps
 
 `,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Required) The Project Id.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The Group Name. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `The ID for this resource is the group descriptor. See below.`,
-				},
-				resource.Attribute{
-					Name:        "descriptor",
-					Description: `The Descriptor is the primary way to reference the graph subject. This field will uniquely identify the same graph subject across both Accounts and Organizations. ## Relevant Links`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `The ID for this resource is the group descriptor. See below.`,
-				},
-				resource.Attribute{
-					Name:        "descriptor",
-					Description: `The Descriptor is the primary way to reference the graph subject. This field will uniquely identify the same graph subject across both Accounts and Organizations. ## Relevant Links`,
-				},
-			},
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuredevops_iteration",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to access information about an existing Iteration (Sprint) within Azure DevOps.`,
+			Description: `
+
+Use this data source to access information about an existing Iteration (Sprint) within Azure DevOps.
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -152,12 +185,16 @@ Use this data source to access information about an existing users within Azure 
 
 		"azuredevops_agent_pool":       0,
 		"azuredevops_agent_pools":      1,
-		"azuredevops_client_config":    2,
-		"azuredevops_git_repositories": 3,
-		"azuredevops_group":            4,
-		"azuredevops_project":          5,
-		"azuredevops_projects":         6,
-		"azuredevops_users":            7,
+		"azuredevops_agent_queue":      2,
+		"azuredevops_area":             3,
+		"azuredevops_client_config":    4,
+		"azuredevops_git_repositories": 5,
+		"azuredevops_git_repository":   6,
+		"azuredevops_group":            7,
+		"azuredevops_iteration":        8,
+		"azuredevops_project":          9,
+		"azuredevops_projects":         10,
+		"azuredevops_users":            11,
 	}
 )
 

@@ -11,6 +11,25 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "github_actions_organization_secret",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages an Action Secret within a GitHub organization`,
+			Description:      ``,
+			Keywords: []string{
+				"actions",
+				"organization",
+				"secret",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "selected_repository_ids",
+					Description: `(Optional) An array of repository ids that can access the organization secret. ## Attributes Reference`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "github_actions_secret",
 			Category:         "Resources",
 			ShortDescription: `Creates and manages an Action Secret within a GitHub repository`,
@@ -98,6 +117,57 @@ var (
 			Keywords: []string{
 				"branch",
 				"protection",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "repository_id",
+					Description: `(Required) The name or node ID of the repository associated with this branch protection rule.`,
+				},
+				resource.Attribute{
+					Name:        "pattern",
+					Description: `(Required) Identifies the protection rule pattern.`,
+				},
+				resource.Attribute{
+					Name:        "enforce_admins",
+					Description: `(Optional) Boolean, setting this to ` + "`" + `true` + "`" + ` enforces status checks for repository administrators.`,
+				},
+				resource.Attribute{
+					Name:        "require_signed_commits",
+					Description: `(Optional) Boolean, setting this to ` + "`" + `true` + "`" + ` requires all commits to be signed with GPG.`,
+				},
+				resource.Attribute{
+					Name:        "required_status_checks",
+					Description: `(Optional) Enforce restrictions for required status checks. See [Required Status Checks](#required-status-checks) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "required_pull_request_reviews",
+					Description: `(Optional) Enforce restrictions for pull request reviews. See [Required Pull Request Reviews](#required-pull-request-reviews) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "push_restrictions",
+					Description: `(Optional) The list of actor IDs that may push to the branch.`,
+				},
+				resource.Attribute{
+					Name:        "allows_deletions",
+					Description: `(Optional) Boolean, setting this to ` + "`" + `true` + "`" + ` to allow the branch to be deleted.`,
+				},
+				resource.Attribute{
+					Name:        "allows_force_pushes",
+					Description: `(Optional) Boolean, setting this to ` + "`" + `true` + "`" + ` to allow force pushes on the branch. ### Required Status Checks ` + "`" + `required_status_checks` + "`" + ` supports the following arguments:`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "github_branch_protection_v3",
+			Category:         "Resources",
+			ShortDescription: `Protects a GitHub branch using the v3 / REST implementation. The ` + "`" + `github_branch_protection` + "`" + ` resource has moved to the GraphQL API, while this resource will continue to leverage the REST API`,
+			Description:      ``,
+			Keywords: []string{
+				"branch",
+				"protection",
+				"v3",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -264,15 +334,37 @@ var (
 				},
 				resource.Attribute{
 					Name:        "url",
-					Description: `URL of the webhook`,
+					Description: `URL of the webhook ## Import Organization webhooks can be imported using the ` + "`" + `id` + "`" + ` of the webhook. The ` + "`" + `id` + "`" + ` of the webhook can be found in the URL of the webhook. For example, ` + "`" + `"https://github.com/organizations/foo-org/settings/hooks/123456789"` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_organization_webhook.terraform 123456789 ` + "`" + `` + "`" + `` + "`" + ` If secret is populated in the webhook's configuration, the value will be imported as "`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "url",
-					Description: `URL of the webhook`,
+					Description: `URL of the webhook ## Import Organization webhooks can be imported using the ` + "`" + `id` + "`" + ` of the webhook. The ` + "`" + `id` + "`" + ` of the webhook can be found in the URL of the webhook. For example, ` + "`" + `"https://github.com/organizations/foo-org/settings/hooks/123456789"` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_organization_webhook.terraform 123456789 ` + "`" + `` + "`" + `` + "`" + ` If secret is populated in the webhook's configuration, the value will be imported as "`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "github_project_card",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages project cards for GitHub projects`,
+			Description:      ``,
+			Keywords: []string{
+				"project",
+				"card",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "column_id",
+					Description: `(Required) The ID of the card.`,
+				},
+				resource.Attribute{
+					Name:        "note",
+					Description: `(Required) The note contents of the card. Markdown supported. ## Import A GitHub Project Card can be imported using its [Card ID](https://developer.github.com/v3/projects/cards/#get-a-project-card): ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_project_card.card 01234567 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -376,11 +468,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "default_branch",
-					Description: `(Optional) The name of the default branch of the repository.`,
+					Description: `(Optional) (Deprecated: Use ` + "`" + `github_branch_default` + "`" + ` resource instead) The name of the default branch of the repository.`,
 				},
 				resource.Attribute{
 					Name:        "archived",
 					Description: `(Optional) Specifies if the repository should be archived. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "archive_on_destroy",
+					Description: `(Optional) Set to ` + "`" + `true` + "`" + ` to archive the repository instead of deleting on destroy.`,
+				},
+				resource.Attribute{
+					Name:        "pages",
+					Description: `(Optional) The repository's Github Pages configuration. See [Github Pages Configuration](#github-pages-configuration) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "topics",
@@ -388,7 +488,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "template",
-					Description: `(Optional) Use a template repository to create this resource. See [Template Repositories](#template-repositories) below for details. ### Template Repositories ` + "`" + `template` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) Use a template repository to create this resource. See [Template Repositories](#template-repositories) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Required) The source branch and directory for the rendered Pages site. See [Github Pages Source](#github-pages-source) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "cname",
+					Description: `(Optional) The custom domain for the repository. This can only be set after the repository has been created. #### Github Pages Source #### The ` + "`" + `source` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "branch",
+					Description: `(Required) The repository branch used to publish the site's source files. (i.e. ` + "`" + `main` + "`" + ` or ` + "`" + `gh-pages` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional) The repository directory from which the site publishes (Default: ` + "`" + `/` + "`" + `). ### Template Repositories ` + "`" + `template` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "node_id",
+					Description: `the Node ID of the Repository.`,
 				},
 				resource.Attribute{
 					Name:        "full_name",
@@ -412,11 +532,39 @@ var (
 				},
 				resource.Attribute{
 					Name:        "svn_url",
-					Description: `URL that can be provided to ` + "`" + `svn checkout` + "`" + ` to check out the repository via GitHub's Subversion protocol emulation. ## Import Repositories can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository.terraform terraform ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `URL that can be provided to ` + "`" + `svn checkout` + "`" + ` to check out the repository via GitHub's Subversion protocol emulation.`,
+				},
+				resource.Attribute{
+					Name:        "node_id",
+					Description: `GraphQL global node id for use with v4 API`,
+				},
+				resource.Attribute{
+					Name:        "repo_id",
+					Description: `Github ID for the repository`,
+				},
+				resource.Attribute{
+					Name:        "pages",
+					Description: `The block consisting of the repository's Github Pages configuration with the following additional attributes:`,
+				},
+				resource.Attribute{
+					Name:        "custom_404",
+					Description: `Whether the rendered Github Pages site has a custom 404 page.`,
+				},
+				resource.Attribute{
+					Name:        "html_url",
+					Description: `The absolute URL (including scheme) of the rendered Github Pages site e.g. ` + "`" + `https://username.github.io` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The Github Pages site's build status e.g. ` + "`" + `building` + "`" + ` or ` + "`" + `built` + "`" + `. ## Import Repositories can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository.terraform terraform ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "node_id",
+					Description: `the Node ID of the Repository.`,
+				},
+				resource.Attribute{
 					Name:        "full_name",
 					Description: `A string of the form "orgname/reponame".`,
 				},
@@ -438,7 +586,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "svn_url",
-					Description: `URL that can be provided to ` + "`" + `svn checkout` + "`" + ` to check out the repository via GitHub's Subversion protocol emulation. ## Import Repositories can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository.terraform terraform ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `URL that can be provided to ` + "`" + `svn checkout` + "`" + ` to check out the repository via GitHub's Subversion protocol emulation.`,
+				},
+				resource.Attribute{
+					Name:        "node_id",
+					Description: `GraphQL global node id for use with v4 API`,
+				},
+				resource.Attribute{
+					Name:        "repo_id",
+					Description: `Github ID for the repository`,
+				},
+				resource.Attribute{
+					Name:        "pages",
+					Description: `The block consisting of the repository's Github Pages configuration with the following additional attributes:`,
+				},
+				resource.Attribute{
+					Name:        "custom_404",
+					Description: `Whether the rendered Github Pages site has a custom 404 page.`,
+				},
+				resource.Attribute{
+					Name:        "html_url",
+					Description: `The absolute URL (including scheme) of the rendered Github Pages site e.g. ` + "`" + `https://username.github.io` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The Github Pages site's build status e.g. ` + "`" + `building` + "`" + ` or ` + "`" + `built` + "`" + `. ## Import Repositories can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository.terraform terraform ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -463,7 +635,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "permission",
-					Description: `(Optional) The permission of the outside collaborator for the repository. Must be one of ` + "`" + `pull` + "`" + `, ` + "`" + `push` + "`" + `, ` + "`" + `maintain` + "`" + `, ` + "`" + `triage` + "`" + ` or ` + "`" + `admin` + "`" + ` for organization-owned repositories. Must be ` + "`" + `push` + "`" + ` for personal repositories. Defaults to ` + "`" + `push` + "`" + `. ## Attribute Reference In addition to the above arguments, the following attributes are exported:`,
+					Description: `(Optional) The permission of the outside collaborator for the repository. Must be one of ` + "`" + `pull` + "`" + `, ` + "`" + `push` + "`" + `, ` + "`" + `maintain` + "`" + `, ` + "`" + `triage` + "`" + ` or ` + "`" + `admin` + "`" + ` for organization-owned repositories. Must be ` + "`" + `push` + "`" + ` for personal repositories. Defaults to ` + "`" + `push` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "permission_diff_suppression",
+					Description: `(Optional) Suppress plan diffs for ` + "`" + `triage` + "`" + ` and ` + "`" + `maintain` + "`" + `. Defaults to ` + "`" + `false` + "`" + `. ## Attribute Reference In addition to the above arguments, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "invitation_id",
@@ -533,7 +709,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "branch",
-					Description: `(Optional) Git branch (defaults to ` + "`" + `master` + "`" + `). The branch must already exist, it will not be created if it does not already exist.`,
+					Description: `(Optional) Git branch (defaults to ` + "`" + `main` + "`" + `). The branch must already exist, it will not be created if it does not already exist.`,
 				},
 				resource.Attribute{
 					Name:        "commit_author",
@@ -545,17 +721,76 @@ var (
 				},
 				resource.Attribute{
 					Name:        "commit_message",
-					Description: `(Optional) Commit message when adding or updating the managed file. ## Attributes Reference The following additional attributes are exported:`,
+					Description: `(Optional) Commit message when adding or updating the managed file.`,
+				},
+				resource.Attribute{
+					Name:        "overwrite_on_create",
+					Description: `(Optional) Enable overwriting existing files ## Attributes Reference The following additional attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "commit_sha",
+					Description: `The SHA of the commit that modified the file.`,
 				},
 				resource.Attribute{
 					Name:        "sha",
-					Description: `The SHA blob of the file. ## Import Repository files can be imported using a combination of the ` + "`" + `repo` + "`" + ` and ` + "`" + `file` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository_file.gitignore example/.gitignore ` + "`" + `` + "`" + `` + "`" + ` To import a file from a branch other than master, append ` + "`" + `:` + "`" + ` and the branch name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository_file.gitignore example/.gitignore:dev ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The SHA blob of the file. ## Import Repository files can be imported using a combination of the ` + "`" + `repo` + "`" + ` and ` + "`" + `file` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository_file.gitignore example/.gitignore ` + "`" + `` + "`" + `` + "`" + ` To import a file from a branch other than main, append ` + "`" + `:` + "`" + ` and the branch name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository_file.gitignore example/.gitignore:dev ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "commit_sha",
+					Description: `The SHA of the commit that modified the file.`,
+				},
+				resource.Attribute{
 					Name:        "sha",
-					Description: `The SHA blob of the file. ## Import Repository files can be imported using a combination of the ` + "`" + `repo` + "`" + ` and ` + "`" + `file` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository_file.gitignore example/.gitignore ` + "`" + `` + "`" + `` + "`" + ` To import a file from a branch other than master, append ` + "`" + `:` + "`" + ` and the branch name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository_file.gitignore example/.gitignore:dev ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The SHA blob of the file. ## Import Repository files can be imported using a combination of the ` + "`" + `repo` + "`" + ` and ` + "`" + `file` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository_file.gitignore example/.gitignore ` + "`" + `` + "`" + `` + "`" + ` To import a file from a branch other than main, append ` + "`" + `:` + "`" + ` and the branch name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository_file.gitignore example/.gitignore:dev ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "github_repository_milestone",
+			Category:         "Resources",
+			ShortDescription: `Provides a GitHub repository milestone resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"repository",
+				"milestone",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "owner",
+					Description: `(Required) The owner of the Github Repository.`,
+				},
+				resource.Attribute{
+					Name:        "repository",
+					Description: `(Required) The name of the Github Repository.`,
+				},
+				resource.Attribute{
+					Name:        "title",
+					Description: `(Required) The title of the milestone.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A description of the milestone.`,
+				},
+				resource.Attribute{
+					Name:        "due_date",
+					Description: `(Optional) The milestone due date. In ` + "`" + `yyyy-mm-dd` + "`" + ` format.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) The state of the milestone. Either ` + "`" + `open` + "`" + ` or ` + "`" + `closed` + "`" + `. Default: ` + "`" + `open` + "`" + ` ## Attributes Reference The following additional attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "number",
+					Description: `The number of the milestone. ## Import A GitHub Repository Milestone can be imported using an ID made up of ` + "`" + `owner/repository/number` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository_milestone.example example-owner/example-repository/1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "number",
+					Description: `The number of the milestone. ## Import A GitHub Repository Milestone can be imported using an ID made up of ` + "`" + `owner/repository/number` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository_milestone.example example-owner/example-repository/1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -615,7 +850,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "configuration",
-					Description: `(Required) key/value pair of configuration for this webhook. Available keys are ` + "`" + `url` + "`" + `, ` + "`" + `content_type` + "`" + `, ` + "`" + `secret` + "`" + ` and ` + "`" + `insecure_ssl` + "`" + `. ` + "`" + `secret` + "`" + ` is [the shared secret, see API documentation](https://developer.github.com/v3/repos/hooks/#create-a-hook).`,
+					Description: `(Required) key/value pair of configuration for this webhook. Available keys are ` + "`" + `url` + "`" + `, ` + "`" + `content_type` + "`" + `, ` + "`" + `secret` + "`" + ` and ` + "`" + `insecure_ssl` + "`" + `. ` + "`" + `secret` + "`" + ` is [the shared secret, see API documentation](https://developer.github.com/v3/repos/hooks/#create-a-hook). ` + "`" + `content_type` + "`" + ` may be either form or json.`,
 				},
 				resource.Attribute{
 					Name:        "active",
@@ -627,13 +862,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "url",
-					Description: `URL of the webhook ## Import Repository webhooks can be imported using the ` + "`" + `name` + "`" + ` of the repository, combined with the ` + "`" + `id` + "`" + ` of the webhook, separated by a ` + "`" + `/` + "`" + ` character. The ` + "`" + `id` + "`" + ` of the webhook can be found in the URL of the webhook. For example: ` + "`" + `"https://github.com/foo-org/foo-repo/settings/hooks/14711452"` + "`" + `. Importing uses the name of the repository, as well as the ID of the webhook, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository_webhook.terraform terraform/11235813 ` + "`" + `` + "`" + `` + "`" + ` If secret is populated in the webhook's configuration, the value will be imported as "`,
+					Description: `URL of the webhook. This is a sensitive attribute because it may include basic auth credentials. ## Import Repository webhooks can be imported using the ` + "`" + `name` + "`" + ` of the repository, combined with the ` + "`" + `id` + "`" + ` of the webhook, separated by a ` + "`" + `/` + "`" + ` character. The ` + "`" + `id` + "`" + ` of the webhook can be found in the URL of the webhook. For example: ` + "`" + `"https://github.com/foo-org/foo-repo/settings/hooks/14711452"` + "`" + `. Importing uses the name of the repository, as well as the ID of the webhook, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository_webhook.terraform terraform/11235813 ` + "`" + `` + "`" + `` + "`" + ` If secret is populated in the webhook's configuration, the value will be imported as "`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "url",
-					Description: `URL of the webhook ## Import Repository webhooks can be imported using the ` + "`" + `name` + "`" + ` of the repository, combined with the ` + "`" + `id` + "`" + ` of the webhook, separated by a ` + "`" + `/` + "`" + ` character. The ` + "`" + `id` + "`" + ` of the webhook can be found in the URL of the webhook. For example: ` + "`" + `"https://github.com/foo-org/foo-repo/settings/hooks/14711452"` + "`" + `. Importing uses the name of the repository, as well as the ID of the webhook, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository_webhook.terraform terraform/11235813 ` + "`" + `` + "`" + `` + "`" + ` If secret is populated in the webhook's configuration, the value will be imported as "`,
+					Description: `URL of the webhook. This is a sensitive attribute because it may include basic auth credentials. ## Import Repository webhooks can be imported using the ` + "`" + `name` + "`" + ` of the repository, combined with the ` + "`" + `id` + "`" + ` of the webhook, separated by a ` + "`" + `/` + "`" + ` character. The ` + "`" + `id` + "`" + ` of the webhook can be found in the URL of the webhook. For example: ` + "`" + `"https://github.com/foo-org/foo-repo/settings/hooks/14711452"` + "`" + `. Importing uses the name of the repository, as well as the ID of the webhook, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository_webhook.terraform terraform/11235813 ` + "`" + `` + "`" + `` + "`" + ` If secret is populated in the webhook's configuration, the value will be imported as "`,
 				},
 			},
 		},
@@ -665,11 +900,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ldap_dn",
-					Description: `(Optional) The LDAP Distinguished Name of the group where membership will be synchronized. Only available in GitHub Enterprise. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The LDAP Distinguished Name of the group where membership will be synchronized. Only available in GitHub Enterprise Server.`,
+				},
+				resource.Attribute{
+					Name:        "create_default_maintainer",
+					Description: `(Optional) Adds a default maintainer to the team. Defaults to ` + "`" + `true` + "`" + ` and removes the default maintaner when ` + "`" + `false` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the created team.`,
+				},
+				resource.Attribute{
+					Name:        "node_id",
+					Description: `The Node ID of the created team.`,
 				},
 				resource.Attribute{
 					Name:        "slug",
@@ -680,6 +923,10 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the created team.`,
+				},
+				resource.Attribute{
+					Name:        "node_id",
+					Description: `The Node ID of the created team.`,
 				},
 				resource.Attribute{
 					Name:        "slug",
@@ -726,7 +973,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "team_id",
-					Description: `(Required) The GitHub team id`,
+					Description: `(Required) The GitHub team id or the GitHub team slug`,
 				},
 				resource.Attribute{
 					Name:        "repository",
@@ -866,28 +1113,32 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"github_actions_secret":           0,
-		"github_branch":                   1,
-		"github_branch_protection":        2,
-		"github_issue_label":              3,
-		"github_membership":               4,
-		"github_organization_block":       5,
-		"github_organization_project":     6,
-		"github_organization_webhook":     7,
-		"github_project_column":           8,
-		"github_repository":               9,
-		"github_repository_collaborator":  10,
-		"github_repository_deploy_key":    11,
-		"github_repository_file":          12,
-		"github_repository_project":       13,
-		"github_repository_webhook":       14,
-		"github_team":                     15,
-		"github_team_membership":          16,
-		"github_team_repository":          17,
-		"github_team_sync_group_mapping":  18,
-		"github_user_gpg_key":             19,
-		"github_user_invitation_accepter": 20,
-		"github_user_ssh_key":             21,
+		"github_actions_organization_secret": 0,
+		"github_actions_secret":              1,
+		"github_branch":                      2,
+		"github_branch_protection":           3,
+		"github_branch_protection_v3":        4,
+		"github_issue_label":                 5,
+		"github_membership":                  6,
+		"github_organization_block":          7,
+		"github_organization_project":        8,
+		"github_organization_webhook":        9,
+		"github_project_card":                10,
+		"github_project_column":              11,
+		"github_repository":                  12,
+		"github_repository_collaborator":     13,
+		"github_repository_deploy_key":       14,
+		"github_repository_file":             15,
+		"github_repository_milestone":        16,
+		"github_repository_project":          17,
+		"github_repository_webhook":          18,
+		"github_team":                        19,
+		"github_team_membership":             20,
+		"github_team_repository":             21,
+		"github_team_sync_group_mapping":     22,
+		"github_user_gpg_key":                23,
+		"github_user_invitation_accepter":    24,
+		"github_user_ssh_key":                25,
 	}
 )
 

@@ -160,67 +160,6 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vcd_dnat",
-			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director DNAT resource. This can be used to create, modify, and delete destination NATs to map external IPs to a VM.`,
-			Description:      ``,
-			Keywords: []string{
-				"dnat",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "edge_gateway",
-					Description: `(Required) The name of the edge gateway on which to apply the DNAT`,
-				},
-				resource.Attribute{
-					Name:        "external_ip",
-					Description: `(Required) One of the external IPs available on your Edge Gateway`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Required) The port number to map. -1 translates to "any"`,
-				},
-				resource.Attribute{
-					Name:        "translated_port",
-					Description: `(Optional) The port number to map`,
-				},
-				resource.Attribute{
-					Name:        "internal_ip",
-					Description: `(Required) The IP of the VM to map to`,
-				},
-				resource.Attribute{
-					Name:        "protocol",
-					Description: `(Optional;`,
-				},
-				resource.Attribute{
-					Name:        "icmp_sub_type",
-					Description: `(Optional;`,
-				},
-				resource.Attribute{
-					Name:        "network_type",
-					Description: `(Optional;`,
-				},
-				resource.Attribute{
-					Name:        "network_name",
-					Description: `(Optional;`,
-				},
-				resource.Attribute{
-					Name:        "org",
-					Description: `(Optional;`,
-				},
-				resource.Attribute{
-					Name:        "vdc",
-					Description: `(Optional;`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `(Optional;`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "vcd_edgegateway",
 			Category:         "Resources",
 			ShortDescription: `Provides a vCloud Director edge gateway. This can be used to create and delete edge gateways connected to one or more external networks.`,
@@ -242,24 +181,12 @@ var (
 					Description: `(Required) A unique name for the edge gateway.`,
 				},
 				resource.Attribute{
-					Name:        "external_networks",
-					Description: `(Deprecated, Optional) An array of external network names. This supports simple external networks with one subnet only.`,
-				},
-				resource.Attribute{
 					Name:        "external_network",
-					Description: `(Optional,`,
+					Description: `(Required,`,
 				},
 				resource.Attribute{
 					Name:        "configuration",
 					Description: `(Required) Configuration of the vShield edge VM for this gateway. One of: ` + "`" + `compact` + "`" + `, ` + "`" + `full` + "`" + ` ("Large"), ` + "`" + `x-large` + "`" + `, ` + "`" + `full4` + "`" + ` ("Quad Large").`,
-				},
-				resource.Attribute{
-					Name:        "default_gateway_network",
-					Description: `(Deprecated, Optional) Name of the external network to be used as default gateway. It must be included in the list of ` + "`" + `external_networks` + "`" + `. Providing an empty string or omitting the argument will create the edge gateway without a default gateway.`,
-				},
-				resource.Attribute{
-					Name:        "advanced",
-					Description: `(Optional) True if the gateway uses advanced networking. Default is ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ha_enabled",
@@ -292,6 +219,52 @@ var (
 				resource.Attribute{
 					Name:        "lb_loglevel",
 					Description: `(Optional) Choose the severity of events to be logged. One of ` + "`" + `emergency` + "`" + `, ` + "`" + `alert` + "`" + `, ` + "`" + `critical` + "`" + `, ` + "`" + `error` + "`" + `, ` + "`" + `warning` + "`" + `, ` + "`" + `notice` + "`" + `, ` + "`" + `info` + "`" + `, ` + "`" + `debug` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_edgegateway_settings",
+			Category:         "Resources",
+			ShortDescription: `Provides a vCloud Director edge gateway global settings. This can be used to update global edge gateways settings related to firewall and load balancing.`,
+			Description:      ``,
+			Keywords: []string{
+				"edgegateway",
+				"settings",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to which the VDC belongs. Optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC that owns the edge gateway. Optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway_name",
+					Description: `(Optional) A unique name for the edge gateway. (Required if ` + "`" + `edge_gateway_id` + "`" + ` is not set)`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway_id",
+					Description: `(Optional) The edge gateway ID. (Required if ` + "`" + `edge_gateway_name` + "`" + ` is not set)`,
+				},
+				resource.Attribute{
+					Name:        "lb_enabled",
+					Description: `(Optional) Enable load balancing. Default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "lb_acceleration_enabled",
+					Description: `(Optional) Enable to configure the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "lb_logging_enabled",
+					Description: `(Optional) Enables the edge gateway load balancer to collect traffic logs. Default is ` + "`" + `false` + "`" + `. Note:`,
+				},
+				resource.Attribute{
+					Name:        "lb_loglevel",
+					Description: `(Optional) Choose the severity of events to be logged. One of ` + "`" + `emergency` + "`" + `, ` + "`" + `alert` + "`" + `, ` + "`" + `critical` + "`" + `, ` + "`" + `error` + "`" + `, ` + "`" + `warning` + "`" + `, ` + "`" + `notice` + "`" + `, ` + "`" + `info` + "`" + `, ` + "`" + `debug` + "`" + `. Note:`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -466,62 +439,83 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vcd_firewall_rules",
+			Type:             "vcd_external_network_v2",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director Firewall resource. This can be used to create, modify, and delete firewall settings and rules.`,
+			ShortDescription: `Provides a VMware Cloud Director External Network resource (version 2). New version of this resource uses new VCD API and is capable of creating NSX-T backed external networks as well as port group backed ones.`,
 			Description:      ``,
 			Keywords: []string{
-				"firewall",
-				"rules",
+				"external",
+				"network",
+				"v2",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "edge_gateway",
-					Description: `(Required) The name of the edge gateway on which to apply the Firewall Rules`,
-				},
-				resource.Attribute{
-					Name:        "default_action",
-					Description: `(Required) Either "allow" or "drop". Specifies what to do should none of the rules match`,
-				},
-				resource.Attribute{
-					Name:        "rule",
-					Description: `(Optional) Configures a firewall rule; see [Rules](#rules) below for details.`,
-				},
-				resource.Attribute{
-					Name:        "org",
-					Description: `(Optional;`,
-				},
-				resource.Attribute{
-					Name:        "vdc",
-					Description: `(Optional;`,
+					Name:        "name",
+					Description: `(Required) A unique name for the network`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Required) Description of the fireall rule`,
+					Description: `(Optional) Network friendly description`,
 				},
 				resource.Attribute{
-					Name:        "policy",
-					Description: `(Required) Specifies what to do when this rule is matched. Either "allow" or "drop"`,
+					Name:        "ip_scope",
+					Description: `(Required) One or more IP scopes for the network. See [IP Scope](#ipscope) below for details.`,
 				},
 				resource.Attribute{
-					Name:        "protocol",
-					Description: `(Required) The protocol to match. One of "tcp", "udp", "icmp" or "any"`,
+					Name:        "vsphere_network",
+					Description: `(Optional) One or more blocks of [vSphere Network](#vspherenetwork)..`,
 				},
 				resource.Attribute{
-					Name:        "destination_port",
-					Description: `(Required) The destination port to match. Either a port number or "any"`,
+					Name:        "nsxt_network",
+					Description: `(Optional) NSX-T network definition. See [NSX-T Network](#nsxtnetwork) below for details. <a id="ipscope"></a> ## IP Scope`,
 				},
 				resource.Attribute{
-					Name:        "destination_ip",
-					Description: `(Required) The destination IP to match. Either an IP address, IP range or "any"`,
+					Name:        "gateway",
+					Description: `(Required) Gateway of the network.`,
 				},
 				resource.Attribute{
-					Name:        "source_port",
-					Description: `(Required) The source port to match. Either a port number or "any"`,
+					Name:        "prefix_length",
+					Description: `(Required) Network prefix.`,
 				},
 				resource.Attribute{
-					Name:        "source_ip",
-					Description: `(Required) The source IP to match. Either an IP address, IP range or "any"`,
+					Name:        "static_ip_pool",
+					Description: `(Required) IP ranges used for static pool allocation in the network. See [IP Pool](#ip-pool) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "dns1",
+					Description: `(Optional) Primary DNS server.`,
+				},
+				resource.Attribute{
+					Name:        "dns2",
+					Description: `(Optional) Secondary DNS server.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Default is ` + "`" + `true` + "`" + `. <a id="ip-pool"></a> ## IP Pool`,
+				},
+				resource.Attribute{
+					Name:        "start_address",
+					Description: `(Required) Start address of the IP range`,
+				},
+				resource.Attribute{
+					Name:        "end_address",
+					Description: `(Required) End address of the IP range <a id="vspherenetwork"></a> ## vSphere Network`,
+				},
+				resource.Attribute{
+					Name:        "vcenter_id",
+					Description: `(Required) vCenter ID. Can be looked up using [` + "`" + `vcd_vcenter` + "`" + `](/docs/providers/vcd/d/vcenter.html) data source.`,
+				},
+				resource.Attribute{
+					Name:        "portgroup_id",
+					Description: `(Required) vSphere portgroup ID. Can be looked up using [` + "`" + `vcd_portgroup` + "`" + `](/docs/providers/vcd/d/portgroup.html) data source. <a id="nsxtnetwork"></a> ## NSX-T Network`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_manager_id",
+					Description: `(Required) NSX-T manager ID. Can be looked up using [` + "`" + `vcd_nsxt_manager` + "`" + `](/docs/providers/vcd/d/nsxt_manager.html) data source.`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_tier0_router_id",
+					Description: `(Required) NSX-T Tier-0 router ID. Can be looked up using [` + "`" + `vcd_nsxt_tier0_router` + "`" + `](/docs/providers/vcd/d/nsxt_tier0_router.html) data source. ## Importing ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -550,8 +544,8 @@ var (
 					Description: `(Required) Disk name`,
 				},
 				resource.Attribute{
-					Name:        "size",
-					Description: `(Required) Size of disk in MB. On read this values isn't refreshed.`,
+					Name:        "size_in_mb",
+					Description: `(Required,`,
 				},
 				resource.Attribute{
 					Name:        "bus_type",
@@ -1052,71 +1046,6 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vcd_network",
-			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director Org VDC Network. This can be used to create, modify, and delete internal networks for vApps to connect.`,
-			Description:      ``,
-			Keywords: []string{
-				"network",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) A unique name for the network`,
-				},
-				resource.Attribute{
-					Name:        "edge_gateway",
-					Description: `(Required) The name of the edge gateway`,
-				},
-				resource.Attribute{
-					Name:        "netmask",
-					Description: `(Optional) The netmask for the new network. Defaults to ` + "`" + `255.255.255.0` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "dns1",
-					Description: `(Optional) First DNS server to use. Defaults to ` + "`" + `8.8.8.8` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "dns2",
-					Description: `(Optional) Second DNS server to use. Defaults to ` + "`" + `8.8.4.4` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "dns_suffix",
-					Description: `(Optional) A FQDN for the virtual machines on this network`,
-				},
-				resource.Attribute{
-					Name:        "shared",
-					Description: `(Optional) Defines if this network is shared between multiple vDCs in the vOrg. Defaults to ` + "`" + `false` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "dhcp_pool",
-					Description: `(Optional) A range of IPs to issue to virtual machines that don't have a static IP; see [IP Pools](#ip-pools) below for details.`,
-				},
-				resource.Attribute{
-					Name:        "static_ip_pool",
-					Description: `(Optional) A range of IPs permitted to be used as static IPs for virtual machines; see [IP Pools](#ip-pools) below for details. <a id="ip-pools"></a> ## IP Pools Static IP Pools and DHCP Pools support the following attributes:`,
-				},
-				resource.Attribute{
-					Name:        "start_address",
-					Description: `(Required) The first address in the IP Range`,
-				},
-				resource.Attribute{
-					Name:        "end_address",
-					Description: `(Required) The final address in the IP Range DHCP Pools additionally support the following attributes:`,
-				},
-				resource.Attribute{
-					Name:        "default_lease_time",
-					Description: `(Optional) The default DHCP lease time to use. Defaults to ` + "`" + `3600` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "max_lease_time",
-					Description: `(Optional) The maximum DHCP lease time to use. Defaults to ` + "`" + `7200` + "`" + `.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "vcd_network_direct",
 			Category:         "Resources",
 			ShortDescription: `Provides a vCloud Director Org VDC Network attached to an external one. This can be used to create, modify, and delete internal networks for vApps to connect.`,
@@ -1249,6 +1178,69 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_network_isolated_v2",
+			Category:         "Resources",
+			ShortDescription: `Provides a VMware Cloud Director Org VDC isolated Network. This can be used to create, modify, and delete isolated VDC networks (backed by NSX-T or NSX-V).`,
+			Description:      ``,
+			Keywords: []string{
+				"network",
+				"isolated",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique name for the network`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description of the network`,
+				},
+				resource.Attribute{
+					Name:        "is_shared",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "prefix_length",
+					Description: `(Required) The prefix length for the new network (e.g. 24 for netmask 255.255.255.0).`,
+				},
+				resource.Attribute{
+					Name:        "dns1",
+					Description: `(Optional) First DNS server to use.`,
+				},
+				resource.Attribute{
+					Name:        "dns2",
+					Description: `(Optional) Second DNS server to use.`,
+				},
+				resource.Attribute{
+					Name:        "dns_suffix",
+					Description: `(Optional) A FQDN for the virtual machines on this network`,
+				},
+				resource.Attribute{
+					Name:        "static_ip_pool",
+					Description: `(Optional) A range of IPs permitted to be used as static IPs for virtual machines; see [IP Pools](#ip-pools) below for details. <a id="ip-pools"></a> ## IP Pools Static IP Pools support the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "start_address",
+					Description: `(Required) The first address in the IP Range`,
+				},
+				resource.Attribute{
+					Name:        "end_address",
+					Description: `(Required) The final address in the IP Range ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_network_routed",
 			Category:         "Resources",
 			ShortDescription: `Provides a vCloud Director Org VDC routed Network. This can be used to create, modify, and delete internal networks for vApps to connect.`,
@@ -1324,6 +1316,239 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_network_routed_v2",
+			Category:         "Resources",
+			ShortDescription: `Provides a VMware Cloud Director Org VDC routed Network. This can be used to create, modify, and delete routed VDC networks (backed by NSX-T or NSX-V).`,
+			Description:      ``,
+			Keywords: []string{
+				"network",
+				"routed",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique name for the network`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description of the network`,
+				},
+				resource.Attribute{
+					Name:        "interface_type",
+					Description: `(Optional) An interface for the network. One of ` + "`" + `internal` + "`" + ` (default), ` + "`" + `subinterface` + "`" + `, ` + "`" + `distributed` + "`" + ` (requires the edge gateway to support distributed networks). NSX-T supports only ` + "`" + `internal` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway_id",
+					Description: `(Required) The ID name of the edge gateway (NSX-V or NSX-T)`,
+				},
+				resource.Attribute{
+					Name:        "prefix_length",
+					Description: `(Required) The prefix length for the new network (e.g. 24 for netmask 255.255.255.0).`,
+				},
+				resource.Attribute{
+					Name:        "dns1",
+					Description: `(Optional) First DNS server to use.`,
+				},
+				resource.Attribute{
+					Name:        "dns2",
+					Description: `(Optional) Second DNS server to use.`,
+				},
+				resource.Attribute{
+					Name:        "dns_suffix",
+					Description: `(Optional) A FQDN for the virtual machines on this network`,
+				},
+				resource.Attribute{
+					Name:        "static_ip_pool",
+					Description: `(Optional) A range of IPs permitted to be used as static IPs for virtual machines; see [IP Pools](#ip-pools) below for details. <a id="ip-pools"></a> ## IP Pools Static IP Pools and DHCP Pools support the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "start_address",
+					Description: `(Required) The first address in the IP Range`,
+				},
+				resource.Attribute{
+					Name:        "end_address",
+					Description: `(Required) The final address in the IP Range ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_edgegateway",
+			Category:         "Resources",
+			ShortDescription: `Provides a VMware Cloud Director NSX-T edge gateway. This can be used to create, update, and delete NSX-T edge gateways connected to external networks.`,
+			Description:      ``,
+			Keywords: []string{
+				"nsxt",
+				"edgegateway",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to which the VDC belongs. Optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC that owns the edge gateway. Optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique name for the edge gateway.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A unique name for the edge gateway.`,
+				},
+				resource.Attribute{
+					Name:        "external_network_id",
+					Description: `(Required) An external network ID.`,
+				},
+				resource.Attribute{
+					Name:        "subnet",
+					Description: `(Required) One or more [subnets](#edgegateway-subnet) defined for edge gateway.`,
+				},
+				resource.Attribute{
+					Name:        "edge_cluster_id",
+					Description: `(Optional) Specific Edge Cluster ID if required`,
+				},
+				resource.Attribute{
+					Name:        "dedicate_external_network",
+					Description: `(Optional) Dedicating the External Network will enable Route Advertisement for this Edge Gateway. Default ` + "`" + `false` + "`" + `. <a id="edgegateway-subnet"></a> ## Edge Gateway Subnet`,
+				},
+				resource.Attribute{
+					Name:        "primary_ip",
+					Description: `Primary IP address exposed for an easy access without nesting. ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "primary_ip",
+					Description: `Primary IP address exposed for an easy access without nesting. ## Importing ~>`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_network_dhcp",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource to manage DHCP pools for NSX-T Org VDC Routed network.`,
+			Description:      ``,
+			Keywords: []string{
+				"nsxt",
+				"network",
+				"dhcp",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "org_network_id",
+					Description: `(Required) ID of parent Org VDC Routed network`,
+				},
+				resource.Attribute{
+					Name:        "pool",
+					Description: `(Required) One or more blocks to define DHCP pool ranges. See [Pools](#pools) and example for usage details. ## Pools`,
+				},
+				resource.Attribute{
+					Name:        "start_address",
+					Description: `(Required) Start address of DHCP pool range`,
+				},
+				resource.Attribute{
+					Name:        "end_address",
+					Description: `(Required) End address of DHCP pool range ## Importing ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.](https://www.terraform.io/docs/import/) An existing DHCP configuration can be [imported][docs-import] into this resource via supplying the full dot separated path for your Org VDC network. An example is below: [docs-import]: https://www.terraform.io/docs/import/ ` + "`" + `` + "`" + `` + "`" + ` terraform import vcd_nsxt_network_dhcp.imported my-org.my-org-vdc.my-nsxt-vdc-network-name ` + "`" + `` + "`" + `` + "`" + ` The above would import the DHCP config settings that are defined on VDC network ` + "`" + `my-nsxt-vdc-network-name` + "`" + ` which is configured in organization named ` + "`" + `my-org` + "`" + ` and VDC named ` + "`" + `my-org-vdc` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_network_imported",
+			Category:         "Resources",
+			ShortDescription: `Provides a VMware Cloud Director Org VDC NSX-T Imported Network type. This can be used to create, modify, and delete NSX-T VDC networks of Imported type (backed by NSX-T).`,
+			Description:      ``,
+			Keywords: []string{
+				"nsxt",
+				"network",
+				"imported",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique name for the network`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_logical_switch_name",
+					Description: `(Required) Unique name of an existing NSX-T segment.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description of the network`,
+				},
+				resource.Attribute{
+					Name:        "prefix_length",
+					Description: `(Required) The prefix length for the new network (e.g. 24 for netmask 255.255.255.0).`,
+				},
+				resource.Attribute{
+					Name:        "dns1",
+					Description: `(Optional) First DNS server to use.`,
+				},
+				resource.Attribute{
+					Name:        "dns2",
+					Description: `(Optional) Second DNS server to use.`,
+				},
+				resource.Attribute{
+					Name:        "dns_suffix",
+					Description: `(Optional) A FQDN for the virtual machines on this network`,
+				},
+				resource.Attribute{
+					Name:        "static_ip_pool",
+					Description: `(Optional) A range of IPs permitted to be used as static IPs for virtual machines; see [IP Pools](#ip-pools) below for details. <a id="ip-pools"></a> ## IP Pools Static IP Pools support the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "start_address",
+					Description: `(Required) The first address in the IP Range`,
+				},
+				resource.Attribute{
+					Name:        "end_address",
+					Description: `(Required) The final address in the IP Range ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_logical_switch_id",
+					Description: `ID of an existing NSX-T segment ## Importing ~> After import the field ` + "`" + `nsxt_logical_switch_name` + "`" + ` will remain empty because it is impossible to read it in API once it is consumed by network. ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.][docs-import] An existing NSX-T VDC Imported network can be [imported][docs-import] into this Terraform resource via supplying its path. The path for this resource is made of orgName.vdcName.networkName. For example, using this structure, representing an NSX-T Imported Network that was`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "nsxt_logical_switch_id",
+					Description: `ID of an existing NSX-T segment ## Importing ~> After import the field ` + "`" + `nsxt_logical_switch_name` + "`" + ` will remain empty because it is impossible to read it in API once it is consumed by network. ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.][docs-import] An existing NSX-T VDC Imported network can be [imported][docs-import] into this Terraform resource via supplying its path. The path for this resource is made of orgName.vdcName.networkName. For example, using this structure, representing an NSX-T Imported Network that was`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1532,7 +1757,7 @@ var (
 					Description: `(Optional) A set of with either three keywords ` + "`" + `vse` + "`" + ` (UI names it as ` + "`" + `any` + "`" + `), ` + "`" + `internal` + "`" + `, ` + "`" + `external` + "`" + ` or an org network name. It automatically looks up vNic in the backend.`,
 				},
 				resource.Attribute{
-					Name:        "virtual_machine_ids",
+					Name:        "vm_ids",
 					Description: `(Optional) A set of ` + "`" + `.id` + "`" + ` fields of ` + "`" + `vcd_vapp_vm` + "`" + ` resources.`,
 				},
 				resource.Attribute{
@@ -1775,7 +2000,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "org",
-					Description: `(Optional) The name of organization to which the VDC belongs. Optional if defined at provider level.`,
+					Description: `(Optional) The name of organization to which the user belongs. Optional if defined at provider level.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1787,7 +2012,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_type",
-					Description: `(Optional) Identity provider type for this this user. One of: ` + "`" + `INTEGRATED` + "`" + `, ` + "`" + `SAML` + "`" + `, ` + "`" + `OAUTH` + "`" + `. The default is ` + "`" + `INTEGRATED` + "`" + `.`,
+					Description: `(Optional) Identity provider type for this user. One of: ` + "`" + `INTEGRATED` + "`" + `, ` + "`" + `SAML` + "`" + `, ` + "`" + `OAUTH` + "`" + `. The default is ` + "`" + `INTEGRATED` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "role",
@@ -1819,7 +2044,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_group_role",
-					Description: `(Optional) True if this user has a group role.. The default is ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) True if this user has a group role. The default is ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "is_locked",
@@ -1954,7 +2179,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete_recursive",
-					Description: `(Required) When destroying use ` + "`" + `delete_recursive=True` + "`" + ` to remove the VDC and any objects it contains that are in a state that normally allows removal. <a id="storageprofile"></a> ## Storage Profile`,
+					Description: `(Required) When destroying use ` + "`" + `delete_recursive=True` + "`" + ` to remove the VDC and any objects it contains that are in a state that normally allows removal.`,
+				},
+				resource.Attribute{
+					Name:        "default_vm_sizing_policy_id",
+					Description: `(Optional,`,
+				},
+				resource.Attribute{
+					Name:        "vm_sizing_policy_ids",
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1970,7 +2203,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "default",
-					Description: `(Required) True if this is default storage profile for this VDC. The default storage profile is used when an object that can specify a storage profile is created with no storage profile specified. <a id="computecapacity"></a> ## Compute Capacity Capacity must be specified twice, once for ` + "`" + `memory` + "`" + ` and another for ` + "`" + `cpu` + "`" + `. Each has the same structure:`,
+					Description: `(Required) True if this is default storage profile for this VDC. The default storage profile is used when an object that can specify a storage profile is created with no storage profile specified.`,
+				},
+				resource.Attribute{
+					Name:        "storage_used_in_mb",
+					Description: `(Computed,`,
 				},
 				resource.Attribute{
 					Name:        "allocated",
@@ -1978,52 +2215,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "limit",
-					Description: `(Optional) Capacity limit relative to the value specified for Allocation. It must not be less than that value. If it is greater than that value, it implies over provisioning. A value of 0 specifies unlimited units. Value in MB or MHz. Used with AllocationVApp ("Pay as you go") or Flex (only for ` + "`" + `memory` + "`" + `). ## Importing Supported in provider`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vcd_snat",
-			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director SNAT resource. This can be used to create, modify, and delete source NATs to allow vApps to send external traffic.`,
-			Description:      ``,
-			Keywords: []string{
-				"snat",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "edge_gateway",
-					Description: `(Required) The name of the edge gateway on which to apply the SNAT`,
-				},
-				resource.Attribute{
-					Name:        "external_ip",
-					Description: `(Required) One of the external IPs available on your Edge Gateway`,
-				},
-				resource.Attribute{
-					Name:        "internal_ip",
-					Description: `(Required) The IP or IP Range of the VM(s) to map from`,
-				},
-				resource.Attribute{
-					Name:        "network_type",
-					Description: `(Optional;`,
-				},
-				resource.Attribute{
-					Name:        "network_name",
-					Description: `(Optional;`,
-				},
-				resource.Attribute{
-					Name:        "org",
-					Description: `(Optional;`,
-				},
-				resource.Attribute{
-					Name:        "vdc",
-					Description: `(Optional;`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `(Optional;`,
+					Description: `(Optional) Capacity limit relative to the value specified for Allocation. It must not be less than that value. If it is greater than that value, it implies over provisioning. A value of 0 specifies unlimited units. Value in MB or MHz. Used with AllocationVApp ("Pay as you go") or Flex (only for ` + "`" + `cpu` + "`" + `). ## Importing Supported in provider`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2052,7 +2244,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "power_on",
-					Description: `(Optional) A boolean value stating if this vApp should be powered on. Default is ` + "`" + `true` + "`" + ``,
+					Description: `(Optional) A boolean value stating if this vApp should be powered on. Default is ` + "`" + `false` + "`" + `. Works only on update when vApp already has VMs.`,
 				},
 				resource.Attribute{
 					Name:        "metadata",
@@ -2074,41 +2266,60 @@ var (
 					Name:        "status_text",
 					Description: `(Computed;`,
 				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_vapp_access_control",
+			Category:         "Resources",
+			ShortDescription: `Provides a vCloud Director Access Control structure for a vApp.`,
+			Description:      ``,
+			Keywords: []string{
+				"vapp",
+				"access",
+				"control",
+			},
+			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "catalog_name",
-					Description: `(Optional;`,
+					Name:        "org",
+					Description: `(Optional) The name of organization to which the vApp belongs. Optional if defined at provider level.`,
 				},
 				resource.Attribute{
-					Name:        "template_name",
-					Description: `(Optional;`,
+					Name:        "vdc",
+					Description: `(Optional) The name of organization to which the vApp belongs. Optional if defined at provider level.`,
 				},
 				resource.Attribute{
-					Name:        "memory",
-					Description: `(Optional;`,
+					Name:        "vapp_id",
+					Description: `(Required) A unique identifier for the vApp.`,
 				},
 				resource.Attribute{
-					Name:        "storage_profile",
-					Description: `(Optional;`,
+					Name:        "shared_with_everyone",
+					Description: `(Required) Whether the vApp is shared with everyone. If any ` + "`" + `shared_with` + "`" + ` blocks are included, this property cannot be used.`,
 				},
 				resource.Attribute{
-					Name:        "cpus",
-					Description: `(Optional;`,
+					Name:        "everyone_access_level",
+					Description: `(Optional) Access level when the vApp is shared with everyone (one of ` + "`" + `ReadOnly` + "`" + `, ` + "`" + `Change` + "`" + `, ` + "`" + `FullControl` + "`" + `). Required if ` + "`" + `shared_with_everyone` + "`" + ` is set.`,
 				},
 				resource.Attribute{
-					Name:        "network_name",
-					Description: `(Optional;`,
+					Name:        "shared_with",
+					Description: `(Optional) one or more blocks defining a subject to which we are sharing. See [shared_with](#shared_with) below for detail. It cannot be used if ` + "`" + `shared_with_everyone` + "`" + ` is set. ## shared_with`,
 				},
 				resource.Attribute{
-					Name:        "ip",
-					Description: `(Optional;`,
+					Name:        "user_id",
+					Description: `(Optional) The ID of a user with which we are sharing. Required if ` + "`" + `group_id` + "`" + ` is not set.`,
 				},
 				resource.Attribute{
-					Name:        "ovf",
-					Description: `(Optional;`,
+					Name:        "group_id",
+					Description: `(Optional) The ID of a group with which we are sharing. Required if ` + "`" + `user_id` + "`" + ` is not set.`,
 				},
 				resource.Attribute{
-					Name:        "accept_all_eulas",
-					Description: `(Optional;`,
+					Name:        "access_level",
+					Description: `(Required) The access level for the user or group to which we are sharing. (One of ` + "`" + `ReadOnly` + "`" + `, ` + "`" + `Change` + "`" + `, ` + "`" + `FullControl` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "subject_name",
+					Description: `(Computed) the name of the subject (group or user) with which we are sharing. ## Importing ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2508,11 +2719,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "memory",
-					Description: `(Optional) The amount of RAM (in MB) to allocate to the VM`,
+					Description: `(Optional) The amount of RAM (in MB) to allocate to the VM. If ` + "`" + `memory_hot_add_enabled` + "`" + ` is true, then memory will be increased without VM power off.`,
 				},
 				resource.Attribute{
 					Name:        "cpus",
-					Description: `(Optional) The number of virtual CPUs to allocate to the VM. Socket count is a result of: virtual logical processors/cores per socket. The default is 1`,
+					Description: `(Optional) The number of virtual CPUs to allocate to the VM. Socket count is a result of: virtual logical processors/cores per socket. If ` + "`" + `cpu_hot_add_enabled` + "`" + ` is true, then cpus will be increased without VM power off.`,
 				},
 				resource.Attribute{
 					Name:        "cpu_cores",
@@ -2520,18 +2731,6 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Optional;`,
-				},
-				resource.Attribute{
-					Name:        "network_name",
-					Description: `(Optional;`,
-				},
-				resource.Attribute{
-					Name:        "vapp_network_name",
-					Description: `(Optional; v2.1+;`,
-				},
-				resource.Attribute{
-					Name:        "ip",
 					Description: `(Optional;`,
 				},
 				resource.Attribute{
@@ -2583,6 +2782,18 @@ var (
 					Description: `(Optional;`,
 				},
 				resource.Attribute{
+					Name:        "cpu_hot_add_enabled",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "memory_hot_add_enabled",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "prevent_update_power_off",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Independent disk name`,
 				},
@@ -2617,6 +2828,10 @@ var (
 				resource.Attribute{
 					Name:        "NONE",
 					Description: `No IP address will be set because VM will have a NIC without network.`,
+				},
+				resource.Attribute{
+					Name:        "connected",
+					Description: `(Optional;`,
 				},
 				resource.Attribute{
 					Name:        "bus_type",
@@ -2728,6 +2943,18 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_vm",
+			Category:         "Resources",
+			ShortDescription: `Provides a VMware Cloud Director standalone VM resource. This can be used to create, modify, and delete Standalone VMs.`,
+			Description:      ``,
+			Keywords: []string{
+				"vm",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_vm_affinity_rule",
 			Category:         "Resources",
 			ShortDescription: `Provides a vCloud Director VM affinity rule resource. This can be used to create, modify, and delete VM affinity and anti-affinity rules.`,
@@ -2820,48 +3047,129 @@ var (
 			},
 			Attributes: []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_vm_sizing_policy",
+			Category:         "Resources",
+			ShortDescription: `Provides a vCloud Director VM sizing policy resource. This can be used to create, modify, and delete VM sizing policy.`,
+			Description:      ``,
+			Keywords: []string{
+				"vm",
+				"sizing",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organizations`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of VM sizing policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) description of VM sizing policy.`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `(Optional) Configures cpu policy; see [Cpu](#cpu) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `(Optional) Configures memory policy; see [Memory](#memory) below for details. <a id="cpu"></a> ## CPU Each VM sizing policy supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "shares",
+					Description: `(Optional) Defines the number of CPU shares for a VM. Shares specify the relative importance of a VM within a virtual data center. If a VM has twice as many shares of CPU as another VM, it is entitled to consume twice as much CPU when these two virtual machines are competing for resources. If not defined in the VDC compute policy, normal shares are applied to the VM.`,
+				},
+				resource.Attribute{
+					Name:        "limit_in_mhz",
+					Description: `(Optional) Defines the CPU limit in MHz for a VM. If not defined in the VDC compute policy, CPU limit is equal to the vCPU speed multiplied by the number of vCPUs.`,
+				},
+				resource.Attribute{
+					Name:        "count",
+					Description: `(Required) Defines the number of vCPUs configured for a VM. This is a VM hardware configuration. When a tenant assigns the VM sizing policy to a VM, this count becomes the configured number of vCPUs for the VM.`,
+				},
+				resource.Attribute{
+					Name:        "speed_in_mhz",
+					Description: `(Optional) Defines the vCPU speed of a core in MHz.`,
+				},
+				resource.Attribute{
+					Name:        "cores_per_socket",
+					Description: `(Optional) The number of cores per socket for a VM. This is a VM hardware configuration. The number of vCPUs that is defined in the VM sizing policy must be divisible by the number of cores per socket. If the number of vCPUs is not divisible by the number of cores per socket, the number of cores per socket becomes invalid.`,
+				},
+				resource.Attribute{
+					Name:        "reservation_guarantee",
+					Description: `(Optional) Defines how much of the CPU resources of a VM are reserved. The allocated CPU for a VM equals the number of vCPUs times the vCPU speed in MHz. The value of the attribute ranges between 0 and one. Value of 0 CPU reservation guarantee defines no CPU reservation. Value of 1 defines 100% of CPU reserved. <a id="memory"></a> ## Memory Each VM sizing policy supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "shares",
+					Description: `(Optional) Defines the number of memory shares for a VM. Shares specify the relative importance of a VM within a virtual data center. If a VM has twice as many shares of memory as another VM, it is entitled to consume twice as much memory when these two virtual machines are competing for resources. If not defined in the VDC compute policy, normal shares are applied to the VM.`,
+				},
+				resource.Attribute{
+					Name:        "size_in_mb",
+					Description: `(Optional) Defines the memory configured for a VM in MB. This is a VM hardware configuration. When a tenant assigns the VM sizing policy to a VM, the VM receives the amount of memory defined by this attribute.`,
+				},
+				resource.Attribute{
+					Name:        "limit_in_mb",
+					Description: `(Optional) Defines the memory limit in MB for a VM. If not defined in the VM sizing policy, memory limit is equal to the allocated memory for the VM.`,
+				},
+				resource.Attribute{
+					Name:        "reservation_guarantee",
+					Description: `(Optional) Defines the reserved amount of memory that is configured for a VM. The value of the attribute ranges between 0 and one. Value of 0 memory reservation guarantee defines no memory reservation. Value of 1 defines 100% of memory reserved. # Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
 	}
 
 	resourcesMap = map[string]int{
 
-		"vcd_catalog":             0,
-		"vcd_catalog_item":        1,
-		"vcd_catalog_media":       2,
-		"vcd_dnat":                3,
-		"vcd_edgegateway":         4,
-		"vcd_edgegateway_vpn":     5,
-		"vcd_external_network":    6,
-		"vcd_firewall_rules":      7,
-		"vcd_independent_disk":    8,
-		"vcd_inserted_media":      9,
-		"vcd_nsxv_ip_set":         10,
-		"vcd_lb_app_profile":      11,
-		"vcd_lb_app_rule":         12,
-		"vcd_lb_server_pool":      13,
-		"vcd_lb_service_monitor":  14,
-		"vcd_lb_virtual_server":   15,
-		"vcd_network":             16,
-		"vcd_network_direct":      17,
-		"vcd_network_isolated":    18,
-		"vcd_network_routed":      19,
-		"vcd_nsxv_dhcp_relay":     20,
-		"vcd_nsxv_dnat":           21,
-		"vcd_nsxv_firewall_rule":  22,
-		"vcd_nsxv_snat":           23,
-		"vcd_org":                 24,
-		"vcd_org_group":           25,
-		"vcd_org_user":            26,
-		"vcd_org_vdc":             27,
-		"vcd_snat":                28,
-		"vcd_vapp":                29,
-		"vcd_vapp_firewall_rules": 30,
-		"vcd_vapp_nat_rules":      31,
-		"vcd_vapp_network":        32,
-		"vcd_vapp_org_network":    33,
-		"vcd_vapp_static_routing": 34,
-		"vcd_vapp_vm":             35,
-		"vcd_vm_affinity_rule":    36,
-		"vcd_vm_internal_disk":    37,
+		"vcd_catalog":               0,
+		"vcd_catalog_item":          1,
+		"vcd_catalog_media":         2,
+		"vcd_edgegateway":           3,
+		"vcd_edgegateway_settings":  4,
+		"vcd_edgegateway_vpn":       5,
+		"vcd_external_network":      6,
+		"vcd_external_network_v2":   7,
+		"vcd_independent_disk":      8,
+		"vcd_inserted_media":        9,
+		"vcd_nsxv_ip_set":           10,
+		"vcd_lb_app_profile":        11,
+		"vcd_lb_app_rule":           12,
+		"vcd_lb_server_pool":        13,
+		"vcd_lb_service_monitor":    14,
+		"vcd_lb_virtual_server":     15,
+		"vcd_network_direct":        16,
+		"vcd_network_isolated":      17,
+		"vcd_network_isolated_v2":   18,
+		"vcd_network_routed":        19,
+		"vcd_network_routed_v2":     20,
+		"vcd_nsxt_edgegateway":      21,
+		"vcd_nsxt_network_dhcp":     22,
+		"vcd_nsxt_network_imported": 23,
+		"vcd_nsxv_dhcp_relay":       24,
+		"vcd_nsxv_dnat":             25,
+		"vcd_nsxv_firewall_rule":    26,
+		"vcd_nsxv_snat":             27,
+		"vcd_org":                   28,
+		"vcd_org_group":             29,
+		"vcd_org_user":              30,
+		"vcd_org_vdc":               31,
+		"vcd_vapp":                  32,
+		"vcd_vapp_access_control":   33,
+		"vcd_vapp_firewall_rules":   34,
+		"vcd_vapp_nat_rules":        35,
+		"vcd_vapp_network":          36,
+		"vcd_vapp_org_network":      37,
+		"vcd_vapp_static_routing":   38,
+		"vcd_vapp_vm":               39,
+		"vcd_vm":                    40,
+		"vcd_vm_affinity_rule":      41,
+		"vcd_vm_internal_disk":      42,
+		"vcd_vm_sizing_policy":      43,
 	}
 )
 

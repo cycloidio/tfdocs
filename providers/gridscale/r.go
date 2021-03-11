@@ -11,6 +11,176 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "gridscale_backupschedule",
+			Category:         "Resources",
+			ShortDescription: `Manages a storage backup schedule.`,
+			Description:      ``,
+			Keywords: []string{
+				"backupschedule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) UUID of the backup schedule.`,
+				},
+				resource.Attribute{
+					Name:        "storage_uuid",
+					Description: `(Required) UUID of the storage that the backup schedule belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "active",
+					Description: `(Required) The status of the schedule active or not.`,
+				},
+				resource.Attribute{
+					Name:        "next_runtime",
+					Description: `(Required) The date and time that the backup schedule will be run.`,
+				},
+				resource.Attribute{
+					Name:        "keep_backups",
+					Description: `(Required) The amount of Snapshots to keep before overwriting the last created Snapshot (>=1).`,
+				},
+				resource.Attribute{
+					Name:        "run_interval",
+					Description: `(Required) The interval at which the schedule will run (in minutes, >=60). ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "5m" - 5 minutes) Used for creating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "5m" - 5 minutes) Used for updating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "5m" - 5 minutes) Used for deleting a resource. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of the backup schedule.`,
+				},
+				resource.Attribute{
+					Name:        "storage_uuid",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the backup schedule.`,
+				},
+				resource.Attribute{
+					Name:        "active",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "next_runtime",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "next_runtime_computed",
+					Description: `The date and time that the backup schedule will be run. This date and time is computed by gridscale's server.`,
+				},
+				resource.Attribute{
+					Name:        "keep_backups",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "run_interval",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The date and time the backup schedule was initially created.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `The date and time of the last backup schedule change.`,
+				},
+				resource.Attribute{
+					Name:        "storage_backups",
+					Description: `Related backups.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the backup.`,
+				},
+				resource.Attribute{
+					Name:        "object_uuid",
+					Description: `UUID of the backup.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The date and time the backup was initially created.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of the backup schedule.`,
+				},
+				resource.Attribute{
+					Name:        "storage_uuid",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the backup schedule.`,
+				},
+				resource.Attribute{
+					Name:        "active",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "next_runtime",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "next_runtime_computed",
+					Description: `The date and time that the backup schedule will be run. This date and time is computed by gridscale's server.`,
+				},
+				resource.Attribute{
+					Name:        "keep_backups",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "run_interval",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The date and time the backup schedule was initially created.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `The date and time of the last backup schedule change.`,
+				},
+				resource.Attribute{
+					Name:        "storage_backups",
+					Description: `Related backups.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the backup.`,
+				},
+				resource.Attribute{
+					Name:        "object_uuid",
+					Description: `UUID of the backup.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The date and time the backup was initially created.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "gridscale_firewall",
 			Category:         "Resources",
 			ShortDescription: `Manages a firewall in gridscale.`,
@@ -21,7 +191,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "rules_v4_in",
@@ -29,7 +199,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `(Required) The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `(Required) The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default (Only for inbound).`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -65,7 +235,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `(Required) The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `(Required) The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2.`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -101,7 +271,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `(Required) The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `(Required) The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default (Only for inbound).`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -137,7 +307,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `(Required) The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `(Required) The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2.`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -169,19 +339,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
 				},
 				resource.Attribute{
 					Name:        "create",
-					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for creating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "update",
-					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for updating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Default value is "5m" - 5 minutes) Used for deleting a resource. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -197,7 +367,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default (Only for inbound).`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -233,7 +403,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2.`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -269,7 +439,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default (Only for inbound).`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -305,7 +475,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2.`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -361,7 +531,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_name",
-					Description: `The human-readable name of the location. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `The human-readable name of the location. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -403,7 +573,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default (Only for inbound).`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -439,7 +609,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2.`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -475,7 +645,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default (Only for inbound).`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -511,7 +681,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2.`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -567,7 +737,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_name",
-					Description: `The human-readable name of the location. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `The human-readable name of the location. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -607,7 +777,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The human-readable name of the object. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `(Optional) The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "failover",
@@ -615,23 +785,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "reverse_dns",
-					Description: `(Optional) Defines the reverse DNS entry for the IP Address (PTR Resource Record).`,
+					Description: `(Optional) Defines the reverse DNS entry for the IP address (PTR Resource Record).`,
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
 				},
 				resource.Attribute{
 					Name:        "create",
-					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for creating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "update",
-					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for updating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes This resource exports the following attributes:`,
+					Description: `(Default value is "5m" - 5 minutes) Used for deleting a resource. ## Attributes This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -655,7 +825,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip",
-					Description: `Defines the IP Address.`,
+					Description: `Defines the IP address.`,
 				},
 				resource.Attribute{
 					Name:        "prefix",
@@ -712,7 +882,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The human-readable name of the object. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `(Optional) The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "failover",
@@ -720,23 +890,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "reverse_dns",
-					Description: `(Optional) Defines the reverse DNS entry for the IP Address (PTR Resource Record).`,
+					Description: `(Optional) Defines the reverse DNS entry for the IP address (PTR Resource Record).`,
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
 				},
 				resource.Attribute{
 					Name:        "create",
-					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for creating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "update",
-					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for updating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes This resource exports the following attributes:`,
+					Description: `(Default value is "5m" - 5 minutes) Used for deleting a resource. ## Attributes This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -760,7 +930,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip",
-					Description: `Defines the IP Address.`,
+					Description: `Defines the IP address.`,
 				},
 				resource.Attribute{
 					Name:        "prefix",
@@ -817,7 +987,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "source_url",
@@ -825,19 +995,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
 				},
 				resource.Attribute{
 					Name:        "create",
-					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for creating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "update",
-					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for updating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Default value is "5m" - 5 minutes) Used for deleting a resource. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -885,7 +1055,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_name",
-					Description: `The human-readable name of the location. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `The human-readable name of the location. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -909,7 +1079,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `Description of the Template.`,
+					Description: `Description of the template.`,
 				},
 				resource.Attribute{
 					Name:        "usage_in_minutes",
@@ -975,7 +1145,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_name",
-					Description: `The human-readable name of the location. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `The human-readable name of the location. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -999,7 +1169,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `Description of the Template.`,
+					Description: `Description of the template.`,
 				},
 				resource.Attribute{
 					Name:        "usage_in_minutes",
@@ -1031,19 +1201,19 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "redirect_http_to_https",
-					Description: `(Required) Whether the loadbalancer is forced to redirect requests from HTTP to HTTPS.`,
+					Description: `(Required) Whether the load balancer is forced to redirect requests from HTTP to HTTPS.`,
 				},
 				resource.Attribute{
 					Name:        "listen_ipv4_uuid",
-					Description: `(Required) The UUID of the IPv4 address the loadbalancer will listen to for incoming requests.`,
+					Description: `(Required) The UUID of the IPv4 address the load balancer will listen to for incoming requests.`,
 				},
 				resource.Attribute{
 					Name:        "listen_ipv6_uuid",
-					Description: `(Required) The UUID of the IPv6 address the loadbalancer will listen to for incoming requests.`,
+					Description: `(Required) The UUID of the IPv6 address the load balancer will listen to for incoming requests.`,
 				},
 				resource.Attribute{
 					Name:        "algorithm",
@@ -1051,23 +1221,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
 				},
 				resource.Attribute{
 					Name:        "create",
-					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for creating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "update",
-					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for updating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes This resource exports the following attributes:`,
+					Description: `(Default value is "5m" - 5 minutes) Used for deleting a resource. ## Attributes This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The UUID of the loadbalancer.`,
+					Description: `The UUID of the load balancer.`,
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
@@ -1075,7 +1245,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The human-readable name of the loadbalancer.`,
+					Description: `The human-readable name of the load balancer.`,
 				},
 				resource.Attribute{
 					Name:        "algorithm",
@@ -1083,7 +1253,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of the loadbalancer.`,
+					Description: `The status of the load balancer.`,
 				},
 				resource.Attribute{
 					Name:        "redirect_http_to_https",
@@ -1091,19 +1261,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "listen_ipv4_uuid",
-					Description: `The UUID of the IPv4 address the loadbalancer will listen to for incoming requests.`,
+					Description: `The UUID of the IPv4 address the load balancer will listen to for incoming requests.`,
 				},
 				resource.Attribute{
 					Name:        "listen_ipv6_uuid",
-					Description: `The UUID of the IPv6 address the loadbalancer will listen to for incoming requests.`,
+					Description: `The UUID of the IPv6 address the load balancer will listen to for incoming requests.`,
 				},
 				resource.Attribute{
 					Name:        "forwarding_rule",
-					Description: `The forwarding rules of the loadbalancer.`,
+					Description: `The forwarding rules of the load balancer.`,
 				},
 				resource.Attribute{
 					Name:        "backend_server",
-					Description: `The servers that the loadbalancer can communicate with.`,
+					Description: `The servers that the load balancer can communicate with.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -1111,6 +1281,617 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "gridscale_marketplace_application",
+			Category:         "Resources",
+			ShortDescription: `Manages marketplace applications in Gridscale.`,
+			Description:      ``,
+			Keywords: []string{
+				"marketplace",
+				"application",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
+				},
+				resource.Attribute{
+					Name:        "object_storage_path",
+					Description: `(Required) Path to the images for the application, must be in .gz format and started with s3//.`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `(Required) Category of marketplace application. Accepted values: "CMS", "project management", "Adminpanel", "Collaboration", "Cloud Storage", "Archiving".`,
+				},
+				resource.Attribute{
+					Name:        "setup_cores",
+					Description: `(Required) Number of server's cores.`,
+				},
+				resource.Attribute{
+					Name:        "setup_memory",
+					Description: `(Required) The capacity of server's memory in GB.`,
+				},
+				resource.Attribute{
+					Name:        "setup_storage_capacity",
+					Description: `(Required) The capacity of server's storage in GB.`,
+				},
+				resource.Attribute{
+					Name:        "meta_license",
+					Description: `(Optional) License number.`,
+				},
+				resource.Attribute{
+					Name:        "meta_os",
+					Description: `(Optional) Operating system.`,
+				},
+				resource.Attribute{
+					Name:        "meta_components",
+					Description: `(Optional) Components (e.g: MySql, Apache, etc.).`,
+				},
+				resource.Attribute{
+					Name:        "meta_overview",
+					Description: `(Optional) Describes the main function of the application.`,
+				},
+				resource.Attribute{
+					Name:        "meta_hints",
+					Description: `(Optional) Hints.`,
+				},
+				resource.Attribute{
+					Name:        "meta_terms_of_use",
+					Description: `(Optional) Terms of use.`,
+				},
+				resource.Attribute{
+					Name:        "meta_icon",
+					Description: `(Optional) base64 encoded image of the icon.`,
+				},
+				resource.Attribute{
+					Name:        "meta_features",
+					Description: `(Optional) List of functions.`,
+				},
+				resource.Attribute{
+					Name:        "meta_author",
+					Description: `(Optional) Author. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "5m" - 5 minutes) Used for creating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "5m" - 5 minutes) Used for updating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "5m" - 5 minutes) Used for deleting a resource. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of the marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "object_storage_path",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "setup_cores",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "setup_memory",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "setup_storage_capacity",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "meta_license",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "meta_os",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "meta_components",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "meta_overview",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "meta_hints",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "meta_terms_of_use",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "meta_icon",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "meta_features",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "meta_author",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "meta_advices",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "unique_hash",
+					Description: `Unique hash to allow user to import the self-created marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "is_application_owner",
+					Description: `Whether the you are the owner of application or not.`,
+				},
+				resource.Attribute{
+					Name:        "is_published",
+					Description: `Whether the template is published by the partner to their tenant".`,
+				},
+				resource.Attribute{
+					Name:        "published_date",
+					Description: `The date when the template is published into other tenant in the same partner.`,
+				},
+				resource.Attribute{
+					Name:        "is_publish_requested",
+					Description: `Whether the tenants want their template to be published or not.`,
+				},
+				resource.Attribute{
+					Name:        "publish_requested_date",
+					Description: `The date when the tenant requested their template to be published.`,
+				},
+				resource.Attribute{
+					Name:        "is_publish_global_requested",
+					Description: `Whether a partner wants their tenant template published to other partners.`,
+				},
+				resource.Attribute{
+					Name:        "publish_global_requested_date",
+					Description: `The date when a partner requested their tenants template to be published.`,
+				},
+				resource.Attribute{
+					Name:        "is_publish_global",
+					Description: `Whether a template is published to other partner or not.`,
+				},
+				resource.Attribute{
+					Name:        "published_global_date",
+					Description: `The date when a template is published to other partner.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of template.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The date and time the marketplace application was initially created.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `The date and time of the last marketplace application change.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of the marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "object_storage_path",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "setup_cores",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "setup_memory",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "setup_storage_capacity",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "meta_license",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "meta_os",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "meta_components",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "meta_overview",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "meta_hints",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "meta_terms_of_use",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "meta_icon",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "meta_features",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "meta_author",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "meta_advices",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "unique_hash",
+					Description: `Unique hash to allow user to import the self-created marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "is_application_owner",
+					Description: `Whether the you are the owner of application or not.`,
+				},
+				resource.Attribute{
+					Name:        "is_published",
+					Description: `Whether the template is published by the partner to their tenant".`,
+				},
+				resource.Attribute{
+					Name:        "published_date",
+					Description: `The date when the template is published into other tenant in the same partner.`,
+				},
+				resource.Attribute{
+					Name:        "is_publish_requested",
+					Description: `Whether the tenants want their template to be published or not.`,
+				},
+				resource.Attribute{
+					Name:        "publish_requested_date",
+					Description: `The date when the tenant requested their template to be published.`,
+				},
+				resource.Attribute{
+					Name:        "is_publish_global_requested",
+					Description: `Whether a partner wants their tenant template published to other partners.`,
+				},
+				resource.Attribute{
+					Name:        "publish_global_requested_date",
+					Description: `The date when a partner requested their tenants template to be published.`,
+				},
+				resource.Attribute{
+					Name:        "is_publish_global",
+					Description: `Whether a template is published to other partner or not.`,
+				},
+				resource.Attribute{
+					Name:        "published_global_date",
+					Description: `The date when a template is published to other partner.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of template.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The date and time the marketplace application was initially created.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `The date and time of the last marketplace application change.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "gridscale_marketplace_application_import",
+			Category:         "Resources",
+			ShortDescription: `Manages imported marketplace applications in Gridscale.`,
+			Description:      ``,
+			Keywords: []string{
+				"marketplace",
+				"application",
+				"import",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "import_unique_hash",
+					Description: `(Required, ForceNew) Hash of a specific marketplace application that you want to import. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "5m" - 5 minutes) Used for creating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "5m" - 5 minutes) Used for deleting a resource. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of the marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `Category of marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "object_storage_path",
+					Description: `Path to the images for the application.`,
+				},
+				resource.Attribute{
+					Name:        "setup_cores",
+					Description: `Number of server's cores.`,
+				},
+				resource.Attribute{
+					Name:        "setup_memory",
+					Description: `The capacity of server's memory in GB.`,
+				},
+				resource.Attribute{
+					Name:        "setup_storage_capacity",
+					Description: `The capacity of server's storage in GB.`,
+				},
+				resource.Attribute{
+					Name:        "meta_license",
+					Description: `License number.`,
+				},
+				resource.Attribute{
+					Name:        "meta_os",
+					Description: `Operating system.`,
+				},
+				resource.Attribute{
+					Name:        "meta_components",
+					Description: `Components (e.g: MySql, Apache, etc.).`,
+				},
+				resource.Attribute{
+					Name:        "meta_overview",
+					Description: `Describes the main function of the application.`,
+				},
+				resource.Attribute{
+					Name:        "meta_hints",
+					Description: `Hints.`,
+				},
+				resource.Attribute{
+					Name:        "meta_terms_of_use",
+					Description: `Terms of use.`,
+				},
+				resource.Attribute{
+					Name:        "meta_icon",
+					Description: `base64 encoded image of the icon.`,
+				},
+				resource.Attribute{
+					Name:        "meta_features",
+					Description: `List of functions.`,
+				},
+				resource.Attribute{
+					Name:        "meta_author",
+					Description: `Author.`,
+				},
+				resource.Attribute{
+					Name:        "meta_advices",
+					Description: `User manual; Wiki URL; ...`,
+				},
+				resource.Attribute{
+					Name:        "unique_hash",
+					Description: `Unique hash to allow user to import the self-created marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "is_application_owner",
+					Description: `Whether the you are the owner of application or not.`,
+				},
+				resource.Attribute{
+					Name:        "is_published",
+					Description: `Whether the template is published by the partner to their tenant".`,
+				},
+				resource.Attribute{
+					Name:        "published_date",
+					Description: `The date when the template is published into other tenant in the same partner.`,
+				},
+				resource.Attribute{
+					Name:        "is_publish_requested",
+					Description: `Whether the tenants want their template to be published or not.`,
+				},
+				resource.Attribute{
+					Name:        "publish_requested_date",
+					Description: `The date when the tenant requested their template to be published.`,
+				},
+				resource.Attribute{
+					Name:        "is_publish_global_requested",
+					Description: `Whether a partner wants their tenant template published to other partners.`,
+				},
+				resource.Attribute{
+					Name:        "publish_global_requested_date",
+					Description: `The date when a partner requested their tenants template to be published.`,
+				},
+				resource.Attribute{
+					Name:        "is_publish_global",
+					Description: `Whether a template is published to other partner or not.`,
+				},
+				resource.Attribute{
+					Name:        "published_global_date",
+					Description: `The date when a template is published to other partner.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of template.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The date and time the marketplace application was initially created.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `The date and time of the last marketplace application change.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of the marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `Category of marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "object_storage_path",
+					Description: `Path to the images for the application.`,
+				},
+				resource.Attribute{
+					Name:        "setup_cores",
+					Description: `Number of server's cores.`,
+				},
+				resource.Attribute{
+					Name:        "setup_memory",
+					Description: `The capacity of server's memory in GB.`,
+				},
+				resource.Attribute{
+					Name:        "setup_storage_capacity",
+					Description: `The capacity of server's storage in GB.`,
+				},
+				resource.Attribute{
+					Name:        "meta_license",
+					Description: `License number.`,
+				},
+				resource.Attribute{
+					Name:        "meta_os",
+					Description: `Operating system.`,
+				},
+				resource.Attribute{
+					Name:        "meta_components",
+					Description: `Components (e.g: MySql, Apache, etc.).`,
+				},
+				resource.Attribute{
+					Name:        "meta_overview",
+					Description: `Describes the main function of the application.`,
+				},
+				resource.Attribute{
+					Name:        "meta_hints",
+					Description: `Hints.`,
+				},
+				resource.Attribute{
+					Name:        "meta_terms_of_use",
+					Description: `Terms of use.`,
+				},
+				resource.Attribute{
+					Name:        "meta_icon",
+					Description: `base64 encoded image of the icon.`,
+				},
+				resource.Attribute{
+					Name:        "meta_features",
+					Description: `List of functions.`,
+				},
+				resource.Attribute{
+					Name:        "meta_author",
+					Description: `Author.`,
+				},
+				resource.Attribute{
+					Name:        "meta_advices",
+					Description: `User manual; Wiki URL; ...`,
+				},
+				resource.Attribute{
+					Name:        "unique_hash",
+					Description: `Unique hash to allow user to import the self-created marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "is_application_owner",
+					Description: `Whether the you are the owner of application or not.`,
+				},
+				resource.Attribute{
+					Name:        "is_published",
+					Description: `Whether the template is published by the partner to their tenant".`,
+				},
+				resource.Attribute{
+					Name:        "published_date",
+					Description: `The date when the template is published into other tenant in the same partner.`,
+				},
+				resource.Attribute{
+					Name:        "is_publish_requested",
+					Description: `Whether the tenants want their template to be published or not.`,
+				},
+				resource.Attribute{
+					Name:        "publish_requested_date",
+					Description: `The date when the tenant requested their template to be published.`,
+				},
+				resource.Attribute{
+					Name:        "is_publish_global_requested",
+					Description: `Whether a partner wants their tenant template published to other partners.`,
+				},
+				resource.Attribute{
+					Name:        "publish_global_requested_date",
+					Description: `The date when a partner requested their tenants template to be published.`,
+				},
+				resource.Attribute{
+					Name:        "is_publish_global",
+					Description: `Whether a template is published to other partner or not.`,
+				},
+				resource.Attribute{
+					Name:        "published_global_date",
+					Description: `The date when a template is published to other partner.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of template.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the marketplace application.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The date and time the marketplace application was initially created.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `The date and time of the last marketplace application change.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1124,7 +1905,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "l2security",
@@ -1132,19 +1913,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
 				},
 				resource.Attribute{
 					Name:        "create",
-					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for creating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "update",
-					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for updating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes This resource exports the following attributes:`,
+					Description: `(Default value is "5m" - 5 minutes) Used for deleting a resource. ## Attributes This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1240,7 +2021,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "service_template_uuid",
@@ -1280,19 +2061,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Primitive type of the parameter: bool, int (better use float for int case), float, string. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+					Description: `(Required) Primitive type of the parameter: bool, int (better use float for int case), float, string. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
 				},
 				resource.Attribute{
 					Name:        "create",
-					Description: `(Default value is "15m" - 15 minutes) Used for Creating resource.`,
+					Description: `(Default value is "15m" - 15 minutes) Used for creating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "update",
-					Description: `(Default value is "15m" - 15 minutes) Used for Updating resource.`,
+					Description: `(Default value is "15m" - 15 minutes) Used for updating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Default value is "15m" - 15 minutes) Used for Deleteing resource. ## Attributes This resource exports the following attributes:`,
+					Description: `(Default value is "15m" - 15 minutes) Used for deleting a resource. ## Attributes This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1329,6 +2110,10 @@ var (
 				resource.Attribute{
 					Name:        "service_template_uuid",
 					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "service_template_uuid_computed",
+					Description: `Template that PaaS service uses. The ` + "`" + `service_template_uuid_computed` + "`" + ` will be different from ` + "`" + `service_template_uuid` + "`" + `, when ` + "`" + `service_template_uuid` + "`" + ` is updated outside of terraform.`,
 				},
 				resource.Attribute{
 					Name:        "usage_in_minute",
@@ -1398,23 +2183,23 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
-					Description: `(Optional) Helps to identify which datacenter an object belongs to. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+					Description: `(Optional) Helps to identify which datacenter an object belongs to. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
 				},
 				resource.Attribute{
 					Name:        "create",
-					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for creating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "update",
-					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for updating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes This resource exports the following attributes:`,
+					Description: `(Default value is "5m" - 5 minutes) Used for deleting a resource. ## Attributes This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1422,7 +2207,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The human-readable name of the object. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
@@ -1475,7 +2260,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "cores",
@@ -1534,6 +2319,10 @@ var (
 					Description: `(Required) The object UUID or id of the network.`,
 				},
 				resource.Attribute{
+					Name:        "ordering",
+					Description: `(Optional) Defines the ordering of the network interfaces. Lower numbers have lower PCI-IDs.`,
+				},
+				resource.Attribute{
 					Name:        "bootdevice",
 					Description: `(Optional, Computed) Make this network the boot device. This can only be set for one network.`,
 				},
@@ -1547,7 +2336,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `(Required) The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `(Required) The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default (Only for inbound).`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -1583,7 +2372,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `(Required) The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `(Required) The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2.`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -1619,7 +2408,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `(Required) The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `(Required) The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default (Only for inbound).`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -1655,7 +2444,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `(Required) The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `(Required) The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2.`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -1683,19 +2472,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "comment",
-					Description: `(Optional) Comment. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+					Description: `(Optional) Comment. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
 				},
 				resource.Attribute{
 					Name:        "create",
-					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for creating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "update",
-					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for updating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes This resource exports the following attributes:`,
+					Description: `(Default value is "5m" - 5 minutes) Used for deleting a resource. ## Attributes This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1819,7 +2608,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default (Only for inbound).`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -1855,7 +2644,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2.`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -1891,7 +2680,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default (Only for inbound).`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -1927,7 +2716,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `The order at which the firewall will compare packets against its rules, a packet will be compared against the first rule, it will either allow it to pass or block it and it won t be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2. Packets that do not match any rules are blocked by default.`,
+					Description: `The order at which the firewall will compare packets against its rules. A packet will be compared against the first rule, it will either allow it to pass or block it and it won't be matched against any other rules. However, if it does no match the rule, then it will proceed onto rule 2.`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -1987,7 +2776,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "legacy",
-					Description: `Legacy-Hardware emulation instead of virtio hardware. If enabled, hotplugging cores, memory, storage, network, etc. will not work, but the server will most likely run every x86 compatible operating system. This mode comes with a performance penalty, as emulated hardware does not benefit from the virtio driver infrastructure.`,
+					Description: `Legacy-Hardware emulation instead of virtio hardware. If enabled, hot-plugging cores, memory, storage, network, etc. will not work, but the server will most likely run every x86 compatible operating system. This mode comes with a performance penalty, as emulated hardware does not benefit from the virtio driver infrastructure.`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -2044,7 +2833,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "host",
-					Description: `(Required) Host of object storage. Must be of URL type. E.g: https://gos3.io`,
+					Description: `(Required) Host of object storage. Must be of URL type, e.g., https://gos3.io`,
 				},
 				resource.Attribute{
 					Name:        "access_key",
@@ -2072,19 +2861,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Required) ID of the rollback request. It can be any string value. Each rollback request has to have a UNIQUE id. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+					Description: `(Required) ID of the rollback request. It can be any string value. Each rollback request has to have a UNIQUE id. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
 				},
 				resource.Attribute{
 					Name:        "create",
-					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for creating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "update",
-					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for updating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Default value is "5m" - 5 minutes) Used for deleting a resource. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2338,19 +3127,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "run_interval",
-					Description: `(Required) The interval at which the schedule will run (in minutes, >=60). ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+					Description: `(Required) The interval at which the schedule will run (in minutes, >=60). ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
 				},
 				resource.Attribute{
 					Name:        "create",
-					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for creating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "update",
-					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for updating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Default value is "5m" - 5 minutes) Used for deleting a resource. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2371,6 +3160,10 @@ var (
 				resource.Attribute{
 					Name:        "next_runtime",
 					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "next_runtime_computed",
+					Description: `The date and time that the snapshot schedule will be run. This date and time is computed by gridscale's server.`,
 				},
 				resource.Attribute{
 					Name:        "keep_snapshots",
@@ -2431,6 +3224,10 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "next_runtime_computed",
+					Description: `The date and time that the snapshot schedule will be run. This date and time is computed by gridscale's server.`,
+				},
+				resource.Attribute{
 					Name:        "keep_snapshots",
 					Description: `See Argument Reference above.`,
 				},
@@ -2480,7 +3277,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "sshkey",
@@ -2488,19 +3285,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
 				},
 				resource.Attribute{
 					Name:        "create",
-					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for creating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "update",
-					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for updating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes This resource exports the following attributes:`,
+					Description: `(Default value is "5m" - 5 minutes) Used for deleting a resource. ## Attributes This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -2541,7 +3338,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "capacity",
@@ -2554,6 +3351,10 @@ var (
 				resource.Attribute{
 					Name:        "labels",
 					Description: `(Optional) List of labels in the format [ "label1", "label2" ].`,
+				},
+				resource.Attribute{
+					Name:        "rollback_from_backup_uuid",
+					Description: `(Optional) Rollback the storage from a specific storage backup.`,
 				},
 				resource.Attribute{
 					Name:        "template",
@@ -2581,15 +3382,231 @@ var (
 				},
 				resource.Attribute{
 					Name:        "create",
-					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for creating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "update",
-					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for updating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes This resource exports the following attributes:`,
+					Description: `(Default value is "5m" - 5 minutes) Used for deleting a resource. ## Attributes This resource exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "storage_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "location_uuid",
+					Description: `Helps to identify which datacenter an object belongs to. The location of the resource depends on the location of the project.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "rollback_from_backup_uuid",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `status indicates the status of the object.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time the object was created.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `Defines the date and time of the last object change.`,
+				},
+				resource.Attribute{
+					Name:        "location_country",
+					Description: `Formatted by the 2 digit country code (ISO 3166-2) of the host country.`,
+				},
+				resource.Attribute{
+					Name:        "location_iata",
+					Description: `Uses IATA airport code, which works as a location identifier.`,
+				},
+				resource.Attribute{
+					Name:        "location_name",
+					Description: `The location name.`,
+				},
+				resource.Attribute{
+					Name:        "license_product_no",
+					Description: `If a template has been used that requires a license key (e.g. Windows Servers) this shows the product_no of the license (see the /prices endpoint for more details).`,
+				},
+				resource.Attribute{
+					Name:        "last_used_template",
+					Description: `Indicates the UUID of the last used template on this storage (inherited from snapshots).`,
+				},
+				resource.Attribute{
+					Name:        "usage_in_minutes",
+					Description: `The amount of minutes the IP address has been in use.`,
+				},
+				resource.Attribute{
+					Name:        "current_price",
+					Description: `The price for the current period since the last bill.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "gridscale_storage_clone",
+			Category:         "Resources",
+			ShortDescription: `Make a clone of an existing storage instance.`,
+			Description:      ``,
+			Keywords: []string{
+				"storage",
+				"clone",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "source_storage_id",
+					Description: `(Required) The ID of a storage instance which will be cloned.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The default value is inherited from the source storage instance. A desired name is possible. The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `(Optional) The default value is inherited from the source storage instance. A desired capacity is possible. Required (integer - minimum: 1 - maximum: 4096).`,
+				},
+				resource.Attribute{
+					Name:        "storage_type",
+					Description: `(Optional) The default value is inherited from the source storage instance. A desired storage type is possible. (one of storage, storage_high, storage_insane).`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "5m" - 5 minutes) Used for creating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "5m" - 5 minutes) Used for updating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "5m" - 5 minutes) Used for deleting a resource. ## Attributes This resource exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "storage_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "location_uuid",
+					Description: `Helps to identify which datacenter an object belongs to. The location of the resource depends on the location of the project.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `status indicates the status of the object.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time the object was created.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `Defines the date and time of the last object change.`,
+				},
+				resource.Attribute{
+					Name:        "location_country",
+					Description: `Formatted by the 2 digit country code (ISO 3166-2) of the host country.`,
+				},
+				resource.Attribute{
+					Name:        "location_iata",
+					Description: `Uses IATA airport code, which works as a location identifier.`,
+				},
+				resource.Attribute{
+					Name:        "location_name",
+					Description: `The location name.`,
+				},
+				resource.Attribute{
+					Name:        "license_product_no",
+					Description: `If a template has been used that requires a license key (e.g. Windows Servers) this shows the product_no of the license (see the /prices endpoint for more details).`,
+				},
+				resource.Attribute{
+					Name:        "last_used_template",
+					Description: `Indicates the UUID of the last used template on this storage (inherited from snapshots).`,
+				},
+				resource.Attribute{
+					Name:        "usage_in_minutes",
+					Description: `The amount of minutes the IP address has been in use.`,
+				},
+				resource.Attribute{
+					Name:        "current_price",
+					Description: `The price for the current period since the last bill.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "gridscale_storage_import",
+			Category:         "Resources",
+			ShortDescription: `Make a clone of an existing storage instance.`,
+			Description:      ``,
+			Keywords: []string{
+				"storage",
+				"import",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "storage_backup_id",
+					Description: `(Required) ID of the storage backup that will be used to create a new storage from.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `(Optional) The default value is inherited from the source storage instance. A desired capacity is possible. Required (integer - minimum: 1 - maximum: 4096).`,
+				},
+				resource.Attribute{
+					Name:        "storage_type",
+					Description: `(Optional) The default value is inherited from the source storage instance. A desired storage type is possible. (one of storage, storage_high, storage_insane).`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "5m" - 5 minutes) Used for creating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "5m" - 5 minutes) Used for updating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "5m" - 5 minutes) Used for deleting a resource. ## Attributes This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -2674,19 +3691,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) List of labels. ## Timeouts Timeouts configuration options (in seconds): More info: https://www.terraform.io/docs/configuration/resources.html#operation-timeouts`,
+					Description: `(Optional) List of labels. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
 				},
 				resource.Attribute{
 					Name:        "create",
-					Description: `(Default value is "5m" - 5 minutes) Used for Creating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for creating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "update",
-					Description: `(Default value is "5m" - 5 minutes) Used for Updating resource.`,
+					Description: `(Default value is "5m" - 5 minutes) Used for updating a resource.`,
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Default value is "5m" - 5 minutes) Used for Deleteing resource. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Default value is "5m" - 5 minutes) Used for deleting a resource. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -2710,7 +3727,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_name",
-					Description: `The human-readable name of the location. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `The human-readable name of the location. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -2742,11 +3759,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "distro",
-					Description: `The OS distrobution that the Template contains.`,
+					Description: `The OS distribution that the template contains.`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `Description of the Template.`,
+					Description: `Description of the template.`,
 				},
 				resource.Attribute{
 					Name:        "usage_in_minutes",
@@ -2788,7 +3805,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_name",
-					Description: `The human-readable name of the location. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
+					Description: `The human-readable name of the location. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -2820,11 +3837,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "distro",
-					Description: `The OS distrobution that the Template contains.`,
+					Description: `The OS distribution that the template contains.`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `Description of the Template.`,
+					Description: `Description of the template.`,
 				},
 				resource.Attribute{
 					Name:        "usage_in_minutes",
@@ -2848,21 +3865,26 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"gridscale_firewall":                 0,
-		"gridscale_ipv4":                     1,
-		"gridscale_ipv6":                     2,
-		"gridscale_isoimage":                 3,
-		"gridscale_loadbalancer":             4,
-		"gridscale_network":                  5,
-		"gridscale_object_storage_accesskey": 6,
-		"gridscale_paas":                     7,
-		"gridscale_paas_securityzone":        8,
-		"gridscale_server":                   9,
-		"gridscale_snapshot":                 10,
-		"gridscale_snapshotschedule":         11,
-		"gridscale_sshkey":                   12,
-		"gridscale_storage":                  13,
-		"gridscale_template":                 14,
+		"gridscale_backupschedule":                 0,
+		"gridscale_firewall":                       1,
+		"gridscale_ipv4":                           2,
+		"gridscale_ipv6":                           3,
+		"gridscale_isoimage":                       4,
+		"gridscale_loadbalancer":                   5,
+		"gridscale_marketplace_application":        6,
+		"gridscale_marketplace_application_import": 7,
+		"gridscale_network":                        8,
+		"gridscale_object_storage_accesskey":       9,
+		"gridscale_paas":                           10,
+		"gridscale_paas_securityzone":              11,
+		"gridscale_server":                         12,
+		"gridscale_snapshot":                       13,
+		"gridscale_snapshotschedule":               14,
+		"gridscale_sshkey":                         15,
+		"gridscale_storage":                        16,
+		"gridscale_storage_clone":                  17,
+		"gridscale_storage_import":                 18,
+		"gridscale_template":                       19,
 	}
 )
 

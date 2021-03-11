@@ -74,6 +74,19 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nomad_scheduler_config",
+			Category:         "Resources",
+			ShortDescription: `Manages scheduler configuration on the Nomad server.`,
+			Description:      ``,
+			Keywords: []string{
+				"scheduler",
+				"config",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nomad_sentinel_policy",
 			Category:         "Resources",
 			ShortDescription: `Manages a Sentinel policy registered on the Nomad server.`,
@@ -106,8 +119,9 @@ var (
 		"nomad_job":                 2,
 		"nomad_namespace":           3,
 		"nomad_quota_specification": 4,
-		"nomad_sentinel_policy":     5,
-		"nomad_volume":              6,
+		"nomad_scheduler_config":    5,
+		"nomad_sentinel_policy":     6,
+		"nomad_volume":              7,
 	}
 )
 

@@ -351,6 +351,10 @@ var (
 					Description: `(bool, optional) Whether an instance is destroyable. Default is ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "delegate_dataset",
+					Description: `(bool, optional) Whether an instance is created with a delegate dataset. Default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "volume",
 					Description: `([Volume](#volume-map) map, optional) A volume to attach to the instance. Volume configurations only apply on resource creation. Multiple`,
 				},

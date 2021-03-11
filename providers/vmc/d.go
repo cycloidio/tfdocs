@@ -59,7 +59,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "connected_account_id",
-					Description: `(Optional) The linked connected account identifier.`,
+					Description: `(Required) The linked connected account identifier.`,
 				},
 				resource.Attribute{
 					Name:        "sddc_id",
@@ -67,11 +67,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "force_refresh",
-					Description: `(Optional) Boolean value when set to true, forces the mappings for datacenters to be refreshed for the connected account.`,
+					Description: `(Optional) When true, forces the mappings for datacenters to be refreshed for the connected account.`,
 				},
 				resource.Attribute{
 					Name:        "instance_type",
-					Description: `(Optional) The server instance type to be used. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Optional) The server instance type to be used.`,
+				},
+				resource.Attribute{
+					Name:        "sddc_type",
+					Description: `(Optional) The sddc type to be used. (1NODE, SingleAZ, MultiAZ) ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "customer_available_zones",

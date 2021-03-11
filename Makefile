@@ -1,7 +1,11 @@
 .PHONY: sync
 sync:
-	git submodule update --init --remote --recursive
+	@mkdir -p ./repositories && go run cmd/*.go sync
 
 .PHONY: generate
 generate:
-	GO111MODULE=on go run cmd/*.go && go test ./providers/...
+	@rm -rf ./providers/* && go run cmd/*.go generate && go test ./providers/...
+
+.PHONY: clean
+clean:
+	@rm -rf ./repositories/*

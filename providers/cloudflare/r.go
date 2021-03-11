@@ -21,8 +21,12 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Optional) The account to which the access application should be added. Conflicts with ` + "`" + `zone_id` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "zone_id",
-					Description: `(Required) The DNS zone to which the access rule should be added.`,
+					Description: `(Optional) The DNS zone to which the access application should be added. Conflicts with ` + "`" + `account_id` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -34,7 +38,63 @@ var (
 				},
 				resource.Attribute{
 					Name:        "session_duration",
-					Description: `(Optional) How often a user will be forced to re-authorise. Must be one of ` + "`" + `30m` + "`" + `, ` + "`" + `6h` + "`" + `, ` + "`" + `12h` + "`" + `, ` + "`" + `24h` + "`" + `, ` + "`" + `168h` + "`" + `, ` + "`" + `730h` + "`" + `. ## Attributes Reference The following additional attributes are exported:`,
+					Description: `(Optional) How often a user will be forced to re-authorise. Must be in the format ` + "`" + `"48h"` + "`" + ` or ` + "`" + `"2h45m"` + "`" + `. Valid time units are ` + "`" + `ns` + "`" + `, ` + "`" + `us` + "`" + ` (or ` + "`" + `µs` + "`" + `), ` + "`" + `ms` + "`" + `, ` + "`" + `s` + "`" + `, ` + "`" + `m` + "`" + `, ` + "`" + `h` + "`" + `. Defaults to ` + "`" + `24h` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "cors_headers",
+					Description: `(Optional) CORS configuration for the Access Application. See below for reference structure.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_idps",
+					Description: `(Optional) The identity providers selected for the application.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_methods",
+					Description: `(Optional) List of methods to expose via CORS.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_origins",
+					Description: `(Optional) List of origins permitted to make CORS requests.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_headers",
+					Description: `(Optional) List of HTTP headers to expose via CORS.`,
+				},
+				resource.Attribute{
+					Name:        "allow_all_methods",
+					Description: `(Optional) Boolean value to determine whether all methods are exposed.`,
+				},
+				resource.Attribute{
+					Name:        "allow_all_origins",
+					Description: `(Optional) Boolean value to determine whether all origins are permitted to make CORS requests.`,
+				},
+				resource.Attribute{
+					Name:        "allow_all_headers",
+					Description: `(Optional) Boolean value to determine whether all HTTP headers are exposed.`,
+				},
+				resource.Attribute{
+					Name:        "allow_credentials",
+					Description: `(Optional) Boolean value to determine if credentials (cookies, authorization headers, or TLS client certificates) are included with requests.`,
+				},
+				resource.Attribute{
+					Name:        "max_age",
+					Description: `(Optional) Integer representing the maximum time a preflight request will be cached.`,
+				},
+				resource.Attribute{
+					Name:        "auto_redirect_to_identity",
+					Description: `(Optional) Option to skip identity provider selection if only one is configured in allowed_idps. Defaults to ` + "`" + `false` + "`" + ` (disabled).`,
+				},
+				resource.Attribute{
+					Name:        "enable_binding_cookie",
+					Description: `(Optional) Option to provide increased security against compromised authorization tokens and CSRF attacks by requiring an additional "binding" cookie on requests. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "custom_deny_message",
+					Description: `(Optional) Option that returns a custom error message when a user is denied access to the application.`,
+				},
+				resource.Attribute{
+					Name:        "custom_deny_url",
+					Description: `(Optional) Option that redirects to a custom URL when a user is denied access to the application. ## Attributes Reference The following additional attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -50,7 +110,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "session_duration",
-					Description: `Length of session for the application before prompting for a sign in ## Import Access Applications can be imported using a composite ID formed of zone ID and application ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_access_application.staging cb029e245cfdd66dc8d2e570d5dd3322/d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Length of session for the application before prompting for a sign in`,
+				},
+				resource.Attribute{
+					Name:        "auto_redirect_to_identity",
+					Description: `If the IdP selection page is skipped or not`,
+				},
+				resource.Attribute{
+					Name:        "allowed_idps",
+					Description: `The identity providers selected for the application ## Import Access Applications can be imported using a composite ID formed of zone ID and application ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_access_application.staging cb029e245cfdd66dc8d2e570d5dd3322/d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -68,7 +136,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "session_duration",
-					Description: `Length of session for the application before prompting for a sign in ## Import Access Applications can be imported using a composite ID formed of zone ID and application ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_access_application.staging cb029e245cfdd66dc8d2e570d5dd3322/d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Length of session for the application before prompting for a sign in`,
+				},
+				resource.Attribute{
+					Name:        "auto_redirect_to_identity",
+					Description: `If the IdP selection page is skipped or not`,
+				},
+				resource.Attribute{
+					Name:        "allowed_idps",
+					Description: `The identity providers selected for the application ## Import Access Applications can be imported using a composite ID formed of zone ID and application ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_access_application.staging cb029e245cfdd66dc8d2e570d5dd3322/d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -85,7 +161,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account_id",
-					Description: `(Required) The ID of the account the group is associated with.`,
+					Description: `(Optional) The ID of the account the group is associated with. Conflicts with ` + "`" + `zone_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Optional) The ID of the zone the group is associated with. Conflicts with ` + "`" + `account_id` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -140,20 +220,28 @@ var (
 					Description: `(Optional) Use a certificate common name to authenticate with.`,
 				},
 				resource.Attribute{
+					Name:        "auth_method",
+					Description: `(Optional) A string identifying the authentication method code. The list of codes are listed here: https://tools.ietf.org/html/rfc8176#section-2. Custom values are also supported.`,
+				},
+				resource.Attribute{
+					Name:        "geo",
+					Description: `(Optional) A list of country codes. Example: ` + "`" + `geo = ["US"]` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "gsuite",
-					Description: `(Optional) Use GSuite as the authentication mechanism. Example: ` + "`" + `` + "`" + `` + "`" + `hcl # ... other configuration include { gsuite { email = "admins@example.com" identity_provider_id = "ca298b82-93b5-41bf-bc2d-10493f09b761" } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Use GSuite as the authentication mechanism. Example: ` + "`" + `` + "`" + `` + "`" + `hcl # ... other configuration include { gsuite { email = ["admins@example.com"] identity_provider_id = "ca298b82-93b5-41bf-bc2d-10493f09b761" } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "github",
-					Description: `(Optional) Use a GitHub team as the ` + "`" + `include` + "`" + ` condition. Example: ` + "`" + `` + "`" + `` + "`" + `hcl # ... other configuration include { github { name = "my-github-team-name" identity_provider_id = "ca298b82-93b5-41bf-bc2d-10493f09b761" } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Use a GitHub organization as the ` + "`" + `include` + "`" + ` condition. Example: ` + "`" + `` + "`" + `` + "`" + `hcl # ... other configuration include { github { name = "my-github-org-name" # (Required) GitHub organization name team = ["my-github-team-name"] # (Optional) GitHub teams identity_provider_id = "ca298b82-93b5-41bf-bc2d-10493f09b761" } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "azure",
-					Description: `(Optional) Use Azure AD as the ` + "`" + `include` + "`" + ` condition. Example: ` + "`" + `` + "`" + `` + "`" + `hcl # ... other configuration include { azure { id = "86773093-5feb-48dd-814b-7ccd3676ff50e" identity_provider_id = "ca298b82-93b5-41bf-bc2d-10493f09b761" } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Use Azure AD as the ` + "`" + `include` + "`" + ` condition. Example: ` + "`" + `` + "`" + `` + "`" + `hcl # ... other configuration include { azure { id = ["86773093-5feb-48dd-814b-7ccd3676ff50e"] identity_provider_id = "ca298b82-93b5-41bf-bc2d-10493f09b761" } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "okta",
-					Description: `(Optional) Use Okta as the ` + "`" + `include` + "`" + ` condition. Example: ` + "`" + `` + "`" + `` + "`" + `hcl # ... other configuration include { okta { name = "admins" identity_provider_id = "ca298b82-93b5-41bf-bc2d-10493f09b761" } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Use Okta as the ` + "`" + `include` + "`" + ` condition. Example: ` + "`" + `` + "`" + `` + "`" + `hcl # ... other configuration include { okta { name = ["admins"] identity_provider_id = "ca298b82-93b5-41bf-bc2d-10493f09b761" } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "saml",
@@ -183,8 +271,12 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "account",
-					Description: `(Required) The account ID the provider should be associated with.`,
+					Name:        "account_id",
+					Description: `(Optional) The account ID the provider should be associated with. Conflicts with ` + "`" + `zone_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Optional) The zone ID the provider should be associated with. Conflicts with ` + "`" + `account_id` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -250,8 +342,12 @@ var (
 					Description: `(Required) The ID of the application the policy is associated with.`,
 				},
 				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Optional) The account to which the access rule should be added. Conflicts with ` + "`" + `zone_id` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "zone_id",
-					Description: `(Required) The DNS zone to which the access rule should be added.`,
+					Description: `(Optional) The DNS zone to which the access rule should be added. Conflicts with ` + "`" + `account_id` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "decision",
@@ -263,31 +359,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "precedence",
-					Description: `(Optional) The unique precedence for policies on a single application. Integer.`,
+					Description: `(Required) The unique precedence for policies on a single application. Integer.`,
 				},
 				resource.Attribute{
 					Name:        "require",
-					Description: `(Optional) A series of access conditions, see [Access Groups](/docs/providers/cloudflare/r/access_group.html#conditions).`,
+					Description: `(Optional) A series of access conditions, see [Access Groups](/providers/cloudflare/cloudflare/latest/docs/resources/access_group#conditions).`,
 				},
 				resource.Attribute{
 					Name:        "exclude",
-					Description: `(Optional) A series of access conditions, see [Access Groups](/docs/providers/cloudflare/r/access_group.html#conditions).`,
+					Description: `(Optional) A series of access conditions, see [Access Groups](/providers/cloudflare/cloudflare/latest/docs/resources/access_group#conditions).`,
 				},
 				resource.Attribute{
 					Name:        "include",
-					Description: `(Required) A series of access conditions, see [Access Groups](/docs/providers/cloudflare/r/access_group.html#conditions). ## Import Access Policies can be imported using a composite ID formed of zone ID, application ID and policy ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_access_policy.staging cb029e245cfdd66dc8d2e570d5dd3322/d41d8cd98f00b204e9800998ecf8427e/67ea780ce4982c1cfbe6b7293afc765d ` + "`" + `` + "`" + `` + "`" + ` where`,
-				},
-				resource.Attribute{
-					Name:        "cb029e245cfdd66dc8d2e570d5dd3322",
-					Description: `Zone ID`,
-				},
-				resource.Attribute{
-					Name:        "d41d8cd98f00b204e9800998ecf8427e",
-					Description: `Access Application ID`,
-				},
-				resource.Attribute{
-					Name:        "67ea780ce4982c1cfbe6b7293afc765d",
-					Description: `Access Policy ID`,
+					Description: `(Required) A series of access conditions, see [Access Groups](/providers/cloudflare/cloudflare/latest/docs/resources/access_group#conditions). ## Import Access Policies can be imported using a composite ID formed of identifier type (` + "`" + `zone` + "`" + ` or ` + "`" + `account` + "`" + `), identifier ID (` + "`" + `zone_id` + "`" + ` or ` + "`" + `account_id` + "`" + `), application ID and policy ID. ` + "`" + `` + "`" + `` + "`" + ` # import a zone level Access policy $ terraform import cloudflare_access_policy.staging zone/cb029e245cfdd66dc8d2e570d5dd3322/d41d8cd98f00b204e9800998ecf8427e/67ea780ce4982c1cfbe6b7293afc765d # import an account level Access policy $ terraform import cloudflare_access_policy.production account/0d599f0ec05c3bda8c3b8a68c32a1b47/d41d8cd98f00b204e9800998ecf8427e/67ea780ce4982c1cfbe6b7293afc765d ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -385,7 +469,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account_id",
-					Description: `(Required) The ID of the account where the Access Service is being created.`,
+					Description: `(Optional) The ID of the account where the Access Service is being created. Conflicts with ` + "`" + `zone_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Optional) The ID of the zone where the Access Service is being created. Conflicts with ` + "`" + `account_id` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -459,6 +547,89 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "cloudflare_api_token",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource which manages Cloudflare API tokens.`,
+			Description:      ``,
+			Keywords: []string{
+				"api",
+				"token",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the APIToken.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) Permissions policy. Multiple policy blocks can be defined. See the definition below.`,
+				},
+				resource.Attribute{
+					Name:        "condition",
+					Description: `(Optional) Condition block. See the definition below. The`,
+				},
+				resource.Attribute{
+					Name:        "permission_groups",
+					Description: `(Required) List of permissions groups ids ([see official docs][1]).`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `(Required) Map describes what operations against which resources are allowed or denied.`,
+				},
+				resource.Attribute{
+					Name:        "effect",
+					Description: `(Optional) Policy effect. Valid values are ` + "`" + `allow` + "`" + ` or ` + "`" + `deny` + "`" + `. ` + "`" + `allow` + "`" + ` is set as default. The`,
+				},
+				resource.Attribute{
+					Name:        "request_ip",
+					Description: `(Optional) Request IP related conditions. See the definition below. The`,
+				},
+				resource.Attribute{
+					Name:        "in",
+					Description: `(Optional) List of IPv4/IPv6 CIDR addresses where the Token can be used from.`,
+				},
+				resource.Attribute{
+					Name:        "not_in",
+					Description: `(Optional) List of IPv4/IPv6 CIDR addresses where the Token cannot be used from. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique identifier in the API for the API Token.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the API Token.`,
+				},
+				resource.Attribute{
+					Name:        "issued_on",
+					Description: `The RFC3339 timestamp of when the API Token was issued.`,
+				},
+				resource.Attribute{
+					Name:        "modified_on",
+					Description: `The RFC3339 timestamp of when the API Token was last modified. [1]: https://developers.cloudflare.com/api/tokens/create/permissions`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique identifier in the API for the API Token.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the API Token.`,
+				},
+				resource.Attribute{
+					Name:        "issued_on",
+					Description: `The RFC3339 timestamp of when the API Token was issued.`,
+				},
+				resource.Attribute{
+					Name:        "modified_on",
+					Description: `The RFC3339 timestamp of when the API Token was last modified. [1]: https://developers.cloudflare.com/api/tokens/create/permissions`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "cloudflare_argo",
 			Category:         "Resources",
 			ShortDescription: `Provides the ability to manage Cloudflare Argo features.`,
@@ -478,6 +649,32 @@ var (
 				resource.Attribute{
 					Name:        "smart_routing",
 					Description: `(Optional) Whether smart routing is enabled. Valid values: ` + "`" + `on` + "`" + ` or ` + "`" + `off` + "`" + `. ## Import Argo settings can be imported the zone ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_argo.example d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ` where ` + "`" + `d41d8cd98f00b204e9800998ecf8427e` + "`" + ` is the zone ID.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "cloudflare_argo_tunnel",
+			Category:         "Resources",
+			ShortDescription: `Provides the ability to manage Cloudflare Argo Tunnels.`,
+			Description:      ``,
+			Keywords: []string{
+				"argo",
+				"tunnel",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Required) The Cloudflare account ID that you wish to manage the Argo Tunnel on.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A user-friendly name chosen when the tunnel is created. Cannot be empty.`,
+				},
+				resource.Attribute{
+					Name:        "secret",
+					Description: `(Required) 32 or more bytes, encoded as a base64 string. The Create Argo Tunnel endpoint sets this as the tunnel's password. Anyone wishing to run the tunnel needs this password. ## Import Argo Tunnels can be imported a composite ID of the account ID and tunnel UUID. ->`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -511,6 +708,159 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "cloudflare_certificate_pack",
+			Category:         "Resources",
+			ShortDescription: `Provides a Cloudflare Certificate Pack resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"certificate",
+				"pack",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Required) The DNS zone to which the certificate pack should be added.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Certificate pack configuration type. Allowed values: ` + "`" + `"custom"` + "`" + `, ` + "`" + `"dedicated_custom"` + "`" + `, ` + "`" + `"advanced"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "hosts",
+					Description: `(Required) List of hostnames to provision the certificate pack for. Note: If using Let's Encrypt, you cannot use individual subdomains and only a wildcard for subdomain is available.`,
+				},
+				resource.Attribute{
+					Name:        "validation_method",
+					Description: `(Optional based on ` + "`" + `type` + "`" + `) Which validation method to use in order to prove domain ownership. Allowed values: ` + "`" + `"txt"` + "`" + `, ` + "`" + `"http"` + "`" + `, ` + "`" + `"email"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "validity_days",
+					Description: `(Optional based on ` + "`" + `type` + "`" + `) How long the certificate is valid for. Note: If using Let's Encrypt, this value can only be 90 days. Allowed values: 14, 30, 90, 365.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_authority",
+					Description: `(Optional based on ` + "`" + `type` + "`" + `) Which certificate authority to issue the certificate pack. Allowed values: ` + "`" + `"digicert"` + "`" + `, ` + "`" + `"lets_encrypt"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "cloudflare_branding",
+					Description: `(Optional based on ` + "`" + `type` + "`" + `) Whether or not to include Cloudflare branding. This will add ` + "`" + `sni.cloudflaressl.com` + "`" + ` as the Common Name if set to ` + "`" + `true` + "`" + `. ## Import Certificate packs can be imported using a composite ID of the zone ID and certificate pack ID. This isn't recommended and it is advised to replace the certificate entirely instead. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_certificate_pack.example cb029e245cfdd66dc8d2e570d5dd3322/8fda82e2-6af9-4eb2-992a-5ab65b792ef1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "cloudflare_custom_hostname",
+			Category:         "Resources",
+			ShortDescription: `!- Provides a Cloudflare custom hostname resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"custom",
+				"hostname",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Required) The DNS zone ID where the custom hostname should be assigned.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required) Hostname you intend to request a certificate for.`,
+				},
+				resource.Attribute{
+					Name:        "custom_origin_server",
+					Description: `(Optional) The custom origin server used for certificates.`,
+				},
+				resource.Attribute{
+					Name:        "ssl",
+					Description: `(Required) SSL configuration of the certificate. See further notes below.`,
+				},
+				resource.Attribute{
+					Name:        "method",
+					Description: `(Required) Domain control validation (DCV) method used for this hostname. Valid values are ` + "`" + `"txt"` + "`" + `, ` + "`" + `"http"` + "`" + ` and ` + "`" + `"email"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Level of validation to be used for this hostname. Domain validation ("dv") must be used.`,
+				},
+				resource.Attribute{
+					Name:        "wildcard",
+					Description: `(Required) Indicates whether the certificate covers a wildcard.`,
+				},
+				resource.Attribute{
+					Name:        "custom_certificate",
+					Description: `(Optional) If a custom uploaded certificate is used.`,
+				},
+				resource.Attribute{
+					Name:        "custom_key",
+					Description: `(Optional) The key for a custom uploaded certificate.`,
+				},
+				resource.Attribute{
+					Name:        "settings",
+					Description: `(Required) SSL/TLS settings for the certificate. See further notes below.`,
+				},
+				resource.Attribute{
+					Name:        "http2",
+					Description: `(Optional) Whether or not HTTP2 should be supported. Valid values are ` + "`" + `"on"` + "`" + ` or ` + "`" + `"off"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tls13",
+					Description: `(Optional) Whether or not TLSv1.3 should be supported. Valid values are ` + "`" + `"on"` + "`" + ` or ` + "`" + `"off"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "min_tls_version",
+					Description: `(Optional) Lowest version of TLS this certificate should support. Valid values are ` + "`" + `"1.0"` + "`" + `, ` + "`" + `"1.1"` + "`" + `, ` + "`" + `"1.2"` + "`" + ` and ` + "`" + `"1.3"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ciphers",
+					Description: `(Optional) List of SSL/TLS ciphers to associate with this certificate. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "ownership_verification.type",
+					Description: `Domain control validation (DCV) method used for the hostname.`,
+				},
+				resource.Attribute{
+					Name:        "ownership_verification.value",
+					Description: `Domain control validation (DCV) value for confirming ownership. Example, "_cf-custom-hostname.example.com` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ownership_verification.name",
+					Description: `Domain control validation (DCV) name confirming ownership. Example, "03f28e11-fa64-4966-bb1e-dd2423e16f36"` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ownership_verification_http.http_url",
+					Description: `Domain control validation (DCV) URL for confirming ownership. Example, ` + "`" + `http://hostname.example.com/.well-known/cf-custom-hostname-challenge/643395f9-de80-42f5-a2a0-e03ff60cf2a7` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ownership_verification_http.http_body",
+					Description: `Domain control validation (DCV) body for confirming ownership. Example, ` + "`" + `03f28e11-fa64-4966-bb1e-dd2423e16f36` + "`" + ` ## Import Custom hostname certificates can be imported using a composite ID formed of the zone ID and [hostname ID](https://api.cloudflare.com/#custom-hostname-for-a-zone-properties), separated by a "/" e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_custom_hostname.example d41d8cd98f00b204e9800998ecf8427e/0d89c70d-ad9f-4843-b99f-6cc0252067e9 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ownership_verification.type",
+					Description: `Domain control validation (DCV) method used for the hostname.`,
+				},
+				resource.Attribute{
+					Name:        "ownership_verification.value",
+					Description: `Domain control validation (DCV) value for confirming ownership. Example, "_cf-custom-hostname.example.com` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ownership_verification.name",
+					Description: `Domain control validation (DCV) name confirming ownership. Example, "03f28e11-fa64-4966-bb1e-dd2423e16f36"` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ownership_verification_http.http_url",
+					Description: `Domain control validation (DCV) URL for confirming ownership. Example, ` + "`" + `http://hostname.example.com/.well-known/cf-custom-hostname-challenge/643395f9-de80-42f5-a2a0-e03ff60cf2a7` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ownership_verification_http.http_body",
+					Description: `Domain control validation (DCV) body for confirming ownership. Example, ` + "`" + `03f28e11-fa64-4966-bb1e-dd2423e16f36` + "`" + ` ## Import Custom hostname certificates can be imported using a composite ID formed of the zone ID and [hostname ID](https://api.cloudflare.com/#custom-hostname-for-a-zone-properties), separated by a "/" e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_custom_hostname.example d41d8cd98f00b204e9800998ecf8427e/0d89c70d-ad9f-4843-b99f-6cc0252067e9 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "cloudflare_custom_pages",
 			Category:         "Resources",
 			ShortDescription: `Provides a resource which manages Cloudflare custom pages.`,
@@ -538,7 +888,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `(Required) Managed state of the custom page. Must be one of ` + "`" + `default` + "`" + `, ` + "`" + `customised` + "`" + `. If the value is ` + "`" + `default` + "`" + ` it will be removed from the Terraform state management. ## Import Custom pages can be imported using a composite ID formed of:`,
+					Description: `(Required) Managed state of the custom page. Must be one of ` + "`" + `default` + "`" + `, ` + "`" + `customized` + "`" + `. If the value is ` + "`" + `default` + "`" + ` it will be removed from the Terraform state management. ## Import Custom pages can be imported using a composite ID formed of:`,
 				},
 				resource.Attribute{
 					Name:        "customPageLevel",
@@ -766,7 +1116,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "port",
-					Description: `(Optional) Port number to connect to for the health check. Valid values are in the rage ` + "`" + `0-65535` + "`" + ` (Default: ` + "`" + `80` + "`" + `).`,
+					Description: `(Optional) Port number to connect to for the health check. Valid values are in the range ` + "`" + `0-65535` + "`" + ` (Default: ` + "`" + `80` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "timeout",
@@ -833,6 +1183,44 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "cloudflare_ip_list",
+			Category:         "Resources",
+			ShortDescription: `Provides IP Lists to be used in Firewall Rules across all zones within the same account.`,
+			Description:      ``,
+			Keywords: []string{
+				"ip",
+				"list",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Required) The ID of the account where the IP List is being created.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the list (used in filter expressions). Valid pattern: ` + "`" + `^[a-zA-Z0-9_]+$` + "`" + `. Maximum Length: 50`,
+				},
+				resource.Attribute{
+					Name:        "kind",
+					Description: `(Required) The kind of values in the List. Valid values: ` + "`" + `ip` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A note that can be used to annotate the List. Maximum Length: 500 The`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The IPv4 address, IPv4 CIDR or IPv6 CIDR. IPv6 CIDRs are limited to a maximum of /64.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) A note that can be used to annotate the item. ## Import An existing IP List can be imported using the account ID and list ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_ip_list.example d41d8cd98f00b204e9800998ecf8427e/cb029e245cfdd66dc8d2e570d5dd3322 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "cloudflare_load_balancer",
 			Category:         "Resources",
 			ShortDescription: `Provides a Cloudflare Load Balancer resource.`,
@@ -891,6 +1279,14 @@ var (
 					Description: `(Optional) Associates all requests coming from an end-user with a single origin. Cloudflare will set a cookie on the initial response to the client, such that consequent requests with the cookie in the request will go to the same origin, so long as it is available. Valid values are: ` + "`" + `""` + "`" + `, ` + "`" + `"none"` + "`" + `, ` + "`" + `"cookie"` + "`" + `, and ` + "`" + `"ip_cookie"` + "`" + `. Default is ` + "`" + `""` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "session_affinity_ttl",
+					Description: `(Optional) Time, in seconds, until this load balancers session affinity cookie expires after being created. This parameter is ignored unless a supported session affinity policy is set. The current default of 23 hours will be used unless ` + "`" + `session_affinity_ttl` + "`" + ` is explicitly set. Once the expiry time has been reached, subsequent requests may get sent to a different origin server. Valid values are between 1800 and 604800.`,
+				},
+				resource.Attribute{
+					Name:        "session_affinity_attributes",
+					Description: `(Optional) Configure cookie attributes for session affinity cookie. See the field documentation below.`,
+				},
+				resource.Attribute{
 					Name:        "region",
 					Description: `(Required) A region code which must be in the list defined [here](https://support.cloudflare.com/hc/en-us/articles/115000540888-Load-Balancing-Geographic-Regions). Multiple entries should not be specified with the same region.`,
 				},
@@ -904,7 +1300,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pool_ids",
-					Description: `(Required) A list of pool IDs in failover priority to use for traffic reaching the given PoP. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) A list of pool IDs in failover priority to use for traffic reaching the given PoP.`,
+				},
+				resource.Attribute{
+					Name:        "samesite",
+					Description: `(Optional) Configures the SameSite attribute on session affinity cookie. Value "Auto" will be translated to "Lax" or "None" depending if Always Use HTTPS is enabled. Note: when using value "None", the secure attribute can not be set to "Never". Valid values: ` + "`" + `"Auto"` + "`" + `, ` + "`" + `"Lax"` + "`" + `, ` + "`" + `"None"` + "`" + ` or ` + "`" + `"Strict"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "secure",
+					Description: `(Optional) Configures the Secure attribute on session affinity cookie. Value "Always" indicates the Secure attribute will be set in the Set-Cookie header, "Never" indicates the Secure attribute will not be set, and "Auto" will set the Secure attribute depending if Always Use HTTPS is enabled. Valid values: ` + "`" + `"Auto"` + "`" + `, ` + "`" + `"Always"` + "`" + ` or ` + "`" + `"Never"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "drain_duration",
+					Description: `(Optional) Configures the drain duration in seconds. This field is only used when session affinity is enabled on the load balancer. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -983,6 +1391,10 @@ var (
 					Description: `(Optional) The protocol to use for the healthcheck. Currently supported protocols are 'HTTP', 'HTTPS' and 'TCP'. Default: "http".`,
 				},
 				resource.Attribute{
+					Name:        "port",
+					Description: `The port number to use for the healthcheck, required when creating a TCP monitor. Valid values are in the range ` + "`" + `0-65535` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) Free text description.`,
 				},
@@ -993,6 +1405,10 @@ var (
 				resource.Attribute{
 					Name:        "follow_redirects",
 					Description: `(Optional) Follow redirects if returned by the origin. Only valid if ` + "`" + `type` + "`" + ` is "http" or "https".`,
+				},
+				resource.Attribute{
+					Name:        "probe_zone",
+					Description: `(Optional) Assign this monitor to emulate the specified zone while probing. Only valid if ` + "`" + `type` + "`" + ` is "http" or "https".`,
 				},
 				resource.Attribute{
 					Name:        "header",
@@ -1176,8 +1592,8 @@ var (
 					Description: `(Optional) Configuration string for the Logshare API. It specifies things like requested fields and timestamp formats. See [Logpull options documentation](https://developers.cloudflare.com/logs/logpush/logpush-configuration-api/understanding-logpush-api/#options).`,
 				},
 				resource.Attribute{
-					Name:        "enable",
-					Description: `(Optional) Whether to enable to job to create or not.`,
+					Name:        "enabled",
+					Description: `(Optional) Whether to enable the job.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1216,6 +1632,49 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "cloudflare_magic_firewall_ruleset",
+			Category:         "Resources",
+			ShortDescription: `Provides the ability to manage a Magic Firewall Ruleset and it's firewall rules which are used with Magic Transit.`,
+			Description:      ``,
+			Keywords: []string{
+				"magic",
+				"firewall",
+				"ruleset",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Required) The ID of the account where the ruleset is being created.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the ruleset.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A note that can be used to annotate the ruleset. The`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Valid values: ` + "`" + `allow` + "`" + ` or ` + "`" + `block` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "expression",
+					Description: `(Required) A Firewall expression using Wireshark syntax.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A note that can be used to annotate the rule.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Whether the rule is enabled or not. Valid values: ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `. ## Import An existing Magic Firewall Ruleset can be imported using the account ID and ruleset ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_magic_firewall_ruleset.example d41d8cd98f00b204e9800998ecf8427e/cb029e245cfdd66dc8d2e570d5dd3322 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "cloudflare_origin_ca_certificate",
 			Category:         "Resources",
 			ShortDescription: `Provides a Cloudflare Origin CA certificate resource.`,
@@ -1236,7 +1695,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "requested_validity",
-					Description: `(Required) The number of days for which the certificate should be valid. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The number of days for which the certificate should be valid. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1666,7 +2125,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "origin_traffic",
-					Description: `(Optional) Only count traffic that has come from your origin servers. If true, cached items that Cloudflare serve will not count towards rate limiting. Default: ` + "`" + `true` + "`" + `. The`,
+					Description: `(Optional) Only count traffic that has come from your origin servers. If true, cached items that Cloudflare serve will not count towards rate limiting. Default: ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "headers",
+					Description: `(Optional) block is a list of maps with the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the response header to match.`,
+				},
+				resource.Attribute{
+					Name:        "op",
+					Description: `(Required) The operator when matching. Allowable values are 'eq', 'ne' where ` + "`" + `eq` + "`" + ` means equals, ` + "`" + `ne` + "`" + ` means not equals.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The value of the header, which will be exactly matched. The`,
 				},
 				resource.Attribute{
 					Name:        "mode",
@@ -1843,7 +2318,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "origin_port",
-					Description: `(Optional) If using ` + "`" + `origin_dns` + "`" + ` this is a required attribute. Origin port to proxy traffice to e.g. ` + "`" + `22` + "`" + `.`,
+					Description: `(Optional) If using ` + "`" + `origin_dns` + "`" + ` and not ` + "`" + `origin_port_range` + "`" + `, this is a required attribute. Origin port to proxy traffice to e.g. ` + "`" + `22` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "origin_port_range",
+					Description: `(Optional) If using ` + "`" + `origin_dns` + "`" + ` and not ` + "`" + `origin_port` + "`" + `, this is a required attribute. Origin port range to proxy traffice to. When using a range, the protocol field must also specify a range, e.g. ` + "`" + `tcp/22-23` + "`" + `. Fields documented below.`,
 				},
 				resource.Attribute{
 					Name:        "tls",
@@ -1883,7 +2362,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Fully qualified domain name of the origin e.g. origin-ssh.example.com. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) Fully qualified domain name of the origin e.g. origin-ssh.example.com.`,
+				},
+				resource.Attribute{
+					Name:        "start",
+					Description: `(Required) Lower bound of the origin port range, e.g. ` + "`" + `1000` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "end",
+					Description: `(Required) Upper bound of the origin port range, e.g. ` + "`" + `2000` + "`" + ` ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2070,7 +2557,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `(Required) The mode of the rule, can be one of ["block", "challenge", "default", "disable", "simulate"]. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The mode of the rule, can be one of ["block", "challenge", "default", "disable", "simulate"] or ["on", "off"] depending on the WAF Rule type. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2097,6 +2584,54 @@ var (
 				resource.Attribute{
 					Name:        "group_id",
 					Description: `The ID of the WAF Rule Group that contains the rule. ## Import Rules can be imported using a composite ID formed of zone ID and the WAF Rule ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_waf_rule.100000 ae36f999674d196762efcc5abb06b345/100000 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "cloudflare_worker_cron_trigger",
+			Category:         "Resources",
+			ShortDescription: `Provides a Cloudflare Worker Cron Trigger resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"worker",
+				"cron",
+				"trigger",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "script_name",
+					Description: `(Required) Worker script to target for the schedules`,
+				},
+				resource.Attribute{
+					Name:        "schedules",
+					Description: `(Required) List of cron expressions to execute the Worker Script ## Attributes Reference The following additional attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `md5 checksum of the script name`,
+				},
+				resource.Attribute{
+					Name:        "script_name",
+					Description: `Name of the Worker Script being targeted`,
+				},
+				resource.Attribute{
+					Name:        "schedules",
+					Description: `List of cron expressions in use ## Import Worker Cron Triggers can be imported using the script name of the Worker they are targeting. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_worker_cron_trigger.example my-script ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `md5 checksum of the script name`,
+				},
+				resource.Attribute{
+					Name:        "script_name",
+					Description: `Name of the Worker Script being targeted`,
+				},
+				resource.Attribute{
+					Name:        "schedules",
+					Description: `List of cron expressions in use ## Import Worker Cron Triggers can be imported using the script name of the Worker they are targeting. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_worker_cron_trigger.example my-script ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -2171,7 +2706,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "text",
-					Description: `(Required) The secret text you want to store. ## Import To import a script, use a script name, e.g. ` + "`" + `script_name` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_worker_script.default script_name ` + "`" + `` + "`" + `` + "`" + ` where:`,
+					Description: `(Required) The secret text you want to store.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The global variable for the binding in your Worker code.`,
+				},
+				resource.Attribute{
+					Name:        "module",
+					Description: `(Required) The base64 encoded wasm module you want to store. ## Import To import a script, use a script name, e.g. ` + "`" + `script_name` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_worker_script.default script_name ` + "`" + `` + "`" + `` + "`" + ` where:`,
 				},
 				resource.Attribute{
 					Name:        "script_name",
@@ -2465,35 +3008,42 @@ var (
 		"cloudflare_access_rule":                 4,
 		"cloudflare_access_service_token":        5,
 		"cloudflare_account_member":              6,
-		"cloudflare_argo":                        7,
-		"cloudflare_byo_ip_prefix":               8,
-		"cloudflare_custom_pages":                9,
-		"cloudflare_custom_ssl":                  10,
-		"cloudflare_filter":                      11,
-		"cloudflare_firewall_rule":               12,
-		"cloudflare_healthcheck":                 13,
-		"cloudflare_load_balancer":               14,
-		"cloudflare_load_balancer_monitor":       15,
-		"cloudflare_load_balancer_pool":          16,
-		"cloudflare_logpull_retention":           17,
-		"cloudflare_logpush_job":                 18,
-		"cloudflare_logpush_ownership_challenge": 19,
-		"cloudflare_origin_ca_certificate":       20,
-		"cloudflare_page_rule":                   21,
-		"cloudflare_rate_limit":                  22,
-		"cloudflare_record":                      23,
-		"cloudflare_spectrum_application":        24,
-		"cloudflare_waf_group":                   25,
-		"cloudflare_waf_override":                26,
-		"cloudflare_waf_package":                 27,
-		"cloudflare_waf_rule":                    28,
-		"cloudflare_worker_route":                29,
-		"cloudflare_worker_script":               30,
-		"cloudflare_workers_kv":                  31,
-		"cloudflare_workers_kv_namespace":        32,
-		"cloudflare_zone":                        33,
-		"cloudflare_zone_lockdown":               34,
-		"cloudflare_zone_settings_override":      35,
+		"cloudflare_api_token":                   7,
+		"cloudflare_argo":                        8,
+		"cloudflare_argo_tunnel":                 9,
+		"cloudflare_byo_ip_prefix":               10,
+		"cloudflare_certificate_pack":            11,
+		"cloudflare_custom_hostname":             12,
+		"cloudflare_custom_pages":                13,
+		"cloudflare_custom_ssl":                  14,
+		"cloudflare_filter":                      15,
+		"cloudflare_firewall_rule":               16,
+		"cloudflare_healthcheck":                 17,
+		"cloudflare_ip_list":                     18,
+		"cloudflare_load_balancer":               19,
+		"cloudflare_load_balancer_monitor":       20,
+		"cloudflare_load_balancer_pool":          21,
+		"cloudflare_logpull_retention":           22,
+		"cloudflare_logpush_job":                 23,
+		"cloudflare_logpush_ownership_challenge": 24,
+		"cloudflare_magic_firewall_ruleset":      25,
+		"cloudflare_origin_ca_certificate":       26,
+		"cloudflare_page_rule":                   27,
+		"cloudflare_rate_limit":                  28,
+		"cloudflare_record":                      29,
+		"cloudflare_spectrum_application":        30,
+		"cloudflare_waf_group":                   31,
+		"cloudflare_waf_override":                32,
+		"cloudflare_waf_package":                 33,
+		"cloudflare_waf_rule":                    34,
+		"cloudflare_worker_cron_trigger":         35,
+		"cloudflare_worker_route":                36,
+		"cloudflare_worker_script":               37,
+		"cloudflare_workers_kv":                  38,
+		"cloudflare_workers_kv_namespace":        39,
+		"cloudflare_zone":                        40,
+		"cloudflare_zone_lockdown":               41,
+		"cloudflare_zone_settings_override":      42,
 	}
 )
 

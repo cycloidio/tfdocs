@@ -17,7 +17,7 @@ const (
 		)
 
 		var (
-			{{ if eq .Type "r" }}
+			{{ if isResource .}}
 				Resources = []*resource.Resource{
 			{{ else }}
 				DataSources = []*resource.Resource{
@@ -56,7 +56,7 @@ const (
 					},
 				{{- end }}
 			}
-			{{ if eq .Type "r" }}
+			{{ if isResource . }}
 				resourcesMap = map[string]int{
 			{{ else }}
 				dataSourcesMap = map[string]int{
@@ -67,7 +67,7 @@ const (
 			}
 		)
 
-		{{ if eq .Type "r" }}
+		{{ if isResource . }}
 			func GetResource(r string) (*resource.Resource, error) {
 				rs, ok := resourcesMap[r]
 				if !ok {
@@ -100,7 +100,13 @@ type TemplateData struct {
 func init() {
 	var err error
 
-	resourceTmpl, err = template.New("test").Parse(rTmpl)
+	resourceTmpl, err = template.New("test").Funcs(
+		template.FuncMap{
+			"isResource": func(d TemplateData) bool {
+				return d.Type == "r" || d.Type == "resources"
+			},
+		},
+	).Parse(rTmpl)
 	if err != nil {
 		panic(err)
 	}

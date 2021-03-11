@@ -33,6 +33,10 @@ var (
 					Description: `(Optional) If you want to assign an entire network instead of a single IP address to your server, you must specify the prefix length. Currently, there is only support for ` + "`" + `ip_version=6` + "`" + ` and ` + "`" + `prefix_length=56` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) You can specify the type. Options include ` + "`" + `regional` + "`" + ` (default) and ` + "`" + `global` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "region_slug",
 					Description: `(Optional) You can specify a region slug. Options include ` + "`" + `lpg` + "`" + ` and ` + "`" + `rma` + "`" + `.`,
 				},

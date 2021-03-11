@@ -111,6 +111,14 @@ var (
 					Description: `the public IPV4 address of the CloudIP`,
 				},
 				resource.Attribute{
+					Name:        "public_ipv4",
+					Description: `the public IPV4 address of the CloudIP`,
+				},
+				resource.Attribute{
+					Name:        "public_ipv6",
+					Description: `the public IPV6 address of the CloudIP`,
+				},
+				resource.Attribute{
 					Name:        "status",
 					Description: `Current state of the CloudIP: ` + "`" + `mapped` + "`" + ` or ` + "`" + `unmapped` + "`" + ``,
 				},
@@ -133,12 +141,51 @@ var (
 					Description: `the public IPV4 address of the CloudIP`,
 				},
 				resource.Attribute{
+					Name:        "public_ipv4",
+					Description: `the public IPV4 address of the CloudIP`,
+				},
+				resource.Attribute{
+					Name:        "public_ipv6",
+					Description: `the public IPV6 address of the CloudIP`,
+				},
+				resource.Attribute{
 					Name:        "status",
 					Description: `Current state of the CloudIP: ` + "`" + `mapped` + "`" + ` or ` + "`" + `unmapped` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "username",
 					Description: `The username used to log onto the server ## Import CloudIPs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_cloudip.mycloudip cip-vsalc ` + "`" + `` + "`" + `` + "`" + ` <a id="timeouts"></a> ## Timeouts ` + "`" + `brightbox_cloudip` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Mapping Cloud IPs - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Unmapping Cloud IPs`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "brightbox_config_map",
+			Category:         "Resources",
+			ShortDescription: `Provides a Brightbox Config Map resource. This can be used to create, modify, and delete Config Maps.`,
+			Description:      ``,
+			Keywords: []string{
+				"config",
+				"map",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) A label assigned to the Config Map`,
+				},
+				resource.Attribute{
+					Name:        "data",
+					Description: `(Required) A key value map of strings ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Server ## Import Config Maps can be imported using the config map ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_config_map.default cfg-ok8vw ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Server ## Import Config Maps can be imported using the config map ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_config_map.default cfg-ok8vw ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -355,12 +402,16 @@ var (
 					Description: `(Optional) The RSA private key used to sign the certificate in PEM format. Must be included along with ` + "`" + `certificate_pem` + "`" + ``,
 				},
 				resource.Attribute{
-					Name:        "sslv3",
-					Description: `(Optional) Allow SSL v3 to be used. Default is ` + "`" + `false` + "`" + ``,
-				},
-				resource.Attribute{
 					Name:        "buffer_size",
 					Description: `(Optional) Buffer size in bytes`,
+				},
+				resource.Attribute{
+					Name:        "https_redirect",
+					Description: `(Optional) Redirect any requests on port 80 automatically to port 443`,
+				},
+				resource.Attribute{
+					Name:        "ssl_minimum_version",
+					Description: `(Optional) The minimum TLS/SSL version for the load balancer to accept. Supports ` + "`" + `TLSv1.0` + "`" + `, ` + "`" + `TLSv1.1` + "`" + `, ` + "`" + `TLSv1.2` + "`" + `, ` + "`" + `TLSv1.3` + "`" + ` and ` + "`" + `SSLv3` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "locked",
@@ -369,6 +420,10 @@ var (
 				resource.Attribute{
 					Name:        "nodes",
 					Description: `(Optional) An array of Server IDs`,
+				},
+				resource.Attribute{
+					Name:        "domains",
+					Description: `(Optional) An array of domain names to attempt to register with ACME. Conflicts with ` + "`" + `certificate_pem` + "`" + ` and ` + "`" + `certificate_private_key` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "listener",
@@ -392,7 +447,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "timeout",
-					Description: `(Optional) Timeout of connection in milliseconds. Default is 50000 Health Check (` + "`" + `healthcheck` + "`" + `) supports the following:`,
+					Description: `(Optional) Timeout of connection in milliseconds. Default is 50000`,
+				},
+				resource.Attribute{
+					Name:        "proxy_protocol",
+					Description: `(Optional) Proxy Protocol version supported by backend server. One of ` + "`" + `v1` + "`" + `, ` + "`" + `v2` + "`" + `, ` + "`" + `v2-ssl` + "`" + `, ` + "`" + `v2-ssl-cn` + "`" + `. Default is no Proxy. Health Check (` + "`" + `healthcheck` + "`" + `) supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -528,6 +587,10 @@ var (
 					Description: `(Optional) Set to true to stop the server from being deleted`,
 				},
 				resource.Attribute{
+					Name:        "disk_encrypted",
+					Description: `(Optional) Create a server where the data on disk is 'encrypted as rest' by the cloud.`,
+				},
+				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Server`,
 				},
@@ -640,13 +703,29 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Server ## Import Server Groups can be imported using the server group ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_server_group.default grp-ok8vw ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Server`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `Is this the default server group?`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `The Fully Qualified Domain Name of the server group ## Import Server Groups can be imported using the server group ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_server_group.default grp-ok8vw ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Server ## Import Server Groups can be imported using the server group ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_server_group.default grp-ok8vw ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Server`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `Is this the default server group?`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `The Fully Qualified Domain Name of the server group ## Import Server Groups can be imported using the server group ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_server_group.default grp-ok8vw ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -656,13 +735,14 @@ var (
 
 		"brightbox_api_client":      0,
 		"brightbox_cloudip":         1,
-		"brightbox_database_server": 2,
-		"brightbox_firewall_policy": 3,
-		"brightbox_firewall_rule":   4,
-		"brightbox_load_balancer":   5,
-		"brightbox_orbit_container": 6,
-		"brightbox_server":          7,
-		"brightbox_server_group":    8,
+		"brightbox_config_map":      2,
+		"brightbox_database_server": 3,
+		"brightbox_firewall_policy": 4,
+		"brightbox_firewall_rule":   5,
+		"brightbox_load_balancer":   6,
+		"brightbox_orbit_container": 7,
+		"brightbox_server":          8,
+		"brightbox_server_group":    9,
 	}
 )
 

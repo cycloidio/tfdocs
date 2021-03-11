@@ -22,11 +22,11 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "region_id",
+					Name:        "region",
 					Description: `(Required) The ID of the region that the server is to be created in.`,
 				},
 				resource.Attribute{
-					Name:        "plan_id",
+					Name:        "plan",
 					Description: `(Required) The ID of the plan that you want the server to subscribe to.`,
 				},
 				resource.Attribute{
@@ -58,7 +58,7 @@ var (
 					Description: `(Optional) Whether the server has IPv6 networking activated.`,
 				},
 				resource.Attribute{
-					Name:        "notify_activate",
+					Name:        "activation_email",
 					Description: `(Optional) Whether an activation email will be sent when the server is ready.`,
 				},
 				resource.Attribute{
@@ -71,14 +71,18 @@ var (
 				},
 				resource.Attribute{
 					Name:        "label",
-					Description: `(Optional) A label for the server. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) A label for the server.`,
+				},
+				resource.Attribute{
+					Name:        "reserved_ipv4",
+					Description: `(Optional) IP address of the floating IP to use as the main IP of this server. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the server.`,
 				},
 				resource.Attribute{
-					Name:        "region_id",
+					Name:        "region",
 					Description: `The ID of the region that the server is in.`,
 				},
 				resource.Attribute{
@@ -102,10 +106,6 @@ var (
 					Description: `The number of CPUs available on the server.`,
 				},
 				resource.Attribute{
-					Name:        "location",
-					Description: `The physical location of the server.`,
-				},
-				resource.Attribute{
 					Name:        "default_password",
 					Description: `The server's default password.`,
 				},
@@ -126,11 +126,19 @@ var (
 					Description: `The status of the server's subscription.`,
 				},
 				resource.Attribute{
-					Name:        "v6_networks",
-					Description: `A list of the server's IPv6 networks.`,
+					Name:        "v6_network",
+					Description: `The IPv6 subnet.`,
 				},
 				resource.Attribute{
-					Name:        "plan_id",
+					Name:        "v6_main_ip",
+					Description: `The main IPv6 network address.`,
+				},
+				resource.Attribute{
+					Name:        "v6_network_size",
+					Description: `The IPv6 network size in bits.`,
+				},
+				resource.Attribute{
+					Name:        "plan",
 					Description: `The ID of the plan that server is subscribed to.`,
 				},
 				resource.Attribute{
@@ -155,14 +163,14 @@ var (
 				},
 				resource.Attribute{
 					Name:        "user_data",
-					Description: `Base64 encoded generic data store, which some provisioning tools and cloud operating systems use as a configuration file. It is generally consumed only once after an instance has been launched, but individual needs may vary.`,
+					Description: `Generic data store, which some provisioning tools and cloud operating systems use as a configuration file. It is generally consumed only once after an instance has been launched, but individual needs may vary.`,
 				},
 				resource.Attribute{
 					Name:        "enable_ipv6",
 					Description: `Whether the server has IPv6 networking activated.`,
 				},
 				resource.Attribute{
-					Name:        "notify_activate",
+					Name:        "activation_email",
 					Description: `Whether an activation email was sent when the server was ready.`,
 				},
 				resource.Attribute{
@@ -175,7 +183,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "label",
-					Description: `A label for the server. ## Import Bare Metal Servers can be imported using the server ` + "`" + `SUBID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_bare_metal_server.my_server 1312965 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A label for the server.`,
+				},
+				resource.Attribute{
+					Name:        "mac_address",
+					Description: `The MAC address associated with the server. ## Import Bare Metal Servers can be imported using the server ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_bare_metal_server.my_server b6a859c5-b299-49dd-8888-b1abbc517d08 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -184,7 +196,7 @@ var (
 					Description: `ID of the server.`,
 				},
 				resource.Attribute{
-					Name:        "region_id",
+					Name:        "region",
 					Description: `The ID of the region that the server is in.`,
 				},
 				resource.Attribute{
@@ -208,10 +220,6 @@ var (
 					Description: `The number of CPUs available on the server.`,
 				},
 				resource.Attribute{
-					Name:        "location",
-					Description: `The physical location of the server.`,
-				},
-				resource.Attribute{
 					Name:        "default_password",
 					Description: `The server's default password.`,
 				},
@@ -232,11 +240,19 @@ var (
 					Description: `The status of the server's subscription.`,
 				},
 				resource.Attribute{
-					Name:        "v6_networks",
-					Description: `A list of the server's IPv6 networks.`,
+					Name:        "v6_network",
+					Description: `The IPv6 subnet.`,
 				},
 				resource.Attribute{
-					Name:        "plan_id",
+					Name:        "v6_main_ip",
+					Description: `The main IPv6 network address.`,
+				},
+				resource.Attribute{
+					Name:        "v6_network_size",
+					Description: `The IPv6 network size in bits.`,
+				},
+				resource.Attribute{
+					Name:        "plan",
 					Description: `The ID of the plan that server is subscribed to.`,
 				},
 				resource.Attribute{
@@ -261,14 +277,14 @@ var (
 				},
 				resource.Attribute{
 					Name:        "user_data",
-					Description: `Base64 encoded generic data store, which some provisioning tools and cloud operating systems use as a configuration file. It is generally consumed only once after an instance has been launched, but individual needs may vary.`,
+					Description: `Generic data store, which some provisioning tools and cloud operating systems use as a configuration file. It is generally consumed only once after an instance has been launched, but individual needs may vary.`,
 				},
 				resource.Attribute{
 					Name:        "enable_ipv6",
 					Description: `Whether the server has IPv6 networking activated.`,
 				},
 				resource.Attribute{
-					Name:        "notify_activate",
+					Name:        "activation_email",
 					Description: `Whether an activation email was sent when the server was ready.`,
 				},
 				resource.Attribute{
@@ -281,7 +297,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "label",
-					Description: `A label for the server. ## Import Bare Metal Servers can be imported using the server ` + "`" + `SUBID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_bare_metal_server.my_server 1312965 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A label for the server.`,
+				},
+				resource.Attribute{
+					Name:        "mac_address",
+					Description: `The MAC address associated with the server. ## Import Bare Metal Servers can be imported using the server ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_bare_metal_server.my_server b6a859c5-b299-49dd-8888-b1abbc517d08 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -301,11 +321,11 @@ var (
 					Description: `(Required) The size of the given block storage.`,
 				},
 				resource.Attribute{
-					Name:        "region_id",
-					Description: `(Required) Region in which this block storage will reside in. (Currently only NJ/NY supported region_id 1)`,
+					Name:        "region",
+					Description: `(Required) Region in which this block storage will reside in. (Currently only NJ/NY supported region "ewr")`,
 				},
 				resource.Attribute{
-					Name:        "attached_id",
+					Name:        "attached_to_instance",
 					Description: `(Optional) VPS ID that you want to have this block storage attached to.`,
 				},
 				resource.Attribute{
@@ -314,18 +334,22 @@ var (
 				},
 				resource.Attribute{
 					Name:        "live",
-					Description: `(Optional) Live will allow attachment of the volume to an instance without a restart. Values are ` + "`" + `yes` + "`" + ` or ` + "`" + `no` + "`" + ` default is ` + "`" + `no` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Boolean value that will allow attachment of the volume to an instance without a restart. Default is false. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID for this block storage.`,
 				},
 				resource.Attribute{
 					Name:        "size_gb",
 					Description: `The size of the given block storage.`,
 				},
 				resource.Attribute{
-					Name:        "region_id",
-					Description: `Region in which this block storage will reside in. (Currently only NJ/NY supported region_id 1)`,
+					Name:        "region",
+					Description: `Region in which this block storage will reside in. (Currently only NJ/NY supported region "ewr")`,
 				},
 				resource.Attribute{
-					Name:        "attached_id",
+					Name:        "attached_to_instance",
 					Description: `VPS ID that is attached to this block storage.`,
 				},
 				resource.Attribute{
@@ -333,7 +357,7 @@ var (
 					Description: `Label that is given to your block storage.`,
 				},
 				resource.Attribute{
-					Name:        "cost_per_month",
+					Name:        "cost",
 					Description: `The monthly cost of this block storage.`,
 				},
 				resource.Attribute{
@@ -345,25 +369,25 @@ var (
 					Description: `Current status of your block storage.`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `The ID for this block storage.`,
-				},
-				resource.Attribute{
 					Name:        "live",
-					Description: `Flag which will determine of a volume should be attached with a restart or not. ## Import Block Storage can be imported using the Block Storage ` + "`" + `SUBID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_block_storage.my_blockstorage 25058682 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Flag which will determine if a volume should be attached with a restart or not. ## Import Block Storage can be imported using the Block Storage ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_block_storage.my_blockstorage e315835e-d466-4e89-9b4c-dfd8788d7685 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `The ID for this block storage.`,
+				},
+				resource.Attribute{
 					Name:        "size_gb",
 					Description: `The size of the given block storage.`,
 				},
 				resource.Attribute{
-					Name:        "region_id",
-					Description: `Region in which this block storage will reside in. (Currently only NJ/NY supported region_id 1)`,
+					Name:        "region",
+					Description: `Region in which this block storage will reside in. (Currently only NJ/NY supported region "ewr")`,
 				},
 				resource.Attribute{
-					Name:        "attached_id",
+					Name:        "attached_to_instance",
 					Description: `VPS ID that is attached to this block storage.`,
 				},
 				resource.Attribute{
@@ -371,7 +395,7 @@ var (
 					Description: `Label that is given to your block storage.`,
 				},
 				resource.Attribute{
-					Name:        "cost_per_month",
+					Name:        "cost",
 					Description: `The monthly cost of this block storage.`,
 				},
 				resource.Attribute{
@@ -383,12 +407,8 @@ var (
 					Description: `Current status of your block storage.`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `The ID for this block storage.`,
-				},
-				resource.Attribute{
 					Name:        "live",
-					Description: `Flag which will determine of a volume should be attached with a restart or not. ## Import Block Storage can be imported using the Block Storage ` + "`" + `SUBID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_block_storage.my_blockstorage 25058682 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Flag which will determine if a volume should be attached with a restart or not. ## Import Block Storage can be imported using the Block Storage ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_block_storage.my_blockstorage e315835e-d466-4e89-9b4c-dfd8788d7685 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -408,8 +428,8 @@ var (
 					Description: `(Required) Name of domain.`,
 				},
 				resource.Attribute{
-					Name:        "server_ip",
-					Description: `(Optional) Server IP you want associated to domain. If omitted this will create a domain with no records. ## Attributes Reference The following attributes are exported:`,
+					Name:        "ip",
+					Description: `(Optional) instance IP you want associated to domain. If omitted this will create a domain with no records. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -420,8 +440,8 @@ var (
 					Description: `Name of domain.`,
 				},
 				resource.Attribute{
-					Name:        "server_ip",
-					Description: `Server IP you want associated to domain. ## Import DNS Domains can be imported using the Dns Domain ` + "`" + `domain` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_dns_domain.name domain.com ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "date_created",
+					Description: `The date the domain was added to your account. ## Import DNS Domains can be imported using the Dns Domain ` + "`" + `domain` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_dns_domain.name domain.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -434,8 +454,8 @@ var (
 					Description: `Name of domain.`,
 				},
 				resource.Attribute{
-					Name:        "server_ip",
-					Description: `Server IP you want associated to domain. ## Import DNS Domains can be imported using the Dns Domain ` + "`" + `domain` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_dns_domain.name domain.com ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "date_created",
+					Description: `The date the domain was added to your account. ## Import DNS Domains can be imported using the Dns Domain ` + "`" + `domain` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_dns_domain.name domain.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -452,7 +472,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "data",
-					Description: `(Required) IP Address of the server the domain is associated with.`,
+					Description: `(Required) IP Address of the instance the domain is associated with.`,
 				},
 				resource.Attribute{
 					Name:        "domain",
@@ -480,7 +500,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "data",
-					Description: `IP Address of the server the domain is associated with.`,
+					Description: `IP Address of the instance the domain is associated with.`,
 				},
 				resource.Attribute{
 					Name:        "domain",
@@ -500,7 +520,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ttl",
-					Description: `The time to live of this record. ## Import DNS Records can be imported using the Dns Domain ` + "`" + `domain` + "`" + ` and DNS Record ` + "`" + `ID` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_dns_record.rec domain.com,123 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The time to live of this record. ## Import DNS Records can be imported using the Dns Domain ` + "`" + `domain` + "`" + ` and DNS Record ` + "`" + `ID` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_dns_record.rec domain.com,1a0019bd-7645-4310-81bd-03bc5906940f ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -510,7 +530,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "data",
-					Description: `IP Address of the server the domain is associated with.`,
+					Description: `IP Address of the instance the domain is associated with.`,
 				},
 				resource.Attribute{
 					Name:        "domain",
@@ -530,7 +550,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ttl",
-					Description: `The time to live of this record. ## Import DNS Records can be imported using the Dns Domain ` + "`" + `domain` + "`" + ` and DNS Record ` + "`" + `ID` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_dns_record.rec domain.com,123 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The time to live of this record. ## Import DNS Records can be imported using the Dns Domain ` + "`" + `domain` + "`" + ` and DNS Record ` + "`" + `ID` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_dns_record.rec domain.com,1a0019bd-7645-4310-81bd-03bc5906940f ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -567,7 +587,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instance_count",
-					Description: `The number of servers that are currently using this firewall group.`,
+					Description: `The number of instances that are currently using this firewall group.`,
 				},
 				resource.Attribute{
 					Name:        "max_rule_count",
@@ -597,7 +617,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instance_count",
-					Description: `The number of servers that are currently using this firewall group.`,
+					Description: `The number of instances that are currently using this firewall group.`,
 				},
 				resource.Attribute{
 					Name:        "max_rule_count",
@@ -626,23 +646,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `(Required) The type of protocol for this firewall rule. Possible values (icmp, tcp, udp, gre)`,
+					Description: `(Required) The type of protocol for this firewall rule. Possible values (icmp, tcp, udp, gre, esp, ah)`,
 				},
 				resource.Attribute{
-					Name:        "network",
+					Name:        "ip_type",
+					Description: `(Required) The type of ip for this firewall rule. Possible values (v4, v6)`,
+				},
+				resource.Attribute{
+					Name:        "subnet",
 					Description: `(Required) IP address that you want to define for this firewall rule.`,
 				},
 				resource.Attribute{
-					Name:        "from_port",
-					Description: `(Optional) Port that you want to define for this rule.`,
+					Name:        "subnet_size",
+					Description: `(Required) The number of bits for the subnet in CIDR notation. Example: 32.`,
 				},
 				resource.Attribute{
-					Name:        "to_port",
-					Description: `(Optional) This can be used with the from port if you want to define multiple ports. Example from port 8085 to port 8090`,
+					Name:        "port",
+					Description: `(Optional) TCP/UDP only. This field can be a specific port or a colon separated port range.`,
 				},
 				resource.Attribute{
 					Name:        "notes",
-					Description: `(Optional) A simple note for a given firewall rule ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) A simple note for a given firewall rule`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Optional) Possible values ("", cloudflare) ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -654,19 +682,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `The type of protocol for this firewall rule. Possible values (icmp, tcp, udp, gre)`,
+					Description: `The type of protocol for this firewall rule. Possible values (icmp, tcp, udp, gre, esp, ah)`,
 				},
 				resource.Attribute{
 					Name:        "network",
 					Description: `IP address that is defined for this rule.`,
 				},
 				resource.Attribute{
-					Name:        "from_port",
-					Description: `Port that is defined for this rule.`,
-				},
-				resource.Attribute{
-					Name:        "to_port",
-					Description: `This can be used with the from port if you want to define multiple ports. Example from port 8085 to port 8090`,
+					Name:        "port",
+					Description: `This field can be a specific port or a colon separated port range.`,
 				},
 				resource.Attribute{
 					Name:        "notes",
@@ -674,7 +698,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_type",
-					Description: `The type of ip this rule is - may be either v4 or v6. ## Import Firewall Rules can be imported using the Firewall Group ` + "`" + `ID` + "`" + ` and Firewall Rule ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_firewall_rule.my_rule c342f929,1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The type of ip this rule is - may be either v4 or v6. ## Import Firewall Rules can be imported using the Firewall Group ` + "`" + `ID` + "`" + ` and Firewall Rule ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_firewall_rule.my_rule b6a859c5-b299-49dd-8888-b1abbc517d08,1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -688,19 +712,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `The type of protocol for this firewall rule. Possible values (icmp, tcp, udp, gre)`,
+					Description: `The type of protocol for this firewall rule. Possible values (icmp, tcp, udp, gre, esp, ah)`,
 				},
 				resource.Attribute{
 					Name:        "network",
 					Description: `IP address that is defined for this rule.`,
 				},
 				resource.Attribute{
-					Name:        "from_port",
-					Description: `Port that is defined for this rule.`,
-				},
-				resource.Attribute{
-					Name:        "to_port",
-					Description: `This can be used with the from port if you want to define multiple ports. Example from port 8085 to port 8090`,
+					Name:        "port",
+					Description: `This field can be a specific port or a colon separated port range.`,
 				},
 				resource.Attribute{
 					Name:        "notes",
@@ -708,7 +728,484 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_type",
-					Description: `The type of ip this rule is - may be either v4 or v6. ## Import Firewall Rules can be imported using the Firewall Group ` + "`" + `ID` + "`" + ` and Firewall Rule ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_firewall_rule.my_rule c342f929,1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The type of ip this rule is - may be either v4 or v6. ## Import Firewall Rules can be imported using the Firewall Group ` + "`" + `ID` + "`" + ` and Firewall Rule ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_firewall_rule.my_rule b6a859c5-b299-49dd-8888-b1abbc517d08,1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vultr_instance",
+			Category:         "Resources",
+			ShortDescription: `Provides a Vultr instance resource. This can be used to create, read, modify, and delete instances on your Vultr account.`,
+			Description:      ``,
+			Keywords: []string{
+				"instance",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) The ID of the region that the instance is to be created in.`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `(Required) The ID of the plan that you want the instance to subscribe to.`,
+				},
+				resource.Attribute{
+					Name:        "os_id",
+					Description: `(Optional) The ID of the operating system to be installed on the server.`,
+				},
+				resource.Attribute{
+					Name:        "iso_id",
+					Description: `(Optional) The ID of the ISO file to be installed on the server.`,
+				},
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `(Optional) The ID of the Vultr application to be installed on the server.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `(Optional) The ID of the Vultr snapshot that the server will restore for the initial installation.`,
+				},
+				resource.Attribute{
+					Name:        "script_id",
+					Description: `(Optional) The ID of the startup script you want added to the server.`,
+				},
+				resource.Attribute{
+					Name:        "firewall_group_id",
+					Description: `(Optional) The ID of the firewall group to assign to the server.`,
+				},
+				resource.Attribute{
+					Name:        "private_network_ids",
+					Description: `(Optional) A list of private network IDs to be attached to the server.`,
+				},
+				resource.Attribute{
+					Name:        "ssh_key_ids",
+					Description: `(Optional) A list of SSH key IDs to apply to the server on install (only valid for Linux/FreeBSD).`,
+				},
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `(Optional) Generic data store, which some provisioning tools and cloud operating systems use as a configuration file. It is generally consumed only once after an instance has been launched, but individual needs may vary.`,
+				},
+				resource.Attribute{
+					Name:        "backups",
+					Description: `(Optional) Whether automatic backups will be enabled for this server (these have an extra charge associated with them). Values can be enabled or disabled.`,
+				},
+				resource.Attribute{
+					Name:        "enable_ipv6",
+					Description: `(Optional) Whether the server has IPv6 networking activated.`,
+				},
+				resource.Attribute{
+					Name:        "enable_private_network",
+					Description: `(Optional) Whether the server has private networking support enabled.`,
+				},
+				resource.Attribute{
+					Name:        "activation_email",
+					Description: `(Optional) Whether an activation email will be sent when the server is ready.`,
+				},
+				resource.Attribute{
+					Name:        "ddos_protection",
+					Description: `(Optional) Whether DDOS protection will be enabled on the server (there is an additional charge for this).`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Optional) The hostname to assign to the server.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) The tag to assign to the server.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Optional) A label for the server.`,
+				},
+				resource.Attribute{
+					Name:        "reserved_ip_id",
+					Description: `(Optional) ID of the floating IP to use as the main IP of this server. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the server.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The ID of the region that the server is in.`,
+				},
+				resource.Attribute{
+					Name:        "os",
+					Description: `The string description of the operating system installed on the server.`,
+				},
+				resource.Attribute{
+					Name:        "ram",
+					Description: `The amount of memory available on the server in MB.`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `The description of the disk(s) on the server.`,
+				},
+				resource.Attribute{
+					Name:        "main_ip",
+					Description: `The server's main IP address.`,
+				},
+				resource.Attribute{
+					Name:        "vcpu_count",
+					Description: `The number of virtual CPUs available on the server.`,
+				},
+				resource.Attribute{
+					Name:        "default_password",
+					Description: `The server's default password.`,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `The date the server was added to your Vultr account.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_bandwidth",
+					Description: `The server's allowed bandwidth usage in GB.`,
+				},
+				resource.Attribute{
+					Name:        "netmask_v4",
+					Description: `The server's IPv4 netmask.`,
+				},
+				resource.Attribute{
+					Name:        "gateway_v4",
+					Description: `The server's IPv4 gateway.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the server's subscription.`,
+				},
+				resource.Attribute{
+					Name:        "power_status",
+					Description: `Whether the server is powered on or not.`,
+				},
+				resource.Attribute{
+					Name:        "server_status",
+					Description: `A more detailed server status (none, locked, installingbooting, isomounting, ok).`,
+				},
+				resource.Attribute{
+					Name:        "v6_network",
+					Description: `The IPv6 subnet.`,
+				},
+				resource.Attribute{
+					Name:        "v6_main_ip",
+					Description: `The main IPv6 network address.`,
+				},
+				resource.Attribute{
+					Name:        "v6_network_size",
+					Description: `The IPv6 network size in bits.`,
+				},
+				resource.Attribute{
+					Name:        "internal_ip",
+					Description: `The server's internal IP address.`,
+				},
+				resource.Attribute{
+					Name:        "kvm",
+					Description: `The server's current KVM URL. This URL will change periodically. It is not advised to cache this value.`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `The ID of the plan that server is subscribed to.`,
+				},
+				resource.Attribute{
+					Name:        "os_id",
+					Description: `The ID of the operating system installed on the server.`,
+				},
+				resource.Attribute{
+					Name:        "iso_id",
+					Description: `The ID of the ISO file installed on the server.`,
+				},
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `The ID of the Vultr application installed on the server.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `The ID of the Vultr snapshot that the server was restored from.`,
+				},
+				resource.Attribute{
+					Name:        "script_id",
+					Description: `The ID of the startup script that was added to the server.`,
+				},
+				resource.Attribute{
+					Name:        "firewall_group_id",
+					Description: `The ID of the firewall group assigned to the server.`,
+				},
+				resource.Attribute{
+					Name:        "private_network_ids",
+					Description: `A list of private network IDs attached to the server.`,
+				},
+				resource.Attribute{
+					Name:        "ssh_key_ids",
+					Description: `A list of SSH key IDs applied to the server on install.`,
+				},
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `Generic data store, which some provisioning tools and cloud operating systems use as a configuration file. It is generally consumed only once after an instance has been launched, but individual needs may vary.`,
+				},
+				resource.Attribute{
+					Name:        "backups",
+					Description: `Whether automatic backups are enabled for this server.`,
+				},
+				resource.Attribute{
+					Name:        "enable_ipv6",
+					Description: `Whether the server has IPv6 networking activated.`,
+				},
+				resource.Attribute{
+					Name:        "enable_private_network",
+					Description: `Whether the server has private networking support enabled.`,
+				},
+				resource.Attribute{
+					Name:        "activation_email",
+					Description: `Whether an activation email was sent when the server was ready.`,
+				},
+				resource.Attribute{
+					Name:        "ddos_protection",
+					Description: `Whether DDOS protection is enabled on the server.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `The hostname assigned to the server.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `The tag assigned to the server.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `A label for the server.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Array of which features are enabled. ## Import Servers can be imported using the server ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_server.my_server b6a859c5-b299-49dd-8888-b1abbc517d08 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the server.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The ID of the region that the server is in.`,
+				},
+				resource.Attribute{
+					Name:        "os",
+					Description: `The string description of the operating system installed on the server.`,
+				},
+				resource.Attribute{
+					Name:        "ram",
+					Description: `The amount of memory available on the server in MB.`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `The description of the disk(s) on the server.`,
+				},
+				resource.Attribute{
+					Name:        "main_ip",
+					Description: `The server's main IP address.`,
+				},
+				resource.Attribute{
+					Name:        "vcpu_count",
+					Description: `The number of virtual CPUs available on the server.`,
+				},
+				resource.Attribute{
+					Name:        "default_password",
+					Description: `The server's default password.`,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `The date the server was added to your Vultr account.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_bandwidth",
+					Description: `The server's allowed bandwidth usage in GB.`,
+				},
+				resource.Attribute{
+					Name:        "netmask_v4",
+					Description: `The server's IPv4 netmask.`,
+				},
+				resource.Attribute{
+					Name:        "gateway_v4",
+					Description: `The server's IPv4 gateway.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the server's subscription.`,
+				},
+				resource.Attribute{
+					Name:        "power_status",
+					Description: `Whether the server is powered on or not.`,
+				},
+				resource.Attribute{
+					Name:        "server_status",
+					Description: `A more detailed server status (none, locked, installingbooting, isomounting, ok).`,
+				},
+				resource.Attribute{
+					Name:        "v6_network",
+					Description: `The IPv6 subnet.`,
+				},
+				resource.Attribute{
+					Name:        "v6_main_ip",
+					Description: `The main IPv6 network address.`,
+				},
+				resource.Attribute{
+					Name:        "v6_network_size",
+					Description: `The IPv6 network size in bits.`,
+				},
+				resource.Attribute{
+					Name:        "internal_ip",
+					Description: `The server's internal IP address.`,
+				},
+				resource.Attribute{
+					Name:        "kvm",
+					Description: `The server's current KVM URL. This URL will change periodically. It is not advised to cache this value.`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `The ID of the plan that server is subscribed to.`,
+				},
+				resource.Attribute{
+					Name:        "os_id",
+					Description: `The ID of the operating system installed on the server.`,
+				},
+				resource.Attribute{
+					Name:        "iso_id",
+					Description: `The ID of the ISO file installed on the server.`,
+				},
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `The ID of the Vultr application installed on the server.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `The ID of the Vultr snapshot that the server was restored from.`,
+				},
+				resource.Attribute{
+					Name:        "script_id",
+					Description: `The ID of the startup script that was added to the server.`,
+				},
+				resource.Attribute{
+					Name:        "firewall_group_id",
+					Description: `The ID of the firewall group assigned to the server.`,
+				},
+				resource.Attribute{
+					Name:        "private_network_ids",
+					Description: `A list of private network IDs attached to the server.`,
+				},
+				resource.Attribute{
+					Name:        "ssh_key_ids",
+					Description: `A list of SSH key IDs applied to the server on install.`,
+				},
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `Generic data store, which some provisioning tools and cloud operating systems use as a configuration file. It is generally consumed only once after an instance has been launched, but individual needs may vary.`,
+				},
+				resource.Attribute{
+					Name:        "backups",
+					Description: `Whether automatic backups are enabled for this server.`,
+				},
+				resource.Attribute{
+					Name:        "enable_ipv6",
+					Description: `Whether the server has IPv6 networking activated.`,
+				},
+				resource.Attribute{
+					Name:        "enable_private_network",
+					Description: `Whether the server has private networking support enabled.`,
+				},
+				resource.Attribute{
+					Name:        "activation_email",
+					Description: `Whether an activation email was sent when the server was ready.`,
+				},
+				resource.Attribute{
+					Name:        "ddos_protection",
+					Description: `Whether DDOS protection is enabled on the server.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `The hostname assigned to the server.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `The tag assigned to the server.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `A label for the server.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Array of which features are enabled. ## Import Servers can be imported using the server ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_server.my_server b6a859c5-b299-49dd-8888-b1abbc517d08 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vultr_instance_ipv4",
+			Category:         "Resources",
+			ShortDescription: `Provides a instance IPv4 resource. This can be used to create, read, and modify a IPv4 address.`,
+			Description:      ``,
+			Keywords: []string{
+				"instance",
+				"ipv4",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Required) The ID of the instance you want to set an IPv4 reverse DNS record for.`,
+				},
+				resource.Attribute{
+					Name:        "reboot",
+					Description: `(Optional) Default true. Determines whether or not the server is rebooted after adding the IPv4 address. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID is the IPv4 address in canonical format.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `The ID of the server the IPv4 was set for.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `The IPv4 address in canonical format.`,
+				},
+				resource.Attribute{
+					Name:        "gateway",
+					Description: `The gateway IP address.`,
+				},
+				resource.Attribute{
+					Name:        "netmask",
+					Description: `The IPv4 netmask in dot-decimal notation.`,
+				},
+				resource.Attribute{
+					Name:        "reverse",
+					Description: `The reverse DNS information for this IP address.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID is the IPv4 address in canonical format.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `The ID of the server the IPv4 was set for.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `The IPv4 address in canonical format.`,
+				},
+				resource.Attribute{
+					Name:        "gateway",
+					Description: `The gateway IP address.`,
+				},
+				resource.Attribute{
+					Name:        "netmask",
+					Description: `The IPv4 netmask in dot-decimal notation.`,
+				},
+				resource.Attribute{
+					Name:        "reverse",
+					Description: `The reverse DNS information for this IP address.`,
 				},
 			},
 		},
@@ -756,7 +1253,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of the ISO file. ## Import ISOs can be imported using the ISO ` + "`" + `ISOID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_iso_private.my_iso 2349859 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The status of the ISO file. ## Import ISOs can be imported using the ISO ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_iso_private.my_iso eb807c23-c311-4d35-a77f-e49bfeb2dec5 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -790,7 +1287,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of the ISO file. ## Import ISOs can be imported using the ISO ` + "`" + `ISOID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_iso_private.my_iso 2349859 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The status of the ISO file. ## Import ISOs can be imported using the ISO ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_iso_private.my_iso eb807c23-c311-4d35-a77f-e49bfeb2dec5 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -806,7 +1303,7 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "region_id",
+					Name:        "region",
 					Description: `(Required) The region your load balancer is deployed in.`,
 				},
 				resource.Attribute{
@@ -815,11 +1312,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "label",
-					Description: `(Optional) The load balancers label.`,
+					Description: `(Optional) The load balancer's label.`,
 				},
 				resource.Attribute{
 					Name:        "balancing_algorithm",
-					Description: `(Optional) The balancing algorithm for your load balancer. Options are ` + "`" + `roundrobin` + "`" + ` or ` + "`" + `leastconn` + "`" + ``,
+					Description: `(Optional) The balancing algorithm for your load balancer. Options are ` + "`" + `roundrobin` + "`" + ` or ` + "`" + `leastconn` + "`" + `. Default value is ` + "`" + `roundrobin` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "proxy_protocol",
@@ -886,7 +1383,7 @@ var (
 					Description: `(Required) Protocol on instance side. Possible values: "http", "https", "tcp".`,
 				},
 				resource.Attribute{
-					Name:        "target_port",
+					Name:        "backend_port",
 					Description: `(Required) Port on instance side. ` + "`" + `ssl` + "`" + ` supports the following`,
 				},
 				resource.Attribute{
@@ -906,12 +1403,12 @@ var (
 					Description: `The load balancer ID.`,
 				},
 				resource.Attribute{
-					Name:        "region_id",
+					Name:        "region",
 					Description: `The region your load balancer is deployed in.`,
 				},
 				resource.Attribute{
 					Name:        "label",
-					Description: `The load balancers label.`,
+					Description: `The load balancer's label.`,
 				},
 				resource.Attribute{
 					Name:        "balancing_algorithm",
@@ -964,12 +1461,12 @@ var (
 					Description: `The load balancer ID.`,
 				},
 				resource.Attribute{
-					Name:        "region_id",
+					Name:        "region",
 					Description: `The region your load balancer is deployed in.`,
 				},
 				resource.Attribute{
 					Name:        "label",
-					Description: `The load balancers label.`,
+					Description: `The load balancer's label.`,
 				},
 				resource.Attribute{
 					Name:        "balancing_algorithm",
@@ -1019,16 +1516,120 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vultr_network",
+			Type:             "vultr_object_storage",
+			Category:         "Resources",
+			ShortDescription: `Provides a Vultr private object storage resource. This can be used to create, read, update and delete object storage resources on your Vultr account.`,
+			Description:      ``,
+			Keywords: []string{
+				"object",
+				"storage",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) The region ID that you want the network to be created in.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Optional) The description you want to give your network. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the object storage subscription.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The label of the object storage subscription.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The location which this subscription resides in.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `The identifying cluster ID.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region ID of the object storage subscription.`,
+				},
+				resource.Attribute{
+					Name:        "s3_access_key",
+					Description: `Your access key.`,
+				},
+				resource.Attribute{
+					Name:        "s3_hostname",
+					Description: `The hostname for this subscription.`,
+				},
+				resource.Attribute{
+					Name:        "s3_secret_key",
+					Description: `Your secret key.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Current status of this object storage subscription.`,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `Date of creation for the object storage subscription. ## Import Object Storage can be imported using the object storage ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_object_storage.my_s3 0e04f918-575e-41cb-86f6-d729b354a5a1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the object storage subscription.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The label of the object storage subscription.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The location which this subscription resides in.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `The identifying cluster ID.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region ID of the object storage subscription.`,
+				},
+				resource.Attribute{
+					Name:        "s3_access_key",
+					Description: `Your access key.`,
+				},
+				resource.Attribute{
+					Name:        "s3_hostname",
+					Description: `The hostname for this subscription.`,
+				},
+				resource.Attribute{
+					Name:        "s3_secret_key",
+					Description: `Your secret key.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Current status of this object storage subscription.`,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `Date of creation for the object storage subscription. ## Import Object Storage can be imported using the object storage ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_object_storage.my_s3 0e04f918-575e-41cb-86f6-d729b354a5a1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vultr_private_network",
 			Category:         "Resources",
 			ShortDescription: `Provides a Vultr private network resource. This can be used to create, read, and delete private networks on your Vultr account.`,
 			Description:      ``,
 			Keywords: []string{
+				"private",
 				"network",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "region_id",
+					Name:        "region",
 					Description: `(Required) The region ID that you want the network to be created in.`,
 				},
 				resource.Attribute{
@@ -1036,15 +1637,19 @@ var (
 					Description: `(Optional) The description you want to give your network.`,
 				},
 				resource.Attribute{
-					Name:        "cidr_block",
-					Description: `(Optional) The IPv4 subnet and subnet mask to be used when attaching servers to this network. ## Attributes Reference The following attributes are exported:`,
+					Name:        "v4_subnet",
+					Description: `(Optional) The IPv4 subnet to be used when attaching instances to this network.`,
+				},
+				resource.Attribute{
+					Name:        "v4_subnet_mask",
+					Description: `The number of bits for the netmask in CIDR notation. Example: 32 ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the network.`,
 				},
 				resource.Attribute{
-					Name:        "region_id",
+					Name:        "region",
 					Description: `The region ID that the network operates in.`,
 				},
 				resource.Attribute{
@@ -1052,12 +1657,16 @@ var (
 					Description: `The description of the network.`,
 				},
 				resource.Attribute{
-					Name:        "cidr_block",
-					Description: `The IPv4 subnet and subnet mask to be used when attaching servers to this network.`,
+					Name:        "v4_subnet",
+					Description: `The IPv4 subnet used when attaching instances to this network.`,
+				},
+				resource.Attribute{
+					Name:        "v4_subnet_mask",
+					Description: `The number of bits for the netmask in CIDR notation. Example: 32`,
 				},
 				resource.Attribute{
 					Name:        "date_created",
-					Description: `The date that the network was added to your Vultr account. ## Import Networks can be imported using the network ` + "`" + `NETWORKID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_network.my_network net539626f0798d7 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The date that the network was added to your Vultr account. ## Import Networks can be imported using the network ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_private_network.my_network 0e04f918-575e-41cb-86f6-d729b354a5a1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1066,7 +1675,7 @@ var (
 					Description: `ID of the network.`,
 				},
 				resource.Attribute{
-					Name:        "region_id",
+					Name:        "region",
 					Description: `The region ID that the network operates in.`,
 				},
 				resource.Attribute{
@@ -1074,12 +1683,16 @@ var (
 					Description: `The description of the network.`,
 				},
 				resource.Attribute{
-					Name:        "cidr_block",
-					Description: `The IPv4 subnet and subnet mask to be used when attaching servers to this network.`,
+					Name:        "v4_subnet",
+					Description: `The IPv4 subnet used when attaching instances to this network.`,
+				},
+				resource.Attribute{
+					Name:        "v4_subnet_mask",
+					Description: `The number of bits for the netmask in CIDR notation. Example: 32`,
 				},
 				resource.Attribute{
 					Name:        "date_created",
-					Description: `The date that the network was added to your Vultr account. ## Import Networks can be imported using the network ` + "`" + `NETWORKID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_network.my_network net539626f0798d7 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The date that the network was added to your Vultr account. ## Import Networks can be imported using the network ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_private_network.my_network 0e04f918-575e-41cb-86f6-d729b354a5a1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1095,7 +1708,7 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "region_id",
+					Name:        "region",
 					Description: `(Required) The region ID that you want the reserved IP to be created in.`,
 				},
 				resource.Attribute{
@@ -1107,7 +1720,7 @@ var (
 					Description: `(Optional) The label you want to give your reserved IP.`,
 				},
 				resource.Attribute{
-					Name:        "attached_id",
+					Name:        "instance_id",
 					Description: `(Optional) The VPS ID you want this reserved IP to be attached to. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
@@ -1115,8 +1728,8 @@ var (
 					Description: `ID of the reserved IP.`,
 				},
 				resource.Attribute{
-					Name:        "region_id",
-					Description: `The region ID (` + "`" + `DCID` + "`" + ` in the Vultr API) that this reserved IP belongs to.`,
+					Name:        "region",
+					Description: `The region ID that this reserved IP belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "ip_type",
@@ -1127,8 +1740,8 @@ var (
 					Description: `The reserved IP's label.`,
 				},
 				resource.Attribute{
-					Name:        "attached_id",
-					Description: `The ID of the server the reserved IP is attached to.`,
+					Name:        "instance_id",
+					Description: `The ID of the instance the reserved IP is attached to.`,
 				},
 				resource.Attribute{
 					Name:        "subnet",
@@ -1136,7 +1749,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnet_size",
-					Description: `The reserved IP's subnet size. ## Import Reserved IPs can be imported using the reserved IP ` + "`" + `SUBID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_reserved_ip.my_reserved_ip 1313044 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The reserved IP's subnet size. ## Import Reserved IPs can be imported using the reserved IP ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_reserved_ip.my_reserved_ip b9cc6fad-70b1-40ee-ab6a-4d622858962f ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1145,8 +1758,8 @@ var (
 					Description: `ID of the reserved IP.`,
 				},
 				resource.Attribute{
-					Name:        "region_id",
-					Description: `The region ID (` + "`" + `DCID` + "`" + ` in the Vultr API) that this reserved IP belongs to.`,
+					Name:        "region",
+					Description: `The region ID that this reserved IP belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "ip_type",
@@ -1157,8 +1770,8 @@ var (
 					Description: `The reserved IP's label.`,
 				},
 				resource.Attribute{
-					Name:        "attached_id",
-					Description: `The ID of the server the reserved IP is attached to.`,
+					Name:        "instance_id",
+					Description: `The ID of the instance the reserved IP is attached to.`,
 				},
 				resource.Attribute{
 					Name:        "subnet",
@@ -1166,421 +1779,141 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnet_size",
-					Description: `The reserved IP's subnet size. ## Import Reserved IPs can be imported using the reserved IP ` + "`" + `SUBID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_reserved_ip.my_reserved_ip 1313044 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The reserved IP's subnet size. ## Import Reserved IPs can be imported using the reserved IP ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_reserved_ip.my_reserved_ip b9cc6fad-70b1-40ee-ab6a-4d622858962f ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vultr_server",
+			Type:             "vultr_reverse_ipv4",
 			Category:         "Resources",
-			ShortDescription: `Provides a Vultr server resource. This can be used to create, read, modify, and delete servers on your Vultr account.`,
+			ShortDescription: `Provides a Vultr Reverse IPv4 resource. This can be used to create, read, and modify reverse DNS records for IPv4 addresses.`,
 			Description:      ``,
 			Keywords: []string{
-				"server",
+				"reverse",
+				"ipv4",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "region_id",
-					Description: `(Required) The ID of the region that the server is to be created in.`,
+					Name:        "instance_id",
+					Description: `(Required) The ID of the instance you want to set an IPv4 reverse DNS record for.`,
 				},
 				resource.Attribute{
-					Name:        "plan_id",
-					Description: `(Required) The ID of the plan that you want the server to subscribe to.`,
+					Name:        "ip",
+					Description: `(Required) The IPv4 address used in the reverse DNS record.`,
 				},
 				resource.Attribute{
-					Name:        "os_id",
-					Description: `(Optional) The ID of the operating system to be installed on the server.`,
-				},
-				resource.Attribute{
-					Name:        "iso_id",
-					Description: `(Optional) The ID of the ISO file to be installed on the server.`,
-				},
-				resource.Attribute{
-					Name:        "app_id",
-					Description: `(Optional) The ID of the Vultr application to be installed on the server.`,
-				},
-				resource.Attribute{
-					Name:        "snapshot_id",
-					Description: `(Optional) The ID of the Vultr snapshot that the server will restore for the initial installation.`,
-				},
-				resource.Attribute{
-					Name:        "script_id",
-					Description: `(Optional) The ID of the startup script you want added to the server.`,
-				},
-				resource.Attribute{
-					Name:        "firewall_group_id",
-					Description: `(Optional) The ID of the firewall group to assign to the server.`,
-				},
-				resource.Attribute{
-					Name:        "network_ids",
-					Description: `(Optional) A list of private network IDs to be attached to the server.`,
-				},
-				resource.Attribute{
-					Name:        "ssh_key_ids",
-					Description: `(Optional) A list of SSH key IDs to apply to the server on install (only valid for Linux/FreeBSD).`,
-				},
-				resource.Attribute{
-					Name:        "user_data",
-					Description: `(Optional) Generic data store, which some provisioning tools and cloud operating systems use as a configuration file. It is generally consumed only once after an instance has been launched, but individual needs may vary.`,
-				},
-				resource.Attribute{
-					Name:        "auto_backup",
-					Description: `(Optional) Whether automatic backups will be enabled for this server (these have an extra charge associated with them).`,
-				},
-				resource.Attribute{
-					Name:        "enable_ipv6",
-					Description: `(Optional) Whether the server has IPv6 networking activated.`,
-				},
-				resource.Attribute{
-					Name:        "enable_private_network",
-					Description: `(Optional) Whether the server has private networking support enabled.`,
-				},
-				resource.Attribute{
-					Name:        "notify_activate",
-					Description: `(Optional) Whether an activation email will be sent when the server is ready.`,
-				},
-				resource.Attribute{
-					Name:        "ddos_protection",
-					Description: `(Optional) Whether DDOS protection will be enabled on the server (there is an additional charge for this).`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Optional) The hostname to assign to the server.`,
-				},
-				resource.Attribute{
-					Name:        "tag",
-					Description: `(Optional) The tag to assign to the server.`,
-				},
-				resource.Attribute{
-					Name:        "label",
-					Description: `(Optional) A label for the server.`,
-				},
-				resource.Attribute{
-					Name:        "reserved_ip",
-					Description: `(Optional) IP address of the floating IP to use as the main IP of this server. ## Attributes Reference The following attributes are exported:`,
+					Name:        "reverse",
+					Description: `(Required) The hostname used in the IPv4 reverse DNS record. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the server.`,
+					Description: `The ID is the IPv4 address in canonical format.`,
 				},
 				resource.Attribute{
-					Name:        "region_id",
-					Description: `The ID of the region that the server is in.`,
+					Name:        "instance_id",
+					Description: `The ID of the instance the IPv4 reverse DNS record was set for.`,
 				},
 				resource.Attribute{
-					Name:        "os",
-					Description: `The string description of the operating system installed on the server.`,
+					Name:        "ip",
+					Description: `The IPv4 address in canonical format used in the reverse DNS record.`,
 				},
 				resource.Attribute{
-					Name:        "ram",
-					Description: `The amount of memory available on the server in MB.`,
+					Name:        "gateway",
+					Description: `The gateway IP address.`,
 				},
 				resource.Attribute{
-					Name:        "disk",
-					Description: `The description of the disk(s) on the server.`,
+					Name:        "netmask",
+					Description: `The IPv4 netmask in dot-decimal notation.`,
 				},
 				resource.Attribute{
-					Name:        "main_ip",
-					Description: `The server's main IP address.`,
-				},
-				resource.Attribute{
-					Name:        "vps_cpu_count",
-					Description: `The number of virtual CPUs available on the server.`,
-				},
-				resource.Attribute{
-					Name:        "location",
-					Description: `The physical location of the server.`,
-				},
-				resource.Attribute{
-					Name:        "default_password",
-					Description: `The server's default password.`,
-				},
-				resource.Attribute{
-					Name:        "date_created",
-					Description: `The date the server was added to your Vultr account.`,
-				},
-				resource.Attribute{
-					Name:        "pending_charges",
-					Description: `Charges pending for this server's subscription in USD.`,
-				},
-				resource.Attribute{
-					Name:        "cost_per_month",
-					Description: `The server's cost per month in USD.`,
-				},
-				resource.Attribute{
-					Name:        "current_bandwidth",
-					Description: `The server's current bandwidth usage in GB.`,
-				},
-				resource.Attribute{
-					Name:        "allowed_bandwidth",
-					Description: `The server's allowed bandwidth usage in GB.`,
-				},
-				resource.Attribute{
-					Name:        "netmask_v4",
-					Description: `The server's IPv4 netmask.`,
-				},
-				resource.Attribute{
-					Name:        "gateway_v4",
-					Description: `The server's IPv4 gateway.`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `The status of the server's subscription.`,
-				},
-				resource.Attribute{
-					Name:        "power_status",
-					Description: `Whether the server is powered on or not.`,
-				},
-				resource.Attribute{
-					Name:        "server_state",
-					Description: `A more detailed server status (none, locked, installingbooting, isomounting, ok).`,
-				},
-				resource.Attribute{
-					Name:        "v6_networks",
-					Description: `A list of the server's IPv6 networks.`,
-				},
-				resource.Attribute{
-					Name:        "internal_ip",
-					Description: `The server's internal IP address.`,
-				},
-				resource.Attribute{
-					Name:        "kvm_url",
-					Description: `The server's current KVM URL. This URL will change periodically. It is not advised to cache this value.`,
-				},
-				resource.Attribute{
-					Name:        "plan_id",
-					Description: `The ID of the plan that server is subscribed to.`,
-				},
-				resource.Attribute{
-					Name:        "os_id",
-					Description: `The ID of the operating system installed on the server.`,
-				},
-				resource.Attribute{
-					Name:        "iso_id",
-					Description: `The ID of the ISO file installed on the server.`,
-				},
-				resource.Attribute{
-					Name:        "app_id",
-					Description: `The ID of the Vultr application installed on the server.`,
-				},
-				resource.Attribute{
-					Name:        "snapshot_id",
-					Description: `The ID of the Vultr snapshot that the server was restored from.`,
-				},
-				resource.Attribute{
-					Name:        "script_id",
-					Description: `The ID of the startup script that was added to the server.`,
-				},
-				resource.Attribute{
-					Name:        "firewall_group_id",
-					Description: `The ID of the firewall group assigned to the server.`,
-				},
-				resource.Attribute{
-					Name:        "network_ids",
-					Description: `A list of private network IDs attached to the server.`,
-				},
-				resource.Attribute{
-					Name:        "ssh_key_ids",
-					Description: `A list of SSH key IDs applied to the server on install.`,
-				},
-				resource.Attribute{
-					Name:        "user_data",
-					Description: `Base64 encoded generic data store, which some provisioning tools and cloud operating systems use as a configuration file. It is generally consumed only once after an instance has been launched, but individual needs may vary.`,
-				},
-				resource.Attribute{
-					Name:        "auto_backup",
-					Description: `Whether automatic backups are enabled for this server.`,
-				},
-				resource.Attribute{
-					Name:        "enable_ipv6",
-					Description: `Whether the server has IPv6 networking activated.`,
-				},
-				resource.Attribute{
-					Name:        "enable_private_network",
-					Description: `Whether the server has private networking support enabled.`,
-				},
-				resource.Attribute{
-					Name:        "notify_activate",
-					Description: `Whether an activation email was sent when the server was ready.`,
-				},
-				resource.Attribute{
-					Name:        "ddos_protection",
-					Description: `Whether DDOS protection is enabled on the server.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `The hostname assigned to the server.`,
-				},
-				resource.Attribute{
-					Name:        "tag",
-					Description: `The tag assigned to the server.`,
-				},
-				resource.Attribute{
-					Name:        "label",
-					Description: `A label for the server. ## Import Servers can be imported using the server ` + "`" + `SUBID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_server.my_server 1312965 ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "reverse",
+					Description: `The reverse DNS information for this IP address.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the server.`,
+					Description: `The ID is the IPv4 address in canonical format.`,
 				},
 				resource.Attribute{
-					Name:        "region_id",
-					Description: `The ID of the region that the server is in.`,
+					Name:        "instance_id",
+					Description: `The ID of the instance the IPv4 reverse DNS record was set for.`,
 				},
 				resource.Attribute{
-					Name:        "os",
-					Description: `The string description of the operating system installed on the server.`,
+					Name:        "ip",
+					Description: `The IPv4 address in canonical format used in the reverse DNS record.`,
 				},
 				resource.Attribute{
-					Name:        "ram",
-					Description: `The amount of memory available on the server in MB.`,
+					Name:        "gateway",
+					Description: `The gateway IP address.`,
 				},
 				resource.Attribute{
-					Name:        "disk",
-					Description: `The description of the disk(s) on the server.`,
+					Name:        "netmask",
+					Description: `The IPv4 netmask in dot-decimal notation.`,
 				},
 				resource.Attribute{
-					Name:        "main_ip",
-					Description: `The server's main IP address.`,
+					Name:        "reverse",
+					Description: `The reverse DNS information for this IP address.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vultr_reverse_ipv6",
+			Category:         "Resources",
+			ShortDescription: `Provides a Vultr Reverse IPv6 resource. This can be used to create, read, modify, and delete reverse DNS records for IPv6 addresses.`,
+			Description:      ``,
+			Keywords: []string{
+				"reverse",
+				"ipv6",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Required) The ID of the server you want to set an IPv6 reverse DNS record for.`,
 				},
 				resource.Attribute{
-					Name:        "vps_cpu_count",
-					Description: `The number of virtual CPUs available on the server.`,
+					Name:        "ip",
+					Description: `(Required) The IPv6 address used in the reverse DNS record.`,
 				},
 				resource.Attribute{
-					Name:        "location",
-					Description: `The physical location of the server.`,
+					Name:        "reverse",
+					Description: `(Required) The hostname used in the IPv6 reverse DNS record. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "default_password",
-					Description: `The server's default password.`,
+					Name:        "id",
+					Description: `The ID is the IPv6 address in canonical format.`,
 				},
 				resource.Attribute{
-					Name:        "date_created",
-					Description: `The date the server was added to your Vultr account.`,
+					Name:        "instance_id",
+					Description: `The ID of the server the IPv6 reverse DNS record was set for.`,
 				},
 				resource.Attribute{
-					Name:        "pending_charges",
-					Description: `Charges pending for this server's subscription in USD.`,
+					Name:        "ip",
+					Description: `The IPv6 address in canonical format used in the reverse DNS record.`,
 				},
 				resource.Attribute{
-					Name:        "cost_per_month",
-					Description: `The server's cost per month in USD.`,
+					Name:        "reverse",
+					Description: `The hostname used in the IPv6 reverse DNS record.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID is the IPv6 address in canonical format.`,
 				},
 				resource.Attribute{
-					Name:        "current_bandwidth",
-					Description: `The server's current bandwidth usage in GB.`,
+					Name:        "instance_id",
+					Description: `The ID of the server the IPv6 reverse DNS record was set for.`,
 				},
 				resource.Attribute{
-					Name:        "allowed_bandwidth",
-					Description: `The server's allowed bandwidth usage in GB.`,
+					Name:        "ip",
+					Description: `The IPv6 address in canonical format used in the reverse DNS record.`,
 				},
 				resource.Attribute{
-					Name:        "netmask_v4",
-					Description: `The server's IPv4 netmask.`,
-				},
-				resource.Attribute{
-					Name:        "gateway_v4",
-					Description: `The server's IPv4 gateway.`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `The status of the server's subscription.`,
-				},
-				resource.Attribute{
-					Name:        "power_status",
-					Description: `Whether the server is powered on or not.`,
-				},
-				resource.Attribute{
-					Name:        "server_state",
-					Description: `A more detailed server status (none, locked, installingbooting, isomounting, ok).`,
-				},
-				resource.Attribute{
-					Name:        "v6_networks",
-					Description: `A list of the server's IPv6 networks.`,
-				},
-				resource.Attribute{
-					Name:        "internal_ip",
-					Description: `The server's internal IP address.`,
-				},
-				resource.Attribute{
-					Name:        "kvm_url",
-					Description: `The server's current KVM URL. This URL will change periodically. It is not advised to cache this value.`,
-				},
-				resource.Attribute{
-					Name:        "plan_id",
-					Description: `The ID of the plan that server is subscribed to.`,
-				},
-				resource.Attribute{
-					Name:        "os_id",
-					Description: `The ID of the operating system installed on the server.`,
-				},
-				resource.Attribute{
-					Name:        "iso_id",
-					Description: `The ID of the ISO file installed on the server.`,
-				},
-				resource.Attribute{
-					Name:        "app_id",
-					Description: `The ID of the Vultr application installed on the server.`,
-				},
-				resource.Attribute{
-					Name:        "snapshot_id",
-					Description: `The ID of the Vultr snapshot that the server was restored from.`,
-				},
-				resource.Attribute{
-					Name:        "script_id",
-					Description: `The ID of the startup script that was added to the server.`,
-				},
-				resource.Attribute{
-					Name:        "firewall_group_id",
-					Description: `The ID of the firewall group assigned to the server.`,
-				},
-				resource.Attribute{
-					Name:        "network_ids",
-					Description: `A list of private network IDs attached to the server.`,
-				},
-				resource.Attribute{
-					Name:        "ssh_key_ids",
-					Description: `A list of SSH key IDs applied to the server on install.`,
-				},
-				resource.Attribute{
-					Name:        "user_data",
-					Description: `Base64 encoded generic data store, which some provisioning tools and cloud operating systems use as a configuration file. It is generally consumed only once after an instance has been launched, but individual needs may vary.`,
-				},
-				resource.Attribute{
-					Name:        "auto_backup",
-					Description: `Whether automatic backups are enabled for this server.`,
-				},
-				resource.Attribute{
-					Name:        "enable_ipv6",
-					Description: `Whether the server has IPv6 networking activated.`,
-				},
-				resource.Attribute{
-					Name:        "enable_private_network",
-					Description: `Whether the server has private networking support enabled.`,
-				},
-				resource.Attribute{
-					Name:        "notify_activate",
-					Description: `Whether an activation email was sent when the server was ready.`,
-				},
-				resource.Attribute{
-					Name:        "ddos_protection",
-					Description: `Whether DDOS protection is enabled on the server.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `The hostname assigned to the server.`,
-				},
-				resource.Attribute{
-					Name:        "tag",
-					Description: `The tag assigned to the server.`,
-				},
-				resource.Attribute{
-					Name:        "label",
-					Description: `A label for the server. ## Import Servers can be imported using the server ` + "`" + `SUBID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_server.my_server 1312965 ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "reverse",
+					Description: `The hostname used in the IPv6 reverse DNS record.`,
 				},
 			},
 		},
@@ -1596,7 +1929,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vps_id",
-					Description: `(Required) ID of a given server that you want to create a snapshot from.`,
+					Description: `(Required) ID of a given instance that you want to create a snapshot from.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1607,8 +1940,8 @@ var (
 					Description: `The ID for the given snapshot.`,
 				},
 				resource.Attribute{
-					Name:        "vps_id",
-					Description: `The ID of the server that the snapshot was created from.`,
+					Name:        "instance_id",
+					Description: `The ID of the instance that the snapshot was created from.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1632,7 +1965,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "app_id",
-					Description: `The app id which the snapshot is associated with. ## Import Snapshots can be imported using the Snapshot ` + "`" + `SNAPSHOTID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_snapshot_url.my_snapshot 9735ced831ed2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The app id which the snapshot is associated with. ## Import Snapshots can be imported using the Snapshot ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_snapshot_url.my_snapshot 283941e8-0783-410e-9540-71c86b833992 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1641,8 +1974,8 @@ var (
 					Description: `The ID for the given snapshot.`,
 				},
 				resource.Attribute{
-					Name:        "vps_id",
-					Description: `The ID of the server that the snapshot was created from.`,
+					Name:        "instance_id",
+					Description: `The ID of the instance that the snapshot was created from.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1666,7 +1999,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "app_id",
-					Description: `The app id which the snapshot is associated with. ## Import Snapshots can be imported using the Snapshot ` + "`" + `SNAPSHOTID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_snapshot_url.my_snapshot 9735ced831ed2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The app id which the snapshot is associated with. ## Import Snapshots can be imported using the Snapshot ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_snapshot_url.my_snapshot 283941e8-0783-410e-9540-71c86b833992 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1716,7 +2049,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "app_id",
-					Description: `The app id which the snapshot is associated with. ## Import Snapshots from Url can be imported using the Snapshot ` + "`" + `SNAPSHOTID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_snapshot_from_url.my_snapshot 9735ced831ed2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The app id which the snapshot is associated with. ## Import Snapshots from Url can be imported using the Snapshot ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_snapshot_from_url.my_snapshot e60dc0a2-9313-4bab-bffc-57ffe33d99f6 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1750,7 +2083,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "app_id",
-					Description: `The app id which the snapshot is associated with. ## Import Snapshots from Url can be imported using the Snapshot ` + "`" + `SNAPSHOTID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_snapshot_from_url.my_snapshot 9735ced831ed2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The app id which the snapshot is associated with. ## Import Snapshots from Url can be imported using the Snapshot ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_snapshot_from_url.my_snapshot e60dc0a2-9313-4bab-bffc-57ffe33d99f6 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1787,7 +2120,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "date_created",
-					Description: `The date the SSH key was added to your Vultr account. ## Import SSH keys can be imported using the SSH key ` + "`" + `SSHKEYID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_ssh_key.my_key 541b4960f23bd ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The date the SSH key was added to your Vultr account. ## Import SSH keys can be imported using the SSH key ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_ssh_key.my_key 6b0876a7-f709-41ba-aed8-abed9d38ae45 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1805,7 +2138,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "date_created",
-					Description: `The date the SSH key was added to your Vultr account. ## Import SSH keys can be imported using the SSH key ` + "`" + `SSHKEYID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_ssh_key.my_key 541b4960f23bd ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The date the SSH key was added to your Vultr account. ## Import SSH keys can be imported using the SSH key ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_ssh_key.my_key 6b0876a7-f709-41ba-aed8-abed9d38ae45 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1826,11 +2159,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "script",
-					Description: `(Required) Contents of the startup script.`,
+					Description: `(Required) Contents of the startup script base64 encoded.`,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Type of startup script. Default is boot. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Type of startup script. Possible values are boot or pxe - default is boot. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1854,7 +2187,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "script",
-					Description: `The contents of the startup script. ## Import Startup Scripts can be imported using the Startup Scripts ` + "`" + `SCRIPTID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_startup_script.my_script 537932 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The contents of the startup script base64 encoded. ## Import Startup Scripts can be imported using the Startup Scripts ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_startup_script.my_script ff8f36a8-eb86-4b8d-8667-b9d5459b6390 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1880,7 +2213,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "script",
-					Description: `The contents of the startup script. ## Import Startup Scripts can be imported using the Startup Scripts ` + "`" + `SCRIPTID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_startup_script.my_script 537932 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The contents of the startup script base64 encoded. ## Import Startup Scripts can be imported using the Startup Scripts ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_startup_script.my_script ff8f36a8-eb86-4b8d-8667-b9d5459b6390 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1928,11 +2261,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "api_enabled",
-					Description: `Whether API is enabled for the user.`,
-				},
-				resource.Attribute{
-					Name:        "api_key",
-					Description: `API Key that is assigned to this user. ## Import Users can be imported using the User ` + "`" + `USERID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_user.myuser cbe5ced2ae716 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Whether API is enabled for the user. ## Import Users can be imported using the User ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_user.myuser 1345fef0-8ed3-4a66-bd8c-822a7b7bd05a ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1950,11 +2279,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "api_enabled",
-					Description: `Whether API is enabled for the user.`,
-				},
-				resource.Attribute{
-					Name:        "api_key",
-					Description: `API Key that is assigned to this user. ## Import Users can be imported using the User ` + "`" + `USERID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_user.myuser cbe5ced2ae716 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Whether API is enabled for the user. ## Import Users can be imported using the User ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_user.myuser 1345fef0-8ed3-4a66-bd8c-822a7b7bd05a ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1968,16 +2293,20 @@ var (
 		"vultr_dns_record":        3,
 		"vultr_firewall_group":    4,
 		"vultr_firewall_rule":     5,
-		"vultr_iso":               6,
-		"vultr_load_balancer":     7,
-		"vultr_network":           8,
-		"vultr_reserved_ip":       9,
-		"vultr_server":            10,
-		"vultr_snapshot":          11,
-		"vultr_snapshot_from_url": 12,
-		"vultr_ssh_key":           13,
-		"vultr_startup_script":    14,
-		"vultr_user":              15,
+		"vultr_instance":          6,
+		"vultr_instance_ipv4":     7,
+		"vultr_iso":               8,
+		"vultr_load_balancer":     9,
+		"vultr_object_storage":    10,
+		"vultr_private_network":   11,
+		"vultr_reserved_ip":       12,
+		"vultr_reverse_ipv4":      13,
+		"vultr_reverse_ipv6":      14,
+		"vultr_snapshot":          15,
+		"vultr_snapshot_from_url": 16,
+		"vultr_ssh_key":           17,
+		"vultr_startup_script":    18,
+		"vultr_user":              19,
 	}
 )
 

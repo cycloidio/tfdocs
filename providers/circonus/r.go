@@ -506,10 +506,6 @@ var (
 					Description: `(Optional) Zero or more ` + "`" + `http` + "`" + ` attributes may be present to dispatch [Webhook/HTTP requests](https://login.circonus.com/user/docs/Alerting/ContactGroups#WebhookNotifications) by Circonus. See below for details on supported attributes.`,
 				},
 				resource.Attribute{
-					Name:        "irc",
-					Description: `(Optional) Zero or more ` + "`" + `irc` + "`" + ` attributes may be present to dispatch IRC notifications to users. See below for details on supported attributes.`,
-				},
-				resource.Attribute{
 					Name:        "long_message",
 					Description: `(Optional) The bulk of the message used in long form alert messages.`,
 				},
