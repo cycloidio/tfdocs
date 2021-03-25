@@ -660,7 +660,7 @@ Target represents an entity which can be managed by Intersight. This includes ph
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
-					Description: `A Cisco Catalyst networking switch device. ## Import ` + "`" + `intersight_asset_target` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_asset_target.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ` ## Allowed Types in ` + "`" + `AdditionalProperties` + "`" + ` ### [asset.OrchestrationService](#argument-reference) OrchestrationService provides the necessary configuration details to enable Intersight Orchestration on the selected managed target. Subject to licensing. ### [asset.TerraformIntegrationService](#argument-reference) TerraformIntegrationService provides the necessary configuration details to enable Intersight Cloud Region on the selected Terraform Cloud. ### [asset.WorkloadOptimizerService](#argument-reference) WorkloadOptimizerService provides the necessary configuration details to enable Intersight Workflow Optimizer on the selected managed target. Subject to licensing. ### [asset.CloudConnection](#argument-reference) CloudConnection provides the necessary details for Intersight to connect to and authenticate with a target at a well-known service address. The service address is inferred based upon the target type. For example Amazon Web Services. ### [asset.HttpConnection](#argument-reference) HttpConnection provides the necessary details for Intersight to connect to and authenticate with a managed target over an HTTP connection.`,
+					Description: `A Cisco Catalyst networking switch device. ## Import ` + "`" + `intersight_asset_target` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_asset_target.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ` ## Allowed Types in ` + "`" + `AdditionalProperties` + "`" + ` ### [asset.CloudConnection](#argument-reference) CloudConnection provides the necessary details for Intersight to connect to and authenticate with a target at a well-known service address. The service address is inferred based upon the target type. For example Amazon Web Services. ### [asset.HttpConnection](#argument-reference) HttpConnection provides the necessary details for Intersight to connect to and authenticate with a managed target over an HTTP connection.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -5960,7 +5960,7 @@ A profile specifying configuration settings for a chassis.
 				},
 				resource.Attribute{
 					Name:        "instance",
-					Description: `The profile defines the configuration for a specific instance of a target. ## Import ` + "`" + `intersight_chassis_profile` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_chassis_profile.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The profile defines the configuration for a specific instance of a target. ### Custom keywords These are`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6857,7 +6857,7 @@ This specifies configuration policies for a managed network switch.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance",
-					Description: `The profile defines the configuration for a specific instance of a target. ## Import ` + "`" + `intersight_fabric_switch_profile` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_switch_profile.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The profile defines the configuration for a specific instance of a target. ### Custom keywords These are`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -11185,7 +11185,7 @@ A profile specifying configuration settings for a physical server.
 				},
 				resource.Attribute{
 					Name:        "instance",
-					Description: `The profile defines the configuration for a specific instance of a target. ## Usage Example ### Resource Creation ` + "`" + `` + "`" + `` + "`" + `hcl resource "intersight_server_profile" "server1" { name = "server1" action = "No-op" tags { key = "server" value = "demo" } organization { object_type = "organization.Organization" moid = var.organization } } ` + "`" + `` + "`" + `` + "`" + ` ## Import ` + "`" + `intersight_server_profile` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_server_profile.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The profile defines the configuration for a specific instance of a target. ### Custom keywords These are`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -15225,7 +15225,7 @@ Used to define a task which can be included within a workflow. Task definition c
 				},
 				resource.Attribute{
 					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `: JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `output_definition` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `additional_properties` + "`" + `:(JSON) - Additional Properties as per object type, can be added as JSON using ` + "`" + `jsonencode()` + "`" + `. Allowed Types are: [workflow.ArrayDataType](#workflowArrayDataType) [workflow.CustomDataType](#workflowCustomDataType) [workflow.MoReferenceDataType](#workflowMoReferenceDataType) [workflow.PrimitiveDataType](#workflowPrimitiveDataType) [workflow.TargetDataType](#workflowTargetDataType) + ` + "`" + `default` + "`" + `:(HashMap) - Default value for the data type. If default value was provided and the input was required the default value will be used as the input. This complex property has following sub-properties: + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `override` + "`" + `:(bool) Override the default value provided for the data type. When true, allow the user to enter value for the data type. + ` + "`" + `value` + "`" + `: Default value for the data type. If default value was provided and the input was required the default value will be used as the input. + ` + "`" + `description` + "`" + `:(string) Provide a detailed description of the data type. + ` + "`" + `display_meta` + "`" + `:(HashMap) - Captures the meta data needed for displaying workflow data types in Intersight User Interface. This complex property has following sub-properties: + ` + "`" + `inventory_selector` + "`" + `:(bool) Inventory selector specified for primitive data property should be used in Intersight User Interface. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `widget_type` + "`" + `:(string) Specify the widget type for data display.`,
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `: JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `output_definition` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `additional_properties` + "`" + `:(JSON) - Additional Properties as per object type, can be added as JSON using ` + "`" + `jsonencode()` + "`" + `. Allowed Types are: [workflow.ArrayDataType](#workflowArrayDataType) [workflow.CustomDataType](#workflowCustomDataType) [workflow.MoReferenceDataType](#workflowMoReferenceDataType) [workflow.PrimitiveDataType](#workflowPrimitiveDataType) [workflow.TargetDataType](#workflowTargetDataType) + ` + "`" + `default` + "`" + `:(HashMap) - Default value for the data type. If default value was provided and the input was required the default value will be used as the input. This complex property has following sub-properties: + ` + "`" + `is_value_set` + "`" + `:(bool)(Computed) A flag that indicates whether a default value is given or not. This flag will be useful in case of the secure parameter where the value will be filtered out in API responses. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `override` + "`" + `:(bool) Override the default value provided for the data type. When true, allow the user to enter value for the data type. + ` + "`" + `value` + "`" + `: Default value for the data type. If default value was provided and the input was required the default value will be used as the input. + ` + "`" + `description` + "`" + `:(string) Provide a detailed description of the data type. + ` + "`" + `display_meta` + "`" + `:(HashMap) - Captures the meta data needed for displaying workflow data types in Intersight User Interface. This complex property has following sub-properties: + ` + "`" + `inventory_selector` + "`" + `:(bool) Inventory selector specified for primitive data property should be used in Intersight User Interface. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `widget_type` + "`" + `:(string) Specify the widget type for data display.`,
 				},
 				resource.Attribute{
 					Name:        "None",
@@ -15424,30 +15424,6 @@ Workflow definition is a collection of tasks that are sequenced in a certain way
 					Description: `Enum to specify a enum data type which is a list of pre-defined strings. ### [workflow.TargetDataType](#argument-reference) Data type to capture a target endpoint or device.`,
 				},
 				resource.Attribute{
-					Name:        "string",
-					Description: `Enum to specify a string data type.`,
-				},
-				resource.Attribute{
-					Name:        "integer",
-					Description: `Enum to specify an integer32 data type.`,
-				},
-				resource.Attribute{
-					Name:        "float",
-					Description: `Enum to specify a float64 data type.`,
-				},
-				resource.Attribute{
-					Name:        "boolean",
-					Description: `Enum to specify a boolean data type.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `Enum to specify a json data type.`,
-				},
-				resource.Attribute{
-					Name:        "enum",
-					Description: `Enum to specify a enum data type which is a list of pre-defined strings. ### [workflow.TargetDataType](#argument-reference) Data type to capture a target endpoint or device.`,
-				},
-				resource.Attribute{
 					Name:        "Scheduled",
 					Description: `The enum represents the status when task is in scheduled state.`,
 				},
@@ -15470,6 +15446,30 @@ Workflow definition is a collection of tasks that are sequenced in a certain way
 				resource.Attribute{
 					Name:        "Failed",
 					Description: `The enum represents the status when task has failed.`,
+				},
+				resource.Attribute{
+					Name:        "string",
+					Description: `Enum to specify a string data type.`,
+				},
+				resource.Attribute{
+					Name:        "integer",
+					Description: `Enum to specify an integer32 data type.`,
+				},
+				resource.Attribute{
+					Name:        "float",
+					Description: `Enum to specify a float64 data type.`,
+				},
+				resource.Attribute{
+					Name:        "boolean",
+					Description: `Enum to specify a boolean data type.`,
+				},
+				resource.Attribute{
+					Name:        "json",
+					Description: `Enum to specify a json data type.`,
+				},
+				resource.Attribute{
+					Name:        "enum",
+					Description: `Enum to specify a enum data type which is a list of pre-defined strings. ### [workflow.TargetDataType](#argument-reference) Data type to capture a target endpoint or device.`,
 				},
 			},
 			Attributes: []resource.Attribute{},

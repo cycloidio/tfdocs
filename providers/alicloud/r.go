@@ -88,7 +88,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "role_name",
-					Description: `(Optional) The RAM role in ActionTrail permitted by the user.`,
+					Description: `(Optional) Field ` + "`" + `name` + "`" + ` has been deprecated from version 1.118.0.`,
 				},
 				resource.Attribute{
 					Name:        "oss_key_prefix",
@@ -108,11 +108,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mns_topic_arn",
-					Description: `(Optional) The ARN of the Message Service (MNS) topic to which ActionTrail sends messages. If the ARN is specified, a message is generated and delivered to the MNS topic whenever an event is delivered to OSS.`,
+					Description: `(Optional) Field ` + "`" + `mns_topic_arn` + "`" + ` has been deprecated from version 1.118.0.`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `(Optional) The status of ActionTrail Trail. After creation, tracking is turned on by default, and you can set the status value to ` + "`" + `Disable` + "`" + ` to turn off tracking. Valid values: ` + "`" + `Enable` + "`" + `, ` + "`" + `Disable` + "`" + `. Default to ` + "`" + `Enable` + "`" + `. ->`,
+					Description: `(Optional) The status of ActionTrail Trail. After creation, tracking is turned on by default, and you can set the status value to ` + "`" + `Disable` + "`" + ` to turn off tracking. Valid values: ` + "`" + `Enable` + "`" + `, ` + "`" + `Disable` + "`" + `. Default to ` + "`" + `Enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "oss_write_role_arn",
+					Description: `(Optional) The unique ARN of the Oss role. ->`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -997,13 +1001,21 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ` + "`" + `key` + "`" + ` of the resource supplied above. The value is formulated as ` + "`" + `<instance_id>:<topic>` + "`" + `. ## Import ALIKAFKA TOPIC can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_alikafka_topic.topic alikafka_post-cn-123455abc:topicName ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ` + "`" + `key` + "`" + ` of the resource supplied above. The value is formulated as ` + "`" + `<instance_id>:<topic>` + "`" + `. ## Import ALIKAFKA TOPIC can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_alikafka_topic.topic alikafka_post-cn-123455abc:topicName ` + "`" + `` + "`" + `` + "`" + ` ### Timeouts ->`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 10 mins) Used when creating the topic (until it reaches the initial ` + "`" + `Running` + "`" + ` status).`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ` + "`" + `key` + "`" + ` of the resource supplied above. The value is formulated as ` + "`" + `<instance_id>:<topic>` + "`" + `. ## Import ALIKAFKA TOPIC can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_alikafka_topic.topic alikafka_post-cn-123455abc:topicName ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ` + "`" + `key` + "`" + ` of the resource supplied above. The value is formulated as ` + "`" + `<instance_id>:<topic>` + "`" + `. ## Import ALIKAFKA TOPIC can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_alikafka_topic.topic alikafka_post-cn-123455abc:topicName ` + "`" + `` + "`" + `` + "`" + ` ### Timeouts ->`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 10 mins) Used when creating the topic (until it reaches the initial ` + "`" + `Running` + "`" + ` status).`,
 				},
 			},
 		},
@@ -4696,7 +4708,7 @@ var (
 					Description: `(Optional) Enable login to the node through SSH. Default to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "rds_instance",
+					Name:        "rds_instances",
 					Description: `(Optional, Available in 1.103.2+) RDS instance list, You can choose which RDS instances whitelist to add instances to.`,
 				},
 				resource.Attribute{
@@ -4909,7 +4921,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nginx-ingress-controller",
-					Description: `You can specific ` + "`" + `IngressSlbNetworkType` + "`" + ` in config. Options: internet|intranet. The ` + "`" + `main.tf` + "`" + `: ` + "`" + `` + "`" + `` + "`" + ` resource "alicloud_cs_managed_kubernetes" "k8s" { # ... other configuration ... dynamic "addons" { for_each = var.cluster_addons content { name = lookup(addons.value, "name", var.cluster_addons) config = lookup(addons.value, "config", var.cluster_addons) disabled = lookup(addons.value, "disabled", var.cluster_addons) } } } ` + "`" + `` + "`" + `` + "`" + ` The ` + "`" + `varibales.tf` + "`" + `: ` + "`" + `` + "`" + `` + "`" + ` # Network-flannel is required, Conflicts With Network-terway variable "cluster_addons" { description = "Addon components in kubernetes cluster" type = list(object({ name = string config = string })) default = [ { "name" = "flannel", "config" = "", } ] } # Network-terway is required, Conflicts With Network-flannel variable "cluster_addons" { type = list(object({ name = string config = string })) default = [ { "name" = "terway-eniip", "config" = "", } ] } # Storage-csi is required, Conflicts With Storage-flexvolume variable "cluster_addons" { type = list(object({ name = string config = string })) default = [ { "name" = "csi-plugin", "config" = "", }, { "name" = "csi-provisioner", "config" = "", } ] } # Storage-flexvolume is required, Conflicts With Storage-csi variable "cluster_addons" { type = list(object({ name = string config = string })) default = [ { "name" = "flexvolume", "config" = "", } ] } # Log, Optional variable "cluster_addons" { type = list(object({ name = string config = string })) default = [ { "name" = "logtail-ds", "config" = "{\"IngressDashboardEnabled\":\"true\",\"sls_project_name\":\"your-sls-project-name\"}", } ] } # Ingress, Optional variable "cluster_addons" { type = list(object({ name = string config = string })) default = [ { "name" = "nginx-ingress-controller", "config" = "{\"IngressSlbNetworkType\":\"internet\"}", } ] } # Ingress-Disable, Optional variable "cluster_addons" { type = list(object({ name = string config = string disabled = bool })) default = [ { "name" = "nginx-ingress-controller", "config" = "", "disabled": true, } ] } ` + "`" + `` + "`" + `` + "`" + ` ### Computed params (No need to configure) You can set some file paths to save kube_config information, but this way is cumbersome. Since version 1.105.0, we've written it to tf state file. About its use，see export attribute certificate_authority.`,
+					Description: `You can specific ` + "`" + `IngressSlbNetworkType` + "`" + ` in config. Options: internet|intranet. The ` + "`" + `main.tf` + "`" + `: ` + "`" + `` + "`" + `` + "`" + ` resource "alicloud_cs_managed_kubernetes" "k8s" { # ... other configuration ... dynamic "addons" { for_each = var.cluster_addons content { name = lookup(addons.value, "name", var.cluster_addons) config = lookup(addons.value, "config", var.cluster_addons) disabled = lookup(addons.value, "disabled", var.cluster_addons) } } } ` + "`" + `` + "`" + `` + "`" + ` The ` + "`" + `varibales.tf` + "`" + `: ` + "`" + `` + "`" + `` + "`" + ` # Network-flannel is required, Conflicts With Network-terway variable "cluster_addons" { description = "Addon components in kubernetes cluster" type = list(object({ name = string config = string })) default = [ { "name" = "flannel", "config" = "", } ] } # Network-terway is required, Conflicts With Network-flannel variable "cluster_addons" { type = list(object({ name = string config = string })) default = [ { "name" = "terway-eniip", "config" = "", } ] } # Storage-csi is required, Conflicts With Storage-flexvolume variable "cluster_addons" { type = list(object({ name = string config = string })) default = [ { "name" = "csi-plugin", "config" = "", }, { "name" = "csi-provisioner", "config" = "", } ] } # Storage-flexvolume is required, Conflicts With Storage-csi variable "cluster_addons" { type = list(object({ name = string config = string })) default = [ { "name" = "flexvolume", "config" = "", } ] } # Log, Optional variable "cluster_addons" { type = list(object({ name = string config = string })) default = [ { "name" = "logtail-ds", "config" = "{\"IngressDashboardEnabled\":\"true\",\"sls_project_name\":\"your-sls-project-name\"}", } ] } # Ingress, Optional variable "cluster_addons" { type = list(object({ name = string config = string })) default = [ { "name" = "nginx-ingress-controller", "config" = "{\"IngressSlbNetworkType\":\"internet\"}", } ] } # Ingress-Disable, Optional variable "cluster_addons" { type = list(object({ name = string config = string disabled = bool })) default = [ { "name" = "nginx-ingress-controller", "config" = "", "disabled": true, } ] } # Prometheus, Optional. Default is install. variable "cluster_addons" { type = list(object({ name = string config = string disabled = bool })) default = [ { "name" = "arms-prometheus", "config" = "", "disabled": true, } ] } ` + "`" + `` + "`" + `` + "`" + ` ### Computed params (No need to configure) You can set some file paths to save kube_config information, but this way is cumbersome. Since version 1.105.0, we've written it to tf state file. About its use，see export attribute certificate_authority.`,
 				},
 				resource.Attribute{
 					Name:        "kube_config",
@@ -5365,7 +5377,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scaling_config",
-					Description: `(Optional, Available in 1.111.0+) Auto scaling node pool configuration. For more details, see ` + "`" + `scaling_config` + "`" + `. #### management The following arguments are supported in the ` + "`" + `management` + "`" + ` configuration block:`,
+					Description: `(Optional, Available in 1.111.0+) Auto scaling node pool configuration. For more details, see ` + "`" + `scaling_config` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "auto_repair",
@@ -5465,7 +5477,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Defaults to 60 mins) Used when deleting node-pool in kubernetes cluster.`,
+					Description: `(Defaults to 60 mins) Used when deleting node-pool in kubernetes cluster. ## Import Cluster nodepool can be imported using the id, e.g. Then complete the nodepool.tf accords to the result of ` + "`" + `terraform plan` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cs_node_pool.custom_nodepool cluster_id:nodepool_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5527,7 +5539,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Defaults to 60 mins) Used when deleting node-pool in kubernetes cluster.`,
+					Description: `(Defaults to 60 mins) Used when deleting node-pool in kubernetes cluster. ## Import Cluster nodepool can be imported using the id, e.g. Then complete the nodepool.tf accords to the result of ` + "`" + `terraform plan` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cs_node_pool.custom_nodepool cluster_id:nodepool_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5576,7 +5588,7 @@ var (
 					Description: `(Optional) Enable login to the node through SSH. Default to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "rds_instance",
+					Name:        "rds_instances",
 					Description: `(Optional, Available in 1.103.2+) RDS instance list, You can choose which RDS instances whitelist to add instances to.`,
 				},
 				resource.Attribute{
@@ -5689,14 +5701,14 @@ var (
 				},
 				resource.Attribute{
 					Name:        "worker_number",
-					Description: `(`,
-				},
-				resource.Attribute{
-					Name:        "worker_vswtich_ids",
-					Description: `(`,
+					Description: `(Optional) The worker node number of the kubernetes cluster. Default to 3. It is limited up to 50 and if you want to enlarge it, please apply white list or contact with us. From version 1.109.1, It is not necessary in the professional managed cluster, but it is necessary in other types of clusters.`,
 				},
 				resource.Attribute{
 					Name:        "worker_instance_types",
+					Description: `(Optional) The instance type of worker node. Specify one type for single AZ Cluster, three types for MultiAZ Cluster. From version 1.109.1, It is not necessary in the professional managed cluster, but it is necessary in other types of clusters.`,
+				},
+				resource.Attribute{
+					Name:        "worker_vswtich_ids",
 					Description: `(`,
 				},
 				resource.Attribute{
@@ -5777,7 +5789,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nginx-ingress-controller",
-					Description: `You can specific ` + "`" + `IngressSlbNetworkType` + "`" + ` in config. Options: internet|intranet. The ` + "`" + `main.tf` + "`" + `: ` + "`" + `` + "`" + `` + "`" + `terraform resource "alicloud_cs_managed_kubernetes" "k8s" { # ... other configuration ... dynamic "addons" { for_each = var.cluster_addons content { name = lookup(addons.value, "name", var.cluster_addons) config = lookup(addons.value, "config", var.cluster_addons) disabled = lookup(addons.value, "disabled", var.cluster_addons) } } } ` + "`" + `` + "`" + `` + "`" + ` The ` + "`" + `varibales.tf` + "`" + `: ` + "`" + `` + "`" + `` + "`" + ` # Network-flannel is required, Conflicts With Network-terway variable "cluster_addons" { description = "Addon components in kubernetes cluster" type = list(object({ name = string config = string })) default = [ { "name" = "flannel", "config" = "", } ] } # Network-terway is required, Conflicts With Network-flannel variable "cluster_addons" { type = list(object({ name = string config = string })) default = [ { "name" = "terway-eniip", "config" = "", } ] } # Storage-csi is required, Conflicts With Storage-flexvolume variable "cluster_addons" { type = list(object({ name = string config = string })) default = [ { "name" = "csi-plugin", "config" = "", }, { "name" = "csi-provisioner", "config" = "", } ] } # Storage-flexvolume is required, Conflicts With Storage-csi variable "cluster_addons" { type = list(object({ name = string config = string })) default = [ { "name" = "flexvolume", "config" = "", } ] } # Log, Optional variable "cluster_addons" { type = list(object({ name = string config = string })) default = [ { "name" = "logtail-ds", "config" = "{\"IngressDashboardEnabled\":\"true\",\"sls_project_name\":\"your-sls-project-name\"}", } ] } # Ingress,Optional variable "cluster_addons" { type = list(object({ name = string config = string })) default = [ { "name" = "nginx-ingress-controller", "config" = "{\"IngressSlbNetworkType\":\"internet\"}", } ] } # Ingress-Disable, Optional variable "cluster_addons" { type = list(object({ name = string config = string disabled = bool })) default = [ { "name" = "nginx-ingress-controller", "config" = "", "disabled": true, } ] } ` + "`" + `` + "`" + `` + "`" + ` ### Computed params (No need to configure) You can set some file paths to save kube_config information, but this way is cumbersome. Since version 1.105.0, we've written it to tf state file. About its use，see export attribute certificate_authority.`,
+					Description: `You can specific ` + "`" + `IngressSlbNetworkType` + "`" + ` in config. Options: internet|intranet. The ` + "`" + `main.tf` + "`" + `: ` + "`" + `` + "`" + `` + "`" + `terraform resource "alicloud_cs_managed_kubernetes" "k8s" { # ... other configuration ... dynamic "addons" { for_each = var.cluster_addons content { name = lookup(addons.value, "name", var.cluster_addons) config = lookup(addons.value, "config", var.cluster_addons) disabled = lookup(addons.value, "disabled", var.cluster_addons) } } } ` + "`" + `` + "`" + `` + "`" + ` The ` + "`" + `varibales.tf` + "`" + `: ` + "`" + `` + "`" + `` + "`" + ` # Network-flannel is required, Conflicts With Network-terway variable "cluster_addons" { description = "Addon components in kubernetes cluster" type = list(object({ name = string config = string })) default = [ { "name" = "flannel", "config" = "", } ] } # Network-terway is required, Conflicts With Network-flannel variable "cluster_addons" { type = list(object({ name = string config = string })) default = [ { "name" = "terway-eniip", "config" = "", } ] } # Storage-csi is required, Conflicts With Storage-flexvolume variable "cluster_addons" { type = list(object({ name = string config = string })) default = [ { "name" = "csi-plugin", "config" = "", }, { "name" = "csi-provisioner", "config" = "", } ] } # Storage-flexvolume is required, Conflicts With Storage-csi variable "cluster_addons" { type = list(object({ name = string config = string })) default = [ { "name" = "flexvolume", "config" = "", } ] } # Log, Optional variable "cluster_addons" { type = list(object({ name = string config = string })) default = [ { "name" = "logtail-ds", "config" = "{\"IngressDashboardEnabled\":\"true\",\"sls_project_name\":\"your-sls-project-name\"}", } ] } # Ingress,Optional variable "cluster_addons" { type = list(object({ name = string config = string })) default = [ { "name" = "nginx-ingress-controller", "config" = "{\"IngressSlbNetworkType\":\"internet\"}", } ] } # Ingress-Disable, Optional variable "cluster_addons" { type = list(object({ name = string config = string disabled = bool })) default = [ { "name" = "nginx-ingress-controller", "config" = "", "disabled": true, } ] # Prometheus, Optional. Default is install. variable "cluster_addons" { type = list(object({ name = string config = string disabled = bool })) default = [ { "name" = "arms-prometheus", "config" = "", "disabled": true, } ] } ` + "`" + `` + "`" + `` + "`" + ` ### Computed params (No need to configure) You can set some file paths to save kube_config information, but this way is cumbersome. Since version 1.105.0, we've written it to tf state file. About its use，see export attribute certificate_authority.`,
 				},
 				resource.Attribute{
 					Name:        "kube_config",
@@ -5937,7 +5949,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Defaults to 60 mins) Used when terminating the kubernetes cluster. ## Import Kubernetes cluster can be imported using the id, e.g. Then complete the main.tf accords to the result of ` + "`" + `terraform plan` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cs_managed_kubernetes.main cluster-id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Defaults to 60 mins) Used when terminating the kubernetes cluster. ## Import Kubernetes cluster can be imported using the id, e.g. Then complete the main.tf accords to the result of ` + "`" + `terraform plan` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cs_managed_kubernetes.main cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -6043,7 +6055,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Defaults to 60 mins) Used when terminating the kubernetes cluster. ## Import Kubernetes cluster can be imported using the id, e.g. Then complete the main.tf accords to the result of ` + "`" + `terraform plan` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cs_managed_kubernetes.main cluster-id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Defaults to 60 mins) Used when terminating the kubernetes cluster. ## Import Kubernetes cluster can be imported using the id, e.g. Then complete the main.tf accords to the result of ` + "`" + `terraform plan` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cs_managed_kubernetes.main cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -11616,7 +11628,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional, Available in 1.44.0+) The name of forward entry.`,
+					Description: `(Optional, Available in 1.44.0+) Field ` + "`" + `name` + "`" + ` has been deprecated from provider version 1.120.0. New field ` + "`" + `forward_entry_name` + "`" + ` instead.`,
+				},
+				resource.Attribute{
+					Name:        "forward_entry_name",
+					Description: `(Optional, Available in 1.120.0+) The name of forward entry.`,
 				},
 				resource.Attribute{
 					Name:        "external_ip",
@@ -11636,7 +11652,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "internal_port",
-					Description: `(Required) The internal port, valid value is 1~65535|any. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The internal port, valid value is 1~65535|any.`,
+				},
+				resource.Attribute{
+					Name:        "port_break",
+					Description: `(Optional, Available in 1.120.0+) Specifies whether to remove limits on the port range. Default value is ` + "`" + `false` + "`" + `. ->`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -11644,7 +11664,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "forward_entry_id",
-					Description: `The id of the forward entry on the server. ## Import Forward Entry can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_forward_entry.foo ftb-1aece3:fwd-232ce2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The id of the forward entry on the server.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Available in 1.120.0+) The status of forward entry. ### Timeouts ->`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 10 mins) Used when create the forward entry.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 10 mins) Used when update the forward entry.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 10 mins) Used when delete the forward entry. ## Import Forward Entry can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_forward_entry.foo ftb-1aece3:fwd-232ce2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -11654,7 +11690,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "forward_entry_id",
-					Description: `The id of the forward entry on the server. ## Import Forward Entry can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_forward_entry.foo ftb-1aece3:fwd-232ce2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The id of the forward entry on the server.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Available in 1.120.0+) The status of forward entry. ### Timeouts ->`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 10 mins) Used when create the forward entry.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 10 mins) Used when update the forward entry.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 10 mins) Used when delete the forward entry. ## Import Forward Entry can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_forward_entry.foo ftb-1aece3:fwd-232ce2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -11676,7 +11728,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_use_coupon",
-					Description: `(Optional) The auto use coupon.`,
+					Description: `(Optional) Use coupons to pay bills automatically. Default value is ` + "`" + `false` + "`" + `. Valid value: ` + "`" + `true` + "`" + `: Use, ` + "`" + `false` + "`" + `: Not used.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -11734,15 +11786,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "auto_pay",
-					Description: `(Optional) The auto pay. Valid values: ` + "`" + `false` + "`" + `, ` + "`" + `true` + "`" + `.`,
+					Description: `(Optional) Whether to pay automatically. Valid values: ` + "`" + `false` + "`" + `: If automatic payment is not enabled, you need to go to the order center to complete the payment after the order is generated. ` + "`" + `true` + "`" + `: Enable automatic payment, automatic payment order.`,
 				},
 				resource.Attribute{
 					Name:        "auto_use_coupon",
-					Description: `(Optional) The auto use coupon. Valid values: ` + "`" + `false` + "`" + `, ` + "`" + `true` + "`" + `.`,
+					Description: `(Optional) Whether use vouchers. Default value is ` + "`" + `false` + "`" + `. Valid values: ` + "`" + `false` + "`" + `: Not used, ` + "`" + `true` + "`" + `: Use.`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth",
-					Description: `(Required, ForceNew) The bandwidth value of bandwidth packet.`,
+					Description: `(Required) The bandwidth value of bandwidth packet.`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth_package_name",
@@ -11750,7 +11802,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bandwidth_type",
-					Description: `(Optional) The bandwidth type of the bandwidth. Valid values: ` + "`" + `Advanced` + "`" + `, ` + "`" + `Basic` + "`" + `, ` + "`" + `Enhanced` + "`" + `.`,
+					Description: `(Optional) The bandwidth type of the bandwidth. Valid values: ` + "`" + `Advanced` + "`" + `, ` + "`" + `Basic` + "`" + `, ` + "`" + `Enhanced` + "`" + `. ->`,
 				},
 				resource.Attribute{
 					Name:        "billing_type",
@@ -11919,11 +11971,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "endpoint_group_type",
-					Description: `(Optional, ForceNew) The endpoint group type. Valid values: ` + "`" + `default` + "`" + `, ` + "`" + `virtual` + "`" + `. Default value is ` + "`" + `default` + "`" + `.`,
+					Description: `(Optional, ForceNew) The endpoint group type. Valid values: ` + "`" + `default` + "`" + `, ` + "`" + `virtual` + "`" + `. Default value is ` + "`" + `default` + "`" + `. ->`,
 				},
 				resource.Attribute{
 					Name:        "endpoint_request_protocol",
-					Description: `(Optional) The endpoint request protocol.`,
+					Description: `(Optional) The endpoint request protocol. Valid value: ` + "`" + `HTTP` + "`" + `, ` + "`" + `HTTPS` + "`" + `. ->`,
 				},
 				resource.Attribute{
 					Name:        "health_check_interval_seconds",
@@ -11951,7 +12003,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "port_overrides",
-					Description: `(Optional) Mapping between listening port and forwarding port of boarding point.`,
+					Description: `(Optional) Mapping between listening port and forwarding port of boarding point. ->`,
 				},
 				resource.Attribute{
 					Name:        "threshold_count",
@@ -11987,11 +12039,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) The type of Endpoint N in the endpoint group. Valid values: ` + "`" + `Domain` + "`" + `: a custom domain name, ` + "`" + `Ip` + "`" + `: a custom IP address, ` + "`" + `PublicIp` + "`" + `: an Alibaba Cloud public IP address, ` + "`" + `ECS` + "`" + `: an Alibaba Cloud Elastic Compute Service (ECS) instance, ` + "`" + `SLB` + "`" + `: an Alibaba Cloud Server Load Balancer (SLB) instance.`,
+					Description: `(Required) The type of Endpoint N in the endpoint group. Valid values: ` + "`" + `Domain` + "`" + `: a custom domain name, ` + "`" + `Ip` + "`" + `: a custom IP address, ` + "`" + `PublicIp` + "`" + `: an Alibaba Cloud public IP address, ` + "`" + `ECS` + "`" + `: an Alibaba Cloud Elastic Compute Service (ECS) instance, ` + "`" + `SLB` + "`" + `: an Alibaba Cloud Server Load Balancer (SLB) instance. ->`,
 				},
 				resource.Attribute{
 					Name:        "weight",
-					Description: `(Required) The weight of Endpoint N in the endpoint group. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The weight of Endpoint N in the endpoint group. Valid value is 0 to 255. ->`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -12061,7 +12113,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bandwidth",
-					Description: `(Optional) The bandwidth allocated to the acceleration region.`,
+					Description: `(Optional) The bandwidth allocated to the acceleration region. ->`,
 				},
 				resource.Attribute{
 					Name:        "ip_version",
@@ -12138,7 +12190,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "certificates",
-					Description: `(Optional) The certificates of the listener.`,
+					Description: `(Optional) The certificates of the listener. ->`,
 				},
 				resource.Attribute{
 					Name:        "client_affinity",
@@ -12154,15 +12206,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "port_ranges",
-					Description: `(Required) The portRanges of the listener.`,
+					Description: `(Required) The portRanges of the listener. ->`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `(Optional) Type of network transport protocol monitored. Default value is ` + "`" + `TCP` + "`" + `. Valid values: ` + "`" + `TCP` + "`" + `, ` + "`" + `UDP` + "`" + `.`,
+					Description: `(Optional) Type of network transport protocol monitored. Default value is ` + "`" + `TCP` + "`" + `. Valid values: ` + "`" + `TCP` + "`" + `, ` + "`" + `UDP` + "`" + `, ` + "`" + `HTTP` + "`" + `, ` + "`" + `HTTPS` + "`" + `. ->`,
 				},
 				resource.Attribute{
 					Name:        "proxy_protocol",
-					Description: `(Optional) The proxy protocol of the listener. #### Block port_ranges The port_ranges supports the following:`,
+					Description: `(Optional) The proxy protocol of the listener. Default value is ` + "`" + `false` + "`" + `. Valid value: ` + "`" + `true` + "`" + `: Turn on the keep client source IP function. After it is turned on, the back-end service is supported to view the original IP address of the client. ` + "`" + `false` + "`" + `: keep client source IP function is not turned on. #### Block port_ranges The port_ranges supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "from_port",
@@ -15225,7 +15277,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tde_status",
-					Description: `(Optional, ForceNew, Available in 1.73.0+) The TDE(Transparent Data Encryption) status.`,
+					Description: `(Optional, Available in 1.73.0+) The TDE(Transparent Data Encryption) status.`,
 				},
 				resource.Attribute{
 					Name:        "maintain_start_time",
@@ -19281,6 +19333,58 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "alicloud_rds_parameter_group",
+			Category:         "RDS",
+			ShortDescription: `Provides a Alicloud RDS Parameter Group resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"rds",
+				"parameter",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "engine",
+					Description: `(Required, ForceNew) The database engine. Valid values: ` + "`" + `mysql` + "`" + `, ` + "`" + `mariadb` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `(Required, ForceNew) The version of the database engine. Valid values: mysql: ` + "`" + `5.1` + "`" + `, ` + "`" + `5.5` + "`" + `, ` + "`" + `5.6` + "`" + `, ` + "`" + `5.7` + "`" + `, ` + "`" + `8.0` + "`" + `; mariadb: ` + "`" + `10.3` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "param_detail",
+					Description: `(Required) Parameter list.`,
+				},
+				resource.Attribute{
+					Name:        "parameter_group_desc",
+					Description: `(Optional) The description of the parameter template.`,
+				},
+				resource.Attribute{
+					Name:        "parameter_group_name",
+					Description: `(Required) The name of the parameter template. #### Block parameter_detail The param_detail supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "param_name",
+					Description: `(Required) The name of a parameter.`,
+				},
+				resource.Attribute{
+					Name:        "param_value",
+					Description: `(Required) The value of a parameter. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID in terraform of Parameter Group. ## Import RDS Parameter Group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_rds_parameter_group.example <id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID in terraform of Parameter Group. ## Import RDS Parameter Group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_rds_parameter_group.example <id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alicloud_reserved_instance",
 			Category:         "ECS",
 			ShortDescription: `Provides an ECS Reserved Instance resource.`,
@@ -22474,7 +22578,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "snat_ip",
-					Description: `(Required) The SNAT ip address, the ip must along bandwidth package public ip which ` + "`" + `alicloud_nat_gateway` + "`" + ` argument ` + "`" + `bandwidth_packages` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required, ForceNew) The SNAT ip address, the ip must along bandwidth package public ip which ` + "`" + `alicloud_nat_gateway` + "`" + ` argument ` + "`" + `bandwidth_packages` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -22482,7 +22586,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "snat_entry_id",
-					Description: `The id of the snat entry on the server. ## Import Snat Entry can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_snat_entry.foo stb-1aece3:snat-232ce2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The id of the snat entry on the server.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Available in 1.120.0+) The status of snat entry. ### Timeouts ->`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 2 mins) Used when create the snat.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 2 mins) Used when update the snat.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 2 mins) Used when delete the snat. ## Import Snat Entry can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_snat_entry.foo stb-1aece3:snat-232ce2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -22492,7 +22612,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "snat_entry_id",
-					Description: `The id of the snat entry on the server. ## Import Snat Entry can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_snat_entry.foo stb-1aece3:snat-232ce2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The id of the snat entry on the server.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Available in 1.120.0+) The status of snat entry. ### Timeouts ->`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 2 mins) Used when create the snat.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 2 mins) Used when update the snat.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 2 mins) Used when delete the snat. ## Import Snat Entry can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_snat_entry.foo stb-1aece3:snat-232ce2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -22689,11 +22825,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_block",
-					Description: `(Required, ForceNew) The CIDR block for the VPC.`,
+					Description: `(Required, ForceNew) The CIDR block for the VPC. The ` + "`" + `cidr_block` + "`" + ` is Optional and default value is ` + "`" + `172.16.0.0/12` + "`" + ` after v1.119.0+.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_name",
+					Description: `(Optional, Available in v1.119.0+) The name of the VPC. Defaults to null.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of the VPC. Defaults to null.`,
+					Description: `(Optional, Deprecated in v1.119.0+) Field ` + "`" + `name` + "`" + ` has been deprecated from provider version 1.119.0. New field ` + "`" + `vpc_name` + "`" + ` instead.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -22709,7 +22849,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secondary_cidr_blocks",
-					Description: `(Optional,Available in v1.112.0+) The secondary CIDR blocks for the VPC. ### Timeouts ->`,
+					Description: `(Optional,Available in v1.112.0+) The secondary CIDR blocks for the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "dry_run",
+					Description: `(Optional, ForceNew, Available in v1.119.0+) Specifies whether to precheck this request only. Valid values: ` + "`" + `true` + "`" + ` and ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "user_cidrs",
+					Description: `(Optional, ForceNew, Available in v1.119.0+) The user cidrs of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "enable_ipv6",
+					Description: `(Optional, ForceNew, Available in v1.119.0+) Specifies whether to enable the IPv6 CIDR block. Valid values: ` + "`" + `false` + "`" + ` (Default): disables IPv6 CIDR blocks. ` + "`" + `true` + "`" + `: enables IPv6 CIDR blocks. If the ` + "`" + `enable_ipv6` + "`" + ` is ` + "`" + `true` + "`" + `, the system will automatically create a free version of an IPv6 gateway for your private network and assign an IPv6 network segment assigned as /56. ->`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -22741,7 +22893,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "route_table_id",
-					Description: `The route table ID of the router created by default on VPC creation. ## Import VPC can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_vpc.example vpc-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The route table ID of the router created by default on VPC creation.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_cidr_block",
+					Description: `(Available in v1.119.0+) ) The ipv6 cidr block of VPC. ## Import VPC can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_vpc.example vpc-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -22767,7 +22923,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "route_table_id",
-					Description: `The route table ID of the router created by default on VPC creation. ## Import VPC can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_vpc.example vpc-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The route table ID of the router created by default on VPC creation.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_cidr_block",
+					Description: `(Available in v1.119.0+) ) The ipv6 cidr block of VPC. ## Import VPC can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_vpc.example vpc-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -23158,7 +23318,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
-					Description: `(Required, ForceNew) The AZ for the switch.`,
+					Description: `(Required, ForceNew, Deprecated in v1.119.0+) Field ` + "`" + `availability_zone` + "`" + ` has been deprecated from provider version 1.119.0. New field ` + "`" + `zone_id` + "`" + ` instead.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Required, ForceNew, Available in 1.119.0+) The AZ for the switch.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
@@ -23170,7 +23334,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of the switch. Defaults to null.`,
+					Description: `(Optional, Deprecated in v1.119.0+) Field ` + "`" + `name` + "`" + ` has been deprecated from provider version 1.119.0. New field ` + "`" + `vswitch_name` + "`" + ` instead.`,
+				},
+				resource.Attribute{
+					Name:        "vswitch_name",
+					Description: `(Optional, Available in 1.119.0+) The name of the switch. Defaults to null.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -23206,7 +23374,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `The description of the switch. ## Import Vswitch can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_vswitch.example vsw-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The description of the switch.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Available in 1.119.0+) The status of the switch. ## Import Vswitch can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_vswitch.example vsw-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -23228,7 +23400,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `The description of the switch. ## Import Vswitch can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_vswitch.example vsw-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The description of the switch.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Available in 1.119.0+) The status of the switch. ## Import Vswitch can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_vswitch.example vsw-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -23768,63 +23944,64 @@ var (
 		"alicloud_ram_saml_provider":                         231,
 		"alicloud_ram_user":                                  232,
 		"alicloud_ram_user_policy_attachment":                233,
-		"alicloud_reserved_instance":                         234,
-		"alicloud_resource_manager_account":                  235,
-		"alicloud_resource_manager_folder":                   236,
-		"alicloud_resource_manager_handshake":                237,
-		"alicloud_resource_manager_policy_attachment":        238,
-		"alicloud_resource_manager_resource_directory":       239,
-		"alicloud_resource_manager_resource_group":           240,
-		"alicloud_resource_manager_resource_share":           241,
-		"alicloud_resource_manager_shared_resource":          242,
-		"alicloud_resource_manager_shared_target":            243,
-		"alicloud_ros_change_set":                            244,
-		"alicloud_ros_stack":                                 245,
-		"alicloud_ros_stack_group":                           246,
-		"alicloud_ros_template":                              247,
-		"alicloud_route_entry":                               248,
-		"alicloud_route_table":                               249,
-		"alicloud_route_table_attachment":                    250,
-		"alicloud_router_interface":                          251,
-		"alicloud_router_interface_connection":               252,
-		"alicloud_sag_acl":                                   253,
-		"alicloud_sag_acl_rule":                              254,
-		"alicloud_sag_client_user":                           255,
-		"alicloud_sag_dnat_entry":                            256,
-		"alicloud_sag_qos":                                   257,
-		"alicloud_sag_qos_car":                               258,
-		"alicloud_sag_qos_policy":                            259,
-		"alicloud_sag_snat_entry":                            260,
-		"alicloud_security_group":                            261,
-		"alicloud_security_group_rule":                       262,
-		"alicloud_slb":                                       263,
-		"alicloud_slb_acl":                                   264,
-		"alicloud_slb_attachment":                            265,
-		"alicloud_slb_backend_server":                        266,
-		"alicloud_slb_ca_certificate":                        267,
-		"alicloud_slb_domain_extension":                      268,
-		"alicloud_slb_listener":                              269,
-		"alicloud_slb_master_slave_server_group":             270,
-		"alicloud_slb_rule":                                  271,
-		"alicloud_slb_server_certificate":                    272,
-		"alicloud_slb_server_group":                          273,
-		"alicloud_snapshot":                                  274,
-		"alicloud_snapshot_policy":                           275,
-		"alicloud_snat_entry":                                276,
-		"alicloud_ssl_vpn_client_cert":                       277,
-		"alicloud_ssl_vpn_server":                            278,
-		"alicloud_tsdb_instance":                             279,
-		"alicloud_vpc":                                       280,
-		"alicloud_vpc_flow_log":                              281,
-		"alicloud_vpn_connection":                            282,
-		"alicloud_vpn_customer_gateway":                      283,
-		"alicloud_vpn_gateway":                               284,
-		"alicloud_vpn_route_entry":                           285,
-		"alicloud_vswitch":                                   286,
-		"alicloud_waf_domain":                                287,
-		"alicloud_waf_instance":                              288,
-		"alicloud_yundun_bastionhost_instance":               289,
-		"alicloud_yundun_dbaudit_instance":                   290,
+		"alicloud_rds_parameter_group":                       234,
+		"alicloud_reserved_instance":                         235,
+		"alicloud_resource_manager_account":                  236,
+		"alicloud_resource_manager_folder":                   237,
+		"alicloud_resource_manager_handshake":                238,
+		"alicloud_resource_manager_policy_attachment":        239,
+		"alicloud_resource_manager_resource_directory":       240,
+		"alicloud_resource_manager_resource_group":           241,
+		"alicloud_resource_manager_resource_share":           242,
+		"alicloud_resource_manager_shared_resource":          243,
+		"alicloud_resource_manager_shared_target":            244,
+		"alicloud_ros_change_set":                            245,
+		"alicloud_ros_stack":                                 246,
+		"alicloud_ros_stack_group":                           247,
+		"alicloud_ros_template":                              248,
+		"alicloud_route_entry":                               249,
+		"alicloud_route_table":                               250,
+		"alicloud_route_table_attachment":                    251,
+		"alicloud_router_interface":                          252,
+		"alicloud_router_interface_connection":               253,
+		"alicloud_sag_acl":                                   254,
+		"alicloud_sag_acl_rule":                              255,
+		"alicloud_sag_client_user":                           256,
+		"alicloud_sag_dnat_entry":                            257,
+		"alicloud_sag_qos":                                   258,
+		"alicloud_sag_qos_car":                               259,
+		"alicloud_sag_qos_policy":                            260,
+		"alicloud_sag_snat_entry":                            261,
+		"alicloud_security_group":                            262,
+		"alicloud_security_group_rule":                       263,
+		"alicloud_slb":                                       264,
+		"alicloud_slb_acl":                                   265,
+		"alicloud_slb_attachment":                            266,
+		"alicloud_slb_backend_server":                        267,
+		"alicloud_slb_ca_certificate":                        268,
+		"alicloud_slb_domain_extension":                      269,
+		"alicloud_slb_listener":                              270,
+		"alicloud_slb_master_slave_server_group":             271,
+		"alicloud_slb_rule":                                  272,
+		"alicloud_slb_server_certificate":                    273,
+		"alicloud_slb_server_group":                          274,
+		"alicloud_snapshot":                                  275,
+		"alicloud_snapshot_policy":                           276,
+		"alicloud_snat_entry":                                277,
+		"alicloud_ssl_vpn_client_cert":                       278,
+		"alicloud_ssl_vpn_server":                            279,
+		"alicloud_tsdb_instance":                             280,
+		"alicloud_vpc":                                       281,
+		"alicloud_vpc_flow_log":                              282,
+		"alicloud_vpn_connection":                            283,
+		"alicloud_vpn_customer_gateway":                      284,
+		"alicloud_vpn_gateway":                               285,
+		"alicloud_vpn_route_entry":                           286,
+		"alicloud_vswitch":                                   287,
+		"alicloud_waf_domain":                                288,
+		"alicloud_waf_instance":                              289,
+		"alicloud_yundun_bastionhost_instance":               290,
+		"alicloud_yundun_dbaudit_instance":                   291,
 	}
 )
 

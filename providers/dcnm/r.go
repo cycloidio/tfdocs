@@ -611,6 +611,10 @@ var (
 					Description: `(Required) fabric name under which VRF should be created.`,
 				},
 				resource.Attribute{
+					Name:        "segment_id",
+					Description: `(Optional) VRF-Segment id. This field is auto-calculated if not provided. However while creating multiple VRFs in the same plan use this field to reserve the VRF id to avoid any conflicts due to concurrent execution.`,
+				},
+				resource.Attribute{
 					Name:        "vlan",
 					Description: `(Optional) vlan Id for the VRF.`,
 				},

@@ -745,6 +745,180 @@ var (
 			},
 			Attributes: []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "artifactory_artifactory_xray_policy",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the policy (must be unique)`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Type of the policy`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) More verbose description of the policy`,
+				},
+				resource.Attribute{
+					Name:        "author",
+					Description: `(Optional) Name of the policy author`,
+				},
+				resource.Attribute{
+					Name:        "rules",
+					Description: `(Required) Nested block describing the policy rules. Described below. ### Rules The top-level ` + "`" + `rules` + "`" + ` block is a list of one or more rules that each supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the rule`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Required) Integer describing the rule priority`,
+				},
+				resource.Attribute{
+					Name:        "criteria",
+					Description: `(Required) Nested block describing the criteria for the policy. Described below.`,
+				},
+				resource.Attribute{
+					Name:        "actions",
+					Description: `(Required) Nested block describing the actions to be applied by the policy. Described below. #### criteria ~>`,
+				},
+				resource.Attribute{
+					Name:        "min_severity",
+					Description: `(Optional) The minimum security vulnerability severity that will be impacted by the policy.`,
+				},
+				resource.Attribute{
+					Name:        "cvss_range",
+					Description: `(Optional) Nested block describing a CVS score range to be impacted. Defined below. ###### cvss_range The nested ` + "`" + `cvss_range` + "`" + ` block is a list of one object that contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "to",
+					Description: `(Required) The beginning of the range of CVS scores (from 1-10) to flag.`,
+				},
+				resource.Attribute{
+					Name:        "from",
+					Description: `(Required) The end of the range of CVS scores (from 1-10) to flag. ##### License criteria`,
+				},
+				resource.Attribute{
+					Name:        "allow_unknown",
+					Description: `(Optional) Whether or not to allow components whose license cannot be determined (` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "banned_licenses",
+					Description: `(Optional) A list of OSS license names that may not be attached to a component.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_licenses",
+					Description: `(Optional) A list of OSS license names that may be attached to a component. #### actions ~>`,
+				},
+				resource.Attribute{
+					Name:        "mails",
+					Description: `(Optional) A list of email addressed that will get emailed when a violation is triggered.`,
+				},
+				resource.Attribute{
+					Name:        "fail_build",
+					Description: `(Optional) Whether or not the related CI build should be marked as failed if a violation is triggered. This option is only available when the policy is applied to an ` + "`" + `xray_watch` + "`" + ` resource with a ` + "`" + `type` + "`" + ` of ` + "`" + `builds` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "block_download",
+					Description: `(Optional) Nested block describing artifacts that should be blocked for download if a violation is triggered. Described below.`,
+				},
+				resource.Attribute{
+					Name:        "webhooks",
+					Description: `(Optional) A list of Xray-configured webhook URLs to be invoked if a violation is triggered.`,
+				},
+				resource.Attribute{
+					Name:        "custom_severity",
+					Description: `(Optional) The severity of violation to be triggered if the ` + "`" + `criteria` + "`" + ` are met. ###### block_download ~>`,
+				},
+				resource.Attribute{
+					Name:        "unscanned",
+					Description: `Whether or not to block download of artifacts that meet the artifact ` + "`" + `filters` + "`" + ` for the associated ` + "`" + `xray_watch` + "`" + ` resource but have not been scanned yet.`,
+				},
+				resource.Attribute{
+					Name:        "active",
+					Description: `Whether or not to block download of artifacts that meet the artifact and severity ` + "`" + `filters` + "`" + ` for the associated ` + "`" + `xray_watch` + "`" + ` resource. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `Timestamp of when the policy was first created`,
+				},
+				resource.Attribute{
+					Name:        "modified",
+					Description: `Timestamp of when the policy was last modified ## Import A policy can be imported by using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import xray_policy.example policy-name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "artifactory_artifactory_xray_watch",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the watch (must be unique)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the watch`,
+				},
+				resource.Attribute{
+					Name:        "active",
+					Description: `(Optional) Whether or not the watch will be active`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `(Required) Nested argument describing the resources to be watched. Defined below.`,
+				},
+				resource.Attribute{
+					Name:        "assigned_policies",
+					Description: `(Required) Nested argument describing policies that will be applied. Defined below. ### resources The top-level ` + "`" + `resources` + "`" + ` block contains a list of one or more resource objects that each support the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Type of resource to be watched`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A name describing the resource`,
+				},
+				resource.Attribute{
+					Name:        "bin_mgr_id",
+					Description: `(Optional) The ID number of a binary manager resource`,
+				},
+				resource.Attribute{
+					Name:        "filters",
+					Description: `(Optional) Nested argument describing filters to be applied. Defined below. #### filters The nested ` + "`" + `filters` + "`" + ` block contains a list of one or more filters to be applied, each of which supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of filter, such as ` + "`" + `regex` + "`" + ` or ` + "`" + `package-type` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The value of the filter, such as the text of the regex or name of the package type ### assigned_policies The top-level ` + "`" + `assigned_policies` + "`" + ` block contains a list of one or more policy objects that each support the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the policy that will be applied`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of the policy ## Import Watches can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import xray_watch.example watch-name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
 	}
 
 	resourcesMap = map[string]int{
@@ -761,6 +935,8 @@ var (
 		"artifactory_artifactory_single_replication_config": 9,
 		"artifactory_artifactory_user":                      10,
 		"artifactory_artifactory_virtual_repository":        11,
+		"artifactory_artifactory_xray_policy":               12,
+		"artifactory_artifactory_xray_watch":                13,
 	}
 )
 

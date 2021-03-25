@@ -1545,7 +1545,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource",
-					Description: `(Required) Resource to select ### ` + "`" + `se_linux_options` + "`" + ` #### Arguments`,
+					Description: `(Required) Resource to select`,
+				},
+				resource.Attribute{
+					Name:        "divisor",
+					Description: `(Optional) Specifies the output format of the exposed resources, defaults to "1". ### ` + "`" + `se_linux_options` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "level",
@@ -2882,7 +2886,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource",
-					Description: `(Required) Resource to select ### ` + "`" + `se_linux_options` + "`" + ` #### Arguments`,
+					Description: `(Required) Resource to select`,
+				},
+				resource.Attribute{
+					Name:        "divisor",
+					Description: `(Optional) Specifies the output format of the exposed resources, defaults to "1". ### ` + "`" + `se_linux_options` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "level",
@@ -5551,7 +5559,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource",
-					Description: `(Required) Resource to select ### ` + "`" + `se_linux_options` + "`" + ` #### Arguments`,
+					Description: `(Required) Resource to select`,
+				},
+				resource.Attribute{
+					Name:        "divisor",
+					Description: `(Optional) Specifies the output format of the exposed resources, defaults to "1". ### ` + "`" + `se_linux_options` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "level",

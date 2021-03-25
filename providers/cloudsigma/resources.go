@@ -95,7 +95,11 @@ Provides a CloudSigma Drive resource which can be attached to a Server.
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `(Required) Size of the drive in bytes ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) Size of the drive in bytes`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A list of the tags UUIDs to be applied to the drive. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "media",
@@ -199,7 +203,11 @@ and delete Servers.
 				},
 				resource.Attribute{
 					Name:        "network",
-					Description: `(Optional) Network interface card attached to the server - ipv4_address - (Optional) The IP address reference. Only used with ` + "`" + `static` + "`" + ` type - type - (Optional) Configuration type. Valid values: ` + "`" + `dhcp` + "`" + `, ` + "`" + `static` + "`" + `, ` + "`" + `manual` + "`" + ` - vlan_uuid - (Optional) The UUID of the VLAN reference ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Network interface card attached to the server - ipv4_address - (Optional) The IP address reference. Only used with ` + "`" + `static` + "`" + ` type - type - (Optional) Configuration type. Valid values: ` + "`" + `dhcp` + "`" + `, ` + "`" + `static` + "`" + `, ` + "`" + `manual` + "`" + ` - vlan_uuid - (Optional) The UUID of the VLAN reference`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A list of the tags UUIDs to be applied to the server. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "cpu",

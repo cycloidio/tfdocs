@@ -5064,10 +5064,6 @@ var (
 					Description: `(Optional) This setting is only applicable (and required) with ` + "`" + `INLINE` + "`" + ` mode.`,
 				},
 				resource.Attribute{
-					Name:        "vni_pool_path",
-					Description: `(Optional) This setting is only applicable (and required) with ` + "`" + `ROUTE_SERVER` + "`" + ` mode.`,
-				},
-				resource.Attribute{
 					Name:        "tag",
 					Description: `(Optional) A list of scope + tag pairs to associate with this resource. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
@@ -5652,7 +5648,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "destination_groups",
-					Description: `(Optional) A list of destination group paths to use for the policy.`,
+					Description: `(Optional) Set of group paths that serve as the destination for this rule. IPs, IP ranges, or CIDRs may also be used starting in NSX-T 3.0. An empty set can be used to specify "Any".`,
 				},
 				resource.Attribute{
 					Name:        "destinations_excluded",
@@ -5692,7 +5688,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "source_groups",
-					Description: `(Optional) A list of source group paths to use for the policy.`,
+					Description: `(Optional) Set of group paths that serve as the source for this rule. IPs, IP ranges, or CIDRs may also be used starting in NSX-T 3.0. An empty set can be used to specify "Any".`,
 				},
 				resource.Attribute{
 					Name:        "source_excluded",
@@ -6887,7 +6883,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) SNAT type, one of 'AUTOMAP` + "`" + `, ` + "`" + `DISABLED` + "`" + `, ` + "`" + `IPPOOL` + "`" + `. Default is ` + "`" + `AUTOMAP` + "`" + `.`,
+					Description: `(Optional) SNAT type, one of ` + "`" + `AUTOMAP` + "`" + `, ` + "`" + `DISABLED` + "`" + `, ` + "`" + `IPPOOL` + "`" + `. Default is ` + "`" + `AUTOMAP` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ip_pool_addresses",
@@ -7335,7 +7331,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secret_key",
-					Description: `(Optional) Authentication secret key, required for authentication mode other than ` + "`" + `NONE` + "`" + `. This attribute is sensitive. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Optional) Authentication secret key, required for authentication mode other than ` + "`" + `NONE` + "`" + `. This attribute is sensitive. Length should not exceed 8 characters. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -7347,7 +7343,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing OSPF Area can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ospf_area.test GW-ID/LOCALE-SERVICE-ID/AREA-ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports OSPF Area named ` + "`" + `test` + "`" + ` with ID ` + "`" + `AREA-ID` + "`" + ` on Tier-0 Gateway ` + "`" + `GW-ID` + "`" + ` and Locale Service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing OSPF Area can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ospf_area.test GW-ID/LOCALE-SERVICE-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports OSPF Area named ` + "`" + `test` + "`" + ` with NSX ID ` + "`" + `ID` + "`" + ` on Tier-0 Gateway ` + "`" + `GW-ID` + "`" + ` and Locale Service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -7361,7 +7357,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing OSPF Area can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ospf_area.test GW-ID/LOCALE-SERVICE-ID/AREA-ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports OSPF Area named ` + "`" + `test` + "`" + ` with ID ` + "`" + `AREA-ID` + "`" + ` on Tier-0 Gateway ` + "`" + `GW-ID` + "`" + ` and Locale Service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing OSPF Area can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ospf_area.test GW-ID/LOCALE-SERVICE-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports OSPF Area named ` + "`" + `test` + "`" + ` with NSX ID ` + "`" + `ID` + "`" + ` on Tier-0 Gateway ` + "`" + `GW-ID` + "`" + ` and Locale Service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
 				},
 			},
 		},
@@ -7499,7 +7495,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "destination_groups",
-					Description: `(Optional) A list of destination group paths to use for the policy.`,
+					Description: `(Optional) Set of group paths that serve as the destination for this rule. IPs, IP ranges, or CIDRs may also be used starting in NSX-T 3.0. An empty set can be used to specify "Any".`,
 				},
 				resource.Attribute{
 					Name:        "destinations_excluded",
@@ -7539,7 +7535,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "source_groups",
-					Description: `(Optional) A list of source group paths to use for the policy.`,
+					Description: `(Optional) Set of group paths that serve as the source for this rule. IPs, IP ranges, or CIDRs may also be used starting in NSX-T 3.0. An empty set can be used to specify "Any".`,
 				},
 				resource.Attribute{
 					Name:        "source_excluded",
@@ -7660,7 +7656,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "destination_groups",
-					Description: `(Optional) A list of destination group paths to use for the policy.`,
+					Description: `(Optional) Set of group paths that serve as the destination for this rule. IPs, IP ranges, or CIDRs may also be used starting in NSX-T 3.0. An empty set can be used to specify "Any".`,
 				},
 				resource.Attribute{
 					Name:        "destinations_excluded",
@@ -7700,7 +7696,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "source_groups",
-					Description: `(Optional) A list of source group paths to use for the policy.`,
+					Description: `(Optional) Set of group paths that serve as the source for this rule. IPs, IP ranges, or CIDRs may also be used starting in NSX-T 3.0. An empty set can be used to specify "Any".`,
 				},
 				resource.Attribute{
 					Name:        "source_excluded",
@@ -7989,11 +7985,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "destination_groups",
-					Description: `(Optional) Set of group paths that serve as destination for this rule.`,
+					Description: `(Optional) Set of group paths that serve as the destination for this rule. IPs, IP ranges, or CIDRs may also be used starting in NSX-T 3.0. An empty set can be used to specify "Any".`,
 				},
 				resource.Attribute{
 					Name:        "source_groups",
-					Description: `(Optional) Set of group paths that serve as source for this rule.`,
+					Description: `(Optional) Set of group paths that serve as the source for this rule. IPs, IP ranges, or CIDRs may also be used starting in NSX-T 3.0. An empty set can be used to specify "Any".`,
 				},
 				resource.Attribute{
 					Name:        "destinations_excluded",

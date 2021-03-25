@@ -48,6 +48,25 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "github_app_installation_repository",
+			Category:         "Resources",
+			ShortDescription: `Manages the associations between app installations and repositories.`,
+			Description:      ``,
+			Keywords: []string{
+				"app",
+				"installation",
+				"repository",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "installation_id",
+					Description: `(Required) The GitHub app installation id.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "github_branch",
 			Category:         "Resources",
 			ShortDescription: `Creates and manages branches within GitHub repositories.`,
@@ -66,7 +85,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "source_branch",
-					Description: `(Optional) The branch name to start from. Defaults to ` + "`" + `master` + "`" + `.`,
+					Description: `(Optional) The branch name to start from. Defaults to ` + "`" + `main` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "source_sha",
@@ -480,7 +499,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pages",
-					Description: `(Optional) The repository's Github Pages configuration. See [Github Pages Configuration](#github-pages-configuration) below for details.`,
+					Description: `(Optional) The repository's GitHub Pages configuration. See [GitHub Pages Configuration](#github-pages-configuration) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "topics",
@@ -492,11 +511,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "source",
-					Description: `(Required) The source branch and directory for the rendered Pages site. See [Github Pages Source](#github-pages-source) below for details.`,
+					Description: `(Required) The source branch and directory for the rendered Pages site. See [GitHub Pages Source](#github-pages-source) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "cname",
-					Description: `(Optional) The custom domain for the repository. This can only be set after the repository has been created. #### Github Pages Source #### The ` + "`" + `source` + "`" + ` block supports the following:`,
+					Description: `(Optional) The custom domain for the repository. This can only be set after the repository has been created. #### GitHub Pages Source #### The ` + "`" + `source` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "branch",
@@ -540,23 +559,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "repo_id",
-					Description: `Github ID for the repository`,
+					Description: `GitHub ID for the repository`,
 				},
 				resource.Attribute{
 					Name:        "pages",
-					Description: `The block consisting of the repository's Github Pages configuration with the following additional attributes:`,
+					Description: `The block consisting of the repository's GitHub Pages configuration with the following additional attributes:`,
 				},
 				resource.Attribute{
 					Name:        "custom_404",
-					Description: `Whether the rendered Github Pages site has a custom 404 page.`,
+					Description: `Whether the rendered GitHub Pages site has a custom 404 page.`,
 				},
 				resource.Attribute{
 					Name:        "html_url",
-					Description: `The absolute URL (including scheme) of the rendered Github Pages site e.g. ` + "`" + `https://username.github.io` + "`" + `.`,
+					Description: `The absolute URL (including scheme) of the rendered GitHub Pages site e.g. ` + "`" + `https://username.github.io` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The Github Pages site's build status e.g. ` + "`" + `building` + "`" + ` or ` + "`" + `built` + "`" + `. ## Import Repositories can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository.terraform terraform ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The GitHub Pages site's build status e.g. ` + "`" + `building` + "`" + ` or ` + "`" + `built` + "`" + `. ## Import Repositories can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository.terraform terraform ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -594,23 +613,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "repo_id",
-					Description: `Github ID for the repository`,
+					Description: `GitHub ID for the repository`,
 				},
 				resource.Attribute{
 					Name:        "pages",
-					Description: `The block consisting of the repository's Github Pages configuration with the following additional attributes:`,
+					Description: `The block consisting of the repository's GitHub Pages configuration with the following additional attributes:`,
 				},
 				resource.Attribute{
 					Name:        "custom_404",
-					Description: `Whether the rendered Github Pages site has a custom 404 page.`,
+					Description: `Whether the rendered GitHub Pages site has a custom 404 page.`,
 				},
 				resource.Attribute{
 					Name:        "html_url",
-					Description: `The absolute URL (including scheme) of the rendered Github Pages site e.g. ` + "`" + `https://username.github.io` + "`" + `.`,
+					Description: `The absolute URL (including scheme) of the rendered GitHub Pages site e.g. ` + "`" + `https://username.github.io` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The Github Pages site's build status e.g. ` + "`" + `building` + "`" + ` or ` + "`" + `built` + "`" + `. ## Import Repositories can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository.terraform terraform ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The GitHub Pages site's build status e.g. ` + "`" + `building` + "`" + ` or ` + "`" + `built` + "`" + `. ## Import Repositories can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository.terraform terraform ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -760,11 +779,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "owner",
-					Description: `(Required) The owner of the Github Repository.`,
+					Description: `(Required) The owner of the GitHub Repository.`,
 				},
 				resource.Attribute{
 					Name:        "repository",
-					Description: `(Required) The name of the Github Repository.`,
+					Description: `(Required) The name of the GitHub Repository.`,
 				},
 				resource.Attribute{
 					Name:        "title",
@@ -1115,30 +1134,31 @@ var (
 
 		"github_actions_organization_secret": 0,
 		"github_actions_secret":              1,
-		"github_branch":                      2,
-		"github_branch_protection":           3,
-		"github_branch_protection_v3":        4,
-		"github_issue_label":                 5,
-		"github_membership":                  6,
-		"github_organization_block":          7,
-		"github_organization_project":        8,
-		"github_organization_webhook":        9,
-		"github_project_card":                10,
-		"github_project_column":              11,
-		"github_repository":                  12,
-		"github_repository_collaborator":     13,
-		"github_repository_deploy_key":       14,
-		"github_repository_file":             15,
-		"github_repository_milestone":        16,
-		"github_repository_project":          17,
-		"github_repository_webhook":          18,
-		"github_team":                        19,
-		"github_team_membership":             20,
-		"github_team_repository":             21,
-		"github_team_sync_group_mapping":     22,
-		"github_user_gpg_key":                23,
-		"github_user_invitation_accepter":    24,
-		"github_user_ssh_key":                25,
+		"github_app_installation_repository": 2,
+		"github_branch":                      3,
+		"github_branch_protection":           4,
+		"github_branch_protection_v3":        5,
+		"github_issue_label":                 6,
+		"github_membership":                  7,
+		"github_organization_block":          8,
+		"github_organization_project":        9,
+		"github_organization_webhook":        10,
+		"github_project_card":                11,
+		"github_project_column":              12,
+		"github_repository":                  13,
+		"github_repository_collaborator":     14,
+		"github_repository_deploy_key":       15,
+		"github_repository_file":             16,
+		"github_repository_milestone":        17,
+		"github_repository_project":          18,
+		"github_repository_webhook":          19,
+		"github_team":                        20,
+		"github_team_membership":             21,
+		"github_team_repository":             22,
+		"github_team_sync_group_mapping":     23,
+		"github_user_gpg_key":                24,
+		"github_user_invitation_accepter":    25,
+		"github_user_ssh_key":                26,
 	}
 )
 

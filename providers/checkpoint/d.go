@@ -4445,6 +4445,289 @@ This resource allows you to execute Check Point Threat Exception.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "checkpoint_management_threat_profile",
+			Category:         "Data Sources",
+			ShortDescription: `This resource allows you to execute Check Point Threat Profile.`,
+			Description: `
+
+This resource allows you to execute Check Point Threat Profile.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Object name. Should be unique in the domain.`,
+				},
+				resource.Attribute{
+					Name:        "active_protections_performance_impact",
+					Description: `(Optional) Protections with this performance impact only will be activated in the profile.`,
+				},
+				resource.Attribute{
+					Name:        "active_protections_severity",
+					Description: `(Optional) Protections with this severity only will be activated in the profile.`,
+				},
+				resource.Attribute{
+					Name:        "confidence_level_high",
+					Description: `(Optional) Action for protections with high confidence level.`,
+				},
+				resource.Attribute{
+					Name:        "confidence_level_medium",
+					Description: `(Optional) Action for protections with medium confidence level.`,
+				},
+				resource.Attribute{
+					Name:        "confidence_level_low",
+					Description: `(Optional) Action for protections with low confidence level.`,
+				},
+				resource.Attribute{
+					Name:        "indicator_overrides",
+					Description: `(Optional) Indicators whose action will be overridden in this profile. indicator_overrides blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "ips_settings",
+					Description: `(Optional) IPS blade settings. ips_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "malicious_mail_policy_settings",
+					Description: `(Optional) Malicious Mail Policy for MTA Gateways. malicious_mail_policy_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "overrides",
+					Description: `(Optional) Overrides per profile for this protection. overrides blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "scan_malicious_links",
+					Description: `(Optional) Scans malicious links (URLs) inside email messages. scan_malicious_links blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "use_indicators",
+					Description: `(Optional) Indicates whether the profile should make use of indicators.`,
+				},
+				resource.Attribute{
+					Name:        "anti_virus",
+					Description: `(Optional) Is Anti-Virus blade activated.`,
+				},
+				resource.Attribute{
+					Name:        "anti_bot",
+					Description: `(Optional) Is Anti-Bot blade activated.`,
+				},
+				resource.Attribute{
+					Name:        "ips",
+					Description: `(Optional) Is IPS blade activated.`,
+				},
+				resource.Attribute{
+					Name:        "threat_emulation",
+					Description: `(Optional) Is Threat Emulation blade activated.`,
+				},
+				resource.Attribute{
+					Name:        "use_extended_attributes",
+					Description: `(Optional) Whether to activate/deactivate IPS protections according to the extended attributes.`,
+				},
+				resource.Attribute{
+					Name:        "activate_protections_by_extended_attributes",
+					Description: `(Optional) Activate protections by these extended attributes. activate_protections_by_extended_attributes blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "deactivate_protections_by_extended_attributes",
+					Description: `(Optional) Deactivate protections by these extended attributes. deactivate_protections_by_extended_attributes blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `(Optional) Color of the object. Should be one of existing colors.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `(Optional) Comments string.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Collection of tag identifiers.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_warnings",
+					Description: `(Optional) Apply changes ignoring warnings.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_errors",
+					Description: `(Optional) Apply changes ignoring errors. You won't be able to publish such a changes. If ignore-warnings flag was omitted - warnings will also be ignored. ` + "`" + `indicator_overrides` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Optional) The indicator's action in this profile.`,
+				},
+				resource.Attribute{
+					Name:        "indicator",
+					Description: `(Optional) The indicator whose action is to be overriden. ` + "`" + `ips_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "exclude_protection_with_performance_impact",
+					Description: `(Optional) Whether to exclude protections depending on their level of performance impact.`,
+				},
+				resource.Attribute{
+					Name:        "exclude_protection_with_performance_impact_mode",
+					Description: `(Optional) Exclude protections with this level of performance impact.`,
+				},
+				resource.Attribute{
+					Name:        "exclude_protection_with_severity",
+					Description: `(Optional) Whether to exclude protections depending on their level of severity.`,
+				},
+				resource.Attribute{
+					Name:        "exclude_protection_with_severity_mode",
+					Description: `(Optional) Exclude protections with this level of severity.`,
+				},
+				resource.Attribute{
+					Name:        "newly_updated_protections",
+					Description: `(Optional) Activation of newly updated protections. ` + "`" + `malicious_mail_policy_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "add_customized_text_to_email_body",
+					Description: `Add customized text to the malicious email body.`,
+				},
+				resource.Attribute{
+					Name:        "add_email_subject_prefix",
+					Description: `Add a prefix to the malicious email subject.`,
+				},
+				resource.Attribute{
+					Name:        "add_x_header_to_email",
+					Description: `Add an X-Header to the malicious email.`,
+				},
+				resource.Attribute{
+					Name:        "email_action",
+					Description: `Block - block the entire malicious email. Allow - pass the malicious email and apply email changes (like: remove attachments and links, add x-header, etc...).`,
+				},
+				resource.Attribute{
+					Name:        "email_body_customized_text",
+					Description: `Customized text for the malicious email body. Available predefined fields: $verdicts$ - the malicious/error attachments/links verdict.`,
+				},
+				resource.Attribute{
+					Name:        "email_subject_prefix_text",
+					Description: `Prefix for the malicious email subject.`,
+				},
+				resource.Attribute{
+					Name:        "failed_to_scan_attachments_text",
+					Description: `Replace attachments that failed to be scanned with this text. Available predefined fields: $filename$ - the malicious file name. $md5$ - MD5 of the malicious file.`,
+				},
+				resource.Attribute{
+					Name:        "malicious_attachments_text",
+					Description: `Replace malicious attachments with this text. Available predefined fields: $filename$ - the malicious file name. $md5$ - MD5 of the malicious file.`,
+				},
+				resource.Attribute{
+					Name:        "malicious_links_text",
+					Description: `Replace malicious links with this text. Available predefined fields: $neutralized_url$ - neutralized malicious link.`,
+				},
+				resource.Attribute{
+					Name:        "remove_attachments_and_links",
+					Description: `Remove attachments and links from the malicious email.`,
+				},
+				resource.Attribute{
+					Name:        "send_copy",
+					Description: `Send a copy of the malicious email to the recipient list.`,
+				},
+				resource.Attribute{
+					Name:        "send_copy_list",
+					Description: `Recipient list to send a copy of the malicious email. ` + "`" + `overrides` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "protection",
+					Description: `IPS protection identified by name.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `Protection action.`,
+				},
+				resource.Attribute{
+					Name:        "capture_packets",
+					Description: `Capture packets.`,
+				},
+				resource.Attribute{
+					Name:        "track",
+					Description: `Tracking method for protection.`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `Default settings. default blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "final",
+					Description: `Final settings. final blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "protection_external_info",
+					Description: `Collection of industry reference (CVE).`,
+				},
+				resource.Attribute{
+					Name:        "protection_uid",
+					Description: `IPS protection unique identifier. ` + "`" + `scan_malicious_links` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "max_bytes",
+					Description: `Scan links in the first bytes of the mail body.`,
+				},
+				resource.Attribute{
+					Name:        "max_links",
+					Description: `Maximum links to scan in mail body. ` + "`" + `activate_protections_by_extended_attributes` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `IPS tag unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `IPS tag name.`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `IPS tag category name.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `Collection of IPS protection extended attribute values (name and uid). ` + "`" + `deactivate_protections_by_extended_attributes` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `IPS tag unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `IPS tag name.`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `IPS tag category name.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `Collection of IPS protection extended attribute values (name and uid). ` + "`" + `default` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `Protection action.`,
+				},
+				resource.Attribute{
+					Name:        "capture_packets",
+					Description: `Capture packets.`,
+				},
+				resource.Attribute{
+					Name:        "track",
+					Description: `Tracking method for protection. ` + "`" + `final` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `Protection action.`,
+				},
+				resource.Attribute{
+					Name:        "capture_packets",
+					Description: `Capture packets.`,
+				},
+				resource.Attribute{
+					Name:        "track",
+					Description: `Tracking method for protection.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "checkpoint_management_threat_rule",
 			Category:         "Data Sources",
 			ShortDescription: `This resource allows you to execute Check Point Threat Rule.`,
@@ -4876,11 +5159,12 @@ This resource allows you to execute Check Point VPN Community Remote Access.
 		"checkpoint_management_simple_cluster":                            47,
 		"checkpoint_management_simple_gateway":                            48,
 		"checkpoint_management_threat_exception":                          49,
-		"checkpoint_management_threat_rule":                               50,
-		"checkpoint_management_user":                                      51,
-		"checkpoint_management_user_group":                                52,
-		"checkpoint_management_user_template":                             53,
-		"checkpoint_management_vpn_community_remote_access":               54,
+		"checkpoint_management_threat_profile":                            50,
+		"checkpoint_management_threat_rule":                               51,
+		"checkpoint_management_user":                                      52,
+		"checkpoint_management_user_group":                                53,
+		"checkpoint_management_user_template":                             54,
+		"checkpoint_management_vpn_community_remote_access":               55,
 	}
 )
 

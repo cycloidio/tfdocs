@@ -1287,6 +1287,69 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "onelogin_onelogin_smarthook",
+			Category:         "Resources",
+			ShortDescription: `Manage SmartHook resources.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The name of the hook. Must be one of: ` + "`" + `user-migration` + "`" + ` ` + "`" + `pre-authentication` + "`" + ` ` + "`" + `pre-user-create` + "`" + ` ` + "`" + `post-user-create` + "`" + ` ` + "`" + `pre-user-update` + "`" + ` ` + "`" + `post-user-update` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Computed) The smarthook's status.`,
+				},
+				resource.Attribute{
+					Name:        "packages",
+					Description: `(Required) A list of public npm packages than will be installed as part of the function build process. These packages names must be on our allowlist. See Node Modules section of this doc. Packages can be any version and support the semantic versioning syntax used by NPM.`,
+				},
+				resource.Attribute{
+					Name:        "function",
+					Description: `(Required) A base64 encoded blob, or Heredoc string containing the javascript function code.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `(Required) Indicates if function is available for execution or not. Default true`,
+				},
+				resource.Attribute{
+					Name:        "options",
+					Description: `(Required if type = pre-authentication) A list of options for the hook`,
+				},
+				resource.Attribute{
+					Name:        "risk_enabled",
+					Description: `(Required) When true a risk score and risk reasons will be passed in the context. Only applies authentication time hooks. E.g. pre-authentication, user-migration. Default false`,
+				},
+				resource.Attribute{
+					Name:        "location_enabled",
+					Description: `(Required) When true an ip to location lookup is done and the location info is passed in the context. Only applies authentication time hooks. E.g. pre-authentication, user-migration. Default false`,
+				},
+				resource.Attribute{
+					Name:        "retries",
+					Description: `(Required) Number of retries if execution fails. Default 0, Max 4`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Required) The number of milliseconds to allow before timeout. Default 1000, Max 10000`,
+				},
+				resource.Attribute{
+					Name:        "env_vars",
+					Description: `(Required) An array of predefined environment variables to be supplied to the function at runtime.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `(Computed) Timestamp for smarthook's last update`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `(Computed) Timestamp for smarthook's last update ## Attributes Reference No further attributes are exported ## Import A SmartHook can be imported via the OneLogin SmartHook. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import onelogin_smarthooks.example <smarthook_id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "onelogin_onelogin_user",
 			Category:         "Resources",
 			ShortDescription: `Manage User resources.`,
@@ -1455,8 +1518,9 @@ var (
 		"onelogin_onelogin_oidc_app":            4,
 		"onelogin_onelogin_role":                5,
 		"onelogin_onelogin_saml_app":            6,
-		"onelogin_onelogin_user":                7,
-		"onelogin_onelogin_user_mapping":        8,
+		"onelogin_onelogin_smarthook":           7,
+		"onelogin_onelogin_user":                8,
+		"onelogin_onelogin_user_mapping":        9,
 	}
 )
 

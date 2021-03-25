@@ -4232,6 +4232,10 @@ var (
 					Description: `(Optional) List of allowed domains for certificates`,
 				},
 				resource.Attribute{
+					Name:        "allowed_domains_template",
+					Description: `(Optional) Flag, if set, ` + "`" + `allowed_domains` + "`" + ` can be specified using identity template expressions such as ` + "`" + `{{identity.entity.aliases.<mount accessor>.name}}` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "allow_bare_domains",
 					Description: `(Optional) Flag to allow certificates matching the actual domain`,
 				},

@@ -141,7 +141,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "client_id",
-					Description: `(Required) (String) This is the client_id for the enterprise application for the service principal.`,
+					Description: `(Required) (String) This is the client_id (Application Object ID) for the enterprise application for the service principal.`,
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
@@ -376,7 +376,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "availability",
-					Description: `(Optional) Availability type used for all subsequent nodes past the ` + "`" + `first_on_demand` + "`" + ` ones. Valid values are ` + "`" + `SPOT` + "`" + ` and ` + "`" + `ON_DEMAND` + "`" + `. Note: If ` + "`" + `first_on_demand` + "`" + ` is zero, this availability type will be used for the entire cluster.`,
+					Description: `(Optional) Availability type used for all subsequent nodes past the ` + "`" + `first_on_demand` + "`" + ` ones. Valid values are ` + "`" + `SPOT` + "`" + `, ` + "`" + `SPOT_WITH_FALLBACK` + "`" + ` and ` + "`" + `ON_DEMAND` + "`" + `. Note: If ` + "`" + `first_on_demand` + "`" + ` is zero, this availability type will be used for the entire cluster.`,
 				},
 				resource.Attribute{
 					Name:        "first_on_demand",
@@ -400,7 +400,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ebs_volume_size",
-					Description: `(Optional) The size of each EBS volume (in GiB) launched for each instance. For general purpose SSD, this value must be within the range 100 - 4096. For throughput optimized HDD, this value must be within the range 500 - 4096. Custom EBS volumes cannot be specified for the legacy node types (memory-optimized and compute-optimized). ## docker_image [Databricks Container Services](https://docs.databricks.com/clusters/custom-containers.html) lets you specify a Docker image when you create a cluster. You need to enable Container Services in`,
+					Description: `(Optional) The size of each EBS volume (in GiB) launched for each instance. For general purpose SSD, this value must be within the range 100 - 4096. For throughput optimized HDD, this value must be within the range 500 - 4096. Custom EBS volumes cannot be specified for the legacy node types (memory-optimized and compute-optimized). ## azure_attributes ` + "`" + `azure_attributes` + "`" + ` optional configuration block contains attributes related to [clusters running on Azure](https://docs.microsoft.com/en-us/azure/databricks/dev-tools/api/latest/clusters#--azureattributes). ->`,
+				},
+				resource.Attribute{
+					Name:        "availability",
+					Description: `(Optional) Availability type used for all subsequent nodes past the ` + "`" + `first_on_demand` + "`" + ` ones. Valid values are ` + "`" + `SPOT_AZURE` + "`" + `, ` + "`" + `SPOT_WITH_FALLBACK` + "`" + `, and ` + "`" + `ON_DEMAND_AZURE` + "`" + `. Note: If ` + "`" + `first_on_demand` + "`" + ` is zero, this availability type will be used for the entire cluster.`,
+				},
+				resource.Attribute{
+					Name:        "first_on_demand",
+					Description: `(Optional) The first ` + "`" + `first_on_demand` + "`" + ` nodes of the cluster will be placed on on-demand instances. If this value is greater than 0, the cluster driver node will be placed on an on-demand instance. If this value is greater than or equal to the current cluster size, all nodes will be placed on on-demand instances. If this value is less than the current cluster size, ` + "`" + `first_on_demand` + "`" + ` nodes will be placed on on-demand instances, and the remainder will be placed on availability instances. This value does not affect cluster size and cannot be mutated over the lifetime of a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "spot_bid_max_price",
+					Description: `(Optional) The max price for Azure spot instances. Use ` + "`" + `-1` + "`" + ` to specify lowest price. ## gcp_attributes ` + "`" + `gcp_attributes` + "`" + ` optional configuration block contains attributes related to [clusters running on GCP](https://docs.gcp.databricks.com/dev-tools/api/latest/clusters.html#clustergcpattributes). ->`,
+				},
+				resource.Attribute{
+					Name:        "use_preemptible_executors",
+					Description: `(Optional, bool) if we should use preemptible executors ([GCP documentation](https://cloud.google.com/compute/docs/instances/preemptible))`,
+				},
+				resource.Attribute{
+					Name:        "google_service_account",
+					Description: `(Optional, string) Google Service Account email address that the cluster uses to authenticate with Google Identity. This field is used for authentication with the GCS and BigQuery data sources. ## docker_image [Databricks Container Services](https://docs.databricks.com/clusters/custom-containers.html) lets you specify a Docker image when you create a cluster. You need to enable Container Services in`,
 				},
 				resource.Attribute{
 					Name:        "url",
@@ -704,7 +724,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone_id",
-					Description: `(Required) (String) Identifier for the availability zone/datacenter in which the instance pool resides. This string is of a form like ` + "`" + `"us-west-2a"` + "`" + `. The provided availability zone must be in the same region as the Databricks deployment. For example, ` + "`" + `"us-west-2a"` + "`" + ` is not a valid zone ID if the Databricks deployment resides in the ` + "`" + `"us-east-1"` + "`" + ` region. This is an optional field. If not specified, a default zone is used. You can find the list of available zones as well as the default value by using the [List Zones API](https://docs.databricks.com/dev-tools/api/latest/clusters.html#clusterclusterservicelistavailablezones). ### disk_spec Configuration Block For disk_spec make sure to use`,
+					Description: `(Required) (String) Identifier for the availability zone/datacenter in which the instance pool resides. This string is of a form like ` + "`" + `"us-west-2a"` + "`" + `. The provided availability zone must be in the same region as the Databricks deployment. For example, ` + "`" + `"us-west-2a"` + "`" + ` is not a valid zone ID if the Databricks deployment resides in the ` + "`" + `"us-east-1"` + "`" + ` region. This is an optional field. If not specified, a default zone is used. You can find the list of available zones as well as the default value by using the [List Zones API](https://docs.databricks.com/dev-tools/api/latest/clusters.html#clusterclusterservicelistavailablezones). ## azure_attributes Configuration Block ` + "`" + `azure_attributes` + "`" + ` optional configuration block contains attributes related to [instance pools on Azure](https://docs.microsoft.com/en-us/azure/databricks/dev-tools/api/latest/instance-pools#--instancepoolazureattributes). ->`,
+				},
+				resource.Attribute{
+					Name:        "availability",
+					Description: `(Optional) Availability type used for all subsequent nodes past the ` + "`" + `first_on_demand` + "`" + ` ones. Valid values are ` + "`" + `SPOT_AZURE` + "`" + ` and ` + "`" + `ON_DEMAND_AZURE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "spot_bid_max_price",
+					Description: `(Optional) The max price for Azure spot instances. Use ` + "`" + `-1` + "`" + ` to specify lowest price. ### disk_spec Configuration Block For disk_spec make sure to use`,
 				},
 				resource.Attribute{
 					Name:        "disk_count",
