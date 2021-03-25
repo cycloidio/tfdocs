@@ -1310,7 +1310,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "partition",
-					Description: `(Required) Partition on to SSL Certificate to be imported`,
+					Description: `Partition on to SSL Certificate to be imported. The parameter is not required when running terraform import operation. In such case the name must be provided in full_path format.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1329,7 +1329,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "partition",
-					Description: `(Required) Partition on to SSL Certificate key to be imported`,
+					Description: `Partition on to SSL Certificate key to be imported. The parameter is not required when running terraform import operation. In such case the name must be provided in full_path format.`,
 				},
 			},
 			Attributes: []resource.Attribute{},

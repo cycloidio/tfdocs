@@ -580,6 +580,19 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azuredevops_serviceendpoint_npm",
+			Category:         "Resources",
+			ShortDescription: `Manages a npm server endpoint within Azure DevOps organization.`,
+			Description:      ``,
+			Keywords: []string{
+				"serviceendpoint",
+				"npm",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azuredevops_serviceendpoint_runpipeline",
 			Category:         "Resources",
 			ShortDescription: `Manages a Azure DevOps plugin RunPipeline.`,
@@ -740,11 +753,12 @@ var (
 		"azuredevops_serviceendpoint_dockerregistry":   23,
 		"azuredevops_serviceendpoint_github":           24,
 		"azuredevops_serviceendpoint_kubernetes":       25,
-		"azuredevops_serviceendpoint_runpipeline":      26,
-		"azuredevops_serviceendpoint_sonarqube":        27,
-		"azuredevops_user_entitlement":                 28,
-		"azuredevops_variable_group":                   29,
-		"azuredevops_workitemquery_permissions":        30,
+		"azuredevops_serviceendpoint_npm":              26,
+		"azuredevops_serviceendpoint_runpipeline":      27,
+		"azuredevops_serviceendpoint_sonarqube":        28,
+		"azuredevops_user_entitlement":                 29,
+		"azuredevops_variable_group":                   30,
+		"azuredevops_workitemquery_permissions":        31,
 	}
 )
 

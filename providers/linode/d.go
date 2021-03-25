@@ -169,6 +169,162 @@ Provides information about a Linode Domain Record.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "linode_firewall",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a Firewall.`,
+			Description: `\_firewall
+
+Provides details about an LKE Cluster.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) The Firewall's ID. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The label for the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags applied to the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `If true, the firewall is inactive.`,
+				},
+				resource.Attribute{
+					Name:        "inbound_policy",
+					Description: `The default behavior for inbound traffic.`,
+				},
+				resource.Attribute{
+					Name:        "outbound_policy",
+					Description: `The default behavior for outbound traffic. This setting can be overridden by updating the outbound.action property for an individual Firewall Rule.`,
+				},
+				resource.Attribute{
+					Name:        "linodes",
+					Description: `The IDs of Linodes to apply this firewall to.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `Used to identify this rule. For display purposes only.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `The network protocol this rule controls.`,
+				},
+				resource.Attribute{
+					Name:        "ports",
+					Description: `A string representation of ports and/or port ranges (i.e. "443" or "80-90, 91").`,
+				},
+				resource.Attribute{
+					Name:        "ipv4",
+					Description: `A list of IPv4 addresses or networks. Must be in IP/mask format.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6",
+					Description: `A list of IPv6 addresses or networks. Must be in IP/mask format. ### devices The following attributes are available on devices:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Firewall Device.`,
+				},
+				resource.Attribute{
+					Name:        "entity_id",
+					Description: `The ID of the underlying entity this device references (i.e. the Linode's ID).`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of Firewall Device.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The label of the underlying entity this device references.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "label",
+					Description: `The label for the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags applied to the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `If true, the firewall is inactive.`,
+				},
+				resource.Attribute{
+					Name:        "inbound_policy",
+					Description: `The default behavior for inbound traffic.`,
+				},
+				resource.Attribute{
+					Name:        "outbound_policy",
+					Description: `The default behavior for outbound traffic. This setting can be overridden by updating the outbound.action property for an individual Firewall Rule.`,
+				},
+				resource.Attribute{
+					Name:        "linodes",
+					Description: `The IDs of Linodes to apply this firewall to.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `Used to identify this rule. For display purposes only.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `The network protocol this rule controls.`,
+				},
+				resource.Attribute{
+					Name:        "ports",
+					Description: `A string representation of ports and/or port ranges (i.e. "443" or "80-90, 91").`,
+				},
+				resource.Attribute{
+					Name:        "ipv4",
+					Description: `A list of IPv4 addresses or networks. Must be in IP/mask format.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6",
+					Description: `A list of IPv6 addresses or networks. Must be in IP/mask format. ### devices The following attributes are available on devices:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Firewall Device.`,
+				},
+				resource.Attribute{
+					Name:        "entity_id",
+					Description: `The ID of the underlying entity this device references (i.e. the Linode's ID).`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of Firewall Device.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The label of the underlying entity this device references.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "linode_image",
 			Category:         "Data Sources",
 			ShortDescription: `Provides details about a Linode image.`,
@@ -745,17 +901,18 @@ Provides information about a Linode Volume.
 		"linode_account":                0,
 		"linode_domain":                 1,
 		"linode_domain_record":          2,
-		"linode_image":                  3,
-		"linode_instance_type":          4,
-		"linode_lke_cluster":            5,
-		"linode_networking_ip":          6,
-		"linode_object_storage_cluster": 7,
-		"linode_profile":                8,
-		"linode_region":                 9,
-		"linode_sshkey":                 10,
-		"linode_stackscript":            11,
-		"linode_user":                   12,
-		"linode_volume":                 13,
+		"linode_firewall":               3,
+		"linode_image":                  4,
+		"linode_instance_type":          5,
+		"linode_lke_cluster":            6,
+		"linode_networking_ip":          7,
+		"linode_object_storage_cluster": 8,
+		"linode_profile":                9,
+		"linode_region":                 10,
+		"linode_sshkey":                 11,
+		"linode_stackscript":            12,
+		"linode_user":                   13,
+		"linode_volume":                 14,
 	}
 )
 

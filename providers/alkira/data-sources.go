@@ -13,7 +13,17 @@ var (
 			Name:             "",
 			Type:             "alkira_group",
 			Category:         "Data Sources",
-			ShortDescription: ``,
+			ShortDescription: `Use this data source to get information on an existing group.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alkira_policy_prefix_list",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get an existing policy prefix list.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -43,9 +53,10 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"alkira_group":          0,
-		"alkira_segment":        1,
-		"alkira_tenant_network": 2,
+		"alkira_group":              0,
+		"alkira_policy_prefix_list": 1,
+		"alkira_segment":            2,
+		"alkira_tenant_network":     3,
 	}
 )
 

@@ -115,7 +115,7 @@ which is currently in use (eg, by [` + "`" + `aws_lb_listener` + "`" + `](lb_lis
 				},
 				resource.Attribute{
 					Name:        "certificate_authority_arn",
-					Description: `(Required) ARN of an ACMPCA`,
+					Description: `(Required) ARN of an ACM PCA`,
 				},
 				resource.Attribute{
 					Name:        "subject_alternative_names",
@@ -255,6 +255,79 @@ deploy the required validation records and wait for validation to complete.
 				resource.Attribute{
 					Name:        "id",
 					Description: `The time at which the certificate was issued ## Timeouts ` + "`" + `acm_certificate_validation` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `45m` + "`" + `) How long to wait for a certificate to be issued.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_acmpca_certificate",
+			Category:         "ACM PCA",
+			ShortDescription: `Provides a resource to issue a certificate using AWS Certificate Manager Private Certificate Authority (ACM PCA)`,
+			Description: `
+
+Provides a resource to issue a certificate using AWS Certificate Manager Private Certificate Authority (ACM PCA).
+
+`,
+			Keywords: []string{
+				"acm",
+				"pca",
+				"acmpca",
+				"certificate",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "certificate_authority_arn",
+					Description: `(Required) Amazon Resource Name (ARN) of the certificate authority.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_signing_request",
+					Description: `(Required) Certificate Signing Request in PEM format.`,
+				},
+				resource.Attribute{
+					Name:        "signing_algorithm",
+					Description: `(Required) Algorithm to use to sign certificate requests. Valid values: ` + "`" + `SHA256WITHRSA` + "`" + `, ` + "`" + `SHA256WITHECDSA` + "`" + `, ` + "`" + `SHA384WITHRSA` + "`" + `, ` + "`" + `SHA384WITHECDSA` + "`" + `, ` + "`" + `SHA512WITHRSA` + "`" + `, ` + "`" + `SHA512WITHECDSA` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "validity",
+					Description: `(Required) Configures end of the validity period for the certificate. See [validity block](#validity-block) below.`,
+				},
+				resource.Attribute{
+					Name:        "template_arn",
+					Description: `(Optional) The template to use when issuing a certificate. See [ACM PCA Documentation](https://docs.aws.amazon.com/acm-pca/latest/userguide/UsingTemplates.html) for more information. ### validity block`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Determines how ` + "`" + `value` + "`" + ` is interpreted. Valid values: ` + "`" + `DAYS` + "`" + `, ` + "`" + `MONTHS` + "`" + `, ` + "`" + `YEARS` + "`" + `, ` + "`" + `ABSOLUTE` + "`" + `, ` + "`" + `END_DATE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) If ` + "`" + `type` + "`" + ` is ` + "`" + `DAYS` + "`" + `, ` + "`" + `MONTHS` + "`" + `, or ` + "`" + `YEARS` + "`" + `, the relative time until the certificate expires. If ` + "`" + `type` + "`" + ` is ` + "`" + `ABSOLUTE` + "`" + `, the date in seconds since the Unix epoch. If ` + "`" + `type` + "`" + ` is ` + "`" + `END_DATE` + "`" + `, the date in RFC 3339 format. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `Amazon Resource Name (ARN) of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `The PEM-encoded certificate value.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_chain",
+					Description: `The PEM-encoded certificate chain that includes any intermediate certificates and chains up to root CA. ## Import ` + "`" + `aws_acmpca_certificate` + "`" + ` can not be imported at this time.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `Amazon Resource Name (ARN) of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `The PEM-encoded certificate value.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_chain",
+					Description: `The PEM-encoded certificate chain that includes any intermediate certificates and chains up to root CA. ## Import ` + "`" + `aws_acmpca_certificate` + "`" + ` can not be imported at this time.`,
 				},
 			},
 		},
@@ -473,6 +546,39 @@ Provides a resource to manage AWS Certificate Manager Private Certificate Author
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aws_acmpca_certificate_authority_certificate",
+			Category:         "ACM PCA",
+			ShortDescription: `Associates a certificate with an AWS Certificate Manager Private Certificate Authority`,
+			Description: `
+
+Associates a certificate with an AWS Certificate Manager Private Certificate Authority (ACM PCA Certificate Authority). An ACM PCA Certificate Authority is unable to issue certificates until it has a certificate associated with it. A root level ACM PCA Certificate Authority is able to self-sign its own root certificate.
+
+`,
+			Keywords: []string{
+				"acm",
+				"pca",
+				"acmpca",
+				"certificate",
+				"authority",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `(Required) The PEM-encoded certificate for the Certificate Authority.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_authority_arn",
+					Description: `(Required) Amazon Resource Name (ARN) of the Certificate Authority.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_chain",
+					Description: `(Optional) The PEM-encoded certificate chain that includes any intermediate certificates and chains up to root CA. Required for subordinate Certificate Authorities. Not allowed for root Certificate Authorities. ## Attributes Reference No additional attributes are exported.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aws_ami",
 			Category:         "EC2",
 			ShortDescription: `Creates and manages a custom Amazon Machine Image (AMI).`,
@@ -611,6 +717,10 @@ it's better to use ` + "`" + `aws_ami_launch_permission` + "`" + ` instead.
 					Description: `The ID of the created AMI.`,
 				},
 				resource.Attribute{
+					Name:        "owner_id",
+					Description: `The AWS account ID of the image owner.`,
+				},
+				resource.Attribute{
 					Name:        "root_snapshot_id",
 					Description: `The Snapshot ID for the root volume (for EBS-backed AMIs)`,
 				},
@@ -655,6 +765,10 @@ it's better to use ` + "`" + `aws_ami_launch_permission` + "`" + ` instead.
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the created AMI.`,
+				},
+				resource.Attribute{
+					Name:        "owner_id",
+					Description: `The AWS account ID of the image owner.`,
 				},
 				resource.Attribute{
 					Name:        "root_snapshot_id",
@@ -1139,7 +1253,7 @@ custom domain name.
 				},
 				resource.Attribute{
 					Name:        "base_path",
-					Description: `(Optional) Path segment that must be prepended to the path when accessing the API via this mapping. If omitted, the API is exposed at the root of the given domain. ## Import ` + "`" + `aws_api_gateway_base_path_mapping` + "`" + ` can be imported by using the domain name and base path, e.g. For empty ` + "`" + `base_path` + "`" + ` (e.g. root path (` + "`" + `/` + "`" + `)): ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_base_path_mapping.example example.com/ ` + "`" + `` + "`" + `` + "`" + ` Otherwise: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_base_path_mapping.example example.com/base-path ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Path segment that must be prepended to the path when accessing the API via this mapping. If omitted, the API is exposed at the root of the given domain. ## Attributes Reference No additional attributes are exported. ## Import ` + "`" + `aws_api_gateway_base_path_mapping` + "`" + ` can be imported by using the domain name and base path, e.g. For empty ` + "`" + `base_path` + "`" + ` (e.g. root path (` + "`" + `/` + "`" + `)): ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_base_path_mapping.example example.com/ ` + "`" + `` + "`" + `` + "`" + ` Otherwise: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_base_path_mapping.example example.com/base-path ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1608,7 +1722,7 @@ Provides an API Gateway Gateway Response for a REST API Gateway.
 				},
 				resource.Attribute{
 					Name:        "response_parameters",
-					Description: `(Optional) A map specifying the parameters (paths, query strings and headers) of the Gateway Response. ## Import ` + "`" + `aws_api_gateway_gateway_response` + "`" + ` can be imported using ` + "`" + `REST-API-ID/RESPONSE-TYPE` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_gateway_response.example 12345abcde/UNAUTHORIZED ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) A map specifying the parameters (paths, query strings and headers) of the Gateway Response. ## Attributes Reference No additional attributes are exported. ## Import ` + "`" + `aws_api_gateway_gateway_response` + "`" + ` can be imported using ` + "`" + `REST-API-ID/RESPONSE-TYPE` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_gateway_response.example 12345abcde/UNAUTHORIZED ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1702,7 +1816,7 @@ Provides an HTTP Method Integration for an API Gateway Integration.
 				},
 				resource.Attribute{
 					Name:        "insecure_skip_verification",
-					Description: `(Optional) Specifies whether or not API Gateway skips verification that the certificate for an integration endpoint is issued by a [supported certificate authority](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-supported-certificate-authorities-for-http-endpoints.html). This isn’t recommended, but it enables you to use certificates that are signed by private certificate authorities, or certificates that are self-signed. If enabled, API Gateway still performs basic certificate validation, which includes checking the certificate's expiration date, hostname, and presence of a root certificate authority. Supported only for ` + "`" + `HTTP` + "`" + ` and ` + "`" + `HTTP_PROXY` + "`" + ` integrations. ## Import ` + "`" + `aws_api_gateway_integration` + "`" + ` can be imported using ` + "`" + `REST-API-ID/RESOURCE-ID/HTTP-METHOD` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_integration.example 12345abcde/67890fghij/GET ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Specifies whether or not API Gateway skips verification that the certificate for an integration endpoint is issued by a [supported certificate authority](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-supported-certificate-authorities-for-http-endpoints.html). This isn’t recommended, but it enables you to use certificates that are signed by private certificate authorities, or certificates that are self-signed. If enabled, API Gateway still performs basic certificate validation, which includes checking the certificate's expiration date, hostname, and presence of a root certificate authority. Supported only for ` + "`" + `HTTP` + "`" + ` and ` + "`" + `HTTP_PROXY` + "`" + ` integrations. ## Attributes Reference No additional attributes are exported. ## Import ` + "`" + `aws_api_gateway_integration` + "`" + ` can be imported using ` + "`" + `REST-API-ID/RESOURCE-ID/HTTP-METHOD` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_integration.example 12345abcde/67890fghij/GET ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1760,7 +1874,7 @@ you might need to add an explicit ` + "`" + `depends_on` + "`" + ` for clean run
 				},
 				resource.Attribute{
 					Name:        "content_handling",
-					Description: `(Optional) Specifies how to handle request payload content type conversions. Supported values are ` + "`" + `CONVERT_TO_BINARY` + "`" + ` and ` + "`" + `CONVERT_TO_TEXT` + "`" + `. If this property is not defined, the response payload will be passed through from the integration response to the method response without modification. ## Import ` + "`" + `aws_api_gateway_integration_response` + "`" + ` can be imported using ` + "`" + `REST-API-ID/RESOURCE-ID/HTTP-METHOD/STATUS-CODE` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_integration_response.example 12345abcde/67890fghij/GET/200 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Specifies how to handle request payload content type conversions. Supported values are ` + "`" + `CONVERT_TO_BINARY` + "`" + ` and ` + "`" + `CONVERT_TO_TEXT` + "`" + `. If this property is not defined, the response payload will be passed through from the integration response to the method response without modification. ## Attributes Reference No additional attributes are exported. ## Import ` + "`" + `aws_api_gateway_integration_response` + "`" + ` can be imported using ` + "`" + `REST-API-ID/RESOURCE-ID/HTTP-METHOD/STATUS-CODE` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_integration_response.example 12345abcde/67890fghij/GET/200 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1826,7 +1940,7 @@ Provides a HTTP Method for an API Gateway Resource.
 				},
 				resource.Attribute{
 					Name:        "request_parameters",
-					Description: `(Optional) A map of request parameters (from the path, query string and headers) that should be passed to the integration. The boolean value indicates whether the parameter is required (` + "`" + `true` + "`" + `) or optional (` + "`" + `false` + "`" + `). For example: ` + "`" + `request_parameters = {"method.request.header.X-Some-Header" = true "method.request.querystring.some-query-param" = true}` + "`" + ` would define that the header ` + "`" + `X-Some-Header` + "`" + ` and the query string ` + "`" + `some-query-param` + "`" + ` must be provided in the request. ## Import ` + "`" + `aws_api_gateway_method` + "`" + ` can be imported using ` + "`" + `REST-API-ID/RESOURCE-ID/HTTP-METHOD` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_method.example 12345abcde/67890fghij/GET ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) A map of request parameters (from the path, query string and headers) that should be passed to the integration. The boolean value indicates whether the parameter is required (` + "`" + `true` + "`" + `) or optional (` + "`" + `false` + "`" + `). For example: ` + "`" + `request_parameters = {"method.request.header.X-Some-Header" = true "method.request.querystring.some-query-param" = true}` + "`" + ` would define that the header ` + "`" + `X-Some-Header` + "`" + ` and the query string ` + "`" + `some-query-param` + "`" + ` must be provided in the request. ## Attributes Reference No additional attributes are exported. ## Import ` + "`" + `aws_api_gateway_method` + "`" + ` can be imported using ` + "`" + `REST-API-ID/RESOURCE-ID/HTTP-METHOD` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_method.example 12345abcde/67890fghij/GET ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1873,7 +1987,7 @@ Provides an HTTP Method Response for an API Gateway Resource.
 				},
 				resource.Attribute{
 					Name:        "response_parameters",
-					Description: `(Optional) A map of response parameters that can be sent to the caller. For example: ` + "`" + `response_parameters = { "method.response.header.X-Some-Header" = true }` + "`" + ` would define that the header ` + "`" + `X-Some-Header` + "`" + ` can be provided on the response. ## Import ` + "`" + `aws_api_gateway_method_response` + "`" + ` can be imported using ` + "`" + `REST-API-ID/RESOURCE-ID/HTTP-METHOD/STATUS-CODE` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_method_response.example 12345abcde/67890fghij/GET/200 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) A map of response parameters that can be sent to the caller. For example: ` + "`" + `response_parameters = { "method.response.header.X-Some-Header" = true }` + "`" + ` would define that the header ` + "`" + `X-Some-Header` + "`" + ` can be provided on the response. ## Attributes Reference No additional attributes are exported. ## Import ` + "`" + `aws_api_gateway_method_response` + "`" + ` can be imported using ` + "`" + `REST-API-ID/RESOURCE-ID/HTTP-METHOD/STATUS-CODE` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_method_response.example 12345abcde/67890fghij/GET/200 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1954,7 +2068,7 @@ Manages API Gateway Stage Method Settings. For example, CloudWatch logging and m
 				},
 				resource.Attribute{
 					Name:        "unauthorized_cache_control_header_strategy",
-					Description: `(Optional) Specifies how to handle unauthorized requests for cache invalidation. The available values are ` + "`" + `FAIL_WITH_403` + "`" + `, ` + "`" + `SUCCEED_WITH_RESPONSE_HEADER` + "`" + `, ` + "`" + `SUCCEED_WITHOUT_RESPONSE_HEADER` + "`" + `. ## Import ` + "`" + `aws_api_gateway_method_settings` + "`" + ` can be imported using ` + "`" + `REST-API-ID/STAGE-NAME/METHOD-PATH` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_method_settings.example 12345abcde/example/test/GET ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Specifies how to handle unauthorized requests for cache invalidation. The available values are ` + "`" + `FAIL_WITH_403` + "`" + `, ` + "`" + `SUCCEED_WITH_RESPONSE_HEADER` + "`" + `, ` + "`" + `SUCCEED_WITHOUT_RESPONSE_HEADER` + "`" + `. ## Attributes Reference No additional attributes are exported. ## Import ` + "`" + `aws_api_gateway_method_settings` + "`" + ` can be imported using ` + "`" + `REST-API-ID/STAGE-NAME/METHOD-PATH` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_method_settings.example 12345abcde/example/test/GET ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3794,7 +3908,7 @@ Provides an Application AutoScaling Policy resource.
 				},
 				resource.Attribute{
 					Name:        "step_adjustment",
-					Description: `(Optional) A set of adjustments that manage scaling. These have the following structure: ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_appautoscaling_policy" "ecs_policy" { # ... step_scaling_policy_configuration { # insert config here step_adjustment { metric_interval_lower_bound = 1.0 metric_interval_upper_bound = 2.0 scaling_adjustment = -1 } step_adjustment { metric_interval_lower_bound = 2.0 metric_interval_upper_bound = 3.0 scaling_adjustment = 1 } } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) A set of adjustments that manage scaling. These have the following structure: ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_appautoscaling_policy" "ecs_policy" { # ... step_scaling_policy_configuration { # insert config here step_adjustment { metric_interval_lower_bound = 1.0 metric_interval_upper_bound = 2.0 scaling_adjustment = -1 } step_adjustment { metric_interval_lower_bound = 2.0 metric_interval_upper_bound = 3.0 scaling_adjustment = 1 } } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "metric_interval_lower_bound",
@@ -3830,7 +3944,7 @@ Provides an Application AutoScaling Policy resource.
 				},
 				resource.Attribute{
 					Name:        "predefined_metric_specification",
-					Description: `(Optional) A predefined metric. See supported fields below. ### target_tracking_scaling_policy_configuration customized_metric_specification Example usage: ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_appautoscaling_policy" "example" { policy_type = "TargetTrackingScaling" # ... other configuration ... target_tracking_scaling_policy_configuration { target_value = 40 # ... potentially other configuration ... customized_metric_specification { metric_name = "MyUtilizationMetric" namespace = "MyNamespace" statistic = "Average" unit = "Percent" dimensions { name = "MyOptionalMetricDimensionName" value = "MyOptionalMetricDimensionValue" } } } } ` + "`" + `` + "`" + `` + "`" + ` The ` + "`" + `target_tracking_scaling_policy_configuration` + "`" + ` ` + "`" + `customized_metric_specification` + "`" + ` configuration block supports the following arguments:`,
+					Description: `(Optional) A predefined metric. See supported fields below. ### target_tracking_scaling_policy_configuration customized_metric_specification Example usage: ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_appautoscaling_policy" "example" { policy_type = "TargetTrackingScaling" # ... other configuration ... target_tracking_scaling_policy_configuration { target_value = 40 # ... potentially other configuration ... customized_metric_specification { metric_name = "MyUtilizationMetric" namespace = "MyNamespace" statistic = "Average" unit = "Percent" dimensions { name = "MyOptionalMetricDimensionName" value = "MyOptionalMetricDimensionValue" } } } } ` + "`" + `` + "`" + `` + "`" + ` The ` + "`" + `target_tracking_scaling_policy_configuration` + "`" + ` ` + "`" + `customized_metric_specification` + "`" + ` configuration block supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "dimensions",
@@ -4013,7 +4127,7 @@ Provides an Application AutoScaling ScalableTarget resource. To manage policies 
 				},
 				resource.Attribute{
 					Name:        "service_namespace",
-					Description: `(Required) The AWS service namespace of the scalable target. Documentation can be found in the ` + "`" + `ServiceNamespace` + "`" + ` parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/autoscaling/application/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters) ## Import Application AutoScaling Target can be imported using the ` + "`" + `service-namespace` + "`" + ` , ` + "`" + `resource-id` + "`" + ` and ` + "`" + `scalable-dimension` + "`" + ` separated by ` + "`" + `/` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_appautoscaling_target.test-target service-namespace/resource-id/scalable-dimension ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The AWS service namespace of the scalable target. Documentation can be found in the ` + "`" + `ServiceNamespace` + "`" + ` parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/autoscaling/application/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters) ## Attributes Reference No additional attributes are exported. ## Import Application AutoScaling Target can be imported using the ` + "`" + `service-namespace` + "`" + ` , ` + "`" + `resource-id` + "`" + ` and ` + "`" + `scalable-dimension` + "`" + ` separated by ` + "`" + `/` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_appautoscaling_target.test-target service-namespace/resource-id/scalable-dimension ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6031,7 +6145,7 @@ to ignore changes to the ` + "`" + `load_balancers` + "`" + ` and ` + "`" + `tar
 				},
 				resource.Attribute{
 					Name:        "alb_target_group_arn",
-					Description: `(Optional) The ARN of an ALB Target Group.`,
+					Description: `(Optional) The ARN of an ALB Target Group. ## Attributes Reference No additional attributes are exported.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6394,7 +6508,7 @@ but take care to not duplicate those hooks with this resource.
 				},
 				resource.Attribute{
 					Name:        "role_arn",
-					Description: `(Optional) The ARN of the IAM role that allows the Auto Scaling group to publish to the specified notification target. ## Import AutoScaling Lifecycle Hooks can be imported using the role autoscaling_group_name and name separated by ` + "`" + `/` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_autoscaling_lifecycle_hook.test-lifecycle-hook asg-name/lifecycle-hook-name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The ARN of the IAM role that allows the Auto Scaling group to publish to the specified notification target. ## Attributes Reference No additional attributes are exported. ## Import AutoScaling Lifecycle Hooks can be imported using the role autoscaling_group_name and name separated by ` + "`" + `/` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_autoscaling_lifecycle_hook.test-lifecycle-hook asg-name/lifecycle-hook-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6492,7 +6606,7 @@ or [dynamic](https://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-sc
 				},
 				resource.Attribute{
 					Name:        "step_adjustment",
-					Description: `(Optional) A set of adjustments that manage group scaling. These have the following structure: ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_autoscaling_policy" "example" { # ... other configuration ... step_adjustment { scaling_adjustment = -1 metric_interval_lower_bound = 1.0 metric_interval_upper_bound = 2.0 } step_adjustment { scaling_adjustment = 1 metric_interval_lower_bound = 2.0 metric_interval_upper_bound = 3.0 } } ` + "`" + `` + "`" + `` + "`" + ` The following fields are available in step adjustments:`,
+					Description: `(Optional) A set of adjustments that manage group scaling. These have the following structure: ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_autoscaling_policy" "example" { # ... other configuration ... step_adjustment { scaling_adjustment = -1 metric_interval_lower_bound = 1.0 metric_interval_upper_bound = 2.0 } step_adjustment { scaling_adjustment = 1 metric_interval_lower_bound = 2.0 metric_interval_upper_bound = 3.0 } } ` + "`" + `` + "`" + `` + "`" + ` The following fields are available in step adjustments:`,
 				},
 				resource.Attribute{
 					Name:        "scaling_adjustment",
@@ -6508,7 +6622,7 @@ or [dynamic](https://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-sc
 				},
 				resource.Attribute{
 					Name:        "target_tracking_configuration",
-					Description: `(Optional) A target tracking policy. These have the following structure: ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_autoscaling_policy" "example" { # ... other configuration ... target_tracking_configuration { predefined_metric_specification { predefined_metric_type = "ASGAverageCPUUtilization" } target_value = 40.0 } target_tracking_configuration { customized_metric_specification { metric_dimension { name = "fuga" value = "fuga" } metric_name = "hoge" namespace = "hoge" statistic = "Average" } target_value = 40.0 } } ` + "`" + `` + "`" + `` + "`" + ` The following fields are available in target tracking configuration:`,
+					Description: `(Optional) A target tracking policy. These have the following structure: ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_autoscaling_policy" "example" { # ... other configuration ... target_tracking_configuration { predefined_metric_specification { predefined_metric_type = "ASGAverageCPUUtilization" } target_value = 40.0 } target_tracking_configuration { customized_metric_specification { metric_dimension { name = "fuga" value = "fuga" } metric_name = "hoge" namespace = "hoge" statistic = "Average" } target_value = 40.0 } } ` + "`" + `` + "`" + `` + "`" + ` The following fields are available in target tracking configuration:`,
 				},
 				resource.Attribute{
 					Name:        "predefined_metric_specification",
@@ -8398,7 +8512,7 @@ origin access identities, see
 				},
 				resource.Attribute{
 					Name:        "s3_canonical_user_id",
-					Description: `The Amazon S3 canonical user ID for the origin access identity, which you use when giving the origin access identity read permission to an object in Amazon S3. ## Using With CloudFront Normally, when referencing an origin access identity in CloudFront, you need to prefix the ID with the ` + "`" + `origin-access-identity/cloudfront/` + "`" + ` special path. The ` + "`" + `cloudfront_access_identity_path` + "`" + ` allows this to be circumvented. The below snippet demonstrates use with the ` + "`" + `s3_origin_config` + "`" + ` structure for the [` + "`" + `aws_cloudfront_distribution` + "`" + `][3] resource: ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_cloudfront_distribution" "example" { # ... other configuration ... origin { s3_origin_config { origin_access_identity = aws_cloudfront_origin_access_identity.example.cloudfront_access_identity_path } } } ` + "`" + `` + "`" + `` + "`" + ` ### Updating your bucket policy Note that the AWS API may translate the ` + "`" + `s3_canonical_user_id` + "`" + ` ` + "`" + `CanonicalUser` + "`" + ` principal into an ` + "`" + `AWS` + "`" + ` IAM ARN principal when supplied in an [` + "`" + `aws_s3_bucket` + "`" + `][4] bucket policy, causing spurious diffs in Terraform. If you see this behaviour, use the ` + "`" + `iam_arn` + "`" + ` instead: ` + "`" + `` + "`" + `` + "`" + `hcl data "aws_iam_policy_document" "s3_policy" { statement { actions = ["s3:GetObject"] resources = ["${aws_s3_bucket.example.arn}/`,
+					Description: `The Amazon S3 canonical user ID for the origin access identity, which you use when giving the origin access identity read permission to an object in Amazon S3. ## Using With CloudFront Normally, when referencing an origin access identity in CloudFront, you need to prefix the ID with the ` + "`" + `origin-access-identity/cloudfront/` + "`" + ` special path. The ` + "`" + `cloudfront_access_identity_path` + "`" + ` allows this to be circumvented. The below snippet demonstrates use with the ` + "`" + `s3_origin_config` + "`" + ` structure for the [` + "`" + `aws_cloudfront_distribution` + "`" + `][3] resource: ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_cloudfront_distribution" "example" { # ... other configuration ... origin { s3_origin_config { origin_access_identity = aws_cloudfront_origin_access_identity.example.cloudfront_access_identity_path } } } ` + "`" + `` + "`" + `` + "`" + ` ### Updating your bucket policy Note that the AWS API may translate the ` + "`" + `s3_canonical_user_id` + "`" + ` ` + "`" + `CanonicalUser` + "`" + ` principal into an ` + "`" + `AWS` + "`" + ` IAM ARN principal when supplied in an [` + "`" + `aws_s3_bucket` + "`" + `][4] bucket policy, causing spurious diffs in Terraform. If you see this behaviour, use the ` + "`" + `iam_arn` + "`" + ` instead: ` + "`" + `` + "`" + `` + "`" + `terraform data "aws_iam_policy_document" "s3_policy" { statement { actions = ["s3:GetObject"] resources = ["${aws_s3_bucket.example.arn}/`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -8424,7 +8538,7 @@ origin access identities, see
 				},
 				resource.Attribute{
 					Name:        "s3_canonical_user_id",
-					Description: `The Amazon S3 canonical user ID for the origin access identity, which you use when giving the origin access identity read permission to an object in Amazon S3. ## Using With CloudFront Normally, when referencing an origin access identity in CloudFront, you need to prefix the ID with the ` + "`" + `origin-access-identity/cloudfront/` + "`" + ` special path. The ` + "`" + `cloudfront_access_identity_path` + "`" + ` allows this to be circumvented. The below snippet demonstrates use with the ` + "`" + `s3_origin_config` + "`" + ` structure for the [` + "`" + `aws_cloudfront_distribution` + "`" + `][3] resource: ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_cloudfront_distribution" "example" { # ... other configuration ... origin { s3_origin_config { origin_access_identity = aws_cloudfront_origin_access_identity.example.cloudfront_access_identity_path } } } ` + "`" + `` + "`" + `` + "`" + ` ### Updating your bucket policy Note that the AWS API may translate the ` + "`" + `s3_canonical_user_id` + "`" + ` ` + "`" + `CanonicalUser` + "`" + ` principal into an ` + "`" + `AWS` + "`" + ` IAM ARN principal when supplied in an [` + "`" + `aws_s3_bucket` + "`" + `][4] bucket policy, causing spurious diffs in Terraform. If you see this behaviour, use the ` + "`" + `iam_arn` + "`" + ` instead: ` + "`" + `` + "`" + `` + "`" + `hcl data "aws_iam_policy_document" "s3_policy" { statement { actions = ["s3:GetObject"] resources = ["${aws_s3_bucket.example.arn}/`,
+					Description: `The Amazon S3 canonical user ID for the origin access identity, which you use when giving the origin access identity read permission to an object in Amazon S3. ## Using With CloudFront Normally, when referencing an origin access identity in CloudFront, you need to prefix the ID with the ` + "`" + `origin-access-identity/cloudfront/` + "`" + ` special path. The ` + "`" + `cloudfront_access_identity_path` + "`" + ` allows this to be circumvented. The below snippet demonstrates use with the ` + "`" + `s3_origin_config` + "`" + ` structure for the [` + "`" + `aws_cloudfront_distribution` + "`" + `][3] resource: ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_cloudfront_distribution" "example" { # ... other configuration ... origin { s3_origin_config { origin_access_identity = aws_cloudfront_origin_access_identity.example.cloudfront_access_identity_path } } } ` + "`" + `` + "`" + `` + "`" + ` ### Updating your bucket policy Note that the AWS API may translate the ` + "`" + `s3_canonical_user_id` + "`" + ` ` + "`" + `CanonicalUser` + "`" + ` principal into an ` + "`" + `AWS` + "`" + ` IAM ARN principal when supplied in an [` + "`" + `aws_s3_bucket` + "`" + `][4] bucket policy, causing spurious diffs in Terraform. If you see this behaviour, use the ` + "`" + `iam_arn` + "`" + ` instead: ` + "`" + `` + "`" + `` + "`" + `terraform data "aws_iam_policy_document" "s3_policy" { statement { actions = ["s3:GetObject"] resources = ["${aws_s3_bucket.example.arn}/`,
 				},
 			},
 		},
@@ -9411,7 +9525,7 @@ Provides an EventBridge Target resource.
 				},
 				resource.Attribute{
 					Name:        "arn",
-					Description: `(Optional) - ARN of the SQS queue specified as the target for the dead-letter queue. ## Import EventBridge Targets can be imported using ` + "`" + `event_bus_name/rule-name/target-id` + "`" + ` (if you omit ` + "`" + `event_bus_name` + "`" + `, the ` + "`" + `default` + "`" + ` event bus will be used). ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudwatch_event_target.test-event-target rule-name/target-id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) - ARN of the SQS queue specified as the target for the dead-letter queue. ## Attributes Reference No additional attributes are exported. ## Import EventBridge Targets can be imported using ` + "`" + `event_bus_name/rule-name/target-id` + "`" + ` (if you omit ` + "`" + `event_bus_name` + "`" + `, the ` + "`" + `default` + "`" + ` event bus will be used). ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudwatch_event_target.test-event-target rule-name/target-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -9481,7 +9595,7 @@ Provides a CloudWatch Logs destination policy resource.
 				},
 				resource.Attribute{
 					Name:        "access_policy",
-					Description: `(Required) The policy document. This is a JSON formatted string. ## Import CloudWatch Logs destination policies can be imported using the ` + "`" + `destination_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudwatch_log_destination_policy.test_destination_policy test_destination ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The policy document. This is a JSON formatted string. ## Attributes Reference No additional attributes are exported. ## Import CloudWatch Logs destination policies can be imported using the ` + "`" + `destination_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudwatch_log_destination_policy.test_destination_policy test_destination ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -9712,7 +9826,7 @@ Provides a CloudWatch Logs subscription filter resource.
 				},
 				resource.Attribute{
 					Name:        "distribution",
-					Description: `(Optional) The method used to distribute log data to the destination. By default log data is grouped by log stream, but the grouping can be set to random for a more even distribution. This property is only applicable when the destination is an Amazon Kinesis stream. Valid values are "Random" and "ByLogStream". ## Attributes Reference No extra attributes are exported. ## Import CloudWatch Logs subscription filter can be imported using the log group name and subscription filter name separated by ` + "`" + `|` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudwatch_log_subscription_filter.test_lambdafunction_logfilter /aws/lambda/example_lambda_name|test_lambdafunction_logfilter ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The method used to distribute log data to the destination. By default log data is grouped by log stream, but the grouping can be set to random for a more even distribution. This property is only applicable when the destination is an Amazon Kinesis stream. Valid values are "Random" and "ByLogStream". ## Attributes Reference No additional attributes are exported. ## Import CloudWatch Logs subscription filter can be imported using the log group name and subscription filter name separated by ` + "`" + `|` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudwatch_log_subscription_filter.test_lambdafunction_logfilter /aws/lambda/example_lambda_name|test_lambdafunction_logfilter ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -9856,21 +9970,21 @@ Provides a CloudWatch Metric Alarm resource.
 				},
 				resource.Attribute{
 					Name:        "arn",
-					Description: `The ARN of the cloudwatch metric alarm.`,
+					Description: `The ARN of the CloudWatch Metric Alarm.`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the health check ## Import Cloud Metric Alarms can be imported using the ` + "`" + `alarm_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudwatch_metric_alarm.test alarm-12345 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the health check. ## Import CloudWatch Metric Alarm can be imported using the ` + "`" + `alarm_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudwatch_metric_alarm.test alarm-12345 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
-					Description: `The ARN of the cloudwatch metric alarm.`,
+					Description: `The ARN of the CloudWatch Metric Alarm.`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the health check ## Import Cloud Metric Alarms can be imported using the ` + "`" + `alarm_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudwatch_metric_alarm.test alarm-12345 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the health check. ## Import CloudWatch Metric Alarm can be imported using the ` + "`" + `alarm_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudwatch_metric_alarm.test alarm-12345 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -10388,7 +10502,7 @@ Provides a CodeBuild Project resource. See also the [` + "`" + `aws_codebuild_we
 				},
 				resource.Attribute{
 					Name:        "auth",
-					Description: `(Optional) Configuration block. Detailed below.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "buildspec",
@@ -10424,11 +10538,11 @@ Provides a CodeBuild Project resource. See also the [` + "`" + `aws_codebuild_we
 				},
 				resource.Attribute{
 					Name:        "resource",
-					Description: `(Optional) Resource value that applies to the specified authorization type.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Authorization type to use. The only valid value is ` + "`" + `OAUTH` + "`" + `. #### secondary_sources: git_submodules_config This block is only valid when the ` + "`" + `type` + "`" + ` is ` + "`" + `CODECOMMIT` + "`" + `, ` + "`" + `GITHUB` + "`" + ` or ` + "`" + `GITHUB_ENTERPRISE` + "`" + `.`,
+					Description: `(Required,`,
 				},
 				resource.Attribute{
 					Name:        "fetch_submodules",
@@ -10436,7 +10550,7 @@ Provides a CodeBuild Project resource. See also the [` + "`" + `aws_codebuild_we
 				},
 				resource.Attribute{
 					Name:        "auth",
-					Description: `(Optional) Configuration block. Detailed below.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "buildspec",
@@ -10468,11 +10582,11 @@ Provides a CodeBuild Project resource. See also the [` + "`" + `aws_codebuild_we
 				},
 				resource.Attribute{
 					Name:        "resource",
-					Description: `(Optional) Resource value that applies to the specified authorization type.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Authorization type to use. The only valid value is ` + "`" + `OAUTH` + "`" + `. #### source: git_submodules_config This block is only valid when the ` + "`" + `type` + "`" + ` is ` + "`" + `CODECOMMIT` + "`" + `, ` + "`" + `GITHUB` + "`" + ` or ` + "`" + `GITHUB_ENTERPRISE` + "`" + `.`,
+					Description: `(Required,`,
 				},
 				resource.Attribute{
 					Name:        "fetch_submodules",
@@ -10488,7 +10602,7 @@ Provides a CodeBuild Project resource. See also the [` + "`" + `aws_codebuild_we
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) ID of the VPC within which to run builds. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+					Description: `(Required) ID of the VPC within which to run builds. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "arn",
@@ -10840,10 +10954,19 @@ Provides a CodeCommit Trigger Resource.
 				},
 				resource.Attribute{
 					Name:        "events",
-					Description: `(Required) The repository events that will cause the trigger to run actions in another service, such as sending a notification through Amazon Simple Notification Service (SNS). If no events are specified, the trigger will run for all repository events. Event types include: ` + "`" + `all` + "`" + `, ` + "`" + `updateReference` + "`" + `, ` + "`" + `createReference` + "`" + `, ` + "`" + `deleteReference` + "`" + `.`,
+					Description: `(Required) The repository events that will cause the trigger to run actions in another service, such as sending a notification through Amazon Simple Notification Service (SNS). If no events are specified, the trigger will run for all repository events. Event types include: ` + "`" + `all` + "`" + `, ` + "`" + `updateReference` + "`" + `, ` + "`" + `createReference` + "`" + `, ` + "`" + `deleteReference` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "configuration_id",
+					Description: `System-generated unique identifier.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "configuration_id",
+					Description: `System-generated unique identifier.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -11727,7 +11850,7 @@ Provides a Cognito User Group resource.
 				},
 				resource.Attribute{
 					Name:        "role_arn",
-					Description: `(Optional) The ARN of the IAM role to be associated with the user group. ## Import Cognito User Groups can be imported using the ` + "`" + `user_pool_id` + "`" + `/` + "`" + `name` + "`" + ` attributes concatenated, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cognito_user_group.group us-east-1_vG78M4goG/user-group ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The ARN of the IAM role to be associated with the user group. ## Attributes Reference No additional attributes are exported. ## Import Cognito User Groups can be imported using the ` + "`" + `user_pool_id` + "`" + `/` + "`" + `name` + "`" + ` attributes concatenated, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cognito_user_group.group us-east-1_vG78M4goG/user-group ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -11987,7 +12110,7 @@ Provides a Cognito User Pool resource.
 				},
 				resource.Attribute{
 					Name:        "string_attribute_constraints",
-					Description: `(Required when ` + "`" + `attribute_data_type` + "`" + ` is ` + "`" + `String` + "`" + `) Constraints for an attribute of the string type. [Detailed below](#string_attribute_constraints). #### schema: Defaults for Standard Attributes The [standard attributes](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html#cognito-user-pools-standard-attributes) have the following defaults. Note that attributes which match the default values are not stored in Terraform state when importing. ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_cognito_user_pool" "example" { # ... other configuration ... schema { name = "<name>" attribute_data_type = "<appropriate type>" developer_only_attribute = false mutable = true # false for "sub" required = false # true for "sub" string_attribute_constraints { # if it is a string min_length = 0 # 10 for "birthdate" max_length = 2048 # 10 for "birthdate" } } } ` + "`" + `` + "`" + `` + "`" + ` #### number_attribute_constraints`,
+					Description: `(Required when ` + "`" + `attribute_data_type` + "`" + ` is ` + "`" + `String` + "`" + `) Constraints for an attribute of the string type. [Detailed below](#string_attribute_constraints). #### schema: Defaults for Standard Attributes The [standard attributes](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html#cognito-user-pools-standard-attributes) have the following defaults. Note that attributes which match the default values are not stored in Terraform state when importing. ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_cognito_user_pool" "example" { # ... other configuration ... schema { name = "<name>" attribute_data_type = "<appropriate type>" developer_only_attribute = false mutable = true # false for "sub" required = false # true for "sub" string_attribute_constraints { # if it is a string min_length = 0 # 10 for "birthdate" max_length = 2048 # 10 for "birthdate" } } } ` + "`" + `` + "`" + `` + "`" + ` #### number_attribute_constraints`,
 				},
 				resource.Attribute{
 					Name:        "max_value",
@@ -12213,7 +12336,7 @@ Provides a Cognito User Pool Client resource.
 				},
 				resource.Attribute{
 					Name:        "refresh_token",
-					Description: `(Optional) Time unit in for the value in ` + "`" + `refresh_token_validity` + "`" + `, defaults to ` + "`" + `days` + "`" + `. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Time unit in for the value in ` + "`" + `refresh_token_validity` + "`" + `, defaults to ` + "`" + `days` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "client_secret",
@@ -12312,7 +12435,7 @@ Provides a Cognito User Pool UI Customization resource.
 
 ~> **Note:** To use this resource, the user pool must have a domain associated with it. For more information, see the Amazon Cognito Developer Guide on [Customizing the Built-in Sign-In and Sign-up Webpages](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-app-ui-customization.html).
 
-#`,
+`,
 			Keywords: []string{
 				"cognito",
 				"user",
@@ -12670,7 +12793,7 @@ Manages status (recording / stopped) of an AWS Config Configuration Recorder.
 				},
 				resource.Attribute{
 					Name:        "is_enabled",
-					Description: `(Required) Whether the configuration recorder should be enabled or disabled. ## Import Configuration Recorder Status can be imported using the name of the Configuration Recorder, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_config_configuration_recorder_status.foo example ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Whether the configuration recorder should be enabled or disabled. ## Attributes Reference No additional attributes are exported. ## Import Configuration Recorder Status can be imported using the name of the Configuration Recorder, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_config_configuration_recorder_status.foo example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -12728,7 +12851,7 @@ successfully create or update. See also the
 				},
 				resource.Attribute{
 					Name:        "parameter_value",
-					Description: `(Required) The input value. ## Attributes Reference In addition to all arguments above (except for ` + "`" + `template_body` + "`" + ` and ` + "`" + `template_s3_uri` + "`" + `), the following attributes are exported:`,
+					Description: `(Required) The input value. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "arn",
@@ -13047,10 +13170,19 @@ Provides an AWS Config Remediation Configuration.
 				},
 				resource.Attribute{
 					Name:        "static_value",
-					Description: `(Optional) The value is static and does not change at run-time. ## Import Remediation Configurations can be imported using the name config_rule_name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_config_remediation_configuration.this example ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The value is static and does not change at run-time. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `Amazon Resource Name (ARN) of the Config Remediation Configuration. ## Import Remediation Configurations can be imported using the name config_rule_name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_config_remediation_configuration.this example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `Amazon Resource Name (ARN) of the Config Remediation Configuration. ## Import Remediation Configurations can be imported using the name config_rule_name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_config_remediation_configuration.this example ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -13117,7 +13249,7 @@ Manages Cost and Usage Report Definitions.
 				},
 				resource.Attribute{
 					Name:        "report_versioning",
-					Description: `(Optional) Overwrite the previous version of each report or to deliver the report in addition to the previous versions. Valid values are: CREATE_NEW_REPORT, OVERWRITE_REPORT ## Import Report Definitions can be imported using the ` + "`" + `report_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cur_report_definition.example_cur_report_definition example-cur-report-definition ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Overwrite the previous version of each report or to deliver the report in addition to the previous versions. Valid values are: CREATE_NEW_REPORT, OVERWRITE_REPORT ## Attributes Reference No additional attributes are exported. ## Import Report Definitions can be imported using the ` + "`" + `report_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cur_report_definition.example_cur_report_definition example-cur-report-definition ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -14089,7 +14221,7 @@ Provides a DB event subscription resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A map of tags to assign to the resource. ## Attributes The following additional atttributes are provided:`,
+					Description: `(Optional) A map of tags to assign to the resource. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -14104,7 +14236,20 @@ Provides a DB event subscription resource.
 					Description: `The AWS customer account associated with the RDS event notification subscription ## Timeouts ` + "`" + `aws_db_event_subscription` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `40m` + "`" + `) How long to wait for an RDS event notification subscription to be ready. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `40m` + "`" + `) How long to wait for an RDS event notification subscription to be deleted. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `40m` + "`" + `) How long to wait for an RDS event notification subscription to be updated. ## Import DB Event Subscriptions can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_db_event_subscription.default rds-event-sub ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The name of the RDS event notification subscription`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name of the RDS event notification subscription`,
+				},
+				resource.Attribute{
+					Name:        "customer_aws_id",
+					Description: `The AWS customer account associated with the RDS event notification subscription ## Timeouts ` + "`" + `aws_db_event_subscription` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `40m` + "`" + `) How long to wait for an RDS event notification subscription to be ready. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `40m` + "`" + `) How long to wait for an RDS event notification subscription to be deleted. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `40m` + "`" + `) How long to wait for an RDS event notification subscription to be updated. ## Import DB Event Subscriptions can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_db_event_subscription.default rds-event-sub ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -14360,7 +14505,7 @@ state](https://www.terraform.io/docs/state/sensitive-data.html).
 				},
 				resource.Attribute{
 					Name:        "use_latest_restorable_time",
-					Description: `(Optional) A boolean value that indicates whether the DB instance is restored from the latest backup time. Defaults to ` + "`" + `false` + "`" + `. Cannot be specified with ` + "`" + `restore_time` + "`" + `. ### S3 Import Options Full details on the core parameters and impacts are in the API Docs: [RestoreDBInstanceFromS3](http://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_RestoreDBInstanceFromS3.html). Sample ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_db_instance" "db" { s3_import { source_engine = "mysql" source_engine_version = "5.6" bucket_name = "mybucket" bucket_prefix = "backups" ingestion_role = "arn:aws:iam::1234567890:role/role-xtrabackup-rds-restore" } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) A boolean value that indicates whether the DB instance is restored from the latest backup time. Defaults to ` + "`" + `false` + "`" + `. Cannot be specified with ` + "`" + `restore_time` + "`" + `. ### S3 Import Options Full details on the core parameters and impacts are in the API Docs: [RestoreDBInstanceFromS3](http://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_RestoreDBInstanceFromS3.html). Sample ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_db_instance" "db" { s3_import { source_engine = "mysql" source_engine_version = "5.6" bucket_name = "mybucket" bucket_prefix = "backups" ingestion_role = "arn:aws:iam::1234567890:role/role-xtrabackup-rds-restore" } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "bucket_name",
@@ -16105,7 +16250,7 @@ Provides a conditional forwarder for managed Microsoft AD in AWS Directory Servi
 				},
 				resource.Attribute{
 					Name:        "remote_domain_name",
-					Description: `(Required) The fully qualified domain name of the remote domain for which forwarders will be used. ## Import Conditional forwarders can be imported using the directory id and remote_domain_name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_directory_service_conditional_forwarder.example d-1234567890:example.com ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The fully qualified domain name of the remote domain for which forwarders will be used. ## Attributes Reference No additional attributes are exported. ## Import Conditional forwarders can be imported using the directory id and remote_domain_name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_directory_service_conditional_forwarder.example d-1234567890:example.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -16264,7 +16409,7 @@ Provides a Log subscription for AWS Directory Service that pushes logs to cloudw
 				},
 				resource.Attribute{
 					Name:        "log_group_name",
-					Description: `(Required) Name of the cloudwatch log group to which the logs should be published. The log group should be already created and the directory service principal should be provided with required permission to create stream and publish logs. Changing this value would delete the current subscription and create a new one. A directory can only have one log subscription at a time. ## Import Directory Service Log Subscriptions can be imported using the directory id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_directory_service_log_subscription.msad d-1234567890 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Name of the cloudwatch log group to which the logs should be published. The log group should be already created and the directory service principal should be provided with required permission to create stream and publish logs. Changing this value would delete the current subscription and create a new one. A directory can only have one log subscription at a time. ## Attributes Reference No additional attributes are exported. ## Import Directory Service Log Subscriptions can be imported using the directory id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_directory_service_log_subscription.msad d-1234567890 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -16403,7 +16548,7 @@ Provides a DMS (Data Migration Service) certificate resource. DMS certificates c
 				},
 				resource.Attribute{
 					Name:        "certificate_wallet",
-					Description: `(Optional) The contents of the Oracle Wallet certificate for use with SSL. Either ` + "`" + `certificate_pem` + "`" + ` or ` + "`" + `certificate_wallet` + "`" + ` must be set.`,
+					Description: `(Optional) The contents of the Oracle Wallet certificate for use with SSL, provided as a base64-encoded String. Either ` + "`" + `certificate_pem` + "`" + ` or ` + "`" + `certificate_wallet` + "`" + ` must be set.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -16664,10 +16809,19 @@ Provides a DMS (Data Migration Service) event subscription resource.
 				},
 				resource.Attribute{
 					Name:        "sns_topic_arn",
-					Description: `(Required) SNS topic arn to send events on. ## Timeouts ` + "`" + `aws_dms_event_subscription` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10m` + "`" + `) Used for creating event subscriptions. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10m` + "`" + `) Used for event subscription modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10m` + "`" + `) Used for destroying event descriptions. ## Import Event subscriptions can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dms_event_subscription.test my-awesome-event-subscription ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) SNS topic arn to send events on. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `Amazon Resource Name (ARN) of the DMS Event Subscription. ## Timeouts ` + "`" + `aws_dms_event_subscription` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10m` + "`" + `) Used for creating event subscriptions. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10m` + "`" + `) Used for event subscription modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10m` + "`" + `) Used for destroying event descriptions. ## Import Event subscriptions can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dms_event_subscription.test my-awesome-event-subscription ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `Amazon Resource Name (ARN) of the DMS Event Subscription. ## Timeouts ` + "`" + `aws_dms_event_subscription` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10m` + "`" + `) Used for creating event subscriptions. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10m` + "`" + `) Used for event subscription modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10m` + "`" + `) Used for destroying event descriptions. ## Import Event subscriptions can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dms_event_subscription.test my-awesome-event-subscription ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -17654,7 +17808,7 @@ Associates a Direct Connect Connection with a LAG.
 				},
 				resource.Attribute{
 					Name:        "lag_id",
-					Description: `(Required) The ID of the LAG with which to associate the connection.`,
+					Description: `(Required) The ID of the LAG with which to associate the connection. ## Attributes Reference No additional attributes are exported.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -18984,7 +19138,7 @@ By using the ` + "`" + `aws_ebs_default_kms_key` + "`" + ` resource, you can spe
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_arn",
-					Description: `(Required, ForceNew) The ARN of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use to encrypt the EBS volume. ## Import The EBS default KMS CMK can be imported with the KMS key ARN, e.g. ` + "`" + `` + "`" + `` + "`" + `console $ terraform import aws_ebs_default_kms_key.example arn:aws:kms:us-east-1:123456789012:key/abcd-1234 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required, ForceNew) The ARN of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use to encrypt the EBS volume. ## Attributes Reference No additional attributes are exported. ## Import The EBS default KMS CMK can be imported with the KMS key ARN, e.g. ` + "`" + `` + "`" + `` + "`" + `console $ terraform import aws_ebs_default_kms_key.example arn:aws:kms:us-east-1:123456789012:key/abcd-1234 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -19011,7 +19165,7 @@ Provides a resource to manage whether default EBS encryption is enabled for your
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) Whether or not default EBS encryption is enabled. Valid values are ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `. Defaults to ` + "`" + `true` + "`" + `.`,
+					Description: `(Optional) Whether or not default EBS encryption is enabled. Valid values are ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `. Defaults to ` + "`" + `true` + "`" + `. ## Attributes Reference No additional attributes are exported.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -19523,7 +19677,7 @@ Provides authorization rules for AWS Client VPN endpoints. For more information 
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) A brief description of the authorization rule. ## Import AWS Client VPN authorization rules can be imported using the endpoint ID and target network CIDR. If there is a specific group name that is included as well. All values are separated by a ` + "`" + `,` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_client_vpn_authorization_rule.example cvpn-endpoint-0ac3a1abbccddd666,10.1.0.0/24 ` + "`" + `` + "`" + `` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_client_vpn_authorization_rule.example cvpn-endpoint-0ac3a1abbccddd666,10.1.0.0/24,team-a ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) A brief description of the authorization rule. ## Attributes Reference No additional attributes are exported. ## Import AWS Client VPN authorization rules can be imported using the endpoint ID and target network CIDR. If there is a specific group name that is included as well. All values are separated by a ` + "`" + `,` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_client_vpn_authorization_rule.example cvpn-endpoint-0ac3a1abbccddd666,10.1.0.0/24 ` + "`" + `` + "`" + `` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_client_vpn_authorization_rule.example cvpn-endpoint-0ac3a1abbccddd666,10.1.0.0/24,team-a ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -19856,7 +20010,7 @@ Provides a resource to manage EC2 Fleets.
 				},
 				resource.Attribute{
 					Name:        "launch_template_name",
-					Description: `(Optional) Name of the launch template. #### override Example: ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_ec2_fleet" "example" { # ... other configuration ... launch_template_config { # ... other configuration ... override { instance_type = "m4.xlarge" weighted_capacity = 1 } override { instance_type = "m4.2xlarge" weighted_capacity = 2 } } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Name of the launch template. #### override Example: ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_ec2_fleet" "example" { # ... other configuration ... launch_template_config { # ... other configuration ... override { instance_type = "m4.xlarge" weighted_capacity = 1 } override { instance_type = "m4.2xlarge" weighted_capacity = 2 } } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -20363,7 +20517,11 @@ Read [limits and considerations](https://docs.aws.amazon.com/vpc/latest/mirrorin
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The name of the session. ## Import Traffic mirror sessions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_traffic_mirror_session.session tms-0d8aa3ca35897b82e ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The name of the session.`,
+				},
+				resource.Attribute{
+					Name:        "owner_id",
+					Description: `The AWS account ID of the session owner. ## Import Traffic mirror sessions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_traffic_mirror_session.session tms-0d8aa3ca35897b82e ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -20373,7 +20531,11 @@ Read [limits and considerations](https://docs.aws.amazon.com/vpc/latest/mirrorin
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The name of the session. ## Import Traffic mirror sessions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_traffic_mirror_session.session tms-0d8aa3ca35897b82e ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The name of the session.`,
+				},
+				resource.Attribute{
+					Name:        "owner_id",
+					Description: `The AWS account ID of the session owner. ## Import Traffic mirror sessions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_traffic_mirror_session.session tms-0d8aa3ca35897b82e ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -20417,7 +20579,11 @@ Read [limits and considerations](https://docs.aws.amazon.com/vpc/latest/mirrorin
 				},
 				resource.Attribute{
 					Name:        "arn",
-					Description: `The ARN of the traffic mirror target. ## Import Traffic mirror targets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_traffic_mirror_target.target tmt-0c13a005422b86606 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ARN of the traffic mirror target.`,
+				},
+				resource.Attribute{
+					Name:        "owner_id",
+					Description: `The ID of the AWS account that owns the traffic mirror target. ## Import Traffic mirror targets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_traffic_mirror_target.target tmt-0c13a005422b86606 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -20427,7 +20593,11 @@ Read [limits and considerations](https://docs.aws.amazon.com/vpc/latest/mirrorin
 				},
 				resource.Attribute{
 					Name:        "arn",
-					Description: `The ARN of the traffic mirror target. ## Import Traffic mirror targets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_traffic_mirror_target.target tmt-0c13a005422b86606 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ARN of the traffic mirror target.`,
+				},
+				resource.Attribute{
+					Name:        "owner_id",
+					Description: `The ID of the AWS account that owns the traffic mirror target. ## Import Traffic mirror targets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_traffic_mirror_target.target tmt-0c13a005422b86606 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -21841,7 +22011,7 @@ Manages a revision of an ECS task definition to be used in ` + "`" + `aws_ecs_se
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) A map of custom metadata to add to your Docker volume. ##### Example Usage ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_ecs_task_definition" "service" { family = "service" container_definitions = file("task-definitions/service.json") volume { name = "service-storage" docker_volume_configuration { scope = "shared" autoprovision = true driver = "local" driver_opts = { "type" = "nfs" "device" = "${aws_efs_file_system.fs.dns_name}:/" "o" = "addr=${aws_efs_file_system.fs.dns_name},rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport" } } } } ` + "`" + `` + "`" + `` + "`" + ` #### EFS Volume Configuration Arguments For more information, see [Specifying an EFS volume in your Task Definition Developer Guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/efs-volumes.html#specify-efs-config)`,
+					Description: `(Optional) A map of custom metadata to add to your Docker volume. ##### Example Usage ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_ecs_task_definition" "service" { family = "service" container_definitions = file("task-definitions/service.json") volume { name = "service-storage" docker_volume_configuration { scope = "shared" autoprovision = true driver = "local" driver_opts = { "type" = "nfs" "device" = "${aws_efs_file_system.fs.dns_name}:/" "o" = "addr=${aws_efs_file_system.fs.dns_name},rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport" } } } } ` + "`" + `` + "`" + `` + "`" + ` #### EFS Volume Configuration Arguments For more information, see [Specifying an EFS volume in your Task Definition Developer Guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/efs-volumes.html#specify-efs-config)`,
 				},
 				resource.Attribute{
 					Name:        "file_system_id",
@@ -21869,7 +22039,7 @@ Manages a revision of an ECS task definition to be used in ` + "`" + `aws_ecs_se
 				},
 				resource.Attribute{
 					Name:        "iam",
-					Description: `Whether or not to use the Amazon ECS task IAM role defined in a task definition when mounting the Amazon EFS file system. If enabled, transit encryption must be enabled in the EFSVolumeConfiguration. Valid values: ` + "`" + `ENABLED` + "`" + `, ` + "`" + `DISABLED` + "`" + `. If this parameter is omitted, the default value of ` + "`" + `DISABLED` + "`" + ` is used. ##### Example Usage ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_ecs_task_definition" "service" { family = "service" container_definitions = file("task-definitions/service.json") volume { name = "service-storage" efs_volume_configuration { file_system_id = aws_efs_file_system.fs.id root_directory = "/opt/data" transit_encryption = "ENABLED" transit_encryption_port = 2999 authorization_config { access_point_id = aws_efs_access_point.test.id iam = "ENABLED" } } } } ` + "`" + `` + "`" + `` + "`" + ` #### Placement Constraints Arguments`,
+					Description: `Whether or not to use the Amazon ECS task IAM role defined in a task definition when mounting the Amazon EFS file system. If enabled, transit encryption must be enabled in the EFSVolumeConfiguration. Valid values: ` + "`" + `ENABLED` + "`" + `, ` + "`" + `DISABLED` + "`" + `. If this parameter is omitted, the default value of ` + "`" + `DISABLED` + "`" + ` is used. ##### Example Usage ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_ecs_task_definition" "service" { family = "service" container_definitions = file("task-definitions/service.json") volume { name = "service-storage" efs_volume_configuration { file_system_id = aws_efs_file_system.fs.id root_directory = "/opt/data" transit_encryption = "ENABLED" transit_encryption_port = 2999 authorization_config { access_point_id = aws_efs_access_point.test.id iam = "ENABLED" } } } } ` + "`" + `` + "`" + `` + "`" + ` #### Placement Constraints Arguments`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -21897,7 +22067,7 @@ Manages a revision of an ECS task definition to be used in ` + "`" + `aws_ecs_se
 				},
 				resource.Attribute{
 					Name:        "device_type",
-					Description: `(Required) The Elastic Inference accelerator type to use. ##### Example Usage ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_ecs_task_definition" "test" { family = "test" container_definitions = <<TASK_DEFINITION [ { "cpu": 10, "command": ["sleep", "10"], "entryPoint": ["/"], "environment": [ {"name": "VARNAME", "value": "VARVAL"} ], "essential": true, "image": "jenkins", "memory": 128, "name": "jenkins", "portMappings": [ { "containerPort": 80, "hostPort": 8080 } ], "resourceRequirements":[ { "type":"InferenceAccelerator", "value":"device_1" } ] } ] TASK_DEFINITION inference_accelerator { device_name = "device_1" device_type = "eia1.medium" } } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required) The Elastic Inference accelerator type to use. ##### Example Usage ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_ecs_task_definition" "test" { family = "test" container_definitions = <<TASK_DEFINITION [ { "cpu": 10, "command": ["sleep", "10"], "entryPoint": ["/"], "environment": [ {"name": "VARNAME", "value": "VARVAL"} ], "essential": true, "image": "jenkins", "memory": 128, "name": "jenkins", "portMappings": [ { "containerPort": 80, "hostPort": 8080 } ], "resourceRequirements":[ { "type":"InferenceAccelerator", "value":"device_1" } ] } ] TASK_DEFINITION inference_accelerator { device_name = "device_1" device_type = "eia1.medium" } } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "arn",
@@ -23227,7 +23397,7 @@ Environments are often things such as ` + "`" + `development` + "`" + `, ` + "`"
 				},
 				resource.Attribute{
 					Name:        "resource",
-					Description: `(Optional) resource name for [scheduled action](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-general.html#command-options-general-autoscalingscheduledaction) ### Example With Options ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_elastic_beanstalk_application" "tftest" { name = "tf-test-name" description = "tf-test-desc" } resource "aws_elastic_beanstalk_environment" "tfenvtest" { name = "tf-test-name" application = aws_elastic_beanstalk_application.tftest.name solution_stack_name = "64bit Amazon Linux 2015.03 v2.0.3 running Go 1.4" setting { namespace = "aws:ec2:vpc" name = "VPCId" value = "vpc-xxxxxxxx" } setting { namespace = "aws:ec2:vpc" name = "Subnets" value = "subnet-xxxxxxxx" } } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) resource name for [scheduled action](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-general.html#command-options-general-autoscalingscheduledaction) ### Example With Options ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_elastic_beanstalk_application" "tftest" { name = "tf-test-name" description = "tf-test-desc" } resource "aws_elastic_beanstalk_environment" "tfenvtest" { name = "tf-test-name" application = aws_elastic_beanstalk_application.tftest.name solution_stack_name = "64bit Amazon Linux 2015.03 v2.0.3 running Go 1.4" setting { namespace = "aws:ec2:vpc" name = "VPCId" value = "vpc-xxxxxxxx" } setting { namespace = "aws:ec2:vpc" name = "Subnets" value = "subnet-xxxxxxxx" } } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -23446,7 +23616,7 @@ for more information.
 			ShortDescription: `Provides an ElastiCache Global Replication Group resource.`,
 			Description: `
 
-Provides an ElastiCache Global Replication Group resource, which manage a replication between 2 or more redis replication group in different regions. For more information, see the [ElastiCache User Guide](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Redis-Global-Datastore.html).
+Provides an ElastiCache Global Replication Group resource, which manages replication between two or more Replication Groups in different regions. For more information, see the [ElastiCache User Guide](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Redis-Global-Datastore.html).
 
 `,
 			Keywords: []string{
@@ -23632,16 +23802,20 @@ for more information.
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "global_replication_group_id",
+					Description: `(Optional) The ID of the global replication group to which this replication group should belong. If this parameter is specified, the replication group is added to the specified global replication group as a secondary replication group; otherwise, the replication group is not part of any global replication group.`,
+				},
+				resource.Attribute{
 					Name:        "number_cache_clusters",
 					Description: `(Optional) The number of cache clusters (primary and replicas) this replication group will have. If Multi-AZ is enabled, the value of this parameter must be at least 2. Updates will occur before other modifications. One of ` + "`" + `number_cache_clusters` + "`" + ` or ` + "`" + `cluster_mode` + "`" + ` is required.`,
 				},
 				resource.Attribute{
 					Name:        "node_type",
-					Description: `(Required) The instance class to be used. See AWS documentation for information on [supported node types](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html) and [guidance on selecting node types](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html).`,
+					Description: `(Optional) The instance class to be used. See AWS documentation for information on [supported node types](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html) and [guidance on selecting node types](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html). Required unless ` + "`" + `global_replication_group_id` + "`" + ` is set. Cannot be set if ` + "`" + `global_replication_group_id` + "`" + ` is set.`,
 				},
 				resource.Attribute{
 					Name:        "automatic_failover_enabled",
-					Description: `(Optional) Specifies whether a read-only replica will be automatically promoted to read/write primary if the existing primary fails. If true, Multi-AZ is enabled for this replication group. If false, Multi-AZ is disabled for this replication group. Must be enabled for Redis (cluster mode enabled) replication groups. Defaults to ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Specifies whether a read-only replica will be automatically promoted to read/write primary if the existing primary fails. If enabled, ` + "`" + `number_cache_clusters` + "`" + ` must be greater than 1. Must be enabled for Redis (cluster mode enabled) replication groups. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "multi_az_enabled",
@@ -24173,7 +24347,7 @@ Allows setting policy to an Elasticsearch domain while referencing domain attrib
 				},
 				resource.Attribute{
 					Name:        "access_policies",
-					Description: `(Optional) IAM policy document specifying the access policies for the domain`,
+					Description: `(Optional) IAM policy document specifying the access policies for the domain ## Attributes Reference No additional attributes are exported.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -24556,10 +24730,19 @@ Provides an Elastic Transcoder preset resource.
 				},
 				resource.Attribute{
 					Name:        "LoopCount",
-					Description: `The number of times you want the output gif to loop (Gif only) ## Import Elastic Transcoder presets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_elastictranscoder_preset.basic_preset 1407981661351-cttk8b ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The number of times you want the output gif to loop (Gif only) ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `Amazon Resource Name (ARN) of the Elastic Transcoder Preset. ## Import Elastic Transcoder presets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_elastictranscoder_preset.basic_preset 1407981661351-cttk8b ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `Amazon Resource Name (ARN) of the Elastic Transcoder Preset. ## Import Elastic Transcoder presets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_elastictranscoder_preset.basic_preset 1407981661351-cttk8b ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -24806,7 +24989,7 @@ conflict and will overwrite attachments.
 				},
 				resource.Attribute{
 					Name:        "instance",
-					Description: `(Required) Instance ID to place in the ELB pool.`,
+					Description: `(Required) Instance ID to place in the ELB pool. ## Attributes Reference No additional attributes are exported.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -25311,7 +25494,16 @@ To configure [Instance Groups](https://docs.aws.amazon.com/emr/latest/Management
 			Type:             "aws_emr_instance_fleet",
 			Category:         "Elastic Map Reduce (EMR)",
 			ShortDescription: `Provides an Elastic MapReduce Cluster Instance Fleet`,
-			Description:      ``,
+			Description: `
+
+Provides an Elastic MapReduce Cluster Instance Fleet configuration.
+See [Amazon Elastic MapReduce Documentation](https://aws.amazon.com/documentation/emr/) for more information.
+
+~> **NOTE:** At this time, Instance Fleets cannot be destroyed through the API nor
+web interface. Instance Fleets are destroyed when the EMR Cluster is destroyed.
+Terraform will resize any Instance Fleet to zero when destroying the resource.
+
+`,
 			Keywords: []string{
 				"elastic",
 				"map",
@@ -25468,7 +25660,7 @@ Terraform will resize any Instance Group to zero when destroying the resource.
 				},
 				resource.Attribute{
 					Name:        "configurations_json",
-					Description: `(Optional) A JSON string for supplying list of configurations specific to the EMR instance group. Note that this can only be changed when using EMR release 5.21 or later. ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_emr_instance_group" "task" { # ... other configuration ... configurations_json = <<EOF [ { "Classification": "hadoop-env", "Configurations": [ { "Classification": "export", "Properties": { "JAVA_HOME": "/usr/lib/jvm/java-1.8.0" } } ], "Properties": {} } ] EOF } ` + "`" + `` + "`" + `` + "`" + ` ` + "`" + `ebs_config` + "`" + ` supports the following:`,
+					Description: `(Optional) A JSON string for supplying list of configurations specific to the EMR instance group. Note that this can only be changed when using EMR release 5.21 or later. ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_emr_instance_group" "task" { # ... other configuration ... configurations_json = <<EOF [ { "Classification": "hadoop-env", "Configurations": [ { "Classification": "export", "Properties": { "JAVA_HOME": "/usr/lib/jvm/java-1.8.0" } } ], "Properties": {} } ] EOF } ` + "`" + `` + "`" + `` + "`" + ` ` + "`" + `ebs_config` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "iops",
@@ -25544,7 +25736,7 @@ Provides a Managed Scaling policy for EMR Cluster. With Amazon EMR versions 5.30
 				},
 				resource.Attribute{
 					Name:        "maximum_core_capacity_units",
-					Description: `(Optional) The upper boundary of EC2 units for core node type in a cluster. It is measured through VCPU cores or instances for instance groups and measured through units for instance fleets. The core units are not allowed to scale beyond this boundary. The parameter is used to split capacity allocation between core and task nodes. ## Import EMR Managed Scaling Policies can be imported via the EMR Cluster identifier, e.g. ` + "`" + `` + "`" + `` + "`" + `console $ terraform import aws_emr_managed_scaling_policy.example j-123456ABCDEF ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The upper boundary of EC2 units for core node type in a cluster. It is measured through VCPU cores or instances for instance groups and measured through units for instance fleets. The core units are not allowed to scale beyond this boundary. The parameter is used to split capacity allocation between core and task nodes. ## Attributes Reference No additional attributes are exported. ## Import EMR Managed Scaling Policies can be imported via the EMR Cluster identifier, e.g. ` + "`" + `` + "`" + `` + "`" + `console $ terraform import aws_emr_managed_scaling_policy.example j-123456ABCDEF ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -25800,7 +25992,7 @@ Provides a resource to create an AWS Firewall Manager policy. You need to be usi
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required, Forces new resource) The service that the policy is using to protect the resources. Valid values are ` + "`" + `WAFV2` + "`" + `, ` + "`" + `WAF` + "`" + `, ` + "`" + `SHIELD_ADVANCED` + "`" + `, ` + "`" + `SECURITY_GROUPS_COMMON` + "`" + `, ` + "`" + `SECURITY_GROUPS_CONTENT_AUDIT` + "`" + `, and ` + "`" + `SECURITY_GROUPS_USAGE_AUDIT` + "`" + `. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required, Forces new resource) The service that the policy is using to protect the resources. Valid values are ` + "`" + `WAFV2` + "`" + `, ` + "`" + `WAF` + "`" + `, ` + "`" + `SHIELD_ADVANCED` + "`" + `, ` + "`" + `SECURITY_GROUPS_COMMON` + "`" + `, ` + "`" + `SECURITY_GROUPS_CONTENT_AUDIT` + "`" + `, and ` + "`" + `SECURITY_GROUPS_USAGE_AUDIT` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -25941,7 +26133,7 @@ Manages a FSx Lustre File System. See the [FSx Lustre Guide](https://docs.aws.am
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Default ` + "`" + `30m` + "`" + `) How long to wait for the file system to be deleted. ## Import FSx File Systems can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_fsx_lustre_file_system.example fs-543ab12b1ca672f33 ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `security_group_ids` + "`" + `, do not have a FSx API method for reading the information after creation. If the argument is set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_fsx_lustre_file_system" "example" { # ... other configuration ... security_group_ids = [aws_security_group.example.id] # There is no FSx API for reading security_group_ids lifecycle { ignore_changes = [security_group_ids] } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Default ` + "`" + `30m` + "`" + `) How long to wait for the file system to be deleted. ## Import FSx File Systems can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_fsx_lustre_file_system.example fs-543ab12b1ca672f33 ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `security_group_ids` + "`" + `, do not have a FSx API method for reading the information after creation. If the argument is set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_fsx_lustre_file_system" "example" { # ... other configuration ... security_group_ids = [aws_security_group.example.id] # There is no FSx API for reading security_group_ids lifecycle { ignore_changes = [security_group_ids] } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -25979,7 +26171,7 @@ Manages a FSx Lustre File System. See the [FSx Lustre Guide](https://docs.aws.am
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Default ` + "`" + `30m` + "`" + `) How long to wait for the file system to be deleted. ## Import FSx File Systems can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_fsx_lustre_file_system.example fs-543ab12b1ca672f33 ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `security_group_ids` + "`" + `, do not have a FSx API method for reading the information after creation. If the argument is set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_fsx_lustre_file_system" "example" { # ... other configuration ... security_group_ids = [aws_security_group.example.id] # There is no FSx API for reading security_group_ids lifecycle { ignore_changes = [security_group_ids] } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Default ` + "`" + `30m` + "`" + `) How long to wait for the file system to be deleted. ## Import FSx File Systems can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_fsx_lustre_file_system.example fs-543ab12b1ca672f33 ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `security_group_ids` + "`" + `, do not have a FSx API method for reading the information after creation. If the argument is set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_fsx_lustre_file_system" "example" { # ... other configuration ... security_group_ids = [aws_security_group.example.id] # There is no FSx API for reading security_group_ids lifecycle { ignore_changes = [security_group_ids] } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -26132,7 +26324,7 @@ Manages a FSx Windows File System. See the [FSx Windows Guide](https://docs.aws.
 				},
 				resource.Attribute{
 					Name:        "update",
-					Description: `(Default ` + "`" + `45m` + "`" + `) How long to wait for the file system to be updated. ## Import FSx File Systems can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_fsx_windows_file_system.example fs-543ab12b1ca672f33 ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `security_group_ids` + "`" + ` and the ` + "`" + `self_managed_active_directory` + "`" + ` configuation block ` + "`" + `password` + "`" + `, do not have a FSx API method for reading the information after creation. If these arguments are set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_fsx_windows_file_system" "example" { # ... other configuration ... security_group_ids = [aws_security_group.example.id] # There is no FSx API for reading security_group_ids lifecycle { ignore_changes = [security_group_ids] } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Default ` + "`" + `45m` + "`" + `) How long to wait for the file system to be updated. ## Import FSx File Systems can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_fsx_windows_file_system.example fs-543ab12b1ca672f33 ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `security_group_ids` + "`" + ` and the ` + "`" + `self_managed_active_directory` + "`" + ` configuation block ` + "`" + `password` + "`" + `, do not have a FSx API method for reading the information after creation. If these arguments are set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_fsx_windows_file_system" "example" { # ... other configuration ... security_group_ids = [aws_security_group.example.id] # There is no FSx API for reading security_group_ids lifecycle { ignore_changes = [security_group_ids] } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -26178,7 +26370,7 @@ Manages a FSx Windows File System. See the [FSx Windows Guide](https://docs.aws.
 				},
 				resource.Attribute{
 					Name:        "update",
-					Description: `(Default ` + "`" + `45m` + "`" + `) How long to wait for the file system to be updated. ## Import FSx File Systems can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_fsx_windows_file_system.example fs-543ab12b1ca672f33 ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `security_group_ids` + "`" + ` and the ` + "`" + `self_managed_active_directory` + "`" + ` configuation block ` + "`" + `password` + "`" + `, do not have a FSx API method for reading the information after creation. If these arguments are set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_fsx_windows_file_system" "example" { # ... other configuration ... security_group_ids = [aws_security_group.example.id] # There is no FSx API for reading security_group_ids lifecycle { ignore_changes = [security_group_ids] } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Default ` + "`" + `45m` + "`" + `) How long to wait for the file system to be updated. ## Import FSx File Systems can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_fsx_windows_file_system.example fs-543ab12b1ca672f33 ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `security_group_ids` + "`" + ` and the ` + "`" + `self_managed_active_directory` + "`" + ` configuation block ` + "`" + `password` + "`" + `, do not have a FSx API method for reading the information after creation. If these arguments are set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_fsx_windows_file_system" "example" { # ... other configuration ... security_group_ids = [aws_security_group.example.id] # There is no FSx API for reading security_group_ids lifecycle { ignore_changes = [security_group_ids] } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -26825,7 +27017,7 @@ Provides a Global Accelerator endpoint group.
 				},
 				resource.Attribute{
 					Name:        "arn",
-					Description: `The Amazon Resource Name (ARN) of the endpoint group. ` + "`" + `aws_globalaccelerator_endpoint_group` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts) configuration options:`,
+					Description: `The Amazon Resource Name (ARN) of the endpoint group. ## Timeouts ` + "`" + `aws_globalaccelerator_endpoint_group` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts) configuration options:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -26847,7 +27039,7 @@ Provides a Global Accelerator endpoint group.
 				},
 				resource.Attribute{
 					Name:        "arn",
-					Description: `The Amazon Resource Name (ARN) of the endpoint group. ` + "`" + `aws_globalaccelerator_endpoint_group` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts) configuration options:`,
+					Description: `The Amazon Resource Name (ARN) of the endpoint group. ## Timeouts ` + "`" + `aws_globalaccelerator_endpoint_group` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts) configuration options:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -26906,7 +27098,7 @@ Provides a Global Accelerator listener.
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Amazon Resource Name (ARN) of the listener. ` + "`" + `aws_globalaccelerator_listener` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts) configuration options:`,
+					Description: `The Amazon Resource Name (ARN) of the listener. ## Timeouts ` + "`" + `aws_globalaccelerator_listener` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts) configuration options:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -26924,7 +27116,7 @@ Provides a Global Accelerator listener.
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Amazon Resource Name (ARN) of the listener. ` + "`" + `aws_globalaccelerator_listener` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts) configuration options:`,
+					Description: `The Amazon Resource Name (ARN) of the listener. ## Timeouts ` + "`" + `aws_globalaccelerator_listener` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts) configuration options:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -27535,7 +27727,11 @@ Provides a Glue Data Catalog Encryption Settings resource.
 			Type:             "aws_glue_dev_endpoint",
 			Category:         "Glue",
 			ShortDescription: `Provides a Glue Development Endpoint resource.`,
-			Description:      ``,
+			Description: `
+
+Provides a Glue Development Endpoint resource.
+
+`,
 			Keywords: []string{
 				"glue",
 				"dev",
@@ -29058,7 +29254,7 @@ Manages the account alias for the AWS Account.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account_alias",
-					Description: `(Required) The account alias ## Import The current Account Alias can be imported using the ` + "`" + `account_alias` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iam_account_alias.alias my-account-alias ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The account alias ## Attributes Reference No additional attributes are exported. ## Import The current Account Alias can be imported using the ` + "`" + `account_alias` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iam_account_alias.alias my-account-alias ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -29375,7 +29571,7 @@ Provides an IAM instance profile.
 				},
 				resource.Attribute{
 					Name:        "role",
-					Description: `(Optional) Name of the role to add to the profile. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+					Description: `(Optional) Name of the role to add to the profile. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "arn",
@@ -29656,7 +29852,7 @@ Provides an IAM role.
 				},
 				resource.Attribute{
 					Name:        "policy",
-					Description: `(Required) Policy document as a JSON formatted string. For more information about building IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://www.terraform.io/docs/providers/aws/guides/iam-policy-documents.html). ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+					Description: `(Required) Policy document as a JSON formatted string. For more information about building IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://www.terraform.io/docs/providers/aws/guides/iam-policy-documents.html). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "arn",
@@ -30088,27 +30284,10 @@ To exclusively manage the users in a group, see the
 				},
 				resource.Attribute{
 					Name:        "groups",
-					Description: `(Required) A list of [IAM Groups][1] to add the user to ## Attributes Reference`,
-				},
-				resource.Attribute{
-					Name:        "user",
-					Description: `The name of the IAM User`,
-				},
-				resource.Attribute{
-					Name:        "groups",
-					Description: `The list of IAM Groups [1]: /docs/providers/aws/r/iam_group.html [2]: /docs/providers/aws/r/iam_user.html [3]: /docs/providers/aws/r/iam_group_membership.html ## Import IAM user group membership can be imported using the user name and group names separated by ` + "`" + `/` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iam_user_group_membership.example1 user1/group1/group2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) A list of [IAM Groups][1] to add the user to ## Attributes Reference No additional attributes are exported. [1]: /docs/providers/aws/r/iam_group.html [2]: /docs/providers/aws/r/iam_user.html [3]: /docs/providers/aws/r/iam_group_membership.html ## Import IAM user group membership can be imported using the user name and group names separated by ` + "`" + `/` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iam_user_group_membership.example1 user1/group1/group2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "user",
-					Description: `The name of the IAM User`,
-				},
-				resource.Attribute{
-					Name:        "groups",
-					Description: `The list of IAM Groups [1]: /docs/providers/aws/r/iam_group.html [2]: /docs/providers/aws/r/iam_user.html [3]: /docs/providers/aws/r/iam_group_membership.html ## Import IAM user group membership can be imported using the user name and group names separated by ` + "`" + `/` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iam_user_group_membership.example1 user1/group1/group2 ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -31271,7 +31450,7 @@ Provides an EC2 instance resource. This allows instances to be created, updated,
 				},
 				resource.Attribute{
 					Name:        "security_groups",
-					Description: `(Optional, EC2-Classic and default VPC only) A list of security group names (EC2-Classic) or IDs (default VPC) to associate with.`,
+					Description: `(Optional, EC2-Classic and default VPC only) A list of security group names (EC2-Classic) or IDs (default VPC) to associate with. ->`,
 				},
 				resource.Attribute{
 					Name:        "source_dest_check",
@@ -31295,11 +31474,11 @@ Provides an EC2 instance resource. This allows instances to be created, updated,
 				},
 				resource.Attribute{
 					Name:        "user_data_base64",
-					Description: `(Optional) Can be used instead of ` + "`" + `user_data` + "`" + ` to pass base64-encoded binary data directly. Use this instead of ` + "`" + `user_data` + "`" + ` whenever the value is not a valid UTF-8 string. For example, gzip-encoded user data must be base64-encoded and passed via this argument to avoid corruption. ~>`,
+					Description: `(Optional) Can be used instead of ` + "`" + `user_data` + "`" + ` to pass base64-encoded binary data directly. Use this instead of ` + "`" + `user_data` + "`" + ` whenever the value is not a valid UTF-8 string. For example, gzip-encoded user data must be base64-encoded and passed via this argument to avoid corruption.`,
 				},
 				resource.Attribute{
 					Name:        "volume_tags",
-					Description: `(Optional) A map of tags to assign, at instance-creation time, to root and EBS volumes. ->`,
+					Description: `(Optional) A map of tags to assign, at instance-creation time, to root and EBS volumes. ~>`,
 				},
 				resource.Attribute{
 					Name:        "vpc_security_group_ids",
@@ -31728,7 +31907,7 @@ Provides an IoT policy attachment.
 				},
 				resource.Attribute{
 					Name:        "target",
-					Description: `(Required) The identity to which the policy is attached.`,
+					Description: `(Required) The identity to which the policy is attached. ## Attributes Reference No additional attributes are exported.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -31852,7 +32031,7 @@ Attaches Principal to AWS IoT Thing.
 				},
 				resource.Attribute{
 					Name:        "thing",
-					Description: `(Required) The name of the thing.`,
+					Description: `(Required) The name of the thing. ## Attributes Reference No additional attributes are exported.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -32327,6 +32506,10 @@ For more details, see the [Amazon Kinesis Analytics Documentation][1].
 					Description: `(Optional) An S3 Reference Data Source for the application. See [Reference Data Sources](#reference-data-sources) below for more details.`,
 				},
 				resource.Attribute{
+					Name:        "start_application",
+					Description: `(Optional) Whether to start or stop the Kinesis Analytics Application. To start an application, an input with a defined ` + "`" + `starting_position` + "`" + ` must be configured. To modify an application's starting position, first stop the application by setting ` + "`" + `start_application = false` + "`" + `, then update ` + "`" + `starting_position` + "`" + ` and set ` + "`" + `start_application = true` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `Key-value map of tags for the Kinesis Analytics Application. ### CloudWatch Logging Options Configure a CloudWatch Log Stream to monitor application errors. The ` + "`" + `cloudwatch_logging_options` + "`" + ` block supports the following:`,
 				},
@@ -32360,7 +32543,7 @@ For more details, see the [Amazon Kinesis Analytics Documentation][1].
 				},
 				resource.Attribute{
 					Name:        "processing_configuration",
-					Description: `(Optional) The Processing Configuration to transform records as they are received from the stream. See [Processing Configuration](#processing-configuration) below for more details. ### Outputs Configure Output destinations for the Kinesis Analytics Application. You can have a maximum of 3 destinations configured. The ` + "`" + `outputs` + "`" + ` block supports the following:`,
+					Description: `(Optional) The Processing Configuration to transform records as they are received from the stream. See [Processing Configuration](#processing-configuration) below for more details.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -32440,7 +32623,11 @@ For more details, see the [Amazon Kinesis Analytics Documentation][1].
 				},
 				resource.Attribute{
 					Name:        "role_arn",
-					Description: `(Required) The ARN of the IAM Role used to access the Lambda function. #### Record Columns The Column mapping of each data element in the streaming source to the corresponding column in the in-application stream. The ` + "`" + `record_columns` + "`" + ` block supports the following:`,
+					Description: `(Required) The ARN of the IAM Role used to access the Lambda function. #### Starting Position Configuration The point at which the application reads from the streaming source. The ` + "`" + `starting_position_configuration` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "starting_position",
+					Description: `(Required) The starting position on the stream. Valid values: ` + "`" + `LAST_STOPPED_POINT` + "`" + `, ` + "`" + `NOW` + "`" + `, ` + "`" + `TRIM_HORIZON` + "`" + `. #### Record Columns The Column mapping of each data element in the streaming source to the corresponding column in the in-application stream. The ` + "`" + `record_columns` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -33142,6 +33329,58 @@ For more details, see the [Amazon Kinesis Documentation][1].
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) specifying the Stream (same as ` + "`" + `id` + "`" + `) ## Timeouts ` + "`" + `aws_kinesis_stream` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Creating a Kinesis Stream - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `120 minutes` + "`" + `) Used for Updating a Kinesis Stream - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `120 minutes` + "`" + `) Used for Destroying a Kinesis Stream ## Import Kinesis Streams can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_kinesis_stream.test_stream terraform-kinesis-test ` + "`" + `` + "`" + `` + "`" + ` [1]: https://aws.amazon.com/documentation/kinesis/ [2]: https://docs.aws.amazon.com/kinesis/latest/dev/amazon-kinesis-streams.html [3]: https://docs.aws.amazon.com/streams/latest/dev/monitoring-with-cloudwatch.html`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_kinesis_stream_consumer",
+			Category:         "Kinesis",
+			ShortDescription: `Manages a Kinesis Stream Consumer.`,
+			Description: `
+
+Provides a resource to manage a Kinesis Stream Consumer.
+
+-> **Note:** You can register up to 20 consumers per stream. A given consumer can only be registered with one stream at a time.
+
+For more details, see the [Amazon Kinesis Stream Consumer Documentation][1].
+
+`,
+			Keywords: []string{
+				"kinesis",
+				"stream",
+				"consumer",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, Forces new resource) Name of the stream consumer.`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `Amazon Resource Name (ARN) of the stream consumer.`,
+				},
+				resource.Attribute{
+					Name:        "creation_timestamp",
+					Description: `Approximate timestamp in [RFC3339 format](https://tools.ietf.org/html/rfc3339#section-5.8) of when the stream consumer was created.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Amazon Resource Name (ARN) of the stream consumer. ## Import Kinesis Stream Consumers can be imported using the Amazon Resource Name (ARN) e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_kinesis_stream_consumer.example arn:aws:kinesis:us-west-2:123456789012:stream/example/consumer/example:1616044553 ` + "`" + `` + "`" + `` + "`" + ` [1]: https://docs.aws.amazon.com/streams/latest/dev/amazon-kinesis-consumers.html`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `Amazon Resource Name (ARN) of the stream consumer.`,
+				},
+				resource.Attribute{
+					Name:        "creation_timestamp",
+					Description: `Approximate timestamp in [RFC3339 format](https://tools.ietf.org/html/rfc3339#section-5.8) of when the stream consumer was created.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Amazon Resource Name (ARN) of the stream consumer. ## Import Kinesis Stream Consumers can be imported using the Amazon Resource Name (ARN) e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_kinesis_stream_consumer.example arn:aws:kinesis:us-west-2:123456789012:stream/example/consumer/example:1616044553 ` + "`" + `` + "`" + `` + "`" + ` [1]: https://docs.aws.amazon.com/streams/latest/dev/amazon-kinesis-consumers.html`,
 				},
 			},
 		},
@@ -34004,7 +34243,7 @@ Manages Lake Formation principals designated as data lake administrators and lis
 				},
 				resource.Attribute{
 					Name:        "principal",
-					Description: `(Optional) Principal who is granted permissions. To enforce metadata and underlying data access control only by IAM on new databases and tables set ` + "`" + `principal` + "`" + ` to ` + "`" + `IAM_ALLOWED_PRINCIPALS` + "`" + ` and ` + "`" + `permissions` + "`" + ` to ` + "`" + `["ALL"]` + "`" + `. ## Attributes Reference In addition to all arguments above, no attributes are exported.`,
+					Description: `(Optional) Principal who is granted permissions. To enforce metadata and underlying data access control only by IAM on new databases and tables set ` + "`" + `principal` + "`" + ` to ` + "`" + `IAM_ALLOWED_PRINCIPALS` + "`" + ` and ` + "`" + `permissions` + "`" + ` to ` + "`" + `["ALL"]` + "`" + `. ## Attributes Reference No additional attributes are exported.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -34082,7 +34321,7 @@ Grants permissions to the principal to access metadata in the Data Catalog and d
 				},
 				resource.Attribute{
 					Name:        "catalog_id",
-					Description: `(Optional) Identifier for the Data Catalog. By default, it is the account ID of the caller. ## Attributes Reference In addition to the above arguments, no attributes are exported.`,
+					Description: `(Optional) Identifier for the Data Catalog. By default, it is the account ID of the caller. ## Attributes Reference No additional attributes are exported.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -34210,7 +34449,7 @@ For information about Lambda code signing configurations and how to use them, se
 				},
 				resource.Attribute{
 					Name:        "untrusted_artifact_on_deployment",
-					Description: `(Required) Code signing configuration policy for deployment validation failure. If you set the policy to Enforce, Lambda blocks the deployment request if code-signing validation checks fail. If you set the policy to Warn, Lambda allows the deployment and creates a CloudWatch log. Valid values: ` + "`" + `Warn` + "`" + `, ` + "`" + `Enforce` + "`" + `. Default value: ` + "`" + `Warn` + "`" + `. ## Attributes Reference`,
+					Description: `(Required) Code signing configuration policy for deployment validation failure. If you set the policy to Enforce, Lambda blocks the deployment request if code-signing validation checks fail. If you set the policy to Warn, Lambda allows the deployment and creates a CloudWatch log. Valid values: ` + "`" + `Warn` + "`" + `, ` + "`" + `Enforce` + "`" + `. Default value: ` + "`" + `Warn` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "arn",
@@ -34519,7 +34758,7 @@ For a detailed example of setting up Lambda and API Gateway, see [Serverless App
 				},
 				resource.Attribute{
 					Name:        "subnet_ids",
-					Description: `(Required) List of subnet IDs associated with the Lambda function. ## Attributes Reference In addition to arguments above, the following attributes are exported:`,
+					Description: `(Required) List of subnet IDs associated with the Lambda function. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "arn",
@@ -34827,7 +35066,7 @@ Gives an external source (like a CloudWatch Event Rule, SNS, or S3) permission t
 				},
 				resource.Attribute{
 					Name:        "statement_id_prefix",
-					Description: `(Optional) A statement identifier prefix. Terraform will generate a unique suffix. Conflicts with ` + "`" + `statement_id` + "`" + `. [1]: https://developer.amazon.com/docs/custom-skills/host-a-custom-skill-as-an-aws-lambda-function.html#use-aws-cli [2]: https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-control-access-using-iam-policies-to-invoke-api.html ## Import Lambda permission statements can be imported using function_name/statement_id, with an optional qualifier, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_lambda_permission.test_lambda_permission my_test_lambda_function/AllowExecutionFromCloudWatch $ terraform import aws_lambda_permission.test_lambda_permission my_test_lambda_function:qualifier_name/AllowExecutionFromCloudWatch ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) A statement identifier prefix. Terraform will generate a unique suffix. Conflicts with ` + "`" + `statement_id` + "`" + `. [1]: https://developer.amazon.com/docs/custom-skills/host-a-custom-skill-as-an-aws-lambda-function.html#use-aws-cli [2]: https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-control-access-using-iam-policies-to-invoke-api.html ## Attributes Reference No additional attributes are exported. ## Import Lambda permission statements can be imported using function_name/statement_id, with an optional qualifier, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_lambda_permission.test_lambda_permission my_test_lambda_function/AllowExecutionFromCloudWatch $ terraform import aws_lambda_permission.test_lambda_permission my_test_lambda_function:qualifier_name/AllowExecutionFromCloudWatch ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -38419,6 +38658,59 @@ for more information.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aws_lightsail_instance_public_ports",
+			Category:         "Lightsail",
+			ShortDescription: `Provides an Lightsail Instance`,
+			Description: `
+
+Opens ports for a specific Amazon Lightsail instance, and specifies the IP addresses allowed to connect to the instance through the ports, and the protocol.
+
+-> See [What is Amazon Lightsail?](https://lightsail.aws.amazon.com/ls/docs/getting-started/article/what-is-amazon-lightsail) for more information.
+
+~> **Note:** Lightsail is currently only supported in a limited number of AWS Regions, please see ["Regions and Availability Zones in Amazon Lightsail"](https://lightsail.aws.amazon.com/ls/docs/overview/article/understanding-regions-and-availability-zones-in-amazon-lightsail) for more details.
+
+`,
+			Keywords: []string{
+				"lightsail",
+				"instance",
+				"public",
+				"ports",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance_name",
+					Description: `(Required) Name of the Lightsail Instance.`,
+				},
+				resource.Attribute{
+					Name:        "port_info",
+					Description: `(Required) Configuration block with port information. AWS closes all currently open ports that are not included in the ` + "`" + `port_info` + "`" + `. Detailed below. ### port_info`,
+				},
+				resource.Attribute{
+					Name:        "from_port",
+					Description: `(Required) First port in a range of open ports on an instance.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Required) IP protocol name. Valid values are ` + "`" + `tcp` + "`" + `, ` + "`" + `all` + "`" + `, ` + "`" + `udp` + "`" + `, and ` + "`" + `icmp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "to_port",
+					Description: `(Required) Last port in a range of open ports on an instance. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aws_lightsail_key_pair",
 			Category:         "Lightsail",
 			ShortDescription: `Provides an Lightsail Key Pair`,
@@ -39166,7 +39458,7 @@ Provides a MediaStore Container Policy.
 				},
 				resource.Attribute{
 					Name:        "policy",
-					Description: `(Required) The contents of the policy. For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://learn.hashicorp.com/terraform/aws/iam-policy). ## Import MediaStore Container Policy can be imported using the MediaStore Container Name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_media_store_container_policy.example example ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The contents of the policy. For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://learn.hashicorp.com/terraform/aws/iam-policy). ## Attributes Reference No additional attributes are exported. ## Import MediaStore Container Policy can be imported using the MediaStore Container Name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_media_store_container_policy.example example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -39242,7 +39534,7 @@ Provides an Amazon MQ broker resource. This resources also manages users for the
 				},
 				resource.Attribute{
 					Name:        "ldap_server_metadata",
-					Description: `(Optional) Configuration block for the LDAP server used to authenticate and authorize connections to the broker. Not supported for ` + "`" + `engine_type` + "`" + ` ` + "`" + `RabbitMQ` + "`" + `. Detailed below.`,
+					Description: `(Optional) Configuration block for the LDAP server used to authenticate and authorize connections to the broker. Not supported for ` + "`" + `engine_type` + "`" + ` ` + "`" + `RabbitMQ` + "`" + `. Detailed below. (Currently, AWS may not process changes to LDAP server metadata.)`,
 				},
 				resource.Attribute{
 					Name:        "logs",
@@ -39440,53 +39732,57 @@ For more information on Amazon MQ, see [Amazon MQ documentation](https://docs.aw
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "data",
-					Description: `(Required) The broker configuration in XML format. See [official docs](https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/amazon-mq-broker-configuration-parameters.html) for supported parameters and format of the XML.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `(Optional) The description of the configuration.`,
+					Description: `(Required) Broker configuration in XML format. See [official docs](https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/amazon-mq-broker-configuration-parameters.html) for supported parameters and format of the XML.`,
 				},
 				resource.Attribute{
 					Name:        "engine_type",
-					Description: `(Required) The type of broker engine.`,
+					Description: `(Required) Type of broker engine. Valid values are ` + "`" + `ActiveMQ` + "`" + ` and ` + "`" + `RabbitMQ` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "engine_version",
-					Description: `(Required) The version of the broker engine.`,
+					Description: `(Required) Version of the broker engine.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of the configuration`,
+					Description: `(Required) Name of the configuration. The following arguments are optional:`,
+				},
+				resource.Attribute{
+					Name:        "authentication_strategy",
+					Description: `(Optional) Authentication strategy associated with the configuration. Valid values are ` + "`" + `simple` + "`" + ` and ` + "`" + `ldap` + "`" + `. ` + "`" + `ldap` + "`" + ` is not supported for ` + "`" + `engine_type` + "`" + ` ` + "`" + `RabbitMQ` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the configuration.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A map of tags to assign to the resource. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `The unique ID that Amazon MQ generates for the configuration.`,
+					Description: `(Optional) Map of tags to assign to the resource. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "arn",
-					Description: `The ARN of the configuration.`,
+					Description: `ARN of the configuration.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique ID that Amazon MQ generates for the configuration.`,
 				},
 				resource.Attribute{
 					Name:        "latest_revision",
-					Description: `The latest revision of the configuration. ## Import MQ Configurations can be imported using the configuration ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_mq_configuration.example c-0187d1eb-88c8-475a-9b79-16ef5a10c94f ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Latest revision of the configuration. ## Import MQ Configurations can be imported using the configuration ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_mq_configuration.example c-0187d1eb-88c8-475a-9b79-16ef5a10c94f ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "id",
-					Description: `The unique ID that Amazon MQ generates for the configuration.`,
+					Name:        "arn",
+					Description: `ARN of the configuration.`,
 				},
 				resource.Attribute{
-					Name:        "arn",
-					Description: `The ARN of the configuration.`,
+					Name:        "id",
+					Description: `Unique ID that Amazon MQ generates for the configuration.`,
 				},
 				resource.Attribute{
 					Name:        "latest_revision",
-					Description: `The latest revision of the configuration. ## Import MQ Configurations can be imported using the configuration ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_mq_configuration.example c-0187d1eb-88c8-475a-9b79-16ef5a10c94f ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Latest revision of the configuration. ## Import MQ Configurations can be imported using the configuration ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_mq_configuration.example c-0187d1eb-88c8-475a-9b79-16ef5a10c94f ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -40490,7 +40786,7 @@ Manages a Neptune database cluster snapshot.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A map of tags to assign to the resource. ## Attributes The following additional atttributes are provided:`,
+					Description: `(Optional) A map of tags to assign to the resource. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -40505,7 +40801,20 @@ Manages a Neptune database cluster snapshot.
 					Description: `The AWS customer account associated with the Neptune event notification subscription. ## Timeouts ` + "`" + `aws_neptune_event_subscription` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `40m` + "`" + `) How long to wait for creating event subscription to become available. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `40m` + "`" + `) How long to wait for deleting event subscription to become fully deleted. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `40m` + "`" + `) How long to wait for updating event subscription to complete updates. ## Import ` + "`" + `aws_neptune_event_subscription` + "`" + ` can be imported by using the event subscription name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_neptune_event_subscription.example my-event-subscription ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The name of the Neptune event notification subscription.`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name of the Neptune event notification subscription.`,
+				},
+				resource.Attribute{
+					Name:        "customer_aws_id",
+					Description: `The AWS customer account associated with the Neptune event notification subscription. ## Timeouts ` + "`" + `aws_neptune_event_subscription` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `40m` + "`" + `) How long to wait for creating event subscription to become available. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `40m` + "`" + `) How long to wait for deleting event subscription to become fully deleted. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `40m` + "`" + `) How long to wait for updating event subscription to complete updates. ## Import ` + "`" + `aws_neptune_event_subscription` + "`" + ` can be imported by using the event subscription name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_neptune_event_subscription.example my-event-subscription ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -41069,7 +41378,7 @@ one or the other.
 				},
 				resource.Attribute{
 					Name:        "network_interface_id",
-					Description: `(Required) The ID of the network interface to attach to. ## Output Reference There are no outputs for this resource.`,
+					Description: `(Required) The ID of the network interface to attach to. ## Attributes Reference No additional attributes are exported.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -41397,7 +41706,7 @@ Provides an AWS Network Firewall Resource Policy Resource for a rule group or fi
 				},
 				resource.Attribute{
 					Name:        "resource_arn",
-					Description: `(Required, Forces new resource) The Amazon Resource Name (ARN) of the rule group or firewall policy. ## Attribute Reference In addition to all arguments above, the following attribute is exported:`,
+					Description: `(Required, Forces new resource) The Amazon Resource Name (ARN) of the rule group or firewall policy. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -43783,7 +44092,7 @@ Provides a resource to create a member account in the current organization.
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The AWS account id ## Import The AWS member account can be imported by using the ` + "`" + `account_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_organizations_account.my_org 111111111111 ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `role_name` + "`" + `, do not have an Organizations API method for reading the information after account creation. If the argument is set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_organizations_account" "account" { name = "my_new_account" email = "john@doe.org" role_name = "myOrganizationRole" # There is no AWS Organizations API for reading role_name lifecycle { ignore_changes = [role_name] } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The AWS account id ## Import The AWS member account can be imported by using the ` + "`" + `account_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_organizations_account.my_org 111111111111 ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `role_name` + "`" + `, do not have an Organizations API method for reading the information after account creation. If the argument is set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_organizations_account" "account" { name = "my_new_account" email = "john@doe.org" role_name = "myOrganizationRole" # There is no AWS Organizations API for reading role_name lifecycle { ignore_changes = [role_name] } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -43793,7 +44102,7 @@ Provides a resource to create a member account in the current organization.
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The AWS account id ## Import The AWS member account can be imported by using the ` + "`" + `account_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_organizations_account.my_org 111111111111 ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `role_name` + "`" + `, do not have an Organizations API method for reading the information after account creation. If the argument is set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_organizations_account" "account" { name = "my_new_account" email = "john@doe.org" role_name = "myOrganizationRole" # There is no AWS Organizations API for reading role_name lifecycle { ignore_changes = [role_name] } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The AWS account id ## Import The AWS member account can be imported by using the ` + "`" + `account_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_organizations_account.my_org 111111111111 ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `role_name` + "`" + `, do not have an Organizations API method for reading the information after account creation. If the argument is set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_organizations_account" "account" { name = "my_new_account" email = "john@doe.org" role_name = "myOrganizationRole" # There is no AWS Organizations API for reading role_name lifecycle { ignore_changes = [role_name] } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -44186,7 +44495,7 @@ Provides a resource to attach an AWS Organizations policy to an organization acc
 				},
 				resource.Attribute{
 					Name:        "target_id",
-					Description: `(Required) The unique identifier (ID) of the root, organizational unit, or account number that you want to attach the policy to. ## Import ` + "`" + `aws_organizations_policy_attachment` + "`" + ` can be imported by using the target ID and policy ID, e.g. with an account target ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_organizations_policy_attachment.account 123456789012:p-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The unique identifier (ID) of the root, organizational unit, or account number that you want to attach the policy to. ## Attributes Reference No additional attributes are exported. ## Import ` + "`" + `aws_organizations_policy_attachment` + "`" + ` can be imported by using the target ID and policy ID, e.g. with an account target ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_organizations_policy_attachment.account 123456789012:p-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -44225,7 +44534,7 @@ Provides a Pinpoint ADM (Amazon Device Messaging) Channel resource.
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) Specifies whether to enable the channel. Defaults to ` + "`" + `true` + "`" + `. ## Import Pinpoint ADM Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_adm_channel.channel application-id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Specifies whether to enable the channel. Defaults to ` + "`" + `true` + "`" + `. ## Attributes Reference No additional attributes are exported. ## Import Pinpoint ADM Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_adm_channel.channel application-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -44283,7 +44592,7 @@ Provides a Pinpoint APNs Channel resource.
 				},
 				resource.Attribute{
 					Name:        "token_key_id",
-					Description: `(Required) The ID assigned to your signing key. To find this value, choose Certificates, IDs & Profiles, and choose your key in the Keys section. ## Import Pinpoint APNs Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_apns_channel.apns application-id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The ID assigned to your signing key. To find this value, choose Certificates, IDs & Profiles, and choose your key in the Keys section. ## Attributes Reference No additional attributes are exported. ## Import Pinpoint APNs Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_apns_channel.apns application-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -44342,7 +44651,7 @@ Provides a Pinpoint APNs Sandbox Channel resource.
 				},
 				resource.Attribute{
 					Name:        "token_key_id",
-					Description: `(Required) The ID assigned to your signing key. To find this value, choose Certificates, IDs & Profiles, and choose your key in the Keys section. ## Import Pinpoint APNs Sandbox Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_apns_sandbox_channel.apns_sandbox application-id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The ID assigned to your signing key. To find this value, choose Certificates, IDs & Profiles, and choose your key in the Keys section. ## Attributes Reference No additional attributes are exported. ## Import Pinpoint APNs Sandbox Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_apns_sandbox_channel.apns_sandbox application-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -44401,7 +44710,7 @@ Provides a Pinpoint APNs VoIP Channel resource.
 				},
 				resource.Attribute{
 					Name:        "token_key_id",
-					Description: `(Required) The ID assigned to your signing key. To find this value, choose Certificates, IDs & Profiles, and choose your key in the Keys section. ## Import Pinpoint APNs VoIP Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_apns_voip_channel.apns_voip application-id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The ID assigned to your signing key. To find this value, choose Certificates, IDs & Profiles, and choose your key in the Keys section. ## Attributes Reference No additional attributes are exported. ## Import Pinpoint APNs VoIP Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_apns_voip_channel.apns_voip application-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -44461,7 +44770,7 @@ Provides a Pinpoint APNs VoIP Sandbox Channel resource.
 				},
 				resource.Attribute{
 					Name:        "token_key_id",
-					Description: `(Required) The ID assigned to your signing key. To find this value, choose Certificates, IDs & Profiles, and choose your key in the Keys section. ## Import Pinpoint APNs VoIP Sandbox Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_apns_voip_sandbox_channel.apns_voip_sandbox application-id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The ID assigned to your signing key. To find this value, choose Certificates, IDs & Profiles, and choose your key in the Keys section. ## Attributes Reference No additional attributes are exported. ## Import Pinpoint APNs VoIP Sandbox Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_apns_voip_sandbox_channel.apns_voip_sandbox application-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -44595,7 +44904,7 @@ Provides a Pinpoint Baidu Channel resource.
 				},
 				resource.Attribute{
 					Name:        "secret_key",
-					Description: `(Required) Platform credential Secret key from Baidu. ## Import Pinpoint Baidu Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_baidu_channel.channel application-id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Platform credential Secret key from Baidu. ## Attributes Reference No additional attributes are exported. ## Import Pinpoint Baidu Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_baidu_channel.channel application-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -44674,7 +44983,7 @@ Provides a Pinpoint Event Stream resource.
 				},
 				resource.Attribute{
 					Name:        "role_arn",
-					Description: `(Required) The IAM role that authorizes Amazon Pinpoint to publish events to the stream in your account. ## Import Pinpoint Event Stream can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_event_stream.stream application-id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The IAM role that authorizes Amazon Pinpoint to publish events to the stream in your account. ## Attributes Reference No additional attributes are exported. ## Import Pinpoint Event Stream can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_event_stream.stream application-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -44708,7 +45017,7 @@ Provides a Pinpoint GCM Channel resource.
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) Whether the channel is enabled or disabled. Defaults to ` + "`" + `true` + "`" + `. ## Import Pinpoint GCM Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_gcm_channel.gcm application-id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Whether the channel is enabled or disabled. Defaults to ` + "`" + `true` + "`" + `. ## Attributes Reference No additional attributes are exported. ## Import Pinpoint GCM Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_gcm_channel.gcm application-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -45060,7 +45369,7 @@ Resource for managing QuickSight User
 				},
 				resource.Attribute{
 					Name:        "session_name",
-					Description: `(Optional) The name of the IAM session to use when assuming roles that can embed QuickSight dashboards. ## Attributes Reference All above attributes except for ` + "`" + `session_name` + "`" + ` and ` + "`" + `identity_type` + "`" + ` are exported as well as:`,
+					Description: `(Optional) The name of the IAM session to use when assuming roles that can embed QuickSight dashboards. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "arn",
@@ -46115,7 +46424,7 @@ More information about Aurora global databases can be found in the [Aurora User 
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `RDS Global Cluster identifier ## Import ` + "`" + `aws_rds_global_cluster` + "`" + ` can be imported by using the RDS Global Cluster identifier, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_rds_global_cluster.example example ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `force_destroy` + "`" + `, only exist within Terraform. If the argument is set in the Terraform configuration on an imported resource, Terraform will show a difference on the first plan after import to update the state value. This change is safe to apply immediately so the state matches the desired configuration. Certain resource arguments, like ` + "`" + `source_db_cluster_identifier` + "`" + `, do not have an API method for reading the information after creation. If the argument is set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_rds_global_cluster" "example" { # ... other configuration ... # There is no API for reading source_db_cluster_identifier lifecycle { ignore_changes = [source_db_cluster_identifier] } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `RDS Global Cluster identifier ## Import ` + "`" + `aws_rds_global_cluster` + "`" + ` can be imported by using the RDS Global Cluster identifier, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_rds_global_cluster.example example ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `force_destroy` + "`" + `, only exist within Terraform. If the argument is set in the Terraform configuration on an imported resource, Terraform will show a difference on the first plan after import to update the state value. This change is safe to apply immediately so the state matches the desired configuration. Certain resource arguments, like ` + "`" + `source_db_cluster_identifier` + "`" + `, do not have an API method for reading the information after creation. If the argument is set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_rds_global_cluster" "example" { # ... other configuration ... # There is no API for reading source_db_cluster_identifier lifecycle { ignore_changes = [source_db_cluster_identifier] } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -46141,7 +46450,7 @@ More information about Aurora global databases can be found in the [Aurora User 
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `RDS Global Cluster identifier ## Import ` + "`" + `aws_rds_global_cluster` + "`" + ` can be imported by using the RDS Global Cluster identifier, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_rds_global_cluster.example example ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `force_destroy` + "`" + `, only exist within Terraform. If the argument is set in the Terraform configuration on an imported resource, Terraform will show a difference on the first plan after import to update the state value. This change is safe to apply immediately so the state matches the desired configuration. Certain resource arguments, like ` + "`" + `source_db_cluster_identifier` + "`" + `, do not have an API method for reading the information after creation. If the argument is set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_rds_global_cluster" "example" { # ... other configuration ... # There is no API for reading source_db_cluster_identifier lifecycle { ignore_changes = [source_db_cluster_identifier] } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `RDS Global Cluster identifier ## Import ` + "`" + `aws_rds_global_cluster` + "`" + ` can be imported by using the RDS Global Cluster identifier, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_rds_global_cluster.example example ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `force_destroy` + "`" + `, only exist within Terraform. If the argument is set in the Terraform configuration on an imported resource, Terraform will show a difference on the first plan after import to update the state value. This change is safe to apply immediately so the state matches the desired configuration. Certain resource arguments, like ` + "`" + `source_db_cluster_identifier` + "`" + `, do not have an API method for reading the information after creation. If the argument is set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_rds_global_cluster" "example" { # ... other configuration ... # There is no API for reading source_db_cluster_identifier lifecycle { ignore_changes = [source_db_cluster_identifier] } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -46522,7 +46831,7 @@ Provides a Redshift event subscription resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A map of tags to assign to the resource. ## Attributes The following additional atttributes are provided:`,
+					Description: `(Optional) A map of tags to assign to the resource. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "arn",
@@ -46537,7 +46846,20 @@ Provides a Redshift event subscription resource.
 					Description: `The AWS customer account associated with the Redshift event notification subscription ## Import Redshift Event Subscriptions can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_redshift_event_subscription.default redshift-event-sub ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `Amazon Resource Name (ARN) of the Redshift event notification subscription`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The name of the Redshift event notification subscription`,
+				},
+				resource.Attribute{
+					Name:        "customer_aws_id",
+					Description: `The AWS customer account associated with the Redshift event notification subscription ## Import Redshift Event Subscriptions can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_redshift_event_subscription.default redshift-event-sub ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -46736,10 +47058,19 @@ Note that the grant must exist in the destination region, and not in the region 
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A map of tags to assign to the resource. ## Import Redshift Snapshot Schedule can be imported using the ` + "`" + `identifier` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_redshift_snapshot_schedule.default tf-redshift-snapshot-schedule ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) A map of tags to assign to the resource. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `Amazon Resource Name (ARN) of the Redshift Snapshot Schedule. ## Import Redshift Snapshot Schedule can be imported using the ` + "`" + `identifier` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_redshift_snapshot_schedule.default tf-redshift-snapshot-schedule ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `Amazon Resource Name (ARN) of the Redshift Snapshot Schedule. ## Import Redshift Snapshot Schedule can be imported using the ` + "`" + `identifier` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_redshift_snapshot_schedule.default tf-redshift-snapshot-schedule ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -46762,7 +47093,7 @@ Note that the grant must exist in the destination region, and not in the region 
 				},
 				resource.Attribute{
 					Name:        "schedule_identifier",
-					Description: `(Required, Forces new resource) The snapshot schedule identifier. ## Import Redshift Snapshot Schedule Association can be imported using the ` + "`" + `<cluster-identifier>/<schedule-identifier>` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_redshift_snapshot_schedule_association.default tf-redshift-cluster/tf-redshift-snapshot-schedule ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required, Forces new resource) The snapshot schedule identifier. ## Attributes Reference No additional attributes are exported. ## Import Redshift Snapshot Schedule Association can be imported using the ` + "`" + `<cluster-identifier>/<schedule-identifier>` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_redshift_snapshot_schedule_association.default tf-redshift-cluster/tf-redshift-snapshot-schedule ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -48685,7 +49016,7 @@ Provides a S3 bucket [analytics configuration](https://docs.aws.amazon.com/Amazo
 				},
 				resource.Attribute{
 					Name:        "prefix",
-					Description: `(Optional) The prefix to append to exported analytics data. ## Import S3 bucket analytics configurations can be imported using ` + "`" + `bucket:analytics` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_s3_bucket_analytics_configuration.my-bucket-entire-bucket my-bucket:EntireBucket ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The prefix to append to exported analytics data. ## Attributes Reference No additional attributes are exported. ## Import S3 bucket analytics configurations can be imported using ` + "`" + `bucket:analytics` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_s3_bucket_analytics_configuration.my-bucket-entire-bucket my-bucket:EntireBucket ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -48781,7 +49112,7 @@ Provides a S3 bucket [inventory configuration](https://docs.aws.amazon.com/Amazo
 				},
 				resource.Attribute{
 					Name:        "key_id",
-					Description: `(Required) The ARN of the KMS customer master key (CMK) used to encrypt the inventory file. ## Import S3 bucket inventory configurations can be imported using ` + "`" + `bucket:inventory` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import aws_s3_bucket_inventory.my-bucket-entire-bucket my-bucket:EntireBucket ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The ARN of the KMS customer master key (CMK) used to encrypt the inventory file. ## Attributes Reference No additional attributes are exported. ## Import S3 bucket inventory configurations can be imported using ` + "`" + `bucket:inventory` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import aws_s3_bucket_inventory.my-bucket-entire-bucket my-bucket:EntireBucket ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -48821,7 +49152,7 @@ Provides a S3 bucket [metrics configuration](http://docs.aws.amazon.com/AmazonS3
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Object tags for filtering (up to 10). ## Import S3 bucket metric configurations can be imported using ` + "`" + `bucket:metric` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_s3_bucket_metric.my-bucket-entire-bucket my-bucket:EntireBucket ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Object tags for filtering (up to 10). ## Attributes Reference No additional attributes are exported. ## Import S3 bucket metric configurations can be imported using ` + "`" + `bucket:metric` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_s3_bucket_metric.my-bucket-entire-bucket my-bucket:EntireBucket ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -48919,7 +49250,7 @@ Manages a S3 Bucket Notification Configuration. For additional information, see 
 				},
 				resource.Attribute{
 					Name:        "filter_suffix",
-					Description: `(Optional) Specifies object key name suffix. ## Import S3 bucket notification can be imported using the ` + "`" + `bucket` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_s3_bucket_notification.bucket_notification bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Specifies object key name suffix. ## Attributes Reference No additional attributes are exported. ## Import S3 bucket notification can be imported using the ` + "`" + `bucket` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_s3_bucket_notification.bucket_notification bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -49129,7 +49460,7 @@ Attaches a policy to an S3 bucket resource.
 				},
 				resource.Attribute{
 					Name:        "policy",
-					Description: `(Required) The text of the policy. For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://learn.hashicorp.com/terraform/aws/iam-policy). Note: Bucket policies are limited to 20 KB in size. ## Import S3 bucket policies can be imported using the bucket name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_s3_bucket_policy.example my-bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The text of the policy. For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://learn.hashicorp.com/terraform/aws/iam-policy). Note: Bucket policies are limited to 20 KB in size. ## Attributes Reference No additional attributes are exported. ## Import S3 bucket policies can be imported using the bucket name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_s3_bucket_policy.example my-bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -49752,7 +50083,7 @@ Provides a Sagemaker App resource.
 				},
 				resource.Attribute{
 					Name:        "sagemaker_image_version_arn",
-					Description: `(Optional) The ARN of the image version created on the instance. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The ARN of the image version created on the instance. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -50020,7 +50351,7 @@ Provides a Sagemaker Domain resource.
 				},
 				resource.Attribute{
 					Name:        "image_version_number",
-					Description: `(Optional) The version number of the Custom Image. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The version number of the Custom Image. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -50350,7 +50681,7 @@ Provides a Sagemaker Image resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A map of tags to assign to the resource. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) A map of tags to assign to the resource. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -50394,7 +50725,7 @@ Provides a Sagemaker Image Version resource.
 				},
 				resource.Attribute{
 					Name:        "base_image",
-					Description: `(Required) The registry path of the container image on which this image version is based. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The registry path of the container image on which this image version is based. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -50530,7 +50861,7 @@ Provides a Sagemaker Model Package Group resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A map of tags to assign to the resource. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) A map of tags to assign to the resource. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -50808,7 +51139,7 @@ Provides a Sagemaker User Profile resource.
 				},
 				resource.Attribute{
 					Name:        "image_version_number",
-					Description: `(Optional) The version number of the Custom Image. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The version number of the Custom Image. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -50952,7 +51283,7 @@ Provides a resource to manage AWS Secrets Manager secret policy.
 				},
 				resource.Attribute{
 					Name:        "block_public_policy",
-					Description: `(Optional) Makes an optional API call to Zelkova to validate the Resource Policy to prevent broad access to your secret. ## Attribute Reference`,
+					Description: `(Optional) Makes an optional API call to Zelkova to validate the Resource Policy to prevent broad access to your secret. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -51363,7 +51694,7 @@ a conflict of rule settings and will overwrite rules.
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) Description of the rule. ## Usage with prefix list IDs Prefix Lists are either managed by AWS internally, or created by the customer using a [Managed Prefix List resource](ec2_managed_prefix_list.html). Prefix Lists provided by AWS are associated with a prefix list name, or service name, that is linked to a specific region. Prefix list IDs are exported on VPC Endpoints, so you can use this format: ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_security_group_rule" "allow_all" { type = "egress" to_port = 0 protocol = "-1" prefix_list_ids = [aws_vpc_endpoint.my_endpoint.prefix_list_id] from_port = 0 security_group_id = "sg-123456" } # ... resource "aws_vpc_endpoint" "my_endpoint" { # ... } ` + "`" + `` + "`" + `` + "`" + ` You can also find a specific Prefix List using the ` + "`" + `aws_prefix_list` + "`" + ` data source. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Description of the rule. ## Usage with prefix list IDs Prefix Lists are either managed by AWS internally, or created by the customer using a [Managed Prefix List resource](ec2_managed_prefix_list.html). Prefix Lists provided by AWS are associated with a prefix list name, or service name, that is linked to a specific region. Prefix list IDs are exported on VPC Endpoints, so you can use this format: ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_security_group_rule" "allow_all" { type = "egress" to_port = 0 protocol = "-1" prefix_list_ids = [aws_vpc_endpoint.my_endpoint.prefix_list_id] from_port = 0 security_group_id = "sg-123456" } # ... resource "aws_vpc_endpoint" "my_endpoint" { # ... } ` + "`" + `` + "`" + `` + "`" + ` You can also find a specific Prefix List using the ` + "`" + `aws_prefix_list` + "`" + ` data source. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -51479,7 +51810,13 @@ Creates Security Hub custom action.
 			Type:             "aws_securityhub_invite_accepter",
 			Category:         "Security Hub",
 			ShortDescription: `Accepts a Security Hub invitation.`,
-			Description:      ``,
+			Description: `
+
+-> **Note:** AWS accounts can only be associated with a single Security Hub master account. Destroying this resource will disassociate the member account from the master account.
+
+Accepts a Security Hub invitation.
+
+`,
 			Keywords: []string{
 				"security",
 				"hub",
@@ -51490,17 +51827,17 @@ Creates Security Hub custom action.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "master_id",
-					Description: `(Required) The account ID of the master Security Hub account whose invitation you're accepting. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+					Description: `(Required) The account ID of the master Security Hub account whose invitation you're accepting. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "invitation_id",
-					Description: `The ID of the invitation. ## Import Security Hub invite acceptance can be imported using the account ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_securityhub_invite_acceptor.example 123456789012 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the invitation. ## Import Security Hub invite acceptance can be imported using the account ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_securityhub_invite_accepter.example 123456789012 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "invitation_id",
-					Description: `The ID of the invitation. ## Import Security Hub invite acceptance can be imported using the account ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_securityhub_invite_acceptor.example 123456789012 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the invitation. ## Import Security Hub invite acceptance can be imported using the account ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_securityhub_invite_accepter.example 123456789012 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -52145,7 +52482,7 @@ Provides a resource to designate the active SES receipt rule set
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rule_set_name",
-					Description: `(Required) The name of the rule set ## Attributes Reference In addition to the arguments, which are exported, the following attributes are exported:`,
+					Description: `(Required) The name of the rule set ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -52194,7 +52531,7 @@ Provides an SES configuration set resource.
 				},
 				resource.Attribute{
 					Name:        "tls_policy",
-					Description: `(Optional) Specifies whether messages that use the configuration set are required to use Transport Layer Security (TLS). If the value is ` + "`" + `Require` + "`" + `, messages are only delivered if a TLS connection can be established. If the value is ` + "`" + `Optional` + "`" + `, messages can be delivered in plain text if a TLS connection can't be established. Valid values: ` + "`" + `Require` + "`" + ` or ` + "`" + `Optional` + "`" + `. Defaults to ` + "`" + `Optional` + "`" + `. ## Attributes Reference In addition to the arguments, which are exported, the following attributes are exported:`,
+					Description: `(Optional) Specifies whether messages that use the configuration set are required to use Transport Layer Security (TLS). If the value is ` + "`" + `Require` + "`" + `, messages are only delivered if a TLS connection can be established. If the value is ` + "`" + `Optional` + "`" + `, messages can be delivered in plain text if a TLS connection can't be established. Valid values: ` + "`" + `Require` + "`" + ` or ` + "`" + `Optional` + "`" + `. Defaults to ` + "`" + `Optional` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "arn",
@@ -52241,13 +52578,13 @@ Domain ownership needs to be confirmed first using [ses_domain_identity Resource
 				},
 				resource.Attribute{
 					Name:        "dkim_tokens",
-					Description: `DKIM tokens generated by SES. These tokens should be used to create CNAME records used to verify SES Easy DKIM. See below for an example of how this might be achieved when the domain is hosted in Route 53 and managed by Terraform. Find out more about verifying domains in Amazon SES in the [AWS SES docs](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html). ## Example Usage ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_ses_domain_identity" "example" { domain = "example.com" } resource "aws_ses_domain_dkim" "example" { domain = aws_ses_domain_identity.example.domain } resource "aws_route53_record" "example_amazonses_dkim_record" { count = 3 zone_id = "ABCDEFGHIJ123" name = "${element(aws_ses_domain_dkim.example.dkim_tokens, count.index)}._domainkey" type = "CNAME" ttl = "600" records = ["${element(aws_ses_domain_dkim.example.dkim_tokens, count.index)}.dkim.amazonses.com"] } ` + "`" + `` + "`" + `` + "`" + ` ## Import DKIM tokens can be imported using the ` + "`" + `domain` + "`" + ` attribute, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_domain_dkim.example example.com ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `DKIM tokens generated by SES. These tokens should be used to create CNAME records used to verify SES Easy DKIM. See below for an example of how this might be achieved when the domain is hosted in Route 53 and managed by Terraform. Find out more about verifying domains in Amazon SES in the [AWS SES docs](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html). ## Example Usage ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_ses_domain_identity" "example" { domain = "example.com" } resource "aws_ses_domain_dkim" "example" { domain = aws_ses_domain_identity.example.domain } resource "aws_route53_record" "example_amazonses_dkim_record" { count = 3 zone_id = "ABCDEFGHIJ123" name = "${element(aws_ses_domain_dkim.example.dkim_tokens, count.index)}._domainkey" type = "CNAME" ttl = "600" records = ["${element(aws_ses_domain_dkim.example.dkim_tokens, count.index)}.dkim.amazonses.com"] } ` + "`" + `` + "`" + `` + "`" + ` ## Import DKIM tokens can be imported using the ` + "`" + `domain` + "`" + ` attribute, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_domain_dkim.example example.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dkim_tokens",
-					Description: `DKIM tokens generated by SES. These tokens should be used to create CNAME records used to verify SES Easy DKIM. See below for an example of how this might be achieved when the domain is hosted in Route 53 and managed by Terraform. Find out more about verifying domains in Amazon SES in the [AWS SES docs](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html). ## Example Usage ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_ses_domain_identity" "example" { domain = "example.com" } resource "aws_ses_domain_dkim" "example" { domain = aws_ses_domain_identity.example.domain } resource "aws_route53_record" "example_amazonses_dkim_record" { count = 3 zone_id = "ABCDEFGHIJ123" name = "${element(aws_ses_domain_dkim.example.dkim_tokens, count.index)}._domainkey" type = "CNAME" ttl = "600" records = ["${element(aws_ses_domain_dkim.example.dkim_tokens, count.index)}.dkim.amazonses.com"] } ` + "`" + `` + "`" + `` + "`" + ` ## Import DKIM tokens can be imported using the ` + "`" + `domain` + "`" + ` attribute, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_domain_dkim.example example.com ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `DKIM tokens generated by SES. These tokens should be used to create CNAME records used to verify SES Easy DKIM. See below for an example of how this might be achieved when the domain is hosted in Route 53 and managed by Terraform. Find out more about verifying domains in Amazon SES in the [AWS SES docs](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html). ## Example Usage ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_ses_domain_identity" "example" { domain = "example.com" } resource "aws_ses_domain_dkim" "example" { domain = aws_ses_domain_identity.example.domain } resource "aws_route53_record" "example_amazonses_dkim_record" { count = 3 zone_id = "ABCDEFGHIJ123" name = "${element(aws_ses_domain_dkim.example.dkim_tokens, count.index)}._domainkey" type = "CNAME" ttl = "600" records = ["${element(aws_ses_domain_dkim.example.dkim_tokens, count.index)}.dkim.amazonses.com"] } ` + "`" + `` + "`" + `` + "`" + ` ## Import DKIM tokens can be imported using the ` + "`" + `domain` + "`" + ` attribute, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_domain_dkim.example example.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -52278,7 +52615,7 @@ Provides an SES domain identity resource
 				},
 				resource.Attribute{
 					Name:        "verification_token",
-					Description: `A code which when added to the domain as a TXT record will signal to SES that the owner of the domain has authorised SES to act on their behalf. The domain identity will be in state "verification pending" until this is done. See below for an example of how this might be achieved when the domain is hosted in Route 53 and managed by Terraform. Find out more about verifying domains in Amazon SES in the [AWS SES docs](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-domains.html). ## Example Usage ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_ses_domain_identity" "example" { domain = "example.com" } resource "aws_route53_record" "example_amazonses_verification_record" { zone_id = "ABCDEFGHIJ123" name = "_amazonses.example.com" type = "TXT" ttl = "600" records = [aws_ses_domain_identity.example.verification_token] } ` + "`" + `` + "`" + `` + "`" + ` ## Import SES domain identities can be imported using the domain name. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_domain_identity.example example.com ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A code which when added to the domain as a TXT record will signal to SES that the owner of the domain has authorised SES to act on their behalf. The domain identity will be in state "verification pending" until this is done. See below for an example of how this might be achieved when the domain is hosted in Route 53 and managed by Terraform. Find out more about verifying domains in Amazon SES in the [AWS SES docs](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-domains.html). ## Example Usage ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_ses_domain_identity" "example" { domain = "example.com" } resource "aws_route53_record" "example_amazonses_verification_record" { zone_id = "ABCDEFGHIJ123" name = "_amazonses.example.com" type = "TXT" ttl = "600" records = [aws_ses_domain_identity.example.verification_token] } ` + "`" + `` + "`" + `` + "`" + ` ## Import SES domain identities can be imported using the domain name. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_domain_identity.example example.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -52288,7 +52625,7 @@ Provides an SES domain identity resource
 				},
 				resource.Attribute{
 					Name:        "verification_token",
-					Description: `A code which when added to the domain as a TXT record will signal to SES that the owner of the domain has authorised SES to act on their behalf. The domain identity will be in state "verification pending" until this is done. See below for an example of how this might be achieved when the domain is hosted in Route 53 and managed by Terraform. Find out more about verifying domains in Amazon SES in the [AWS SES docs](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-domains.html). ## Example Usage ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_ses_domain_identity" "example" { domain = "example.com" } resource "aws_route53_record" "example_amazonses_verification_record" { zone_id = "ABCDEFGHIJ123" name = "_amazonses.example.com" type = "TXT" ttl = "600" records = [aws_ses_domain_identity.example.verification_token] } ` + "`" + `` + "`" + `` + "`" + ` ## Import SES domain identities can be imported using the domain name. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_domain_identity.example example.com ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A code which when added to the domain as a TXT record will signal to SES that the owner of the domain has authorised SES to act on their behalf. The domain identity will be in state "verification pending" until this is done. See below for an example of how this might be achieved when the domain is hosted in Route 53 and managed by Terraform. Find out more about verifying domains in Amazon SES in the [AWS SES docs](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-domains.html). ## Example Usage ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_ses_domain_identity" "example" { domain = "example.com" } resource "aws_route53_record" "example_amazonses_verification_record" { zone_id = "ABCDEFGHIJ123" name = "_amazonses.example.com" type = "TXT" ttl = "600" records = [aws_ses_domain_identity.example.verification_token] } ` + "`" + `` + "`" + `` + "`" + ` ## Import SES domain identities can be imported using the domain name. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_domain_identity.example example.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -52406,13 +52743,13 @@ Provides an SES email identity resource
 				},
 				resource.Attribute{
 					Name:        "arn",
-					Description: `The ARN of the email identity. ## Example Usage ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_ses_email_identity" "example" { email = "email@example.com" } ` + "`" + `` + "`" + `` + "`" + ` ## Import SES email identities can be imported using the email address. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_email_identity.example email@example.com ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ARN of the email identity. ## Example Usage ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_ses_email_identity" "example" { email = "email@example.com" } ` + "`" + `` + "`" + `` + "`" + ` ## Import SES email identities can be imported using the email address. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_email_identity.example email@example.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
-					Description: `The ARN of the email identity. ## Example Usage ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_ses_email_identity" "example" { email = "email@example.com" } ` + "`" + `` + "`" + `` + "`" + ` ## Import SES email identities can be imported using the email address. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_email_identity.example email@example.com ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ARN of the email identity. ## Example Usage ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_ses_email_identity" "example" { email = "email@example.com" } ` + "`" + `` + "`" + `` + "`" + ` ## Import SES email identities can be imported using the email address. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_email_identity.example email@example.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -52483,7 +52820,7 @@ Provides an SES event destination
 				},
 				resource.Attribute{
 					Name:        "topic_arn",
-					Description: `(Required) The ARN of the SNS topic ## Attributes Reference In addition to the arguments, which are exported, the following attributes are exported:`,
+					Description: `(Required) The ARN of the SNS topic ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -52568,7 +52905,7 @@ Manages a SES Identity Policy. More information about SES Sending Authorization 
 				},
 				resource.Attribute{
 					Name:        "policy",
-					Description: `(Required) JSON string of the policy. For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://learn.hashicorp.com/terraform/aws/iam-policy). ## Import SES Identity Policies can be imported using the identity and policy name, separated by a pipe character (` + "`" + `|` + "`" + `), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_identity_policy.example 'example.com|example' ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) JSON string of the policy. For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://learn.hashicorp.com/terraform/aws/iam-policy). ## Attributes Reference No additional attributes are exported. ## Import SES Identity Policies can be imported using the identity and policy name, separated by a pipe character (` + "`" + `|` + "`" + `), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_identity_policy.example 'example.com|example' ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -52797,7 +53134,7 @@ Provides an SES receipt rule resource
 				},
 				resource.Attribute{
 					Name:        "position",
-					Description: `(Required) The position of the action in the receipt rule ## Attributes Reference In addition to the arguments, which are exported, the following attributes are exported:`,
+					Description: `(Required) The position of the action in the receipt rule ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -52839,7 +53176,7 @@ Provides an SES receipt rule set resource.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rule_set_name",
-					Description: `(Required) Name of the rule set. ## Attributes Reference In addition to the arguments, which are exported, the following attributes are exported:`,
+					Description: `(Required) Name of the rule set. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "arn",
@@ -53405,7 +53742,7 @@ Creates a Signer Signing Profile Permission. That is, a cross-account permission
 				},
 				resource.Attribute{
 					Name:        "statement_id_prefix",
-					Description: `(Optional) A statement identifier prefix. Terraform will generate a unique suffix. Conflicts with ` + "`" + `statement_id` + "`" + `. ## Import Signer signing profile permission statements can be imported using profile_name/statement_id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_signer_signing_profile_permission.test_signer_signing_profile_permission prod_profile_DdW3Mk1foYL88fajut4mTVFGpuwfd4ACO6ANL0D1uIj7lrn8adK/ProdAccountStartSigningJobStatementId ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) A statement identifier prefix. Terraform will generate a unique suffix. Conflicts with ` + "`" + `statement_id` + "`" + `. ## Attributes Reference No additional attributes are exported. ## Import Signer signing profile permission statements can be imported using profile_name/statement_id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_signer_signing_profile_permission.test_signer_signing_profile_permission prod_profile_DdW3Mk1foYL88fajut4mTVFGpuwfd4ACO6ANL0D1uIj7lrn8adK/ProdAccountStartSigningJobStatementId ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -53599,7 +53936,7 @@ Provides a way to set SNS SMS preferences.
 				},
 				resource.Attribute{
 					Name:        "usage_report_s3_bucket",
-					Description: `(Optional) The name of the Amazon S3 bucket to receive daily SMS usage reports from Amazon SNS.`,
+					Description: `(Optional) The name of the Amazon S3 bucket to receive daily SMS usage reports from Amazon SNS. ## Attributes Reference No additional attributes are exported.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -53741,7 +54078,7 @@ Provides an SNS topic policy resource
 				},
 				resource.Attribute{
 					Name:        "policy",
-					Description: `(Required) The fully-formed AWS policy as JSON. For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://learn.hashicorp.com/terraform/aws/iam-policy). ## Import SNS Topic Policy can be imported using the topic ARN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_sns_topic_policy.user_updates arn:aws:sns:us-west-2:0123456789012:my-topic ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The fully-formed AWS policy as JSON. For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://learn.hashicorp.com/terraform/aws/iam-policy). ## Attributes Reference No additional attributes are exported. ## Import SNS Topic Policy can be imported using the topic ARN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_sns_topic_policy.user_updates arn:aws:sns:us-west-2:0123456789012:my-topic ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -53911,7 +54248,7 @@ This data feed is sent to an Amazon S3 bucket that you specify when you subscrib
 				},
 				resource.Attribute{
 					Name:        "prefix",
-					Description: `(Optional) Path of folder inside bucket to place spot pricing data. ## Import A Spot Datafeed Subscription can be imported using the word ` + "`" + `spot-datafeed-subscription` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_spot_datafeed_subscription.mysubscription spot-datafeed-subscription ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Path of folder inside bucket to place spot pricing data. ## Attributes Reference No additional attributes are exported. ## Import A Spot Datafeed Subscription can be imported using the word ` + "`" + `spot-datafeed-subscription` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_spot_datafeed_subscription.mysubscription spot-datafeed-subscription ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -54341,7 +54678,7 @@ while referencing ARN of the queue within the policy.
 				},
 				resource.Attribute{
 					Name:        "policy",
-					Description: `(Required) The JSON policy for the SQS queue. For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://learn.hashicorp.com/terraform/aws/iam-policy). ## Import SQS Queue Policies can be imported using the queue URL, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_sqs_queue_policy.test https://queue.amazonaws.com/0123456789012/myqueue ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The JSON policy for the SQS queue. For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://learn.hashicorp.com/terraform/aws/iam-policy). ## Attributes Reference No additional attributes are exported. ## Import SQS Queue Policies can be imported using the queue URL, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_sqs_queue_policy.test https://queue.amazonaws.com/0123456789012/myqueue ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -54704,7 +55041,7 @@ schema version you must recreate the resource.
 				},
 				resource.Attribute{
 					Name:        "account_ids",
-					Description: `The AWS user accounts that should have access to the document. The account IDs can either be a group of account IDs or ` + "`" + `All` + "`" + `. ## Import SSM Documents can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ssm_document.example example ` + "`" + `` + "`" + `` + "`" + ` The ` + "`" + `attachments_source` + "`" + ` argument does not have an SSM API method for reading the attachment information detail after creation. If the argument is set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_ssm_document" "test" { name = "test_document" document_type = "Package" attachments_source { key = "SourceUrl" values = ["s3://${aws_s3_bucket.object_bucket.bucket}/test.zip"] } # There is no AWS SSM API for reading attachments_source info directly lifecycle { ignore_changes = [attachments_source] } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The AWS user accounts that should have access to the document. The account IDs can either be a group of account IDs or ` + "`" + `All` + "`" + `. ## Import SSM Documents can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ssm_document.example example ` + "`" + `` + "`" + `` + "`" + ` The ` + "`" + `attachments_source` + "`" + ` argument does not have an SSM API method for reading the attachment information detail after creation. If the argument is set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_ssm_document" "test" { name = "test_document" document_type = "Package" attachments_source { key = "SourceUrl" values = ["s3://${aws_s3_bucket.object_bucket.bucket}/test.zip"] } # There is no AWS SSM API for reading attachments_source info directly lifecycle { ignore_changes = [attachments_source] } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -54762,7 +55099,7 @@ schema version you must recreate the resource.
 				},
 				resource.Attribute{
 					Name:        "account_ids",
-					Description: `The AWS user accounts that should have access to the document. The account IDs can either be a group of account IDs or ` + "`" + `All` + "`" + `. ## Import SSM Documents can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ssm_document.example example ` + "`" + `` + "`" + `` + "`" + ` The ` + "`" + `attachments_source` + "`" + ` argument does not have an SSM API method for reading the attachment information detail after creation. If the argument is set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_ssm_document" "test" { name = "test_document" document_type = "Package" attachments_source { key = "SourceUrl" values = ["s3://${aws_s3_bucket.object_bucket.bucket}/test.zip"] } # There is no AWS SSM API for reading attachments_source info directly lifecycle { ignore_changes = [attachments_source] } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The AWS user accounts that should have access to the document. The account IDs can either be a group of account IDs or ` + "`" + `All` + "`" + `. ## Import SSM Documents can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ssm_document.example example ` + "`" + `` + "`" + `` + "`" + ` The ` + "`" + `attachments_source` + "`" + ` argument does not have an SSM API method for reading the attachment information detail after creation. If the argument is set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_ssm_document" "test" { name = "test_document" document_type = "Package" attachments_source { key = "SourceUrl" values = ["s3://${aws_s3_bucket.object_bucket.bucket}/test.zip"] } # There is no AWS SSM API for reading attachments_source info directly lifecycle { ignore_changes = [attachments_source] } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -55117,7 +55454,7 @@ Provides an SSM Parameter resource.
 				},
 				resource.Attribute{
 					Name:        "tier",
-					Description: `(Optional) The tier of the parameter. If not specified, will default to ` + "`" + `Standard` + "`" + `. Valid tiers are ` + "`" + `Standard` + "`" + ` and ` + "`" + `Advanced` + "`" + `. For more information on parameter tiers, see the [AWS SSM Parameter tier comparison and guide](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-advanced-parameters.html).`,
+					Description: `(Optional) The tier of the parameter. If not specified, will default to ` + "`" + `Standard` + "`" + `. Valid tiers are ` + "`" + `Standard` + "`" + `, ` + "`" + `Advanced` + "`" + `, and ` + "`" + `Intelligent-Tiering` + "`" + `. For more information on parameter tiers, see the [AWS SSM Parameter tier comparison and guide](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-advanced-parameters.html).`,
 				},
 				resource.Attribute{
 					Name:        "key_id",
@@ -55339,13 +55676,13 @@ Provides an SSM Patch Group resource
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the patch baseline.`,
+					Description: `The name of the patch group and ID of the patch baseline separated by a comma (` + "`" + `,` + "`" + `).`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the patch baseline.`,
+					Description: `The name of the patch group and ID of the patch baseline separated by a comma (` + "`" + `,` + "`" + `).`,
 				},
 			},
 		},
@@ -55393,7 +55730,7 @@ Provides a SSM resource data sync.
 				},
 				resource.Attribute{
 					Name:        "sync_format",
-					Description: `(Optional) A supported sync format. Only JsonSerDe is currently supported. Defaults to JsonSerDe. ## Import SSM resource data sync can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import aws_ssm_resource_data_sync.example example-name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) A supported sync format. Only JsonSerDe is currently supported. Defaults to JsonSerDe. ## Attributes Reference No additional attributes are exported. ## Import SSM resource data sync can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import aws_ssm_resource_data_sync.example example-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -55438,7 +55775,7 @@ Provides a Single Sign-On (SSO) Account Assignment resource
 				},
 				resource.Attribute{
 					Name:        "target_type",
-					Description: `(Optional, Forces new resource) The entity type for which the assignment will be created. Valid values: ` + "`" + `AWS_ACCOUNT` + "`" + `. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, Forces new resource) The entity type for which the assignment will be created. Valid values: ` + "`" + `AWS_ACCOUNT` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -55483,7 +55820,7 @@ Provides an IAM managed policy for a Single Sign-On (SSO) Permission Set resourc
 				},
 				resource.Attribute{
 					Name:        "permission_set_arn",
-					Description: `(Required, Forces new resource) The Amazon Resource Name (ARN) of the Permission Set. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required, Forces new resource) The Amazon Resource Name (ARN) of the Permission Set. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -55547,7 +55884,7 @@ Provides a Single Sign-On (SSO) Permission Set resource
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Key-value map of resource tags. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Key-value map of resource tags. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "arn",
@@ -55610,7 +55947,7 @@ Creating or updating this resource will automatically [Provision the Permission 
 				},
 				resource.Attribute{
 					Name:        "permission_set_arn",
-					Description: `(Required, Forces new resource) The Amazon Resource Name (ARN) of the Permission Set. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required, Forces new resource) The Amazon Resource Name (ARN) of the Permission Set. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -55864,6 +56201,10 @@ Manages an AWS Storage Gateway file, tape, or volume gateway in the provider reg
 					Description: `(Optional) Specifies the type of security strategy. Valid values are: ` + "`" + `ClientSpecified` + "`" + `, ` + "`" + `MandatorySigning` + "`" + `, and ` + "`" + `MandatoryEncryption` + "`" + `. See [Setting a Security Level for Your Gateway](https://docs.aws.amazon.com/storagegateway/latest/userguide/managing-gateway-file.html#security-strategy) for more information.`,
 				},
 				resource.Attribute{
+					Name:        "smb_file_share_visibility",
+					Description: `(Optional) Specifies whether the shares on this gateway appear when listing shares.`,
+				},
+				resource.Attribute{
 					Name:        "tape_drive_type",
 					Description: `(Optional) Type of tape drive to use for tape gateway. Terraform cannot detect drift of this argument. Valid values: ` + "`" + `IBM-ULT3580-TD5` + "`" + `.`,
 				},
@@ -55929,7 +56270,7 @@ Manages an AWS Storage Gateway file, tape, or volume gateway in the provider reg
 				},
 				resource.Attribute{
 					Name:        "create",
-					Description: `(Default ` + "`" + `10m` + "`" + `) How long to wait for gateway activation and connection to Storage Gateway. ## Import ` + "`" + `aws_storagegateway_gateway` + "`" + ` can be imported by using the gateway Amazon Resource Name (ARN), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_storagegateway_gateway.example arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678 ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `gateway_ip_address` + "`" + ` do not have a Storage Gateway API method for reading the information after creation, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_storagegateway_gateway" "example" { # ... other configuration ... gateway_ip_address = aws_instance.sgw.private_ip # There is no Storage Gateway API for reading gateway_ip_address lifecycle { ignore_changes = ["gateway_ip_address"] } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Default ` + "`" + `10m` + "`" + `) How long to wait for gateway activation and connection to Storage Gateway. ## Import ` + "`" + `aws_storagegateway_gateway` + "`" + ` can be imported by using the gateway Amazon Resource Name (ARN), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_storagegateway_gateway.example arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678 ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `gateway_ip_address` + "`" + ` do not have a Storage Gateway API method for reading the information after creation, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_storagegateway_gateway" "example" { # ... other configuration ... gateway_ip_address = aws_instance.sgw.private_ip # There is no Storage Gateway API for reading gateway_ip_address lifecycle { ignore_changes = ["gateway_ip_address"] } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -55967,7 +56308,7 @@ Manages an AWS Storage Gateway file, tape, or volume gateway in the provider reg
 				},
 				resource.Attribute{
 					Name:        "create",
-					Description: `(Default ` + "`" + `10m` + "`" + `) How long to wait for gateway activation and connection to Storage Gateway. ## Import ` + "`" + `aws_storagegateway_gateway` + "`" + ` can be imported by using the gateway Amazon Resource Name (ARN), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_storagegateway_gateway.example arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678 ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `gateway_ip_address` + "`" + ` do not have a Storage Gateway API method for reading the information after creation, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_storagegateway_gateway" "example" { # ... other configuration ... gateway_ip_address = aws_instance.sgw.private_ip # There is no Storage Gateway API for reading gateway_ip_address lifecycle { ignore_changes = ["gateway_ip_address"] } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Default ` + "`" + `10m` + "`" + `) How long to wait for gateway activation and connection to Storage Gateway. ## Import ` + "`" + `aws_storagegateway_gateway` + "`" + ` can be imported by using the gateway Amazon Resource Name (ARN), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_storagegateway_gateway.example arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678 ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `gateway_ip_address` + "`" + ` do not have a Storage Gateway API method for reading the information after creation, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_storagegateway_gateway" "example" { # ... other configuration ... gateway_ip_address = aws_instance.sgw.private_ip # There is no Storage Gateway API for reading gateway_ip_address lifecycle { ignore_changes = ["gateway_ip_address"] } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -56414,7 +56755,7 @@ Manages an AWS Storage Gateway stored iSCSI volume.
 				},
 				resource.Attribute{
 					Name:        "volume_attachment_status",
-					Description: `A value that indicates whether a storage volume is attached to, detached from, or is in the process of detaching from a gateway. ## Import ` + "`" + `aws_storagegateway_stored_iscsi_volume` + "`" + ` can be imported by using the volume Amazon Resource Name (ARN), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_storagegateway_cache.example arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678/volume/vol-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A value that indicates whether a storage volume is attached to, detached from, or is in the process of detaching from a gateway. ## Import ` + "`" + `aws_storagegateway_stored_iscsi_volume` + "`" + ` can be imported by using the volume Amazon Resource Name (ARN), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_storagegateway_stored_iscsi_volume.example arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678/volume/vol-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -56464,7 +56805,7 @@ Manages an AWS Storage Gateway stored iSCSI volume.
 				},
 				resource.Attribute{
 					Name:        "volume_attachment_status",
-					Description: `A value that indicates whether a storage volume is attached to, detached from, or is in the process of detaching from a gateway. ## Import ` + "`" + `aws_storagegateway_stored_iscsi_volume` + "`" + ` can be imported by using the volume Amazon Resource Name (ARN), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_storagegateway_cache.example arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678/volume/vol-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A value that indicates whether a storage volume is attached to, detached from, or is in the process of detaching from a gateway. ## Import ` + "`" + `aws_storagegateway_stored_iscsi_volume` + "`" + ` can be imported by using the volume Amazon Resource Name (ARN), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_storagegateway_stored_iscsi_volume.example arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678/volume/vol-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -56504,7 +56845,7 @@ Manages an AWS Storage Gateway Tape Pool.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Key-value map of resource tags ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Key-value map of resource tags ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "arn",
@@ -56659,7 +57000,7 @@ Provides an VPC subnet resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A map of tags to assign to the resource. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) A map of tags to assign to the resource. If configured with a provider [` + "`" + `default_tags` + "`" + ` configuration block](https://www.terraform.io/docs/providers/aws/index.html#default_tags-configuration-block) present, tags with matching keys will overwrite those defined at the provider-level. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -56675,7 +57016,11 @@ Provides an VPC subnet resource.
 				},
 				resource.Attribute{
 					Name:        "owner_id",
-					Description: `The ID of the AWS account that owns the subnet. ## Timeouts ` + "`" + `aws_subnet` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10m` + "`" + `) How long to wait for a subnet to be created. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `20m` + "`" + `) How long to retry on ` + "`" + `DependencyViolation` + "`" + ` errors during subnet deletion from lingering ENIs left by certain AWS services such as Elastic Load Balancing. NOTE: Lambda ENIs can take up to 45 minutes to delete, which is not affected by changing this customizable timeout (in version 2.31.0 and later of the Terraform AWS Provider) unless it is increased above 45 minutes. ## Import Subnets can be imported using the ` + "`" + `subnet id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_subnet.public_subnet subnet-9d4a7b6c ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the AWS account that owns the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "tags_all",
+					Description: `A map of tags assigned to the resource, including those inherited from the provider [` + "`" + `default_tags` + "`" + ` configuration block](https://www.terraform.io/docs/providers/aws/index.html#default_tags-configuration-block). ## Timeouts ` + "`" + `aws_subnet` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10m` + "`" + `) How long to wait for a subnet to be created. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `20m` + "`" + `) How long to retry on ` + "`" + `DependencyViolation` + "`" + ` errors during subnet deletion from lingering ENIs left by certain AWS services such as Elastic Load Balancing. NOTE: Lambda ENIs can take up to 45 minutes to delete, which is not affected by changing this customizable timeout (in version 2.31.0 and later of the Terraform AWS Provider) unless it is increased above 45 minutes. ## Import Subnets can be imported using the ` + "`" + `subnet id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_subnet.public_subnet subnet-9d4a7b6c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -56693,7 +57038,11 @@ Provides an VPC subnet resource.
 				},
 				resource.Attribute{
 					Name:        "owner_id",
-					Description: `The ID of the AWS account that owns the subnet. ## Timeouts ` + "`" + `aws_subnet` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10m` + "`" + `) How long to wait for a subnet to be created. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `20m` + "`" + `) How long to retry on ` + "`" + `DependencyViolation` + "`" + ` errors during subnet deletion from lingering ENIs left by certain AWS services such as Elastic Load Balancing. NOTE: Lambda ENIs can take up to 45 minutes to delete, which is not affected by changing this customizable timeout (in version 2.31.0 and later of the Terraform AWS Provider) unless it is increased above 45 minutes. ## Import Subnets can be imported using the ` + "`" + `subnet id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_subnet.public_subnet subnet-9d4a7b6c ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the AWS account that owns the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "tags_all",
+					Description: `A map of tags assigned to the resource, including those inherited from the provider [` + "`" + `default_tags` + "`" + ` configuration block](https://www.terraform.io/docs/providers/aws/index.html#default_tags-configuration-block). ## Timeouts ` + "`" + `aws_subnet` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10m` + "`" + `) How long to wait for a subnet to be created. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `20m` + "`" + `) How long to retry on ` + "`" + `DependencyViolation` + "`" + ` errors during subnet deletion from lingering ENIs left by certain AWS services such as Elastic Load Balancing. NOTE: Lambda ENIs can take up to 45 minutes to delete, which is not affected by changing this customizable timeout (in version 2.31.0 and later of the Terraform AWS Provider) unless it is increased above 45 minutes. ## Import Subnets can be imported using the ` + "`" + `subnet id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_subnet.public_subnet subnet-9d4a7b6c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -56962,59 +57311,6 @@ Provides a Synthetics Canary resource.
 
 Provides a AWS Transfer Server resource.
 
-
-` + "`" + `` + "`" + `` + "`" + `hcl
-resource "aws_transfer_server" "example" {
-  identity_provider_type = "SERVICE_MANAGED"
-  logging_role           = aws_iam_role.example.arn
-
-  tags = {
-    NAME = "tf-acc-test-transfer-server"
-    ENV  = "test"
-  }
-}
-
-resource "aws_iam_role" "example" {
-  name = "tf-test-transfer-server-iam-role"
-
-  assume_role_policy = <<EOF
-{
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-		"Effect": "Allow",
-		"Principal": {
-			"Service": "transfer.amazonaws.com"
-		},
-		"Action": "sts:AssumeRole"
-		}
-	]
-}
-EOF
-}
-
-resource "aws_iam_role_policy" "example" {
-  name = "tf-test-transfer-server-iam-policy"
-  role = aws_iam_role.example.id
-
-  policy = <<POLICY
-{
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-		"Sid": "AllowFullAccesstoCloudWatchLogs",
-		"Effect": "Allow",
-		"Action": [
-			"logs:*"
-		],
-		"Resource": "*"
-		}
-	]
-}
-POLICY
-}
-` + "`" + `` + "`" + `` + "`" + `
-
 `,
 			Keywords: []string{
 				"transfer",
@@ -57110,73 +57406,6 @@ POLICY
 
 Provides a AWS Transfer User SSH Key resource.
 
-
-` + "`" + `` + "`" + `` + "`" + `hcl
-resource "aws_transfer_ssh_key" "example" {
-  server_id = aws_transfer_server.example.id
-  user_name = aws_transfer_user.example.user_name
-  body      = "... SSH key ..."
-}
-
-resource "aws_transfer_server" "example" {
-  identity_provider_type = "SERVICE_MANAGED"
-
-  tags = {
-    NAME = "tf-acc-test-transfer-server"
-  }
-}
-
-resource "aws_transfer_user" "example" {
-  server_id = aws_transfer_server.example.id
-  user_name = "tftestuser"
-  role      = aws_iam_role.example.arn
-
-  tags = {
-    NAME = "tftestuser"
-  }
-}
-
-resource "aws_iam_role" "example" {
-  name = "tf-test-transfer-user-iam-role"
-
-  assume_role_policy = <<EOF
-{
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-		"Effect": "Allow",
-		"Principal": {
-			"Service": "transfer.amazonaws.com"
-		},
-		"Action": "sts:AssumeRole"
-		}
-	]
-}
-EOF
-}
-
-resource "aws_iam_role_policy" "example" {
-  name = "tf-test-transfer-user-iam-policy"
-  role = aws_iam_role.example.id
-
-  policy = <<POLICY
-{
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-			"Sid": "AllowFullAccesstoS3",
-			"Effect": "Allow",
-			"Action": [
-				"s3:*"
-			],
-			"Resource": "*"
-		}
-	]
-}
-POLICY
-}
-` + "`" + `` + "`" + `` + "`" + `
-
 `,
 			Keywords: []string{
 				"transfer",
@@ -57194,7 +57423,7 @@ POLICY
 				},
 				resource.Attribute{
 					Name:        "body",
-					Description: `(Requirement) The public key portion of an SSH key pair. ## Import Transfer SSH Public Key can be imported using the ` + "`" + `server_id` + "`" + ` and ` + "`" + `user_name` + "`" + ` and ` + "`" + `ssh_public_key_id` + "`" + ` separated by ` + "`" + `/` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_transfer_ssh_key.bar s-12345678/test-username/key-12345 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Requirement) The public key portion of an SSH key pair. ## Attributes Reference No additional attributes are exported. ## Import Transfer SSH Public Key can be imported using the ` + "`" + `server_id` + "`" + ` and ` + "`" + `user_name` + "`" + ` and ` + "`" + `ssh_public_key_id` + "`" + ` separated by ` + "`" + `/` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_transfer_ssh_key.bar s-12345678/test-username/key-12345 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -57207,69 +57436,6 @@ POLICY
 			Description: `
 
 Provides a AWS Transfer User resource. Managing SSH keys can be accomplished with the [` + "`" + `aws_transfer_ssh_key` + "`" + ` resource](/docs/providers/aws/r/transfer_ssh_key.html).
-
-
-` + "`" + `` + "`" + `` + "`" + `hcl
-resource "aws_transfer_server" "foo" {
-  identity_provider_type = "SERVICE_MANAGED"
-
-  tags = {
-    NAME = "tf-acc-test-transfer-server"
-  }
-}
-
-resource "aws_iam_role" "foo" {
-  name = "tf-test-transfer-user-iam-role"
-
-  assume_role_policy = <<EOF
-{
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-		"Effect": "Allow",
-		"Principal": {
-			"Service": "transfer.amazonaws.com"
-		},
-		"Action": "sts:AssumeRole"
-		}
-	]
-}
-EOF
-}
-
-resource "aws_iam_role_policy" "foo" {
-  name = "tf-test-transfer-user-iam-policy"
-  role = aws_iam_role.foo.id
-
-  policy = <<POLICY
-{
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-			"Sid": "AllowFullAccesstoS3",
-			"Effect": "Allow",
-			"Action": [
-				"s3:*"
-			],
-			"Resource": "*"
-		}
-	]
-}
-POLICY
-}
-
-resource "aws_transfer_user" "foo" {
-  server_id = aws_transfer_server.foo.id
-  user_name = "tftestuser"
-  role      = aws_iam_role.foo.arn
-
-  home_directory_type = "LOGICAL"
-  home_directory_mappings {
-    entry  = "/test.pdf"
-    target = "/bucket3/test-path/tftestuser.pdf"
-  }
-}
-` + "`" + `` + "`" + `` + "`" + `
 
 `,
 			Keywords: []string{
@@ -57441,7 +57607,7 @@ Provides a VPC resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A map of tags to assign to the resource. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) A map of tags to assign to the resource. If configured with a provider [` + "`" + `default_tags` + "`" + ` configuration block](https://www.terraform.io/docs/providers/aws/index.html#default_tags-configuration-block) present, tags with matching keys will overwrite those defined at the provider-level. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "arn",
@@ -57497,7 +57663,11 @@ Provides a VPC resource.
 				},
 				resource.Attribute{
 					Name:        "owner_id",
-					Description: `The ID of the AWS account that owns the VPC. [1]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html ## Import VPCs can be imported using the ` + "`" + `vpc id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_vpc.test_vpc vpc-a01106c2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the AWS account that owns the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "tags_all",
+					Description: `A map of tags assigned to the resource, including those inherited from the provider [` + "`" + `default_tags` + "`" + ` configuration block](https://www.terraform.io/docs/providers/aws/index.html#default_tags-configuration-block). [1]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html ## Import VPCs can be imported using the ` + "`" + `vpc id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_vpc.test_vpc vpc-a01106c2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -57555,7 +57725,11 @@ Provides a VPC resource.
 				},
 				resource.Attribute{
 					Name:        "owner_id",
-					Description: `The ID of the AWS account that owns the VPC. [1]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html ## Import VPCs can be imported using the ` + "`" + `vpc id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_vpc.test_vpc vpc-a01106c2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the AWS account that owns the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "tags_all",
+					Description: `A map of tags assigned to the resource, including those inherited from the provider [` + "`" + `default_tags` + "`" + ` configuration block](https://www.terraform.io/docs/providers/aws/index.html#default_tags-configuration-block). [1]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html ## Import VPCs can be imported using the ` + "`" + `vpc id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_vpc.test_vpc vpc-a01106c2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -58254,7 +58428,7 @@ connection and use the ` + "`" + `aws_vpc_peering_connection_accepter` + "`" + `
 				},
 				resource.Attribute{
 					Name:        "peer_region",
-					Description: `(Optional) The region of the accepter VPC of the [VPC Peering Connection]. ` + "`" + `auto_accept` + "`" + ` must be ` + "`" + `false` + "`" + `, and use the ` + "`" + `aws_vpc_peering_connection_accepter` + "`" + ` to manage the accepter side.`,
+					Description: `(Optional) The region of the accepter VPC of the VPC Peering Connection. ` + "`" + `auto_accept` + "`" + ` must be ` + "`" + `false` + "`" + `, and use the ` + "`" + `aws_vpc_peering_connection_accepter` + "`" + ` to manage the accepter side.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -58375,7 +58549,7 @@ connection into management.
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the VPC Peering Connection. ## Import VPC Peering Connection Accepters can be imported by using the Peering Connection ID, e.g. ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import aws_vpc_peering_connection_accepter.example pcx-12345678 ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `auto_accept` + "`" + `, do not have an EC2 API method for reading the information after peering connection creation. If the argument is set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_vpc_peering_connection_accepter" "example" { # ... other configuration ... # There is no AWS EC2 API for reading auto_accept lifecycle { ignore_changes = [auto_accept] } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the VPC Peering Connection. ## Import VPC Peering Connection Accepters can be imported by using the Peering Connection ID, e.g. ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import aws_vpc_peering_connection_accepter.example pcx-12345678 ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `auto_accept` + "`" + `, do not have an EC2 API method for reading the information after peering connection creation. If the argument is set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_vpc_peering_connection_accepter" "example" { # ... other configuration ... # There is no AWS EC2 API for reading auto_accept lifecycle { ignore_changes = [auto_accept] } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -58425,7 +58599,7 @@ connection into management.
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the VPC Peering Connection. ## Import VPC Peering Connection Accepters can be imported by using the Peering Connection ID, e.g. ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import aws_vpc_peering_connection_accepter.example pcx-12345678 ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `auto_accept` + "`" + `, do not have an EC2 API method for reading the information after peering connection creation. If the argument is set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_vpc_peering_connection_accepter" "example" { # ... other configuration ... # There is no AWS EC2 API for reading auto_accept lifecycle { ignore_changes = [auto_accept] } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the VPC Peering Connection. ## Import VPC Peering Connection Accepters can be imported by using the Peering Connection ID, e.g. ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import aws_vpc_peering_connection_accepter.example pcx-12345678 ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `auto_accept` + "`" + `, do not have an EC2 API method for reading the information after peering connection creation. If the argument is set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](https://www.terraform.io/docs/configuration/meta-arguments/lifecycle.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `terraform resource "aws_vpc_peering_connection_accepter" "example" { # ... other configuration ... # There is no AWS EC2 API for reading auto_accept lifecycle { ignore_changes = [auto_accept] } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -58446,123 +58620,6 @@ Doing so will cause a conflict of options and will overwrite the options.
 Using a VPC Peering Connection Options resource decouples management of the connection options from
 management of the VPC Peering Connection and allows options to be set correctly in cross-region and
 cross-account scenarios.
-
-Basic usage:
-
-` + "`" + `` + "`" + `` + "`" + `hcl
-resource "aws_vpc" "foo" {
-  cidr_block = "10.0.0.0/16"
-}
-
-resource "aws_vpc" "bar" {
-  cidr_block = "10.1.0.0/16"
-}
-
-resource "aws_vpc_peering_connection" "foo" {
-  vpc_id      = aws_vpc.foo.id
-  peer_vpc_id = aws_vpc.bar.id
-  auto_accept = true
-}
-
-resource "aws_vpc_peering_connection_options" "foo" {
-  vpc_peering_connection_id = aws_vpc_peering_connection.foo.id
-
-  accepter {
-    allow_remote_vpc_dns_resolution = true
-  }
-
-  requester {
-    allow_vpc_to_remote_classic_link = true
-    allow_classic_link_to_remote_vpc = true
-  }
-}
-` + "`" + `` + "`" + `` + "`" + `
-
-Basic cross-account usage:
-
-` + "`" + `` + "`" + `` + "`" + `hcl
-provider "aws" {
-  alias = "requester"
-
-  # Requester's credentials.
-}
-
-provider "aws" {
-  alias = "accepter"
-
-  # Accepter's credentials.
-}
-
-resource "aws_vpc" "main" {
-  provider = aws.requester
-
-  cidr_block = "10.0.0.0/16"
-
-  enable_dns_support   = true
-  enable_dns_hostnames = true
-}
-
-resource "aws_vpc" "peer" {
-  provider = aws.accepter
-
-  cidr_block = "10.1.0.0/16"
-
-  enable_dns_support   = true
-  enable_dns_hostnames = true
-}
-
-data "aws_caller_identity" "peer" {
-  provider = aws.accepter
-}
-
-# Requester's side of the connection.
-resource "aws_vpc_peering_connection" "peer" {
-  provider = aws.requester
-
-  vpc_id        = aws_vpc.main.id
-  peer_vpc_id   = aws_vpc.peer.id
-  peer_owner_id = data.aws_caller_identity.peer.account_id
-  auto_accept   = false
-
-  tags = {
-    Side = "Requester"
-  }
-}
-
-# Accepter's side of the connection.
-resource "aws_vpc_peering_connection_accepter" "peer" {
-  provider = aws.accepter
-
-  vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
-  auto_accept               = true
-
-  tags = {
-    Side = "Accepter"
-  }
-}
-
-resource "aws_vpc_peering_connection_options" "requester" {
-  provider = aws.requester
-
-  # As options can't be set until the connection has been accepted
-  # create an explicit dependency on the accepter.
-  vpc_peering_connection_id = aws_vpc_peering_connection_accepter.peer.id
-
-  requester {
-    allow_remote_vpc_dns_resolution = true
-  }
-}
-
-resource "aws_vpc_peering_connection_options" "accepter" {
-  provider = aws.accepter
-
-  vpc_peering_connection_id = aws_vpc_peering_connection_accepter.peer.id
-
-  accepter {
-    allow_remote_vpc_dns_resolution = true
-  }
-}
-` + "`" + `` + "`" + `` + "`" + `
 
 `,
 			Icon: "Networking_and_Content_Delivery/Amazon-VPC_Peering_light-bg.svg",
@@ -59151,7 +59208,7 @@ propagation not explicitly listed in its value will be removed.
 				},
 				resource.Attribute{
 					Name:        "route_table_id",
-					Description: `The id of the ` + "`" + `aws_route_table` + "`" + ` to propagate routes into. ## Attributes Reference This resource does not export any additional attributes.`,
+					Description: `The id of the ` + "`" + `aws_route_table` + "`" + ` to propagate routes into. ## Attributes Reference No additional attributes are exported.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -61589,7 +61646,7 @@ Creates a WAFv2 Web ACL Association.
 				},
 				resource.Attribute{
 					Name:        "web_acl_arn",
-					Description: `(Required) The Amazon Resource Name (ARN) of the Web ACL that you want to associate with the resource. ## Import WAFv2 Web ACL Association can be imported using ` + "`" + `WEB_ACL_ARN,RESOURCE_ARN` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_wafv2_web_acl_association.example arn:aws:wafv2:...7ce849ea,arn:aws:apigateway:...ages/name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The Amazon Resource Name (ARN) of the Web ACL that you want to associate with the resource. ## Attributes Reference No additional attributes are exported. ## Import WAFv2 Web ACL Association can be imported using ` + "`" + `WEB_ACL_ARN,RESOURCE_ARN` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_wafv2_web_acl_association.example arn:aws:wafv2:...7ce849ea,arn:aws:apigateway:...ages/name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -61626,23 +61683,23 @@ Be sure to give the data firehose a name that starts with the prefix ` + "`" + `
 				},
 				resource.Attribute{
 					Name:        "redacted_fields",
-					Description: `(Optional) The parts of the request that you want to keep out of the logs. Up to 100 ` + "`" + `redacted_fields` + "`" + ` blocks are supported. The ` + "`" + `redacted_fields` + "`" + ` block supports the following arguments:`,
+					Description: `(Optional) The parts of the request that you want to keep out of the logs. Up to 100 ` + "`" + `redacted_fields` + "`" + ` blocks are supported. The ` + "`" + `redacted_fields` + "`" + ` block supports the following arguments: ~>`,
 				},
 				resource.Attribute{
 					Name:        "all_query_arguments",
-					Description: `(Optional) Redact all query arguments.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "body",
-					Description: `(Optional) Redact the request body, which immediately follows the request headers.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "method",
-					Description: `(Optional) Redact the HTTP method. The method indicates the type of operation that the request is asking the origin to perform.`,
+					Description: `(Optional) Redact the HTTP method. Must be specified as an empty configuration block ` + "`" + `{}` + "`" + `. The method indicates the type of operation that the request is asking the origin to perform.`,
 				},
 				resource.Attribute{
 					Name:        "query_string",
-					Description: `(Optional) Redact the query string. This is the part of a URL that appears after a ` + "`" + `?` + "`" + ` character, if any.`,
+					Description: `(Optional) Redact the query string. Must be specified as an empty configuration block ` + "`" + `{}` + "`" + `. This is the part of a URL that appears after a ` + "`" + `?` + "`" + ` character, if any.`,
 				},
 				resource.Attribute{
 					Name:        "single_header",
@@ -61650,15 +61707,15 @@ Be sure to give the data firehose a name that starts with the prefix ` + "`" + `
 				},
 				resource.Attribute{
 					Name:        "single_query_argument",
-					Description: `(Optional) Redact a single query argument. See [Single Query Argument](#single-query-argument) below for details.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "uri_path",
-					Description: `(Optional) Redact the request URI path. This is the part of a web request that identifies a resource, for example, ` + "`" + `/images/daily-ad.jpg` + "`" + `. ### Single Header Redact a single header. Provide the name of the header to redact, for example, ` + "`" + `User-Agent` + "`" + ` or ` + "`" + `Referer` + "`" + ` (provided as lowercase strings). The ` + "`" + `single_header` + "`" + ` block supports the following arguments:`,
+					Description: `(Optional) Redact the request URI path. Must be specified as an empty configuration block ` + "`" + `{}` + "`" + `. This is the part of a web request that identifies a resource, for example, ` + "`" + `/images/daily-ad.jpg` + "`" + `. ### Single Header Redact a single header. Provide the name of the header to redact, for example, ` + "`" + `User-Agent` + "`" + ` or ` + "`" + `Referer` + "`" + ` (provided as lowercase strings). The ` + "`" + `single_header` + "`" + ` block supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of the query header to redact. This setting must be provided as lower case characters. ### Single Query Argument Redact a single query argument. Provide the name of the query argument to redact, such as ` + "`" + `UserName` + "`" + ` or ` + "`" + `SalesRegion` + "`" + ` (provided as lowercase strings). The ` + "`" + `single_query_argument` + "`" + ` block supports the following arguments:`,
+					Description: `(Optional) The name of the query header to redact. This setting must be provided as lower case characters. ### Single Query Argument (`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -61666,13 +61723,13 @@ Be sure to give the data firehose a name that starts with the prefix ` + "`" + `
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Amazon Resource Name (ARN) of the WAFv2 Web ACL. ## Import WAFv2 Web ACL Logging Configurations can be imported using the WAFv2 Web ACL ARN e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_wafv2_web_acl_logging_configuration.example arn:aws:wafv2:us-west-2:123456789012:regional/webacl/test-logs/a1b2c3d4-5678-90ab-cdef`,
+					Description: `The Amazon Resource Name (ARN) of the WAFv2 Web ACL. ## Import WAFv2 Web ACL Logging Configurations can be imported using the WAFv2 Web ACL ARN e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_wafv2_web_acl_logging_configuration.example arn:aws:wafv2:us-west-2:123456789012:regional/webacl/test-logs/a1b2c3d4-5678-90ab-cdef ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Amazon Resource Name (ARN) of the WAFv2 Web ACL. ## Import WAFv2 Web ACL Logging Configurations can be imported using the WAFv2 Web ACL ARN e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_wafv2_web_acl_logging_configuration.example arn:aws:wafv2:us-west-2:123456789012:regional/webacl/test-logs/a1b2c3d4-5678-90ab-cdef`,
+					Description: `The Amazon Resource Name (ARN) of the WAFv2 Web ACL. ## Import WAFv2 Web ACL Logging Configurations can be imported using the WAFv2 Web ACL ARN e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_wafv2_web_acl_logging_configuration.example arn:aws:wafv2:us-west-2:123456789012:regional/webacl/test-logs/a1b2c3d4-5678-90ab-cdef ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -61837,7 +61894,60 @@ Provides a WorkSpaces directory in AWS WorkSpaces Service.
 				"workspaces",
 				"directory",
 			},
-			Arguments: []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "directory_id",
+					Description: `(Required) The directory identifier for registration in WorkSpaces service.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_ids",
+					Description: `(Optional) The identifiers of the subnets where the directory resides.`,
+				},
+				resource.Attribute{
+					Name:        "ip_group_ids",
+					Description: `The identifiers of the IP access control groups associated with the directory.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The WorkSpaces directory identifier.`,
+				},
+				resource.Attribute{
+					Name:        "alias",
+					Description: `The directory alias.`,
+				},
+				resource.Attribute{
+					Name:        "customer_user_name",
+					Description: `The user name for the service account.`,
+				},
+				resource.Attribute{
+					Name:        "directory_name",
+					Description: `The name of the directory.`,
+				},
+				resource.Attribute{
+					Name:        "directory_type",
+					Description: `The directory type.`,
+				},
+				resource.Attribute{
+					Name:        "dns_ip_addresses",
+					Description: `The IP addresses of the DNS servers for the directory.`,
+				},
+				resource.Attribute{
+					Name:        "iam_role_id",
+					Description: `The identifier of the IAM role. This is the role that allows Amazon WorkSpaces to make calls to other services, such as Amazon EC2, on your behalf.`,
+				},
+				resource.Attribute{
+					Name:        "ip_group_ids",
+					Description: `The identifiers of the IP access control groups associated with the directory.`,
+				},
+				resource.Attribute{
+					Name:        "registration_code",
+					Description: `The registration code for the directory. This is the code that users enter in their Amazon WorkSpaces client application to connect to the directory.`,
+				},
+				resource.Attribute{
+					Name:        "workspace_security_group_id",
+					Description: `The identifier of the security group that is assigned to new WorkSpaces. ## Import Workspaces directory can be imported using the directory ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_workspaces_directory.main d-4444444444 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -62175,694 +62285,698 @@ Creates and manages an AWS XRay Sampling Rule.
 
 	resourcesMap = map[string]int{
 
-		"aws_accessanalyzer_analyzer":                              0,
-		"aws_acm_certificate":                                      1,
-		"aws_acm_certificate_validation":                           2,
-		"aws_acmpca_certificate_authority":                         3,
-		"aws_ami":                                                  4,
-		"aws_ami_copy":                                             5,
-		"aws_ami_from_instance":                                    6,
-		"aws_ami_launch_permission":                                7,
-		"aws_api_gateway_account":                                  8,
-		"aws_api_gateway_api_key":                                  9,
-		"aws_api_gateway_authorizer":                               10,
-		"aws_api_gateway_base_path_mapping":                        11,
-		"aws_api_gateway_client_certificate":                       12,
-		"aws_api_gateway_deployment":                               13,
-		"aws_api_gateway_documentation_part":                       14,
-		"aws_api_gateway_documentation_version":                    15,
-		"aws_api_gateway_domain_name":                              16,
-		"aws_api_gateway_gateway_response":                         17,
-		"aws_api_gateway_integration":                              18,
-		"aws_api_gateway_integration_response":                     19,
-		"aws_api_gateway_method":                                   20,
-		"aws_api_gateway_method_response":                          21,
-		"aws_api_gateway_method_settings":                          22,
-		"aws_api_gateway_model":                                    23,
-		"aws_api_gateway_request_validator":                        24,
-		"aws_api_gateway_resource":                                 25,
-		"aws_api_gateway_rest_api":                                 26,
-		"aws_api_gateway_rest_api_policy":                          27,
-		"aws_api_gateway_stage":                                    28,
-		"aws_api_gateway_usage_plan":                               29,
-		"aws_api_gateway_usage_plan_key":                           30,
-		"aws_api_gateway_vpc_link":                                 31,
-		"aws_apigatewayv2_api":                                     32,
-		"aws_apigatewayv2_api_mapping":                             33,
-		"aws_apigatewayv2_authorizer":                              34,
-		"aws_apigatewayv2_deployment":                              35,
-		"aws_apigatewayv2_domain_name":                             36,
-		"aws_apigatewayv2_integration":                             37,
-		"aws_apigatewayv2_integration_response":                    38,
-		"aws_apigatewayv2_model":                                   39,
-		"aws_apigatewayv2_route":                                   40,
-		"aws_apigatewayv2_route_response":                          41,
-		"aws_apigatewayv2_stage":                                   42,
-		"aws_apigatewayv2_vpc_link":                                43,
-		"aws_app_cookie_stickiness_policy":                         44,
-		"aws_appautoscaling_policy":                                45,
-		"aws_appautoscaling_scheduled_action":                      46,
-		"aws_appautoscaling_target":                                47,
-		"aws_appmesh_gateway_route":                                48,
-		"aws_appmesh_mesh":                                         49,
-		"aws_appmesh_route":                                        50,
-		"aws_appmesh_virtual_gateway":                              51,
-		"aws_appmesh_virtual_node":                                 52,
-		"aws_appmesh_virtual_router":                               53,
-		"aws_appmesh_virtual_service":                              54,
-		"aws_appsync_api_key":                                      55,
-		"aws_appsync_datasource":                                   56,
-		"aws_appsync_function":                                     57,
-		"aws_appsync_graphql_api":                                  58,
-		"aws_appsync_resolver":                                     59,
-		"aws_athena_database":                                      60,
-		"aws_athena_named_query":                                   61,
-		"aws_athena_workgroup":                                     62,
-		"aws_autoscaling_attachment":                               63,
-		"aws_autoscaling_group":                                    64,
-		"aws_autoscaling_lifecycle_hook":                           65,
-		"aws_autoscaling_notification":                             66,
-		"aws_autoscaling_policy":                                   67,
-		"aws_autoscaling_schedule":                                 68,
-		"aws_autoscalingplans_scaling_plan":                        69,
-		"aws_backup_global_settings":                               70,
-		"aws_backup_plan":                                          71,
-		"aws_backup_region_settings":                               72,
-		"aws_backup_selection":                                     73,
-		"aws_backup_vault":                                         74,
-		"aws_backup_vault_notifications":                           75,
-		"aws_backup_vault_policy":                                  76,
-		"aws_batch_compute_environment":                            77,
-		"aws_batch_job_definition":                                 78,
-		"aws_batch_job_queue":                                      79,
-		"aws_budgets_budget":                                       80,
-		"aws_cloud9_environment_ec2":                               81,
-		"aws_cloudformation_stack":                                 82,
-		"aws_cloudformation_stack_set":                             83,
-		"aws_cloudformation_stack_set_instance":                    84,
-		"aws_cloudfront_cache_policy":                              85,
-		"aws_cloudfront_distribution":                              86,
-		"aws_cloudfront_origin_access_identity":                    87,
-		"aws_cloudfront_origin_request_policy":                     88,
-		"aws_cloudfront_public_key":                                89,
-		"aws_cloudfront_realtime_log_config":                       90,
-		"aws_cloudhsm_v2_cluster":                                  91,
-		"aws_cloudhsm_v2_hsm":                                      92,
-		"aws_cloudtrail":                                           93,
-		"aws_cloudwatch_composite_alarm":                           94,
-		"aws_cloudwatch_dashboard":                                 95,
-		"aws_cloudwatch_event_archive":                             96,
-		"aws_cloudwatch_event_bus":                                 97,
-		"aws_cloudwatch_event_permission":                          98,
-		"aws_cloudwatch_event_rule":                                99,
-		"aws_cloudwatch_event_target":                              100,
-		"aws_cloudwatch_log_destination":                           101,
-		"aws_cloudwatch_log_destination_policy":                    102,
-		"aws_cloudwatch_log_group":                                 103,
-		"aws_cloudwatch_log_metric_filter":                         104,
-		"aws_cloudwatch_log_resource_policy":                       105,
-		"aws_cloudwatch_log_stream":                                106,
-		"aws_cloudwatch_log_subscription_filter":                   107,
-		"aws_cloudwatch_metric_alarm":                              108,
-		"aws_codeartifact_domain":                                  109,
-		"aws_codeartifact_domain_permissions_policy":               110,
-		"aws_codeartifact_repository":                              111,
-		"aws_codeartifact_repository_permissions_policy":           112,
-		"aws_codebuild_project":                                    113,
-		"aws_codebuild_report_group":                               114,
-		"aws_codebuild_source_credential":                          115,
-		"aws_codebuild_webhook":                                    116,
-		"aws_codecommit_repository":                                117,
-		"aws_codecommit_trigger":                                   118,
-		"aws_codedeploy_app":                                       119,
-		"aws_codedeploy_deployment_config":                         120,
-		"aws_codedeploy_deployment_group":                          121,
-		"aws_codepipeline":                                         122,
-		"aws_codepipeline_webhook":                                 123,
-		"aws_codestarconnections_connection":                       124,
-		"aws_codestarnotifications_notification_rule":              125,
-		"aws_cognito_identity_pool":                                126,
-		"aws_cognito_identity_pool_roles_attachment":               127,
-		"aws_cognito_identity_provider":                            128,
-		"aws_cognito_resource_server":                              129,
-		"aws_cognito_user_group":                                   130,
-		"aws_cognito_user_pool":                                    131,
-		"aws_cognito_user_pool_client":                             132,
-		"aws_cognito_user_pool_domain":                             133,
-		"aws_cognito_user_pool_ui_customization":                   134,
-		"aws_config_aggregate_authorization":                       135,
-		"aws_config_config_rule":                                   136,
-		"aws_config_configuration_aggregator":                      137,
-		"aws_config_configuration_recorder":                        138,
-		"aws_config_configuration_recorder_status":                 139,
-		"aws_config_conformance_pack":                              140,
-		"aws_config_delivery_channel":                              141,
-		"aws_config_organization_custom_rule":                      142,
-		"aws_config_organization_managed_rule":                     143,
-		"aws_config_remediation_configuration":                     144,
-		"aws_cur_report_definition":                                145,
-		"aws_customer_gateway":                                     146,
-		"aws_datapipeline_pipeline":                                147,
-		"aws_datasync_agent":                                       148,
-		"aws_datasync_location_efs":                                149,
-		"aws_datasync_location_fsx_windows_file_system":            150,
-		"aws_datasync_location_nfs":                                151,
-		"aws_datasync_location_s3":                                 152,
-		"aws_datasync_location_smb":                                153,
-		"aws_datasync_task":                                        154,
-		"aws_dax_cluster":                                          155,
-		"aws_dax_parameter_group":                                  156,
-		"aws_dax_subnet_group":                                     157,
-		"aws_db_cluster_snapshot":                                  158,
-		"aws_db_event_subscription":                                159,
-		"aws_db_instance":                                          160,
-		"aws_db_instance_role_association":                         161,
-		"aws_db_option_group":                                      162,
-		"aws_db_parameter_group":                                   163,
-		"aws_db_proxy":                                             164,
-		"aws_db_proxy_default_target_group":                        165,
-		"aws_db_proxy_target":                                      166,
-		"aws_db_security_group":                                    167,
-		"aws_db_snapshot":                                          168,
-		"aws_db_subnet_group":                                      169,
-		"aws_default_network_acl":                                  170,
-		"aws_default_route_table":                                  171,
-		"aws_default_security_group":                               172,
-		"aws_default_subnet":                                       173,
-		"aws_default_vpc":                                          174,
-		"aws_default_vpc_dhcp_options":                             175,
-		"aws_devicefarm_project":                                   176,
-		"aws_directory_service_conditional_forwarder":              177,
-		"aws_directory_service_directory":                          178,
-		"aws_directory_service_log_subscription":                   179,
-		"aws_dlm_lifecycle_policy":                                 180,
-		"aws_dms_certificate":                                      181,
-		"aws_dms_endpoint":                                         182,
-		"aws_dms_event_subscription":                               183,
-		"aws_dms_replication_instance":                             184,
-		"aws_dms_replication_subnet_group":                         185,
-		"aws_dms_replication_task":                                 186,
-		"aws_docdb_cluster":                                        187,
-		"aws_docdb_cluster_instance":                               188,
-		"aws_docdb_cluster_parameter_group":                        189,
-		"aws_docdb_cluster_snapshot":                               190,
-		"aws_docdb_subnet_group":                                   191,
-		"aws_dx_bgp_peer":                                          192,
-		"aws_dx_connection":                                        193,
-		"aws_dx_connection_association":                            194,
-		"aws_dx_gateway":                                           195,
-		"aws_dx_gateway_association":                               196,
-		"aws_dx_gateway_association_proposal":                      197,
-		"aws_dx_hosted_private_virtual_interface":                  198,
-		"aws_dx_hosted_private_virtual_interface_accepter":         199,
-		"aws_dx_hosted_public_virtual_interface":                   200,
-		"aws_dx_hosted_public_virtual_interface_accepter":          201,
-		"aws_dx_hosted_transit_virtual_interface":                  202,
-		"aws_dx_hosted_transit_virtual_interface_accepter":         203,
-		"aws_dx_lag":                                               204,
-		"aws_dx_private_virtual_interface":                         205,
-		"aws_dx_public_virtual_interface":                          206,
-		"aws_dx_transit_virtual_interface":                         207,
-		"aws_dynamodb_global_table":                                208,
-		"aws_dynamodb_table":                                       209,
-		"aws_dynamodb_table_item":                                  210,
-		"aws_ebs_default_kms_key":                                  211,
-		"aws_ebs_encryption_by_default":                            212,
-		"aws_ebs_snapshot":                                         213,
-		"aws_ebs_snapshot_copy":                                    214,
-		"aws_ebs_volume":                                           215,
-		"aws_ec2_availability_zone_group":                          216,
-		"aws_ec2_capacity_reservation":                             217,
-		"aws_ec2_carrier_gateway":                                  218,
-		"aws_ec2_client_vpn_authorization_rule":                    219,
-		"aws_ec2_client_vpn_endpoint":                              220,
-		"aws_ec2_client_vpn_network_association":                   221,
-		"aws_ec2_client_vpn_route":                                 222,
-		"aws_ec2_fleet":                                            223,
-		"aws_ec2_local_gateway_route":                              224,
-		"aws_ec2_local_gateway_route_table_vpc_association":        225,
-		"aws_ec2_managed_prefix_list":                              226,
-		"aws_ec2_tag":                                              227,
-		"aws_ec2_traffic_mirror_filter":                            228,
-		"aws_ec2_traffic_mirror_filter_rule":                       229,
-		"aws_ec2_traffic_mirror_session":                           230,
-		"aws_ec2_traffic_mirror_target":                            231,
-		"aws_ec2_transit_gateway":                                  232,
-		"aws_ec2_transit_gateway_peering_attachment":               233,
-		"aws_ec2_transit_gateway_peering_attachment_accepter":      234,
-		"aws_ec2_transit_gateway_prefix_list_reference":            235,
-		"aws_ec2_transit_gateway_route":                            236,
-		"aws_ec2_transit_gateway_route_table":                      237,
-		"aws_ec2_transit_gateway_route_table_association":          238,
-		"aws_ec2_transit_gateway_route_table_propagation":          239,
-		"aws_ec2_transit_gateway_vpc_attachment":                   240,
-		"aws_ec2_transit_gateway_vpc_attachment_accepter":          241,
-		"aws_ecr_lifecycle_policy":                                 242,
-		"aws_ecr_repository":                                       243,
-		"aws_ecr_repository_policy":                                244,
-		"aws_ecrpublic_repository":                                 245,
-		"aws_ecs_capacity_provider":                                246,
-		"aws_ecs_cluster":                                          247,
-		"aws_ecs_service":                                          248,
-		"aws_ecs_task_definition":                                  249,
-		"aws_efs_access_point":                                     250,
-		"aws_efs_file_system":                                      251,
-		"aws_efs_file_system_policy":                               252,
-		"aws_efs_mount_target":                                     253,
-		"aws_egress_only_internet_gateway":                         254,
-		"aws_eip":                                                  255,
-		"aws_eip_association":                                      256,
-		"aws_eks_cluster":                                          257,
-		"aws_eks_fargate_profile":                                  258,
-		"aws_eks_node_group":                                       259,
-		"aws_elastic_beanstalk_application":                        260,
-		"aws_elastic_beanstalk_application_version":                261,
-		"aws_elastic_beanstalk_configuration_template":             262,
-		"aws_elastic_beanstalk_environment":                        263,
-		"aws_elasticache_cluster":                                  264,
-		"aws_elasticache_global_replication_group":                 265,
-		"aws_elasticache_parameter_group":                          266,
-		"aws_elasticache_replication_group":                        267,
-		"aws_elasticache_security_group":                           268,
-		"aws_elasticache_subnet_group":                             269,
-		"aws_elasticsearch_domain":                                 270,
-		"aws_elasticsearch_domain_policy":                          271,
-		"aws_elastictranscoder_pipeline":                           272,
-		"aws_elastictranscoder_preset":                             273,
-		"aws_elb":                                                  274,
-		"aws_elb_attachment":                                       275,
-		"aws_emr_cluster":                                          276,
-		"aws_emr_instance_fleet":                                   277,
-		"aws_emr_instance_group":                                   278,
-		"aws_emr_managed_scaling_policy":                           279,
-		"aws_emr_security_configuration":                           280,
-		"aws_flow_log":                                             281,
-		"aws_fms_admin_account":                                    282,
-		"aws_fms_policy":                                           283,
-		"aws_fsx_lustre_file_system":                               284,
-		"aws_fsx_windows_file_system":                              285,
-		"aws_gamelift_alias":                                       286,
-		"aws_gamelift_build":                                       287,
-		"aws_gamelift_fleet":                                       288,
-		"aws_gamelift_game_session_queue":                          289,
-		"aws_glacier_vault":                                        290,
-		"aws_glacier_vault_lock":                                   291,
-		"aws_globalaccelerator_accelerator":                        292,
-		"aws_globalaccelerator_endpoint_group":                     293,
-		"aws_globalaccelerator_listener":                           294,
-		"aws_glue_catalog_database":                                295,
-		"aws_glue_catalog_table":                                   296,
-		"aws_glue_classifier":                                      297,
-		"aws_glue_connection":                                      298,
-		"aws_glue_crawler":                                         299,
-		"aws_glue_data_catalog_encryption_settings":                300,
-		"aws_glue_dev_endpoint":                                    301,
-		"aws_glue_job":                                             302,
-		"aws_glue_ml_transform":                                    303,
-		"aws_glue_partition":                                       304,
-		"aws_glue_registry":                                        305,
-		"aws_glue_resource_policy":                                 306,
-		"aws_glue_schema":                                          307,
-		"aws_glue_security_configuration":                          308,
-		"aws_glue_trigger":                                         309,
-		"aws_glue_user_defined_function":                           310,
-		"aws_glue_workflow":                                        311,
-		"aws_guardduty_detector":                                   312,
-		"aws_guardduty_filter":                                     313,
-		"aws_guardduty_invite_accepter":                            314,
-		"aws_guardduty_ipset":                                      315,
-		"aws_guardduty_member":                                     316,
-		"aws_guardduty_organization_admin_account":                 317,
-		"aws_guardduty_organization_configuration":                 318,
-		"aws_guardduty_publishing_destination":                     319,
-		"aws_guardduty_threatintelset":                             320,
-		"aws_iam_access_key":                                       321,
-		"aws_iam_account_alias":                                    322,
-		"aws_iam_account_password_policy":                          323,
-		"aws_iam_group":                                            324,
-		"aws_iam_group_membership":                                 325,
-		"aws_iam_group_policy":                                     326,
-		"aws_iam_group_policy_attachment":                          327,
-		"aws_iam_instance_profile":                                 328,
-		"aws_iam_openid_connect_provider":                          329,
-		"aws_iam_policy":                                           330,
-		"aws_iam_policy_attachment":                                331,
-		"aws_iam_role":                                             332,
-		"aws_iam_role_policy":                                      333,
-		"aws_iam_role_policy_attachment":                           334,
-		"aws_iam_saml_provider":                                    335,
-		"aws_iam_server_certificate":                               336,
-		"aws_iam_service_linked_role":                              337,
-		"aws_iam_user":                                             338,
-		"aws_iam_user_group_membership":                            339,
-		"aws_iam_user_login_profile":                               340,
-		"aws_iam_user_policy":                                      341,
-		"aws_iam_user_policy_attachment":                           342,
-		"aws_iam_user_ssh_key":                                     343,
-		"aws_imagebuilder_component":                               344,
-		"aws_imagebuilder_distribution_configuration":              345,
-		"aws_imagebuilder_image":                                   346,
-		"aws_imagebuilder_image_pipeline":                          347,
-		"aws_imagebuilder_image_recipe":                            348,
-		"aws_imagebuilder_infrastructure_configuration":            349,
-		"aws_inspector_assessment_target":                          350,
-		"aws_inspector_assessment_template":                        351,
-		"aws_inspector_resource_group":                             352,
-		"aws_instance":                                             353,
-		"aws_internet_gateway":                                     354,
-		"aws_iot_certificate":                                      355,
-		"aws_iot_policy":                                           356,
-		"aws_iot_policy_attachment":                                357,
-		"aws_iot_role_alias":                                       358,
-		"aws_iot_thing":                                            359,
-		"aws_iot_thing_principal_attachment":                       360,
-		"aws_iot_thing_type":                                       361,
-		"aws_iot_topic_rule":                                       362,
-		"aws_key_pair":                                             363,
-		"aws_kinesis_analytics_application":                        364,
-		"aws_kinesis_firehose_delivery_stream":                     365,
-		"aws_kinesis_stream":                                       366,
-		"aws_kinesis_video_stream":                                 367,
-		"aws_kinesisanalyticsv2_application":                       368,
-		"aws_kms_alias":                                            369,
-		"aws_kms_ciphertext":                                       370,
-		"aws_kms_external_key":                                     371,
-		"aws_kms_grant":                                            372,
-		"aws_kms_key":                                              373,
-		"aws_lakeformation_data_lake_settings":                     374,
-		"aws_lakeformation_permissions":                            375,
-		"aws_lakeformation_resource":                               376,
-		"aws_lambda_alias":                                         377,
-		"aws_lambda_code_signing_config":                           378,
-		"aws_lambda_event_source_mapping":                          379,
-		"aws_lambda_function":                                      380,
-		"aws_lambda_function_event_invoke_config":                  381,
-		"aws_lambda_layer_version":                                 382,
-		"aws_lambda_permission":                                    383,
-		"aws_lambda_provisioned_concurrency_config":                384,
-		"aws_launch_configuration":                                 385,
-		"aws_launch_template":                                      386,
-		"aws_lb":                                                   387,
-		"aws_alb":                                                  388,
-		"aws_lb_cookie_stickiness_policy":                          389,
-		"aws_lb_listener":                                          390,
-		"aws_alb_listener":                                         391,
-		"aws_lb_listener_certificate":                              392,
-		"aws_alb_listener_certificate":                             393,
-		"aws_lb_listener_rule":                                     394,
-		"aws_alb_listener_rule":                                    395,
-		"aws_lb_ssl_negotiation_policy":                            396,
-		"aws_lb_target_group":                                      397,
-		"aws_alb_target_group":                                     398,
-		"aws_lb_target_group_attachment":                           399,
-		"aws_alb_target_group_attachment":                          400,
-		"aws_lex_bot":                                              401,
-		"aws_lex_bot_alias":                                        402,
-		"aws_lex_intent":                                           403,
-		"aws_lex_slot_type":                                        404,
-		"aws_licensemanager_association":                           405,
-		"aws_licensemanager_license_configuration":                 406,
-		"aws_lightsail_domain":                                     407,
-		"aws_lightsail_instance":                                   408,
-		"aws_lightsail_key_pair":                                   409,
-		"aws_lightsail_static_ip":                                  410,
-		"aws_lightsail_static_ip_attachment":                       411,
-		"aws_load_balancer_backend_server_policy":                  412,
-		"aws_load_balancer_listener_policy":                        413,
-		"aws_load_balancer_policy":                                 414,
-		"aws_macie_member_account_association":                     415,
-		"aws_macie_s3_bucket_association":                          416,
-		"aws_main_route_table_association":                         417,
-		"aws_media_convert_queue":                                  418,
-		"aws_media_package_channel":                                419,
-		"aws_media_store_container":                                420,
-		"aws_media_store_container_policy":                         421,
-		"aws_mq_broker":                                            422,
-		"aws_mq_configuration":                                     423,
-		"aws_msk_cluster":                                          424,
-		"aws_msk_configuration":                                    425,
-		"aws_msk_scram_secret_association":                         426,
-		"aws_nat_gateway":                                          427,
-		"aws_neptune_cluster":                                      428,
-		"aws_neptune_cluster_instance":                             429,
-		"aws_neptune_cluster_parameter_group":                      430,
-		"aws_neptune_cluster_snapshot":                             431,
-		"aws_neptune_event_subscription":                           432,
-		"aws_neptune_parameter_group":                              433,
-		"aws_neptune_subnet_group":                                 434,
-		"aws_network_acl":                                          435,
-		"aws_network_acl_rule":                                     436,
-		"aws_network_interface":                                    437,
-		"aws_network_interface_attachment":                         438,
-		"aws_network_interface_sg_attachment":                      439,
-		"aws_networkfirewall_firewall":                             440,
-		"aws_networkfirewall_firewall_policy":                      441,
-		"aws_networkfirewall_logging_configuration":                442,
-		"aws_networkfirewall_resource_policy":                      443,
-		"aws_networkfirewall_rule_group":                           444,
-		"aws_opsworks_application":                                 445,
-		"aws_opsworks_custom_layer":                                446,
-		"aws_opsworks_ganglia_layer":                               447,
-		"aws_opsworks_haproxy_layer":                               448,
-		"aws_opsworks_instance":                                    449,
-		"aws_opsworks_java_app_layer":                              450,
-		"aws_opsworks_memcached_layer":                             451,
-		"aws_opsworks_mysql_layer":                                 452,
-		"aws_opsworks_nodejs_app_layer":                            453,
-		"aws_opsworks_permission":                                  454,
-		"aws_opsworks_php_app_layer":                               455,
-		"aws_opsworks_rails_app_layer":                             456,
-		"aws_opsworks_rds_db_instance":                             457,
-		"aws_opsworks_stack":                                       458,
-		"aws_opsworks_static_web_layer":                            459,
-		"aws_opsworks_user_profile":                                460,
-		"aws_organizations_account":                                461,
-		"aws_organizations_organization":                           462,
-		"aws_organizations_organizational_unit":                    463,
-		"aws_organizations_policy":                                 464,
-		"aws_organizations_policy_attachment":                      465,
-		"aws_pinpoint_adm_channel":                                 466,
-		"aws_pinpoint_apns_channel":                                467,
-		"aws_pinpoint_apns_sandbox_channel":                        468,
-		"aws_pinpoint_apns_voip_channel":                           469,
-		"aws_pinpoint_apns_voip_sandbox_channel":                   470,
-		"aws_pinpoint_app":                                         471,
-		"aws_pinpoint_baidu_channel":                               472,
-		"aws_pinpoint_email_channel":                               473,
-		"aws_pinpoint_event_stream":                                474,
-		"aws_pinpoint_gcm_channel":                                 475,
-		"aws_pinpoint_sms_channel":                                 476,
-		"aws_placement_group":                                      477,
-		"aws_prometheus_workspace":                                 478,
-		"aws_proxy_protocol_policy":                                479,
-		"aws_qldb_ledger":                                          480,
-		"aws_quicksight_group":                                     481,
-		"aws_quicksight_user":                                      482,
-		"aws_ram_principal_association":                            483,
-		"aws_ram_resource_association":                             484,
-		"aws_ram_resource_share":                                   485,
-		"aws_ram_resource_share_accepter":                          486,
-		"aws_rds_cluster":                                          487,
-		"aws_rds_cluster_endpoint":                                 488,
-		"aws_rds_cluster_instance":                                 489,
-		"aws_rds_cluster_parameter_group":                          490,
-		"aws_rds_global_cluster":                                   491,
-		"aws_redshift_cluster":                                     492,
-		"aws_redshift_event_subscription":                          493,
-		"aws_redshift_parameter_group":                             494,
-		"aws_redshift_security_group":                              495,
-		"aws_redshift_snapshot_copy_grant":                         496,
-		"aws_redshift_snapshot_schedule":                           497,
-		"aws_redshift_snapshot_schedule_association":               498,
-		"aws_redshift_subnet_group":                                499,
-		"aws_resourcegroups_group":                                 500,
-		"aws_route":                                                501,
-		"aws_route53_delegation_set":                               502,
-		"aws_route53_health_check":                                 503,
-		"aws_route53_hosted_zone_dnssec":                           504,
-		"aws_route53_key_signing_key":                              505,
-		"aws_route53_query_log":                                    506,
-		"aws_route53_record":                                       507,
-		"aws_route53_resolver_dnssec_config":                       508,
-		"aws_route53_resolver_endpoint":                            509,
-		"aws_route53_resolver_query_log_config":                    510,
-		"aws_route53_resolver_query_log_config_association":        511,
-		"aws_route53_resolver_rule":                                512,
-		"aws_route53_resolver_rule_association":                    513,
-		"aws_route53_vpc_association_authorization":                514,
-		"aws_route53_zone":                                         515,
-		"aws_route53_zone_association":                             516,
-		"aws_route_table":                                          517,
-		"aws_route_table_association":                              518,
-		"aws_s3_access_point":                                      519,
-		"aws_s3_account_public_access_block":                       520,
-		"aws_s3_bucket":                                            521,
-		"aws_s3_bucket_analytics_configuration":                    522,
-		"aws_s3_bucket_inventory":                                  523,
-		"aws_s3_bucket_metric":                                     524,
-		"aws_s3_bucket_notification":                               525,
-		"aws_s3_bucket_object":                                     526,
-		"aws_s3_bucket_ownership_controls":                         527,
-		"aws_s3_bucket_policy":                                     528,
-		"aws_s3_bucket_public_access_block":                        529,
-		"aws_s3_object_copy":                                       530,
-		"aws_s3control_bucket":                                     531,
-		"aws_s3control_bucket_lifecycle_configuration":             532,
-		"aws_s3control_bucket_policy":                              533,
-		"aws_s3outposts_endpoint":                                  534,
-		"aws_sagemaker_app":                                        535,
-		"aws_sagemaker_app_image_config":                           536,
-		"aws_sagemaker_code_repository":                            537,
-		"aws_sagemaker_domain":                                     538,
-		"aws_sagemaker_endpoint":                                   539,
-		"aws_sagemaker_endpoint_configuration":                     540,
-		"aws_sagemaker_feature_group":                              541,
-		"aws_sagemaker_image":                                      542,
-		"aws_sagemaker_image_version":                              543,
-		"aws_sagemaker_model":                                      544,
-		"aws_sagemaker_model_package_group":                        545,
-		"aws_sagemaker_notebook_instance":                          546,
-		"aws_sagemaker_notebook_instance_lifecycle_configuration":  547,
-		"aws_sagemaker_user_profile":                               548,
-		"aws_secretsmanager_secret":                                549,
-		"aws_secretsmanager_secret_policy":                         550,
-		"aws_secretsmanager_secret_rotation":                       551,
-		"aws_secretsmanager_secret_version":                        552,
-		"aws_security_group":                                       553,
-		"aws_security_group_rule":                                  554,
-		"aws_securityhub_account":                                  555,
-		"aws_securityhub_action_target":                            556,
-		"aws_securityhub_invite_accepter":                          557,
-		"aws_securityhub_member":                                   558,
-		"aws_securityhub_organization_admin_account":               559,
-		"aws_securityhub_product_subscription":                     560,
-		"aws_securityhub_standards_subscription":                   561,
-		"aws_serverlessapplicationrepository_cloudformation_stack": 562,
-		"aws_service_discovery_http_namespace":                     563,
-		"aws_service_discovery_private_dns_namespace":              564,
-		"aws_service_discovery_public_dns_namespace":               565,
-		"aws_service_discovery_service":                            566,
-		"aws_servicecatalog_portfolio":                             567,
-		"aws_servicequotas_service_quota":                          568,
-		"aws_ses_active_receipt_rule_set":                          569,
-		"aws_ses_configuration_set":                                570,
-		"aws_ses_domain_dkim":                                      571,
-		"aws_ses_domain_identity":                                  572,
-		"aws_ses_domain_identity_verification":                     573,
-		"aws_ses_domain_mail_from":                                 574,
-		"aws_ses_email_identity":                                   575,
-		"aws_ses_event_destination":                                576,
-		"aws_ses_identity_notification_topic":                      577,
-		"aws_ses_identity_policy":                                  578,
-		"aws_ses_receipt_filter":                                   579,
-		"aws_ses_receipt_rule":                                     580,
-		"aws_ses_receipt_rule_set":                                 581,
-		"aws_ses_template":                                         582,
-		"aws_sfn_activity":                                         583,
-		"aws_sfn_state_machine":                                    584,
-		"aws_shield_protection":                                    585,
-		"aws_signer_signing_job":                                   586,
-		"aws_signer_signing_profile":                               587,
-		"aws_signer_signing_profile_permission":                    588,
-		"aws_simpledb_domain":                                      589,
-		"aws_snapshot_create_volume_permission":                    590,
-		"aws_sns_platform_application":                             591,
-		"aws_sns_sms_preferences":                                  592,
-		"aws_sns_topic":                                            593,
-		"aws_sns_topic_policy":                                     594,
-		"aws_sns_topic_subscription":                               595,
-		"aws_spot_datafeed_subscription":                           596,
-		"aws_spot_fleet_request":                                   597,
-		"aws_spot_instance_request":                                598,
-		"aws_sqs_queue":                                            599,
-		"aws_sqs_queue_policy":                                     600,
-		"aws_ssm_activation":                                       601,
-		"aws_ssm_association":                                      602,
-		"aws_ssm_document":                                         603,
-		"aws_ssm_maintenance_window":                               604,
-		"aws_ssm_maintenance_window_target":                        605,
-		"aws_ssm_maintenance_window_task":                          606,
-		"aws_ssm_parameter":                                        607,
-		"aws_ssm_patch_baseline":                                   608,
-		"aws_ssm_patch_group":                                      609,
-		"aws_ssm_resource_data_sync":                               610,
-		"aws_ssoadmin_account_assignment":                          611,
-		"aws_ssoadmin_managed_policy_attachment":                   612,
-		"aws_ssoadmin_permission_set":                              613,
-		"aws_ssoadmin_permission_set_inline_policy":                614,
-		"aws_storagegateway_cache":                                 615,
-		"aws_storagegateway_cached_iscsi_volume":                   616,
-		"aws_storagegateway_gateway":                               617,
-		"aws_storagegateway_nfs_file_share":                        618,
-		"aws_storagegateway_smb_file_share":                        619,
-		"aws_storagegateway_stored_iscsi_volume":                   620,
-		"aws_storagegateway_tape_pool":                             621,
-		"aws_storagegateway_upload_buffer":                         622,
-		"aws_storagegateway_working_storage":                       623,
-		"aws_subnet":                                               624,
-		"aws_swf_domain":                                           625,
-		"aws_synthetics_canary":                                    626,
-		"aws_transfer_server":                                      627,
-		"aws_transfer_ssh_key":                                     628,
-		"aws_transfer_user":                                        629,
-		"aws_volume_attachment":                                    630,
-		"aws_vpc":                                                  631,
-		"aws_vpc_dhcp_options":                                     632,
-		"aws_vpc_dhcp_options_association":                         633,
-		"aws_vpc_endpoint":                                         634,
-		"aws_vpc_endpoint_connection_notification":                 635,
-		"aws_vpc_endpoint_route_table_association":                 636,
-		"aws_vpc_endpoint_service":                                 637,
-		"aws_vpc_endpoint_service_allowed_principal":               638,
-		"aws_vpc_endpoint_subnet_association":                      639,
-		"aws_vpc_ipv4_cidr_block_association":                      640,
-		"aws_vpc_peering_connection":                               641,
-		"aws_vpc_peering_connection_accepter":                      642,
-		"aws_vpc_peering_connection_options":                       643,
-		"aws_vpn_connection":                                       644,
-		"aws_vpn_connection_route":                                 645,
-		"aws_vpn_gateway":                                          646,
-		"aws_vpn_gateway_attachment":                               647,
-		"aws_vpn_gateway_route_propagation":                        648,
-		"aws_waf_byte_match_set":                                   649,
-		"aws_waf_geo_match_set":                                    650,
-		"aws_waf_ipset":                                            651,
-		"aws_waf_rate_based_rule":                                  652,
-		"aws_waf_regex_match_set":                                  653,
-		"aws_waf_regex_pattern_set":                                654,
-		"aws_waf_rule":                                             655,
-		"aws_waf_rule_group":                                       656,
-		"aws_waf_size_constraint_set":                              657,
-		"aws_waf_sql_injection_match_set":                          658,
-		"aws_waf_web_acl":                                          659,
-		"aws_waf_xss_match_set":                                    660,
-		"aws_wafregional_byte_match_set":                           661,
-		"aws_wafregional_geo_match_set":                            662,
-		"aws_wafregional_ipset":                                    663,
-		"aws_wafregional_rate_based_rule":                          664,
-		"aws_wafregional_regex_match_set":                          665,
-		"aws_wafregional_regex_pattern_set":                        666,
-		"aws_wafregional_rule":                                     667,
-		"aws_wafregional_rule_group":                               668,
-		"aws_wafregional_size_constraint_set":                      669,
-		"aws_wafregional_sql_injection_match_set":                  670,
-		"aws_wafregional_web_acl":                                  671,
-		"aws_wafregional_web_acl_association":                      672,
-		"aws_wafregional_xss_match_set":                            673,
-		"aws_wafv2_ip_set":                                         674,
-		"aws_wafv2_regex_pattern_set":                              675,
-		"aws_wafv2_rule_group":                                     676,
-		"aws_wafv2_web_acl":                                        677,
-		"aws_wafv2_web_acl_association":                            678,
-		"aws_wafv2_web_acl_logging_configuration":                  679,
-		"aws_worklink_fleet":                                       680,
-		"aws_worklink_website_certificate_authority_association":   681,
-		"aws_workspaces_directory":                                 682,
-		"aws_workspaces_ip_group":                                  683,
-		"aws_workspaces_workspace":                                 684,
-		"aws_xray_encryption_config":                               685,
-		"aws_xray_group":                                           686,
-		"aws_xray_sampling_rule":                                   687,
+		"aws_accessanalyzer_analyzer":                  0,
+		"aws_acm_certificate":                          1,
+		"aws_acm_certificate_validation":               2,
+		"aws_acmpca_certificate":                       3,
+		"aws_acmpca_certificate_authority":             4,
+		"aws_acmpca_certificate_authority_certificate": 5,
+		"aws_ami":                                                  6,
+		"aws_ami_copy":                                             7,
+		"aws_ami_from_instance":                                    8,
+		"aws_ami_launch_permission":                                9,
+		"aws_api_gateway_account":                                  10,
+		"aws_api_gateway_api_key":                                  11,
+		"aws_api_gateway_authorizer":                               12,
+		"aws_api_gateway_base_path_mapping":                        13,
+		"aws_api_gateway_client_certificate":                       14,
+		"aws_api_gateway_deployment":                               15,
+		"aws_api_gateway_documentation_part":                       16,
+		"aws_api_gateway_documentation_version":                    17,
+		"aws_api_gateway_domain_name":                              18,
+		"aws_api_gateway_gateway_response":                         19,
+		"aws_api_gateway_integration":                              20,
+		"aws_api_gateway_integration_response":                     21,
+		"aws_api_gateway_method":                                   22,
+		"aws_api_gateway_method_response":                          23,
+		"aws_api_gateway_method_settings":                          24,
+		"aws_api_gateway_model":                                    25,
+		"aws_api_gateway_request_validator":                        26,
+		"aws_api_gateway_resource":                                 27,
+		"aws_api_gateway_rest_api":                                 28,
+		"aws_api_gateway_rest_api_policy":                          29,
+		"aws_api_gateway_stage":                                    30,
+		"aws_api_gateway_usage_plan":                               31,
+		"aws_api_gateway_usage_plan_key":                           32,
+		"aws_api_gateway_vpc_link":                                 33,
+		"aws_apigatewayv2_api":                                     34,
+		"aws_apigatewayv2_api_mapping":                             35,
+		"aws_apigatewayv2_authorizer":                              36,
+		"aws_apigatewayv2_deployment":                              37,
+		"aws_apigatewayv2_domain_name":                             38,
+		"aws_apigatewayv2_integration":                             39,
+		"aws_apigatewayv2_integration_response":                    40,
+		"aws_apigatewayv2_model":                                   41,
+		"aws_apigatewayv2_route":                                   42,
+		"aws_apigatewayv2_route_response":                          43,
+		"aws_apigatewayv2_stage":                                   44,
+		"aws_apigatewayv2_vpc_link":                                45,
+		"aws_app_cookie_stickiness_policy":                         46,
+		"aws_appautoscaling_policy":                                47,
+		"aws_appautoscaling_scheduled_action":                      48,
+		"aws_appautoscaling_target":                                49,
+		"aws_appmesh_gateway_route":                                50,
+		"aws_appmesh_mesh":                                         51,
+		"aws_appmesh_route":                                        52,
+		"aws_appmesh_virtual_gateway":                              53,
+		"aws_appmesh_virtual_node":                                 54,
+		"aws_appmesh_virtual_router":                               55,
+		"aws_appmesh_virtual_service":                              56,
+		"aws_appsync_api_key":                                      57,
+		"aws_appsync_datasource":                                   58,
+		"aws_appsync_function":                                     59,
+		"aws_appsync_graphql_api":                                  60,
+		"aws_appsync_resolver":                                     61,
+		"aws_athena_database":                                      62,
+		"aws_athena_named_query":                                   63,
+		"aws_athena_workgroup":                                     64,
+		"aws_autoscaling_attachment":                               65,
+		"aws_autoscaling_group":                                    66,
+		"aws_autoscaling_lifecycle_hook":                           67,
+		"aws_autoscaling_notification":                             68,
+		"aws_autoscaling_policy":                                   69,
+		"aws_autoscaling_schedule":                                 70,
+		"aws_autoscalingplans_scaling_plan":                        71,
+		"aws_backup_global_settings":                               72,
+		"aws_backup_plan":                                          73,
+		"aws_backup_region_settings":                               74,
+		"aws_backup_selection":                                     75,
+		"aws_backup_vault":                                         76,
+		"aws_backup_vault_notifications":                           77,
+		"aws_backup_vault_policy":                                  78,
+		"aws_batch_compute_environment":                            79,
+		"aws_batch_job_definition":                                 80,
+		"aws_batch_job_queue":                                      81,
+		"aws_budgets_budget":                                       82,
+		"aws_cloud9_environment_ec2":                               83,
+		"aws_cloudformation_stack":                                 84,
+		"aws_cloudformation_stack_set":                             85,
+		"aws_cloudformation_stack_set_instance":                    86,
+		"aws_cloudfront_cache_policy":                              87,
+		"aws_cloudfront_distribution":                              88,
+		"aws_cloudfront_origin_access_identity":                    89,
+		"aws_cloudfront_origin_request_policy":                     90,
+		"aws_cloudfront_public_key":                                91,
+		"aws_cloudfront_realtime_log_config":                       92,
+		"aws_cloudhsm_v2_cluster":                                  93,
+		"aws_cloudhsm_v2_hsm":                                      94,
+		"aws_cloudtrail":                                           95,
+		"aws_cloudwatch_composite_alarm":                           96,
+		"aws_cloudwatch_dashboard":                                 97,
+		"aws_cloudwatch_event_archive":                             98,
+		"aws_cloudwatch_event_bus":                                 99,
+		"aws_cloudwatch_event_permission":                          100,
+		"aws_cloudwatch_event_rule":                                101,
+		"aws_cloudwatch_event_target":                              102,
+		"aws_cloudwatch_log_destination":                           103,
+		"aws_cloudwatch_log_destination_policy":                    104,
+		"aws_cloudwatch_log_group":                                 105,
+		"aws_cloudwatch_log_metric_filter":                         106,
+		"aws_cloudwatch_log_resource_policy":                       107,
+		"aws_cloudwatch_log_stream":                                108,
+		"aws_cloudwatch_log_subscription_filter":                   109,
+		"aws_cloudwatch_metric_alarm":                              110,
+		"aws_codeartifact_domain":                                  111,
+		"aws_codeartifact_domain_permissions_policy":               112,
+		"aws_codeartifact_repository":                              113,
+		"aws_codeartifact_repository_permissions_policy":           114,
+		"aws_codebuild_project":                                    115,
+		"aws_codebuild_report_group":                               116,
+		"aws_codebuild_source_credential":                          117,
+		"aws_codebuild_webhook":                                    118,
+		"aws_codecommit_repository":                                119,
+		"aws_codecommit_trigger":                                   120,
+		"aws_codedeploy_app":                                       121,
+		"aws_codedeploy_deployment_config":                         122,
+		"aws_codedeploy_deployment_group":                          123,
+		"aws_codepipeline":                                         124,
+		"aws_codepipeline_webhook":                                 125,
+		"aws_codestarconnections_connection":                       126,
+		"aws_codestarnotifications_notification_rule":              127,
+		"aws_cognito_identity_pool":                                128,
+		"aws_cognito_identity_pool_roles_attachment":               129,
+		"aws_cognito_identity_provider":                            130,
+		"aws_cognito_resource_server":                              131,
+		"aws_cognito_user_group":                                   132,
+		"aws_cognito_user_pool":                                    133,
+		"aws_cognito_user_pool_client":                             134,
+		"aws_cognito_user_pool_domain":                             135,
+		"aws_cognito_user_pool_ui_customization":                   136,
+		"aws_config_aggregate_authorization":                       137,
+		"aws_config_config_rule":                                   138,
+		"aws_config_configuration_aggregator":                      139,
+		"aws_config_configuration_recorder":                        140,
+		"aws_config_configuration_recorder_status":                 141,
+		"aws_config_conformance_pack":                              142,
+		"aws_config_delivery_channel":                              143,
+		"aws_config_organization_custom_rule":                      144,
+		"aws_config_organization_managed_rule":                     145,
+		"aws_config_remediation_configuration":                     146,
+		"aws_cur_report_definition":                                147,
+		"aws_customer_gateway":                                     148,
+		"aws_datapipeline_pipeline":                                149,
+		"aws_datasync_agent":                                       150,
+		"aws_datasync_location_efs":                                151,
+		"aws_datasync_location_fsx_windows_file_system":            152,
+		"aws_datasync_location_nfs":                                153,
+		"aws_datasync_location_s3":                                 154,
+		"aws_datasync_location_smb":                                155,
+		"aws_datasync_task":                                        156,
+		"aws_dax_cluster":                                          157,
+		"aws_dax_parameter_group":                                  158,
+		"aws_dax_subnet_group":                                     159,
+		"aws_db_cluster_snapshot":                                  160,
+		"aws_db_event_subscription":                                161,
+		"aws_db_instance":                                          162,
+		"aws_db_instance_role_association":                         163,
+		"aws_db_option_group":                                      164,
+		"aws_db_parameter_group":                                   165,
+		"aws_db_proxy":                                             166,
+		"aws_db_proxy_default_target_group":                        167,
+		"aws_db_proxy_target":                                      168,
+		"aws_db_security_group":                                    169,
+		"aws_db_snapshot":                                          170,
+		"aws_db_subnet_group":                                      171,
+		"aws_default_network_acl":                                  172,
+		"aws_default_route_table":                                  173,
+		"aws_default_security_group":                               174,
+		"aws_default_subnet":                                       175,
+		"aws_default_vpc":                                          176,
+		"aws_default_vpc_dhcp_options":                             177,
+		"aws_devicefarm_project":                                   178,
+		"aws_directory_service_conditional_forwarder":              179,
+		"aws_directory_service_directory":                          180,
+		"aws_directory_service_log_subscription":                   181,
+		"aws_dlm_lifecycle_policy":                                 182,
+		"aws_dms_certificate":                                      183,
+		"aws_dms_endpoint":                                         184,
+		"aws_dms_event_subscription":                               185,
+		"aws_dms_replication_instance":                             186,
+		"aws_dms_replication_subnet_group":                         187,
+		"aws_dms_replication_task":                                 188,
+		"aws_docdb_cluster":                                        189,
+		"aws_docdb_cluster_instance":                               190,
+		"aws_docdb_cluster_parameter_group":                        191,
+		"aws_docdb_cluster_snapshot":                               192,
+		"aws_docdb_subnet_group":                                   193,
+		"aws_dx_bgp_peer":                                          194,
+		"aws_dx_connection":                                        195,
+		"aws_dx_connection_association":                            196,
+		"aws_dx_gateway":                                           197,
+		"aws_dx_gateway_association":                               198,
+		"aws_dx_gateway_association_proposal":                      199,
+		"aws_dx_hosted_private_virtual_interface":                  200,
+		"aws_dx_hosted_private_virtual_interface_accepter":         201,
+		"aws_dx_hosted_public_virtual_interface":                   202,
+		"aws_dx_hosted_public_virtual_interface_accepter":          203,
+		"aws_dx_hosted_transit_virtual_interface":                  204,
+		"aws_dx_hosted_transit_virtual_interface_accepter":         205,
+		"aws_dx_lag":                                               206,
+		"aws_dx_private_virtual_interface":                         207,
+		"aws_dx_public_virtual_interface":                          208,
+		"aws_dx_transit_virtual_interface":                         209,
+		"aws_dynamodb_global_table":                                210,
+		"aws_dynamodb_table":                                       211,
+		"aws_dynamodb_table_item":                                  212,
+		"aws_ebs_default_kms_key":                                  213,
+		"aws_ebs_encryption_by_default":                            214,
+		"aws_ebs_snapshot":                                         215,
+		"aws_ebs_snapshot_copy":                                    216,
+		"aws_ebs_volume":                                           217,
+		"aws_ec2_availability_zone_group":                          218,
+		"aws_ec2_capacity_reservation":                             219,
+		"aws_ec2_carrier_gateway":                                  220,
+		"aws_ec2_client_vpn_authorization_rule":                    221,
+		"aws_ec2_client_vpn_endpoint":                              222,
+		"aws_ec2_client_vpn_network_association":                   223,
+		"aws_ec2_client_vpn_route":                                 224,
+		"aws_ec2_fleet":                                            225,
+		"aws_ec2_local_gateway_route":                              226,
+		"aws_ec2_local_gateway_route_table_vpc_association":        227,
+		"aws_ec2_managed_prefix_list":                              228,
+		"aws_ec2_tag":                                              229,
+		"aws_ec2_traffic_mirror_filter":                            230,
+		"aws_ec2_traffic_mirror_filter_rule":                       231,
+		"aws_ec2_traffic_mirror_session":                           232,
+		"aws_ec2_traffic_mirror_target":                            233,
+		"aws_ec2_transit_gateway":                                  234,
+		"aws_ec2_transit_gateway_peering_attachment":               235,
+		"aws_ec2_transit_gateway_peering_attachment_accepter":      236,
+		"aws_ec2_transit_gateway_prefix_list_reference":            237,
+		"aws_ec2_transit_gateway_route":                            238,
+		"aws_ec2_transit_gateway_route_table":                      239,
+		"aws_ec2_transit_gateway_route_table_association":          240,
+		"aws_ec2_transit_gateway_route_table_propagation":          241,
+		"aws_ec2_transit_gateway_vpc_attachment":                   242,
+		"aws_ec2_transit_gateway_vpc_attachment_accepter":          243,
+		"aws_ecr_lifecycle_policy":                                 244,
+		"aws_ecr_repository":                                       245,
+		"aws_ecr_repository_policy":                                246,
+		"aws_ecrpublic_repository":                                 247,
+		"aws_ecs_capacity_provider":                                248,
+		"aws_ecs_cluster":                                          249,
+		"aws_ecs_service":                                          250,
+		"aws_ecs_task_definition":                                  251,
+		"aws_efs_access_point":                                     252,
+		"aws_efs_file_system":                                      253,
+		"aws_efs_file_system_policy":                               254,
+		"aws_efs_mount_target":                                     255,
+		"aws_egress_only_internet_gateway":                         256,
+		"aws_eip":                                                  257,
+		"aws_eip_association":                                      258,
+		"aws_eks_cluster":                                          259,
+		"aws_eks_fargate_profile":                                  260,
+		"aws_eks_node_group":                                       261,
+		"aws_elastic_beanstalk_application":                        262,
+		"aws_elastic_beanstalk_application_version":                263,
+		"aws_elastic_beanstalk_configuration_template":             264,
+		"aws_elastic_beanstalk_environment":                        265,
+		"aws_elasticache_cluster":                                  266,
+		"aws_elasticache_global_replication_group":                 267,
+		"aws_elasticache_parameter_group":                          268,
+		"aws_elasticache_replication_group":                        269,
+		"aws_elasticache_security_group":                           270,
+		"aws_elasticache_subnet_group":                             271,
+		"aws_elasticsearch_domain":                                 272,
+		"aws_elasticsearch_domain_policy":                          273,
+		"aws_elastictranscoder_pipeline":                           274,
+		"aws_elastictranscoder_preset":                             275,
+		"aws_elb":                                                  276,
+		"aws_elb_attachment":                                       277,
+		"aws_emr_cluster":                                          278,
+		"aws_emr_instance_fleet":                                   279,
+		"aws_emr_instance_group":                                   280,
+		"aws_emr_managed_scaling_policy":                           281,
+		"aws_emr_security_configuration":                           282,
+		"aws_flow_log":                                             283,
+		"aws_fms_admin_account":                                    284,
+		"aws_fms_policy":                                           285,
+		"aws_fsx_lustre_file_system":                               286,
+		"aws_fsx_windows_file_system":                              287,
+		"aws_gamelift_alias":                                       288,
+		"aws_gamelift_build":                                       289,
+		"aws_gamelift_fleet":                                       290,
+		"aws_gamelift_game_session_queue":                          291,
+		"aws_glacier_vault":                                        292,
+		"aws_glacier_vault_lock":                                   293,
+		"aws_globalaccelerator_accelerator":                        294,
+		"aws_globalaccelerator_endpoint_group":                     295,
+		"aws_globalaccelerator_listener":                           296,
+		"aws_glue_catalog_database":                                297,
+		"aws_glue_catalog_table":                                   298,
+		"aws_glue_classifier":                                      299,
+		"aws_glue_connection":                                      300,
+		"aws_glue_crawler":                                         301,
+		"aws_glue_data_catalog_encryption_settings":                302,
+		"aws_glue_dev_endpoint":                                    303,
+		"aws_glue_job":                                             304,
+		"aws_glue_ml_transform":                                    305,
+		"aws_glue_partition":                                       306,
+		"aws_glue_registry":                                        307,
+		"aws_glue_resource_policy":                                 308,
+		"aws_glue_schema":                                          309,
+		"aws_glue_security_configuration":                          310,
+		"aws_glue_trigger":                                         311,
+		"aws_glue_user_defined_function":                           312,
+		"aws_glue_workflow":                                        313,
+		"aws_guardduty_detector":                                   314,
+		"aws_guardduty_filter":                                     315,
+		"aws_guardduty_invite_accepter":                            316,
+		"aws_guardduty_ipset":                                      317,
+		"aws_guardduty_member":                                     318,
+		"aws_guardduty_organization_admin_account":                 319,
+		"aws_guardduty_organization_configuration":                 320,
+		"aws_guardduty_publishing_destination":                     321,
+		"aws_guardduty_threatintelset":                             322,
+		"aws_iam_access_key":                                       323,
+		"aws_iam_account_alias":                                    324,
+		"aws_iam_account_password_policy":                          325,
+		"aws_iam_group":                                            326,
+		"aws_iam_group_membership":                                 327,
+		"aws_iam_group_policy":                                     328,
+		"aws_iam_group_policy_attachment":                          329,
+		"aws_iam_instance_profile":                                 330,
+		"aws_iam_openid_connect_provider":                          331,
+		"aws_iam_policy":                                           332,
+		"aws_iam_policy_attachment":                                333,
+		"aws_iam_role":                                             334,
+		"aws_iam_role_policy":                                      335,
+		"aws_iam_role_policy_attachment":                           336,
+		"aws_iam_saml_provider":                                    337,
+		"aws_iam_server_certificate":                               338,
+		"aws_iam_service_linked_role":                              339,
+		"aws_iam_user":                                             340,
+		"aws_iam_user_group_membership":                            341,
+		"aws_iam_user_login_profile":                               342,
+		"aws_iam_user_policy":                                      343,
+		"aws_iam_user_policy_attachment":                           344,
+		"aws_iam_user_ssh_key":                                     345,
+		"aws_imagebuilder_component":                               346,
+		"aws_imagebuilder_distribution_configuration":              347,
+		"aws_imagebuilder_image":                                   348,
+		"aws_imagebuilder_image_pipeline":                          349,
+		"aws_imagebuilder_image_recipe":                            350,
+		"aws_imagebuilder_infrastructure_configuration":            351,
+		"aws_inspector_assessment_target":                          352,
+		"aws_inspector_assessment_template":                        353,
+		"aws_inspector_resource_group":                             354,
+		"aws_instance":                                             355,
+		"aws_internet_gateway":                                     356,
+		"aws_iot_certificate":                                      357,
+		"aws_iot_policy":                                           358,
+		"aws_iot_policy_attachment":                                359,
+		"aws_iot_role_alias":                                       360,
+		"aws_iot_thing":                                            361,
+		"aws_iot_thing_principal_attachment":                       362,
+		"aws_iot_thing_type":                                       363,
+		"aws_iot_topic_rule":                                       364,
+		"aws_key_pair":                                             365,
+		"aws_kinesis_analytics_application":                        366,
+		"aws_kinesis_firehose_delivery_stream":                     367,
+		"aws_kinesis_stream":                                       368,
+		"aws_kinesis_stream_consumer":                              369,
+		"aws_kinesis_video_stream":                                 370,
+		"aws_kinesisanalyticsv2_application":                       371,
+		"aws_kms_alias":                                            372,
+		"aws_kms_ciphertext":                                       373,
+		"aws_kms_external_key":                                     374,
+		"aws_kms_grant":                                            375,
+		"aws_kms_key":                                              376,
+		"aws_lakeformation_data_lake_settings":                     377,
+		"aws_lakeformation_permissions":                            378,
+		"aws_lakeformation_resource":                               379,
+		"aws_lambda_alias":                                         380,
+		"aws_lambda_code_signing_config":                           381,
+		"aws_lambda_event_source_mapping":                          382,
+		"aws_lambda_function":                                      383,
+		"aws_lambda_function_event_invoke_config":                  384,
+		"aws_lambda_layer_version":                                 385,
+		"aws_lambda_permission":                                    386,
+		"aws_lambda_provisioned_concurrency_config":                387,
+		"aws_launch_configuration":                                 388,
+		"aws_launch_template":                                      389,
+		"aws_lb":                                                   390,
+		"aws_alb":                                                  391,
+		"aws_lb_cookie_stickiness_policy":                          392,
+		"aws_lb_listener":                                          393,
+		"aws_alb_listener":                                         394,
+		"aws_lb_listener_certificate":                              395,
+		"aws_alb_listener_certificate":                             396,
+		"aws_lb_listener_rule":                                     397,
+		"aws_alb_listener_rule":                                    398,
+		"aws_lb_ssl_negotiation_policy":                            399,
+		"aws_lb_target_group":                                      400,
+		"aws_alb_target_group":                                     401,
+		"aws_lb_target_group_attachment":                           402,
+		"aws_alb_target_group_attachment":                          403,
+		"aws_lex_bot":                                              404,
+		"aws_lex_bot_alias":                                        405,
+		"aws_lex_intent":                                           406,
+		"aws_lex_slot_type":                                        407,
+		"aws_licensemanager_association":                           408,
+		"aws_licensemanager_license_configuration":                 409,
+		"aws_lightsail_domain":                                     410,
+		"aws_lightsail_instance":                                   411,
+		"aws_lightsail_instance_public_ports":                      412,
+		"aws_lightsail_key_pair":                                   413,
+		"aws_lightsail_static_ip":                                  414,
+		"aws_lightsail_static_ip_attachment":                       415,
+		"aws_load_balancer_backend_server_policy":                  416,
+		"aws_load_balancer_listener_policy":                        417,
+		"aws_load_balancer_policy":                                 418,
+		"aws_macie_member_account_association":                     419,
+		"aws_macie_s3_bucket_association":                          420,
+		"aws_main_route_table_association":                         421,
+		"aws_media_convert_queue":                                  422,
+		"aws_media_package_channel":                                423,
+		"aws_media_store_container":                                424,
+		"aws_media_store_container_policy":                         425,
+		"aws_mq_broker":                                            426,
+		"aws_mq_configuration":                                     427,
+		"aws_msk_cluster":                                          428,
+		"aws_msk_configuration":                                    429,
+		"aws_msk_scram_secret_association":                         430,
+		"aws_nat_gateway":                                          431,
+		"aws_neptune_cluster":                                      432,
+		"aws_neptune_cluster_instance":                             433,
+		"aws_neptune_cluster_parameter_group":                      434,
+		"aws_neptune_cluster_snapshot":                             435,
+		"aws_neptune_event_subscription":                           436,
+		"aws_neptune_parameter_group":                              437,
+		"aws_neptune_subnet_group":                                 438,
+		"aws_network_acl":                                          439,
+		"aws_network_acl_rule":                                     440,
+		"aws_network_interface":                                    441,
+		"aws_network_interface_attachment":                         442,
+		"aws_network_interface_sg_attachment":                      443,
+		"aws_networkfirewall_firewall":                             444,
+		"aws_networkfirewall_firewall_policy":                      445,
+		"aws_networkfirewall_logging_configuration":                446,
+		"aws_networkfirewall_resource_policy":                      447,
+		"aws_networkfirewall_rule_group":                           448,
+		"aws_opsworks_application":                                 449,
+		"aws_opsworks_custom_layer":                                450,
+		"aws_opsworks_ganglia_layer":                               451,
+		"aws_opsworks_haproxy_layer":                               452,
+		"aws_opsworks_instance":                                    453,
+		"aws_opsworks_java_app_layer":                              454,
+		"aws_opsworks_memcached_layer":                             455,
+		"aws_opsworks_mysql_layer":                                 456,
+		"aws_opsworks_nodejs_app_layer":                            457,
+		"aws_opsworks_permission":                                  458,
+		"aws_opsworks_php_app_layer":                               459,
+		"aws_opsworks_rails_app_layer":                             460,
+		"aws_opsworks_rds_db_instance":                             461,
+		"aws_opsworks_stack":                                       462,
+		"aws_opsworks_static_web_layer":                            463,
+		"aws_opsworks_user_profile":                                464,
+		"aws_organizations_account":                                465,
+		"aws_organizations_organization":                           466,
+		"aws_organizations_organizational_unit":                    467,
+		"aws_organizations_policy":                                 468,
+		"aws_organizations_policy_attachment":                      469,
+		"aws_pinpoint_adm_channel":                                 470,
+		"aws_pinpoint_apns_channel":                                471,
+		"aws_pinpoint_apns_sandbox_channel":                        472,
+		"aws_pinpoint_apns_voip_channel":                           473,
+		"aws_pinpoint_apns_voip_sandbox_channel":                   474,
+		"aws_pinpoint_app":                                         475,
+		"aws_pinpoint_baidu_channel":                               476,
+		"aws_pinpoint_email_channel":                               477,
+		"aws_pinpoint_event_stream":                                478,
+		"aws_pinpoint_gcm_channel":                                 479,
+		"aws_pinpoint_sms_channel":                                 480,
+		"aws_placement_group":                                      481,
+		"aws_prometheus_workspace":                                 482,
+		"aws_proxy_protocol_policy":                                483,
+		"aws_qldb_ledger":                                          484,
+		"aws_quicksight_group":                                     485,
+		"aws_quicksight_user":                                      486,
+		"aws_ram_principal_association":                            487,
+		"aws_ram_resource_association":                             488,
+		"aws_ram_resource_share":                                   489,
+		"aws_ram_resource_share_accepter":                          490,
+		"aws_rds_cluster":                                          491,
+		"aws_rds_cluster_endpoint":                                 492,
+		"aws_rds_cluster_instance":                                 493,
+		"aws_rds_cluster_parameter_group":                          494,
+		"aws_rds_global_cluster":                                   495,
+		"aws_redshift_cluster":                                     496,
+		"aws_redshift_event_subscription":                          497,
+		"aws_redshift_parameter_group":                             498,
+		"aws_redshift_security_group":                              499,
+		"aws_redshift_snapshot_copy_grant":                         500,
+		"aws_redshift_snapshot_schedule":                           501,
+		"aws_redshift_snapshot_schedule_association":               502,
+		"aws_redshift_subnet_group":                                503,
+		"aws_resourcegroups_group":                                 504,
+		"aws_route":                                                505,
+		"aws_route53_delegation_set":                               506,
+		"aws_route53_health_check":                                 507,
+		"aws_route53_hosted_zone_dnssec":                           508,
+		"aws_route53_key_signing_key":                              509,
+		"aws_route53_query_log":                                    510,
+		"aws_route53_record":                                       511,
+		"aws_route53_resolver_dnssec_config":                       512,
+		"aws_route53_resolver_endpoint":                            513,
+		"aws_route53_resolver_query_log_config":                    514,
+		"aws_route53_resolver_query_log_config_association":        515,
+		"aws_route53_resolver_rule":                                516,
+		"aws_route53_resolver_rule_association":                    517,
+		"aws_route53_vpc_association_authorization":                518,
+		"aws_route53_zone":                                         519,
+		"aws_route53_zone_association":                             520,
+		"aws_route_table":                                          521,
+		"aws_route_table_association":                              522,
+		"aws_s3_access_point":                                      523,
+		"aws_s3_account_public_access_block":                       524,
+		"aws_s3_bucket":                                            525,
+		"aws_s3_bucket_analytics_configuration":                    526,
+		"aws_s3_bucket_inventory":                                  527,
+		"aws_s3_bucket_metric":                                     528,
+		"aws_s3_bucket_notification":                               529,
+		"aws_s3_bucket_object":                                     530,
+		"aws_s3_bucket_ownership_controls":                         531,
+		"aws_s3_bucket_policy":                                     532,
+		"aws_s3_bucket_public_access_block":                        533,
+		"aws_s3_object_copy":                                       534,
+		"aws_s3control_bucket":                                     535,
+		"aws_s3control_bucket_lifecycle_configuration":             536,
+		"aws_s3control_bucket_policy":                              537,
+		"aws_s3outposts_endpoint":                                  538,
+		"aws_sagemaker_app":                                        539,
+		"aws_sagemaker_app_image_config":                           540,
+		"aws_sagemaker_code_repository":                            541,
+		"aws_sagemaker_domain":                                     542,
+		"aws_sagemaker_endpoint":                                   543,
+		"aws_sagemaker_endpoint_configuration":                     544,
+		"aws_sagemaker_feature_group":                              545,
+		"aws_sagemaker_image":                                      546,
+		"aws_sagemaker_image_version":                              547,
+		"aws_sagemaker_model":                                      548,
+		"aws_sagemaker_model_package_group":                        549,
+		"aws_sagemaker_notebook_instance":                          550,
+		"aws_sagemaker_notebook_instance_lifecycle_configuration":  551,
+		"aws_sagemaker_user_profile":                               552,
+		"aws_secretsmanager_secret":                                553,
+		"aws_secretsmanager_secret_policy":                         554,
+		"aws_secretsmanager_secret_rotation":                       555,
+		"aws_secretsmanager_secret_version":                        556,
+		"aws_security_group":                                       557,
+		"aws_security_group_rule":                                  558,
+		"aws_securityhub_account":                                  559,
+		"aws_securityhub_action_target":                            560,
+		"aws_securityhub_invite_accepter":                          561,
+		"aws_securityhub_member":                                   562,
+		"aws_securityhub_organization_admin_account":               563,
+		"aws_securityhub_product_subscription":                     564,
+		"aws_securityhub_standards_subscription":                   565,
+		"aws_serverlessapplicationrepository_cloudformation_stack": 566,
+		"aws_service_discovery_http_namespace":                     567,
+		"aws_service_discovery_private_dns_namespace":              568,
+		"aws_service_discovery_public_dns_namespace":               569,
+		"aws_service_discovery_service":                            570,
+		"aws_servicecatalog_portfolio":                             571,
+		"aws_servicequotas_service_quota":                          572,
+		"aws_ses_active_receipt_rule_set":                          573,
+		"aws_ses_configuration_set":                                574,
+		"aws_ses_domain_dkim":                                      575,
+		"aws_ses_domain_identity":                                  576,
+		"aws_ses_domain_identity_verification":                     577,
+		"aws_ses_domain_mail_from":                                 578,
+		"aws_ses_email_identity":                                   579,
+		"aws_ses_event_destination":                                580,
+		"aws_ses_identity_notification_topic":                      581,
+		"aws_ses_identity_policy":                                  582,
+		"aws_ses_receipt_filter":                                   583,
+		"aws_ses_receipt_rule":                                     584,
+		"aws_ses_receipt_rule_set":                                 585,
+		"aws_ses_template":                                         586,
+		"aws_sfn_activity":                                         587,
+		"aws_sfn_state_machine":                                    588,
+		"aws_shield_protection":                                    589,
+		"aws_signer_signing_job":                                   590,
+		"aws_signer_signing_profile":                               591,
+		"aws_signer_signing_profile_permission":                    592,
+		"aws_simpledb_domain":                                      593,
+		"aws_snapshot_create_volume_permission":                    594,
+		"aws_sns_platform_application":                             595,
+		"aws_sns_sms_preferences":                                  596,
+		"aws_sns_topic":                                            597,
+		"aws_sns_topic_policy":                                     598,
+		"aws_sns_topic_subscription":                               599,
+		"aws_spot_datafeed_subscription":                           600,
+		"aws_spot_fleet_request":                                   601,
+		"aws_spot_instance_request":                                602,
+		"aws_sqs_queue":                                            603,
+		"aws_sqs_queue_policy":                                     604,
+		"aws_ssm_activation":                                       605,
+		"aws_ssm_association":                                      606,
+		"aws_ssm_document":                                         607,
+		"aws_ssm_maintenance_window":                               608,
+		"aws_ssm_maintenance_window_target":                        609,
+		"aws_ssm_maintenance_window_task":                          610,
+		"aws_ssm_parameter":                                        611,
+		"aws_ssm_patch_baseline":                                   612,
+		"aws_ssm_patch_group":                                      613,
+		"aws_ssm_resource_data_sync":                               614,
+		"aws_ssoadmin_account_assignment":                          615,
+		"aws_ssoadmin_managed_policy_attachment":                   616,
+		"aws_ssoadmin_permission_set":                              617,
+		"aws_ssoadmin_permission_set_inline_policy":                618,
+		"aws_storagegateway_cache":                                 619,
+		"aws_storagegateway_cached_iscsi_volume":                   620,
+		"aws_storagegateway_gateway":                               621,
+		"aws_storagegateway_nfs_file_share":                        622,
+		"aws_storagegateway_smb_file_share":                        623,
+		"aws_storagegateway_stored_iscsi_volume":                   624,
+		"aws_storagegateway_tape_pool":                             625,
+		"aws_storagegateway_upload_buffer":                         626,
+		"aws_storagegateway_working_storage":                       627,
+		"aws_subnet":                                               628,
+		"aws_swf_domain":                                           629,
+		"aws_synthetics_canary":                                    630,
+		"aws_transfer_server":                                      631,
+		"aws_transfer_ssh_key":                                     632,
+		"aws_transfer_user":                                        633,
+		"aws_volume_attachment":                                    634,
+		"aws_vpc":                                                  635,
+		"aws_vpc_dhcp_options":                                     636,
+		"aws_vpc_dhcp_options_association":                         637,
+		"aws_vpc_endpoint":                                         638,
+		"aws_vpc_endpoint_connection_notification":                 639,
+		"aws_vpc_endpoint_route_table_association":                 640,
+		"aws_vpc_endpoint_service":                                 641,
+		"aws_vpc_endpoint_service_allowed_principal":               642,
+		"aws_vpc_endpoint_subnet_association":                      643,
+		"aws_vpc_ipv4_cidr_block_association":                      644,
+		"aws_vpc_peering_connection":                               645,
+		"aws_vpc_peering_connection_accepter":                      646,
+		"aws_vpc_peering_connection_options":                       647,
+		"aws_vpn_connection":                                       648,
+		"aws_vpn_connection_route":                                 649,
+		"aws_vpn_gateway":                                          650,
+		"aws_vpn_gateway_attachment":                               651,
+		"aws_vpn_gateway_route_propagation":                        652,
+		"aws_waf_byte_match_set":                                   653,
+		"aws_waf_geo_match_set":                                    654,
+		"aws_waf_ipset":                                            655,
+		"aws_waf_rate_based_rule":                                  656,
+		"aws_waf_regex_match_set":                                  657,
+		"aws_waf_regex_pattern_set":                                658,
+		"aws_waf_rule":                                             659,
+		"aws_waf_rule_group":                                       660,
+		"aws_waf_size_constraint_set":                              661,
+		"aws_waf_sql_injection_match_set":                          662,
+		"aws_waf_web_acl":                                          663,
+		"aws_waf_xss_match_set":                                    664,
+		"aws_wafregional_byte_match_set":                           665,
+		"aws_wafregional_geo_match_set":                            666,
+		"aws_wafregional_ipset":                                    667,
+		"aws_wafregional_rate_based_rule":                          668,
+		"aws_wafregional_regex_match_set":                          669,
+		"aws_wafregional_regex_pattern_set":                        670,
+		"aws_wafregional_rule":                                     671,
+		"aws_wafregional_rule_group":                               672,
+		"aws_wafregional_size_constraint_set":                      673,
+		"aws_wafregional_sql_injection_match_set":                  674,
+		"aws_wafregional_web_acl":                                  675,
+		"aws_wafregional_web_acl_association":                      676,
+		"aws_wafregional_xss_match_set":                            677,
+		"aws_wafv2_ip_set":                                         678,
+		"aws_wafv2_regex_pattern_set":                              679,
+		"aws_wafv2_rule_group":                                     680,
+		"aws_wafv2_web_acl":                                        681,
+		"aws_wafv2_web_acl_association":                            682,
+		"aws_wafv2_web_acl_logging_configuration":                  683,
+		"aws_worklink_fleet":                                       684,
+		"aws_worklink_website_certificate_authority_association":   685,
+		"aws_workspaces_directory":                                 686,
+		"aws_workspaces_ip_group":                                  687,
+		"aws_workspaces_workspace":                                 688,
+		"aws_xray_encryption_config":                               689,
+		"aws_xray_group":                                           690,
+		"aws_xray_sampling_rule":                                   691,
 	}
 )
 

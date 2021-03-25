@@ -17,7 +17,18 @@ func sync() error {
 	providersURL := "https://registry.terraform.io/v2/providers?filter[tier]=official,partner&page[number]=%d&page[size]=100"
 	page := 1
 	var finish bool
-	exportedProviders := make(map[string]Provider)
+	exportedProviders := map[string]Provider{
+		"flexibleengine": Provider{
+			Attributes: ProviderAttibutes{
+				Source: "https://github.com/FlexibleEngineCloud/terraform-provider-flexibleengine",
+			},
+		},
+		"openstack": Provider{
+			Attributes: ProviderAttibutes{
+				Source: "https://github.com/terraform-provider-openstack/terraform-provider-openstack",
+			},
+		},
+	}
 
 	for !finish {
 		url := fmt.Sprintf(providersURL, page)
@@ -154,24 +165,26 @@ type ProvidersResponse struct {
 }
 
 type Provider struct {
-	Type       string `json:"type"`
-	ID         string `json:"id"`
-	Attributes struct {
-		Alias         string `json:"alias"`
-		Description   string `json:"description"`
-		Downloads     int    `json:"downloads"`
-		Featured      bool   `json:"featured"`
-		FullName      string `json:"full-name"`
-		Name          string `json:"name"`
-		Namespace     string `json:"namespace"`
-		OwnerName     string `json:"owner-name"`
-		RobotsNoindex bool   `json:"robots-noindex"`
-		Source        string `json:"source"`
-		Tier          string `json:"tier"`
-		Unlisted      bool   `json:"unlisted"`
-		Warning       string `json:"warning"`
-	} `json:"attributes"`
-	Links struct {
+	Type       string            `json:"type"`
+	ID         string            `json:"id"`
+	Attributes ProviderAttibutes `json:"attributes"`
+	Links      struct {
 		Self string `json:"self"`
 	} `json:"links"`
+}
+
+type ProviderAttibutes struct {
+	Alias         string `json:"alias"`
+	Description   string `json:"description"`
+	Downloads     int    `json:"downloads"`
+	Featured      bool   `json:"featured"`
+	FullName      string `json:"full-name"`
+	Name          string `json:"name"`
+	Namespace     string `json:"namespace"`
+	OwnerName     string `json:"owner-name"`
+	RobotsNoindex bool   `json:"robots-noindex"`
+	Source        string `json:"source"`
+	Tier          string `json:"tier"`
+	Unlisted      bool   `json:"unlisted"`
+	Warning       string `json:"warning"`
 }

@@ -323,7 +323,7 @@ var (
 					Description: `(Required) The group ID of the configuration>`,
 				},
 				resource.Attribute{
-					Name:        "hostnames",
+					Name:        "host_names",
 					Description: `(Required) The list of hostnames protected by this security configuration. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
@@ -2057,6 +2057,148 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "akamai_networklist_activations",
+			Category:         "Network Lists",
+			ShortDescription: `NetworkLists`,
+			Description:      ``,
+			Keywords: []string{
+				"network",
+				"lists",
+				"networklist",
+				"activations",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "network_list_id",
+					Description: `(Required) The ID of the network list to be activated`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `(Optional) The network to be used, either ` + "`" + `STAGING` + "`" + ` or ` + "`" + `PRODUCTION` + "`" + `. If not supplied, defaults to ` + "`" + `STAGING` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "notes",
+					Description: `(Optional) A comment describing the activation.`,
+				},
+				resource.Attribute{
+					Name:        "notification_emails",
+					Description: `(Required) A bracketed, comma-separated list of email addresses that will be notified when the operation is complete. ## Attributes Reference In addition to the arguments above, the following attribute is exported:`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The string ` + "`" + `ACTIVATED` + "`" + ` if the activation was successful, or a string identifying the reason why the network list was not activated.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `The string ` + "`" + `ACTIVATED` + "`" + ` if the activation was successful, or a string identifying the reason why the network list was not activated.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_networklist_description",
+			Category:         "Network Lists",
+			ShortDescription: `NetworkLists`,
+			Description:      ``,
+			Keywords: []string{
+				"network",
+				"lists",
+				"networklist",
+				"description",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "network_list_id",
+					Description: `(Required) The unique ID of the network list to use.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name to be assigned to the network list.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required) The description to be assigned to the network list. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_networklist_network_list",
+			Category:         "Network Lists",
+			ShortDescription: `NetworkLists NetworkList`,
+			Description:      ``,
+			Keywords: []string{
+				"network",
+				"lists",
+				"networklist",
+				"list",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name to be assigned to the network list.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of the network list; must be either "IP" or "GEO".`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required) The description to be assigned to the network list.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `(Required) A string specifying the interpretation of the ` + "`" + `list` + "`" + ` parameter. Must be one of the following:`,
+				},
+				resource.Attribute{
+					Name:        "uniqueid",
+					Description: `The ID of the network list.`,
+				},
+				resource.Attribute{
+					Name:        "sync_point",
+					Description: `An integer that identifies the current version of the network list; this value is incremented each time the list is modified.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uniqueid",
+					Description: `The ID of the network list.`,
+				},
+				resource.Attribute{
+					Name:        "sync_point",
+					Description: `An integer that identifies the current version of the network list; this value is incremented each time the list is modified.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_networklist_subscription",
+			Category:         "Network List Subscription",
+			ShortDescription: `NetworkLists`,
+			Description:      ``,
+			Keywords: []string{
+				"network",
+				"list",
+				"subscription",
+				"networklist",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "network_list",
+					Description: `(Required) A list containing one or more IDs of the network lists to which the indicated email addresses should be subscribed.`,
+				},
+				resource.Attribute{
+					Name:        "recipients",
+					Description: `(Required) A bracketed, comma-separated list of email addresses that will be notified of changes to any of the specified network lists. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "akamai_property",
 			Category:         "Provisioning",
 			ShortDescription: `Create and update Akamai properties.`,
@@ -2142,8 +2284,12 @@ var (
 		"akamai_gtm_property":                            53,
 		"akamai_gtm_resource":                            54,
 		"akamai_iam_user":                                55,
-		"akamai_property":                                56,
-		"akamai_property_activation":                     57,
+		"akamai_networklist_activations":                 56,
+		"akamai_networklist_description":                 57,
+		"akamai_networklist_network_list":                58,
+		"akamai_networklist_subscription":                59,
+		"akamai_property":                                60,
+		"akamai_property_activation":                     61,
 	}
 )
 

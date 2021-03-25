@@ -2598,6 +2598,10 @@ var (
 					Description: `(Optional) The disk provisioning. If set, all the disks in the deployed OVF will have the same specified disk type (accepted values {thin, flat, thick, sameAsSource}).`,
 				},
 				resource.Attribute{
+					Name:        "deployment_option",
+					Description: `(Optional) The key of the chosen deployment option. If empty, the default option is chosen.`,
+				},
+				resource.Attribute{
 					Name:        "ovf_network_map",
 					Description: `(Optional) The mapping of name of network identifiers from the ovf descriptor to network UUID in the VI infrastructure.`,
 				},

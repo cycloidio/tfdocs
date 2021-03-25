@@ -1576,7 +1576,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) VPC ID of the Security VPC.`,
+					Description: `(Required) VPC ID of the Security VPC. For GCP, ` + "`" + `vpc_id` + "`" + ` must be in the form vpc_id~-~gcloud_project_id.`,
 				},
 				resource.Attribute{
 					Name:        "firenet_gw_name",
@@ -1588,7 +1588,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "firewall_image",
-					Description: `(Required) One of the AWS/Azure AMIs from Palo Alto Networks.`,
+					Description: `(Required) One of the AWS/Azure/GCP AMIs from various vendors such as Palo Alto Networks.`,
 				},
 				resource.Attribute{
 					Name:        "firewall_size",
@@ -1596,11 +1596,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "management_subnet",
-					Description: `(Optional) Management Interface Subnet. Select the subnet whose name contains “gateway and firewall management”. Required for Palo Alto Networks VM-Series, and required to be empty for Check Point or Fortinet series.`,
+					Description: `(Optional) Management Interface Subnet. Select the subnet whose name contains “gateway and firewall management”. For GCP, ` + "`" + `management_subnet` + "`" + ` must be in the form ` + "`" + `cidr~~region~~name` + "`" + `. Required for Palo Alto Networks VM-Series, and required to be empty for Check Point or Fortinet series.`,
 				},
 				resource.Attribute{
 					Name:        "egress_subnet",
-					Description: `(Required) Egress Interface Subnet. Select the subnet whose name contains “FW-ingress-egress”.`,
+					Description: `(Required) Egress Interface Subnet. Select the subnet whose name contains “FW-ingress-egress”. For GCP, ` + "`" + `egress_subnet` + "`" + ` must be in the form ` + "`" + `cidr~~region~~name` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "firewall_image_version",
@@ -1608,7 +1608,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone",
-					Description: `(Optional) Availability Zone. Required if creating a Firewall Instance with a Native AWS GWLB enabled VPC. Applicable to Azure and AWS only. Available as of provider version R2.17+. ### Authentication method`,
+					Description: `(Optional) Availability Zone. Required if creating a Firewall Instance with a Native AWS GWLB-enabled VPC. Applicable to AWS, Azure, and GCP only. Available as of provider version R2.17+.`,
+				},
+				resource.Attribute{
+					Name:        "management_vpc_id",
+					Description: `(Optional) Management VPC ID. Required for GCP. Available as of provider version R2.18.1+.`,
+				},
+				resource.Attribute{
+					Name:        "egress_vpc_id",
+					Description: `(Optional) Egress VPC ID. Required for GCP. Available as of provider version R2.18.1+. Valid ` + "`" + `firewall_image` + "`" + ` values:`,
 				},
 				resource.Attribute{
 					Name:        "ssh_public_key",
@@ -1616,7 +1624,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "iam_role",
-					Description: `(Optional) Only available for AWS. In advanced mode, create an IAM Role on the AWS account that launched the FireNet gateway. Create a policy to attach to the role. The policy is to allow access to “Bootstrap Bucket”.`,
+					Description: `(Optional) Only available for AWS. In advanced mode, create an IAM Role on the AWS account that launched the FireNet gateway. Create a policy to attach to the role. The policy is to allow access to "Bootstrap Bucket".`,
 				},
 				resource.Attribute{
 					Name:        "bootstrap_storage_name",
@@ -1656,10 +1664,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Mapping of key value pairs of tags for a firewall instance. Only available for AWS, AWSGov and Azure firewall instances. Allowed characters are: letters, spaces, and numbers plus the following special characters: + - = . _ : @. Example: {"key1" = "value1", "key2" = "value2"}. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Mapping of key value pairs of tags for a firewall instance. Only available for AWS, AWSGov, GCP and Azure firewall instances. For AWS, AWSGOV and Azure allowed characters are: letters, spaces, and numbers plus the following special characters: + - = . _ : @. For GCP allowed characters are: lowercase letters, numbers, "-" and "_". Example: {"key1" = "value1", "key2" = "value2"}. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "cloud_type",
+					Description: `Cloud Type.`,
+				},
+				resource.Attribute{
+					Name:        "gcp_vpc_id",
+					Description: `GCP Only. The current VPC ID. ## Import`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cloud_type",
+					Description: `Cloud Type.`,
+				},
+				resource.Attribute{
+					Name:        "gcp_vpc_id",
+					Description: `GCP Only. The current VPC ID. ## Import`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2115,11 +2140,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "monitor_exclude_list",
-					Description: `(Optional) Set of monitored instance ids. Only valid when 'enable_monitor_gateway_subnets' = true. Available in provider version R2.17.1+. ### FQDN Gateway ~>`,
+					Description: `(Optional) Set of monitored instance ids. Only valid when 'enable_monitor_gateway_subnets' = true. Available in provider version R2.17.1+. ### FQDN Gateway`,
 				},
 				resource.Attribute{
 					Name:        "fqdn_lan_cidr",
-					Description: `(Optional) If ` + "`" + `fqdn_lan_cidr` + "`" + ` is set, the FQDN gateway will be created with an additional LAN interface using the provided CIDR. This attribute is required when enabling FQDN gateway FireNet in Azure. Available in provider version R2.17.1+. ### Misc.`,
+					Description: `(Optional) If ` + "`" + `fqdn_lan_cidr` + "`" + ` is set, the FQDN gateway will be created with an additional LAN interface using the provided CIDR. This attribute is required when enabling FQDN gateway FireNet in Azure or GCP. Available in provider version R2.17.1+.`,
+				},
+				resource.Attribute{
+					Name:        "fqdn_lan_vpc_id",
+					Description: `(Optional) FQDN LAN VPC ID. This attribute is required when enabling FQDN gateway FireNet in GCP. Available as of provider version R2.18.1+. ### Misc.`,
 				},
 				resource.Attribute{
 					Name:        "allocate_new_eip",
@@ -2128,10 +2157,6 @@ var (
 				resource.Attribute{
 					Name:        "eip",
 					Description: `(Optional) Specified EIP to use for gateway creation. Required when ` + "`" + `allocate_new_eip` + "`" + ` is false. Available in Controller version 3.5+. Only supported for AWS and GCP gateways.`,
-				},
-				resource.Attribute{
-					Name:        "tag_list",
-					Description: `(Optional) Tag list of the gateway instance. Only available for AWS, AWSGov and Azure gateways. Example: ["key1:value1", "key2:value2"].`,
 				},
 				resource.Attribute{
 					Name:        "enable_vpc_dns_server",
@@ -2143,7 +2168,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_jumbo_frame",
-					Description: `(Optional) Enable jumbo frames for this gateway. Default value is true. ### Public Subnet Filtering Gateway ~>`,
+					Description: `(Optional) Enable jumbo frames for this gateway. Default value is true.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Map of tags to assign to the gateway. Only available for AWS, AWSGOV and Azure gateway. Allowed characters vary by cloud type but always include: letters, spaces, and numbers. AWS and AWSGOV allow the following special characters: + - = . _ : / @. Azure allows the following special characters: + - = . _ : @. Example: {"key1" = "value1", "key2" = "value2"}. ### Public Subnet Filtering Gateway ~>`,
 				},
 				resource.Attribute{
 					Name:        "enable_public_subnet_filtering",
@@ -2263,7 +2292,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "peering_ha_public_ip",
-					Description: `Public IP address of the peering HA Gateway created. ## Import`,
+					Description: `Public IP address of the peering HA Gateway created.`,
+				},
+				resource.Attribute{
+					Name:        "tag_list",
+					Description: `(Optional) Tag list of the gateway instance. Only available for AWS, AWSGov and Azure gateways. Example: ["key1:value1", "key2:value2"]. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2369,7 +2402,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "peering_ha_public_ip",
-					Description: `Public IP address of the peering HA Gateway created. ## Import`,
+					Description: `Public IP address of the peering HA Gateway created.`,
+				},
+				resource.Attribute{
+					Name:        "tag_list",
+					Description: `(Optional) Tag list of the gateway instance. Only available for AWS, AWSGov and Azure gateways. Example: ["key1:value1", "key2:value2"]. ## Import`,
 				},
 			},
 		},
@@ -3235,27 +3272,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "monitor_exclude_list",
-					Description: `(Optional) Set of monitored instance ids. Only valid when 'enable_monitor_gateway_subnets' = true. Available in provider version R2.18+. ### OOB`,
+					Description: `(Optional) Set of monitored instance ids. Only valid when 'enable_monitor_gateway_subnets' = true. Available in provider version R2.18+. ### [Private OOB](https://docs.aviatrix.com/HowTos/private_oob.html)`,
 				},
 				resource.Attribute{
 					Name:        "enable_private_oob",
-					Description: `(Optional) Enable private OOB. Only available for AWS and AWSGOV. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) Enable Private OOB feature. Only available for AWS and AWSGOV. Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "oob_management_subnet",
-					Description: `(Optional) OOB management subnet. Required if enabling private OOB. Example: "11.0.2.0/24".`,
+					Description: `(Optional) OOB management subnet. Required if enabling Private OOB. Example: "11.0.2.0/24".`,
 				},
 				resource.Attribute{
 					Name:        "oob_availability_zone",
-					Description: `(Optional) OOB availability zone. Required if enabling private OOB. Example: "us-west-1a".`,
+					Description: `(Optional) OOB availability zone. Required if enabling Private OOB. Example: "us-west-1a".`,
 				},
 				resource.Attribute{
 					Name:        "ha_oob_management_subnet",
-					Description: `(Optional) HA OOB management subnet. Required if enabling private OOB and HA. Example: "11.0.0.48/28".`,
+					Description: `(Optional) HA OOB management subnet. Required if enabling Private OOB and HA. Example: "11.0.0.48/28".`,
 				},
 				resource.Attribute{
 					Name:        "ha_oob_availability_zone",
-					Description: `(Optional) HA OOB availability zone. Required if enabling private OOB and HA. Example: "us-west-1b". ### Misc. !>`,
+					Description: `(Optional) HA OOB availability zone. Required if enabling Private OOB and HA. Example: "us-west-1b". ### Misc. !>`,
 				},
 				resource.Attribute{
 					Name:        "allocate_new_eip",
@@ -3264,10 +3301,6 @@ var (
 				resource.Attribute{
 					Name:        "eip",
 					Description: `(Optional) Required when ` + "`" + `allocate_new_eip` + "`" + ` is false. It uses the specified EIP for this gateway. Available in Controller 4.7+. Only available for AWS, GCP and AWSGOV.`,
-				},
-				resource.Attribute{
-					Name:        "tag_list",
-					Description: `(Optional) Instance tag of cloud provider. Only supported for AWS, AWSGOV and Azure. Example: ["key1:value1", "key2:value2"].`,
 				},
 				resource.Attribute{
 					Name:        "enable_active_mesh",
@@ -3291,7 +3324,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_jumbo_frame",
-					Description: `(Optional) Enable jumbo frames for this spoke gateway. Default value is true. ->`,
+					Description: `(Optional) Enable jumbo frames for this spoke gateway. Default value is true.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Map of tags to assign to the gateway. Only available for AWS, AWSGOV and Azure gateway. Allowed characters vary by cloud type but always include: letters, spaces, and numbers. AWS and AWSGOV allow the following special characters: + - = . _ : / @. Azure allows the following special characters: + - = . _ : @. Example: {"key1" = "value1", "key2" = "value2"}. ->`,
 				},
 				resource.Attribute{
 					Name:        "manage_transit_gateway_attachment",
@@ -3431,7 +3468,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "exclude_rtb",
-					Description: `(Optional) This field specifies which VPC private route table will not be programmed with the default route entry. ## Import`,
+					Description: `(Optional) This field specifies which VPC private route table will not be programmed with the default route entry.`,
+				},
+				resource.Attribute{
+					Name:        "tag_list",
+					Description: `(Optional) Instance tag of cloud provider. Only supported for AWS, AWSGOV and Azure. Example: ["key1:value1", "key2:value2"]. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3569,7 +3610,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "exclude_rtb",
-					Description: `(Optional) This field specifies which VPC private route table will not be programmed with the default route entry. ## Import`,
+					Description: `(Optional) This field specifies which VPC private route table will not be programmed with the default route entry.`,
+				},
+				resource.Attribute{
+					Name:        "tag_list",
+					Description: `(Optional) Instance tag of cloud provider. Only supported for AWS, AWSGOV and Azure. Example: ["key1:value1", "key2:value2"]. ## Import`,
 				},
 			},
 		},
@@ -4021,6 +4066,10 @@ var (
 					Description: `(Optional) Sign of readiness for FireNet connection. Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
+					Name:        "enable_transit_summarize_cidr_to_tgw",
+					Description: `(Optional) Enable summarize CIDR to TGW. Valid values: true, false. Default value: false. ->`,
+				},
+				resource.Attribute{
 					Name:        "enable_transit_firenet",
 					Description: `(Optional) Sign of readiness for [Transit FireNet](https://docs.aviatrix.com/HowTos/transit_firenet_faq.html) connection. Valid values: true, false. Default value: false. Available in provider version R2.12+.`,
 				},
@@ -4102,27 +4151,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "monitor_exclude_list",
-					Description: `(Optional) Set of monitored instance ids. Only valid when 'enable_monitor_gateway_subnets' = true. Available in provider version R2.18+. ### OOB`,
+					Description: `(Optional) Set of monitored instance ids. Only valid when 'enable_monitor_gateway_subnets' = true. Available in provider version R2.18+. ### [Private OOB](https://docs.aviatrix.com/HowTos/private_oob.html)`,
 				},
 				resource.Attribute{
 					Name:        "enable_private_oob",
-					Description: `(Optional) Enable private OOB. Only available for AWS and AWSGOV. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) Enable Private OOB feature. Only available for AWS and AWSGOV. Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "oob_management_subnet",
-					Description: `(Optional) OOB management subnet. Required if enabling private OOB. Example: "11.0.2.0/24".`,
+					Description: `(Optional) OOB management subnet. Required if enabling Private OOB. Example: "11.0.2.0/24".`,
 				},
 				resource.Attribute{
 					Name:        "oob_availability_zone",
-					Description: `(Optional) OOB availability zone. Required if enabling private OOB. Example: "us-west-1a".`,
+					Description: `(Optional) OOB availability zone. Required if enabling Private OOB. Example: "us-west-1a".`,
 				},
 				resource.Attribute{
 					Name:        "ha_oob_management_subnet",
-					Description: `(Optional) HA OOB management subnet. Required if enabling private OOB and HA. Example: "11.0.0.48/28".`,
+					Description: `(Optional) HA OOB management subnet. Required if enabling Private OOB and HA. Example: "11.0.0.48/28".`,
 				},
 				resource.Attribute{
 					Name:        "ha_oob_availability_zone",
-					Description: `(Optional) HA OOB availability zone. Required if enabling private OOB and HA. Example: "us-west-1b". ### Misc.`,
+					Description: `(Optional) HA OOB availability zone. Required if enabling Private OOB and HA. Example: "us-west-1b". ### Misc.`,
 				},
 				resource.Attribute{
 					Name:        "allocate_new_eip",
@@ -4131,10 +4180,6 @@ var (
 				resource.Attribute{
 					Name:        "eip",
 					Description: `(Optional) Required when ` + "`" + `allocate_new_eip` + "`" + ` is false. It uses the specified EIP for this gateway. Available in Controller version 4.7+. Only available for AWS and GCP.`,
-				},
-				resource.Attribute{
-					Name:        "tag_list",
-					Description: `(Optional) Instance tag of cloud provider. Only supported for AWS, AWSGOV and Azure. Example: ["key1:value1","key2:value2"].`,
 				},
 				resource.Attribute{
 					Name:        "enable_active_mesh",
@@ -4154,7 +4199,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_jumbo_frame",
-					Description: `(Optional) Enable jumbo frames for this transit gateway. Default value is true. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Enable jumbo frames for this transit gateway. Default value is true.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Map of tags to assign to the gateway. Only available for AWS, AWSGOV and Azure gateway. Allowed characters vary by cloud type but always include: letters, spaces, and numbers. AWS and AWSGOV allow the following special characters: + - = . _ : / @. Azure allows the following special characters: + - = . _ : @. Example: {"key1" = "value1", "key2" = "value2"}. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "eip",
@@ -4190,11 +4239,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "lan_interface_cidr",
-					Description: `Lan interface cidr of the transit gateway created (will be used when enabling FQDN Firenet in Azure). Available in provider version R2.17.1+.`,
+					Description: `LAN interface CIDR of the transit gateway created (will be used when enabling FQDN Firenet in Azure). Available in provider version R2.17.1+.`,
 				},
 				resource.Attribute{
 					Name:        "ha_lan_interface_cidr",
-					Description: `Lan interface cidr of the HA transit gateway created (will be used when enabling FQDN Firenet in Azure). Available in provider version R2.18+. The following arguments are deprecated:`,
+					Description: `LAN interface CIDR of the HA transit gateway created (will be used when enabling FQDN Firenet in Azure). Available in provider version R2.18+. The following arguments are deprecated:`,
 				},
 				resource.Attribute{
 					Name:        "enable_firenet_interfaces",
@@ -4202,7 +4251,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_snat",
-					Description: `(Optional) Enable Source NAT for this container. Valid values: true, false. ## Import`,
+					Description: `(Optional) Enable Source NAT for this container. Valid values: true, false.`,
+				},
+				resource.Attribute{
+					Name:        "tag_list",
+					Description: `(Optional) Instance tag of cloud provider. Only supported for AWS, AWSGOV and Azure. Example: ["key1:value1","key2:value2"]. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4240,11 +4293,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "lan_interface_cidr",
-					Description: `Lan interface cidr of the transit gateway created (will be used when enabling FQDN Firenet in Azure). Available in provider version R2.17.1+.`,
+					Description: `LAN interface CIDR of the transit gateway created (will be used when enabling FQDN Firenet in Azure). Available in provider version R2.17.1+.`,
 				},
 				resource.Attribute{
 					Name:        "ha_lan_interface_cidr",
-					Description: `Lan interface cidr of the HA transit gateway created (will be used when enabling FQDN Firenet in Azure). Available in provider version R2.18+. The following arguments are deprecated:`,
+					Description: `LAN interface CIDR of the HA transit gateway created (will be used when enabling FQDN Firenet in Azure). Available in provider version R2.18+. The following arguments are deprecated:`,
 				},
 				resource.Attribute{
 					Name:        "enable_firenet_interfaces",
@@ -4252,7 +4305,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_snat",
-					Description: `(Optional) Enable Source NAT for this container. Valid values: true, false. ## Import`,
+					Description: `(Optional) Enable Source NAT for this container. Valid values: true, false.`,
+				},
+				resource.Attribute{
+					Name:        "tag_list",
+					Description: `(Optional) Instance tag of cloud provider. Only supported for AWS, AWSGOV and Azure. Example: ["key1:value1","key2:value2"]. ## Import`,
 				},
 			},
 		},

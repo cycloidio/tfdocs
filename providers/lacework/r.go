@@ -954,12 +954,8 @@ var (
 					Description: `(Required) The Amazon Container Registry (ECR) domain in the format ` + "`" + `YourAWSAccount.dkr.ecr.YourRegion.amazonaws.com` + "`" + `, where ` + "`" + `YourAWSAcount` + "`" + ` is the AWS account number for the AWS IAM user that has a role with permissions to access the ECR and ` + "`" + `YourRegion` + "`" + ` is your AWS region such as ` + "`" + `us-west-2` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "access_key_id",
-					Description: `(Required) The AWS access key ID for an AWS IAM user that has a role with permissions to access the Amazon Container Registry (ECR).`,
-				},
-				resource.Attribute{
-					Name:        "secret_access_key",
-					Description: `(Required) The AWS secret key for the specified AWS access key.`,
+					Name:        "credentials",
+					Description: `(Required) The credentials needed by the integration. See [Credentials](#credentials) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "limit_by_tag",
@@ -979,7 +975,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `. ## Import A Lacework ECR integration can be imported using a ` + "`" + `INT_GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_integration_ecr.example EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ` ->`,
+					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `. ### Credentials ` + "`" + `credentials` + "`" + ` supports the combination of the following arguments.`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `The ARN of the IAM role with permissions to access the Amazon Container Registry (ECR).`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `The external ID for the IAM role.`,
+				},
+				resource.Attribute{
+					Name:        "access_key_id",
+					Description: `The AWS access key ID for an AWS IAM user that has a role with permissions to access the Amazon Container Registry (ECR).`,
+				},
+				resource.Attribute{
+					Name:        "secret_access_key",
+					Description: `The AWS secret key for the specified AWS access key. ## Import A Lacework ECR integration can be imported using a ` + "`" + `INT_GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_integration_ecr.example EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{},

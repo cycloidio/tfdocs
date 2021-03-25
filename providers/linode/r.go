@@ -144,11 +144,19 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "label",
-					Description: `(Optional) This Firewall's unique label.`,
+					Description: `(Required) This Firewall's unique label.`,
 				},
 				resource.Attribute{
 					Name:        "disabled",
 					Description: `(Optional) If ` + "`" + `true` + "`" + `, the Firewall's rules are not enforced (defaults to ` + "`" + `false` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "inbound_policy",
+					Description: `(Required) The default behavior for inbound traffic. This setting can be overridden by updating the inbound.action property of the Firewall Rule.`,
+				},
+				resource.Attribute{
+					Name:        "outbound_policy",
+					Description: `(Required) The default behavior for outbound traffic. This setting can be overridden by updating the action property for an individual Firewall Rule.`,
 				},
 				resource.Attribute{
 					Name:        "linodes",
@@ -159,20 +167,28 @@ var (
 					Description: `(Optional) A list of tags applied to the Kubernetes cluster. Tags are for organizational purposes only. ### inbound and outbound The following arguments are supported in the inbound and outbound rule blocks:`,
 				},
 				resource.Attribute{
-					Name:        "ports",
-					Description: `(Optional) A string representation of ports and/or port ranges (i.e. "443" or "80-90, 91").`,
+					Name:        "label",
+					Description: `(required) Used to identify this rule. For display purposes only.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(required) Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
 					Description: `(Required) The network protocol this rule controls.`,
 				},
 				resource.Attribute{
+					Name:        "ports",
+					Description: `(Optional) A string representation of ports and/or port ranges (i.e. "443" or "80-90, 91").`,
+				},
+				resource.Attribute{
 					Name:        "ipv4",
-					Description: `(Optional) A list of IP addresses, CIDR blocks, or 0.0.0.0/0 (to allow all) this rule applies to.`,
+					Description: `(Optional) A list of IPv4 addresses or networks. Must be in IP/mask format.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6",
-					Description: `(Optional) A list of IPv6 addresses or networks this rule applies to. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) A list of IPv6 addresses or networks. Must be in IP/mask format. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -888,11 +904,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssl_commonname",
-					Description: `The common name for the SSL certification this port is serving if this port is not configured to use SSL.`,
+					Description: `The read-only common name automatically derived from the SSL certificate assigned to this NodeBalancerConfig. Please refer to this field to verify that the appropriate certificate is assigned to your NodeBalancerConfig.`,
 				},
 				resource.Attribute{
 					Name:        "ssl_fingerprint",
-					Description: `The fingerprint for the SSL certification this port is serving if this port is not configured to use SSL.`,
+					Description: `The read-only fingerprint automatically derived from the SSL certificate assigned to this NodeBalancerConfig. Please refer to this field to verify that the appropriate certificate is assigned to your NodeBalancerConfig.`,
 				},
 				resource.Attribute{
 					Name:        "up",
@@ -974,6 +990,14 @@ var (
 				resource.Attribute{
 					Name:        "label",
 					Description: `(Required) The label of the Linode Object Storage Bucket.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `(Optional) The Access Control Level of the bucket using a canned ACL string. See all ACL strings [in the Linode API v4 documentation](linode.com/docs/api/object-storage/#object-storage-bucket-access-update__request-body-schema).`,
+				},
+				resource.Attribute{
+					Name:        "cors_enabled",
+					Description: `(Optional) If true, the bucket will have CORS enabled for all origins.`,
 				},
 				resource.Attribute{
 					Name:        "certificate",

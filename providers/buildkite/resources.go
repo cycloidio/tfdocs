@@ -59,79 +59,9 @@ This resource allows you to create and manage pipelines for repositories.
 Buildkite Documentation: https://buildkite.com/docs/pipelines
 
 `,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The name of the pipeline.`,
-				},
-				resource.Attribute{
-					Name:        "repository",
-					Description: `(Required) The git URL of the repository.`,
-				},
-				resource.Attribute{
-					Name:        "steps",
-					Description: `(Required) The string YAML steps to run the pipeline.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `(Optional) A description of the pipeline.`,
-				},
-				resource.Attribute{
-					Name:        "default_branch",
-					Description: `(Optional) The default branch to prefill when new builds are created or triggered, usually main or master but can be anything.`,
-				},
-				resource.Attribute{
-					Name:        "branch_configuration",
-					Description: `(Optional) Limit which branches and tags cause new builds to be created, either via a code push or via the Builds REST API.`,
-				},
-				resource.Attribute{
-					Name:        "skip_intermediate_builds",
-					Description: `(Optional, Default: ` + "`" + `false` + "`" + ` ) A boolean to enable automatically skipping any unstarted builds on the same branch when a new build is created.`,
-				},
-				resource.Attribute{
-					Name:        "skip_intermediate_builds_branch_filter",
-					Description: `(Optional) Limit which branches build skipping applies to, for example !master will ensure that the master branch won't have it's builds automatically skipped.`,
-				},
-				resource.Attribute{
-					Name:        "cancel_intermediate_builds",
-					Description: `(Optional, Default: ` + "`" + `false` + "`" + ` ) A boolean to enable automtically cancelling any running builds on the same branch when a new build is created.`,
-				},
-				resource.Attribute{
-					Name:        "cancel_intermediate_builds_branch_filter",
-					Description: `(Optional) Limit which branches build cancelling applies to, for example !master will ensure that the master branch won't have it's builds automatically cancelled.`,
-				},
-				resource.Attribute{
-					Name:        "team",
-					Description: `(Optional) Set team access for the pipeline. Can be specified multiple times for each team. ### Team The ` + "`" + `team` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "slug",
-					Description: `(Required) The buildkite slug of the team.`,
-				},
-				resource.Attribute{
-					Name:        "access_level",
-					Description: `(Required) The level of access to grant. Must be one of ` + "`" + `READ_ONLY` + "`" + `, ` + "`" + `BUILD_AND_READ` + "`" + ` or ` + "`" + `MANAGE_BUILD_AND_READ` + "`" + `. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "webhook_url",
-					Description: `The Buildkite webhook URL to configure on the repository to trigger builds on this pipeline.`,
-				},
-				resource.Attribute{
-					Name:        "slug",
-					Description: `The slug of the created pipeline. ## Import Pipelines can be imported using the ` + "`" + `GraphQL ID` + "`" + ` (not UUID), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import buildkite_pipeline.fleet UGlwZWxpbmUtLS00MzVjYWQ1OC1lODFkLTQ1YWYtODYzNy1iMWNmODA3MDIzOGQ= ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "webhook_url",
-					Description: `The Buildkite webhook URL to configure on the repository to trigger builds on this pipeline.`,
-				},
-				resource.Attribute{
-					Name:        "slug",
-					Description: `The slug of the created pipeline. ## Import Pipelines can be imported using the ` + "`" + `GraphQL ID` + "`" + ` (not UUID), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import buildkite_pipeline.fleet UGlwZWxpbmUtLS00MzVjYWQ1OC1lODFkLTQ1YWYtODYzNy1iMWNmODA3MDIzOGQ= ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",

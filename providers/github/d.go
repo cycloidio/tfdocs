@@ -543,7 +543,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "repo_id",
-					Description: `Github ID for the repository`,
+					Description: `GitHub ID for the repository`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -637,7 +637,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "repo_id",
-					Description: `Github ID for the repository`,
+					Description: `GitHub ID for the repository`,
 				},
 			},
 		},

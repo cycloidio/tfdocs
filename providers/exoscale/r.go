@@ -171,7 +171,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_ids",
-					Description: `A list of [Private Network][privnetnet-doc] IDs. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
+					Description: `A list of [Private Network][privnet-doc] IDs.`,
+				},
+				resource.Attribute{
+					Name:        "elastic_ip_ids",
+					Description: `A list of [Elastic IP][eip-doc] IDs. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
 				},
 			},
 			Attributes: []resource.Attribute{},

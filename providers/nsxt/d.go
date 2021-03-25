@@ -1344,7 +1344,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "site_path",
-					Description: `(Optional) The path of the site which the resource belongs to, this configuration is required for global manager only. ` + "`" + `path` + "`" + ` field of the existing ` + "`" + `nsxt_policy_site` + "`" + ` can be used here. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Optional) The path of the site which the resource belongs to, this configuration is required for global manager only. ` + "`" + `path` + "`" + ` field of the existing ` + "`" + `nsxt_policy_site` + "`" + ` can be used here.`,
+				},
+				resource.Attribute{
+					Name:        "delay",
+					Description: `(Optional) Delay (in seconds) before realization polling is started. Default is set to 1.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) Timeout (in seconds) for realization polling. Default is set to 1200. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "state",

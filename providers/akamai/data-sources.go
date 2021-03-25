@@ -2358,6 +2358,62 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "akamai_networklist_network_lists",
+			Category:         "Network Lists",
+			ShortDescription: `NetworkLists`,
+			Description:      ``,
+			Keywords: []string{
+				"network",
+				"lists",
+				"networklist",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of a specific network list to retrieve. If not supplied, information about all network lists will be returned.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) The type of network lists to be retrieved; must be either "IP" or "GEO". If not supplied, information about both types will be returned. The following arguments are supported: ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "uniqueid",
+					Description: `A list containing the IDs of the specified network list(s).`,
+				},
+				resource.Attribute{
+					Name:        "json",
+					Description: `A JSON-formatted list of information about the specified network list(s).`,
+				},
+				resource.Attribute{
+					Name:        "output_text",
+					Description: `A tabular display showing the network list information.`,
+				},
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of the IP addresses or locations included in the specified network list(s).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uniqueid",
+					Description: `A list containing the IDs of the specified network list(s).`,
+				},
+				resource.Attribute{
+					Name:        "json",
+					Description: `A JSON-formatted list of information about the specified network list(s).`,
+				},
+				resource.Attribute{
+					Name:        "output_text",
+					Description: `A tabular display showing the network list information.`,
+				},
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of the IP addresses or locations included in the specified network list(s).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "akamai_properties",
 			Category:         "Provisioning",
 			ShortDescription: `Properties`,
@@ -2487,11 +2543,12 @@ var (
 		"akamai_iam_supported_langs":                     53,
 		"akamai_iam_timeout_policies":                    54,
 		"akamai_iam_timezones":                           55,
-		"akamai_properties":                              56,
-		"akamai_property_products":                       57,
-		"akamai_property_rule_formats":                   58,
-		"akamai_property_rules":                          59,
-		"akamai_property_rules_template":                 60,
+		"akamai_networklist_network_lists":               56,
+		"akamai_properties":                              57,
+		"akamai_property_products":                       58,
+		"akamai_property_rule_formats":                   59,
+		"akamai_property_rules":                          60,
+		"akamai_property_rules_template":                 61,
 	}
 )
 

@@ -495,15 +495,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "source",
-					Description: `Field where the data is being copied from.`,
+					Description: `Field where the data is being copied from. Must be a [PagerDuty Common Event Format (PD-CEF)](https://support.pagerduty.com/docs/pd-cef) field.`,
 				},
 				resource.Attribute{
 					Name:        "target",
-					Description: `Field where the data is being copied to.`,
+					Description: `Field where the data is being copied to. Must be a [PagerDuty Common Event Format (PD-CEF)](https://support.pagerduty.com/docs/pd-cef) field.`,
 				},
 				resource.Attribute{
 					Name:        "regex",
-					Description: `The conditions that need to be met for the extraction to happen.`,
+					Description: `The conditions that need to be met for the extraction to happen. Must use valid [RE2 regular expression syntax](https://github.com/google/re2/wiki/Syntax).`,
+				},
+				resource.Attribute{
+					Name:        "template",
+					Description: `A customized field message. This can also include variables extracted from the payload by using string interpolation.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `Field where the data is being copied to. Must be a [PagerDuty Common Event Format (PD-CEF)](https://support.pagerduty.com/docs/pd-cef) field.`,
 				},
 				resource.Attribute{
 					Name:        "value",

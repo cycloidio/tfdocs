@@ -3012,6 +3012,10 @@ var (
 					Description: `(Optional, ForceNew) File service protocol. Valid values are ` + "`" + `NFS` + "`" + ` and ` + "`" + `CIFS` + "`" + `. and the default is ` + "`" + `NFS` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "storage_type",
+					Description: `(Optional, ForceNew) File service StorageType. Valid values are ` + "`" + `SD` + "`" + ` and ` + "`" + `HP` + "`" + `. and the default is ` + "`" + `SD` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Instance tags. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
@@ -7290,6 +7294,10 @@ var (
 					Description: `(Optional, ForceNew) Associate a public IP address with an instance in a VPC or Classic. Boolean value, Default is false.`,
 				},
 				resource.Attribute{
+					Name:        "cam_role_name",
+					Description: `(Optional, ForceNew) CAM role name authorized to access.`,
+				},
+				resource.Attribute{
 					Name:        "data_disks",
 					Description: `(Optional, ForceNew) Settings for data disks.`,
 				},
@@ -7522,6 +7530,137 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "tencentcloud_kms_external_key",
+			Category:         "KMS",
+			ShortDescription: `Provide a resource to create a KMS external key.`,
+			Description:      ``,
+			Keywords: []string{
+				"kms",
+				"external",
+				"key",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "alias",
+					Description: `(Required) Name of CMK. The name can only contain English letters, numbers, underscore and hyphen '-'. The first character must be a letter or number.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of CMK. The maximum is 1024 bytes.`,
+				},
+				resource.Attribute{
+					Name:        "is_archived",
+					Description: `(Optional) Specify whether to archive key. Default value is ` + "`" + `false` + "`" + `. This field is conflict with ` + "`" + `is_enabled` + "`" + `, valid when key_state is ` + "`" + `Enabled` + "`" + `, ` + "`" + `Disabled` + "`" + `, ` + "`" + `Archived` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional) Specify whether to enable key. Default value is ` + "`" + `false` + "`" + `. This field is conflict with ` + "`" + `is_archived` + "`" + `, valid when key_state is ` + "`" + `Enabled` + "`" + `, ` + "`" + `Disabled` + "`" + `, ` + "`" + `Archived` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "key_material_base64",
+					Description: `(Optional) The base64-encoded key material encrypted with the public_key. For regions using the national secret version, the length of the imported key material is required to be 128 bits, and for regions using the FIPS version, the length of the imported key material is required to be 256 bits.`,
+				},
+				resource.Attribute{
+					Name:        "pending_delete_window_in_days",
+					Description: `(Optional) Duration in days after which the key is deleted after destruction of the resource, must be between 7 and 30 days. Defaults to 7 days.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags of CMK.`,
+				},
+				resource.Attribute{
+					Name:        "valid_to",
+					Description: `(Optional) This value means the effective timestamp of the key material, 0 means it does not expire. Need to be greater than the current timestamp, the maximum support is 2147443200.`,
+				},
+				resource.Attribute{
+					Name:        "wrapping_algorithm",
+					Description: `(Optional) The algorithm for encrypting key material. Available values include ` + "`" + `RSAES_PKCS1_V1_5` + "`" + `, ` + "`" + `RSAES_OAEP_SHA_1` + "`" + ` and ` + "`" + `RSAES_OAEP_SHA_256` + "`" + `. Default value is ` + "`" + `RSAES_PKCS1_V1_5` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "key_state",
+					Description: `State of CMK. ## Import KMS external keys can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_kms_external_key.foo 287e8f40-7cbb-11eb-9a3a-5254004f7f94 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "key_state",
+					Description: `State of CMK. ## Import KMS external keys can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_kms_external_key.foo 287e8f40-7cbb-11eb-9a3a-5254004f7f94 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_kms_key",
+			Category:         "KMS",
+			ShortDescription: `Provide a resource to create a KMS key.`,
+			Description:      ``,
+			Keywords: []string{
+				"kms",
+				"key",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "alias",
+					Description: `(Required) Name of CMK. The name can only contain English letters, numbers, underscore and hyphen '-'. The first character must be a letter or number.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of CMK. The maximum is 1024 bytes.`,
+				},
+				resource.Attribute{
+					Name:        "is_archived",
+					Description: `(Optional) Specify whether to archive key. Default value is ` + "`" + `false` + "`" + `. This field is conflict with ` + "`" + `is_enabled` + "`" + `, valid when key_state is ` + "`" + `Enabled` + "`" + `, ` + "`" + `Disabled` + "`" + `, ` + "`" + `Archived` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional) Specify whether to enable key. Default value is ` + "`" + `false` + "`" + `. This field is conflict with ` + "`" + `is_archived` + "`" + `, valid when key_state is ` + "`" + `Enabled` + "`" + `, ` + "`" + `Disabled` + "`" + `, ` + "`" + `Archived` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "key_rotation_enabled",
+					Description: `(Optional) Specify whether to enable key rotation, valid when key_usage is ` + "`" + `ENCRYPT_DECRYPT` + "`" + `. Default value is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "key_usage",
+					Description: `(Optional, ForceNew) Usage of CMK. Available values include ` + "`" + `ENCRYPT_DECRYPT` + "`" + `, ` + "`" + `ASYMMETRIC_DECRYPT_RSA_2048` + "`" + `, ` + "`" + `ASYMMETRIC_DECRYPT_SM2` + "`" + `, ` + "`" + `ASYMMETRIC_SIGN_VERIFY_SM2` + "`" + `, ` + "`" + `ASYMMETRIC_SIGN_VERIFY_RSA_2048` + "`" + `, ` + "`" + `ASYMMETRIC_SIGN_VERIFY_ECC` + "`" + `. Default value is ` + "`" + `ENCRYPT_DECRYPT` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "pending_delete_window_in_days",
+					Description: `(Optional) Duration in days after which the key is deleted after destruction of the resource, must be between 7 and 30 days. Defaults to 7 days.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags of CMK. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "key_state",
+					Description: `State of CMK. ## Import KMS keys can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_kms_key.foo 287e8f40-7cbb-11eb-9a3a-5254004f7f94 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "key_state",
+					Description: `State of CMK. ## Import KMS keys can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_kms_key.foo 287e8f40-7cbb-11eb-9a3a-5254004f7f94 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "tencentcloud_kubernetes_as_scaling_group",
 			Category:         "Tencent Kubernetes Engine(TKE)",
 			ShortDescription: `Provide a resource to create an auto scaling group for kubernetes cluster.`,
@@ -7554,7 +7693,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional, ForceNew) Labels of kubernetes AS Group created nodes. The ` + "`" + `auto_scaling_config` + "`" + ` object supports the following:`,
+					Description: `(Optional, ForceNew) Labels of kubernetes AS Group created nodes.`,
+				},
+				resource.Attribute{
+					Name:        "unschedulable",
+					Description: `(Optional, ForceNew) Sets whether the joining node participates in the schedule. Default is '0'. Participate in scheduling. The ` + "`" + `auto_scaling_config` + "`" + ` object supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "configuration_name",
@@ -7792,7 +7935,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_os_type",
-					Description: `(Optional, ForceNew) Image type of the cluster os, Default is 'GENERAL'.`,
+					Description: `(Optional, ForceNew) Image type of the cluster os, the available values include: 'GENERAL'. Default is 'GENERAL'.`,
 				},
 				resource.Attribute{
 					Name:        "cluster_os",
@@ -7869,6 +8012,10 @@ var (
 				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) The tags of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "unschedulable",
+					Description: `(Optional, ForceNew) Sets whether the joining node participates in the schedule. Default is '0'. Participate in scheduling.`,
 				},
 				resource.Attribute{
 					Name:        "worker_config",
@@ -8246,6 +8393,10 @@ var (
 					Description: `(Optional, ForceNew) Password to access, should be set if ` + "`" + `key_ids` + "`" + ` not set.`,
 				},
 				resource.Attribute{
+					Name:        "unschedulable",
+					Description: `(Optional, ForceNew) Sets whether the joining node participates in the schedule. Default is '0'. Participate in scheduling.`,
+				},
+				resource.Attribute{
 					Name:        "worker_config",
 					Description: `(Optional, ForceNew) Deploy the machine configuration information of the 'WORKER', commonly used to attach existing instances. The ` + "`" + `data_disk` + "`" + ` object supports the following:`,
 				},
@@ -8402,7 +8553,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "taints",
-					Description: `(Optional) Taints of kubernetes node pool created nodes. The ` + "`" + `auto_scaling_config` + "`" + ` object supports the following:`,
+					Description: `(Optional) Taints of kubernetes node pool created nodes.`,
+				},
+				resource.Attribute{
+					Name:        "unschedulable",
+					Description: `(Optional, ForceNew) Sets whether the joining node participates in the schedule. Default is '0'. Participate in scheduling. The ` + "`" + `auto_scaling_config` + "`" + ` object supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "instance_type",
@@ -8605,7 +8760,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mount_target",
-					Description: `(Optional, ForceNew) Mount target. Default is not mounting. The ` + "`" + `data_disk` + "`" + ` object supports the following:`,
+					Description: `(Optional, ForceNew) Mount target. Default is not mounting.`,
+				},
+				resource.Attribute{
+					Name:        "unschedulable",
+					Description: `(Optional, ForceNew) Sets whether the joining node participates in the schedule. Default is '0'. Participate in scheduling. The ` + "`" + `data_disk` + "`" + ` object supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "auto_format_and_mount",
@@ -12177,6 +12336,101 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "tencentcloud_ssm_secret",
+			Category:         "SSM",
+			ShortDescription: `Provide a resource to create a SSM secret.`,
+			Description:      ``,
+			Keywords: []string{
+				"ssm",
+				"secret",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "secret_name",
+					Description: `(Required, ForceNew) Name of secret which cannot be repeated in the same region. The maximum length is 128 bytes. The name can only contain English letters, numbers, underscore and hyphen '-'. The first character must be a letter or number.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of secret. The maximum is 2048 bytes.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional) Specify whether to enable secret. Default value is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "kms_key_id",
+					Description: `(Optional, ForceNew) KMS keyId used to encrypt secret. If it is empty, it means that the CMK created by SSM for you by default is used for encryption. You can also specify the KMS CMK created by yourself in the same region for encryption.`,
+				},
+				resource.Attribute{
+					Name:        "recovery_window_in_days",
+					Description: `(Optional) Specify the scheduled deletion date. Default value is ` + "`" + `0` + "`" + ` that means to delete immediately. 1-30 means the number of days reserved, completely deleted after this date.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags of secret. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of secret. ## Import SSM secret can be imported using the secretName, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_ssm_secret.foo test ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of secret. ## Import SSM secret can be imported using the secretName, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_ssm_secret.foo test ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_ssm_secret_version",
+			Category:         "SSM",
+			ShortDescription: `Provide a resource to create a SSM secret version.`,
+			Description:      ``,
+			Keywords: []string{
+				"ssm",
+				"secret",
+				"version",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "secret_name",
+					Description: `(Required, ForceNew) Name of secret which cannot be repeated in the same region. The maximum length is 128 bytes. The name can only contain English letters, numbers, underscore and hyphen '-'. The first character must be a letter or number.`,
+				},
+				resource.Attribute{
+					Name:        "version_id",
+					Description: `(Required, ForceNew) Version of secret. The maximum length is 64 bytes. The version_id can only contain English letters, numbers, underscore and hyphen '-'. The first character must be a letter or number.`,
+				},
+				resource.Attribute{
+					Name:        "secret_binary",
+					Description: `(Optional) The base64-encoded binary secret. secret_binary and secret_string must be set only one, and the maximum support is 4096 bytes. When secret status is ` + "`" + `Disabled` + "`" + `, this field will not update anymore.`,
+				},
+				resource.Attribute{
+					Name:        "secret_string",
+					Description: `(Optional) The string text of secret. secret_binary and secret_string must be set only one, and the maximum support is 4096 bytes. When secret status is ` + "`" + `Disabled` + "`" + `, this field will not update anymore. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import SSM secret version can be imported using the secretName#versionId, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_ssm_secret_version.v1 test#v1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. ## Import SSM secret version can be imported using the secretName#versionId, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_ssm_secret_version.v1 test#v1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "tencentcloud_subnet",
 			Category:         "Virtual Private Cloud(VPC)",
 			ShortDescription: `Provide a resource to create a VPC subnet.`,
@@ -12648,6 +12902,10 @@ var (
 					Description: `(Optional) Indicate to delete the COS bucket which is auto-created with the instance or not.`,
 				},
 				resource.Attribute{
+					Name:        "open_public_operation",
+					Description: `(Optional) Control public network access.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional, ForceNew) The available tags within this TCR instance. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
@@ -12662,6 +12920,10 @@ var (
 				resource.Attribute{
 					Name:        "public_domain",
 					Description: `Public address for access of the TCR instance.`,
+				},
+				resource.Attribute{
+					Name:        "public_status",
+					Description: `Status of the TCR instance public network access.`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -12680,6 +12942,10 @@ var (
 				resource.Attribute{
 					Name:        "public_domain",
 					Description: `Public address for access of the TCR instance.`,
+				},
+				resource.Attribute{
+					Name:        "public_status",
+					Description: `Status of the TCR instance public network access.`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -12898,7 +13164,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required, ForceNew) ID of VPC. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required, ForceNew) ID of VPC.`,
+				},
+				resource.Attribute{
+					Name:        "enable_public_domain_dns",
+					Description: `(Optional) Whether to enable public domain dns. Default value is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "enable_vpc_domain_dns",
+					Description: `(Optional) Whether to enable vpc domain dns. Default value is ` + "`" + `false` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -14113,70 +14387,74 @@ var (
 		"tencentcloud_image":                                   88,
 		"tencentcloud_instance":                                89,
 		"tencentcloud_key_pair":                                90,
-		"tencentcloud_kubernetes_as_scaling_group":             91,
-		"tencentcloud_kubernetes_cluster":                      92,
-		"tencentcloud_kubernetes_cluster_attachment":           93,
-		"tencentcloud_kubernetes_node_pool":                    94,
-		"tencentcloud_kubernetes_scale_worker":                 95,
-		"tencentcloud_lb":                                      96,
-		"tencentcloud_mongodb_instance":                        97,
-		"tencentcloud_mongodb_sharding_instance":               98,
-		"tencentcloud_mongodb_standby_instance":                99,
-		"tencentcloud_monitor_binding_object":                  100,
-		"tencentcloud_monitor_binding_receiver":                101,
-		"tencentcloud_monitor_policy_group":                    102,
-		"tencentcloud_mysql_account":                           103,
-		"tencentcloud_mysql_account_privilege":                 104,
-		"tencentcloud_mysql_backup_policy":                     105,
-		"tencentcloud_mysql_instance":                          106,
-		"tencentcloud_mysql_privilege":                         107,
-		"tencentcloud_mysql_readonly_instance":                 108,
-		"tencentcloud_nat_gateway":                             109,
-		"tencentcloud_placement_group":                         110,
-		"tencentcloud_postgresql_instance":                     111,
-		"tencentcloud_protocol_template":                       112,
-		"tencentcloud_protocol_template_group":                 113,
-		"tencentcloud_redis_backup_config":                     114,
-		"tencentcloud_redis_instance":                          115,
-		"tencentcloud_reserved_instance":                       116,
-		"tencentcloud_route_entry":                             117,
-		"tencentcloud_route_table":                             118,
-		"tencentcloud_route_table_entry":                       119,
-		"tencentcloud_scf_function":                            120,
-		"tencentcloud_scf_namespace":                           121,
-		"tencentcloud_security_group":                          122,
-		"tencentcloud_security_group_lite_rule":                123,
-		"tencentcloud_security_group_rule":                     124,
-		"tencentcloud_sqlserver_account":                       125,
-		"tencentcloud_sqlserver_account_db_attachment":         126,
-		"tencentcloud_sqlserver_basic_instance":                127,
-		"tencentcloud_sqlserver_db":                            128,
-		"tencentcloud_sqlserver_instance":                      129,
-		"tencentcloud_sqlserver_publish_subscribe":             130,
-		"tencentcloud_sqlserver_readonly_instance":             131,
-		"tencentcloud_ssl_certificate":                         132,
-		"tencentcloud_ssl_pay_certificate":                     133,
-		"tencentcloud_subnet":                                  134,
-		"tencentcloud_tcaplus_cluster":                         135,
-		"tencentcloud_tcaplus_idl":                             136,
-		"tencentcloud_tcaplus_table":                           137,
-		"tencentcloud_tcaplus_tablegroup":                      138,
-		"tencentcloud_tcr_instance":                            139,
-		"tencentcloud_tcr_namespace":                           140,
-		"tencentcloud_tcr_repository":                          141,
-		"tencentcloud_tcr_token":                               142,
-		"tencentcloud_tcr_vpc_attachment":                      143,
-		"tencentcloud_vod_adaptive_dynamic_streaming_template": 144,
-		"tencentcloud_vod_image_sprite_template":               145,
-		"tencentcloud_vod_procedure_template":                  146,
-		"tencentcloud_vod_snapshot_by_time_offset_template":    147,
-		"tencentcloud_vod_super_player_config":                 148,
-		"tencentcloud_vpc":                                     149,
-		"tencentcloud_vpc_acl":                                 150,
-		"tencentcloud_vpc_acl_attachment":                      151,
-		"tencentcloud_vpn_connection":                          152,
-		"tencentcloud_vpn_customer_gateway":                    153,
-		"tencentcloud_vpn_gateway":                             154,
+		"tencentcloud_kms_external_key":                        91,
+		"tencentcloud_kms_key":                                 92,
+		"tencentcloud_kubernetes_as_scaling_group":             93,
+		"tencentcloud_kubernetes_cluster":                      94,
+		"tencentcloud_kubernetes_cluster_attachment":           95,
+		"tencentcloud_kubernetes_node_pool":                    96,
+		"tencentcloud_kubernetes_scale_worker":                 97,
+		"tencentcloud_lb":                                      98,
+		"tencentcloud_mongodb_instance":                        99,
+		"tencentcloud_mongodb_sharding_instance":               100,
+		"tencentcloud_mongodb_standby_instance":                101,
+		"tencentcloud_monitor_binding_object":                  102,
+		"tencentcloud_monitor_binding_receiver":                103,
+		"tencentcloud_monitor_policy_group":                    104,
+		"tencentcloud_mysql_account":                           105,
+		"tencentcloud_mysql_account_privilege":                 106,
+		"tencentcloud_mysql_backup_policy":                     107,
+		"tencentcloud_mysql_instance":                          108,
+		"tencentcloud_mysql_privilege":                         109,
+		"tencentcloud_mysql_readonly_instance":                 110,
+		"tencentcloud_nat_gateway":                             111,
+		"tencentcloud_placement_group":                         112,
+		"tencentcloud_postgresql_instance":                     113,
+		"tencentcloud_protocol_template":                       114,
+		"tencentcloud_protocol_template_group":                 115,
+		"tencentcloud_redis_backup_config":                     116,
+		"tencentcloud_redis_instance":                          117,
+		"tencentcloud_reserved_instance":                       118,
+		"tencentcloud_route_entry":                             119,
+		"tencentcloud_route_table":                             120,
+		"tencentcloud_route_table_entry":                       121,
+		"tencentcloud_scf_function":                            122,
+		"tencentcloud_scf_namespace":                           123,
+		"tencentcloud_security_group":                          124,
+		"tencentcloud_security_group_lite_rule":                125,
+		"tencentcloud_security_group_rule":                     126,
+		"tencentcloud_sqlserver_account":                       127,
+		"tencentcloud_sqlserver_account_db_attachment":         128,
+		"tencentcloud_sqlserver_basic_instance":                129,
+		"tencentcloud_sqlserver_db":                            130,
+		"tencentcloud_sqlserver_instance":                      131,
+		"tencentcloud_sqlserver_publish_subscribe":             132,
+		"tencentcloud_sqlserver_readonly_instance":             133,
+		"tencentcloud_ssl_certificate":                         134,
+		"tencentcloud_ssl_pay_certificate":                     135,
+		"tencentcloud_ssm_secret":                              136,
+		"tencentcloud_ssm_secret_version":                      137,
+		"tencentcloud_subnet":                                  138,
+		"tencentcloud_tcaplus_cluster":                         139,
+		"tencentcloud_tcaplus_idl":                             140,
+		"tencentcloud_tcaplus_table":                           141,
+		"tencentcloud_tcaplus_tablegroup":                      142,
+		"tencentcloud_tcr_instance":                            143,
+		"tencentcloud_tcr_namespace":                           144,
+		"tencentcloud_tcr_repository":                          145,
+		"tencentcloud_tcr_token":                               146,
+		"tencentcloud_tcr_vpc_attachment":                      147,
+		"tencentcloud_vod_adaptive_dynamic_streaming_template": 148,
+		"tencentcloud_vod_image_sprite_template":               149,
+		"tencentcloud_vod_procedure_template":                  150,
+		"tencentcloud_vod_snapshot_by_time_offset_template":    151,
+		"tencentcloud_vod_super_player_config":                 152,
+		"tencentcloud_vpc":                                     153,
+		"tencentcloud_vpc_acl":                                 154,
+		"tencentcloud_vpc_acl_attachment":                      155,
+		"tencentcloud_vpn_connection":                          156,
+		"tencentcloud_vpn_customer_gateway":                    157,
+		"tencentcloud_vpn_gateway":                             158,
 	}
 )
 

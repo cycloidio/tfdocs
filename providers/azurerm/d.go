@@ -15890,6 +15890,93 @@ Use this data source to access information about an existing ServiceBus Namespac
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_servicebus_queue",
+			Category:         "Messaging",
+			ShortDescription: `Gets information about an existing Service Bus Queue.`,
+			Description: `
+
+Use this data source to access information about an existing Service Bus Queue.
+
+`,
+			Keywords: []string{
+				"messaging",
+				"servicebus",
+				"queue",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Service Bus Queue.`,
+				},
+				resource.Attribute{
+					Name:        "auto_delete_on_idle",
+					Description: `The ISO 8601 timespan duration of the idle interval after which the Queue is automatically deleted, minimum of 5 minutes.`,
+				},
+				resource.Attribute{
+					Name:        "dead_lettering_on_message_expiration",
+					Description: `Boolean flag which controls whether the Queue has dead letter support when a message expires.`,
+				},
+				resource.Attribute{
+					Name:        "default_message_ttl",
+					Description: `The ISO 8601 timespan duration of the TTL of messages sent to this queue. This is the default value used when TTL is not set on a message itself.`,
+				},
+				resource.Attribute{
+					Name:        "duplicate_detection_history_time_window",
+					Description: `The ISO 8601 timespan duration during which duplicates can be detected.`,
+				},
+				resource.Attribute{
+					Name:        "enable_batched_operations",
+					Description: `Boolean flag which controls whether server-side batched operations are enabled.`,
+				},
+				resource.Attribute{
+					Name:        "enable_express",
+					Description: `Boolean flag which controls whether Express Entities are enabled. An express queue holds a message in memory temporarily before writing it to persistent storage.`,
+				},
+				resource.Attribute{
+					Name:        "enable_partitioning",
+					Description: `Boolean flag which controls whether to enable the queue to be partitioned across multiple message brokers.`,
+				},
+				resource.Attribute{
+					Name:        "forward_dead_lettered_messages_to",
+					Description: `The name of a Queue or Topic to automatically forward dead lettered messages to.`,
+				},
+				resource.Attribute{
+					Name:        "forward_to",
+					Description: `The name of a Queue or Topic to automatically forward messages to. Please [see the documentation](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-auto-forwarding) for more information.`,
+				},
+				resource.Attribute{
+					Name:        "lock_duration",
+					Description: `The ISO 8601 timespan duration of a peek-lock; that is, the amount of time that the message is locked for other receivers.`,
+				},
+				resource.Attribute{
+					Name:        "max_delivery_count",
+					Description: `Integer value which controls when a message is automatically dead lettered.`,
+				},
+				resource.Attribute{
+					Name:        "max_size_in_megabytes",
+					Description: `Integer value which controls the size of memory allocated for the queue. For supported values see the "Queue or topic size" section of [Service Bus Quotas](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas).`,
+				},
+				resource.Attribute{
+					Name:        "requires_duplicate_detection",
+					Description: `Boolean flag which controls whether the Queue requires duplicate detection.`,
+				},
+				resource.Attribute{
+					Name:        "requires_session",
+					Description: `Boolean flag which controls whether the Queue requires sessions. This will allow ordered handling of unbounded sequences of related messages. With sessions enabled a queue can guarantee first-in-first-out delivery of messages.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the Queue. Possible values are ` + "`" + `Active` + "`" + `, ` + "`" + `Creating` + "`" + `, ` + "`" + `Deleting` + "`" + `, ` + "`" + `Disabled` + "`" + `, ` + "`" + `ReceiveDisabled` + "`" + `, ` + "`" + `Renaming` + "`" + `, ` + "`" + `SendDisabled` + "`" + `, ` + "`" + `Unknown` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Service Bus Queue.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_servicebus_queue_authorization_rule",
 			Category:         "Messaging",
 			ShortDescription: `Gets information about an existing ServiceBus Queue Authorisation Rule within a ServiceBus Queue.`,
@@ -16054,6 +16141,73 @@ Use this data source to access information about an existing ServiceBus Subscrip
 				resource.Attribute{
 					Name:        "read",
 					Description: `(Defaults to 5 minutes) Used when retrieving the ServiceBus Subscription.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_servicebus_topic",
+			Category:         "Messaging",
+			ShortDescription: `Gets information about an existing Service Bus Topic.`,
+			Description: `
+
+Use this data source to access information about an existing Service Bus Topic.
+
+`,
+			Keywords: []string{
+				"messaging",
+				"servicebus",
+				"topic",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Service Bus Topic.`,
+				},
+				resource.Attribute{
+					Name:        "auto_delete_on_idle",
+					Description: `The ISO 8601 timespan duration of the idle interval after which the Topic is automatically deleted, minimum of 5 minutes.`,
+				},
+				resource.Attribute{
+					Name:        "default_message_ttl",
+					Description: `The ISO 8601 timespan duration of TTL of messages sent to this topic if no TTL value is set on the message itself.`,
+				},
+				resource.Attribute{
+					Name:        "duplicate_detection_history_time_window",
+					Description: `The ISO 8601 timespan duration during which duplicates can be detected.`,
+				},
+				resource.Attribute{
+					Name:        "enable_batched_operations",
+					Description: `Boolean flag which controls if server-side batched operations are enabled.`,
+				},
+				resource.Attribute{
+					Name:        "enable_express",
+					Description: `Boolean flag which controls whether Express Entities are enabled. An express topic holds a message in memory temporarily before writing it to persistent storage.`,
+				},
+				resource.Attribute{
+					Name:        "enable_partitioning",
+					Description: `Boolean flag which controls whether to enable the topic to be partitioned across multiple message brokers.`,
+				},
+				resource.Attribute{
+					Name:        "max_size_in_megabytes",
+					Description: `Integer value which controls the size of memory allocated for the topic. For supported values see the "Queue/topic size" section of [this document](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas).`,
+				},
+				resource.Attribute{
+					Name:        "requires_duplicate_detection",
+					Description: `Boolean flag which controls whether the Topic requires duplicate detection.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The Status of the Service Bus Topic. Acceptable values are Active or Disabled.`,
+				},
+				resource.Attribute{
+					Name:        "support_ordering",
+					Description: `Boolean flag which controls whether the Topic supports ordering. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Service Bus Topic.`,
 				},
 			},
 		},
@@ -16869,7 +17023,11 @@ Use this data source to access information about an existing Spring Cloud Applic
 				},
 				resource.Attribute{
 					Name:        "url",
-					Description: `The public endpoint of the Spring Cloud Application. --- The ` + "`" + `identity` + "`" + ` block exports the following:`,
+					Description: `The public endpoint of the Spring Cloud Application.`,
+				},
+				resource.Attribute{
+					Name:        "tls_enabled",
+					Description: `Is End to End TLS Enabled? --- The ` + "`" + `identity` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "principal_id",
@@ -16923,7 +17081,11 @@ Use this data source to access information about an existing Spring Cloud Applic
 				},
 				resource.Attribute{
 					Name:        "url",
-					Description: `The public endpoint of the Spring Cloud Application. --- The ` + "`" + `identity` + "`" + ` block exports the following:`,
+					Description: `The public endpoint of the Spring Cloud Application.`,
+				},
+				resource.Attribute{
+					Name:        "tls_enabled",
+					Description: `Is End to End TLS Enabled? --- The ` + "`" + `identity` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "principal_id",
@@ -18935,6 +19097,41 @@ Use this data source to access information about an existing Synapse Workspace.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_template_spec_version",
+			Category:         "Template",
+			ShortDescription: `Gets information about an existing Template Spec Version.`,
+			Description: `
+
+Use this data source to access information about an existing Template Spec Version.
+
+`,
+			Keywords: []string{
+				"template",
+				"spec",
+				"version",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Template Spec version.`,
+				},
+				resource.Attribute{
+					Name:        "template_body",
+					Description: `The ARM Template body of the Template Spec Version.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the Template. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Template.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_traffic_manager_geographical_location",
 			Category:         "Network",
 			ShortDescription: `Gets information about a specified Traffic Manager Geographical Location within the Geographical Hierarchy.`,
@@ -20417,45 +20614,48 @@ Use this data source to access information about an existing Web Application Fir
 		"azurerm_sentinel_alert_rule_template":              143,
 		"azurerm_servicebus_namespace":                      144,
 		"azurerm_servicebus_namespace_authorization_rule":   145,
-		"azurerm_servicebus_queue_authorization_rule":       146,
-		"azurerm_servicebus_subscription":                   147,
-		"azurerm_servicebus_topic_authorization_rule":       148,
-		"azurerm_shared_image":                              149,
-		"azurerm_shared_image_gallery":                      150,
-		"azurerm_shared_image_version":                      151,
-		"azurerm_shared_image_versions":                     152,
-		"azurerm_signalr_service":                           153,
-		"azurerm_snapshot":                                  154,
-		"azurerm_spring_cloud_app":                          155,
-		"azurerm_spring_cloud_service":                      156,
-		"azurerm_sql_database":                              157,
-		"azurerm_sql_server":                                158,
-		"azurerm_ssh_public_key":                            159,
-		"azurerm_storage_account":                           160,
-		"azurerm_storage_account_blob_container_sas":        161,
-		"azurerm_storage_account_sas":                       162,
-		"azurerm_storage_container":                         163,
-		"azurerm_storage_encryption_scope":                  164,
-		"azurerm_storage_management_policy":                 165,
-		"azurerm_storage_sync":                              166,
-		"azurerm_storage_sync_group":                        167,
-		"azurerm_stream_analytics_job":                      168,
-		"azurerm_subnet":                                    169,
-		"azurerm_subscription":                              170,
-		"azurerm_subscriptions":                             171,
-		"azurerm_synapse_workspace":                         172,
-		"azurerm_traffic_manager_geographical_location":     173,
-		"azurerm_traffic_manager_profile":                   174,
-		"azurerm_user_assigned_identity":                    175,
-		"azurerm_virtual_hub":                               176,
-		"azurerm_virtual_machine":                           177,
-		"azurerm_virtual_machine_scale_set":                 178,
-		"azurerm_virtual_network":                           179,
-		"azurerm_virtual_network_gateway":                   180,
-		"azurerm_virtual_network_gateway_connection":        181,
-		"azurerm_virtual_wan":                               182,
-		"azurerm_vmware_private_cloud":                      183,
-		"azurerm_web_application_firewall_policy":           184,
+		"azurerm_servicebus_queue":                          146,
+		"azurerm_servicebus_queue_authorization_rule":       147,
+		"azurerm_servicebus_subscription":                   148,
+		"azurerm_servicebus_topic":                          149,
+		"azurerm_servicebus_topic_authorization_rule":       150,
+		"azurerm_shared_image":                              151,
+		"azurerm_shared_image_gallery":                      152,
+		"azurerm_shared_image_version":                      153,
+		"azurerm_shared_image_versions":                     154,
+		"azurerm_signalr_service":                           155,
+		"azurerm_snapshot":                                  156,
+		"azurerm_spring_cloud_app":                          157,
+		"azurerm_spring_cloud_service":                      158,
+		"azurerm_sql_database":                              159,
+		"azurerm_sql_server":                                160,
+		"azurerm_ssh_public_key":                            161,
+		"azurerm_storage_account":                           162,
+		"azurerm_storage_account_blob_container_sas":        163,
+		"azurerm_storage_account_sas":                       164,
+		"azurerm_storage_container":                         165,
+		"azurerm_storage_encryption_scope":                  166,
+		"azurerm_storage_management_policy":                 167,
+		"azurerm_storage_sync":                              168,
+		"azurerm_storage_sync_group":                        169,
+		"azurerm_stream_analytics_job":                      170,
+		"azurerm_subnet":                                    171,
+		"azurerm_subscription":                              172,
+		"azurerm_subscriptions":                             173,
+		"azurerm_synapse_workspace":                         174,
+		"azurerm_template_spec_version":                     175,
+		"azurerm_traffic_manager_geographical_location":     176,
+		"azurerm_traffic_manager_profile":                   177,
+		"azurerm_user_assigned_identity":                    178,
+		"azurerm_virtual_hub":                               179,
+		"azurerm_virtual_machine":                           180,
+		"azurerm_virtual_machine_scale_set":                 181,
+		"azurerm_virtual_network":                           182,
+		"azurerm_virtual_network_gateway":                   183,
+		"azurerm_virtual_network_gateway_connection":        184,
+		"azurerm_virtual_wan":                               185,
+		"azurerm_vmware_private_cloud":                      186,
+		"azurerm_web_application_firewall_policy":           187,
 	}
 )
 

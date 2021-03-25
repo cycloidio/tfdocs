@@ -199,6 +199,166 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vsphere_ovf_vm_template",
+			Category:         "Data Sources",
+			ShortDescription: `A data source that can be used to extract the configuration of an OVF template`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the virtual machine to create.`,
+				},
+				resource.Attribute{
+					Name:        "resource_pool_id",
+					Description: `(Required) The ID of a resource pool to put the virtual machine in.`,
+				},
+				resource.Attribute{
+					Name:        "host_system_id",
+					Description: `(Required) The ID of an optional host system to pin the virtual machine to.`,
+				},
+				resource.Attribute{
+					Name:        "datastore_id",
+					Description: `(Required) The ID of the virtual machine's datastore. The virtual machine configuration is placed here, along with any virtual disks that are created without datastores.`,
+				},
+				resource.Attribute{
+					Name:        "folder",
+					Description: `(Required) The name of the folder to locate the virtual machine in.`,
+				},
+				resource.Attribute{
+					Name:        "local_ovf_path",
+					Description: `(Optional) The absolute path to the ovf/ova file in the local system. While deploying from ovf, make sure the other necessary files like the .vmdk files are also in the same directory as the given ovf file.`,
+				},
+				resource.Attribute{
+					Name:        "remote_ovf_url",
+					Description: `(Optional) URL to the remote ovf/ova file to be deployed. ~>`,
+				},
+				resource.Attribute{
+					Name:        "ip_allocation_policy",
+					Description: `(Optional) The IP allocation policy.`,
+				},
+				resource.Attribute{
+					Name:        "ip_protocol",
+					Description: `(Optional) The IP protocol.`,
+				},
+				resource.Attribute{
+					Name:        "disk_provisioning",
+					Description: `(Optional) The disk provisioning. If set, all the disks in the deployed OVF will have the same specified disk type (accepted values {thin, flat, thick, sameAsSource}).`,
+				},
+				resource.Attribute{
+					Name:        "deployment_option",
+					Description: `(Optional) The key of the chosen deployment option. If empty, the default option is chosen.`,
+				},
+				resource.Attribute{
+					Name:        "ovf_network_map",
+					Description: `(Optional) The mapping of name of network identifiers from the ovf descriptor to network UUID in the VI infrastructure.`,
+				},
+				resource.Attribute{
+					Name:        "allow_unverified_ssl_cert",
+					Description: `(Optional) Allow unverified ssl certificates while deploying ovf/ova from url. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "num_cpus",
+					Description: `The number of virtual processors to assign to this virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "num_cores_per_socket",
+					Description: `The number of cores to distribute amongst the CPUs in this virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_hot_add_enabled",
+					Description: `Allow CPUs to be added to this virtual machine while it is running.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_hot_remove_enabled",
+					Description: `Allow CPUs to be added to this virtual machine while it is running.`,
+				},
+				resource.Attribute{
+					Name:        "nested_hv_enabled",
+					Description: `Enable nested hardware virtualization on this virtual machine, facilitating nested virtualization in the guest.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `The size of the virtual machine's memory, in MB.`,
+				},
+				resource.Attribute{
+					Name:        "memory_hot_add_enabled",
+					Description: `Allow memory to be added to this virtual machine while it is running.`,
+				},
+				resource.Attribute{
+					Name:        "swap_placement_policy",
+					Description: `The swap file placement policy for this virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `User-provided description of the virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "guest_id",
+					Description: `The guest ID for the operating system`,
+				},
+				resource.Attribute{
+					Name:        "alternate_guest_name",
+					Description: `The guest name for the operating system .`,
+				},
+				resource.Attribute{
+					Name:        "firmware",
+					Description: `The firmware interface to use on the virtual machine.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "num_cpus",
+					Description: `The number of virtual processors to assign to this virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "num_cores_per_socket",
+					Description: `The number of cores to distribute amongst the CPUs in this virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_hot_add_enabled",
+					Description: `Allow CPUs to be added to this virtual machine while it is running.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_hot_remove_enabled",
+					Description: `Allow CPUs to be added to this virtual machine while it is running.`,
+				},
+				resource.Attribute{
+					Name:        "nested_hv_enabled",
+					Description: `Enable nested hardware virtualization on this virtual machine, facilitating nested virtualization in the guest.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `The size of the virtual machine's memory, in MB.`,
+				},
+				resource.Attribute{
+					Name:        "memory_hot_add_enabled",
+					Description: `Allow memory to be added to this virtual machine while it is running.`,
+				},
+				resource.Attribute{
+					Name:        "swap_placement_policy",
+					Description: `The swap file placement policy for this virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `User-provided description of the virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "guest_id",
+					Description: `The guest ID for the operating system`,
+				},
+				resource.Attribute{
+					Name:        "alternate_guest_name",
+					Description: `The guest name for the operating system .`,
+				},
+				resource.Attribute{
+					Name:        "firmware",
+					Description: `The firmware interface to use on the virtual machine.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vsphere_resource_pool",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a vSphere resource pool data source. This can be used to get the general attributes of a vSphere resource pool.`,
@@ -527,12 +687,13 @@ var (
 		"vsphere_host":                       6,
 		"vsphere_host_thumbprint":            7,
 		"vsphere_network":                    8,
-		"vsphere_resource_pool":              9,
-		"vsphere_tag":                        10,
-		"vsphere_tag_category":               11,
-		"vsphere_virtual_machine":            12,
-		"vsphere_vmfs_disks":                 13,
-		"vsphere_role":                       14,
+		"vsphere_ovf_vm_template":            9,
+		"vsphere_resource_pool":              10,
+		"vsphere_tag":                        11,
+		"vsphere_tag_category":               12,
+		"vsphere_virtual_machine":            13,
+		"vsphere_vmfs_disks":                 14,
+		"vsphere_role":                       15,
 	}
 )
 
