@@ -152,13 +152,13 @@ func unkGenerate(provider string) {
 				Arguments:        getArguments(body),
 				Attributes:       getAttributes(body),
 			}
-			if t == "data-sources" {
+			if t == "d" {
 				r.Category = "Data Sources"
 			} else {
 				r.Category = "Resources"
 			}
 			cat := getCategory(body)
-			if cat != "" {
+			if cat != "" && t != "d" {
 				r.Category = cat
 				r.Keywords = categoryAndTypeToKeywords(provider, cat, rt)
 			}
