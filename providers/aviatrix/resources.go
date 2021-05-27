@@ -26,7 +26,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cloud_type",
-					Description: `(Required) Type of cloud service provider. Only AWS, GCP, AZURE, OCI, and AWS Gov are supported currently. Enter 1 for AWS, 4 for GCP, 8 for AZURE, 16 for OCI, 256 for AWS Gov. ### AWS`,
+					Description: `(Required) Type of cloud service provider. Only AWS, GCP, Azure, OCI, AzureGov, AWSGov, AWSChina, AzureChina and Alibaba Cloud are supported currently. Enter 1 for AWS, 4 for GCP, 8 for Azure, 16 for OCI, 32 for AzureGov, 256 for AWSGov, 1024 for AWSChina or 2048 for AzureChina, 8192 for Alibaba Cloud. ### AWS ->`,
 				},
 				resource.Attribute{
 					Name:        "aws_account_number",
@@ -50,7 +50,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "aws_role_ec2",
-					Description: `(Optional) AWS EC2 role ARN, this option is for UserConnect. Required when ` + "`" + `aws_iam` + "`" + ` is "true" and when creating an account for AWS. ### Azure`,
+					Description: `(Optional) AWS EC2 role ARN, this option is for UserConnect. Required when ` + "`" + `aws_iam` + "`" + ` is "true" and when creating an account for AWS.`,
+				},
+				resource.Attribute{
+					Name:        "aws_gateway_role_app",
+					Description: `(Optional) A separate AWS App role ARN to assign to gateways created by the controller. Required when ` + "`" + `aws_gateway_role_ec2` + "`" + ` is set. Only allowed when ` + "`" + `aws_iam` + "`" + `, ` + "`" + `awsgov_iam` + "`" + `, or ` + "`" + `awschina_iam` + "`" + ` is "true" when creating an account for AWS, AWSGov or AWSChina, respectively. Available as of provider version R2.19+.`,
+				},
+				resource.Attribute{
+					Name:        "aws_gateway_role_ec2",
+					Description: `(Optional) A separate AWS EC2 role ARN to assign to gateways created by the controller. Required when ` + "`" + `aws_gateway_role_app` + "`" + ` is set. Only allowed when ` + "`" + `aws_iam` + "`" + `, ` + "`" + `awsgov_iam` + "`" + `, or ` + "`" + `awschina_iam` + "`" + ` is "true" when creating an account for AWS, AWSGov or AWSChina, respectively. Available as of provider version R2.19+. ### Azure`,
 				},
 				resource.Attribute{
 					Name:        "arm_subscription_id",
@@ -90,19 +98,103 @@ var (
 				},
 				resource.Attribute{
 					Name:        "oci_api_private_key_filepath",
-					Description: `(Optional) Oracle OCI API Private Key local file path. Required when creating an account for OCI. ### AWS GovCloud`,
+					Description: `(Optional) Oracle OCI API Private Key local file path. Required when creating an account for OCI. ### AzureGov Cloud`,
+				},
+				resource.Attribute{
+					Name:        "azuregov_subscription_id",
+					Description: `(Optional) AzureGov ARM Subscription ID. Required when creating an account for AzureGov. Available as of provider version R2.19+.`,
+				},
+				resource.Attribute{
+					Name:        "azuregov_directory_id",
+					Description: `(Optional) AzureGov ARM Directory ID. Required when creating an account for AzureGov. Available as of provider version R2.19+.`,
+				},
+				resource.Attribute{
+					Name:        "azuregov_application_id",
+					Description: `(Optional) AzureGov ARM Application ID. Required when creating an account for AzureGov. Available as of provider version R2.19+.`,
+				},
+				resource.Attribute{
+					Name:        "azuregov_application_key",
+					Description: `(Optional) AzureGov ARM Application key. Required when creating an account for AzureGov. Available as of provider version R2.19+. ### AWSGov Cloud`,
 				},
 				resource.Attribute{
 					Name:        "awsgov_account_number",
-					Description: `(Optional) AWS Gov Account number to associate with Aviatrix account. Required when creating an account for AWS Gov.`,
+					Description: `(Optional) AWSGov Account number to associate with Aviatrix account. Required when creating an account for AWSGov.`,
+				},
+				resource.Attribute{
+					Name:        "awsgov_iam",
+					Description: `(Optional) AWSGov IAM-role based flag. Available as of provider version 2.19+.`,
 				},
 				resource.Attribute{
 					Name:        "awsgov_access_key",
-					Description: `(Optional) AWS Access Key. Required when creating an account for AWS Gov.`,
+					Description: `(Optional) AWS Access Key. Required when creating an account for AWSGov.`,
 				},
 				resource.Attribute{
 					Name:        "awsgov_secret_key",
-					Description: `(Optional) AWS Secret Key. Required when creating an account for AWS Gov. ->`,
+					Description: `(Optional) AWS Secret Key. Required when creating an account for AWSGov.`,
+				},
+				resource.Attribute{
+					Name:        "awsgov_role_app",
+					Description: `(Optional) AWSGov App role ARN. Available when ` + "`" + `awsgov_iam` + "`" + ` is "true" and when creating an account for AWSGov. If left empty, the ARN will be computed. Available as of provider version 2.19+.`,
+				},
+				resource.Attribute{
+					Name:        "awsgov_role_ec2",
+					Description: `(Optional) AWSGov EC2 role ARN. Available when ` + "`" + `awsgov_iam` + "`" + ` is "true" and when creating an account for AWSGov. If left empty, the ARN will be computed. Available as of provider version 2.19+. ### AWSChina Cloud`,
+				},
+				resource.Attribute{
+					Name:        "awschina_account_number",
+					Description: `(Optional) AWSChina Account number to associate with Aviatrix account. Required when creating an account for AWSChina. Available as of provider version 2.19+.`,
+				},
+				resource.Attribute{
+					Name:        "awschina_iam",
+					Description: `(Optional) AWSChina IAM-role based flag. Available as of provider version 2.19+.`,
+				},
+				resource.Attribute{
+					Name:        "awschina_role_app",
+					Description: `(Optional) AWSChina App role ARN. Available when ` + "`" + `awschina_iam` + "`" + ` is "true" and when creating an account for AWSChina. If left empty, the ARN will be computed. Available as of provider version 2.19+.`,
+				},
+				resource.Attribute{
+					Name:        "awschina_role_ec2",
+					Description: `(Optional) AWSChina EC2 role ARN. Available when ` + "`" + `awschina_iam` + "`" + ` is "true" and when creating an account for AWSChina. If left empty, the ARN will be computed. Available as of provider version 2.19+.`,
+				},
+				resource.Attribute{
+					Name:        "awschina_access_key",
+					Description: `(Optional) AWSChina Access Key. Required when ` + "`" + `awschina_iam` + "`" + ` is "false" and when creating an account for AWSChina. Available as of provider version 2.19+.`,
+				},
+				resource.Attribute{
+					Name:        "awschina_secret_key",
+					Description: `(Optional) AWSChina Secret Key. Required when ` + "`" + `awschina_iam` + "`" + ` is "false" and when creating an account for AWSChina. Available as of provider version 2.19+. ### AzureChina Cloud`,
+				},
+				resource.Attribute{
+					Name:        "azurechina_subscription_id",
+					Description: `(Optional) AzureChina ARM Subscription ID. Required when creating an account for AzureChina. Available as of provider version 2.19+.`,
+				},
+				resource.Attribute{
+					Name:        "azurechina_directory_id",
+					Description: `(Optional) AzureChina ARM Directory ID. Required when creating an account for AzureChina. Available as of provider version 2.19+.`,
+				},
+				resource.Attribute{
+					Name:        "azurechina_application_id",
+					Description: `(Optional) AzureChina ARM Application ID. Required when creating an account for AzureChina. Available as of provider version 2.19+.`,
+				},
+				resource.Attribute{
+					Name:        "azurechina_application_key",
+					Description: `(Optional) AzureChina ARM Application key. Required when creating an account for AzureChina. Available as of provider version 2.19+. ### Alibaba Cloud`,
+				},
+				resource.Attribute{
+					Name:        "alicloud_account_id",
+					Description: `(Optional) Alibaba Cloud Account number to associate with Aviatrix account. Required when creating an account for Alibaba Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "alicloud_access_key",
+					Description: `(Optional) Alibaba Cloud Access Key. Required when creating an account for Alibaba Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "alicloud_secret_key",
+					Description: `(Optional) Alibaba Cloud Secret Key. Required when creating an account for Alibaba Cloud. ### Misc. ->`,
+				},
+				resource.Attribute{
+					Name:        "audit_account",
+					Description: `(Optional) Specify whether to enable the audit account feature. If this feature is enabled, terraform will give a warning if there is an issue with the account credentials. Valid values: true, false. Default: false.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -316,11 +408,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "aws_side_as_number",
-					Description: `(Required) BGP Local ASN (Autonomous System Number). Integer between 1-4294967294. Example: "65001".`,
+					Description: `(Required) BGP Local ASN (Autonomous System Number). Integer between 1-4294967294. Example: "65001". !>`,
 				},
 				resource.Attribute{
 					Name:        "security_domains",
-					Description: `(Required) Security Domains to create together with AWS TGW's creation. Three default domains, along with the connections between them, are created automatically. These three domains can't be deleted, but the connection between any two of them can be.`,
+					Description: `(Required if ` + "`" + `manage_security_domain` + "`" + ` is true) Security Domains to create together with AWS TGW's creation. Three default domains, along with the connections between them, are created automatically. These three domains can't be deleted, but the connection between any two of them can be.`,
 				},
 				resource.Attribute{
 					Name:        "security_domain_name",
@@ -384,7 +476,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cloud_type",
-					Description: `(Optional) Type of cloud service provider, requires an integer value. Supported for AWS (1) and AWS GOV (256). Default value: 1.`,
+					Description: `(Optional) Type of cloud service provider, requires an integer value. Supported for AWS (1) and AWSGov (256). Default value: 1.`,
+				},
+				resource.Attribute{
+					Name:        "manage_security_domain",
+					Description: `(Optional) This parameter is a switch used to determine whether or not to manage security domains using the`,
+				},
+				resource.Attribute{
+					Name:        "manage_security_domain",
+					Description: `If you are using/upgraded to Aviatrix Terraform Provider R2.19+, and an`,
 				},
 				resource.Attribute{
 					Name:        "manage_transit_gateway_attachment",
@@ -408,10 +508,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cidrs",
-					Description: `(Optional) Set of TGW CIDRs. For example, ` + "`" + `cidrs = ["10.0.10.0/24", "10.1.10.0/24"]` + "`" + `. Available as of provider version R2.18.1+. ## Import`,
+					Description: `(Optional) Set of TGW CIDRs. For example, ` + "`" + `cidrs = ["10.0.10.0/24", "10.1.10.0/24"]` + "`" + `. Available as of provider version R2.18.1+. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "tgw_id",
+					Description: `TGW ID. Available as of provider version R2.19+. ## Import`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tgw_id",
+					Description: `TGW ID. Available as of provider version R2.19+. ## Import`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -562,6 +671,36 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aviatrix_aviatrix_aws_tgw_intra_domain_inspection",
+			Category:         "TGW Orchestrator",
+			ShortDescription: `Creates and manages the intra domain inspection of security domains in an AWS TGW`,
+			Description:      ``,
+			Keywords: []string{
+				"tgw",
+				"orchestrator",
+				"aws",
+				"intra",
+				"domain",
+				"inspection",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tgw_name",
+					Description: `(Required) The AWS TGW name.`,
+				},
+				resource.Attribute{
+					Name:        "route_domain_name",
+					Description: `(Required) The name of a security domain.`,
+				},
+				resource.Attribute{
+					Name:        "firewall_domain_name",
+					Description: `(Required) The name of a firewall security domain. ## Import`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aviatrix_aviatrix_aws_tgw_peering",
 			Category:         "TGW Orchestrator",
 			ShortDescription: `Creates and manages Aviatrix inter-region AWS TGW peerings`,
@@ -614,6 +753,73 @@ var (
 				resource.Attribute{
 					Name:        "domain_name2",
 					Description: `(Required) The name of the destination domain to make a connection. ## Import`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aviatrix_aviatrix_aws_tgw_security_domain",
+			Category:         "TGW Orchestrator",
+			ShortDescription: `Creates and manages Aviatrix security domains`,
+			Description:      ``,
+			Keywords: []string{
+				"tgw",
+				"orchestrator",
+				"aws",
+				"security",
+				"domain",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the security domain.`,
+				},
+				resource.Attribute{
+					Name:        "tgw_name",
+					Description: `(Required) The AWS TGW name of the security domain.`,
+				},
+				resource.Attribute{
+					Name:        "aviatrix_firewall",
+					Description: `(Optional) Set to true if the security domain is to be used as an Aviatrix Firewall Domain for the Aviatrix Firewall Network. Valid values: true, false. Default value: false.`,
+				},
+				resource.Attribute{
+					Name:        "native_egress",
+					Description: `(Optional) Set to true if the security domain is to be used as a native egress domain (for non-Aviatrix Firewall Network-based central Internet bound traffic). Valid values: true, false. Default value: false.`,
+				},
+				resource.Attribute{
+					Name:        "native_firewall",
+					Description: `(Optional) Set to true if the security domain is to be used as a native firewall domain (for non-Aviatrix Firewall Network-based firewall traffic inspection). Valid values: true, false. Default value: false. ->`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aviatrix_aviatrix_aws_tgw_security_domain_connection",
+			Category:         "TGW Orchestrator",
+			ShortDescription: `Creates and manages the connections between security domains in an AWS TGW`,
+			Description:      ``,
+			Keywords: []string{
+				"tgw",
+				"orchestrator",
+				"aws",
+				"security",
+				"domain",
+				"connection",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tgw_name",
+					Description: `(Required) The AWS TGW name.`,
+				},
+				resource.Attribute{
+					Name:        "domain_name1",
+					Description: `(Required) The name of a security domain to make a connection.`,
+				},
+				resource.Attribute{
+					Name:        "domain_name2",
+					Description: `(Required) The name of another security domain to make a connection. ->`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -781,7 +987,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_learned_cidrs_approval",
-					Description: `(Optional) Switch to enable/disable [encrypted transit approval](https://docs.aviatrix.com/HowTos/tgw_approval.html) for AWS TGW VPN connection. Valid values: true, false. Default value: false. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Switch to enable/disable [encrypted transit approval](https://docs.aviatrix.com/HowTos/tgw_approval.html) for AWS TGW VPN connection. Valid values: true, false. Default value: false.`,
+				},
+				resource.Attribute{
+					Name:        "enable_global_acceleration",
+					Description: `(Optional) Enable Global Acceleration. Type: Boolean. Default: false. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "vpn_id",
@@ -939,6 +1149,63 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aviatrix_aviatrix_cloudn_transit_gateway_attachment",
+			Category:         "CloudWAN",
+			ShortDescription: `Create and manage CloudN Transit Gateway Attachments`,
+			Description:      ``,
+			Keywords: []string{
+				"cloudwan",
+				"cloudn",
+				"transit",
+				"gateway",
+				"attachment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "device_name",
+					Description: `(Required) CloudN device name. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "transit_gateway_name",
+					Description: `(Required) Transit Gateway Name. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "connection_name",
+					Description: `(Required) Connection Name. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "transit_gateway_bgp_asn",
+					Description: `(Required) Transit Gateway BGP AS Number. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "cloudn_bgp_asn",
+					Description: `(Required) CloudN BGP AS Number. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "cloudn_lan_interface_neighbor_ip",
+					Description: `(Required) CloudN LAN Interface Neighbor's IP Address. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "cloudn_lan_interface_neighbor_bgp_asn",
+					Description: `(Required) CloudN LAN Interface Neighbor's AS Number. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "enable_over_private_network",
+					Description: `(Required) Enable connection over private network. Type: Boolean. ### Optional`,
+				},
+				resource.Attribute{
+					Name:        "enable_jumbo_frame",
+					Description: `(Optional) Enable Jumbo Frame support for the connection. Type: Boolean. Default: false.`,
+				},
+				resource.Attribute{
+					Name:        "enable_dead_peer_detection",
+					Description: `(Optional) Enable Dead Peer Detection. Type: Boolean. Default: true. ## Import`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aviatrix_aviatrix_cloudwatch_agent",
 			Category:         "Settings",
 			ShortDescription: `Enables and disables cloudwatch_agent`,
@@ -986,6 +1253,27 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aviatrix_aviatrix_controller_cert_domain_config",
+			Category:         "Settings",
+			ShortDescription: `Creates and manages an Aviatrix controller cert domain config`,
+			Description:      ``,
+			Keywords: []string{
+				"settings",
+				"controller",
+				"cert",
+				"domain",
+				"config",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cert_domain",
+					Description: `(Optional) Domain name that is used in FQDN for generating cert. Default value: "aviatrixnetwork.com". ## Import`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aviatrix_aviatrix_controller_config",
 			Category:         "Settings",
 			ShortDescription: `Creates and manages an Aviatrix controller config resource`,
@@ -1022,7 +1310,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_cloud_type",
-					Description: `(Optional) Type of cloud service provider, requires an integer value. Use 1 for AWS, 4 for GCP, 8 for Azure, 16 for OCI, and 256 for AWSGOV.`,
+					Description: `(Optional) Type of cloud service provider, requires an integer value. Use 1 for AWS, 4 for GCP, 8 for Azure, 16 for OCI, and 256 for AWSGov.`,
 				},
 				resource.Attribute{
 					Name:        "backup_account_name",
@@ -1030,7 +1318,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_bucket_name",
-					Description: `(Optional) Bucket Name. Required to enable configuration backup for AWS, AWSGOV, GCP and OCI.`,
+					Description: `(Optional) Bucket Name. Required to enable configuration backup for AWS, AWSGov, GCP and OCI.`,
 				},
 				resource.Attribute{
 					Name:        "backup_storage_name",
@@ -1082,6 +1370,28 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aviatrix_aviatrix_controller_email_exception_notification_config",
+			Category:         "Settings",
+			ShortDescription: `Creates and manages an Aviatrix controller email exception notification config`,
+			Description:      ``,
+			Keywords: []string{
+				"settings",
+				"controller",
+				"email",
+				"exception",
+				"notification",
+				"config",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "enable_email_exception_notification",
+					Description: `(Optional) Enable exception email notification. When set to true, exception email will be sent to "exception@aviatrix.com", when set to false, exception email will be sent to controller's admin email. Valid values: true, false. Default value: true. ## Import`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aviatrix_aviatrix_controller_private_oob",
 			Category:         "Settings",
 			ShortDescription: `Creates and manages an Aviatrix controller private OOB config resource`,
@@ -1096,6 +1406,25 @@ var (
 				resource.Attribute{
 					Name:        "enable_private_oob",
 					Description: `(Optional) Switch to enable/disable Aviatrix controller private OOB. Valid values: true, false. Default value: false. ## Import`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aviatrix_aviatrix_copilot_association",
+			Category:         "Settings",
+			ShortDescription: `Creates and manages a CoPilot Association`,
+			Description:      ``,
+			Keywords: []string{
+				"settings",
+				"copilot",
+				"association",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "copilot_address",
+					Description: `(Required) CoPilot instance IP Address or Hostname. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1223,7 +1552,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "host_os",
-					Description: `(Optional) Device host OS. Default value is 'ios'. Only valid value is 'ios'.`,
+					Description: `(Optional) Device host OS. Default value is 'ios'. Valid values are 'ios' or 'aviatrix'.`,
 				},
 				resource.Attribute{
 					Name:        "ssh_port",
@@ -1367,10 +1696,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "manual_bgp_advertised_cidrs",
-					Description: `(Optional) Configure manual BGP advertised CIDRs for this connection. Available as of provider version R2.18+. ## Import`,
+					Description: `(Optional) Configure manual BGP advertised CIDRs for this connection. Available as of provider version R2.18+.`,
+				},
+				resource.Attribute{
+					Name:        "enable_event_triggered_ha",
+					Description: `(Optional) Enable Event Triggered HA. Default value: false. Valid values: true or false. Available as of provider version R2.19+. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `VPC ID. ## Import`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `VPC ID. ## Import`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1468,6 +1810,22 @@ var (
 				resource.Attribute{
 					Name:        "egress_enabled",
 					Description: `Default value is false for associating firewall instance to FireNet. Only true is supported for associating FQDN gateway to FireNet.`,
+				},
+				resource.Attribute{
+					Name:        "egress_static_cidrs",
+					Description: `(Optional) List of egress static CIDRs. Egress is required to be enabled. Example: ["1.171.15.184/32", "1.171.15.185/32"]. Available as of provider version R2.19+.`,
+				},
+				resource.Attribute{
+					Name:        "east_west_inspection_excluded_cidrs",
+					Description: `(Optional) Network List Excluded From East-West Inspection. CIDRs to be excluded from inspection. Type: Set(String). Available as of provider version R2.19.2+.`,
+				},
+				resource.Attribute{
+					Name:        "fail_close_enabled",
+					Description: `(Optional) Enable Fail Close. When Fail Close is enabled, FireNet gateway drops all traffic when there are no firewalls attached to the FireNet gateways. Type: Boolean. Default: false. Available as of provider version R2.19.2+.`,
+				},
+				resource.Attribute{
+					Name:        "tgw_segmentation_for_egress_enabled",
+					Description: `(Optional) Enable TGW segmentation for egress. Valid values: true or false. Default value: false. Available as of provider version R2.19+.`,
 				},
 				resource.Attribute{
 					Name:        "hashing_algorithm",
@@ -1580,7 +1938,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "firenet_gw_name",
-					Description: `(Optional) Name of the primary FireNet gateway. Required for FireNet without Native GWLB VPC.`,
+					Description: `(Optional) Name of the primary FireNet gateway.`,
 				},
 				resource.Attribute{
 					Name:        "firewall_name",
@@ -1589,6 +1947,10 @@ var (
 				resource.Attribute{
 					Name:        "firewall_image",
 					Description: `(Required) One of the AWS/Azure/GCP AMIs from various vendors such as Palo Alto Networks.`,
+				},
+				resource.Attribute{
+					Name:        "firewall_image_id",
+					Description: `(Optional) Firewall image ID. Applicable to AWS and Azure only. For AWS, please use AMI ID. For Azure, the format is “Publisher:Offer:Plan:Version”. Available as of provider version R2.19+.`,
 				},
 				resource.Attribute{
 					Name:        "firewall_size",
@@ -1612,7 +1974,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "management_vpc_id",
-					Description: `(Optional) Management VPC ID. Required for GCP. Available as of provider version R2.18.1+.`,
+					Description: `(Optional) Management VPC ID. Only used for GCP firewall. Required for Palo Alto Networks VM-Series, and required to be empty for Check Point or Fortinet series. Available as of provider version R2.18.1+.`,
 				},
 				resource.Attribute{
 					Name:        "egress_vpc_id",
@@ -1644,27 +2006,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sic_key",
-					Description: `(Optional) Advanced option. Bic key. Applicable to Azure and Check Point Series deployment only.`,
+					Description: `(Optional) Advanced option. Sic key. Applicable to Check Point Series deployment only.`,
 				},
 				resource.Attribute{
 					Name:        "container_folder",
-					Description: `(Optional) Advanced option. Bootstrap storage name. Applicable to Azure and Fortinet Series deployment only.`,
+					Description: `(Optional) Advanced option. Container folder. Applicable to Azure and Fortinet Series deployment only.`,
 				},
 				resource.Attribute{
 					Name:        "sas_url_config",
-					Description: `(Optional) Advanced option. Bootstrap storage name. Applicable to Azure and Fortinet Series deployment only.`,
+					Description: `(Optional) Advanced option. SAS URL Config. Applicable to Azure and Fortinet Series deployment only.`,
 				},
 				resource.Attribute{
 					Name:        "sas_url_license",
-					Description: `(Optional) Advanced option. Bootstrap storage name. Applicable to Azure and Fortinet Series deployment only.`,
+					Description: `(Optional) Advanced option. SAS URL License. Applicable to Azure and Fortinet Series deployment only.`,
 				},
 				resource.Attribute{
 					Name:        "user_data",
-					Description: `(Optional) Advanced option. Bootstrap storage name. Applicable to Check Point Series and Fortinet Series deployment only. ### Misc.`,
+					Description: `(Optional) Advanced option. User Data. Applicable to Check Point Series and Fortinet Series deployment only. Type: String. ### Misc.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Mapping of key value pairs of tags for a firewall instance. Only available for AWS, AWSGov, GCP and Azure firewall instances. For AWS, AWSGOV and Azure allowed characters are: letters, spaces, and numbers plus the following special characters: + - = . _ : @. For GCP allowed characters are: lowercase letters, numbers, "-" and "_". Example: {"key1" = "value1", "key2" = "value2"}. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Mapping of key value pairs of tags for a firewall instance. Only available for AWS, AWSGov, GCP and Azure firewall instances. For AWS, AWSGov and Azure allowed characters are: letters, spaces, and numbers plus the following special characters: + - = . _ : @. For GCP allowed characters are: lowercase letters, numbers, "-" and "_". Example: {"key1" = "value1", "key2" = "value2"}. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "cloud_type",
@@ -1948,7 +2310,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_type",
-					Description: `(Required) Cloud service provider to use to launch the gateway. Requires an integer value. Currently supports AWS(1), GCP(4), AZURE(8), OCI(16), and AWSGov(256).`,
+					Description: `(Required) Cloud service provider to use to launch the gateway. Requires an integer value. Currently supports AWS(1), GCP(4), Azure(8), OCI(16), AzureGov(32), AWSGov(256), AWSChina(1024), AzureChina(2048) and Alibaba Cloud (8192).`,
 				},
 				resource.Attribute{
 					Name:        "account_name",
@@ -1960,15 +2322,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) VPC ID/VNet name of cloud provider. Example: AWS: "vpc-abcd1234", GCP: "vpc-gcp-test", AZURE: "vnet1:hello", OCI: "vpc-oracle-test1".`,
+					Description: `(Required) VPC ID/VNet name of cloud provider. Example: AWS/AWSGov/AWSChina: "vpc-abcd1234", GCP: "vpc-gcp-test", Azure/AzureGov/AzureChina: "vnet1:hello", OCI: "vpc-oracle-test1".`,
 				},
 				resource.Attribute{
 					Name:        "vpc_reg",
-					Description: `(Required) VPC region the gateway will be created in. Example: AWS: "us-east-1", GCP: "us-west2-a", AZURE: "East US 2", OCI: "us-ashburn-1".`,
+					Description: `(Required) VPC region the gateway will be created in. Example: AWS: "us-east-1", GCP: "us-west2-a", Azure: "East US 2", OCI: "us-ashburn-1", AzureGov: "USGov Arizona", AWSGov: "us-gov-west-1", AWSChina: "cn-north-1", AzureChina: "China North".`,
 				},
 				resource.Attribute{
 					Name:        "gw_size",
-					Description: `(Required) Size of the gateway instance. Example: AWS: "t2.large", GCP: "n1-standard-1", AZURE: "Standard_B1s", OCI: "VM.Standard2.2".`,
+					Description: `(Required) Size of the gateway instance. Example: AWS/AWSGov/AWSChina: "t2.large", GCP: "n1-standard-1", Azure/AzureGov/AzureChina: "Standard_B1s", OCI: "VM.Standard2.2".`,
 				},
 				resource.Attribute{
 					Name:        "subnet",
@@ -1976,11 +2338,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "peering_ha_subnet",
-					Description: `(Optional) Public subnet CIDR to create Peering HA Gateway in. Required if enabling Peering HA for AWS/AZURE. Optional if enabling Peering HA for GCP. Example: AWS: "10.0.0.0/16".`,
+					Description: `(Optional) Public subnet CIDR to create Peering HA Gateway in. Required if enabling Peering HA for AWS/AWSGov/Azure/AzureGov/Alibaba Cloud. Optional if enabling Peering HA for GCP. Example: AWS: "10.0.0.0/16".`,
 				},
 				resource.Attribute{
 					Name:        "peering_ha_zone",
-					Description: `(Optional) Zone to create Peering HA Gateway in. Required if enabling Peering HA for GCP. Example: GCP: "us-west1-c". Optional for AZURE. Valid values for AZURE gateways are in the form "az-n". Example: "az-2". Available for AZURE as of provider version R2.17+.`,
+					Description: `(Optional) Zone to create Peering HA Gateway in. Required if enabling Peering HA for GCP. Example: GCP: "us-west1-c". Optional for Azure. Valid values for Azure gateways are in the form "az-n". Example: "az-2". Available for Azure as of provider version R2.17+.`,
 				},
 				resource.Attribute{
 					Name:        "peering_ha_insane_mode_az",
@@ -1996,11 +2358,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "insane_mode",
-					Description: `(Optional) Enable [Insane Mode](https://docs.aviatrix.com/HowTos/insane_mode.html) for Gateway. Insane Mode gateway size must be at least c5 series (AWS) or Standard_D3_v2 (AZURE). If enabled, a valid /26 CIDR segment of the VPC must be specified to create a new subnet. Only supported for AWS, AWSGov or Azure. Valid values: true, false.`,
+					Description: `(Optional) Enable [Insane Mode](https://docs.aviatrix.com/HowTos/insane_mode.html) for Gateway. Insane Mode gateway size must be at least c5 series (AWS) or Standard_D3_v2 (Azure/AzureGov). If enabled, a valid /26 CIDR segment of the VPC must be specified to create a new subnet. Only supported for AWS, AWSGov, Azure or AzureGov. Valid values: true, false.`,
 				},
 				resource.Attribute{
 					Name:        "insane_mode_az",
-					Description: `(Optional) Region + Availability Zone of subnet being created for Insane Mode gateway. Required for AWS and AWSGov if ` + "`" + `insane_mode` + "`" + ` is set. Example: AWS: "us-west-1a". ### SNAT/DNAT`,
+					Description: `(Optional) Region + Availability Zone of subnet being created for Insane Mode gateway. Required for AWS or AWSGov if ` + "`" + `insane_mode` + "`" + ` is set. Example: AWS: "us-west-1a". ### SNAT/DNAT`,
 				},
 				resource.Attribute{
 					Name:        "single_ip_snat",
@@ -2120,7 +2482,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_designated_gateway",
-					Description: `(Optional) Enable Designated Gateway feature for Gateway. Only supported for AWS and AWSGov gateways. Valid values: true, false. Default value: false. Please view documentation [here](https://docs.aviatrix.com/HowTos/gateway.html#designated-gateway) for more information on this feature.`,
+					Description: `(Optional) Enable Designated Gateway feature for Gateway. Only supported for AWS, AWSGov and AWSChina gateways. Valid values: true, false. Default value: false. Please view documentation [here](https://docs.aviatrix.com/HowTos/gateway.html#designated-gateway) for more information on this feature.`,
 				},
 				resource.Attribute{
 					Name:        "additional_cidrs_designated_gateway",
@@ -2128,7 +2490,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_encrypt_volume",
-					Description: `(Optional) Enable EBS volume encryption for the gateway. Only supported for AWS and AWSGov gateways. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) Enable EBS volume encryption for the gateway. Only supported for AWS, AWSGov and AWSChina gateways. Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "customer_managed_keys",
@@ -2160,7 +2522,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_vpc_dns_server",
-					Description: `(Optional) Enable VPC DNS Server for gateway. Currently only supported for AWS and AWSGov gateways. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) Enable VPC DNS Server for gateway. Currently only supported for AWS, Azure, AzureGov, AWSGov, AWSChina, AzureChina and Alibaba Cloud gateways. Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "zone",
@@ -2172,7 +2534,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Map of tags to assign to the gateway. Only available for AWS, AWSGOV and Azure gateway. Allowed characters vary by cloud type but always include: letters, spaces, and numbers. AWS and AWSGOV allow the following special characters: + - = . _ : / @. Azure allows the following special characters: + - = . _ : @. Example: {"key1" = "value1", "key2" = "value2"}. ### Public Subnet Filtering Gateway ~>`,
+					Description: `(Optional) Map of tags to assign to the gateway. Only available for AWS, AWSGov, AWSChina, Azure, AzureGov and AzureChina gateways. Allowed characters vary by cloud type but always include: letters, spaces, and numbers. AWS, AWSGov and AWSChina allow the following special characters: + - = . _ : / @. Azure, AzureGov and AzureChina allows the following special characters: + - = . _ : @. Example: {"key1" = "value1", "key2" = "value2"}.`,
+				},
+				resource.Attribute{
+					Name:        "tunnel_detection_time",
+					Description: `(Optional) The IPsec tunnel down detection time for the Gateway in seconds. Must be a number in the range [20-600]. The default value is set by the controller (60 seconds if nothing has been changed).`,
 				},
 				resource.Attribute{
 					Name:        "enable_public_subnet_filtering",
@@ -2203,6 +2569,10 @@ var (
 					Description: `Security group used for the gateway.`,
 				},
 				resource.Attribute{
+					Name:        "peering_ha_security_group_id",
+					Description: `HA security group used for the gateway.`,
+				},
+				resource.Attribute{
 					Name:        "cloud_instance_id",
 					Description: `Cloud instance ID of the gateway.`,
 				},
@@ -2236,7 +2606,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dnat_policy",
-					Description: `(Optional) Policy rule applied for enabling Destination NAT (DNAT), which allows you to change the destination to a virtual address range. Currently only supports AWS(1) and AZURE(8).`,
+					Description: `(Optional) Policy rule applied for enabling Destination NAT (DNAT), which allows you to change the destination to a virtual address range. Currently only supports AWS(1) and Azure(8).`,
 				},
 				resource.Attribute{
 					Name:        "src_ip",
@@ -2296,7 +2666,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tag_list",
-					Description: `(Optional) Tag list of the gateway instance. Only available for AWS, AWSGov and Azure gateways. Example: ["key1:value1", "key2:value2"]. ## Import`,
+					Description: `(Optional) Tag list of the gateway instance. Only available for AWS, AWSGov, AWSChina, Azure, AzureGov and AzureChina gateways. Example: ["key1:value1", "key2:value2"]. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2313,6 +2683,10 @@ var (
 					Description: `Security group used for the gateway.`,
 				},
 				resource.Attribute{
+					Name:        "peering_ha_security_group_id",
+					Description: `HA security group used for the gateway.`,
+				},
+				resource.Attribute{
 					Name:        "cloud_instance_id",
 					Description: `Cloud instance ID of the gateway.`,
 				},
@@ -2346,7 +2720,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dnat_policy",
-					Description: `(Optional) Policy rule applied for enabling Destination NAT (DNAT), which allows you to change the destination to a virtual address range. Currently only supports AWS(1) and AZURE(8).`,
+					Description: `(Optional) Policy rule applied for enabling Destination NAT (DNAT), which allows you to change the destination to a virtual address range. Currently only supports AWS(1) and Azure(8).`,
 				},
 				resource.Attribute{
 					Name:        "src_ip",
@@ -2406,7 +2780,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tag_list",
-					Description: `(Optional) Tag list of the gateway instance. Only available for AWS, AWSGov and Azure gateways. Example: ["key1:value1", "key2:value2"]. ## Import`,
+					Description: `(Optional) Tag list of the gateway instance. Only available for AWS, AWSGov, AWSChina, Azure, AzureGov and AzureChina gateways. Example: ["key1:value1", "key2:value2"]. ## Import`,
 				},
 			},
 		},
@@ -2455,7 +2829,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dnat_policy",
-					Description: `(Required) Policy rule applied for enabling Destination NAT (DNAT), which allows you to change the destination to a virtual address range. Currently only supports AWS(1) and AZURE(8).`,
+					Description: `(Required) Policy rule applied for enabling Destination NAT (DNAT), which allows you to change the destination to a virtual address range. Currently only supports AWS(1) and Azure(8).`,
 				},
 				resource.Attribute{
 					Name:        "src_cidr",
@@ -2499,7 +2873,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "exclude_rtb",
-					Description: `(Optional) This field specifies which VPC private route table will not be programmed with the default route entry. ## Import`,
+					Description: `(Optional) This field specifies which VPC private route table will not be programmed with the default route entry.`,
+				},
+				resource.Attribute{
+					Name:        "apply_route_entry",
+					Description: `(Optional) This is an option to program the route entry 'DST CIDR pointing to Aviatrix Gateway' into Cloud platform routing table. Type: Boolean. Default: True. Available as of provider version R2.19.2+. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3026,7 +3404,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_pre_shared_key",
-					Description: `(Optional) Backup Pre-Shared Key. ### Custom Algorithms`,
+					Description: `(Optional) Backup Pre-Shared Key.`,
+				},
+				resource.Attribute{
+					Name:        "local_tunnel_ip",
+					Description: `(Optional) Local tunnel IP address. Only valid for route based connection. Available as of provider version R2.19+.`,
+				},
+				resource.Attribute{
+					Name:        "remote_tunnel_ip",
+					Description: `(Optional) Remote tunnel IP address. Only valid for route based connection. Available as of provider version R2.19+.`,
+				},
+				resource.Attribute{
+					Name:        "backup_local_tunnel_ip",
+					Description: `(Optional) Backup local tunnel IP address. Only valid when HA enabled route based connection. Available as of provider version R2.19+.`,
+				},
+				resource.Attribute{
+					Name:        "backup_remote_tunnel_ip",
+					Description: `(Optional) Backup remote tunnel IP address. Only valid when HA enabled route based connection. Available as of provider version R2.19+.`,
+				},
+				resource.Attribute{
+					Name:        "enable_single_ip_ha",
+					Description: `(Optional) Enable single IP HA feature. Available as of provider version 2.19+. ### Custom Algorithms`,
 				},
 				resource.Attribute{
 					Name:        "custom_algorithms",
@@ -3138,7 +3536,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "forward_traffic_to_transit",
-					Description: `(Optional) Enable spoke gateway with mapped site2cloud configurations to forward traffic from site2cloud connection to Aviatrix Transit Gateway. Default value: false. Valid values: true or false. Available in provider version 2.17.2+. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Enable spoke gateway with mapped site2cloud configurations to forward traffic from site2cloud connection to Aviatrix Transit Gateway. Default value: false. Valid values: true or false. Available in provider version 2.17.2+.`,
+				},
+				resource.Attribute{
+					Name:        "enable_event_triggered_ha",
+					Description: `(Optional) Enable Event Triggered HA. Default value: false. Valid values: true or false. Available as of provider version R2.19+.`,
+				},
+				resource.Attribute{
+					Name:        "phase1_remote_identifier",
+					Description: `(Optional) Phase 1 remote identifier of the IPsec tunnel. This can be configured to be either the public IP address or the private IP address of the peer terminating the IPsec tunnel. Example: ["1.2.3.4"] when HA is disabled, ["1.2.3.4", "5.6.7.8"] when HA is enabled. Available as of provider version R2.19+. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "local_subnet_cidr",
@@ -3192,7 +3598,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_type",
-					Description: `(Required) Type of cloud service provider, requires an integer value. Currently only AWS(1), GCP(4), AZURE(8), OCI(16) and AWSGOV(256) are supported.`,
+					Description: `(Required) Type of cloud service provider, requires an integer value. Currently only AWS(1), GCP(4), Azure(8), OCI(16), AzureGov(32), AWSGov(256), AWSChina(1024), AzureChina(2048) and Alibaba Cloud(8192) are supported.`,
 				},
 				resource.Attribute{
 					Name:        "account_name",
@@ -3204,15 +3610,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) VPC-ID/VNet-Name of cloud provider. Example: AWS: "vpc-abcd1234", GCP: "vpc-gcp-test", AZURE: "vnet1:hello", OCI: "vpc-oracle-test1", AWSGOV: "vpc-abcd12347890".`,
+					Description: `(Required) VPC-ID/VNet-Name of cloud provider. Example: AWS/AWSGov/AWSChina: "vpc-abcd1234", GCP: "vpc-gcp-test", Azure/AzureGov/AzureChina: "vnet1:hello", OCI: "vpc-oracle-test1".`,
 				},
 				resource.Attribute{
 					Name:        "vpc_reg",
-					Description: `(Required) Region of cloud provider. Example: AWS: "us-east-1", GCP: "us-west2-a", AZURE: "East US 2", OCI: "us-ashburn-1", AWSGOV: "us-gov-west-1.`,
+					Description: `(Required) Region of cloud provider. Example: AWS: "us-east-1", GCP: "us-west2-a", Azure: "East US 2", OCI: "us-ashburn-1", AzureGov: "USGov Arizona", AWSGov: "us-gov-west-1, AWSChina: "cn-north-1", AzureChina: "China North".`,
 				},
 				resource.Attribute{
 					Name:        "gw_size",
-					Description: `(Required) Size of the gateway instance. Example: AWS: "t2.large", AZURE: "Standard_B1s", OCI: "VM.Standard2.2", GCP: "n1-standard-1", AWSGOV: "t2.large".`,
+					Description: `(Required) Size of the gateway instance. Example: AWS/AWSGov/AWSChina: "t2.large", Azure/AzureGov/AzureChina: "Standard_B1s", OCI: "VM.Standard2.2", GCP: "n1-standard-1".`,
 				},
 				resource.Attribute{
 					Name:        "subnet",
@@ -3220,11 +3626,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ha_subnet",
-					Description: `(Optional) HA Subnet. Required if enabling HA for AWS/Azure/AWSGOV gateway. Optional for GCP. Setting to empty/unsetting will disable HA. Setting to a valid subnet CIDR will create an HA gateway on the subnet. Example: "10.12.0.0/24"`,
+					Description: `(Optional) HA Subnet. Required if enabling HA for AWS, AWSGov, AWSChina, Azure, AzureGov, AzureChina, OCI, or Alibaba Cloud gateways. Optional for GCP. Setting to empty/unsetting will disable HA. Setting to a valid subnet CIDR will create an HA gateway on the subnet. Example: "10.12.0.0/24"`,
 				},
 				resource.Attribute{
 					Name:        "ha_zone",
-					Description: `(Optional) HA Zone. Required if enabling HA for GCP gateway. Optional for AZURE. For GCP, setting to empty/unsetting will disable HA and setting to a valid zone will create an HA gateway in the zone. Example: "us-west1-c". For AZURE, this is an optional parameter to place the HA gateway in a specific availability zone. Valid values for AZURE gateways are in the form "az-n". Example: "az-2". Available for AZURE as of provider version R2.17+.`,
+					Description: `(Optional) HA Zone. Required if enabling HA for GCP gateway. Optional for Azure. For GCP, setting to empty/unsetting will disable HA and setting to a valid zone will create an HA gateway in the zone. Example: "us-west1-c". For Azure, this is an optional parameter to place the HA gateway in a specific availability zone. Valid values for Azure gateways are in the form "az-n". Example: "az-2". Available for Azure as of provider version R2.17+.`,
 				},
 				resource.Attribute{
 					Name:        "ha_eip",
@@ -3236,19 +3642,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "insane_mode",
-					Description: `(Optional) Enable [Insane Mode](https://docs.aviatrix.com/HowTos/insane_mode.html) for Spoke Gateway. Insane Mode gateway size must be at least c5 size (AWS and AWSGOV) or Standard_D3_v2 (AZURE); for GCP only four size are supported: "n1-highcpu-4", "n1-highcpu-8", "n1-highcpu-16" and "n1-highcpu-32". If enabled, you must specify a valid /26 CIDR segment of the VPC to create a new subnet for AWS, AWSGOV and Azure. Only available for AWS, GCP(with active mesh 2.0 enabled), Azure and AWSGOV. Valid values: true, false.`,
+					Description: `(Optional) Enable [Insane Mode](https://docs.aviatrix.com/HowTos/insane_mode.html) for Spoke Gateway. Insane Mode gateway size must be at least c5 size (AWS and AWSGov) or Standard_D3_v2 (Azure and AzureGov); for GCP only four size are supported: "n1-highcpu-4", "n1-highcpu-8", "n1-highcpu-16" and "n1-highcpu-32". If enabled, you must specify a valid /26 CIDR segment of the VPC to create a new subnet for AWS, Azure, AzureGov and AWSGov. Only available for AWS, GCP/OCI (with Active Mesh 2.0 enabled), Azure, AzureGov and AWSGov. Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "insane_mode_az",
-					Description: `(Optional) AZ of subnet being created for Insane Mode Spoke Gateway. Required for AWS/AWSGOV provider if ` + "`" + `insane_mode` + "`" + ` is enabled. Example: AWS: "us-west-1a". ### SNAT/DNAT`,
+					Description: `(Optional) AZ of subnet being created for Insane Mode Spoke Gateway. Required for AWS or AWSGov if ` + "`" + `insane_mode` + "`" + ` is enabled. Example: AWS: "us-west-1a". ### SNAT/DNAT`,
 				},
 				resource.Attribute{
 					Name:        "single_ip_snat",
-					Description: `(Optional) Specify whether to enable Source NAT feature in "single_ip" mode on the gateway or not. Please disable AWS NAT instance before enabling this feature. Currently only supports AWS(1) and AZURE(8). Valid values: true, false. ->`,
+					Description: `(Optional) Specify whether to enable Source NAT feature in "single_ip" mode on the gateway or not. Please disable AWS NAT instance before enabling this feature. Currently only supports AWS(1) and Azure(8). Valid values: true, false. ->`,
 				},
 				resource.Attribute{
 					Name:        "enable_encrypt_volume",
-					Description: `(Optional) Enable EBS volume encryption for Gateway. Only supports AWS and AWSGOV provider. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) Enable EBS volume encryption for Gateway. Only supports AWS, AWSGov and AWSChina providers. Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "customer_managed_keys",
@@ -3264,7 +3670,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "included_advertised_spoke_routes",
-					Description: `(Optional) A list of comma separated CIDRs to be advertised to on-prem as 'Included CIDR List'. When configured, it will replace all advertised routes from this VPC. Example: "10.4.0.0/116,10.5.0.0/16". ### [Monitor Gateway Subnets](https://docs.aviatrix.com/HowTos/gateway.html#monitor-gateway-subnet) ~>`,
+					Description: `(Optional) A list of comma separated CIDRs to be advertised to on-prem as 'Included CIDR List'. When configured, it will replace all advertised routes from this VPC. Example: "10.4.0.0/116,10.5.0.0/16".`,
+				},
+				resource.Attribute{
+					Name:        "enable_private_vpc_default_route",
+					Description: `(Optional) Program default route in VPC private route table. Default: false. Valid values: true or false. Available as of provider version R2.19+.`,
+				},
+				resource.Attribute{
+					Name:        "enable_skip_public_route_table_update",
+					Description: `(Optional) Skip programming VPC public route table. Default: false. Valid values: true or false. Available as of provider version R2.19+.`,
+				},
+				resource.Attribute{
+					Name:        "enable_auto_advertise_s2c_cidrs",
+					Description: `(Optional) Auto Advertise Spoke Site2Cloud CIDRs. Default: false. Valid values: true or false. Available as of provider version R2.19+. ### [Monitor Gateway Subnets](https://docs.aviatrix.com/HowTos/gateway.html#monitor-gateway-subnet) ~>`,
 				},
 				resource.Attribute{
 					Name:        "enable_monitor_gateway_subnets",
@@ -3276,7 +3694,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_private_oob",
-					Description: `(Optional) Enable Private OOB feature. Only available for AWS and AWSGOV. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) Enable Private OOB feature. Only available for AWS, AWSGov and AWSChina. Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "oob_management_subnet",
@@ -3296,11 +3714,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allocate_new_eip",
-					Description: `(Optional) When value is false, reuse an idle address in Elastic IP pool for this gateway. Otherwise, allocate a new Elastic IP and use it for this gateway. Available in Controller 4.7+. Valid values: true, false. Default: true. Option not available for AZURE and OCI gateways, they will automatically allocate new EIPs.`,
+					Description: `(Optional) When value is false, reuse an idle address in Elastic IP pool for this gateway. Otherwise, allocate a new Elastic IP and use it for this gateway. Available in Controller 4.7+. Valid values: true, false. Default: true. Option not available for Azure and OCI gateways, they will automatically allocate new EIPs.`,
 				},
 				resource.Attribute{
 					Name:        "eip",
-					Description: `(Optional) Required when ` + "`" + `allocate_new_eip` + "`" + ` is false. It uses the specified EIP for this gateway. Available in Controller 4.7+. Only available for AWS, GCP and AWSGOV.`,
+					Description: `(Optional) Required when ` + "`" + `allocate_new_eip` + "`" + ` is false. It uses the specified EIP for this gateway. Available in Controller 4.7+. Only available for AWS, GCP and AWSGov.`,
 				},
 				resource.Attribute{
 					Name:        "enable_active_mesh",
@@ -3308,11 +3726,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_vpc_dns_server",
-					Description: `(Optional) Enable VPC DNS Server for Gateway. Currently only supports AWS and AWSGOV provider. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) Enable VPC DNS Server for Gateway. Currently only supported for AWS, Azure, AzureGov, AWSGov, AWSChina, AzureChina and Alibaba Cloud gateways. Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "zone",
-					Description: `(Optional) Availability Zone. Only available for cloud_type = 8 (AZURE). Must be in the form 'az-n', for example, 'az-2'. Available in provider version R2.17+.`,
+					Description: `(Optional) Availability Zone. Only available for cloud_type = 8 (Azure). Must be in the form 'az-n', for example, 'az-2'. Available in provider version R2.17+.`,
 				},
 				resource.Attribute{
 					Name:        "manage_transit_gateway_attachment",
@@ -3328,7 +3746,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Map of tags to assign to the gateway. Only available for AWS, AWSGOV and Azure gateway. Allowed characters vary by cloud type but always include: letters, spaces, and numbers. AWS and AWSGOV allow the following special characters: + - = . _ : / @. Azure allows the following special characters: + - = . _ : @. Example: {"key1" = "value1", "key2" = "value2"}. ->`,
+					Description: `(Optional) Map of tags to assign to the gateway. Only available for AWS, Azure, AzureGov, AWSGov, AWSChina and AzureChina gateways. Allowed characters vary by cloud type but always include: letters, spaces, and numbers. AWS, AWSGov and AWSChina allow the following special characters: + - = . _ : / @. Azure, AzureGov and AzureChina allows the following special characters: + - = . _ : @. Example: {"key1" = "value1", "key2" = "value2"}.`,
+				},
+				resource.Attribute{
+					Name:        "tunnel_detection_time",
+					Description: `(Optional) The IPsec tunnel down detection time for the Spoke Gateway in seconds. Must be a number in the range [20-600]. The default value is set by the controller (60 seconds if nothing has been changed).`,
 				},
 				resource.Attribute{
 					Name:        "manage_transit_gateway_attachment",
@@ -3347,6 +3769,10 @@ var (
 					Description: `Security group used for the spoke gateway.`,
 				},
 				resource.Attribute{
+					Name:        "ha_security_group_id",
+					Description: `HA security group used for the spoke gateway.`,
+				},
+				resource.Attribute{
 					Name:        "cloud_instance_id",
 					Description: `Cloud instance ID of the spoke gateway.`,
 				},
@@ -3368,7 +3794,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_snat",
-					Description: `(Optional) Specify whether enabling Source NAT feature on the gateway or not. Please disable AWS NAT instance before enabling this feature. Currently only supports AWS(1), AZURE(8), and AWSGOV(256). Valid values: true, false.`,
+					Description: `(Optional) Specify whether enabling Source NAT feature on the gateway or not. Please disable AWS NAT instance before enabling this feature. Currently only supports AWS(1), Azure(8) and AWSGov(256). Valid values: true, false.`,
 				},
 				resource.Attribute{
 					Name:        "snat_mode",
@@ -3424,7 +3850,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dnat_policy",
-					Description: `(Optional) Policy rule applied for enabling Destination NAT (DNAT), which allows you to change the destination to a virtual address range. Currently only supports AWS(1), AZURE(8), and AWSGOV(256).`,
+					Description: `(Optional) Policy rule applied for enabling Destination NAT (DNAT), which allows you to change the destination to a virtual address range. Currently only supports AWS(1), Azure(8), and AWSGov(256).`,
 				},
 				resource.Attribute{
 					Name:        "src_ip",
@@ -3472,7 +3898,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tag_list",
-					Description: `(Optional) Instance tag of cloud provider. Only supported for AWS, AWSGOV and Azure. Example: ["key1:value1", "key2:value2"]. ## Import`,
+					Description: `(Optional) Instance tag of cloud provider. Only supported for AWS, Azure, AzureGov, AWSGov, AWSChina and AzureChina. Example: ["key1:value1", "key2:value2"]. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3489,6 +3915,10 @@ var (
 					Description: `Security group used for the spoke gateway.`,
 				},
 				resource.Attribute{
+					Name:        "ha_security_group_id",
+					Description: `HA security group used for the spoke gateway.`,
+				},
+				resource.Attribute{
 					Name:        "cloud_instance_id",
 					Description: `Cloud instance ID of the spoke gateway.`,
 				},
@@ -3510,7 +3940,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_snat",
-					Description: `(Optional) Specify whether enabling Source NAT feature on the gateway or not. Please disable AWS NAT instance before enabling this feature. Currently only supports AWS(1), AZURE(8), and AWSGOV(256). Valid values: true, false.`,
+					Description: `(Optional) Specify whether enabling Source NAT feature on the gateway or not. Please disable AWS NAT instance before enabling this feature. Currently only supports AWS(1), Azure(8) and AWSGov(256). Valid values: true, false.`,
 				},
 				resource.Attribute{
 					Name:        "snat_mode",
@@ -3566,7 +3996,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dnat_policy",
-					Description: `(Optional) Policy rule applied for enabling Destination NAT (DNAT), which allows you to change the destination to a virtual address range. Currently only supports AWS(1), AZURE(8), and AWSGOV(256).`,
+					Description: `(Optional) Policy rule applied for enabling Destination NAT (DNAT), which allows you to change the destination to a virtual address range. Currently only supports AWS(1), Azure(8), and AWSGov(256).`,
 				},
 				resource.Attribute{
 					Name:        "src_ip",
@@ -3614,7 +4044,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tag_list",
-					Description: `(Optional) Instance tag of cloud provider. Only supported for AWS, AWSGOV and Azure. Example: ["key1:value1", "key2:value2"]. ## Import`,
+					Description: `(Optional) Instance tag of cloud provider. Only supported for AWS, Azure, AzureGov, AWSGov, AWSChina and AzureChina. Example: ["key1:value1", "key2:value2"]. ## Import`,
 				},
 			},
 		},
@@ -3814,7 +4244,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tunnel_protocol",
-					Description: `(Optional) Tunnel protocol, only valid with ` + "`" + `connection_type` + "`" + ` = 'bgp'. Valid values: 'IPsec', 'GRE' or 'LAN'. Default value: 'IPsec'. Available as of provider version R2.18+.`,
+					Description: `(Optional) Tunnel protocol, only valid with ` + "`" + `connection_type` + "`" + ` = 'bgp'. Valid values: 'IPsec', 'GRE' or 'LAN'. Default value: 'IPsec'. Case insensitive. Available as of provider version R2.18+.`,
 				},
 				resource.Attribute{
 					Name:        "bgp_local_as_num",
@@ -3826,7 +4256,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "remote_subnet",
-					Description: `(Optional) Remote CIDRs joined as a string with ','. Required for a 'static' type connection. ~>`,
+					Description: `(Optional) Remote CIDRs joined as a string with ','. Required for a 'static' type connection.`,
+				},
+				resource.Attribute{
+					Name:        "local_subnet",
+					Description: `(Optional) Local CIDRs joined as a string with ','. ~>`,
 				},
 				resource.Attribute{
 					Name:        "remote_vpc_name",
@@ -3933,12 +4367,24 @@ var (
 					Description: `(Optional) Enable learned CIDRs approval for the connection. Only valid with 'connection_type' = 'bgp'. Requires the transit_gateway's 'learned_cidrs_approval_mode' attribute be set to 'connection'. Valid values: true, false. Default value: false. Available as of provider version R2.18+.`,
 				},
 				resource.Attribute{
+					Name:        "approved_cidrs",
+					Description: `(Optional/Computed) Set of approved cidrs. Requires 'enable_learned_cidrs_approval' to be true. Type: Set(String).`,
+				},
+				resource.Attribute{
 					Name:        "enable_ikev2",
 					Description: `(Optional) Set as true to enable IKEv2 protocol.`,
 				},
 				resource.Attribute{
 					Name:        "manual_bgp_advertised_cidrs",
-					Description: `(Optional) Configure manual BGP advertised CIDRs for this connection. Only valid with 'connection_type'= 'bgp'. Available as of provider version R2.18+. ## Import`,
+					Description: `(Optional) Configure manual BGP advertised CIDRs for this connection. Only valid with 'connection_type'= 'bgp'. Available as of provider version R2.18+.`,
+				},
+				resource.Attribute{
+					Name:        "enable_event_triggered_ha",
+					Description: `(Optional) Enable Event Triggered HA. Default value: false. Valid values: true or false. Available as of provider version R2.19+.`,
+				},
+				resource.Attribute{
+					Name:        "phase1_remote_identifier",
+					Description: `(Optional) Phase 1 remote identifier of the IPsec tunnel. This can be configured to be either the public IP address or the private IP address of the peer terminating the IPsec tunnel. Example: ["1.2.3.4"] when HA is disabled, ["1.2.3.4", "5.6.7.8"] when HA is enabled. Available as of provider version R2.19+. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3983,7 +4429,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_type",
-					Description: `(Required) Type of cloud service provider, requires an integer value. Currently only AWS(1), GCP(4), AZURE(8), OCI(16) and AWSGOV(256) are supported.`,
+					Description: `(Required) Type of cloud service provider, requires an integer value. Currently only AWS(1), GCP(4), Azure(8), OCI(16), AzureGov(32), AWSGov(256), AWSChina(1024), AzureChina(2048) and Alibaba Cloud(8192) are supported.`,
 				},
 				resource.Attribute{
 					Name:        "account_name",
@@ -3995,15 +4441,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) VPC-ID/VNet-Name of cloud provider. Example: AWS: "vpc-abcd1234", GCP: "vpc-gcp-test", AZURE: "vnet1:hello", OCI: "vpc-oracle-test1", AWSGOV: "vpc-abcd12345678".`,
+					Description: `(Required) VPC-ID/VNet-Name of cloud provider. Example: AWS/AWSGov/AWSChina: "vpc-abcd1234", GCP: "vpc-gcp-test", Azure/AzureGov/AzureChina: "vnet1:hello", OCI: "vpc-oracle-test1".`,
 				},
 				resource.Attribute{
 					Name:        "vpc_reg",
-					Description: `(Required) Region of cloud provider. Example: AWS: "us-east-1", GCP: "us-west2-a", AZURE: "East US 2", OCI: "us-ashburn-1", AWSGOV: "us-gov-west-1".`,
+					Description: `(Required) Region of cloud provider. Example: AWS: "us-east-1", GCP: "us-west2-a", Azure: "East US 2", OCI: "us-ashburn-1", AzureGov: "USGov Arizona", AWSGov: "us-gov-west-1", AWSChina: "cn-north-1", AzureChina: "China North".`,
 				},
 				resource.Attribute{
 					Name:        "gw_size",
-					Description: `(Required) Size of the gateway instance. Example: AWS: "t2.large", AZURE: "Standard_B1s", OCI: "VM.Standard2.2", GCP: "n1-standard-1", AWSGOV: "t2.large".`,
+					Description: `(Required) Size of the gateway instance. Example: AWS: "t2.large", Azure/AzureGov: "Standard_B1s", OCI: "VM.Standard2.2", GCP: "n1-standard-1", AWSGov: "t2.large", AWSChina: "t2.large", AzureChina: "Standard_A0".`,
 				},
 				resource.Attribute{
 					Name:        "subnet",
@@ -4011,19 +4457,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ha_subnet",
-					Description: `(Optional) HA Subnet CIDR. Required only if enabling HA for AWS/Azure/AWSGOV gateway. Optional for GCP. Setting to empty/unsetting will disable HA. Setting to a valid subnet CIDR will create an HA gateway on the subnet. Example: "10.12.0.0/24".`,
+					Description: `(Optional) HA Subnet CIDR. Required only if enabling HA for AWS, Azure, AzureGov, AWSGov, AWSChina, AzureChina, OCI, or Alibaba Cloud gateways. Optional for GCP. Setting to empty/unsetting will disable HA. Setting to a valid subnet CIDR will create an HA gateway on the subnet. Example: "10.12.0.0/24".`,
 				},
 				resource.Attribute{
 					Name:        "ha_zone",
-					Description: `(Optional) HA Zone. Required if enabling HA for GCP gateway. Optional if enabling HA for AZURE gateway. For GCP, setting to empty/unsetting will disable HA and setting to a valid zone will create an HA gateway in the zone. Example: "us-west1-c". For AZURE, this is an optional parameter to place the HA gateway in a specific availability zone. Valid values for AZURE gateways are in the form "az-n". Example: "az-2". Available for Azure as of provider version R2.17+.`,
+					Description: `(Optional) HA Zone. Required if enabling HA for GCP gateway. Optional if enabling HA for Azure gateway. For GCP, setting to empty/unsetting will disable HA and setting to a valid zone will create an HA gateway in the zone. Example: "us-west1-c". For Azure, this is an optional parameter to place the HA gateway in a specific availability zone. Valid values for Azure gateways are in the form "az-n". Example: "az-2". Available for Azure as of provider version R2.17+.`,
 				},
 				resource.Attribute{
 					Name:        "ha_insane_mode_az",
-					Description: `(Optional) AZ of subnet being created for Insane Mode Transit HA Gateway. Required for AWS/AWSGOV if ` + "`" + `insane_mode` + "`" + ` is enabled and ` + "`" + `ha_subnet` + "`" + ` is set. Example: AWS: "us-west-1a".`,
+					Description: `(Optional) AZ of subnet being created for Insane Mode Transit HA Gateway. Required for AWS, AWSGov and AWSChina if ` + "`" + `insane_mode` + "`" + ` is enabled and ` + "`" + `ha_subnet` + "`" + ` is set. Example: AWS: "us-west-1a".`,
 				},
 				resource.Attribute{
 					Name:        "ha_eip",
-					Description: `(Optional) Public IP address that you want to assign to the HA peering instance. If no value is given, a new EIP will automatically be allocated. Only available for AWS, GCP and AWSGOV.`,
+					Description: `(Optional) Public IP address that you want to assign to the HA peering instance. If no value is given, a new EIP will automatically be allocated. Only available for AWS, GCP, AWSGov and AWSChina.`,
 				},
 				resource.Attribute{
 					Name:        "ha_gw_size",
@@ -4031,11 +4477,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "insane_mode",
-					Description: `(Optional) Specify true for [Insane Mode](https://docs.aviatrix.com/HowTos/insane_mode.html) high performance gateway. Insane Mode gateway size must be at least c5 size (AWS and AWSGOV) or Standard_D3_v2 (AZURE); for GCP only four size are supported: "n1-highcpu-4", "n1-highcpu-8", "n1-highcpu-16" and "n1-highcpu-32". If enabled, you must specify a valid /26 CIDR segment of the VPC to create a new subnet for AWS, AWSGOV and Azure. Only available for AWS, GCP(with active mesh 2.0 enabled), Azure and AWSGOV. Valid values: true, false.`,
+					Description: `(Optional) Specify true for [Insane Mode](https://docs.aviatrix.com/HowTos/insane_mode.html) high performance gateway. Insane Mode gateway size must be at least c5 size (AWS and AWSGov) or Standard_D3_v2 (Azure and AzureGov); for GCP only four size are supported: "n1-highcpu-4", "n1-highcpu-8", "n1-highcpu-16" and "n1-highcpu-32". If enabled, you must specify a valid /26 CIDR segment of the VPC to create a new subnet for AWS, Azure, AzureGov and AWSGov. Only available for AWS, GCP/OCI (with Active Mesh 2.0 enabled), Azure, AzureGov and AWSGov. Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "insane_mode_az",
-					Description: `(Optional) AZ of subnet being created for Insane Mode Transit Gateway. Required for AWS and AWSGOV if ` + "`" + `insane_mode` + "`" + ` is enabled. Example: AWS: "us-west-1a". ### SNAT`,
+					Description: `(Optional) AZ of subnet being created for Insane Mode Transit Gateway. Required for AWS or AWSGov if ` + "`" + `insane_mode` + "`" + ` is enabled. Example: AWS: "us-west-1a". ### SNAT`,
 				},
 				resource.Attribute{
 					Name:        "single_ip_snat",
@@ -4059,7 +4505,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_hybrid_connection",
-					Description: `(Optional) Sign of readiness for TGW connection. Only supported for AWS and AWSGOV. Example: false.`,
+					Description: `(Optional) Sign of readiness for TGW connection. Only supported for AWS, AWSGov and AWSChina. Example: false.`,
 				},
 				resource.Attribute{
 					Name:        "enable_firenet",
@@ -4111,11 +4557,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_bgp_over_lan",
-					Description: `(Optional) Pre-allocate a network interface(eth4) for "BGP over LAN" functionality. Must be enabled to create a BGP over LAN ` + "`" + `aviatrix_transit_external_device_conn` + "`" + ` resource with this Transit Gateway. Only valid for cloud_type = 8 (AZURE). Valid values: true or false. Default value: false. Available as of provider version R2.18+ ### Encryption`,
+					Description: `(Optional) Pre-allocate a network interface(eth4) for "BGP over LAN" functionality. Must be enabled to create a BGP over LAN ` + "`" + `aviatrix_transit_external_device_conn` + "`" + ` resource with this Transit Gateway. Only valid for cloud_type = 8 (Azure). Valid values: true or false. Default value: false. Available as of provider version R2.18+`,
+				},
+				resource.Attribute{
+					Name:        "enable_multi_tier_transit",
+					Description: `(Optional) Enable Multi-tier Transit mode on transit gateway. When enabled, transit gateway will propagate routes it receives from its transit peering peer to other transit peering peers. ` + "`" + `local_as_number` + "`" + ` is required. Default value: false. Available as of provider version R2.19+. ### Encryption`,
 				},
 				resource.Attribute{
 					Name:        "enable_encrypt_volume",
-					Description: `(Optional) Enable EBS volume encryption for Gateway. Only supports AWS and AWSGOV. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) Enable EBS volume encryption for Gateway. Only supports AWS, AWSGov and AWSChina. Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "customer_managed_keys",
@@ -4155,7 +4605,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_private_oob",
-					Description: `(Optional) Enable Private OOB feature. Only available for AWS and AWSGOV. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) Enable Private OOB feature. Only available for AWS, AWSGov and AWSChina. Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "oob_management_subnet",
@@ -4187,11 +4637,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_vpc_dns_server",
-					Description: `(Optional) Enable VPC DNS Server for Gateway. Currently only supports AWS and AWSGOV. Valid values: true, false. Default value: false.`,
+					Description: `(Optional) Enable VPC DNS Server for Gateway. Currently only supported for AWS, Azure, AzureGov, AWSGov, AWSChina, AzureChina and Alibaba Cloud gateways. Valid values: true, false. Default value: false.`,
 				},
 				resource.Attribute{
 					Name:        "zone",
-					Description: `(Optional) Availability Zone. Only available for cloud_type = 8 (AZURE). Must be in the form 'az-n', for example, 'az-2'. Available in provider version R2.17+.`,
+					Description: `(Optional) Availability Zone. Only available for cloud_type = 8 (Azure). Must be in the form 'az-n', for example, 'az-2'. Available in provider version R2.17+.`,
 				},
 				resource.Attribute{
 					Name:        "enable_active_standby",
@@ -4203,7 +4653,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Map of tags to assign to the gateway. Only available for AWS, AWSGOV and Azure gateway. Allowed characters vary by cloud type but always include: letters, spaces, and numbers. AWS and AWSGOV allow the following special characters: + - = . _ : / @. Azure allows the following special characters: + - = . _ : @. Example: {"key1" = "value1", "key2" = "value2"}. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Map of tags to assign to the gateway. Only available for AWS, Azure, AzureGov, AWSGov, AWSChina and AzureChina gateways. Allowed characters vary by cloud type but always include: letters, spaces, and numbers. AWS, AWSGov and AWSChina allow the following special characters: + - = . _ : / @. Azure, AzureGov and AzureChina allows the following special characters: + - = . _ : @. Example: {"key1" = "value1", "key2" = "value2"}.`,
+				},
+				resource.Attribute{
+					Name:        "tunnel_detection_time",
+					Description: `(Optional) The IPsec tunnel down detection time for the Transit Gateway in seconds. Must be a number in the range [20-600]. The default value is set by the controller (60 seconds if nothing has been changed).`,
 				},
 				resource.Attribute{
 					Name:        "eip",
@@ -4216,6 +4670,10 @@ var (
 				resource.Attribute{
 					Name:        "security_group_id",
 					Description: `Security group used for the transit gateway.`,
+				},
+				resource.Attribute{
+					Name:        "ha_security_group_id",
+					Description: `HA security group used for the transit gateway.`,
 				},
 				resource.Attribute{
 					Name:        "cloud_instance_id",
@@ -4255,7 +4713,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tag_list",
-					Description: `(Optional) Instance tag of cloud provider. Only supported for AWS, AWSGOV and Azure. Example: ["key1:value1","key2:value2"]. ## Import`,
+					Description: `(Optional) Instance tag of cloud provider. Only supported for AWS, Azure, AzureGov, AWSGov, AWSChina and AzureChina. Example: ["key1:value1","key2:value2"]. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4272,6 +4730,10 @@ var (
 					Description: `Security group used for the transit gateway.`,
 				},
 				resource.Attribute{
+					Name:        "ha_security_group_id",
+					Description: `HA security group used for the transit gateway.`,
+				},
+				resource.Attribute{
 					Name:        "cloud_instance_id",
 					Description: `Cloud instance ID of the transit gateway.`,
 				},
@@ -4309,7 +4771,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tag_list",
-					Description: `(Optional) Instance tag of cloud provider. Only supported for AWS, AWSGOV and Azure. Example: ["key1:value1","key2:value2"]. ## Import`,
+					Description: `(Optional) Instance tag of cloud provider. Only supported for AWS, Azure, AzureGov, AWSGov, AWSChina and AzureChina. Example: ["key1:value1","key2:value2"]. ## Import`,
 				},
 			},
 		},
@@ -4353,11 +4815,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "prepend_as_path1",
-					Description: `(Optional) AS Path Prepend customized by specifying AS PATH for a BGP connection. Applies on transit_gateway_name1. Available in provider version R2.17.2+.`,
+					Description: `(Optional) AS Path Prepend for BGP connection. Can only use the transit's own local AS number, repeated up to 25 times. Applies on transit_gateway_name1. Available in provider version R2.17.2+.`,
 				},
 				resource.Attribute{
 					Name:        "prepend_as_path2",
-					Description: `(Optional) AS Path Prepend customized by specifying AS PATH for a BGP connection. Applies on transit_gateway_name2. Available in provider version R2.17.2+.`,
+					Description: `(Optional) AS Path Prepend for BGP connection. Can only use the transit's own local AS number, repeated up to 25 times. Applies on transit_gateway_name2. Available in provider version R2.17.2+.`,
 				},
 				resource.Attribute{
 					Name:        "enable_peering_over_private_network",
@@ -4365,7 +4827,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_single_tunnel_mode",
-					Description: `(Optional) Enable peering with Single Tunnel mode. False by default. Available as of provider version R2.18+. ~>`,
+					Description: `(Optional) Enable peering with Single Tunnel mode. False by default. Available as of provider version R2.18+.`,
+				},
+				resource.Attribute{
+					Name:        "enable_insane_mode_encryption_over_internet",
+					Description: `(Optional) Enable Insane Mode Encryption over Internet. Type: Boolean. Default: false. Required with ` + "`" + `tunnel_count` + "`" + `. Conflicts with ` + "`" + `enable_peering_over_private_network` + "`" + ` and ` + "`" + `enable_single_tunnel_mode` + "`" + `. Available as of provider version R2.19+.`,
+				},
+				resource.Attribute{
+					Name:        "tunnel_count",
+					Description: `(Optional) Number of public tunnels. Type: Integer. Valid Range: 2-20. Required with ` + "`" + `enable_insane_mode_encryption_over_internet` + "`" + `. Conflicts with ` + "`" + `enable_peering_over_private_network` + "`" + ` and ` + "`" + `enable_single_tunnel_mode` + "`" + `. Available as of provider version R2.19+. ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4568,7 +5038,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "manual_bgp_advertised_cidrs",
-					Description: `(Optional) Configure manual BGP advertised CIDRs for this connection. Available as of provider version R2.18+. The following arguments are deprecated:`,
+					Description: `(Optional) Configure manual BGP advertised CIDRs for this connection. Available as of provider version R2.18+.`,
+				},
+				resource.Attribute{
+					Name:        "enable_event_triggered_ha",
+					Description: `(Optional) Enable Event Triggered HA. Default value: false. Valid values: true or false. Available as of provider version R2.19+. The following arguments are deprecated:`,
 				},
 				resource.Attribute{
 					Name:        "enable_advertise_transit_cidr",
@@ -4599,7 +5073,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_type",
-					Description: `(Required) Type of cloud service provider, requires an integer value. Currently only AWS(1), GCP(4), AZURE(8), OCI(16) and AWSGov(256) are supported.`,
+					Description: `(Required) Type of cloud service provider, requires an integer value. Currently only AWS(1), GCP(4), Azure(8), OCI(16), AWSGov(256), AWSChina(1024), AzureChina(2048), Alibaba Cloud(8192) are supported.`,
 				},
 				resource.Attribute{
 					Name:        "account_name",
@@ -4643,7 +5117,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_private_oob_subnet",
-					Description: `(Optional) Switch to enable private oob subnet. Only supported for AWS/AWSGOV provider. Valid values: true, false. Default value: false. Available as of provider version R2.18+. ### Misc.`,
+					Description: `(Optional) Switch to enable private oob subnet. Only supported for AWS, AWSGov and AWSChina providers. Valid values: true, false. Default value: false. Available as of provider version R2.18+.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group",
+					Description: `(Optional) The name of an existing resource group or a new resource group to be created for the Azure VNET. A new resource group will be created if left blank. Only available for Azure, AzureGov and AzureChina providers. Available as of provider version R2.19+. ### Misc.`,
 				},
 				resource.Attribute{
 					Name:        "aviatrix_transit_vpc",
@@ -4655,7 +5133,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_native_gwlb",
-					Description: `(Optional) Enable Native AWS Gateway Load Balancer for FireNet Function. Only valid with cloud_type = 1 (AWS). Currently, AWS Gateway Load Balancer is only supported in AWS regions: us-west-2, us-east-1, eu-west-1, ap-southeast-2 and sa-east-1. Valid values: true or false. Default value: false. Available as of provider version R2.18+. ->`,
+					Description: `(Optional) Enable Native AWS Gateway Load Balancer for FireNet Function. Only valid with cloud_type = 1 (AWS).`,
 				},
 				resource.Attribute{
 					Name:        "aviatrix_firenet_vpc",
@@ -4663,11 +5141,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `ID of the vpc to be created.`,
-				},
-				resource.Attribute{
-					Name:        "resource_group",
-					Description: `Resource group of the Azure VPC created.`,
+					Description: `ID of the VPC to be created.`,
 				},
 				resource.Attribute{
 					Name:        "azure_vnet_resource_id",
@@ -4675,7 +5149,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "route_tables",
-					Description: `List of route table ids associated with this VPC. Only populated for AWS, AWSGOV and Azure vpc.`,
+					Description: `List of route table ids associated with this VPC. Only populated for AWS, AWSGov and Azure VPC.`,
 				},
 				resource.Attribute{
 					Name:        "subnets",
@@ -4733,11 +5207,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `ID of the vpc to be created.`,
-				},
-				resource.Attribute{
-					Name:        "resource_group",
-					Description: `Resource group of the Azure VPC created.`,
+					Description: `ID of the VPC to be created.`,
 				},
 				resource.Attribute{
 					Name:        "azure_vnet_resource_id",
@@ -4745,7 +5215,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "route_tables",
-					Description: `List of route table ids associated with this VPC. Only populated for AWS, AWSGOV and Azure vpc.`,
+					Description: `List of route table ids associated with this VPC. Only populated for AWS, AWSGov and Azure VPC.`,
 				},
 				resource.Attribute{
 					Name:        "subnets",
@@ -4956,72 +5426,79 @@ var (
 		"aviatrix_aviatrix_aws_tgw_connect":                                6,
 		"aviatrix_aviatrix_aws_tgw_connect_peer":                           7,
 		"aviatrix_aviatrix_aws_tgw_directconnect":                          8,
-		"aviatrix_aviatrix_aws_tgw_peering":                                9,
-		"aviatrix_aviatrix_aws_tgw_peering_domain_conn":                    10,
-		"aviatrix_aviatrix_aws_tgw_transit_gateway_attachment":             11,
-		"aviatrix_aviatrix_aws_tgw_vpc_attachment":                         12,
-		"aviatrix_aviatrix_aws_tgw_vpn_conn":                               13,
-		"aviatrix_aviatrix_azure_peer":                                     14,
-		"aviatrix_aviatrix_azure_spoke_native_peering":                     15,
-		"aviatrix_aviatrix_azure_vng_conn":                                 16,
-		"aviatrix_aviatrix_cloudwatch_agent":                               17,
-		"aviatrix_aviatrix_controller_bgp_max_as_limit_config":             18,
-		"aviatrix_aviatrix_controller_config":                              19,
-		"aviatrix_aviatrix_controller_private_oob":                         20,
-		"aviatrix_aviatrix_datadog_agent":                                  21,
-		"aviatrix_aviatrix_device_aws_tgw_attachment":                      22,
-		"aviatrix_aviatrix_device_interface_config":                        23,
-		"aviatrix_aviatrix_device_registration":                            24,
-		"aviatrix_aviatrix_device_tag":                                     25,
-		"aviatrix_aviatrix_device_transit_gateway_attachment":              26,
-		"aviatrix_aviatrix_device_virtual_wan_attachment":                  27,
-		"aviatrix_aviatrix_filebeat_forwarder":                             28,
-		"aviatrix_aviatrix_firenet":                                        29,
-		"aviatrix_aviatrix_firewall":                                       30,
-		"aviatrix_aviatrix_firewall_instance":                              31,
-		"aviatrix_aviatrix_firewall_instance_association":                  32,
-		"aviatrix_aviatrix_firewall_management_access":                     33,
-		"aviatrix_aviatrix_firewall_policy":                                34,
-		"aviatrix_aviatrix_firewall_tag":                                   35,
-		"aviatrix_aviatrix_fqdn":                                           36,
-		"aviatrix_aviatrix_fqdn_pass_through":                              37,
-		"aviatrix_aviatrix_fqdn_tag_rule":                                  38,
-		"aviatrix_aviatrix_gateway":                                        39,
-		"aviatrix_aviatrix_gateway_certificate_config":                     40,
-		"aviatrix_aviatrix_gateway_dnat":                                   41,
-		"aviatrix_aviatrix_gateway_snat":                                   42,
-		"aviatrix_aviatrix_geo_vpn":                                        43,
-		"aviatrix_aviatrix_netflow_agent":                                  44,
-		"aviatrix_aviatrix_periodic_ping":                                  45,
-		"aviatrix_aviatrix_proxy_config":                                   46,
-		"aviatrix_aviatrix_rbac_group":                                     47,
-		"aviatrix_aviatrix_rbac_group_access_account_attachment":           48,
-		"aviatrix_aviatrix_rbac_group_permission_attachment":               49,
-		"aviatrix_aviatrix_rbac_group_user_attachment":                     50,
-		"aviatrix_aviatrix_remote_syslog":                                  51,
-		"aviatrix_aviatrix_saml_endpoint":                                  52,
-		"aviatrix_aviatrix_segmentation_security_domain":                   53,
-		"aviatrix_aviatrix_segmentation_security_domain_association":       54,
-		"aviatrix_aviatrix_segmentation_security_domain_connection_policy": 55,
-		"aviatrix_aviatrix_site2cloud":                                     56,
-		"aviatrix_aviatrix_splunk_logging":                                 57,
-		"aviatrix_aviatrix_spoke_gateway":                                  58,
-		"aviatrix_aviatrix_spoke_transit_attachment":                       59,
-		"aviatrix_aviatrix_spoke_vpc":                                      60,
-		"aviatrix_aviatrix_sumologic_forwarder":                            61,
-		"aviatrix_aviatrix_trans_peer":                                     62,
-		"aviatrix_aviatrix_transit_external_device_conn":                   63,
-		"aviatrix_aviatrix_transit_firenet_policy":                         64,
-		"aviatrix_aviatrix_transit_gateway":                                65,
-		"aviatrix_aviatrix_transit_gateway_peering":                        66,
-		"aviatrix_aviatrix_transit_vpc":                                    67,
-		"aviatrix_aviatrix_tunnel":                                         68,
-		"aviatrix_aviatrix_vgw_conn":                                       69,
-		"aviatrix_aviatrix_vpc":                                            70,
-		"aviatrix_aviatrix_vpn_cert_download":                              71,
-		"aviatrix_aviatrix_vpn_profile":                                    72,
-		"aviatrix_aviatrix_vpn_user":                                       73,
-		"aviatrix_aviatrix_vpn_user_accelerator":                           74,
+		"aviatrix_aviatrix_aws_tgw_intra_domain_inspection":                9,
+		"aviatrix_aviatrix_aws_tgw_peering":                                10,
+		"aviatrix_aviatrix_aws_tgw_peering_domain_conn":                    11,
+		"aviatrix_aviatrix_aws_tgw_security_domain":                        12,
+		"aviatrix_aviatrix_aws_tgw_security_domain_connection":             13,
+		"aviatrix_aviatrix_aws_tgw_transit_gateway_attachment":             14,
+		"aviatrix_aviatrix_aws_tgw_vpc_attachment":                         15,
+		"aviatrix_aviatrix_aws_tgw_vpn_conn":                               16,
+		"aviatrix_aviatrix_azure_peer":                                     17,
+		"aviatrix_aviatrix_azure_spoke_native_peering":                     18,
+		"aviatrix_aviatrix_azure_vng_conn":                                 19,
+		"aviatrix_aviatrix_cloudn_transit_gateway_attachment":              20,
+		"aviatrix_aviatrix_cloudwatch_agent":                               21,
+		"aviatrix_aviatrix_controller_bgp_max_as_limit_config":             22,
+		"aviatrix_aviatrix_controller_cert_domain_config":                  23,
+		"aviatrix_aviatrix_controller_config":                              24,
+		"aviatrix_aviatrix_controller_email_exception_notification_config": 25,
+		"aviatrix_aviatrix_controller_private_oob":                         26,
+		"aviatrix_aviatrix_copilot_association":                            27,
+		"aviatrix_aviatrix_datadog_agent":                                  28,
+		"aviatrix_aviatrix_device_aws_tgw_attachment":                      29,
+		"aviatrix_aviatrix_device_interface_config":                        30,
+		"aviatrix_aviatrix_device_registration":                            31,
+		"aviatrix_aviatrix_device_tag":                                     32,
+		"aviatrix_aviatrix_device_transit_gateway_attachment":              33,
+		"aviatrix_aviatrix_device_virtual_wan_attachment":                  34,
+		"aviatrix_aviatrix_filebeat_forwarder":                             35,
+		"aviatrix_aviatrix_firenet":                                        36,
+		"aviatrix_aviatrix_firewall":                                       37,
+		"aviatrix_aviatrix_firewall_instance":                              38,
+		"aviatrix_aviatrix_firewall_instance_association":                  39,
+		"aviatrix_aviatrix_firewall_management_access":                     40,
+		"aviatrix_aviatrix_firewall_policy":                                41,
+		"aviatrix_aviatrix_firewall_tag":                                   42,
+		"aviatrix_aviatrix_fqdn":                                           43,
+		"aviatrix_aviatrix_fqdn_pass_through":                              44,
+		"aviatrix_aviatrix_fqdn_tag_rule":                                  45,
+		"aviatrix_aviatrix_gateway":                                        46,
+		"aviatrix_aviatrix_gateway_certificate_config":                     47,
+		"aviatrix_aviatrix_gateway_dnat":                                   48,
+		"aviatrix_aviatrix_gateway_snat":                                   49,
+		"aviatrix_aviatrix_geo_vpn":                                        50,
+		"aviatrix_aviatrix_netflow_agent":                                  51,
+		"aviatrix_aviatrix_periodic_ping":                                  52,
+		"aviatrix_aviatrix_proxy_config":                                   53,
+		"aviatrix_aviatrix_rbac_group":                                     54,
+		"aviatrix_aviatrix_rbac_group_access_account_attachment":           55,
+		"aviatrix_aviatrix_rbac_group_permission_attachment":               56,
+		"aviatrix_aviatrix_rbac_group_user_attachment":                     57,
+		"aviatrix_aviatrix_remote_syslog":                                  58,
+		"aviatrix_aviatrix_saml_endpoint":                                  59,
+		"aviatrix_aviatrix_segmentation_security_domain":                   60,
+		"aviatrix_aviatrix_segmentation_security_domain_association":       61,
+		"aviatrix_aviatrix_segmentation_security_domain_connection_policy": 62,
+		"aviatrix_aviatrix_site2cloud":                                     63,
+		"aviatrix_aviatrix_splunk_logging":                                 64,
+		"aviatrix_aviatrix_spoke_gateway":                                  65,
+		"aviatrix_aviatrix_spoke_transit_attachment":                       66,
+		"aviatrix_aviatrix_spoke_vpc":                                      67,
+		"aviatrix_aviatrix_sumologic_forwarder":                            68,
+		"aviatrix_aviatrix_trans_peer":                                     69,
+		"aviatrix_aviatrix_transit_external_device_conn":                   70,
+		"aviatrix_aviatrix_transit_firenet_policy":                         71,
+		"aviatrix_aviatrix_transit_gateway":                                72,
+		"aviatrix_aviatrix_transit_gateway_peering":                        73,
+		"aviatrix_aviatrix_transit_vpc":                                    74,
+		"aviatrix_aviatrix_tunnel":                                         75,
+		"aviatrix_aviatrix_vgw_conn":                                       76,
+		"aviatrix_aviatrix_vpc":                                            77,
+		"aviatrix_aviatrix_vpn_cert_download":                              78,
+		"aviatrix_aviatrix_vpn_profile":                                    79,
+		"aviatrix_aviatrix_vpn_user":                                       80,
+		"aviatrix_aviatrix_vpn_user_accelerator":                           81,
 	}
 )
 

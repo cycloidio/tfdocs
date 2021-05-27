@@ -11,193 +11,6 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "google_folder_access_approval_settings",
-			Category:         "Access Approval",
-			ShortDescription: `Access Approval enables you to require your explicit approval whenever Google support and engineering need to access your customer content.`,
-			Description:      ``,
-			Keywords: []string{
-				"access",
-				"approval",
-				"folder",
-				"settings",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "enrolled_services",
-					Description: `(Required) A list of Google Cloud Services for which the given resource has Access Approval enrolled. Access requests for the resource given by name against any of these services contained here will be required to have explicit approval. Enrollment can only be done on an all or nothing basis. A maximum of 10 enrolled services will be enforced, to be expanded as the set of supported services is expanded. Structure is documented below.`,
-				},
-				resource.Attribute{
-					Name:        "folder_id",
-					Description: `(Required) ID of the folder of the access approval settings. The ` + "`" + `enrolled_services` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "cloud_product",
-					Description: `(Required) The product for which Access Approval will be enrolled. Allowed values are listed (case-sensitive):`,
-				},
-				resource.Attribute{
-					Name:        "enrollment_level",
-					Description: `(Optional) The enrollment level of the service. Default value is ` + "`" + `BLOCK_ALL` + "`" + `. Possible values are ` + "`" + `BLOCK_ALL` + "`" + `. - - -`,
-				},
-				resource.Attribute{
-					Name:        "notification_emails",
-					Description: `(Optional) A list of email addresses to which notifications relating to approval requests should be sent. Notifications relating to a resource will be sent to all emails in the settings of ancestor resources of that resource. A maximum of 50 email addresses are allowed. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `folders/{{folder_id}}/accessApprovalSettings` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The resource name of the settings. Format is "folders/{folder_id}/accessApprovalSettings"`,
-				},
-				resource.Attribute{
-					Name:        "enrolled_ancestor",
-					Description: `If the field is true, that indicates that at least one service is enrolled for Access Approval in one or more ancestors of the Folder. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import FolderSettings can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_folder_access_approval_settings.default folders/{{folder_id}}/accessApprovalSettings $ terraform import google_folder_access_approval_settings.default {{folder_id}} ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `folders/{{folder_id}}/accessApprovalSettings` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The resource name of the settings. Format is "folders/{folder_id}/accessApprovalSettings"`,
-				},
-				resource.Attribute{
-					Name:        "enrolled_ancestor",
-					Description: `If the field is true, that indicates that at least one service is enrolled for Access Approval in one or more ancestors of the Folder. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import FolderSettings can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_folder_access_approval_settings.default folders/{{folder_id}}/accessApprovalSettings $ terraform import google_folder_access_approval_settings.default {{folder_id}} ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_organization_access_approval_settings",
-			Category:         "Access Approval",
-			ShortDescription: `Access Approval enables you to require your explicit approval whenever Google support and engineering need to access your customer content.`,
-			Description:      ``,
-			Keywords: []string{
-				"access",
-				"approval",
-				"organization",
-				"settings",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "enrolled_services",
-					Description: `(Required) A list of Google Cloud Services for which the given resource has Access Approval enrolled. Access requests for the resource given by name against any of these services contained here will be required to have explicit approval. Enrollment can be done for individual services. A maximum of 10 enrolled services will be enforced, to be expanded as the set of supported services is expanded. Structure is documented below.`,
-				},
-				resource.Attribute{
-					Name:        "organization_id",
-					Description: `(Required) ID of the organization of the access approval settings. The ` + "`" + `enrolled_services` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "cloud_product",
-					Description: `(Required) The product for which Access Approval will be enrolled. Allowed values are listed (case-sensitive): all appengine.googleapis.com bigquery.googleapis.com bigtable.googleapis.com cloudkms.googleapis.com compute.googleapis.com dataflow.googleapis.com iam.googleapis.com pubsub.googleapis.com storage.googleapis.com`,
-				},
-				resource.Attribute{
-					Name:        "enrollment_level",
-					Description: `(Optional) The enrollment level of the service. Default value is ` + "`" + `BLOCK_ALL` + "`" + `. Possible values are ` + "`" + `BLOCK_ALL` + "`" + `. - - -`,
-				},
-				resource.Attribute{
-					Name:        "notification_emails",
-					Description: `(Optional) A list of email addresses to which notifications relating to approval requests should be sent. Notifications relating to a resource will be sent to all emails in the settings of ancestor resources of that resource. A maximum of 50 email addresses are allowed. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `organizations/{{organization_id}}/accessApprovalSettings` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The resource name of the settings. Format is "organizations/{organization_id}/accessApprovalSettings"`,
-				},
-				resource.Attribute{
-					Name:        "enrolled_ancestor",
-					Description: `This field will always be unset for the organization since organizations do not have ancestors. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import OrganizationSettings can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_organization_access_approval_settings.default organizations/{{organization_id}}/accessApprovalSettings $ terraform import google_organization_access_approval_settings.default {{organization_id}} ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `organizations/{{organization_id}}/accessApprovalSettings` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The resource name of the settings. Format is "organizations/{organization_id}/accessApprovalSettings"`,
-				},
-				resource.Attribute{
-					Name:        "enrolled_ancestor",
-					Description: `This field will always be unset for the organization since organizations do not have ancestors. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import OrganizationSettings can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_organization_access_approval_settings.default organizations/{{organization_id}}/accessApprovalSettings $ terraform import google_organization_access_approval_settings.default {{organization_id}} ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_project_access_approval_settings",
-			Category:         "Access Approval",
-			ShortDescription: `Access Approval enables you to require your explicit approval whenever Google support and engineering need to access your customer content.`,
-			Description:      ``,
-			Keywords: []string{
-				"access",
-				"approval",
-				"project",
-				"settings",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "enrolled_services",
-					Description: `(Required) A list of Google Cloud Services for which the given resource has Access Approval enrolled. Access requests for the resource given by name against any of these services contained here will be required to have explicit approval. Enrollment can only be done on an all or nothing basis. A maximum of 10 enrolled services will be enforced, to be expanded as the set of supported services is expanded. Structure is documented below.`,
-				},
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Required) ID of the project of the access approval settings. The ` + "`" + `enrolled_services` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "cloud_product",
-					Description: `(Required) The product for which Access Approval will be enrolled. Allowed values are listed (case-sensitive): all appengine.googleapis.com bigquery.googleapis.com bigtable.googleapis.com cloudkms.googleapis.com compute.googleapis.com dataflow.googleapis.com iam.googleapis.com pubsub.googleapis.com storage.googleapis.com`,
-				},
-				resource.Attribute{
-					Name:        "enrollment_level",
-					Description: `(Optional) The enrollment level of the service. Default value is ` + "`" + `BLOCK_ALL` + "`" + `. Possible values are ` + "`" + `BLOCK_ALL` + "`" + `. - - -`,
-				},
-				resource.Attribute{
-					Name:        "notification_emails",
-					Description: `(Optional) A list of email addresses to which notifications relating to approval requests should be sent. Notifications relating to a resource will be sent to all emails in the settings of ancestor resources of that resource. A maximum of 50 email addresses are allowed.`,
-				},
-				resource.Attribute{
-					Name:        "project",
-					Description: `(Optional, Deprecated) Deprecated in favor of ` + "`" + `project_id` + "`" + ` ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `projects/{{project_id}}/accessApprovalSettings` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The resource name of the settings. Format is "projects/{project_id}/accessApprovalSettings"`,
-				},
-				resource.Attribute{
-					Name:        "enrolled_ancestor",
-					Description: `If the field is true, that indicates that at least one service is enrolled for Access Approval in one or more ancestors of the Project. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ProjectSettings can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_access_approval_settings.default projects/{{project_id}}/accessApprovalSettings $ terraform import google_project_access_approval_settings.default {{project_id}} ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `projects/{{project_id}}/accessApprovalSettings` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The resource name of the settings. Format is "projects/{project_id}/accessApprovalSettings"`,
-				},
-				resource.Attribute{
-					Name:        "enrolled_ancestor",
-					Description: `If the field is true, that indicates that at least one service is enrolled for Access Approval in one or more ancestors of the Project. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ProjectSettings can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_access_approval_settings.default projects/{{project_id}}/accessApprovalSettings $ terraform import google_project_access_approval_settings.default {{project_id}} ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "google_access_context_manager_access_level",
 			Category:         "Access Context Manager (VPC Service Controls)",
 			ShortDescription: `An AccessLevel is a label that can be applied to requests to GCP services, along with a list of requirements necessary for the label to be applied.`,
@@ -297,8 +110,12 @@ var (
 					Description: `(Optional) The minimum allowed OS version. If not set, any version of this OS satisfies the constraint. Format: "major.minor.patch" such as "10.5.301", "9.2.1".`,
 				},
 				resource.Attribute{
+					Name:        "require_verified_chrome_os",
+					Description: `(Optional) If you specify DESKTOP_CHROME_OS for osType, you can optionally include requireVerifiedChromeOs to require Chrome Verified Access.`,
+				},
+				resource.Attribute{
 					Name:        "os_type",
-					Description: `(Required) The operating system type of the device. Possible values are ` + "`" + `OS_UNSPECIFIED` + "`" + `, ` + "`" + `DESKTOP_MAC` + "`" + `, ` + "`" + `DESKTOP_WINDOWS` + "`" + `, ` + "`" + `DESKTOP_LINUX` + "`" + `, and ` + "`" + `DESKTOP_CHROME_OS` + "`" + `. The ` + "`" + `custom` + "`" + ` block supports:`,
+					Description: `(Required) The operating system type of the device. Possible values are ` + "`" + `OS_UNSPECIFIED` + "`" + `, ` + "`" + `DESKTOP_MAC` + "`" + `, ` + "`" + `DESKTOP_WINDOWS` + "`" + `, ` + "`" + `DESKTOP_LINUX` + "`" + `, ` + "`" + `DESKTOP_CHROME_OS` + "`" + `, ` + "`" + `ANDROID` + "`" + `, and ` + "`" + `IOS` + "`" + `. The ` + "`" + `custom` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "expr",
@@ -407,7 +224,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "os_type",
-					Description: `(Required) The operating system type of the device. Possible values are ` + "`" + `OS_UNSPECIFIED` + "`" + `, ` + "`" + `DESKTOP_MAC` + "`" + `, ` + "`" + `DESKTOP_WINDOWS` + "`" + `, ` + "`" + `DESKTOP_LINUX` + "`" + `, and ` + "`" + `DESKTOP_CHROME_OS` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Required) The operating system type of the device. Possible values are ` + "`" + `OS_UNSPECIFIED` + "`" + `, ` + "`" + `DESKTOP_MAC` + "`" + `, ` + "`" + `DESKTOP_WINDOWS` + "`" + `, ` + "`" + `DESKTOP_LINUX` + "`" + `, ` + "`" + `DESKTOP_CHROME_OS` + "`" + `, ` + "`" + `ANDROID` + "`" + `, and ` + "`" + `IOS` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -527,7 +344,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "os_type",
-					Description: `(Required) The operating system type of the device. Possible values are ` + "`" + `OS_UNSPECIFIED` + "`" + `, ` + "`" + `DESKTOP_MAC` + "`" + `, ` + "`" + `DESKTOP_WINDOWS` + "`" + `, ` + "`" + `DESKTOP_LINUX` + "`" + `, and ` + "`" + `DESKTOP_CHROME_OS` + "`" + `. The ` + "`" + `custom` + "`" + ` block supports:`,
+					Description: `(Required) The operating system type of the device. Possible values are ` + "`" + `OS_UNSPECIFIED` + "`" + `, ` + "`" + `DESKTOP_MAC` + "`" + `, ` + "`" + `DESKTOP_WINDOWS` + "`" + `, ` + "`" + `DESKTOP_LINUX` + "`" + `, ` + "`" + `DESKTOP_CHROME_OS` + "`" + `, ` + "`" + `ANDROID` + "`" + `, and ` + "`" + `IOS` + "`" + `. The ` + "`" + `custom` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "expr",
@@ -737,11 +554,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ingress_policies",
-					Description: `(Optional) / List of ` + "`" + `IngressPolicies` + "`" + ` to apply to the perimeter. A perimeter may have multiple ` + "`" + `IngressPolicies` + "`" + `, each of which is evaluated separately. Access is granted if any ` + "`" + `Ingress Policy` + "`" + ` grants it. Must be empty for a perimeter bridge. Structure is documented below.`,
+					Description: `(Optional) List of ` + "`" + `IngressPolicies` + "`" + ` to apply to the perimeter. A perimeter may have multiple ` + "`" + `IngressPolicies` + "`" + `, each of which is evaluated separately. Access is granted if any ` + "`" + `Ingress Policy` + "`" + ` grants it. Must be empty for a perimeter bridge. Structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "egress_policies",
-					Description: `(Optional) / List of EgressPolicies to apply to the perimeter. A perimeter may have multiple EgressPolicies, each of which is evaluated separately. Access is granted if any EgressPolicy grants it. Must be empty for a perimeter bridge. Structure is documented below. The ` + "`" + `vpc_accessible_services` + "`" + ` block supports:`,
+					Description: `(Optional) List of EgressPolicies to apply to the perimeter. A perimeter may have multiple EgressPolicies, each of which is evaluated separately. Access is granted if any EgressPolicy grants it. Must be empty for a perimeter bridge. Structure is documented below. The ` + "`" + `vpc_accessible_services` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "enable_restriction",
@@ -753,95 +570,95 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ingress_from",
-					Description: `(Optional) / Defines the conditions on the source of a request causing this ` + "`" + `IngressPolicy` + "`" + ` to apply. Structure is documented below.`,
+					Description: `(Optional) Defines the conditions on the source of a request causing this ` + "`" + `IngressPolicy` + "`" + ` to apply. Structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "ingress_to",
-					Description: `(Optional) / Defines the conditions on the ` + "`" + `ApiOperation` + "`" + ` and request destination that cause this ` + "`" + `IngressPolicy` + "`" + ` to apply. Structure is documented below. The ` + "`" + `ingress_from` + "`" + ` block supports:`,
+					Description: `(Optional) Defines the conditions on the ` + "`" + `ApiOperation` + "`" + ` and request destination that cause this ` + "`" + `IngressPolicy` + "`" + ` to apply. Structure is documented below. The ` + "`" + `ingress_from` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "identity_type",
-					Description: `(Optional) / Specifies the type of identities that are allowed access from outside the perimeter. If left unspecified, then members of ` + "`" + `identities` + "`" + ` field will be allowed access. Possible values are ` + "`" + `IDENTITY_TYPE_UNSPECIFIED` + "`" + `, ` + "`" + `ANY_IDENTITY` + "`" + `, ` + "`" + `ANY_USER_ACCOUNT` + "`" + `, and ` + "`" + `ANY_SERVICE_ACCOUNT` + "`" + `.`,
+					Description: `(Optional) Specifies the type of identities that are allowed access from outside the perimeter. If left unspecified, then members of ` + "`" + `identities` + "`" + ` field will be allowed access. Possible values are ` + "`" + `IDENTITY_TYPE_UNSPECIFIED` + "`" + `, ` + "`" + `ANY_IDENTITY` + "`" + `, ` + "`" + `ANY_USER_ACCOUNT` + "`" + `, and ` + "`" + `ANY_SERVICE_ACCOUNT` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "identities",
-					Description: `(Optional) / A list of identities that are allowed access through this ingress policy. Should be in the format of email address. The email address should represent individual user or service account only.`,
+					Description: `(Optional) A list of identities that are allowed access through this ingress policy. Should be in the format of email address. The email address should represent individual user or service account only.`,
 				},
 				resource.Attribute{
 					Name:        "sources",
-					Description: `(Optional) / Sources that this ` + "`" + `IngressPolicy` + "`" + ` authorizes access from. Structure is documented below. The ` + "`" + `sources` + "`" + ` block supports:`,
+					Description: `(Optional) Sources that this ` + "`" + `IngressPolicy` + "`" + ` authorizes access from. Structure is documented below. The ` + "`" + `sources` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "access_level",
-					Description: `(Optional) / An ` + "`" + `AccessLevel` + "`" + ` resource name that allow resources within the ` + "`" + `ServicePerimeters` + "`" + ` to be accessed from the internet. ` + "`" + `AccessLevels` + "`" + ` listed must be in the same policy as this ` + "`" + `ServicePerimeter` + "`" + `. Referencing a nonexistent ` + "`" + `AccessLevel` + "`" + ` will cause an error. If no ` + "`" + `AccessLevel` + "`" + ` names are listed, resources within the perimeter can only be accessed via Google Cloud calls with request origins within the perimeter. Example ` + "`" + `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL.` + "`" + ` If`,
+					Description: `(Optional) An ` + "`" + `AccessLevel` + "`" + ` resource name that allow resources within the ` + "`" + `ServicePerimeters` + "`" + ` to be accessed from the internet. ` + "`" + `AccessLevels` + "`" + ` listed must be in the same policy as this ` + "`" + `ServicePerimeter` + "`" + `. Referencing a nonexistent ` + "`" + `AccessLevel` + "`" + ` will cause an error. If no ` + "`" + `AccessLevel` + "`" + ` names are listed, resources within the perimeter can only be accessed via Google Cloud calls with request origins within the perimeter. Example ` + "`" + `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL.` + "`" + ` If`,
 				},
 				resource.Attribute{
 					Name:        "resource",
-					Description: `(Optional) / A Google Cloud resource that is allowed to ingress the perimeter. Requests from these resources will be allowed to access perimeter data. Currently only projects are allowed. Format ` + "`" + `projects/{project_number}` + "`" + ` The project may be in any Google Cloud organization, not just the organization that the perimeter is defined in. ` + "`" + ``,
+					Description: `(Optional) A Google Cloud resource that is allowed to ingress the perimeter. Requests from these resources will be allowed to access perimeter data. Currently only projects are allowed. Format ` + "`" + `projects/{project_number}` + "`" + ` The project may be in any Google Cloud organization, not just the organization that the perimeter is defined in. ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "resources",
-					Description: `(Optional) / A list of resources, currently only projects in the form ` + "`" + `projects/<projectnumber>` + "`" + `, protected by this ` + "`" + `ServicePerimeter` + "`" + ` that are allowed to be accessed by sources defined in the corresponding ` + "`" + `IngressFrom` + "`" + `. A request matches if it contains a resource in this list. If ` + "`" + ``,
+					Description: `(Optional) A list of resources, currently only projects in the form ` + "`" + `projects/<projectnumber>` + "`" + `, protected by this ` + "`" + `ServicePerimeter` + "`" + ` that are allowed to be accessed by sources defined in the corresponding ` + "`" + `IngressFrom` + "`" + `. A request matches if it contains a resource in this list. If ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "operations",
-					Description: `(Optional) / A list of ` + "`" + `ApiOperations` + "`" + ` the sources specified in corresponding ` + "`" + `IngressFrom` + "`" + ` are allowed to perform in this ` + "`" + `ServicePerimeter` + "`" + `. Structure is documented below. The ` + "`" + `operations` + "`" + ` block supports:`,
+					Description: `(Optional) A list of ` + "`" + `ApiOperations` + "`" + ` the sources specified in corresponding ` + "`" + `IngressFrom` + "`" + ` are allowed to perform in this ` + "`" + `ServicePerimeter` + "`" + `. Structure is documented below. The ` + "`" + `operations` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "service_name",
-					Description: `(Optional) / The name of the API whose methods or permissions the ` + "`" + `IngressPolicy` + "`" + ` or ` + "`" + `EgressPolicy` + "`" + ` want to allow. A single ` + "`" + `ApiOperation` + "`" + ` with ` + "`" + `serviceName` + "`" + ` field set to ` + "`" + ``,
+					Description: `(Optional) The name of the API whose methods or permissions the ` + "`" + `IngressPolicy` + "`" + ` or ` + "`" + `EgressPolicy` + "`" + ` want to allow. A single ` + "`" + `ApiOperation` + "`" + ` with ` + "`" + `serviceName` + "`" + ` field set to ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "method_selectors",
-					Description: `(Optional) / API methods or permissions to allow. Method or permission must belong to the service specified by serviceName field. A single ` + "`" + `MethodSelector` + "`" + ` entry with ` + "`" + ``,
+					Description: `(Optional) API methods or permissions to allow. Method or permission must belong to the service specified by serviceName field. A single ` + "`" + `MethodSelector` + "`" + ` entry with ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "method",
-					Description: `(Optional) / Value for method should be a valid method name for the corresponding serviceName in ` + "`" + `ApiOperation` + "`" + `. If ` + "`" + ``,
+					Description: `(Optional) Value for method should be a valid method name for the corresponding serviceName in ` + "`" + `ApiOperation` + "`" + `. If ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "permission",
-					Description: `(Optional) / Value for permission should be a valid Cloud IAM permission for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. The ` + "`" + `egress_policies` + "`" + ` block supports:`,
+					Description: `(Optional) Value for permission should be a valid Cloud IAM permission for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. The ` + "`" + `egress_policies` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "egress_from",
-					Description: `(Optional) / Defines conditions on the source of a request causing this ` + "`" + `EgressPolicy` + "`" + ` to apply. Structure is documented below.`,
+					Description: `(Optional) Defines conditions on the source of a request causing this ` + "`" + `EgressPolicy` + "`" + ` to apply. Structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "egress_to",
-					Description: `(Optional) / Defines the conditions on the ` + "`" + `ApiOperation` + "`" + ` and destination resources that cause this ` + "`" + `EgressPolicy` + "`" + ` to apply. Structure is documented below. The ` + "`" + `egress_from` + "`" + ` block supports:`,
+					Description: `(Optional) Defines the conditions on the ` + "`" + `ApiOperation` + "`" + ` and destination resources that cause this ` + "`" + `EgressPolicy` + "`" + ` to apply. Structure is documented below. The ` + "`" + `egress_from` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "identity_type",
-					Description: `(Optional) / Specifies the type of identities that are allowed access to outside the perimeter. If left unspecified, then members of ` + "`" + `identities` + "`" + ` field will be allowed access. Possible values are ` + "`" + `IDENTITY_TYPE_UNSPECIFIED` + "`" + `, ` + "`" + `ANY_IDENTITY` + "`" + `, ` + "`" + `ANY_USER_ACCOUNT` + "`" + `, and ` + "`" + `ANY_SERVICE_ACCOUNT` + "`" + `.`,
+					Description: `(Optional) Specifies the type of identities that are allowed access to outside the perimeter. If left unspecified, then members of ` + "`" + `identities` + "`" + ` field will be allowed access. Possible values are ` + "`" + `IDENTITY_TYPE_UNSPECIFIED` + "`" + `, ` + "`" + `ANY_IDENTITY` + "`" + `, ` + "`" + `ANY_USER_ACCOUNT` + "`" + `, and ` + "`" + `ANY_SERVICE_ACCOUNT` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "identities",
-					Description: `(Optional) / A list of identities that are allowed access through this ` + "`" + `EgressPolicy` + "`" + `. Should be in the format of email address. The email address should represent individual user or service account only. The ` + "`" + `egress_to` + "`" + ` block supports:`,
+					Description: `(Optional) A list of identities that are allowed access through this ` + "`" + `EgressPolicy` + "`" + `. Should be in the format of email address. The email address should represent individual user or service account only. The ` + "`" + `egress_to` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "resources",
-					Description: `(Optional) / A list of resources, currently only projects in the form ` + "`" + `projects/<projectnumber>` + "`" + `, that match this to stanza. A request matches if it contains a resource in this list. If`,
+					Description: `(Optional) A list of resources, currently only projects in the form ` + "`" + `projects/<projectnumber>` + "`" + `, that match this to stanza. A request matches if it contains a resource in this list. If`,
 				},
 				resource.Attribute{
 					Name:        "operations",
-					Description: `(Optional) / A list of ` + "`" + `ApiOperations` + "`" + ` that this egress rule applies to. A request matches if it contains an operation/service in this list. Structure is documented below. The ` + "`" + `operations` + "`" + ` block supports:`,
+					Description: `(Optional) A list of ` + "`" + `ApiOperations` + "`" + ` that this egress rule applies to. A request matches if it contains an operation/service in this list. Structure is documented below. The ` + "`" + `operations` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "service_name",
-					Description: `(Optional) / The name of the API whose methods or permissions the ` + "`" + `IngressPolicy` + "`" + ` or ` + "`" + `EgressPolicy` + "`" + ` want to allow. A single ` + "`" + `ApiOperation` + "`" + ` with serviceName field set to ` + "`" + ``,
+					Description: `(Optional) The name of the API whose methods or permissions the ` + "`" + `IngressPolicy` + "`" + ` or ` + "`" + `EgressPolicy` + "`" + ` want to allow. A single ` + "`" + `ApiOperation` + "`" + ` with serviceName field set to ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "method_selectors",
-					Description: `(Optional) / API methods or permissions to allow. Method or permission must belong to the service specified by ` + "`" + `serviceName` + "`" + ` field. A single MethodSelector entry with ` + "`" + ``,
+					Description: `(Optional) API methods or permissions to allow. Method or permission must belong to the service specified by ` + "`" + `serviceName` + "`" + ` field. A single MethodSelector entry with ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "method",
-					Description: `(Optional) / Value for ` + "`" + `method` + "`" + ` should be a valid method name for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. If ` + "`" + ``,
+					Description: `(Optional) Value for ` + "`" + `method` + "`" + ` should be a valid method name for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. If ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "permission",
-					Description: `(Optional) / Value for permission should be a valid Cloud IAM permission for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. The ` + "`" + `spec` + "`" + ` block supports:`,
+					Description: `(Optional) Value for permission should be a valid Cloud IAM permission for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. The ` + "`" + `spec` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "resources",
@@ -861,11 +678,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ingress_policies",
-					Description: `(Optional) / List of ` + "`" + `IngressPolicies` + "`" + ` to apply to the perimeter. A perimeter may have multiple ` + "`" + `IngressPolicies` + "`" + `, each of which is evaluated separately. Access is granted if any ` + "`" + `Ingress Policy` + "`" + ` grants it. Must be empty for a perimeter bridge. Structure is documented below.`,
+					Description: `(Optional) List of ` + "`" + `IngressPolicies` + "`" + ` to apply to the perimeter. A perimeter may have multiple ` + "`" + `IngressPolicies` + "`" + `, each of which is evaluated separately. Access is granted if any ` + "`" + `Ingress Policy` + "`" + ` grants it. Must be empty for a perimeter bridge. Structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "egress_policies",
-					Description: `(Optional) / List of EgressPolicies to apply to the perimeter. A perimeter may have multiple EgressPolicies, each of which is evaluated separately. Access is granted if any EgressPolicy grants it. Must be empty for a perimeter bridge. Structure is documented below. The ` + "`" + `vpc_accessible_services` + "`" + ` block supports:`,
+					Description: `(Optional) List of EgressPolicies to apply to the perimeter. A perimeter may have multiple EgressPolicies, each of which is evaluated separately. Access is granted if any EgressPolicy grants it. Must be empty for a perimeter bridge. Structure is documented below. The ` + "`" + `vpc_accessible_services` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "enable_restriction",
@@ -877,95 +694,95 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ingress_from",
-					Description: `(Optional) / Defines the conditions on the source of a request causing this ` + "`" + `IngressPolicy` + "`" + ` to apply. Structure is documented below.`,
+					Description: `(Optional) Defines the conditions on the source of a request causing this ` + "`" + `IngressPolicy` + "`" + ` to apply. Structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "ingress_to",
-					Description: `(Optional) / Defines the conditions on the ` + "`" + `ApiOperation` + "`" + ` and request destination that cause this ` + "`" + `IngressPolicy` + "`" + ` to apply. Structure is documented below. The ` + "`" + `ingress_from` + "`" + ` block supports:`,
+					Description: `(Optional) Defines the conditions on the ` + "`" + `ApiOperation` + "`" + ` and request destination that cause this ` + "`" + `IngressPolicy` + "`" + ` to apply. Structure is documented below. The ` + "`" + `ingress_from` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "identity_type",
-					Description: `(Optional) / Specifies the type of identities that are allowed access from outside the perimeter. If left unspecified, then members of ` + "`" + `identities` + "`" + ` field will be allowed access. Possible values are ` + "`" + `IDENTITY_TYPE_UNSPECIFIED` + "`" + `, ` + "`" + `ANY_IDENTITY` + "`" + `, ` + "`" + `ANY_USER_ACCOUNT` + "`" + `, and ` + "`" + `ANY_SERVICE_ACCOUNT` + "`" + `.`,
+					Description: `(Optional) Specifies the type of identities that are allowed access from outside the perimeter. If left unspecified, then members of ` + "`" + `identities` + "`" + ` field will be allowed access. Possible values are ` + "`" + `IDENTITY_TYPE_UNSPECIFIED` + "`" + `, ` + "`" + `ANY_IDENTITY` + "`" + `, ` + "`" + `ANY_USER_ACCOUNT` + "`" + `, and ` + "`" + `ANY_SERVICE_ACCOUNT` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "identities",
-					Description: `(Optional) / A list of identities that are allowed access through this ingress policy. Should be in the format of email address. The email address should represent individual user or service account only.`,
+					Description: `(Optional) A list of identities that are allowed access through this ingress policy. Should be in the format of email address. The email address should represent individual user or service account only.`,
 				},
 				resource.Attribute{
 					Name:        "sources",
-					Description: `(Optional) / Sources that this ` + "`" + `IngressPolicy` + "`" + ` authorizes access from. Structure is documented below. The ` + "`" + `sources` + "`" + ` block supports:`,
+					Description: `(Optional) Sources that this ` + "`" + `IngressPolicy` + "`" + ` authorizes access from. Structure is documented below. The ` + "`" + `sources` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "access_level",
-					Description: `(Optional) / An ` + "`" + `AccessLevel` + "`" + ` resource name that allow resources within the ` + "`" + `ServicePerimeters` + "`" + ` to be accessed from the internet. ` + "`" + `AccessLevels` + "`" + ` listed must be in the same policy as this ` + "`" + `ServicePerimeter` + "`" + `. Referencing a nonexistent ` + "`" + `AccessLevel` + "`" + ` will cause an error. If no ` + "`" + `AccessLevel` + "`" + ` names are listed, resources within the perimeter can only be accessed via Google Cloud calls with request origins within the perimeter. Example ` + "`" + `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL.` + "`" + ` If`,
+					Description: `(Optional) An ` + "`" + `AccessLevel` + "`" + ` resource name that allow resources within the ` + "`" + `ServicePerimeters` + "`" + ` to be accessed from the internet. ` + "`" + `AccessLevels` + "`" + ` listed must be in the same policy as this ` + "`" + `ServicePerimeter` + "`" + `. Referencing a nonexistent ` + "`" + `AccessLevel` + "`" + ` will cause an error. If no ` + "`" + `AccessLevel` + "`" + ` names are listed, resources within the perimeter can only be accessed via Google Cloud calls with request origins within the perimeter. Example ` + "`" + `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL.` + "`" + ` If`,
 				},
 				resource.Attribute{
 					Name:        "resource",
-					Description: `(Optional) / A Google Cloud resource that is allowed to ingress the perimeter. Requests from these resources will be allowed to access perimeter data. Currently only projects are allowed. Format ` + "`" + `projects/{project_number}` + "`" + ` The project may be in any Google Cloud organization, not just the organization that the perimeter is defined in. ` + "`" + ``,
+					Description: `(Optional) A Google Cloud resource that is allowed to ingress the perimeter. Requests from these resources will be allowed to access perimeter data. Currently only projects are allowed. Format ` + "`" + `projects/{project_number}` + "`" + ` The project may be in any Google Cloud organization, not just the organization that the perimeter is defined in. ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "resources",
-					Description: `(Optional) / A list of resources, currently only projects in the form ` + "`" + `projects/<projectnumber>` + "`" + `, protected by this ` + "`" + `ServicePerimeter` + "`" + ` that are allowed to be accessed by sources defined in the corresponding ` + "`" + `IngressFrom` + "`" + `. A request matches if it contains a resource in this list. If ` + "`" + ``,
+					Description: `(Optional) A list of resources, currently only projects in the form ` + "`" + `projects/<projectnumber>` + "`" + `, protected by this ` + "`" + `ServicePerimeter` + "`" + ` that are allowed to be accessed by sources defined in the corresponding ` + "`" + `IngressFrom` + "`" + `. A request matches if it contains a resource in this list. If ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "operations",
-					Description: `(Optional) / A list of ` + "`" + `ApiOperations` + "`" + ` the sources specified in corresponding ` + "`" + `IngressFrom` + "`" + ` are allowed to perform in this ` + "`" + `ServicePerimeter` + "`" + `. Structure is documented below. The ` + "`" + `operations` + "`" + ` block supports:`,
+					Description: `(Optional) A list of ` + "`" + `ApiOperations` + "`" + ` the sources specified in corresponding ` + "`" + `IngressFrom` + "`" + ` are allowed to perform in this ` + "`" + `ServicePerimeter` + "`" + `. Structure is documented below. The ` + "`" + `operations` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "service_name",
-					Description: `(Optional) / The name of the API whose methods or permissions the ` + "`" + `IngressPolicy` + "`" + ` or ` + "`" + `EgressPolicy` + "`" + ` want to allow. A single ` + "`" + `ApiOperation` + "`" + ` with ` + "`" + `serviceName` + "`" + ` field set to ` + "`" + ``,
+					Description: `(Optional) The name of the API whose methods or permissions the ` + "`" + `IngressPolicy` + "`" + ` or ` + "`" + `EgressPolicy` + "`" + ` want to allow. A single ` + "`" + `ApiOperation` + "`" + ` with ` + "`" + `serviceName` + "`" + ` field set to ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "method_selectors",
-					Description: `(Optional) / API methods or permissions to allow. Method or permission must belong to the service specified by serviceName field. A single ` + "`" + `MethodSelector` + "`" + ` entry with ` + "`" + ``,
+					Description: `(Optional) API methods or permissions to allow. Method or permission must belong to the service specified by serviceName field. A single ` + "`" + `MethodSelector` + "`" + ` entry with ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "method",
-					Description: `(Optional) / Value for method should be a valid method name for the corresponding serviceName in ` + "`" + `ApiOperation` + "`" + `. If ` + "`" + ``,
+					Description: `(Optional) Value for method should be a valid method name for the corresponding serviceName in ` + "`" + `ApiOperation` + "`" + `. If ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "permission",
-					Description: `(Optional) / Value for permission should be a valid Cloud IAM permission for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. The ` + "`" + `egress_policies` + "`" + ` block supports:`,
+					Description: `(Optional) Value for permission should be a valid Cloud IAM permission for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. The ` + "`" + `egress_policies` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "egress_from",
-					Description: `(Optional) / Defines conditions on the source of a request causing this ` + "`" + `EgressPolicy` + "`" + ` to apply. Structure is documented below.`,
+					Description: `(Optional) Defines conditions on the source of a request causing this ` + "`" + `EgressPolicy` + "`" + ` to apply. Structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "egress_to",
-					Description: `(Optional) / Defines the conditions on the ` + "`" + `ApiOperation` + "`" + ` and destination resources that cause this ` + "`" + `EgressPolicy` + "`" + ` to apply. Structure is documented below. The ` + "`" + `egress_from` + "`" + ` block supports:`,
+					Description: `(Optional) Defines the conditions on the ` + "`" + `ApiOperation` + "`" + ` and destination resources that cause this ` + "`" + `EgressPolicy` + "`" + ` to apply. Structure is documented below. The ` + "`" + `egress_from` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "identity_type",
-					Description: `(Optional) / Specifies the type of identities that are allowed access to outside the perimeter. If left unspecified, then members of ` + "`" + `identities` + "`" + ` field will be allowed access. Possible values are ` + "`" + `IDENTITY_TYPE_UNSPECIFIED` + "`" + `, ` + "`" + `ANY_IDENTITY` + "`" + `, ` + "`" + `ANY_USER_ACCOUNT` + "`" + `, and ` + "`" + `ANY_SERVICE_ACCOUNT` + "`" + `.`,
+					Description: `(Optional) Specifies the type of identities that are allowed access to outside the perimeter. If left unspecified, then members of ` + "`" + `identities` + "`" + ` field will be allowed access. Possible values are ` + "`" + `IDENTITY_TYPE_UNSPECIFIED` + "`" + `, ` + "`" + `ANY_IDENTITY` + "`" + `, ` + "`" + `ANY_USER_ACCOUNT` + "`" + `, and ` + "`" + `ANY_SERVICE_ACCOUNT` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "identities",
-					Description: `(Optional) / A list of identities that are allowed access through this ` + "`" + `EgressPolicy` + "`" + `. Should be in the format of email address. The email address should represent individual user or service account only. The ` + "`" + `egress_to` + "`" + ` block supports:`,
+					Description: `(Optional) A list of identities that are allowed access through this ` + "`" + `EgressPolicy` + "`" + `. Should be in the format of email address. The email address should represent individual user or service account only. The ` + "`" + `egress_to` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "resources",
-					Description: `(Optional) / A list of resources, currently only projects in the form ` + "`" + `projects/<projectnumber>` + "`" + `, that match this to stanza. A request matches if it contains a resource in this list. If`,
+					Description: `(Optional) A list of resources, currently only projects in the form ` + "`" + `projects/<projectnumber>` + "`" + `, that match this to stanza. A request matches if it contains a resource in this list. If`,
 				},
 				resource.Attribute{
 					Name:        "operations",
-					Description: `(Optional) / A list of ` + "`" + `ApiOperations` + "`" + ` that this egress rule applies to. A request matches if it contains an operation/service in this list. Structure is documented below. The ` + "`" + `operations` + "`" + ` block supports:`,
+					Description: `(Optional) A list of ` + "`" + `ApiOperations` + "`" + ` that this egress rule applies to. A request matches if it contains an operation/service in this list. Structure is documented below. The ` + "`" + `operations` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "service_name",
-					Description: `(Optional) / The name of the API whose methods or permissions the ` + "`" + `IngressPolicy` + "`" + ` or ` + "`" + `EgressPolicy` + "`" + ` want to allow. A single ` + "`" + `ApiOperation` + "`" + ` with serviceName field set to ` + "`" + ``,
+					Description: `(Optional) The name of the API whose methods or permissions the ` + "`" + `IngressPolicy` + "`" + ` or ` + "`" + `EgressPolicy` + "`" + ` want to allow. A single ` + "`" + `ApiOperation` + "`" + ` with serviceName field set to ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "method_selectors",
-					Description: `(Optional) / API methods or permissions to allow. Method or permission must belong to the service specified by ` + "`" + `serviceName` + "`" + ` field. A single MethodSelector entry with ` + "`" + ``,
+					Description: `(Optional) API methods or permissions to allow. Method or permission must belong to the service specified by ` + "`" + `serviceName` + "`" + ` field. A single MethodSelector entry with ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "method",
-					Description: `(Optional) / Value for ` + "`" + `method` + "`" + ` should be a valid method name for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. If ` + "`" + ``,
+					Description: `(Optional) Value for ` + "`" + `method` + "`" + ` should be a valid method name for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. If ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "permission",
-					Description: `(Optional) / Value for permission should be a valid Cloud IAM permission for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) Value for permission should be a valid Cloud IAM permission for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1110,11 +927,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ingress_policies",
-					Description: `(Optional) / List of ` + "`" + `IngressPolicies` + "`" + ` to apply to the perimeter. A perimeter may have multiple ` + "`" + `IngressPolicies` + "`" + `, each of which is evaluated separately. Access is granted if any ` + "`" + `Ingress Policy` + "`" + ` grants it. Must be empty for a perimeter bridge. Structure is documented below.`,
+					Description: `(Optional) List of ` + "`" + `IngressPolicies` + "`" + ` to apply to the perimeter. A perimeter may have multiple ` + "`" + `IngressPolicies` + "`" + `, each of which is evaluated separately. Access is granted if any ` + "`" + `Ingress Policy` + "`" + ` grants it. Must be empty for a perimeter bridge. Structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "egress_policies",
-					Description: `(Optional) / List of EgressPolicies to apply to the perimeter. A perimeter may have multiple EgressPolicies, each of which is evaluated separately. Access is granted if any EgressPolicy grants it. Must be empty for a perimeter bridge. Structure is documented below. The ` + "`" + `vpc_accessible_services` + "`" + ` block supports:`,
+					Description: `(Optional) List of EgressPolicies to apply to the perimeter. A perimeter may have multiple EgressPolicies, each of which is evaluated separately. Access is granted if any EgressPolicy grants it. Must be empty for a perimeter bridge. Structure is documented below. The ` + "`" + `vpc_accessible_services` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "enable_restriction",
@@ -1126,95 +943,95 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ingress_from",
-					Description: `(Optional) / Defines the conditions on the source of a request causing this ` + "`" + `IngressPolicy` + "`" + ` to apply. Structure is documented below.`,
+					Description: `(Optional) Defines the conditions on the source of a request causing this ` + "`" + `IngressPolicy` + "`" + ` to apply. Structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "ingress_to",
-					Description: `(Optional) / Defines the conditions on the ` + "`" + `ApiOperation` + "`" + ` and request destination that cause this ` + "`" + `IngressPolicy` + "`" + ` to apply. Structure is documented below. The ` + "`" + `ingress_from` + "`" + ` block supports:`,
+					Description: `(Optional) Defines the conditions on the ` + "`" + `ApiOperation` + "`" + ` and request destination that cause this ` + "`" + `IngressPolicy` + "`" + ` to apply. Structure is documented below. The ` + "`" + `ingress_from` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "identity_type",
-					Description: `(Optional) / Specifies the type of identities that are allowed access from outside the perimeter. If left unspecified, then members of ` + "`" + `identities` + "`" + ` field will be allowed access. Possible values are ` + "`" + `IDENTITY_TYPE_UNSPECIFIED` + "`" + `, ` + "`" + `ANY_IDENTITY` + "`" + `, ` + "`" + `ANY_USER_ACCOUNT` + "`" + `, and ` + "`" + `ANY_SERVICE_ACCOUNT` + "`" + `.`,
+					Description: `(Optional) Specifies the type of identities that are allowed access from outside the perimeter. If left unspecified, then members of ` + "`" + `identities` + "`" + ` field will be allowed access. Possible values are ` + "`" + `IDENTITY_TYPE_UNSPECIFIED` + "`" + `, ` + "`" + `ANY_IDENTITY` + "`" + `, ` + "`" + `ANY_USER_ACCOUNT` + "`" + `, and ` + "`" + `ANY_SERVICE_ACCOUNT` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "identities",
-					Description: `(Optional) / A list of identities that are allowed access through this ingress policy. Should be in the format of email address. The email address should represent individual user or service account only.`,
+					Description: `(Optional) A list of identities that are allowed access through this ingress policy. Should be in the format of email address. The email address should represent individual user or service account only.`,
 				},
 				resource.Attribute{
 					Name:        "sources",
-					Description: `(Optional) / Sources that this ` + "`" + `IngressPolicy` + "`" + ` authorizes access from. Structure is documented below. The ` + "`" + `sources` + "`" + ` block supports:`,
+					Description: `(Optional) Sources that this ` + "`" + `IngressPolicy` + "`" + ` authorizes access from. Structure is documented below. The ` + "`" + `sources` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "access_level",
-					Description: `(Optional) / An ` + "`" + `AccessLevel` + "`" + ` resource name that allow resources within the ` + "`" + `ServicePerimeters` + "`" + ` to be accessed from the internet. ` + "`" + `AccessLevels` + "`" + ` listed must be in the same policy as this ` + "`" + `ServicePerimeter` + "`" + `. Referencing a nonexistent ` + "`" + `AccessLevel` + "`" + ` will cause an error. If no ` + "`" + `AccessLevel` + "`" + ` names are listed, resources within the perimeter can only be accessed via Google Cloud calls with request origins within the perimeter. Example ` + "`" + `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL.` + "`" + ` If`,
+					Description: `(Optional) An ` + "`" + `AccessLevel` + "`" + ` resource name that allow resources within the ` + "`" + `ServicePerimeters` + "`" + ` to be accessed from the internet. ` + "`" + `AccessLevels` + "`" + ` listed must be in the same policy as this ` + "`" + `ServicePerimeter` + "`" + `. Referencing a nonexistent ` + "`" + `AccessLevel` + "`" + ` will cause an error. If no ` + "`" + `AccessLevel` + "`" + ` names are listed, resources within the perimeter can only be accessed via Google Cloud calls with request origins within the perimeter. Example ` + "`" + `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL.` + "`" + ` If`,
 				},
 				resource.Attribute{
 					Name:        "resource",
-					Description: `(Optional) / A Google Cloud resource that is allowed to ingress the perimeter. Requests from these resources will be allowed to access perimeter data. Currently only projects are allowed. Format ` + "`" + `projects/{project_number}` + "`" + ` The project may be in any Google Cloud organization, not just the organization that the perimeter is defined in. ` + "`" + ``,
+					Description: `(Optional) A Google Cloud resource that is allowed to ingress the perimeter. Requests from these resources will be allowed to access perimeter data. Currently only projects are allowed. Format ` + "`" + `projects/{project_number}` + "`" + ` The project may be in any Google Cloud organization, not just the organization that the perimeter is defined in. ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "resources",
-					Description: `(Optional) / A list of resources, currently only projects in the form ` + "`" + `projects/<projectnumber>` + "`" + `, protected by this ` + "`" + `ServicePerimeter` + "`" + ` that are allowed to be accessed by sources defined in the corresponding ` + "`" + `IngressFrom` + "`" + `. A request matches if it contains a resource in this list. If ` + "`" + ``,
+					Description: `(Optional) A list of resources, currently only projects in the form ` + "`" + `projects/<projectnumber>` + "`" + `, protected by this ` + "`" + `ServicePerimeter` + "`" + ` that are allowed to be accessed by sources defined in the corresponding ` + "`" + `IngressFrom` + "`" + `. A request matches if it contains a resource in this list. If ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "operations",
-					Description: `(Optional) / A list of ` + "`" + `ApiOperations` + "`" + ` the sources specified in corresponding ` + "`" + `IngressFrom` + "`" + ` are allowed to perform in this ` + "`" + `ServicePerimeter` + "`" + `. Structure is documented below. The ` + "`" + `operations` + "`" + ` block supports:`,
+					Description: `(Optional) A list of ` + "`" + `ApiOperations` + "`" + ` the sources specified in corresponding ` + "`" + `IngressFrom` + "`" + ` are allowed to perform in this ` + "`" + `ServicePerimeter` + "`" + `. Structure is documented below. The ` + "`" + `operations` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "service_name",
-					Description: `(Optional) / The name of the API whose methods or permissions the ` + "`" + `IngressPolicy` + "`" + ` or ` + "`" + `EgressPolicy` + "`" + ` want to allow. A single ` + "`" + `ApiOperation` + "`" + ` with ` + "`" + `serviceName` + "`" + ` field set to ` + "`" + ``,
+					Description: `(Optional) The name of the API whose methods or permissions the ` + "`" + `IngressPolicy` + "`" + ` or ` + "`" + `EgressPolicy` + "`" + ` want to allow. A single ` + "`" + `ApiOperation` + "`" + ` with ` + "`" + `serviceName` + "`" + ` field set to ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "method_selectors",
-					Description: `(Optional) / API methods or permissions to allow. Method or permission must belong to the service specified by serviceName field. A single ` + "`" + `MethodSelector` + "`" + ` entry with ` + "`" + ``,
+					Description: `(Optional) API methods or permissions to allow. Method or permission must belong to the service specified by serviceName field. A single ` + "`" + `MethodSelector` + "`" + ` entry with ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "method",
-					Description: `(Optional) / Value for method should be a valid method name for the corresponding serviceName in ` + "`" + `ApiOperation` + "`" + `. If ` + "`" + ``,
+					Description: `(Optional) Value for method should be a valid method name for the corresponding serviceName in ` + "`" + `ApiOperation` + "`" + `. If ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "permission",
-					Description: `(Optional) / Value for permission should be a valid Cloud IAM permission for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. The ` + "`" + `egress_policies` + "`" + ` block supports:`,
+					Description: `(Optional) Value for permission should be a valid Cloud IAM permission for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. The ` + "`" + `egress_policies` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "egress_from",
-					Description: `(Optional) / Defines conditions on the source of a request causing this ` + "`" + `EgressPolicy` + "`" + ` to apply. Structure is documented below.`,
+					Description: `(Optional) Defines conditions on the source of a request causing this ` + "`" + `EgressPolicy` + "`" + ` to apply. Structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "egress_to",
-					Description: `(Optional) / Defines the conditions on the ` + "`" + `ApiOperation` + "`" + ` and destination resources that cause this ` + "`" + `EgressPolicy` + "`" + ` to apply. Structure is documented below. The ` + "`" + `egress_from` + "`" + ` block supports:`,
+					Description: `(Optional) Defines the conditions on the ` + "`" + `ApiOperation` + "`" + ` and destination resources that cause this ` + "`" + `EgressPolicy` + "`" + ` to apply. Structure is documented below. The ` + "`" + `egress_from` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "identity_type",
-					Description: `(Optional) / Specifies the type of identities that are allowed access to outside the perimeter. If left unspecified, then members of ` + "`" + `identities` + "`" + ` field will be allowed access. Possible values are ` + "`" + `IDENTITY_TYPE_UNSPECIFIED` + "`" + `, ` + "`" + `ANY_IDENTITY` + "`" + `, ` + "`" + `ANY_USER_ACCOUNT` + "`" + `, and ` + "`" + `ANY_SERVICE_ACCOUNT` + "`" + `.`,
+					Description: `(Optional) Specifies the type of identities that are allowed access to outside the perimeter. If left unspecified, then members of ` + "`" + `identities` + "`" + ` field will be allowed access. Possible values are ` + "`" + `IDENTITY_TYPE_UNSPECIFIED` + "`" + `, ` + "`" + `ANY_IDENTITY` + "`" + `, ` + "`" + `ANY_USER_ACCOUNT` + "`" + `, and ` + "`" + `ANY_SERVICE_ACCOUNT` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "identities",
-					Description: `(Optional) / A list of identities that are allowed access through this ` + "`" + `EgressPolicy` + "`" + `. Should be in the format of email address. The email address should represent individual user or service account only. The ` + "`" + `egress_to` + "`" + ` block supports:`,
+					Description: `(Optional) A list of identities that are allowed access through this ` + "`" + `EgressPolicy` + "`" + `. Should be in the format of email address. The email address should represent individual user or service account only. The ` + "`" + `egress_to` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "resources",
-					Description: `(Optional) / A list of resources, currently only projects in the form ` + "`" + `projects/<projectnumber>` + "`" + `, that match this to stanza. A request matches if it contains a resource in this list. If`,
+					Description: `(Optional) A list of resources, currently only projects in the form ` + "`" + `projects/<projectnumber>` + "`" + `, that match this to stanza. A request matches if it contains a resource in this list. If`,
 				},
 				resource.Attribute{
 					Name:        "operations",
-					Description: `(Optional) / A list of ` + "`" + `ApiOperations` + "`" + ` that this egress rule applies to. A request matches if it contains an operation/service in this list. Structure is documented below. The ` + "`" + `operations` + "`" + ` block supports:`,
+					Description: `(Optional) A list of ` + "`" + `ApiOperations` + "`" + ` that this egress rule applies to. A request matches if it contains an operation/service in this list. Structure is documented below. The ` + "`" + `operations` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "service_name",
-					Description: `(Optional) / The name of the API whose methods or permissions the ` + "`" + `IngressPolicy` + "`" + ` or ` + "`" + `EgressPolicy` + "`" + ` want to allow. A single ` + "`" + `ApiOperation` + "`" + ` with serviceName field set to ` + "`" + ``,
+					Description: `(Optional) The name of the API whose methods or permissions the ` + "`" + `IngressPolicy` + "`" + ` or ` + "`" + `EgressPolicy` + "`" + ` want to allow. A single ` + "`" + `ApiOperation` + "`" + ` with serviceName field set to ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "method_selectors",
-					Description: `(Optional) / API methods or permissions to allow. Method or permission must belong to the service specified by ` + "`" + `serviceName` + "`" + ` field. A single MethodSelector entry with ` + "`" + ``,
+					Description: `(Optional) API methods or permissions to allow. Method or permission must belong to the service specified by ` + "`" + `serviceName` + "`" + ` field. A single MethodSelector entry with ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "method",
-					Description: `(Optional) / Value for ` + "`" + `method` + "`" + ` should be a valid method name for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. If ` + "`" + ``,
+					Description: `(Optional) Value for ` + "`" + `method` + "`" + ` should be a valid method name for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. If ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "permission",
-					Description: `(Optional) / Value for permission should be a valid Cloud IAM permission for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. The ` + "`" + `spec` + "`" + ` block supports:`,
+					Description: `(Optional) Value for permission should be a valid Cloud IAM permission for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. The ` + "`" + `spec` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "resources",
@@ -1234,11 +1051,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ingress_policies",
-					Description: `(Optional) / List of ` + "`" + `IngressPolicies` + "`" + ` to apply to the perimeter. A perimeter may have multiple ` + "`" + `IngressPolicies` + "`" + `, each of which is evaluated separately. Access is granted if any ` + "`" + `Ingress Policy` + "`" + ` grants it. Must be empty for a perimeter bridge. Structure is documented below.`,
+					Description: `(Optional) List of ` + "`" + `IngressPolicies` + "`" + ` to apply to the perimeter. A perimeter may have multiple ` + "`" + `IngressPolicies` + "`" + `, each of which is evaluated separately. Access is granted if any ` + "`" + `Ingress Policy` + "`" + ` grants it. Must be empty for a perimeter bridge. Structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "egress_policies",
-					Description: `(Optional) / List of EgressPolicies to apply to the perimeter. A perimeter may have multiple EgressPolicies, each of which is evaluated separately. Access is granted if any EgressPolicy grants it. Must be empty for a perimeter bridge. Structure is documented below. The ` + "`" + `vpc_accessible_services` + "`" + ` block supports:`,
+					Description: `(Optional) List of EgressPolicies to apply to the perimeter. A perimeter may have multiple EgressPolicies, each of which is evaluated separately. Access is granted if any EgressPolicy grants it. Must be empty for a perimeter bridge. Structure is documented below. The ` + "`" + `vpc_accessible_services` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "enable_restriction",
@@ -1250,95 +1067,95 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ingress_from",
-					Description: `(Optional) / Defines the conditions on the source of a request causing this ` + "`" + `IngressPolicy` + "`" + ` to apply. Structure is documented below.`,
+					Description: `(Optional) Defines the conditions on the source of a request causing this ` + "`" + `IngressPolicy` + "`" + ` to apply. Structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "ingress_to",
-					Description: `(Optional) / Defines the conditions on the ` + "`" + `ApiOperation` + "`" + ` and request destination that cause this ` + "`" + `IngressPolicy` + "`" + ` to apply. Structure is documented below. The ` + "`" + `ingress_from` + "`" + ` block supports:`,
+					Description: `(Optional) Defines the conditions on the ` + "`" + `ApiOperation` + "`" + ` and request destination that cause this ` + "`" + `IngressPolicy` + "`" + ` to apply. Structure is documented below. The ` + "`" + `ingress_from` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "identity_type",
-					Description: `(Optional) / Specifies the type of identities that are allowed access from outside the perimeter. If left unspecified, then members of ` + "`" + `identities` + "`" + ` field will be allowed access. Possible values are ` + "`" + `IDENTITY_TYPE_UNSPECIFIED` + "`" + `, ` + "`" + `ANY_IDENTITY` + "`" + `, ` + "`" + `ANY_USER_ACCOUNT` + "`" + `, and ` + "`" + `ANY_SERVICE_ACCOUNT` + "`" + `.`,
+					Description: `(Optional) Specifies the type of identities that are allowed access from outside the perimeter. If left unspecified, then members of ` + "`" + `identities` + "`" + ` field will be allowed access. Possible values are ` + "`" + `IDENTITY_TYPE_UNSPECIFIED` + "`" + `, ` + "`" + `ANY_IDENTITY` + "`" + `, ` + "`" + `ANY_USER_ACCOUNT` + "`" + `, and ` + "`" + `ANY_SERVICE_ACCOUNT` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "identities",
-					Description: `(Optional) / A list of identities that are allowed access through this ingress policy. Should be in the format of email address. The email address should represent individual user or service account only.`,
+					Description: `(Optional) A list of identities that are allowed access through this ingress policy. Should be in the format of email address. The email address should represent individual user or service account only.`,
 				},
 				resource.Attribute{
 					Name:        "sources",
-					Description: `(Optional) / Sources that this ` + "`" + `IngressPolicy` + "`" + ` authorizes access from. Structure is documented below. The ` + "`" + `sources` + "`" + ` block supports:`,
+					Description: `(Optional) Sources that this ` + "`" + `IngressPolicy` + "`" + ` authorizes access from. Structure is documented below. The ` + "`" + `sources` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "access_level",
-					Description: `(Optional) / An ` + "`" + `AccessLevel` + "`" + ` resource name that allow resources within the ` + "`" + `ServicePerimeters` + "`" + ` to be accessed from the internet. ` + "`" + `AccessLevels` + "`" + ` listed must be in the same policy as this ` + "`" + `ServicePerimeter` + "`" + `. Referencing a nonexistent ` + "`" + `AccessLevel` + "`" + ` will cause an error. If no ` + "`" + `AccessLevel` + "`" + ` names are listed, resources within the perimeter can only be accessed via Google Cloud calls with request origins within the perimeter. Example ` + "`" + `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL.` + "`" + ` If`,
+					Description: `(Optional) An ` + "`" + `AccessLevel` + "`" + ` resource name that allow resources within the ` + "`" + `ServicePerimeters` + "`" + ` to be accessed from the internet. ` + "`" + `AccessLevels` + "`" + ` listed must be in the same policy as this ` + "`" + `ServicePerimeter` + "`" + `. Referencing a nonexistent ` + "`" + `AccessLevel` + "`" + ` will cause an error. If no ` + "`" + `AccessLevel` + "`" + ` names are listed, resources within the perimeter can only be accessed via Google Cloud calls with request origins within the perimeter. Example ` + "`" + `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL.` + "`" + ` If`,
 				},
 				resource.Attribute{
 					Name:        "resource",
-					Description: `(Optional) / A Google Cloud resource that is allowed to ingress the perimeter. Requests from these resources will be allowed to access perimeter data. Currently only projects are allowed. Format ` + "`" + `projects/{project_number}` + "`" + ` The project may be in any Google Cloud organization, not just the organization that the perimeter is defined in. ` + "`" + ``,
+					Description: `(Optional) A Google Cloud resource that is allowed to ingress the perimeter. Requests from these resources will be allowed to access perimeter data. Currently only projects are allowed. Format ` + "`" + `projects/{project_number}` + "`" + ` The project may be in any Google Cloud organization, not just the organization that the perimeter is defined in. ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "resources",
-					Description: `(Optional) / A list of resources, currently only projects in the form ` + "`" + `projects/<projectnumber>` + "`" + `, protected by this ` + "`" + `ServicePerimeter` + "`" + ` that are allowed to be accessed by sources defined in the corresponding ` + "`" + `IngressFrom` + "`" + `. A request matches if it contains a resource in this list. If ` + "`" + ``,
+					Description: `(Optional) A list of resources, currently only projects in the form ` + "`" + `projects/<projectnumber>` + "`" + `, protected by this ` + "`" + `ServicePerimeter` + "`" + ` that are allowed to be accessed by sources defined in the corresponding ` + "`" + `IngressFrom` + "`" + `. A request matches if it contains a resource in this list. If ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "operations",
-					Description: `(Optional) / A list of ` + "`" + `ApiOperations` + "`" + ` the sources specified in corresponding ` + "`" + `IngressFrom` + "`" + ` are allowed to perform in this ` + "`" + `ServicePerimeter` + "`" + `. Structure is documented below. The ` + "`" + `operations` + "`" + ` block supports:`,
+					Description: `(Optional) A list of ` + "`" + `ApiOperations` + "`" + ` the sources specified in corresponding ` + "`" + `IngressFrom` + "`" + ` are allowed to perform in this ` + "`" + `ServicePerimeter` + "`" + `. Structure is documented below. The ` + "`" + `operations` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "service_name",
-					Description: `(Optional) / The name of the API whose methods or permissions the ` + "`" + `IngressPolicy` + "`" + ` or ` + "`" + `EgressPolicy` + "`" + ` want to allow. A single ` + "`" + `ApiOperation` + "`" + ` with ` + "`" + `serviceName` + "`" + ` field set to ` + "`" + ``,
+					Description: `(Optional) The name of the API whose methods or permissions the ` + "`" + `IngressPolicy` + "`" + ` or ` + "`" + `EgressPolicy` + "`" + ` want to allow. A single ` + "`" + `ApiOperation` + "`" + ` with ` + "`" + `serviceName` + "`" + ` field set to ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "method_selectors",
-					Description: `(Optional) / API methods or permissions to allow. Method or permission must belong to the service specified by serviceName field. A single ` + "`" + `MethodSelector` + "`" + ` entry with ` + "`" + ``,
+					Description: `(Optional) API methods or permissions to allow. Method or permission must belong to the service specified by serviceName field. A single ` + "`" + `MethodSelector` + "`" + ` entry with ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "method",
-					Description: `(Optional) / Value for method should be a valid method name for the corresponding serviceName in ` + "`" + `ApiOperation` + "`" + `. If ` + "`" + ``,
+					Description: `(Optional) Value for method should be a valid method name for the corresponding serviceName in ` + "`" + `ApiOperation` + "`" + `. If ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "permission",
-					Description: `(Optional) / Value for permission should be a valid Cloud IAM permission for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. The ` + "`" + `egress_policies` + "`" + ` block supports:`,
+					Description: `(Optional) Value for permission should be a valid Cloud IAM permission for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. The ` + "`" + `egress_policies` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "egress_from",
-					Description: `(Optional) / Defines conditions on the source of a request causing this ` + "`" + `EgressPolicy` + "`" + ` to apply. Structure is documented below.`,
+					Description: `(Optional) Defines conditions on the source of a request causing this ` + "`" + `EgressPolicy` + "`" + ` to apply. Structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "egress_to",
-					Description: `(Optional) / Defines the conditions on the ` + "`" + `ApiOperation` + "`" + ` and destination resources that cause this ` + "`" + `EgressPolicy` + "`" + ` to apply. Structure is documented below. The ` + "`" + `egress_from` + "`" + ` block supports:`,
+					Description: `(Optional) Defines the conditions on the ` + "`" + `ApiOperation` + "`" + ` and destination resources that cause this ` + "`" + `EgressPolicy` + "`" + ` to apply. Structure is documented below. The ` + "`" + `egress_from` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "identity_type",
-					Description: `(Optional) / Specifies the type of identities that are allowed access to outside the perimeter. If left unspecified, then members of ` + "`" + `identities` + "`" + ` field will be allowed access. Possible values are ` + "`" + `IDENTITY_TYPE_UNSPECIFIED` + "`" + `, ` + "`" + `ANY_IDENTITY` + "`" + `, ` + "`" + `ANY_USER_ACCOUNT` + "`" + `, and ` + "`" + `ANY_SERVICE_ACCOUNT` + "`" + `.`,
+					Description: `(Optional) Specifies the type of identities that are allowed access to outside the perimeter. If left unspecified, then members of ` + "`" + `identities` + "`" + ` field will be allowed access. Possible values are ` + "`" + `IDENTITY_TYPE_UNSPECIFIED` + "`" + `, ` + "`" + `ANY_IDENTITY` + "`" + `, ` + "`" + `ANY_USER_ACCOUNT` + "`" + `, and ` + "`" + `ANY_SERVICE_ACCOUNT` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "identities",
-					Description: `(Optional) / A list of identities that are allowed access through this ` + "`" + `EgressPolicy` + "`" + `. Should be in the format of email address. The email address should represent individual user or service account only. The ` + "`" + `egress_to` + "`" + ` block supports:`,
+					Description: `(Optional) A list of identities that are allowed access through this ` + "`" + `EgressPolicy` + "`" + `. Should be in the format of email address. The email address should represent individual user or service account only. The ` + "`" + `egress_to` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "resources",
-					Description: `(Optional) / A list of resources, currently only projects in the form ` + "`" + `projects/<projectnumber>` + "`" + `, that match this to stanza. A request matches if it contains a resource in this list. If`,
+					Description: `(Optional) A list of resources, currently only projects in the form ` + "`" + `projects/<projectnumber>` + "`" + `, that match this to stanza. A request matches if it contains a resource in this list. If`,
 				},
 				resource.Attribute{
 					Name:        "operations",
-					Description: `(Optional) / A list of ` + "`" + `ApiOperations` + "`" + ` that this egress rule applies to. A request matches if it contains an operation/service in this list. Structure is documented below. The ` + "`" + `operations` + "`" + ` block supports:`,
+					Description: `(Optional) A list of ` + "`" + `ApiOperations` + "`" + ` that this egress rule applies to. A request matches if it contains an operation/service in this list. Structure is documented below. The ` + "`" + `operations` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "service_name",
-					Description: `(Optional) / The name of the API whose methods or permissions the ` + "`" + `IngressPolicy` + "`" + ` or ` + "`" + `EgressPolicy` + "`" + ` want to allow. A single ` + "`" + `ApiOperation` + "`" + ` with serviceName field set to ` + "`" + ``,
+					Description: `(Optional) The name of the API whose methods or permissions the ` + "`" + `IngressPolicy` + "`" + ` or ` + "`" + `EgressPolicy` + "`" + ` want to allow. A single ` + "`" + `ApiOperation` + "`" + ` with serviceName field set to ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "method_selectors",
-					Description: `(Optional) / API methods or permissions to allow. Method or permission must belong to the service specified by ` + "`" + `serviceName` + "`" + ` field. A single MethodSelector entry with ` + "`" + ``,
+					Description: `(Optional) API methods or permissions to allow. Method or permission must belong to the service specified by ` + "`" + `serviceName` + "`" + ` field. A single MethodSelector entry with ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "method",
-					Description: `(Optional) / Value for ` + "`" + `method` + "`" + ` should be a valid method name for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. If ` + "`" + ``,
+					Description: `(Optional) Value for ` + "`" + `method` + "`" + ` should be a valid method name for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. If ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "permission",
-					Description: `(Optional) / Value for permission should be a valid Cloud IAM permission for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) Value for permission should be a valid Cloud IAM permission for the corresponding ` + "`" + `serviceName` + "`" + ` in ` + "`" + `ApiOperation` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1730,7 +1547,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_config",
-					Description: `(Required) Resource name of the API Config for this Gateway. Format: projects/{project}/locations/global/apis/{api}/configs/{apiConfig}`,
+					Description: `(Required) Resource name of the API Config for this Gateway. Format: projects/{project}/locations/global/apis/{api}/configs/{apiConfig}. When changing api configs please ensure the new config is a new resource and the lifecycle rule ` + "`" + `create_before_destroy` + "`" + ` is set.`,
 				},
 				resource.Attribute{
 					Name:        "gateway_id",
@@ -1861,6 +1678,46 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_apigee_envgroup_attachment",
+			Category:         "Apigee",
+			ShortDescription: `An ` + "`" + `Environment Group attachment` + "`" + ` in Apigee.`,
+			Description:      ``,
+			Keywords: []string{
+				"apigee",
+				"envgroup",
+				"attachment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "environment",
+					Description: `(Required) The resource ID of the environment.`,
+				},
+				resource.Attribute{
+					Name:        "envgroup_id",
+					Description: `(Required) The Apigee environment group associated with the Apigee environment, in the format ` + "`" + `organizations/{{org_name}}/envgroups/{{envgroup_name}}` + "`" + `. - - - ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{envgroup_id}}/attachments/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the newly created attachment (output parameter). ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 30 minutes. - ` + "`" + `delete` + "`" + ` - Default is 30 minutes. ## Import EnvgroupAttachment can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_apigee_envgroup_attachment.default {{envgroup_id}}/attachments/{{name}} $ terraform import google_apigee_envgroup_attachment.default {{envgroup_id}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{envgroup_id}}/attachments/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the newly created attachment (output parameter). ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 30 minutes. - ` + "`" + `delete` + "`" + ` - Default is 30 minutes. ## Import EnvgroupAttachment can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_apigee_envgroup_attachment.default {{envgroup_id}}/attachments/{{name}} $ terraform import google_apigee_envgroup_attachment.default {{envgroup_id}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_apigee_environment",
 			Category:         "Apigee",
 			ShortDescription: `An ` + "`" + `Environment` + "`" + ` in Apigee.`,
@@ -1923,7 +1780,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "peering_cidr_range",
-					Description: `(Optional) The size of the CIDR block range that will be reserved by the instance. Default value is ` + "`" + `SLASH_16` + "`" + `. Possible values are ` + "`" + `SLASH_16` + "`" + ` and ` + "`" + `SLASH_20` + "`" + `.`,
+					Description: `(Optional) The size of the CIDR block range that will be reserved by the instance. Possible values are ` + "`" + `SLASH_16` + "`" + ` and ` + "`" + `SLASH_20` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1962,6 +1819,46 @@ var (
 				resource.Attribute{
 					Name:        "port",
 					Description: `Output only. Port number of the exposed Apigee endpoint. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 60 minutes. - ` + "`" + `delete` + "`" + ` - Default is 60 minutes. ## Import Instance can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_apigee_instance.default {{org_id}}/instances/{{name}} $ terraform import google_apigee_instance.default {{org_id}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_apigee_instance_attachment",
+			Category:         "Apigee",
+			ShortDescription: `An ` + "`" + `Instance attachment` + "`" + ` in Apigee.`,
+			Description:      ``,
+			Keywords: []string{
+				"apigee",
+				"instance",
+				"attachment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "environment",
+					Description: `(Required) The resource ID of the environment.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Required) The Apigee instance associated with the Apigee environment, in the format ` + "`" + `organisations/{{org_name}}/instances/{{instance_name}}` + "`" + `. - - - ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{instance_id}}/attachments/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the newly created attachment (output parameter). ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 30 minutes. - ` + "`" + `delete` + "`" + ` - Default is 30 minutes. ## Import InstanceAttachment can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_apigee_instance_attachment.default {{instance_id}}/attachments/{{name}} $ terraform import google_apigee_instance_attachment.default {{instance_id}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{instance_id}}/attachments/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the newly created attachment (output parameter). ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 30 minutes. - ` + "`" + `delete` + "`" + ` - Default is 30 minutes. ## Import InstanceAttachment can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_apigee_instance_attachment.default {{instance_id}}/attachments/{{name}} $ terraform import google_apigee_instance_attachment.default {{instance_id}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -2400,7 +2297,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service",
-					Description: `(Required) AppEngine service resource The ` + "`" + `readiness_check` + "`" + ` block supports:`,
+					Description: `(Required) AppEngine service resource. Can contain numbers, letters, and hyphens. The ` + "`" + `readiness_check` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -3750,7 +3647,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "policy_data",
-					Description: `(Required only by ` + "`" + `google_bigquery_dataset_iam_policy` + "`" + `) The policy data generated by a ` + "`" + `google_iam_policy` + "`" + ` data source. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Required only by ` + "`" + `google_bigquery_dataset_iam_policy` + "`" + `) The policy data generated by a ` + "`" + `google_iam_policy` + "`" + ` data source.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "etag",
@@ -3937,7 +3838,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "source_format",
-					Description: `(Optional) The format of the data files. For CSV files, specify "CSV". For datastore backups, specify "DATASTORE_BACKUP". For newline-delimited JSON, specify "NEWLINE_DELIMITED_JSON". For Avro, specify "AVRO". For parquet, specify "PARQUET". For orc, specify "ORC". The default value is CSV.`,
+					Description: `(Optional) The format of the data files. For CSV files, specify "CSV". For datastore backups, specify "DATASTORE_BACKUP". For newline-delimited JSON, specify "NEWLINE_DELIMITED_JSON". For Avro, specify "AVRO". For parquet, specify "PARQUET". For orc, specify "ORC". [Beta] For Bigtable, specify "BIGTABLE". The default value is CSV.`,
 				},
 				resource.Attribute{
 					Name:        "allow_jagged_rows",
@@ -4468,6 +4369,10 @@ var (
 				resource.Attribute{
 					Name:        "source_uris",
 					Description: `(Required) A list of the fully-qualified URIs that point to your data in Google Cloud. The ` + "`" + `csv_options` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "require_partition_filter",
+					Description: `(Optional) If set to true, queries over this table require a partition filter that can be used for partition elimination to be specified.`,
 				},
 				resource.Attribute{
 					Name:        "expiration_ms",
@@ -5156,21 +5061,21 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+					Description: `an identifier for the resource with format ` + "`" + `billingAccounts/{{billing_account}}/budgets/{{name}}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `Resource name of the budget. The resource name implies the scope of a budget. Values are of the form billingAccounts/{billingAccountId}/budgets/{budgetId}. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import This resource does not support import.`,
+					Description: `Resource name of the budget. The resource name implies the scope of a budget. Values are of the form billingAccounts/{billingAccountId}/budgets/{budgetId}. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Budget can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_billing_budget.default billingAccounts/{{billing_account}}/budgets/{{name}} $ terraform import google_billing_budget.default {{billing_account}}/{{name}} $ terraform import google_billing_budget.default {{name}} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+					Description: `an identifier for the resource with format ` + "`" + `billingAccounts/{{billing_account}}/budgets/{{name}}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `Resource name of the budget. The resource name implies the scope of a budget. Values are of the form billingAccounts/{billingAccountId}/budgets/{budgetId}. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import This resource does not support import.`,
+					Description: `Resource name of the budget. The resource name implies the scope of a budget. Values are of the form billingAccounts/{billingAccountId}/budgets/{budgetId}. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Budget can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_billing_budget.default billingAccounts/{{billing_account}}/budgets/{{name}} $ terraform import google_billing_budget.default {{billing_account}}/{{name}} $ terraform import google_billing_budget.default {{name}} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5691,7 +5596,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) An extended description to help users determine the purpose of a Group. Must not be longer than 4,096 characters. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) An extended description to help users determine the purpose of a Group. Must not be longer than 4,096 characters.`,
+				},
+				resource.Attribute{
+					Name:        "initial_group_config",
+					Description: `(Optional) The initial configuration options for creating a Group. See the [API reference](https://cloud.google.com/identity/docs/reference/rest/v1beta1/groups/create#initialgroupconfig) for possible values. Default value is ` + "`" + `EMPTY` + "`" + `. Possible values are ` + "`" + `INITIAL_GROUP_CONFIG_UNSPECIFIED` + "`" + `, ` + "`" + `WITH_INITIAL_OWNER` + "`" + `, and ` + "`" + `EMPTY` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -5838,7 +5747,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Name should be a verified domain`,
+					Description: `(Required) Name should be a [verified](https://support.google.com/webmasters/answer/9008080) domain`,
 				},
 				resource.Attribute{
 					Name:        "spec",
@@ -6094,6 +6003,10 @@ var (
 					Description: `(Optional) Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has. If not provided, the revision will use the project's default service account.`,
 				},
 				resource.Attribute{
+					Name:        "volumes",
+					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) Volume represents a named volume in a container. Structure is documented below.`,
+				},
+				resource.Attribute{
 					Name:        "serving_state",
 					Description: `ServingState holds a value describing the state the resources are in for this Revision. It is expected that the system will manipulate this based on routability and load. The ` + "`" + `containers` + "`" + ` block supports:`,
 				},
@@ -6127,7 +6040,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resources",
-					Description: `(Optional) Compute Resources required by this container. Used to set values such as max memory More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits Structure is documented below. The ` + "`" + `env_from` + "`" + ` block supports:`,
+					Description: `(Optional) Compute Resources required by this container. Used to set values such as max memory More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "volume_mounts",
+					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) Volume to mount into the container's filesystem. Only supports SecretVolumeSources. Structure is documented below. The ` + "`" + `env_from` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "prefix",
@@ -6171,7 +6088,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Optional) Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any route environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to "". The ` + "`" + `ports` + "`" + ` block supports:`,
+					Description: `(Optional) Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any route environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to "".`,
+				},
+				resource.Attribute{
+					Name:        "value_from",
+					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) Source for the environment variable's value. Only supports secret_key_ref. Structure is documented below. The ` + "`" + `value_from` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "secret_key_ref",
+					Description: `(Required) Selects a key (version) of a secret in Secret Manager. Structure is documented below. The ` + "`" + `secret_key_ref` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) A Cloud Secret Manager secret version. Must be 'latest' for the latest version or an integer for a specific version.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the secret in Cloud Secret Manager. By default, the secret is assumed to be in the same project. If the secret is in another project, you must define an alias. An alias definition has the form: <alias>:projects/<project-id|project-number>/secrets/<secret-name>. If multiple alias definitions are needed, they must be separated by commas. The alias definitions must be set on the run.googleapis.com/secrets annotation. The ` + "`" + `ports` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6191,7 +6124,39 @@ var (
 				},
 				resource.Attribute{
 					Name:        "requests",
-					Description: `(Optional) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. The values of the map is string form of the 'quantity' k8s type: https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go - - -`,
+					Description: `(Optional) Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. The values of the map is string form of the 'quantity' k8s type: https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go The ` + "`" + `volume_mounts` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "mount_path",
+					Description: `(Required) Path within the container at which the volume should be mounted. Must not contain ':'.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) This must match the Name of a Volume. The ` + "`" + `volumes` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Volume's name.`,
+				},
+				resource.Attribute{
+					Name:        "secret",
+					Description: `(Required) The secret's value will be presented as the content of a file whose name is defined in the item path. If no items are defined, the name of the file is the secret_name. Structure is documented below. The ` + "`" + `secret` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "secret_name",
+					Description: `(Required) The name of the secret in Cloud Secret Manager. By default, the secret is assumed to be in the same project. If the secret is in another project, you must define an alias. An alias definition has the form: <alias>:projects/<project-id|project-number>/secrets/<secret-name>. If multiple alias definitions are needed, they must be separated by commas. The alias definitions must be set on the run.googleapis.com/secrets annotation.`,
+				},
+				resource.Attribute{
+					Name:        "items",
+					Description: `(Optional) If unspecified, the volume will expose a file whose name is the secret_name. If specified, the key will be used as the version to fetch from Cloud Secret Manager and the path will be the name of the file exposed in the volume. When items are defined, they must specify a key and a path. Structure is documented below. The ` + "`" + `items` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The Cloud Secret Manager secret version. Can be 'latest' for the latest value or an integer for a specific version.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'. - - -`,
 				},
 				resource.Attribute{
 					Name:        "traffic",
@@ -6982,7 +6947,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "machine_type",
-					Description: `(Optional) Compute Engine machine type on which to run the build. Possible values are ` + "`" + `UNSPECIFIED` + "`" + `, ` + "`" + `N1_HIGHCPU_8` + "`" + `, and ` + "`" + `N1_HIGHCPU_32` + "`" + `.`,
+					Description: `(Optional) Compute Engine machine type on which to run the build. Possible values are ` + "`" + `UNSPECIFIED` + "`" + `, ` + "`" + `N1_HIGHCPU_8` + "`" + `, ` + "`" + `N1_HIGHCPU_32` + "`" + `, ` + "`" + `E2_HIGHCPU_8` + "`" + `, and ` + "`" + `E2_HIGHCPU_32` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "disk_size_gb",
@@ -7058,56 +7023,6 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "google_cloudfunctions_function_iam",
-			Category:         "Cloud Functions",
-			ShortDescription: `Collection of resources to manage IAM policy for Cloud Functions CloudFunction`,
-			Description:      ``,
-			Keywords: []string{
-				"cloud",
-				"functions",
-				"cloudfunctions",
-				"function",
-				"iam",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "cloud_function",
-					Description: `(Required) Used to find the parent resource to bind the IAM policy to`,
-				},
-				resource.Attribute{
-					Name:        "region",
-					Description: `(Optional) The location of this cloud function. Used to find the parent resource to bind the IAM policy to. If not specified, the value will be parsed from the identifier of the parent resource. If no region is provided in the parent identifier and no region is specified, it is taken from the provider configuration.`,
-				},
-				resource.Attribute{
-					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the project will be parsed from the identifier of the parent resource. If no project is provided in the parent identifier and no project is specified, the provider project is used.`,
-				},
-				resource.Attribute{
-					Name:        "member/members",
-					Description: `(Required) Identities that will be granted the privilege in ` + "`" + `role` + "`" + `. Each entry can have one of the following values:`,
-				},
-				resource.Attribute{
-					Name:        "role",
-					Description: `(Required) The role that should be applied. Only one ` + "`" + `google_cloudfunctions_function_iam_binding` + "`" + ` can be used per role. Note that custom roles must be of the format ` + "`" + `[projects|organizations]/{parent-name}/roles/{role-name}` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "policy_data",
-					Description: `(Required only by ` + "`" + `google_cloudfunctions_function_iam_policy` + "`" + `) The policy data generated by a ` + "`" + `google_iam_policy` + "`" + ` data source. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "etag",
-					Description: `(Computed) The etag of the IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "etag",
-					Description: `(Computed) The etag of the IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "google_cloudfunctions_function",
 			Category:         "Cloud Functions",
 			ShortDescription: `Creates a new Cloud Function.`,
@@ -7126,7 +7041,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "runtime",
-					Description: `(Required) The runtime in which the function is going to run. Eg. ` + "`" + `"nodejs8"` + "`" + `, ` + "`" + `"nodejs10"` + "`" + `, ` + "`" + `"nodejs12"` + "`" + `, ` + "`" + `"python37"` + "`" + `, ` + "`" + `"python38"` + "`" + `,` + "`" + `"go111"` + "`" + `, ` + "`" + `"go113"` + "`" + `. - - -`,
+					Description: `(Required) The runtime in which the function is going to run. Eg. ` + "`" + `"nodejs10"` + "`" + `, ` + "`" + `"nodejs12"` + "`" + `, ` + "`" + `"nodejs14"` + "`" + `, ` + "`" + `"python37"` + "`" + `, ` + "`" + `"python38"` + "`" + `, ` + "`" + `"python39"` + "`" + `, ` + "`" + `"dotnet3"` + "`" + `, ` + "`" + `"go113"` + "`" + `, ` + "`" + `"java11"` + "`" + `, ` + "`" + `"ruby27"` + "`" + `, etc. Check the [official doc](https://cloud.google.com/functions/docs/concepts/exec#runtimes) for the up-to-date list. - - -`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -7134,7 +7049,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "available_memory_mb",
-					Description: `(Optional) Memory (in MB), available to the function. Default value is 256MB. Allowed values are: 128MB, 256MB, 512MB, 1024MB, 2048MB and 4096MB.`,
+					Description: `(Optional) Memory (in MB), available to the function. Default value is ` + "`" + `256` + "`" + `. Possible values include ` + "`" + `128` + "`" + `, ` + "`" + `256` + "`" + `, ` + "`" + `512` + "`" + `, ` + "`" + `1024` + "`" + `, etc.`,
 				},
 				resource.Attribute{
 					Name:        "timeout",
@@ -7257,6 +7172,56 @@ var (
 				resource.Attribute{
 					Name:        "region",
 					Description: `Region of function. Currently can be only "us-central1". If it is not provided, the provider region is used. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 5 minutes. - ` + "`" + `update` + "`" + ` - Default is 5 minutes. - ` + "`" + `delete` + "`" + ` - Default is 5 minutes. ## Import Functions can be imported using the ` + "`" + `name` + "`" + ` or ` + "`" + `{{project}}/{{region}}/name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_cloudfunctions_function.default function-test $ terraform import google_cloudfunctions_function.default {{project}}/{{region}}/function-test ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_cloudfunctions_function_iam",
+			Category:         "Cloud Functions",
+			ShortDescription: `Collection of resources to manage IAM policy for Cloud Functions CloudFunction`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"functions",
+				"cloudfunctions",
+				"function",
+				"iam",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cloud_function",
+					Description: `(Required) Used to find the parent resource to bind the IAM policy to`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The location of this cloud function. Used to find the parent resource to bind the IAM policy to. If not specified, the value will be parsed from the identifier of the parent resource. If no region is provided in the parent identifier and no region is specified, it is taken from the provider configuration.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the project will be parsed from the identifier of the parent resource. If no project is provided in the parent identifier and no project is specified, the provider project is used.`,
+				},
+				resource.Attribute{
+					Name:        "member/members",
+					Description: `(Required) Identities that will be granted the privilege in ` + "`" + `role` + "`" + `. Each entry can have one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Required) The role that should be applied. Only one ` + "`" + `google_cloudfunctions_function_iam_binding` + "`" + ` can be used per role. Note that custom roles must be of the format ` + "`" + `[projects|organizations]/{parent-name}/roles/{role-name}` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "policy_data",
+					Description: `(Required only by ` + "`" + `google_cloudfunctions_function_iam_policy` + "`" + `) The policy data generated by a ` + "`" + `google_iam_policy` + "`" + ` data source. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `(Computed) The etag of the IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "etag",
+					Description: `(Computed) The etag of the IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
 				},
 			},
 		},
@@ -7710,7 +7675,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "master_ipv4_cidr_block",
-					Description: `(Optional) The IP range in CIDR notation to use for the hosted master network. This range is used for assigning internal IP addresses to the cluster master or set of masters and to the internal load balancer virtual IP. This range must not overlap with any other ranges in use within the cluster's network. If left blank, the default value of '172.16.0.0/28' is used.`,
+					Description: `(Optional) The IP range in CIDR notation to use for the hosted master network. This range is used for assigning internal IP addresses to the cluster master or set of masters and to the internal load balancer virtual IP. This range must not overlap with any other ranges in use within the cluster's network. If left blank, the default value of is used. See [documentation](https://cloud.google.com/composer/docs/how-to/managing/configuring-private-ip#defaults) for default values per region.`,
 				},
 				resource.Attribute{
 					Name:        "cloud_sql_ipv4_cidr_block",
@@ -7844,6 +7809,14 @@ var (
 				resource.Attribute{
 					Name:        "labels",
 					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) Labels to apply to this address. A list of key->value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) The URL of the network in which to reserve the address. This field can only be used with INTERNAL type with the VPC_PEERING and IPSEC_INTERCONNECT purposes.`,
+				},
+				resource.Attribute{
+					Name:        "prefix_length",
+					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) The prefix length if the resource represents an IP range.`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -8009,7 +7982,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scaling_schedules",
-					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) Scaling schedules defined for an autoscaler. Multiple schedules can be set on an autoscaler and they can overlap. Structure is documented below. The ` + "`" + `scale_down_control` + "`" + ` block supports:`,
+					Description: `(Optional) Scaling schedules defined for an autoscaler. Multiple schedules can be set on an autoscaler and they can overlap. Structure is documented below. The ` + "`" + `scale_down_control` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "max_scaled_down_replicas",
@@ -8049,7 +8022,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "predictive_method",
-					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) Indicates whether predictive autoscaling based on CPU metric is enabled. Valid values are: - NONE (default). No predictive method is used. The autoscaler scales the group to meet current demand based on real-time metrics. - OPTIMIZE_AVAILABILITY. Predictive autoscaling improves availability by monitoring daily and weekly load patterns and scaling out ahead of anticipated demand. The ` + "`" + `metric` + "`" + ` block supports:`,
+					Description: `(Optional) Indicates whether predictive autoscaling based on CPU metric is enabled. Valid values are: - NONE (default). No predictive method is used. The autoscaler scales the group to meet current demand based on real-time metrics. - OPTIMIZE_AVAILABILITY. Predictive autoscaling improves availability by monitoring daily and weekly load patterns and scaling out ahead of anticipated demand. The ` + "`" + `metric` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -8788,6 +8761,10 @@ var (
 					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) Indicates whether or not the disk can be read/write attached to more than one instance.`,
 				},
 				resource.Attribute{
+					Name:        "provisioned_iops",
+					Description: `(Optional) Indicates how many IOPS must be provisioned for the disk.`,
+				},
+				resource.Attribute{
 					Name:        "zone",
 					Description: `(Optional) A reference to the zone where the disk resides.`,
 				},
@@ -9245,7 +9222,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `(Optional) The IP address that this forwarding rule is serving on behalf of. Addresses are restricted based on the forwarding rule's load balancing scheme (EXTERNAL or INTERNAL) and scope (global or regional). When the load balancing scheme is EXTERNAL, for global forwarding rules, the address must be a global IP, and for regional forwarding rules, the address must live in the same region as the forwarding rule. If this field is empty, an ephemeral IPv4 address from the same scope (global or regional) will be assigned. A regional forwarding rule supports IPv4 only. A global forwarding rule supports either IPv4 or IPv6. When the load balancing scheme is INTERNAL, this can only be an RFC 1918 IP address belonging to the network/subnet configured for the forwarding rule. By default, if this field is empty, an ephemeral internal IP address will be automatically allocated from the IP range of the subnet or network configured for this forwarding rule. An address must be specified by a literal IP address. ~>`,
+					Description: `(Optional) The IP address that this forwarding rule serves. When a client sends traffic to this IP address, the forwarding rule directs the traffic to the target that you specify in the forwarding rule. The loadBalancingScheme and the forwarding rule's target determine the type of IP address that you can use. For detailed information, refer to [IP address specifications](https://cloud.google.com/load-balancing/docs/forwarding-rule-concepts#ip_address_specifications). An address can be specified either by a literal IP address or a reference to an existing Address resource. If you don't specify a reserved IP address, an ephemeral IP address is assigned. The value must be set to 0.0.0.0 when the target is a targetGrpcProxy that has validateForProxyless field set to true. For Private Service Connect forwarding rules that forward traffic to Google APIs, IP address must be provided.`,
 				},
 				resource.Attribute{
 					Name:        "ip_protocol",
@@ -9394,7 +9371,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "purpose",
-					Description: `(Optional) The purpose of the resource. For global internal addresses it can be`,
+					Description: `(Optional) The purpose of the resource. Possible values include:`,
 				},
 				resource.Attribute{
 					Name:        "network",
@@ -9468,7 +9445,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `(Optional) The IP address that this forwarding rule is serving on behalf of. Addresses are restricted based on the forwarding rule's load balancing scheme (EXTERNAL or INTERNAL) and scope (global or regional). When the load balancing scheme is EXTERNAL, for global forwarding rules, the address must be a global IP, and for regional forwarding rules, the address must live in the same region as the forwarding rule. If this field is empty, an ephemeral IPv4 address from the same scope (global or regional) will be assigned. A regional forwarding rule supports IPv4 only. A global forwarding rule supports either IPv4 or IPv6. When the load balancing scheme is INTERNAL, this can only be an RFC 1918 IP address belonging to the network/subnet configured for the forwarding rule. By default, if this field is empty, an ephemeral internal IP address will be automatically allocated from the IP range of the subnet or network configured for this forwarding rule. An address must be specified by a literal IP address. ~>`,
+					Description: `(Optional) The IP address that this forwarding rule serves. When a client sends traffic to this IP address, the forwarding rule directs the traffic to the target that you specify in the forwarding rule. The loadBalancingScheme and the forwarding rule's target determine the type of IP address that you can use. For detailed information, refer to [IP address specifications](https://cloud.google.com/load-balancing/docs/forwarding-rule-concepts#ip_address_specifications). An address can be specified either by a literal IP address or a reference to an existing Address resource. If you don't specify a reserved IP address, an ephemeral IP address is assigned. The value must be set to 0.0.0.0 when the target is a targetGrpcProxy that has validateForProxyless field set to true. For Private Service Connect forwarding rules that forward traffic to Google APIs, IP address must be provided.`,
 				},
 				resource.Attribute{
 					Name:        "ip_protocol",
@@ -9675,24 +9652,16 @@ var (
 					Description: `(Optional) An optional description of this resource.`,
 				},
 				resource.Attribute{
+					Name:        "vpn_interfaces",
+					Description: `(Optional) A list of interfaces on this VPN gateway. Structure is documented below.`,
+				},
+				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region this gateway should sit in.`,
 				},
 				resource.Attribute{
 					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/vpnGateways/{{name}}` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "vpn_interfaces",
-					Description: `A list of interfaces on this VPN gateway. Structure is documented below.`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `The URI of the created resource. The ` + "`" + `vpn_interfaces` + "`" + ` block contains:`,
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. The ` + "`" + `vpn_interfaces` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -9700,7 +9669,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `(Optional) The external IP address for this VPN gateway interface. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import HaVpnGateway can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_ha_vpn_gateway.default projects/{{project}}/regions/{{region}}/vpnGateways/{{name}} $ terraform import google_compute_ha_vpn_gateway.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_ha_vpn_gateway.default {{region}}/{{name}} $ terraform import google_compute_ha_vpn_gateway.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `The external IP address for this VPN gateway interface.`,
+				},
+				resource.Attribute{
+					Name:        "interconnect_attachment",
+					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) URL of the interconnect attachment resource. When the value of this field is present, the VPN Gateway will be used for IPsec-encrypted Cloud Interconnect; all Egress or Ingress traffic for this VPN Gateway interface will go through the specified interconnect attachment resource. Not currently available publicly. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/vpnGateways/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import HaVpnGateway can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_ha_vpn_gateway.default projects/{{project}}/regions/{{region}}/vpnGateways/{{name}} $ terraform import google_compute_ha_vpn_gateway.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_ha_vpn_gateway.default {{region}}/{{name}} $ terraform import google_compute_ha_vpn_gateway.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -9709,20 +9690,8 @@ var (
 					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/vpnGateways/{{name}}` + "`" + ``,
 				},
 				resource.Attribute{
-					Name:        "vpn_interfaces",
-					Description: `A list of interfaces on this VPN gateway. Structure is documented below.`,
-				},
-				resource.Attribute{
 					Name:        "self_link",
-					Description: `The URI of the created resource. The ` + "`" + `vpn_interfaces` + "`" + ` block contains:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `(Optional) The numeric ID of this VPN gateway interface.`,
-				},
-				resource.Attribute{
-					Name:        "ip_address",
-					Description: `(Optional) The external IP address for this VPN gateway interface. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import HaVpnGateway can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_ha_vpn_gateway.default projects/{{project}}/regions/{{region}}/vpnGateways/{{name}} $ terraform import google_compute_ha_vpn_gateway.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_ha_vpn_gateway.default {{region}}/{{name}} $ terraform import google_compute_ha_vpn_gateway.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import HaVpnGateway can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_ha_vpn_gateway.default projects/{{project}}/regions/{{region}}/vpnGateways/{{name}} $ terraform import google_compute_ha_vpn_gateway.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_ha_vpn_gateway.default {{region}}/{{name}} $ terraform import google_compute_ha_vpn_gateway.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 		},
@@ -10859,7 +10828,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "wait_for_instances",
-					Description: `(Optional) Whether to wait for all instances to be created/updated before returning. Note that if this is set to true and the operation does not succeed, Terraform will continue trying until it times out. ---`,
+					Description: `(Optional) Whether to wait for all instances to be created/updated before returning. Note that if this is set to true and the operation does not succeed, Terraform will continue trying until it times out.`,
+				},
+				resource.Attribute{
+					Name:        "wait_for_instances_status",
+					Description: `(Optional) When used with ` + "`" + `wait_for_instances` + "`" + ` it specifies the status to wait for. When ` + "`" + `STABLE` + "`" + ` is specified this resource will wait until the instances are stable before returning. When ` + "`" + `UPDATED` + "`" + ` is set, it will wait for the version target to be reached and any per instance configs to be effective as well as all instances to be stable before returning. The possible values are ` + "`" + `STABLE` + "`" + ` and ` + "`" + `UPDATED` + "`" + ` ---`,
 				},
 				resource.Attribute{
 					Name:        "auto_healing_policies",
@@ -10963,7 +10936,39 @@ var (
 				},
 				resource.Attribute{
 					Name:        "self_link",
-					Description: `The URL of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 5 minutes. - ` + "`" + `update` + "`" + ` - Default is 5 minutes. - ` + "`" + `delete` + "`" + ` - Default is 15 minutes. ## Import Instance group managers can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_instance_group_manager.appserver projects/{{project}}/zones/{{zone}}/instanceGroupManagers/{{name}} $ terraform import google_compute_instance_group_manager.appserver {{project}}/{{zone}}/{{name}} $ terraform import google_compute_instance_group_manager.appserver {{project}}/{{name}} $ terraform import google_compute_instance_group_manager.appserver {{name}} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The URL of the created resource.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of this managed instance group. The ` + "`" + `status` + "`" + ` block holds:`,
+				},
+				resource.Attribute{
+					Name:        "is_stable",
+					Description: `A bit indicating whether the managed instance group is in a stable state. A stable state means that: none of the instances in the managed instance group is currently undergoing any type of change (for example, creation, restart, or deletion); no future changes are scheduled for instances in the managed instance group; and the managed instance group itself is not being modified.`,
+				},
+				resource.Attribute{
+					Name:        "version_target",
+					Description: `A status of consistency of Instances' versions with their target version specified by version field on Instance Group Manager. The ` + "`" + `version_target` + "`" + ` block holds:`,
+				},
+				resource.Attribute{
+					Name:        "version_target",
+					Description: `A bit indicating whether version target has been reached in this managed instance group, i.e. all instances are in their target version. Instances' target version are specified by version field on Instance Group Manager.`,
+				},
+				resource.Attribute{
+					Name:        "stateful",
+					Description: `Stateful status of the given Instance Group Manager. The ` + "`" + `stateful` + "`" + ` block holds:`,
+				},
+				resource.Attribute{
+					Name:        "has_stateful_config",
+					Description: `A bit indicating whether the managed instance group has stateful configuration, that is, if you have configured any items in a stateful policy or in per-instance configs. The group might report that it has no stateful config even when there is still some preserved state on a managed instance, for example, if you have deleted all PICs but not yet applied those deletions.`,
+				},
+				resource.Attribute{
+					Name:        "per_instance_configs",
+					Description: `Status of per-instance configs on the instance. The ` + "`" + `per_instance_configs` + "`" + ` block holds:`,
+				},
+				resource.Attribute{
+					Name:        "all_effective",
+					Description: `A bit indicating if all of the group's per-instance configs (listed in the output of a listPerInstanceConfigs API call) have status ` + "`" + `EFFECTIVE` + "`" + ` or there are no per-instance-configs. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 5 minutes. - ` + "`" + `update` + "`" + ` - Default is 5 minutes. - ` + "`" + `delete` + "`" + ` - Default is 15 minutes. ## Import Instance group managers can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_instance_group_manager.appserver projects/{{project}}/zones/{{zone}}/instanceGroupManagers/{{name}} $ terraform import google_compute_instance_group_manager.appserver {{project}}/{{zone}}/{{name}} $ terraform import google_compute_instance_group_manager.appserver {{project}}/{{name}} $ terraform import google_compute_instance_group_manager.appserver {{name}} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -10981,7 +10986,39 @@ var (
 				},
 				resource.Attribute{
 					Name:        "self_link",
-					Description: `The URL of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 5 minutes. - ` + "`" + `update` + "`" + ` - Default is 5 minutes. - ` + "`" + `delete` + "`" + ` - Default is 15 minutes. ## Import Instance group managers can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_instance_group_manager.appserver projects/{{project}}/zones/{{zone}}/instanceGroupManagers/{{name}} $ terraform import google_compute_instance_group_manager.appserver {{project}}/{{zone}}/{{name}} $ terraform import google_compute_instance_group_manager.appserver {{project}}/{{name}} $ terraform import google_compute_instance_group_manager.appserver {{name}} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The URL of the created resource.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of this managed instance group. The ` + "`" + `status` + "`" + ` block holds:`,
+				},
+				resource.Attribute{
+					Name:        "is_stable",
+					Description: `A bit indicating whether the managed instance group is in a stable state. A stable state means that: none of the instances in the managed instance group is currently undergoing any type of change (for example, creation, restart, or deletion); no future changes are scheduled for instances in the managed instance group; and the managed instance group itself is not being modified.`,
+				},
+				resource.Attribute{
+					Name:        "version_target",
+					Description: `A status of consistency of Instances' versions with their target version specified by version field on Instance Group Manager. The ` + "`" + `version_target` + "`" + ` block holds:`,
+				},
+				resource.Attribute{
+					Name:        "version_target",
+					Description: `A bit indicating whether version target has been reached in this managed instance group, i.e. all instances are in their target version. Instances' target version are specified by version field on Instance Group Manager.`,
+				},
+				resource.Attribute{
+					Name:        "stateful",
+					Description: `Stateful status of the given Instance Group Manager. The ` + "`" + `stateful` + "`" + ` block holds:`,
+				},
+				resource.Attribute{
+					Name:        "has_stateful_config",
+					Description: `A bit indicating whether the managed instance group has stateful configuration, that is, if you have configured any items in a stateful policy or in per-instance configs. The group might report that it has no stateful config even when there is still some preserved state on a managed instance, for example, if you have deleted all PICs but not yet applied those deletions.`,
+				},
+				resource.Attribute{
+					Name:        "per_instance_configs",
+					Description: `Status of per-instance configs on the instance. The ` + "`" + `per_instance_configs` + "`" + ` block holds:`,
+				},
+				resource.Attribute{
+					Name:        "all_effective",
+					Description: `A bit indicating if all of the group's per-instance configs (listed in the output of a listPerInstanceConfigs API call) have status ` + "`" + `EFFECTIVE` + "`" + ` or there are no per-instance-configs. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 5 minutes. - ` + "`" + `update` + "`" + ` - Default is 5 minutes. - ` + "`" + `delete` + "`" + ` - Default is 15 minutes. ## Import Instance group managers can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_instance_group_manager.appserver projects/{{project}}/zones/{{zone}}/instanceGroupManagers/{{name}} $ terraform import google_compute_instance_group_manager.appserver {{project}}/{{zone}}/{{name}} $ terraform import google_compute_instance_group_manager.appserver {{project}}/{{name}} $ terraform import google_compute_instance_group_manager.appserver {{name}} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -11231,6 +11268,10 @@ var (
 					Description: `(Optional) The size of the image in gigabytes. If not specified, it will inherit the size of its base image. For SCRATCH disks, the size must be exactly 375GB.`,
 				},
 				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) A set of ket/value label pairs to assign to disk created from this template`,
+				},
+				resource.Attribute{
 					Name:        "type",
 					Description: `(Optional) The type of GCE disk, can be either ` + "`" + `"SCRATCH"` + "`" + ` or ` + "`" + `"PERSISTENT"` + "`" + `.`,
 				},
@@ -11264,7 +11305,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "alias_ip_range",
-					Description: `(Optional) An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks. Structure documented below. The ` + "`" + `access_config` + "`" + ` block supports:`,
+					Description: `(Optional) An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks. Structure documented below.`,
+				},
+				resource.Attribute{
+					Name:        "nic_type",
+					Description: `(Optional) The type of vNIC to be used on this interface. Possible values: GVNIC, VIRTIO_NET. The ` + "`" + `access_config` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "nat_ip",
@@ -11398,6 +11443,14 @@ var (
 				resource.Attribute{
 					Name:        "vlan_tag8021q",
 					Description: `(Optional) The IEEE 802.1Q VLAN tag for this attachment, in the range 2-4094. When using PARTNER type this will be managed upstream.`,
+				},
+				resource.Attribute{
+					Name:        "ipsec_internal_addresses",
+					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) URL of addresses that have been reserved for the interconnect attachment, Used only for interconnect attachment that has the encryption option as IPSEC. The addresses must be RFC 1918 IP address ranges. When creating HA VPN gateway over the interconnect attachment, if the attachment is configured to use an RFC 1918 IP address, then the VPN gateway's IP address will be allocated from the IP address range specified here. For example, if the HA VPN gateway's interface 0 is paired to this interconnect attachment, then an RFC 1918 IP address for the VPN gateway interface 0 will be allocated from the IP address specified for this interconnect attachment. If this field is not specified for interconnect attachment that has encryption option as IPSEC, later on when creating HA VPN gateway on this interconnect attachment, the HA VPN gateway's IP address will be allocated from regional external IP address pool.`,
+				},
+				resource.Attribute{
+					Name:        "encryption",
+					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) Indicates the user-supplied encryption option of this interconnect attachment: NONE is the default value, which means that the attachment carries unencrypted traffic. VMs can send traffic to, or receive traffic from, this type of attachment. IPSEC indicates that the attachment carries only traffic encrypted by an IPsec device such as an HA VPN gateway. VMs cannot directly send traffic to, or receive traffic from, such an attachment. To use IPsec-encrypted Cloud Interconnect create the attachment using this option. Not currently available publicly. Default value is ` + "`" + `NONE` + "`" + `. Possible values are ` + "`" + `NONE` + "`" + ` and ` + "`" + `IPSEC` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -11546,7 +11599,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kms_key_name",
-					Description: `The name of the encryption key that is stored in Google Cloud KMS.`,
+					Description: `(Optional) The name of the encryption key that is stored in Google Cloud KMS.`,
 				},
 				resource.Attribute{
 					Name:        "kms_key_service_account",
@@ -12054,11 +12107,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "node_template",
-					Description: `(Required) The URL of the node template to which this node group belongs.`,
-				},
-				resource.Attribute{
-					Name:        "size",
-					Description: `(Required) The total number of nodes in the node group. - - -`,
+					Description: `(Required) The URL of the node template to which this node group belongs. - - -`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -12069,8 +12118,20 @@ var (
 					Description: `(Optional) Name of the resource.`,
 				},
 				resource.Attribute{
+					Name:        "size",
+					Description: `(Optional) The total number of nodes in the node group. One of ` + "`" + `initial_size` + "`" + ` or ` + "`" + `size` + "`" + ` must be specified.`,
+				},
+				resource.Attribute{
+					Name:        "initial_size",
+					Description: `(Optional) The initial number of nodes in the node group. One of ` + "`" + `initial_size` + "`" + ` or ` + "`" + `size` + "`" + ` must be specified.`,
+				},
+				resource.Attribute{
 					Name:        "maintenance_policy",
 					Description: `(Optional) Specifies how to handle instances when a node in the group undergoes maintenance. Set to one of: DEFAULT, RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP. The default value is DEFAULT.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_window",
+					Description: `(Optional) contains properties for the timeframe of maintenance Structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "autoscaling_policy",
@@ -12082,7 +12143,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. The ` + "`" + `autoscaling_policy` + "`" + ` block supports:`,
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. The ` + "`" + `maintenance_window` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Required) instances.start time of the window. This must be in UTC format that resolves to one of 00:00, 04:00, 08:00, 12:00, 16:00, or 20:00. For example, both 13:00-5 and 08:00 are valid. The ` + "`" + `autoscaling_policy` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "mode",
@@ -12773,7 +12838,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scaling_schedules",
-					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) Scaling schedules defined for an autoscaler. Multiple schedules can be set on an autoscaler and they can overlap. Structure is documented below. The ` + "`" + `scale_down_control` + "`" + ` block supports:`,
+					Description: `(Optional) Scaling schedules defined for an autoscaler. Multiple schedules can be set on an autoscaler and they can overlap. Structure is documented below. The ` + "`" + `scale_down_control` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "max_scaled_down_replicas",
@@ -12813,7 +12878,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "predictive_method",
-					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) Indicates whether predictive autoscaling based on CPU metric is enabled. Valid values are: - NONE (default). No predictive method is used. The autoscaler scales the group to meet current demand based on real-time metrics. - OPTIMIZE_AVAILABILITY. Predictive autoscaling improves availability by monitoring daily and weekly load patterns and scaling out ahead of anticipated demand. The ` + "`" + `metric` + "`" + ` block supports:`,
+					Description: `(Optional) Indicates whether predictive autoscaling based on CPU metric is enabled. Valid values are: - NONE (default). No predictive method is used. The autoscaler scales the group to meet current demand based on real-time metrics. - OPTIMIZE_AVAILABILITY. Predictive autoscaling improves availability by monitoring daily and weekly load patterns and scaling out ahead of anticipated demand. The ` + "`" + `metric` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -13344,6 +13409,10 @@ var (
 					Description: `(Optional) URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk.`,
 				},
 				resource.Attribute{
+					Name:        "interface",
+					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Default value is ` + "`" + `SCSI` + "`" + `. Possible values are ` + "`" + `SCSI` + "`" + ` and ` + "`" + `NVME` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) A reference to the region where the disk resides.`,
 				},
@@ -13864,7 +13933,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "wait_for_instances",
-					Description: `(Optional) Whether to wait for all instances to be created/updated before returning. Note that if this is set to true and the operation does not succeed, Terraform will continue trying until it times out. ---`,
+					Description: `(Optional) Whether to wait for all instances to be created/updated before returning. Note that if this is set to true and the operation does not succeed, Terraform will continue trying until it times out.`,
+				},
+				resource.Attribute{
+					Name:        "wait_for_instances_status",
+					Description: `(Optional) When used with ` + "`" + `wait_for_instances` + "`" + ` it specifies the status to wait for. When ` + "`" + `STABLE` + "`" + ` is specified this resource will wait until the instances are stable before returning. When ` + "`" + `UPDATED` + "`" + ` is set, it will wait for the version target to be reached and any per instance configs to be effective as well as all instances to be stable before returning. The possible values are ` + "`" + `STABLE` + "`" + ` and ` + "`" + `UPDATED` + "`" + ` ---`,
 				},
 				resource.Attribute{
 					Name:        "auto_healing_policies",
@@ -13980,7 +14053,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "self_link",
-					Description: `The URL of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 5 minutes. - ` + "`" + `update` + "`" + ` - Default is 5 minutes. - ` + "`" + `delete` + "`" + ` - Default is 15 minutes. ## Import Instance group managers can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_region_instance_group_manager.appserver appserver-igm ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The URL of the created resource. The ` + "`" + `status` + "`" + ` block holds:`,
+				},
+				resource.Attribute{
+					Name:        "is_stable",
+					Description: `A bit indicating whether the managed instance group is in a stable state. A stable state means that: none of the instances in the managed instance group is currently undergoing any type of change (for example, creation, restart, or deletion); no future changes are scheduled for instances in the managed instance group; and the managed instance group itself is not being modified.`,
+				},
+				resource.Attribute{
+					Name:        "version_target",
+					Description: `A status of consistency of Instances' versions with their target version specified by version field on Instance Group Manager. The ` + "`" + `version_target` + "`" + ` block holds:`,
+				},
+				resource.Attribute{
+					Name:        "version_target",
+					Description: `A bit indicating whether version target has been reached in this managed instance group, i.e. all instances are in their target version. Instances' target version are specified by version field on Instance Group Manager.`,
+				},
+				resource.Attribute{
+					Name:        "stateful",
+					Description: `Stateful status of the given Instance Group Manager. The ` + "`" + `stateful` + "`" + ` block holds:`,
+				},
+				resource.Attribute{
+					Name:        "has_stateful_config",
+					Description: `A bit indicating whether the managed instance group has stateful configuration, that is, if you have configured any items in a stateful policy or in per-instance configs. The group might report that it has no stateful config even when there is still some preserved state on a managed instance, for example, if you have deleted all PICs but not yet applied those deletions.`,
+				},
+				resource.Attribute{
+					Name:        "per_instance_configs",
+					Description: `Status of per-instance configs on the instance. The ` + "`" + `per_instance_configs` + "`" + ` block holds:`,
+				},
+				resource.Attribute{
+					Name:        "all_effective",
+					Description: `A bit indicating if all of the group's per-instance configs (listed in the output of a listPerInstanceConfigs API call) have status ` + "`" + `EFFECTIVE` + "`" + ` or there are no per-instance-configs. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 5 minutes. - ` + "`" + `update` + "`" + ` - Default is 5 minutes. - ` + "`" + `delete` + "`" + ` - Default is 15 minutes. ## Import Instance group managers can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_region_instance_group_manager.appserver appserver-igm ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -13998,7 +14099,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "self_link",
-					Description: `The URL of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 5 minutes. - ` + "`" + `update` + "`" + ` - Default is 5 minutes. - ` + "`" + `delete` + "`" + ` - Default is 15 minutes. ## Import Instance group managers can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_region_instance_group_manager.appserver appserver-igm ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The URL of the created resource. The ` + "`" + `status` + "`" + ` block holds:`,
+				},
+				resource.Attribute{
+					Name:        "is_stable",
+					Description: `A bit indicating whether the managed instance group is in a stable state. A stable state means that: none of the instances in the managed instance group is currently undergoing any type of change (for example, creation, restart, or deletion); no future changes are scheduled for instances in the managed instance group; and the managed instance group itself is not being modified.`,
+				},
+				resource.Attribute{
+					Name:        "version_target",
+					Description: `A status of consistency of Instances' versions with their target version specified by version field on Instance Group Manager. The ` + "`" + `version_target` + "`" + ` block holds:`,
+				},
+				resource.Attribute{
+					Name:        "version_target",
+					Description: `A bit indicating whether version target has been reached in this managed instance group, i.e. all instances are in their target version. Instances' target version are specified by version field on Instance Group Manager.`,
+				},
+				resource.Attribute{
+					Name:        "stateful",
+					Description: `Stateful status of the given Instance Group Manager. The ` + "`" + `stateful` + "`" + ` block holds:`,
+				},
+				resource.Attribute{
+					Name:        "has_stateful_config",
+					Description: `A bit indicating whether the managed instance group has stateful configuration, that is, if you have configured any items in a stateful policy or in per-instance configs. The group might report that it has no stateful config even when there is still some preserved state on a managed instance, for example, if you have deleted all PICs but not yet applied those deletions.`,
+				},
+				resource.Attribute{
+					Name:        "per_instance_configs",
+					Description: `Status of per-instance configs on the instance. The ` + "`" + `per_instance_configs` + "`" + ` block holds:`,
+				},
+				resource.Attribute{
+					Name:        "all_effective",
+					Description: `A bit indicating if all of the group's per-instance configs (listed in the output of a listPerInstanceConfigs API call) have status ` + "`" + `EFFECTIVE` + "`" + ` or there are no per-instance-configs. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 5 minutes. - ` + "`" + `update` + "`" + ` - Default is 5 minutes. - ` + "`" + `delete` + "`" + ` - Default is 15 minutes. ## Import Instance group managers can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_region_instance_group_manager.appserver appserver-igm ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -15340,12 +15469,20 @@ var (
 					Description: `(Required) The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description of this resource. Provide this property when you create the resource.`,
+				},
+				resource.Attribute{
 					Name:        "snapshot_schedule_policy",
 					Description: `(Optional) Policy for creating snapshots of persistent disks. Structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "group_placement_policy",
 					Description: `(Optional) Resource policy for instances used for placement configuration. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "instance_schedule_policy",
+					Description: `(Optional) Resource policy for scheduling instance operations. Structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -15437,7 +15574,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "collocation",
-					Description: `(Optional) Collocation specifies whether to place VMs inside the same availability domain on the same low-latency network. Specify ` + "`" + `COLLOCATED` + "`" + ` to enable collocation. Can only be specified with ` + "`" + `vm_count` + "`" + `. If compute instances are created with a COLLOCATED policy, then exactly ` + "`" + `vm_count` + "`" + ` instances must be created at the same time with the resource policy attached. Possible values are ` + "`" + `COLLOCATED` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) Collocation specifies whether to place VMs inside the same availability domain on the same low-latency network. Specify ` + "`" + `COLLOCATED` + "`" + ` to enable collocation. Can only be specified with ` + "`" + `vm_count` + "`" + `. If compute instances are created with a COLLOCATED policy, then exactly ` + "`" + `vm_count` + "`" + ` instances must be created at the same time with the resource policy attached. Possible values are ` + "`" + `COLLOCATED` + "`" + `. The ` + "`" + `instance_schedule_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "vm_start_schedule",
+					Description: `(Optional) Specifies the schedule for starting instances. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "vm_stop_schedule",
+					Description: `(Optional) Specifies the schedule for stopping instances. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "time_zone",
+					Description: `(Required) Specifies the time zone to be used in interpreting the schedule. The value of this field must be a time zone name from the tz database: http://en.wikipedia.org/wiki/Tz_database.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Optional) The start time of the schedule. The timestamp is an RFC3339 string.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_time",
+					Description: `(Optional) The expiration time of the schedule. The timestamp is an RFC3339 string. The ` + "`" + `vm_start_schedule` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "schedule",
+					Description: `(Required) Specifies the frequency for the operation, using the unix-cron format. The ` + "`" + `vm_stop_schedule` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "schedule",
+					Description: `(Required) Specifies the frequency for the operation, using the unix-cron format. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -15582,6 +15747,10 @@ var (
 					Description: `(Optional) BGP information specific to this router. Structure is documented below.`,
 				},
 				resource.Attribute{
+					Name:        "encrypted_interconnect_router",
+					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) Field to indicate if a router is dedicated to use with encrypted Interconnect Attachment (IPsec-encrypted Cloud Interconnect feature). Not currently available publicly.`,
+				},
+				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) Region where the router resides.`,
 				},
@@ -15638,100 +15807,6 @@ var (
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Router can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_router.default projects/{{project}}/regions/{{region}}/routers/{{name}} $ terraform import google_compute_router.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_router.default {{region}}/{{name}} $ terraform import google_compute_router.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_compute_router_peer",
-			Category:         "Compute Engine",
-			ShortDescription: `BGP information that must be configured into the routing stack to establish BGP peering.`,
-			Description:      ``,
-			Icon:             "Networking/Cloud_Router.svg",
-			Keywords: []string{
-				"compute",
-				"engine",
-				"router",
-				"peer",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Name of this BGP peer. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
-				},
-				resource.Attribute{
-					Name:        "interface",
-					Description: `(Required) Name of the interface the BGP peer is associated with.`,
-				},
-				resource.Attribute{
-					Name:        "peer_ip_address",
-					Description: `(Required) IP address of the BGP interface outside Google Cloud Platform. Only IPv4 is supported.`,
-				},
-				resource.Attribute{
-					Name:        "peer_asn",
-					Description: `(Required) Peer BGP Autonomous System Number (ASN). Each BGP interface may use a different value.`,
-				},
-				resource.Attribute{
-					Name:        "router",
-					Description: `(Required) The name of the Cloud Router in which this BgpPeer will be configured. - - -`,
-				},
-				resource.Attribute{
-					Name:        "advertised_route_priority",
-					Description: `(Optional) The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win.`,
-				},
-				resource.Attribute{
-					Name:        "advertise_mode",
-					Description: `(Optional) User-specified flag to indicate which mode to use for advertisement. Valid values of this enum field are: ` + "`" + `DEFAULT` + "`" + `, ` + "`" + `CUSTOM` + "`" + ` Default value is ` + "`" + `DEFAULT` + "`" + `. Possible values are ` + "`" + `DEFAULT` + "`" + ` and ` + "`" + `CUSTOM` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "advertised_groups",
-					Description: `(Optional) User-specified list of prefix groups to advertise in custom mode, which can take one of the following options:`,
-				},
-				resource.Attribute{
-					Name:        "advertised_ip_ranges",
-					Description: `(Optional) User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertiseMode is ` + "`" + `CUSTOM` + "`" + ` and is advertised to all peers of the router. These IP ranges will be advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges. Structure is documented below.`,
-				},
-				resource.Attribute{
-					Name:        "region",
-					Description: `(Optional) Region where the router and BgpPeer reside. If it is not provided, the provider region is used.`,
-				},
-				resource.Attribute{
-					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. The ` + "`" + `advertised_ip_ranges` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "range",
-					Description: `(Required) The IP range to advertise. The value must be a CIDR-formatted string.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `(Optional) User-specified description for the IP range. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/routers/{{router}}/{{name}}` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "ip_address",
-					Description: `IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.`,
-				},
-				resource.Attribute{
-					Name:        "management_type",
-					Description: `The resource that configures and manages this BGP peer.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/routers/{{router}}/{{name}}` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "ip_address",
-					Description: `IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.`,
-				},
-				resource.Attribute{
-					Name:        "management_type",
-					Description: `The resource that configures and manages this BGP peer.`,
 				},
 			},
 		},
@@ -15896,6 +15971,100 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `an identifier for the resource with format ` + "`" + `{{project}}/{{region}}/{{router}}/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 10 minutes. - ` + "`" + `update` + "`" + ` - Default is 10 minutes. - ` + "`" + `delete` + "`" + ` - Default is 10 minutes. ## Import RouterNat can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_router_nat.default projects/{{project}}/regions/{{region}}/routers/{{router}}/{{name}} $ terraform import google_compute_router_nat.default {{project}}/{{region}}/{{router}}/{{name}} $ terraform import google_compute_router_nat.default {{region}}/{{router}}/{{name}} $ terraform import google_compute_router_nat.default {{router}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_compute_router_peer",
+			Category:         "Compute Engine",
+			ShortDescription: `BGP information that must be configured into the routing stack to establish BGP peering.`,
+			Description:      ``,
+			Icon:             "Networking/Cloud_Router.svg",
+			Keywords: []string{
+				"compute",
+				"engine",
+				"router",
+				"peer",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of this BGP peer. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
+				},
+				resource.Attribute{
+					Name:        "interface",
+					Description: `(Required) Name of the interface the BGP peer is associated with.`,
+				},
+				resource.Attribute{
+					Name:        "peer_ip_address",
+					Description: `(Required) IP address of the BGP interface outside Google Cloud Platform. Only IPv4 is supported.`,
+				},
+				resource.Attribute{
+					Name:        "peer_asn",
+					Description: `(Required) Peer BGP Autonomous System Number (ASN). Each BGP interface may use a different value.`,
+				},
+				resource.Attribute{
+					Name:        "router",
+					Description: `(Required) The name of the Cloud Router in which this BgpPeer will be configured. - - -`,
+				},
+				resource.Attribute{
+					Name:        "advertised_route_priority",
+					Description: `(Optional) The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win.`,
+				},
+				resource.Attribute{
+					Name:        "advertise_mode",
+					Description: `(Optional) User-specified flag to indicate which mode to use for advertisement. Valid values of this enum field are: ` + "`" + `DEFAULT` + "`" + `, ` + "`" + `CUSTOM` + "`" + ` Default value is ` + "`" + `DEFAULT` + "`" + `. Possible values are ` + "`" + `DEFAULT` + "`" + ` and ` + "`" + `CUSTOM` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "advertised_groups",
+					Description: `(Optional) User-specified list of prefix groups to advertise in custom mode, which can take one of the following options:`,
+				},
+				resource.Attribute{
+					Name:        "advertised_ip_ranges",
+					Description: `(Optional) User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertiseMode is ` + "`" + `CUSTOM` + "`" + ` and is advertised to all peers of the router. These IP ranges will be advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) Region where the router and BgpPeer reside. If it is not provided, the provider region is used.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. The ` + "`" + `advertised_ip_ranges` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "range",
+					Description: `(Required) The IP range to advertise. The value must be a CIDR-formatted string.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) User-specified description for the IP range. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/routers/{{router}}/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.`,
+				},
+				resource.Attribute{
+					Name:        "management_type",
+					Description: `The resource that configures and manages this BGP peer.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/routers/{{router}}/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.`,
+				},
+				resource.Attribute{
+					Name:        "management_type",
+					Description: `The resource that configures and manages this BGP peer.`,
 				},
 			},
 		},
@@ -18788,6 +18957,10 @@ var (
 					Description: `(Optional) Enable Shielded Nodes features on all nodes in this cluster. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "enable_autopilot",
+					Description: `(Optional) Enable Autopilot for this cluster. Defaults to ` + "`" + `false` + "`" + `. Note that when this option is enabled, certain features of Standard GKE are not available. See the [official documentation](https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-overview#comparison) for available features.`,
+				},
+				resource.Attribute{
 					Name:        "initial_node_count",
 					Description: `(Optional) The number of nodes to create in this cluster's default node pool. In regional or multi-zonal clusters, this is the number of nodes per zone. Must be set if ` + "`" + `node_pool` + "`" + ` is not set. If you're using ` + "`" + `google_container_node_pool` + "`" + ` objects with no default node pool, you'll need to set this to a value of at least ` + "`" + `1` + "`" + `, alongside setting ` + "`" + `remove_default_node_pool` + "`" + ` to ` + "`" + `true` + "`" + `.`,
 				},
@@ -18844,6 +19017,10 @@ var (
 					Description: `(Optional) The Kubernetes version on the nodes. Must either be unset or set to the same value as ` + "`" + `min_master_version` + "`" + ` on create. Defaults to the default version set by GKE which is not necessarily the latest version. This only affects nodes in the default node pool. While a fuzzy version can be specified, it's recommended that you specify explicit versions as Terraform will see spurious diffs when fuzzy versions are used. See the ` + "`" + `google_container_engine_versions` + "`" + ` data source's ` + "`" + `version_prefix` + "`" + ` field to approximate fuzzy versions in a Terraform-compatible way. To update nodes in other node pools, use the ` + "`" + `version` + "`" + ` attribute on the node pool.`,
 				},
 				resource.Attribute{
+					Name:        "notification_config",
+					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) Configuration for the [cluster upgrade notifications](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-upgrade-notifications) feature. Structure is documented below.`,
+				},
+				resource.Attribute{
 					Name:        "pod_security_policy_config",
 					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) Configuration for the [PodSecurityPolicy](https://cloud.google.com/kubernetes-engine/docs/how-to/pod-security-policies) feature. Structure is documented below.`,
 				},
@@ -18896,6 +19073,14 @@ var (
 					Description: `(Optional) Whether Intra-node visibility is enabled for this cluster. This makes same node pod to pod traffic visible for VPC network.`,
 				},
 				resource.Attribute{
+					Name:        "enable_l4_ilb_subsetting",
+					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) Whether L4ILB Subsetting is enabled for this cluster.`,
+				},
+				resource.Attribute{
+					Name:        "private_ipv6_google_access",
+					Description: `(Optional) The desired state of IPv6 connectivity to Google Services. By default, no private IPv6 access to or from Google Services (all access will be via IPv4).`,
+				},
+				resource.Attribute{
 					Name:        "datapath_provider",
 					Description: `(Optional) The desired datapath provider for this cluster. By default, uses the IPTables-based kube-proxy implementation.`,
 				},
@@ -18909,7 +19094,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "horizontal_pod_autoscaling",
-					Description: `(Optional) The status of the Horizontal Pod Autoscaling addon, which increases or decreases the number of replica pods a replication controller has based on the resource usage of the existing pods. It ensures that a Heapster pod is running in the cluster, which is also used by the Cloud Monitoring service. It is enabled by default; set ` + "`" + `disabled = true` + "`" + ` to disable.`,
+					Description: `(Optional) The status of the Horizontal Pod Autoscaling addon, which increases or decreases the number of replica pods a replication controller has based on the resource usage of the existing pods. It is enabled by default; set ` + "`" + `disabled = true` + "`" + ` to disable.`,
 				},
 				resource.Attribute{
 					Name:        "http_load_balancing",
@@ -19938,6 +20123,10 @@ var (
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `(Optional) The display name for this field.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A description for this field.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -21432,7 +21621,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Optional) A map of the Compute Engine metadata entries to add to all instances (see [Project and instance metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)). - - - The ` + "`" + `cluster_config.master_config` + "`" + ` block supports: ` + "`" + `` + "`" + `` + "`" + `hcl cluster_config { master_config { num_instances = 1 machine_type = "e2-medium" min_cpu_platform = "Intel Skylake" disk_config { boot_disk_type = "pd-ssd" boot_disk_size_gb = 15 num_local_ssds = 1 } } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) A map of the Compute Engine metadata entries to add to all instances (see [Project and instance metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).`,
+				},
+				resource.Attribute{
+					Name:        "enable_secure_boot",
+					Description: `(Optional) Defines whether instances have Secure Boot enabled.`,
+				},
+				resource.Attribute{
+					Name:        "enable_vtpm",
+					Description: `(Optional) Defines whether instances have the [vTPM](https://cloud.google.com/security/shielded-cloud/shielded-vm#vtpm) enabled.`,
+				},
+				resource.Attribute{
+					Name:        "enable_integrity_monitoring",
+					Description: `(Optional) Defines whether instances have integrity monitoring enabled. - - - The ` + "`" + `cluster_config.master_config` + "`" + ` block supports: ` + "`" + `` + "`" + `` + "`" + `hcl cluster_config { master_config { num_instances = 1 machine_type = "e2-medium" min_cpu_platform = "Intel Skylake" disk_config { boot_disk_type = "pd-ssd" boot_disk_size_gb = 30 num_local_ssds = 1 } } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "machine_type",
@@ -21460,7 +21661,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "accelerator_count",
-					Description: `(Required) The number of the accelerator cards of this type exposed to this instance. Often restricted to one of ` + "`" + `1` + "`" + `, ` + "`" + `2` + "`" + `, ` + "`" + `4` + "`" + `, or ` + "`" + `8` + "`" + `. ~> The Cloud Dataproc API can return unintuitive error messages when using accelerators; even when you have defined an accelerator, Auto Zone Placement does not exclusively select zones that have that accelerator available. If you get a 400 error that the accelerator can't be found, this is a likely cause. Make sure you check [accelerator availability by zone](https://cloud.google.com/compute/docs/reference/rest/v1/acceleratorTypes/list) if you are trying to use accelerators in a given zone. - - - The ` + "`" + `cluster_config.worker_config` + "`" + ` block supports: ` + "`" + `` + "`" + `` + "`" + `hcl cluster_config { worker_config { num_instances = 3 machine_type = "e2-medium" min_cpu_platform = "Intel Skylake" disk_config { boot_disk_type = "pd-standard" boot_disk_size_gb = 15 num_local_ssds = 1 } } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The number of the accelerator cards of this type exposed to this instance. Often restricted to one of ` + "`" + `1` + "`" + `, ` + "`" + `2` + "`" + `, ` + "`" + `4` + "`" + `, or ` + "`" + `8` + "`" + `. ~> The Cloud Dataproc API can return unintuitive error messages when using accelerators; even when you have defined an accelerator, Auto Zone Placement does not exclusively select zones that have that accelerator available. If you get a 400 error that the accelerator can't be found, this is a likely cause. Make sure you check [accelerator availability by zone](https://cloud.google.com/compute/docs/reference/rest/v1/acceleratorTypes/list) if you are trying to use accelerators in a given zone. - - - The ` + "`" + `cluster_config.worker_config` + "`" + ` block supports: ` + "`" + `` + "`" + `` + "`" + `hcl cluster_config { worker_config { num_instances = 3 machine_type = "e2-medium" min_cpu_platform = "Intel Skylake" disk_config { boot_disk_type = "pd-standard" boot_disk_size_gb = 30 num_local_ssds = 1 } } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "machine_type",
@@ -21488,7 +21689,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "accelerator_count",
-					Description: `(Required) The number of the accelerator cards of this type exposed to this instance. Often restricted to one of ` + "`" + `1` + "`" + `, ` + "`" + `2` + "`" + `, ` + "`" + `4` + "`" + `, or ` + "`" + `8` + "`" + `. ~> The Cloud Dataproc API can return unintuitive error messages when using accelerators; even when you have defined an accelerator, Auto Zone Placement does not exclusively select zones that have that accelerator available. If you get a 400 error that the accelerator can't be found, this is a likely cause. Make sure you check [accelerator availability by zone](https://cloud.google.com/compute/docs/reference/rest/v1/acceleratorTypes/list) if you are trying to use accelerators in a given zone. - - - The ` + "`" + `cluster_config.preemptible_worker_config` + "`" + ` block supports: ` + "`" + `` + "`" + `` + "`" + `hcl cluster_config { preemptible_worker_config { num_instances = 1 disk_config { boot_disk_type = "pd-standard" boot_disk_size_gb = 15 num_local_ssds = 1 } } } ` + "`" + `` + "`" + `` + "`" + ` Note: Unlike ` + "`" + `worker_config` + "`" + `, you cannot set the ` + "`" + `machine_type` + "`" + ` value directly. This will be set for you based on whatever was set for the ` + "`" + `worker_config.machine_type` + "`" + ` value.`,
+					Description: `(Required) The number of the accelerator cards of this type exposed to this instance. Often restricted to one of ` + "`" + `1` + "`" + `, ` + "`" + `2` + "`" + `, ` + "`" + `4` + "`" + `, or ` + "`" + `8` + "`" + `. ~> The Cloud Dataproc API can return unintuitive error messages when using accelerators; even when you have defined an accelerator, Auto Zone Placement does not exclusively select zones that have that accelerator available. If you get a 400 error that the accelerator can't be found, this is a likely cause. Make sure you check [accelerator availability by zone](https://cloud.google.com/compute/docs/reference/rest/v1/acceleratorTypes/list) if you are trying to use accelerators in a given zone. - - - The ` + "`" + `cluster_config.preemptible_worker_config` + "`" + ` block supports: ` + "`" + `` + "`" + `` + "`" + `hcl cluster_config { preemptible_worker_config { num_instances = 1 disk_config { boot_disk_type = "pd-standard" boot_disk_size_gb = 30 num_local_ssds = 1 } } } ` + "`" + `` + "`" + `` + "`" + ` Note: Unlike ` + "`" + `worker_config` + "`" + `, you cannot set the ` + "`" + `machine_type` + "`" + ` value directly. This will be set for you based on whatever was set for the ` + "`" + `worker_config.machine_type` + "`" + ` value.`,
 				},
 				resource.Attribute{
 					Name:        "boot_disk_type",
@@ -22119,6 +22320,774 @@ var (
 				resource.Attribute{
 					Name:        "artifact_gcs_uri",
 					Description: `A Cloud Storage URI (starting with gs://) that specifies where artifacts related to the metastore service are stored. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 40 minutes. - ` + "`" + `update` + "`" + ` - Default is 40 minutes. - ` + "`" + `delete` + "`" + ` - Default is 40 minutes. ## Import Service can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dataproc_metastore_service.default projects/{{project}}/locations/{{location}}/services/{{service_id}} $ terraform import google_dataproc_metastore_service.default {{project}}/{{location}}/{{service_id}} $ terraform import google_dataproc_metastore_service.default {{location}}/{{service_id}} ` + "`" + `` + "`" + `` + "`" + ` ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_dataproc_workflow_template",
+			Category:         "Dataproc",
+			ShortDescription: `A Workflow Template is a reusable workflow configuration.`,
+			Description:      ``,
+			Keywords: []string{
+				"dataproc",
+				"workflow",
+				"template",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "jobs",
+					Description: `(Required) Required. The Directed Acyclic Graph of Jobs to submit.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) The location for the resource`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Output only. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names.`,
+				},
+				resource.Attribute{
+					Name:        "placement",
+					Description: `(Required) Required. WorkflowTemplate scheduling information. The ` + "`" + `jobs` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "hadoop_job",
+					Description: `(Optional) Optional. Job is a Hadoop job.`,
+				},
+				resource.Attribute{
+					Name:        "hive_job",
+					Description: `(Optional) Optional. Job is a Hive job.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) Optional. The labels to associate with this job. Label keys must be between 1 and 63 characters long, and must conform to the following regular expression: {0,63} No more than 32 labels can be associated with a given job.`,
+				},
+				resource.Attribute{
+					Name:        "pig_job",
+					Description: `(Optional) Optional. Job is a Pig job.`,
+				},
+				resource.Attribute{
+					Name:        "prerequisite_step_ids",
+					Description: `(Optional) Optional. The optional list of prerequisite job step_ids. If not specified, the job will start at the beginning of workflow.`,
+				},
+				resource.Attribute{
+					Name:        "presto_job",
+					Description: `(Optional) Optional. Job is a Presto job.`,
+				},
+				resource.Attribute{
+					Name:        "pyspark_job",
+					Description: `(Optional) Optional. Job is a PySpark job.`,
+				},
+				resource.Attribute{
+					Name:        "scheduling",
+					Description: `(Optional) Optional. Job scheduling configuration.`,
+				},
+				resource.Attribute{
+					Name:        "spark_job",
+					Description: `(Optional) Optional. Job is a Spark job.`,
+				},
+				resource.Attribute{
+					Name:        "spark_r_job",
+					Description: `(Optional) Optional. Job is a SparkR job.`,
+				},
+				resource.Attribute{
+					Name:        "spark_sql_job",
+					Description: `(Optional) Optional. Job is a SparkSql job.`,
+				},
+				resource.Attribute{
+					Name:        "step_id",
+					Description: `(Required) Required. The step id. The id must be unique among all jobs within the template. The step id is used as prefix for job id, as job ` + "`" + `goog-dataproc-workflow-step-id` + "`" + ` label, and in field from other steps. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). Cannot begin or end with underscore or hyphen. Must consist of between 3 and 50 characters. The ` + "`" + `placement` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "cluster_selector",
+					Description: `(Optional) Optional. A selector that chooses target cluster for jobs based on metadata. The selector is evaluated at the time each job is submitted.`,
+				},
+				resource.Attribute{
+					Name:        "managed_cluster",
+					Description: `(Optional) A cluster that is managed by the workflow. The ` + "`" + `config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "autoscaling_config",
+					Description: `(Optional) Optional. Autoscaling config for the policy associated with the cluster. Cluster does not autoscale if this field is unset.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_config",
+					Description: `(Optional) Optional. Encryption settings for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_config",
+					Description: `(Optional) Optional. Port/endpoint configuration for this cluster`,
+				},
+				resource.Attribute{
+					Name:        "gce_cluster_config",
+					Description: `(Optional) Optional. The shared Compute Engine config settings for all instances in a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "gke_cluster_config",
+					Description: `(Optional) Optional. The Kubernetes Engine config for Dataproc clusters deployed to Kubernetes. Setting this is considered mutually exclusive with Compute Engine-based options such as ` + "`" + `gce_cluster_config` + "`" + `, ` + "`" + `master_config` + "`" + `, ` + "`" + `worker_config` + "`" + `, ` + "`" + `secondary_worker_config` + "`" + `, and ` + "`" + `autoscaling_config` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "initialization_actions",
+					Description: `(Optional) Optional. Commands to execute on each node after config is completed. By default, executables are run on master and all worker nodes. You can test a node's ` + "`" + `role` + "`" + ` metadata to run an executable on a master or worker node, as shown below using ` + "`" + `curl` + "`" + ` (you can also use ` + "`" + `wget` + "`" + `): ROLE=$(curl -H Metadata-Flavor:Google http://metadata/computeMetadata/v1/instance/attributes/dataproc-role) if ; then ... master specific actions ... else ... worker specific actions ... fi`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_config",
+					Description: `(Optional) Optional. Lifecycle setting for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "master_config",
+					Description: `(Optional) Optional. The Compute Engine config settings for additional worker instances in a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "metastore_config",
+					Description: `(Optional) Optional. Metastore configuration.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_worker_config",
+					Description: `(Optional) Optional. The Compute Engine config settings for additional worker instances in a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "security_config",
+					Description: `(Optional) Optional. Security settings for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "software_config",
+					Description: `(Optional) Optional. The config settings for software inside the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "staging_bucket",
+					Description: `(Optional) Optional. A Cloud Storage bucket used to stage job dependencies, config files, and job driver console output. If you do not specify a staging bucket, Cloud Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's staging bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket (see (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).`,
+				},
+				resource.Attribute{
+					Name:        "temp_bucket",
+					Description: `(Optional) Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data, such as Spark and MapReduce history files. If you do not specify a temp bucket, Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's temp bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket. The default bucket has a TTL of 90 days, but you can use any TTL (or none) if you specify a bucket.`,
+				},
+				resource.Attribute{
+					Name:        "worker_config",
+					Description: `(Optional) Optional. The Compute Engine config settings for additional worker instances in a cluster. - - -`,
+				},
+				resource.Attribute{
+					Name:        "dag_timeout",
+					Description: `(Optional) (Beta only) Optional. Timeout duration for the DAG of jobs. You can use "s", "m", "h", and "d" suffixes for second, minute, hour, and day duration values, respectively. The timeout duration must be from 10 minutes ("10m") to 24 hours ("24h" or "1d"). The timer begins when the first job is submitted. If the workflow is running at the end of the timeout period, any remaining jobs are cancelled, the workflow is ended, and if the workflow was running on a (/dataproc/docs/concepts/workflows/using-workflows#configuring_or_selecting_a_cluster), the cluster is deleted.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) Optional. The labels to associate with this template. These labels will be propagated to all jobs and clusters created by the workflow instance. Label`,
+				},
+				resource.Attribute{
+					Name:        "parameters",
+					Description: `(Optional) Optional. Template parameters whose values are substituted into the template. Values for parameters must be provided when the template is instantiated.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The project for the resource`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) Optional. Used to perform a consistent read-modify-write. This field should be left blank for a ` + "`" + `CreateWorkflowTemplate` + "`" + ` request. It is required for an ` + "`" + `UpdateWorkflowTemplate` + "`" + ` request, and must match the current server version. A typical update template flow would fetch the current template with a ` + "`" + `GetWorkflowTemplate` + "`" + ` request, which will return the current template with the ` + "`" + `version` + "`" + ` field filled in with the current server version. The user updates other fields in the template, then returns it as part of the ` + "`" + `UpdateWorkflowTemplate` + "`" + ` request. The ` + "`" + `hadoop_job` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "archive_uris",
+					Description: `(Optional) Optional. HCFS URIs of archives to be extracted in the working directory of Hadoop drivers and tasks. Supported file types: .jar, .tar, .tar.gz, .tgz, or .zip.`,
+				},
+				resource.Attribute{
+					Name:        "args",
+					Description: `(Optional) Optional. The arguments to pass to the driver. Do not include arguments, such as ` + "`" + `-libjars` + "`" + ` or ` + "`" + `-Dfoo=bar` + "`" + `, that can be set as job properties, since a collision may occur that causes an incorrect job submission.`,
+				},
+				resource.Attribute{
+					Name:        "file_uris",
+					Description: `(Optional) Optional. HCFS (Hadoop Compatible Filesystem) URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.`,
+				},
+				resource.Attribute{
+					Name:        "jar_file_uris",
+					Description: `(Optional) Optional. Jar file URIs to add to the CLASSPATHs of the Hadoop driver and tasks.`,
+				},
+				resource.Attribute{
+					Name:        "logging_config",
+					Description: `(Optional) Optional. The runtime log config for job execution.`,
+				},
+				resource.Attribute{
+					Name:        "main_class",
+					Description: `(Optional) The name of the driver's main class. The jar file containing the class must be in the default CLASSPATH or specified in ` + "`" + `jar_file_uris` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "main_jar_file_uri",
+					Description: `(Optional) The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `(Optional) Optional. A mapping of property names to values, used to configure Hadoop. Properties that conflict with values set by the Dataproc API may be overwritten. Can include properties set in /etc/hadoop/conf/`,
+				},
+				resource.Attribute{
+					Name:        "driver_log_levels",
+					Description: `(Optional) The per-package log levels for the driver. This may include "root" package name to configure rootLogger. Examples: 'com.google = FATAL', 'root = INFO', 'org.apache = DEBUG' The ` + "`" + `hive_job` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "continue_on_failure",
+					Description: `(Optional) Optional. Whether to continue executing queries if a query fails. The default value is ` + "`" + `false` + "`" + `. Setting to ` + "`" + `true` + "`" + ` can be useful when executing independent parallel queries.`,
+				},
+				resource.Attribute{
+					Name:        "jar_file_uris",
+					Description: `(Optional) Optional. HCFS URIs of jar files to add to the CLASSPATH of the Hive server and Hadoop MapReduce (MR) tasks. Can contain Hive SerDes and UDFs.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `(Optional) Optional. A mapping of property names and values, used to configure Hive. Properties that conflict with values set by the Dataproc API may be overwritten. Can include properties set in /etc/hadoop/conf/`,
+				},
+				resource.Attribute{
+					Name:        "query_file_uri",
+					Description: `(Optional) The HCFS URI of the script that contains Hive queries.`,
+				},
+				resource.Attribute{
+					Name:        "query_list",
+					Description: `(Optional) A list of queries.`,
+				},
+				resource.Attribute{
+					Name:        "script_variables",
+					Description: `(Optional) Optional. Mapping of query variable names to values (equivalent to the Hive command: ` + "`" + `SET name="value";` + "`" + `). The ` + "`" + `query_list` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "queries",
+					Description: `(Required) Required. The queries to execute. You do not need to end a query expression with a semicolon. Multiple queries can be specified in one string by separating each with a semicolon. Here is an example of a Dataproc API snippet that uses a QueryList to specify a HiveJob: "hiveJob": { "queryList": { "queries": } } The ` + "`" + `pig_job` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "continue_on_failure",
+					Description: `(Optional) Optional. Whether to continue executing queries if a query fails. The default value is ` + "`" + `false` + "`" + `. Setting to ` + "`" + `true` + "`" + ` can be useful when executing independent parallel queries.`,
+				},
+				resource.Attribute{
+					Name:        "jar_file_uris",
+					Description: `(Optional) Optional. HCFS URIs of jar files to add to the CLASSPATH of the Pig Client and Hadoop MapReduce (MR) tasks. Can contain Pig UDFs.`,
+				},
+				resource.Attribute{
+					Name:        "logging_config",
+					Description: `(Optional) Optional. The runtime log config for job execution.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `(Optional) Optional. A mapping of property names to values, used to configure Pig. Properties that conflict with values set by the Dataproc API may be overwritten. Can include properties set in /etc/hadoop/conf/`,
+				},
+				resource.Attribute{
+					Name:        "query_file_uri",
+					Description: `(Optional) The HCFS URI of the script that contains the Pig queries.`,
+				},
+				resource.Attribute{
+					Name:        "query_list",
+					Description: `(Optional) A list of queries.`,
+				},
+				resource.Attribute{
+					Name:        "script_variables",
+					Description: `(Optional) Optional. Mapping of query variable names to values (equivalent to the Pig command: ` + "`" + `name=` + "`" + `). The ` + "`" + `logging_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "driver_log_levels",
+					Description: `(Optional) The per-package log levels for the driver. This may include "root" package name to configure rootLogger. Examples: 'com.google = FATAL', 'root = INFO', 'org.apache = DEBUG' The ` + "`" + `query_list` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "queries",
+					Description: `(Required) Required. The queries to execute. You do not need to end a query expression with a semicolon. Multiple queries can be specified in one string by separating each with a semicolon. Here is an example of a Dataproc API snippet that uses a QueryList to specify a HiveJob: "hiveJob": { "queryList": { "queries": } } The ` + "`" + `presto_job` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "client_tags",
+					Description: `(Optional) Optional. Presto client tags to attach to this query`,
+				},
+				resource.Attribute{
+					Name:        "continue_on_failure",
+					Description: `(Optional) Optional. Whether to continue executing queries if a query fails. The default value is ` + "`" + `false` + "`" + `. Setting to ` + "`" + `true` + "`" + ` can be useful when executing independent parallel queries.`,
+				},
+				resource.Attribute{
+					Name:        "logging_config",
+					Description: `(Optional) Optional. The runtime log config for job execution.`,
+				},
+				resource.Attribute{
+					Name:        "output_format",
+					Description: `(Optional) Optional. The format in which query output will be displayed. See the Presto documentation for supported output formats`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `(Optional) Optional. A mapping of property names to values. Used to set Presto (https://prestodb.io/docs/current/sql/set-session.html) Equivalent to using the --session flag in the Presto CLI`,
+				},
+				resource.Attribute{
+					Name:        "query_file_uri",
+					Description: `(Optional) The HCFS URI of the script that contains SQL queries.`,
+				},
+				resource.Attribute{
+					Name:        "query_list",
+					Description: `(Optional) A list of queries. The ` + "`" + `logging_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "driver_log_levels",
+					Description: `(Optional) The per-package log levels for the driver. This may include "root" package name to configure rootLogger. Examples: 'com.google = FATAL', 'root = INFO', 'org.apache = DEBUG' The ` + "`" + `query_list` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "queries",
+					Description: `(Required) Required. The queries to execute. You do not need to end a query expression with a semicolon. Multiple queries can be specified in one string by separating each with a semicolon. Here is an example of a Dataproc API snippet that uses a QueryList to specify a HiveJob: "hiveJob": { "queryList": { "queries": } } The ` + "`" + `pyspark_job` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "archive_uris",
+					Description: `(Optional) Optional. HCFS URIs of archives to be extracted into the working directory of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.`,
+				},
+				resource.Attribute{
+					Name:        "args",
+					Description: `(Optional) Optional. The arguments to pass to the driver. Do not include arguments, such as ` + "`" + `--conf` + "`" + `, that can be set as job properties, since a collision may occur that causes an incorrect job submission.`,
+				},
+				resource.Attribute{
+					Name:        "file_uris",
+					Description: `(Optional) Optional. HCFS URIs of files to be placed in the working directory of each executor. Useful for naively parallel tasks.`,
+				},
+				resource.Attribute{
+					Name:        "jar_file_uris",
+					Description: `(Optional) Optional. HCFS URIs of jar files to add to the CLASSPATHs of the Python driver and tasks.`,
+				},
+				resource.Attribute{
+					Name:        "logging_config",
+					Description: `(Optional) Optional. The runtime log config for job execution.`,
+				},
+				resource.Attribute{
+					Name:        "main_python_file_uri",
+					Description: `(Required) Required. The HCFS URI of the main Python file to use as the driver. Must be a .py file.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `(Optional) Optional. A mapping of property names to values, used to configure PySpark. Properties that conflict with values set by the Dataproc API may be overwritten. Can include properties set in /etc/spark/conf/spark-defaults.conf and classes in user code.`,
+				},
+				resource.Attribute{
+					Name:        "python_file_uris",
+					Description: `(Optional) Optional. HCFS file URIs of Python files to pass to the PySpark framework. Supported file types: .py, .egg, and .zip. The ` + "`" + `logging_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "driver_log_levels",
+					Description: `(Optional) The per-package log levels for the driver. This may include "root" package name to configure rootLogger. Examples: 'com.google = FATAL', 'root = INFO', 'org.apache = DEBUG' The ` + "`" + `scheduling` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "max_failures_per_hour",
+					Description: `(Optional) Optional. Maximum number of times per hour a driver may be restarted as a result of driver exiting with non-zero code before job is reported failed. A job may be reported as thrashing if driver exits with non-zero code 4 times within 10 minute window. Maximum value is 10.`,
+				},
+				resource.Attribute{
+					Name:        "max_failures_total",
+					Description: `(Optional) Optional. Maximum number of times in total a driver may be restarted as a result of driver exiting with non-zero code before job is reported failed. Maximum value is 240 The ` + "`" + `spark_job` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "archive_uris",
+					Description: `(Optional) Optional. HCFS URIs of archives to be extracted into the working directory of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.`,
+				},
+				resource.Attribute{
+					Name:        "args",
+					Description: `(Optional) Optional. The arguments to pass to the driver. Do not include arguments, such as ` + "`" + `--conf` + "`" + `, that can be set as job properties, since a collision may occur that causes an incorrect job submission.`,
+				},
+				resource.Attribute{
+					Name:        "file_uris",
+					Description: `(Optional) Optional. HCFS URIs of files to be placed in the working directory of each executor. Useful for naively parallel tasks.`,
+				},
+				resource.Attribute{
+					Name:        "jar_file_uris",
+					Description: `(Optional) Optional. HCFS URIs of jar files to add to the CLASSPATHs of the Spark driver and tasks.`,
+				},
+				resource.Attribute{
+					Name:        "logging_config",
+					Description: `(Optional) Optional. The runtime log config for job execution.`,
+				},
+				resource.Attribute{
+					Name:        "main_class",
+					Description: `(Optional) The name of the driver's main class. The jar file that contains the class must be in the default CLASSPATH or specified in ` + "`" + `jar_file_uris` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "main_jar_file_uri",
+					Description: `(Optional) The HCFS URI of the jar file that contains the main class.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `(Optional) Optional. A mapping of property names to values, used to configure Spark. Properties that conflict with values set by the Dataproc API may be overwritten. Can include properties set in /etc/spark/conf/spark-defaults.conf and classes in user code. The ` + "`" + `logging_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "driver_log_levels",
+					Description: `(Optional) The per-package log levels for the driver. This may include "root" package name to configure rootLogger. Examples: 'com.google = FATAL', 'root = INFO', 'org.apache = DEBUG' The ` + "`" + `spark_r_job` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "archive_uris",
+					Description: `(Optional) Optional. HCFS URIs of archives to be extracted into the working directory of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.`,
+				},
+				resource.Attribute{
+					Name:        "args",
+					Description: `(Optional) Optional. The arguments to pass to the driver. Do not include arguments, such as ` + "`" + `--conf` + "`" + `, that can be set as job properties, since a collision may occur that causes an incorrect job submission.`,
+				},
+				resource.Attribute{
+					Name:        "file_uris",
+					Description: `(Optional) Optional. HCFS URIs of files to be placed in the working directory of each executor. Useful for naively parallel tasks.`,
+				},
+				resource.Attribute{
+					Name:        "logging_config",
+					Description: `(Optional) Optional. The runtime log config for job execution.`,
+				},
+				resource.Attribute{
+					Name:        "main_r_file_uri",
+					Description: `(Required) Required. The HCFS URI of the main R file to use as the driver. Must be a .R file.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `(Optional) Optional. A mapping of property names to values, used to configure SparkR. Properties that conflict with values set by the Dataproc API may be overwritten. Can include properties set in /etc/spark/conf/spark-defaults.conf and classes in user code. The ` + "`" + `logging_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "driver_log_levels",
+					Description: `(Optional) The per-package log levels for the driver. This may include "root" package name to configure rootLogger. Examples: 'com.google = FATAL', 'root = INFO', 'org.apache = DEBUG' The ` + "`" + `spark_sql_job` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "jar_file_uris",
+					Description: `(Optional) Optional. HCFS URIs of jar files to be added to the Spark CLASSPATH.`,
+				},
+				resource.Attribute{
+					Name:        "logging_config",
+					Description: `(Optional) Optional. The runtime log config for job execution.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `(Optional) Optional. A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Dataproc API may be overwritten.`,
+				},
+				resource.Attribute{
+					Name:        "query_file_uri",
+					Description: `(Optional) The HCFS URI of the script that contains SQL queries.`,
+				},
+				resource.Attribute{
+					Name:        "query_list",
+					Description: `(Optional) A list of queries.`,
+				},
+				resource.Attribute{
+					Name:        "script_variables",
+					Description: `(Optional) Optional. Mapping of query variable names to values (equivalent to the Spark SQL command: SET ` + "`" + `name="value";` + "`" + `). The ` + "`" + `logging_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "driver_log_levels",
+					Description: `(Optional) The per-package log levels for the driver. This may include "root" package name to configure rootLogger. Examples: 'com.google = FATAL', 'root = INFO', 'org.apache = DEBUG' The ` + "`" + `query_list` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "queries",
+					Description: `(Required) Required. The queries to execute. You do not need to end a query expression with a semicolon. Multiple queries can be specified in one string by separating each with a semicolon. Here is an example of a Dataproc API snippet that uses a QueryList to specify a HiveJob: "hiveJob": { "queryList": { "queries": } } The ` + "`" + `parameters` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Optional. Brief description of the parameter. Must not exceed 1024 characters.`,
+				},
+				resource.Attribute{
+					Name:        "fields",
+					Description: `(Required) Required. Paths to all fields that the parameter replaces. A field is allowed to appear in at most one parameter's list of field paths. A field path is similar in syntax to a .sparkJob.args`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Required. Parameter name. The parameter name is used as the key, and paired with the parameter value, which are passed to the template when the template is instantiated. The name must contain only capital letters (A-Z), numbers (0-9), and underscores (_), and must not start with a number. The maximum length is 40 characters.`,
+				},
+				resource.Attribute{
+					Name:        "validation",
+					Description: `(Optional) Optional. Validation rules to be applied to this parameter's value. The ` + "`" + `validation` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) Validation based on regular expressions.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Optional) Validation based on a list of allowed values. The ` + "`" + `regex` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "regexes",
+					Description: `(Required) Required. RE2 regular expressions used to validate the parameter's value. The value must match the regex in its entirety (substring matches are not sufficient). The ` + "`" + `values` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Required. List of allowed values for the parameter. The ` + "`" + `cluster_selector` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "cluster_labels",
+					Description: `(Required) Required. The cluster labels. Cluster must have all labels to match.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Optional) Optional. The zone where workflow process executes. This parameter does not affect the selection of the cluster. If unspecified, the zone of the first cluster matching the selector is used. The ` + "`" + `managed_cluster` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `(Required) Required. The cluster name prefix. A unique cluster name will be formed by appending a random suffix. The name must contain only lower-case letters (a-z), numbers (0-9), and hyphens (-). Must begin with a letter. Cannot begin or end with hyphen. Must consist of between 2 and 35 characters.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `(Required) Required. The cluster configuration.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) Optional. The labels to associate with this cluster. Label keys must be between 1 and 63 characters long, and must conform to the following PCRE regular expression: {0,63} No more than 32 labels can be associated with a given cluster. The ` + "`" + `secondary_worker_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "accelerators",
+					Description: `(Optional) Optional. The Compute Engine accelerator configuration for these instances.`,
+				},
+				resource.Attribute{
+					Name:        "disk_config",
+					Description: `(Optional) Optional. Disk option config settings.`,
+				},
+				resource.Attribute{
+					Name:        "image",
+					Description: `(Optional) Optional. The Compute Engine image resource used for cluster instances. The URI can represent an image or image family. Image examples:`,
+				},
+				resource.Attribute{
+					Name:        "machine_type",
+					Description: `(Optional) Optional. The Compute Engine machine type used for cluster instances. A full URL, partial URI, or short name are valid. Examples:`,
+				},
+				resource.Attribute{
+					Name:        "min_cpu_platform",
+					Description: `(Optional) Optional. Specifies the minimum cpu platform for the Instance Group. See (https://cloud.google.com/dataproc/docs/concepts/compute/dataproc-min-cpu).`,
+				},
+				resource.Attribute{
+					Name:        "num_instances",
+					Description: `(Optional) Optional. The number of VM instances in the instance group. For master instance groups, must be set to 1.`,
+				},
+				resource.Attribute{
+					Name:        "preemptibility",
+					Description: `(Optional) Optional. Specifies the preemptibility of the instance group. The default value for master and worker groups is ` + "`" + `NON_PREEMPTIBLE` + "`" + `. This default cannot be changed. The default value for secondary instances is ` + "`" + `PREEMPTIBLE` + "`" + `. Possible values: PREEMPTIBILITY_UNSPECIFIED, NON_PREEMPTIBLE, PREEMPTIBLE`,
+				},
+				resource.Attribute{
+					Name:        "instance_names",
+					Description: `Output only. The list of instance names. Dataproc derives the names from ` + "`" + `cluster_name` + "`" + `, ` + "`" + `num_instances` + "`" + `, and the instance group.`,
+				},
+				resource.Attribute{
+					Name:        "is_preemptible",
+					Description: `Output only. Specifies that this instance group contains preemptible instances.`,
+				},
+				resource.Attribute{
+					Name:        "managed_group_config",
+					Description: `Output only. The config for Compute Engine Instance Group Manager that manages this group. This is only used for preemptible instance groups. The ` + "`" + `accelerators` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "accelerator_count",
+					Description: `(Optional) The number of the accelerator cards of this type exposed to this instance.`,
+				},
+				resource.Attribute{
+					Name:        "accelerator_type",
+					Description: `(Optional) Full URL, partial URI, or short name of the accelerator type resource to expose to this instance. See (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement) feature, you must use the short name of the accelerator type resource, for example, ` + "`" + `nvidia-tesla-k80` + "`" + `. The ` + "`" + `disk_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "boot_disk_size_gb",
+					Description: `(Optional) Optional. Size in GB of the boot disk (default is 500GB).`,
+				},
+				resource.Attribute{
+					Name:        "boot_disk_type",
+					Description: `(Optional) Optional. Type of the boot disk (default is "pd-standard"). Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or "pd-standard" (Persistent Disk Hard Disk Drive).`,
+				},
+				resource.Attribute{
+					Name:        "num_local_ssds",
+					Description: `(Optional) Optional. Number of attached SSDs, from 0 to 4 (default is 0). If SSDs are not attached, the boot disk is used to store runtime logs and (https://hadoop.apache.org/docs/r1.2.1/hdfs_user_guide.html) data. If one or more SSDs are attached, this runtime bulk data is spread across them, and the boot disk contains only basic config and installed binaries. The ` + "`" + `autoscaling_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Optional) Optional. The autoscaling policy used by the cluster. Only resource names including projectid and location (region) are valid. Examples:`,
+				},
+				resource.Attribute{
+					Name:        "gce_pd_kms_key_name",
+					Description: `(Optional) Optional. The Cloud KMS key name to use for PD disk encryption for all instances in the cluster. The ` + "`" + `endpoint_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "enable_http_port_access",
+					Description: `(Optional) Optional. If true, enable http access to specific ports on the cluster from external sources. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "http_ports",
+					Description: `Output only. The map of port descriptions to URLs. Will only be populated if enable_http_port_access is true. The ` + "`" + `gce_cluster_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "internal_ip_only",
+					Description: `(Optional) Optional. If true, all instances in the cluster will only have internal IP addresses. By default, clusters are not restricted to internal IP addresses, and will have ephemeral external IP addresses assigned to each instance. This ` + "`" + `internal_ip_only` + "`" + ` restriction can only be enabled for subnetwork enabled networks, and all off-cluster dependencies must be configured to be accessible without external IP addresses.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional) The Compute Engine metadata entries to add to all instances (see (https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `(Optional) Optional. The Compute Engine network to be used for machine communications. Cannot be specified with subnetwork_uri. If neither ` + "`" + `network_uri` + "`" + ` nor ` + "`" + `subnetwork_uri` + "`" + ` is specified, the "default" network of the project is used, if it exists. Cannot be a "Custom Subnet Network" (see /regions/global/default` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "node_group_affinity",
+					Description: `(Optional) Optional. Node Group Affinity for sole-tenant clusters.`,
+				},
+				resource.Attribute{
+					Name:        "private_ipv6_google_access",
+					Description: `(Optional) Optional. The type of IPv6 access for a cluster. Possible values: PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED, INHERIT_FROM_SUBNETWORK, OUTBOUND, BIDIRECTIONAL`,
+				},
+				resource.Attribute{
+					Name:        "reservation_affinity",
+					Description: `(Optional) Optional. Reservation Affinity for consuming Zonal reservation.`,
+				},
+				resource.Attribute{
+					Name:        "service_account",
+					Description: `(Optional) Optional. The (https://cloud.google.com/compute/docs/access/service-accounts#default_service_account) is used.`,
+				},
+				resource.Attribute{
+					Name:        "service_account_scopes",
+					Description: `(Optional) Optional. The URIs of service account scopes to be included in Compute Engine instances. The following base set of scopes is always included:`,
+				},
+				resource.Attribute{
+					Name:        "subnetwork",
+					Description: `(Optional) Optional. The Compute Engine subnetwork to be used for machine communications. Cannot be specified with network_uri. A full URL, partial URI, or short name are valid. Examples:`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The Compute Engine tags to add to all instances (see (https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Optional) Optional. The zone where the Compute Engine cluster will be located. On a create request, it is required in the "global" region. If omitted in a non-global Dataproc region, the service will pick a zone in the corresponding Compute Engine region. On a get request, zone will always be present. A full URL, partial URI, or short name are valid. Examples:`,
+				},
+				resource.Attribute{
+					Name:        "node_group",
+					Description: `(Required) Required. The URI of a sole-tenant /zones/us-central1-a/nodeGroups/node-group-1` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "consume_reservation_type",
+					Description: `(Optional) Optional. Type of reservation to consume Possible values: TYPE_UNSPECIFIED, NO_RESERVATION, ANY_RESERVATION, SPECIFIC_RESERVATION`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) Optional. Corresponds to the label key of reservation resource.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Optional) Optional. Corresponds to the label values of reservation resource. The ` + "`" + `gke_cluster_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "namespaced_gke_deployment_target",
+					Description: `(Optional) Optional. A target for the deployment. The ` + "`" + `namespaced_gke_deployment_target` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "cluster_namespace",
+					Description: `(Optional) Optional. A namespace within the GKE cluster to deploy into.`,
+				},
+				resource.Attribute{
+					Name:        "target_gke_cluster",
+					Description: `(Optional) Optional. The target GKE cluster to deploy to. Format: 'projects/{project}/locations/{location}/clusters/{cluster_id}' The ` + "`" + `initialization_actions` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "executable_file",
+					Description: `(Optional) Required. Cloud Storage URI of executable file.`,
+				},
+				resource.Attribute{
+					Name:        "execution_timeout",
+					Description: `(Optional) Optional. Amount of time executable has to complete. Default is 10 minutes (see JSON representation of (https://developers.google.com/protocol-buffers/docs/proto3#json)). Cluster creation fails with an explanatory error message (the name of the executable that caused the error and the exceeded timeout period) if the executable is not completed at end of the timeout period. The ` + "`" + `lifecycle_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "auto_delete_time",
+					Description: `(Optional) Optional. The time when cluster will be auto-deleted (see JSON representation of (https://developers.google.com/protocol-buffers/docs/proto3#json)).`,
+				},
+				resource.Attribute{
+					Name:        "auto_delete_ttl",
+					Description: `(Optional) Optional. The lifetime duration of cluster. The cluster will be auto-deleted at the end of this period. Minimum value is 10 minutes; maximum value is 14 days (see JSON representation of (https://developers.google.com/protocol-buffers/docs/proto3#json)).`,
+				},
+				resource.Attribute{
+					Name:        "idle_delete_ttl",
+					Description: `(Optional) Optional. The duration to keep the cluster alive while idling (when no jobs are running). Passing this threshold will cause the cluster to be deleted. Minimum value is 5 minutes; maximum value is 14 days (see JSON representation of (https://developers.google.com/protocol-buffers/docs/proto3#json).`,
+				},
+				resource.Attribute{
+					Name:        "idle_start_time",
+					Description: `Output only. The time when cluster became idle (most recent job finished) and became eligible for deletion due to idleness (see JSON representation of (https://developers.google.com/protocol-buffers/docs/proto3#json)). The ` + "`" + `metastore_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "dataproc_metastore_service",
+					Description: `(Required) Required. Resource name of an existing Dataproc Metastore service. Example:`,
+				},
+				resource.Attribute{
+					Name:        "kerberos_config",
+					Description: `(Optional) Kerberos related configuration. The ` + "`" + `kerberos_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "cross_realm_trust_admin_server",
+					Description: `(Optional) Optional. The admin server (IP or hostname) for the remote trusted realm in a cross realm trust relationship.`,
+				},
+				resource.Attribute{
+					Name:        "cross_realm_trust_kdc",
+					Description: `(Optional) Optional. The KDC (IP or hostname) for the remote trusted realm in a cross realm trust relationship.`,
+				},
+				resource.Attribute{
+					Name:        "cross_realm_trust_realm",
+					Description: `(Optional) Optional. The remote realm the Dataproc on-cluster KDC will trust, should the user enable cross realm trust.`,
+				},
+				resource.Attribute{
+					Name:        "cross_realm_trust_shared_password",
+					Description: `(Optional) Optional. The Cloud Storage URI of a KMS encrypted file containing the shared password between the on-cluster Kerberos realm and the remote trusted realm, in a cross realm trust relationship.`,
+				},
+				resource.Attribute{
+					Name:        "enable_kerberos",
+					Description: `(Optional) Optional. Flag to indicate whether to Kerberize the cluster (default: false). Set this field to true to enable Kerberos on a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "kdc_db_key",
+					Description: `(Optional) Optional. The Cloud Storage URI of a KMS encrypted file containing the master key of the KDC database.`,
+				},
+				resource.Attribute{
+					Name:        "key_password",
+					Description: `(Optional) Optional. The Cloud Storage URI of a KMS encrypted file containing the password to the user provided key. For the self-signed certificate, this password is generated by Dataproc.`,
+				},
+				resource.Attribute{
+					Name:        "keystore",
+					Description: `(Optional) Optional. The Cloud Storage URI of the keystore file used for SSL encryption. If not provided, Dataproc will provide a self-signed certificate.`,
+				},
+				resource.Attribute{
+					Name:        "keystore_password",
+					Description: `(Optional) Optional. The Cloud Storage URI of a KMS encrypted file containing the password to the user provided keystore. For the self-signed certificate, this password is generated by Dataproc.`,
+				},
+				resource.Attribute{
+					Name:        "kms_key",
+					Description: `(Optional) Optional. The uri of the KMS key used to encrypt various sensitive files.`,
+				},
+				resource.Attribute{
+					Name:        "realm",
+					Description: `(Optional) Optional. The name of the on-cluster Kerberos realm. If not specified, the uppercased domain of hostnames will be the realm.`,
+				},
+				resource.Attribute{
+					Name:        "root_principal_password",
+					Description: `(Optional) Optional. The Cloud Storage URI of a KMS encrypted file containing the root principal password.`,
+				},
+				resource.Attribute{
+					Name:        "tgt_lifetime_hours",
+					Description: `(Optional) Optional. The lifetime of the ticket granting ticket, in hours. If not specified, or user specifies 0, then default value 10 will be used.`,
+				},
+				resource.Attribute{
+					Name:        "truststore",
+					Description: `(Optional) Optional. The Cloud Storage URI of the truststore file used for SSL encryption. If not provided, Dataproc will provide a self-signed certificate.`,
+				},
+				resource.Attribute{
+					Name:        "truststore_password",
+					Description: `(Optional) Optional. The Cloud Storage URI of a KMS encrypted file containing the password to the user provided truststore. For the self-signed certificate, this password is generated by Dataproc. The ` + "`" + `software_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "image_version",
+					Description: `(Optional) Optional. The version of software inside the cluster. It must be one of the supported (https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#other_versions). If unspecified, it defaults to the latest Debian version.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `(Optional) Optional. The properties to set on daemon config files. Property keys are specified in ` + "`" + `prefix:property` + "`" + ` format, for example ` + "`" + `core:hadoop.tmp.dir` + "`" + `. The following are supported prefixes and their mappings:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{location}}/workflowTemplates/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Output only. The time template was created.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `Output only. The time template was last updated. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 10 minutes. - ` + "`" + `delete` + "`" + ` - Default is 10 minutes. ## Import WorkflowTemplate can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dataproc_workflow_template.default projects/{{project}}/locations/{{location}}/workflowTemplates/{{name}} $ terraform import google_dataproc_workflow_template.default {{project}}/{{location}}/{{name}} $ terraform import google_dataproc_workflow_template.default {{location}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{location}}/workflowTemplates/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Output only. The time template was created.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `Output only. The time template was last updated. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 10 minutes. - ` + "`" + `delete` + "`" + ` - Default is 10 minutes. ## Import WorkflowTemplate can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dataproc_workflow_template.default projects/{{project}}/locations/{{location}}/workflowTemplates/{{name}} $ terraform import google_dataproc_workflow_template.default {{project}}/{{location}}/{{name}} $ terraform import google_dataproc_workflow_template.default {{location}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -22762,7 +23731,7 @@ var (
 			Name:             "",
 			Type:             "google_dns_record_set",
 			Category:         "Cloud DNS",
-			ShortDescription: `Manages a set of DNS records within Google Cloud DNS.`,
+			ShortDescription: `A single DNS record that exists on a domain name (i.`,
 			Description:      ``,
 			Icon:             "Networking/Cloud_DNS.svg",
 			Keywords: []string{
@@ -22773,38 +23742,38 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "managed_zone",
-					Description: `(Required) The name of the zone in which this record set will reside.`,
-				},
-				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The DNS name this record set will apply to.`,
-				},
-				resource.Attribute{
-					Name:        "rrdatas",
-					Description: `(Required) The string data for the records in this record set whose meaning depends on the DNS type. For TXT record, if the string data contains spaces, add surrounding ` + "`" + `\"` + "`" + ` if you don't want your string to get split on spaces. To specify a single record value longer than 255 characters such as a TXT record for DKIM, add ` + "`" + `\" \"` + "`" + ` inside the Terraform configuration string (e.g. ` + "`" + `"first255characters\" \"morecharacters"` + "`" + `).`,
-				},
-				resource.Attribute{
-					Name:        "ttl",
-					Description: `(Required) The time-to-live of this record set (seconds).`,
+					Description: `(Required) For example, www.example.com.`,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) The DNS record set type. - - -`,
+					Description: `(Required) One of valid DNS resource types. Possible values are ` + "`" + `A` + "`" + `, ` + "`" + `AAAA` + "`" + `, ` + "`" + `CAA` + "`" + `, ` + "`" + `CNAME` + "`" + `, ` + "`" + `DNSKEY` + "`" + `, ` + "`" + `DS` + "`" + `, ` + "`" + `IPSECVPNKEY` + "`" + `, ` + "`" + `MX` + "`" + `, ` + "`" + `NAPTR` + "`" + `, ` + "`" + `NS` + "`" + `, ` + "`" + `PTR` + "`" + `, ` + "`" + `SOA` + "`" + `, ` + "`" + `SPF` + "`" + `, ` + "`" + `SRV` + "`" + `, ` + "`" + `SSHFP` + "`" + `, ` + "`" + `TLSA` + "`" + `, and ` + "`" + `TXT` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "managed_zone",
+					Description: `(Required) Identifies the managed zone addressed by this request. - - -`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `(Optional) Number of seconds that this ResourceRecordSet can be cached by resolvers.`,
+				},
+				resource.Attribute{
+					Name:        "rrdatas",
+					Description: `(Optional) The string data for the records in this record set whose meaning depends on the DNS type. For TXT record, if the string data contains spaces, add surrounding \" if you don't want your string to get split on spaces. To specify a single record value longer than 255 characters such as a TXT record for DKIM, add \"\" inside the Terraform configuration string (e.g. "first255characters\"\"morecharacters").`,
 				},
 				resource.Attribute{
 					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference -In addition to the arguments listed above, the following computed attributes are -exported:`,
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `{{project}}/{{zone}}/{{name}}/{{type}}` + "`" + ` ## Import DNS record sets can be imported using either of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dns_record_set.frontend {{project}}/{{zone}}/{{name}}/{{type}} $ terraform import google_dns_record_set.frontend {{zone}}/{{name}}/{{type}} ` + "`" + `` + "`" + `` + "`" + ` Note: The record name must include the trailing dot at the end.`,
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/managedZones/{{managed_zone}}/rrsets/{{name}}/{{type}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ResourceDnsRecordSet can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dns_record_set.default projects/{{project}}/managedZones/{{managed_zone}}/rrsets/{{name}}/{{type}} $ terraform import google_dns_record_set.default {{project}}/{{managed_zone}}/{{name}}/{{type}} $ terraform import google_dns_record_set.default {{managed_zone}}/{{name}}/{{type}} ` + "`" + `` + "`" + `` + "`" + ` ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `{{project}}/{{zone}}/{{name}}/{{type}}` + "`" + ` ## Import DNS record sets can be imported using either of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dns_record_set.frontend {{project}}/{{zone}}/{{name}}/{{type}} $ terraform import google_dns_record_set.frontend {{zone}}/{{name}}/{{type}} ` + "`" + `` + "`" + `` + "`" + ` Note: The record name must include the trailing dot at the end.`,
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/managedZones/{{managed_zone}}/rrsets/{{name}}/{{type}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ResourceDnsRecordSet can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dns_record_set.default projects/{{project}}/managedZones/{{managed_zone}}/rrsets/{{name}}/{{type}} $ terraform import google_dns_record_set.default {{project}}/{{managed_zone}}/{{name}}/{{type}} $ terraform import google_dns_record_set.default {{managed_zone}}/{{name}}/{{type}} ` + "`" + `` + "`" + `` + "`" + ` ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 		},
@@ -22914,7 +23883,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "google_eventarc_trigger",
-			Category:         "",
+			Category:         "Eventarc",
 			ShortDescription: `An event trigger sends messages to the event receiver service deployed on Cloud Run.`,
 			Description:      ``,
 			Keywords: []string{
@@ -22932,15 +23901,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "matching_criteria",
-					Description: `(Required) Required. The criteria by which events are filtered. Only events that match with this criteria will be sent to the destination.`,
+					Description: `(Required) Required. The criteria by which events are filtered. Only events that match with this criteria will be sent to the destination. ~>`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Required. The resource name of the trigger. Must be unique within the location on the project and must be in \` + "`" + `projects/{project}/locations/{location}/triggers/{trigger}\` + "`" + ` format. The ` + "`" + `destination` + "`" + ` block supports:`,
+					Description: `(Required) Required. The resource name of the trigger. Must be unique within the location on the project and must be in ` + "`" + `projects/{project}/locations/{location}/triggers/{trigger}` + "`" + ` format. The ` + "`" + `destination` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "cloud_run_service",
-					Description: `(Optional) Cloud Run fully-managed service that receives the events. The service should be running in the same project as the trigger. The ` + "`" + `matching_criteria` + "`" + ` block supports:`,
+					Description: `(Optional) Cloud Run fully-managed service that receives the events. The service should be running in the same project as the trigger. ~>`,
 				},
 				resource.Attribute{
 					Name:        "attribute",
@@ -22951,12 +23920,20 @@ var (
 					Description: `(Required) Required. The value for the attribute. - - -`,
 				},
 				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) Optional. User labels attached to the triggers that can be used to group resources.`,
+				},
+				resource.Attribute{
 					Name:        "project",
 					Description: `(Optional) The project for the resource`,
 				},
 				resource.Attribute{
 					Name:        "service_account",
-					Description: `(Optional) Optional. The IAM service account email associated with the trigger. The service account represents the identity of the trigger. The principal who calls this API must have \` + "`" + `iam.serviceAccounts.actAs\` + "`" + ` permission in the service account. See https://cloud.google.com/iam/docs/understanding-service-accounts?hl=en#sa\_common for more information. For Cloud Run destinations, this service account is used to generate identity tokens when invoking the service. See https://cloud.google.com/run/docs/triggering/pubsub-push#create-service-account for information on how to invoke authenticated Cloud Run services. In order to create Audit Log triggers, the service account should also have 'eventarc.events.receiveAuditLogV1Written' permission. The ` + "`" + `cloud_run_service` + "`" + ` block supports:`,
+					Description: `(Optional) Optional. The IAM service account email associated with the trigger. The service account represents the identity of the trigger. The principal who calls this API must have ` + "`" + `iam.serviceAccounts.actAs` + "`" + ` permission in the service account. See https://cloud.google.com/iam/docs/understanding-service-accounts?hl=en#sa\\\_common for more information. For Cloud Run destinations, this service account is used to generate identity tokens when invoking the service. See https://cloud.google.com/run/docs/triggering/pubsub-push#create-service-account for information on how to invoke authenticated Cloud Run services. In order to create Audit Log triggers, the service account should also have ` + "`" + `roles/eventarc.eventReceiver` + "`" + ` IAM role.`,
+				},
+				resource.Attribute{
+					Name:        "transport",
+					Description: `(Optional) Optional. In order to deliver messages, Eventarc may use other GCP products as transport intermediary. This field contains a reference to that transport intermediary. This information can be used for debugging purposes. The ` + "`" + `cloud_run_service` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "service",
@@ -22968,7 +23945,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) Required. The region the Cloud Run service is deployed in. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) Required. The region the Cloud Run service is deployed in. The ` + "`" + `transport` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "pubsub",
+					Description: `(Optional) The Pub/Sub topic and subscription used by Eventarc as delivery intermediary. The ` + "`" + `pubsub` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "topic",
+					Description: `(Optional) Optional. The name of the Pub/Sub topic created and managed by Eventarc system as a transport for the event delivery. Format: ` + "`" + `projects/{PROJECT_ID}/topics/{TOPIC_NAME}` + "`" + `. You may set an existing topic for triggers of the type ` + "`" + `google.cloud.pubsub.topic.v1.messagePublished` + "`" + ` only. The topic you provide here will not be deleted by Eventarc at trigger deletion.`,
+				},
+				resource.Attribute{
+					Name:        "subscription",
+					Description: `Output only. The name of the Pub/Sub subscription created and managed by Eventarc system as a transport for the event delivery. Format: ` + "`" + `projects/{PROJECT_ID}/subscriptions/{SUBSCRIPTION_NAME}` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -22981,10 +23970,6 @@ var (
 				resource.Attribute{
 					Name:        "etag",
 					Description: `Output only. This checksum is computed by the server based on the value of other fields, and may be sent only on create requests to ensure the client has an up-to-date value before proceeding.`,
-				},
-				resource.Attribute{
-					Name:        "transport",
-					Description: `Optional. In order to deliver messages, Eventarc may use other GCP products as transport intermediary. This field contains a reference to that transport intermediary. This information can be used for debugging purposes.`,
 				},
 				resource.Attribute{
 					Name:        "update_time",
@@ -23003,10 +23988,6 @@ var (
 				resource.Attribute{
 					Name:        "etag",
 					Description: `Output only. This checksum is computed by the server based on the value of other fields, and may be sent only on create requests to ensure the client has an up-to-date value before proceeding.`,
-				},
-				resource.Attribute{
-					Name:        "transport",
-					Description: `Optional. In order to deliver messages, Eventarc may use other GCP products as transport intermediary. This field contains a reference to that transport intermediary. This information can be used for debugging purposes.`,
 				},
 				resource.Attribute{
 					Name:        "update_time",
@@ -23393,6 +24374,67 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `A server defined name for this index. Format: ` + "`" + `projects/{{project}}/databases/{{database}}/collectionGroups/{{collection}}/indexes/{{server_generated_id}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 10 minutes. - ` + "`" + `delete` + "`" + ` - Default is 10 minutes. ## Import Index can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_firestore_index.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_folder_access_approval_settings",
+			Category:         "Access Approval",
+			ShortDescription: `Access Approval enables you to require your explicit approval whenever Google support and engineering need to access your customer content.`,
+			Description:      ``,
+			Keywords: []string{
+				"access",
+				"approval",
+				"folder",
+				"settings",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "enrolled_services",
+					Description: `(Required) A list of Google Cloud Services for which the given resource has Access Approval enrolled. Access requests for the resource given by name against any of these services contained here will be required to have explicit approval. Enrollment can only be done on an all or nothing basis. A maximum of 10 enrolled services will be enforced, to be expanded as the set of supported services is expanded. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `(Required) ID of the folder of the access approval settings. The ` + "`" + `enrolled_services` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "cloud_product",
+					Description: `(Required) The product for which Access Approval will be enrolled. Allowed values are listed (case-sensitive):`,
+				},
+				resource.Attribute{
+					Name:        "enrollment_level",
+					Description: `(Optional) The enrollment level of the service. Default value is ` + "`" + `BLOCK_ALL` + "`" + `. Possible values are ` + "`" + `BLOCK_ALL` + "`" + `. - - -`,
+				},
+				resource.Attribute{
+					Name:        "notification_emails",
+					Description: `(Optional) A list of email addresses to which notifications relating to approval requests should be sent. Notifications relating to a resource will be sent to all emails in the settings of ancestor resources of that resource. A maximum of 50 email addresses are allowed. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `folders/{{folder_id}}/accessApprovalSettings` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name of the settings. Format is "folders/{folder_id}/accessApprovalSettings"`,
+				},
+				resource.Attribute{
+					Name:        "enrolled_ancestor",
+					Description: `If the field is true, that indicates that at least one service is enrolled for Access Approval in one or more ancestors of the Folder. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import FolderSettings can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_folder_access_approval_settings.default folders/{{folder_id}}/accessApprovalSettings $ terraform import google_folder_access_approval_settings.default {{folder_id}} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `folders/{{folder_id}}/accessApprovalSettings` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name of the settings. Format is "folders/{folder_id}/accessApprovalSettings"`,
+				},
+				resource.Attribute{
+					Name:        "enrolled_ancestor",
+					Description: `If the field is true, that indicates that at least one service is enrolled for Access Approval in one or more ancestors of the Folder. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import FolderSettings can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_folder_access_approval_settings.default folders/{{folder_id}}/accessApprovalSettings $ terraform import google_folder_access_approval_settings.default {{folder_id}} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -24744,13 +25786,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `{{project}}/{{service}}` + "`" + ` ## Import Project services can be imported using the ` + "`" + `project_id` + "`" + ` and ` + "`" + `service` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_service.my_project your-project-id/iam.googleapis.com ` + "`" + `` + "`" + `` + "`" + ` Note that unlike other resources that fail if they already exist, ` + "`" + `terraform apply` + "`" + ` can be successfully used to verify already enabled services. This means that when importing existing resources into Terraform, you can either import the ` + "`" + `google_project_service` + "`" + ` resources or treat them as new infrastructure and run ` + "`" + `terraform apply` + "`" + ` to add them to state.`,
+					Description: `an identifier for the resource with format ` + "`" + `{{project}}/{{service}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 20 minutes. - ` + "`" + `read` + "`" + ` - Default is 10 minutes. - ` + "`" + `update` + "`" + ` - Default is 20 minutes. - ` + "`" + `delete` + "`" + ` - Default is 20 minutes. ## Import Project services can be imported using the ` + "`" + `project_id` + "`" + ` and ` + "`" + `service` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_service.my_project your-project-id/iam.googleapis.com ` + "`" + `` + "`" + `` + "`" + ` Note that unlike other resources that fail if they already exist, ` + "`" + `terraform apply` + "`" + ` can be successfully used to verify already enabled services. This means that when importing existing resources into Terraform, you can either import the ` + "`" + `google_project_service` + "`" + ` resources or treat them as new infrastructure and run ` + "`" + `terraform apply` + "`" + ` to add them to state.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `{{project}}/{{service}}` + "`" + ` ## Import Project services can be imported using the ` + "`" + `project_id` + "`" + ` and ` + "`" + `service` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_service.my_project your-project-id/iam.googleapis.com ` + "`" + `` + "`" + `` + "`" + ` Note that unlike other resources that fail if they already exist, ` + "`" + `terraform apply` + "`" + ` can be successfully used to verify already enabled services. This means that when importing existing resources into Terraform, you can either import the ` + "`" + `google_project_service` + "`" + ` resources or treat them as new infrastructure and run ` + "`" + `terraform apply` + "`" + ` to add them to state.`,
+					Description: `an identifier for the resource with format ` + "`" + `{{project}}/{{service}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 20 minutes. - ` + "`" + `read` + "`" + ` - Default is 10 minutes. - ` + "`" + `update` + "`" + ` - Default is 20 minutes. - ` + "`" + `delete` + "`" + ` - Default is 20 minutes. ## Import Project services can be imported using the ` + "`" + `project_id` + "`" + ` and ` + "`" + `service` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_service.my_project your-project-id/iam.googleapis.com ` + "`" + `` + "`" + `` + "`" + ` Note that unlike other resources that fail if they already exist, ` + "`" + `terraform apply` + "`" + ` can be successfully used to verify already enabled services. This means that when importing existing resources into Terraform, you can either import the ` + "`" + `google_project_service` + "`" + ` resources or treat them as new infrastructure and run ` + "`" + `terraform apply` + "`" + ` to add them to state.`,
 				},
 			},
 		},
@@ -25158,11 +26200,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "notification_config",
-					Description: `(Optional) A nested object resource Structure is documented below. The ` + "`" + `notification_config` + "`" + ` block supports:`,
+					Description: `(Optional) A nested object resource Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "stream_configs",
+					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) To enable streaming to BigQuery, configure the streamConfigs object in your DICOM store. streamConfigs is an array, so you can specify multiple BigQuery destinations. You can stream metadata from a single DICOM store to up to five BigQuery tables in a BigQuery dataset. Structure is documented below. The ` + "`" + `notification_config` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "pubsub_topic",
-					Description: `(Required) The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client. PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message. It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Required) The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client. PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message. It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a project. service-PROJECT_NUMBER@gcp-sa-healthcare.iam.gserviceaccount.com must have publisher permissions on the given Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail. The ` + "`" + `stream_configs` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "bigquery_destination",
+					Description: `(Required) BigQueryDestination to include a fully qualified BigQuery table URI where DICOM instance metadata will be streamed. Structure is documented below. The ` + "`" + `bigquery_destination` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "table_uri",
+					Description: `(Required) a fully qualified BigQuery table URI where DICOM instance metadata will be streamed. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -25281,7 +26335,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pubsub_topic",
-					Description: `(Required) The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client. PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message. It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail. The ` + "`" + `stream_configs` + "`" + ` block supports:`,
+					Description: `(Required) The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client. PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message. It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a project. service-PROJECT_NUMBER@gcp-sa-healthcare.iam.gserviceaccount.com must have publisher permissions on the given Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail. The ` + "`" + `stream_configs` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "resource_types",
@@ -25425,7 +26479,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pubsub_topic",
-					Description: `(Required) The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client. PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message. It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail. If a notification cannot be published to Cloud Pub/Sub, errors will be logged to Stackdriver`,
+					Description: `(Required) The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client. PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message. It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a project. service-PROJECT_NUMBER@gcp-sa-healthcare.iam.gserviceaccount.com must have publisher permissions on the given Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail. If a notification cannot be published to Cloud Pub/Sub, errors will be logged to Stackdriver`,
 				},
 				resource.Attribute{
 					Name:        "filter",
@@ -25433,7 +26487,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pubsub_topic",
-					Description: `(Required) The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client. PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message. It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Required) The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client. PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message. It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a project. service-PROJECT_NUMBER@gcp-sa-healthcare.iam.gserviceaccount.com must have publisher permissions on the given Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -28398,6 +29452,60 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_monitoring_custom_service",
+			Category:         "Cloud (Stackdriver) Monitoring",
+			ShortDescription: `A Service is a discrete, autonomous, and network-accessible unit, designed to solve an individual concern (Wikipedia).`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"stackdriver",
+				"monitoring",
+				"custom",
+				"service",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) Name used for UI elements listing this Service.`,
+				},
+				resource.Attribute{
+					Name:        "telemetry",
+					Description: `(Optional) Configuration for how to query telemetry on a Service. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "service_id",
+					Description: `(Optional) An optional service ID to use. If not given, the server will generate a service ID.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. The ` + "`" + `telemetry` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resource_name",
+					Description: `(Optional) The full name of the resource that defines this service. Formatted as described in https://cloud.google.com/apis/design/resource_names. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The full resource name for this service. The syntax is: projects/[PROJECT_ID]/services/[SERVICE_ID]. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Service can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_monitoring_custom_service.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The full resource name for this service. The syntax is: projects/[PROJECT_ID]/services/[SERVICE_ID]. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Service can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_monitoring_custom_service.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_monitoring_dashboard",
 			Category:         "Cloud (Stackdriver) Monitoring",
 			ShortDescription: `A Google Stackdriver dashboard.`,
@@ -28419,13 +29527,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `projects/{project_id_or_number}/dashboards/{dashboard_id}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Dashboard can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_monitoring_dashboard.default project/{{project}}/dashboards/{{dashboard_id}} $ terraform import google_monitoring_dashboard.default {{dashboard_id}} ` + "`" + `` + "`" + `` + "`" + ` ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `an identifier for the resource with format ` + "`" + `projects/{project_id_or_number}/dashboards/{dashboard_id}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Dashboard can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_monitoring_dashboard.default projects/{{project}}/dashboards/{{dashboard_id}} $ terraform import google_monitoring_dashboard.default {{dashboard_id}} ` + "`" + `` + "`" + `` + "`" + ` ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `projects/{project_id_or_number}/dashboards/{dashboard_id}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Dashboard can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_monitoring_dashboard.default project/{{project}}/dashboards/{{dashboard_id}} $ terraform import google_monitoring_dashboard.default {{dashboard_id}} ` + "`" + `` + "`" + `` + "`" + ` ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `an identifier for the resource with format ` + "`" + `projects/{project_id_or_number}/dashboards/{dashboard_id}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Dashboard can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_monitoring_dashboard.default projects/{{project}}/dashboards/{{dashboard_id}} $ terraform import google_monitoring_dashboard.default {{dashboard_id}} ` + "`" + `` + "`" + `` + "`" + ` ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 		},
@@ -28669,60 +29777,6 @@ var (
 				resource.Attribute{
 					Name:        "verification_status",
 					Description: `Indicates whether this channel has been verified or not. On a ListNotificationChannels or GetNotificationChannel operation, this field is expected to be populated.If the value is UNVERIFIED, then it indicates that the channel is non-functioning (it both requires verification and lacks verification); otherwise, it is assumed that the channel works.If the channel is neither VERIFIED nor UNVERIFIED, it implies that the channel is of a type that does not require verification or that this specific channel has been exempted from verification because it was created prior to verification being required for channels of this type.This field cannot be modified using a standard UpdateNotificationChannel operation. To change the value of this field, you must call VerifyNotificationChannel. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import NotificationChannel can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_monitoring_notification_channel.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_monitoring_custom_service",
-			Category:         "Cloud (Stackdriver) Monitoring",
-			ShortDescription: `A Service is a discrete, autonomous, and network-accessible unit, designed to solve an individual concern (Wikipedia).`,
-			Description:      ``,
-			Keywords: []string{
-				"cloud",
-				"stackdriver",
-				"monitoring",
-				"custom",
-				"service",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "display_name",
-					Description: `(Optional) Name used for UI elements listing this Service.`,
-				},
-				resource.Attribute{
-					Name:        "telemetry",
-					Description: `(Optional) Configuration for how to query telemetry on a Service. Structure is documented below.`,
-				},
-				resource.Attribute{
-					Name:        "service_id",
-					Description: `(Optional) An optional service ID to use. If not given, the server will generate a service ID.`,
-				},
-				resource.Attribute{
-					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. The ` + "`" + `telemetry` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "resource_name",
-					Description: `(Optional) The full name of the resource that defines this service. Formatted as described in https://cloud.google.com/apis/design/resource_names. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The full resource name for this service. The syntax is: projects/[PROJECT_ID]/services/[SERVICE_ID]. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Service can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_monitoring_custom_service.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The full resource name for this service. The syntax is: projects/[PROJECT_ID]/services/[SERVICE_ID]. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Service can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_monitoring_custom_service.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 		},
@@ -29635,6 +30689,67 @@ var (
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Location can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_notebooks_location.default projects/{{project}}/locations/{{name}} $ terraform import google_notebooks_location.default {{project}}/{{name}} $ terraform import google_notebooks_location.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_organization_access_approval_settings",
+			Category:         "Access Approval",
+			ShortDescription: `Access Approval enables you to require your explicit approval whenever Google support and engineering need to access your customer content.`,
+			Description:      ``,
+			Keywords: []string{
+				"access",
+				"approval",
+				"organization",
+				"settings",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "enrolled_services",
+					Description: `(Required) A list of Google Cloud Services for which the given resource has Access Approval enrolled. Access requests for the resource given by name against any of these services contained here will be required to have explicit approval. Enrollment can be done for individual services. A maximum of 10 enrolled services will be enforced, to be expanded as the set of supported services is expanded. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "organization_id",
+					Description: `(Required) ID of the organization of the access approval settings. The ` + "`" + `enrolled_services` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "cloud_product",
+					Description: `(Required) The product for which Access Approval will be enrolled. Allowed values are listed (case-sensitive): all appengine.googleapis.com bigquery.googleapis.com bigtable.googleapis.com cloudkms.googleapis.com compute.googleapis.com dataflow.googleapis.com iam.googleapis.com pubsub.googleapis.com storage.googleapis.com`,
+				},
+				resource.Attribute{
+					Name:        "enrollment_level",
+					Description: `(Optional) The enrollment level of the service. Default value is ` + "`" + `BLOCK_ALL` + "`" + `. Possible values are ` + "`" + `BLOCK_ALL` + "`" + `. - - -`,
+				},
+				resource.Attribute{
+					Name:        "notification_emails",
+					Description: `(Optional) A list of email addresses to which notifications relating to approval requests should be sent. Notifications relating to a resource will be sent to all emails in the settings of ancestor resources of that resource. A maximum of 50 email addresses are allowed. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `organizations/{{organization_id}}/accessApprovalSettings` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name of the settings. Format is "organizations/{organization_id}/accessApprovalSettings"`,
+				},
+				resource.Attribute{
+					Name:        "enrolled_ancestor",
+					Description: `This field will always be unset for the organization since organizations do not have ancestors. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import OrganizationSettings can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_organization_access_approval_settings.default organizations/{{organization_id}}/accessApprovalSettings $ terraform import google_organization_access_approval_settings.default {{organization_id}} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `organizations/{{organization_id}}/accessApprovalSettings` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name of the settings. Format is "organizations/{organization_id}/accessApprovalSettings"`,
+				},
+				resource.Attribute{
+					Name:        "enrolled_ancestor",
+					Description: `This field will always be unset for the organization since organizations do not have ancestors. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import OrganizationSettings can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_organization_access_approval_settings.default organizations/{{organization_id}}/accessApprovalSettings $ terraform import google_organization_access_approval_settings.default {{organization_id}} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -31536,6 +32651,71 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_project_access_approval_settings",
+			Category:         "Access Approval",
+			ShortDescription: `Access Approval enables you to require your explicit approval whenever Google support and engineering need to access your customer content.`,
+			Description:      ``,
+			Keywords: []string{
+				"access",
+				"approval",
+				"project",
+				"settings",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "enrolled_services",
+					Description: `(Required) A list of Google Cloud Services for which the given resource has Access Approval enrolled. Access requests for the resource given by name against any of these services contained here will be required to have explicit approval. Enrollment can only be done on an all or nothing basis. A maximum of 10 enrolled services will be enforced, to be expanded as the set of supported services is expanded. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) ID of the project of the access approval settings. The ` + "`" + `enrolled_services` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "cloud_product",
+					Description: `(Required) The product for which Access Approval will be enrolled. Allowed values are listed (case-sensitive): all appengine.googleapis.com bigquery.googleapis.com bigtable.googleapis.com cloudkms.googleapis.com compute.googleapis.com dataflow.googleapis.com iam.googleapis.com pubsub.googleapis.com storage.googleapis.com`,
+				},
+				resource.Attribute{
+					Name:        "enrollment_level",
+					Description: `(Optional) The enrollment level of the service. Default value is ` + "`" + `BLOCK_ALL` + "`" + `. Possible values are ` + "`" + `BLOCK_ALL` + "`" + `. - - -`,
+				},
+				resource.Attribute{
+					Name:        "notification_emails",
+					Description: `(Optional) A list of email addresses to which notifications relating to approval requests should be sent. Notifications relating to a resource will be sent to all emails in the settings of ancestor resources of that resource. A maximum of 50 email addresses are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional, Deprecated) Deprecated in favor of ` + "`" + `project_id` + "`" + ` ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project_id}}/accessApprovalSettings` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name of the settings. Format is "projects/{project_id}/accessApprovalSettings"`,
+				},
+				resource.Attribute{
+					Name:        "enrolled_ancestor",
+					Description: `If the field is true, that indicates that at least one service is enrolled for Access Approval in one or more ancestors of the Project. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ProjectSettings can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_access_approval_settings.default projects/{{project_id}}/accessApprovalSettings $ terraform import google_project_access_approval_settings.default {{project_id}} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project_id}}/accessApprovalSettings` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name of the settings. Format is "projects/{project_id}/accessApprovalSettings"`,
+				},
+				resource.Attribute{
+					Name:        "enrolled_ancestor",
+					Description: `If the field is true, that indicates that at least one service is enrolled for Access Approval in one or more ancestors of the Project. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ProjectSettings can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_access_approval_settings.default projects/{{project_id}}/accessApprovalSettings $ terraform import google_project_access_approval_settings.default {{project_id}} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_project_service_identity",
 			Category:         "Cloud Platform",
 			ShortDescription: `Generate service identity for a service.`,
@@ -31703,6 +32883,48 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{zone}}/topics/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Topic can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_pubsub_lite_topic.default projects/{{project}}/locations/{{zone}}/topics/{{name}} $ terraform import google_pubsub_lite_topic.default {{project}}/{{zone}}/{{name}} $ terraform import google_pubsub_lite_topic.default {{zone}}/{{name}} $ terraform import google_pubsub_lite_topic.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_pubsub_schema",
+			Category:         "Cloud Pub/Sub",
+			ShortDescription: `A schema is a format that messages must follow, creating a contract between publisher and subscriber that Pub/Sub will enforce.`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"pub",
+				"sub",
+				"pubsub",
+				"schema",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The ID to use for the schema, which will become the final component of the schema's resource name. - - -`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) The type of the schema definition Default value is ` + "`" + `TYPE_UNSPECIFIED` + "`" + `. Possible values are ` + "`" + `TYPE_UNSPECIFIED` + "`" + `, ` + "`" + `PROTOCOL_BUFFER` + "`" + `, and ` + "`" + `AVRO` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "definition",
+					Description: `(Optional) The definition of the schema. This should contain a string representing the full definition of the schema that is a valid schema definition of the type specified in type.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/schemas/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Schema can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_pubsub_schema.default projects/{{project}}/schemas/{{name}} $ terraform import google_pubsub_schema.default {{project}}/{{name}} $ terraform import google_pubsub_schema.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/schemas/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Schema can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_pubsub_schema.default projects/{{project}}/schemas/{{name}} $ terraform import google_pubsub_schema.default {{project}}/{{name}} $ terraform import google_pubsub_schema.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 		},
@@ -31904,12 +33126,24 @@ var (
 					Description: `(Optional) Policy constraining the set of Google Cloud Platform regions where messages published to the topic may be stored. If not present, then no constraints are in effect. Structure is documented below.`,
 				},
 				resource.Attribute{
+					Name:        "schema_settings",
+					Description: `(Optional) Settings for validating messages published against a schema. Structure is documented below.`,
+				},
+				resource.Attribute{
 					Name:        "project",
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. The ` + "`" + `message_storage_policy` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "allowed_persistence_regions",
-					Description: `(Required) A list of IDs of GCP regions where messages that are published to the topic may be persisted in storage. Messages published by publishers running in non-allowed GCP regions (or running outside of GCP altogether) will be routed for storage in one of the allowed regions. An empty list means that no regions are allowed, and is not a valid configuration. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Required) A list of IDs of GCP regions where messages that are published to the topic may be persisted in storage. Messages published by publishers running in non-allowed GCP regions (or running outside of GCP altogether) will be routed for storage in one of the allowed regions. An empty list means that no regions are allowed, and is not a valid configuration. The ` + "`" + `schema_settings` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "schema",
+					Description: `(Required) The name of the schema that messages published should be validated against. Format is projects/{project}/schemas/{schema}. The value of this field will be _deleted-schema_ if the schema has been deleted.`,
+				},
+				resource.Attribute{
+					Name:        "encoding",
+					Description: `(Optional) The encoding of messages validated against schema. Default value is ` + "`" + `ENCODING_UNSPECIFIED` + "`" + `. Possible values are ` + "`" + `ENCODING_UNSPECIFIED` + "`" + `, ` + "`" + `JSON` + "`" + `, and ` + "`" + `BINARY` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -32414,7 +33648,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location",
-					Description: `(Required) The canonical IDs of the location to replicate data. For example: "us-east1". - - -`,
+					Description: `(Required) The canonical IDs of the location to replicate data. For example: "us-east1".`,
+				},
+				resource.Attribute{
+					Name:        "customer_managed_encryption",
+					Description: `(Optional) Customer Managed Encryption for the secret. Structure is documented below. The ` + "`" + `customer_managed_encryption` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "kms_key_name",
+					Description: `(Required) Describes the Cloud KMS encryption key that will be used to protect destination secret. - - -`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -32505,16 +33747,16 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "secret_data",
+					Description: `(Required) The secret data. Must be no larger than 64KiB.`,
+				},
+				resource.Attribute{
 					Name:        "secret",
 					Description: `(Required) Secret Manager secret resource - - -`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) The current state of the SecretVersion.`,
-				},
-				resource.Attribute{
-					Name:        "secret_data",
-					Description: `(Optional) The secret data. Must be no larger than 64KiB.`,
+					Description: `(Optional) The current state of the SecretVersion. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -33114,12 +34356,20 @@ var (
 					Description: `(Optional) An optional list of DDL statements to run inside the newly created database. Statements can create tables, indexes, etc. These statements execute atomically with the creation of the database: if there is an error in any statement, the database is not created.`,
 				},
 				resource.Attribute{
+					Name:        "encryption_config",
+					Description: `(Optional) Encryption configuration for the database Structure is documented below.`,
+				},
+				resource.Attribute{
 					Name:        "project",
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used.`,
 				},
 				resource.Attribute{
 					Name:        "deletion_protection",
-					Description: `(Optional) Whether or not to allow Terraform to destroy the instance. Unless this field is set to false in Terraform state, a ` + "`" + `terraform destroy` + "`" + ` or ` + "`" + `terraform apply` + "`" + ` that would delete the instance will fail. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) Whether or not to allow Terraform to destroy the instance. Unless this field is set to false in Terraform state, a ` + "`" + `terraform destroy` + "`" + ` or ` + "`" + `terraform apply` + "`" + ` that would delete the instance will fail. The ` + "`" + `encryption_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "kms_key_name",
+					Description: `(Required) Fully qualified name of the KMS key to use to encrypt this database. This key must exist in the same location as the Spanner Database. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -33225,7 +34475,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used.`,
+				},
+				resource.Attribute{
+					Name:        "force_destroy",
+					Description: `(Optional) When deleting a spanner instance, this boolean option will delete all backups of this instance. This must be set to true if you created a backup manually in the console. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -33385,7 +34639,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "replica_configuration",
-					Description: `(Optional) The configuration for replication. The configuration is detailed below.`,
+					Description: `(Optional) The configuration for replication. The configuration is detailed below. Valid only for MySQL instances.`,
 				},
 				resource.Attribute{
 					Name:        "root_password",
@@ -33409,7 +34663,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tier",
-					Description: `(Required) The machine type to use. See [tiers](https://cloud.google.com/sql/docs/admin-api/v1beta4/tiers) for more details and supported versions. Postgres supports only shared-core machine types such as ` + "`" + `db-f1-micro` + "`" + `, and custom machine types such as ` + "`" + `db-custom-2-13312` + "`" + `. See the [Custom Machine Type Documentation](https://cloud.google.com/compute/docs/instances/creating-instance-with-custom-machine-type#create) to learn about specifying custom machine types.`,
+					Description: `(Required) The machine type to use. See [tiers](https://cloud.google.com/sql/docs/admin-api/v1beta4/tiers) for more details and supported versions. Postgres supports only shared-core machine types, and custom machine types such as ` + "`" + `db-custom-2-13312` + "`" + `. See the [Custom Machine Type Documentation](https://cloud.google.com/compute/docs/instances/creating-instance-with-custom-machine-type#create) to learn about specifying custom machine types.`,
 				},
 				resource.Attribute{
 					Name:        "activation_policy",
@@ -33497,11 +34751,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ipv4_enabled",
-					Description: `(Optional) Whether this Cloud SQL instance should be assigned a public IPV4 address. Either ` + "`" + `ipv4_enabled` + "`" + ` must be enabled or a ` + "`" + `private_network` + "`" + ` must be configured.`,
+					Description: `(Optional) Whether this Cloud SQL instance should be assigned a public IPV4 address. At least ` + "`" + `ipv4_enabled` + "`" + ` must be enabled or a ` + "`" + `private_network` + "`" + ` must be configured.`,
 				},
 				resource.Attribute{
 					Name:        "private_network",
-					Description: `(Optional) The VPC network from which the Cloud SQL instance is accessible for private IP. For example, projects/myProject/global/networks/default. Specifying a network enables private IP. Either ` + "`" + `ipv4_enabled` + "`" + ` must be enabled or a ` + "`" + `private_network` + "`" + ` must be configured. This setting can be updated, but it cannot be removed after it is set.`,
+					Description: `(Optional) The VPC network from which the Cloud SQL instance is accessible for private IP. For example, projects/myProject/global/networks/default. Specifying a network enables private IP. At least ` + "`" + `ipv4_enabled` + "`" + ` must be enabled or a ` + "`" + `private_network` + "`" + ` must be configured. This setting can be updated, but it cannot be removed after it is set.`,
 				},
 				resource.Attribute{
 					Name:        "require_ssl",
@@ -33537,7 +34791,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "update_track",
-					Description: `(Optional) Receive updates earlier (` + "`" + `canary` + "`" + `) or later (` + "`" + `stable` + "`" + `) The optional ` + "`" + `replica_configuration` + "`" + ` block must have ` + "`" + `master_instance_name` + "`" + ` set to work, cannot be updated, and supports:`,
+					Description: `(Optional) Receive updates earlier (` + "`" + `canary` + "`" + `) or later (` + "`" + `stable` + "`" + `) The optional ` + "`" + `settings.insights_config` + "`" + ` subblock for instances declares [Query Insights](https://cloud.google.com/sql/docs/postgres/insights-overview) configuration. It contains:`,
+				},
+				resource.Attribute{
+					Name:        "query_insights_enabled",
+					Description: `True if Query Insights feature is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "query_string_length",
+					Description: `Maximum query length stored in bytes. Between 256 and 4500. Default to 1024.`,
+				},
+				resource.Attribute{
+					Name:        "record_application_tags",
+					Description: `True if Query Insights will record application tags from query when enabled.`,
+				},
+				resource.Attribute{
+					Name:        "record_client_address",
+					Description: `True if Query Insights will record client address when enabled. The optional ` + "`" + `replica_configuration` + "`" + ` block must have ` + "`" + `master_instance_name` + "`" + ` set to work, cannot be updated, and supports:`,
 				},
 				resource.Attribute{
 					Name:        "ca_certificate",
@@ -33661,7 +34931,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_ca_cert.0.sha1_fingerprint",
-					Description: `SHA Fingerprint of the CA Cert. ## Timeouts ` + "`" + `google_sql_database_instance` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 20 minutes. - ` + "`" + `update` + "`" + ` - Default is 20 minutes. - ` + "`" + `delete` + "`" + ` - Default is 20 minutes. ## Import Database instances can be imported using one of any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_sql_database_instance.master projects/{{project}}/instances/{{name}} $ terraform import google_sql_database_instance.master {{project}}/{{name}} $ terraform import google_sql_database_instance.master {{name}} ` + "`" + `` + "`" + `` + "`" + ` ~>`,
+					Description: `SHA Fingerprint of the CA Cert. ## Timeouts ` + "`" + `google_sql_database_instance` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 30 minutes. - ` + "`" + `update` + "`" + ` - Default is 30 minutes. - ` + "`" + `delete` + "`" + ` - Default is 30 minutes. ## Import Database instances can be imported using one of any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_sql_database_instance.master projects/{{project}}/instances/{{name}} $ terraform import google_sql_database_instance.master {{project}}/{{name}} $ terraform import google_sql_database_instance.master {{name}} ` + "`" + `` + "`" + `` + "`" + ` ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -33723,7 +34993,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_ca_cert.0.sha1_fingerprint",
-					Description: `SHA Fingerprint of the CA Cert. ## Timeouts ` + "`" + `google_sql_database_instance` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 20 minutes. - ` + "`" + `update` + "`" + ` - Default is 20 minutes. - ` + "`" + `delete` + "`" + ` - Default is 20 minutes. ## Import Database instances can be imported using one of any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_sql_database_instance.master projects/{{project}}/instances/{{name}} $ terraform import google_sql_database_instance.master {{project}}/{{name}} $ terraform import google_sql_database_instance.master {{name}} ` + "`" + `` + "`" + `` + "`" + ` ~>`,
+					Description: `SHA Fingerprint of the CA Cert. ## Timeouts ` + "`" + `google_sql_database_instance` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 30 minutes. - ` + "`" + `update` + "`" + ` - Default is 30 minutes. - ` + "`" + `delete` + "`" + ` - Default is 30 minutes. ## Import Database instances can be imported using one of any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_sql_database_instance.master projects/{{project}}/instances/{{name}} $ terraform import google_sql_database_instance.master {{project}}/{{name}} $ terraform import google_sql_database_instance.master {{name}} ` + "`" + `` + "`" + `` + "`" + ` ~>`,
 				},
 			},
 		},
@@ -33747,7 +35017,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "database_version",
-					Description: `(Required) The MySQL version running on your source database server. Possible values are ` + "`" + `MYSQL_5_6` + "`" + `, ` + "`" + `MYSQL_5_7` + "`" + `, and ` + "`" + `MYSQL_8_0` + "`" + `.`,
+					Description: `(Required) The MySQL version running on your source database server. Possible values are ` + "`" + `MYSQL_5_5` + "`" + `, ` + "`" + `MYSQL_5_6` + "`" + `, ` + "`" + `MYSQL_5_7` + "`" + `, and ` + "`" + `MYSQL_8_0` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "host",
@@ -33998,7 +35268,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_class",
-					Description: `(Required if action type is ` + "`" + `SetStorageClass` + "`" + `) The target [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects affected by this Lifecycle Rule. Supported values include: ` + "`" + `MULTI_REGIONAL` + "`" + `, ` + "`" + `REGIONAL` + "`" + `, ` + "`" + `NEARLINE` + "`" + `, ` + "`" + `COLDLINE` + "`" + `, ` + "`" + `ARCHIVE` + "`" + `. The ` + "`" + `condition` + "`" + ` block supports the following elements, and requires at least one to be defined. If you specify multiple conditions in a rule, an object has to match all of the conditions for the action to be taken:`,
+					Description: `(Required if action type is ` + "`" + `SetStorageClass` + "`" + `) The target [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects affected by this Lifecycle Rule. Supported values include: ` + "`" + `STANDARD` + "`" + `, ` + "`" + `MULTI_REGIONAL` + "`" + `, ` + "`" + `REGIONAL` + "`" + `, ` + "`" + `NEARLINE` + "`" + `, ` + "`" + `COLDLINE` + "`" + `, ` + "`" + `ARCHIVE` + "`" + `. The ` + "`" + `condition` + "`" + ` block supports the following elements, and requires at least one to be defined. If you specify multiple conditions in a rule, an object has to match all of the conditions for the action to be taken:`,
 				},
 				resource.Attribute{
 					Name:        "age",
@@ -34014,7 +35284,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "matches_storage_class",
-					Description: `(Optional) [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects to satisfy this condition. Supported values include: ` + "`" + `MULTI_REGIONAL` + "`" + `, ` + "`" + `REGIONAL` + "`" + `, ` + "`" + `NEARLINE` + "`" + `, ` + "`" + `COLDLINE` + "`" + `, ` + "`" + `ARCHIVE` + "`" + `, ` + "`" + `STANDARD` + "`" + `, ` + "`" + `DURABLE_REDUCED_AVAILABILITY` + "`" + `.`,
+					Description: `(Optional) [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects to satisfy this condition. Supported values include: ` + "`" + `STANDARD` + "`" + `, ` + "`" + `MULTI_REGIONAL` + "`" + `, ` + "`" + `REGIONAL` + "`" + `, ` + "`" + `NEARLINE` + "`" + `, ` + "`" + `COLDLINE` + "`" + `, ` + "`" + `ARCHIVE` + "`" + `, ` + "`" + `DURABLE_REDUCED_AVAILABILITY` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "num_newer_versions",
@@ -34931,6 +36201,46 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_tags_tag_binding",
+			Category:         "Tags",
+			ShortDescription: `A TagBinding represents a connection between a TagValue and a cloud resource (currently project, folder, or organization).`,
+			Description:      ``,
+			Keywords: []string{
+				"tags",
+				"tag",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "parent",
+					Description: `(Required) The full resource name of the resource the TagValue is bound to. E.g. //cloudresourcemanager.googleapis.com/projects/123`,
+				},
+				resource.Attribute{
+					Name:        "tag_value",
+					Description: `(Required) The TagValue of the TagBinding. Must be of the form tagValues/456. - - - ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `tagBindings/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The generated id for the TagBinding. This is a string of the form: ` + "`" + `tagBindings/{full-resource-name}/{tag-value-name}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import TagBinding can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_tags_tag_binding.default tagBindings/{{name}} $ terraform import google_tags_tag_binding.default {{name}} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `tagBindings/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The generated id for the TagBinding. This is a string of the form: ` + "`" + `tagBindings/{full-resource-name}/{tag-value-name}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import TagBinding can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_tags_tag_binding.default tagBindings/{{name}} $ terraform import google_tags_tag_binding.default {{name}} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_tags_tag_key",
 			Category:         "Tags",
 			ShortDescription: `A TagKey, used to group a set of TagValues.`,
@@ -34994,6 +36304,156 @@ var (
 				resource.Attribute{
 					Name:        "update_time",
 					Description: `Output only. Update time. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z". ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import TagKey can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_tags_tag_key.default tagKeys/{{name}} $ terraform import google_tags_tag_key.default {{name}} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_tags_tag_key_iam",
+			Category:         "Tags",
+			ShortDescription: `Collection of resources to manage IAM policy for Tags TagKey`,
+			Description:      ``,
+			Keywords: []string{
+				"tags",
+				"tag",
+				"key",
+				"iam",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tag_key",
+					Description: `(Required) Used to find the parent resource to bind the IAM policy to`,
+				},
+				resource.Attribute{
+					Name:        "member/members",
+					Description: `(Required) Identities that will be granted the privilege in ` + "`" + `role` + "`" + `. Each entry can have one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Required) The role that should be applied. Only one ` + "`" + `google_tags_tag_key_iam_binding` + "`" + ` can be used per role. Note that custom roles must be of the format ` + "`" + `[projects|organizations]/{parent-name}/roles/{role-name}` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "policy_data",
+					Description: `(Required only by ` + "`" + `google_tags_tag_key_iam_policy` + "`" + `) The policy data generated by a ` + "`" + `google_iam_policy` + "`" + ` data source. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `(Computed) The etag of the IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "etag",
+					Description: `(Computed) The etag of the IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_tags_tag_value",
+			Category:         "Tags",
+			ShortDescription: `A TagValue is a child of a particular TagKey.`,
+			Description:      ``,
+			Keywords: []string{
+				"tags",
+				"tag",
+				"value",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "parent",
+					Description: `(Required) Input only. The resource name of the new TagValue's parent. Must be of the form tagKeys/{tag_key_id}.`,
+				},
+				resource.Attribute{
+					Name:        "short_name",
+					Description: `(Required) Input only. User-assigned short name for TagValue. The short name should be unique for TagValues within the same parent TagKey. The short name must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between. - - -`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) User-assigned description of the TagValue. Must not exceed 256 characters. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `tagValues/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The generated numeric id for the TagValue.`,
+				},
+				resource.Attribute{
+					Name:        "namespaced_name",
+					Description: `Output only. Namespaced name of the TagValue. Will be in the format {organizationId}/{tag_key_short_name}/{shortName}.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Output only. Creation time. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `Output only. Update time. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z". ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import TagValue can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_tags_tag_value.default tagValues/{{name}} $ terraform import google_tags_tag_value.default {{name}} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `tagValues/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The generated numeric id for the TagValue.`,
+				},
+				resource.Attribute{
+					Name:        "namespaced_name",
+					Description: `Output only. Namespaced name of the TagValue. Will be in the format {organizationId}/{tag_key_short_name}/{shortName}.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Output only. Creation time. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `Output only. Update time. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z". ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import TagValue can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_tags_tag_value.default tagValues/{{name}} $ terraform import google_tags_tag_value.default {{name}} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_tags_tag_value_iam",
+			Category:         "Tags",
+			ShortDescription: `Collection of resources to manage IAM policy for Tags TagValue`,
+			Description:      ``,
+			Keywords: []string{
+				"tags",
+				"tag",
+				"value",
+				"iam",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tag_value",
+					Description: `(Required) Used to find the parent resource to bind the IAM policy to`,
+				},
+				resource.Attribute{
+					Name:        "member/members",
+					Description: `(Required) Identities that will be granted the privilege in ` + "`" + `role` + "`" + `. Each entry can have one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Required) The role that should be applied. Only one ` + "`" + `google_tags_tag_value_iam_binding` + "`" + ` can be used per role. Note that custom roles must be of the format ` + "`" + `[projects|organizations]/{parent-name}/roles/{role-name}` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "policy_data",
+					Description: `(Required only by ` + "`" + `google_tags_tag_value_iam_policy` + "`" + `) The policy data generated by a ` + "`" + `google_iam_policy` + "`" + ` data source. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `(Computed) The etag of the IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "etag",
+					Description: `(Computed) The etag of the IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
 				},
 			},
 		},
@@ -35256,7 +36716,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{region}}/workflows/{{name}}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "create_time",
@@ -35278,7 +36738,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{region}}/workflows/{{name}}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "create_time",
@@ -35302,191 +36762,191 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"google_folder_access_approval_settings":                       0,
-		"google_organization_access_approval_settings":                 1,
-		"google_project_access_approval_settings":                      2,
-		"google_access_context_manager_access_level":                   3,
-		"google_access_context_manager_access_level_condition":         4,
-		"google_access_context_manager_access_levels":                  5,
-		"google_access_context_manager_access_policy":                  6,
-		"google_access_context_manager_gcp_user_access_binding":        7,
-		"google_access_context_manager_service_perimeter":              8,
-		"google_access_context_manager_service_perimeter_resource":     9,
-		"google_access_context_manager_service_perimeters":             10,
-		"google_active_directory_domain":                               11,
-		"google_active_directory_domain_trust":                         12,
-		"google_api_gateway_api":                                       13,
-		"google_api_gateway_api_config":                                14,
-		"google_api_gateway_api_config_iam":                            15,
-		"google_api_gateway_api_iam":                                   16,
-		"google_api_gateway_gateway":                                   17,
-		"google_api_gateway_gateway_iam":                               18,
-		"google_apigee_envgroup":                                       19,
-		"google_apigee_environment":                                    20,
-		"google_apigee_instance":                                       21,
-		"google_apigee_organization":                                   22,
-		"google_app_engine_application":                                23,
-		"google_app_engine_application_url_dispatch_rules":             24,
-		"google_app_engine_domain_mapping":                             25,
-		"google_app_engine_firewall_rule":                              26,
-		"google_app_engine_flexible_app_version":                       27,
-		"google_app_engine_service_split_traffic":                      28,
-		"google_app_engine_standard_app_version":                       29,
-		"google_artifact_registry_repository":                          30,
-		"google_artifact_registry_repository_iam":                      31,
-		"google_bigquery_connection":                                   32,
-		"google_bigquery_data_transfer_config":                         33,
-		"google_bigquery_dataset":                                      34,
-		"google_bigquery_dataset_access":                               35,
-		"google_bigquery_dataset_iam":                                  36,
-		"google_bigquery_job":                                          37,
-		"google_bigquery_reservation":                                  38,
-		"google_bigquery_routine":                                      39,
-		"google_bigquery_table":                                        40,
-		"google_bigquery_table_iam":                                    41,
-		"google_bigtable_app_profile":                                  42,
-		"google_bigtable_gc_policy":                                    43,
-		"google_bigtable_instance":                                     44,
-		"google_bigtable_instance_iam":                                 45,
-		"google_bigtable_table":                                        46,
-		"google_bigtable_table_iam":                                    47,
-		"google_billing_account_iam":                                   48,
-		"google_billing_budget":                                        49,
-		"google_binary_authorization_attestor":                         50,
-		"google_binary_authorization_attestor_iam":                     51,
-		"google_binary_authorization_policy":                           52,
-		"google_cloud_asset_folder_feed":                               53,
-		"google_cloud_asset_organization_feed":                         54,
-		"google_cloud_asset_project_feed":                              55,
-		"google_cloud_identity_group":                                  56,
-		"google_cloud_identity_group_membership":                       57,
-		"google_cloud_run_domain_mapping":                              58,
-		"google_cloud_run_service":                                     59,
-		"google_cloud_run_service_iam":                                 60,
-		"google_cloud_scheduler_job":                                   61,
-		"google_cloud_tasks_queue":                                     62,
-		"google_cloudbuild_trigger":                                    63,
+		"google_access_context_manager_access_level":                   0,
+		"google_access_context_manager_access_level_condition":         1,
+		"google_access_context_manager_access_levels":                  2,
+		"google_access_context_manager_access_policy":                  3,
+		"google_access_context_manager_gcp_user_access_binding":        4,
+		"google_access_context_manager_service_perimeter":              5,
+		"google_access_context_manager_service_perimeter_resource":     6,
+		"google_access_context_manager_service_perimeters":             7,
+		"google_active_directory_domain":                               8,
+		"google_active_directory_domain_trust":                         9,
+		"google_api_gateway_api":                                       10,
+		"google_api_gateway_api_config":                                11,
+		"google_api_gateway_api_config_iam":                            12,
+		"google_api_gateway_api_iam":                                   13,
+		"google_api_gateway_gateway":                                   14,
+		"google_api_gateway_gateway_iam":                               15,
+		"google_apigee_envgroup":                                       16,
+		"google_apigee_envgroup_attachment":                            17,
+		"google_apigee_environment":                                    18,
+		"google_apigee_instance":                                       19,
+		"google_apigee_instance_attachment":                            20,
+		"google_apigee_organization":                                   21,
+		"google_app_engine_application":                                22,
+		"google_app_engine_application_url_dispatch_rules":             23,
+		"google_app_engine_domain_mapping":                             24,
+		"google_app_engine_firewall_rule":                              25,
+		"google_app_engine_flexible_app_version":                       26,
+		"google_app_engine_service_split_traffic":                      27,
+		"google_app_engine_standard_app_version":                       28,
+		"google_artifact_registry_repository":                          29,
+		"google_artifact_registry_repository_iam":                      30,
+		"google_bigquery_connection":                                   31,
+		"google_bigquery_data_transfer_config":                         32,
+		"google_bigquery_dataset":                                      33,
+		"google_bigquery_dataset_access":                               34,
+		"google_bigquery_dataset_iam":                                  35,
+		"google_bigquery_job":                                          36,
+		"google_bigquery_reservation":                                  37,
+		"google_bigquery_routine":                                      38,
+		"google_bigquery_table":                                        39,
+		"google_bigquery_table_iam":                                    40,
+		"google_bigtable_app_profile":                                  41,
+		"google_bigtable_gc_policy":                                    42,
+		"google_bigtable_instance":                                     43,
+		"google_bigtable_instance_iam":                                 44,
+		"google_bigtable_table":                                        45,
+		"google_bigtable_table_iam":                                    46,
+		"google_billing_account_iam":                                   47,
+		"google_billing_budget":                                        48,
+		"google_binary_authorization_attestor":                         49,
+		"google_binary_authorization_attestor_iam":                     50,
+		"google_binary_authorization_policy":                           51,
+		"google_cloud_asset_folder_feed":                               52,
+		"google_cloud_asset_organization_feed":                         53,
+		"google_cloud_asset_project_feed":                              54,
+		"google_cloud_identity_group":                                  55,
+		"google_cloud_identity_group_membership":                       56,
+		"google_cloud_run_domain_mapping":                              57,
+		"google_cloud_run_service":                                     58,
+		"google_cloud_run_service_iam":                                 59,
+		"google_cloud_scheduler_job":                                   60,
+		"google_cloud_tasks_queue":                                     61,
+		"google_cloudbuild_trigger":                                    62,
+		"google_cloudfunctions_function":                               63,
 		"google_cloudfunctions_function_iam":                           64,
-		"google_cloudfunctions_function":                               65,
-		"google_cloudiot_device":                                       66,
-		"google_cloudiot_registry":                                     67,
-		"google_composer_environment":                                  68,
-		"google_compute_address":                                       69,
-		"google_compute_attached_disk":                                 70,
-		"google_compute_autoscaler":                                    71,
-		"google_compute_backend_bucket":                                72,
-		"google_compute_backend_bucket_signed_url_key":                 73,
-		"google_compute_backend_service":                               74,
-		"google_compute_backend_service_signed_url_key":                75,
-		"google_compute_disk":                                          76,
-		"google_compute_disk_iam":                                      77,
-		"google_compute_disk_resource_policy_attachment":               78,
-		"google_compute_external_vpn_gateway":                          79,
-		"google_compute_firewall":                                      80,
-		"google_compute_forwarding_rule":                               81,
-		"google_compute_global_address":                                82,
-		"google_compute_global_forwarding_rule":                        83,
-		"google_compute_global_network_endpoint":                       84,
-		"google_compute_global_network_endpoint_group":                 85,
-		"google_compute_ha_vpn_gateway":                                86,
-		"google_compute_health_check":                                  87,
-		"google_compute_http_health_check":                             88,
-		"google_compute_https_health_check":                            89,
-		"google_compute_image":                                         90,
-		"google_compute_image_iam":                                     91,
-		"google_compute_instance":                                      92,
-		"google_compute_instance_from_machine_image":                   93,
-		"google_compute_instance_from_template":                        94,
-		"google_compute_instance_group":                                95,
-		"google_compute_instance_group_manager":                        96,
-		"google_compute_instance_group_named_port":                     97,
-		"google_compute_instance_iam":                                  98,
-		"google_compute_instance_template":                             99,
-		"google_compute_interconnect_attachment":                       100,
-		"google_compute_machine_image":                                 101,
-		"google_compute_machine_image_iam":                             102,
-		"google_compute_managed_ssl_certificate":                       103,
-		"google_compute_network":                                       104,
-		"google_compute_network_endpoint":                              105,
-		"google_compute_network_endpoint_group":                        106,
-		"google_compute_network_peering":                               107,
-		"google_compute_network_peering_routes_config":                 108,
-		"google_compute_node_group":                                    109,
-		"google_compute_node_template":                                 110,
-		"google_compute_organization_security_policy":                  111,
-		"google_compute_organization_security_policy_association":      112,
-		"google_compute_organization_security_policy_rule":             113,
-		"google_compute_packet_mirroring":                              114,
-		"google_compute_per_instance_config":                           115,
-		"google_compute_project_default_network_tier":                  116,
-		"google_compute_project_metadata":                              117,
-		"google_compute_project_metadata_item":                         118,
-		"google_compute_region_autoscaler":                             119,
-		"google_compute_region_backend_service":                        120,
-		"google_compute_region_disk":                                   121,
-		"google_compute_region_disk_iam":                               122,
-		"google_compute_region_disk_resource_policy_attachment":        123,
-		"google_compute_region_health_check":                           124,
-		"google_compute_region_instance_group_manager":                 125,
-		"google_compute_region_network_endpoint_group":                 126,
-		"google_compute_region_per_instance_config":                    127,
-		"google_compute_region_ssl_certificate":                        128,
-		"google_compute_region_target_http_proxy":                      129,
-		"google_compute_region_target_https_proxy":                     130,
-		"google_compute_region_url_map":                                131,
-		"google_compute_reservation":                                   132,
-		"google_compute_resource_policy":                               133,
-		"google_compute_route":                                         134,
-		"google_compute_router":                                        135,
-		"google_compute_router_peer":                                   136,
-		"google_compute_router_interface":                              137,
-		"google_compute_router_nat":                                    138,
-		"google_compute_security_policy":                               139,
-		"google_compute_shared_vpc_host_project":                       140,
-		"google_compute_shared_vpc_service_project":                    141,
-		"google_compute_snapshot":                                      142,
-		"google_compute_ssl_certificate":                               143,
-		"google_compute_ssl_policy":                                    144,
-		"google_compute_subnetwork":                                    145,
-		"google_compute_subnetwork_iam":                                146,
-		"google_compute_target_grpc_proxy":                             147,
-		"google_compute_target_http_proxy":                             148,
-		"google_compute_target_https_proxy":                            149,
-		"google_compute_target_instance":                               150,
-		"google_compute_target_pool":                                   151,
-		"google_compute_target_ssl_proxy":                              152,
-		"google_compute_target_tcp_proxy":                              153,
-		"google_compute_url_map":                                       154,
-		"google_compute_vpn_gateway":                                   155,
-		"google_compute_vpn_tunnel":                                    156,
-		"google_container_analysis_note":                               157,
-		"google_container_analysis_occurrence":                         158,
-		"google_container_cluster":                                     159,
-		"google_container_node_pool":                                   160,
-		"google_container_registry":                                    161,
-		"google_data_catalog_entry":                                    162,
-		"google_data_catalog_entry_group":                              163,
-		"google_data_catalog_entry_group_iam":                          164,
-		"google_data_catalog_policy_tag":                               165,
-		"google_data_catalog_policy_tag_iam":                           166,
-		"google_data_catalog_tag":                                      167,
-		"google_data_catalog_tag_template":                             168,
-		"google_data_catalog_tag_template_iam":                         169,
-		"google_data_catalog_taxonomy":                                 170,
-		"google_data_catalog_taxonomy_iam":                             171,
-		"google_data_fusion_instance":                                  172,
-		"google_data_loss_prevention_deidentify_template":              173,
-		"google_data_loss_prevention_inspect_template":                 174,
-		"google_data_loss_prevention_job_trigger":                      175,
-		"google_data_loss_prevention_stored_info_type":                 176,
-		"google_dataflow_flex_template_job":                            177,
-		"google_dataflow_job":                                          178,
-		"google_dataproc_autoscaling_policy":                           179,
-		"google_dataproc_cluster":                                      180,
-		"google_dataproc_cluster_iam":                                  181,
-		"google_dataproc_job":                                          182,
-		"google_dataproc_job_iam":                                      183,
-		"google_dataproc_metastore_service":                            184,
+		"google_cloudiot_device":                                       65,
+		"google_cloudiot_registry":                                     66,
+		"google_composer_environment":                                  67,
+		"google_compute_address":                                       68,
+		"google_compute_attached_disk":                                 69,
+		"google_compute_autoscaler":                                    70,
+		"google_compute_backend_bucket":                                71,
+		"google_compute_backend_bucket_signed_url_key":                 72,
+		"google_compute_backend_service":                               73,
+		"google_compute_backend_service_signed_url_key":                74,
+		"google_compute_disk":                                          75,
+		"google_compute_disk_iam":                                      76,
+		"google_compute_disk_resource_policy_attachment":               77,
+		"google_compute_external_vpn_gateway":                          78,
+		"google_compute_firewall":                                      79,
+		"google_compute_forwarding_rule":                               80,
+		"google_compute_global_address":                                81,
+		"google_compute_global_forwarding_rule":                        82,
+		"google_compute_global_network_endpoint":                       83,
+		"google_compute_global_network_endpoint_group":                 84,
+		"google_compute_ha_vpn_gateway":                                85,
+		"google_compute_health_check":                                  86,
+		"google_compute_http_health_check":                             87,
+		"google_compute_https_health_check":                            88,
+		"google_compute_image":                                         89,
+		"google_compute_image_iam":                                     90,
+		"google_compute_instance":                                      91,
+		"google_compute_instance_from_machine_image":                   92,
+		"google_compute_instance_from_template":                        93,
+		"google_compute_instance_group":                                94,
+		"google_compute_instance_group_manager":                        95,
+		"google_compute_instance_group_named_port":                     96,
+		"google_compute_instance_iam":                                  97,
+		"google_compute_instance_template":                             98,
+		"google_compute_interconnect_attachment":                       99,
+		"google_compute_machine_image":                                 100,
+		"google_compute_machine_image_iam":                             101,
+		"google_compute_managed_ssl_certificate":                       102,
+		"google_compute_network":                                       103,
+		"google_compute_network_endpoint":                              104,
+		"google_compute_network_endpoint_group":                        105,
+		"google_compute_network_peering":                               106,
+		"google_compute_network_peering_routes_config":                 107,
+		"google_compute_node_group":                                    108,
+		"google_compute_node_template":                                 109,
+		"google_compute_organization_security_policy":                  110,
+		"google_compute_organization_security_policy_association":      111,
+		"google_compute_organization_security_policy_rule":             112,
+		"google_compute_packet_mirroring":                              113,
+		"google_compute_per_instance_config":                           114,
+		"google_compute_project_default_network_tier":                  115,
+		"google_compute_project_metadata":                              116,
+		"google_compute_project_metadata_item":                         117,
+		"google_compute_region_autoscaler":                             118,
+		"google_compute_region_backend_service":                        119,
+		"google_compute_region_disk":                                   120,
+		"google_compute_region_disk_iam":                               121,
+		"google_compute_region_disk_resource_policy_attachment":        122,
+		"google_compute_region_health_check":                           123,
+		"google_compute_region_instance_group_manager":                 124,
+		"google_compute_region_network_endpoint_group":                 125,
+		"google_compute_region_per_instance_config":                    126,
+		"google_compute_region_ssl_certificate":                        127,
+		"google_compute_region_target_http_proxy":                      128,
+		"google_compute_region_target_https_proxy":                     129,
+		"google_compute_region_url_map":                                130,
+		"google_compute_reservation":                                   131,
+		"google_compute_resource_policy":                               132,
+		"google_compute_route":                                         133,
+		"google_compute_router":                                        134,
+		"google_compute_router_interface":                              135,
+		"google_compute_router_nat":                                    136,
+		"google_compute_router_peer":                                   137,
+		"google_compute_security_policy":                               138,
+		"google_compute_shared_vpc_host_project":                       139,
+		"google_compute_shared_vpc_service_project":                    140,
+		"google_compute_snapshot":                                      141,
+		"google_compute_ssl_certificate":                               142,
+		"google_compute_ssl_policy":                                    143,
+		"google_compute_subnetwork":                                    144,
+		"google_compute_subnetwork_iam":                                145,
+		"google_compute_target_grpc_proxy":                             146,
+		"google_compute_target_http_proxy":                             147,
+		"google_compute_target_https_proxy":                            148,
+		"google_compute_target_instance":                               149,
+		"google_compute_target_pool":                                   150,
+		"google_compute_target_ssl_proxy":                              151,
+		"google_compute_target_tcp_proxy":                              152,
+		"google_compute_url_map":                                       153,
+		"google_compute_vpn_gateway":                                   154,
+		"google_compute_vpn_tunnel":                                    155,
+		"google_container_analysis_note":                               156,
+		"google_container_analysis_occurrence":                         157,
+		"google_container_cluster":                                     158,
+		"google_container_node_pool":                                   159,
+		"google_container_registry":                                    160,
+		"google_data_catalog_entry":                                    161,
+		"google_data_catalog_entry_group":                              162,
+		"google_data_catalog_entry_group_iam":                          163,
+		"google_data_catalog_policy_tag":                               164,
+		"google_data_catalog_policy_tag_iam":                           165,
+		"google_data_catalog_tag":                                      166,
+		"google_data_catalog_tag_template":                             167,
+		"google_data_catalog_tag_template_iam":                         168,
+		"google_data_catalog_taxonomy":                                 169,
+		"google_data_catalog_taxonomy_iam":                             170,
+		"google_data_fusion_instance":                                  171,
+		"google_data_loss_prevention_deidentify_template":              172,
+		"google_data_loss_prevention_inspect_template":                 173,
+		"google_data_loss_prevention_job_trigger":                      174,
+		"google_data_loss_prevention_stored_info_type":                 175,
+		"google_dataflow_flex_template_job":                            176,
+		"google_dataflow_job":                                          177,
+		"google_dataproc_autoscaling_policy":                           178,
+		"google_dataproc_cluster":                                      179,
+		"google_dataproc_cluster_iam":                                  180,
+		"google_dataproc_job":                                          181,
+		"google_dataproc_job_iam":                                      182,
+		"google_dataproc_metastore_service":                            183,
+		"google_dataproc_workflow_template":                            184,
 		"google_datastore_index":                                       185,
 		"google_deployment_manager_deployment":                         186,
 		"google_dialogflow_agent":                                      187,
@@ -35505,149 +36965,157 @@ var (
 		"google_firebase_web_app":                                      200,
 		"google_firestore_document":                                    201,
 		"google_firestore_index":                                       202,
-		"google_game_services_game_server_cluster":                     203,
-		"google_game_services_game_server_config":                      204,
-		"google_game_services_game_server_deployment":                  205,
-		"google_game_services_game_server_deployment_rollout":          206,
-		"google_game_services_realm":                                   207,
-		"google_gke_hub_membership":                                    208,
-		"google_billing_subaccount":                                    209,
-		"google_folder":                                                210,
-		"google_folder_iam":                                            211,
-		"google_folder_organization_policy":                            212,
-		"google_kms_crypto_key_iam":                                    213,
-		"google_kms_key_ring_iam":                                      214,
-		"google_organization_iam":                                      215,
-		"google_organization_iam_custom_role":                          216,
-		"google_organization_policy":                                   217,
-		"google_project":                                               218,
-		"google_project_default_service_accounts":                      219,
-		"google_project_iam":                                           220,
-		"google_project_iam_custom_role":                               221,
-		"google_project_organization_policy":                           222,
-		"google_project_service":                                       223,
-		"google_service_account":                                       224,
-		"google_service_account_iam":                                   225,
-		"google_service_account_key":                                   226,
-		"google_healthcare_consent_store":                              227,
-		"google_healthcare_consent_store_iam":                          228,
-		"google_healthcare_dataset":                                    229,
-		"google_healthcare_dataset_iam":                                230,
-		"google_healthcare_dicom_store":                                231,
-		"google_healthcare_dicom_store_iam":                            232,
-		"google_healthcare_fhir_store":                                 233,
-		"google_healthcare_fhir_store_iam":                             234,
-		"google_healthcare_hl7_v2_store":                               235,
-		"google_healthcare_hl7_v2_store_iam":                           236,
-		"google_iam_workload_identity_pool":                            237,
-		"google_iam_workload_identity_pool_provider":                   238,
-		"google_iap_app_engine_service_iam":                            239,
-		"google_iap_app_engine_version_iam":                            240,
-		"google_iap_brand":                                             241,
-		"google_iap_client":                                            242,
-		"google_iap_tunnel_iam":                                        243,
-		"google_iap_tunnel_instance_iam":                               244,
-		"google_iap_web_backend_service_iam":                           245,
-		"google_iap_web_iam":                                           246,
-		"google_iap_web_type_app_engine_iam":                           247,
-		"google_iap_web_type_compute_iam":                              248,
-		"google_identity_platform_default_supported_idp_config":        249,
-		"google_identity_platform_inbound_saml_config":                 250,
-		"google_identity_platform_oauth_idp_config":                    251,
-		"google_identity_platform_tenant":                              252,
-		"google_identity_platform_tenant_default_supported_idp_config": 253,
-		"google_identity_platform_tenant_inbound_saml_config":          254,
-		"google_identity_platform_tenant_oauth_idp_config":             255,
-		"google_kms_crypto_key":                                        256,
-		"google_kms_key_ring":                                          257,
-		"google_kms_key_ring_import_job":                               258,
-		"google_kms_secret_ciphertext":                                 259,
-		"google_logging_billing_account_bucket_config":                 260,
-		"google_logging_billing_account_exclusion":                     261,
-		"google_logging_billing_account_sink":                          262,
-		"google_logging_folder_bucket_config":                          263,
-		"google_logging_folder_exclusion":                              264,
-		"google_logging_folder_sink":                                   265,
-		"google_logging_metric":                                        266,
-		"google_logging_organization_bucket_config":                    267,
-		"google_logging_organization_exclusion":                        268,
-		"google_logging_organization_sink":                             269,
-		"google_logging_project_bucket_config":                         270,
-		"google_logging_project_exclusion":                             271,
-		"google_logging_project_sink":                                  272,
-		"google_memcache_instance":                                     273,
-		"google_ml_engine_model":                                       274,
-		"google_monitoring_alert_policy":                               275,
-		"google_monitoring_dashboard":                                  276,
-		"google_monitoring_group":                                      277,
-		"google_monitoring_metric_descriptor":                          278,
-		"google_monitoring_notification_channel":                       279,
-		"google_monitoring_custom_service":                             280,
-		"google_monitoring_slo":                                        281,
-		"google_monitoring_uptime_check_config":                        282,
-		"google_network_management_connectivity_test":                  283,
-		"google_notebooks_environment":                                 284,
-		"google_notebooks_instance":                                    285,
-		"google_notebooks_instance_iam":                                286,
-		"google_notebooks_location":                                    287,
-		"google_os_config_guest_policies":                              288,
-		"google_os_config_patch_deployment":                            289,
-		"google_os_login_ssh_public_key":                               290,
-		"google_privateca_certificate":                                 291,
-		"google_privateca_certificate_authority":                       292,
-		"google_privateca_certificate_authority_iam":                   293,
-		"google_project_service_identity":                              294,
-		"google_pubsub_lite_subscription":                              295,
-		"google_pubsub_lite_topic":                                     296,
-		"google_pubsub_subscription":                                   297,
-		"google_pubsub_subscription_iam":                               298,
-		"google_pubsub_topic":                                          299,
-		"google_pubsub_topic_iam":                                      300,
-		"google_redis_instance":                                        301,
-		"google_resource_manager_lien":                                 302,
-		"google_runtimeconfig_config":                                  303,
-		"google_runtimeconfig_config_iam":                              304,
-		"google_runtimeconfig_variable":                                305,
-		"google_scc_source":                                            306,
-		"google_secret_manager_secret":                                 307,
-		"google_secret_manager_secret_iam":                             308,
-		"google_secret_manager_secret_version":                         309,
-		"google_security_scanner_scan_config":                          310,
-		"google_service_directory_endpoint":                            311,
-		"google_service_directory_namespace":                           312,
-		"google_service_directory_namespace_iam":                       313,
-		"google_service_directory_service":                             314,
-		"google_service_directory_service_iam":                         315,
-		"google_service_networking_connection":                         316,
-		"google_service_usage_consumer_quota_override":                 317,
-		"google_sourcerepo_repository":                                 318,
-		"google_sourcerepo_repository_iam":                             319,
-		"google_spanner_database":                                      320,
-		"google_spanner_database_iam":                                  321,
-		"google_spanner_instance":                                      322,
-		"google_spanner_instance_iam":                                  323,
-		"google_sql_database":                                          324,
-		"google_sql_database_instance":                                 325,
-		"google_sql_source_representation_instance":                    326,
-		"google_sql_ssl_cert":                                          327,
-		"google_sql_user":                                              328,
-		"google_storage_bucket":                                        329,
-		"google_storage_bucket_access_control":                         330,
-		"google_storage_bucket_acl":                                    331,
-		"google_storage_bucket_iam":                                    332,
-		"google_storage_bucket_object":                                 333,
-		"google_storage_default_object_access_control":                 334,
-		"google_storage_default_object_acl":                            335,
-		"google_storage_hmac_key":                                      336,
-		"google_storage_notification":                                  337,
-		"google_storage_object_access_control":                         338,
-		"google_storage_object_acl":                                    339,
-		"google_storage_transfer_job":                                  340,
-		"google_tags_tag_key":                                          341,
-		"google_tpu_node":                                              342,
-		"google_project_usage_export_bucket":                           343,
-		"google_vpc_access_connector":                                  344,
-		"google_workflows_workflow":                                    345,
+		"google_folder_access_approval_settings":                       203,
+		"google_game_services_game_server_cluster":                     204,
+		"google_game_services_game_server_config":                      205,
+		"google_game_services_game_server_deployment":                  206,
+		"google_game_services_game_server_deployment_rollout":          207,
+		"google_game_services_realm":                                   208,
+		"google_gke_hub_membership":                                    209,
+		"google_billing_subaccount":                                    210,
+		"google_folder":                                                211,
+		"google_folder_iam":                                            212,
+		"google_folder_organization_policy":                            213,
+		"google_kms_crypto_key_iam":                                    214,
+		"google_kms_key_ring_iam":                                      215,
+		"google_organization_iam":                                      216,
+		"google_organization_iam_custom_role":                          217,
+		"google_organization_policy":                                   218,
+		"google_project":                                               219,
+		"google_project_default_service_accounts":                      220,
+		"google_project_iam":                                           221,
+		"google_project_iam_custom_role":                               222,
+		"google_project_organization_policy":                           223,
+		"google_project_service":                                       224,
+		"google_service_account":                                       225,
+		"google_service_account_iam":                                   226,
+		"google_service_account_key":                                   227,
+		"google_healthcare_consent_store":                              228,
+		"google_healthcare_consent_store_iam":                          229,
+		"google_healthcare_dataset":                                    230,
+		"google_healthcare_dataset_iam":                                231,
+		"google_healthcare_dicom_store":                                232,
+		"google_healthcare_dicom_store_iam":                            233,
+		"google_healthcare_fhir_store":                                 234,
+		"google_healthcare_fhir_store_iam":                             235,
+		"google_healthcare_hl7_v2_store":                               236,
+		"google_healthcare_hl7_v2_store_iam":                           237,
+		"google_iam_workload_identity_pool":                            238,
+		"google_iam_workload_identity_pool_provider":                   239,
+		"google_iap_app_engine_service_iam":                            240,
+		"google_iap_app_engine_version_iam":                            241,
+		"google_iap_brand":                                             242,
+		"google_iap_client":                                            243,
+		"google_iap_tunnel_iam":                                        244,
+		"google_iap_tunnel_instance_iam":                               245,
+		"google_iap_web_backend_service_iam":                           246,
+		"google_iap_web_iam":                                           247,
+		"google_iap_web_type_app_engine_iam":                           248,
+		"google_iap_web_type_compute_iam":                              249,
+		"google_identity_platform_default_supported_idp_config":        250,
+		"google_identity_platform_inbound_saml_config":                 251,
+		"google_identity_platform_oauth_idp_config":                    252,
+		"google_identity_platform_tenant":                              253,
+		"google_identity_platform_tenant_default_supported_idp_config": 254,
+		"google_identity_platform_tenant_inbound_saml_config":          255,
+		"google_identity_platform_tenant_oauth_idp_config":             256,
+		"google_kms_crypto_key":                                        257,
+		"google_kms_key_ring":                                          258,
+		"google_kms_key_ring_import_job":                               259,
+		"google_kms_secret_ciphertext":                                 260,
+		"google_logging_billing_account_bucket_config":                 261,
+		"google_logging_billing_account_exclusion":                     262,
+		"google_logging_billing_account_sink":                          263,
+		"google_logging_folder_bucket_config":                          264,
+		"google_logging_folder_exclusion":                              265,
+		"google_logging_folder_sink":                                   266,
+		"google_logging_metric":                                        267,
+		"google_logging_organization_bucket_config":                    268,
+		"google_logging_organization_exclusion":                        269,
+		"google_logging_organization_sink":                             270,
+		"google_logging_project_bucket_config":                         271,
+		"google_logging_project_exclusion":                             272,
+		"google_logging_project_sink":                                  273,
+		"google_memcache_instance":                                     274,
+		"google_ml_engine_model":                                       275,
+		"google_monitoring_alert_policy":                               276,
+		"google_monitoring_custom_service":                             277,
+		"google_monitoring_dashboard":                                  278,
+		"google_monitoring_group":                                      279,
+		"google_monitoring_metric_descriptor":                          280,
+		"google_monitoring_notification_channel":                       281,
+		"google_monitoring_slo":                                        282,
+		"google_monitoring_uptime_check_config":                        283,
+		"google_network_management_connectivity_test":                  284,
+		"google_notebooks_environment":                                 285,
+		"google_notebooks_instance":                                    286,
+		"google_notebooks_instance_iam":                                287,
+		"google_notebooks_location":                                    288,
+		"google_organization_access_approval_settings":                 289,
+		"google_os_config_guest_policies":                              290,
+		"google_os_config_patch_deployment":                            291,
+		"google_os_login_ssh_public_key":                               292,
+		"google_privateca_certificate":                                 293,
+		"google_privateca_certificate_authority":                       294,
+		"google_privateca_certificate_authority_iam":                   295,
+		"google_project_access_approval_settings":                      296,
+		"google_project_service_identity":                              297,
+		"google_pubsub_lite_subscription":                              298,
+		"google_pubsub_lite_topic":                                     299,
+		"google_pubsub_schema":                                         300,
+		"google_pubsub_subscription":                                   301,
+		"google_pubsub_subscription_iam":                               302,
+		"google_pubsub_topic":                                          303,
+		"google_pubsub_topic_iam":                                      304,
+		"google_redis_instance":                                        305,
+		"google_resource_manager_lien":                                 306,
+		"google_runtimeconfig_config":                                  307,
+		"google_runtimeconfig_config_iam":                              308,
+		"google_runtimeconfig_variable":                                309,
+		"google_scc_source":                                            310,
+		"google_secret_manager_secret":                                 311,
+		"google_secret_manager_secret_iam":                             312,
+		"google_secret_manager_secret_version":                         313,
+		"google_security_scanner_scan_config":                          314,
+		"google_service_directory_endpoint":                            315,
+		"google_service_directory_namespace":                           316,
+		"google_service_directory_namespace_iam":                       317,
+		"google_service_directory_service":                             318,
+		"google_service_directory_service_iam":                         319,
+		"google_service_networking_connection":                         320,
+		"google_service_usage_consumer_quota_override":                 321,
+		"google_sourcerepo_repository":                                 322,
+		"google_sourcerepo_repository_iam":                             323,
+		"google_spanner_database":                                      324,
+		"google_spanner_database_iam":                                  325,
+		"google_spanner_instance":                                      326,
+		"google_spanner_instance_iam":                                  327,
+		"google_sql_database":                                          328,
+		"google_sql_database_instance":                                 329,
+		"google_sql_source_representation_instance":                    330,
+		"google_sql_ssl_cert":                                          331,
+		"google_sql_user":                                              332,
+		"google_storage_bucket":                                        333,
+		"google_storage_bucket_access_control":                         334,
+		"google_storage_bucket_acl":                                    335,
+		"google_storage_bucket_iam":                                    336,
+		"google_storage_bucket_object":                                 337,
+		"google_storage_default_object_access_control":                 338,
+		"google_storage_default_object_acl":                            339,
+		"google_storage_hmac_key":                                      340,
+		"google_storage_notification":                                  341,
+		"google_storage_object_access_control":                         342,
+		"google_storage_object_acl":                                    343,
+		"google_storage_transfer_job":                                  344,
+		"google_tags_tag_binding":                                      345,
+		"google_tags_tag_key":                                          346,
+		"google_tags_tag_key_iam":                                      347,
+		"google_tags_tag_value":                                        348,
+		"google_tags_tag_value_iam":                                    349,
+		"google_tpu_node":                                              350,
+		"google_project_usage_export_bucket":                           351,
+		"google_vpc_access_connector":                                  352,
+		"google_workflows_workflow":                                    353,
 	}
 )
 

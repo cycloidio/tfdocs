@@ -137,7 +137,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "http",
-					Description: `http is a list of http selectors pointing to backends. In the example: http:///? -> backend where where parts of the url correspond to RFC 3986, this resource will be used to match against everything after the last '/' and before the first '?' or '#'. See ` + "`" + `http` + "`" + ` block attributes below. #### ` + "`" + `http` + "`" + ``,
+					Description: `http is a list of http selectors pointing to backends. In the example: http:///? -> backend where parts of the url correspond to RFC 3986, this resource will be used to match against everything after the last '/' and before the first '?' or '#'. See ` + "`" + `http` + "`" + ` block attributes below. #### ` + "`" + `http` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -203,7 +203,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "http",
-					Description: `http is a list of http selectors pointing to backends. In the example: http:///? -> backend where where parts of the url correspond to RFC 3986, this resource will be used to match against everything after the last '/' and before the first '?' or '#'. See ` + "`" + `http` + "`" + ` block attributes below. #### ` + "`" + `http` + "`" + ``,
+					Description: `http is a list of http selectors pointing to backends. In the example: http:///? -> backend where parts of the url correspond to RFC 3986, this resource will be used to match against everything after the last '/' and before the first '?' or '#'. See ` + "`" + `http` + "`" + ` block attributes below. #### ` + "`" + `http` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -261,7 +261,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the namespace that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the namespace that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generation",
@@ -269,7 +269,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) namespaces. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) namespaces. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
 				},
 				resource.Attribute{
 					Name:        "resource_version",
@@ -443,7 +443,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_account_name",
-					Description: `ServiceAccountName is the name of the ServiceAccount to use to run this pod. For more info see http://releases.k8s.io/HEAD/docs/design/service_accounts.md.`,
+					Description: `ServiceAccountName is the name of the ServiceAccount to use to run this pod. For more info see https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/.`,
 				},
 				resource.Attribute{
 					Name:        "share_process_namespace",
@@ -527,7 +527,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "security_context",
-					Description: `Security options the pod should run with. For more info see http://releases.k8s.io/HEAD/docs/design/security_context.md`,
+					Description: `Security options the pod should run with. For more info see https://kubernetes.io/docs/tasks/configure-pod-container/security-context/.`,
 				},
 				resource.Attribute{
 					Name:        "stdin",
@@ -791,7 +791,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ceph_monitors",
-					Description: `A collection of Ceph monitors. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `A collection of Ceph monitors. For more info see https://kubernetes.io/docs/concepts/storage/volumes/#cephfs.`,
 				},
 				resource.Attribute{
 					Name:        "fs_type",
@@ -799,27 +799,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "keyring",
-					Description: `Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "rados_user",
-					Description: `The rados user name. Default is admin. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `The rados user name. Default is admin. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "rbd_image",
-					Description: `The rados image name. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `The rados image name. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "rbd_pool",
-					Description: `The rados pool name. Default is rbd. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it.`,
+					Description: `The rados pool name. Default is rbd. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `Whether to force the read-only setting in VolumeMounts. Defaults to false. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `Whether to force the read-only setting in VolumeMounts. Defaults to false. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "secret_ref",
-					Description: `Name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it ### ` + "`" + `readiness_probe` + "`" + ` #### Attributes`,
+					Description: `Name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd#how-to-use-it. ### ` + "`" + `readiness_probe` + "`" + ` #### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "exec",
@@ -1190,7 +1190,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "load_balancer_source_ranges",
-					Description: `If specified and supported by the platform, this will restrict traffic through the cloud-provider load-balancer will be restricted to the specified client IPs. This field will be ignored if the cloud-provider does not support the feature. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/services-firewalls)`,
+					Description: `If specified and supported by the platform, this will restrict traffic through the cloud-provider load-balancer will be restricted to the specified client IPs. This field will be ignored if the cloud-provider does not support the feature. For more info see [Kubernetes reference](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/).`,
 				},
 				resource.Attribute{
 					Name:        "port",

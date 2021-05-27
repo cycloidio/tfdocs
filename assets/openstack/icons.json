@@ -6,6 +6,7 @@
  "openstack_blockstorage_snapshot_v3": "",
  "openstack_blockstorage_volume_attach_v2": "",
  "openstack_blockstorage_volume_attach_v3": "",
+ "openstack_blockstorage_volume_type_access_v3": "",
  "openstack_blockstorage_volume_type_v3": "",
  "openstack_blockstorage_volume_v1": "",
  "openstack_blockstorage_volume_v2": "",

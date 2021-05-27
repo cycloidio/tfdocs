@@ -492,7 +492,15 @@ It is the only licensing mode for *self-configured* devices
 				},
 				resource.Attribute{
 					Name:        "interface.#.type",
-					Description: `interface type ## Timeouts This resource provides the following [Timeouts configuration](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) options:`,
+					Description: `interface type`,
+				},
+				resource.Attribute{
+					Name:        "asn",
+					Description: `Autonomous system number`,
+				},
+				resource.Attribute{
+					Name:        "zone_code",
+					Description: `Device location zone code ## Timeouts This resource provides the following [Timeouts configuration](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) options:`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -574,7 +582,120 @@ It is the only licensing mode for *self-configured* devices
 				},
 				resource.Attribute{
 					Name:        "interface.#.type",
-					Description: `interface type ## Timeouts This resource provides the following [Timeouts configuration](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) options:`,
+					Description: `interface type`,
+				},
+				resource.Attribute{
+					Name:        "asn",
+					Description: `Autonomous system number`,
+				},
+				resource.Attribute{
+					Name:        "zone_code",
+					Description: `Device location zone code ## Timeouts This resource provides the following [Timeouts configuration](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) options:`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "equinix_network_device_link",
+			Category:         "Resources",
+			ShortDescription: `Provides Equinix Network Edge device link resource`,
+			Description: `
+
+Resource ` + "`" + `equinix_network_device_link` + "`" + ` allows creation and management of Equinix
+Network Edge virtual network device links.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) device link name`,
+				},
+				resource.Attribute{
+					Name:        "subnet",
+					Description: `(Required) device link subnet in CIDR format`,
+				},
+				resource.Attribute{
+					Name:        "device",
+					Description: `(Required) definition of one or more devices belonging to the device link`,
+				},
+				resource.Attribute{
+					Name:        "link",
+					Description: `(Optional) definition of one or more, inter metro, connections belonging to the device link The ` + "`" + `device` + "`" + ` block supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) Device identifier`,
+				},
+				resource.Attribute{
+					Name:        "asn",
+					Description: `(Required) Device ASN number`,
+				},
+				resource.Attribute{
+					Name:        "interface_id",
+					Description: `(Optional) Device network interface identifier to use for device link connection The ` + "`" + `link` + "`" + ` block supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "account_number",
+					Description: `(Required) billing account number to be used for connection charges`,
+				},
+				resource.Attribute{
+					Name:        "throughput",
+					Description: `(Required) connection throughput`,
+				},
+				resource.Attribute{
+					Name:        "throughput_unit",
+					Description: `(Required) connection throughput unit (Mbps or Gbps)`,
+				},
+				resource.Attribute{
+					Name:        "src_metro_code",
+					Description: `(Required) connection source metro code`,
+				},
+				resource.Attribute{
+					Name:        "dst_metro_code",
+					Description: `(Required) connection destination metro code`,
+				},
+				resource.Attribute{
+					Name:        "src_zone_code",
+					Description: `(Required) connection source zone code`,
+				},
+				resource.Attribute{
+					Name:        "dst_zone_code",
+					Description: `(Required) connection destination zone code ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `Device link unique identifier`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Device link provisioning status`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `IP address from device link subnet that was assigned to the device`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `device link provisioning status on a given device`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `Device link unique identifier`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Device link provisioning status`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `IP address from device link subnet that was assigned to the device`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `device link provisioning status on a given device`,
 				},
 			},
 		},
@@ -658,8 +779,9 @@ Edge SSH users.
 		"equinix_network_acl_template":       3,
 		"equinix_network_bgp":                4,
 		"equinix_network_device":             5,
-		"equinix_network_ssh_key":            6,
-		"equinix_network_ssh_user":           7,
+		"equinix_network_device_link":        6,
+		"equinix_network_ssh_key":            7,
+		"equinix_network_ssh_user":           8,
 	}
 )
 

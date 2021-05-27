@@ -668,17 +668,8 @@ var (
 					Name:        "hostnames",
 					Description: `(Required) A list of evaluation hostnames to be used for the specified configuration version. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
 				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the updated evaluation hostname information.`,
-				},
 			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the updated evaluation hostname information.`,
-				},
-			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -707,17 +698,8 @@ var (
 					Name:        "hostnames",
 					Description: `(Required) The evaluation hostnames to be moved to active protection. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
 				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the updated evaluation hostname information.`,
-				},
 			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the updated evaluation hostname information.`,
-				},
-			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -838,17 +820,8 @@ var (
 					Name:        "exception_ip_network_lists",
 					Description: `(Required) The network lists to be allowed regardless of ` + "`" + `mode` + "`" + `, ` + "`" + `geo_network_lists` + "`" + `, and ` + "`" + `ip_network_lists` + "`" + ` parameters. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
 				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the IP/Geo firewall settings.`,
-				},
 			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the IP/Geo firewall settings.`,
-				},
-			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2059,7 +2032,7 @@ var (
 			Name:             "",
 			Type:             "akamai_networklist_activations",
 			Category:         "Network Lists",
-			ShortDescription: `NetworkLists`,
+			ShortDescription: `NetworkList Activations`,
 			Description:      ``,
 			Keywords: []string{
 				"network",
@@ -2100,7 +2073,7 @@ var (
 			Name:             "",
 			Type:             "akamai_networklist_description",
 			Category:         "Network Lists",
-			ShortDescription: `NetworkLists`,
+			ShortDescription: `NetworkList Description`,
 			Description:      ``,
 			Keywords: []string{
 				"network",
@@ -2128,7 +2101,7 @@ var (
 			Name:             "",
 			Type:             "akamai_networklist_network_list",
 			Category:         "Network Lists",
-			ShortDescription: `NetworkLists NetworkList`,
+			ShortDescription: `NetworkList Network List`,
 			Description:      ``,
 			Keywords: []string{
 				"network",
@@ -2154,7 +2127,7 @@ var (
 					Description: `(Required) A string specifying the interpretation of the ` + "`" + `list` + "`" + ` parameter. Must be one of the following:`,
 				},
 				resource.Attribute{
-					Name:        "uniqueid",
+					Name:        "network_list_id",
 					Description: `The ID of the network list.`,
 				},
 				resource.Attribute{
@@ -2164,7 +2137,7 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "uniqueid",
+					Name:        "network_list_id",
 					Description: `The ID of the network list.`,
 				},
 				resource.Attribute{
@@ -2176,14 +2149,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "akamai_networklist_subscription",
-			Category:         "Network List Subscription",
-			ShortDescription: `NetworkLists`,
+			Category:         "Network Lists",
+			ShortDescription: `NetworkList Subscription`,
 			Description:      ``,
 			Keywords: []string{
 				"network",
-				"list",
-				"subscription",
+				"lists",
 				"networklist",
+				"subscription",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{

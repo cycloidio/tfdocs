@@ -209,7 +209,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mtu",
-					Description: `(Optional) mtu for the ethernet interface. Allowed values are "jumbo" and "default".`,
+					Description: `(Optional) mtu for the ethernet interface. Allowed values are "jumbo" and "default". If ` + "`" + `policy` + "`" + ` is configured as "epl_routed_intf" or "int_routed_host_11_1", then allowed value range is from 576 to 9216.`,
 				},
 				resource.Attribute{
 					Name:        "ethernet_speed",
@@ -237,7 +237,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ipv6_prefix",
-					Description: `(Optional) ipv6 prefic for the ethernet.`,
+					Description: `(Optional) ipv6 prefix for the ethernet.`,
 				},
 				resource.Attribute{
 					Name:        "ipv4_prefix",
@@ -249,13 +249,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "serial_number",
-					Description: `Dn for the interface module. ## Importing ## An existing interface can be [imported][docs-import] into this resource via its serial number, type and name, using the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import dcnm_interface.example <type>:<serial_number>:<name> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Dn for the interface module. ## Importing ## An existing interface can be [imported][docs-import] into this resource via its serial number, type and name, using the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import dcnm_interface.example <type>:<serial_number>:<name>:<fabric_name> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "serial_number",
-					Description: `Dn for the interface module. ## Importing ## An existing interface can be [imported][docs-import] into this resource via its serial number, type and name, using the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import dcnm_interface.example <type>:<serial_number>:<name> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Dn for the interface module. ## Importing ## An existing interface can be [imported][docs-import] into this resource via its serial number, type and name, using the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import dcnm_interface.example <type>:<serial_number>:<name>:<fabric_name> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -274,6 +274,38 @@ var (
 					Description: `(Required) fabric name under which inventory should be created.`,
 				},
 				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) username for the the switch.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) password for the the switch.`,
+				},
+				resource.Attribute{
+					Name:        "max_hops",
+					Description: `(Optional) maximum number hops for switch. Ranging from 0 to 10, default value is 0.`,
+				},
+				resource.Attribute{
+					Name:        "auth_protocol",
+					Description: `(Optional) authentication protocol for switch. Mapping is as ` + "`" + `0 : "MD5", 1: "SHA", 2 : "MD5_DES", 3 : "MD5_AES", 4 : "SHA_DES", 5 : "SHA_AES"` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "preserve_config",
+					Description: `(Optional) flag to preserve the configuration of switch. Default value is "false".`,
+				},
+				resource.Attribute{
+					Name:        "platform",
+					Description: `(Optional) platform name for the switch.`,
+				},
+				resource.Attribute{
+					Name:        "second_timeout",
+					Description: `(Optional) second timeout value for switch.`,
+				},
+				resource.Attribute{
+					Name:        "config_timeout",
+					Description: `(Optional) configuration timeout value in minutes. Default value is "5".`,
+				},
+				resource.Attribute{
 					Name:        "switch_config",
 					Description: `(Required) switch configuration block for inventory resource. It consists of the information regarding switches.`,
 				},
@@ -282,40 +314,8 @@ var (
 					Description: `(Required) ip Address of switch.`,
 				},
 				resource.Attribute{
-					Name:        "switch_config.username",
-					Description: `(Required) username for the the switch.`,
-				},
-				resource.Attribute{
-					Name:        "switch_config.password",
-					Description: `(Required) password for the the switch.`,
-				},
-				resource.Attribute{
 					Name:        "switch_config.role",
 					Description: `(Optional) role of the switch. Allowed values are "leaf", "spine", "border", "border_spine", "border_gateway", "border_gateway_spine", "super_spine", "border_super_spine", "border_gateway_super_spine".`,
-				},
-				resource.Attribute{
-					Name:        "switch_config.max_hops",
-					Description: `(Optional) maximum number hops for switch. Ranging from 0 to 10, default value is 0.`,
-				},
-				resource.Attribute{
-					Name:        "switch_config.auth_protocol",
-					Description: `(Optional) authentication protocol for switch. Mapping is as ` + "`" + `0 : "MD5", 1: "SHA", 2 : "MD5_DES", 3 : "MD5_AES", 4 : "SHA_DES", 5 : "SHA_AES"` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "switch_config.preserve_config",
-					Description: `(Optional) flag to preserve the configuration of switch. Default value is "false".`,
-				},
-				resource.Attribute{
-					Name:        "switch_config.platform",
-					Description: `(Optional) platform name for the switch.`,
-				},
-				resource.Attribute{
-					Name:        "switch_config.second_timeout",
-					Description: `(Optional) second timeout value for switch.`,
-				},
-				resource.Attribute{
-					Name:        "switch_config.config_timeout",
-					Description: `(Optional) configuration timeout value in minutes. Default value is "5".`,
 				},
 				resource.Attribute{
 					Name:        "deploy",
@@ -401,7 +401,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_id",
-					Description: `(Optional) Network id to be associated with the network to be created. Pass this value while creating multiple networks in single plan to avoid conflict of autogenerating ids. Id will be computed by DCNM if not provided.`,
+					Description: `(Optional) Network id to be associated with the network to be created. Pass this value while creating multiple networks in single plan to avoid conflict of autogenerating ids. Id will be computed by DCNM if not provided. <strong>Note: </strong> For auto-generation of network-id while creating multiple networks in the same plan, use the depends on functionality of terraform to avoid any network-id conflicts.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
@@ -508,6 +508,10 @@ var (
 					Description: `(Optional) deploy flag, used to deploy the network. Default value is "true".`,
 				},
 				resource.Attribute{
+					Name:        "deploy_timeout",
+					Description: `(Optional) deployment timeout, used as the limiter for the deployment status check for network resource. It is in the unit of seconds and default value is "300".`,
+				},
+				resource.Attribute{
 					Name:        "attachments",
 					Description: `(Optional) attachment block, have information regarding the switches which should be attached or detached to/from network. If ` + "`" + `deploy` + "`" + ` is "true", then atleast one attachment must be configured.`,
 				},
@@ -612,7 +616,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "segment_id",
-					Description: `(Optional) VRF-Segment id. This field is auto-calculated if not provided. However while creating multiple VRFs in the same plan use this field to reserve the VRF id to avoid any conflicts due to concurrent execution.`,
+					Description: `(Optional) VRF-Segment id. This field is auto-calculated if not provided. However while creating multiple VRFs in the same plan use this field to reserve the VRF id to avoid any conflicts due to concurrent execution. <strong>Note: </strong> For auto-generation of segment-id while creating multiple VRFs in the same plan, Use the depends on functionality of terraform to avoid any segment-id conflicts.`,
 				},
 				resource.Attribute{
 					Name:        "vlan",
@@ -709,6 +713,10 @@ var (
 				resource.Attribute{
 					Name:        "deploy",
 					Description: `(Optional) deploy flag, used to deploy the VRF. Default value is "true".`,
+				},
+				resource.Attribute{
+					Name:        "deploy_timeout",
+					Description: `(Optional) deployment timeout, used as the limiter for the deployment status check for VRF resource. It is in the unit of seconds and default value is "300".`,
 				},
 				resource.Attribute{
 					Name:        "attachments",

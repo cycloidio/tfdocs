@@ -11,282 +11,258 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "ovh_cloud_private_network (deprecated)",
+			Type:             "ovh_cloud_project_containerregistry",
 			Category:         "Cloud Resources",
-			ShortDescription: `Creates a private network in a public cloud project.`,
+			ShortDescription: `Creates a container registry associated with a public cloud project.`,
 			Description:      ``,
 			Keywords: []string{
 				"cloud",
-				"private",
-				"network (deprecated)",
+				"project",
+				"containerregistry",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used.`,
+					Name:        "service_name",
+					Description: `The id of the public cloud project. If omitted, the ` + "`" + `OVH_CLOUD_PROJECT_SERVICE` + "`" + ` environment variable is used.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of the network.`,
+					Description: `Registry name`,
 				},
 				resource.Attribute{
-					Name:        "vlan_id",
-					Description: `a vlan id to associate with the network. Changing this value recreates the resource. Defaults to 0.`,
+					Name:        "region",
+					Description: `Region of the registry`,
 				},
 				resource.Attribute{
-					Name:        "regions",
-					Description: `an array of valid OVH public cloud region ID in which the network will be available. Ex.: "GRA1". Defaults to all public cloud regions. ## Attributes Reference The following attributes are exported:`,
+					Name:        "plan_id",
+					Description: `Plan ID of the registry ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "project_id",
-					Description: `See Argument Reference above.`,
+					Name:        "created_at",
+					Description: `Registry creation date`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Registry ID`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `See Argument Reference above.`,
+					Description: `Registry name`,
 				},
 				resource.Attribute{
-					Name:        "vlan_id",
-					Description: `See Argument Reference above.`,
+					Name:        "plan",
+					Description: `Plan of the registry`,
 				},
 				resource.Attribute{
-					Name:        "regions",
-					Description: `See Argument Reference above.`,
+					Name:        "code",
+					Description: `Plan code from the catalog`,
 				},
 				resource.Attribute{
-					Name:        "regions_status",
-					Description: `A map representing the status of the network per region.`,
+					Name:        "created_at",
+					Description: `Plan creation date`,
 				},
 				resource.Attribute{
-					Name:        "regions_status/region",
-					Description: `The id of the region.`,
+					Name:        "features",
+					Description: `Features of the plan`,
 				},
 				resource.Attribute{
-					Name:        "regions_status/status",
-					Description: `The status of the network in the region.`,
+					Name:        "vulnerability",
+					Description: `Vulnerability scanning`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Plan ID`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Plan name`,
+				},
+				resource.Attribute{
+					Name:        "registry_limits",
+					Description: `Container registry limits`,
+				},
+				resource.Attribute{
+					Name:        "image_storage",
+					Description: `Docker image storage limits in bytes`,
+				},
+				resource.Attribute{
+					Name:        "parallel_request",
+					Description: `Parallel requests on Docker image API (/v2 Docker registry API)`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Plan last update date`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `Project ID of your registry`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Region of the registry`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `Current size of the registry (bytes)`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `the status of the network. should be normally set to 'ACTIVE'.`,
+					Description: `Registry status`,
 				},
 				resource.Attribute{
-					Name:        "type",
-					Description: `the type of the network. Either 'private' or 'public'.`,
+					Name:        "updated_at",
+					Description: `Registry last update date`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `Access url of the registry`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version of your registry`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "project_id",
-					Description: `See Argument Reference above.`,
+					Name:        "created_at",
+					Description: `Registry creation date`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Registry ID`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `See Argument Reference above.`,
+					Description: `Registry name`,
 				},
 				resource.Attribute{
-					Name:        "vlan_id",
-					Description: `See Argument Reference above.`,
+					Name:        "plan",
+					Description: `Plan of the registry`,
 				},
 				resource.Attribute{
-					Name:        "regions",
-					Description: `See Argument Reference above.`,
+					Name:        "code",
+					Description: `Plan code from the catalog`,
 				},
 				resource.Attribute{
-					Name:        "regions_status",
-					Description: `A map representing the status of the network per region.`,
+					Name:        "created_at",
+					Description: `Plan creation date`,
 				},
 				resource.Attribute{
-					Name:        "regions_status/region",
-					Description: `The id of the region.`,
+					Name:        "features",
+					Description: `Features of the plan`,
 				},
 				resource.Attribute{
-					Name:        "regions_status/status",
-					Description: `The status of the network in the region.`,
+					Name:        "vulnerability",
+					Description: `Vulnerability scanning`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Plan ID`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Plan name`,
+				},
+				resource.Attribute{
+					Name:        "registry_limits",
+					Description: `Container registry limits`,
+				},
+				resource.Attribute{
+					Name:        "image_storage",
+					Description: `Docker image storage limits in bytes`,
+				},
+				resource.Attribute{
+					Name:        "parallel_request",
+					Description: `Parallel requests on Docker image API (/v2 Docker registry API)`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Plan last update date`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `Project ID of your registry`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Region of the registry`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `Current size of the registry (bytes)`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `the status of the network. should be normally set to 'ACTIVE'.`,
+					Description: `Registry status`,
 				},
 				resource.Attribute{
-					Name:        "type",
-					Description: `the type of the network. Either 'private' or 'public'.`,
+					Name:        "updated_at",
+					Description: `Registry last update date`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `Access url of the registry`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version of your registry`,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "ovh_cloud_private_network_subnet (deprecated)",
+			Type:             "ovh_cloud_project_containerregistry_user",
 			Category:         "Cloud Resources",
-			ShortDescription: `Creates a subnet in a private network of a public cloud project.`,
+			ShortDescription: `Creates a user for a container registry associated with a public cloud project.`,
 			Description:      ``,
 			Keywords: []string{
 				"cloud",
-				"private",
-				"network",
-				"subnet (deprecated)",
+				"project",
+				"containerregistry",
+				"user",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used. Changing this forces a new resource to be created.`,
+					Name:        "service_name",
+					Description: `The id of the public cloud project. If omitted, the ` + "`" + `OVH_CLOUD_PROJECT_SERVICE` + "`" + ` environment variable is used.`,
 				},
 				resource.Attribute{
-					Name:        "network_id",
-					Description: `(Required) The id of the network. Changing this forces a new resource to be created.`,
+					Name:        "registry_id",
+					Description: `Registry ID ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "dhcp",
-					Description: `(Optional) Enable DHCP. Changing this forces a new resource to be created. Defaults to false. _`,
+					Name:        "email",
+					Description: `User email`,
 				},
 				resource.Attribute{
-					Name:        "start",
-					Description: `(Required) First ip for this region. Changing this value recreates the subnet.`,
+					Name:        "id",
+					Description: `User ID`,
 				},
 				resource.Attribute{
-					Name:        "end",
-					Description: `(Required) Last ip for this region. Changing this value recreates the subnet.`,
+					Name:        "password",
+					Description: `(Sensitive) User password`,
 				},
 				resource.Attribute{
-					Name:        "network",
-					Description: `(Required) Global network in CIDR format. Changing this value recreates the subnet`,
-				},
-				resource.Attribute{
-					Name:        "region",
-					Description: `The region in which the network subnet will be created. Ex.: "GRA1". Changing this value recreates the resource.`,
-				},
-				resource.Attribute{
-					Name:        "no_gateway",
-					Description: `Set to true if you don't want to set a default gateway IP. Changing this value recreates the resource. Defaults to false. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "network_id",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "dhcp_id",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "start",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "end",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "network",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "region",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "gateway_ip",
-					Description: `The IP of the gateway`,
-				},
-				resource.Attribute{
-					Name:        "no_gateway",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "cidr",
-					Description: `Ip Block representing the subnet cidr.`,
-				},
-				resource.Attribute{
-					Name:        "ip_pools",
-					Description: `List of ip pools allocated in the subnet.`,
-				},
-				resource.Attribute{
-					Name:        "ip_pools/network",
-					Description: `Global network with cidr.`,
-				},
-				resource.Attribute{
-					Name:        "ip_pools/region",
-					Description: `Region where this subnet is created.`,
-				},
-				resource.Attribute{
-					Name:        "ip_pools/dhcp",
-					Description: `DHCP enabled.`,
-				},
-				resource.Attribute{
-					Name:        "ip_pools/end",
-					Description: `Last ip for this region.`,
-				},
-				resource.Attribute{
-					Name:        "ip_pools/start",
-					Description: `First ip for this region.`,
+					Name:        "user",
+					Description: `User name`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "project_id",
-					Description: `See Argument Reference above.`,
+					Name:        "email",
+					Description: `User email`,
 				},
 				resource.Attribute{
-					Name:        "network_id",
-					Description: `See Argument Reference above.`,
+					Name:        "id",
+					Description: `User ID`,
 				},
 				resource.Attribute{
-					Name:        "dhcp_id",
-					Description: `See Argument Reference above.`,
+					Name:        "password",
+					Description: `(Sensitive) User password`,
 				},
 				resource.Attribute{
-					Name:        "start",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "end",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "network",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "region",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "gateway_ip",
-					Description: `The IP of the gateway`,
-				},
-				resource.Attribute{
-					Name:        "no_gateway",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "cidr",
-					Description: `Ip Block representing the subnet cidr.`,
-				},
-				resource.Attribute{
-					Name:        "ip_pools",
-					Description: `List of ip pools allocated in the subnet.`,
-				},
-				resource.Attribute{
-					Name:        "ip_pools/network",
-					Description: `Global network with cidr.`,
-				},
-				resource.Attribute{
-					Name:        "ip_pools/region",
-					Description: `Region where this subnet is created.`,
-				},
-				resource.Attribute{
-					Name:        "ip_pools/dhcp",
-					Description: `DHCP enabled.`,
-				},
-				resource.Attribute{
-					Name:        "ip_pools/end",
-					Description: `Last ip for this region.`,
-				},
-				resource.Attribute{
-					Name:        "ip_pools/start",
-					Description: `First ip for this region.`,
+					Name:        "user",
+					Description: `User name`,
 				},
 			},
 		},
@@ -304,12 +280,8 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Optional) Deprecated. The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used. One of ` + "`" + `service_name` + "`" + ` or ` + "`" + `project_id` + "`" + ` is required. Conflits with ` + "`" + `service_name` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "service_name",
-					Description: `(Optional) The id of the public cloud project. If omitted, the ` + "`" + `OVH_CLOUD_PROJECT_SERVICE` + "`" + ` environment variable is used. One of ` + "`" + `service_name` + "`" + ` or ` + "`" + `project_id` + "`" + ` is required. Conflits with ` + "`" + `project_id` + "`" + `.`,
+					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_CLOUD_PROJECT_SERVICE` + "`" + ` environment variable is used.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -322,10 +294,6 @@ var (
 				resource.Attribute{
 					Name:        "regions",
 					Description: `an array of valid OVH public cloud region ID in which the network will be available. Ex.: "GRA1". Defaults to all public cloud regions. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
 					Name:        "service_name",
@@ -365,10 +333,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `See Argument Reference above.`,
-				},
 				resource.Attribute{
 					Name:        "service_name",
 					Description: `See Argument Reference above.`,
@@ -422,12 +386,8 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Optional) Deprecated. The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used. One of ` + "`" + `service_name` + "`" + ` or ` + "`" + `project_id` + "`" + ` is required. Conflits with ` + "`" + `service_name` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "service_name",
-					Description: `(Optional) The id of the public cloud project. If omitted, the ` + "`" + `OVH_CLOUD_PROJECT_SERVICE` + "`" + ` environment variable is used. One of ` + "`" + `service_name` + "`" + ` or ` + "`" + `project_id` + "`" + ` is required. Conflits with ` + "`" + `project_id` + "`" + `.`,
+					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_CLOUD_PROJECT_SERVICE` + "`" + ` environment variable is used.`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
@@ -456,10 +416,6 @@ var (
 				resource.Attribute{
 					Name:        "no_gateway",
 					Description: `Set to true if you don't want to set a default gateway IP. Changing this value recreates the resource. Defaults to false. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
 					Name:        "service_name",
@@ -527,10 +483,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `See Argument Reference above.`,
-				},
 				resource.Attribute{
 					Name:        "service_name",
 					Description: `See Argument Reference above.`,
@@ -614,12 +566,8 @@ var (
 					Description: `A description associated with the user.`,
 				},
 				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Optional) Deprecated. The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used. One of ` + "`" + `service_name` + "`" + ` or ` + "`" + `project_id` + "`" + ` is required. Conflits with ` + "`" + `service_name` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "service_name",
-					Description: `(Optional) The id of the public cloud project. If omitted, the ` + "`" + `OVH_CLOUD_PROJECT_SERVICE` + "`" + ` environment variable is used. One of ` + "`" + `service_name` + "`" + ` or ` + "`" + `project_id` + "`" + ` is required. Conflits with ` + "`" + `project_id` + "`" + `.`,
+					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_CLOUD_PROJECT_SERVICE` + "`" + ` environment variable is used.`,
 				},
 				resource.Attribute{
 					Name:        "role_name",
@@ -627,11 +575,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "role_names",
-					Description: `A list of role names. Values can be: - administrator, - ai_training_operator - authentication - backup_operator - compute_operator - image_operator - infrastructure_supervisor - network_operator - network_security_operator - objectstore_operator - volume_operator`,
-				},
-				resource.Attribute{
-					Name:        "service_name",
-					Description: `The id of the public cloud project. Conflicts with ` + "`" + `project_id` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+					Description: `A list of role names. Values can be: - administrator, - ai_training_operator - authentication - backup_operator - compute_operator - image_operator - infrastructure_supervisor - network_operator - network_security_operator - objectstore_operator - volume_operator ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "creation_date",
@@ -648,10 +592,6 @@ var (
 				resource.Attribute{
 					Name:        "password",
 					Description: `(Sensitive) the password generated for the user. The password can be used with the Openstack API. This attribute is sensitive and will only be retrieve once during creation.`,
-				},
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
 					Name:        "roles",
@@ -704,10 +644,6 @@ var (
 					Description: `(Sensitive) the password generated for the user. The password can be used with the Openstack API. This attribute is sensitive and will only be retrieve once during creation.`,
 				},
 				resource.Attribute{
-					Name:        "project_id",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
 					Name:        "roles",
 					Description: `A list of roles associated with the user.`,
 				},
@@ -738,85 +674,6 @@ var (
 				resource.Attribute{
 					Name:        "username",
 					Description: `the username generated for the user. This username can be used with the Openstack API.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "ovh_cloud_user (deprecated)",
-			Category:         "Cloud Resources",
-			ShortDescription: `Creates a user in a public cloud project.`,
-			Description:      ``,
-			Keywords: []string{
-				"cloud",
-				"user (deprecated)",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A description associated with the user. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `the username generated for the user. This username can be used with the Openstack API.`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Sensitive) the password generated for the user. The password can be used with the Openstack API. This attribute is sensitive and will only be retrieve once during creation.`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `the status of the user. should be normally set to 'ok'.`,
-				},
-				resource.Attribute{
-					Name:        "creation_date",
-					Description: `the date the user was created.`,
-				},
-				resource.Attribute{
-					Name:        "openstack_rc",
-					Description: `a convenient map representing an openstack_rc file. Note: no password nor sensitive token is set in this map.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `the username generated for the user. This username can be used with the Openstack API.`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Sensitive) the password generated for the user. The password can be used with the Openstack API. This attribute is sensitive and will only be retrieve once during creation.`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `the status of the user. should be normally set to 'ok'.`,
-				},
-				resource.Attribute{
-					Name:        "creation_date",
-					Description: `the date the user was created.`,
-				},
-				resource.Attribute{
-					Name:        "openstack_rc",
-					Description: `a convenient map representing an openstack_rc file. Note: no password nor sensitive token is set in this map.`,
 				},
 			},
 		},
@@ -2836,20 +2693,12 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "vrack_id",
-					Description: `(Optional) Deprecated. The id of the vrack. If omitted, the ` + "`" + `OVH_VRACK_ID` + "`" + ` environment variable is used. One of ` + "`" + `service_name` + "`" + ` or ` + "`" + `vrack_id` + "`" + ` is required. Conflits with ` + "`" + `service_name` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "service_name",
-					Description: `(Optional) The id of the vrack. If omitted, the ` + "`" + `OVH_VRACK_SERVICE` + "`" + ` environment variable is used. One of ` + "`" + `service_name` + "`" + ` or ` + "`" + `vrack_id` + "`" + ` is required. Conflits with ` + "`" + `vrack_id` + "`" + `.`,
+					Description: `(Required) The id of the vrack. If omitted, the ` + "`" + `OVH_VRACK_SERVICE` + "`" + ` environment variable is used.`,
 				},
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_CLOUD_PROJECT_SERVICE` + "`" + ` environment variable is used. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "vrack_id",
-					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
 					Name:        "service_name",
@@ -2861,10 +2710,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "vrack_id",
-					Description: `See Argument Reference above.`,
-				},
 				resource.Attribute{
 					Name:        "service_name",
 					Description: `See Argument Reference above.`,
@@ -2888,20 +2733,12 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "vrack_id",
-					Description: `(Optional) Deprecated. The id of the vrack. If omitted, the ` + "`" + `OVH_VRACK_ID` + "`" + ` environment variable is used. One of ` + "`" + `service_name` + "`" + ` or ` + "`" + `vrack_id` + "`" + ` is required. Conflits with ` + "`" + `service_name` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "service_name",
-					Description: `(Optional) The id of the vrack. If omitted, the ` + "`" + `OVH_VRACK_SERVICE` + "`" + ` environment variable is used. One of ` + "`" + `service_name` + "`" + ` or ` + "`" + `vrack_id` + "`" + ` is required. Conflits with ` + "`" + `vrack_id` + "`" + `.`,
+					Description: `(Required) The id of the vrack. If omitted, the ` + "`" + `OVH_VRACK_SERVICE` + "`" + ` environment variable is used.`,
 				},
 				resource.Attribute{
 					Name:        "server_id",
 					Description: `(Required) The id of the dedicated server. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "vrack_id",
-					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
 					Name:        "service_name",
@@ -2913,10 +2750,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "vrack_id",
-					Description: `See Argument Reference above.`,
-				},
 				resource.Attribute{
 					Name:        "service_name",
 					Description: `See Argument Reference above.`,
@@ -2941,20 +2774,12 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "vrack_id",
-					Description: `(Optional) Deprecated. The id of the vrack. If omitted, the ` + "`" + `OVH_VRACK_ID` + "`" + ` environment variable is used. One of ` + "`" + `service_name` + "`" + ` or ` + "`" + `vrack_id` + "`" + ` is required. Conflits with ` + "`" + `service_name` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "service_name",
-					Description: `(Optional) The id of the vrack. If omitted, the ` + "`" + `OVH_VRACK_SERVICE` + "`" + ` environment variable is used. One of ` + "`" + `service_name` + "`" + ` or ` + "`" + `vrack_id` + "`" + ` is required. Conflits with ` + "`" + `vrack_id` + "`" + `.`,
+					Description: `(Required) The id of the vrack. If omitted, the ` + "`" + `OVH_VRACK_SERVICE` + "`" + ` environment variable is used.`,
 				},
 				resource.Attribute{
 					Name:        "interface_id",
 					Description: `(Required) The id of dedicated server network interface. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "vrack_id",
-					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
 					Name:        "service_name",
@@ -2966,10 +2791,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "vrack_id",
-					Description: `See Argument Reference above.`,
-				},
 				resource.Attribute{
 					Name:        "service_name",
 					Description: `See Argument Reference above.`,
@@ -3023,39 +2844,38 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"ovh_cloud_private_network (deprecated)":                      0,
-		"ovh_cloud_private_network_subnet (deprecated)":               1,
+		"ovh_cloud_project_containerregistry":                         0,
+		"ovh_cloud_project_containerregistry_user":                    1,
 		"ovh_cloud_project_network_private":                           2,
 		"ovh_cloud_project_network_private_subnet":                    3,
 		"ovh_cloud_project_user":                                      4,
-		"ovh_cloud_user (deprecated)":                                 5,
-		"ovh_dedicated_ceph_acl":                                      6,
-		"ovh_dedicated_server_reboot_task":                            7,
-		"ovh_dedicated_server_update":                                 8,
-		"ovh_ip_reverse":                                              9,
-		"ovh_iploadbalancing_http_farm":                               10,
-		"ovh_iploadbalancing_http_farm_server":                        11,
-		"ovh_iploadbalancing_http_frontend":                           12,
-		"ovh_iploadbalancing_http_route":                              13,
-		"ovh_iploadbalancing_http_route_rule":                         14,
-		"ovh_iploadbalancing_refresh":                                 15,
-		"ovh_iploadbalancing_tcp_farm":                                16,
-		"ovh_iploadbalancing_tcp_farm_server":                         17,
-		"ovh_iploadbalancing_tcp_frontend":                            18,
-		"ovh_iploadbalancing_vrack_network":                           19,
-		"ovh_me_identity_user":                                        20,
-		"ovh_me_installation_template":                                21,
-		"ovh_me_installation_template_partition_scheme":               22,
-		"ovh_me_installation_template_partition_scheme_hardware_raid": 23,
-		"ovh_me_installation_template_partition_scheme_partition":     24,
-		"ovh_me_ipxe_script":                                          25,
-		"ovh_me_ssh_key":                                              26,
-		"ovh_domain_zone_record":                                      27,
-		"ovh_domain_zone_redirection":                                 28,
-		"ovh_vrack_cloudproject":                                      29,
-		"ovh_vrack_dedicated_server":                                  30,
-		"ovh_vrack_dedicated_server_interface":                        31,
-		"ovh_vrack_iploadbalancing":                                   32,
+		"ovh_dedicated_ceph_acl":                                      5,
+		"ovh_dedicated_server_reboot_task":                            6,
+		"ovh_dedicated_server_update":                                 7,
+		"ovh_ip_reverse":                                              8,
+		"ovh_iploadbalancing_http_farm":                               9,
+		"ovh_iploadbalancing_http_farm_server":                        10,
+		"ovh_iploadbalancing_http_frontend":                           11,
+		"ovh_iploadbalancing_http_route":                              12,
+		"ovh_iploadbalancing_http_route_rule":                         13,
+		"ovh_iploadbalancing_refresh":                                 14,
+		"ovh_iploadbalancing_tcp_farm":                                15,
+		"ovh_iploadbalancing_tcp_farm_server":                         16,
+		"ovh_iploadbalancing_tcp_frontend":                            17,
+		"ovh_iploadbalancing_vrack_network":                           18,
+		"ovh_me_identity_user":                                        19,
+		"ovh_me_installation_template":                                20,
+		"ovh_me_installation_template_partition_scheme":               21,
+		"ovh_me_installation_template_partition_scheme_hardware_raid": 22,
+		"ovh_me_installation_template_partition_scheme_partition":     23,
+		"ovh_me_ipxe_script":                                          24,
+		"ovh_me_ssh_key":                                              25,
+		"ovh_domain_zone_record":                                      26,
+		"ovh_domain_zone_redirection":                                 27,
+		"ovh_vrack_cloudproject":                                      28,
+		"ovh_vrack_dedicated_server":                                  29,
+		"ovh_vrack_dedicated_server_interface":                        30,
+		"ovh_vrack_iploadbalancing":                                   31,
 	}
 )
 

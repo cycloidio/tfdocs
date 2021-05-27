@@ -162,6 +162,10 @@ var (
 					Description: `The name of the [SSH key pair][sshkeypair] to install when creating Compute instances.`,
 				},
 				resource.Attribute{
+					Name:        "instance_prefix",
+					Description: `The string to add as prefix to managed Compute instances name (default ` + "`" + `pool` + "`" + `).`,
+				},
+				resource.Attribute{
 					Name:        "affinity_group_ids",
 					Description: `A list of [Anti-Affinity Group][r-affinity] IDs (at creation time only).`,
 				},
@@ -175,7 +179,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "elastic_ip_ids",
-					Description: `A list of [Elastic IP][eip-doc] IDs. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
+					Description: `A list of [Elastic IP][eip-doc] IDs.`,
+				},
+				resource.Attribute{
+					Name:        "deploy_target_id",
+					Description: `A Deploy Target ID. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
 				},
 			},
 			Attributes: []resource.Attribute{},

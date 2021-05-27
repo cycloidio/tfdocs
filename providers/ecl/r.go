@@ -2860,15 +2860,15 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "ecl_security_host_based_v1",
+			Type:             "ecl_security_host_based_v2",
 			Category:         "Security Resources",
-			ShortDescription: `Manages a V1 Host Based Security resource within Enterprise Cloud.`,
+			ShortDescription: `Manages a V2 Host Based Security resource within Enterprise Cloud. If you are using V1 Security Service, please install v1.13.0 of terraform-provider-ecl.`,
 			Description:      ``,
 			Keywords: []string{
 				"security",
 				"host",
 				"based",
-				"v1",
+				"v2",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2904,9 +2904,9 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "ecl_security_network_based_device_ha_v1",
+			Type:             "ecl_security_network_based_device_ha_v2",
 			Category:         "Security Resources",
-			ShortDescription: `Manages a V1 Network Based Device(HA) resource within Enterprise Cloud.`,
+			ShortDescription: `Manages a V2 Network Based Device(HA) resource within Enterprise Cloud. If you are using V1 Security Service, please install v1.13.0 of terraform-provider-ecl.`,
 			Description:      ``,
 			Keywords: []string{
 				"security",
@@ -2914,7 +2914,7 @@ var (
 				"based",
 				"device",
 				"ha",
-				"v1",
+				"v2",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -3095,9 +3095,9 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "ecl_security_network_based_device_single_v1",
+			Type:             "ecl_security_network_based_device_single_v2",
 			Category:         "Security Resources",
-			ShortDescription: `Manages a V1 Network Based Device(Single) resource within Enterprise Cloud.`,
+			ShortDescription: `Manages a V2 Network Based Device(Single) resource within Enterprise Cloud. If you are using V1 Security Service, please install v1.13.0 of terraform-provider-ecl.`,
 			Description:      ``,
 			Keywords: []string{
 				"security",
@@ -3105,7 +3105,7 @@ var (
 				"based",
 				"device",
 				"single",
-				"v1",
+				"v2",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -3214,9 +3214,9 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "ecl_security_network_based_waf_single_v1",
+			Type:             "ecl_security_network_based_waf_single_v2",
 			Category:         "Security Resources",
-			ShortDescription: `Manages a V1 Network Based WAF(Single) resource within Enterprise Cloud.`,
+			ShortDescription: `Manages a V2 Network Based WAF(Single) resource within Enterprise Cloud. If you are using V1 Security Service, please install v1.13.0 of terraform-provider-ecl.`,
 			Description:      ``,
 			Keywords: []string{
 				"security",
@@ -3224,7 +3224,7 @@ var (
 				"based",
 				"waf",
 				"single",
-				"v1",
+				"v2",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -4035,10 +4035,10 @@ var (
 		"provider_connectivity_tenant_connection_request_v2": 22,
 		"ecl_provider_connectivity_tenant_connection_v2":     23,
 		"ecl_rca_user_v1":                                    24,
-		"ecl_security_host_based_v1":                         25,
-		"ecl_security_network_based_device_ha_v1":            26,
-		"ecl_security_network_based_device_single_v1":        27,
-		"ecl_security_network_based_waf_single_v1":           28,
+		"ecl_security_host_based_v2":                         25,
+		"ecl_security_network_based_device_ha_v2":            26,
+		"ecl_security_network_based_device_single_v2":        27,
+		"ecl_security_network_based_waf_single_v2":           28,
 		"ecl_sss_approval_request_v1":                        29,
 		"ecl_sss_tenant_v1":                                  30,
 		"ecl_sss_user_v1":                                    31,

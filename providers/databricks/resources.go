@@ -292,7 +292,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "policy_id",
-					Description: `(Optional) Identifier of [Custer Policy](cluster_policy.md) to validate cluster and preset certain defaults.`,
+					Description: `(Optional) Identifier of [Cluster Policy](cluster_policy.md) to validate cluster and preset certain defaults.`,
 				},
 				resource.Attribute{
 					Name:        "autotermination_minutes",
@@ -332,7 +332,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_pinned",
-					Description: `(Optional) boolean value specifying if cluster is pinned (not pinned by default). You must be a Databricks administrator to use this. The pinned clusters' maximum number is [limited to 20](https://docs.databricks.com/clusters/clusters-manage.html#pin-a-cluster), so ` + "`" + `apply` + "`" + ` may fail if you have more than that. The following example demonstrates how to create an autoscaling cluster with [Delta Cache](https://docs.databricks.com/delta/optimizations/delta-cache.html) enabled: ` + "`" + `` + "`" + `` + "`" + `hcl data "databricks_node_type" "smallest" { local_disk = true } data "databricks_spark_version" "latest_lts" { long_term_support = true } resource "databricks_cluster" "shared_autoscaling" { cluster_name = "Shared Autoscaling" spark_version = data.databricks_spark_version.latest_lts.id node_type_id = data.databricks_node_type.smallest.id autotermination_minutes = 20 autoscale { min_workers = 1 max_workers = 50 } spark_conf { "spark.databricks.io.cache.enabled": true, "spark.databricks.io.cache.maxDiskUsage": "50g", "spark.databricks.io.cache.maxMetaDataCache": "1g" } } ` + "`" + `` + "`" + `` + "`" + ` ## Fixed size or autoscaling cluster When you [create a Databricks cluster](https://docs.databricks.com/clusters/configure.html#cluster-size-and-autoscaling), you can either provide a ` + "`" + `num_workers` + "`" + ` for the fixed-size cluster or provide ` + "`" + `min_workers` + "`" + ` and/or ` + "`" + `max_workers` + "`" + ` for the cluster within the ` + "`" + `autoscale` + "`" + ` group. When you give a fixed-sized cluster, Databricks ensures that your cluster has a specified number of workers. When you provide a range for the number of workers, Databricks chooses the appropriate number of workers required to run your job - also known as "autoscaling." With autoscaling, Databricks dynamically reallocates workers to account for the characteristics of your job. Certain parts of your pipeline may be more computationally demanding than others, and Databricks automatically adds additional workers during these phases of your job (and removes them when they’re no longer needed). ` + "`" + `autoscale` + "`" + ` optional configuration block supports the following:`,
+					Description: `(Optional) boolean value specifying if cluster is pinned (not pinned by default). You must be a Databricks administrator to use this. The pinned clusters' maximum number is [limited to 20](https://docs.databricks.com/clusters/clusters-manage.html#pin-a-cluster), so ` + "`" + `apply` + "`" + ` may fail if you have more than that. The following example demonstrates how to create an autoscaling cluster with [Delta Cache](https://docs.databricks.com/delta/optimizations/delta-cache.html) enabled: ` + "`" + `` + "`" + `` + "`" + `hcl data "databricks_node_type" "smallest" { local_disk = true } data "databricks_spark_version" "latest_lts" { long_term_support = true } resource "databricks_cluster" "shared_autoscaling" { cluster_name = "Shared Autoscaling" spark_version = data.databricks_spark_version.latest_lts.id node_type_id = data.databricks_node_type.smallest.id autotermination_minutes = 20 autoscale { min_workers = 1 max_workers = 50 } spark_conf = { "spark.databricks.io.cache.enabled": true, "spark.databricks.io.cache.maxDiskUsage": "50g", "spark.databricks.io.cache.maxMetaDataCache": "1g" } } ` + "`" + `` + "`" + `` + "`" + ` ## Fixed size or autoscaling cluster When you [create a Databricks cluster](https://docs.databricks.com/clusters/configure.html#cluster-size-and-autoscaling), you can either provide a ` + "`" + `num_workers` + "`" + ` for the fixed-size cluster or provide ` + "`" + `min_workers` + "`" + ` and/or ` + "`" + `max_workers` + "`" + ` for the cluster within the ` + "`" + `autoscale` + "`" + ` group. When you give a fixed-sized cluster, Databricks ensures that your cluster has a specified number of workers. When you provide a range for the number of workers, Databricks chooses the appropriate number of workers required to run your job - also known as "autoscaling." With autoscaling, Databricks dynamically reallocates workers to account for the characteristics of your job. Certain parts of your pipeline may be more computationally demanding than others, and Databricks automatically adds additional workers during these phases of your job (and removes them when they’re no longer needed). ` + "`" + `autoscale` + "`" + ` optional configuration block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "min_workers",
@@ -368,7 +368,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "canned_acl",
-					Description: `(Optional) Set canned access control list, e.g. ` + "`" + `bucket-owner-full-control` + "`" + `. If ` + "`" + `canned_cal` + "`" + ` is set, the cluster instance profile must have ` + "`" + `s3:PutObjectAcl` + "`" + ` permission on the destination bucket and prefix. The full list of possible canned ACLs can be found [here](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl). By default, only the object owner gets full control. If you are using a cross-account role for writing data, you may want to set ` + "`" + `bucket-owner-full-control` + "`" + ` to make bucket owners able to read the logs. ## init_scripts You can specify up to 10 different init scripts for the specific cluster. If you want a shell script to run on all clusters and jobs within the same workspace, you should consider [databricks_global_init_script](global_init_script.md). Example of taking init script from DBFS: ` + "`" + `` + "`" + `` + "`" + `hcl init_scripts { dbfs { destination = "dbfs://init-scripts/install-elk.sh" } } ` + "`" + `` + "`" + `` + "`" + ` Example of taking init script from S3: ` + "`" + `` + "`" + `` + "`" + `hcl init_scripts { s3 { destination = "s3a://acmecorp-main/init-scripts/install-elk.sh" region = "us-east-1" } } ` + "`" + `` + "`" + `` + "`" + ` Attributes are the same as for the ` + "`" + `cluster_log_conf` + "`" + ` configuration block. ## aws_attributes ` + "`" + `aws_attributes` + "`" + ` optional configuration block contains attributes related to [clusters running on Amazon Web Services](https://docs.databricks.com/clusters/configure.html#aws-configurations). ->`,
+					Description: `(Optional) Set canned access control list, e.g. ` + "`" + `bucket-owner-full-control` + "`" + `. If ` + "`" + `canned_cal` + "`" + ` is set, the cluster instance profile must have ` + "`" + `s3:PutObjectAcl` + "`" + ` permission on the destination bucket and prefix. The full list of possible canned ACLs can be found [here](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl). By default, only the object owner gets full control. If you are using a cross-account role for writing data, you may want to set ` + "`" + `bucket-owner-full-control` + "`" + ` to make bucket owners able to read the logs. ## init_scripts You can specify up to 10 different init scripts for the specific cluster. If you want a shell script to run on all clusters and jobs within the same workspace, you should consider [databricks_global_init_script](global_init_script.md). Example of taking init script from DBFS: ` + "`" + `` + "`" + `` + "`" + `hcl init_scripts { dbfs { destination = "dbfs://init-scripts/install-elk.sh" } } ` + "`" + `` + "`" + `` + "`" + ` Example of taking init script from S3: ` + "`" + `` + "`" + `` + "`" + `hcl init_scripts { s3 { destination = "s3a://acmecorp-main/init-scripts/install-elk.sh" region = "us-east-1" } } ` + "`" + `` + "`" + `` + "`" + ` Like the ` + "`" + `cluster_log_conf` + "`" + ` configuration block, init scripts support S3 and DBFS locations. In addition, you can also specify a local file as follows: ` + "`" + `` + "`" + `` + "`" + `hcl init_scripts { file { destination = "file:/my/local/file.sh" } } ` + "`" + `` + "`" + `` + "`" + ` ## aws_attributes ` + "`" + `aws_attributes` + "`" + ` optional configuration block contains attributes related to [clusters running on Amazon Web Services](https://docs.databricks.com/clusters/configure.html#aws-configurations). Here is the example of shared autoscaling cluster with some of AWS options set: ` + "`" + `` + "`" + `` + "`" + `hcl resource "databricks_cluster" "this" { cluster_name = "Shared Autoscaling" spark_version = "6.6.x-scala2.11" node_type_id = "i3.xlarge" autotermination_minutes = 20 autoscale { min_workers = 1 max_workers = 50 } aws_attributes { availability = "SPOT" zone_id = "us-east-1" first_on_demand = 1 spot_bid_price_percent = 100 } } ` + "`" + `` + "`" + `` + "`" + ` The following options are available:`,
 				},
 				resource.Attribute{
 					Name:        "zone_id",
@@ -400,7 +400,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ebs_volume_size",
-					Description: `(Optional) The size of each EBS volume (in GiB) launched for each instance. For general purpose SSD, this value must be within the range 100 - 4096. For throughput optimized HDD, this value must be within the range 500 - 4096. Custom EBS volumes cannot be specified for the legacy node types (memory-optimized and compute-optimized). ## azure_attributes ` + "`" + `azure_attributes` + "`" + ` optional configuration block contains attributes related to [clusters running on Azure](https://docs.microsoft.com/en-us/azure/databricks/dev-tools/api/latest/clusters#--azureattributes). ->`,
+					Description: `(Optional) The size of each EBS volume (in GiB) launched for each instance. For general purpose SSD, this value must be within the range 100 - 4096. For throughput optimized HDD, this value must be within the range 500 - 4096. Custom EBS volumes cannot be specified for the legacy node types (memory-optimized and compute-optimized). ## azure_attributes ` + "`" + `azure_attributes` + "`" + ` optional configuration block contains attributes related to [clusters running on Azure](https://docs.microsoft.com/en-us/azure/databricks/dev-tools/api/latest/clusters#--azureattributes). Here is the example of shared autoscaling cluster with some of AWS options set: ` + "`" + `` + "`" + `` + "`" + `hcl resource "databricks_cluster" "this" { cluster_name = "Shared Autoscaling" spark_version = "6.6.x-scala2.11" node_type_id = "Standard_DS3_v2" autotermination_minutes = 20 autoscale { min_workers = 1 max_workers = 50 } azure_attributes { availability = "SPOT_AZURE" first_on_demand = 1 spot_bid_max_price = 100 } } ` + "`" + `` + "`" + `` + "`" + ` The following options are [available](https://docs.microsoft.com/en-us/azure/databricks/dev-tools/api/latest/clusters#--azureattributes):`,
 				},
 				resource.Attribute{
 					Name:        "availability",
@@ -412,7 +412,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "spot_bid_max_price",
-					Description: `(Optional) The max price for Azure spot instances. Use ` + "`" + `-1` + "`" + ` to specify lowest price. ## gcp_attributes ` + "`" + `gcp_attributes` + "`" + ` optional configuration block contains attributes related to [clusters running on GCP](https://docs.gcp.databricks.com/dev-tools/api/latest/clusters.html#clustergcpattributes). ->`,
+					Description: `(Optional) The max price for Azure spot instances. Use ` + "`" + `-1` + "`" + ` to specify lowest price. ## gcp_attributes ` + "`" + `gcp_attributes` + "`" + ` optional configuration block contains attributes related to [clusters running on GCP](https://docs.gcp.databricks.com/dev-tools/api/latest/clusters.html#clustergcpattributes). The following options are available:`,
 				},
 				resource.Attribute{
 					Name:        "use_preemptible_executors",
@@ -528,7 +528,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_size",
-					Description: `The file size of the file that is being tracked by this resource in bytes. ## Import The resource dbfs file can be imported using the path of the file ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_dbfs_file.this <path> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The file size of the file that is being tracked by this resource in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "dbfs_path",
+					Description: `Path, but with ` + "`" + `dbfs:` + "`" + ` prefix ## Import The resource dbfs file can be imported using the path of the file ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_dbfs_file.this <path> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -538,7 +542,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_size",
-					Description: `The file size of the file that is being tracked by this resource in bytes. ## Import The resource dbfs file can be imported using the path of the file ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_dbfs_file.this <path> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The file size of the file that is being tracked by this resource in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "dbfs_path",
+					Description: `Path, but with ` + "`" + `dbfs:` + "`" + ` prefix ## Import The resource dbfs file can be imported using the path of the file ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_dbfs_file.this <path> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -712,7 +720,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "preloaded_spark_versions",
-					Description: `(Optional) (List) A list with the runtime version the pool installs on each instance. Pool clusters that use a preloaded runtime version start faster as they do have to wait for the image to download. You can retrieve them via [databricks_spark_version](../data-source/spark-version.md) data source or via [Runtime Versions API](https://docs.databricks.com/dev-tools/api/latest/clusters.html#clusterclusterservicelistsparkversions) call. ### aws_attributes Configuration Block ->`,
+					Description: `(Optional) (List) A list with at most one runtime version the pool installs on each instance. Pool clusters that use a preloaded runtime version start faster as they do not have to wait for the image to download. You can retrieve them via [databricks_spark_version](../data-sources/spark-version.md) data source or via [Runtime Versions API](https://docs.databricks.com/dev-tools/api/latest/clusters.html#clusterclusterservicelistsparkversions) call. ### aws_attributes Configuration Block The following options are [available](https://docs.databricks.com/dev-tools/api/latest/instance-pools.html#clusterinstancepoolawsattributes):`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Required) (String) Identifier for the availability zone/datacenter in which the instance pool resides. This string is of a form like ` + "`" + `"us-west-2a"` + "`" + `. The provided availability zone must be in the same region as the Databricks deployment. For example, ` + "`" + `"us-west-2a"` + "`" + ` is not a valid zone ID if the Databricks deployment resides in the ` + "`" + `"us-east-1"` + "`" + ` region. This is an optional field. If not specified, a default zone is used. You can find the list of available zones as well as the default value by using the [List Zones API](https://docs.databricks.com/dev-tools/api/latest/clusters.html#clusterclusterservicelistavailablezones).`,
 				},
 				resource.Attribute{
 					Name:        "spot_bid_price_percent",
@@ -720,11 +732,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "availability",
-					Description: `(Optional) (String) Availability type used for all instances in the pool. Only ` + "`" + `ON_DEMAND` + "`" + ` and ` + "`" + `SPOT` + "`" + ` are supported.`,
-				},
-				resource.Attribute{
-					Name:        "zone_id",
-					Description: `(Required) (String) Identifier for the availability zone/datacenter in which the instance pool resides. This string is of a form like ` + "`" + `"us-west-2a"` + "`" + `. The provided availability zone must be in the same region as the Databricks deployment. For example, ` + "`" + `"us-west-2a"` + "`" + ` is not a valid zone ID if the Databricks deployment resides in the ` + "`" + `"us-east-1"` + "`" + ` region. This is an optional field. If not specified, a default zone is used. You can find the list of available zones as well as the default value by using the [List Zones API](https://docs.databricks.com/dev-tools/api/latest/clusters.html#clusterclusterservicelistavailablezones). ## azure_attributes Configuration Block ` + "`" + `azure_attributes` + "`" + ` optional configuration block contains attributes related to [instance pools on Azure](https://docs.microsoft.com/en-us/azure/databricks/dev-tools/api/latest/instance-pools#--instancepoolazureattributes). ->`,
+					Description: `(Optional) (String) Availability type used for all instances in the pool. Only ` + "`" + `ON_DEMAND` + "`" + ` and ` + "`" + `SPOT` + "`" + ` are supported. ## azure_attributes Configuration Block ` + "`" + `azure_attributes` + "`" + ` optional configuration block contains attributes related to [instance pools on Azure](https://docs.microsoft.com/en-us/azure/databricks/dev-tools/api/latest/instance-pools#--instancepoolazureattributes). The following options are [available](https://docs.microsoft.com/en-us/azure/databricks/dev-tools/api/latest/clusters#--azureattributes):`,
 				},
 				resource.Attribute{
 					Name:        "availability",
@@ -741,6 +749,14 @@ var (
 				resource.Attribute{
 					Name:        "disk_size",
 					Description: `(Optional) (Integer) The size of each disk (in GiB) to attach. #### disk_type sub-block ` + "`" + `ebs_volume_type` + "`" + ` - (Optional) (String) The EBS volume type to use. Options are: ` + "`" + `GENERAL_PURPOSE_SSD` + "`" + ` (Provision extra storage using AWS gp2 EBS volumes) or ` + "`" + `THROUGHPUT_OPTIMIZED_HDD` + "`" + ` (Provision extra storage using AWS st1 volumes)`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `URL for the Docker image`,
+				},
+				resource.Attribute{
+					Name:        "basic_auth",
+					Description: `(Optional) ` + "`" + `basic_auth.username` + "`" + ` and ` + "`" + `basic_auth.password` + "`" + ` for Docker repository. Docker registry credentials are encrypted when they are stored in Databricks internal storage and when they are passed to a registry upon fetching Docker images at cluster launch. However, other authenticated and authorized API users of this workspace can access the username and password. Example usage with [azurerm_container_registry](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_registry) and [docker_registry_image](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs/resources/registry_image), that you can adapt to your specific use-case: ` + "`" + `` + "`" + `` + "`" + `hcl resource "docker_registry_image" "this" { name = "${azurerm_container_registry.this.login_server}/sample:latest" build { # ... } } resource "databricks_instance_pool" "this" { # ... preloaded_docker_image { url = docker_registry_image.this.name basic_auth { username = azurerm_container_registry.this.admin_username password = azurerm_container_registry.this.admin_password } } } ` + "`" + `` + "`" + `` + "`" + ` ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -768,7 +784,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_profile_arn",
-					Description: `(Required) ` + "`" + `ARN` + "`" + ` attribute of ` + "`" + `aws_iam_instance_profile` + "`" + ` output, the EC2 instance profile association to AWS IAM role. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required) ` + "`" + `ARN` + "`" + ` attribute of ` + "`" + `aws_iam_instance_profile` + "`" + ` output, the EC2 instance profile association to AWS IAM role. This ARN would be validated upon resource creation and it's not possible to skip validation. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -884,7 +900,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "timezone_id",
-					Description: `(Required) A Java timezone ID. The schedule for a job will be resolved with respect to this timezone. See Java TimeZone for details. This field is required. ### spark_jar_task Configuration Block`,
+					Description: `(Required) A Java timezone ID. The schedule for a job will be resolved with respect to this timezone. See Java TimeZone for details. This field is required.`,
+				},
+				resource.Attribute{
+					Name:        "pause_status",
+					Description: `(Optional) Indicate whether this schedule is paused or not. Either “PAUSED” or “UNPAUSED”. When the pause_status field is omitted and a schedule is provided, the server will default to using "UNPAUSED" as a value for pause_status. ### spark_jar_task Configuration Block`,
 				},
 				resource.Attribute{
 					Name:        "parameters",
@@ -1005,7 +1025,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "account_id",
-					Description: `Account Id that could be found in the bottom left corner of [Accounts Console](https://accounts.cloud.databricks.com/) ### aws_key_info Configuration Block`,
+					Description: `Account Id that could be found in the bottom left corner of [Accounts Console](https://accounts.cloud.databricks.com/)`,
+				},
+				resource.Attribute{
+					Name:        "MANAGED_SERVICES",
+					Description: `for encryption of the workspace objects (notebooks, secrets) that are stored in the control plane`,
+				},
+				resource.Attribute{
+					Name:        "STORAGE",
+					Description: `for encryption of the DBFS Storage & Cluster EBS Volumes ### aws_key_info Configuration Block`,
 				},
 				resource.Attribute{
 					Name:        "key_arn",
@@ -1091,7 +1119,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "security_group_ids",
-					Description: `ids of [aws_security_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `ids of [aws_security_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group)`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1126,6 +1154,52 @@ var (
 				resource.Attribute{
 					Name:        "workspace_id",
 					Description: `(Integer) id of associated workspace`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_mws_private_access_settings",
+			Category:         "AWS",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"aws",
+				"mws",
+				"private",
+				"access",
+				"settings",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `Account Id that could be found in the bottom left corner of [Accounts Console](https://accounts.cloud.databricks.com/)`,
+				},
+				resource.Attribute{
+					Name:        "private_access_settings_name",
+					Description: `Name of Private Access Settings in Databricks Account`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Region of AWS VPC ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "private_access_settings_id",
+					Description: `Canonical unique identifier of Private Access Settings in Databricks Account`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of Private Access Settings`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "private_access_settings_id",
+					Description: `Canonical unique identifier of Private Access Settings in Databricks Account`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of Private Access Settings`,
 				},
 			},
 		},
@@ -1176,6 +1250,59 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "databricks_mws_vpc_endpoint",
+			Category:         "AWS",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"aws",
+				"mws",
+				"vpc",
+				"endpoint",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `Account Id that could be found in the bottom left corner of [Accounts Console](https://accounts.cloud.databricks.com/)`,
+				},
+				resource.Attribute{
+					Name:        "aws_vpc_endpoint_id",
+					Description: `ID of configured [aws_vpc_endpoint](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint)`,
+				},
+				resource.Attribute{
+					Name:        "vpc_endpoint_name",
+					Description: `Name of VPC Endpoint in Databricks Account`,
+				},
+				resource.Attribute{
+					Name:        "aws_endpoint_service_id",
+					Description: `ID of Databricks VPC endpoint service to connect to. Please contact your Databricks representative to request mapping`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Region of AWS VPC ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "vpc_endpoint_id",
+					Description: `Canonical unique identifier of VPC Endpoint in Databricks Account`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `State of VPC Endpoint`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vpc_endpoint_id",
+					Description: `Canonical unique identifier of VPC Endpoint in Databricks Account`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `State of VPC Endpoint`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "databricks_mws_workspaces",
 			Category:         "AWS",
 			ShortDescription: ``,
@@ -1200,7 +1327,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "customer_managed_key_id",
-					Description: `(Optional) ` + "`" + `customer_managed_key_id` + "`" + ` from [customer managed keys](mws_customer_managed_keys.md)`,
+					Description: `(Optional,`,
+				},
+				resource.Attribute{
+					Name:        "managed_services_customer_managed_key_id",
+					Description: `(Optional) ` + "`" + `customer_managed_key_id` + "`" + ` from [customer managed keys](mws_customer_managed_keys.md) with ` + "`" + `use_cases` + "`" + ` set to ` + "`" + `MANAGED_SERVICES` + "`" + `. This is used to encrypt the workspace's notebook and secret data in the control plane.`,
+				},
+				resource.Attribute{
+					Name:        "storage_customer_managed_key_id",
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "deployment_name",
@@ -1216,7 +1351,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_configuration_id",
-					Description: `` + "`" + `storage_configuration_id` + "`" + ` from [storage configuration](mws_storage_configurations.md) ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `` + "`" + `storage_configuration_id` + "`" + ` from [storage configuration](mws_storage_configurations.md)`,
+				},
+				resource.Attribute{
+					Name:        "private_access_settings_id",
+					Description: `(Optional) Canonical unique identifier of [databricks_mws_private_access_settings](mws_private_access_settings.md) in Databricks Account ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1552,6 +1691,20 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "databricks_sql_dashboard",
+			Category:         "SQL Analytics",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"sql",
+				"analytics",
+				"dashboard",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "databricks_sql_endpoint",
 			Category:         "SQL Analytics",
 			ShortDescription: ``,
@@ -1604,7 +1757,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "odbc_params",
-					Description: `ODBC connection params: ` + "`" + `odbc_params.host` + "`" + `, ` + "`" + `odbc_params.path` + "`" + `, ` + "`" + `odbc_params.protocol` + "`" + `, and ` + "`" + `odbc_params.port` + "`" + `. ## Access Control`,
+					Description: `ODBC connection params: ` + "`" + `odbc_params.host` + "`" + `, ` + "`" + `odbc_params.path` + "`" + `, ` + "`" + `odbc_params.protocol` + "`" + `, and ` + "`" + `odbc_params.port` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "data_source_id",
+					Description: `ID of the data source for this endpoint. This is used to bind an SQLA query to an endpoint. ## Access Control`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1614,9 +1771,154 @@ var (
 				},
 				resource.Attribute{
 					Name:        "odbc_params",
-					Description: `ODBC connection params: ` + "`" + `odbc_params.host` + "`" + `, ` + "`" + `odbc_params.path` + "`" + `, ` + "`" + `odbc_params.protocol` + "`" + `, and ` + "`" + `odbc_params.port` + "`" + `. ## Access Control`,
+					Description: `ODBC connection params: ` + "`" + `odbc_params.host` + "`" + `, ` + "`" + `odbc_params.path` + "`" + `, ` + "`" + `odbc_params.protocol` + "`" + `, and ` + "`" + `odbc_params.port` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "data_source_id",
+					Description: `ID of the data source for this endpoint. This is used to bind an SQLA query to an endpoint. ## Access Control`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_sql_permissions",
+			Category:         "Security",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"security",
+				"sql",
+				"permissions",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "database",
+					Description: `Name of the database. Has default value of ` + "`" + `default` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "table",
+					Description: `Name of the table. Can be combined with ` + "`" + `database` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "view",
+					Description: `Name of the view. Can be combined with ` + "`" + `database` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "catalog",
+					Description: `(Boolean) If this access control for the entire catalog. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "any_file",
+					Description: `(Boolean) If this access control for reading any file. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "anonymous_function",
+					Description: `(Boolean) If this access control for using anonymous function. Defaults to ` + "`" + `false` + "`" + `. ### ` + "`" + `privilege_assignments` + "`" + ` blocks You must specify one or many ` + "`" + `privilege_assignments` + "`" + ` configuration blocks to declare ` + "`" + `privileges` + "`" + ` to a ` + "`" + `principal` + "`" + `, which corresponds to ` + "`" + `display_name` + "`" + ` of [databricks_group](group.md#display_name) or [databricks_user](user.md#display_name). Terraform would ensure that only those principals and privileges defined in the resource are applied for the data object and would remove anything else. It would not remove any transitive privileges. ` + "`" + `DENY` + "`" + ` statements are intentionally not supported. Every ` + "`" + `privilege_assignments` + "`" + ` has the following required arguments:`,
+				},
+				resource.Attribute{
+					Name:        "principal",
+					Description: `` + "`" + `display_name` + "`" + ` of [databricks_group](group.md#display_name) or [databricks_user](user.md#display_name).`,
+				},
+				resource.Attribute{
+					Name:        "privileges",
+					Description: `set of available privilege names in upper case. [Available](https://docs.databricks.com/security/access-control/table-acls/object-privileges.html) privilege names are:`,
+				},
+				resource.Attribute{
+					Name:        "SELECT",
+					Description: `gives read access to an object.`,
+				},
+				resource.Attribute{
+					Name:        "CREATE",
+					Description: `gives the ability to create an object (for example, a table in a database).`,
+				},
+				resource.Attribute{
+					Name:        "MODIFY",
+					Description: `gives the ability to add, delete, and modify data to or from an object.`,
+				},
+				resource.Attribute{
+					Name:        "USAGE",
+					Description: `do not give any abilities, but is an additional requirement to perform any action on a database object.`,
+				},
+				resource.Attribute{
+					Name:        "READ_METADATA",
+					Description: `gives the ability to view an object and its metadata.`,
+				},
+				resource.Attribute{
+					Name:        "CREATE_NAMED_FUNCTION",
+					Description: `gives the ability to create a named UDF in an existing catalog or database.`,
+				},
+				resource.Attribute{
+					Name:        "MODIFY_CLASSPATH",
+					Description: `gives the ability to add files to the Spark class path. -> Even though the value ` + "`" + `ALL PRIVILEGES` + "`" + ` is mentioned in Table ACL documentation, it's not recommended to use it from terraform, as it may result in unnecessary state updates. ## Import The resource can be imported using a synthetic identifier. Examples of valid synthetic identifiers are:`,
+				},
+				resource.Attribute{
+					Name:        "table/default.foo",
+					Description: `table ` + "`" + `foo` + "`" + ` in a ` + "`" + `default` + "`" + ` database. Database is always mandatory.`,
+				},
+				resource.Attribute{
+					Name:        "view/bar.foo",
+					Description: `view ` + "`" + `foo` + "`" + ` in ` + "`" + `bar` + "`" + ` database.`,
+				},
+				resource.Attribute{
+					Name:        "database/bar",
+					Description: `` + "`" + `bar` + "`" + ` database.`,
+				},
+				resource.Attribute{
+					Name:        "catalog/",
+					Description: `entire catalog. ` + "`" + `/` + "`" + ` suffix is mandatory.`,
+				},
+				resource.Attribute{
+					Name:        "any file/",
+					Description: `direct access to any file. ` + "`" + `/` + "`" + ` suffix is mandatory.`,
+				},
+				resource.Attribute{
+					Name:        "anonymous function/",
+					Description: `anonymous function. ` + "`" + `/` + "`" + ` suffix is mandatory. ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_sql_permissions.foo /<object-type>/<object-name> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_sql_query",
+			Category:         "SQL Analytics",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"sql",
+				"analytics",
+				"query",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_sql_visualization",
+			Category:         "SQL Analytics",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"sql",
+				"analytics",
+				"visualization",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_sql_widget",
+			Category:         "SQL Analytics",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"sql",
+				"analytics",
+				"widget",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1742,38 +2044,45 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"databricks_aws_s3_mount":               0,
-		"databricks_azure_adls_gen1_mount":      1,
-		"databricks_azure_adls_gen2_mount":      2,
-		"databricks_azure_blob_mount":           3,
-		"databricks_cluster":                    4,
-		"databricks_cluster_policy":             5,
-		"databricks_dbfs_file":                  6,
-		"databricks_global_init_script":         7,
-		"databricks_group":                      8,
-		"databricks_group_instance_profile":     9,
-		"databricks_group_member":               10,
-		"databricks_instance_pool":              11,
-		"databricks_instance_profile":           12,
-		"databricks_ip_access_list":             13,
-		"databricks_job":                        14,
-		"databricks_mws_credentials":            15,
-		"databricks_mws_customer_managed_keys":  16,
-		"databricks_mws_log_delivery":           17,
-		"databricks_mws_networks":               18,
-		"databricks_mws_storage_configurations": 19,
-		"databricks_mws_workspaces":             20,
-		"databricks_notebook":                   21,
-		"databricks_permissions":                22,
-		"databricks_secret":                     23,
-		"databricks_secret_acl":                 24,
-		"databricks_secret_scope":               25,
-		"databricks_service_principal":          26,
-		"databricks_sql_endpoint":               27,
-		"databricks_token":                      28,
-		"databricks_user":                       29,
-		"databricks_user_instance_profile":      30,
-		"databricks_workspace_conf":             31,
+		"databricks_aws_s3_mount":                0,
+		"databricks_azure_adls_gen1_mount":       1,
+		"databricks_azure_adls_gen2_mount":       2,
+		"databricks_azure_blob_mount":            3,
+		"databricks_cluster":                     4,
+		"databricks_cluster_policy":              5,
+		"databricks_dbfs_file":                   6,
+		"databricks_global_init_script":          7,
+		"databricks_group":                       8,
+		"databricks_group_instance_profile":      9,
+		"databricks_group_member":                10,
+		"databricks_instance_pool":               11,
+		"databricks_instance_profile":            12,
+		"databricks_ip_access_list":              13,
+		"databricks_job":                         14,
+		"databricks_mws_credentials":             15,
+		"databricks_mws_customer_managed_keys":   16,
+		"databricks_mws_log_delivery":            17,
+		"databricks_mws_networks":                18,
+		"databricks_mws_private_access_settings": 19,
+		"databricks_mws_storage_configurations":  20,
+		"databricks_mws_vpc_endpoint":            21,
+		"databricks_mws_workspaces":              22,
+		"databricks_notebook":                    23,
+		"databricks_permissions":                 24,
+		"databricks_secret":                      25,
+		"databricks_secret_acl":                  26,
+		"databricks_secret_scope":                27,
+		"databricks_service_principal":           28,
+		"databricks_sql_dashboard":               29,
+		"databricks_sql_endpoint":                30,
+		"databricks_sql_permissions":             31,
+		"databricks_sql_query":                   32,
+		"databricks_sql_visualization":           33,
+		"databricks_sql_widget":                  34,
+		"databricks_token":                       35,
+		"databricks_user":                        36,
+		"databricks_user_instance_profile":       37,
+		"databricks_workspace_conf":              38,
 	}
 )
 

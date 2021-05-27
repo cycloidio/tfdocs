@@ -28,35 +28,47 @@ Use this data source to access information about an existing Application within 
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
-					Description: `(Optional) Specifies the Application ID of the Azure Active Directory Application.`,
+					Description: `(Optional) Specifies the Application ID (also called Client ID).`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `(Optional) Specifies the display name of the Application within Azure Active Directory.`,
+					Description: `(Optional) Specifies the display name of the application.`,
 				},
 				resource.Attribute{
 					Name:        "object_id",
-					Description: `(Optional) Specifies the Object ID of the Application within Azure Active Directory. ~>`,
+					Description: `(Optional) Specifies the Object ID of the application. ~>`,
+				},
+				resource.Attribute{
+					Name:        "api",
+					Description: `An ` + "`" + `api` + "`" + ` block as documented below.`,
 				},
 				resource.Attribute{
 					Name:        "app_roles",
-					Description: `A collection of ` + "`" + `app_role` + "`" + ` blocks as documented below. For more information https://docs.microsoft.com/en-us/azure/architecture/multitenant-identity/app-roles`,
+					Description: `A collection of ` + "`" + `app_role` + "`" + ` blocks as documented below. For more information see [official documentation on Application Roles](https://docs.microsoft.com/en-us/azure/architecture/multitenant-identity/app-roles).`,
 				},
 				resource.Attribute{
 					Name:        "application_id",
-					Description: `the Application ID of the Azure Active Directory Application.`,
+					Description: `the Application ID (also called Client ID).`,
 				},
 				resource.Attribute{
 					Name:        "available_to_other_tenants",
-					Description: `Is this Azure AD Application available to other tenants?`,
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The display name for the application.`,
+				},
+				resource.Attribute{
+					Name:        "fallback_public_client_enabled",
+					Description: `The fallback application type as public client, such as an installed application running on a mobile device.`,
 				},
 				resource.Attribute{
 					Name:        "group_membership_claims",
 					Description: `The ` + "`" + `groups` + "`" + ` claim issued in a user or OAuth 2.0 access token that the app expects.`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `the Object ID of the Azure Active Directory Application.`,
+					Name:        "homepage",
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "identifier_uris",
@@ -64,19 +76,19 @@ Use this data source to access information about an existing Application within 
 				},
 				resource.Attribute{
 					Name:        "logout_url",
-					Description: `The URL of the logout page.`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "oauth2_allow_implicit_flow",
-					Description: `Does this Azure AD Application allow OAuth2.0 implicit flow tokens?`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "oauth2_permissions",
-					Description: `A collection of OAuth 2.0 permission scopes that the web API (resource) app exposes to client apps. Each permission is covered by a ` + "`" + `oauth2_permission` + "`" + ` block as documented below.`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "object_id",
-					Description: `the Object ID of the Azure Active Directory Application.`,
+					Description: `The application's Object ID.`,
 				},
 				resource.Attribute{
 					Name:        "optional_claims",
@@ -84,19 +96,27 @@ Use this data source to access information about an existing Application within 
 				},
 				resource.Attribute{
 					Name:        "owners",
-					Description: `A list of User Object IDs that are assigned ownership of the application registration.`,
+					Description: `A list of Object IDs for principals that are assigned ownership of the application.`,
 				},
 				resource.Attribute{
 					Name:        "public_client",
-					Description: `Is this Azure AD Application available publicly?`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "reply_urls",
-					Description: `A list of URLs that user tokens are sent to for sign in, or the redirect URIs that OAuth 2.0 authorization codes and access tokens are sent to.`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "required_resource_access",
-					Description: `A collection of ` + "`" + `required_resource_access` + "`" + ` blocks as documented below. --- ` + "`" + `access_token` + "`" + ` and ` + "`" + `id_token` + "`" + ` blocks export the following:`,
+					Description: `A collection of ` + "`" + `required_resource_access` + "`" + ` blocks as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "sign_in_audience",
+					Description: `The Microsoft account types that are supported for the current application. One of ` + "`" + `AzureADMyOrg` + "`" + `, ` + "`" + `AzureADMultipleOrgs` + "`" + `, ` + "`" + `AzureADandPersonalMicrosoftAccount` + "`" + ` or ` + "`" + `PersonalMicrosoftAccount` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "web",
+					Description: `A ` + "`" + `web` + "`" + ` block as documented below. --- ` + "`" + `access_token` + "`" + ` and ` + "`" + `id_token` + "`" + ` blocks export the following:`,
 				},
 				resource.Attribute{
 					Name:        "additional_properties",
@@ -116,27 +136,63 @@ Use this data source to access information about an existing Application within 
 				},
 				resource.Attribute{
 					Name:        "allowed_member_types",
-					Description: `Specifies whether this app role definition can be assigned to users and groups, or to other applications (that are accessing this application in daemon service scenarios). Possible values are: ` + "`" + `User` + "`" + ` and ` + "`" + `Application` + "`" + `, or both.`,
+					Description: `Specifies whether this app role definition can be assigned to users and groups, or to other applications (that are accessing this application in a standalone scenario). Possible values are: ` + "`" + `User` + "`" + ` and ` + "`" + `Application` + "`" + `, or both.`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `Permission help text that appears in the admin app assignment and consent experiences.`,
+					Description: `Description of the app role that appears when the role is being assigned and, if the role functions as an application permissions, during the consent experiences.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `Display name for the permission that appears in the admin consent and app assignment experiences.`,
+					Description: `Display name for the app role that appears during app role assignment and in consent experiences.`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique identifier of the ` + "`" + `app_role` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "is_enabled",
+					Name:        "enabled",
 					Description: `Determines if the app role is enabled.`,
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `Specifies the value of the roles claim that the application should expect in the authentication and access tokens. --- ` + "`" + `oauth2_permission` + "`" + ` block exports the following:`,
+					Description: `The value that is used for the ` + "`" + `roles` + "`" + ` claim in ID tokens and OAuth 2.0 access tokens that are authenticating an assigned service or user principal. --- ` + "`" + `implicit_grant` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "access_token_issuance_enabled",
+					Description: `Whether this web application can request an access token using OAuth 2.0 implicit flow. --- ` + "`" + `oauth2_permission_scope` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "admin_consent_description",
+					Description: `(Required) Delegated permission description that appears in all tenant-wide admin consent experiences, intended to be read by an administrator granting the permission on behalf of all users.`,
+				},
+				resource.Attribute{
+					Name:        "admin_consent_display_name",
+					Description: `(Required) Display name for the delegated permission, intended to be read by an administrator granting the permission on behalf of all users.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Determines if the permission scope is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) The unique identifier of the delegated permission. Must be a valid UUID.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Whether this delegated permission should be considered safe for non-admin users to consent to on behalf of themselves, or whether an administrator should be required for consent to the permissions. Possible values are ` + "`" + `User` + "`" + ` or ` + "`" + `Admin` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "user_consent_description",
+					Description: `(Optional) Delegated permission description that appears in the end user consent experience, intended to be read by a user consenting on their own behalf.`,
+				},
+				resource.Attribute{
+					Name:        "user_consent_display_name",
+					Description: `(Optional) Display name for the delegated permission that appears in the end user consent experience.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Optional) The value that is used for the ` + "`" + `scp` + "`" + ` claim in OAuth 2.0 access tokens. --- ` + "`" + `oauth2_permission` + "`" + ` block (deprecated) exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "admin_consent_description",
@@ -172,11 +228,11 @@ Use this data source to access information about an existing Application within 
 				},
 				resource.Attribute{
 					Name:        "resource_access",
-					Description: `A collection of ` + "`" + `resource_access` + "`" + ` blocks as documented below`,
+					Description: `A collection of ` + "`" + `resource_access` + "`" + ` blocks as documented below, describing OAuth2.0 permission scopes and app roles that the application requires from the specified resource.`,
 				},
 				resource.Attribute{
 					Name:        "resource_app_id",
-					Description: `The unique identifier for the resource that the application requires access to. --- ` + "`" + `resource_access` + "`" + ` block exports the following:`,
+					Description: `The unique identifier for the resource that the application requires access to. This is the Application ID of the target application. --- ` + "`" + `resource_access` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -184,29 +240,57 @@ Use this data source to access information about an existing Application within 
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `Specifies whether the id property references an ` + "`" + `OAuth2Permission` + "`" + ` or an ` + "`" + `AppRole` + "`" + `.`,
+					Description: `Specifies whether the ` + "`" + `id` + "`" + ` property references an ` + "`" + `OAuth2Permission` + "`" + ` or an ` + "`" + `AppRole` + "`" + `. Possible values are ` + "`" + `Scope` + "`" + ` or ` + "`" + `Role` + "`" + `. --- ` + "`" + `web` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "homepage_url",
+					Description: `Home page or landing page of the application.`,
+				},
+				resource.Attribute{
+					Name:        "implicit_grant",
+					Description: `An ` + "`" + `implicit_grant` + "`" + ` block as documented above.`,
+				},
+				resource.Attribute{
+					Name:        "logout_url",
+					Description: `The URL that will be used by Microsoft's authorization service to sign out a user using front-channel, back-channel or SAML logout protocols.`,
+				},
+				resource.Attribute{
+					Name:        "redirect_uris",
+					Description: `A list of URLs where user tokens are sent for sign-in, or the redirect URIs where OAuth 2.0 authorization codes and access tokens are sent.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "api",
+					Description: `An ` + "`" + `api` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
 					Name:        "app_roles",
-					Description: `A collection of ` + "`" + `app_role` + "`" + ` blocks as documented below. For more information https://docs.microsoft.com/en-us/azure/architecture/multitenant-identity/app-roles`,
+					Description: `A collection of ` + "`" + `app_role` + "`" + ` blocks as documented below. For more information see [official documentation on Application Roles](https://docs.microsoft.com/en-us/azure/architecture/multitenant-identity/app-roles).`,
 				},
 				resource.Attribute{
 					Name:        "application_id",
-					Description: `the Application ID of the Azure Active Directory Application.`,
+					Description: `the Application ID (also called Client ID).`,
 				},
 				resource.Attribute{
 					Name:        "available_to_other_tenants",
-					Description: `Is this Azure AD Application available to other tenants?`,
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The display name for the application.`,
+				},
+				resource.Attribute{
+					Name:        "fallback_public_client_enabled",
+					Description: `The fallback application type as public client, such as an installed application running on a mobile device.`,
 				},
 				resource.Attribute{
 					Name:        "group_membership_claims",
 					Description: `The ` + "`" + `groups` + "`" + ` claim issued in a user or OAuth 2.0 access token that the app expects.`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `the Object ID of the Azure Active Directory Application.`,
+					Name:        "homepage",
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "identifier_uris",
@@ -214,19 +298,19 @@ Use this data source to access information about an existing Application within 
 				},
 				resource.Attribute{
 					Name:        "logout_url",
-					Description: `The URL of the logout page.`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "oauth2_allow_implicit_flow",
-					Description: `Does this Azure AD Application allow OAuth2.0 implicit flow tokens?`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "oauth2_permissions",
-					Description: `A collection of OAuth 2.0 permission scopes that the web API (resource) app exposes to client apps. Each permission is covered by a ` + "`" + `oauth2_permission` + "`" + ` block as documented below.`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "object_id",
-					Description: `the Object ID of the Azure Active Directory Application.`,
+					Description: `The application's Object ID.`,
 				},
 				resource.Attribute{
 					Name:        "optional_claims",
@@ -234,19 +318,27 @@ Use this data source to access information about an existing Application within 
 				},
 				resource.Attribute{
 					Name:        "owners",
-					Description: `A list of User Object IDs that are assigned ownership of the application registration.`,
+					Description: `A list of Object IDs for principals that are assigned ownership of the application.`,
 				},
 				resource.Attribute{
 					Name:        "public_client",
-					Description: `Is this Azure AD Application available publicly?`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "reply_urls",
-					Description: `A list of URLs that user tokens are sent to for sign in, or the redirect URIs that OAuth 2.0 authorization codes and access tokens are sent to.`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "required_resource_access",
-					Description: `A collection of ` + "`" + `required_resource_access` + "`" + ` blocks as documented below. --- ` + "`" + `access_token` + "`" + ` and ` + "`" + `id_token` + "`" + ` blocks export the following:`,
+					Description: `A collection of ` + "`" + `required_resource_access` + "`" + ` blocks as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "sign_in_audience",
+					Description: `The Microsoft account types that are supported for the current application. One of ` + "`" + `AzureADMyOrg` + "`" + `, ` + "`" + `AzureADMultipleOrgs` + "`" + `, ` + "`" + `AzureADandPersonalMicrosoftAccount` + "`" + ` or ` + "`" + `PersonalMicrosoftAccount` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "web",
+					Description: `A ` + "`" + `web` + "`" + ` block as documented below. --- ` + "`" + `access_token` + "`" + ` and ` + "`" + `id_token` + "`" + ` blocks export the following:`,
 				},
 				resource.Attribute{
 					Name:        "additional_properties",
@@ -266,27 +358,63 @@ Use this data source to access information about an existing Application within 
 				},
 				resource.Attribute{
 					Name:        "allowed_member_types",
-					Description: `Specifies whether this app role definition can be assigned to users and groups, or to other applications (that are accessing this application in daemon service scenarios). Possible values are: ` + "`" + `User` + "`" + ` and ` + "`" + `Application` + "`" + `, or both.`,
+					Description: `Specifies whether this app role definition can be assigned to users and groups, or to other applications (that are accessing this application in a standalone scenario). Possible values are: ` + "`" + `User` + "`" + ` and ` + "`" + `Application` + "`" + `, or both.`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `Permission help text that appears in the admin app assignment and consent experiences.`,
+					Description: `Description of the app role that appears when the role is being assigned and, if the role functions as an application permissions, during the consent experiences.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `Display name for the permission that appears in the admin consent and app assignment experiences.`,
+					Description: `Display name for the app role that appears during app role assignment and in consent experiences.`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique identifier of the ` + "`" + `app_role` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "is_enabled",
+					Name:        "enabled",
 					Description: `Determines if the app role is enabled.`,
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `Specifies the value of the roles claim that the application should expect in the authentication and access tokens. --- ` + "`" + `oauth2_permission` + "`" + ` block exports the following:`,
+					Description: `The value that is used for the ` + "`" + `roles` + "`" + ` claim in ID tokens and OAuth 2.0 access tokens that are authenticating an assigned service or user principal. --- ` + "`" + `implicit_grant` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "access_token_issuance_enabled",
+					Description: `Whether this web application can request an access token using OAuth 2.0 implicit flow. --- ` + "`" + `oauth2_permission_scope` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "admin_consent_description",
+					Description: `(Required) Delegated permission description that appears in all tenant-wide admin consent experiences, intended to be read by an administrator granting the permission on behalf of all users.`,
+				},
+				resource.Attribute{
+					Name:        "admin_consent_display_name",
+					Description: `(Required) Display name for the delegated permission, intended to be read by an administrator granting the permission on behalf of all users.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Determines if the permission scope is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) The unique identifier of the delegated permission. Must be a valid UUID.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Whether this delegated permission should be considered safe for non-admin users to consent to on behalf of themselves, or whether an administrator should be required for consent to the permissions. Possible values are ` + "`" + `User` + "`" + ` or ` + "`" + `Admin` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "user_consent_description",
+					Description: `(Optional) Delegated permission description that appears in the end user consent experience, intended to be read by a user consenting on their own behalf.`,
+				},
+				resource.Attribute{
+					Name:        "user_consent_display_name",
+					Description: `(Optional) Display name for the delegated permission that appears in the end user consent experience.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Optional) The value that is used for the ` + "`" + `scp` + "`" + ` claim in OAuth 2.0 access tokens. --- ` + "`" + `oauth2_permission` + "`" + ` block (deprecated) exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "admin_consent_description",
@@ -322,11 +450,11 @@ Use this data source to access information about an existing Application within 
 				},
 				resource.Attribute{
 					Name:        "resource_access",
-					Description: `A collection of ` + "`" + `resource_access` + "`" + ` blocks as documented below`,
+					Description: `A collection of ` + "`" + `resource_access` + "`" + ` blocks as documented below, describing OAuth2.0 permission scopes and app roles that the application requires from the specified resource.`,
 				},
 				resource.Attribute{
 					Name:        "resource_app_id",
-					Description: `The unique identifier for the resource that the application requires access to. --- ` + "`" + `resource_access` + "`" + ` block exports the following:`,
+					Description: `The unique identifier for the resource that the application requires access to. This is the Application ID of the target application. --- ` + "`" + `resource_access` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -334,7 +462,23 @@ Use this data source to access information about an existing Application within 
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `Specifies whether the id property references an ` + "`" + `OAuth2Permission` + "`" + ` or an ` + "`" + `AppRole` + "`" + `.`,
+					Description: `Specifies whether the ` + "`" + `id` + "`" + ` property references an ` + "`" + `OAuth2Permission` + "`" + ` or an ` + "`" + `AppRole` + "`" + `. Possible values are ` + "`" + `Scope` + "`" + ` or ` + "`" + `Role` + "`" + `. --- ` + "`" + `web` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "homepage_url",
+					Description: `Home page or landing page of the application.`,
+				},
+				resource.Attribute{
+					Name:        "implicit_grant",
+					Description: `An ` + "`" + `implicit_grant` + "`" + ` block as documented above.`,
+				},
+				resource.Attribute{
+					Name:        "logout_url",
+					Description: `The URL that will be used by Microsoft's authorization service to sign out a user using front-channel, back-channel or SAML logout protocols.`,
+				},
+				resource.Attribute{
+					Name:        "redirect_uris",
+					Description: `A list of URLs where user tokens are sent for sign-in, or the redirect URIs where OAuth 2.0 authorization codes and access tokens are sent.`,
 				},
 			},
 		},
@@ -546,7 +690,7 @@ Gets Object IDs or Display Names for multiple Azure Active Directory groups.
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "names",
+					Name:        "display_names",
 					Description: `(Optional) The Display Names of the Azure AD Groups.`,
 				},
 				resource.Attribute{
@@ -554,7 +698,7 @@ Gets Object IDs or Display Names for multiple Azure Active Directory groups.
 					Description: `(Optional) The Object IDs of the Azure AD Groups. ~>`,
 				},
 				resource.Attribute{
-					Name:        "names",
+					Name:        "display_names",
 					Description: `The Display Names of the Azure AD Groups.`,
 				},
 				resource.Attribute{
@@ -564,7 +708,7 @@ Gets Object IDs or Display Names for multiple Azure Active Directory groups.
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "names",
+					Name:        "display_names",
 					Description: `The Display Names of the Azure AD Groups.`,
 				},
 				resource.Attribute{
@@ -592,10 +736,6 @@ Gets information about an existing Service Principal associated with an Applicat
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "app_roles",
-					Description: `A collection of ` + "`" + `app_role` + "`" + ` blocks as documented below. For more information https://docs.microsoft.com/en-us/azure/architecture/multitenant-identity/app-roles`,
-				},
-				resource.Attribute{
 					Name:        "application_id",
 					Description: `(Optional) The ID of the Azure AD Application.`,
 				},
@@ -608,12 +748,20 @@ Gets information about an existing Service Principal associated with an Applicat
 					Description: `(Optional) The ID of the Azure AD Service Principal. ~>`,
 				},
 				resource.Attribute{
-					Name:        "oauth2_permissions",
-					Description: `A collection of OAuth 2.0 permissions exposed by the associated application. Each permission is covered by a ` + "`" + `oauth2_permission` + "`" + ` block as documented below. ## Attributes Reference The following attributes are exported:`,
+					Name:        "app_roles",
+					Description: `A collection of ` + "`" + `app_roles` + "`" + ` blocks as documented below. For more information [official documentation](https://docs.microsoft.com/en-us/azure/architecture/multitenant-identity/app-roles).`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `The Object ID for the Service Principal. --- ` + "`" + `app_role` + "`" + ` block exports the following:`,
+					Name:        "object_id",
+					Description: `The Object ID for the Service Principal.`,
+				},
+				resource.Attribute{
+					Name:        "oauth2_permission_scopes",
+					Description: `A collection of OAuth 2.0 delegated permissions exposed by the associated Application. Each permission is covered by an ` + "`" + `oauth2_permission_scopes` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "oauth2_permissions",
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "allowed_member_types",
@@ -637,7 +785,39 @@ Gets information about an existing Service Principal associated with an Applicat
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `Specifies the value of the roles claim that the application should expect in the authentication and access tokens. --- ` + "`" + `oauth2_permission` + "`" + ` block exports the following:`,
+					Description: `Specifies the value of the roles claim that the application should expect in the authentication and access tokens. --- ` + "`" + `oauth2_permission_scopes` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "admin_consent_description",
+					Description: `The description of the admin consent.`,
+				},
+				resource.Attribute{
+					Name:        "admin_consent_display_name",
+					Description: `The display name of the admin consent.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Is this permission enabled?`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique identifier for one of the ` + "`" + `OAuth2Permission` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the permission.`,
+				},
+				resource.Attribute{
+					Name:        "user_consent_description",
+					Description: `The description of the user consent.`,
+				},
+				resource.Attribute{
+					Name:        "user_consent_display_name",
+					Description: `The display name of the user consent.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The name of this permission. --- ` + "`" + `oauth2_permissions` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "admin_consent_description",
@@ -674,8 +854,20 @@ Gets information about an existing Service Principal associated with an Applicat
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "id",
-					Description: `The Object ID for the Service Principal. --- ` + "`" + `app_role` + "`" + ` block exports the following:`,
+					Name:        "app_roles",
+					Description: `A collection of ` + "`" + `app_roles` + "`" + ` blocks as documented below. For more information [official documentation](https://docs.microsoft.com/en-us/azure/architecture/multitenant-identity/app-roles).`,
+				},
+				resource.Attribute{
+					Name:        "object_id",
+					Description: `The Object ID for the Service Principal.`,
+				},
+				resource.Attribute{
+					Name:        "oauth2_permission_scopes",
+					Description: `A collection of OAuth 2.0 delegated permissions exposed by the associated Application. Each permission is covered by an ` + "`" + `oauth2_permission_scopes` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "oauth2_permissions",
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "allowed_member_types",
@@ -699,7 +891,39 @@ Gets information about an existing Service Principal associated with an Applicat
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `Specifies the value of the roles claim that the application should expect in the authentication and access tokens. --- ` + "`" + `oauth2_permission` + "`" + ` block exports the following:`,
+					Description: `Specifies the value of the roles claim that the application should expect in the authentication and access tokens. --- ` + "`" + `oauth2_permission_scopes` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "admin_consent_description",
+					Description: `The description of the admin consent.`,
+				},
+				resource.Attribute{
+					Name:        "admin_consent_display_name",
+					Description: `The display name of the admin consent.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Is this permission enabled?`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique identifier for one of the ` + "`" + `OAuth2Permission` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the permission.`,
+				},
+				resource.Attribute{
+					Name:        "user_consent_description",
+					Description: `The description of the user consent.`,
+				},
+				resource.Attribute{
+					Name:        "user_consent_display_name",
+					Description: `The display name of the user consent.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The name of this permission. --- ` + "`" + `oauth2_permissions` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "admin_consent_description",
@@ -798,7 +1022,7 @@ Gets information about an Azure Active Directory user.
 				},
 				resource.Attribute{
 					Name:        "immutable_id",
-					Description: `The value used to associate an on-premise Active Directory user account with their Azure AD user object.`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "job_title",
@@ -818,7 +1042,19 @@ Gets information about an Azure Active Directory user.
 				},
 				resource.Attribute{
 					Name:        "mobile",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "mobile_phone",
 					Description: `The primary cellular telephone number for the user.`,
+				},
+				resource.Attribute{
+					Name:        "office_location",
+					Description: `The office location in the user's place of business.`,
+				},
+				resource.Attribute{
+					Name:        "onpremises_immutable_id",
+					Description: `The value used to associate an on-premise Active Directory user account with their Azure AD user object.`,
 				},
 				resource.Attribute{
 					Name:        "onpremises_sam_account_name",
@@ -830,7 +1066,7 @@ Gets information about an Azure Active Directory user.
 				},
 				resource.Attribute{
 					Name:        "physical_delivery_office_name",
-					Description: `The office location in the user's place of business.`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "postal_code",
@@ -896,7 +1132,7 @@ Gets information about an Azure Active Directory user.
 				},
 				resource.Attribute{
 					Name:        "immutable_id",
-					Description: `The value used to associate an on-premise Active Directory user account with their Azure AD user object.`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "job_title",
@@ -916,7 +1152,19 @@ Gets information about an Azure Active Directory user.
 				},
 				resource.Attribute{
 					Name:        "mobile",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "mobile_phone",
 					Description: `The primary cellular telephone number for the user.`,
+				},
+				resource.Attribute{
+					Name:        "office_location",
+					Description: `The office location in the user's place of business.`,
+				},
+				resource.Attribute{
+					Name:        "onpremises_immutable_id",
+					Description: `The value used to associate an on-premise Active Directory user account with their Azure AD user object.`,
 				},
 				resource.Attribute{
 					Name:        "onpremises_sam_account_name",
@@ -928,7 +1176,7 @@ Gets information about an Azure Active Directory user.
 				},
 				resource.Attribute{
 					Name:        "physical_delivery_office_name",
-					Description: `The office location in the user's place of business.`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "postal_code",
@@ -1018,7 +1266,7 @@ Gets Object IDs or UPNs for multiple Azure Active Directory users.
 				},
 				resource.Attribute{
 					Name:        "immutable_id",
-					Description: `The value used to associate an on-premises Active Directory user account with their Azure AD user object.`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "mail_nickname",
@@ -1031,6 +1279,10 @@ Gets Object IDs or UPNs for multiple Azure Active Directory users.
 				resource.Attribute{
 					Name:        "object_id",
 					Description: `The Object ID of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "onpremises_immutable_id",
+					Description: `The value used to associate an on-premises Active Directory user account with their Azure AD user object.`,
 				},
 				resource.Attribute{
 					Name:        "onpremises_sam_account_name",
@@ -1076,7 +1328,7 @@ Gets Object IDs or UPNs for multiple Azure Active Directory users.
 				},
 				resource.Attribute{
 					Name:        "immutable_id",
-					Description: `The value used to associate an on-premises Active Directory user account with their Azure AD user object.`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "mail_nickname",
@@ -1089,6 +1341,10 @@ Gets Object IDs or UPNs for multiple Azure Active Directory users.
 				resource.Attribute{
 					Name:        "object_id",
 					Description: `The Object ID of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "onpremises_immutable_id",
+					Description: `The value used to associate an on-premises Active Directory user account with their Azure AD user object.`,
 				},
 				resource.Attribute{
 					Name:        "onpremises_sam_account_name",

@@ -819,11 +819,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
-					Description: `Helps to identify which datacenter an object belongs to.`,
+					Description: `The location this object is placed.`,
 				},
 				resource.Attribute{
 					Name:        "location_country",
-					Description: `Formatted by the 2 digit country code (ISO 3166-2) of the host country.`,
+					Description: `Two digit country code (ISO 3166-2) of the location where this object is placed.`,
 				},
 				resource.Attribute{
 					Name:        "location_iata",
@@ -909,11 +909,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
-					Description: `Helps to identify which datacenter an object belongs to.`,
+					Description: `The location this object is placed.`,
 				},
 				resource.Attribute{
 					Name:        "location_country",
-					Description: `Formatted by the 2 digit country code (ISO 3166-2) of the host country.`,
+					Description: `Two digit country code (ISO 3166-2) of the location where this object is placed.`,
 				},
 				resource.Attribute{
 					Name:        "location_iata",
@@ -1014,6 +1014,14 @@ var (
 					Description: `The servers that the load balancer can communicate with.`,
 				},
 				resource.Attribute{
+					Name:        "host",
+					Description: `A valid domain or an IP address of the server.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `The backend host weight.`,
+				},
+				resource.Attribute{
 					Name:        "labels",
 					Description: `The list of labels.`,
 				},
@@ -1054,6 +1062,14 @@ var (
 				resource.Attribute{
 					Name:        "backend_server",
 					Description: `The servers that the load balancer can communicate with.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `A valid domain or an IP address of the server.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `The backend host weight.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -1811,7 +1827,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
-					Description: `Helps to identify which datacenter an object belongs to.`,
+					Description: `The location this object is placed.`,
 				},
 				resource.Attribute{
 					Name:        "location_country",
@@ -1857,7 +1873,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
-					Description: `Helps to identify which datacenter an object belongs to.`,
+					Description: `The location this object is placed.`,
 				},
 				resource.Attribute{
 					Name:        "location_country",
@@ -1923,7 +1939,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
-					Description: `Helps to identify which datacenter an object belongs to. The location of the resource depends on the location of the project.`,
+					Description: `The location this server is placed. The location of a resource is determined by it's project.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -1931,7 +1947,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "hardware_profile",
-					Description: `The hardware profile of the Server.`,
+					Description: `The hardware profile of the server.`,
 				},
 				resource.Attribute{
 					Name:        "storage",
@@ -2023,7 +2039,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rules_v4_in",
-					Description: `Firewall template rules for inbound traffic - covers ipv4 addresses.`,
+					Description: `Firewall template rules for inbound traffic - covers IPv4 addresses.`,
 				},
 				resource.Attribute{
 					Name:        "order",
@@ -2047,11 +2063,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "src_cidr",
-					Description: `Either an IPv4/6 address or and IP Network in CIDR format. If this field is empty then this service has access to all IPs.`,
+					Description: `Either an IPv4/6 address or and IP network in CIDR format. If this field is empty then this service has access to all IP addresses.`,
 				},
 				resource.Attribute{
 					Name:        "dst_cidr",
-					Description: `Either an IPv4/6 address or and IP Network in CIDR format. If this field is empty then this service has access to all IPs.`,
+					Description: `Either an IPv4/6 address or and IP network in CIDR format. If this field is empty then this service has access to all IP addresses.`,
 				},
 				resource.Attribute{
 					Name:        "comment",
@@ -2059,7 +2075,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rules_v4_out",
-					Description: `Firewall template rules for outbound traffic - covers ipv4 addresses.`,
+					Description: `Firewall template rules for outbound traffic - covers IPv4 addresses.`,
 				},
 				resource.Attribute{
 					Name:        "order",
@@ -2083,11 +2099,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "src_cidr",
-					Description: `Either an IPv4/6 address or and IP Network in CIDR format. If this field is empty then this service has access to all IPs.`,
+					Description: `Either an IPv4/6 address or and IP network in CIDR format. If this field is empty then this service has access to all IP addresses.`,
 				},
 				resource.Attribute{
 					Name:        "dst_cidr",
-					Description: `Either an IPv4/6 address or and IP Network in CIDR format. If this field is empty then this service has access to all IPs.`,
+					Description: `Either an IPv4/6 address or and IP network in CIDR format. If this field is empty then this service has access to all IP addresses.`,
 				},
 				resource.Attribute{
 					Name:        "comment",
@@ -2095,7 +2111,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rules_v6_in",
-					Description: `Firewall template rules for inbound traffic - covers ipv6 addresses.`,
+					Description: `Firewall template rules for inbound traffic - covers IPv6 addresses.`,
 				},
 				resource.Attribute{
 					Name:        "order",
@@ -2119,11 +2135,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "src_cidr",
-					Description: `Either an IPv4/6 address or and IP Network in CIDR format. If this field is empty then this service has access to all IPs.`,
+					Description: `Either an IPv4/6 address or and IP network in CIDR format. If this field is empty then this service has access to all IP addresses.`,
 				},
 				resource.Attribute{
 					Name:        "dst_cidr",
-					Description: `Either an IPv4/6 address or and IP Network in CIDR format. If this field is empty then this service has access to all IPs.`,
+					Description: `Either an IPv4/6 address or and IP network in CIDR format. If this field is empty then this service has access to all IP addresses.`,
 				},
 				resource.Attribute{
 					Name:        "comment",
@@ -2131,7 +2147,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rules_v6_out",
-					Description: `Firewall template rules for outbound traffic - covers ipv6 addresses.`,
+					Description: `Firewall template rules for outbound traffic - covers IPv6 addresses.`,
 				},
 				resource.Attribute{
 					Name:        "order",
@@ -2155,11 +2171,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "src_cidr",
-					Description: `Either an IPv4/6 address or and IP Network in CIDR format. If this field is empty then this service has access to all IPs.`,
+					Description: `Either an IPv4/6 address or and IP network in CIDR format. If this field is empty then this service has access to all IP addresses.`,
 				},
 				resource.Attribute{
 					Name:        "dst_cidr",
-					Description: `Either an IPv4/6 address or and IP Network in CIDR format. If this field is empty then this service has access to all IPs.`,
+					Description: `Either an IPv4/6 address or and IP network in CIDR format. If this field is empty then this service has access to all IP addresses.`,
 				},
 				resource.Attribute{
 					Name:        "comment",
@@ -2241,7 +2257,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
-					Description: `Helps to identify which datacenter an object belongs to. The location of the resource depends on the location of the project.`,
+					Description: `The location this server is placed. The location of a resource is determined by it's project.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -2249,7 +2265,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "hardware_profile",
-					Description: `The hardware profile of the Server.`,
+					Description: `The hardware profile of the server.`,
 				},
 				resource.Attribute{
 					Name:        "storage",
@@ -2341,7 +2357,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rules_v4_in",
-					Description: `Firewall template rules for inbound traffic - covers ipv4 addresses.`,
+					Description: `Firewall template rules for inbound traffic - covers IPv4 addresses.`,
 				},
 				resource.Attribute{
 					Name:        "order",
@@ -2365,11 +2381,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "src_cidr",
-					Description: `Either an IPv4/6 address or and IP Network in CIDR format. If this field is empty then this service has access to all IPs.`,
+					Description: `Either an IPv4/6 address or and IP network in CIDR format. If this field is empty then this service has access to all IP addresses.`,
 				},
 				resource.Attribute{
 					Name:        "dst_cidr",
-					Description: `Either an IPv4/6 address or and IP Network in CIDR format. If this field is empty then this service has access to all IPs.`,
+					Description: `Either an IPv4/6 address or and IP network in CIDR format. If this field is empty then this service has access to all IP addresses.`,
 				},
 				resource.Attribute{
 					Name:        "comment",
@@ -2377,7 +2393,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rules_v4_out",
-					Description: `Firewall template rules for outbound traffic - covers ipv4 addresses.`,
+					Description: `Firewall template rules for outbound traffic - covers IPv4 addresses.`,
 				},
 				resource.Attribute{
 					Name:        "order",
@@ -2401,11 +2417,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "src_cidr",
-					Description: `Either an IPv4/6 address or and IP Network in CIDR format. If this field is empty then this service has access to all IPs.`,
+					Description: `Either an IPv4/6 address or and IP network in CIDR format. If this field is empty then this service has access to all IP addresses.`,
 				},
 				resource.Attribute{
 					Name:        "dst_cidr",
-					Description: `Either an IPv4/6 address or and IP Network in CIDR format. If this field is empty then this service has access to all IPs.`,
+					Description: `Either an IPv4/6 address or and IP network in CIDR format. If this field is empty then this service has access to all IP addresses.`,
 				},
 				resource.Attribute{
 					Name:        "comment",
@@ -2413,7 +2429,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rules_v6_in",
-					Description: `Firewall template rules for inbound traffic - covers ipv6 addresses.`,
+					Description: `Firewall template rules for inbound traffic - covers IPv6 addresses.`,
 				},
 				resource.Attribute{
 					Name:        "order",
@@ -2437,11 +2453,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "src_cidr",
-					Description: `Either an IPv4/6 address or and IP Network in CIDR format. If this field is empty then this service has access to all IPs.`,
+					Description: `Either an IPv4/6 address or and IP network in CIDR format. If this field is empty then this service has access to all IP addresses.`,
 				},
 				resource.Attribute{
 					Name:        "dst_cidr",
-					Description: `Either an IPv4/6 address or and IP Network in CIDR format. If this field is empty then this service has access to all IPs.`,
+					Description: `Either an IPv4/6 address or and IP network in CIDR format. If this field is empty then this service has access to all IP addresses.`,
 				},
 				resource.Attribute{
 					Name:        "comment",
@@ -2449,7 +2465,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rules_v6_out",
-					Description: `Firewall template rules for outbound traffic - covers ipv6 addresses.`,
+					Description: `Firewall template rules for outbound traffic - covers IPv6 addresses.`,
 				},
 				resource.Attribute{
 					Name:        "order",
@@ -2473,11 +2489,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "src_cidr",
-					Description: `Either an IPv4/6 address or and IP Network in CIDR format. If this field is empty then this service has access to all IPs.`,
+					Description: `Either an IPv4/6 address or and IP network in CIDR format. If this field is empty then this service has access to all IP addresses.`,
 				},
 				resource.Attribute{
 					Name:        "dst_cidr",
-					Description: `Either an IPv4/6 address or and IP Network in CIDR format. If this field is empty then this service has access to all IPs.`,
+					Description: `Either an IPv4/6 address or and IP network in CIDR format. If this field is empty then this service has access to all IP addresses.`,
 				},
 				resource.Attribute{
 					Name:        "comment",
@@ -2887,6 +2903,118 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "gridscale_ssl_certificate",
+			Category:         "Data Sources",
+			ShortDescription: `Gets data of a TLS/SSL certificate resource.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `(Required) The UUID of the SSL Certificate. ## Attributes Reference This resource exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of the SSL Certificate.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The human-readable name of the SSH key.`,
+				},
+				resource.Attribute{
+					Name:        "common_name",
+					Description: `The common domain name of the SSL certificate.`,
+				},
+				resource.Attribute{
+					Name:        "fingerprints",
+					Description: `Defines a list of unique identifiers generated from the MD5, SHA-1, and SHA-256 fingerprints of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "md5",
+					Description: `MD5 fingerprint of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "sha256",
+					Description: `SHA256 fingerprint of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "sha1",
+					Description: `SHA1 fingerprint of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `The list of labels.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `status indicates the status of the object.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The date and time the object was initially created.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `Defines the date and time of the last object change.`,
+				},
+				resource.Attribute{
+					Name:        "not_valid_after",
+					Description: `Defines the date after which the certificate is not valid.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of the SSL Certificate.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The human-readable name of the SSH key.`,
+				},
+				resource.Attribute{
+					Name:        "common_name",
+					Description: `The common domain name of the SSL certificate.`,
+				},
+				resource.Attribute{
+					Name:        "fingerprints",
+					Description: `Defines a list of unique identifiers generated from the MD5, SHA-1, and SHA-256 fingerprints of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "md5",
+					Description: `MD5 fingerprint of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "sha256",
+					Description: `SHA256 fingerprint of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "sha1",
+					Description: `SHA1 fingerprint of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `The list of labels.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `status indicates the status of the object.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The date and time the object was initially created.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `Defines the date and time of the last object change.`,
+				},
+				resource.Attribute{
+					Name:        "not_valid_after",
+					Description: `Defines the date after which the certificate is not valid.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "gridscale_storage",
 			Category:         "Data Sources",
 			ShortDescription: `Gets data of a storage.`,
@@ -3057,7 +3185,8 @@ var (
 		"gridscale_snapshot":                 13,
 		"gridscale_snapshotschedule":         14,
 		"gridscale_sshkey":                   15,
-		"gridscale_storage":                  16,
+		"gridscale_ssl_certificate":          16,
+		"gridscale_storage":                  17,
 	}
 )
 

@@ -1201,7 +1201,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_lease_ttl_seconds",
-					Description: `(Optional) The maximum TTL that can be requested for credentials issued by this backend. ## Attributes Reference No additional attributes are exported by this resource. ## Import AWS secret backends can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_aws_secret_backend.aws aws ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The maximum TTL that can be requested for credentials issued by this backend.`,
+				},
+				resource.Attribute{
+					Name:        "iam_endpoint",
+					Description: `(Optional) Specifies a custom HTTP IAM endpoint to use.`,
+				},
+				resource.Attribute{
+					Name:        "sts_endpoint",
+					Description: `(Optional) Specifies a custom HTTP STS endpoint to use. ## Attributes Reference No additional attributes are exported by this resource. ## Import AWS secret backends can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_aws_secret_backend.aws aws ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2757,13 +2765,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ` + "`" + `id` + "`" + ` of the created group alias.`,
+					Description: `The ` + "`" + `id` + "`" + ` of the created group alias. ## Import Group aliases can be imported using the uuid of the alias record, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import vault_identity_group_alias.alias_name 63104e20-88e4-11eb-8d04-cf7ac9d60157 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ` + "`" + `id` + "`" + ` of the created group alias.`,
+					Description: `The ` + "`" + `id` + "`" + ` of the created group alias. ## Import Group aliases can be imported using the uuid of the alias record, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import vault_identity_group_alias.alias_name 63104e20-88e4-11eb-8d04-cf7ac9d60157 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},

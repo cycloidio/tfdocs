@@ -174,7 +174,7 @@ Provides information about a Linode Domain Record.
 			ShortDescription: `Provides details about a Firewall.`,
 			Description: `\_firewall
 
-Provides details about an LKE Cluster.
+Provides details about a Linode Firewall.
 
 `,
 			Keywords: []string{},
@@ -368,6 +368,10 @@ Provides information about a Linode image
 					Description: `The minimum size this Image needs to deploy. Size is in MB. example: 2500`,
 				},
 				resource.Attribute{
+					Name:        "status",
+					Description: `The current status of this image.`,
+				},
+				resource.Attribute{
 					Name:        "type",
 					Description: `How the Image was created. Manual Images can be created at any time. image"Automatic" Images are created automatically from a deleted Linode.`,
 				},
@@ -377,6 +381,181 @@ Provides information about a Linode image
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "linode_images",
+			Category:         "Data Sources",
+			ShortDescription: `Provides information about Linode images that match a set of filters.`,
+			Description: `\_images
+
+Provides information about Linode images that match a set of filters.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by. See the [Filterable Fields section](#filterable-fields) for a complete list of filterable fields.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) A list of values for the filter to allow. These values should all be in string form. ## Attributes Each Linode image will be stored in the ` + "`" + `images` + "`" + ` attribute and will export the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID of this Image. The ID of private images begin with ` + "`" + `private/` + "`" + ` followed by the numeric identifier of the private image, for example ` + "`" + `private/12345` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `A short description of the Image.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `When this Image was created.`,
+				},
+				resource.Attribute{
+					Name:        "created_by",
+					Description: `The name of the User who created this Image, or "linode" for official Images.`,
+				},
+				resource.Attribute{
+					Name:        "deprecated",
+					Description: `Whether or not this Image is deprecated. Will only be true for deprecated public Images.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A detailed description of this Image.`,
+				},
+				resource.Attribute{
+					Name:        "is_public",
+					Description: `True if the Image is public.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The minimum size this Image needs to deploy. Size is in MB. example: 2500`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current status of this image.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `How the Image was created. Manual Images can be created at any time. "Automatic" Images are created automatically from a deleted Linode.`,
+				},
+				resource.Attribute{
+					Name:        "vendor",
+					Description: `The upstream distribution vendor. ` + "`" + `None` + "`" + ` for private Images. ## Filterable Fields`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "linode_instance_backups",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about the backups of an Instance.`,
+			Description: `\_instance_backups
+
+Provides details about the backups of an Instance.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "linode_id",
+					Description: `(Required) The Linode instance's ID. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID of this Backup.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `A label for Backups that are of type snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current state of a specific Backup.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `This indicates whether the Backup is an automatic Backup or manual snapshot taken by the User at a specific point in time.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `The date the Backup was taken.`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `The date the Backup was most recently updated.`,
+				},
+				resource.Attribute{
+					Name:        "finished",
+					Description: `The date the Backup completed.`,
+				},
+				resource.Attribute{
+					Name:        "configs",
+					Description: `A list of the labels of the Configuration profiles that are part of the Backup.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The label of this disk.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The size of this disk.`,
+				},
+				resource.Attribute{
+					Name:        "filesystem",
+					Description: `The filesystem of this disk.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID of this Backup.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `A label for Backups that are of type snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current state of a specific Backup.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `This indicates whether the Backup is an automatic Backup or manual snapshot taken by the User at a specific point in time.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `The date the Backup was taken.`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `The date the Backup was most recently updated.`,
+				},
+				resource.Attribute{
+					Name:        "finished",
+					Description: `The date the Backup completed.`,
+				},
+				resource.Attribute{
+					Name:        "configs",
+					Description: `A list of the labels of the Configuration profiles that are part of the Backup.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The label of this disk.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The size of this disk.`,
+				},
+				resource.Attribute{
+					Name:        "filesystem",
+					Description: `The filesystem of this disk.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -425,6 +604,241 @@ Provides information about a Linode instance type
 				resource.Attribute{
 					Name:        "addons.0.backups.0.price.0.monthly",
 					Description: `The cost (in US dollars) per month to add Backups service.`,
+				},
+				resource.Attribute{
+					Name:        "network_out",
+					Description: `The Mbits outbound bandwidth allocation.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `The amount of RAM included in this Linode Type.`,
+				},
+				resource.Attribute{
+					Name:        "transfer",
+					Description: `The monthly outbound transfer amount, in MB.`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `The number of VCPU cores this Linode Type offers.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "linode_instances",
+			Category:         "Data Sources",
+			ShortDescription: `Provides information about Linode instances that match a set of filters.`,
+			Description: `\_instances
+
+Provides information about Linode instances that match a set of filters.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by. See the [Filterable Fields section](#filterable-fields) for a list of filterable fields.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) A list of values for the filter to allow. These values should all be in string form. ## Attributes Each Linode instance will be stored in the ` + "`" + `instances` + "`" + ` attribute and will export the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `This is the location where the Linode is deployed. Examples are ` + "`" + `"us-east"` + "`" + `, ` + "`" + `"us-west"` + "`" + `, ` + "`" + `"ap-south"` + "`" + `, etc. See all regions [here](https://api.linode.com/v4/regions).`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The Linode type defines the pricing, CPU, disk, and RAM specs of the instance. Examples are ` + "`" + `"g6-nanode-1"` + "`" + `, ` + "`" + `"g6-standard-2"` + "`" + `, ` + "`" + `"g6-highmem-16"` + "`" + `, ` + "`" + `"g6-dedicated-16"` + "`" + `, etc. See all types [here](https://api.linode.com/v4/linode/types).`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The Linode's label is for display purposes only.`,
+				},
+				resource.Attribute{
+					Name:        "group",
+					Description: `The display group of the Linode instance.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of tags applied to this object. Tags are for organizational purposes only.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `If true, the Linode has private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region.`,
+				},
+				resource.Attribute{
+					Name:        "alerts.0.cpu",
+					Description: `The percentage of CPU usage required to trigger an alert. If the average CPU usage over two hours exceeds this value, we'll send you an alert. If this is set to 0, the alert is disabled.`,
+				},
+				resource.Attribute{
+					Name:        "alerts.0.network_in",
+					Description: `The amount of incoming traffic, in Mbit/s, required to trigger an alert. If the average incoming traffic over two hours exceeds this value, we'll send you an alert. If this is set to 0 (zero), the alert is disabled.`,
+				},
+				resource.Attribute{
+					Name:        "alerts.0.network_out",
+					Description: `The amount of outbound traffic, in Mbit/s, required to trigger an alert. If the average outbound traffic over two hours exceeds this value, we'll send you an alert. If this is set to 0 (zero), the alert is disabled.`,
+				},
+				resource.Attribute{
+					Name:        "alerts.0.transfer_quota",
+					Description: `The percentage of network transfer that may be used before an alert is triggered. When this value is exceeded, we'll alert you. If this is set to 0 (zero), the alert is disabled.`,
+				},
+				resource.Attribute{
+					Name:        "alerts.0.io",
+					Description: `The amount of disk IO operation per second required to trigger an alert. If the average disk IO over two hours exceeds this value, we'll send you an alert. If set to 0, this alert is disabled.`,
+				},
+				resource.Attribute{
+					Name:        "watchdog_enabled",
+					Description: `The watchdog, named Lassie, is a Shutdown Watchdog that monitors your Linode and will reboot it if it powers off unexpectedly. It works by issuing a boot job when your Linode powers off without a shutdown job being responsible. To prevent a loop, Lassie will give up if there have been more than 5 boot jobs issued within 15 minutes.`,
+				},
+				resource.Attribute{
+					Name:        "image",
+					Description: `An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with ` + "`" + `private/` + "`" + `. See [images](https://api.linode.com/v4/images) for more information on the Images available for you to use. Examples are ` + "`" + `linode/debian9` + "`" + `, ` + "`" + `linode/fedora28` + "`" + `, ` + "`" + `linode/ubuntu16.04lts` + "`" + `, ` + "`" + `linode/arch` + "`" + `, and ` + "`" + `private/12345` + "`" + `. See all images [here](https://api.linode.com/v4/linode/images) (Requires a personal access token; docs [here](https://developers.linode.com/api/v4/images)).`,
+				},
+				resource.Attribute{
+					Name:        "swap_size",
+					Description: `When deploying from an Image, this field is optional with a Linode API default of 512mb, otherwise it is ignored. This is used to set the swap disk size for the newly-created Linode.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the instance, indicating the current readiness state. (` + "`" + `running` + "`" + `, ` + "`" + `offline` + "`" + `, ...)`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `A string containing the Linode's public IP address.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_address",
+					Description: `This Linode's Private IPv4 Address, if enabled. The regional private IP address range, 192.168.128.0/17, is shared by all Linode Instances in a region.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6",
+					Description: `This Linode's IPv6 SLAAC addresses. This address is specific to a Linode, and may not be shared. The prefix (` + "`" + `/64` + "`" + `) is included in this attribute.`,
+				},
+				resource.Attribute{
+					Name:        "ipv4",
+					Description: `This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.`,
+				},
+				resource.Attribute{
+					Name:        "specs.0.disk",
+					Description: `The amount of storage space, in GB. this Linode has access to. A typical Linode will divide this space between a primary disk with an image deployed to it, and a swap disk, usually 512 MB. This is the default configuration created when deploying a Linode with an image through POST /linode/instances.`,
+				},
+				resource.Attribute{
+					Name:        "specs.0.memory",
+					Description: `The amount of RAM, in MB, this Linode has access to. Typically a Linode will choose to boot with all of its available RAM, but this can be configured in a Config profile.`,
+				},
+				resource.Attribute{
+					Name:        "specs.0.vcpus",
+					Description: `The number of vcpus this Linode has access to. Typically a Linode will choose to boot with all of its available vcpus, but this can be configured in a Config Profile.`,
+				},
+				resource.Attribute{
+					Name:        "specs.0.transfer",
+					Description: `The amount of network transfer this Linode is allotted each month.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The disks label, which acts as an identifier in Terraform. This must be unique within each Linode Instance.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The size of the Disk in MB.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the disk in the Linode API.`,
+				},
+				resource.Attribute{
+					Name:        "filesystem",
+					Description: `The Disk filesystem can be one of: ` + "`" + `"raw"` + "`" + `, ` + "`" + `"swap"` + "`" + `, ` + "`" + `"ext3"` + "`" + `, ` + "`" + `"ext4"` + "`" + `, or ` + "`" + `"initrd"` + "`" + ` which has a max size of 32mb and can be used in the config ` + "`" + `initrd` + "`" + ` (not currently supported in this Terraform Provider). ### Configs Configuration profiles define the VM settings and boot behavior of the Linode Instance. Multiple configurations profiles can be provided but their ` + "`" + `label` + "`" + ` values must be unique.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The Config's label for display purposes. Also used by ` + "`" + `boot_config_label` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "kernel",
+					Description: `A Kernel ID to boot a Linode with. Default is based on image choice. Examples are ` + "`" + `linode/latest-64bit` + "`" + `, ` + "`" + `linode/grub2` + "`" + `, ` + "`" + `linode/direct-disk` + "`" + `, etc. See all kernels [here](https://api.linode.com/v4/linode/kernels). Note that this is a paginated API endpoint ([docs](https://developers.linode.com/api/v4/linode-kernels)).`,
+				},
+				resource.Attribute{
+					Name:        "run_level",
+					Description: `Defines the state of your Linode after booting.`,
+				},
+				resource.Attribute{
+					Name:        "virt_mode",
+					Description: `Controls the virtualization mode.`,
+				},
+				resource.Attribute{
+					Name:        "root_device",
+					Description: `The root device to boot.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `Arbitrary user comments about this ` + "`" + `config` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "memory_limit",
+					Description: `Defaults to the total RAM of the Linode`,
+				},
+				resource.Attribute{
+					Name:        "helpers",
+					Description: `Helpers enabled when booting to this Linode Config.`,
+				},
+				resource.Attribute{
+					Name:        "updatedb_disabled",
+					Description: `Disables updatedb cron job to avoid disk thrashing.`,
+				},
+				resource.Attribute{
+					Name:        "distro",
+					Description: `Controls the behavior of the Linode Config's Distribution Helper setting.`,
+				},
+				resource.Attribute{
+					Name:        "modules_dep",
+					Description: `Creates a modules dependency file for the Kernel you run.`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `Controls the behavior of the Linode Config's Network Helper setting, used to automatically configure additional IP addresses assigned to this instance.`,
+				},
+				resource.Attribute{
+					Name:        "devices",
+					Description: `A list of ` + "`" + `disk` + "`" + ` or ` + "`" + `volume` + "`" + ` attachments for this ` + "`" + `config` + "`" + `. If the ` + "`" + `boot_config_label` + "`" + ` omits a ` + "`" + `devices` + "`" + ` block, the Linode will not be booted.`,
+				},
+				resource.Attribute{
+					Name:        "disk_label",
+					Description: `The ` + "`" + `label` + "`" + ` of the ` + "`" + `disk` + "`" + ` to map to this ` + "`" + `device` + "`" + ` slot.`,
+				},
+				resource.Attribute{
+					Name:        "volume_id",
+					Description: `The Volume ID to map to this ` + "`" + `device` + "`" + ` slot.`,
+				},
+				resource.Attribute{
+					Name:        "disk_id",
+					Description: `The Disk ID of the associated ` + "`" + `disk_label` + "`" + `, if used`,
+				},
+				resource.Attribute{
+					Name:        "purpose",
+					Description: `(Required) The type of interface. (` + "`" + `public` + "`" + `, ` + "`" + `vlan` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Optional) The name of this interface. If the interface is a VLAN, a label is required.`,
+				},
+				resource.Attribute{
+					Name:        "ipam_address",
+					Description: `(Optional) This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. ### Backups`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `If this Linode has the Backup service enabled.`,
+				},
+				resource.Attribute{
+					Name:        "day",
+					Description: `The day of the week that your Linode's weekly Backup is taken. If not set manually, a day will be chosen for you. Backups are taken every day, but backups taken on this day are preferred when selecting backups to retain for a longer period. If not set manually, then when backups are initially enabled, this may come back as "Scheduling" until the day is automatically selected.`,
+				},
+				resource.Attribute{
+					Name:        "window",
+					Description: `The window ('W0'-'W22') in which your backups will be taken, in UTC. A backups window is a two-hour span of time in which the backup may occur. For example, 'W10' indicates that your backups should be taken between 10:00 and 12:00. If you do not choose a backup window, one will be selected for you automatically. If not set manually, when backups are initially enabled this may come back as Scheduling until the window is automatically selected. ## Filterable Fields`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -615,6 +1029,334 @@ Provides information about a Linode Networking IP Address
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "linode_nodebalancer",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a NodeBalancer.`,
+			Description: `\_nodebalancer
+
+Provides details about a Linode NodeBalancer.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) The NodeBalancer's ID. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The label of the Linode NodeBalancer`,
+				},
+				resource.Attribute{
+					Name:        "client_conn_throttle",
+					Description: `Throttle connections per second (0-20).`,
+				},
+				resource.Attribute{
+					Name:        "linode_id",
+					Description: `The ID of a Linode Instance where the NodeBalancer should be attached.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of tags applied to this object. Tags are for organizational purposes only.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `This NodeBalancer's hostname, ending with .nodebalancer.linode.com`,
+				},
+				resource.Attribute{
+					Name:        "ipv4",
+					Description: `The Public IPv4 Address of this NodeBalancer`,
+				},
+				resource.Attribute{
+					Name:        "ipv6",
+					Description: `The Public IPv6 Address of this NodeBalancer`,
+				},
+				resource.Attribute{
+					Name:        "in",
+					Description: `The total transfer, in MB, used by this NodeBalancer for the current month`,
+				},
+				resource.Attribute{
+					Name:        "out",
+					Description: `The total inbound transfer, in MB, used for this NodeBalancer for the current month`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `The total outbound transfer, in MB, used for this NodeBalancer for the current month`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "label",
+					Description: `The label of the Linode NodeBalancer`,
+				},
+				resource.Attribute{
+					Name:        "client_conn_throttle",
+					Description: `Throttle connections per second (0-20).`,
+				},
+				resource.Attribute{
+					Name:        "linode_id",
+					Description: `The ID of a Linode Instance where the NodeBalancer should be attached.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of tags applied to this object. Tags are for organizational purposes only.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `This NodeBalancer's hostname, ending with .nodebalancer.linode.com`,
+				},
+				resource.Attribute{
+					Name:        "ipv4",
+					Description: `The Public IPv4 Address of this NodeBalancer`,
+				},
+				resource.Attribute{
+					Name:        "ipv6",
+					Description: `The Public IPv6 Address of this NodeBalancer`,
+				},
+				resource.Attribute{
+					Name:        "in",
+					Description: `The total transfer, in MB, used by this NodeBalancer for the current month`,
+				},
+				resource.Attribute{
+					Name:        "out",
+					Description: `The total inbound transfer, in MB, used for this NodeBalancer for the current month`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `The total outbound transfer, in MB, used for this NodeBalancer for the current month`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "linode_nodebalancer_config",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a NodeBalancer config.`,
+			Description: `\_nodebalancer_config
+
+Provides details about a Linode NodeBalancer Config.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) The config's ID.`,
+				},
+				resource.Attribute{
+					Name:        "nodebalancer_id",
+					Description: `(Required) The ID of the NodeBalancer that contains the config. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region where this nodebalancer_config will be deployed. Examples are ` + "`" + `"us-east"` + "`" + `, ` + "`" + `"us-west"` + "`" + `, ` + "`" + `"ap-south"` + "`" + `, etc`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `The protocol this port is configured to serve. If this is set to https you must include an ssl_cert and an ssl_key. (Defaults to "http")`,
+				},
+				resource.Attribute{
+					Name:        "proxy_protocol",
+					Description: `The version of ProxyProtocol to use for the underlying NodeBalancer. This requires protocol to be ` + "`" + `tcp` + "`" + `. Valid values are ` + "`" + `none` + "`" + `, ` + "`" + `v1` + "`" + `, and ` + "`" + `v2` + "`" + `. (Defaults to ` + "`" + `none` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The TCP port this Config is for.`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `What algorithm this NodeBalancer should use for routing traffic to backends: roundrobin, leastconn, source`,
+				},
+				resource.Attribute{
+					Name:        "stickiness",
+					Description: `Controls how session stickiness is handled on this port: 'none', 'table', 'http_cookie'`,
+				},
+				resource.Attribute{
+					Name:        "check",
+					Description: `The type of check to perform against backends to ensure they are serving requests. This is used to determine if backends are up or down. If none no check is performed. connection requires only a connection to the backend to succeed. http and http_body rely on the backend serving HTTP, and that the response returned matches what is expected.`,
+				},
+				resource.Attribute{
+					Name:        "check_interval",
+					Description: `How often, in seconds, to check that backends are up and serving requests.`,
+				},
+				resource.Attribute{
+					Name:        "check_timeout",
+					Description: `How long, in seconds, to wait for a check attempt before considering it failed. (1-30)`,
+				},
+				resource.Attribute{
+					Name:        "check_attempts",
+					Description: `How many times to attempt a check before considering a backend to be down. (1-30)`,
+				},
+				resource.Attribute{
+					Name:        "check_path",
+					Description: `The URL path to check on each backend. If the backend does not respond to this request it is considered to be down.`,
+				},
+				resource.Attribute{
+					Name:        "check_passive",
+					Description: `If true, any response from this backend with a 5xx status code will be enough for it to be considered unhealthy and taken out of rotation.`,
+				},
+				resource.Attribute{
+					Name:        "cipher_suite",
+					Description: `What ciphers to use for SSL connections served by this NodeBalancer. ` + "`" + `legacy` + "`" + ` is considered insecure and should only be used if necessary.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_commonname",
+					Description: `The read-only common name automatically derived from the SSL certificate assigned to this NodeBalancerConfig. Please refer to this field to verify that the appropriate certificate is assigned to your NodeBalancerConfig.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_fingerprint",
+					Description: `The read-only fingerprint automatically derived from the SSL certificate assigned to this NodeBalancerConfig. Please refer to this field to verify that the appropriate certificate is assigned to your NodeBalancerConfig.`,
+				},
+				resource.Attribute{
+					Name:        "up",
+					Description: `The number of backends considered to be 'UP' and healthy, and that are serving requests.`,
+				},
+				resource.Attribute{
+					Name:        "down",
+					Description: `The number of backends considered to be 'DOWN' and unhealthy. These are not in rotation, and not serving requests.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region where this nodebalancer_config will be deployed. Examples are ` + "`" + `"us-east"` + "`" + `, ` + "`" + `"us-west"` + "`" + `, ` + "`" + `"ap-south"` + "`" + `, etc`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `The protocol this port is configured to serve. If this is set to https you must include an ssl_cert and an ssl_key. (Defaults to "http")`,
+				},
+				resource.Attribute{
+					Name:        "proxy_protocol",
+					Description: `The version of ProxyProtocol to use for the underlying NodeBalancer. This requires protocol to be ` + "`" + `tcp` + "`" + `. Valid values are ` + "`" + `none` + "`" + `, ` + "`" + `v1` + "`" + `, and ` + "`" + `v2` + "`" + `. (Defaults to ` + "`" + `none` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The TCP port this Config is for.`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `What algorithm this NodeBalancer should use for routing traffic to backends: roundrobin, leastconn, source`,
+				},
+				resource.Attribute{
+					Name:        "stickiness",
+					Description: `Controls how session stickiness is handled on this port: 'none', 'table', 'http_cookie'`,
+				},
+				resource.Attribute{
+					Name:        "check",
+					Description: `The type of check to perform against backends to ensure they are serving requests. This is used to determine if backends are up or down. If none no check is performed. connection requires only a connection to the backend to succeed. http and http_body rely on the backend serving HTTP, and that the response returned matches what is expected.`,
+				},
+				resource.Attribute{
+					Name:        "check_interval",
+					Description: `How often, in seconds, to check that backends are up and serving requests.`,
+				},
+				resource.Attribute{
+					Name:        "check_timeout",
+					Description: `How long, in seconds, to wait for a check attempt before considering it failed. (1-30)`,
+				},
+				resource.Attribute{
+					Name:        "check_attempts",
+					Description: `How many times to attempt a check before considering a backend to be down. (1-30)`,
+				},
+				resource.Attribute{
+					Name:        "check_path",
+					Description: `The URL path to check on each backend. If the backend does not respond to this request it is considered to be down.`,
+				},
+				resource.Attribute{
+					Name:        "check_passive",
+					Description: `If true, any response from this backend with a 5xx status code will be enough for it to be considered unhealthy and taken out of rotation.`,
+				},
+				resource.Attribute{
+					Name:        "cipher_suite",
+					Description: `What ciphers to use for SSL connections served by this NodeBalancer. ` + "`" + `legacy` + "`" + ` is considered insecure and should only be used if necessary.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_commonname",
+					Description: `The read-only common name automatically derived from the SSL certificate assigned to this NodeBalancerConfig. Please refer to this field to verify that the appropriate certificate is assigned to your NodeBalancerConfig.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_fingerprint",
+					Description: `The read-only fingerprint automatically derived from the SSL certificate assigned to this NodeBalancerConfig. Please refer to this field to verify that the appropriate certificate is assigned to your NodeBalancerConfig.`,
+				},
+				resource.Attribute{
+					Name:        "up",
+					Description: `The number of backends considered to be 'UP' and healthy, and that are serving requests.`,
+				},
+				resource.Attribute{
+					Name:        "down",
+					Description: `The number of backends considered to be 'DOWN' and unhealthy. These are not in rotation, and not serving requests.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "linode_nodebalancer_node",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a NodeBalancer node.`,
+			Description: `\_nodebalancer_node
+
+Provides details about a Linode NodeBalancer node.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) The node's ID.`,
+				},
+				resource.Attribute{
+					Name:        "nodebalancer_id",
+					Description: `(Required) The ID of the NodeBalancer that contains the node.`,
+				},
+				resource.Attribute{
+					Name:        "config_id",
+					Description: `(Required) The ID of the config that contains the Node. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The label of the Linode NodeBalancer Node. This is for display purposes only.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `The private IP Address where this backend can be reached.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `The mode this NodeBalancer should use when sending traffic to this backend. If set to ` + "`" + `accept` + "`" + ` this backend is accepting traffic. If set to ` + "`" + `reject` + "`" + ` this backend will not receive traffic. If set to ` + "`" + `drain` + "`" + ` this backend will not receive new traffic, but connections already pinned to it will continue to be routed to it`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic. (1-255).`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current status of this node, based on the configured checks of its NodeBalancer Config. (unknown, UP, DOWN).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "label",
+					Description: `The label of the Linode NodeBalancer Node. This is for display purposes only.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `The private IP Address where this backend can be reached.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `The mode this NodeBalancer should use when sending traffic to this backend. If set to ` + "`" + `accept` + "`" + ` this backend is accepting traffic. If set to ` + "`" + `reject` + "`" + ` this backend will not receive traffic. If set to ` + "`" + `drain` + "`" + ` this backend will not receive new traffic, but connections already pinned to it will continue to be routed to it`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic. (1-255).`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current status of this node, based on the configured checks of its NodeBalancer Config. (unknown, UP, DOWN).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -882,6 +1624,45 @@ Provides information about a Linode user
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "linode_vlans",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about Linode VLANs.`,
+			Description: `\_vlans
+
+Provides details about Linode VLANs.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by. See the [Filterable Fields section](#filterable-fields) for a complete list of filterable fields.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) A list of values for the filter to allow. These values should all be in string form. ## Attributes Each Linode VLAN will be stored in the ` + "`" + `vlans` + "`" + ` attribute and will export the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The unique label of the VLAN.`,
+				},
+				resource.Attribute{
+					Name:        "linodes",
+					Description: `The running Linodes currently attached to the VLAN.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region the VLAN is located in.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `When the VLAN was created. ## Filterable Fields`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "linode_volume",
 			Category:         "Data Sources",
 			ShortDescription: `Provides details about a Linode Volume.`,
@@ -903,16 +1684,23 @@ Provides information about a Linode Volume.
 		"linode_domain_record":          2,
 		"linode_firewall":               3,
 		"linode_image":                  4,
-		"linode_instance_type":          5,
-		"linode_lke_cluster":            6,
-		"linode_networking_ip":          7,
-		"linode_object_storage_cluster": 8,
-		"linode_profile":                9,
-		"linode_region":                 10,
-		"linode_sshkey":                 11,
-		"linode_stackscript":            12,
-		"linode_user":                   13,
-		"linode_volume":                 14,
+		"linode_images":                 5,
+		"linode_instance_backups":       6,
+		"linode_instance_type":          7,
+		"linode_instances":              8,
+		"linode_lke_cluster":            9,
+		"linode_networking_ip":          10,
+		"linode_nodebalancer":           11,
+		"linode_nodebalancer_config":    12,
+		"linode_nodebalancer_node":      13,
+		"linode_object_storage_cluster": 14,
+		"linode_profile":                15,
+		"linode_region":                 16,
+		"linode_sshkey":                 17,
+		"linode_stackscript":            18,
+		"linode_user":                   19,
+		"linode_vlans":                  20,
+		"linode_volume":                 21,
 	}
 )
 

@@ -155,7 +155,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_admin",
-					Description: `(Optional, Default: false) If this user is an account admin. ## Attributes Reference The following attributes are exported:`,
+					Description: `DEPRECATED - the field and its value will be ignored if specified. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",

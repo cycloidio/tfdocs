@@ -21,7 +21,20 @@ Policy to configure server or chassis management options.
 				"access",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_access_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_access_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -49,6 +62,48 @@ An Adapter Configuration Policy configures the Ethernet and Fibre-Channel settin
 				resource.Attribute{
 					Name:        "Off",
 					Description: `Disable FEC mode on the DCE Interface. + ` + "`" + `interface_id` + "`" + `:(int) DCE interface id on which settings needs to be configured. Supported values are (0-3). + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `eth_settings` + "`" + `:(HashMap) - Global Ethernet settings for this adapter. This complex property has following sub-properties: + ` + "`" + `lldp_enabled` + "`" + `:(bool) Status of LLDP protocol on the adapter interfaces. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `fc_settings` + "`" + `:(HashMap) - Global Fibre Channel settings for this adapter. This complex property has following sub-properties: + ` + "`" + `fip_enabled` + "`" + `:(bool) Status of FIP protocol on the adapter interfaces. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `port_channel_settings` + "`" + `:(HashMap) - Port Channel settings for this adapter. This complex property has following sub-properties: + ` + "`" + `enabled` + "`" + `:(bool) When Port Channel is enabled, two vNICs and two vHBAs are available for use on the adapter card. When disabled, four vNICs and four vHBAs are available for use on the adapter card. Disabling port channel reboots the server. Port Channel is supported only for Cisco VIC 1455/1457 adapters. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `slot_id` + "`" + `:(string) PCIe slot where the VIC adapter is installed. Supported values are (1-15) and MLOM.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_adapter_config_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_adapter_config_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_appliance_auto_rma_policy",
+			Category:         "appliance",
+			ShortDescription: `Auto rma policy to decide whether rma data should be collected`,
+			Description: `
+Auto rma policy to decide whether rma data should be collected
+`,
+			Keywords: []string{
+				"appliance",
+				"auto",
+				"rma",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_appliance_auto_rma_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_appliance_auto_rma_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -96,6 +151,18 @@ any time. All other Backup managed objects will be in terminal states.
 					Name:        "Copied",
 					Description: `Backup file has been copied.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_appliance_backup` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_appliance_backup.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -128,6 +195,18 @@ in the manual backup mode.
 					Name:        "Pacific/Kiritimati",
 					Description: `+ ` + "`" + `week_of_month` + "`" + `:(int) Schedule a task on a specific week of the month. Valid values are 1 through 5. Value of 5 means last week of the month. WeekOfMonth may not be set when dayOfMonth is specified.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_appliance_backup_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_appliance_backup_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -155,7 +234,20 @@ configurations (ie. Network and Storage) are also enabled/disabled.
 				"export",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_appliance_data_export_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_appliance_data_export_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -204,6 +296,10 @@ of the device claim operation can be obtained from the claim workflow.
 				resource.Attribute{
 					Name:        "IMCM5",
 					Description: `A standalone UCS M5 server.`,
+				},
+				resource.Attribute{
+					Name:        "IMCRack",
+					Description: `A standalone UCS M6 and above server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
@@ -271,7 +367,23 @@ of the device claim operation can be obtained from the claim workflow.
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A Dynatrace controller that monitors applications.`,
+					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+				},
+				resource.Attribute{
+					Name:        "ReadHatOpenStack",
+					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
+				},
+				resource.Attribute{
+					Name:        "CloudFoundry",
+					Description: `An open source cloud platform on which developers can build, deploy, run and scale applications.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureApplicationInsights",
+					Description: `A feature of Azure Monitor, is an extensible Application Performance Management service for developers and DevOps professionals to monitor their live applications.`,
+				},
+				resource.Attribute{
+					Name:        "OpenStack",
+					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
@@ -361,6 +473,18 @@ of the device claim operation can be obtained from the claim workflow.
 					Name:        "completed",
 					Description: `Device claim operation has completed.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_appliance_device_claim` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_appliance_device_claim.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -382,7 +506,20 @@ administrator has the privileges to use this REST API.
 				"diag",
 				"setting",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_appliance_diag_setting` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_appliance_diag_setting.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -407,6 +544,18 @@ Trigger a remote file import request by configuring this mo.
 				resource.Attribute{
 					Name:        "sftp",
 					Description: `SSH File Transfer Protocol (SFTP) to access file server.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_appliance_remote_file_import` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_appliance_remote_file_import.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -454,6 +603,18 @@ managed objects will be in terminal states.
 					Name:        "Copied",
 					Description: `Backup file has been copied.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_appliance_restore` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_appliance_restore.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -470,6 +631,22 @@ Target represents an entity which can be managed by Intersight. This includes ph
 				"target",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `The management mechanism is not detected. Unknown is used as a default by the implementation and is not an allowed user input.`,
+				},
+				resource.Attribute{
+					Name:        "Intersight",
+					Description: `Management of a target is performed directly from Intersight. Network connections are established from Intersight to a management interface of the Target and authenticated using user provided credentials.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightAssist",
+					Description: `Management of a target is performed via a selected Intersight Assist. Network connections are established from the Intersight Assist to a management interface of the Target.`,
+				},
+				resource.Attribute{
+					Name:        "DeviceConnector",
+					Description: `An Intersight Device Connector running within the Target establishes a connection to Intersight and management of the target is performed via this connection.`,
+				},
 				resource.Attribute{
 					Name:        "Connected",
 					Description: `Intersight is able to establish a connection to the target and initiate management activities.`,
@@ -517,6 +694,10 @@ Target represents an entity which can be managed by Intersight. This includes ph
 				resource.Attribute{
 					Name:        "IMCM5",
 					Description: `A standalone UCS M5 server.`,
+				},
+				resource.Attribute{
+					Name:        "IMCRack",
+					Description: `A standalone UCS M6 and above server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
@@ -584,7 +765,23 @@ Target represents an entity which can be managed by Intersight. This includes ph
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A Dynatrace controller that monitors applications.`,
+					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+				},
+				resource.Attribute{
+					Name:        "ReadHatOpenStack",
+					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
+				},
+				resource.Attribute{
+					Name:        "CloudFoundry",
+					Description: `An open source cloud platform on which developers can build, deploy, run and scale applications.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureApplicationInsights",
+					Description: `A feature of Azure Monitor, is an extensible Application Performance Management service for developers and DevOps professionals to monitor their live applications.`,
+				},
+				resource.Attribute{
+					Name:        "OpenStack",
+					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
@@ -660,7 +857,19 @@ Target represents an entity which can be managed by Intersight. This includes ph
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
-					Description: `A Cisco Catalyst networking switch device. ## Import ` + "`" + `intersight_asset_target` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_asset_target.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ` ## Allowed Types in ` + "`" + `AdditionalProperties` + "`" + ` ### [asset.CloudConnection](#argument-reference) CloudConnection provides the necessary details for Intersight to connect to and authenticate with a target at a well-known service address. The service address is inferred based upon the target type. For example Amazon Web Services. ### [asset.HttpConnection](#argument-reference) HttpConnection provides the necessary details for Intersight to connect to and authenticate with a managed target over an HTTP connection.`,
+					Description: `A Cisco Catalyst networking switch device.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_asset_target` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_asset_target.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ` ## Allowed Types in ` + "`" + `AdditionalProperties` + "`" + ` ### [asset.CloudConnection](#argument-reference) CloudConnection provides the necessary details for Intersight to connect to and authenticate with a target at a well-known service address. The service address is inferred based upon the target type. For example Amazon Web Services. ### [asset.HttpConnection](#argument-reference) HttpConnection provides the necessary details for Intersight to connect to and authenticate with a managed target over an HTTP connection.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -5331,6 +5540,18 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Disables the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -5418,6 +5639,18 @@ Boot order policy models a reusable boot order configuration that can be applied
 				resource.Attribute{
 					Name:        "Uefi",
 					Description: `UEFI mode uses the GUID Partition Table (GPT) to locate EFI Service Partitions to boot from.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_boot_precision_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_boot_precision_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ` ## Allowed Types in ` + "`" + `AdditionalProperties` + "`" + ` ### [boot.Iscsi](#argument-reference) Device type used when booting from iSCSI boot device.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -5516,7 +5749,20 @@ Descriptor that uniquely identifies an adaptor.
 				"unit",
 				"descriptor",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_capability_adapter_unit_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_capability_adapter_unit_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -5532,7 +5778,20 @@ Descriptor that uniquely identifies an chassis enclosure.
 				"chassis",
 				"descriptor",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_capability_chassis_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_capability_chassis_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -5549,7 +5808,20 @@ Chassis enclosure manufacturing def properties.
 				"manufacturing",
 				"def",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -5566,7 +5838,20 @@ Descriptor that identifies the server's redfish integration capability using cim
 				"firmware",
 				"descriptor",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_capability_cimc_firmware_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_capability_cimc_firmware_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -5595,6 +5880,18 @@ Type to represent additional switch specific capabilities.
 				resource.Attribute{
 					Name:        "unknown",
 					Description: `Unknown device type, usage is TBD.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -5626,6 +5923,18 @@ Type to represent additional switch specific capabilities.
 					Name:        "unknown",
 					Description: `Unknown device type, usage is TBD.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -5643,7 +5952,20 @@ Descriptor that uniquely identifies a fan module.
 				"module",
 				"descriptor",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_capability_fan_module_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_capability_fan_module_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -5661,7 +5983,20 @@ Fan module unit that contains multiple fans.
 				"manufacturing",
 				"def",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -5678,7 +6013,20 @@ Chassis Iocard module capabilities.
 				"card",
 				"def",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_capability_io_card_capability_def` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_capability_io_card_capability_def.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -5704,6 +6052,18 @@ Descriptor that uniquely identifies an IO card module.
 					Name:        "cross-connected",
 					Description: `UIF uplink ports and IOM ports are cross-connected, a case in washington chassis.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_capability_io_card_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_capability_io_card_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -5722,7 +6082,20 @@ Chassis Iocard module properties.
 				"manufacturing",
 				"def",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -5740,7 +6113,20 @@ FEX/IOCARD module port group aggregation capabilities.
 				"aggregation",
 				"def",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_capability_port_group_aggregation_def` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_capability_port_group_aggregation_def.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -5756,7 +6142,20 @@ Descriptor that uniquely identifies a power supply.
 				"psu",
 				"descriptor",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_capability_psu_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_capability_psu_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -5773,7 +6172,50 @@ Power supply unit properties.
 				"manufacturing",
 				"def",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_capability_server_schema_descriptor",
+			Category:         "capability",
+			ShortDescription: `Descriptor that identifies the server's redfish locatorled using cimc firmware info.`,
+			Description: `
+Descriptor that identifies the server's redfish locatorled using cimc firmware info.
+`,
+			Keywords: []string{
+				"capability",
+				"server",
+				"schema",
+				"descriptor",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_capability_server_schema_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_capability_server_schema_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -5790,7 +6232,20 @@ Chassis SIOC module capabilities.
 				"module",
 				"def",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_capability_sioc_module_capability_def` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_capability_sioc_module_capability_def.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -5807,7 +6262,20 @@ Descriptor that uniquely identifies an SIOC module.
 				"module",
 				"descriptor",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_capability_sioc_module_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_capability_sioc_module_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -5825,7 +6293,20 @@ Chassis SIOC module properties.
 				"manufacturing",
 				"def",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -5861,6 +6342,18 @@ Type to represent additional switch specific capabilities.
 					Name:        "switch",
 					Description: `In switch mode, the switch runs Spanning Tree Protocol to avoid loops, and broadcast and multicast packets are handled in the traditional way.This is the traditional switch mode. + ` + "`" + `vp_compression_supported` + "`" + `:(bool) VP Compression support on this switch.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -5877,7 +6370,20 @@ Descriptor that uniquely identifies a Fabric interconnect.
 				"switch",
 				"descriptor",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_capability_switch_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_capability_switch_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -5907,6 +6413,18 @@ Switch/Fabric-Interconnect manufacturing def properties.
 					Name:        "unknown",
 					Description: `Unknown device type, usage is TBD.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -5922,7 +6440,20 @@ Certificate Management policy models a reusable certificate and private key conf
 				"certificatemanagement",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_certificatemanagement_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_certificatemanagement_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -5938,7 +6469,20 @@ Configuration import action will import the existing configuration from chassis 
 				"config",
 				"import",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_chassis_config_import` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_chassis_config_import.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -5960,7 +6504,19 @@ A profile specifying configuration settings for a chassis.
 				},
 				resource.Attribute{
 					Name:        "instance",
-					Description: `The profile defines the configuration for a specific instance of a target. ### Custom keywords These are`,
+					Description: `The profile defines the configuration for a specific instance of a target.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ### Custom keywords These are`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -5979,7 +6535,20 @@ A policy specifying the HTTP proxy settings to be used by the HyperFlex installa
 				"proxy",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_comm_http_proxy_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_comm_http_proxy_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -6027,6 +6596,18 @@ mo to track the export operation progress.
 				resource.Attribute{
 					Name:        "OperationTimedOut",
 					Description: `The operation has timed out.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_config_exporter` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_config_exporter.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6084,6 +6665,18 @@ All import operations are captured as Importer instances. Users shall use this I
 					Name:        "OperationTimedOut",
 					Description: `The operation has timed out.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_config_importer` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_config_importer.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -6110,6 +6703,18 @@ Used to download or install connector packs on the target device.
 					Name:        "Push",
 					Description: `Pushes the requisite connector packs to UCS Director.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -6125,7 +6730,20 @@ Policy to control configuration changes allowed from Cisco IMC.
 				"deviceconnector",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_deviceconnector_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_deviceconnector_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -6144,6 +6762,18 @@ An authentication request that will be used to get authorized from external repo
 				resource.Attribute{
 					Name:        "cisco",
 					Description: `Cisco as an external site from where the resources like image will be downloaded.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_externalsite_authorization` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_externalsite_authorization.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6218,6 +6848,18 @@ Configuration object sent by user to create an appliance port channel.
 				resource.Attribute{
 					Name:        "Bronze",
 					Description: `QoS Priority for Bronze traffic.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_fabric_appliance_pc_role` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_appliance_pc_role.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6304,6 +6946,18 @@ Configuration object sent by user to create an appliance port.
 					Name:        "Bronze",
 					Description: `QoS Priority for Bronze traffic.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_fabric_appliance_role` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_appliance_role.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -6345,7 +6999,19 @@ The features that are applied on a vethernet that is connected to the vNIC.
 				},
 				resource.Attribute{
 					Name:        "warning",
-					Description: `The vethernet will remain up even if a suitable uplink is not pinned. ## Import ` + "`" + `intersight_fabric_eth_network_control_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_eth_network_control_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The vethernet will remain up even if a suitable uplink is not pinned.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_fabric_eth_network_control_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_eth_network_control_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6365,7 +7031,20 @@ The allowed VLAN/s on an interface.
 				"group",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -6382,7 +7061,20 @@ A policy for all the Virtual LAN networks to be deployed on the Fabric Interconn
 				"network",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_fabric_eth_network_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_eth_network_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -6399,7 +7091,20 @@ A policy for all the Virtual SAN networks to be deployed on the Fabric Interconn
 				"network",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_fabric_fc_network_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_fc_network_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -6442,6 +7147,18 @@ Object sent by user to configure a fc uplink port-channel on the collection of p
 					Name:        "Arbff",
 					Description: `Fc Fill Pattern type Arbff.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -6483,6 +7200,18 @@ Configuration object sent by user to create a fc uplink port.
 				resource.Attribute{
 					Name:        "Arbff",
 					Description: `Fc Fill Pattern type Arbff.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6528,12 +7257,16 @@ Object sent by user to configure a fcoe uplink port-channel on the collection of
 					Description: `Admin configurable speed 100Gbps.`,
 				},
 				resource.Attribute{
-					Name:        "Disabled",
-					Description: `Admin configured Disabled State.`,
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
 				},
 				resource.Attribute{
-					Name:        "Enabled",
-					Description: `Admin configured Enabled State. ## Import ` + "`" + `intersight_fabric_fcoe_uplink_pc_role` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_fcoe_uplink_pc_role.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_fabric_fcoe_uplink_pc_role` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_fcoe_uplink_pc_role.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6590,12 +7323,154 @@ Configuration object sent by user to create a fcoe uplink port.
 					Description: `Forward error correction option 'cl74'.`,
 				},
 				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_fabric_fcoe_uplink_role` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_fcoe_uplink_role.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_fabric_flow_control_policy",
+			Category:         "fabric",
+			ShortDescription: `Priority Flow Control setting for each port.`,
+			Description: `
+Priority Flow Control setting for each port.
+`,
+			Keywords: []string{
+				"fabric",
+				"flow",
+				"control",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "auto",
+					Description: `Enables the no-drop CoS values to be advertised by the DCBXP and negotiated with the peer.A successful negotiation enables PFC on the no-drop CoS.Any failures because of a mismatch in the capability of peers causes the PFC not to be enabled.`,
+				},
+				resource.Attribute{
+					Name:        "on",
+					Description: `Enables PFC on the local port regardless of the capability of the peers.`,
+				},
+				resource.Attribute{
 					Name:        "Disabled",
 					Description: `Admin configured Disabled State.`,
 				},
 				resource.Attribute{
 					Name:        "Enabled",
-					Description: `Admin configured Enabled State. ## Import ` + "`" + `intersight_fabric_fcoe_uplink_role` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_fcoe_uplink_role.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Admin configured Enabled State.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Admin configured Disabled State.`,
+				},
+				resource.Attribute{
+					Name:        "Enabled",
+					Description: `Admin configured Enabled State.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_fabric_flow_control_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_flow_control_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_fabric_link_aggregation_policy",
+			Category:         "fabric",
+			ShortDescription: `A policy to configure the link settings for all the port channels (including LACP).`,
+			Description: `
+A policy to configure the link settings for all the port channels (including LACP).
+`,
+			Keywords: []string{
+				"fabric",
+				"link",
+				"aggregation",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "normal",
+					Description: `The expanded 4th generation UCS Fabric Interconnect with 108 ports.`,
+				},
+				resource.Attribute{
+					Name:        "fast",
+					Description: `The standard 4th generation UCS Fabric Interconnect with 54 ports.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_fabric_link_aggregation_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_link_aggregation_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_fabric_link_control_policy",
+			Category:         "fabric",
+			ShortDescription: `A policy to configure the link settings for all the ports (including UDLD).`,
+			Description: `
+A policy to configure the link settings for all the ports (including UDLD).
+`,
+			Keywords: []string{
+				"fabric",
+				"link",
+				"control",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Admin configured Disabled State.`,
+				},
+				resource.Attribute{
+					Name:        "Enabled",
+					Description: `Admin configured Enabled State. + ` + "`" + `mode` + "`" + `:(string) Admin configured UDLD Mode for this port.`,
+				},
+				resource.Attribute{
+					Name:        "normal",
+					Description: `Admin configured 'normal' UDLD mode.`,
+				},
+				resource.Attribute{
+					Name:        "aggressive",
+					Description: `Admin configured 'aggressive' UDLD mode. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_fabric_link_control_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_link_control_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6616,19 +7491,31 @@ A policy to configure Multicast settings for all the Virtual LAN networks.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "Disabled",
-					Description: `IGMP Querier Disabled State.`,
+					Description: `Admin configured Disabled State.`,
 				},
 				resource.Attribute{
 					Name:        "Enabled",
-					Description: `IGMP Querier Enabled State.`,
+					Description: `Admin configured Enabled State.`,
 				},
 				resource.Attribute{
 					Name:        "Enabled",
-					Description: `IGMP Snooping Enabled State.`,
+					Description: `Admin configured Enabled State.`,
 				},
 				resource.Attribute{
 					Name:        "Disabled",
-					Description: `IGMP Snooping Disabled State.`,
+					Description: `Admin configured Disabled State.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_fabric_multicast_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_multicast_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6671,6 +7558,18 @@ PcOperation objects allows the user to alter the state of the port channel.
 					Name:        "Failed",
 					Description: `User configured settings could not be applied.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_fabric_pc_operation` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_pc_operation.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -6699,6 +7598,18 @@ Object sent by user to configure range of unified ports as FC/Ethernet or ports 
 				resource.Attribute{
 					Name:        "BreakoutEthernet25G",
 					Description: `Breakout Ethernet 25G Port Type.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_fabric_port_mode` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_port_mode.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6741,6 +7652,18 @@ PortOperation objects allows the user to alter the state of the port.
 					Name:        "Failed",
 					Description: `User configured settings could not be applied.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_fabric_port_operation` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_port_operation.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -6770,6 +7693,18 @@ A policy for all the physical ports of the Fabric Interconnect.
 					Name:        "unknown",
 					Description: `Unknown device type, usage is TBD.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_fabric_port_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_port_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -6786,7 +7721,20 @@ Configuration object sent by user to create a server port.
 				"server",
 				"role",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_fabric_server_role` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_server_role.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -6806,7 +7754,19 @@ This specifies the configuration policies for a cluster of switches.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance",
-					Description: `The profile defines the configuration for a specific instance of a target. ## Import ` + "`" + `intersight_fabric_switch_cluster_profile` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_switch_cluster_profile.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The profile defines the configuration for a specific instance of a target.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_fabric_switch_cluster_profile` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_switch_cluster_profile.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6838,6 +7798,26 @@ A policy to configure the Switching Mode, Port VLAN Optimization, MAC Aging Time
 					Name:        "Never",
 					Description: `This option disables the MAC address aging process and never allows the MAC address entries to get removed from the table. + ` + "`" + `mac_aging_time` + "`" + `:(int) Define the MAC address aging time in seconds. This field is valid when the \ Custom\ MAC address aging option is selected. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.`,
 				},
+				resource.Attribute{
+					Name:        "none",
+					Description: `The standard 4th generation UCS Fabric Interconnect with 54 ports.`,
+				},
+				resource.Attribute{
+					Name:        "reset",
+					Description: `The expanded 4th generation UCS Fabric Interconnect with 108 ports.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -6857,7 +7837,19 @@ This specifies configuration policies for a managed network switch.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance",
-					Description: `The profile defines the configuration for a specific instance of a target. ### Custom keywords These are`,
+					Description: `The profile defines the configuration for a specific instance of a target.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ### Custom keywords These are`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6909,6 +7901,18 @@ Configuration object sent by user to setup Quality of Service (QoS) for this swi
 					Name:        "Bronze",
 					Description: `QoS Priority for Bronze traffic. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `packet_drop` + "`" + `:(bool) If enabled, this QoS class will allow packet drops within an acceptable limit. + ` + "`" + `weight` + "`" + `:(int) The weight of the QoS Class controls the distribution of bandwidth between QoS Classes,with the same priority after the Guarantees for the QoS Classes are reached.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_fabric_system_qos_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_system_qos_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -6952,12 +7956,16 @@ Object sent by user to configure a ethernet uplink port-channel on the collectio
 					Description: `Admin configurable speed 100Gbps.`,
 				},
 				resource.Attribute{
-					Name:        "Disabled",
-					Description: `Admin configured Disabled State.`,
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
 				},
 				resource.Attribute{
-					Name:        "Enabled",
-					Description: `Admin configured Enabled State. ## Import ` + "`" + `intersight_fabric_uplink_pc_role` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_uplink_pc_role.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_fabric_uplink_pc_role` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_uplink_pc_role.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -7013,12 +8021,16 @@ Configuration object sent by user to create a uplink port.
 					Description: `Forward error correction option 'cl74'.`,
 				},
 				resource.Attribute{
-					Name:        "Disabled",
-					Description: `Admin configured Disabled State.`,
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
 				},
 				resource.Attribute{
-					Name:        "Enabled",
-					Description: `Admin configured Enabled State. ## Import ` + "`" + `intersight_fabric_uplink_role` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_uplink_role.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_fabric_uplink_role` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_uplink_role.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -7035,7 +8047,20 @@ Configuration object for Virtual LAN.
 				"fabric",
 				"vlan",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -7058,6 +8083,18 @@ Configuration object sent by user to create VSAN configurations.
 				resource.Attribute{
 					Name:        "Disabled",
 					Description: `Admin configured Disabled State.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -7083,6 +8120,18 @@ Pool represents a collection of WWN addresses that can be allocated to VHBAs of 
 					Name:        "default",
 					Description: `Assignment order is decided by the system.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_fcpool_pool` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fcpool_pool.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -7099,7 +8148,20 @@ Descriptor to uniquely identify a BIOS.
 				"bios",
 				"descriptor",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_bios_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_bios_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -7116,7 +8178,20 @@ Descriptor to uniquely identify a board controller.
 				"controller",
 				"descriptor",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_board_controller_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_board_controller_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -7243,7 +8318,19 @@ Firmware upgrade operation for chassis that downloads the image located at Cisco
 				},
 				resource.Attribute{
 					Name:        "network_upgrade",
-					Description: `Upgrade mode is network upgrade. ## Import ` + "`" + `intersight_firmware_chassis_upgrade` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_chassis_upgrade.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Upgrade mode is network upgrade.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_chassis_upgrade` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_chassis_upgrade.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -7261,7 +8348,20 @@ Descriptor to uniquely identify a Cisco IMC.
 				"cimc",
 				"descriptor",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_cimc_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_cimc_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -7277,7 +8377,20 @@ Descriptor to uniquely identify a DIMM.
 				"dimm",
 				"descriptor",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_dimm_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_dimm_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -7486,12 +8599,28 @@ An image distributed by Cisco.
 					Description: `Indicates that the image has been evicted from the Intersight Appliance (or endpoint cache) to reclaim storage space.`,
 				},
 				resource.Attribute{
+					Name:        "Invalid",
+					Description: `Indicates that the corresponding distributable MO has been removed from the backend. This can be due to unpublishing of an image.`,
+				},
+				resource.Attribute{
 					Name:        "System",
 					Description: `The distributable has been created by the System.`,
 				},
 				resource.Attribute{
 					Name:        "User",
 					Description: `The distributable has been created by the User.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_distributable` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_distributable.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -7509,7 +8638,20 @@ Descriptor to uniquely identify a Drive.
 				"drive",
 				"descriptor",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_drive_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_drive_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -7718,6 +8860,22 @@ A device driver image distributed by Cisco.
 					Name:        "Evicted",
 					Description: `Indicates that the image has been evicted from the Intersight Appliance (or endpoint cache) to reclaim storage space.`,
 				},
+				resource.Attribute{
+					Name:        "Invalid",
+					Description: `Indicates that the corresponding distributable MO has been removed from the backend. This can be due to unpublishing of an image.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_driver_distributable` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_driver_distributable.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -7733,7 +8891,20 @@ End User License Agreement (EULA) acceptance status for an account to access cis
 				"firmware",
 				"eula",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_eula` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_eula.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -7749,7 +8920,20 @@ Descriptor to uniquely identify a GPU component.
 				"gpu",
 				"descriptor",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_gpu_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_gpu_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -7765,7 +8949,20 @@ Descriptor to uniquely identify a HBA component.
 				"hba",
 				"descriptor",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_hba_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_hba_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -7781,7 +8978,20 @@ Descriptor to uniquely identify a IOM component.
 				"iom",
 				"descriptor",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_iom_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_iom_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -7797,7 +9007,20 @@ Descriptor to uniquely identify a mSwitch component.
 				"mswitch",
 				"descriptor",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_mswitch_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_mswitch_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -7813,7 +9036,20 @@ Descriptor to uniquely identify a Fabric interconnect.
 				"nxos",
 				"descriptor",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_nxos_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_nxos_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -7829,7 +9065,20 @@ Descriptor to uniquely identify a PCIE component.
 				"pcie",
 				"descriptor",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_pcie_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_pcie_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -7845,7 +9094,20 @@ Descriptor to uniquely identify a PSU component.
 				"psu",
 				"descriptor",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_psu_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_psu_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -7862,7 +9124,20 @@ Descriptor to uniquely identify a SasExpandar component.
 				"expander",
 				"descriptor",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_sas_expander_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_sas_expander_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -8073,6 +9348,22 @@ A server configuration utility image distributed by Cisco.
 					Name:        "Evicted",
 					Description: `Indicates that the image has been evicted from the Intersight Appliance (or endpoint cache) to reclaim storage space.`,
 				},
+				resource.Attribute{
+					Name:        "Invalid",
+					Description: `Indicates that the corresponding distributable MO has been removed from the backend. This can be due to unpublishing of an image.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_server_configuration_utility_distributable` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_server_configuration_utility_distributable.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -8090,7 +9381,20 @@ Descriptor to uniquely identify a storage controller.
 				"controller",
 				"descriptor",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_storage_controller_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_storage_controller_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -8217,7 +9521,19 @@ Firmware upgrade operation for Fabric Interconnects that downloads the image loc
 				},
 				resource.Attribute{
 					Name:        "network_upgrade",
-					Description: `Upgrade mode is network upgrade. ## Import ` + "`" + `intersight_firmware_switch_upgrade` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_switch_upgrade.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Upgrade mode is network upgrade.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_switch_upgrade` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_switch_upgrade.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -8255,7 +9571,19 @@ This represents an operation managed object used for upgrading equipment that ca
 				},
 				resource.Attribute{
 					Name:        "Failed",
-					Description: `Upgrade status is failed when upgrade has failed. ## Import ` + "`" + `intersight_firmware_unsupported_version_upgrade` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_unsupported_version_upgrade.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Upgrade status is failed when upgrade has failed.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_unsupported_version_upgrade` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_unsupported_version_upgrade.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -8383,7 +9711,19 @@ Firmware upgrade operation for rack and blade servers that downloads the image l
 				},
 				resource.Attribute{
 					Name:        "network_upgrade",
-					Description: `Upgrade mode is network upgrade. ## Import ` + "`" + `intersight_firmware_upgrade` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_upgrade.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Upgrade mode is network upgrade.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_upgrade` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_upgrade.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -8420,6 +9760,18 @@ Lists software compatibility information between different HperFlex component ve
 					Name:        "Unknown",
 					Description: `The hypervisor running on the HyperFlex cluster is not known.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hcl_hyperflex_software_compatibility_info` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hcl_hyperflex_software_compatibility_info.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -8436,7 +9788,20 @@ A catalog for managing application settings for HyperFlex cluster configuration 
 				"app",
 				"catalog",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_app_catalog` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_app_catalog.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -8453,7 +9818,20 @@ A policy specifying the configuration to automatically generate support tickets 
 				"support",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_auto_support_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_auto_support_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -8469,7 +9847,20 @@ A capabilityInfo is like a feature set and/or feature limit for different compon
 				"capability",
 				"info",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_capability_info` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_capability_info.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -8486,7 +9877,20 @@ A hypervisor manager to manage Cisco HyperFlex compute clusters and is available
 				"hypervisor",
 				"manager",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_cisco_hypervisor_manager` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_cisco_hypervisor_manager.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -8503,7 +9907,20 @@ Specifies cluster backup configuration for a HyperFlex Cluster.
 				"backup",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_cluster_backup_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_cluster_backup_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -8521,7 +9938,20 @@ Record of HyperFlex Cluster backup policy deployment.
 				"policy",
 				"deployment",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_cluster_backup_policy_deployment` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_cluster_backup_policy_deployment.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -8550,6 +9980,18 @@ A policy specifying VLANs for management, VM migration, and VM traffic.
 				resource.Attribute{
 					Name:        "10G",
 					Description: `A link speed of 10 gigabits per second or above.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -8604,6 +10046,18 @@ A profile specifying configuration settings for a HyperFlex cluster.
 					Name:        "instance",
 					Description: `The profile defines the configuration for a specific instance of a target.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -8622,7 +10076,20 @@ Specifies all replication network parameters for the cluster.
 				"network",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_cluster_replication_network_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_cluster_replication_network_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -8641,7 +10108,20 @@ Record of HyperFlex Cluster replication network policy deployment.
 				"policy",
 				"deployment",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_cluster_replication_network_policy_deployment` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_cluster_replication_network_policy_deployment.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -8658,7 +10138,20 @@ A policy specifying HyperFlex cluster storage settings (optional).
 				"storage",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_cluster_storage_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_cluster_storage_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -8676,7 +10169,20 @@ A policy specifying external storage connectivity information via Fabric attache
 				"storage",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -8694,7 +10200,20 @@ A policy specifying external storage connectivity information via Fabric attache
 				"storage",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_ext_iscsi_storage_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_ext_iscsi_storage_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -8735,6 +10254,18 @@ The HyperFlex feature limits that are available to end users.
 				resource.Attribute{
 					Name:        "EDGE",
 					Description: `The host servers used in the cluster deployment are standalone severs. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `server_model` + "`" + `:(string) The supported server models in regex format. + ` + "`" + `name` + "`" + `:(string) The application setting identifier. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) The application setting value.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_feature_limit_external` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_feature_limit_external.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -8778,6 +10309,18 @@ The HyperFlex installer feature limits for internal system use.
 					Name:        "EDGE",
 					Description: `The host servers used in the cluster deployment are standalone severs. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `server_model` + "`" + `:(string) The supported server models in regex format. + ` + "`" + `name` + "`" + `:(string) The application setting identifier. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) The application setting value.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_feature_limit_internal` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_feature_limit_internal.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -8816,6 +10359,18 @@ HyperFlex health check definition metadata.
 					Name:        "EXECUTE_ON_ALL_NODES_AND_AGGREGATE",
 					Description: `Execute the health check on all Nodes and perform custom aggregation.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_health_check_definition` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_health_check_definition.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -8834,7 +10389,20 @@ HyperFlex health check Debian Package SHA512 checksum.
 				"package",
 				"checksum",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_health_check_package_checksum` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_health_check_package_checksum.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -8850,7 +10418,20 @@ A datacenter object in HyperFlex Application Platform. It is a pre-defined objec
 				"hxap",
 				"datacenter",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_hxap_datacenter` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_hxap_datacenter.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -8866,7 +10447,20 @@ A HyperFlex Data Platform version.
 				"hxdp",
 				"version",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_hxdp_version` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_hxdp_version.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -8883,7 +10477,20 @@ A policy specifying credentials for HyperFlex cluster such as controller VM pass
 				"credential",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_local_credential_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_local_credential_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -8900,7 +10507,20 @@ A policy specifying node details such as management and storage data IP ranges. 
 				"config",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_node_config_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_node_config_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -8920,7 +10540,19 @@ It defines node settings such as IP address configuration for hypervisor managem
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance",
-					Description: `The profile defines the configuration for a specific instance of a target. ## Import ` + "`" + `intersight_hyperflex_node_profile` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_node_profile.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The profile defines the configuration for a specific instance of a target.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_node_profile` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_node_profile.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -8939,7 +10571,20 @@ A policy specifying the HTTP proxy settings to be used by the HyperFlex installa
 				"setting",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_proxy_setting_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_proxy_setting_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -8956,7 +10601,20 @@ The server firmware version represents the UCS server firmware details.
 				"firmware",
 				"version",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_server_firmware_version` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_server_firmware_version.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -9004,8 +10662,24 @@ An entry specifying supported server firmware version in regex format.
 					Description: `M5 generation of UCS server.`,
 				},
 				resource.Attribute{
+					Name:        "M3",
+					Description: `M3 generation of UCS server.`,
+				},
+				resource.Attribute{
 					Name:        "M4",
 					Description: `M4 generation of UCS server.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_server_firmware_version_entry` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_server_firmware_version_entry.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -9048,6 +10722,108 @@ A supported server model.
 					Name:        "EDGE",
 					Description: `The host servers used in the cluster deployment are standalone severs. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `server_model` + "`" + `:(string) The supported server models in regex format. + ` + "`" + `name` + "`" + `:(string) The application setting identifier. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) The application setting value.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_server_model` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_server_model.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_hyperflex_software_distribution_component",
+			Category:         "hyperflex",
+			ShortDescription: `A HyperFlex Software Distribution Component.`,
+			Description: `
+A HyperFlex Software Distribution Component.
+`,
+			Keywords: []string{
+				"hyperflex",
+				"software",
+				"distribution",
+				"component",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_software_distribution_component` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_software_distribution_component.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_hyperflex_software_distribution_entry",
+			Category:         "hyperflex",
+			ShortDescription: `A HyperFlex Software Distribution.`,
+			Description: `
+A HyperFlex Software Distribution.
+`,
+			Keywords: []string{
+				"hyperflex",
+				"software",
+				"distribution",
+				"entry",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_software_distribution_entry` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_software_distribution_entry.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_hyperflex_software_distribution_version",
+			Category:         "hyperflex",
+			ShortDescription: `A HyperFlex Software Distribution version.`,
+			Description: `
+A HyperFlex Software Distribution version.
+`,
+			Keywords: []string{
+				"hyperflex",
+				"software",
+				"distribution",
+				"version",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_software_distribution_version` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_software_distribution_version.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -9071,8 +10847,24 @@ A policy capturing software versions for different HyperFlex Cluster compatible 
 					Description: `M5 generation of UCS server.`,
 				},
 				resource.Attribute{
+					Name:        "M3",
+					Description: `M3 generation of UCS server.`,
+				},
+				resource.Attribute{
 					Name:        "M4",
 					Description: `M4 generation of UCS server. + ` + "`" + `nr_version` + "`" + `:(string) The server firmware bundle version.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_software_version_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_software_version_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -9094,7 +10886,19 @@ A policy specifying system configuration such as timezone, DNS servers, and NTP 
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "Pacific/Kiritimati",
-					Description: `## Import ` + "`" + `intersight_hyperflex_sys_config_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_sys_config_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_sys_config_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_sys_config_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -9113,7 +10917,20 @@ A policy specifying UCS Manager settings such as service profile org, KVM IP add
 				"config",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_ucsm_config_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_ucsm_config_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -9130,7 +10947,50 @@ A policy specifying vCenter configuration.
 				"config",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_vcenter_config_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_vcenter_config_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_hyperflex_vm_import_operation",
+			Category:         "hyperflex",
+			ShortDescription: `Invoke Virtual Machine import operation.`,
+			Description: `
+Invoke Virtual Machine import operation.
+`,
+			Keywords: []string{
+				"hyperflex",
+				"vm",
+				"import",
+				"operation",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_hyperflex_vm_import_operation` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_hyperflex_vm_import_operation.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -9147,7 +11007,20 @@ Invoke Virtual Machine restore operation.
 				"restore",
 				"operation",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -9162,7 +11035,20 @@ The Intersight Account used to access Intersight.
 				"iam",
 				"account",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_account` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_account.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -9202,6 +11088,18 @@ The beta features enabled for the specified account.
 				resource.Attribute{
 					Name:        "TerraformCloud",
 					Description: `Enables an ability to create Terraform Cloud. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_account_experience` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_account_experience.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -9268,6 +11166,18 @@ All published Intersight SDKs support API keys.
 				resource.Attribute{
 					Name:        "EcdsaP1363Format",
 					Description: `The Elliptic Curve Digital Signature Standard (ECDSA), as defined by NIST in FIPS 186-4 and ANSI X9.62.The signature is the raw concatenation of r and s, as defined in the ISO/IEC 7816-8 IEEE P.1363 standard.In that format, r and s are represented as unsigned, big endian numbers.Extra padding bytes (of value 0x00) is applied so that both r and s encodings have the same size.When using ECDSA signatures, configure the client to use the same signature encoding as specified on the server side.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_api_key` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_api_key.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ` ## Allowed Types in ` + "`" + `AdditionalProperties` + "`" + ` ### [pkix.EcdsaKeySpec](#argument-reference) The key pair is generated using Elliptic Curve Digital Signature Algorithm (ECDSA), as defined in FIPS 186-4. The ECDSA standard was originally developed for the American National Standards Institute by the Accredited Standards Committee on Financial Services, X9. ANS X9.62 defines methods for digital signature generation and verification using ECDSA. Specifications for the generation of the domain parameters used during the generation and verification of digital signatures are also included in ANS X9.62.`,
 				},
 				resource.Attribute{
 					Name:        "P256",
@@ -9354,6 +11264,18 @@ When an AppRegistration is created, a unique OAuth2 clientId is generated and re
 					Name:        "confidential",
 					Description: `Clients capable of maintaining the confidentiality of their credentials.For example, this could be a client implemented on a secure server withrestricted access to the client credentials.To maintain the confidentiality of the OAuth2 credentials, two use cases areconsidered.1) The application is running as a service within Intersight. The application automatically obtains the OAuth2 credentials when the application starts and the credentials are not exposed to the end-user. Because end-users (even account administrators) do not have access the OAuth2 credentials, they cannot take the credentials with them when they leave their organization.2) The application is under the control of a \ trusted\ end-user. For example, the end-user may create a native application running outside Intersight. The application uses OAuth2 credentials to interact with the Intersight API. In that case, the Intersight account administrator may generate OAuth2 credentials with a registered application using \ client_credentials\ grant type. In that case, the end-user is responsible for maintaining the confidentiality of the OAuth2 credentials. If the end-user leaves the organization, you should revoke the credentials and issue new Oauth2 credentials.Here is a possible workflow for handling OAuth2 tokens.1) User Alice (Intersight Account Administrator) logins to Intersight and deploys an Intersight application that requires an OAuth2 token.2) Intersight automatically deploys the application. The application is assigned a OAuth2 token, possibly linked to Alice. The application must NOT expose the OAuth2 secret to Alice, otherwise Alice would be able to use the token after she leaves the company.3) The application can make API calls to Intersight using its assigned OAuth2 token. For example, the application could make weekly scheduled API calls to Intersight.4) Separately, Alice may also get OAuth2 tokens that she can use to make API calls from the Intersight SDK through the northbound API. In that case, Alice will get the associated OAuth2 secrets, but not the one assigned in step #2.5) Alice leaves the organization. The OAuth2 tokens assigned in step #2 must retain their validity even after Alice has left the organization. Because the OAuth2 secrets were never shared with Alice, there is no risk Alice can reuse the OAuth2 secrets. On the other hand, the OAuth2 tokens assigned in step #4 must be invalidated because Alice had the OAuth2 tokens in her possession.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_app_registration` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_app_registration.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -9382,6 +11304,18 @@ Holds a certificate, signed by a CAcert.
 					Name:        "Invalid",
 					Description: `Ther certificate is invalid.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_certificate` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_certificate.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -9399,7 +11333,20 @@ which is a block of encoded text that is given to a Certificate Authority when a
 				"certificate",
 				"request",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_certificate_request` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_certificate_request.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -9416,7 +11363,20 @@ Endpoint User or Local User.
 				"point",
 				"user",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_end_point_user` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_end_point_user.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -9434,7 +11394,20 @@ Enables creation of local users on endpoints.
 				"user",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_end_point_user_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_end_point_user_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -9452,7 +11425,20 @@ Mapping of endpoint user to endpoint roles.
 				"user",
 				"role",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_end_point_user_role` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_end_point_user_role.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -9480,6 +11466,18 @@ The SAML identity provider such as Cisco, that has been used to log in to Inters
 					Name:        "local",
 					Description: `The local authentication method to be used for sign-on. Local type is set to default for the Intersight Appliance IdP.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_idp` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_idp.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -9497,7 +11495,20 @@ The access management based on IP address.
 				"access",
 				"management",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_ip_access_management` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_ip_access_management.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -9513,7 +11524,20 @@ Add an IP address to enable IP address based access management.
 				"ip",
 				"address",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_ip_address` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_ip_address.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -9529,7 +11553,20 @@ Mapping of LDAP Group to EndPointRoles.
 				"ldap",
 				"group",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_ldap_group` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_ldap_group.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -9576,7 +11613,19 @@ LDAP Policy configurations.
 				},
 				resource.Attribute{
 					Name:        "LDAPUserDb",
-					Description: `Precedence is given to LADP user database while searching. ## Usage Example ### Resource Creation ` + "`" + `` + "`" + `` + "`" + `hcl resource "intersight_iam_ldap_policy" "ldap1" { name = "ldap1" description = "test policy" enabled = true enable_dns = true user_search_precedence = "LocalUserDb" organization { object_type = "organization.Organization" moid = var.organization } base_properties { attribute = "CiscoAvPair" base_dn = "DC=QATCSLABTPI02,DC=cisco,DC=com" bind_dn = "CN=administrator,CN=Users,DC=QATCSLABTPI02,DC=cisco,DC=com" bind_method = "Anonymous" domain = "QATCSLABTPI02.cisco.com" enable_encryption = true enable_group_authorization = true filter = "sAMAccountName" group_attribute = "memberOf" nested_group_search_depth = 128 timeout = 180 } dns_parameters { nr_source = "Extracted" search_forest = "xyz" search_domain = "abc" } } ` + "`" + `` + "`" + `` + "`" + ` ## Import ` + "`" + `intersight_iam_ldap_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_ldap_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Precedence is given to LADP user database while searching.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_ldap_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_ldap_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -9594,7 +11643,20 @@ LDAP Provider or LDAP Server for user authentication.
 				"ldap",
 				"provider",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_ldap_provider` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_ldap_provider.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -9609,7 +11671,20 @@ Permission provides a way to assign roles to a user or user group to perform ope
 				"iam",
 				"permission",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_permission` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_permission.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -9630,6 +11705,18 @@ Parameters used to generate a private key.
 				resource.Attribute{
 					Name:        "RSA",
 					Description: `Key pairs should be generated by the RSA algorithm. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_private_key_spec` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_private_key_spec.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ` ## Allowed Types in ` + "`" + `AdditionalProperties` + "`" + ` ### [pkix.EcdsaKeySpec](#argument-reference) The key pair is generated using Elliptic Curve Digital Signature Algorithm (ECDSA), as defined in FIPS 186-4. The ECDSA standard was originally developed for the American National Standards Institute by the Accredited Standards Committee on Financial Services, X9. ANS X9.62 defines methods for digital signature generation and verification using ECDSA. Specifications for the generation of the domain parameters used during the generation and verification of digital signatures are also included in ANS X9.62.`,
 				},
 				resource.Attribute{
 					Name:        "P256",
@@ -9694,7 +11781,20 @@ The qualifier defines how a user qualifies to be part of a user group.
 				"iam",
 				"qualifier",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_qualifier` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_qualifier.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -9710,7 +11810,20 @@ ResourceRoles provides a way to specify the roles associated with a resource lik
 				"resource",
 				"roles",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_resource_roles` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_resource_roles.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -9726,7 +11839,20 @@ The session related configuration limits.
 				"session",
 				"limits",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_session_limits` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_session_limits.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -9744,7 +11870,20 @@ It can be a root CA or an trust chain that leads to a root CA.
 				"trust",
 				"point",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_trust_point` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_trust_point.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -9759,7 +11898,20 @@ The Intersight account user.
 				"iam",
 				"user",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_user` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_user.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -9775,7 +11927,20 @@ User Group provides a way to assign permissions to a group of users based on the
 				"user",
 				"group",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_user_group` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_user_group.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -9803,6 +11968,18 @@ Intelligent Platform Management Interface Over LAN Policy.
 					Name:        "read-only",
 					Description: `Privilege to view information throught IPMI but restriction on making any changes.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_ipmioverlan_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_ipmioverlan_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -9826,6 +12003,18 @@ Pool represents a collection of IPv4 and/or IPv6 addresses that can be allocated
 				resource.Attribute{
 					Name:        "default",
 					Description: `Assignment order is decided by the system.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_ippool_pool` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_ippool_pool.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -9851,6 +12040,18 @@ Pool represents a collection of iSCSI Qualified Names (IQNs) for use as initiato
 					Name:        "default",
 					Description: `Assignment order is decided by the system.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iqnpool_pool` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iqnpool_pool.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -9868,7 +12069,20 @@ Internally generated object of claimed APIC device known to Razor.
 				"cni",
 				"apic",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_kubernetes_aci_cni_apic` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kubernetes_aci_cni_apic.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -9890,6 +12104,18 @@ Configuration for an ACI CNI profile.
 					Name:        "instance",
 					Description: `The profile defines the configuration for a specific instance of a target.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -9909,49 +12135,18 @@ Internally generated parameter allocations for a k8s cluster using a particular 
 				"cluster",
 				"allocation",
 			},
-			Arguments:  []resource.Attribute{},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_kubernetes_addon",
-			Category:         "kubernetes",
-			ShortDescription: `An object that describes an instance of an addon definition with install/upgrade strategies and optional overrides.`,
-			Description: `
-An object that describes an instance of an addon definition with install/upgrade strategies and optional overrides.
-`,
-			Keywords: []string{
-				"kubernetes",
-				"addon",
-			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "InstallOnly",
-					Description: `Only install in green field. No action in case of failure or removal.`,
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
 				},
 				resource.Attribute{
-					Name:        "NoAction",
-					Description: `No install action performed.`,
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
 				},
 				resource.Attribute{
-					Name:        "Always",
-					Description: `Attempt install if chart is not already installed.`,
-				},
-				resource.Attribute{
-					Name:        "UpgradeOnly",
-					Description: `Attempt upgrade if chart or overrides options change, no action on upgrade failure.`,
-				},
-				resource.Attribute{
-					Name:        "NoAction",
-					Description: `This choice enables No upgrades to be performed.`,
-				},
-				resource.Attribute{
-					Name:        "ReinstallOnFailure",
-					Description: `Attempt upgrade first. Remove and install on upgrade failure.`,
-				},
-				resource.Attribute{
-					Name:        "AlwaysReinstall",
-					Description: `Always remove older release and reinstall. ## Import ` + "`" + `intersight_kubernetes_addon` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kubernetes_addon.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -9971,24 +12166,32 @@ An addon that can be added to any Kubernetes cluster.
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "InstallOnly",
-					Description: `Only install in green field. No action in case of failure or removal.`,
+					Name:        "None",
+					Description: `Unspecified install strategy.`,
 				},
 				resource.Attribute{
 					Name:        "NoAction",
 					Description: `No install action performed.`,
 				},
 				resource.Attribute{
+					Name:        "InstallOnly",
+					Description: `Only install in green field. No action in case of failure or removal.`,
+				},
+				resource.Attribute{
 					Name:        "Always",
 					Description: `Attempt install if chart is not already installed.`,
 				},
 				resource.Attribute{
-					Name:        "UpgradeOnly",
-					Description: `Attempt upgrade if chart or overrides options change, no action on upgrade failure.`,
+					Name:        "None",
+					Description: `Unspecified upgrade strategy.`,
 				},
 				resource.Attribute{
 					Name:        "NoAction",
 					Description: `This choice enables No upgrades to be performed.`,
+				},
+				resource.Attribute{
+					Name:        "UpgradeOnly",
+					Description: `Attempt upgrade if chart or overrides options change, no action on upgrade failure.`,
 				},
 				resource.Attribute{
 					Name:        "ReinstallOnFailure",
@@ -9997,6 +12200,18 @@ An addon that can be added to any Kubernetes cluster.
 				resource.Attribute{
 					Name:        "AlwaysReinstall",
 					Description: `Always remove older release and reinstall.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_kubernetes_addon_definition` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kubernetes_addon_definition.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -10014,7 +12229,56 @@ A policy that defines which AddonDefinitions to use.
 				"addon",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `Unspecified install strategy.`,
+				},
+				resource.Attribute{
+					Name:        "NoAction",
+					Description: `No install action performed.`,
+				},
+				resource.Attribute{
+					Name:        "InstallOnly",
+					Description: `Only install in green field. No action in case of failure or removal.`,
+				},
+				resource.Attribute{
+					Name:        "Always",
+					Description: `Attempt install if chart is not already installed. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `override_sets` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `key` + "`" + `:(string) Key or property name in a key/value pair. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) Property value in a key/value pair. + ` + "`" + `overrides` + "`" + `:(string) Properties that can be overridden for an addon. + ` + "`" + `release_name` + "`" + `:(string) Name for the helm release. + ` + "`" + `release_namespace` + "`" + `:(string) Namespace for the helm release. + ` + "`" + `upgrade_strategy` + "`" + `:(string) Addon upgrade strategy to determine whether an addon configuration is overwritten on upgrade.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `Unspecified upgrade strategy.`,
+				},
+				resource.Attribute{
+					Name:        "NoAction",
+					Description: `This choice enables No upgrades to be performed.`,
+				},
+				resource.Attribute{
+					Name:        "UpgradeOnly",
+					Description: `Attempt upgrade if chart or overrides options change, no action on upgrade failure.`,
+				},
+				resource.Attribute{
+					Name:        "ReinstallOnFailure",
+					Description: `Attempt upgrade first. Remove and install on upgrade failure.`,
+				},
+				resource.Attribute{
+					Name:        "AlwaysReinstall",
+					Description: `Always remove older release and reinstall.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_kubernetes_addon_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kubernetes_addon_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -10030,7 +12294,20 @@ Docker registry or helm repository which hosts helm charts and docker images.
 				"addon",
 				"repository",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_kubernetes_addon_repository` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kubernetes_addon_repository.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -10066,6 +12343,84 @@ Inventories a Kubernetes cluster state. A Cluster object is automatically create
 					Name:        "Claimed",
 					Description: `Target of type HTTP Endpoint is successfully claimed in Intersight. Currently no validation is performed to verify the Target connectivity from Intersight at the time of creation. However invoking API from Intersight Orchestrator fails if this Target is not reachable from Intersight or if Target API credentials are incorrect.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_kubernetes_cluster` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kubernetes_cluster.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_kubernetes_cluster_addon_profile",
+			Category:         "kubernetes",
+			ShortDescription: `A profile that describes a collection of Addons for a particular cluster.`,
+			Description: `
+A profile that describes a collection of Addons for a particular cluster.
+`,
+			Keywords: []string{
+				"kubernetes",
+				"cluster",
+				"addon",
+				"profile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `Unspecified install strategy.`,
+				},
+				resource.Attribute{
+					Name:        "NoAction",
+					Description: `No install action performed.`,
+				},
+				resource.Attribute{
+					Name:        "InstallOnly",
+					Description: `Only install in green field. No action in case of failure or removal.`,
+				},
+				resource.Attribute{
+					Name:        "Always",
+					Description: `Attempt install if chart is not already installed. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `override_sets` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `key` + "`" + `:(string) Key or property name in a key/value pair. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) Property value in a key/value pair. + ` + "`" + `overrides` + "`" + `:(string) Properties that can be overridden for an addon. + ` + "`" + `release_name` + "`" + `:(string) Name for the helm release. + ` + "`" + `release_namespace` + "`" + `:(string) Namespace for the helm release. + ` + "`" + `upgrade_strategy` + "`" + `:(string) Addon upgrade strategy to determine whether an addon configuration is overwritten on upgrade.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `Unspecified upgrade strategy.`,
+				},
+				resource.Attribute{
+					Name:        "NoAction",
+					Description: `This choice enables No upgrades to be performed.`,
+				},
+				resource.Attribute{
+					Name:        "UpgradeOnly",
+					Description: `Attempt upgrade if chart or overrides options change, no action on upgrade failure.`,
+				},
+				resource.Attribute{
+					Name:        "ReinstallOnFailure",
+					Description: `Attempt upgrade first. Remove and install on upgrade failure.`,
+				},
+				resource.Attribute{
+					Name:        "AlwaysReinstall",
+					Description: `Always remove older release and reinstall. + ` + "`" + `addon_policy` + "`" + `:(HashMap) - Addon policy associated with the addon. This complex property has following sub-properties: + ` + "`" + `moid` + "`" + `:(string) The Moid of the referenced REST resource. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the remote type referred by this relationship. + ` + "`" + `selector` + "`" + `:(string) An OData $filter expression which describes the REST resource to be referenced. This field maybe set instead of 'moid' by clients.1. If 'moid' is set this field is ignored.1. If 'selector' is set and 'moid' is empty/absent from the request, Intersight determines the Moid of theresource matching the filter expression and populates it in the MoRef that is part of the objectinstance being inserted/updated to fulfill the REST request.An error is returned if the filter matches zero or more than one REST resource.An example filter string is: Serial eq '3AA8B7T11'. + ` + "`" + `name` + "`" + `:(string) Name of addon to be installed on a Kubernetes cluster. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_kubernetes_cluster_addon_profile` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kubernetes_cluster_addon_profile.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -10100,12 +12455,52 @@ Cluster profile specifies the config profile for a Kubernetes cluster. It also d
 					Description: `Action triggered on the resource is failed.`,
 				},
 				resource.Attribute{
+					Name:        "None",
+					Description: `Unspecified install strategy.`,
+				},
+				resource.Attribute{
+					Name:        "NoAction",
+					Description: `No install action performed.`,
+				},
+				resource.Attribute{
+					Name:        "InstallOnly",
+					Description: `Only install in green field. No action in case of failure or removal.`,
+				},
+				resource.Attribute{
+					Name:        "Always",
+					Description: `Attempt install if chart is not already installed. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `override_sets` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `key` + "`" + `:(string) Key or property name in a key/value pair. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) Property value in a key/value pair. + ` + "`" + `overrides` + "`" + `:(string) Properties that can be overridden for an addon. + ` + "`" + `release_name` + "`" + `:(string) Name for the helm release. + ` + "`" + `release_namespace` + "`" + `:(string) Namespace for the helm release. + ` + "`" + `upgrade_strategy` + "`" + `:(string) Addon upgrade strategy to determine whether an addon configuration is overwritten on upgrade.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `Unspecified upgrade strategy.`,
+				},
+				resource.Attribute{
+					Name:        "NoAction",
+					Description: `This choice enables No upgrades to be performed.`,
+				},
+				resource.Attribute{
+					Name:        "UpgradeOnly",
+					Description: `Attempt upgrade if chart or overrides options change, no action on upgrade failure.`,
+				},
+				resource.Attribute{
+					Name:        "ReinstallOnFailure",
+					Description: `Attempt upgrade first. Remove and install on upgrade failure.`,
+				},
+				resource.Attribute{
+					Name:        "AlwaysReinstall",
+					Description: `Always remove older release and reinstall. + ` + "`" + `addon_definition` + "`" + `:(HashMap) - Addon definition associated with the addon. This complex property has following sub-properties: + ` + "`" + `moid` + "`" + `:(string) The Moid of the referenced REST resource. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the remote type referred by this relationship. + ` + "`" + `selector` + "`" + `:(string) An OData $filter expression which describes the REST resource to be referenced. This field maybe set instead of 'moid' by clients.1. If 'moid' is set this field is ignored.1. If 'selector' is set and 'moid' is empty/absent from the request, Intersight determines the Moid of theresource matching the filter expression and populates it in the MoRef that is part of the objectinstance being inserted/updated to fulfill the REST request.An error is returned if the filter matches zero or more than one REST resource.An example filter string is: Serial eq '3AA8B7T11'. + ` + "`" + `name` + "`" + `:(string) Name of addon to be installed on a Kubernetes cluster. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.`,
+				},
+				resource.Attribute{
 					Name:        "Provided",
 					Description: `Cluster management entities and endpoints are provided by the infrastructure platform.`,
 				},
 				resource.Attribute{
 					Name:        "Managed",
 					Description: `Cluster management entities and endpoints are provisioned and managed by Intersight kubernetes service.`,
+				},
+				resource.Attribute{
+					Name:        "Undeployed",
+					Description: `The cluster is undeployed.`,
 				},
 				resource.Attribute{
 					Name:        "Configuring",
@@ -10118,6 +12513,10 @@ Cluster profile specifies the config profile for a Kubernetes cluster. It also d
 				resource.Attribute{
 					Name:        "Undeploying",
 					Description: `The cluster is being undeployed.`,
+				},
+				resource.Attribute{
+					Name:        "DeployFailedTerminal",
+					Description: `The cluster deployment failed terminally and can not be recovered.`,
 				},
 				resource.Attribute{
 					Name:        "DeployFailed",
@@ -10167,6 +12566,18 @@ Cluster profile specifies the config profile for a Kubernetes cluster. It also d
 					Name:        "instance",
 					Description: `The profile defines the configuration for a specific instance of a target.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -10184,7 +12595,20 @@ A policy specifying container runtime configuration, such as docker proxy, no pr
 				"runtime",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_kubernetes_container_runtime_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kubernetes_container_runtime_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -10209,6 +12633,18 @@ A policy specifying the CIDR for internal networks in a Kubernetes cluster like 
 					Name:        "Aci",
 					Description: `Cisco ACI Container Network Interface plugin.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_kubernetes_network_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kubernetes_network_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -10232,16 +12668,28 @@ A configuration profile for a node group in a Kubernetes cluster.
 					Description: `Node will be marked as a worker node.`,
 				},
 				resource.Attribute{
-					Name:        "Master",
-					Description: `Node will be marked as a master node.`,
+					Name:        "ControlPlane",
+					Description: `Node will be marked as a control plane node.`,
 				},
 				resource.Attribute{
-					Name:        "EmbeddedMaster",
-					Description: `Node will be both a master and a worker.`,
+					Name:        "ControlPlaneWorker",
+					Description: `Node will be both a controle plane and a worker.`,
 				},
 				resource.Attribute{
 					Name:        "instance",
-					Description: `The profile defines the configuration for a specific instance of a target. ## Import ` + "`" + `intersight_kubernetes_node_group_profile` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kubernetes_node_group_profile.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The profile defines the configuration for a specific instance of a target.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_kubernetes_node_group_profile` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kubernetes_node_group_profile.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -10263,7 +12711,19 @@ A policy specifying system configuration such as timezone, DNS servers, and NTP 
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "Pacific/Kiritimati",
-					Description: `## Import ` + "`" + `intersight_kubernetes_sys_config_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kubernetes_sys_config_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_kubernetes_sys_config_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kubernetes_sys_config_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -10282,7 +12742,20 @@ A policy specifying self signed docker registries and CA certificates to trust.
 				"registries",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_kubernetes_trusted_registries_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kubernetes_trusted_registries_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -10297,7 +12770,20 @@ A policy capturing software versions for a Kubernetes cluster.
 				"kubernetes",
 				"version",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_kubernetes_version` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kubernetes_version.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -10313,7 +12799,52 @@ Policy that defines which kubernetes version to use.
 				"version",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_kubernetes_version_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kubernetes_version_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_kubernetes_virtual_machine_infra_config_policy",
+			Category:         "kubernetes",
+			ShortDescription: `A policy specifying compute, storage and network infrastructure configuration for a Virtual Machine.`,
+			Description: `
+A policy specifying compute, storage and network infrastructure configuration for a Virtual Machine.
+`,
+			Keywords: []string{
+				"kubernetes",
+				"virtual",
+				"machine",
+				"infra",
+				"config",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -10331,16 +12862,29 @@ Infrastructure backend for providing virtual machines from a target.
 				"infrastructure",
 				"provider",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_kubernetes_virtual_machine_infrastructure_provider` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kubernetes_virtual_machine_infrastructure_provider.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ` ## Allowed Types in ` + "`" + `AdditionalProperties` + "`" + ` ### [kubernetes.EsxiVirtualMachineInfraConfig](#argument-reference) Infrastructure provider allocation configuration for ESXi virtual machine Kubernetes nodes.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "intersight_kubernetes_virtual_machine_instance_type",
 			Category:         "kubernetes",
-			ShortDescription: `A policy specifying node configuration for a Virtual Machine.`,
+			ShortDescription: `A policy specifying CPU, Memory and Disk size configuration for a Virtual Machine.`,
 			Description: `
-A policy specifying node configuration for a Virtual Machine.
+A policy specifying CPU, Memory and Disk size configuration for a Virtual Machine.
 `,
 			Keywords: []string{
 				"kubernetes",
@@ -10349,7 +12893,20 @@ A policy specifying node configuration for a Virtual Machine.
 				"instance",
 				"type",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_kubernetes_virtual_machine_instance_type` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kubernetes_virtual_machine_instance_type.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -10380,6 +12937,18 @@ A profile specifying configuration settings for a Virtual Machine node. It is au
 					Name:        "instance",
 					Description: `The profile defines the configuration for a specific instance of a target.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -10395,7 +12964,20 @@ Policy to configure KVM Launch settings.
 				"kvm",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_kvm_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kvm_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -10410,7 +12992,20 @@ Virtual KVM Session that provides Single Sign-On access to the vKVM console of t
 				"kvm",
 				"session",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_kvm_session` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kvm_session.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -10426,7 +13021,20 @@ This must be specified while creating the vKVM session to gain tunneled access.
 				"kvm",
 				"tunnel",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_kvm_tunnel` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kvm_tunnel.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -10442,7 +13050,20 @@ Customer operation object to request reservation code.
 				"iwo",
 				"count",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -10516,6 +13137,18 @@ the feature set defined for the license entitlement is granted to the customer.
 					Name:        "IWO-Premier",
 					Description: `IWO-Premier as a License type.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_license_license_info` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_license_license_info.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -10532,7 +13165,20 @@ Customer operation object to request reservation code.
 				"reservation",
 				"op",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_license_license_reservation_op` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_license_license_reservation_op.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -10555,6 +13201,18 @@ Pool represents a collection of MAC addresses that can be allocated to VNICs of 
 				resource.Attribute{
 					Name:        "default",
 					Description: `Assignment order is decided by the system.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_macpool_pool` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_macpool_pool.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -10645,6 +13303,18 @@ The Persistent Memory policy defines the reusable Persistent Memory related conf
 					Name:        "configured-from-operating-system",
 					Description: `The Persistent Memory Modules are configured from operating system thorugh OS tools.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_memory_persistent_memory_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_memory_persistent_memory_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -10660,7 +13330,20 @@ Enable or disable Dynamic DNS, add or update DNS settings for IPv4 and IPv6 on C
 				"networkconfig",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_networkconfig_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_networkconfig_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -10677,8 +13360,60 @@ Policy to configure the NTP Servers.
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "SHA1",
+					Description: `Key type used by the authentication is SHA1. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `server_name` + "`" + `:(string) Server hostname or IP address. + ` + "`" + `sym_key_id` + "`" + `:(int) The key ID is a positive integer that identifies a cryptographic key used to authenticate NTP messages. + ` + "`" + `sym_key_value` + "`" + `:(string) The value of the symmetric key.`,
+				},
+				resource.Attribute{
 					Name:        "Pacific/Kiritimati",
-					Description: `## Usage Example ### Resource Creation ` + "`" + `` + "`" + `` + "`" + `hcl resource "intersight_ntp_policy" "ntp1" { name = "ntp1" enabled = true ntp_servers = [ "ntp.esl.cisco.com", "time-a-g.nist.gov", "time-b-g.nist.gov" ] organization { object_type = "organization.Organization" moid = var.organization } } ` + "`" + `` + "`" + `` + "`" + ` ## Import ` + "`" + `intersight_ntp_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_ntp_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_ntp_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_ntp_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_oprs_deployment",
+			Category:         "oprs",
+			ShortDescription: `Monitors the status of operator deployed in the assist.`,
+			Description: `
+Monitors the status of operator deployed in the assist.
+`,
+			Keywords: []string{
+				"oprs",
+				"deployment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Healthy",
+					Description: `A healthy status indicates that the resource is healthy and running as per spec.`,
+				},
+				resource.Attribute{
+					Name:        "Unhealthy",
+					Description: `An unhealthy status indicates that the resource is down.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_oprs_deployment` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_oprs_deployment.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -10694,7 +13429,175 @@ Organization provides multi-tenancy within an account. Multiple organizations ca
 			Keywords: []string{
 				"organization",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_organization_organization` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_organization_organization.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_os_bulk_install_info",
+			Category:         "os",
+			ShortDescription: `This MO models the CSV file content which the user uploaded for OS installation. As part of the handler, necessary filed in the model can be populated along with respective validation.`,
+			Description: `
+This MO models the CSV file content which the user uploaded for OS installation. As part of the handler, necessary filed
+in the model can be populated along with respective validation.
+`,
+			Keywords: []string{
+				"os",
+				"bulk",
+				"install",
+				"info",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Pending",
+					Description: `The initial value of the OperStatus.`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `The OperStatus value will be InProgress during execution.`,
+				},
+				resource.Attribute{
+					Name:        "CompletedOk",
+					Description: `The API is successful with operation then OperStatus will be marked as CompletedOk.`,
+				},
+				resource.Attribute{
+					Name:        "CompletedError",
+					Description: `The API is failed with operation then OperStatus will be marked as CompletedError.`,
+				},
+				resource.Attribute{
+					Name:        "CompletedWarning",
+					Description: `The API is completed with some warning then OperStatus will be CompletedWarning.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `Display none of the widget types.`,
+				},
+				resource.Attribute{
+					Name:        "Radio",
+					Description: `Display the widget as a radio button.`,
+				},
+				resource.Attribute{
+					Name:        "Dropdown",
+					Description: `Display the widget as a dropdown.`,
+				},
+				resource.Attribute{
+					Name:        "GridSelector",
+					Description: `Display the widget as a selector.`,
+				},
+				resource.Attribute{
+					Name:        "DrawerSelector",
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `: JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `properties` + "`" + `:(HashMap) - Primitive data type properties. This complex property has following sub-properties: + ` + "`" + `constraints` + "`" + `:(HashMap) - Constraints that must be applied to the parameter value supplied for this data type. This complex property has following sub-properties: + ` + "`" + `enum_list` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `label` + "`" + `:(string) Label for the enum value. A user friendly short string to identify the enum value. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), single quote ('), forward slash (/), or an underscore (_). + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) Enum value for this enum entry. Value will be passed to the workflow as string type for execution. Value can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), forward slash (/), or an underscore (_). + ` + "`" + `max` + "`" + `:(float) Allowed maximum value of the parameter if parameter is integer/float or maximum length of the parameter if the parameter is string. When max and min are set to 0, then the limits are not checked. The maximum number supported is 1.797693134862315708145274237317043567981e+308 or (2`,
+				},
+				resource.Attribute{
+					Name:        "string",
+					Description: `Enum to specify a string data type.`,
+				},
+				resource.Attribute{
+					Name:        "integer",
+					Description: `Enum to specify an integer32 data type.`,
+				},
+				resource.Attribute{
+					Name:        "float",
+					Description: `Enum to specify a float64 data type.`,
+				},
+				resource.Attribute{
+					Name:        "boolean",
+					Description: `Enum to specify a boolean data type.`,
+				},
+				resource.Attribute{
+					Name:        "json",
+					Description: `Enum to specify a json data type.`,
+				},
+				resource.Attribute{
+					Name:        "enum",
+					Description: `Enum to specify a enum data type which is a list of pre-defined strings. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `value` + "`" + `: Value for placeholder provided by user. + ` + "`" + `answers` + "`" + `:(HashMap) -(Computed) Answers provided by user for the unattended OS installation. This complex property has following sub-properties: + ` + "`" + `answer_file` + "`" + `:(string) If the source of the answers is a static file, the content of the file is stored as valuein this property.The value is mandatory only when the 'Source' property has been set to 'File'. + ` + "`" + `hostname` + "`" + `:(string) Hostname to be configured for the server in the OS. + ` + "`" + `ip_config_type` + "`" + `:(string) IP configuration type. Values are Static or Dynamic configuration of IP.In case of static IP configuration, IP address, gateway and other details needto be populated. In case of dynamic the IP configuration is obtained dynamicallyfrom DHCP.`,
+				},
+				resource.Attribute{
+					Name:        "static",
+					Description: `In case of static IP configuraton, provide the details such as IP address, netmask, and gateway.`,
+				},
+				resource.Attribute{
+					Name:        "DHCP",
+					Description: `In case of dynamic IP configuration, the IP address, netmask and gateway detailsare obtained from DHCP. + ` + "`" + `ip_configuration` + "`" + `:(HashMap) - In case of static IP configuration, IP address, netmask and gateway details areprovided. This complex property has following sub-properties: + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `is_answer_file_set` + "`" + `:(bool)(Computed) Indicates whether the value of the 'answerFile' property has been set. + ` + "`" + `is_root_password_crypted` + "`" + `:(bool) Enable to indicate Root Password provided is encrypted. + ` + "`" + `is_root_password_set` + "`" + `:(bool)(Computed) Indicates whether the value of the 'rootPassword' property has been set. + ` + "`" + `nameserver` + "`" + `:(string) IP address of the name server to be configured in the OS. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `product_key` + "`" + `:(string) The product key to be used for a specific version of Windows installation. + ` + "`" + `root_password` + "`" + `:(string) Password configured for the root / administrator user in the OS. You can enter a plain text or an encrypted password.Intersight encrypts the plaintext password. Enable the Encrypted Password option to provide an encrypted password.For more details on encrypting passwords, see Help Center. + ` + "`" + `nr_source` + "`" + `:(string) Answer values can be provided from three sources - Embedded in OS image, static file,or as placeholder values for an answer file template.Source of the answers is given as value, Embedded/File/Template.'Embedded' option indicates that the answer file is embedded within the OS Image. 'File'option indicates that the answers are provided as a file. 'Template' indicates that theplaceholders in the selected os.ConfigurationFile MO are replaced with values providedas os.Answers MO.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `Indicates that answers is not sent and values must be populated from Install Template.`,
+				},
+				resource.Attribute{
+					Name:        "Embedded",
+					Description: `Indicates that the answer file is embedded within OS image.`,
+				},
+				resource.Attribute{
+					Name:        "File",
+					Description: `Indicates that the answer file is a static content that has all thevalues populated.`,
+				},
+				resource.Attribute{
+					Name:        "Template",
+					Description: `Indicates that the given answers are used to populate the answer filetemplate. The template allows the users to refer some server specificanswers as fields/placeholders and replace these placeholders with theactual values for each Server during OS installation using 'Answers' and'AdditionalParameters' properties in os.Install MO.The answer file templates can be created by users as os.ConfigurationFile objects. + ` + "`" + `error_msgs` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `install_target` + "`" + `:(string)(Computed) The target in which OS installation triggered, the value represented is StorageControllerID follwed by PhysicalDisk SerialNumber in case of Physcial disk or VirtualDriveId for virtual drive. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `processed_install_target` + "`" + `:(HashMap) -(Computed) The target in which OS installation triggered, this is populated after processing the given data. This complex property has following sub-properties: + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `serial_number` + "`" + `:(string)(Computed) The Serial Number of the server.`,
+				},
+				resource.Attribute{
+					Name:        "NotValidated",
+					Description: `The validation not started.`,
+				},
+				resource.Attribute{
+					Name:        "Valid",
+					Description: `The step status marked as valid when respective step validation condition is successful.`,
+				},
+				resource.Attribute{
+					Name:        "Invalid",
+					Description: `The step status marked as invalid when respective step validation condition is failed.`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `The validation is in progress. + ` + "`" + `step_name` + "`" + `:(string)(Computed) The validation step name.`,
+				},
+				resource.Attribute{
+					Name:        "OS Install Schema Validation",
+					Description: `The step to validate the CSV file schema.`,
+				},
+				resource.Attribute{
+					Name:        "OS Image Validation",
+					Description: `The Operating System Image parameter validation step.`,
+				},
+				resource.Attribute{
+					Name:        "SCU Image Validation",
+					Description: `The SCU Image parameter validation step.`,
+				},
+				resource.Attribute{
+					Name:        "Configuration source and file validation",
+					Description: `The Configuration Source and Configuration file validation step.`,
+				},
+				resource.Attribute{
+					Name:        "Server level data validation",
+					Description: `The server level parameters validation.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_os_bulk_install_info` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_os_bulk_install_info.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -10761,6 +13664,18 @@ os.OsInstall object.
 				resource.Attribute{
 					Name:        "enum",
 					Description: `Enum to specify a enum data type which is a list of pre-defined strings. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `value` + "`" + `: Value for placeholder provided by user.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_os_configuration_file` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_os_configuration_file.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -10854,6 +13769,38 @@ using workflow engine MO workflow.WorkflowInfo.
 					Name:        "vMedia",
 					Description: `OS image is mounted as vMedia in target server for OS installation.`,
 				},
+				resource.Attribute{
+					Name:        "Pending",
+					Description: `The initial value of the OperStatus.`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `The OperStatus value will be InProgress during execution.`,
+				},
+				resource.Attribute{
+					Name:        "CompletedOk",
+					Description: `The API is successful with operation then OperStatus will be marked as CompletedOk.`,
+				},
+				resource.Attribute{
+					Name:        "CompletedError",
+					Description: `The API is failed with operation then OperStatus will be marked as CompletedError.`,
+				},
+				resource.Attribute{
+					Name:        "CompletedWarning",
+					Description: `The API is completed with some warning then OperStatus will be CompletedWarning.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -10892,6 +13839,18 @@ Backup config policy which contains all the required inputs to do backup on a lo
 					Name:        "FTP",
 					Description: `File Transfer Protocol (FTP) to access file server.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_recovery_backup_config_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_recovery_backup_config_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -10911,7 +13870,19 @@ Backup profile to initiate on-demand or scheduled backups at end points.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance",
-					Description: `The profile defines the configuration for a specific instance of a target. ## Import ` + "`" + `intersight_recovery_backup_profile` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_recovery_backup_profile.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The profile defines the configuration for a specific instance of a target.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_recovery_backup_profile` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_recovery_backup_profile.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -10951,6 +13922,18 @@ Handles requests for on demand backup for a given endpoint.
 					Name:        "FTP",
 					Description: `File Transfer Protocol (FTP) to access file server.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_recovery_on_demand_backup` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_recovery_on_demand_backup.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -10966,7 +13949,20 @@ Triggers a restore operation on the target endpoint.
 				"recovery",
 				"restore",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -10996,6 +13992,18 @@ Base Schedule config which contains all the required inputs to do schedule on a 
 					Name:        "20",
 					Description: `+ ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_recovery_schedule_config_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_recovery_schedule_config_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -11019,6 +14027,98 @@ A group of REST resources, such as a group of compute.Blade MOs. A ResourceGroup
 				resource.Attribute{
 					Name:        "Allow-All",
 					Description: `All resources will become part of the Resource Group. Only one resource group can be created to organize resources.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_resource_group` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_resource_group.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_resourcepool_lease",
+			Category:         "resourcepool",
+			ShortDescription: `Lease API invoked by passing resource pool, lease API will reserve or un-reserve the resource from the pool.`,
+			Description: `
+Lease API invoked by passing resource pool, lease API will reserve or un-reserve the resource from the pool.
+`,
+			Keywords: []string{
+				"resourcepool",
+				"lease",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_resourcepool_lease` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_resourcepool_lease.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_resourcepool_pool",
+			Category:         "resourcepool",
+			ShortDescription: `Pool represents a collection of resource. The resource can be any MO which has PoolResource meta enabled. The resource in the pool can be reserved or unreserved by using Lease API, reserved/unreserved resources can be used in the entities like server profiles.`,
+			Description: `
+Pool represents a collection of resource. The resource can be any MO which has PoolResource meta enabled. The resource in the pool can be reserved or unreserved by using Lease API, reserved/unreserved resources can be used in the entities like server profiles.
+`,
+			Keywords: []string{
+				"resourcepool",
+				"pool",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "sequential",
+					Description: `Identifiers are assigned in a sequential order.`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `Assignment order is decided by the system.`,
+				},
+				resource.Attribute{
+					Name:        "Static",
+					Description: `The resources in the pool will not be changed until user manually update it.`,
+				},
+				resource.Attribute{
+					Name:        "Dynamic",
+					Description: `The resources in the pool will be updated dynamically based on the condition.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `The resource cannot consider for Resource Pool.`,
+				},
+				resource.Attribute{
+					Name:        "Server",
+					Description: `Resource Pool holds the server kind of resources, example - RackServer, Blade.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_resourcepool_pool` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_resourcepool_pool.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -11044,6 +14144,18 @@ Policy for configuring SD Card settings on endpoint.
 					Name:        "Utility",
 					Description: `This partition contains virtual drives for utilities such as SCU, HUU, Drivers and Diagnostics. + ` + "`" + `virtual_drives` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `additional_properties` + "`" + `:(JSON) - Additional Properties as per object type, can be added as JSON using ` + "`" + `jsonencode()` + "`" + `. Allowed Types are: [sdcard.Diagnostics](#sdcardDiagnostics) [sdcard.Drivers](#sdcardDrivers) [sdcard.HostUpgradeUtility](#sdcardHostUpgradeUtility) [sdcard.OperatingSystem](#sdcardOperatingSystem) [sdcard.ServerConfigurationUtility](#sdcardServerConfigurationUtility) [sdcard.UserPartition](#sdcardUserPartition) + ` + "`" + `enable` + "`" + `:(bool) Enable the respective virtual drive to be available to the host. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_sdcard_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_sdcard_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -11063,6 +14175,18 @@ A profile that specifies configuration settings for a SDWAN router.
 				resource.Attribute{
 					Name:        "instance",
 					Description: `The profile defines the configuration for a specific instance of a target.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -11093,6 +14217,18 @@ Configuration settings for a SDWAN vEdge router.
 					Name:        "Management",
 					Description: `Port-group being added is used for Management traffic. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `port_group` + "`" + `:(string) Name of the Port Group to create. + ` + "`" + `vlan` + "`" + `:(int) VLAN to be added to the Port Group.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_sdwan_router_node` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_sdwan_router_node.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -11119,6 +14255,18 @@ A policy specifying SD-WAN router details.
 					Description: `Minimal deployment configuration with 2 vCPUs and 4GB RAM.`,
 				},
 				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+				resource.Attribute{
 					Name:        "Single",
 					Description: `Singly terminated WANs ar evenly distributed across SD-WAN router nodes. A given WAN connection is available only on one of the router nodes.`,
 				},
@@ -11143,7 +14291,20 @@ A policy specifying vManage account details.
 				"account",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_sdwan_vmanage_account_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_sdwan_vmanage_account_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -11159,7 +14320,20 @@ Configuration import action will import the existing configuration from physical
 				"config",
 				"import",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_server_config_import` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_server_config_import.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -11176,6 +14350,26 @@ A profile specifying configuration settings for a physical server.
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "Ok",
+					Description: `Config change state represents Validation for change/drift is successful or is not applicable.`,
+				},
+				resource.Attribute{
+					Name:        "Validating-change",
+					Description: `Config change state represents policy changes are being validated. This state starts when policy is changed and becomes different from deployed changes (Pending-changes).`,
+				},
+				resource.Attribute{
+					Name:        "Validating-drift",
+					Description: `Config change state represents endpoint configuration changes are being validated. This state starts when endpoint is changed and endpoint configuration becomes different from policy configured changes (Out-of-sync).`,
+				},
+				resource.Attribute{
+					Name:        "Change-failed",
+					Description: `Config change state represents there is internal error in calculating policy change.`,
+				},
+				resource.Attribute{
+					Name:        "Drift-failed",
+					Description: `Config change state represents there is internal error in calculating endpoint configuraion drift. + ` + "`" + `initial_config_context` + "`" + `:(HashMap) -(Computed) Stores initial Configuration state. Used for reverting back to initial state of ConfigContext in case of validation failure. This complex property has following sub-properties: + ` + "`" + `config_state` + "`" + `:(string)(Computed) Indicates a profile's configuration deploying state. Values -- Assigned, Not-assigned, Associated, Pending-changes, Out-of-sync, Validating, Configuring, Failed. + ` + "`" + `control_action` + "`" + `:(string) System action to trigger the appropriate workflow. Values -- No_op, ConfigChange, Deploy, Unbind. + ` + "`" + `error_state` + "`" + `:(string) Indicates a profile's error state. Values -- Validation-error (Static validation error), Pre-config-error (Runtime validation error), Config-error (Runtime configuration error). + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oper_state` + "`" + `:(string)(Computed) Combined state (configState, and operational state of the associated physical resource) to indicate the current state of the profile. Values -- n/a, Power-off, Pending-changes, Configuring, Ok, Failed. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.`,
+				},
+				resource.Attribute{
 					Name:        "Standalone",
 					Description: `Servers which are operating in standalone mode i.e. not connected to a Fabric Interconnected.`,
 				},
@@ -11185,7 +14379,60 @@ A profile specifying configuration settings for a physical server.
 				},
 				resource.Attribute{
 					Name:        "instance",
-					Description: `The profile defines the configuration for a specific instance of a target. ### Custom keywords These are`,
+					Description: `The profile defines the configuration for a specific instance of a target.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ### Custom keywords These are`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_server_profile_template",
+			Category:         "server",
+			ShortDescription: `A profile template specifying configuration settings for a physical server.`,
+			Description: `
+A profile template specifying configuration settings for a physical server.
+`,
+			Keywords: []string{
+				"server",
+				"profile",
+				"template",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Standalone",
+					Description: `Servers which are operating in standalone mode i.e. not connected to a Fabric Interconnected.`,
+				},
+				resource.Attribute{
+					Name:        "FIAttached",
+					Description: `Servers which are connected to a Fabric Interconnect that is managed by Intersight.`,
+				},
+				resource.Attribute{
+					Name:        "instance",
+					Description: `The profile defines the configuration for a specific instance of a target.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_server_profile_template` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_server_profile_template.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -11222,6 +14469,18 @@ Name that identifies the SMTP Policy.
 				resource.Attribute{
 					Name:        "major",
 					Description: `Minimum severity to report is major.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_smtp_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_smtp_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -11302,6 +14561,18 @@ Policy to configure SNMP settings on endpoint.
 				resource.Attribute{
 					Name:        "AuthNoPriv",
 					Description: `The user requires an authorization password but not a privacy password.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_snmp_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_snmp_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -11513,6 +14784,22 @@ Appliance the represents the image that is uploaded by the user and to be used f
 				resource.Attribute{
 					Name:        "Evicted",
 					Description: `Indicates that the image has been evicted from the Intersight Appliance (or endpoint cache) to reclaim storage space.`,
+				},
+				resource.Attribute{
+					Name:        "Invalid",
+					Description: `Indicates that the corresponding distributable MO has been removed from the backend. This can be due to unpublishing of an image.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_software_appliance_distributable` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_software_appliance_distributable.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -11731,6 +15018,22 @@ A JSON file wth HCL metadata uploaded for consumption by the HCL service.
 					Name:        "Evicted",
 					Description: `Indicates that the image has been evicted from the Intersight Appliance (or endpoint cache) to reclaim storage space.`,
 				},
+				resource.Attribute{
+					Name:        "Invalid",
+					Description: `Indicates that the corresponding distributable MO has been removed from the backend. This can be due to unpublishing of an image.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_software_hcl_meta` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_software_hcl_meta.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -11941,6 +15244,22 @@ A HyperFlex image bundle distributed by Cisco for Private Appliance.
 					Name:        "Evicted",
 					Description: `Indicates that the image has been evicted from the Intersight Appliance (or endpoint cache) to reclaim storage space.`,
 				},
+				resource.Attribute{
+					Name:        "Invalid",
+					Description: `Indicates that the corresponding distributable MO has been removed from the backend. This can be due to unpublishing of an image.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_software_hyperflex_bundle_distributable` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_software_hyperflex_bundle_distributable.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -12149,6 +15468,51 @@ A HyperFlex image distributed by Cisco.
 				resource.Attribute{
 					Name:        "Evicted",
 					Description: `Indicates that the image has been evicted from the Intersight Appliance (or endpoint cache) to reclaim storage space.`,
+				},
+				resource.Attribute{
+					Name:        "Invalid",
+					Description: `Indicates that the corresponding distributable MO has been removed from the backend. This can be due to unpublishing of an image.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_software_hyperflex_distributable` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_software_hyperflex_distributable.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_software_release_meta",
+			Category:         "software",
+			ShortDescription: `Release information for various software images. Gives information on the latest released version of a product.`,
+			Description: `
+Release information for various software images. Gives information on the latest released version of a product.
+`,
+			Keywords: []string{
+				"software",
+				"release",
+				"meta",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_software_release_meta` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_software_release_meta.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -12360,12 +15724,28 @@ A solution image distributed by Cisco.
 					Description: `Indicates that the image has been evicted from the Intersight Appliance (or endpoint cache) to reclaim storage space.`,
 				},
 				resource.Attribute{
+					Name:        "Invalid",
+					Description: `Indicates that the corresponding distributable MO has been removed from the backend. This can be due to unpublishing of an image.`,
+				},
+				resource.Attribute{
 					Name:        "osimage",
 					Description: `The solution OS image for deployment.`,
 				},
 				resource.Attribute{
 					Name:        "script",
 					Description: `The Python script for the solution VM configuration and deployment.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_software_solution_distributable` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_software_solution_distributable.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -12577,6 +15957,22 @@ A UCSD connector pack image bundle distributed by Cisco for Private Appliance.
 					Name:        "Evicted",
 					Description: `Indicates that the image has been evicted from the Intersight Appliance (or endpoint cache) to reclaim storage space.`,
 				},
+				resource.Attribute{
+					Name:        "Invalid",
+					Description: `Indicates that the corresponding distributable MO has been removed from the backend. This can be due to unpublishing of an image.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_software_ucsd_bundle_distributable` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_software_ucsd_bundle_distributable.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -12786,6 +16182,22 @@ A UCSD connector pack image distributed by Cisco.
 					Name:        "Evicted",
 					Description: `Indicates that the image has been evicted from the Intersight Appliance (or endpoint cache) to reclaim storage space.`,
 				},
+				resource.Attribute{
+					Name:        "Invalid",
+					Description: `Indicates that the corresponding distributable MO has been removed from the backend. This can be due to unpublishing of an image.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_software_ucsd_distributable` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_software_ucsd_distributable.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -12817,6 +16229,18 @@ User's consent for Intersight to contact an external software repository such as
 				resource.Attribute{
 					Name:        "NetworkShare",
 					Description: `External repository in the customer datacenter. This will typically be a file server.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_softwarerepository_authorization` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_softwarerepository_authorization.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -12871,6 +16295,18 @@ Maps a Cisco software repository image category identifier to its applicable har
 					Name:        "NetworkShare",
 					Description: `External repository in the customer datacenter. This will typically be a file server.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_softwarerepository_category_mapper` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_softwarerepository_category_mapper.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -12888,7 +16324,20 @@ Maps a Cisco hardware model Series to its applicable hardware models.
 				"mapper",
 				"model",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_softwarerepository_category_mapper_model` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_softwarerepository_category_mapper_model.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -12905,7 +16354,20 @@ Defines constraints for models which are supported from certain minimum image ve
 				"support",
 				"constraint",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_softwarerepository_category_support_constraint` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_softwarerepository_category_support_constraint.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -13015,6 +16477,22 @@ An operating system image that resides either in an external repository or has b
 					Name:        "Evicted",
 					Description: `Indicates that the image has been evicted from the Intersight Appliance (or endpoint cache) to reclaim storage space.`,
 				},
+				resource.Attribute{
+					Name:        "Invalid",
+					Description: `Indicates that the corresponding distributable MO has been removed from the backend. This can be due to unpublishing of an image.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_softwarerepository_operating_system_file` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_softwarerepository_operating_system_file.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -13038,6 +16516,18 @@ A Cisco release containing one or more firmware images. Cisco releases images fo
 				resource.Attribute{
 					Name:        "ComputeSystem",
 					Description: `The images in a release that correspond to servers.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_softwarerepository_release` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_softwarerepository_release.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -13083,6 +16573,18 @@ Policy for configuring Serial Over LAN settings on endpoint.
 					Name:        "com1",
 					Description: `Use serial port com1 for communication.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_sol_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_sol_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -13098,7 +16600,20 @@ Secure shell policy on the endpoint.
 				"ssh",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_ssh_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_ssh_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -13144,6 +16659,18 @@ A reusable RAID disk group configuration that can be applied across multiple ser
 					Name:        "Raid60",
 					Description: `RAID 60 Mirror Raid Level.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_storage_disk_group_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_storage_disk_group_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -13167,6 +16694,18 @@ The storage policy models the reusable storage related configuration that can be
 				resource.Attribute{
 					Name:        "Jbod",
 					Description: `JBOD state where the disks start showing up to host os.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
 				},
 				resource.Attribute{
 					Name:        "Default",
@@ -13266,7 +16805,7 @@ The storage policy models the reusable storage related configuration that can be
 				},
 				resource.Attribute{
 					Name:        "AlwaysWriteBack",
-					Description: `With this policy, write caching remains Write Back even if the battery backup unit is defective or discharged. ## Usage Example ### Resource Creation ` + "`" + `` + "`" + `` + "`" + `hcl resource "intersight_storage_storage_policy" "storage_storage1" { name = "storage_storage_policy1" description = "storage policy test" retain_policy_virtual_drives = true unused_disks_state = "UnconfiguredGood" virtual_drives { object_type = "storage.VirtualDriveConfig" boot_drive = true drive_cache = "NoChange" expand_to_available = false io_policy = "Direct" name = "RAID0_1" access_policy = "ReadWrite" disk_group_policy = intersight_storage_disk_group_policy.storage_disk_group1.id read_policy = "NoReadAhead" size = 285148 write_policy = "WriteThrough" } organization { object_type = "organization.Organization" moid = var.organization } } ` + "`" + `` + "`" + `` + "`" + ` ## Import ` + "`" + `intersight_storage_storage_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_storage_storage_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `With this policy, write caching remains Write Back even if the battery backup unit is defective or discharged. ## Import ` + "`" + `intersight_storage_storage_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_storage_storage_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -13356,6 +16895,18 @@ The syslog policy configure the syslog server to receive CIMC log entries.
 					Name:        "tcp",
 					Description: `Use Transmission Control Protocol (TCP) for syslog remote server connection.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_syslog_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_syslog_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -13372,7 +16923,20 @@ Total number of advisories currently affecting a given Account.
 				"advisory",
 				"count",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_tam_advisory_count` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_tam_advisory_count.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -13410,12 +16974,28 @@ An Intersight Advisory. An advisory represents an identification of a potential 
 					Description: `Repesents the use of REST API for carrying out alert actions.`,
 				},
 				resource.Attribute{
+					Name:        "intersightApi",
+					Description: `Collector type for this data collection is Intersight APIs.`,
+				},
+				resource.Attribute{
 					Name:        "nxos",
 					Description: `Collector type for this data collection is NXOS.`,
 				},
 				resource.Attribute{
+					Name:        "s3File",
+					Description: `Collector type for this data collection is a file in a cloud hosted object storage bucket.`,
+				},
+				resource.Attribute{
 					Name:        "intersightApi",
 					Description: `Collector type for this data collection is Intersight APIs.`,
+				},
+				resource.Attribute{
+					Name:        "nxos",
+					Description: `Collector type for this data collection is NXOS.`,
+				},
+				resource.Attribute{
+					Name:        "s3File",
+					Description: `Collector type for this data collection is a file in a cloud hosted object storage bucket.`,
 				},
 				resource.Attribute{
 					Name:        "ready",
@@ -13432,6 +17012,18 @@ An Intersight Advisory. An advisory represents an identification of a potential 
 				resource.Attribute{
 					Name:        "fieldNotice",
 					Description: `Respresents the field notice alert type (https://www.cisco.com/c/en/us/support/web/tsd-products-field-notice-summary.html).`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -13457,6 +17049,18 @@ State of an advisory in the context of a given account. Used to capture a given 
 				resource.Attribute{
 					Name:        "acknowledged",
 					Description: `Advisory is seen and acknowledged by the user and she no longer wants to recieve updates.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_tam_advisory_info` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_tam_advisory_info.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -13486,6 +17090,18 @@ Instance of an Intersight advisory applicable for an Intersight managed object. 
 				resource.Attribute{
 					Name:        "cleared",
 					Description: `Advisory instance is no longer applicable for the affected managed object.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_tam_advisory_instance` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_tam_advisory_instance.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -13525,12 +17141,16 @@ Intersight representation of a Cisco PSIRT (https://tools.cisco.com/security/cen
 					Description: `Repesents the use of REST API for carrying out alert actions.`,
 				},
 				resource.Attribute{
+					Name:        "intersightApi",
+					Description: `Collector type for this data collection is Intersight APIs.`,
+				},
+				resource.Attribute{
 					Name:        "nxos",
 					Description: `Collector type for this data collection is NXOS.`,
 				},
 				resource.Attribute{
-					Name:        "intersightApi",
-					Description: `Collector type for this data collection is Intersight APIs.`,
+					Name:        "s3File",
+					Description: `Collector type for this data collection is a file in a cloud hosted object storage bucket.`,
 				},
 				resource.Attribute{
 					Name:        "ready",
@@ -13547,6 +17167,18 @@ Intersight representation of a Cisco PSIRT (https://tools.cisco.com/security/cen
 				resource.Attribute{
 					Name:        "final",
 					Description: `Cisco has completed its evaluation of the vulnerability described in the advisory. There will be no further updates unless there is a material change in the nature of the vulnerability.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -13584,7 +17216,19 @@ Policy to control techsupport collection for a specific account.
 				},
 				resource.Attribute{
 					Name:        "Disable",
-					Description: `Disable techsupport collection. ## Import ` + "`" + `intersight_techsupportmanagement_collection_control_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_techsupportmanagement_collection_control_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Disable techsupport collection.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_techsupportmanagement_collection_control_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_techsupportmanagement_collection_control_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -13631,6 +17275,10 @@ A request to collect techsupport and upload it to Intersight Storage Service. Th
 				resource.Attribute{
 					Name:        "IMCM5",
 					Description: `A standalone UCS M5 server.`,
+				},
+				resource.Attribute{
+					Name:        "IMCRack",
+					Description: `A standalone UCS M6 and above server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
@@ -13698,7 +17346,23 @@ A request to collect techsupport and upload it to Intersight Storage Service. Th
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A Dynatrace controller that monitors applications.`,
+					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+				},
+				resource.Attribute{
+					Name:        "ReadHatOpenStack",
+					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
+				},
+				resource.Attribute{
+					Name:        "CloudFoundry",
+					Description: `An open source cloud platform on which developers can build, deploy, run and scale applications.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureApplicationInsights",
+					Description: `A feature of Azure Monitor, is an extensible Application Performance Management service for developers and DevOps professionals to monitor their live applications.`,
+				},
+				resource.Attribute{
+					Name:        "OpenStack",
+					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
@@ -13776,6 +17440,18 @@ A request to collect techsupport and upload it to Intersight Storage Service. Th
 					Name:        "CiscoCatalyst",
 					Description: `A Cisco Catalyst networking switch device.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_techsupportmanagement_tech_support_bundle` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_techsupportmanagement_tech_support_bundle.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -13799,6 +17475,18 @@ Pool represents a collection of UUID items that can be allocated to server profi
 				resource.Attribute{
 					Name:        "default",
 					Description: `Assignment order is decided by the system.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_uuidpool_pool` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_uuidpool_pool.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -13824,6 +17512,18 @@ Depicts disk configuration used to be create a virtual disk on a hypervisor data
 				resource.Attribute{
 					Name:        "Filesystem",
 					Description: `It is a File system virtual disk.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -13912,7 +17612,7 @@ Depicts operations to control the life cycle of a virtual machine on a hyperviso
 				},
 				resource.Attribute{
 					Name:        "Filesystem",
-					Description: `It is a File system virtual disk. + ` + "`" + `name` + "`" + `:(string) Name of the virtual disk. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `source_certs` + "`" + `:(string) Base64 encoded CA certificates of the https source to check against. + ` + "`" + `source_disk_to_clone` + "`" + `:(string) Source disk name from where the clone is done. + ` + "`" + `source_file_path` + "`" + `:(string) Disk image source for the virtual machine. + ` + "`" + `virtual_disk_reference` + "`" + `:(string) Name of the existing virtual disk to be attached to the Virtual Machine.`,
+					Description: `It is a File system virtual disk.`,
 				},
 				resource.Attribute{
 					Name:        "linux",
@@ -13956,7 +17656,27 @@ Depicts operations to control the life cycle of a virtual machine on a hyperviso
 				},
 				resource.Attribute{
 					Name:        "VMXNET3",
-					Description: `VMXNET 3 offers all the features available in VMXNET 2 and adds several new features. + ` + "`" + `bridge` + "`" + `:(string) Virtual machine network bridge name. + ` + "`" + `connect_at_power_on` + "`" + `:(bool) Connect the adaptor at virtual machine power on. + ` + "`" + `direct_path_io` + "`" + `:(bool) Enable the direct path I/O. + ` + "`" + `mac_address` + "`" + `:(string) Virtual machine network mac address. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.`,
+					Description: `VMXNET 3 offers all the features available in VMXNET 2 and adds several new features.`,
+				},
+				resource.Attribute{
+					Name:        "E1000E",
+					Description: `E1000E – emulates a newer real network adapter, the 1 Gbit Intel 82574, and is available for Windows 2012 and later. The E1000E needs virtual machine hardware version 8 or later.`,
+				},
+				resource.Attribute{
+					Name:        "NE2K_PCI",
+					Description: `The Ne2000 network card uses two ring buffers for packet handling. These are circular buffers made of 256-byte pages that the chip's DMA logic will use to store received packets or to get received packets.`,
+				},
+				resource.Attribute{
+					Name:        "PCnet",
+					Description: `The PCnet-PCI II is a PCI network adapter. It has built-in support for CRC checks and can automatically pad short packets to the minimum Ethernet length.`,
+				},
+				resource.Attribute{
+					Name:        "RTL8139",
+					Description: `The RTL8139 is a fast Ethernet card that operates at 10/100 Mbps. It is compliant with PCI version 2.0/2.1 and it is known for reliability and superior performance.`,
+				},
+				resource.Attribute{
+					Name:        "VirtIO",
+					Description: `VirtIO is a standardized interface which allows virtual machines access to simplified \ virtual\ devices, such as block devices, network adapters and consoles. Accessing devices through VirtIO on a guest VM improves performance over more traditional \ emulated\ devices, as VirtIO devices require only the bare minimum setup and configuration needed to send and receive data, while the host machine handles the majority of the setup and maintenance of the actual physical hardware.`,
 				},
 				resource.Attribute{
 					Name:        "PowerOff",
@@ -14001,6 +17721,18 @@ Depicts operations to control the life cycle of a virtual machine on a hyperviso
 				resource.Attribute{
 					Name:        "Discovered",
 					Description: `A virtual machine was 'discovered' and not created from Intersight. No provisioning information is available.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -14070,6 +17802,18 @@ Policy to configure virtual media settings on endpoint.
 					Name:        "https",
 					Description: `HTTPS protocol for vmedia mount. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `password` + "`" + `:(string) Password associated with the username. + ` + "`" + `remote_file` + "`" + `:(string) The remote file location path for the virtual media mapping. Accepted formats are:HDD for CIFS/NFS: hostname-or-IP/filePath/fileName.img.CDD for CIFS/NFS: hostname-or-IP/filePath/fileName.iso.HDD for HTTP/S: http[s]://hostname-or-IP/filePath/fileName.img.CDD for HTTP/S: http[s]://hostname-or-IP/filePath/fileName.iso. + ` + "`" + `remote_path` + "`" + `:(string) URL path to the location of the image on the remote server. The preferred format is '/path'. + ` + "`" + `sanitized_file_location` + "`" + `:(string)(Computed) File Location in standard format 'hostname/filePath/fileName'. This field should be used to calculate config drift. User input format may vary while inventory will return data in format in compliance with mount option for the mount. Both will be converged to this standard format for comparison. + ` + "`" + `username` + "`" + `:(string) Username to log in to the remote server. + ` + "`" + `volume_name` + "`" + `:(string) Identity of the image for Virtual Media mapping.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_vmedia_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_vmedia_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -14085,7 +17829,20 @@ API to launch VMRC console to a VMware virtual machine.
 				"vmrc",
 				"console",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -14151,6 +17908,18 @@ An Ethernet adapter policy governs the host-side behavior of the adapter, includ
 					Name:        "2",
 					Description: `RDMA over Converged Ethernet Protocol Version 2.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -14212,6 +17981,18 @@ Virtual Ethernet Interface.
 					Name:        "B",
 					Description: `Fabric B of the FI cluster. + ` + "`" + `uplink` + "`" + `:(int) Adapter port on which the virtual interface will be created.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -14239,12 +18020,24 @@ An Ethernet Network policy determines if the port can carry single VLAN (Access)
 					Description: `Servers which are connected to a Fabric Interconnect that is managed by Intersight.`,
 				},
 				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+				resource.Attribute{
 					Name:        "ACCESS",
 					Description: `An access port carries traffic only for a single VLAN on the interface.`,
 				},
 				resource.Attribute{
 					Name:        "TRUNK",
-					Description: `A trunk port can have two or more VLANs configured on the interface. It can carry traffic for several VLANs simultaneously. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. ## Usage Example ### Resource Creation ` + "`" + `` + "`" + `` + "`" + `hcl resource "intersight_vnic_eth_network_policy" "v_eth_network1" { name = "v_eth_network1" organization { object_type = "organization.Organization" moid = var.organization } vlan_settings { object_type = "vnic.VlanSettings" default_vlan = 1 mode = "ACCESS" } } ` + "`" + `` + "`" + `` + "`" + ` ## Import ` + "`" + `intersight_vnic_eth_network_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_vnic_eth_network_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A trunk port can have two or more VLANs configured on the interface. It can carry traffic for several VLANs simultaneously. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. ## Import ` + "`" + `intersight_vnic_eth_network_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_vnic_eth_network_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -14288,6 +18081,18 @@ An Ethernet Quality of Service (QoS) policy assigns a system class to the outgoi
 					Name:        "Bronze",
 					Description: `QoS Priority for Bronze traffic.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_vnic_eth_qos_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_vnic_eth_qos_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -14317,6 +18122,18 @@ A Fibre Channel Adapter policy governs the host-side behavior of the adapter, in
 				resource.Attribute{
 					Name:        "INTx",
 					Description: `Line-based interrupt (INTx) mechanism similar to the one used in Legacy systems. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_vnic_fc_adapter_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_vnic_fc_adapter_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -14364,6 +18181,18 @@ Virtual Fibre Channel Interface.
 					Description: `Fc-target specifies vHBA as a provider of storage volumes to initiators. Enables SCSI commands to transfer data and status information between host and target storage systems. fc-target is enabled only with an asynchronous driver.`,
 				},
 				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+				resource.Attribute{
 					Name:        "POOL",
 					Description: `The user selects a pool from which the mac/wwn address will be leased for the Virtual Interface.`,
 				},
@@ -14388,7 +18217,20 @@ A Fibre Channel Network policy governs the vSAN configuration for the virtual in
 				"network",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -14430,6 +18272,18 @@ A Fibre Channel Quality of Service (QoS) policy assigns a system class to the ou
 					Name:        "Bronze",
 					Description: `QoS Priority for Bronze traffic.`,
 				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_vnic_fc_qos_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_vnic_fc_qos_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -14447,7 +18301,20 @@ Set of iSCSI properties that govern the host-side behavior of the adapter.
 				"adapter",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_vnic_iscsi_adapter_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_vnic_iscsi_adapter_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -14483,7 +18350,19 @@ Configuration parameters to enable a server to boot its operating system from an
 				},
 				resource.Attribute{
 					Name:        "Auto",
-					Description: `Type indicates that the system selects the target interface automatically during iSCSI boot. ## Import ` + "`" + `intersight_vnic_iscsi_boot_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_vnic_iscsi_boot_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Type indicates that the system selects the target interface automatically during iSCSI boot.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_vnic_iscsi_boot_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_vnic_iscsi_boot_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -14503,7 +18382,20 @@ Configuration parameters that defines the reachability of iSCSI Target portal.
 				"target",
 				"policy",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_vnic_iscsi_static_target_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_vnic_iscsi_static_target_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -14547,7 +18439,19 @@ A LAN Connectivity Policy determines the network resources and the connections b
 				},
 				resource.Attribute{
 					Name:        "FIAttached",
-					Description: `Servers which are connected to a Fabric Interconnect that is managed by Intersight. ## Usage Example ### Resource Creation ` + "`" + `` + "`" + `` + "`" + `hcl resource "intersight_vnic_lan_connectivity_policy" "vnic_lan1" { name = "vnic_lan1" organization { object_type = "organization.Organization" moid = var.organization } profiles { moid = intersight_server_profile.server1.id object_type = "server.Profile" } } ` + "`" + `` + "`" + `` + "`" + ` ## Import ` + "`" + `intersight_vnic_lan_connectivity_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_vnic_lan_connectivity_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Servers which are connected to a Fabric Interconnect that is managed by Intersight.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_vnic_lan_connectivity_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_vnic_lan_connectivity_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -14584,6 +18488,18 @@ SAN connectivity policy determines the network storage resources and the connect
 					Description: `Servers which are connected to a Fabric Interconnect that is managed by Intersight.`,
 				},
 				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+				resource.Attribute{
 					Name:        "POOL",
 					Description: `The user selects a pool from which the mac/wwn address will be leased for the Virtual Interface.`,
 				},
@@ -14605,7 +18521,20 @@ Virtual Routing and Forwarding (VRF) is a networking technology that implements 
 			Keywords: []string{
 				"vrf",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_vrf_vrf` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_vrf_vrf.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -14627,6 +18556,18 @@ specification.
 				"executor",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_workflow_batch_api_executor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_workflow_batch_api_executor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ` ## Allowed Types in ` + "`" + `AdditionalProperties` + "`" + ` ### [workflow.CliCommand](#argument-reference) This models a single CLI command that can be executed on the end point.`,
+				},
 				resource.Attribute{
 					Name:        "NonInteractive",
 					Description: `The CLI command is not an interactive command.`,
@@ -14728,7 +18669,19 @@ Captures a customized data type definition that can be used for task or workflow
 				},
 				resource.Attribute{
 					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `: JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. ## Import ` + "`" + `intersight_workflow_custom_data_type_definition` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_workflow_custom_data_type_definition.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ` ## Allowed Types in ` + "`" + `AdditionalProperties` + "`" + ` ### [workflow.ArrayDataType](#argument-reference) This data type represents an array of a given type. It can be an array of primitive data or of custom data.`,
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `: JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_workflow_custom_data_type_definition` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_workflow_custom_data_type_definition.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ` ## Allowed Types in ` + "`" + `AdditionalProperties` + "`" + ` ### [workflow.ArrayDataType](#argument-reference) This data type represents an array of a given type. It can be an array of primitive data or of custom data.`,
 				},
 				resource.Attribute{
 					Name:        "string",
@@ -14871,6 +18824,10 @@ error parameters.
 					Description: `A standalone UCS M5 server.`,
 				},
 				resource.Attribute{
+					Name:        "IMCRack",
+					Description: `A standalone UCS M6 and above server.`,
+				},
+				resource.Attribute{
 					Name:        "UCSIOM",
 					Description: `An UCS Chassis IO module.`,
 				},
@@ -14936,7 +18893,23 @@ error parameters.
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A Dynatrace controller that monitors applications.`,
+					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+				},
+				resource.Attribute{
+					Name:        "ReadHatOpenStack",
+					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
+				},
+				resource.Attribute{
+					Name:        "CloudFoundry",
+					Description: `An open source cloud platform on which developers can build, deploy, run and scale applications.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureApplicationInsights",
+					Description: `A feature of Azure Monitor, is an extensible Application Performance Management service for developers and DevOps professionals to monitor their live applications.`,
+				},
+				resource.Attribute{
+					Name:        "OpenStack",
+					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
@@ -15076,7 +19049,19 @@ error parameters.
 				},
 				resource.Attribute{
 					Name:        "collection",
-					Description: `The parameter value to be extracted is a collection parameter whose item typeshall be either simple type or complex type. ## Import ` + "`" + `intersight_workflow_error_response_handler` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_workflow_error_response_handler.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The parameter value to be extracted is a collection parameter whose item typeshall be either simple type or complex type.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_workflow_error_response_handler` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_workflow_error_response_handler.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -15157,6 +19142,18 @@ Rollback workflow contains details about the workflow instance, tasks to be roll
 				resource.Attribute{
 					Name:        "Failed",
 					Description: `Status of the rollback workflow after execution results in failure.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ### Custom keywords These are`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -15270,6 +19267,18 @@ Used to define a task which can be included within a workflow. Task definition c
 				resource.Attribute{
 					Name:        "Retry",
 					Description: `The enum specifies the option as Retry where task will be re-tried.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_workflow_task_definition` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_workflow_task_definition.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -15400,6 +19409,18 @@ Workflow definition is a collection of tasks that are sequenced in a certain way
 					Description: `The state when workflow definition is invalid. + ` + "`" + `validation_error` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `error_log` + "`" + `:(string)(Computed) Description of the error. + ` + "`" + `field` + "`" + `:(string)(Computed) When populated this refers to the input or output field within the workflow or task. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `task_name` + "`" + `:(string)(Computed) The task name on which the error is found, when empty the error applies to the top level workflow. + ` + "`" + `transition_name` + "`" + `:(string)(Computed) When populated this refers to the transition connection that has a problem. When this field has value OnSuccess it means the transition connection OnSuccess for the task has an issue.`,
 				},
 				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+				resource.Attribute{
 					Name:        "string",
 					Description: `Enum to specify a string data type.`,
 				},
@@ -15509,7 +19530,7 @@ Contains information for a workflow execution which is a runtime instance of wor
 				},
 				resource.Attribute{
 					Name:        "Retry",
-					Description: `Retry the workflow that has previously reached a final state and has the retryable property set to true on the workflow. A running or waiting workflow cannot be retried. If the property retryFromTaskName is also passed along with this action, the workflow will be started from that specific task, otherwise the workflow will be restarted. The task name must be one of the tasks that completed or failed in the previous run, you cannot retry a workflow from a task which wasn't run in the previous iteration.`,
+					Description: `Retry the workflow that has previously reached a final state and has the retryable property set to true. A running or waiting workflow cannot be retried. If the property retryFromTaskName is also passed along with this action, the workflow will be started from that specific task, otherwise the workflow will be restarted from the first task. The task name in retryFromTaskName must be one of the tasks that completed or failed in the previous run. It is not possible to retry a workflow from a task which wasn't run in the previous iteration.`,
 				},
 				resource.Attribute{
 					Name:        "RetryFailed",
@@ -15541,7 +19562,7 @@ Contains information for a workflow execution which is a runtime instance of wor
 				},
 				resource.Attribute{
 					Name:        "Retry",
-					Description: `Retry the workflow that has previously reached a final state and has the retryable property set to true on the workflow. A running or waiting workflow cannot be retried. If the property retryFromTaskName is also passed along with this action, the workflow will be started from that specific task, otherwise the workflow will be restarted. The task name must be one of the tasks that completed or failed in the previous run, you cannot retry a workflow from a task which wasn't run in the previous iteration.`,
+					Description: `Retry the workflow that has previously reached a final state and has the retryable property set to true. A running or waiting workflow cannot be retried. If the property retryFromTaskName is also passed along with this action, the workflow will be started from that specific task, otherwise the workflow will be restarted from the first task. The task name in retryFromTaskName must be one of the tasks that completed or failed in the previous run. It is not possible to retry a workflow from a task which wasn't run in the previous iteration.`,
 				},
 				resource.Attribute{
 					Name:        "RetryFailed",
@@ -15585,7 +19606,19 @@ Contains information for a workflow execution which is a runtime instance of wor
 				},
 				resource.Attribute{
 					Name:        "Completed",
-					Description: `Status of the rollback action once workflow completes the rollback for all eligiable tasks.`,
+					Description: `Status of the rollback action once workflow completes the rollback for all eligible tasks.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
 				},
 				resource.Attribute{
 					Name:        "None",
@@ -15632,248 +19665,264 @@ Contains information for a workflow execution which is a runtime instance of wor
 
 		"intersight_access_policy":                                           0,
 		"intersight_adapter_config_policy":                                   1,
-		"intersight_appliance_backup":                                        2,
-		"intersight_appliance_backup_policy":                                 3,
-		"intersight_appliance_data_export_policy":                            4,
-		"intersight_appliance_device_claim":                                  5,
-		"intersight_appliance_diag_setting":                                  6,
-		"intersight_appliance_remote_file_import":                            7,
-		"intersight_appliance_restore":                                       8,
-		"intersight_asset_target":                                            9,
-		"intersight_bios_policy":                                             10,
-		"intersight_boot_precision_policy":                                   11,
-		"intersight_capability_adapter_unit_descriptor":                      12,
-		"intersight_capability_chassis_descriptor":                           13,
-		"intersight_capability_chassis_manufacturing_def":                    14,
-		"intersight_capability_cimc_firmware_descriptor":                     15,
-		"intersight_capability_equipment_physical_def":                       16,
-		"intersight_capability_equipment_slot_array":                         17,
-		"intersight_capability_fan_module_descriptor":                        18,
-		"intersight_capability_fan_module_manufacturing_def":                 19,
-		"intersight_capability_io_card_capability_def":                       20,
-		"intersight_capability_io_card_descriptor":                           21,
-		"intersight_capability_io_card_manufacturing_def":                    22,
-		"intersight_capability_port_group_aggregation_def":                   23,
-		"intersight_capability_psu_descriptor":                               24,
-		"intersight_capability_psu_manufacturing_def":                        25,
-		"intersight_capability_sioc_module_capability_def":                   26,
-		"intersight_capability_sioc_module_descriptor":                       27,
-		"intersight_capability_sioc_module_manufacturing_def":                28,
-		"intersight_capability_switch_capability":                            29,
-		"intersight_capability_switch_descriptor":                            30,
-		"intersight_capability_switch_manufacturing_def":                     31,
-		"intersight_certificatemanagement_policy":                            32,
-		"intersight_chassis_config_import":                                   33,
-		"intersight_chassis_profile":                                         34,
-		"intersight_comm_http_proxy_policy":                                  35,
-		"intersight_config_exporter":                                         36,
-		"intersight_config_importer":                                         37,
-		"intersight_connectorpack_connector_pack_upgrade":                    38,
-		"intersight_deviceconnector_policy":                                  39,
-		"intersight_externalsite_authorization":                              40,
-		"intersight_fabric_appliance_pc_role":                                41,
-		"intersight_fabric_appliance_role":                                   42,
-		"intersight_fabric_eth_network_control_policy":                       43,
-		"intersight_fabric_eth_network_group_policy":                         44,
-		"intersight_fabric_eth_network_policy":                               45,
-		"intersight_fabric_fc_network_policy":                                46,
-		"intersight_fabric_fc_uplink_pc_role":                                47,
-		"intersight_fabric_fc_uplink_role":                                   48,
-		"intersight_fabric_fcoe_uplink_pc_role":                              49,
-		"intersight_fabric_fcoe_uplink_role":                                 50,
-		"intersight_fabric_multicast_policy":                                 51,
-		"intersight_fabric_pc_operation":                                     52,
-		"intersight_fabric_port_mode":                                        53,
-		"intersight_fabric_port_operation":                                   54,
-		"intersight_fabric_port_policy":                                      55,
-		"intersight_fabric_server_role":                                      56,
-		"intersight_fabric_switch_cluster_profile":                           57,
-		"intersight_fabric_switch_control_policy":                            58,
-		"intersight_fabric_switch_profile":                                   59,
-		"intersight_fabric_system_qos_policy":                                60,
-		"intersight_fabric_uplink_pc_role":                                   61,
-		"intersight_fabric_uplink_role":                                      62,
-		"intersight_fabric_vlan":                                             63,
-		"intersight_fabric_vsan":                                             64,
-		"intersight_fcpool_pool":                                             65,
-		"intersight_firmware_bios_descriptor":                                66,
-		"intersight_firmware_board_controller_descriptor":                    67,
-		"intersight_firmware_chassis_upgrade":                                68,
-		"intersight_firmware_cimc_descriptor":                                69,
-		"intersight_firmware_dimm_descriptor":                                70,
-		"intersight_firmware_distributable":                                  71,
-		"intersight_firmware_drive_descriptor":                               72,
-		"intersight_firmware_driver_distributable":                           73,
-		"intersight_firmware_eula":                                           74,
-		"intersight_firmware_gpu_descriptor":                                 75,
-		"intersight_firmware_hba_descriptor":                                 76,
-		"intersight_firmware_iom_descriptor":                                 77,
-		"intersight_firmware_mswitch_descriptor":                             78,
-		"intersight_firmware_nxos_descriptor":                                79,
-		"intersight_firmware_pcie_descriptor":                                80,
-		"intersight_firmware_psu_descriptor":                                 81,
-		"intersight_firmware_sas_expander_descriptor":                        82,
-		"intersight_firmware_server_configuration_utility_distributable":     83,
-		"intersight_firmware_storage_controller_descriptor":                  84,
-		"intersight_firmware_switch_upgrade":                                 85,
-		"intersight_firmware_unsupported_version_upgrade":                    86,
-		"intersight_firmware_upgrade":                                        87,
-		"intersight_hcl_hyperflex_software_compatibility_info":               88,
-		"intersight_hyperflex_app_catalog":                                   89,
-		"intersight_hyperflex_auto_support_policy":                           90,
-		"intersight_hyperflex_capability_info":                               91,
-		"intersight_hyperflex_cisco_hypervisor_manager":                      92,
-		"intersight_hyperflex_cluster_backup_policy":                         93,
-		"intersight_hyperflex_cluster_backup_policy_deployment":              94,
-		"intersight_hyperflex_cluster_network_policy":                        95,
-		"intersight_hyperflex_cluster_profile":                               96,
-		"intersight_hyperflex_cluster_replication_network_policy":            97,
-		"intersight_hyperflex_cluster_replication_network_policy_deployment": 98,
-		"intersight_hyperflex_cluster_storage_policy":                        99,
-		"intersight_hyperflex_ext_fc_storage_policy":                         100,
-		"intersight_hyperflex_ext_iscsi_storage_policy":                      101,
-		"intersight_hyperflex_feature_limit_external":                        102,
-		"intersight_hyperflex_feature_limit_internal":                        103,
-		"intersight_hyperflex_health_check_definition":                       104,
-		"intersight_hyperflex_health_check_package_checksum":                 105,
-		"intersight_hyperflex_hxap_datacenter":                               106,
-		"intersight_hyperflex_hxdp_version":                                  107,
-		"intersight_hyperflex_local_credential_policy":                       108,
-		"intersight_hyperflex_node_config_policy":                            109,
-		"intersight_hyperflex_node_profile":                                  110,
-		"intersight_hyperflex_proxy_setting_policy":                          111,
-		"intersight_hyperflex_server_firmware_version":                       112,
-		"intersight_hyperflex_server_firmware_version_entry":                 113,
-		"intersight_hyperflex_server_model":                                  114,
-		"intersight_hyperflex_software_version_policy":                       115,
-		"intersight_hyperflex_sys_config_policy":                             116,
-		"intersight_hyperflex_ucsm_config_policy":                            117,
-		"intersight_hyperflex_vcenter_config_policy":                         118,
-		"intersight_hyperflex_vm_restore_operation":                          119,
-		"intersight_iam_account":                                             120,
-		"intersight_iam_account_experience":                                  121,
-		"intersight_iam_api_key":                                             122,
-		"intersight_iam_app_registration":                                    123,
-		"intersight_iam_certificate":                                         124,
-		"intersight_iam_certificate_request":                                 125,
-		"intersight_iam_end_point_user":                                      126,
-		"intersight_iam_end_point_user_policy":                               127,
-		"intersight_iam_end_point_user_role":                                 128,
-		"intersight_iam_idp":                                                 129,
-		"intersight_iam_ip_access_management":                                130,
-		"intersight_iam_ip_address":                                          131,
-		"intersight_iam_ldap_group":                                          132,
-		"intersight_iam_ldap_policy":                                         133,
-		"intersight_iam_ldap_provider":                                       134,
-		"intersight_iam_permission":                                          135,
-		"intersight_iam_private_key_spec":                                    136,
-		"intersight_iam_qualifier":                                           137,
-		"intersight_iam_resource_roles":                                      138,
-		"intersight_iam_session_limits":                                      139,
-		"intersight_iam_trust_point":                                         140,
-		"intersight_iam_user":                                                141,
-		"intersight_iam_user_group":                                          142,
-		"intersight_ipmioverlan_policy":                                      143,
-		"intersight_ippool_pool":                                             144,
-		"intersight_iqnpool_pool":                                            145,
-		"intersight_kubernetes_aci_cni_apic":                                 146,
-		"intersight_kubernetes_aci_cni_profile":                              147,
-		"intersight_kubernetes_aci_cni_tenant_cluster_allocation":            148,
-		"intersight_kubernetes_addon":                                        149,
-		"intersight_kubernetes_addon_definition":                             150,
-		"intersight_kubernetes_addon_policy":                                 151,
-		"intersight_kubernetes_addon_repository":                             152,
-		"intersight_kubernetes_cluster":                                      153,
-		"intersight_kubernetes_cluster_profile":                              154,
-		"intersight_kubernetes_container_runtime_policy":                     155,
-		"intersight_kubernetes_network_policy":                               156,
-		"intersight_kubernetes_node_group_profile":                           157,
-		"intersight_kubernetes_sys_config_policy":                            158,
-		"intersight_kubernetes_trusted_registries_policy":                    159,
-		"intersight_kubernetes_version":                                      160,
-		"intersight_kubernetes_version_policy":                               161,
-		"intersight_kubernetes_virtual_machine_infrastructure_provider":      162,
-		"intersight_kubernetes_virtual_machine_instance_type":                163,
-		"intersight_kubernetes_virtual_machine_node_profile":                 164,
-		"intersight_kvm_policy":                                              165,
-		"intersight_kvm_session":                                             166,
-		"intersight_kvm_tunnel":                                              167,
-		"intersight_license_iwo_license_count":                               168,
-		"intersight_license_license_info":                                    169,
-		"intersight_license_license_reservation_op":                          170,
-		"intersight_macpool_pool":                                            171,
-		"intersight_memory_persistent_memory_policy":                         172,
-		"intersight_networkconfig_policy":                                    173,
-		"intersight_ntp_policy":                                              174,
-		"intersight_organization_organization":                               175,
-		"intersight_os_configuration_file":                                   176,
-		"intersight_os_install":                                              177,
-		"intersight_recovery_backup_config_policy":                           178,
-		"intersight_recovery_backup_profile":                                 179,
-		"intersight_recovery_on_demand_backup":                               180,
-		"intersight_recovery_restore":                                        181,
-		"intersight_recovery_schedule_config_policy":                         182,
-		"intersight_resource_group":                                          183,
-		"intersight_sdcard_policy":                                           184,
-		"intersight_sdwan_profile":                                           185,
-		"intersight_sdwan_router_node":                                       186,
-		"intersight_sdwan_router_policy":                                     187,
-		"intersight_sdwan_vmanage_account_policy":                            188,
-		"intersight_server_config_import":                                    189,
-		"intersight_server_profile":                                          190,
-		"intersight_smtp_policy":                                             191,
-		"intersight_snmp_policy":                                             192,
-		"intersight_software_appliance_distributable":                        193,
-		"intersight_software_hcl_meta":                                       194,
-		"intersight_software_hyperflex_bundle_distributable":                 195,
-		"intersight_software_hyperflex_distributable":                        196,
-		"intersight_software_solution_distributable":                         197,
-		"intersight_software_ucsd_bundle_distributable":                      198,
-		"intersight_software_ucsd_distributable":                             199,
-		"intersight_softwarerepository_authorization":                        200,
-		"intersight_softwarerepository_category_mapper":                      201,
-		"intersight_softwarerepository_category_mapper_model":                202,
-		"intersight_softwarerepository_category_support_constraint":          203,
-		"intersight_softwarerepository_operating_system_file":                204,
-		"intersight_softwarerepository_release":                              205,
-		"intersight_sol_policy":                                              206,
-		"intersight_ssh_policy":                                              207,
-		"intersight_storage_disk_group_policy":                               208,
-		"intersight_storage_storage_policy":                                  209,
-		"intersight_syslog_policy":                                           210,
-		"intersight_tam_advisory_count":                                      211,
-		"intersight_tam_advisory_definition":                                 212,
-		"intersight_tam_advisory_info":                                       213,
-		"intersight_tam_advisory_instance":                                   214,
-		"intersight_tam_security_advisory":                                   215,
-		"intersight_techsupportmanagement_collection_control_policy":         216,
-		"intersight_techsupportmanagement_tech_support_bundle":               217,
-		"intersight_uuidpool_pool":                                           218,
-		"intersight_virtualization_virtual_disk":                             219,
-		"intersight_virtualization_virtual_machine":                          220,
-		"intersight_vmedia_policy":                                           221,
-		"intersight_vmrc_console":                                            222,
-		"intersight_vnic_eth_adapter_policy":                                 223,
-		"intersight_vnic_eth_if":                                             224,
-		"intersight_vnic_eth_network_policy":                                 225,
-		"intersight_vnic_eth_qos_policy":                                     226,
-		"intersight_vnic_fc_adapter_policy":                                  227,
-		"intersight_vnic_fc_if":                                              228,
-		"intersight_vnic_fc_network_policy":                                  229,
-		"intersight_vnic_fc_qos_policy":                                      230,
-		"intersight_vnic_iscsi_adapter_policy":                               231,
-		"intersight_vnic_iscsi_boot_policy":                                  232,
-		"intersight_vnic_iscsi_static_target_policy":                         233,
-		"intersight_vnic_lan_connectivity_policy":                            234,
-		"intersight_vnic_san_connectivity_policy":                            235,
-		"intersight_vrf_vrf":                                                 236,
-		"intersight_workflow_batch_api_executor":                             237,
-		"intersight_workflow_custom_data_type_definition":                    238,
-		"intersight_workflow_error_response_handler":                         239,
-		"intersight_workflow_rollback_workflow":                              240,
-		"intersight_workflow_task_definition":                                241,
-		"intersight_workflow_workflow_definition":                            242,
-		"intersight_workflow_workflow_info":                                  243,
+		"intersight_appliance_auto_rma_policy":                               2,
+		"intersight_appliance_backup":                                        3,
+		"intersight_appliance_backup_policy":                                 4,
+		"intersight_appliance_data_export_policy":                            5,
+		"intersight_appliance_device_claim":                                  6,
+		"intersight_appliance_diag_setting":                                  7,
+		"intersight_appliance_remote_file_import":                            8,
+		"intersight_appliance_restore":                                       9,
+		"intersight_asset_target":                                            10,
+		"intersight_bios_policy":                                             11,
+		"intersight_boot_precision_policy":                                   12,
+		"intersight_capability_adapter_unit_descriptor":                      13,
+		"intersight_capability_chassis_descriptor":                           14,
+		"intersight_capability_chassis_manufacturing_def":                    15,
+		"intersight_capability_cimc_firmware_descriptor":                     16,
+		"intersight_capability_equipment_physical_def":                       17,
+		"intersight_capability_equipment_slot_array":                         18,
+		"intersight_capability_fan_module_descriptor":                        19,
+		"intersight_capability_fan_module_manufacturing_def":                 20,
+		"intersight_capability_io_card_capability_def":                       21,
+		"intersight_capability_io_card_descriptor":                           22,
+		"intersight_capability_io_card_manufacturing_def":                    23,
+		"intersight_capability_port_group_aggregation_def":                   24,
+		"intersight_capability_psu_descriptor":                               25,
+		"intersight_capability_psu_manufacturing_def":                        26,
+		"intersight_capability_server_schema_descriptor":                     27,
+		"intersight_capability_sioc_module_capability_def":                   28,
+		"intersight_capability_sioc_module_descriptor":                       29,
+		"intersight_capability_sioc_module_manufacturing_def":                30,
+		"intersight_capability_switch_capability":                            31,
+		"intersight_capability_switch_descriptor":                            32,
+		"intersight_capability_switch_manufacturing_def":                     33,
+		"intersight_certificatemanagement_policy":                            34,
+		"intersight_chassis_config_import":                                   35,
+		"intersight_chassis_profile":                                         36,
+		"intersight_comm_http_proxy_policy":                                  37,
+		"intersight_config_exporter":                                         38,
+		"intersight_config_importer":                                         39,
+		"intersight_connectorpack_connector_pack_upgrade":                    40,
+		"intersight_deviceconnector_policy":                                  41,
+		"intersight_externalsite_authorization":                              42,
+		"intersight_fabric_appliance_pc_role":                                43,
+		"intersight_fabric_appliance_role":                                   44,
+		"intersight_fabric_eth_network_control_policy":                       45,
+		"intersight_fabric_eth_network_group_policy":                         46,
+		"intersight_fabric_eth_network_policy":                               47,
+		"intersight_fabric_fc_network_policy":                                48,
+		"intersight_fabric_fc_uplink_pc_role":                                49,
+		"intersight_fabric_fc_uplink_role":                                   50,
+		"intersight_fabric_fcoe_uplink_pc_role":                              51,
+		"intersight_fabric_fcoe_uplink_role":                                 52,
+		"intersight_fabric_flow_control_policy":                              53,
+		"intersight_fabric_link_aggregation_policy":                          54,
+		"intersight_fabric_link_control_policy":                              55,
+		"intersight_fabric_multicast_policy":                                 56,
+		"intersight_fabric_pc_operation":                                     57,
+		"intersight_fabric_port_mode":                                        58,
+		"intersight_fabric_port_operation":                                   59,
+		"intersight_fabric_port_policy":                                      60,
+		"intersight_fabric_server_role":                                      61,
+		"intersight_fabric_switch_cluster_profile":                           62,
+		"intersight_fabric_switch_control_policy":                            63,
+		"intersight_fabric_switch_profile":                                   64,
+		"intersight_fabric_system_qos_policy":                                65,
+		"intersight_fabric_uplink_pc_role":                                   66,
+		"intersight_fabric_uplink_role":                                      67,
+		"intersight_fabric_vlan":                                             68,
+		"intersight_fabric_vsan":                                             69,
+		"intersight_fcpool_pool":                                             70,
+		"intersight_firmware_bios_descriptor":                                71,
+		"intersight_firmware_board_controller_descriptor":                    72,
+		"intersight_firmware_chassis_upgrade":                                73,
+		"intersight_firmware_cimc_descriptor":                                74,
+		"intersight_firmware_dimm_descriptor":                                75,
+		"intersight_firmware_distributable":                                  76,
+		"intersight_firmware_drive_descriptor":                               77,
+		"intersight_firmware_driver_distributable":                           78,
+		"intersight_firmware_eula":                                           79,
+		"intersight_firmware_gpu_descriptor":                                 80,
+		"intersight_firmware_hba_descriptor":                                 81,
+		"intersight_firmware_iom_descriptor":                                 82,
+		"intersight_firmware_mswitch_descriptor":                             83,
+		"intersight_firmware_nxos_descriptor":                                84,
+		"intersight_firmware_pcie_descriptor":                                85,
+		"intersight_firmware_psu_descriptor":                                 86,
+		"intersight_firmware_sas_expander_descriptor":                        87,
+		"intersight_firmware_server_configuration_utility_distributable":     88,
+		"intersight_firmware_storage_controller_descriptor":                  89,
+		"intersight_firmware_switch_upgrade":                                 90,
+		"intersight_firmware_unsupported_version_upgrade":                    91,
+		"intersight_firmware_upgrade":                                        92,
+		"intersight_hcl_hyperflex_software_compatibility_info":               93,
+		"intersight_hyperflex_app_catalog":                                   94,
+		"intersight_hyperflex_auto_support_policy":                           95,
+		"intersight_hyperflex_capability_info":                               96,
+		"intersight_hyperflex_cisco_hypervisor_manager":                      97,
+		"intersight_hyperflex_cluster_backup_policy":                         98,
+		"intersight_hyperflex_cluster_backup_policy_deployment":              99,
+		"intersight_hyperflex_cluster_network_policy":                        100,
+		"intersight_hyperflex_cluster_profile":                               101,
+		"intersight_hyperflex_cluster_replication_network_policy":            102,
+		"intersight_hyperflex_cluster_replication_network_policy_deployment": 103,
+		"intersight_hyperflex_cluster_storage_policy":                        104,
+		"intersight_hyperflex_ext_fc_storage_policy":                         105,
+		"intersight_hyperflex_ext_iscsi_storage_policy":                      106,
+		"intersight_hyperflex_feature_limit_external":                        107,
+		"intersight_hyperflex_feature_limit_internal":                        108,
+		"intersight_hyperflex_health_check_definition":                       109,
+		"intersight_hyperflex_health_check_package_checksum":                 110,
+		"intersight_hyperflex_hxap_datacenter":                               111,
+		"intersight_hyperflex_hxdp_version":                                  112,
+		"intersight_hyperflex_local_credential_policy":                       113,
+		"intersight_hyperflex_node_config_policy":                            114,
+		"intersight_hyperflex_node_profile":                                  115,
+		"intersight_hyperflex_proxy_setting_policy":                          116,
+		"intersight_hyperflex_server_firmware_version":                       117,
+		"intersight_hyperflex_server_firmware_version_entry":                 118,
+		"intersight_hyperflex_server_model":                                  119,
+		"intersight_hyperflex_software_distribution_component":               120,
+		"intersight_hyperflex_software_distribution_entry":                   121,
+		"intersight_hyperflex_software_distribution_version":                 122,
+		"intersight_hyperflex_software_version_policy":                       123,
+		"intersight_hyperflex_sys_config_policy":                             124,
+		"intersight_hyperflex_ucsm_config_policy":                            125,
+		"intersight_hyperflex_vcenter_config_policy":                         126,
+		"intersight_hyperflex_vm_import_operation":                           127,
+		"intersight_hyperflex_vm_restore_operation":                          128,
+		"intersight_iam_account":                                             129,
+		"intersight_iam_account_experience":                                  130,
+		"intersight_iam_api_key":                                             131,
+		"intersight_iam_app_registration":                                    132,
+		"intersight_iam_certificate":                                         133,
+		"intersight_iam_certificate_request":                                 134,
+		"intersight_iam_end_point_user":                                      135,
+		"intersight_iam_end_point_user_policy":                               136,
+		"intersight_iam_end_point_user_role":                                 137,
+		"intersight_iam_idp":                                                 138,
+		"intersight_iam_ip_access_management":                                139,
+		"intersight_iam_ip_address":                                          140,
+		"intersight_iam_ldap_group":                                          141,
+		"intersight_iam_ldap_policy":                                         142,
+		"intersight_iam_ldap_provider":                                       143,
+		"intersight_iam_permission":                                          144,
+		"intersight_iam_private_key_spec":                                    145,
+		"intersight_iam_qualifier":                                           146,
+		"intersight_iam_resource_roles":                                      147,
+		"intersight_iam_session_limits":                                      148,
+		"intersight_iam_trust_point":                                         149,
+		"intersight_iam_user":                                                150,
+		"intersight_iam_user_group":                                          151,
+		"intersight_ipmioverlan_policy":                                      152,
+		"intersight_ippool_pool":                                             153,
+		"intersight_iqnpool_pool":                                            154,
+		"intersight_kubernetes_aci_cni_apic":                                 155,
+		"intersight_kubernetes_aci_cni_profile":                              156,
+		"intersight_kubernetes_aci_cni_tenant_cluster_allocation":            157,
+		"intersight_kubernetes_addon_definition":                             158,
+		"intersight_kubernetes_addon_policy":                                 159,
+		"intersight_kubernetes_addon_repository":                             160,
+		"intersight_kubernetes_cluster":                                      161,
+		"intersight_kubernetes_cluster_addon_profile":                        162,
+		"intersight_kubernetes_cluster_profile":                              163,
+		"intersight_kubernetes_container_runtime_policy":                     164,
+		"intersight_kubernetes_network_policy":                               165,
+		"intersight_kubernetes_node_group_profile":                           166,
+		"intersight_kubernetes_sys_config_policy":                            167,
+		"intersight_kubernetes_trusted_registries_policy":                    168,
+		"intersight_kubernetes_version":                                      169,
+		"intersight_kubernetes_version_policy":                               170,
+		"intersight_kubernetes_virtual_machine_infra_config_policy":          171,
+		"intersight_kubernetes_virtual_machine_infrastructure_provider":      172,
+		"intersight_kubernetes_virtual_machine_instance_type":                173,
+		"intersight_kubernetes_virtual_machine_node_profile":                 174,
+		"intersight_kvm_policy":                                              175,
+		"intersight_kvm_session":                                             176,
+		"intersight_kvm_tunnel":                                              177,
+		"intersight_license_iwo_license_count":                               178,
+		"intersight_license_license_info":                                    179,
+		"intersight_license_license_reservation_op":                          180,
+		"intersight_macpool_pool":                                            181,
+		"intersight_memory_persistent_memory_policy":                         182,
+		"intersight_networkconfig_policy":                                    183,
+		"intersight_ntp_policy":                                              184,
+		"intersight_oprs_deployment":                                         185,
+		"intersight_organization_organization":                               186,
+		"intersight_os_bulk_install_info":                                    187,
+		"intersight_os_configuration_file":                                   188,
+		"intersight_os_install":                                              189,
+		"intersight_recovery_backup_config_policy":                           190,
+		"intersight_recovery_backup_profile":                                 191,
+		"intersight_recovery_on_demand_backup":                               192,
+		"intersight_recovery_restore":                                        193,
+		"intersight_recovery_schedule_config_policy":                         194,
+		"intersight_resource_group":                                          195,
+		"intersight_resourcepool_lease":                                      196,
+		"intersight_resourcepool_pool":                                       197,
+		"intersight_sdcard_policy":                                           198,
+		"intersight_sdwan_profile":                                           199,
+		"intersight_sdwan_router_node":                                       200,
+		"intersight_sdwan_router_policy":                                     201,
+		"intersight_sdwan_vmanage_account_policy":                            202,
+		"intersight_server_config_import":                                    203,
+		"intersight_server_profile":                                          204,
+		"intersight_server_profile_template":                                 205,
+		"intersight_smtp_policy":                                             206,
+		"intersight_snmp_policy":                                             207,
+		"intersight_software_appliance_distributable":                        208,
+		"intersight_software_hcl_meta":                                       209,
+		"intersight_software_hyperflex_bundle_distributable":                 210,
+		"intersight_software_hyperflex_distributable":                        211,
+		"intersight_software_release_meta":                                   212,
+		"intersight_software_solution_distributable":                         213,
+		"intersight_software_ucsd_bundle_distributable":                      214,
+		"intersight_software_ucsd_distributable":                             215,
+		"intersight_softwarerepository_authorization":                        216,
+		"intersight_softwarerepository_category_mapper":                      217,
+		"intersight_softwarerepository_category_mapper_model":                218,
+		"intersight_softwarerepository_category_support_constraint":          219,
+		"intersight_softwarerepository_operating_system_file":                220,
+		"intersight_softwarerepository_release":                              221,
+		"intersight_sol_policy":                                              222,
+		"intersight_ssh_policy":                                              223,
+		"intersight_storage_disk_group_policy":                               224,
+		"intersight_storage_storage_policy":                                  225,
+		"intersight_syslog_policy":                                           226,
+		"intersight_tam_advisory_count":                                      227,
+		"intersight_tam_advisory_definition":                                 228,
+		"intersight_tam_advisory_info":                                       229,
+		"intersight_tam_advisory_instance":                                   230,
+		"intersight_tam_security_advisory":                                   231,
+		"intersight_techsupportmanagement_collection_control_policy":         232,
+		"intersight_techsupportmanagement_tech_support_bundle":               233,
+		"intersight_uuidpool_pool":                                           234,
+		"intersight_virtualization_virtual_disk":                             235,
+		"intersight_virtualization_virtual_machine":                          236,
+		"intersight_vmedia_policy":                                           237,
+		"intersight_vmrc_console":                                            238,
+		"intersight_vnic_eth_adapter_policy":                                 239,
+		"intersight_vnic_eth_if":                                             240,
+		"intersight_vnic_eth_network_policy":                                 241,
+		"intersight_vnic_eth_qos_policy":                                     242,
+		"intersight_vnic_fc_adapter_policy":                                  243,
+		"intersight_vnic_fc_if":                                              244,
+		"intersight_vnic_fc_network_policy":                                  245,
+		"intersight_vnic_fc_qos_policy":                                      246,
+		"intersight_vnic_iscsi_adapter_policy":                               247,
+		"intersight_vnic_iscsi_boot_policy":                                  248,
+		"intersight_vnic_iscsi_static_target_policy":                         249,
+		"intersight_vnic_lan_connectivity_policy":                            250,
+		"intersight_vnic_san_connectivity_policy":                            251,
+		"intersight_vrf_vrf":                                                 252,
+		"intersight_workflow_batch_api_executor":                             253,
+		"intersight_workflow_custom_data_type_definition":                    254,
+		"intersight_workflow_error_response_handler":                         255,
+		"intersight_workflow_rollback_workflow":                              256,
+		"intersight_workflow_task_definition":                                257,
+		"intersight_workflow_workflow_definition":                            258,
+		"intersight_workflow_workflow_info":                                  259,
 	}
 )
 

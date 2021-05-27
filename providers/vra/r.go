@@ -3396,6 +3396,10 @@ Creates a VMware vRealize Automation machine resource.
 					Description: `(Optional) List of storage, network and extensibility constraints to be applied when provisioning through this project.`,
 				},
 				resource.Attribute{
+					Name:        "custom_properties",
+					Description: `(Optional) The project custom properties which are added to all requests in this project.`,
+				},
+				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) A human-friendly description.`,
 				},
@@ -3925,7 +3929,7 @@ Creates a VMware vRealize Automation machine resource.
 				},
 				resource.Attribute{
 					Name:        "external_region_id",
-					Description: `The ID of the external region that is associated with the zone.`,
+					Description: `The id of the region for which this zone is defined.`,
 				},
 				resource.Attribute{
 					Name:        "links",
@@ -3959,7 +3963,7 @@ Creates a VMware vRealize Automation machine resource.
 				},
 				resource.Attribute{
 					Name:        "external_region_id",
-					Description: `The ID of the external region that is associated with the zone.`,
+					Description: `The id of the region for which this zone is defined.`,
 				},
 				resource.Attribute{
 					Name:        "links",

@@ -94,7 +94,7 @@ func sync() error {
 	deletedCount := 0
 	for k := range deletedProviders {
 		deletedCount++
-		fmt.Println("Deleting [%d/%d] %s\n", deletedCount, len(deletedProviders), k)
+		fmt.Printf("Deleting [%d/%d] %s\n", deletedCount, len(deletedProviders), k)
 		os.RemoveAll(filepath.Join(repositoriesPath, k))
 		os.RemoveAll(filepath.Join(providersPath, k))
 	}

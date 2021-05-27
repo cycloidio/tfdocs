@@ -26,6 +26,10 @@ var (
 					Description: `(Optional) If there are muntiple tenants in a json this attribute helps the user to set a particular tenant to which he want to reflect the changes. Other tenants will neither be created nor be modified`,
 				},
 				resource.Attribute{
+					Name:        "ignore_metadata",
+					Description: `(Optional) Set True if you want to ignore metadata changes during update. By default it is set to false`,
+				},
+				resource.Attribute{
 					Name:        "as3_example1.json",
 					Description: `Example AS3 Declarative JSON file with single tenant ` + "`" + `` + "`" + `` + "`" + `hcl { "class": "AS3", "action": "deploy", "persist": true, "declaration": { "class": "ADC", "schemaVersion": "3.0.0", "id": "example-declaration-01", "label": "Sample 1", "remark": "Simple HTTP application with round robin pool", "Sample_01": { "class": "Tenant", "defaultRouteDomain": 0, "Application_1": { "class": "Application", "template": "http", "serviceMain": { "class": "Service_HTTP", "virtualAddresses": [ "10.0.2.10" ], "pool": "web_pool" }, "web_pool": { "class": "Pool", "monitors": [ "http" ], "members": [ { "servicePort": 80, "serverAddresses": [ "192.0.1.100", "192.0.1.110" ] } ] } } } } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
@@ -203,6 +207,111 @@ var (
 				resource.Attribute{
 					Name:        "DO documentation",
 					Description: `https://clouddocs.f5.com/products/extensions/f5-declarative-onboarding/latest/composing-a-declaration.html#sample-declaration-for-a-standalone-big-ip`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "bigip_bigip_fast_application",
+			Category:         "Resources",
+			ShortDescription: `Provides details about bigip_fast_application resource`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "fast_json",
+					Description: `(Required) Path/Filename of Declarative FAST JSON which is a json file used with builtin ` + "`" + `` + "`" + `` + "`" + `file` + "`" + `` + "`" + `` + "`" + ` function`,
+				},
+				resource.Attribute{
+					Name:        "template",
+					Description: `(Optional) Name of installed FAST template used to create FAST application. This parameter is required when creating new resource.`,
+				},
+				resource.Attribute{
+					Name:        "tenant",
+					Description: `(Optional) A FAST tenant name on which you want to manage application.`,
+				},
+				resource.Attribute{
+					Name:        "application",
+					Description: `(Optional) A FAST application name.`,
+				},
+				resource.Attribute{
+					Name:        "FAST documentation",
+					Description: `https://clouddocs.f5.com/products/extensions/f5-appsvcs-templates/latest/`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "bigip_bigip_fast_template",
+			Category:         "Resources",
+			ShortDescription: `Provides details about bigip_fast_template resource`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Required) Path to the zip archive file containing FAST template set on Local Disk`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "bigip_bigip_ipsec_policy",
+			Category:         "Resources",
+			ShortDescription: `Provides details about bigip_ipsec_policy resource`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the IPSec policy,it should be "full path".The full path is the combination of the partition + name of the IPSec policy.(For example ` + "`" + `/Common/test-policy` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Description of the IPSec policy.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies the IPsec protocol. Valid choices are: ` + "`" + `ah, esp` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies the processing mode. Valid choices are: ` + "`" + `transport, interface, isession, tunnel` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "tunnel_local_address",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies the local endpoint IP address of the IPsec tunnel. This parameter is only valid when mode is tunnel.`,
+				},
+				resource.Attribute{
+					Name:        "tunnel_remote_address",
+					Description: `(Optional, type ` + "`" + `string` + "`" + `) Specifies the remote endpoint IP address of the IPsec tunnel. This parameter is only valid when mode is tunnel.`,
+				},
+				resource.Attribute{
+					Name:        "encrypt_algorithm",
+					Description: `(Optional, type ` + "`" + `string` + "`" + `) Specifies the algorithm to use for IKE encryption. Valid choices are: ` + "`" + `null, 3des, aes128, aes192, aes256, aes-gmac256, aes-gmac192, aes-gmac128, aes-gcm256, aes-gcm192, aes-gcm256, aes-gcm128` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "auth_algorithm",
+					Description: `(Optional, type ` + "`" + `string` + "`" + `) Specifies the algorithm to use for IKE authentication. Valid choices are: ` + "`" + `sha1, sha256, sha384, sha512, aes-gcm128, aes-gcm192, aes-gcm256, aes-gmac128, aes-gmac192, aes-gmac256` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "lifetime",
+					Description: `(Optional, type ` + "`" + `int` + "`" + `) Specifies the length of time before the IKE security association expires, in minutes.`,
+				},
+				resource.Attribute{
+					Name:        "kb_lifetime",
+					Description: `(Optional, type ` + "`" + `int` + "`" + `) Specifies the length of time before the IKE security association expires, in kilobytes.`,
+				},
+				resource.Attribute{
+					Name:        "perfect_forward_secrecy",
+					Description: `(Optional, type ` + "`" + `string` + "`" + `) Specifies the Diffie-Hellman group to use for IKE Phase 2 negotiation. Valid choices are: ` + "`" + `none, modp768, modp1024, modp1536, modp2048, modp3072, modp4096, modp6144, modp8192` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ipcomp",
+					Description: `(Optional, type ` + "`" + `string` + "`" + `) Specifies whether to use IPComp encapsulation. Valid choices are: ` + "`" + `none", null", deflate` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1217,6 +1326,153 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "bigip_bigip_net_ike_peer",
+			Category:         "Resources",
+			ShortDescription: `Provides details about bigip_net_ike_peer resource`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the ike_peer`,
+				},
+				resource.Attribute{
+					Name:        "app_service",
+					Description: `(Optional)The application service that the object belongs to`,
+				},
+				resource.Attribute{
+					Name:        "ca_cert_file",
+					Description: `(Optional)the trusted root and intermediate certificate authorities`,
+				},
+				resource.Attribute{
+					Name:        "crl_file",
+					Description: `(Optional)Specifies the file name of the Certificate Revocation List. Only supported in IKEv1`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional)User defined description`,
+				},
+				resource.Attribute{
+					Name:        "generate_policy",
+					Description: `(Optional)Enable or disable the generation of Security Policy Database entries(SPD) when the device is the responder of the IKE remote node`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `(Optional)Defines the exchange mode for phase 1 when racoon is the initiator, or the acceptable exchange mode when racoon is the responder`,
+				},
+				resource.Attribute{
+					Name:        "my_cert_file",
+					Description: `(Optional)Specifies the name of the certificate file object`,
+				},
+				resource.Attribute{
+					Name:        "my_cert_key_file",
+					Description: `(Optional)Specifies the name of the certificate key file object`,
+				},
+				resource.Attribute{
+					Name:        "my_cert_key_passphrase",
+					Description: `(Optional)Specifies the passphrase of the key used for my-cert-key-file`,
+				},
+				resource.Attribute{
+					Name:        "my_id_type",
+					Description: `(Optional)Specifies the identifier type sent to the remote host to use in the phase 1 negotiation`,
+				},
+				resource.Attribute{
+					Name:        "my_id_value",
+					Description: `(Optional)Specifies the identifier value sent to the remote host in the phase 1 negotiation`,
+				},
+				resource.Attribute{
+					Name:        "nat_traversal",
+					Description: `(Optional)Enables use of the NAT-Traversal IPsec extension`,
+				},
+				resource.Attribute{
+					Name:        "passive",
+					Description: `(Optional)Specifies whether the local IKE agent can be the initiator of the IKE negotiation with this ike-peer`,
+				},
+				resource.Attribute{
+					Name:        "peers_cert_file",
+					Description: `(Optional)Specifies the peer’s certificate for authentication`,
+				},
+				resource.Attribute{
+					Name:        "peers_cert_type",
+					Description: `(Optional)Specifies that the only peers-cert-type supported is certfile`,
+				},
+				resource.Attribute{
+					Name:        "peers_id_type",
+					Description: `(Optional)Specifies which of address, fqdn, asn1dn, user-fqdn or keyid-tag types to use as peers-id-type`,
+				},
+				resource.Attribute{
+					Name:        "peers_id_value",
+					Description: `(Optional)Specifies the peer’s identifier to be received`,
+				},
+				resource.Attribute{
+					Name:        "phase1_auth_method",
+					Description: `(Optional)Specifies the authentication method used for phase 1 negotiation`,
+				},
+				resource.Attribute{
+					Name:        "phase1_encrypt_algorithm",
+					Description: `(Optional)Specifies the encryption algorithm used for the isakmp phase 1 negotiation`,
+				},
+				resource.Attribute{
+					Name:        "phase1_hash_algorithm",
+					Description: `(Optional)Defines the hash algorithm used for the isakmp phase 1 negotiation`,
+				},
+				resource.Attribute{
+					Name:        "phase1_perfect_forward_secrecy",
+					Description: `(Optional)Defines the Diffie-Hellman group for key exchange to provide perfect forward secrecy`,
+				},
+				resource.Attribute{
+					Name:        "preshared_key",
+					Description: `(Optional)Specifies the preshared key for ISAKMP SAs`,
+				},
+				resource.Attribute{
+					Name:        "preshared_key_encrypted",
+					Description: `(Optional)Display the encrypted preshared-key for the IKE remote node`,
+				},
+				resource.Attribute{
+					Name:        "prf",
+					Description: `(Optional) Specifies the pseudo-random function used to derive keying material for all cryptographic operations`,
+				},
+				resource.Attribute{
+					Name:        "proxy_support",
+					Description: `(Optional)If this value is enabled, both values of ID payloads in the phase 2 exchange are used as the addresses of end-point of IPsec-SAs`,
+				},
+				resource.Attribute{
+					Name:        "remote_address",
+					Description: `(Required)Specifies the IP address of the IKE remote node`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional)Enables or disables this IKE remote node`,
+				},
+				resource.Attribute{
+					Name:        "traffic_selector",
+					Description: `(Optional)Specifies the names of the traffic-selector objects associated with this ike-peer`,
+				},
+				resource.Attribute{
+					Name:        "verify_cert",
+					Description: `(Optional)Specifies whether to verify the certificate chain of the remote peer based on the trusted certificates in ca-cert-file`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional)Specifies which version of IKE to be used`,
+				},
+				resource.Attribute{
+					Name:        "dpd_delay",
+					Description: `(Optional)Specifies the number of seconds between Dead Peer Detection messages`,
+				},
+				resource.Attribute{
+					Name:        "lifetime",
+					Description: `(Optional)Defines the lifetime in minutes of an IKE SA which will be proposed in the phase 1 negotiations`,
+				},
+				resource.Attribute{
+					Name:        "replay_window_size",
+					Description: `(Optional)Specifies the replay window size of the IPsec SAs negotiated with the IKE remote node`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "bigip_bigip_net_route",
 			Category:         "Resources",
 			ShortDescription: `Provides details about bigip_net_route resource`,
@@ -1261,6 +1517,85 @@ var (
 				resource.Attribute{
 					Name:        "traffic_group",
 					Description: `(Optional) Specifies the traffic group, defaults to ` + "`" + `traffic-group-local-only` + "`" + ` if not specified.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "bigip_bigip_net_tunnel",
+			Category:         "Resources",
+			ShortDescription: `Provides details about bigip_net_tunnel resource`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the tunnel`,
+				},
+				resource.Attribute{
+					Name:        "local_address",
+					Description: `(Required) Specifies a local IP address. This option is required`,
+				},
+				resource.Attribute{
+					Name:        "profile",
+					Description: `(Required) Specifies the profile that you want to associate with the tunnel`,
+				},
+				resource.Attribute{
+					Name:        "app_service",
+					Description: `(Optional) The application service that the object belongs to`,
+				},
+				resource.Attribute{
+					Name:        "auto_last_hop",
+					Description: `(Optional) Specifies whether auto lasthop is enabled or not`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) User defined description`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `(Optional) Specifies how the tunnel carries traffic`,
+				},
+				resource.Attribute{
+					Name:        "partition",
+					Description: `(Optional) Displays the admin-partition within which this component resides`,
+				},
+				resource.Attribute{
+					Name:        "remote_address",
+					Description: `(Optional) Specifies a remote IP address`,
+				},
+				resource.Attribute{
+					Name:        "secondary_address",
+					Description: `(Optional) Specifies a secondary non-floating IP address when the local-address is set to a floating address`,
+				},
+				resource.Attribute{
+					Name:        "tos",
+					Description: `(Optional) Specifies a value for insertion into the Type of Service (ToS) octet within the IP header of the encapsulating header of transmitted packets`,
+				},
+				resource.Attribute{
+					Name:        "traffic_group",
+					Description: `(Optional) Specifies a traffic-group for use with the tunnel`,
+				},
+				resource.Attribute{
+					Name:        "transparent",
+					Description: `(Optional) Enables or disables the tunnel to be transparent`,
+				},
+				resource.Attribute{
+					Name:        "use_pmtu",
+					Description: `(Optional) Enables or disables the tunnel to use the PMTU (Path MTU) information provided by ICMP NeedFrag error messages`,
+				},
+				resource.Attribute{
+					Name:        "idle_timeout",
+					Description: `(Optional) Specifies an idle timeout for wildcard tunnels in seconds`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) The key field may represent different values depending on the type of the tunnel`,
+				},
+				resource.Attribute{
+					Name:        "mtu",
+					Description: `(Optional) Specifies the maximum transmission unit (MTU) of the tunnel`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1548,6 +1883,57 @@ var (
 			},
 			Attributes: []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "bigip_bigip_traffic_selector",
+			Category:         "Resources",
+			ShortDescription: `Provides details about bigip_traffic_selector resource`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the IPSec traffic-selector,it should be "full path".The full path is the combination of the partition + name of the IPSec traffic-selector.(For example ` + "`" + `/Common/test-selector` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Description of the traffic selector.`,
+				},
+				resource.Attribute{
+					Name:        "destination_address",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies the host or network IP address to which the application traffic is destined.When creating a new traffic selector, this parameter is required.`,
+				},
+				resource.Attribute{
+					Name:        "destination_port",
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies the IP port used by the application. The default value is ` + "`" + `All Ports (0)` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "source_address",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies the host or network IP address from which the application traffic originates.When creating a new traffic selector, this parameter is required.`,
+				},
+				resource.Attribute{
+					Name:        "source_port",
+					Description: `(Optional, type ` + "`" + `int` + "`" + `) Specifies the IP port used by the application. The default value is ` + "`" + `All Ports (0)` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "direction",
+					Description: `(Optional, type ` + "`" + `string` + "`" + `) Specifies whether the traffic selector applies to inbound or outbound traffic, or both. The default value is ` + "`" + `Both` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ipsec_policy",
+					Description: `(Optional, type ` + "`" + `string` + "`" + `) Specifies the IPsec policy that tells the BIG-IP system how to handle the packets.When creating a new traffic selector, if this parameter is not specified, the default is ` + "`" + `default-ipsec-policy` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `(Optional, type ` + "`" + `int` + "`" + `) Specifies the order in which traffic is matched, if traffic can be matched to multiple traffic selectors.Traffic is matched to the traffic selector with the highest priority (lowest order number). When creating a new traffic selector, if this parameter is not specified, the default is ` + "`" + `last` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ip_protocol",
+					Description: `(Optional, type ` + "`" + `int` + "`" + `) Specifies the network protocol to use for this traffic. The default value is ` + "`" + `All Protocols (255)` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
 	}
 
 	resourcesMap = map[string]int{
@@ -1558,41 +1944,47 @@ var (
 		"bigip_bigip_command":                         3,
 		"bigip_bigip_common_license_manage_bigiq":     4,
 		"bigip_bigip_do":                              5,
-		"bigip_bigip_ltm_datagroup":                   6,
-		"bigip_bigip_ltm_irule":                       7,
-		"bigip_bigip_ltm_monitor":                     8,
-		"bigip_bigip_ltm_node":                        9,
-		"bigip_bigip_ltm_persistence_profile_cookie":  10,
-		"bigip_bigip_ltm_persistence_profile_dstaddr": 11,
-		"bigip_bigip_ltm_persistence_profile_srcaddr": 12,
-		"bigip_bigip_ltm_persistence_profile_ssl":     13,
-		"bigip_bigip_ltm_policy":                      14,
-		"bigip_bigip_ltm_pool":                        15,
-		"bigip_bigip_ltm_pool_attachment":             16,
-		"bigip_bigip_ltm_profile_client_ssl":          17,
-		"bigip_bigip_ltm_profile_fasthttp":            18,
-		"bigip_bigip_ltm_profile_fastl4":              19,
-		"bigip_bigip_ltm_profile_http":                20,
-		"bigip_bigip_ltm_profile_http2":               21,
-		"bigip_bigip_ltm_profile_httpcompress":        22,
-		"bigip_bigip_ltm_profile_oneconnect":          23,
-		"bigip_bigip_ltm_profile_server_ssl":          24,
-		"bigip_bigip_ltm_profile_tcp":                 25,
-		"bigip_bigip_ltm_snat":                        26,
-		"bigip_bigip_ltm_snatpool":                    27,
-		"bigip_bigip_ltm_virtual_address":             28,
-		"bigip_bigip_ltm_virtual_server":              29,
-		"bigip_bigip_net_route":                       30,
-		"bigip_bigip_net_selfip":                      31,
-		"bigip_bigip_net_vlan":                        32,
-		"bigip_bigip_ssl_certificate":                 33,
-		"bigip_bigip_ssl_key":                         34,
-		"bigip_bigip_sys_dns":                         35,
-		"bigip_bigip_sys_iapp":                        36,
-		"bigip_bigip_sys_ntp":                         37,
-		"bigip_bigip_sys_provision":                   38,
-		"bigip_bigip_sys_snmp":                        39,
-		"bigip_bigip_sys_snmp_traps":                  40,
+		"bigip_bigip_fast_application":                6,
+		"bigip_bigip_fast_template":                   7,
+		"bigip_bigip_ipsec_policy":                    8,
+		"bigip_bigip_ltm_datagroup":                   9,
+		"bigip_bigip_ltm_irule":                       10,
+		"bigip_bigip_ltm_monitor":                     11,
+		"bigip_bigip_ltm_node":                        12,
+		"bigip_bigip_ltm_persistence_profile_cookie":  13,
+		"bigip_bigip_ltm_persistence_profile_dstaddr": 14,
+		"bigip_bigip_ltm_persistence_profile_srcaddr": 15,
+		"bigip_bigip_ltm_persistence_profile_ssl":     16,
+		"bigip_bigip_ltm_policy":                      17,
+		"bigip_bigip_ltm_pool":                        18,
+		"bigip_bigip_ltm_pool_attachment":             19,
+		"bigip_bigip_ltm_profile_client_ssl":          20,
+		"bigip_bigip_ltm_profile_fasthttp":            21,
+		"bigip_bigip_ltm_profile_fastl4":              22,
+		"bigip_bigip_ltm_profile_http":                23,
+		"bigip_bigip_ltm_profile_http2":               24,
+		"bigip_bigip_ltm_profile_httpcompress":        25,
+		"bigip_bigip_ltm_profile_oneconnect":          26,
+		"bigip_bigip_ltm_profile_server_ssl":          27,
+		"bigip_bigip_ltm_profile_tcp":                 28,
+		"bigip_bigip_ltm_snat":                        29,
+		"bigip_bigip_ltm_snatpool":                    30,
+		"bigip_bigip_ltm_virtual_address":             31,
+		"bigip_bigip_ltm_virtual_server":              32,
+		"bigip_bigip_net_ike_peer":                    33,
+		"bigip_bigip_net_route":                       34,
+		"bigip_bigip_net_selfip":                      35,
+		"bigip_bigip_net_tunnel":                      36,
+		"bigip_bigip_net_vlan":                        37,
+		"bigip_bigip_ssl_certificate":                 38,
+		"bigip_bigip_ssl_key":                         39,
+		"bigip_bigip_sys_dns":                         40,
+		"bigip_bigip_sys_iapp":                        41,
+		"bigip_bigip_sys_ntp":                         42,
+		"bigip_bigip_sys_provision":                   43,
+		"bigip_bigip_sys_snmp":                        44,
+		"bigip_bigip_sys_snmp_traps":                  45,
+		"bigip_bigip_traffic_selector":                46,
 	}
 )
 

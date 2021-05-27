@@ -150,7 +150,7 @@ Manages a rotating time resource, which keeps a rotating UTC timestamp stored in
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "base_rfc3339",
+					Name:        "rfc3339",
 					Description: `(Optional) Configure the base timestamp with an UTC [RFC3339 time string](https://tools.ietf.org/html/rfc3339#section-5.8) (` + "`" + `YYYY-MM-DDTHH:MM:SSZ` + "`" + `). Defaults to the current time.`,
 				},
 				resource.Attribute{

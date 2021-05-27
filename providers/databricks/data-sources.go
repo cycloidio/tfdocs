@@ -441,6 +441,19 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "databricks_user",
+			Category:         "Security",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"security",
+				"user",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "databricks_zones",
 			Category:         "AWS",
 			ShortDescription: ``,
@@ -493,7 +506,8 @@ var (
 		"databricks_notebook":                8,
 		"databricks_notebook_paths":          9,
 		"databricks_spark_version":           10,
-		"databricks_zones":                   11,
+		"databricks_user":                    11,
+		"databricks_zones":                   12,
 	}
 )
 

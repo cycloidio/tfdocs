@@ -11,6 +11,34 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "buildkite_meta",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+Use this data source to look up the source IP addresses that Buildkite may use
+to send external requests, including webhooks and API calls to source control
+systems (like GitHub Enterprise Server and BitBucket Server).
+
+Buildkite Documentation: https://buildkite.com/docs/apis/rest-api/meta
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "webhook_ips",
+					Description: `A list of strings, each one an IP address (x.x.x.x) or CIDR address (x.x.x.x/32) that Buildkite may use to send webhooks and other external requests.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "webhook_ips",
+					Description: `A list of strings, each one an IP address (x.x.x.x) or CIDR address (x.x.x.x/32) that Buildkite may use to send webhooks and other external requests.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "buildkite_pipeline",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -76,7 +104,8 @@ Buildkite Documentation: https://buildkite.com/docs/pipelines
 
 	dataSourcesMap = map[string]int{
 
-		"buildkite_pipeline": 0,
+		"buildkite_meta":     0,
+		"buildkite_pipeline": 1,
 	}
 )
 

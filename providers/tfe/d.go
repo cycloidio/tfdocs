@@ -352,6 +352,8 @@ Use this data source to get information about team permissions for a workspace.
 
 Use this data source to get information about a workspace.
 
+~> **NOTE:** Using ` + "`" + `global_remote_state` + "`" + ` or ` + "`" + `remote_state_consumer_ids` + "`" + ` requires using the provider with Terraform Cloud or an instance of Terraform Enterprise at least as recent as v202104-1.
+
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
@@ -380,6 +382,14 @@ Use this data source to get information about a workspace.
 					Description: `Indicates whether runs are triggered based on the changed files in a VCS push (if ` + "`" + `true` + "`" + `) or always triggered on every push (if ` + "`" + `false` + "`" + `).`,
 				},
 				resource.Attribute{
+					Name:        "global_remote_state",
+					Description: `(Optional) Whether the workspace should allow all workspaces in the organization to access its state data during runs. If false, then only specifically approved workspaces can access its state (determined by the ` + "`" + `remote_state_consumer_ids` + "`" + ` argument).`,
+				},
+				resource.Attribute{
+					Name:        "remote_state_consumer_ids",
+					Description: `(Optional) A set of workspace IDs that will be set as the remote state consumers for the given workspace. Cannot be used if ` + "`" + `global_remote_state` + "`" + ` is set to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "operations",
 					Description: `Indicates whether the workspace is using remote execution mode. Set to ` + "`" + `false` + "`" + ` to switch execution mode to local. ` + "`" + `true` + "`" + ` by default.`,
 				},
@@ -409,11 +419,31 @@ Use this data source to get information about a workspace.
 				},
 				resource.Attribute{
 					Name:        "working_directory",
-					Description: `A relative path that Terraform will execute within. The ` + "`" + `vcs_repo` + "`" + ` block contains:`,
+					Description: `A relative path that Terraform will execute within.`,
+				},
+				resource.Attribute{
+					Name:        "resource_count",
+					Description: `The number of resources managed by the workspace.`,
+				},
+				resource.Attribute{
+					Name:        "policy_check_failures",
+					Description: `The number of policy check failures from the latest run.`,
+				},
+				resource.Attribute{
+					Name:        "run_failures",
+					Description: `The number of run failures on the workspace.`,
+				},
+				resource.Attribute{
+					Name:        "runs_count",
+					Description: `The number of runs on the workspace. The ` + "`" + `vcs_repo` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "identifier",
 					Description: `A reference to your VCS repository in the format ` + "`" + `<organization>/<repository>` + "`" + ` where ` + "`" + `<organization>` + "`" + ` and ` + "`" + `<repository>` + "`" + ` refer to the organization and repository in your VCS provider.`,
+				},
+				resource.Attribute{
+					Name:        "branch",
+					Description: `The repository branch that Terraform will execute from.`,
 				},
 				resource.Attribute{
 					Name:        "ingress_submodules",
@@ -442,6 +472,14 @@ Use this data source to get information about a workspace.
 					Description: `Indicates whether runs are triggered based on the changed files in a VCS push (if ` + "`" + `true` + "`" + `) or always triggered on every push (if ` + "`" + `false` + "`" + `).`,
 				},
 				resource.Attribute{
+					Name:        "global_remote_state",
+					Description: `(Optional) Whether the workspace should allow all workspaces in the organization to access its state data during runs. If false, then only specifically approved workspaces can access its state (determined by the ` + "`" + `remote_state_consumer_ids` + "`" + ` argument).`,
+				},
+				resource.Attribute{
+					Name:        "remote_state_consumer_ids",
+					Description: `(Optional) A set of workspace IDs that will be set as the remote state consumers for the given workspace. Cannot be used if ` + "`" + `global_remote_state` + "`" + ` is set to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "operations",
 					Description: `Indicates whether the workspace is using remote execution mode. Set to ` + "`" + `false` + "`" + ` to switch execution mode to local. ` + "`" + `true` + "`" + ` by default.`,
 				},
@@ -471,11 +509,31 @@ Use this data source to get information about a workspace.
 				},
 				resource.Attribute{
 					Name:        "working_directory",
-					Description: `A relative path that Terraform will execute within. The ` + "`" + `vcs_repo` + "`" + ` block contains:`,
+					Description: `A relative path that Terraform will execute within.`,
+				},
+				resource.Attribute{
+					Name:        "resource_count",
+					Description: `The number of resources managed by the workspace.`,
+				},
+				resource.Attribute{
+					Name:        "policy_check_failures",
+					Description: `The number of policy check failures from the latest run.`,
+				},
+				resource.Attribute{
+					Name:        "run_failures",
+					Description: `The number of run failures on the workspace.`,
+				},
+				resource.Attribute{
+					Name:        "runs_count",
+					Description: `The number of runs on the workspace. The ` + "`" + `vcs_repo` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "identifier",
 					Description: `A reference to your VCS repository in the format ` + "`" + `<organization>/<repository>` + "`" + ` where ` + "`" + `<organization>` + "`" + ` and ` + "`" + `<repository>` + "`" + ` refer to the organization and repository in your VCS provider.`,
+				},
+				resource.Attribute{
+					Name:        "branch",
+					Description: `The repository branch that Terraform will execute from.`,
 				},
 				resource.Attribute{
 					Name:        "ingress_submodules",
@@ -505,7 +563,7 @@ Use this data source to get a map of workspace IDs.
 				},
 				resource.Attribute{
 					Name:        "organization",
-					Description: `(Required) Name of the organization. ## Attributes Reference In addition to all arguments above, the following attributes are exported: ~>`,
+					Description: `(Required) Name of the organization. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "full_names",

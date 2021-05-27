@@ -1351,7 +1351,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "edge_gateway_id",
-					Description: `(Required) The ID name of the edge gateway (NSX-V or NSX-T)`,
+					Description: `(Required) The ID of the edge gateway (NSX-V or NSX-T)`,
 				},
 				resource.Attribute{
 					Name:        "prefix_length",
@@ -1371,7 +1371,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "static_ip_pool",
-					Description: `(Optional) A range of IPs permitted to be used as static IPs for virtual machines; see [IP Pools](#ip-pools) below for details. <a id="ip-pools"></a> ## IP Pools Static IP Pools and DHCP Pools support the following attributes:`,
+					Description: `(Optional) A range of IPs permitted to be used as static IPs for virtual machines; see [IP Pools](#ip-pools) below for details. <a id="ip-pools"></a> ## IP Pools Static IP Pools support the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "start_address",
@@ -1547,6 +1547,74 @@ var (
 				resource.Attribute{
 					Name:        "nsxt_logical_switch_id",
 					Description: `ID of an existing NSX-T segment ## Importing ~> After import the field ` + "`" + `nsxt_logical_switch_name` + "`" + ` will remain empty because it is impossible to read it in API once it is consumed by network. ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.][docs-import] An existing NSX-T VDC Imported network can be [imported][docs-import] into this Terraform resource via supplying its path. The path for this resource is made of orgName.vdcName.networkName. For example, using this structure, representing an NSX-T Imported Network that was`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_security_group",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource to manage NSX-T Security Group. Security groups are groups of data center group networks to which distributed firewall rules apply. Grouping networks helps you to reduce the total number of distributed firewall rules to be created.`,
+			Description:      ``,
+			Keywords: []string{
+				"nsxt",
+				"security",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique name for Security Group`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description of the Security Group`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway_id",
+					Description: `(Required) The ID of the edge gateway (NSX-T only). Can be looked up using ` + "`" + `vcd_nsxt_edgegateway` + "`" + ` datasource`,
+				},
+				resource.Attribute{
+					Name:        "vm_id",
+					Description: `Member VM ID`,
+				},
+				resource.Attribute{
+					Name:        "vm_name",
+					Description: `Member VM name`,
+				},
+				resource.Attribute{
+					Name:        "vapp_id",
+					Description: `Parent vApp ID for member VM (empty for standalone VMs)`,
+				},
+				resource.Attribute{
+					Name:        "vapp_name",
+					Description: `Parent vApp Name for member VM (empty for standalone VMs) ~> There may be cases where Org Networks and Security Groups are already created, but not all VMs are already created and not shown in this structure. Additional ` + "`" + `depends_on` + "`" + ` can ensure that Security Group is created only after all networks and VMs are there. ## Importing ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.](https://www.terraform.io/docs/import/) An existing Security Group configuration can be [imported][docs-import] into this resource via supplying the full dot separated path for your Security Group name. An example is below: [docs-import]: https://www.terraform.io/docs/import/ ` + "`" + `` + "`" + `` + "`" + ` terraform import vcd_nsxt_security_group.imported my-org.my-org-vdc.my-nsxt-edge-gateway.my-security-group-name ` + "`" + `` + "`" + `` + "`" + ` The above would import the ` + "`" + `my-security-group-name` + "`" + ` Security Group config settings that are defined on NSX-T Edge Gateway ` + "`" + `my-nsxt-edge-gateway` + "`" + ` which is configured in organization named ` + "`" + `my-org` + "`" + ` and VDC named ` + "`" + `my-org-vdc` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vm_id",
+					Description: `Member VM ID`,
+				},
+				resource.Attribute{
+					Name:        "vm_name",
+					Description: `Member VM name`,
+				},
+				resource.Attribute{
+					Name:        "vapp_id",
+					Description: `Parent vApp ID for member VM (empty for standalone VMs)`,
+				},
+				resource.Attribute{
+					Name:        "vapp_name",
+					Description: `Parent vApp Name for member VM (empty for standalone VMs) ~> There may be cases where Org Networks and Security Groups are already created, but not all VMs are already created and not shown in this structure. Additional ` + "`" + `depends_on` + "`" + ` can ensure that Security Group is created only after all networks and VMs are there. ## Importing ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.](https://www.terraform.io/docs/import/) An existing Security Group configuration can be [imported][docs-import] into this resource via supplying the full dot separated path for your Security Group name. An example is below: [docs-import]: https://www.terraform.io/docs/import/ ` + "`" + `` + "`" + `` + "`" + ` terraform import vcd_nsxt_security_group.imported my-org.my-org-vdc.my-nsxt-edge-gateway.my-security-group-name ` + "`" + `` + "`" + `` + "`" + ` The above would import the ` + "`" + `my-security-group-name` + "`" + ` Security Group config settings that are defined on NSX-T Edge Gateway ` + "`" + `my-nsxt-edge-gateway` + "`" + ` which is configured in organization named ` + "`" + `my-org` + "`" + ` and VDC named ` + "`" + `my-org-vdc` + "`" + `.`,
 				},
 			},
 		},
@@ -3150,26 +3218,27 @@ var (
 		"vcd_nsxt_edgegateway":      21,
 		"vcd_nsxt_network_dhcp":     22,
 		"vcd_nsxt_network_imported": 23,
-		"vcd_nsxv_dhcp_relay":       24,
-		"vcd_nsxv_dnat":             25,
-		"vcd_nsxv_firewall_rule":    26,
-		"vcd_nsxv_snat":             27,
-		"vcd_org":                   28,
-		"vcd_org_group":             29,
-		"vcd_org_user":              30,
-		"vcd_org_vdc":               31,
-		"vcd_vapp":                  32,
-		"vcd_vapp_access_control":   33,
-		"vcd_vapp_firewall_rules":   34,
-		"vcd_vapp_nat_rules":        35,
-		"vcd_vapp_network":          36,
-		"vcd_vapp_org_network":      37,
-		"vcd_vapp_static_routing":   38,
-		"vcd_vapp_vm":               39,
-		"vcd_vm":                    40,
-		"vcd_vm_affinity_rule":      41,
-		"vcd_vm_internal_disk":      42,
-		"vcd_vm_sizing_policy":      43,
+		"vcd_nsxt_security_group":   24,
+		"vcd_nsxv_dhcp_relay":       25,
+		"vcd_nsxv_dnat":             26,
+		"vcd_nsxv_firewall_rule":    27,
+		"vcd_nsxv_snat":             28,
+		"vcd_org":                   29,
+		"vcd_org_group":             30,
+		"vcd_org_user":              31,
+		"vcd_org_vdc":               32,
+		"vcd_vapp":                  33,
+		"vcd_vapp_access_control":   34,
+		"vcd_vapp_firewall_rules":   35,
+		"vcd_vapp_nat_rules":        36,
+		"vcd_vapp_network":          37,
+		"vcd_vapp_org_network":      38,
+		"vcd_vapp_static_routing":   39,
+		"vcd_vapp_vm":               40,
+		"vcd_vm":                    41,
+		"vcd_vm_affinity_rule":      42,
+		"vcd_vm_internal_disk":      43,
+		"vcd_vm_sizing_policy":      44,
 	}
 )
 

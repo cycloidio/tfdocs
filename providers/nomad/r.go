@@ -37,6 +37,19 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nomad_external_volume",
+			Category:         "Resources",
+			ShortDescription: `Manages the lifecycle of creating and deleting Nomad volumes.`,
+			Description:      ``,
+			Keywords: []string{
+				"external",
+				"volume",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nomad_job",
 			Category:         "Resources",
 			ShortDescription: `Manages the lifecycle of registering and deregistering Nomad jobs (applications).`,
@@ -116,12 +129,13 @@ var (
 
 		"nomad_acl_policy":          0,
 		"nomad_acl_token":           1,
-		"nomad_job":                 2,
-		"nomad_namespace":           3,
-		"nomad_quota_specification": 4,
-		"nomad_scheduler_config":    5,
-		"nomad_sentinel_policy":     6,
-		"nomad_volume":              7,
+		"nomad_external_volume":     2,
+		"nomad_job":                 3,
+		"nomad_namespace":           4,
+		"nomad_quota_specification": 5,
+		"nomad_scheduler_config":    6,
+		"nomad_sentinel_policy":     7,
+		"nomad_volume":              8,
 	}
 )
 

@@ -1126,6 +1126,10 @@ var (
 					Description: `Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See [BI Connector](#bi-connector) below for more details.`,
 				},
 				resource.Attribute{
+					Name:        "bi_connector_config",
+					Description: `Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See [BI Connector](#bi-connector) below for more details.`,
+				},
+				resource.Attribute{
 					Name:        "cluster_type",
 					Description: `Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.`,
 				},
@@ -1381,6 +1385,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bi_connector",
+					Description: `Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See [BI Connector](#bi-connector) below for more details.`,
+				},
+				resource.Attribute{
+					Name:        "bi_connector_config",
 					Description: `Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See [BI Connector](#bi-connector) below for more details.`,
 				},
 				resource.Attribute{
@@ -1662,6 +1670,10 @@ var (
 					Description: `Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See [BI Connector](#bi-connector) below for more details.`,
 				},
 				resource.Attribute{
+					Name:        "bi_connector_config",
+					Description: `Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See [BI Connector](#bi-connector) below for more details.`,
+				},
+				resource.Attribute{
 					Name:        "cluster_type",
 					Description: `Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.`,
 				},
@@ -1921,6 +1933,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bi_connector",
+					Description: `Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See [BI Connector](#bi-connector) below for more details.`,
+				},
+				resource.Attribute{
+					Name:        "bi_connector_config",
 					Description: `Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See [BI Connector](#bi-connector) below for more details.`,
 				},
 				resource.Attribute{

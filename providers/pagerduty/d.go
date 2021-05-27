@@ -279,7 +279,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `A description of the found team. [1]: https://v1.developer.pagerduty.com/documentation/rest/teams/list`,
+					Description: `A description of the found team.`,
+				},
+				resource.Attribute{
+					Name:        "parent",
+					Description: `ID of the parent team. This is available to accounts with the Team Hierarchy feature enabled. Please contact your account manager for more information. [1]: https://v1.developer.pagerduty.com/documentation/rest/teams/list`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -293,7 +297,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `A description of the found team. [1]: https://v1.developer.pagerduty.com/documentation/rest/teams/list`,
+					Description: `A description of the found team.`,
+				},
+				resource.Attribute{
+					Name:        "parent",
+					Description: `ID of the parent team. This is available to accounts with the Team Hierarchy feature enabled. Please contact your account manager for more information. [1]: https://v1.developer.pagerduty.com/documentation/rest/teams/list`,
 				},
 			},
 		},

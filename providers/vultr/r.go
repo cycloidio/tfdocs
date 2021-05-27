@@ -370,7 +370,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "live",
-					Description: `Flag which will determine if a volume should be attached with a restart or not. ## Import Block Storage can be imported using the Block Storage ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_block_storage.my_blockstorage e315835e-d466-4e89-9b4c-dfd8788d7685 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Flag which will determine if a volume should be attached with a restart or not.`,
+				},
+				resource.Attribute{
+					Name:        "mount_id",
+					Description: `An ID associated with the instance, when mounted the ID can be found in /dev/disk/by-id prefixed with virtio. ## Import Block Storage can be imported using the Block Storage ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_block_storage.my_blockstorage e315835e-d466-4e89-9b4c-dfd8788d7685 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -408,7 +412,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "live",
-					Description: `Flag which will determine if a volume should be attached with a restart or not. ## Import Block Storage can be imported using the Block Storage ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_block_storage.my_blockstorage e315835e-d466-4e89-9b4c-dfd8788d7685 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Flag which will determine if a volume should be attached with a restart or not.`,
+				},
+				resource.Attribute{
+					Name:        "mount_id",
+					Description: `An ID associated with the instance, when mounted the ID can be found in /dev/disk/by-id prefixed with virtio. ## Import Block Storage can be imported using the Block Storage ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_block_storage.my_blockstorage e315835e-d466-4e89-9b4c-dfd8788d7685 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -820,7 +828,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "reserved_ip_id",
-					Description: `(Optional) ID of the floating IP to use as the main IP of this server. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) ID of the floating IP to use as the main IP of this server.`,
+				},
+				resource.Attribute{
+					Name:        "backups_schedule",
+					Description: `(Optional) A block that defines the way backups should be scheduled. While this is an optional field if ` + "`" + `backups` + "`" + ` are ` + "`" + `enabled` + "`" + ` this field is mandatory. The configuration of a ` + "`" + `backups_schedule` + "`" + ` is listed below. ` + "`" + `backups_schedule` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of backup schedule Possible values are ` + "`" + `daily` + "`" + `, ` + "`" + `weekly` + "`" + `, ` + "`" + `monthly` + "`" + `, ` + "`" + `daily_alt_event` + "`" + `, or ` + "`" + `daily_alt_odd` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "hour",
+					Description: `(Optional) Hour of day to run in UTC.`,
+				},
+				resource.Attribute{
+					Name:        "dow",
+					Description: `(Optional) Day of week to run. ` + "`" + `1 = Sunday` + "`" + `, ` + "`" + `2 = Monday` + "`" + `, ` + "`" + `3 = Tuesday` + "`" + `, ` + "`" + `4 = Wednesday` + "`" + `, ` + "`" + `5 = Thursday` + "`" + `, ` + "`" + `6 = Friday` + "`" + `, ` + "`" + `7 = Saturday` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "dom",
+					Description: `(Optional) Day of month to run. Use values between 1 and 28. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -952,7 +980,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_private_network",
-					Description: `Whether the server has private networking support enabled.`,
+					Description: `(Deprecated) Whether the server has private networking support enabled.`,
 				},
 				resource.Attribute{
 					Name:        "activation_email",
@@ -976,7 +1004,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "features",
-					Description: `Array of which features are enabled. ## Import Servers can be imported using the server ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_server.my_server b6a859c5-b299-49dd-8888-b1abbc517d08 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Array of which features are enabled.`,
+				},
+				resource.Attribute{
+					Name:        "backups_schedule",
+					Description: `(Optional) A block that defines the way backups should be scheduled. ## Import Servers can be imported using the server ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_server.my_server b6a859c5-b299-49dd-8888-b1abbc517d08 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1110,7 +1142,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_private_network",
-					Description: `Whether the server has private networking support enabled.`,
+					Description: `(Deprecated) Whether the server has private networking support enabled.`,
 				},
 				resource.Attribute{
 					Name:        "activation_email",
@@ -1134,7 +1166,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "features",
-					Description: `Array of which features are enabled. ## Import Servers can be imported using the server ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_server.my_server b6a859c5-b299-49dd-8888-b1abbc517d08 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Array of which features are enabled.`,
+				},
+				resource.Attribute{
+					Name:        "backups_schedule",
+					Description: `(Optional) A block that defines the way backups should be scheduled. ## Import Servers can be imported using the server ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_server.my_server b6a859c5-b299-49dd-8888-b1abbc517d08 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1340,7 +1376,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssl",
-					Description: `(Optional) A block that supplies your ssl configuration to be used with HTTPS. The configuration of a ` + "`" + `ssl` + "`" + ` is listed below. ` + "`" + `health_check` + "`" + ` supports the following`,
+					Description: `(Optional) A block that supplies your ssl configuration to be used with HTTPS. The configuration of a ` + "`" + `ssl` + "`" + ` is listed below.`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
@@ -1396,7 +1432,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "chain",
-					Description: `(Optional) The SSL certificate chain. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The SSL certificate chain. ` + "`" + `firewall_rules` + "`" + ` supports the following`,
+				},
+				resource.Attribute{
+					Name:        "frontend_port",
+					Description: `(Required) Port on load balancer side.`,
+				},
+				resource.Attribute{
+					Name:        "ip_type",
+					Description: `(Required) The type of ip this rule is - may be either v4 or v6.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Required) IP address with subnet that is allowed through the firewall. You may also pass in ` + "`" + `cloudflare` + "`" + ` which will allow only CloudFlares IP range. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1453,6 +1501,14 @@ var (
 				resource.Attribute{
 					Name:        "forwarding_rules",
 					Description: `Defines the forwarding rules for a load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "firewall_rules",
+					Description: `Defines the firewall rules for a load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "private_network",
+					Description: `Defines the private network the load balancer is attached to.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1511,6 +1567,14 @@ var (
 				resource.Attribute{
 					Name:        "forwarding_rules",
 					Description: `Defines the forwarding rules for a load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "firewall_rules",
+					Description: `Defines the firewall rules for a load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "private_network",
+					Description: `Defines the private network the load balancer is attached to.`,
 				},
 			},
 		},

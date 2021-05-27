@@ -2380,6 +2380,46 @@ A Resource is a database or server for which strongDM manages access.
 					Description: ``,
 				},
 				resource.Attribute{
+					Name:        "port",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port_forwarding",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "allow_deprecated_key_exchanges",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique identifier of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: ``,
+				},
+				resource.Attribute{
 					Name:        "port_override",
 					Description: ``,
 				},
@@ -4331,6 +4371,46 @@ A Resource is a database or server for which strongDM manages access.
 				},
 				resource.Attribute{
 					Name:        "port",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port_forwarding",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "allow_deprecated_key_exchanges",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique identifier of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "private_key",
 					Description: ``,
 				},
 				resource.Attribute{

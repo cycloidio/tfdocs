@@ -240,6 +240,10 @@ var (
 					Name:        "plan",
 					Description: `The plan name for the organization account`,
 				},
+				resource.Attribute{
+					Name:        "repositories",
+					Description: `(` + "`" + `list` + "`" + `) A list with the repositories on the organization`,
+				},
 			},
 		},
 		&resource.Resource{
@@ -266,6 +270,53 @@ var (
 				resource.Attribute{
 					Name:        "group_description",
 					Description: `The description of the IdP group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "github_organization_teams",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on all GitHub teams of an organization.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "root_teams_only",
+					Description: `Only return teams that are at the organization's root, i.e. no nested teams. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "teams",
+					Description: `An Array of GitHub Teams. Each ` + "`" + `team` + "`" + ` block consists of the fields documented below. ___ The ` + "`" + `team` + "`" + ` block consists of:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `the ID of the team.`,
+				},
+				resource.Attribute{
+					Name:        "node_id",
+					Description: `the Node ID of the team.`,
+				},
+				resource.Attribute{
+					Name:        "slug",
+					Description: `the slug of the team.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `the team's full name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `the team's description.`,
+				},
+				resource.Attribute{
+					Name:        "privacy",
+					Description: `the team's privacy type.`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `List of team members.`,
 				},
 			},
 		},
@@ -936,12 +987,13 @@ var (
 		"github_membership":                    4,
 		"github_organization":                  5,
 		"github_organization_team_sync_groups": 6,
-		"github_release":                       7,
-		"github_repositories":                  8,
-		"github_repository":                    9,
-		"github_repository_milestone":          10,
-		"github_team":                          11,
-		"github_user":                          12,
+		"github_organization_teams":            7,
+		"github_release":                       8,
+		"github_repositories":                  9,
+		"github_repository":                    10,
+		"github_repository_milestone":          11,
+		"github_team":                          12,
+		"github_user":                          13,
 	}
 )
 

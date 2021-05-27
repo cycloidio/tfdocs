@@ -855,6 +855,10 @@ var (
 					Description: `(Required) The name of the configuration entry being registred.`,
 				},
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional, Enterprise Only) The namespace to create the config entry within.`,
+				},
+				resource.Attribute{
 					Name:        "config_json",
 					Description: `(Optional) An arbitrary map of configuration values. ## Attributes Reference The following attributes are exported:`,
 				},
@@ -1061,13 +1065,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "datacenter",
-					Description: `The datacenter the keys are being read/written to. ## Import ` + "`" + `consul_key_prefix` + "`" + ` can be imported. This is useful when the path already and you know all keys in path must be removed. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_key_prefix.myapp_config myapp/config/ ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The datacenter the keys are being read/written to. ## Import ` + "`" + `consul_key_prefix` + "`" + ` can be imported. This is useful when the path already exists and you know all keys in path should be managed by Terraform. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_key_prefix.myapp_config myapp/config/ ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
-					Description: `The datacenter the keys are being read/written to. ## Import ` + "`" + `consul_key_prefix` + "`" + ` can be imported. This is useful when the path already and you know all keys in path must be removed. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_key_prefix.myapp_config myapp/config/ ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The datacenter the keys are being read/written to. ## Import ` + "`" + `consul_key_prefix` + "`" + ` can be imported. This is useful when the path already exists and you know all keys in path should be managed by Terraform. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_key_prefix.myapp_config myapp/config/ ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},

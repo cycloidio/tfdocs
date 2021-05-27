@@ -12,12 +12,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "octopusdeploy_accounts",
-			Category:         "Data Sources",
+			Category:         "Accounts",
 			ShortDescription: `Provides information about existing accounts.`,
 			Description:      ``,
-			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
-			Attributes:       []resource.Attribute{},
+			Keywords: []string{
+				"accounts",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -102,12 +104,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "octopusdeploy_feeds",
-			Category:         "Data Sources",
+			Category:         "Feeds",
 			ShortDescription: `Provides information about existing feeds.`,
 			Description:      ``,
-			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
-			Attributes:       []resource.Attribute{},
+			Keywords: []string{
+				"feeds",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",

@@ -12,10 +12,19 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_blockstorage_availability_zones_v3",
-			Category:         "Data Sources",
-			ShortDescription: `Get a list of Block Storage availability zones from FlexibleEngine`,
+			Category:         "Elastic Volume Service (EVS)",
+			ShortDescription: ``,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"elastic",
+				"volume",
+				"service",
+				"evs",
+				"blockstorage",
+				"availability",
+				"zones",
+				"v3",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
@@ -56,11 +65,18 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_blockstorage_volume_v2",
-			Category:         "Data Sources",
-			ShortDescription: `Get information on an FlexibleEngine Volume.`,
+			Category:         "Elastic Volume Service (EVS)",
+			ShortDescription: ``,
 			Description:      ``,
 			Icon:             "Storage.svg",
-			Keywords:         []string{},
+			Keywords: []string{
+				"elastic",
+				"volume",
+				"service",
+				"evs",
+				"blockstorage",
+				"v2",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
@@ -89,11 +105,18 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_cce_cluster_v3",
-			Category:         "Data Sources",
-			ShortDescription: `Get information on Cloud Container Engine Cluster (CCE).`,
+			Category:         "Cloud Container Engine (CCE)",
+			ShortDescription: ``,
 			Description:      ``,
 			Icon:             "Computing-CCE.svg",
-			Keywords:         []string{},
+			Keywords: []string{
+				"cloud",
+				"container",
+				"engine",
+				"cce",
+				"cluster",
+				"v3",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -230,14 +253,22 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_cce_node_ids_v3",
-			Category:         "Data Sources",
-			ShortDescription: `Provides a list of node Ids for a CCE cluster.`,
+			Category:         "Cloud Container Engine (CCE)",
+			ShortDescription: ``,
 			Description: `
 
 ` + "`" + `flexibleengine_cce_node_ids_v3` + "`" + ` provides a list of node ids for a CCE cluster. This resource can be useful for getting back a list of node ids for a CCE cluster.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"cloud",
+				"container",
+				"engine",
+				"cce",
+				"node",
+				"ids",
+				"v3",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
@@ -254,10 +285,17 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_cce_node_v3",
-			Category:         "Data Sources",
-			ShortDescription: `To get the specified node in a cluster.`,
+			Category:         "Cloud Container Engine (CCE)",
+			ShortDescription: ``,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"cloud",
+				"container",
+				"engine",
+				"cce",
+				"node",
+				"v3",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "Cluster_id",
@@ -418,10 +456,19 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_compute_availability_zones_v2",
-			Category:         "Data Sources",
-			ShortDescription: `Get a list of availability zones from FlexibleEngine`,
+			Category:         "Elastic Cloud Server (ECS)",
+			ShortDescription: ``,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"elastic",
+				"cloud",
+				"server",
+				"ecs",
+				"compute",
+				"availability",
+				"zones",
+				"v2",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
@@ -446,14 +493,22 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_compute_bms_flavors_v2",
-			Category:         "Data Sources",
-			ShortDescription: `Used to query flavors of BMSs.`,
+			Category:         "Bare Metal Server (BMS)",
+			ShortDescription: ``,
 			Description: `
 
 ` + "`" + `flexibleengine_compute_bms_flavors_v2` + "`" + ` used to query flavors of BMSs.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"bare",
+				"metal",
+				"server",
+				"bms",
+				"compute",
+				"flavors",
+				"v2",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -506,15 +561,23 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_compute_bms_keypairs_v2",
-			Category:         "Data Sources",
-			ShortDescription: `Used to query SSH key pairs`,
+			Category:         "Bare Metal Server (BMS)",
+			ShortDescription: ``,
 			Description: `
 
 ` + "`" + `flexibleengine_compute_bms_keypairs_v2` + "`" + ` used to query SSH key pairs.
 
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"bare",
+				"metal",
+				"server",
+				"bms",
+				"compute",
+				"keypairs",
+				"v2",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -543,15 +606,23 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_compute_bms_nic_v2",
-			Category:         "Data Sources",
-			ShortDescription: `Used to query information about a BMS NIC based on the NIC ID.`,
+			Category:         "Bare Metal Server (BMS)",
+			ShortDescription: ``,
 			Description: `
 
 ` + "`" + `flexibleengine_compute_bms_nic_v2` + "`" + ` used to query information about a BMS NIC based on the NIC ID.
 
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"bare",
+				"metal",
+				"server",
+				"bms",
+				"compute",
+				"nic",
+				"v2",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "server_id",
@@ -596,14 +667,21 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_compute_bms_server_v2",
-			Category:         "Data Sources",
-			ShortDescription: `Used to query a BMS or BMSs details.`,
+			Category:         "Bare Metal Server (BMS)",
+			ShortDescription: ``,
 			Description: `
 
 ` + "`" + `flexibleengine_compute_bms_server_v2` + "`" + ` used to query a BMS or BMSs details.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"bare",
+				"metal",
+				"server",
+				"bms",
+				"compute",
+				"v2",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -736,11 +814,19 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_compute_instance_v2",
-			Category:         "Data Sources",
-			ShortDescription: `Get the details of a specified compute instance from FlexibleEngine`,
+			Category:         "Elastic Cloud Server (ECS)",
+			ShortDescription: ``,
 			Description:      ``,
 			Icon:             "Computing-ECS.svg",
-			Keywords:         []string{},
+			Keywords: []string{
+				"elastic",
+				"cloud",
+				"server",
+				"ecs",
+				"compute",
+				"instance",
+				"v2",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
@@ -981,15 +1067,23 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_csbs_backup_policy_v1",
-			Category:         "Data Sources",
-			ShortDescription: `Provides details about a specific Backup Policy.`,
+			Category:         "Cloud Server Backup Service (CSBS)",
+			ShortDescription: ``,
 			Description: `
 
 The FlexibleEngine CSBS Backup Policy data source allows access of backup Policy resources.
 
 `,
-			Icon:     "Storage-CSBS.svg",
-			Keywords: []string{},
+			Icon: "Storage-CSBS.svg",
+			Keywords: []string{
+				"cloud",
+				"server",
+				"backup",
+				"service",
+				"csbs",
+				"policy",
+				"v1",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -1154,15 +1248,22 @@ The FlexibleEngine CSBS Backup Policy data source allows access of backup Policy
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_csbs_backup_v1",
-			Category:         "Data Sources",
-			ShortDescription: `Provides details about a specific Backup.`,
+			Category:         "Cloud Server Backup Service (CSBS)",
+			ShortDescription: ``,
 			Description: `
 
 The FlexibleEngine CSBS Backup data source allows access of backup resources.
 
 `,
-			Icon:     "Storage-CSBS.svg",
-			Keywords: []string{},
+			Icon: "Storage-CSBS.svg",
+			Keywords: []string{
+				"cloud",
+				"server",
+				"backup",
+				"service",
+				"csbs",
+				"v1",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -1415,15 +1516,22 @@ The FlexibleEngine CSBS Backup data source allows access of backup resources.
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_cts_tracker_v1",
-			Category:         "Data Sources",
-			ShortDescription: `CTS tracker allows you to collect, store, and query cloud resource operation records and use these records for security analysis, compliance auditing, resource tracking, and fault locating.`,
+			Category:         "Cloud Trace Service (CTS)",
+			ShortDescription: ``,
 			Description: `
 
 CTS Tracker data source allows access of Cloud Tracker.
 
 `,
-			Icon:     "Management&Deployment-CTS.svg",
-			Keywords: []string{},
+			Icon: "Management&Deployment-CTS.svg",
+			Keywords: []string{
+				"cloud",
+				"trace",
+				"service",
+				"cts",
+				"tracker",
+				"v1",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tracker_name",
@@ -1447,10 +1555,17 @@ CTS Tracker data source allows access of Cloud Tracker.
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_dcs_az_v1",
-			Category:         "Data Sources",
-			ShortDescription: `Get information on an Flexibleengine dcs az.`,
+			Category:         "Distributed Cache Service (DCS)",
+			ShortDescription: ``,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"distributed",
+				"cache",
+				"service",
+				"dcs",
+				"az",
+				"v1",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -1495,10 +1610,17 @@ CTS Tracker data source allows access of Cloud Tracker.
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_dcs_maintainwindow_v1",
-			Category:         "Data Sources",
-			ShortDescription: `Get information on an Flexibleengine dcs maintainwindow.`,
+			Category:         "Distributed Cache Service (DCS)",
+			ShortDescription: ``,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"distributed",
+				"cache",
+				"service",
+				"dcs",
+				"maintainwindow",
+				"v1",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "seq",
@@ -1547,10 +1669,17 @@ CTS Tracker data source allows access of Cloud Tracker.
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_dcs_product_v1",
-			Category:         "Data Sources",
-			ShortDescription: `Get information on an Flexibleengine dcs product.`,
+			Category:         "Distributed Cache Service (DCS)",
+			ShortDescription: ``,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"distributed",
+				"cache",
+				"service",
+				"dcs",
+				"product",
+				"v1",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "engine",
@@ -1671,10 +1800,17 @@ CTS Tracker data source allows access of Cloud Tracker.
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_dds_flavors_v3",
-			Category:         "Data Sources",
-			ShortDescription: `Get the flavor information on FlexibleEngine DDS service.`,
+			Category:         "Document Database Service (DDS)",
+			ShortDescription: ``,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"document",
+				"database",
+				"service",
+				"dds",
+				"flavors",
+				"v3",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
@@ -1743,11 +1879,18 @@ CTS Tracker data source allows access of Cloud Tracker.
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_dns_zone_v2",
-			Category:         "Data Sources",
-			ShortDescription: `Get information on an FlexibleEngine DNS Zone.`,
+			Category:         "Domain Name Service (DNS)",
+			ShortDescription: ``,
 			Description:      ``,
 			Icon:             "zone.svg",
-			Keywords:         []string{},
+			Keywords: []string{
+				"domain",
+				"name",
+				"service",
+				"dns",
+				"zone",
+				"v2",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
@@ -1872,10 +2015,19 @@ CTS Tracker data source allows access of Cloud Tracker.
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_identity_custom_role_v3",
-			Category:         "Data Sources",
-			ShortDescription: `Get information on a FlexibleEngine Custom Role.`,
+			Category:         "Identity and Access Management (IAM)",
+			ShortDescription: ``,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"identity",
+				"and",
+				"access",
+				"management",
+				"iam",
+				"custom",
+				"role",
+				"v3",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -1924,10 +2076,18 @@ CTS Tracker data source allows access of Cloud Tracker.
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_identity_project_v3",
-			Category:         "Data Sources",
-			ShortDescription: `Get information on a FlexibleEngine Project.`,
+			Category:         "Identity and Access Management (IAM)",
+			ShortDescription: ``,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"identity",
+				"and",
+				"access",
+				"management",
+				"iam",
+				"project",
+				"v3",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -1996,10 +2156,18 @@ CTS Tracker data source allows access of Cloud Tracker.
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_identity_role_v3",
-			Category:         "Data Sources",
-			ShortDescription: `Get information on a FlexibleEngine Role.`,
+			Category:         "Identity and Access Management (IAM)",
+			ShortDescription: ``,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"identity",
+				"and",
+				"access",
+				"management",
+				"iam",
+				"role",
+				"v3",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -2007,35 +2175,74 @@ CTS Tracker data source allows access of Cloud Tracker.
 				},
 				resource.Attribute{
 					Name:        "domain_id",
-					Description: `(Optional) The domain the role belongs to. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found role. In addition, the following attributes are exported:`,
+					Description: `(Optional) The domain the role belongs to. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `See Argument Reference above.`,
+					Name:        "id",
+					Description: `The data source ID in UUID format.`,
 				},
 				resource.Attribute{
-					Name:        "domain_id",
-					Description: `See Argument Reference above.`,
+					Name:        "display_name",
+					Description: `The display name of the role displayed on the console.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "catalog",
+					Description: `The service catalog of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The display mode of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `The content of the policy.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `See Argument Reference above.`,
+					Name:        "id",
+					Description: `The data source ID in UUID format.`,
 				},
 				resource.Attribute{
-					Name:        "domain_id",
-					Description: `See Argument Reference above.`,
+					Name:        "display_name",
+					Description: `The display name of the role displayed on the console.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "catalog",
+					Description: `The service catalog of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The display mode of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `The content of the policy.`,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_images_image_v2",
-			Category:         "Data Sources",
-			ShortDescription: `Get information on an FlexibleEngine Image.`,
+			Category:         "Image Management Service (IMS)",
+			ShortDescription: ``,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"image",
+				"management",
+				"service",
+				"ims",
+				"images",
+				"v2",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
@@ -2156,10 +2363,17 @@ CTS Tracker data source allows access of Cloud Tracker.
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_kms_data_key_v1",
-			Category:         "Data Sources",
-			ShortDescription: `Get information on an FlexibleEngine KMS data encryption key.`,
+			Category:         "Key Management Service (KMS)",
+			ShortDescription: ``,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"key",
+				"management",
+				"service",
+				"kms",
+				"data",
+				"v1",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_id",
@@ -2196,11 +2410,17 @@ CTS Tracker data source allows access of Cloud Tracker.
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_kms_key_v1",
-			Category:         "Data Sources",
-			ShortDescription: `Get information on an FlexibleEngine KMS Key.`,
+			Category:         "Key Management Service (KMS)",
+			ShortDescription: ``,
 			Description:      ``,
 			Icon:             "Security-KMS.svg",
-			Keywords:         []string{},
+			Keywords: []string{
+				"key",
+				"management",
+				"service",
+				"kms",
+				"v1",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_id",
@@ -2257,10 +2477,18 @@ CTS Tracker data source allows access of Cloud Tracker.
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_lb_certificate_v2",
-			Category:         "Data Sources",
-			ShortDescription: `Get information on an FlexibleEngine LB Certificate.`,
+			Category:         "Elastic Load Balance (ELB)",
+			ShortDescription: ``,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"elastic",
+				"load",
+				"balance",
+				"elb",
+				"lb",
+				"certificate",
+				"v2",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -2340,12 +2568,85 @@ CTS Tracker data source allows access of Cloud Tracker.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_lb_loadbalancer_v2",
+			Category:         "Elastic Load Balance (ELB)",
+			ShortDescription: ``,
+			Description:      ``,
+			Icon:             "Network-ELB.svg",
+			Keywords: []string{
+				"elastic",
+				"load",
+				"balance",
+				"elb",
+				"lb",
+				"loadbalancer",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, String) Specifies the name of the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional, String) Specifies the data source ID of the load balancer in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional, String) Specifies the supplementary information about the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "vip_subnet_id",
+					Description: `(Optional, String) Specifies the ID of the subnet where the load balancer works.`,
+				},
+				resource.Attribute{
+					Name:        "vip_address",
+					Description: `(Optional, String) Specifies the private IP address of the load balancer. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "vip_port_id",
+					Description: `The ID of the port bound to the private IP address of the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The operating status of the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags associated with the load balancer.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vip_port_id",
+					Description: `The ID of the port bound to the private IP address of the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The operating status of the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags associated with the load balancer.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_networking_network_v2",
-			Category:         "Data Sources",
-			ShortDescription: `Get information on an FlexibleEngine Network.`,
+			Category:         "Virtual Private Cloud (VPC)",
+			ShortDescription: ``,
 			Description:      ``,
 			Icon:             "Network.svg",
-			Keywords:         []string{},
+			Keywords: []string{
+				"virtual",
+				"private",
+				"cloud",
+				"vpc",
+				"networking",
+				"network",
+				"v2",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
@@ -2406,11 +2707,19 @@ CTS Tracker data source allows access of Cloud Tracker.
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_networking_secgroup_v2",
-			Category:         "Data Sources",
-			ShortDescription: `Get information on an FlexibleEngine Security Group.`,
+			Category:         "Virtual Private Cloud (VPC)",
+			ShortDescription: ``,
 			Description:      ``,
 			Icon:             "security-group.svg",
-			Keywords:         []string{},
+			Keywords: []string{
+				"virtual",
+				"private",
+				"cloud",
+				"vpc",
+				"networking",
+				"secgroup",
+				"v2",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
@@ -2451,10 +2760,17 @@ CTS Tracker data source allows access of Cloud Tracker.
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_rds_flavors_v1",
-			Category:         "Data Sources",
-			ShortDescription: `Get the flavor information on an FlexibleEngine rds service.`,
+			Category:         "Relational Database Service (RDS)",
+			ShortDescription: ``,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"relational",
+				"database",
+				"service",
+				"rds",
+				"flavors",
+				"v1",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
@@ -2527,10 +2843,17 @@ CTS Tracker data source allows access of Cloud Tracker.
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_rds_flavors_v3",
-			Category:         "Data Sources",
-			ShortDescription: `Get the flavor information on an FlexibleEngine rds service.`,
+			Category:         "Relational Database Service (RDS)",
+			ShortDescription: ``,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"relational",
+				"database",
+				"service",
+				"rds",
+				"flavors",
+				"v3",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_type",
@@ -2590,16 +2913,22 @@ CTS Tracker data source allows access of Cloud Tracker.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "flexibleengine_rts_software_config_v1",
-			Category:         "Data Sources",
-			ShortDescription: `Provides details about a specific RTS Software Config.`,
+			Type:             "flexibleengine_rts_software_config",
+			Category:         "Resource Template Service (RTS)",
+			ShortDescription: ``,
 			Description: `
 
 The RTS Software Config data source provides details about a specific RTS Software Config.
 
 `,
-			Icon:     "Management&Deployment-RTS.svg",
-			Keywords: []string{},
+			Keywords: []string{
+				"resource",
+				"template",
+				"service",
+				"rts",
+				"software",
+				"config",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -2656,14 +2985,21 @@ The RTS Software Config data source provides details about a specific RTS Softwa
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_rts_stack_resource_v1",
-			Category:         "Data Sources",
-			ShortDescription: `Provides metadata of an RTS stack resource`,
+			Category:         "Resource Template Service (RTS)",
+			ShortDescription: ``,
 			Description: `
 
 The FlexibleEngine RTS Stack Resource data source allows access to stack resource metadata.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"resource",
+				"template",
+				"service",
+				"rts",
+				"stack",
+				"v1",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "stack_name",
@@ -2720,14 +3056,21 @@ The FlexibleEngine RTS Stack Resource data source allows access to stack resourc
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_rts_stack_v1",
-			Category:         "Data Sources",
-			ShortDescription: `Provides metadata of an RTS stack (e.g. outputs).`,
+			Category:         "Resource Template Service (RTS)",
+			ShortDescription: ``,
 			Description: `
 
 The FlexibleEngine RTS Stack data source allows access to stack outputs and other useful data including the template body.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"resource",
+				"template",
+				"service",
+				"rts",
+				"stack",
+				"v1",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -2812,11 +3155,18 @@ The FlexibleEngine RTS Stack data source allows access to stack outputs and othe
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_s3_bucket_object",
-			Category:         "Data Sources",
-			ShortDescription: `Provides metadata and optionally content of an S3 object`,
+			Category:         "Object Storage Service (OSS)",
+			ShortDescription: ``,
 			Description:      ``,
 			Icon:             "bucket.svg",
-			Keywords:         []string{},
+			Keywords: []string{
+				"object",
+				"storage",
+				"service",
+				"oss",
+				"s3",
+				"bucket",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
@@ -2961,10 +3311,18 @@ The FlexibleEngine RTS Stack data source allows access to stack outputs and othe
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_sdrs_domain_v1",
-			Category:         "Data Sources",
-			ShortDescription: `Get information on an FlexibleEngine SDRS Active-Active Domain.`,
+			Category:         "Storage Disaster Recovery Service (SDRS)",
+			ShortDescription: ``,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"storage",
+				"disaster",
+				"recovery",
+				"service",
+				"sdrs",
+				"domain",
+				"v1",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -2993,15 +3351,22 @@ The FlexibleEngine RTS Stack data source allows access to stack outputs and othe
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_sfs_file_system_v2",
-			Category:         "Data Sources",
-			ShortDescription: `Get information on an FlexibleEngine shared file system.`,
+			Category:         "Scalable File Service (SFS)",
+			ShortDescription: ``,
 			Description: `
 
 Provides information about an Shared File System (SFS).
 
 `,
-			Icon:     "Storage-SFS.svg",
-			Keywords: []string{},
+			Icon: "Storage-SFS.svg",
+			Keywords: []string{
+				"scalable",
+				"file",
+				"service",
+				"sfs",
+				"system",
+				"v2",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -3182,15 +3547,22 @@ Provides information about an Shared File System (SFS).
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_vbs_backup_policy_v2",
-			Category:         "Data Sources",
-			ShortDescription: `Provides details about a specific VBS backup policy.`,
+			Category:         "Volume Backup Service (VBS)",
+			ShortDescription: ``,
 			Description: `
 
 The VBS Backup Policy data source provides details about a specific VBS backup policy.
 
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"volume",
+				"backup",
+				"service",
+				"vbs",
+				"policy",
+				"v2",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -3263,14 +3635,20 @@ The VBS Backup Policy data source provides details about a specific VBS backup p
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_vbs_backup_v2",
-			Category:         "Data Sources",
-			ShortDescription: `Provides details about a specific VBS Backup.`,
+			Category:         "Volume Backup Service (VBS)",
+			ShortDescription: ``,
 			Description: `
 
 The VBS Backup data source provides details about a specific VBS Backup.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"volume",
+				"backup",
+				"service",
+				"vbs",
+				"v2",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -3338,25 +3716,31 @@ The VBS Backup data source provides details about a specific VBS Backup.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "flexibleengine_vpc_peering_connection_v2",
-			Category:         "Data Sources",
-			ShortDescription: `Provides details about a specific VPC peering connection.`,
+			Type:             "flexibleengine_vpc_peering_v2",
+			Category:         "Virtual Private Cloud (VPC)",
+			ShortDescription: ``,
 			Description: `
 
 The VPC Peering Connection data source provides details about a specific VPC peering connection.
 
 
 `,
-			Icon:       "peer link.svg",
-			Keywords:   []string{},
+			Keywords: []string{
+				"virtual",
+				"private",
+				"cloud",
+				"vpc",
+				"peering",
+				"v2",
+			},
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_vpc_route_ids_v2",
-			Category:         "Data Sources",
-			ShortDescription: `Provides a list of route Ids for a VPC`,
+			Category:         "Virtual Private Cloud (VPC)",
+			ShortDescription: ``,
 			Description: `
 
 ` + "`" + `flexibleengine_vpc_route_ids_v2` + "`" + ` provides a list of route ids for a vpc_id.
@@ -3364,7 +3748,15 @@ The VPC Peering Connection data source provides details about a specific VPC pee
 This resource can be useful for getting back a list of route ids for a vpc.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"virtual",
+				"private",
+				"cloud",
+				"vpc",
+				"route",
+				"ids",
+				"v2",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
@@ -3381,15 +3773,22 @@ This resource can be useful for getting back a list of route ids for a vpc.
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_vpc_route_v2",
-			Category:         "Data Sources",
-			ShortDescription: `Provides details about a specific VPC Route.`,
+			Category:         "Virtual Private Cloud (VPC)",
+			ShortDescription: ``,
 			Description: `
 
 ` + "`" + `flexibleengine_vpc_route_v2` + "`" + ` provides details about a specific VPC route.
 
 `,
-			Icon:     "Network-VPC.svg",
-			Keywords: []string{},
+			Icon: "Network-VPC.svg",
+			Keywords: []string{
+				"virtual",
+				"private",
+				"cloud",
+				"vpc",
+				"route",
+				"v2",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "nexthop",
@@ -3406,8 +3805,8 @@ This resource can be useful for getting back a list of route ids for a vpc.
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_vpc_subnet_ids_v1",
-			Category:         "Data Sources",
-			ShortDescription: `Provides a list of subnet Ids for a VPC`,
+			Category:         "Virtual Private Cloud (VPC)",
+			ShortDescription: ``,
 			Description: `
 
 ` + "`" + `flexibleengine_vpc_subnet_ids_v1` + "`" + ` provides a list of subnet ids for a vpc_id
@@ -3415,7 +3814,15 @@ This resource can be useful for getting back a list of route ids for a vpc.
 This resource can be useful for getting back a list of subnet ids for a vpc.
 
 `,
-			Keywords: []string{},
+			Keywords: []string{
+				"virtual",
+				"private",
+				"cloud",
+				"vpc",
+				"subnet",
+				"ids",
+				"v1",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
@@ -3432,8 +3839,8 @@ This resource can be useful for getting back a list of subnet ids for a vpc.
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_vpc_subnet_v1",
-			Category:         "Data Sources",
-			ShortDescription: `Provides details about a specific VPC subnet`,
+			Category:         "Virtual Private Cloud (VPC)",
+			ShortDescription: ``,
 			Description: `
 
 ` + "`" + `flexibleengine_vpc_subnet_v1` + "`" + ` provides details about a specific VPC subnet.
@@ -3443,8 +3850,15 @@ an input variable and needs to, for example, determine the id of the
 VPC that the subnet belongs to.
 
 `,
-			Icon:     "subnet.svg",
-			Keywords: []string{},
+			Icon: "subnet.svg",
+			Keywords: []string{
+				"virtual",
+				"private",
+				"cloud",
+				"vpc",
+				"subnet",
+				"v1",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
@@ -3468,11 +3882,17 @@ VPC that the subnet belongs to.
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_vpc_v1",
-			Category:         "Data Sources",
-			ShortDescription: `Get information on an FlexibleEngine VPC.`,
+			Category:         "Virtual Private Cloud (VPC)",
+			ShortDescription: ``,
 			Description:      ``,
 			Icon:             "Network-VPC.svg",
-			Keywords:         []string{},
+			Keywords: []string{
+				"virtual",
+				"private",
+				"cloud",
+				"vpc",
+				"v1",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
@@ -3556,11 +3976,198 @@ VPC that the subnet belongs to.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "flexibleengine_vpcep_public_services",
-			Category:         "Data Sources",
-			ShortDescription: `Use this data source to get available public VPC endpoint services.`,
+			Type:             "flexibleengine_vpcep_endpoints",
+			Category:         "VPC Endpoint (VPCEP)",
+			ShortDescription: ``,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"vpc",
+				"endpoint",
+				"vpcep",
+				"endpoints",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Optional, String) Specifies the name of the VPC endpoint service. The value is not case-sensitive and supports fuzzy match.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_id",
+					Description: `(Optional, String) Specifies the unique ID of the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Optional, String) Specifies the unique ID of the vpc holding the VPC endpoint service. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Specifies a data source ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "endpoints",
+					Description: `Indicates the public VPC endpoints information. Structure is documented below. The ` + "`" + `endpoints` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID of the public VPC endpoint service.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The connection status of the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "service_id",
+					Description: `The ID of the VPC endpoint service.`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `The name of the VPC endpoint service.`,
+				},
+				resource.Attribute{
+					Name:        "service_type",
+					Description: `The type of the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The ID of the VPC holding the VPC endpoint service.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `The ID of the subnet holding the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `The IP of the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "packet_id",
+					Description: `The marker id of the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "enable_dns",
+					Description: `Flag indicating dns has been enabled for the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "enable_whitelist",
+					Description: `Flag indicating access control have been enabled on this VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "whitelist",
+					Description: `List of IP or CIDR block which can access the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "private_domain_name",
+					Description: `DNS name pointing to the VPC endpoint ip.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The key/value pairs to associate with the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `The ID of the project holding the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation date of the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Last update date of the VPC endpoint.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Specifies a data source ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "endpoints",
+					Description: `Indicates the public VPC endpoints information. Structure is documented below. The ` + "`" + `endpoints` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID of the public VPC endpoint service.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The connection status of the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "service_id",
+					Description: `The ID of the VPC endpoint service.`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `The name of the VPC endpoint service.`,
+				},
+				resource.Attribute{
+					Name:        "service_type",
+					Description: `The type of the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The ID of the VPC holding the VPC endpoint service.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `The ID of the subnet holding the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `The IP of the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "packet_id",
+					Description: `The marker id of the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "enable_dns",
+					Description: `Flag indicating dns has been enabled for the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "enable_whitelist",
+					Description: `Flag indicating access control have been enabled on this VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "whitelist",
+					Description: `List of IP or CIDR block which can access the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "private_domain_name",
+					Description: `DNS name pointing to the VPC endpoint ip.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The key/value pairs to associate with the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `The ID of the project holding the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation date of the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Last update date of the VPC endpoint.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_vpcep_public_services",
+			Category:         "VPC Endpoint (VPCEP)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"vpc",
+				"endpoint",
+				"vpcep",
+				"public",
+				"services",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_name",
@@ -3668,25 +4275,27 @@ VPC that the subnet belongs to.
 		"flexibleengine_kms_data_key_v1":                    23,
 		"flexibleengine_kms_key_v1":                         24,
 		"flexibleengine_lb_certificate_v2":                  25,
-		"flexibleengine_networking_network_v2":              26,
-		"flexibleengine_networking_secgroup_v2":             27,
-		"flexibleengine_rds_flavors_v1":                     28,
-		"flexibleengine_rds_flavors_v3":                     29,
-		"flexibleengine_rts_software_config_v1":             30,
-		"flexibleengine_rts_stack_resource_v1":              31,
-		"flexibleengine_rts_stack_v1":                       32,
-		"flexibleengine_s3_bucket_object":                   33,
-		"flexibleengine_sdrs_domain_v1":                     34,
-		"flexibleengine_sfs_file_system_v2":                 35,
-		"flexibleengine_vbs_backup_policy_v2":               36,
-		"flexibleengine_vbs_backup_v2":                      37,
-		"flexibleengine_vpc_peering_connection_v2":          38,
-		"flexibleengine_vpc_route_ids_v2":                   39,
-		"flexibleengine_vpc_route_v2":                       40,
-		"flexibleengine_vpc_subnet_ids_v1":                  41,
-		"flexibleengine_vpc_subnet_v1":                      42,
-		"flexibleengine_vpc_v1":                             43,
-		"flexibleengine_vpcep_public_services":              44,
+		"flexibleengine_lb_loadbalancer_v2":                 26,
+		"flexibleengine_networking_network_v2":              27,
+		"flexibleengine_networking_secgroup_v2":             28,
+		"flexibleengine_rds_flavors_v1":                     29,
+		"flexibleengine_rds_flavors_v3":                     30,
+		"flexibleengine_rts_software_config":                31,
+		"flexibleengine_rts_stack_resource_v1":              32,
+		"flexibleengine_rts_stack_v1":                       33,
+		"flexibleengine_s3_bucket_object":                   34,
+		"flexibleengine_sdrs_domain_v1":                     35,
+		"flexibleengine_sfs_file_system_v2":                 36,
+		"flexibleengine_vbs_backup_policy_v2":               37,
+		"flexibleengine_vbs_backup_v2":                      38,
+		"flexibleengine_vpc_peering_v2":                     39,
+		"flexibleengine_vpc_route_ids_v2":                   40,
+		"flexibleengine_vpc_route_v2":                       41,
+		"flexibleengine_vpc_subnet_ids_v1":                  42,
+		"flexibleengine_vpc_subnet_v1":                      43,
+		"flexibleengine_vpc_v1":                             44,
+		"flexibleengine_vpcep_endpoints":                    45,
+		"flexibleengine_vpcep_public_services":              46,
 	}
 )
 

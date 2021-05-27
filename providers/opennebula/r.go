@@ -244,7 +244,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gname",
-					Description: `Group Name which owns the image. ## Import To import an existing image #14 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_image" "importimage" { name = "importedimage" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_image.importimage 14 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Group Name which owns the image.`,
+				},
+				resource.Attribute{
+					Name:        "computed_size",
+					Description: `Size of the image in MB. ## Import To import an existing image #14 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_image" "importimage" { name = "importedimage" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_image.importimage 14 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -266,7 +270,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gname",
-					Description: `Group Name which owns the image. ## Import To import an existing image #14 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_image" "importimage" { name = "importedimage" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_image.importimage 14 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Group Name which owns the image.`,
+				},
+				resource.Attribute{
+					Name:        "computed_size",
+					Description: `Size of the image in MB. ## Import To import an existing image #14 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_image" "importimage" { name = "importedimage" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_image.importimage 14 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
