@@ -508,7 +508,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "v3_feed_url",
-					Description: `(Optional) ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_repository.my-remote my-remote ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "propagate_query_params",
+					Description: `(Optional, Generic repos only) ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_repository.my-remote my-remote ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -688,15 +692,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key",
-					Description: `(Optional)`,
+					Description: `(Required)`,
 				},
 				resource.Attribute{
 					Name:        "package_type",
-					Description: `(Optional)`,
+					Description: `(Required)`,
 				},
 				resource.Attribute{
 					Name:        "repositories",
-					Description: `(Optional)`,
+					Description: `(Required)`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -895,6 +899,10 @@ var (
 				resource.Attribute{
 					Name:        "bin_mgr_id",
 					Description: `(Optional) The ID number of a binary manager resource`,
+				},
+				resource.Attribute{
+					Name:        "repo_type",
+					Description: `(Optional) Type of repository (e.g. local or remote)`,
 				},
 				resource.Attribute{
 					Name:        "filters",

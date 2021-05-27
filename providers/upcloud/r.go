@@ -219,6 +219,48 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "upcloud_object_storage",
+			Category:         "Resources",
+			ShortDescription: `Provides a UpCloud Object Storage management`,
+			Description:      ``,
+			Keywords: []string{
+				"object",
+				"storage",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Required) The maximum amount of storage to allocate to the object storage instance in gigabytes. Valid values are ` + "`" + `250` + "`" + `, ` + "`" + `500` + "`" + ` and ` + "`" + `1000` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Object Storage instance, this value forms part of the url used to access the storage instance so must conform to host naming rules.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Required) - The zone in which the server will be hosted, e.g. fi-hel2. See [Zones API](https://developers.upcloud.com/1.3/5-zones/)`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `(Required) - The access key/username used to access the storage instance. Must be a string between 4 and 255 characters in length.`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `(Required) - The secret key/password used to access the storage instance. Must be a string between 8 and 255 characters in length.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) - A user defined string containing test to associate with the storage instance. ### Bucket Each of ` + "`" + `bucket` + "`" + ` blocks represents a single bucket in the object storage instance and supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the bucket.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "upcloud_router",
 			Category:         "Resources",
 			ShortDescription: `Provides an UpCloud router`,
@@ -260,190 +302,8 @@ var (
 			Keywords: []string{
 				"server",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required) A valid domain name, e.g. host.example.com. The maximum length is 128 characters.`,
-				},
-				resource.Attribute{
-					Name:        "zone",
-					Description: `(Required) - The zone in which the server will be hosted, e.g. fi-hel1. See [Zones API](https://developers.upcloud.com/1.3/5-zones/)`,
-				},
-				resource.Attribute{
-					Name:        "network_interface",
-					Description: `(Required) One or more blocks describing the network interfaces of the server. Any changes to these blocks will force the creation of a new server resource.`,
-				},
-				resource.Attribute{
-					Name:        "firewall",
-					Description: `(Optional) Are firewall rules active for the server`,
-				},
-				resource.Attribute{
-					Name:        "metadata",
-					Description: `(Optional) Is the metadata service active for the server`,
-				},
-				resource.Attribute{
-					Name:        "cpu",
-					Description: `(Optional) The number of CPU for the server`,
-				},
-				resource.Attribute{
-					Name:        "mem",
-					Description: `(Optional) The size of memory for the server (in megabytes)`,
-				},
-				resource.Attribute{
-					Name:        "template",
-					Description: `(Optional) The template to use for the server's main storage device`,
-				},
-				resource.Attribute{
-					Name:        "user_data",
-					Description: `(Optional) Defines URL for a server setup script, or the script body itself`,
-				},
-				resource.Attribute{
-					Name:        "plan",
-					Description: `(Optional) The pricing plan used for the server`,
-				},
-				resource.Attribute{
-					Name:        "storage_devices",
-					Description: `(Optional) A list of storage devices associated with the server`,
-				},
-				resource.Attribute{
-					Name:        "login",
-					Description: `(Optional) Configure access credentials to the server The ` + "`" + `storage_devices` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "storage",
-					Description: `(Required) A valid storage UUID`,
-				},
-				resource.Attribute{
-					Name:        "address",
-					Description: `(Optional) The device address the storage will be attached to. Specify only the bus name (ide/scsi/virtio) to auto-select next available address from that bus.`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `(Optional) The device type the storage will be attached as. See [Storage types](https://developers.upcloud.com/1.3/9-storages/). The ` + "`" + `template` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "storage",
-					Description: `(Required) A valid storage UUID or exact template name`,
-				},
-				resource.Attribute{
-					Name:        "address",
-					Description: `(Optional) The device address the storage will be attached to. Specify only the bus name (ide/scsi/virtio) to auto-select next available address from that bus.`,
-				},
-				resource.Attribute{
-					Name:        "title",
-					Description: `(Optional) A short, informative description for the storage device`,
-				},
-				resource.Attribute{
-					Name:        "backup_rule",
-					Description: `(Optional) The criteria to backup the storage The ` + "`" + `login` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "user",
-					Description: `(Required) Username to be create to access the server`,
-				},
-				resource.Attribute{
-					Name:        "keys",
-					Description: `(Optional) A list of ssh keys to access the server`,
-				},
-				resource.Attribute{
-					Name:        "create_password",
-					Description: `(Optional) Indicates a password should be create to allow access`,
-				},
-				resource.Attribute{
-					Name:        "password_delivery",
-					Description: `(Optional) The delivery method for the server’s root password The ` + "`" + `network_interface` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `(Required) The type of network interface (one of ` + "`" + `private` + "`" + `, ` + "`" + `public` + "`" + ` or ` + "`" + `utility` + "`" + `).`,
-				},
-				resource.Attribute{
-					Name:        "ip_address_family",
-					Description: `(Optional) The IP address type of this interface (one of ` + "`" + `IPv4` + "`" + ` or ` + "`" + `IPv6` + "`" + `).`,
-				},
-				resource.Attribute{
-					Name:        "network",
-					Description: `(Optional) The unique ID of a network to attach this interface to. Only supported for ` + "`" + `private` + "`" + ` interfaces.`,
-				},
-				resource.Attribute{
-					Name:        "source_ip_filtering",
-					Description: `(Optional) ` + "`" + `true` + "`" + ` if source IPs should be filtered. Only supported for ` + "`" + `private` + "`" + ` interfaces.`,
-				},
-				resource.Attribute{
-					Name:        "bootable",
-					Description: `(Optional) ` + "`" + `true` + "`" + ` if this interface should be used for network booting. Only supported for ` + "`" + `private` + "`" + ` interfaces. The ` + "`" + `backup_rule` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "interval",
-					Description: `(Required) The weekday when the backup is created`,
-				},
-				resource.Attribute{
-					Name:        "time",
-					Description: `(Required) The time of day when the backup is created`,
-				},
-				resource.Attribute{
-					Name:        "retention",
-					Description: `(Required) The number of days before a backup is automatically deleted ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `The ID of this resource.`,
-				},
-				resource.Attribute{
-					Name:        "title",
-					Description: `A short, informational description. In addition to the arguments listed above, the following ` + "`" + `template` + "`" + ` block attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `The unique identifier for the storage`,
-				},
-				resource.Attribute{
-					Name:        "tier",
-					Description: `The storage tier to use In addition to the arguments listed above, the following ` + "`" + `network_interface` + "`" + ` block attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "ip_address",
-					Description: `The assigned IP address.`,
-				},
-				resource.Attribute{
-					Name:        "ip_address_floating",
-					Description: `` + "`" + `true` + "`" + ` if a floating IP address is attached.`,
-				},
-				resource.Attribute{
-					Name:        "mac_address",
-					Description: `The assigned MAC address. ## Import`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `The ID of this resource.`,
-				},
-				resource.Attribute{
-					Name:        "title",
-					Description: `A short, informational description. In addition to the arguments listed above, the following ` + "`" + `template` + "`" + ` block attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `The unique identifier for the storage`,
-				},
-				resource.Attribute{
-					Name:        "tier",
-					Description: `The storage tier to use In addition to the arguments listed above, the following ` + "`" + `network_interface` + "`" + ` block attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "ip_address",
-					Description: `The assigned IP address.`,
-				},
-				resource.Attribute{
-					Name:        "ip_address_floating",
-					Description: `` + "`" + `true` + "`" + ` if a floating IP address is attached.`,
-				},
-				resource.Attribute{
-					Name:        "mac_address",
-					Description: `The assigned MAC address. ## Import`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -546,10 +406,11 @@ var (
 		"upcloud_firewall_rules":      0,
 		"upcloud_floating_ip_address": 1,
 		"upcloud_network":             2,
-		"upcloud_router":              3,
-		"upcloud_server":              4,
-		"upcloud_storage":             5,
-		"upcloud_tag":                 6,
+		"upcloud_object_storage":      3,
+		"upcloud_router":              4,
+		"upcloud_server":              5,
+		"upcloud_storage":             6,
+		"upcloud_tag":                 7,
 	}
 )
 

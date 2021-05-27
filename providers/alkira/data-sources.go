@@ -11,6 +11,26 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "alkira_billing_tag",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing billing tag.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alkira_credential",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing credential.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alkira_group",
 			Category:         "Data Sources",
 			ShortDescription: `Use this data source to get information on an existing group.`,
@@ -33,17 +53,7 @@ var (
 			Name:             "",
 			Type:             "alkira_segment",
 			Category:         "Data Sources",
-			ShortDescription: ``,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
-			Attributes:       []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "alkira_tenant_network",
-			Category:         "Data Sources",
-			ShortDescription: ``,
+			ShortDescription: `Use this data source to get information on an existing segment.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -53,10 +63,11 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"alkira_group":              0,
-		"alkira_policy_prefix_list": 1,
-		"alkira_segment":            2,
-		"alkira_tenant_network":     3,
+		"alkira_billing_tag":        0,
+		"alkira_credential":         1,
+		"alkira_group":              2,
+		"alkira_policy_prefix_list": 3,
+		"alkira_segment":            4,
 	}
 )
 

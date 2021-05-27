@@ -127,7 +127,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The Firewall name ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The Firewall name`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The Firewall region, if is not defined we use the global defined in the provider`,
+				},
+				resource.Attribute{
+					Name:        "nertwork_id",
+					Description: `(Optional) The Firewall network, if is not defined we use the default network ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -138,8 +146,8 @@ var (
 					Description: `The name of the Firewall.`,
 				},
 				resource.Attribute{
-					Name:        "region",
-					Description: `The region where the firewall was create. ## Import Firewalls can be imported using the firewall ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import civo_firewall.www b8ecd2ab-2267-4a5e-8692-cbf1d32583e3 ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "network_id",
+					Description: `The ID of the network of the firewall ## Import Firewalls can be imported using the firewall ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import civo_firewall.www b8ecd2ab-2267-4a5e-8692-cbf1d32583e3 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -152,8 +160,8 @@ var (
 					Description: `The name of the Firewall.`,
 				},
 				resource.Attribute{
-					Name:        "region",
-					Description: `The region where the firewall was create. ## Import Firewalls can be imported using the firewall ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import civo_firewall.www b8ecd2ab-2267-4a5e-8692-cbf1d32583e3 ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "network_id",
+					Description: `The ID of the network of the firewall ## Import Firewalls can be imported using the firewall ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import civo_firewall.www b8ecd2ab-2267-4a5e-8692-cbf1d32583e3 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -198,6 +206,10 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region for the instance, if not declare we use the region in declared in the provider.`,
+				},
+				resource.Attribute{
 					Name:        "hostname",
 					Description: `(Required) The Instance hostname.`,
 				},
@@ -207,7 +219,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `(Optional) The name of the size, from the current list, e.g. g2.small (required).`,
+					Description: `(Optional) The name of the size, from the current list, e.g. g3.k3s.small (required).`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_required",
@@ -430,12 +442,16 @@ var (
 					Description: `(Required) A name for the Kubernetes cluster.`,
 				},
 				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region for the cluster.`,
+				},
+				resource.Attribute{
 					Name:        "num_target_nodes",
 					Description: `(Optional) The number of instances to create (The default at the time of writing is 3).`,
 				},
 				resource.Attribute{
 					Name:        "target_nodes_size",
-					Description: `(Optional) The size of each node (The default is currently g2.small)`,
+					Description: `(Optional) The size of each node (The default is currently g3.k3s.small)`,
 				},
 				resource.Attribute{
 					Name:        "kubernetes_version",
@@ -479,7 +495,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instances",
-					Description: `In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported. - ` + "`" + `hostname` + "`" + ` - The hostname of the instance. - ` + "`" + `size` + "`" + ` - The size of the instance. - ` + "`" + `cpu_cores` + "`" + ` - Total cpu of the inatance. - ` + "`" + `ram_mb` + "`" + ` - Total ram of the instance. - ` + "`" + `disk_gb` + "`" + ` - The size of the disk. - ` + "`" + `region` + "`" + ` - The region where instance are. - ` + "`" + `status` + "`" + ` - The status of the instance. - ` + "`" + `created_at` + "`" + ` - The date where the instances was created. - ` + "`" + `firewall_id` + "`" + ` - The firewall id assigned to the instance - ` + "`" + `public_ip` + "`" + ` - The public ip of the instances, only available if the instances is the master - ` + "`" + `tags` + "`" + ` - The tag of the instances`,
+					Description: `In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported: - ` + "`" + `hostname` + "`" + ` - The hostname of the instance. - ` + "`" + `cpu_cores` + "`" + ` - Total cpu of the inatance. - ` + "`" + `ram_mb` + "`" + ` - Total ram of the instance - ` + "`" + `disk_gb` + "`" + ` - The size of the disk. - ` + "`" + `status` + "`" + ` - The status of the instance. - ` + "`" + `tags` + "`" + ` - The tag of the instances`,
+				},
+				resource.Attribute{
+					Name:        "pools",
+					Description: `A list of node pools associated with the cluster. Each node pool exports the following attributes: - ` + "`" + `id` + "`" + ` - The ID of the pool - ` + "`" + `count` + "`" + ` - The size of the pool - ` + "`" + `size` + "`" + ` - The size of each node inside the pool - ` + "`" + `instance_names` + "`" + ` - A list of the instance in the pool`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `A list of instance inside the pool - ` + "`" + `hostname` + "`" + ` - The hostname of the instance. - ` + "`" + `size` + "`" + ` - The size of the instance. - ` + "`" + `cpu_cores` + "`" + ` - Total cpu of the inatance. - ` + "`" + `ram_mb` + "`" + ` - Total ram of the instance - ` + "`" + `disk_gb` + "`" + ` - The size of the disk. - ` + "`" + `status` + "`" + ` - The status of the instance. - ` + "`" + `tags` + "`" + ` - The tag of the instances`,
 				},
 				resource.Attribute{
 					Name:        "installed_applications",
@@ -545,7 +569,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instances",
-					Description: `In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported. - ` + "`" + `hostname` + "`" + ` - The hostname of the instance. - ` + "`" + `size` + "`" + ` - The size of the instance. - ` + "`" + `cpu_cores` + "`" + ` - Total cpu of the inatance. - ` + "`" + `ram_mb` + "`" + ` - Total ram of the instance. - ` + "`" + `disk_gb` + "`" + ` - The size of the disk. - ` + "`" + `region` + "`" + ` - The region where instance are. - ` + "`" + `status` + "`" + ` - The status of the instance. - ` + "`" + `created_at` + "`" + ` - The date where the instances was created. - ` + "`" + `firewall_id` + "`" + ` - The firewall id assigned to the instance - ` + "`" + `public_ip` + "`" + ` - The public ip of the instances, only available if the instances is the master - ` + "`" + `tags` + "`" + ` - The tag of the instances`,
+					Description: `In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported: - ` + "`" + `hostname` + "`" + ` - The hostname of the instance. - ` + "`" + `cpu_cores` + "`" + ` - Total cpu of the inatance. - ` + "`" + `ram_mb` + "`" + ` - Total ram of the instance - ` + "`" + `disk_gb` + "`" + ` - The size of the disk. - ` + "`" + `status` + "`" + ` - The status of the instance. - ` + "`" + `tags` + "`" + ` - The tag of the instances`,
+				},
+				resource.Attribute{
+					Name:        "pools",
+					Description: `A list of node pools associated with the cluster. Each node pool exports the following attributes: - ` + "`" + `id` + "`" + ` - The ID of the pool - ` + "`" + `count` + "`" + ` - The size of the pool - ` + "`" + `size` + "`" + ` - The size of each node inside the pool - ` + "`" + `instance_names` + "`" + ` - A list of the instance in the pool`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `A list of instance inside the pool - ` + "`" + `hostname` + "`" + ` - The hostname of the instance. - ` + "`" + `size` + "`" + ` - The size of the instance. - ` + "`" + `cpu_cores` + "`" + ` - Total cpu of the inatance. - ` + "`" + `ram_mb` + "`" + ` - Total ram of the instance - ` + "`" + `disk_gb` + "`" + ` - The size of the disk. - ` + "`" + `status` + "`" + ` - The status of the instance. - ` + "`" + `tags` + "`" + ` - The tag of the instances`,
 				},
 				resource.Attribute{
 					Name:        "installed_applications",
@@ -578,6 +610,54 @@ var (
 				resource.Attribute{
 					Name:        "created_at",
 					Description: `The date where the Kubernetes cluster was create. ## Import Then the Kubernetes cluster can be imported using the cluster's ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import civo_kubernetes_cluster.my-cluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "civo_kubernetes_node_pool",
+			Category:         "Resources",
+			ShortDescription: `Provides a Civo Kubernetes cluster node pool resource.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) The ID of the Kubernetes cluster to which the node pool is associated.`,
+				},
+				resource.Attribute{
+					Name:        "target_nodes_size",
+					Description: `(Optional) The size of each node.`,
+				},
+				resource.Attribute{
+					Name:        "num_target_nodes",
+					Description: `(Optional) The number of instances to create (The default at the time of writing is 3). ## Attributes Reference In addition to the arguments listed above, the following additional attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) The ID of the Kubernetes cluster to which the node pool is associated.`,
+				},
+				resource.Attribute{
+					Name:        "target_nodes_size",
+					Description: `(Optional) The size of each node.`,
+				},
+				resource.Attribute{
+					Name:        "num_target_nodes",
+					Description: `(Optional) The number of instances to create. ## Import Then the Kubernetes cluster node pool can be imported using the cluster's and pool id ` + "`" + `cluster_id:node_pool_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import civo_kubernetes_node_pool.my-pool 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af:502c1130-cb9b-4a88-b6d2-307bd96d946a`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) The ID of the Kubernetes cluster to which the node pool is associated.`,
+				},
+				resource.Attribute{
+					Name:        "target_nodes_size",
+					Description: `(Optional) The size of each node.`,
+				},
+				resource.Attribute{
+					Name:        "num_target_nodes",
+					Description: `(Optional) The number of instances to create. ## Import Then the Kubernetes cluster node pool can be imported using the cluster's and pool id ` + "`" + `cluster_id:node_pool_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import civo_kubernetes_node_pool.my-pool 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af:502c1130-cb9b-4a88-b6d2-307bd96d946a`,
 				},
 			},
 		},
@@ -1197,19 +1277,20 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"civo_dns_domain_name":    0,
-		"civo_dns_domain_record":  1,
-		"civo_firewall":           2,
-		"civo_firewall_rule":      3,
-		"civo_instance":           4,
-		"civo_kubernetes_cluster": 5,
-		"civo_loadbalance":        6,
-		"civo_network":            7,
-		"civo_snapshot":           8,
-		"civo_ssh_key":            9,
-		"civo_template":           10,
-		"civo_volume":             11,
-		"civo_volume_attachment":  12,
+		"civo_dns_domain_name":      0,
+		"civo_dns_domain_record":    1,
+		"civo_firewall":             2,
+		"civo_firewall_rule":        3,
+		"civo_instance":             4,
+		"civo_kubernetes_cluster":   5,
+		"civo_kubernetes_node_pool": 6,
+		"civo_loadbalance":          7,
+		"civo_network":              8,
+		"civo_snapshot":             9,
+		"civo_ssh_key":              10,
+		"civo_template":             11,
+		"civo_volume":               12,
+		"civo_volume_attachment":    13,
 	}
 )
 

@@ -689,6 +689,10 @@ var (
 					Description: `(Optional) Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See [BI Connector](#bi-connector) below for more details.`,
 				},
 				resource.Attribute{
+					Name:        "bi_connector_config",
+					Description: `(Optional) Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See [BI Connector](#bi-connector) below for more details.`,
+				},
+				resource.Attribute{
 					Name:        "cluster_type",
 					Description: `(Required) Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment. ->`,
 				},
@@ -722,7 +726,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_disk_iops",
-					Description: `(Optional) The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected ` + "`" + `provider_instance_size_name` + "`" + ` and ` + "`" + `disk_size_gb` + "`" + `.`,
+					Description: `(Optional - AWS Only) The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected ` + "`" + `provider_instance_size_name` + "`" + ` and ` + "`" + `disk_size_gb` + "`" + `. This setting requires that ` + "`" + `provider_instance_size_name` + "`" + ` to be M30 or greater and cannot be used with clusters with local NVMe SSDs. The default value for ` + "`" + `provider_disk_iops` + "`" + ` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console. It is used in cases where a higher number of IOPS is needed and possible. If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default. More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
 				},
 				resource.Attribute{
 					Name:        "provider_disk_type_name",
@@ -734,7 +738,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_volume_type",
-					Description: `(AWS - Optional) The type of the volume. The possible values are: ` + "`" + `STANDARD` + "`" + ` and ` + "`" + `PROVISIONED` + "`" + `. ` + "`" + `PROVISIONED` + "`" + ` required if setting IOPS higher than the default instance IOPS.`,
+					Description: `(AWS - Optional) The type of the volume. The possible values are: ` + "`" + `STANDARD` + "`" + ` and ` + "`" + `PROVISIONED` + "`" + `. ` + "`" + `PROVISIONED` + "`" + ` is ONLY required if setting IOPS higher than the default instance IOPS.`,
 				},
 				resource.Attribute{
 					Name:        "replication_factor",
@@ -1113,7 +1117,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "username",
-					Description: `(Required) Username for authenticating to MongoDB.`,
+					Description: `(Required) Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if ` + "`" + `aws_iam_type` + "`" + ` is USER or ROLE.`,
 				},
 				resource.Attribute{
 					Name:        "password",
@@ -1233,19 +1237,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "google_cloud_kms",
-					Description: `(Required) Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project. ### aws_kms`,
+					Description: `(Required) Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project. ### aws_kms Refer to the example in the [official github repository](https://github.com/mongodb/terraform-provider-mongodbatlas/tree/master/examples) to implement Encryption at Rest`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
 					Description: `Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.`,
-				},
-				resource.Attribute{
-					Name:        "access_key_id",
-					Description: `The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.`,
-				},
-				resource.Attribute{
-					Name:        "secret_access_key",
-					Description: `The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.`,
 				},
 				resource.Attribute{
 					Name:        "customer_master_key_id",
@@ -1325,6 +1321,10 @@ var (
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) The unique ID for the project to create the database user.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `(Required) The name of the Global Cluster.`,
 				},
 				resource.Attribute{
 					Name:        "collection",
@@ -1660,7 +1660,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vnet_name",
-					Description: `Name of your Azure VNet. ## Import Clusters can be imported using project ID and network peering peering id, in the format ` + "`" + `PROJECTID-PEERID-PROVIDERNAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_network_peering.my_peering 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a-AWS ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)`,
+					Description: `Name of your Azure VNet. ## Import Clusters can be imported using project ID and network peering id, in the format ` + "`" + `PROJECTID-PEERID-PROVIDERNAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_network_peering.my_peering 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a-AWS ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1742,7 +1742,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vnet_name",
-					Description: `Name of your Azure VNet. ## Import Clusters can be imported using project ID and network peering peering id, in the format ` + "`" + `PROJECTID-PEERID-PROVIDERNAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_network_peering.my_peering 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a-AWS ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)`,
+					Description: `Name of your Azure VNet. ## Import Clusters can be imported using project ID and network peering id, in the format ` + "`" + `PROJECTID-PEERID-PROVIDERNAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_network_peering.my_peering 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a-AWS ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)`,
 				},
 			},
 		},

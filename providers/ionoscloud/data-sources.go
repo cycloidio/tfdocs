@@ -19,7 +19,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Name or part of the name of an existing Virtual Data Center that you want to search for.`,
+					Description: `(Required) Name of an existing Virtual Data Center that you want to search for.`,
 				},
 				resource.Attribute{
 					Name:        "location",
@@ -47,7 +47,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Name or part of the name of an existing image that you want to search for.`,
+					Description: `(Required) Name of an existing image that you want to search for.`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -59,7 +59,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) The image type, HDD or CD-ROM. If both "name" and "version" are provided the plugin will concatenate the two strings in this format [name]-[version]. ## Attributes Reference`,
+					Description: `(Optional) The image type, HDD or CD-ROM.`,
+				},
+				resource.Attribute{
+					Name:        "image_aliases",
+					Description: `Image aliases`,
+				},
+				resource.Attribute{
+					Name:        "cloud_init",
+					Description: `Cloud init compatibility ("NONE" or "V1") If both "name" and "version" are provided the plugin will concatenate the two strings in this format [name]-[version]. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -83,11 +91,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Name or part of the name of an existing cluster that you want to search for.`,
+					Description: `(Optional) Name or an existing cluster that you want to search for.`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Optional) ID of the cluster you want to search for. Either ` + "`" + `name` + "`" + ` or ` + "`" + `id` + "`" + ` must be provided. If none, or both are provided, the datasource will return an error. ## Attributes Reference The following attributes are returned by the datasource:`,
+					Description: `(Optional) ID of the cluster you want to search for. k Either ` + "`" + `name` + "`" + ` or ` + "`" + `id` + "`" + ` must be provided. If none, or both are provided, the datasource will return an error. ## Attributes Reference The following attributes are returned by the datasource:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -151,7 +159,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Name or part of the name of an existing node pool that you want to search for.`,
+					Description: `(Optional) Name of an existing node pool that you want to search for.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -363,7 +371,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Name or part of the name of an existing lan that you want to search for.`,
+					Description: `(Optional) Name of an existing lan that you want to search for.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -391,7 +399,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Name or part of the location name to search for.`,
+					Description: `(Required) Name of the location to search for.`,
 				},
 				resource.Attribute{
 					Name:        "feature",
@@ -419,7 +427,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Name or part of the name of an existing private crossconnect that you want to search for.`,
+					Description: `(Optional) Name of an existing private crossconnect that you want to search for.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -483,7 +491,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Name or part of the name of an existing server that you want to search for.`,
+					Description: `(Optional) Name of an existing server that you want to search for.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -535,7 +543,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Name or part of the name of an existing snapshot that you want to search for.`,
+					Description: `(Required) Name of an existing snapshot that you want to search for.`,
 				},
 				resource.Attribute{
 					Name:        "location",

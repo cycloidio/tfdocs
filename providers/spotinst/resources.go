@@ -734,7 +734,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "autoscale_attributes",
-					Description: `(Optional) A key/value mapping of tags to assign to the resource. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_ecs { cluster_name = "ecs-cluster" autoscale_is_enabled = false autoscale_cooldown = 300 autoscale_scale_down_non_service_tasks = false autoscale_headroom { cpu_per_unit = 1024 memory_per_unit = 512 num_of_units = 2 } autoscale_down { evaluation_periods = 300 max_scale_down_percentage = 70 } autoscale_attributes { key = "test.ecs.key" value = "test.ecs.value" } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) A key/value mapping of tags to assign to the resource.`,
+				},
+				resource.Attribute{
+					Name:        "batch",
+					Description: `(Optional) Batch configuration object:`,
+				},
+				resource.Attribute{
+					Name:        "job_queue_names",
+					Description: `(Required) Array of strings. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_ecs { cluster_name = "ecs-cluster" autoscale_is_enabled = false autoscale_cooldown = 300 autoscale_scale_down_non_service_tasks = false autoscale_headroom { cpu_per_unit = 1024 memory_per_unit = 512 num_of_units = 2 } autoscale_down { evaluation_periods = 300 max_scale_down_percentage = 70 } autoscale_attributes { key = "test.ecs.key" value = "test.ecs.value" } batch { job_queue_names = [ "first-job", "second-job" ] } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "integration_codedeploy",
@@ -2505,7 +2513,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cpu_credits",
-					Description: `(Optional) cpuCredits can have one of two values: ` + "`" + `"unlimited"` + "`" + `, ` + "`" + `"standard"` + "`" + `. Default: unlimited <a id="network-interface"></a> ## Network Interface - (Optional) List of network interfaces in an EC2 instance.`,
+					Description: `(Optional) cpuCredits can have one of two values: ` + "`" + `"unlimited"` + "`" + `, ` + "`" + `"standard"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "block_device_mappings",
+					Description: `(Optional) Attributes controls a portion of the AWS:`,
+				},
+				resource.Attribute{
+					Name:        "device_name",
+					Description: `(Required) The name of the device to mount.`,
+				},
+				resource.Attribute{
+					Name:        "volume_type",
+					Description: `(Optional, Default: ` + "`" + `"standard"` + "`" + `) The type of volume. Can be ` + "`" + `"standard"` + "`" + `, ` + "`" + `"gp2"` + "`" + `, ` + "`" + `"gp3"` + "`" + `, ` + "`" + `"io1"` + "`" + `, ` + "`" + `"st1"` + "`" + ` or ` + "`" + `"sc1"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "volume_size",
+					Description: `(Optional) The size of the volume in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "iops",
+					Description: `(Optional) The amount of provisioned [IOPS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-io-characteristics.html). This must be set with a ` + "`" + `volume_type` + "`" + ` of ` + "`" + `"io1"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "delete_on_termination",
+					Description: `(Optional) Whether the volume should be destroyed on instance termination.`,
 				},
 				resource.Attribute{
 					Name:        "device_index",
@@ -3069,6 +3101,161 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "spotinst_ocean_aks",
+			Category:         "Ocean",
+			ShortDescription: `Provides a Spotinst Ocean resource using AKS.`,
+			Description:      ``,
+			Keywords: []string{
+				"ocean",
+				"aks",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The Ocean cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "controller_cluster_id",
+					Description: `(Required) The Ocean controller cluster.`,
+				},
+				resource.Attribute{
+					Name:        "aks_name",
+					Description: `(Required) The AKS cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "acd_identifier",
+					Description: `(Required) The AKS identifier.`,
+				},
+				resource.Attribute{
+					Name:        "aks_resource_group_name",
+					Description: `(Required) Name of the Resource Group for AKS cluster.`,
+				},
+				resource.Attribute{
+					Name:        "ssh_public_key",
+					Description: `(Required) SSH public key for admin access to Linux VMs.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `(Optional) Username for admin access to VMs.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "spotinst_ocean_aks_virtual_node_group",
+			Category:         "Ocean",
+			ShortDescription: `Provides a Spotinst Ocean Virtual Node Group resource using AKS.`,
+			Description:      ``,
+			Keywords: []string{
+				"ocean",
+				"aks",
+				"virtual",
+				"node",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ocean_id",
+					Description: `(Required) The Ocean cluster ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Set name for the virtual node group.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Optional) Additional labels for the virtual node group. Only custom user labels are allowed. Kubernetes built-in labels and Spot internal labels are not allowed.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The label key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Optional) The label value.`,
+				},
+				resource.Attribute{
+					Name:        "taint",
+					Description: `(Optional) Additional taints for the virtual node group. Only custom user labels are allowed. Kubernetes built-in labels and Spot internal labels are not allowed.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) The taint key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Optional) The taint value.`,
+				},
+				resource.Attribute{
+					Name:        "effect",
+					Description: `(Optional) The effect of the taint. Valid values: ` + "`" + `"NoSchedule"` + "`" + `, ` + "`" + `"PreferNoSchedule"` + "`" + `, ` + "`" + `"NoExecute"` + "`" + `, ` + "`" + `"PreferNoExecute"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "resource_limits",
+					Description: `(Optional).`,
+				},
+				resource.Attribute{
+					Name:        "max_instance_count",
+					Description: `(Optional) Option to set a maximum number of instances per virtual node group. If set, value must be greater than or equal to 0.`,
+				},
+				resource.Attribute{
+					Name:        "autoscale",
+					Description: `(Optional).`,
+				},
+				resource.Attribute{
+					Name:        "autoscale_headroom",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "cpu_per_unit",
+					Description: `(Optional) Configure the number of CPUs to allocate for the headroom. CPUs are denoted in millicores, where 1000 millicores = 1 vCPU.`,
+				},
+				resource.Attribute{
+					Name:        "gpu_per_unit",
+					Description: `(Optional) How many GPU cores should be allocated for headroom unit.`,
+				},
+				resource.Attribute{
+					Name:        "memory_per_unit",
+					Description: `(Optional) Configure the amount of memory (MiB) to allocate the headroom.`,
+				},
+				resource.Attribute{
+					Name:        "num_of_units",
+					Description: `(Required) The number of headroom units to maintain, where each unit has the defined CPU, memory and GPU.`,
+				},
+				resource.Attribute{
+					Name:        "launch_specification",
+					Description: `(Optional).`,
+				},
+				resource.Attribute{
+					Name:        "os_disk",
+					Description: `(Optional) Specify OS disk specification other than default.`,
+				},
+				resource.Attribute{
+					Name:        "size_gb",
+					Description: `(Required) The size of the OS disk in GB, Required if dataDisks is specified.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) The type of the OS disk. Valid values: ` + "`" + `"Standard_LRS"` + "`" + `, ` + "`" + `"Premium_LRS"` + "`" + `, ` + "`" + `"StandardSSD_LRS"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) Additional key-value pairs to be used to tag the VMs in the virtual node group.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) Tag Key for Vms in the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Optional) Tag Value for VMs in the cluster.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "spotinst_ocean_aws",
 			Category:         "Ocean",
 			ShortDescription: `Provides a Spotinst Ocean resource using AWS.`,
@@ -3084,7 +3271,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "controller_id",
-					Description: `(Required) The ocean cluster identifier. Example: ` + "`" + `ocean.k8s` + "`" + ``,
+					Description: `(Required) The Ocean cluster identifier. Example: ` + "`" + `ocean.k8s` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -3104,7 +3291,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnet_ids",
-					Description: `(Required) A comma-separated list of subnet identifiers for the Ocean cluster. Subnet IDs should be configured with auto assign public ip.`,
+					Description: `(Required) A comma-separated list of subnet identifiers for the Ocean cluster. Subnet IDs should be configured with auto assign public IP.`,
 				},
 				resource.Attribute{
 					Name:        "whitelist",
@@ -3144,7 +3331,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "monitoring",
-					Description: `(Optional) Enable detailed monitoring for cluster. Flag will enable Cloud Watch detailed detailed monitoring (one minute increments). Note: there are additional hourly costs for this service based on the region used.`,
+					Description: `(Optional) Enable detailed monitoring for cluster. Flag will enable Cloud Watch detailed monitoring (one minute increments). Note: there are additional hourly costs for this service based on the region used.`,
 				},
 				resource.Attribute{
 					Name:        "ebs_optimized",
@@ -3160,15 +3347,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "arn",
-					Description: `(Optional) Required if type is set to TARGET_GROUP`,
+					Description: `(Optional) Required if type is set to ` + "`" + `TARGET_GROUP` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Required if type is set to CLASSIC`,
+					Description: `(Optional) Required if type is set to ` + "`" + `CLASSIC` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Can be set to CLASSIC or TARGET_GROUP`,
+					Description: `(Required) Can be set to ` + "`" + `CLASSIC` + "`" + ` or ` + "`" + `TARGET_GROUP` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -3204,11 +3391,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "autoscaler",
-					Description: `(Optional) Describes the Ocean Kubernetes autoscaler.`,
+					Description: `(Optional) Describes the Ocean Kubernetes Auto Scaler.`,
 				},
 				resource.Attribute{
 					Name:        "autoscale_is_enabled",
-					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) Enable the Ocean Kubernetes autoscaler.`,
+					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) Enable the Ocean Kubernetes Auto Scaler.`,
 				},
 				resource.Attribute{
 					Name:        "autoscale_is_auto_config",
@@ -3232,7 +3419,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gpu_per_unit",
-					Description: `(Optional) Optionally configure the number of GPUS to allocate the headroom.`,
+					Description: `(Optional) Optionally configure the number of GPUs to allocate the headroom.`,
 				},
 				resource.Attribute{
 					Name:        "memory_per_unit",
@@ -3288,11 +3475,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_enabled",
-					Description: `(Optional) Flag to enable / disable the shutdown hours. Example: True`,
+					Description: `(Optional) Toggle the shutdown hours task. (Example: ` + "`" + `true` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "time_windows",
-					Description: `(Required) Set time windows for shutdown hours. specify a list of 'timeWindows' with at least one time window Each string is in the format of - ddd:hh:mm-ddd:hh:mm ddd = day of week = Sun | Mon | Tue | Wed | Thu | Fri | Sat hh = hour 24 = 0 -23 mm = minute = 0 - 59. Time windows should not overlap. required on cluster.scheduling.isEnabled = True. API Times are in UTC Example: Fri:15:30-Wed:14:30`,
+					Description: `(Required) Set time windows for shutdown hours. Specify a list of ` + "`" + `timeWindows` + "`" + ` with at least one time window Each string is in the format of: ` + "`" + `ddd:hh:mm-ddd:hh:mm` + "`" + ` where ` + "`" + `ddd` + "`" + ` = day of week = Sun | Mon | Tue | Wed | Thu | Fri | Sat, ` + "`" + `hh` + "`" + ` = hour 24 = 0 -23, ` + "`" + `mm` + "`" + ` = minute = 0 - 59. Time windows should not overlap. Required if ` + "`" + `cluster.scheduling.isEnabled` + "`" + ` is ` + "`" + `true` + "`" + `. (Example: ` + "`" + `Fri:15:30-Wed:14:30` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "tasks",
@@ -3300,25 +3487,25 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_enabled",
-					Description: `(Required) Describes whether the task is enabled. When true the task should run when false it should not run. Required for cluster.scheduling.tasks object.`,
+					Description: `(Required) Describes whether the task is enabled. When true the task should run when false it should not run. Required for ` + "`" + `cluster.scheduling.tasks` + "`" + ` object.`,
 				},
 				resource.Attribute{
 					Name:        "cron_expression",
-					Description: `(Required) A valid cron expression. For example : "`,
+					Description: `(Required) A valid cron expression. The cron is running in UTC time zone and is in Unix cron format Cron Expression Validator Script. Only one of ` + "`" + `frequency` + "`" + ` or ` + "`" + `cronExpression` + "`" + ` should be used at a time. Required for ` + "`" + `cluster.scheduling.tasks` + "`" + ` object. (Example: ` + "`" + `0 1`,
 				},
 				resource.Attribute{
 					Name:        "task_type",
-					Description: `(Required) Valid values: "clusterRoll". Required for cluster.scheduling.tasks object Example: clusterRoll ` + "`" + `` + "`" + `` + "`" + `hcl scheduled_task { shutdown_hours { is_enabled = true time_windows = ["Fri:15:30-Sat:13:30","Sun:15:30-Mon:13:30"] } tasks { is_enabled = false cron_expression = "`,
+					Description: `(Required) Valid values: ` + "`" + `clusterRoll` + "`" + `. Required for ` + "`" + `cluster.scheduling.tasks` + "`" + ` object. (Example: ` + "`" + `clusterRoll` + "`" + `). ` + "`" + `` + "`" + `` + "`" + `hcl scheduled_task { shutdown_hours { is_enabled = true time_windows = [ "Fri:15:30-Sat:13:30", "Sun:15:30-Mon:13:30", ] } tasks { is_enabled = false cron_expression = "`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Spotinst Ocean ID.`,
+					Description: `The Cluster ID.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Spotinst Ocean ID.`,
+					Description: `The Cluster ID.`,
 				},
 			},
 		},
@@ -3326,7 +3513,7 @@ var (
 			Name:             "",
 			Type:             "spotinst_ocean_aws_launch_spec",
 			Category:         "Ocean",
-			ShortDescription: `Provides a Spotinst Ocean Launch Spec resource using AWS.`,
+			ShortDescription: `Provides a Spotinst Virtual Node Group resource using AWS.`,
 			Description:      ``,
 			Keywords: []string{
 				"ocean",
@@ -3337,11 +3524,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ocean_id",
-					Description: `(Required) The ocean cluster you wish to`,
+					Description: `(Required) The ID of the Ocean cluster.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Set Launch Specification name`,
+					Description: `(Optional) The name of the Virtual Node Group.`,
 				},
 				resource.Attribute{
 					Name:        "user_data",
@@ -3361,11 +3548,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnet_ids",
-					Description: `(Optional) Set subnets in launchSpec. Each element in array should be subnet ID.`,
+					Description: `(Optional) A list of subnet IDs.`,
 				},
 				resource.Attribute{
 					Name:        "instance_types",
-					Description: `(Optional) A list of instance types allowed to be provisioned for pods pending under the specified launch specification. The list overrides the list defined for the Ocean cluster.`,
+					Description: `(Optional) A list of instance types allowed to be provisioned for pods pending under the specified launch specification. The list overrides the list defined for the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "root_volume_size",
@@ -3381,7 +3568,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Optionally adds labels to instances launched in an Ocean cluster.`,
+					Description: `(Optional) Optionally adds labels to instances launched in the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -3393,7 +3580,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "taints",
-					Description: `(Optional) Optionally adds labels to instances launched in an Ocean cluster.`,
+					Description: `(Optional) Optionally adds labels to instances launched in the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -3409,15 +3596,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "elastic_ip_pool",
-					Description: `(Optional) Assign an Elastic IP to the instances spun by the launch spec. Can be null.`,
+					Description: `(Optional) Assign an Elastic IP to the instances spun by the Virtual Node Group. Can be null.`,
 				},
 				resource.Attribute{
 					Name:        "tag_selector",
-					Description: `(Optional) Key-value object, which defines an Elastic IP from the customer pool. Can be null.`,
+					Description: `(Optional) A key-value pair, which defines an Elastic IP from the customer pool. Can be null.`,
 				},
 				resource.Attribute{
 					Name:        "tag_key",
-					Description: `(Required) Elastic IP tag key. The launch spec will consider all elastic IPs tagged with this tag as a part of the elastic IP pool to use.`,
+					Description: `(Required) Elastic IP tag key. The Virtual Node Group will consider all Elastic IPs tagged with this tag as a part of the Elastic IP pool to use.`,
 				},
 				resource.Attribute{
 					Name:        "tag_value",
@@ -3429,7 +3616,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "device_name",
-					Description: `(Optional) String. Set device name. (Example: "/dev/xvda1").`,
+					Description: `(Optional) String. Set device name. (Example: ` + "`" + `/dev/xvda1` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "delete_on_termination",
@@ -3441,7 +3628,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "iops",
-					Description: `(Required for requests to create io1 volumes; it is not used in requests to create gp2, st1, sc1, or standard volumes) Int. The number of I/O operations per second (IOPS) that the volume supports.`,
+					Description: `(Required for requests to create io1 volumes; it is not used in requests to create ` + "`" + `gp2` + "`" + `, ` + "`" + `st1` + "`" + `, ` + "`" + `sc1` + "`" + `, or standard volumes) Int. The number of I/O operations per second (IOPS) that the volume supports.`,
 				},
 				resource.Attribute{
 					Name:        "kms_key_id",
@@ -3453,7 +3640,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "volume_type",
-					Description: `(Optional, Default: ` + "`" + `"standard"` + "`" + `) String. The type of the volume (example: "gp2").`,
+					Description: `(Optional, Default: ` + "`" + `"standard"` + "`" + `) String. The type of the volume. (Example: ` + "`" + `gp2` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "volume_size",
@@ -3461,7 +3648,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "throughput",
-					Description: `(Optional) The amount of data transferred to or from a storage device per second, you can use this param just in a case that ` + "`" + `volume_type` + "`" + ` = gp3.`,
+					Description: `(Optional) The amount of data transferred to or from a storage device per second, you can use this param just in a case that ` + "`" + `volume_type` + "`" + ` = ` + "`" + `gp3` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "dynamic_volume_size",
@@ -3469,11 +3656,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "no_device",
-					Description: `(Optional) String. suppresses the specified device included in the block device mapping of the AMI.`,
+					Description: `(Optional) String. Suppresses the specified device included in the block device mapping of the AMI.`,
 				},
 				resource.Attribute{
 					Name:        "autoscale_headrooms",
-					Description: `(Optional) Set custom headroom per launch spec. provide list of headrooms object.`,
+					Description: `(Optional) Set custom headroom per Virtual Node Group. Provide a list of headrooms object.`,
 				},
 				resource.Attribute{
 					Name:        "num_of_units",
@@ -3497,7 +3684,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_instance_count",
-					Description: `(Optional) set a maximum number of instances per launch specification. Can be null. If set, value must be greater than or equal to 0.`,
+					Description: `(Optional) Set a maximum number of instances per Virtual Node Group. Can be null. If set, value must be greater than or equal to 0.`,
 				},
 				resource.Attribute{
 					Name:        "strategy",
@@ -3505,17 +3692,25 @@ var (
 				},
 				resource.Attribute{
 					Name:        "spot_percentage",
-					Description: `(Optional; if not using ` + "`" + `spot_percentege` + "`" + ` under ` + "`" + `ocean strategy` + "`" + `) When set, Ocean will proactively try to maintain as close as possible to the percentage of Spot instances out of all the Launch Spec instances. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional; if not using ` + "`" + `spot_percentege` + "`" + ` under ` + "`" + `ocean strategy` + "`" + `) When set, Ocean will proactively try to maintain as close as possible to the percentage of Spot instances out of all the Virtual Node Group instances.`,
+				},
+				resource.Attribute{
+					Name:        "create_actions",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "initial_nodes",
+					Description: `(Optional) When set to an integer greater than 0, a corresponding amount of nodes will be launched from the created virtual node group. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Launch Spec ID.`,
+					Description: `The Virtual Node Group ID.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Launch Spec ID.`,
+					Description: `The Virtual Node Group ID.`,
 				},
 			},
 		},
@@ -3920,6 +4115,10 @@ var (
 					Description: `(Optional) Instance types allowed in the Ocean cluster.`,
 				},
 				resource.Attribute{
+					Name:        "draining_timeout",
+					Description: `(Optional) The draining timeout (in seconds) before terminating the instance.`,
+				},
+				resource.Attribute{
 					Name:        "backend_services",
 					Description: `(Optional) Describes the backend service configurations.`,
 				},
@@ -4074,7 +4273,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ocean_id",
-					Description: `(Required) The Ocean cluster ID required for launchSpec create.`,
+					Description: `(Required) The Ocean cluster ID.`,
 				},
 				resource.Attribute{
 					Name:        "source_image",
@@ -4142,7 +4341,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "memory_per_unit",
-					Description: `(Optional) Optionally configure the amount of memory (MiB) to allocate for each headroom unit. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Optionally configure the amount of memory (MiB) to allocate for each headroom unit.`,
+				},
+				resource.Attribute{
+					Name:        "strategy",
+					Description: `(Optional) The Ocean Launch Spec Strategy object.`,
+				},
+				resource.Attribute{
+					Name:        "preemptible_percentage",
+					Description: `(Optional) Defines the desired preemptible percentage for this launch specification. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -4242,14 +4449,16 @@ var (
 		"spotinst_health_check":                 7,
 		"spotinst_managed_instance_aws":         8,
 		"spotinst_mrscaler_aws":                 9,
-		"spotinst_ocean_aws":                    10,
-		"spotinst_ocean_aws_launch_spec":        11,
-		"spotinst_ocean_ecs":                    12,
-		"spotinst_ocean_ecs_launch_spec":        13,
-		"spotinst_ocean_gke_import":             14,
-		"spotinst_ocean_gke_launch_spec":        15,
-		"spotinst_ocean_gke_launch_spec_import": 16,
-		"spotinst_subscription":                 17,
+		"spotinst_ocean_aks":                    10,
+		"spotinst_ocean_aks_virtual_node_group": 11,
+		"spotinst_ocean_aws":                    12,
+		"spotinst_ocean_aws_launch_spec":        13,
+		"spotinst_ocean_ecs":                    14,
+		"spotinst_ocean_ecs_launch_spec":        15,
+		"spotinst_ocean_gke_import":             16,
+		"spotinst_ocean_gke_launch_spec":        17,
+		"spotinst_ocean_gke_launch_spec_import": 18,
+		"spotinst_subscription":                 19,
 	}
 )
 

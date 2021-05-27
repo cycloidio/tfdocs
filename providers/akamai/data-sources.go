@@ -1160,11 +1160,19 @@ var (
 					Name:        "output_text",
 					Description: `A tabular display showing the ID and Policy ID of all match targets associated with the specified security configuration and version, or of the specific match target if ` + "`" + `match_target_id` + "`" + ` was supplied.`,
 				},
+				resource.Attribute{
+					Name:        "json",
+					Description: `A JSON-formatted list of the match target information.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "output_text",
 					Description: `A tabular display showing the ID and Policy ID of all match targets associated with the specified security configuration and version, or of the specific match target if ` + "`" + `match_target_id` + "`" + ` was supplied.`,
+				},
+				resource.Attribute{
+					Name:        "json",
+					Description: `A JSON-formatted list of the match target information.`,
 				},
 			},
 		},
@@ -2378,7 +2386,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "uniqueid",
-					Description: `A list containing the IDs of the specified network list(s).`,
+					Description: `The ID of the indicated list (if the ` + "`" + `name` + "`" + ` argument was supplied).`,
 				},
 				resource.Attribute{
 					Name:        "json",
@@ -2390,13 +2398,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "list",
-					Description: `A list of the IP addresses or locations included in the specified network list(s).`,
+					Description: `A list containing the IDs of the specified network lists(s).`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "uniqueid",
-					Description: `A list containing the IDs of the specified network list(s).`,
+					Description: `The ID of the indicated list (if the ` + "`" + `name` + "`" + ` argument was supplied).`,
 				},
 				resource.Attribute{
 					Name:        "json",
@@ -2408,7 +2416,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "list",
-					Description: `A list of the IP addresses or locations included in the specified network list(s).`,
+					Description: `A list containing the IDs of the specified network lists(s).`,
 				},
 			},
 		},
@@ -2421,6 +2429,20 @@ var (
 			Keywords: []string{
 				"provisioning",
 				"properties",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_property_hostnames",
+			Category:         "Provisioning",
+			ShortDescription: `Property hostnames`,
+			Description:      ``,
+			Keywords: []string{
+				"provisioning",
+				"property",
+				"hostnames",
 			},
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
@@ -2545,10 +2567,11 @@ var (
 		"akamai_iam_timezones":                           55,
 		"akamai_networklist_network_lists":               56,
 		"akamai_properties":                              57,
-		"akamai_property_products":                       58,
-		"akamai_property_rule_formats":                   59,
-		"akamai_property_rules":                          60,
-		"akamai_property_rules_template":                 61,
+		"akamai_property_hostnames":                      58,
+		"akamai_property_products":                       59,
+		"akamai_property_rule_formats":                   60,
+		"akamai_property_rules":                          61,
+		"akamai_property_rules_template":                 62,
 	}
 )
 

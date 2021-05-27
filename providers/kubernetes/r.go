@@ -30,7 +30,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the API service that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the API service that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -38,7 +38,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the API service. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the API service. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -125,7 +125,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the certificate signing request that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the certificate signing request that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -133,7 +133,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the certificate signing request. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the certificate signing request. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -195,7 +195,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the cluster role binding that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the cluster role binding that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -203,7 +203,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the cluster role binding. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the cluster role binding. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -282,7 +282,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the cluster role binding that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the cluster role binding that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -290,7 +290,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the cluster role binding. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the cluster role binding. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -364,7 +364,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the config map that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the config map that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -372,7 +372,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the config map. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the config map. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -418,7 +418,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the resource that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the resource that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info: http://kubernetes.io/docs/user-guide/annotations`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -426,7 +426,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info: http://kubernetes.io/docs/user-guide/labels`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -548,7 +548,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the csi driver that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the csi driver that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -556,7 +556,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the csi driver. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the csi driver. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels) ### ` + "`" + `spec` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "attach_required",
@@ -609,7 +609,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the deployment that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the deployment that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -617,7 +617,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the deployment. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the deployment. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem).`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -673,11 +673,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard object's metadata. For more info see https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata`,
+					Description: `(Required) Standard object's metadata. For more info see https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata.`,
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `(Required) Specification of the desired behavior of the pod. For more info see https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status ### template ` + "`" + `spec` + "`" + ` #### Arguments`,
+					Description: `(Required) Specification of the desired behavior of the pod. For more info see https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status. ### template ` + "`" + `spec` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "affinity",
@@ -757,7 +757,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_account_name",
-					Description: `(Optional) ServiceAccountName is the name of the ServiceAccount to use to run this pod. For more info see http://releases.k8s.io/HEAD/docs/design/service_accounts.md.`,
+					Description: `(Optional) ServiceAccountName is the name of the ServiceAccount to use to run this pod. For more info see https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/.`,
 				},
 				resource.Attribute{
 					Name:        "share_process_namespace",
@@ -937,7 +937,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "security_context",
-					Description: `(Optional) Security options the pod should run with. For more info see http://releases.k8s.io/HEAD/docs/design/security_context.md`,
+					Description: `(Optional) Security options the pod should run with. For more info see https://kubernetes.io/docs/tasks/configure-pod-container/security-context/.`,
 				},
 				resource.Attribute{
 					Name:        "startup_probe",
@@ -1025,7 +1025,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "monitors",
-					Description: `(Required) Monitors is a collection of Ceph monitors For more info see http://releases.k8s.io/HEAD/examples/volumes/cephfs/README.md#how-to-use-it`,
+					Description: `(Required) Monitors is a collection of Ceph monitors. For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -1033,31 +1033,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to ` + "`" + `false` + "`" + ` (read/write). For more info see http://releases.k8s.io/HEAD/examples/volumes/cephfs/README.md#how-to-use-it`,
+					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to ` + "`" + `false` + "`" + ` (read/write). For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "secret_file",
-					Description: `(Optional) The path to key ring for User, default is /etc/ceph/user.secret For more info see http://releases.k8s.io/HEAD/examples/volumes/cephfs/README.md#how-to-use-it`,
+					Description: `(Optional) The path to key ring for User, default is /etc/ceph/user.secret. For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "secret_ref",
-					Description: `(Optional) Reference to the authentication secret for User, default is empty. For more info see http://releases.k8s.io/HEAD/examples/volumes/cephfs/README.md#how-to-use-it`,
+					Description: `(Optional) Reference to the authentication secret for User, default is empty. For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "user",
-					Description: `(Optional) User is the rados user name, default is admin. For more info see http://releases.k8s.io/HEAD/examples/volumes/cephfs/README.md#how-to-use-it ### ` + "`" + `cinder` + "`" + ` #### Arguments`,
+					Description: `(Optional) User is the rados user name, default is admin. For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it. ### ` + "`" + `cinder` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "fs_type",
-					Description: `(Optional) Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. For more info see http://releases.k8s.io/HEAD/examples/mysql-cinder-pd/README.md`,
+					Description: `(Optional) Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. For more info see https://github.com/kubernetes/examples/blob/master/mysql-cinder-pd/README.md#mysql-installation-with-cinder-volume-plugin.`,
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to false (read/write). For more info see http://releases.k8s.io/HEAD/examples/mysql-cinder-pd/README.md`,
+					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to false (read/write). For more info see https://github.com/kubernetes/examples/blob/master/mysql-cinder-pd/README.md#mysql-installation-with-cinder-volume-plugin.`,
 				},
 				resource.Attribute{
 					Name:        "volume_id",
-					Description: `(Required) Volume ID used to identify the volume in Cinder. For more info see http://releases.k8s.io/HEAD/examples/mysql-cinder-pd/README.md ### ` + "`" + `config_map` + "`" + ` #### Arguments`,
+					Description: `(Required) Volume ID used to identify the volume in Cinder. For more info see https://github.com/kubernetes/examples/blob/master/mysql-cinder-pd/README.md#mysql-installation-with-cinder-volume-plugin. ### ` + "`" + `config_map` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "default_mode",
@@ -1241,15 +1241,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "endpoints_name",
-					Description: `(Required) The endpoint name that details Glusterfs topology. For more info see http://releases.k8s.io/HEAD/examples/volumes/glusterfs/README.md#create-a-pod`,
+					Description: `(Required) The endpoint name that details Glusterfs topology. For more info see https://github.com/kubernetes/examples/tree/master/volumes/glusterfs#create-a-pod.`,
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `(Required) The Glusterfs volume path. For more info see http://releases.k8s.io/HEAD/examples/volumes/glusterfs/README.md#create-a-pod`,
+					Description: `(Required) The Glusterfs volume path. For more info see https://github.com/kubernetes/examples/tree/master/volumes/glusterfs#create-a-pod.`,
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `(Optional) Whether to force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. For more info see http://releases.k8s.io/HEAD/examples/volumes/glusterfs/README.md#create-a-pod ### ` + "`" + `host_aliases` + "`" + ` #### Arguments`,
+					Description: `(Optional) Whether to force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. For more info see https://github.com/kubernetes/examples/tree/master/volumes/glusterfs#create-a-pod. ### ` + "`" + `host_aliases` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "hostnames",
@@ -1469,7 +1469,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ceph_monitors",
-					Description: `(Required) A collection of Ceph monitors. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `(Required) A collection of Ceph monitors. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "fs_type",
@@ -1477,27 +1477,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "keyring",
-					Description: `(Optional) Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `(Optional) Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "rados_user",
-					Description: `(Optional) The rados user name. Default is admin. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `(Optional) The rados user name. Default is admin. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "rbd_image",
-					Description: `(Required) The rados image name. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `(Required) The rados image name. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "rbd_pool",
-					Description: `(Optional) The rados pool name. Default is rbd. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it.`,
+					Description: `(Optional) The rados pool name. Default is rbd. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to false. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to false. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "secret_ref",
-					Description: `(Optional) Name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it ### ` + "`" + `readiness_probe` + "`" + ` #### Arguments`,
+					Description: `(Optional) Name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd#how-to-use-it. ### ` + "`" + `readiness_probe` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "exec",
@@ -1781,7 +1781,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cinder",
-					Description: `(Optional) Represents a cinder volume attached and mounted on kubelets host machine. For more info see http://releases.k8s.io/HEAD/examples/mysql-cinder-pd/README.md`,
+					Description: `(Optional) Represents a cinder volume attached and mounted on kubelets host machine. For more info see https://github.com/kubernetes/examples/blob/master/mysql-cinder-pd/README.md#mysql-installation-with-cinder-volume-plugin.`,
 				},
 				resource.Attribute{
 					Name:        "config_map",
@@ -1817,7 +1817,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "glusterfs",
-					Description: `(Optional) Represents a Glusterfs volume that is attached to a host and exposed to the pod. Provisioned by an admin. For more info see http://releases.k8s.io/HEAD/examples/volumes/glusterfs/README.md`,
+					Description: `(Optional) Represents a Glusterfs volume that is attached to a host and exposed to the pod. Provisioned by an admin. For more info see https://github.com/kubernetes/examples/tree/master/volumes/glusterfs#glusterfs.`,
 				},
 				resource.Attribute{
 					Name:        "host_path",
@@ -1849,7 +1849,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rbd",
-					Description: `(Optional) Represents a Rados Block Device mount on the host that shares a pod's lifetime. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md`,
+					Description: `(Optional) Represents a Rados Block Device mount on the host that shares a pod's lifetime. For more info see https://kubernetes.io/docs/concepts/storage/volumes/#rbd.`,
 				},
 				resource.Attribute{
 					Name:        "secret",
@@ -1926,7 +1926,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the deployment that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the deployment that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -1934,7 +1934,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the deployment. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the deployment. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem).`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -2006,11 +2006,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard object's metadata. For more info see https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata`,
+					Description: `(Required) Standard object's metadata. For more info see https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata.`,
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `(Required) Specification of the desired behavior of the pod. For more info see https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status ### template ` + "`" + `spec` + "`" + ` #### Arguments`,
+					Description: `(Required) Specification of the desired behavior of the pod. For more info see https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status. ### template ` + "`" + `spec` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "affinity",
@@ -2030,7 +2030,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "readiness_gate",
-					Description: `(Optional) If specified, all readiness gates will be evaluated for pod readiness. A pod is ready when all its containers are ready AND all conditions specified in the readiness gates have status equal to "True". [More info](https://git.k8s.io/enhancements/keps/sig-network/0007-pod-ready++.md)`,
+					Description: `(Optional) If specified, all readiness gates will be evaluated for pod readiness. A pod is ready when all its containers are ready AND all conditions specified in the readiness gates have status equal to "True". [More info](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-readiness-gate)`,
 				},
 				resource.Attribute{
 					Name:        "init_container",
@@ -2094,7 +2094,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_account_name",
-					Description: `(Optional) ServiceAccountName is the name of the ServiceAccount to use to run this pod. For more info see http://releases.k8s.io/HEAD/docs/design/service_accounts.md.`,
+					Description: `(Optional) ServiceAccountName is the name of the ServiceAccount to use to run this pod. For more info see https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/.`,
 				},
 				resource.Attribute{
 					Name:        "share_process_namespace",
@@ -2274,7 +2274,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "security_context",
-					Description: `(Optional) Security options the pod should run with. For more info see http://releases.k8s.io/HEAD/docs/design/security_context.md`,
+					Description: `(Optional) Security options the pod should run with. For more info see https://kubernetes.io/docs/tasks/configure-pod-container/security-context/.`,
 				},
 				resource.Attribute{
 					Name:        "startup_probe",
@@ -2366,39 +2366,39 @@ var (
 				},
 				resource.Attribute{
 					Name:        "monitors",
-					Description: `(Required) Monitors is a collection of Ceph monitors For more info see http://releases.k8s.io/HEAD/examples/volumes/cephfs/README.md#how-to-use-it`,
+					Description: `(Required) Monitors is a collection of Ceph monitors. For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `(Optional) Used as the mounted root, rather than the full Ceph tree, default is /`,
+					Description: `(Optional) Used as the mounted root, rather than the full Ceph tree, default is /.`,
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to ` + "`" + `false` + "`" + ` (read/write). For more info see http://releases.k8s.io/HEAD/examples/volumes/cephfs/README.md#how-to-use-it`,
+					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to ` + "`" + `false` + "`" + ` (read/write). For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "secret_file",
-					Description: `(Optional) The path to key ring for User, default is /etc/ceph/user.secret For more info see http://releases.k8s.io/HEAD/examples/volumes/cephfs/README.md#how-to-use-it`,
+					Description: `(Optional) The path to key ring for User, default is /etc/ceph/user.secret. For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "secret_ref",
-					Description: `(Optional) Reference to the authentication secret for User, default is empty. For more info see http://releases.k8s.io/HEAD/examples/volumes/cephfs/README.md#how-to-use-it`,
+					Description: `(Optional) Reference to the authentication secret for User, default is empty. For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "user",
-					Description: `(Optional) User is the rados user name, default is admin. For more info see http://releases.k8s.io/HEAD/examples/volumes/cephfs/README.md#how-to-use-it ### ` + "`" + `cinder` + "`" + ` #### Arguments`,
+					Description: `(Optional) User is the rados user name, default is admin. For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it. ### ` + "`" + `cinder` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "fs_type",
-					Description: `(Optional) Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. For more info see http://releases.k8s.io/HEAD/examples/mysql-cinder-pd/README.md`,
+					Description: `(Optional) Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. For more info see https://github.com/kubernetes/examples/blob/master/mysql-cinder-pd/README.md#mysql-installation-with-cinder-volume-plugin.`,
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to false (read/write). For more info see http://releases.k8s.io/HEAD/examples/mysql-cinder-pd/README.md`,
+					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to false (read/write). For more info see https://github.com/kubernetes/examples/blob/master/mysql-cinder-pd/README.md#mysql-installation-with-cinder-volume-plugin.`,
 				},
 				resource.Attribute{
 					Name:        "volume_id",
-					Description: `(Required) Volume ID used to identify the volume in Cinder. For more info see http://releases.k8s.io/HEAD/examples/mysql-cinder-pd/README.md ### ` + "`" + `config_map` + "`" + ` #### Arguments`,
+					Description: `(Required) Volume ID used to identify the volume in Cinder. For more info see https://github.com/kubernetes/examples/blob/master/mysql-cinder-pd/README.md#mysql-installation-with-cinder-volume-plugin. ### ` + "`" + `config_map` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "default_mode",
@@ -2582,15 +2582,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "endpoints_name",
-					Description: `(Required) The endpoint name that details Glusterfs topology. For more info see http://releases.k8s.io/HEAD/examples/volumes/glusterfs/README.md#create-a-pod`,
+					Description: `(Required) The endpoint name that details Glusterfs topology. For more info see https://github.com/kubernetes/examples/tree/master/volumes/glusterfs#create-a-pod.`,
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `(Required) The Glusterfs volume path. For more info see http://releases.k8s.io/HEAD/examples/volumes/glusterfs/README.md#create-a-pod`,
+					Description: `(Required) The Glusterfs volume path. For more info see https://github.com/kubernetes/examples/tree/master/volumes/glusterfs#create-a-pod.`,
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `(Optional) Whether to force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. For more info see http://releases.k8s.io/HEAD/examples/volumes/glusterfs/README.md#create-a-pod ### ` + "`" + `host_aliases` + "`" + ` #### Arguments`,
+					Description: `(Optional) Whether to force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. For more info see https://github.com/kubernetes/examples/tree/master/volumes/glusterfs#create-a-pod. ### ` + "`" + `host_aliases` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "hostnames",
@@ -2810,7 +2810,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ceph_monitors",
-					Description: `(Required) A collection of Ceph monitors. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `(Required) A collection of Ceph monitors. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "fs_type",
@@ -2818,27 +2818,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "keyring",
-					Description: `(Optional) Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `(Optional) Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "rados_user",
-					Description: `(Optional) The rados user name. Default is admin. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `(Optional) The rados user name. Default is admin. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "rbd_image",
-					Description: `(Required) The rados image name. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `(Required) The rados image name. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "rbd_pool",
-					Description: `(Optional) The rados pool name. Default is rbd. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it.`,
+					Description: `(Optional) The rados pool name. Default is rbd. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to false. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to false. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "secret_ref",
-					Description: `(Optional) Name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it ### ` + "`" + `readiness_probe` + "`" + ` #### Arguments`,
+					Description: `(Optional) Name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd#how-to-use-it. ### ` + "`" + `readiness_probe` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "exec",
@@ -3130,7 +3130,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cinder",
-					Description: `(Optional) Represents a cinder volume attached and mounted on kubelets host machine. For more info see http://releases.k8s.io/HEAD/examples/mysql-cinder-pd/README.md`,
+					Description: `(Optional) Represents a cinder volume attached and mounted on kubelets host machine. For more info see https://github.com/kubernetes/examples/blob/master/mysql-cinder-pd/README.md#mysql-installation-with-cinder-volume-plugin.`,
 				},
 				resource.Attribute{
 					Name:        "config_map",
@@ -3166,7 +3166,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "glusterfs",
-					Description: `(Optional) Represents a Glusterfs volume that is attached to a host and exposed to the pod. Provisioned by an admin. For more info see http://releases.k8s.io/HEAD/examples/volumes/glusterfs/README.md`,
+					Description: `(Optional) Represents a Glusterfs volume that is attached to a host and exposed to the pod. Provisioned by an admin. For more info see https://github.com/kubernetes/examples/tree/master/volumes/glusterfs#glusterfs.`,
 				},
 				resource.Attribute{
 					Name:        "host_path",
@@ -3198,7 +3198,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rbd",
-					Description: `(Optional) Represents a Rados Block Device mount on the host that shares a pod's lifetime. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md`,
+					Description: `(Optional) Represents a Rados Block Device mount on the host that shares a pod's lifetime. For more info see https://kubernetes.io/docs/concepts/storage/volumes/#rbd.`,
 				},
 				resource.Attribute{
 					Name:        "secret",
@@ -3271,7 +3271,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the endpoints resource that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the endpoints resource that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -3279,7 +3279,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the endpoints resource. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the endpoints resource. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3374,7 +3374,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the horizontal pod autoscaler that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the horizontal pod autoscaler that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -3382,7 +3382,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the horizontal pod autoscaler. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the horizontal pod autoscaler. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3555,7 +3555,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the ingress that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the ingress that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info: http://kubernetes.io/docs/user-guide/annotations`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -3563,7 +3563,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info: http://kubernetes.io/docs/user-guide/labels`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3611,7 +3611,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "http",
-					Description: `(Required) http is a list of http selectors pointing to backends. In the example: http:///? -> backend where where parts of the url correspond to RFC 3986, this resource will be used to match against everything after the last '/' and before the first '?' or '#'. See ` + "`" + `http` + "`" + ` block attributes below. #### ` + "`" + `http` + "`" + ``,
+					Description: `(Required) http is a list of http selectors pointing to backends. In the example: http:///? -> backend where parts of the url correspond to RFC 3986, this resource will be used to match against everything after the last '/' and before the first '?' or '#'. See ` + "`" + `http` + "`" + ` block attributes below. #### ` + "`" + `http` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -3664,11 +3664,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard resource's metadata. For more info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status`,
+					Description: `(Required) Standard resource's metadata. For more info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata`,
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `(Required) Specification of the desired behavior of a job. For more info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status`,
+					Description: `(Required) Specification of the desired behavior of a job. For more info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status`,
 				},
 				resource.Attribute{
 					Name:        "wait_for_completion",
@@ -3676,7 +3676,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the resource that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the resource that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info: http://kubernetes.io/docs/user-guide/annotations`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -3684,7 +3684,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info: http://kubernetes.io/docs/user-guide/labels`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3806,7 +3806,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the limit range that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the limit range that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -3814,7 +3814,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the limit range. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the limit range. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3855,7 +3855,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the namespace that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the namespace that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -3863,7 +3863,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) namespaces. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) namespaces. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3888,7 +3888,7 @@ var (
 			Name:             "",
 			Type:             "kubernetes_network_policy",
 			Category:         "Resources",
-			ShortDescription: `Kubernetes supports network policies to specificy of how groups of pods are allowed to communicate with each other and other network endpoints. NetworkPolicy resources use labels to select pods and define rules which specify what traffic is allowed to the selected pods.`,
+			ShortDescription: `Kubernetes supports network policies to specify how groups of pods are allowed to communicate with each other and with other network endpoints. NetworkPolicy resources use labels to select pods and define rules which specify what traffic is allowed to the selected pods.`,
 			Description:      ``,
 			Keywords: []string{
 				"network",
@@ -3901,7 +3901,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the network policy that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the network policy that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info: http://kubernetes.io/docs/user-guide/annotations`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -3909,7 +3909,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) network policies. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) network policies. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info: http://kubernetes.io/docs/user-guide/labels`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -4115,15 +4115,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ceph_fs",
-					Description: `(Optional) Represents a Ceph FS mount on the host that shares a pod's lifetime`,
+					Description: `(Optional) Represents a Ceph FS mount on the host that shares a pod's lifetime.`,
 				},
 				resource.Attribute{
 					Name:        "cinder",
-					Description: `(Optional) Represents a cinder volume attached and mounted on kubelets host machine. For more info see http://releases.k8s.io/HEAD/examples/mysql-cinder-pd/README.md`,
+					Description: `(Optional) Represents a cinder volume attached and mounted on kubelets host machine. For more info see https://github.com/kubernetes/examples/tree/master/mysql-cinder-pd#mysql-installation-with-cinder-volume-plugin.`,
 				},
 				resource.Attribute{
 					Name:        "csi",
-					Description: `(Optional) CSI represents storage that is handled by an external CSI driver. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/storage/volumes/#csi)`,
+					Description: `(Optional) CSI represents storage that is handled by an external CSI driver. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/storage/volumes/#csi).`,
 				},
 				resource.Attribute{
 					Name:        "fc",
@@ -4135,15 +4135,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "flocker",
-					Description: `(Optional) Represents a Flocker volume attached to a kubelet's host machine and exposed to the pod for its usage. This depends on the Flocker control service being running`,
+					Description: `(Optional) Represents a Flocker volume attached to a kubelet's host machine and exposed to the pod for its usage. This depends on the Flocker control service being running.`,
 				},
 				resource.Attribute{
 					Name:        "gce_persistent_disk",
-					Description: `(Optional) Represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Provisioned by an admin. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/volumes#gcepersistentdisk)`,
+					Description: `(Optional) Represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Provisioned by an admin. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/volumes#gcepersistentdisk).`,
 				},
 				resource.Attribute{
 					Name:        "glusterfs",
-					Description: `(Optional) Represents a Glusterfs volume that is attached to a host and exposed to the pod. Provisioned by an admin. For more info see http://releases.k8s.io/HEAD/examples/volumes/glusterfs/README.md`,
+					Description: `(Optional) Represents a Glusterfs volume that is attached to a host and exposed to the pod. Provisioned by an admin. For more info see https://github.com/kubernetes/examples/tree/master/volumes/glusterfs#glusterfs.`,
 				},
 				resource.Attribute{
 					Name:        "host_path",
@@ -4155,27 +4155,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "local",
-					Description: `(Optional) Represents a local storage volume on the host. Provisioned by an admin. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/storage/volumes/#local)`,
+					Description: `(Optional) Represents a local storage volume on the host. Provisioned by an admin. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/storage/volumes/#local).`,
 				},
 				resource.Attribute{
 					Name:        "nfs",
-					Description: `(Optional) Represents an NFS mount on the host. Provisioned by an admin. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/volumes#nfs)`,
+					Description: `(Optional) Represents an NFS mount on the host. Provisioned by an admin. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/volumes#nfs).`,
 				},
 				resource.Attribute{
 					Name:        "photon_persistent_disk",
-					Description: `(Optional) Represents a PhotonController persistent disk attached and mounted on kubelets host machine`,
+					Description: `(Optional) Represents a PhotonController persistent disk attached and mounted on kubelets host machine.`,
 				},
 				resource.Attribute{
 					Name:        "quobyte",
-					Description: `(Optional) Quobyte represents a Quobyte mount on the host that shares a pod's lifetime`,
+					Description: `(Optional) Quobyte represents a Quobyte mount on the host that shares a pod's lifetime.`,
 				},
 				resource.Attribute{
 					Name:        "rbd",
-					Description: `(Optional) Represents a Rados Block Device mount on the host that shares a pod's lifetime. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md`,
+					Description: `(Optional) Represents a Rados Block Device mount on the host that shares a pod's lifetime. For more info see https://kubernetes.io/docs/concepts/storage/volumes/#rbd.`,
 				},
 				resource.Attribute{
 					Name:        "vsphere_volume",
-					Description: `(Optional) Represents a vSphere volume attached and mounted on kubelets host machine ### ` + "`" + `aws_elastic_block_store` + "`" + ` #### Arguments`,
+					Description: `(Optional) Represents a vSphere volume attached and mounted on kubelets host machine. ### ` + "`" + `aws_elastic_block_store` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "fs_type",
@@ -4223,7 +4223,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secret_name",
-					Description: `(Required) The name of secret that contains Azure Storage Account Name and Key`,
+					Description: `(Required) The name of secret that contains Azure Storage Account Name and Key.`,
+				},
+				resource.Attribute{
+					Name:        "secret_namespace",
+					Description: `(Optional) The namespace of the secret that contains Azure Storage Account Name and Key. For Kubernetes up to 1.18.x the default is the same as the Pod. For Kubernetes 1.19.x and later the default is \"default\" namespace.`,
 				},
 				resource.Attribute{
 					Name:        "share_name",
@@ -4231,39 +4235,39 @@ var (
 				},
 				resource.Attribute{
 					Name:        "monitors",
-					Description: `(Required) Monitors is a collection of Ceph monitors For more info see http://releases.k8s.io/HEAD/examples/volumes/cephfs/README.md#how-to-use-it`,
+					Description: `(Required) Monitors is a collection of Ceph monitors. For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `(Optional) Used as the mounted root, rather than the full Ceph tree, default is /`,
+					Description: `(Optional) Used as the mounted root, rather than the full Ceph tree, default is /.`,
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to ` + "`" + `false` + "`" + ` (read/write). For more info see http://releases.k8s.io/HEAD/examples/volumes/cephfs/README.md#how-to-use-it`,
+					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to ` + "`" + `false` + "`" + ` (read/write). For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "secret_file",
-					Description: `(Optional) The path to key ring for User, default is /etc/ceph/user.secret For more info see http://releases.k8s.io/HEAD/examples/volumes/cephfs/README.md#how-to-use-it`,
+					Description: `(Optional) The path to key ring for User, default is /etc/ceph/user.secret. For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "secret_ref",
-					Description: `(Optional) Reference to the authentication secret for User, default is empty. For more info see http://releases.k8s.io/HEAD/examples/volumes/cephfs/README.md#how-to-use-it. see [secret_ref](#secret_ref) for more details.`,
+					Description: `(Optional) Reference to the authentication secret for User, default is empty. sFor more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it. see [secret_ref](#secret_ref) for more details.`,
 				},
 				resource.Attribute{
 					Name:        "user",
-					Description: `(Optional) User is the rados user name, default is admin. For more info see http://releases.k8s.io/HEAD/examples/volumes/cephfs/README.md#how-to-use-it ### ` + "`" + `cinder` + "`" + ` #### Arguments`,
+					Description: `(Optional) User is the rados user name, default is admin. For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it. ### ` + "`" + `cinder` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "fs_type",
-					Description: `(Optional) Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. For more info see http://releases.k8s.io/HEAD/examples/mysql-cinder-pd/README.md`,
+					Description: `(Optional) Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. For more info see https://github.com/kubernetes/examples/blob/master/mysql-cinder-pd/README.md#mysql-installation-with-cinder-volume-plugin.`,
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to false (read/write). For more info see http://releases.k8s.io/HEAD/examples/mysql-cinder-pd/README.md`,
+					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to false (read/write). For more info see https://github.com/kubernetes/examples/blob/master/mysql-cinder-pd/README.md#mysql-installation-with-cinder-volume-plugin.`,
 				},
 				resource.Attribute{
 					Name:        "volume_id",
-					Description: `(Required) Volume ID used to identify the volume in Cinder. For more info see http://releases.k8s.io/HEAD/examples/mysql-cinder-pd/README.md ### ` + "`" + `csi` + "`" + ` #### Arguments`,
+					Description: `(Required) Volume ID used to identify the volume in Cinder. For more info see https://github.com/kubernetes/examples/blob/master/mysql-cinder-pd/README.md#mysql-installation-with-cinder-volume-plugin. ### ` + "`" + `csi` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "driver",
@@ -4363,15 +4367,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "endpoints_name",
-					Description: `(Required) The endpoint name that details Glusterfs topology. For more info see http://releases.k8s.io/HEAD/examples/volumes/glusterfs/README.md#create-a-pod`,
+					Description: `(Required) The endpoint name that details Glusterfs topology. For more info see https://github.com/kubernetes/examples/tree/master/volumes/glusterfs#create-a-pod.`,
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `(Required) The Glusterfs volume path. For more info see http://releases.k8s.io/HEAD/examples/volumes/glusterfs/README.md#create-a-pod`,
+					Description: `(Required) The Glusterfs volume path. For more info see https://github.com/kubernetes/examples/tree/master/volumes/glusterfs#create-a-pod.`,
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `(Optional) Whether to force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. For more info see http://releases.k8s.io/HEAD/examples/volumes/glusterfs/README.md#create-a-pod ### ` + "`" + `host_path` + "`" + ` #### Arguments`,
+					Description: `(Optional) Whether to force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. For more info see https://github.com/kubernetes/examples/tree/master/volumes/glusterfs#create-a-pod. ### ` + "`" + `host_path` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -4411,11 +4415,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the persistent volume that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the persistent volume that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the persistent volume. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the persistent volume. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -4475,7 +4479,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ceph_monitors",
-					Description: `(Required) A collection of Ceph monitors. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `(Required) A collection of Ceph monitors. For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "fs_type",
@@ -4483,27 +4487,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "keyring",
-					Description: `(Optional) Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `(Optional) Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "rados_user",
-					Description: `(Optional) The rados user name. Default is admin. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `(Optional) The rados user name. Default is admin. For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "rbd_image",
-					Description: `(Required) The rados image name. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `(Required) The rados image name. For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "rbd_pool",
-					Description: `(Optional) The rados pool name. Default is rbd. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it.`,
+					Description: `(Optional) The rados pool name. Default is rbd. For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to false. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to false. For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "secret_ref",
-					Description: `(Optional) Name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it. see [secret_ref](#secret_ref) for more details. ### ` + "`" + `secret_ref` + "`" + ` #### Arguments`,
+					Description: `(Optional) Name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it. see [secret_ref](#secret_ref) for more details. ### ` + "`" + `secret_ref` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -4550,7 +4554,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the persistent volume claim that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the persistent volume claim that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -4558,7 +4562,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the persistent volume claim. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the persistent volume claim. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -4651,7 +4655,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the pod that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the pod that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names appear in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -4659,7 +4663,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the pod. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the pod. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -4759,7 +4763,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_account_name",
-					Description: `(Optional) ServiceAccountName is the name of the ServiceAccount to use to run this pod. For more info see http://releases.k8s.io/HEAD/docs/design/service_accounts.md.`,
+					Description: `(Optional) ServiceAccountName is the name of the ServiceAccount to use to run this pod. For more info see https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/.`,
 				},
 				resource.Attribute{
 					Name:        "share_process_namespace",
@@ -4787,7 +4791,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "readiness_gate",
-					Description: `(Optional) If specified, all readiness gates will be evaluated for pod readiness. A pod is ready when all its containers are ready AND all conditions specified in the readiness gates have status equal to "True". [More info](https://git.k8s.io/enhancements/keps/sig-network/0007-pod-ready++.md) ### ` + "`" + `affinity` + "`" + ` #### Arguments`,
+					Description: `(Optional) If specified, all readiness gates will be evaluated for pod readiness. A pod is ready when all its containers are ready AND all conditions specified in the readiness gates have status equal to "True". [More info](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-readiness-gate) ### ` + "`" + `affinity` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "node_affinity",
@@ -4947,7 +4951,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "security_context",
-					Description: `(Optional) Security options the pod should run with. For more info see http://releases.k8s.io/HEAD/docs/design/security_context.md`,
+					Description: `(Optional) Security options the pod should run with. For more info see https://kubernetes.io/docs/tasks/configure-pod-container/security-context/.`,
 				},
 				resource.Attribute{
 					Name:        "startup_probe",
@@ -5039,39 +5043,39 @@ var (
 				},
 				resource.Attribute{
 					Name:        "monitors",
-					Description: `(Required) Monitors is a collection of Ceph monitors For more info see http://releases.k8s.io/HEAD/examples/volumes/cephfs/README.md#how-to-use-it`,
+					Description: `(Required) Monitors is a collection of Ceph monitors. For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `(Optional) Used as the mounted root, rather than the full Ceph tree, default is /`,
+					Description: `(Optional) Used as the mounted root, rather than the full Ceph tree, default is /.`,
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to ` + "`" + `false` + "`" + ` (read/write). For more info see http://releases.k8s.io/HEAD/examples/volumes/cephfs/README.md#how-to-use-it`,
+					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to ` + "`" + `false` + "`" + ` (read/write). For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "secret_file",
-					Description: `(Optional) The path to key ring for User, default is /etc/ceph/user.secret For more info see http://releases.k8s.io/HEAD/examples/volumes/cephfs/README.md#how-to-use-it`,
+					Description: `(Optional) The path to key ring for User, default is /etc/ceph/user.secret. For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "secret_ref",
-					Description: `(Optional) Reference to the authentication secret for User, default is empty. For more info see http://releases.k8s.io/HEAD/examples/volumes/cephfs/README.md#how-to-use-it`,
+					Description: `(Optional) Reference to the authentication secret for User, default is empty. For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "user",
-					Description: `(Optional) User is the rados user name, default is admin. For more info see http://releases.k8s.io/HEAD/examples/volumes/cephfs/README.md#how-to-use-it ### ` + "`" + `cinder` + "`" + ` #### Arguments`,
+					Description: `(Optional) User is the rados user name, default is admin. For more info see https://github.com/kubernetes/examples/tree/master/volumes/cephfs/#how-to-use-it. ### ` + "`" + `cinder` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "fs_type",
-					Description: `(Optional) Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. For more info see http://releases.k8s.io/HEAD/examples/mysql-cinder-pd/README.md`,
+					Description: `(Optional) Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. For more info see https://github.com/kubernetes/examples/blob/master/mysql-cinder-pd/README.md#mysql-installation-with-cinder-volume-plugin.`,
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to false (read/write). For more info see http://releases.k8s.io/HEAD/examples/mysql-cinder-pd/README.md`,
+					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to false (read/write). For more info see https://github.com/kubernetes/examples/blob/master/mysql-cinder-pd/README.md#mysql-installation-with-cinder-volume-plugin.`,
 				},
 				resource.Attribute{
 					Name:        "volume_id",
-					Description: `(Required) Volume ID used to identify the volume in Cinder. For more info see http://releases.k8s.io/HEAD/examples/mysql-cinder-pd/README.md ### ` + "`" + `config_map` + "`" + ` #### Arguments`,
+					Description: `(Required) Volume ID used to identify the volume in Cinder. For more info see https://github.com/kubernetes/examples/blob/master/mysql-cinder-pd/README.md#mysql-installation-with-cinder-volume-plugin. ### ` + "`" + `config_map` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "default_mode",
@@ -5255,15 +5259,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "endpoints_name",
-					Description: `(Required) The endpoint name that details Glusterfs topology. For more info see http://releases.k8s.io/HEAD/examples/volumes/glusterfs/README.md#create-a-pod`,
+					Description: `(Required) The endpoint name that details Glusterfs topology. For more info see https://github.com/kubernetes/examples/tree/master/volumes/glusterfs#create-a-pod.`,
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `(Required) The Glusterfs volume path. For more info see http://releases.k8s.io/HEAD/examples/volumes/glusterfs/README.md#create-a-pod`,
+					Description: `(Required) The Glusterfs volume path. For more info see https://github.com/kubernetes/examples/tree/master/volumes/glusterfs#create-a-pod.`,
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `(Optional) Whether to force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. For more info see http://releases.k8s.io/HEAD/examples/volumes/glusterfs/README.md#create-a-pod ### ` + "`" + `host_aliases` + "`" + ` #### Arguments`,
+					Description: `(Optional) Whether to force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. For more info see https://github.com/kubernetes/examples/tree/master/volumes/glusterfs#create-a-pod. ### ` + "`" + `host_aliases` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "hostnames",
@@ -5483,7 +5487,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ceph_monitors",
-					Description: `(Required) A collection of Ceph monitors. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `(Required) A collection of Ceph monitors. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "fs_type",
@@ -5491,27 +5495,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "keyring",
-					Description: `(Optional) Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `(Optional) Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "rados_user",
-					Description: `(Optional) The rados user name. Default is admin. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `(Optional) The rados user name. Default is admin. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "rbd_image",
-					Description: `(Required) The rados image name. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `(Required) The rados image name. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "rbd_pool",
-					Description: `(Optional) The rados pool name. Default is rbd. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it.`,
+					Description: `(Optional) The rados pool name. Default is rbd. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to false. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it`,
+					Description: `(Optional) Whether to force the read-only setting in VolumeMounts. Defaults to false. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd/#how-to-use-it.`,
 				},
 				resource.Attribute{
 					Name:        "secret_ref",
-					Description: `(Optional) Name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md#how-to-use-it ### ` + "`" + `readiness_probe` + "`" + ` #### Arguments`,
+					Description: `(Optional) Name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. For more info see https://github.com/kubernetes/examples/tree/master/volumes/rbd/#how-to-use-it. ### ` + "`" + `readiness_probe` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "exec",
@@ -5819,7 +5823,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cinder",
-					Description: `(Optional) Represents a cinder volume attached and mounted on kubelets host machine. For more info see http://releases.k8s.io/HEAD/examples/mysql-cinder-pd/README.md`,
+					Description: `(Optional) Represents a cinder volume attached and mounted on kubelets host machine. For more info see https://github.com/kubernetes/examples/blob/master/mysql-cinder-pd/README.md#mysql-installation-with-cinder-volume-plugin.`,
 				},
 				resource.Attribute{
 					Name:        "config_map",
@@ -5855,7 +5859,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "glusterfs",
-					Description: `(Optional) Represents a Glusterfs volume that is attached to a host and exposed to the pod. Provisioned by an admin. For more info see http://releases.k8s.io/HEAD/examples/volumes/glusterfs/README.md`,
+					Description: `(Optional) Represents a Glusterfs volume that is attached to a host and exposed to the pod. Provisioned by an admin. For more info see https://github.com/kubernetes/examples/tree/master/volumes/glusterfs#glusterfs.`,
 				},
 				resource.Attribute{
 					Name:        "host_path",
@@ -5887,7 +5891,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rbd",
-					Description: `(Optional) Represents a Rados Block Device mount on the host that shares a pod's lifetime. For more info see http://releases.k8s.io/HEAD/examples/volumes/rbd/README.md`,
+					Description: `(Optional) Represents a Rados Block Device mount on the host that shares a pod's lifetime. For more info see https://kubernetes.io/docs/concepts/storage/volumes/#rbd.`,
 				},
 				resource.Attribute{
 					Name:        "secret",
@@ -5962,7 +5966,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the resource that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the resource that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info: http://kubernetes.io/docs/user-guide/annotations`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -5970,7 +5974,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info: http://kubernetes.io/docs/user-guide/labels`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6029,7 +6033,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the Pod Security Policy that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the Pod Security Policy that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6037,7 +6041,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the Pod Security Policy. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the Pod Security Policy. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6191,11 +6195,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the resource quota that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the resource quota that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the resource quota. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the resource quota. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6237,7 +6241,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the replication controller that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the replication controller that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6245,7 +6249,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the replication controller. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the replication controller. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6285,11 +6289,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Optional) Standard object's metadata. For more info: [Kubernetes reference](https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata). While required by the kubernetes API, this field is marked as optional to allow the usage of the deprecated pod spec fields that were mistakenly placed directly under the ` + "`" + `template` + "`" + ` block.`,
+					Description: `(Optional) Standard object's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata). While required by the kubernetes API, this field is marked as optional to allow the usage of the deprecated pod spec fields that were mistakenly placed directly under the ` + "`" + `template` + "`" + ` block.`,
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `(Optional) Specification of the desired behavior of the pod. For more info: [Kubernetes reference](https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status) ~>`,
+					Description: `(Optional) Specification of the desired behavior of the pod. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status) ~>`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -6335,11 +6339,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the resource quota that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the resource quota that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the resource quota. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the resource quota. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6367,7 +6371,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scopes",
-					Description: `(Optional) A collection of filters that must match each object tracked by a quota. If not specified, the quota matches all objects. ## Import Resource Quota can be imported using its namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_resource_quota.example default/terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) A collection of filters that must match each object tracked by a quota. If not specified, the quota matches all objects.`,
+				},
+				resource.Attribute{
+					Name:        "scope_selector",
+					Description: `(Optional) A collection of filters like scopes that must match each object tracked by a quota but expressed using ScopeSelectorOperator in combination with possible values. See ` + "`" + `scope_selector` + "`" + ` below for more details. #### ` + "`" + `scope_selector` + "`" + ` ##### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "match_expression",
+					Description: `(Optional) A list of scope selector requirements by scope of the resources. See ` + "`" + `match_expression` + "`" + ` below for more details. ##### ` + "`" + `match_expression` + "`" + ` ###### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "scope_name",
+					Description: `(Required) The name of the scope that the selector applies to. Valid values are ` + "`" + `Terminating` + "`" + `, ` + "`" + `NotTerminating` + "`" + `, ` + "`" + `BestEffort` + "`" + `, ` + "`" + `NotBestEffort` + "`" + `, and ` + "`" + `PriorityClass` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "operator",
+					Description: `(Required) Represents a scope's relationship to a set of values. Valid operators are ` + "`" + `In` + "`" + `, ` + "`" + `NotIn` + "`" + `, ` + "`" + `Exists` + "`" + `, ` + "`" + `DoesNotExist` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Optional) A list of scope selector requirements by scope of the resources. ## Import Resource Quota can be imported using its namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_resource_quota.example default/terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6392,7 +6416,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the role that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the role that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6466,7 +6490,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the role binding that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the role binding that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6474,7 +6498,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the role binding. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the role binding. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6542,6 +6566,10 @@ var (
 					Description: `(Optional) A map of the secret data.`,
 				},
 				resource.Attribute{
+					Name:        "binary_data",
+					Description: `(Optional) A map base64 encoded map of the secret data.`,
+				},
+				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard secret's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata)`,
 				},
@@ -6551,7 +6579,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the secret that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the secret that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6559,7 +6587,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the secret. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the secret. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6608,7 +6636,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the service that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the service that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6616,7 +6644,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6660,7 +6688,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "load_balancer_source_ranges",
-					Description: `(Optional) If specified and supported by the platform, this will restrict traffic through the cloud-provider load-balancer will be restricted to the specified client IPs. This field will be ignored if the cloud-provider does not support the feature. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/services-firewalls)`,
+					Description: `(Optional) If specified and supported by the platform, this will restrict traffic through the cloud-provider load-balancer will be restricted to the specified client IPs. This field will be ignored if the cloud-provider does not support the feature. For more info see [Kubernetes reference](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/).`,
 				},
 				resource.Attribute{
 					Name:        "port",
@@ -6758,7 +6786,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the service account that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the service account that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6766,7 +6794,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service account. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service account. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6833,7 +6861,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the stateful set that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the stateful set that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6897,11 +6925,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard object's metadata. For more info: [Kubernetes reference](https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata)`,
+					Description: `(Required) Standard object's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata).`,
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `(Optional) Specification of the desired behavior of the pod. For more info: [Kubernetes reference](https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `spec.template.spec` + "`" + ` #### Arguments These arguments are the same as the for the ` + "`" + `spec` + "`" + ` block of a Pod. Please see the [Pod resource](pod.html#spec-1) for reference. ## Nested Blocks ### ` + "`" + `spec.update_strategy` + "`" + ` #### Arguments`,
+					Description: `(Optional) Specification of the desired behavior of the pod. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status). ## Nested Blocks ### ` + "`" + `spec.template.spec` + "`" + ` #### Arguments These arguments are the same as the for the ` + "`" + `spec` + "`" + ` block of a Pod. Please see the [Pod resource](pod.html#spec-1) for reference. ## Nested Blocks ### ` + "`" + `spec.update_strategy` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -6975,7 +7003,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the storage class that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
+					Description: `(Optional) An unstructured key value map stored with the storage class that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6983,7 +7011,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the storage class. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the storage class. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
 				},
 				resource.Attribute{
 					Name:        "name",

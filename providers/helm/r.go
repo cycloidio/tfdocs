@@ -85,7 +85,7 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 				},
 				resource.Attribute{
 					Name:        "disable_webhooks",
-					Description: `(Optional) Prevent hooks from running. Defauts to ` + "`" + `false` + "`" + ``,
+					Description: `(Optional) Prevent hooks from running. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "reuse_values",
@@ -130,6 +130,10 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 				resource.Attribute{
 					Name:        "wait",
 					Description: `(Optional) Will wait until all resources are in a ready state before marking the release as successful. It will wait for as long as ` + "`" + `timeout` + "`" + `. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "wait_for_jobs",
+					Description: `(Optional) If wait is enabled, will wait until all Jobs have been completed before marking the release as successful. It will wait for as long as ` + "`" + `timeout` + "`" + `. Defaults to false.`,
 				},
 				resource.Attribute{
 					Name:        "values",
@@ -184,6 +188,10 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 					Description: `(Required) relative or full path to command binary. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "manifest",
+					Description: `The rendered manifest of the release as JSON. Enable the ` + "`" + `manifest` + "`" + ` experiment to use this feature.`,
+				},
+				resource.Attribute{
 					Name:        "metadata",
 					Description: `Block status of the deployed release. The ` + "`" + `metadata` + "`" + ` block supports:`,
 				},
@@ -221,6 +229,10 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "manifest",
+					Description: `The rendered manifest of the release as JSON. Enable the ` + "`" + `manifest` + "`" + ` experiment to use this feature.`,
+				},
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `Block status of the deployed release. The ` + "`" + `metadata` + "`" + ` block supports:`,

@@ -301,6 +301,16 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "datadog_slo_correction",
+			Category:         "Resources",
+			ShortDescription: `Resource for interacting with the slo_correction API`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "datadog_synthetics_global_variable",
 			Category:         "Resources",
 			ShortDescription: `Provides a Datadog synthetics global variable resource. This can be used to create and manage Datadog synthetics global variables.`,
@@ -382,11 +392,12 @@ var (
 		"datadog_security_monitoring_default_rule":     26,
 		"datadog_security_monitoring_rule":             27,
 		"datadog_service_level_objective":              28,
-		"datadog_synthetics_global_variable":           29,
-		"datadog_synthetics_private_location":          30,
-		"datadog_synthetics_test":                      31,
-		"datadog_timeboard":                            32,
-		"datadog_user":                                 33,
+		"datadog_slo_correction":                       29,
+		"datadog_synthetics_global_variable":           30,
+		"datadog_synthetics_private_location":          31,
+		"datadog_synthetics_test":                      32,
+		"datadog_timeboard":                            33,
+		"datadog_user":                                 34,
 	}
 )
 

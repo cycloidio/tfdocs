@@ -114,7 +114,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "not",
-					Description: `(Optional) Indicates behaviour of the given operation. Default:` + "`" + `false` + "`" + ``,
+					Description: `(Optional) Indicates behaviour of the given operation. Default: ` + "`" + `false` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "expected_value",
@@ -194,13 +194,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Alert Policy. ## Import Alert policies can be imported using the ` + "`" + `team id` + "`" + ` and ` + "`" + `policy_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_notification_policy.test teamId/Id` + "`" + ` For this example: - Team Id = ` + "`" + `c827c472-31f2-497b-9ec6-8ec855d7d94c` + "`" + ` - Alert Policy Id = ` + "`" + `2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ` ` + "`" + `$ terraform import opsgenie_alert_policy.test c827c472-31f2-497b-9ec6-8ec855d7d94c/2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ` You can import global polices using only policy identifier ` + "`" + `$ terraform import opsgenie_alert_policy.test c827c472-31f2-497b-9ec6-8ec855d7d94c` + "`" + ``,
+					Description: `The ID of the Opsgenie Alert Policy. ## Import Alert policies can be imported using the ` + "`" + `team_id/policy_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_notification_policy.test team_id/policy_id` + "`" + ` You can import global polices using only policy identifier ` + "`" + `$ terraform import opsgenie_alert_policy.test policy_id` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Alert Policy. ## Import Alert policies can be imported using the ` + "`" + `team id` + "`" + ` and ` + "`" + `policy_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_notification_policy.test teamId/Id` + "`" + ` For this example: - Team Id = ` + "`" + `c827c472-31f2-497b-9ec6-8ec855d7d94c` + "`" + ` - Alert Policy Id = ` + "`" + `2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ` ` + "`" + `$ terraform import opsgenie_alert_policy.test c827c472-31f2-497b-9ec6-8ec855d7d94c/2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ` You can import global polices using only policy identifier ` + "`" + `$ terraform import opsgenie_alert_policy.test c827c472-31f2-497b-9ec6-8ec855d7d94c` + "`" + ``,
+					Description: `The ID of the Opsgenie Alert Policy. ## Import Alert policies can be imported using the ` + "`" + `team_id/policy_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_notification_policy.test team_id/policy_id` + "`" + ` You can import global polices using only policy identifier ` + "`" + `$ terraform import opsgenie_alert_policy.test policy_id` + "`" + ``,
 				},
 			},
 		},
@@ -225,19 +225,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allow_write_access",
-					Description: `(Optional) This parameter is for configuring the write access of integration. If write access is restricted, the integration will not be authorized to write within any domain. Defaults to true.`,
+					Description: `(Optional) This parameter is for configuring the write access of integration. If write access is restricted, the integration will not be authorized to write within any domain. Default: ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) This parameter is for specifying whether the integration will be enabled or not. Defaults to true`,
+					Description: `(Optional) This parameter is for specifying whether the integration will be enabled or not. Default: ` + "`" + `true` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "ignore_responders_from_payload",
-					Description: `(Optional) If enabled, the integration will ignore recipients sent in request payloads. Defaults to false.`,
+					Description: `(Optional) If enabled, the integration will ignore recipients sent in request payloads. Default: ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "suppress_notifications",
-					Description: `(Optional) If enabled, notifications that come from alerts will be suppressed. Defaults to false.`,
+					Description: `(Optional) If enabled, notifications that come from alerts will be suppressed. Default: ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "owner_team_id",
@@ -265,7 +265,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "api_key",
-					Description: `(Computed) API key of the created integration ## Import API Integrations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_api_integration.defaultintegration 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
+					Description: `(Computed) API key of the created integration ## Import API Integrations can be imported using the ` + "`" + `integration_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_api_integration.this integration_id` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -275,7 +275,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "api_key",
-					Description: `(Computed) API key of the created integration ## Import API Integrations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_api_integration.defaultintegration 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
+					Description: `(Computed) API key of the created integration ## Import API Integrations can be imported using the ` + "`" + `integration_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_api_integration.this integration_id` + "`" + ``,
 				},
 			},
 		},
@@ -334,11 +334,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ignore_responders_from_payload",
-					Description: `(Optional) If enabled, the integration will ignore recipients sent in request payloads. Defaults to false.`,
+					Description: `(Optional) If enabled, the integration will ignore recipients sent in request payloads. Default: ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "suppress_notifications",
-					Description: `(Optional) If enabled, notifications that come from alerts will be suppressed. Defaults to false.`,
+					Description: `(Optional) If enabled, notifications that come from alerts will be suppressed. Default: ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "owner_team_id",
@@ -358,13 +358,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Email based Integration. ## Import Email Integrations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_email_integration.test 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
+					Description: `The ID of the Opsgenie Email based Integration. ## Import Email Integrations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_email_integration.test id` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Email based Integration. ## Import Email Integrations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_email_integration.test 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
+					Description: `The ID of the Opsgenie Email based Integration. ## Import Email Integrations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_email_integration.test id` + "`" + ``,
 				},
 			},
 		},
@@ -416,13 +416,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Escalation. ## Import Escalations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_escalation.test 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
+					Description: `The ID of the Opsgenie Escalation. ## Import Escalations can be imported using the ` + "`" + `escalation_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_escalation.test escalation_id` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Escalation. ## Import Escalations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_escalation.test 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
+					Description: `The ID of the Opsgenie Escalation. ## Import Escalations can be imported using the ` + "`" + `escalation_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_escalation.test escalation_id` + "`" + ``,
 				},
 			},
 		},
@@ -470,7 +470,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "alert_tags",
-					Description: `(Optional) Specifies the alert tags for heartbeat expiration alert. ## Attributes Reference Only the arguments listed above are exposed as attributes. ## Import Heartbeat Integrations can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_heartbeat.test geniehearbeat-%s` + "`" + ``,
+					Description: `(Optional) Specifies the alert tags for heartbeat expiration alert. ## Attributes Reference Only the arguments listed above are exposed as attributes. ## Import Heartbeat Integrations can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_heartbeat.test name` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -488,13 +488,13 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Incident Template. ## Import Service can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_incident_template.test 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
+					Description: `The ID of the Opsgenie Incident Template. ## Import Service can be imported using the ` + "`" + `template_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_incident_template.test template_id` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Incident Template. ## Import Service can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_incident_template.test 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
+					Description: `The ID of the Opsgenie Incident Template. ## Import Service can be imported using the ` + "`" + `template_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_incident_template.test template_id` + "`" + ``,
 				},
 			},
 		},
@@ -645,13 +645,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Maintenance Policy. ## Import Maintenance policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_maintenance.test 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
+					Description: `The ID of the Opsgenie Maintenance Policy. ## Import Maintenance policies can be imported using the ` + "`" + `policy_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_maintenance.test policy_id` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Maintenance Policy. ## Import Maintenance policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_maintenance.test 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
+					Description: `The ID of the Opsgenie Maintenance Policy. ## Import Maintenance policies can be imported using the ` + "`" + `policy_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_maintenance.test policy_id` + "`" + ``,
 				},
 			},
 		},
@@ -799,16 +799,16 @@ var (
 					Description: `(Required) How many times to repeat. This is a integer attribute. The ` + "`" + `de_duplication_action` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
-					Name:        "duration",
-					Description: `(Required) Duration of this action. This is a block, structure is documented below.`,
-				},
-				resource.Attribute{
 					Name:        "de_duplication_action_type",
-					Description: `(Required) Deduplication type. Possible values are: ` + "`" + `value-based` + "`" + `, ` + "`" + `frequency-based` + "`" + ``,
+					Description: `(Required) Deduplication type. Possible values are: "value-based", "frequency-based"`,
 				},
 				resource.Attribute{
 					Name:        "count",
-					Description: `(Required) - Count The ` + "`" + `delay_action` + "`" + ` block supports:`,
+					Description: `(Required) - Count`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Optional) Duration of this action (only required for "frequency-based" de-duplication action). This is a block, structure is documented below. The ` + "`" + `delay_action` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "delay_option",
@@ -836,13 +836,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Notification Policy. ## Import Notification policies can be imported using the ` + "`" + `team id` + "`" + ` and ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_notification_policy.test teamId/Id` + "`" + ` For this example: - Team Id = ` + "`" + `c827c472-31f2-497b-9ec6-8ec855d7d94c` + "`" + ` - Notification Policy Id = ` + "`" + `2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ` ` + "`" + `$ terraform import opsgenie_notification_policy.test c827c472-31f2-497b-9ec6-8ec855d7d94c/2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ``,
+					Description: `The ID of the Opsgenie Notification Policy. ## Import Notification policies can be imported using the ` + "`" + `team_id` + "`" + ` and ` + "`" + `notification_policy_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_notification_policy.test team_id/notification_policy_id` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Notification Policy. ## Import Notification policies can be imported using the ` + "`" + `team id` + "`" + ` and ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_notification_policy.test teamId/Id` + "`" + ` For this example: - Team Id = ` + "`" + `c827c472-31f2-497b-9ec6-8ec855d7d94c` + "`" + ` - Notification Policy Id = ` + "`" + `2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ` ` + "`" + `$ terraform import opsgenie_notification_policy.test c827c472-31f2-497b-9ec6-8ec855d7d94c/2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ``,
+					Description: `The ID of the Opsgenie Notification Policy. ## Import Notification policies can be imported using the ` + "`" + `team_id` + "`" + ` and ` + "`" + `notification_policy_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_notification_policy.test team_id/notification_policy_id` + "`" + ``,
 				},
 			},
 		},
@@ -867,11 +867,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "action_type",
-					Description: `(Required) Type of the action that notification rule will have. Allowed values: "create-alert", "acknowledged-alert", "closed-alert", "assigned-alert", "add-note", "schedule-start", "schedule-end", "incoming-call-routing"`,
+					Description: `(Required) Type of the action that notification rule will have. Allowed values: ` + "`" + `create-alert` + "`" + `, ` + "`" + `acknowledged-alert` + "`" + `, ` + "`" + `closed-alert` + "`" + `, ` + "`" + `assigned-alert` + "`" + `, ` + "`" + `add-note` + "`" + `, ` + "`" + `schedule-start` + "`" + `, ` + "`" + `schedule-end` + "`" + `, ` + "`" + `incoming-call-routing` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "notification_time",
-					Description: `(Optional) List of Time Periods that notification for schedule start/end will be sent. Allowed values: "just-before", "15-minutes-ago", "1-hour-ago", "1-day-ago". If ` + "`" + `action_type` + "`" + ` is "schedule-start" or "schedule-end" then it is required.`,
+					Description: `(Optional) List of Time Periods that notification for schedule start/end will be sent. Allowed values: ` + "`" + `just-before` + "`" + `, ` + "`" + `15-minutes-ago` + "`" + `, ` + "`" + `1-hour-ago` + "`" + `, ` + "`" + `1-day-ago` + "`" + `. If ` + "`" + `action_type` + "`" + ` is ` + "`" + `schedule-start` + "`" + ` or ` + "`" + `schedule-end` + "`" + ` then it is required.`,
 				},
 				resource.Attribute{
 					Name:        "steps",
@@ -879,15 +879,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) If policy should be enabled. Default: true The ` + "`" + `steps` + "`" + ` block supports:`,
+					Description: `(Optional) If policy should be enabled. Default: ` + "`" + `true` + "`" + ` The ` + "`" + `steps` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) Defined if this step is enabled. Default: true`,
+					Description: `(Optional) Defined if this step is enabled. Default: ` + "`" + `true` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "send_after",
-					Description: `(Optional) Minute time period notification will be sent after.`,
+					Description: `(Optional) Time period, in minutes, notification will be sent after.`,
 				},
 				resource.Attribute{
 					Name:        "contact",
@@ -895,27 +895,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "method",
-					Description: `(Required) Contact method. Possible values: "email", "sms", "voice", "mobile"`,
+					Description: `(Required) Contact method. Possible values: ` + "`" + `email` + "`" + `, ` + "`" + `sms` + "`" + `, ` + "`" + `voice` + "`" + `, ` + "`" + `mobile` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "to",
-					Description: `(Required) Address of a given method (eg. phone number for sms/voice or email address for email) The ` + "`" + `filter` + "`" + ` block supports:`,
+					Description: `(Required) Address of a given method (eg. email address for ` + "`" + `email` + "`" + `, phone number for ` + "`" + `sms` + "`" + `/` + "`" + `voice` + "`" + ` or mobile application name for ` + "`" + `mobile` + "`" + `) The ` + "`" + `criteria` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Kind of matching filter "match-all", "match-any-condition", "match-all-conditions"`,
+					Description: `(Required) Kind of matching filter. Possible values: ` + "`" + `match-all` + "`" + `, ` + "`" + `match-any-condition` + "`" + `, ` + "`" + `match-all-conditions` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "conditions",
-					Description: `(Optional) Defines the fields and values when the condition applies ` + "`" + `conditions` + "`" + ` support the following:`,
+					Description: `(Optional) Defines the fields and values when the condition applies The ` + "`" + `conditions` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "field",
-					Description: `(Required) Possible values: "message", "alias", "description", "source", "entity", "tags", "actions", "details", "extra-properties", "recipients", "teams", "priority"`,
+					Description: `(Required) Possible values: ` + "`" + `message` + "`" + `, ` + "`" + `alias` + "`" + `, ` + "`" + `description` + "`" + `, ` + "`" + `source` + "`" + `, ` + "`" + `entity` + "`" + `, ` + "`" + `tags` + "`" + `, ` + "`" + `actions` + "`" + `, ` + "`" + `details` + "`" + `, ` + "`" + `extra-properties` + "`" + `, ` + "`" + `recipients` + "`" + `, ` + "`" + `teams` + "`" + `, ` + "`" + `priority` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "operation",
-					Description: `(Required) Possible values: "matches", "contains", "starts-with", "ends-with", "equals", "contains-key", "contains-value", "greater-than", "less-than", "is-empty", "equals-ignore-whitespace`,
+					Description: `(Required) Possible values: ` + "`" + `matches` + "`" + `, ` + "`" + `contains` + "`" + `, ` + "`" + `starts-with` + "`" + `, ` + "`" + `ends-with` + "`" + `, ` + "`" + `equals` + "`" + `, ` + "`" + `contains-key` + "`" + `, ` + "`" + `contains-value` + "`" + `, ` + "`" + `greater-than` + "`" + `, ` + "`" + `less-than` + "`" + `, ` + "`" + `is-empty` + "`" + `, ` + "`" + `equals-ignore-whitespace` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -923,11 +923,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "not",
-					Description: `(Optional) Indicates behaviour of the given operation. Default value is false`,
+					Description: `(Optional) Indicates behaviour of the given operation. Default: ` + "`" + `false` + "`" + ``,
 				},
 				resource.Attribute{
-					Name:        "expected value",
-					Description: `(Optional) User defined value that will be compared with alert field according to the operation. Default value is empty string`,
+					Name:        "expected_value",
+					Description: `(Optional) User defined value that will be compared with alert field according to the operation. Default: empty string`,
 				},
 				resource.Attribute{
 					Name:        "order",
@@ -935,13 +935,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Notification Rule. ## Import Notification policies can be imported using the ` + "`" + `user id` + "`" + ` and ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_notification_rule.test userId/Id` + "`" + ` For this example: - User Id = ` + "`" + `c827c472-31f2-497b-9ec6-8ec855d7d94c` + "`" + ` - Notification Rule Id = ` + "`" + `2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ` ` + "`" + `$ terraform import opsgenie_notification_rule.test c827c472-31f2-497b-9ec6-8ec855d7d94c/2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ``,
+					Description: `The ID of the Opsgenie Notification Rule. ## Import Notification policies can be imported using the ` + "`" + `user_id/notification_rule_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_notification_rule.test user_id/notification_rule_id` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Notification Rule. ## Import Notification policies can be imported using the ` + "`" + `user id` + "`" + ` and ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_notification_rule.test userId/Id` + "`" + ` For this example: - User Id = ` + "`" + `c827c472-31f2-497b-9ec6-8ec855d7d94c` + "`" + ` - Notification Rule Id = ` + "`" + `2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ` ` + "`" + `$ terraform import opsgenie_notification_rule.test c827c472-31f2-497b-9ec6-8ec855d7d94c/2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ``,
+					Description: `The ID of the Opsgenie Notification Rule. ## Import Notification policies can be imported using the ` + "`" + `user_id/notification_rule_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_notification_rule.test user_id/notification_rule_id` + "`" + ``,
 				},
 			},
 		},
@@ -969,7 +969,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "timezone",
-					Description: `(Optional) Timezone of schedule. Please look at [Supported Timezone Ids](https://docs.opsgenie.com/docs/supported-timezone-ids) for available timezones - Defaults to "America/New_York".`,
+					Description: `(Optional) Timezone of schedule. Please look at [Supported Timezone Ids](https://docs.opsgenie.com/docs/supported-timezone-ids) for available timezones - Default: ` + "`" + `America/New_York` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -981,13 +981,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Schedule. ## Import Schedule can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_schedule.test 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
+					Description: `The ID of the Opsgenie Schedule. ## Import Schedule can be imported using the ` + "`" + `schedule_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_schedule.test schedule_id` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Schedule. ## Import Schedule can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_schedule.test 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
+					Description: `The ID of the Opsgenie Schedule. ## Import Schedule can be imported using the ` + "`" + `schedule_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_schedule.test schedule_id` + "`" + ``,
 				},
 			},
 		},
@@ -1096,13 +1096,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Schedule Rotation ## Import Schedule Rotations can be imported using the ` + "`" + `id` + "`" + ` and ` + "`" + `schedule_id` + "`" + `, e.g.`,
+					Description: `The ID of the Opsgenie Schedule Rotation ## Import Schedule Rotations can be imported using the ` + "`" + `schedule_id/rotation_id` + "`" + `, e.g.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Schedule Rotation ## Import Schedule Rotations can be imported using the ` + "`" + `id` + "`" + ` and ` + "`" + `schedule_id` + "`" + `, e.g.`,
+					Description: `The ID of the Opsgenie Schedule Rotation ## Import Schedule Rotations can be imported using the ` + "`" + `schedule_id/rotation_id` + "`" + `, e.g.`,
 				},
 			},
 		},
@@ -1130,13 +1130,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Service. ## Import Teams can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_service.this 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
+					Description: `The ID of the Opsgenie Service. ## Import Teams can be imported using the ` + "`" + `service_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_service.this service_id` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Service. ## Import Teams can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_service.this 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
+					Description: `The ID of the Opsgenie Service. ## Import Teams can be imported using the ` + "`" + `service_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_service.this service_id` + "`" + ``,
 				},
 			},
 		},
@@ -1162,7 +1162,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "condition_match_type",
-					Description: `(Optional) A Condition type, supported types are: "match-all", "match-any-condition", "match-all-conditions". Default: "match-all"`,
+					Description: `(Optional) A Condition type, supported types are: ` + "`" + `match-all` + "`" + `, ` + "`" + `match-any-condition` + "`" + `, ` + "`" + `match-all-conditions` + "`" + `. Default: ` + "`" + `match-all` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "conditions",
@@ -1170,11 +1170,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "field",
-					Description: `(Required) Specifies which alert field will be used in condition. Possible values are "message", "alias", "description", "source", "entity", "tags", "actions", "details", "extra-properties", "recipients", "teams", "priority"`,
+					Description: `(Required) Specifies which alert field will be used in condition. Possible values are ` + "`" + `message` + "`" + `, ` + "`" + `alias` + "`" + `, ` + "`" + `description` + "`" + `, ` + "`" + `source` + "`" + `, ` + "`" + `entity` + "`" + `, ` + "`" + `tags` + "`" + `, ` + "`" + `actions` + "`" + `, ` + "`" + `details` + "`" + `, ` + "`" + `extra-properties` + "`" + `, ` + "`" + `recipients` + "`" + `, ` + "`" + `teams` + "`" + `, ` + "`" + `priority` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "operation",
-					Description: `(Required) It is the operation that will be executed for the given field and key. Possible operations are "matches", "contains", "starts-with", "ends-with", "equals", "contains-key", "contains-value", "greater-than", "less-than", "is-empty", "equals-ignore-whitespace".`,
+					Description: `(Required) It is the operation that will be executed for the given field and key. Possible operations are ` + "`" + `matches` + "`" + `, ` + "`" + `contains` + "`" + `, ` + "`" + `starts-with` + "`" + `, ` + "`" + `ends-with` + "`" + `, ` + "`" + `equals` + "`" + `, ` + "`" + `contains-key` + "`" + `, ` + "`" + `contains-value` + "`" + `, ` + "`" + `greater-than` + "`" + `, ` + "`" + `less-than` + "`" + `, ` + "`" + `is-empty` + "`" + `, ` + "`" + `equals-ignore-whitespace` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "not",
@@ -1202,7 +1202,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "priority",
-					Description: `(Required) Priority level of the alert. Possible values are P1, P2, P3, P4 and P5`,
+					Description: `(Required) Priority level of the alert. Possible values are ` + "`" + `P1` + "`" + `, ` + "`" + `P2` + "`" + `, ` + "`" + `P3` + "`" + `, ` + "`" + `P4` + "`" + ` and ` + "`" + `P5` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "stakeholder_properties",
@@ -1222,13 +1222,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Service Incident Policy. ## Import Service Incident Rule can be imported using the ` + "`" + `service_id/service_incident_rule_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_service_incident_rule.this 812be1a1-32c8-4666-a7fb-03ecc385106c/b84ed86f-6ce3-4388-91ac-7638ac0a8052` + "`" + ``,
+					Description: `The ID of the Opsgenie Service Incident Policy. ## Import Service Incident Rule can be imported using the ` + "`" + `service_id/service_incident_rule_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_service_incident_rule.this service_id/service_incident_rule_id` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Service Incident Policy. ## Import Service Incident Rule can be imported using the ` + "`" + `service_id/service_incident_rule_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_service_incident_rule.this 812be1a1-32c8-4666-a7fb-03ecc385106c/b84ed86f-6ce3-4388-91ac-7638ac0a8052` + "`" + ``,
+					Description: `The ID of the Opsgenie Service Incident Policy. ## Import Service Incident Rule can be imported using the ` + "`" + `service_id/service_incident_rule_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_service_incident_rule.this service_id/service_incident_rule_id` + "`" + ``,
 				},
 			},
 		},
@@ -1252,7 +1252,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ignore_members",
-					Description: `(Optional) Set to true to ignore any configured member blocks and any team member added/updated/removed via OpsGenie web UI. Use this option e.g. to maintain membership via web UI only and use it only for new teams. Changing the value for existing teams might lead to strange behaviour. Defaults to false.`,
+					Description: `(Optional) Set to true to ignore any configured member blocks and any team member added/updated/removed via OpsGenie web UI. Use this option e.g. to maintain membership via web UI only and use it only for new teams. Changing the value for existing teams might lead to strange behaviour. Default: ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "delete_default_resources",
@@ -1268,17 +1268,17 @@ var (
 				},
 				resource.Attribute{
 					Name:        "role",
-					Description: `(Optional) The role for the user within the Team - can be either 'admin' or 'user', defaults to 'user' if not set. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The role for the user within the Team - can be either ` + "`" + `admin` + "`" + ` or ` + "`" + `user` + "`" + `. Default: ` + "`" + `user` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Team. ## Import Teams can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_team.team1 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
+					Description: `The ID of the Opsgenie Team. ## Import Teams can be imported using the ` + "`" + `team_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_team.team1 team_id` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Team. ## Import Teams can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_team.team1 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
+					Description: `The ID of the Opsgenie Team. ## Import Teams can be imported using the ` + "`" + `team_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_team.team1 team_id` + "`" + ``,
 				},
 			},
 		},
@@ -1320,7 +1320,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "notify",
-					Description: `(Required) Target entity of schedule, escalation, or the reserved word none which will be notified in routing rule. The possible values for notify type : schedule, escalation, none ` + "`" + `notify` + "`" + ` supports the following:`,
+					Description: `(Required) Target entity of schedule, escalation, or the reserved word none which will be notified in routing rule. The possible values are: ` + "`" + `schedule` + "`" + `, ` + "`" + `escalation` + "`" + `, ` + "`" + `none` + "`" + ` ` + "`" + `notify` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -1336,7 +1336,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Type of the operation will be applied on conditions. Should be one of match-all, match-any-condition or match-all-conditions.`,
+					Description: `(Required) Type of the operation will be applied on conditions. Should be one of ` + "`" + `match-all` + "`" + `, ` + "`" + `match-any-condition` + "`" + ` or ` + "`" + `match-all-conditions` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "conditions",
@@ -1344,7 +1344,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "field",
-					Description: `(Required) Specifies which alert field will be used in condition. Possible values are message, alias, description, source, entity, tags, actions, extra-properties, recipients, teams or priority.`,
+					Description: `(Required) Specifies which alert field will be used in condition. Possible values are ` + "`" + `message` + "`" + `, ` + "`" + `alias` + "`" + `, ` + "`" + `description` + "`" + `, ` + "`" + `source` + "`" + `, ` + "`" + `entity` + "`" + `, ` + "`" + `tags` + "`" + `, ` + "`" + `actions` + "`" + `, ` + "`" + `extra-properties` + "`" + `, ` + "`" + `recipients` + "`" + `, ` + "`" + `teams` + "`" + ` or ` + "`" + `priority` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -1356,11 +1356,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "operation",
-					Description: `(true) It is the operation that will be executed for the given field and key. Possible operations are matches, contains, starts-with, ends-with, equals, contains-key, contains-value, greater-than, less-than, is-empty and equals-ignore-whitespace.`,
+					Description: `(true) It is the operation that will be executed for the given field and key. Possible operations are ` + "`" + `matches` + "`" + `, ` + "`" + `contains` + "`" + `, ` + "`" + `starts-with` + "`" + `, ` + "`" + `ends-with` + "`" + `, ` + "`" + `equals` + "`" + `, ` + "`" + `contains-key` + "`" + `, ` + "`" + `contains-value` + "`" + `, ` + "`" + `greater-than` + "`" + `, ` + "`" + `less-than` + "`" + `, ` + "`" + `is-empty` + "`" + ` and ` + "`" + `equals-ignore-whitespace` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "expectedValue",
-					Description: `(Optional) User defined value that will be compared with alert field according to the operation. Default value is empty string.`,
+					Description: `(Optional) User defined value that will be compared with alert field according to the operation. Default: empty string.`,
 				},
 				resource.Attribute{
 					Name:        "order",
@@ -1368,13 +1368,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Team Routing Rule. ## Import Team Routing Rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_team_routing_rule.ruletest teamId/routingRuleId` + "`" + ` For this example: - Team Id = ` + "`" + `c827c472-31f2-497b-9ec6-8ec855d7d94c` + "`" + ` - Routing Rule Id = ` + "`" + `2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ` ` + "`" + `$ terraform import opsgenie_team_routing_rule.ruletest c827c472-31f2-497b-9ec6-8ec855d7d94c/2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ``,
+					Description: `The ID of the Opsgenie Team Routing Rule. ## Import Team Routing Rules can be imported using the ` + "`" + `team_id/routing_rule_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_team_routing_rule.ruletest team_id/routing_rule_id` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Team Routing Rule. ## Import Team Routing Rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_team_routing_rule.ruletest teamId/routingRuleId` + "`" + ` For this example: - Team Id = ` + "`" + `c827c472-31f2-497b-9ec6-8ec855d7d94c` + "`" + ` - Routing Rule Id = ` + "`" + `2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ` ` + "`" + `$ terraform import opsgenie_team_routing_rule.ruletest c827c472-31f2-497b-9ec6-8ec855d7d94c/2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ``,
+					Description: `The ID of the Opsgenie Team Routing Rule. ## Import Team Routing Rules can be imported using the ` + "`" + `team_id/routing_rule_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_team_routing_rule.ruletest team_id/routing_rule_id` + "`" + ``,
 				},
 			},
 		},
@@ -1426,13 +1426,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie User. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_user.user da4faf16-5546-41e4-8330-4d0002b74048s` + "`" + ``,
+					Description: `The ID of the Opsgenie User. ## Import Users can be imported using the ` + "`" + `user_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_user.user user_id` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie User. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_user.user da4faf16-5546-41e4-8330-4d0002b74048s` + "`" + ``,
+					Description: `The ID of the Opsgenie User. ## Import Users can be imported using the ` + "`" + `user_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_user.user user_id` + "`" + ``,
 				},
 			},
 		},
@@ -1465,13 +1465,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Contact. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_user_contact.testcontact username/contactId` + "`" + ` For this example: - Username = ` + "`" + `genie@awesometeam.com` + "`" + ` - Contact Id = ` + "`" + `2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ` ` + "`" + `$ terraform import opsgenie_user_contact.testcontact genie@awesometeam.com/2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ``,
+					Description: `The ID of the Opsgenie Contact. ## Import Users can be imported using the ` + "`" + `username/contact_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_user_contact.testcontact username/contact_id` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Contact. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_user_contact.testcontact username/contactId` + "`" + ` For this example: - Username = ` + "`" + `genie@awesometeam.com` + "`" + ` - Contact Id = ` + "`" + `2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ` ` + "`" + `$ terraform import opsgenie_user_contact.testcontact genie@awesometeam.com/2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ``,
+					Description: `The ID of the Opsgenie Contact. ## Import Users can be imported using the ` + "`" + `username/contact_id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_user_contact.testcontact username/contact_id` + "`" + ``,
 				},
 			},
 		},

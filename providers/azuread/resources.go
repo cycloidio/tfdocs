@@ -27,16 +27,24 @@ Manages an Application within Azure Active Directory.
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "api",
+					Description: `(Optional) An ` + "`" + `api` + "`" + ` block as documented below, which configures API related settings for this Application.`,
+				},
+				resource.Attribute{
 					Name:        "app_role",
-					Description: `(Optional) A collection of ` + "`" + `app_role` + "`" + ` blocks as documented below. For more information https://docs.microsoft.com/en-us/azure/architecture/multitenant-identity/app-roles`,
+					Description: `(Optional) A collection of ` + "`" + `app_role` + "`" + ` blocks as documented below. For more information see [official documentation on Application Roles](https://docs.microsoft.com/en-us/azure/architecture/multitenant-identity/app-roles).`,
 				},
 				resource.Attribute{
 					Name:        "available_to_other_tenants",
-					Description: `(Optional) Is this Azure AD Application available to other tenants? Defaults to ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `(Required) The display name for the application.`,
+				},
+				resource.Attribute{
+					Name:        "fallback_public_client_enabled",
+					Description: `(Optional) The fallback application type as public client, such as an installed application running on a mobile device. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "group_membership_claims",
@@ -44,23 +52,23 @@ Manages an Application within Azure Active Directory.
 				},
 				resource.Attribute{
 					Name:        "homepage",
-					Description: `(optional) The URL to the application's home page.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "identifier_uris",
-					Description: `(Optional) A list of user-defined URI(s) that uniquely identify a Web application within it's Azure AD tenant, or within a verified custom domain if the application is multi-tenant.`,
+					Description: `(Optional) The user-defined URI(s) that uniquely identify an application within it's Azure AD tenant, or within a verified custom domain if the application is multi-tenant.`,
 				},
 				resource.Attribute{
 					Name:        "logout_url",
-					Description: `(Optional) The URL of the logout page.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "oauth2_allow_implicit_flow",
-					Description: `(Optional) Does this Azure AD Application allow OAuth2.0 implicit flow tokens? Defaults to ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "oauth2_permissions",
-					Description: `(Optional) A collection of OAuth 2.0 permission scopes that the web API (resource) app exposes to client apps. Each permission is covered by ` + "`" + `oauth2_permissions` + "`" + ` blocks as documented below. ->`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "optional_claims",
@@ -68,7 +76,7 @@ Manages an Application within Azure Active Directory.
 				},
 				resource.Attribute{
 					Name:        "owners",
-					Description: `(Optional) A list of Azure AD Object IDs that will be granted ownership of the application. Defaults to the Object ID of the caller creating the application. If a list is specified the caller Object ID will no longer be included unless explicitly added to the list.`,
+					Description: `(Optional) A list of object IDs of principals that will be granted ownership of the application. It's recommended to specify the object ID of the authenticated principal running Terraform, to ensure sufficient permissions that the application can be subsequently updated.`,
 				},
 				resource.Attribute{
 					Name:        "prevent_duplicate_names",
@@ -76,19 +84,27 @@ Manages an Application within Azure Active Directory.
 				},
 				resource.Attribute{
 					Name:        "public_client",
-					Description: `(Optional) Is this Azure AD Application a public client? Defaults to ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "reply_urls",
-					Description: `(Optional) A list of URLs that user tokens are sent to for sign in, or the redirect URIs that OAuth 2.0 authorization codes and access tokens are sent to.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "required_resource_access",
 					Description: `(Optional) A collection of ` + "`" + `required_resource_access` + "`" + ` blocks as documented below.`,
 				},
 				resource.Attribute{
+					Name:        "sign_in_audience",
+					Description: `(Optional) The Microsoft account types that are supported for the current application. Must be one of ` + "`" + `AzureADMyOrg` + "`" + ` or ` + "`" + `AzureADMultipleOrgs` + "`" + `. Defaults to ` + "`" + `AzureADMyOrg` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Type of an application: ` + "`" + `webapp/api` + "`" + ` or ` + "`" + `native` + "`" + `. Defaults to ` + "`" + `webapp/api` + "`" + `. For ` + "`" + `native` + "`" + ` apps type ` + "`" + `identifier_uris` + "`" + ` property can not not be set. ~>`,
+					Description: `(Optional,`,
+				},
+				resource.Attribute{
+					Name:        "web",
+					Description: `(Optional) A ` + "`" + `web` + "`" + ` block as documented below, which configures web related settings for this Application. --- ` + "`" + `access_token` + "`" + ` and/or ` + "`" + `id_token` + "`" + ` blocks support the following:`,
 				},
 				resource.Attribute{
 					Name:        "additional_properties",
@@ -104,31 +120,71 @@ Manages an Application within Azure Active Directory.
 				},
 				resource.Attribute{
 					Name:        "source",
-					Description: `The source of the claim. If ` + "`" + `source` + "`" + ` is absent, the claim is a predefined optional claim. If ` + "`" + `source` + "`" + ` is ` + "`" + `user` + "`" + `, the value of ` + "`" + `name` + "`" + ` is the extension property from the user object. --- ` + "`" + `app_role` + "`" + ` block supports the following:`,
+					Description: `The source of the claim. If ` + "`" + `source` + "`" + ` is absent, the claim is a predefined optional claim. If ` + "`" + `source` + "`" + ` is ` + "`" + `user` + "`" + `, the value of ` + "`" + `name` + "`" + ` is the extension property from the user object. --- ` + "`" + `api` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "oauth2_permission_scope",
+					Description: `(Optional) One or more ` + "`" + `oauth2_permission_scope` + "`" + ` blocks as documented below, to describe delegated permissions exposed by the web API represented by this Application. --- ` + "`" + `app_role` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "allowed_member_types",
-					Description: `(Required) Specifies whether this app role definition can be assigned to users and groups by setting to ` + "`" + `User` + "`" + `, or to other applications (that are accessing this application in daemon service scenarios) by setting to ` + "`" + `Application` + "`" + `, or to both.`,
+					Description: `(Required) Specifies whether this app role definition can be assigned to users and groups by setting to ` + "`" + `User` + "`" + `, or to other applications (that are accessing this application in a standalone scenario) by setting to ` + "`" + `Application` + "`" + `, or to both.`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Required) Permission help text that appears in the admin app assignment and consent experiences.`,
+					Description: `(Required) Description of the app role that appears when the role is being assigned and, if the role functions as an application permissions, during the consent experiences.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `(Required) Display name for the permission that appears in the admin consent and app assignment experiences.`,
+					Description: `(Required) Display name for the app role that appears during app role assignment and in consent experiences.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Determines if the app role is enabled: Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique identifier of the app role. This attribute is computed and cannot be specified manually in this block. If you need to specify a custom ` + "`" + `id` + "`" + `, it's recommended to use the [azuread_application_app_role](application_app_role.html) resource.`,
 				},
 				resource.Attribute{
-					Name:        "is_enabled",
-					Description: `(Optional) Determines if the app role is enabled: Defaults to ` + "`" + `true` + "`" + `.`,
+					Name:        "value",
+					Description: `(Optional) The value that is used for the ` + "`" + `roles` + "`" + ` claim in ID tokens and OAuth 2.0 access tokens that are authenticating an assigned service or user principal. ~> In version 2.0 of the provider, the ` + "`" + `id` + "`" + ` property will become mandatory. For more information, see the [Upgrade Guide for v2.0](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/guides/microsoft-graph.html). ->`,
+				},
+				resource.Attribute{
+					Name:        "access_token_issuance_enabled",
+					Description: `(Optional) Whether this web application can request an access token using OAuth 2.0 implicit flow. --- ` + "`" + `oauth2_permission_scope` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "admin_consent_description",
+					Description: `(Required) Delegated permission description that appears in all tenant-wide admin consent experiences, intended to be read by an administrator granting the permission on behalf of all users.`,
+				},
+				resource.Attribute{
+					Name:        "admin_consent_display_name",
+					Description: `(Required) Display name for the delegated permission, intended to be read by an administrator granting the permission on behalf of all users.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Determines if the permission scope is enabled. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) The unique identifier of the delegated permission. Must be a valid UUID.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Whether this delegated permission should be considered safe for non-admin users to consent to on behalf of themselves, or whether an administrator should be required for consent to the permissions. Defaults to ` + "`" + `User` + "`" + `. Possible values are ` + "`" + `User` + "`" + ` or ` + "`" + `Admin` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "user_consent_description",
+					Description: `(Optional) Delegated permission description that appears in the end user consent experience, intended to be read by a user consenting on their own behalf.`,
+				},
+				resource.Attribute{
+					Name:        "user_consent_display_name",
+					Description: `(Optional) Display name for the delegated permission that appears in the end user consent experience.`,
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Optional) Specifies the value of the roles claim that the application should expect in the authentication and access tokens. --- ` + "`" + `oauth2_permissions` + "`" + ` block supports the following:`,
+					Description: `(Optional) The value that is used for the ` + "`" + `scp` + "`" + ` claim in OAuth 2.0 access tokens. If you don't specify any ` + "`" + `oauth2_permission_scope` + "`" + ` blocks, your Application will be assigned the default ` + "`" + `user_impersonation` + "`" + ` scope by Azure Active Directory. However, due to the declarative nature of Terraform configuration, if you do specify any ` + "`" + `oauth2_permission_scope` + "`" + ` blocks, you will need to include a block for the ` + "`" + `user_impersonation` + "`" + ` scope if you need it, or it will be removed (see the example above). ~> The behaviour of the default ` + "`" + `user_impersonation` + "`" + ` scope will change in version 2.0 of the provider. For more information, see the [Upgrade Guide for v2.0](../guides/microsoft-graph.html). ->`,
 				},
 				resource.Attribute{
 					Name:        "admin_consent_description",
@@ -164,11 +220,11 @@ Manages an Application within Azure Active Directory.
 				},
 				resource.Attribute{
 					Name:        "resource_access",
-					Description: `(Required) A collection of ` + "`" + `resource_access` + "`" + ` blocks as documented below.`,
+					Description: `(Required) A collection of ` + "`" + `resource_access` + "`" + ` blocks as documented below, describing OAuth2.0 permission scopes and app roles that the application requires from the specified resource.`,
 				},
 				resource.Attribute{
 					Name:        "resource_app_id",
-					Description: `(Required) The unique identifier for the resource that the application requires access to. This should be equal to the appId declared on the target resource application. ->`,
+					Description: `(Required) The unique identifier for the resource that the application requires access to. This should be the Application ID of the target application. ->`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -176,25 +232,41 @@ Manages an Application within Azure Active Directory.
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Specifies whether the id property references an ` + "`" + `OAuth2Permission` + "`" + ` or an ` + "`" + `AppRole` + "`" + `. Possible values are ` + "`" + `Scope` + "`" + ` or ` + "`" + `Role` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required) Specifies whether the ` + "`" + `id` + "`" + ` property references an ` + "`" + `OAuth2Permission` + "`" + ` or an ` + "`" + `AppRole` + "`" + `. Possible values are ` + "`" + `Scope` + "`" + ` or ` + "`" + `Role` + "`" + `. --- ` + "`" + `web` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "homepage_url",
+					Description: `(Optional) Home page or landing page of the application.`,
+				},
+				resource.Attribute{
+					Name:        "implicit_grant",
+					Description: `(Optional) An ` + "`" + `implicit_grant` + "`" + ` block as documented above.`,
+				},
+				resource.Attribute{
+					Name:        "logout_url",
+					Description: `(Optional) The URL that will be used by Microsoft's authorization service to sign out a user using front-channel, back-channel or SAML logout protocols.`,
+				},
+				resource.Attribute{
+					Name:        "redirect_uris",
+					Description: `(Optional) A list of URLs where user tokens are sent for sign-in, or the redirect URIs where OAuth 2.0 authorization codes and access tokens are sent. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "application_id",
-					Description: `The Application ID (Client ID).`,
+					Description: `The Application ID (Also called Client ID).`,
 				},
 				resource.Attribute{
 					Name:        "object_id",
-					Description: `The Application's Object ID. ## Import Azure Active Directory Applications can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azuread_application.test 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The application's Object ID. ## Import Azure Active Directory Applications can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azuread_application.test 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
-					Description: `The Application ID (Client ID).`,
+					Description: `The Application ID (Also called Client ID).`,
 				},
 				resource.Attribute{
 					Name:        "object_id",
-					Description: `The Application's Object ID. ## Import Azure Active Directory Applications can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azuread_application.test 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The application's Object ID. ## Import Azure Active Directory Applications can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azuread_application.test 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -219,7 +291,7 @@ Manages an App Role associated with an Application within Azure Active Directory
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allowed_member_types",
-					Description: `(Required) Specifies whether this app role definition can be assigned to users and groups by setting to ` + "`" + `User` + "`" + `, or to other applications (that are accessing this application in daemon service scenarios) by setting to ` + "`" + `Application` + "`" + `, or to both.`,
+					Description: `(Required) Specifies whether this app role definition can be assigned to users and groups by setting to ` + "`" + `User` + "`" + `, or to other applications (that are accessing this application in a standalone scenario) by setting to ` + "`" + `Application` + "`" + `, or to both.`,
 				},
 				resource.Attribute{
 					Name:        "application_object_id",
@@ -227,23 +299,23 @@ Manages an App Role associated with an Application within Azure Active Directory
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Required) Permission help text that appears in the admin app assignment and consent experiences.`,
+					Description: `(Required) Description of the app role that appears when the role is being assigned and, if the role functions as an application permissions, during the consent experiences.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `(Required) Display name for the permission that appears in the admin consent and app assignment experiences.`,
+					Description: `(Required) Display name for the app role that appears during app role assignment and in consent experiences.`,
 				},
 				resource.Attribute{
-					Name:        "is_enabled",
-					Description: `(Optional) Determines if the app role is enabled. Defaults to ` + "`" + `true` + "`" + `.`,
+					Name:        "enabled",
+					Description: `(Optional) Determines if the app role is enabled: Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "role_id",
-					Description: `(Optional) Specifies a custom UUID for the app role. If omitted, a random UUID will be automatically generated. Changing this field forces a new resource to be created.`,
+					Description: `(Optional) The unique identifier for the app role. If omitted, a random UUID will be automatically generated. Must be a valid UUID. Changing this field forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Optional) Specifies the value of the roles claim that the application should expect in the authentication and access tokens. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) The value that is used for the ` + "`" + `roles` + "`" + ` claim in ID tokens and OAuth 2.0 access tokens that are authenticating an assigned service or user principal. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -255,7 +327,7 @@ Manages an App Role associated with an Application within Azure Active Directory
 			ShortDescription: ``,
 			Description: `
 
-Manages a Certificate associated with an Application within Azure Active Directory.
+Manages a certificate associated with an Application within Azure Active Directory. These are also referred to as client certificates during authentication.
 
 -> **NOTE:** If you're authenticating using a Service Principal then it must have permissions to both ` + "`" + `Read and write all applications` + "`" + ` and ` + "`" + `Sign in and read user profile` + "`" + ` within the ` + "`" + `Windows Azure Active Directory` + "`" + ` API.
 
@@ -310,6 +382,8 @@ Manages a Certificate associated with an Application within Azure Active Directo
 
 Manages an OAuth2 Permission (also known as a Scope) associated with an Application within Azure Active Directory.
 
+~> This resource is deprecated in favour of [azuread_application_oauth2_permission_scope](application_oauth2_permission_scope.html) and will be removed in version 2.0 of the provider.
+
 -> **NOTE:** If you're authenticating using a Service Principal then it must have permissions to both ` + "`" + `Read and write all applications` + "`" + ` and ` + "`" + `Sign in and read user profile` + "`" + ` within the ` + "`" + `Windows Azure Active Directory` + "`" + ` API.
 
 `,
@@ -361,12 +435,71 @@ Manages an OAuth2 Permission (also known as a Scope) associated with an Applicat
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azuread_application_oauth2_permission_scope",
+			Category:         "Applications",
+			ShortDescription: ``,
+			Description: `
+
+Manages an OAuth 2.0 Permission Scope associated with an application.
+
+-> **NOTE:** If you're authenticating using a Service Principal then it must have permissions to both ` + "`" + `Read and write all applications` + "`" + ` and ` + "`" + `Sign in and read user profile` + "`" + ` within the ` + "`" + `Windows Azure Active Directory` + "`" + ` API.
+
+`,
+			Keywords: []string{
+				"applications",
+				"application",
+				"oauth2",
+				"permission",
+				"scope",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "admin_consent_description",
+					Description: `(Required) Delegated permission description that appears in all tenant-wide admin consent experiences, intended to be read by an administrator granting the permission on behalf of all users.`,
+				},
+				resource.Attribute{
+					Name:        "admin_consent_display_name",
+					Description: `(Required) Display name for the delegated permission, intended to be read by an administrator granting the permission on behalf of all users.`,
+				},
+				resource.Attribute{
+					Name:        "application_object_id",
+					Description: `(Required) The Object ID of the Application for which this Permission should be created. Changing this field forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Determines if the permission scope is enabled. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "scope_id",
+					Description: `(Optional) Specifies a custom UUID for the permission scope. If omitted, a random UUID will be automatically generated. Changing this field forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Whether this delegated permission should be considered safe for non-admin users to consent to on behalf of themselves, or whether an administrator should be required for consent to the permissions. Defaults to ` + "`" + `User` + "`" + `. Possible values are ` + "`" + `User` + "`" + ` or ` + "`" + `Admin` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "user_consent_description",
+					Description: `(Optional) Delegated permission description that appears in the end user consent experience, intended to be read by a user consenting on their own behalf.`,
+				},
+				resource.Attribute{
+					Name:        "user_consent_display_name",
+					Description: `(Optional) Display name for the delegated permission that appears in the end user consent experience.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The value that is used for the ` + "`" + `scp` + "`" + ` claim in OAuth 2.0 access tokens. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azuread_application_password",
 			Category:         "Applications",
 			ShortDescription: ``,
 			Description: `
 
-Manages a Password associated with an Application within Azure Active Directory. Also can be referred to as Client secrets.
+Manages a password credential associated with an application within Azure Active Directory. These are also referred to as client secrets during authentication.
 
 -> **NOTE:** If you're authenticating using a Service Principal then it must have permissions to both ` + "`" + `Read and write all applications` + "`" + ` and ` + "`" + `Sign in and read user profile` + "`" + ` within the ` + "`" + `Windows Azure Active Directory` + "`" + ` API.
 
@@ -382,8 +515,8 @@ Manages a Password associated with an Application within Azure Active Directory.
 					Description: `(Required) The Object ID of the Application for which this password should be created. Changing this field forces a new resource to be created.`,
 				},
 				resource.Attribute{
-					Name:        "description",
-					Description: `(Optional) A description for the Password. ->`,
+					Name:        "display_name",
+					Description: `(Optional) A display name for the password.`,
 				},
 				resource.Attribute{
 					Name:        "end_date",
@@ -391,7 +524,7 @@ Manages a Password associated with an Application within Azure Active Directory.
 				},
 				resource.Attribute{
 					Name:        "end_date_relative",
-					Description: `(Optional) A relative duration for which the Password is valid until, for example ` + "`" + `240h` + "`" + ` (10 days) or ` + "`" + `2400h30m` + "`" + `. Changing this field forces a new resource to be created. ~>`,
+					Description: `(Optional) A relative duration for which the Password is valid until, for example ` + "`" + `240h` + "`" + ` (10 days) or ` + "`" + `2400h30m` + "`" + `. Changing this field forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "key_id",
@@ -533,16 +666,80 @@ Manages a Service Principal associated with an Application within Azure Active D
 					Description: `(Optional) A list of tags to apply to the Service Principal. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "app_roles",
+					Description: `A collection of ` + "`" + `app_roles` + "`" + ` blocks as documented below. For more information [official documentation](https://docs.microsoft.com/en-us/azure/architecture/multitenant-identity/app-roles).`,
+				},
+				resource.Attribute{
 					Name:        "display_name",
 					Description: `The Display Name of the Application associated with this Service Principal.`,
 				},
 				resource.Attribute{
+					Name:        "oauth2_permission_scopes",
+					Description: `A collection of OAuth 2.0 delegated permissions exposed by the associated Application. Each permission is covered by an ` + "`" + `oauth2_permission_scopes` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
 					Name:        "oauth2_permissions",
-					Description: `A collection of OAuth 2.0 permissions exposed by the associated Application. Each permission is covered by an ` + "`" + `oauth2_permission` + "`" + ` block as documented below.`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "object_id",
-					Description: `The Object ID of the Service Principal. --- ` + "`" + `oauth2_permission` + "`" + ` block exports the following:`,
+					Description: `The Object ID of the Service Principal. --- ` + "`" + `app_roles` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "allowed_member_types",
+					Description: `Specifies whether this app role definition can be assigned to users and groups, or to other applications (that are accessing this application in daemon service scenarios). Possible values are: ` + "`" + `User` + "`" + ` and ` + "`" + `Application` + "`" + `, or both.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Permission help text that appears in the admin app assignment and consent experiences.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Display name for the permission that appears in the admin consent and app assignment experiences.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique identifier of the ` + "`" + `app_role` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `Determines if the app role is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Specifies the value of the roles claim that the application should expect in the authentication and access tokens. --- ` + "`" + `oauth2_permission_scopes` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "admin_consent_description",
+					Description: `The description of the admin consent.`,
+				},
+				resource.Attribute{
+					Name:        "admin_consent_display_name",
+					Description: `The display name of the admin consent.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Is this permission enabled?`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique identifier for one of the ` + "`" + `OAuth2Permission` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the permission.`,
+				},
+				resource.Attribute{
+					Name:        "user_consent_description",
+					Description: `The description of the user consent.`,
+				},
+				resource.Attribute{
+					Name:        "user_consent_display_name",
+					Description: `The display name of the user consent.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The name of this permission. --- ` + "`" + `oauth2_permissions` + "`" + ` block (deprecated) exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "admin_consent_description",
@@ -579,16 +776,80 @@ Manages a Service Principal associated with an Application within Azure Active D
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "app_roles",
+					Description: `A collection of ` + "`" + `app_roles` + "`" + ` blocks as documented below. For more information [official documentation](https://docs.microsoft.com/en-us/azure/architecture/multitenant-identity/app-roles).`,
+				},
+				resource.Attribute{
 					Name:        "display_name",
 					Description: `The Display Name of the Application associated with this Service Principal.`,
 				},
 				resource.Attribute{
+					Name:        "oauth2_permission_scopes",
+					Description: `A collection of OAuth 2.0 delegated permissions exposed by the associated Application. Each permission is covered by an ` + "`" + `oauth2_permission_scopes` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
 					Name:        "oauth2_permissions",
-					Description: `A collection of OAuth 2.0 permissions exposed by the associated Application. Each permission is covered by an ` + "`" + `oauth2_permission` + "`" + ` block as documented below.`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "object_id",
-					Description: `The Object ID of the Service Principal. --- ` + "`" + `oauth2_permission` + "`" + ` block exports the following:`,
+					Description: `The Object ID of the Service Principal. --- ` + "`" + `app_roles` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "allowed_member_types",
+					Description: `Specifies whether this app role definition can be assigned to users and groups, or to other applications (that are accessing this application in daemon service scenarios). Possible values are: ` + "`" + `User` + "`" + ` and ` + "`" + `Application` + "`" + `, or both.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Permission help text that appears in the admin app assignment and consent experiences.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Display name for the permission that appears in the admin consent and app assignment experiences.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique identifier of the ` + "`" + `app_role` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `Determines if the app role is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Specifies the value of the roles claim that the application should expect in the authentication and access tokens. --- ` + "`" + `oauth2_permission_scopes` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "admin_consent_description",
+					Description: `The description of the admin consent.`,
+				},
+				resource.Attribute{
+					Name:        "admin_consent_display_name",
+					Description: `The display name of the admin consent.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Is this permission enabled?`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique identifier for one of the ` + "`" + `OAuth2Permission` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the permission.`,
+				},
+				resource.Attribute{
+					Name:        "user_consent_description",
+					Description: `The description of the user consent.`,
+				},
+				resource.Attribute{
+					Name:        "user_consent_display_name",
+					Description: `The display name of the user consent.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The name of this permission. --- ` + "`" + `oauth2_permissions` + "`" + ` block (deprecated) exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "admin_consent_description",
@@ -631,7 +892,7 @@ Manages a Service Principal associated with an Application within Azure Active D
 			ShortDescription: ``,
 			Description: `
 
-Manages a Certificate associated with a Service Principal within Azure Active Directory.
+Manages a certificate associated with a Service Principal within Azure Active Directory.
 
 -> **NOTE:** If you're authenticating using a Service Principal then it must have permissions to both ` + "`" + `Read and write all applications` + "`" + ` and ` + "`" + `Sign in and read user profile` + "`" + ` within the ` + "`" + `Windows Azure Active Directory` + "`" + ` API.
 
@@ -685,7 +946,7 @@ Manages a Certificate associated with a Service Principal within Azure Active Di
 			ShortDescription: ``,
 			Description: `
 
-Manages a Password associated with a Service Principal within Azure Active Directory.
+Manages a password credential associated with a service principal within Azure Active Directory. See also the [azuread_application_password resource](application_password.html).
 
 -> **NOTE:** If you're authenticating using a Service Principal then it must have permissions to both ` + "`" + `Read and write all applications` + "`" + ` and ` + "`" + `Sign in and read user profile` + "`" + ` within the ` + "`" + `Windows Azure Active Directory` + "`" + ` API.
 
@@ -699,7 +960,11 @@ Manages a Password associated with a Service Principal within Azure Active Direc
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) A description for the Password. ->`,
+					Description: `(Optional,`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) The display name for the password.`,
 				},
 				resource.Attribute{
 					Name:        "end_date",
@@ -707,7 +972,7 @@ Manages a Password associated with a Service Principal within Azure Active Direc
 				},
 				resource.Attribute{
 					Name:        "end_date_relative",
-					Description: `(Optional) A relative duration for which the Password is valid until, for example ` + "`" + `240h` + "`" + ` (10 days) or ` + "`" + `2400h30m` + "`" + `. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Changing this field forces a new resource to be created. ~>`,
+					Description: `(Optional) A relative duration for which the Password is valid until, for example ` + "`" + `240h` + "`" + ` (10 days) or ` + "`" + `2400h30m` + "`" + `. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Changing this field forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "key_id",
@@ -779,7 +1044,7 @@ Manages a User within Azure Active Directory.
 				},
 				resource.Attribute{
 					Name:        "immutable_id",
-					Description: `(Optional) The value used to associate an on-premise Active Directory user account with their Azure AD user object. This must be specified if you are using a federated domain for the user's userPrincipalName (UPN) property when creating a new user account.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "job_title",
@@ -791,7 +1056,19 @@ Manages a User within Azure Active Directory.
 				},
 				resource.Attribute{
 					Name:        "mobile",
+					Description: `(Optional,`,
+				},
+				resource.Attribute{
+					Name:        "mobile_phone",
 					Description: `(Optional) The primary cellular telephone number for the user.`,
+				},
+				resource.Attribute{
+					Name:        "office_location",
+					Description: `(Optional) The office location in the user's place of business.`,
+				},
+				resource.Attribute{
+					Name:        "onpremises_immutable_id",
+					Description: `(Optional) The value used to associate an on-premise Active Directory user account with their Azure AD user object. This must be specified if you are using a federated domain for the user's userPrincipalName (UPN) property when creating a new user account.`,
 				},
 				resource.Attribute{
 					Name:        "password",
@@ -799,7 +1076,7 @@ Manages a User within Azure Active Directory.
 				},
 				resource.Attribute{
 					Name:        "physical_delivery_office_name",
-					Description: `(Optional) The office location in the user's place of business.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "postal_code",
@@ -873,17 +1150,18 @@ Manages a User within Azure Active Directory.
 
 	resourcesMap = map[string]int{
 
-		"azuread_application":                   0,
-		"azuread_application_app_role":          1,
-		"azuread_application_certificate":       2,
-		"azuread_application_oauth2_permission": 3,
-		"azuread_application_password":          4,
-		"azuread_group":                         5,
-		"azuread_group_member":                  6,
-		"azuread_service_principal":             7,
-		"azuread_service_principal_certificate": 8,
-		"azuread_service_principal_password":    9,
-		"azuread_user":                          10,
+		"azuread_application":                         0,
+		"azuread_application_app_role":                1,
+		"azuread_application_certificate":             2,
+		"azuread_application_oauth2_permission":       3,
+		"azuread_application_oauth2_permission_scope": 4,
+		"azuread_application_password":                5,
+		"azuread_group":                               6,
+		"azuread_group_member":                        7,
+		"azuread_service_principal":                   8,
+		"azuread_service_principal_certificate":       9,
+		"azuread_service_principal_password":          10,
+		"azuread_user":                                11,
 	}
 )
 

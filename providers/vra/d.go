@@ -12,7 +12,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_cloud_account_aws",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_cloud_account_aws.`,
 			Description: `\_cloud\_account\_aws
 
@@ -124,7 +124,7 @@ Provides a VMware vRA vra_cloud_account_aws data source.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_cloud_account_azure",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_cloud_account_azure.`,
 			Description: `\_cloud\_account\_azure
 
@@ -252,7 +252,7 @@ Provides a VMware vRA vra_cloud_account_azure data source.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_cloud_account_gcp",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_cloud_account_gcp.`,
 			Description: `\_cloud\_account\_gcp
 
@@ -380,7 +380,7 @@ Provides a VMware vRA vra_cloud_account_gcp data source.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_cloud_account_nsxt",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_cloud_account_nsxt.`,
 			Description: `\_cloud\_account\_nsxt
 
@@ -508,7 +508,7 @@ Provides a VMware vRA vra_cloud_account_nsxt data source.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_cloud_account_nsxv",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_cloud_account_nsxv.`,
 			Description: `\_cloud\_account\_nsxv
 
@@ -636,7 +636,7 @@ Provides a VMware vRA vra_cloud_account_nsxv data source.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_cloud_account_vmc",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_cloud_account_vmc.`,
 			Description: `\_cloud\_account\_vmc
 
@@ -788,7 +788,7 @@ Provides a VMware vRA vra_cloud_account_vmc data source.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_cloud_account_vsphere",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_cloud_account_vsphere.`,
 			Description: `\_cloud\_account\_vsphere
 
@@ -924,7 +924,7 @@ Provides a VMware vRA vra_cloud_account_vsphere data source.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_fabric_datastore_vsphere",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vSphere fabric datastores.`,
 			Description: `
 `,
@@ -1025,7 +1025,7 @@ Provides a VMware vRA vra_cloud_account_vsphere data source.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_fabric_network",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vRA fabric networks.`,
 			Description: `
 `,
@@ -1095,6 +1095,10 @@ Provides a VMware vRA vra_cloud_account_vsphere data source.
 					Name:        "updated_at",
 					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
 				},
+				resource.Attribute{
+					Name:        "custom_properties",
+					Description: `Additional properties that may be used to extend the base resource.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -1157,12 +1161,16 @@ Provides a VMware vRA vra_cloud_account_vsphere data source.
 					Name:        "updated_at",
 					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
 				},
+				resource.Attribute{
+					Name:        "custom_properties",
+					Description: `Additional properties that may be used to extend the base resource.`,
+				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_fabric_storage_account_azure",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for fabric Azure storage account.`,
 			Description: `
 `,
@@ -1279,7 +1287,7 @@ Provides a VMware vRA vra_cloud_account_vsphere data source.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_fabric_storage_policy_vsphere",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for fabric vSphere storage policy.`,
 			Description: `
 `,
@@ -1372,7 +1380,7 @@ Provides a VMware vRA vra_cloud_account_vsphere data source.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_image",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vRA Images.`,
 			Description: `
 `,
@@ -1433,7 +1441,7 @@ Provides a VMware vRA vra_cloud_account_vsphere data source.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_network_domain",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for Network domain objects.`,
 			Description: `
 `,
@@ -1546,7 +1554,7 @@ Provides a VMware vRA vra_cloud_account_vsphere data source.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_region",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_region.`,
 			Description:      ``,
 			Keywords:         []string{},
@@ -1556,7 +1564,7 @@ Provides a VMware vRA vra_cloud_account_vsphere data source.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_security_group",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for security groups.`,
 			Description: `
 `,
@@ -1653,7 +1661,7 @@ Provides a VMware vRA vra_cloud_account_vsphere data source.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_block_device",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_block_device.`,
 			Description: `
 
@@ -1841,7 +1849,7 @@ Provides a data lookup for a vra_block_device.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_block_device_snapshot",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_block_device_snapshots.`,
 			Description: `
 `,
@@ -1922,7 +1930,7 @@ Provides a data lookup for a vra_block_device.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_blueprint",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `A blueprint data source.`,
 			Description: `\_blueprint
 
@@ -2118,7 +2126,7 @@ This data source provides information about a cloud template (blueprint) in vRA.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_blueprint_version",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `A blueprint version data source.`,
 			Description: `\_blueprint\_version
 
@@ -2262,7 +2270,7 @@ This data source provides information about a cloud template (blueprint) version
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_catalog_item",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `A data source for a catalog item.`,
 			Description: `\_catalog\_item
 
@@ -2478,7 +2486,7 @@ This data source provides information about a catalog item in vRA.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_catalog_source_blueprint",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `A data source for catalog source of type cloud template (blueprint).`,
 			Description: `\_catalog\_source\_blueprint
 
@@ -2602,7 +2610,7 @@ This data source provides information about a catalog source of type cloud templ
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_catalog_source_entitlement",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `A data source for catalog source entitlement.`,
 			Description: `\_catalog\_source\_entitlement
 
@@ -2686,7 +2694,7 @@ This data source provides information about a catalog source entitlement in vRA.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_data_collector",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for data collector data source.`,
 			Description: `
 `,
@@ -2727,7 +2735,7 @@ This data source provides information about a catalog source entitlement in vRA.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_deployment",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `A deployment data source.`,
 			Description: `\_deployment
 
@@ -3331,7 +3339,7 @@ This data source provides information about a deployment in vRA.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_image_profile",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_image_profile.`,
 			Description: `
 `,
@@ -3408,7 +3416,7 @@ This data source provides information about a deployment in vRA.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_machine",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_machine.`,
 			Description: `
 `,
@@ -3561,7 +3569,7 @@ This data source provides information about a deployment in vRA.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_network",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_network.`,
 			Description: `
 `,
@@ -3702,7 +3710,7 @@ This data source provides information about a deployment in vRA.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_network_profile",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_network_profile.`,
 			Description: `
 `,
@@ -3851,7 +3859,7 @@ This data source provides information about a deployment in vRA.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_project",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_project.`,
 			Description: `
 `,
@@ -3864,6 +3872,10 @@ This data source provides information about a deployment in vRA.
 				resource.Attribute{
 					Name:        "constraints",
 					Description: `(Optional) List of storage, network and extensibility constraints to be applied when provisioning through this project.`,
+				},
+				resource.Attribute{
+					Name:        "custom_properties",
+					Description: `(Optional) The project custom properties which are added to all requests in this project.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -3911,7 +3923,7 @@ This data source provides information about a deployment in vRA.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_region",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for region data source.`,
 			Description: `
 `,
@@ -3992,7 +4004,7 @@ This data source provides information about a deployment in vRA.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_region_enumeration",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for region enumeration data source.`,
 			Description: `
 `,
@@ -4033,7 +4045,7 @@ This data source provides information about a deployment in vRA.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_region_enumeration_aws",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for region enumeration for AWS cloud account.`,
 			Description: `
 `,
@@ -4062,7 +4074,7 @@ This data source provides information about a deployment in vRA.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_region_enumeration_azure",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for region enumeration for Azure cloud account.`,
 			Description: `
 `,
@@ -4099,7 +4111,7 @@ This data source provides information about a deployment in vRA.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_region_enumeration_gcp",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for region enumeration for GCP cloud account.`,
 			Description: `
 `,
@@ -4136,7 +4148,7 @@ This data source provides information about a deployment in vRA.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_region_enumeration_vmc",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for region enumeration for VMC cloud account.`,
 			Description: `
 `,
@@ -4185,7 +4197,7 @@ This data source provides information about a deployment in vRA.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_region_enumeration_vsphere",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for region enumeration for vSphere cloud account.`,
 			Description: `
 `,
@@ -4226,7 +4238,7 @@ This data source provides information about a deployment in vRA.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_storage_profile",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_storage_profile.`,
 			Description: `
 `,
@@ -4343,7 +4355,7 @@ This data source provides information about a deployment in vRA.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_storage_profile_aws",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_storage_profile_aws.`,
 			Description: `
 `,
@@ -4460,7 +4472,7 @@ This data source provides information about a deployment in vRA.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_storage_profile_azure",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_storage_profile_azure.`,
 			Description: `
 `,
@@ -4609,7 +4621,7 @@ This data source provides information about a deployment in vRA.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_storage_profile_vsphere",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_storage_profile_vsphere.`,
 			Description: `
 `,
@@ -4770,7 +4782,7 @@ This data source provides information about a deployment in vRA.
 		&resource.Resource{
 			Name:             "",
 			Type:             "vra_vra_zone",
-			Category:         "Resources",
+			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_zone.`,
 			Description: `
 `,
@@ -4813,8 +4825,8 @@ This data source provides information about a deployment in vRA.
 					Description: `The id of the region for which this zone is defined`,
 				},
 				resource.Attribute{
-					Name:        "region_id",
-					Description: `A link to the region that is associated with the storage profile.`,
+					Name:        "external_region_id",
+					Description: `The id of the region for which this zone is defined.`,
 				},
 				resource.Attribute{
 					Name:        "shared_resources",
@@ -4863,8 +4875,8 @@ This data source provides information about a deployment in vRA.
 					Description: `The id of the region for which this zone is defined`,
 				},
 				resource.Attribute{
-					Name:        "region_id",
-					Description: `A link to the region that is associated with the storage profile.`,
+					Name:        "external_region_id",
+					Description: `The id of the region for which this zone is defined.`,
 				},
 				resource.Attribute{
 					Name:        "shared_resources",

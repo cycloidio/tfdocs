@@ -34,6 +34,82 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "metal_connection",
+			Category:         "Resources",
+			ShortDescription: `Request/Create Equinix Fabric Connection`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the connection resource`,
+				},
+				resource.Attribute{
+					Name:        "organization_id",
+					Description: `(Required) ID of the organization responsible for the connection`,
+				},
+				resource.Attribute{
+					Name:        "redundancy",
+					Description: `(Required) Connection redundancy - redundant or primary`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Connection type - dedicated or shared`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Optional) ID of the project where the connection is scoped to, must be set for shared connection`,
+				},
+				resource.Attribute{
+					Name:        "metro",
+					Description: `(Optional) Metro where the connection will be created`,
+				},
+				resource.Attribute{
+					Name:        "facility",
+					Description: `(Optional) Facility where the connection will be created`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for the connection resource ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the connection resource`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `Fabric Token from the [Equinix Fabric Portal](https://ecxfabric.equinix.com/dashboard)`,
+				},
+				resource.Attribute{
+					Name:        "speed",
+					Description: `Port speed in bits per second`,
+				},
+				resource.Attribute{
+					Name:        "ports",
+					Description: `List of connection ports - primary (` + "`" + `ports[0]` + "`" + `) and secondary (` + "`" + `ports[1]` + "`" + `). Schema of port is described in documentation of the [metal_connection datasource](../data-sources/connection.md).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the connection resource`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `Fabric Token from the [Equinix Fabric Portal](https://ecxfabric.equinix.com/dashboard)`,
+				},
+				resource.Attribute{
+					Name:        "speed",
+					Description: `Port speed in bits per second`,
+				},
+				resource.Attribute{
+					Name:        "ports",
+					Description: `List of connection ports - primary (` + "`" + `ports[0]` + "`" + `) and secondary (` + "`" + `ports[1]` + "`" + `). Schema of port is described in documentation of the [metal_connection datasource](../data-sources/connection.md).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "metal_device",
 			Category:         "Resources",
 			ShortDescription: `Provides an Equinix Metal device resource. This can be used to create, modify, and delete devices.`,
@@ -54,7 +130,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "facilities",
-					Description: `List of facility codes with deployment preferences. Equinix Metal API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or ` + "`" + `any` + "`" + ` (a wildcard). To find the facility code, visit [Facilities API docs](https://metal.equinix.com/developers/api/facilities/), set your API auth token in the top of the page and see JSON from the API response.`,
+					Description: `List of facility codes with deployment preferences. Equinix Metal API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or ` + "`" + `any` + "`" + ` (a wildcard). To find the facility code, visit [Facilities API docs](https://metal.equinix.com/developers/api/facilities/), set your API auth token in the top of the page and see JSON from the API response. Conflicts with ` + "`" + `metro` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "metro",
+					Description: `Metro area for the new device. Conflicts with ` + "`" + `facilities` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "plan",
@@ -86,7 +166,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "reservation_ids",
-					Description: `String of UUID of [IP block reservations](reserved_ip_block.md) from which the public IPv4 address should be taken. You can supply one ` + "`" + `ip_address` + "`" + ` block per IP address type. If you use the ` + "`" + `ip_address` + "`" + ` you must always pass a block for ` + "`" + `private_ipv4` + "`" + `. To learn more about using the reserved IP addresses for new devices, see the examples in the [metal_reserved_ip_block](reserved_ip_block.md) documentation. ## Attributes Reference The following attributes are exported:`,
+					Description: `List of UUIDs of [IP block reservations](reserved_ip_block.md) from which the public IPv4 address should be taken. You can supply one ` + "`" + `ip_address` + "`" + ` block per IP address type. If you use the ` + "`" + `ip_address` + "`" + ` you must always pass a block for ` + "`" + `private_ipv4` + "`" + `. To learn more about using the reserved IP addresses for new devices, see the examples in the [metal_reserved_ip_block](reserved_ip_block.md) documentation. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "access_private_ipv4",
@@ -127,6 +207,10 @@ var (
 				resource.Attribute{
 					Name:        "locked",
 					Description: `Whether the device is locked`,
+				},
+				resource.Attribute{
+					Name:        "metro",
+					Description: `The metro area where the device is deployed`,
 				},
 				resource.Attribute{
 					Name:        "network",
@@ -202,7 +286,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "updated",
-					Description: `The timestamp for the last time the device was updated`,
+					Description: `The timestamp for the last time the device was updated ## Import This resource can be imported using an existing device ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_device {existing_device_id} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -247,6 +331,10 @@ var (
 					Description: `Whether the device is locked`,
 				},
 				resource.Attribute{
+					Name:        "metro",
+					Description: `The metro area where the device is deployed`,
+				},
+				resource.Attribute{
 					Name:        "network",
 					Description: `The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks:`,
 				},
@@ -320,7 +408,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "updated",
-					Description: `The timestamp for the last time the device was updated`,
+					Description: `The timestamp for the last time the device was updated ## Import This resource can be imported using an existing device ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_device {existing_device_id} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -494,7 +582,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "logo",
-					Description: `Logo URL`,
+					Description: `Logo URL ## Import This resource can be imported using an existing organization ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_organization {existing_organization_id} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -520,7 +608,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "logo",
-					Description: `Logo URL`,
+					Description: `Logo URL ## Import This resource can be imported using an existing organization ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_organization {existing_organization_id} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -637,7 +725,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_prefix",
-					Description: `The maximum number of route filters allowed per server`,
+					Description: `The maximum number of route filters allowed per server ## Import This resource can be imported using an existing project ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_project {existing_project_id} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -671,7 +759,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_prefix",
-					Description: `The maximum number of route filters allowed per server`,
+					Description: `The maximum number of route filters allowed per server ## Import This resource can be imported using an existing project ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_project {existing_project_id} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -785,7 +873,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "facility",
-					Description: `(Optional) Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4`,
+					Description: `(Optional) Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4, conflicts with ` + "`" + `metro` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "metro",
+					Description: `(Optional) Metro where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4, conflicts with ` + "`" + `facility` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -796,6 +888,10 @@ var (
 					Description: `The facility where the block was allocated, empty for global blocks`,
 				},
 				resource.Attribute{
+					Name:        "metro",
+					Description: `The metro where the block was allocated, empty for global blocks`,
+				},
+				resource.Attribute{
 					Name:        "project_id",
 					Description: `To which project the addresses beling`,
 				},
@@ -833,7 +929,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global",
-					Description: `boolean flag whether addresses from a block are global (i.e. can be assigned in any facility) Idempotent reference to a first "/32" address from a reserved block might look like this: ` + "`" + `join("/", [cidrhost(metal_reserved_ip_block.myblock.cidr_notation,0), "32"])` + "`" + ``,
+					Description: `boolean flag whether addresses from a block are global (i.e. can be assigned in any facility) Idempotent reference to a first "/32" address from a reserved block might look like this: ` + "`" + `join("/", [cidrhost(metal_reserved_ip_block.myblock.cidr_notation,0), "32"])` + "`" + ` ## Import This resource can be imported using an existing IP reservation ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_reserved_ip_block {existing_ip_reservation_id} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -842,6 +938,10 @@ var (
 					Description: `The facility where the block was allocated, empty for global blocks`,
 				},
 				resource.Attribute{
+					Name:        "metro",
+					Description: `The metro where the block was allocated, empty for global blocks`,
+				},
+				resource.Attribute{
 					Name:        "project_id",
 					Description: `To which project the addresses beling`,
 				},
@@ -879,7 +979,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global",
-					Description: `boolean flag whether addresses from a block are global (i.e. can be assigned in any facility) Idempotent reference to a first "/32" address from a reserved block might look like this: ` + "`" + `join("/", [cidrhost(metal_reserved_ip_block.myblock.cidr_notation,0), "32"])` + "`" + ``,
+					Description: `boolean flag whether addresses from a block are global (i.e. can be assigned in any facility) Idempotent reference to a first "/32" address from a reserved block might look like this: ` + "`" + `join("/", [cidrhost(metal_reserved_ip_block.myblock.cidr_notation,0), "32"])` + "`" + ` ## Import This resource can be imported using an existing IP reservation ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_reserved_ip_block {existing_ip_reservation_id} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -904,20 +1004,28 @@ var (
 					Description: `(Required) Maximum price user is willing to pay per hour per device`,
 				},
 				resource.Attribute{
-					Name:        "facilities",
-					Description: `(Required) Facility IDs where devices should be created`,
-				},
-				resource.Attribute{
-					Name:        "instance_parameters",
-					Description: `(Required) Device parameters. See device resource for details`,
-				},
-				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) Project ID`,
 				},
 				resource.Attribute{
 					Name:        "wait_for_devices",
-					Description: `(Optional) On resource creation - wait until all desired devices are active, on resource destruction - wait until devices are removed ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:`,
+					Description: `(Optional) On resource creation - wait until all desired devices are active, on resource destruction - wait until devices are removed`,
+				},
+				resource.Attribute{
+					Name:        "facilities",
+					Description: `(Optional) Facility IDs where devices should be created`,
+				},
+				resource.Attribute{
+					Name:        "metro",
+					Description: `(Optional) Metro where devices should be created`,
+				},
+				resource.Attribute{
+					Name:        "locked",
+					Description: `(Optional) Blocks deletion of the SpotMarketRequest device until the lock is disabled`,
+				},
+				resource.Attribute{
+					Name:        "instance_parameters",
+					Description: `(Required) Parameters for devices provisioned from this request. You can find the parameter description from the [metal_device doc](device.md).`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -931,11 +1039,19 @@ var (
 					Name:        "id",
 					Description: `The ID of the Spot Market Request`,
 				},
+				resource.Attribute{
+					Name:        "facilities",
+					Description: `The facilities where the Spot Market Request is applied. This is computed when ` + "`" + `metro` + "`" + ` is set or no specific location was requested. ## Import This resource can be imported using an existing spot market request ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_spot_market_request {existing_spot_market_request_id} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Spot Market Request`,
+				},
+				resource.Attribute{
+					Name:        "facilities",
+					Description: `The facilities where the Spot Market Request is applied. This is computed when ` + "`" + `metro` + "`" + ` is set or no specific location was requested. ## Import This resource can be imported using an existing spot market request ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_spot_market_request {existing_spot_market_request_id} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -981,7 +1097,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "updated",
-					Description: `The timestamp for the last time the SSH key was updated`,
+					Description: `The timestamp for the last time the SSH key was updated ## Import This resource can be imported using an existing SSH Key ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_ssh_key {existing_sshkey_id} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1011,7 +1127,67 @@ var (
 				},
 				resource.Attribute{
 					Name:        "updated",
-					Description: `The timestamp for the last time the SSH key was updated`,
+					Description: `The timestamp for the last time the SSH key was updated ## Import This resource can be imported using an existing SSH Key ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_ssh_key {existing_sshkey_id} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "metal_virtual_circuit",
+			Category:         "Resources",
+			ShortDescription: `Create Equinix Fabric Virtual Circuit`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "connection_id",
+					Description: `(Required) UUID of Connection where the VC is scoped to`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) UUID of the Project where the VC is scoped to`,
+				},
+				resource.Attribute{
+					Name:        "port_id",
+					Description: `(Required) UUID of the Connection Port where the VC is scoped to`,
+				},
+				resource.Attribute{
+					Name:        "nni_vlan",
+					Description: `(Required) Equinix Metal network-to-network VLAN ID`,
+				},
+				resource.Attribute{
+					Name:        "vlan_id",
+					Description: `(Required) UUID of the VLAN to associate`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the Virtual Circuit resource`,
+				},
+				resource.Attribute{
+					Name:        "facility",
+					Description: `(Optional) Facility where the connection will be created`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for the connection resource ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the virtal circuit`,
+				},
+				resource.Attribute{
+					Name:        "nni_nvid",
+					Description: `VLAN parameters, see the [documentation for Equinix Fabric](https://metal.equinix.com/developers/docs/networking/fabric/)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the virtal circuit`,
+				},
+				resource.Attribute{
+					Name:        "nni_nvid",
+					Description: `VLAN parameters, see the [documentation for Equinix Fabric](https://metal.equinix.com/developers/docs/networking/fabric/)`,
 				},
 			},
 		},
@@ -1033,17 +1209,21 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `Description string ## Attributes Reference The following attributes are exported:`,
+					Description: `Description string`,
 				},
 				resource.Attribute{
 					Name:        "vxlan",
-					Description: `VXLAN segment ID`,
+					Description: `VLAN ID, must be unique in metro ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "vxlan",
+					Description: `VXLAN segment ID ## Import This resource can be imported using an existing VLAN ID (UUID): ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_vlan {existing_vlan_id} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vxlan",
-					Description: `VXLAN segment ID`,
+					Description: `VXLAN segment ID ## Import This resource can be imported using an existing VLAN ID (UUID): ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_vlan {existing_vlan_id} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1228,19 +1408,21 @@ var (
 	resourcesMap = map[string]int{
 
 		"metal_bgp_session":          0,
-		"metal_device":               1,
-		"metal_device_network_type":  2,
-		"metal_ip_attachment":        3,
-		"metal_organization":         4,
-		"metal_port_vlan_attachment": 5,
-		"metal_project":              6,
-		"metal_project_ssh_key":      7,
-		"metal_reserved_ip_block":    8,
-		"metal_spot_market_request":  9,
-		"metal_ssh_key":              10,
-		"metal_vlan":                 11,
-		"metal_volume":               12,
-		"metal_volume_attachment":    13,
+		"metal_connection":           1,
+		"metal_device":               2,
+		"metal_device_network_type":  3,
+		"metal_ip_attachment":        4,
+		"metal_organization":         5,
+		"metal_port_vlan_attachment": 6,
+		"metal_project":              7,
+		"metal_project_ssh_key":      8,
+		"metal_reserved_ip_block":    9,
+		"metal_spot_market_request":  10,
+		"metal_ssh_key":              11,
+		"metal_virtual_circuit":      12,
+		"metal_vlan":                 13,
+		"metal_volume":               14,
+		"metal_volume_attachment":    15,
 	}
 )
 

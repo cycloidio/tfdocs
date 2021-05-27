@@ -2215,7 +2215,15 @@ A Resource is a database or server for which strongDM manages access.
 				},
 				resource.Attribute{
 					Name:        "username",
-					Description: `(Required)`,
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "port",
@@ -2243,11 +2251,67 @@ A Resource is a database or server for which strongDM manages access.
 				},
 				resource.Attribute{
 					Name:        "username",
-					Description: `(Required)`,
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "port",
 					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "port_forwarding",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "allow_deprecated_key_exchanges",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_private_key_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_private_key_key",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "port_forwarding",

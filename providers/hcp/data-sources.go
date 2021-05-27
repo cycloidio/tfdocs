@@ -13,7 +13,7 @@ var (
 			Name:             "",
 			Type:             "hcp_aws_network_peering",
 			Category:         "Data Sources",
-			ShortDescription: `The AWS Network peering data source provides information about an existing Network peering between an HVN and a peer AWS VPC.`,
+			ShortDescription: `The AWS network peering data source provides information about an existing network peering between an HVN and a peer AWS VPC.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -23,7 +23,7 @@ var (
 			Name:             "",
 			Type:             "hcp_aws_transit_gateway_attachment",
 			Category:         "Data Sources",
-			ShortDescription: `The AWS Transit Gateway Attachment data source provides information about an existing transit gateway attachment.`,
+			ShortDescription: `The AWS transit gateway attachment data source provides information about an existing transit gateway attachment.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -79,6 +79,26 @@ var (
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "hcp_hvn_route",
+			Category:         "Data Sources",
+			ShortDescription: `The HVN route data source provides information about an existing HVN route.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "hcp_vault_cluster",
+			Category:         "Data Sources",
+			ShortDescription: `The cluster data source provides information about an existing HCP Vault cluster.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
@@ -90,6 +110,8 @@ var (
 		"hcp_consul_cluster":                 4,
 		"hcp_consul_versions":                5,
 		"hcp_hvn":                            6,
+		"hcp_hvn_route":                      7,
+		"hcp_vault_cluster":                  8,
 	}
 )
 

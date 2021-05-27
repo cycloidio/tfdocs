@@ -539,6 +539,10 @@ var (
 					Description: `OIDC settings that control the authentication flow e.g. redirect urls and token settings.`,
 				},
 				resource.Attribute{
+					Name:        "post_logout_redirect_uri",
+					Description: `(Optional) The redirect_uri for the app to send the user to after logout.`,
+				},
+				resource.Attribute{
 					Name:        "redirect_uri",
 					Description: `(Optional) The redirect_uri for the OIDC flow. Will be computed by API if not given.`,
 				},
@@ -828,9 +832,48 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "onelogin_onelogin_role",
+			Type:             "onelogin_onelogin_privileges",
 			Category:         "Resources",
 			ShortDescription: `Manage App Rule resources.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the privilege.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for the Privilege.`,
+				},
+				resource.Attribute{
+					Name:        "user_ids",
+					Description: `(Optional) A list of user IDs for whom the privilege applies.`,
+				},
+				resource.Attribute{
+					Name:        "role_ids",
+					Description: `(Optional) A list of role IDs for whom the role applies.`,
+				},
+				resource.Attribute{
+					Name:        "privilege",
+					Description: `(Required) A list of statements that describe what the privilege grants access to.`,
+				},
+				resource.Attribute{
+					Name:        "statement",
+					Description: `(Required) At least one ` + "`" + `statement` + "`" + ` is required. Statements describe the effect granted to a resource type. In this case it allow's the privilege holder to lisst apps and users.`,
+				},
+				resource.Attribute{
+					Name:        "scope",
+					Description: `(Required) Target the privileged action against specific resources with the scope. In this case, the privilege only grants update access to users 123 and 345. ## Attributes Reference No further attributes are exported. ## Import A privilege can be imported using the OneLogin Privilege ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import onelogin_privilegess.super_admin <privilege id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "onelogin_onelogin_role",
+			Category:         "Resources",
+			ShortDescription: `Manage Role resources.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -1516,11 +1559,12 @@ var (
 		"onelogin_onelogin_app_rule":            2,
 		"onelogin_onelogin_auth_server":         3,
 		"onelogin_onelogin_oidc_app":            4,
-		"onelogin_onelogin_role":                5,
-		"onelogin_onelogin_saml_app":            6,
-		"onelogin_onelogin_smarthook":           7,
-		"onelogin_onelogin_user":                8,
-		"onelogin_onelogin_user_mapping":        9,
+		"onelogin_onelogin_privileges":          5,
+		"onelogin_onelogin_role":                6,
+		"onelogin_onelogin_saml_app":            7,
+		"onelogin_onelogin_smarthook":           8,
+		"onelogin_onelogin_user":                9,
+		"onelogin_onelogin_user_mapping":        10,
 	}
 )
 

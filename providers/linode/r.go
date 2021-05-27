@@ -257,16 +257,28 @@ var (
 					Description: `(Required) A short description of the Image. Labels cannot contain special characters.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A detailed description of this Image. - - - The following arguments apply to creating an image from an existing Linode Instance:`,
+				},
+				resource.Attribute{
 					Name:        "disk_id",
 					Description: `(Required) The ID of the Linode Disk that this Image will be created from.`,
 				},
 				resource.Attribute{
 					Name:        "linode_id",
-					Description: `(Required) The ID of the Linode that this Image will be created from. - - -`,
+					Description: `(Required) The ID of the Linode that this Image will be created from. - - - ~>`,
 				},
 				resource.Attribute{
-					Name:        "description",
-					Description: `(Optional) A detailed description of this Image. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Name:        "file_path",
+					Description: `(Required) The path of the image file to be uploaded.`,
+				},
+				resource.Attribute{
+					Name:        "file_hash",
+					Description: `(Optional) The MD5 hash of the file to be uploaded. This is used to trigger file updates.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) The region of the image. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -371,7 +383,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "watchdog_enabled",
-					Description: `(Optional) The watchdog, named Lassie, is a Shutdown Watchdog that monitors your Linode and will reboot it if it powers off unexpectedly. It works by issuing a boot job when your Linode powers off without a shutdown job being responsible. To prevent a loop, Lassie will give up if there have been more than 5 boot jobs issued within 15 minutes. ### Simplified Resource Arguments Just as the Linode API provides, these fields are for the most common provisioning use case, a single data disk, a single swap disk, and a single config. These arguments are not compatible with ` + "`" + `disk` + "`" + ` and ` + "`" + `config` + "`" + ` fields, described later.`,
+					Description: `(Optional) The watchdog, named Lassie, is a Shutdown Watchdog that monitors your Linode and will reboot it if it powers off unexpectedly. It works by issuing a boot job when your Linode powers off without a shutdown job being responsible. To prevent a loop, Lassie will give up if there have been more than 5 boot jobs issued within 15 minutes.`,
 				},
 				resource.Attribute{
 					Name:        "authorized_keys",
@@ -515,7 +527,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "memory_limit",
-					Description: `(Optional) - Defaults to the total RAM of the Linode ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `(Optional) - Defaults to the total RAM of the Linode`,
+				},
+				resource.Attribute{
+					Name:        "purpose",
+					Description: `(Required) The type of interface. (` + "`" + `public` + "`" + `, ` + "`" + `vlan` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Optional) The name of this interface. If the interface is a VLAN, a label is required.`,
+				},
+				resource.Attribute{
+					Name:        "ipam_address",
+					Description: `(Optional) This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -793,10 +817,6 @@ var (
 					Description: `(Optional) Throttle connections per second (0-20). Set to 0 (default) to disable throttling.`,
 				},
 				resource.Attribute{
-					Name:        "linode_id",
-					Description: `(Optional) The ID of a Linode Instance where the NodeBalancer should be attached.`,
-				},
-				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) A list of tags applied to this object. Tags are for organizational purposes only. ## Attributes This resource exports the following attributes:`,
 				},
@@ -811,6 +831,14 @@ var (
 				resource.Attribute{
 					Name:        "ipv6",
 					Description: `The Public IPv6 Address of this NodeBalancer`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `When this NodeBalancer was created`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `When this NodeBalancer was last updated.`,
 				},
 				resource.Attribute{
 					Name:        "in",
@@ -1000,12 +1028,48 @@ var (
 					Description: `(Optional) If true, the bucket will have CORS enabled for all origins.`,
 				},
 				resource.Attribute{
+					Name:        "versioning",
+					Description: `(Optional) Whether to enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.`,
+				},
+				resource.Attribute{
 					Name:        "certificate",
 					Description: `(Required) The Base64 encoded and PEM formatted SSL certificate.`,
 				},
 				resource.Attribute{
 					Name:        "private_key",
-					Description: `(Required) The private key associated with the TLS/SSL certificate. ## Import Linodes Object Storage Buckets can be imported using the resource ` + "`" + `id` + "`" + ` which is made of ` + "`" + `cluster:label` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_object_storage_bucket.mybucket us-east-1:foobar ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The private key associated with the TLS/SSL certificate. ### lifecycle_rule The following arguments are supported in the lifecycle_rule specification block:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The unique identifier for the rule.`,
+				},
+				resource.Attribute{
+					Name:        "prefix",
+					Description: `(Optional) The object key prefix identifying one or more objects to which the rule applies.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Specifies whether the lifecycle rule is active.`,
+				},
+				resource.Attribute{
+					Name:        "abort_incomplete_multipart_upload_days",
+					Description: `(Optional) Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.`,
+				},
+				resource.Attribute{
+					Name:        "date",
+					Description: `(Optional) Specifies the date after which you want the corresponding action to take effect.`,
+				},
+				resource.Attribute{
+					Name:        "days",
+					Description: `(Optional) Specifies the number of days after object creation when the specific rule action takes effect.`,
+				},
+				resource.Attribute{
+					Name:        "expired_object_delete_marker",
+					Description: `(Optional) On a versioned bucket (versioning-enabled or versioning-suspended bucket), you can add this element in the lifecycle configuration to direct Linode Object Storage to delete expired object delete markers. This cannot be specified with Days or Date in a Lifecycle Expiration Policy. ### noncurrent_version_expiration The following arguments are supported in the noncurrent_version_expiration specification block:`,
+				},
+				resource.Attribute{
+					Name:        "days",
+					Description: `(Required) Specifies the number of days non-current object versions expire. ## Import Linodes Object Storage Buckets can be imported using the resource ` + "`" + `id` + "`" + ` which is made of ` + "`" + `cluster:label` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_object_storage_bucket.mybucket us-east-1:foobar ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1340,7 +1404,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "restricted",
-					Description: `(optional) If true, this user will only have explicit permissions granted. ## Attributes Reference In addition to all the arguments above, the following attributes are exported.`,
+					Description: `(optional) If true, this user will only have explicit permissions granted.`,
+				},
+				resource.Attribute{
+					Name:        "domain_grant",
+					Description: `(optional) The domains the user has permissions access to.`,
+				},
+				resource.Attribute{
+					Name:        "image_grant",
+					Description: `(optional) The images the user has permissions access to.`,
+				},
+				resource.Attribute{
+					Name:        "linode_grant",
+					Description: `(optional) The Linodes the user has permissions access to.`,
+				},
+				resource.Attribute{
+					Name:        "longview_grant",
+					Description: `(optional) The longview the user has permissions access to.`,
+				},
+				resource.Attribute{
+					Name:        "nodebalancer_grant",
+					Description: `(optional) The NodeBalancers the user has permissions access to.`,
+				},
+				resource.Attribute{
+					Name:        "stackscript_grant",
+					Description: `(optional) The StackScripts the user has permissions access to.`,
+				},
+				resource.Attribute{
+					Name:        "volume_grant",
+					Description: `(optional) The volumes the user has permissions access to. ## Attributes Reference In addition to all the arguments above, the following attributes are exported.`,
 				},
 				resource.Attribute{
 					Name:        "tfa_enabled",
@@ -1348,7 +1440,51 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_keys",
-					Description: `A list of the User's SSH keys.`,
+					Description: `A list of the User's SSH keys. ## Global Grants`,
+				},
+				resource.Attribute{
+					Name:        "account-access",
+					Description: `(optional) The level of access this User has to Account-level actions, like billing information. (` + "`" + `read_only` + "`" + `, ` + "`" + `read_write` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "add_domains",
+					Description: `(optional) If true, this User may add Domains.`,
+				},
+				resource.Attribute{
+					Name:        "add_images",
+					Description: `(optional) If true, this User may add Images.`,
+				},
+				resource.Attribute{
+					Name:        "add_linodes",
+					Description: `(optional) If true, this User may create Linodes.`,
+				},
+				resource.Attribute{
+					Name:        "add_longview",
+					Description: `(optional) If true, this User may create Longview clients and view the current plan.`,
+				},
+				resource.Attribute{
+					Name:        "add_nodebalancers",
+					Description: `(optional) If true, this User may add NodeBalancers.`,
+				},
+				resource.Attribute{
+					Name:        "add_stackscripts",
+					Description: `(optional) If true, this User may add StackScripts.`,
+				},
+				resource.Attribute{
+					Name:        "cancel_account",
+					Description: `(optional) If true, this User may cancel the entire Account.`,
+				},
+				resource.Attribute{
+					Name:        "longview_subscription",
+					Description: `(optional) If true, this User may manage the Account’s Longview subscription. ## Entity Grants`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(required) The ID of the entity this grant applies to.`,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `(required) The level of access this User has to this entity. (` + "`" + `read_only` + "`" + `, ` + "`" + `read_write` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1358,61 +1494,51 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_keys",
-					Description: `A list of the User's SSH keys.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "linode_vlan",
-			Category:         "Resources",
-			ShortDescription: `Manages a Linode VLAN.`,
-			Description:      ``,
-			Keywords: []string{
-				"vlan",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "region",
-					Description: `(required) The region of where the VLAN is deployed.`,
+					Description: `A list of the User's SSH keys. ## Global Grants`,
 				},
 				resource.Attribute{
-					Name:        "description",
-					Description: `(Optional) Description of the vlan for display purposes only.`,
+					Name:        "account-access",
+					Description: `(optional) The level of access this User has to Account-level actions, like billing information. (` + "`" + `read_only` + "`" + `, ` + "`" + `read_write` + "`" + `)`,
 				},
 				resource.Attribute{
-					Name:        "linodes",
-					Description: `(Optional) A list of IDs of Linodes to attach to this VLAN.`,
+					Name:        "add_domains",
+					Description: `(optional) If true, this User may add Domains.`,
 				},
 				resource.Attribute{
-					Name:        "cidr_block",
-					Description: `(Optional) The CIDR block for this VLAN. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Name:        "add_images",
+					Description: `(optional) If true, this User may add Images.`,
+				},
+				resource.Attribute{
+					Name:        "add_linodes",
+					Description: `(optional) If true, this User may create Linodes.`,
+				},
+				resource.Attribute{
+					Name:        "add_longview",
+					Description: `(optional) If true, this User may create Longview clients and view the current plan.`,
+				},
+				resource.Attribute{
+					Name:        "add_nodebalancers",
+					Description: `(optional) If true, this User may add NodeBalancers.`,
+				},
+				resource.Attribute{
+					Name:        "add_stackscripts",
+					Description: `(optional) If true, this User may add StackScripts.`,
+				},
+				resource.Attribute{
+					Name:        "cancel_account",
+					Description: `(optional) If true, this User may cancel the entire Account.`,
+				},
+				resource.Attribute{
+					Name:        "longview_subscription",
+					Description: `(optional) If true, this User may manage the Account’s Longview subscription. ## Entity Grants`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Linode.`,
+					Description: `(required) The ID of the entity this grant applies to.`,
 				},
 				resource.Attribute{
-					Name:        "mac_address",
-					Description: `The mac address of the Linode.`,
-				},
-				resource.Attribute{
-					Name:        "ipv4_address",
-					Description: `The IPv4 address of the Linode.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `The ID of the Linode.`,
-				},
-				resource.Attribute{
-					Name:        "mac_address",
-					Description: `The mac address of the Linode.`,
-				},
-				resource.Attribute{
-					Name:        "ipv4_address",
-					Description: `The IPv4 address of the Linode.`,
+					Name:        "permissions",
+					Description: `(required) The level of access this User has to this entity. (` + "`" + `read_only` + "`" + `, ` + "`" + `read_write` + "`" + `)`,
 				},
 			},
 		},
@@ -1491,8 +1617,7 @@ var (
 		"linode_stackscript":           15,
 		"linode_token":                 16,
 		"linode_user":                  17,
-		"linode_vlan":                  18,
-		"linode_volume":                19,
+		"linode_volume":                18,
 	}
 )
 

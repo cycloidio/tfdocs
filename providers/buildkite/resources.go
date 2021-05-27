@@ -28,6 +28,10 @@ Buildkite Documentation: https://buildkite.com/docs/agent/v3/tokens
 					Description: `(Optional) This is the description of the agent token. -> Changing ` + "`" + `description` + "`" + ` will cause the resource to be destroyed and re-created. ## Attribute Reference`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `The Graphql ID of the created agent token.`,
+				},
+				resource.Attribute{
 					Name:        "token",
 					Description: `The value of the created agent token.`,
 				},
@@ -37,6 +41,10 @@ Buildkite Documentation: https://buildkite.com/docs/agent/v3/tokens
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Graphql ID of the created agent token.`,
+				},
 				resource.Attribute{
 					Name:        "token",
 					Description: `The value of the created agent token.`,
@@ -107,10 +115,27 @@ Buildkite Documentation: https://buildkite.com/docs/pipelines/scheduled-builds
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) Whether the schedule should run. ## Import Pipeline schedules can be imported using a slug (which consists of ` + "`" + `$BUILDKITE_ORGANIZATION_SLUG/$BUILDKITE_PIPELINE_SLUG/$PIPELINE_SCHEDULE_UUID` + "`" + `), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import buildkite_pipeline_schedule.test myorg/test/1be3e7c7-1e03-4011-accf-b2d8eec90222 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) Whether the schedule should run. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The GraphQL ID of the pipeline schedule`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `The UUID of the pipeline schedule ## Import Pipeline schedules can be imported using a slug (which consists of ` + "`" + `$BUILDKITE_ORGANIZATION_SLUG/$BUILDKITE_PIPELINE_SLUG/$PIPELINE_SCHEDULE_UUID` + "`" + `), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import buildkite_pipeline_schedule.test myorg/test/1be3e7c7-1e03-4011-accf-b2d8eec90222 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The GraphQL ID of the pipeline schedule`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `The UUID of the pipeline schedule ## Import Pipeline schedules can be imported using a slug (which consists of ` + "`" + `$BUILDKITE_ORGANIZATION_SLUG/$BUILDKITE_PIPELINE_SLUG/$PIPELINE_SCHEDULE_UUID` + "`" + `), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import buildkite_pipeline_schedule.test myorg/test/1be3e7c7-1e03-4011-accf-b2d8eec90222 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -156,7 +181,7 @@ Buildkite Documentation: https://buildkite.com/docs/pipelines/permissions
 				},
 				resource.Attribute{
 					Name:        "uuid",
-					Description: `The GraphQL UUID for the team.`,
+					Description: `The UUID for the team.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -166,7 +191,7 @@ Buildkite Documentation: https://buildkite.com/docs/pipelines/permissions
 				},
 				resource.Attribute{
 					Name:        "uuid",
-					Description: `The GraphQL UUID for the team.`,
+					Description: `The UUID for the team.`,
 				},
 			},
 		},

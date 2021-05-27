@@ -123,6 +123,125 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "logzio_alert_v2",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "title",
+					Description: `(String) Alert title.`,
+				},
+				resource.Attribute{
+					Name:        "search_timeframe_minutes",
+					Description: `(Integer) The time frame for evaluating the log data is a sliding window, with 1 minute granularity.`,
+				},
+				resource.Attribute{
+					Name:        "sub_components",
+					Description: `(Block list) Sets the search criteria using a search query, filters, group by aggregations, accounts to search, and trigger conditions. See below for`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(String) A description of the event, its significance, and suggested next steps or instructions for the team.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(String list) Tags for filtering alerts and triggered alerts. Can be used in Kibana Discover, dashboards, and more.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Boolean) True by default. If ` + "`" + `true` + "`" + `, the alert is currently active.`,
+				},
+				resource.Attribute{
+					Name:        "notification_emails",
+					Description: `(String list) Array of email addresses to be notified when the alert triggers.`,
+				},
+				resource.Attribute{
+					Name:        "alert_notification_endpoints",
+					Description: `(Integer list) Array of IDs of pre-configured endpoint channels to notify when the alert triggers.`,
+				},
+				resource.Attribute{
+					Name:        "suppress_notifications_minutes",
+					Description: `(Integer) Defaults to 5. Add a waiting period in minutes to space out notifications. (The alert will still trigger but will not send out notifications during the waiting period.)`,
+				},
+				resource.Attribute{
+					Name:        "output_type",
+					Description: `(String) Selects the output format for the alert notification. Can be: ` + "`" + `"JSON"` + "`" + ` or ` + "`" + `"TABLE""` + "`" + ` If the alert has no aggregations/group by fields, JSON offers the option to send full sample logs without selecting specific fields.`,
+				},
+				resource.Attribute{
+					Name:        "correlation_operator",
+					Description: `(String) Comma separated string of supported operators. Only applicable when multiple sub-components are in use. Selects a logic for correlating the alert’s sub-components. ` + "`" + `AND` + "`" + ` is currently the only supported operator. When AND is the correlation_operator, both sub-components must meet their triggering criteria for the alert to trigger.`,
+				},
+				resource.Attribute{
+					Name:        "joins",
+					Description: `(Map list) Specifies which group by fields must have the same values to trigger the alert. Joins the group by fields from the first and second sub-components. The key represents the index of the sub component in the array. The fields must be ordered pairs of the group by fields already in use in the ` + "`" + `sub_components.query_string` + "`" + `. #### Nested schema for ` + "`" + `sub_components` + "`" + `: ##### Required:`,
+				},
+				resource.Attribute{
+					Name:        "query_string",
+					Description: `(String) Provide a Kibana search query written in Lucene syntax. The search query together with the filters select for the relevant logs. Cannot be null - send an asterisk wildcard ` + "`" + `"`,
+				},
+				resource.Attribute{
+					Name:        "value_aggregation_type",
+					Description: `(String) Specifies the aggregation operator. Can be: ` + "`" + `"SUM"` + "`" + `, ` + "`" + `"MIN"` + "`" + `, ` + "`" + `"MAX"` + "`" + `, ` + "`" + `"AVG"` + "`" + `, ` + "`" + `"COUNT"` + "`" + `, ` + "`" + `"UNIQUE_COUNT"` + "`" + `, ` + "`" + `"NONE"` + "`" + `. If ` + "`" + `"COUNT"` + "`" + ` or ` + "`" + `"NONE"` + "`" + `, ` + "`" + `value_aggregation_field` + "`" + ` must be null, and ` + "`" + `group_by_aggregation_fields` + "`" + ` fields must not be empty. If any other operator type (other than ` + "`" + `"NONE"` + "`" + ` or ` + "`" + `"COUNT"` + "`" + `), ` + "`" + `value_aggregation_field` + "`" + ` must not be null.`,
+				},
+				resource.Attribute{
+					Name:        "severity_threshold_tiers",
+					Description: `(Block) Sets a severity label per trigger threshold. If using more than one sub-component, only 1 severityThresholdTiers is allowed. Otherwise, 1 per enum are allowed (for a total of 5 thresholds of increasing severities). Increasing severity must adhere to the logic of the operator. See below for`,
+				},
+				resource.Attribute{
+					Name:        "filter_must_not",
+					Description: `(Map) Runs Elasticsearch Bool Query filters on the data (before the search query is applied). The most efficient way to grab the logs you are looking for.`,
+				},
+				resource.Attribute{
+					Name:        "group_by_aggregation_fields",
+					Description: `(String list) Specify 1-3 fields by which to group the results and count them. If you apply a group by operation, the alert returns a count of the results aggregated by unique values.`,
+				},
+				resource.Attribute{
+					Name:        "value_aggregation_field",
+					Description: `(String) Selects the field on which to run the aggregation for the trigger condition. Cannot be a field already in use for ` + "`" + `group_by_aggregation_fields` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "should_query_on_all_accounts",
+					Description: `(Boolean) Defaults to true. Only applicable when the alert is run from the main account. If true, the alert runs on the main account and all associated searchable sub accounts. If false, specify relevant account IDs for the alert to monitor using the ` + "`" + `account_ids_to_query_on` + "`" + ` field.`,
+				},
+				resource.Attribute{
+					Name:        "account_ids_to_query_on",
+					Description: `(Integer list) Specify Account IDs to select which accounts the alert should monitor. The alert will be checked only on these accounts.`,
+				},
+				resource.Attribute{
+					Name:        "operation",
+					Description: `(String) Specifies the operator for evaluating the results. Can be: ` + "`" + `"LESS_THAN"` + "`" + `, ` + "`" + `"GREATER_THAN"` + "`" + `, ` + "`" + `"LESS_THAN_OR_EQUALS"` + "`" + `, ` + "`" + `"GREATER_THAN_OR_EQUALS"` + "`" + `, ` + "`" + `"EQUALS"` + "`" + `, ` + "`" + `"NOT_EQUALS"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "columns",
+					Description: `(Block list) See below for`,
+				},
+				resource.Attribute{
+					Name:        "severity",
+					Description: `(String) Labels the event with a severity tag. Available severity tags are: ` + "`" + `"INFO"` + "`" + `, ` + "`" + `"LOW"` + "`" + `, ` + "`" + `"MEDIUM"` + "`" + `, ` + "`" + `"HIGH"` + "`" + `, ` + "`" + `"SEVERE"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "threshold",
+					Description: `(Integer) Number of logs per search timeframe. #### Nested schema for ` + "`" + `sub_components.columns` + "`" + `: ##### Optional:`,
+				},
+				resource.Attribute{
+					Name:        "field_name",
+					Description: `(String) Specify the fields to be included in the notification.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(String) Trims the data using regex filters. [Learn more](https://docs.logz.io/user-guide/alerts/regex-filters.html).`,
+				},
+				resource.Attribute{
+					Name:        "sort",
+					Description: `(String) Specify a single field to sort by. The field cannot be an analyzed field (a field that supports free text search or searching by part of a message, such as the 'message' field). Should be: ` + "`" + `"DESC"` + "`" + `, ` + "`" + `"ASC"` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "logzio_endpoint",
 			Category:         "Resources",
 			ShortDescription: ``,
@@ -131,7 +250,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "endpoint_type",
-					Description: `(Required) Specifies the endpoint resource type: ` + "`" + `custom` + "`" + `, ` + "`" + `slack` + "`" + `, ` + "`" + `pager_duty` + "`" + `, ` + "`" + `big_panda` + "`" + `, ` + "`" + `data_dog` + "`" + `, ` + "`" + `victorops` + "`" + `. Use the appropriate parameters for your selected endpoint type.`,
+					Description: `(Required) Specifies the endpoint resource type: ` + "`" + `custom` + "`" + `, ` + "`" + `slack` + "`" + `, ` + "`" + `pagerduty` + "`" + `, ` + "`" + `bigpanda` + "`" + `, ` + "`" + `datadog` + "`" + `, ` + "`" + `victorops` + "`" + `. Use the appropriate parameters for your selected endpoint type.`,
 				},
 				resource.Attribute{
 					Name:        "title",
@@ -151,7 +270,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pager_duty",
-					Description: `(Optional) Relevant when ` + "`" + `endpoint_type` + "`" + ` is ` + "`" + `pager_duty` + "`" + `. Manages a webhook to PagerDuty.`,
+					Description: `(Optional) Relevant when ` + "`" + `endpoint_type` + "`" + ` is ` + "`" + `pagerduty` + "`" + `. Manages a webhook to PagerDuty.`,
 				},
 				resource.Attribute{
 					Name:        "service_key",
@@ -159,7 +278,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "big_panda",
-					Description: `(Optional) Relevant when ` + "`" + `endpoint_type` + "`" + ` is ` + "`" + `big_panda` + "`" + `. Manages a webhook to BigPanda.`,
+					Description: `(Optional) Relevant when ` + "`" + `endpoint_type` + "`" + ` is ` + "`" + `bigpanda` + "`" + `. Manages a webhook to BigPanda.`,
 				},
 				resource.Attribute{
 					Name:        "api_token",
@@ -171,7 +290,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "data_dog",
-					Description: `(Optional) Relevant when ` + "`" + `endpoint_type` + "`" + ` is ` + "`" + `data_dog` + "`" + `. Manages a webhook to Datadog.`,
+					Description: `(Optional) Relevant when ` + "`" + `endpoint_type` + "`" + ` is ` + "`" + `datadog` + "`" + `. Manages a webhook to Datadog.`,
 				},
 				resource.Attribute{
 					Name:        "api_key",
@@ -328,9 +447,10 @@ var (
 	resourcesMap = map[string]int{
 
 		"logzio_alert":      0,
-		"logzio_endpoint":   1,
-		"logzio_subaccount": 2,
-		"logzio_user":       3,
+		"logzio_alert_v2":   1,
+		"logzio_endpoint":   2,
+		"logzio_subaccount": 3,
+		"logzio_user":       4,
 	}
 )
 

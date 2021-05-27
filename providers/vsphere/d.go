@@ -503,6 +503,38 @@ var (
 					Description: `The network interface types for each network interface found on the virtual machine, in device bus order. Will be one of ` + "`" + `e1000` + "`" + `, ` + "`" + `e1000e` + "`" + `, ` + "`" + `pcnet32` + "`" + `, ` + "`" + `sriov` + "`" + `, ` + "`" + `vmxnet2` + "`" + `, or ` + "`" + `vmxnet3` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "network_interfaces",
+					Description: `Information about each of the network interfaces on this virtual machine or template. These are sorted by device bus order so that they can be applied to a ` + "`" + `vsphere_virtual_machine` + "`" + ` resource in the order the resource expects while cloning. This is useful for discovering certain network interface settings while performing a linked clone, as all settings that are output by this data source must be the same on the destination virtual machine as the source. The sub-attributes are:`,
+				},
+				resource.Attribute{
+					Name:        "adapter_type",
+					Description: `The network interface types for each network interface found on the virtual machine, in device bus order. Will be one of ` + "`" + `e1000` + "`" + `, ` + "`" + `e1000e` + "`" + ` or ` + "`" + `vmxnet3` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_limit",
+					Description: `The upper bandwidth limit of this network interface, in Mbits/sec.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_reservation",
+					Description: `The bandwidth reservation of this network interface, in Mbits/sec.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_share_level",
+					Description: `The bandwidth share allocation level for this interface. Can be one of ` + "`" + `low` + "`" + `, ` + "`" + `normal` + "`" + `, ` + "`" + `high` + "`" + `, or ` + "`" + `custom` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_share_count",
+					Description: `The share count for this network interface when the share level is custom.`,
+				},
+				resource.Attribute{
+					Name:        "mac_address",
+					Description: `The MAC address of this network interface.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `The managed object reference ID of the network this interface is connected to.`,
+				},
+				resource.Attribute{
 					Name:        "firmware",
 					Description: `The firmware type for this virtual machine. Can be ` + "`" + `bios` + "`" + ` or ` + "`" + `efi` + "`" + `.`,
 				},
@@ -583,6 +615,38 @@ var (
 				resource.Attribute{
 					Name:        "network_interface_types",
 					Description: `The network interface types for each network interface found on the virtual machine, in device bus order. Will be one of ` + "`" + `e1000` + "`" + `, ` + "`" + `e1000e` + "`" + `, ` + "`" + `pcnet32` + "`" + `, ` + "`" + `sriov` + "`" + `, ` + "`" + `vmxnet2` + "`" + `, or ` + "`" + `vmxnet3` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "network_interfaces",
+					Description: `Information about each of the network interfaces on this virtual machine or template. These are sorted by device bus order so that they can be applied to a ` + "`" + `vsphere_virtual_machine` + "`" + ` resource in the order the resource expects while cloning. This is useful for discovering certain network interface settings while performing a linked clone, as all settings that are output by this data source must be the same on the destination virtual machine as the source. The sub-attributes are:`,
+				},
+				resource.Attribute{
+					Name:        "adapter_type",
+					Description: `The network interface types for each network interface found on the virtual machine, in device bus order. Will be one of ` + "`" + `e1000` + "`" + `, ` + "`" + `e1000e` + "`" + ` or ` + "`" + `vmxnet3` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_limit",
+					Description: `The upper bandwidth limit of this network interface, in Mbits/sec.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_reservation",
+					Description: `The bandwidth reservation of this network interface, in Mbits/sec.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_share_level",
+					Description: `The bandwidth share allocation level for this interface. Can be one of ` + "`" + `low` + "`" + `, ` + "`" + `normal` + "`" + `, ` + "`" + `high` + "`" + `, or ` + "`" + `custom` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_share_count",
+					Description: `The share count for this network interface when the share level is custom.`,
+				},
+				resource.Attribute{
+					Name:        "mac_address",
+					Description: `The MAC address of this network interface.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `The managed object reference ID of the network this interface is connected to.`,
 				},
 				resource.Attribute{
 					Name:        "firmware",

@@ -273,11 +273,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auth_method",
-					Description: `(Optional) A string identifying the authentication method code. The list of codes are listed here: https://tools.ietf.org/html/rfc8176#section-2. Custom values are also supported.`,
+					Description: `(Optional) A string identifying the authentication method code. The list of codes are listed here: https://tools.ietf.org/html/rfc8176#section-2. Custom values are also supported. Example: ` + "`" + `auth_method = ["swk"]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "geo",
 					Description: `(Optional) A list of country codes. Example: ` + "`" + `geo = ["US"]` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "login_method",
+					Description: `(Optional) A list of identity provider ids. Example: ` + "`" + `login_method = [cloudflare_access_identity_provider.my_idp.id]` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "device_posture",
+					Description: `(Optional) A list of device_posture integration_uids. Example: ` + "`" + `device_posture = [cloudflare_device_posture_rule.my_posture_rule.id]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "gsuite",
@@ -529,7 +537,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Friendly name of the token's intent. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) Friendly name of the token's intent.`,
+				},
+				resource.Attribute{
+					Name:        "min_days_for_renewal",
+					Description: `(Optional) Regenerates the token if terraform is run within the specified amount of days before expiration ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "client_id",
@@ -537,7 +549,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "client_secret",
-					Description: `A secret for interacting with Access protocols. ## Import ~>`,
+					Description: `A secret for interacting with Access protocols.`,
+				},
+				resource.Attribute{
+					Name:        "expires_at",
+					Description: `Date when the token expires ## Import ~>`,
 				},
 				resource.Attribute{
 					Name:        "cb029e245cfdd66dc8d2e570d5dd3322",
@@ -555,7 +571,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "client_secret",
-					Description: `A secret for interacting with Access protocols. ## Import ~>`,
+					Description: `A secret for interacting with Access protocols.`,
+				},
+				resource.Attribute{
+					Name:        "expires_at",
+					Description: `Date when the token expires ## Import ~>`,
 				},
 				resource.Attribute{
 					Name:        "cb029e245cfdd66dc8d2e570d5dd3322",
@@ -1308,7 +1328,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "steering_policy",
-					Description: `(Optional) Determine which method the load balancer uses to determine the fastest route to your origin. Valid values are: ` + "`" + `"off"` + "`" + `, ` + "`" + `"geo"` + "`" + `, ` + "`" + `"dynamic_latency"` + "`" + `, ` + "`" + `"random"` + "`" + ` or ` + "`" + `""` + "`" + `. Default is ` + "`" + `""` + "`" + `.`,
+					Description: `(Optional) Determine which method the load balancer uses to determine the fastest route to your origin. Valid values are: ` + "`" + `"off"` + "`" + `, ` + "`" + `"geo"` + "`" + `, ` + "`" + `"dynamic_latency"` + "`" + `, ` + "`" + `"random"` + "`" + `, ` + "`" + `"proximity"` + "`" + ` or ` + "`" + `""` + "`" + `. Default is ` + "`" + `""` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "proxied",
@@ -1339,6 +1359,10 @@ var (
 					Description: `(Optional) Configure cookie attributes for session affinity cookie. See the field documentation below.`,
 				},
 				resource.Attribute{
+					Name:        "rules",
+					Description: `(Optional) A list of conditions and overrides for each load balancer operation. See the field documentation below.`,
+				},
+				resource.Attribute{
 					Name:        "region",
 					Description: `(Required) A region code which must be in the list defined [here](https://support.cloudflare.com/hc/en-us/articles/115000540888-Load-Balancing-Geographic-Regions). Multiple entries should not be specified with the same region.`,
 				},
@@ -1364,7 +1388,87 @@ var (
 				},
 				resource.Attribute{
 					Name:        "drain_duration",
-					Description: `(Optional) Configures the drain duration in seconds. This field is only used when session affinity is enabled on the load balancer. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Configures the drain duration in seconds. This field is only used when session affinity is enabled on the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Human readable name for this rule.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority used when determining the order of rule execution. Lower values are executed first. If not provided list order will be used.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `(Optional) A disabled rule will be be executed.`,
+				},
+				resource.Attribute{
+					Name:        "condition",
+					Description: `(Optional) The statement to evaluate to determine if this rules effects should be applied. An empty condition is always true. See [load balancing rules](https://developers.cloudflare.com/load-balancing/understand-basics/load-balancing-rules).`,
+				},
+				resource.Attribute{
+					Name:        "terminates",
+					Description: `(Optional) Terminates indicates that if this rule is true no further rules should be executed. Note: setting a fixed_response forces this field to true.`,
+				},
+				resource.Attribute{
+					Name:        "overrides",
+					Description: `(Optional) The Load Balancer settings to alter if this rules condition is true. Note: overrides or fixed_response must be set. See the field documentation below.`,
+				},
+				resource.Attribute{
+					Name:        "fixed_response",
+					Description: `(Optional) Settings for a HTTP response to return directly to the eyeball if the condition is true. Note: overrides or fixed_response must be set. See the field documentation below.`,
+				},
+				resource.Attribute{
+					Name:        "session_affinity",
+					Description: `(Optional) See field above.`,
+				},
+				resource.Attribute{
+					Name:        "session_affinity_ttl",
+					Description: `(Optional) See field above.`,
+				},
+				resource.Attribute{
+					Name:        "session_affinity_attributes",
+					Description: `(Optional) See field above.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `(Optional) See field above.`,
+				},
+				resource.Attribute{
+					Name:        "steering_policy",
+					Description: `(Optional) See field above.`,
+				},
+				resource.Attribute{
+					Name:        "fallback_pool",
+					Description: `(Optional) See fallback_pool_id above.`,
+				},
+				resource.Attribute{
+					Name:        "default_pools",
+					Description: `(Optional) See default_pool_ids above.`,
+				},
+				resource.Attribute{
+					Name:        "pop_pools",
+					Description: `(Optional) See pop_pools above.`,
+				},
+				resource.Attribute{
+					Name:        "region_pools",
+					Description: `(Optional) See region_pools above.`,
+				},
+				resource.Attribute{
+					Name:        "message_body",
+					Description: `(Optional) The text used as the html body for this fixed response.`,
+				},
+				resource.Attribute{
+					Name:        "status_code",
+					Description: `(Optional) The HTTP status code used for this fixed response.`,
+				},
+				resource.Attribute{
+					Name:        "content_type",
+					Description: `(Optional) The value of the HTTP context-type header for this fixed response.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Optional) The value of the HTTP location header for this fixed response. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1556,7 +1660,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) Whether to enable (the default) this origin within the Pool. Disabled origins will not receive traffic and are excluded from health checks. The origin will only be disabled for the current pool. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Whether to enable (the default) this origin within the Pool. Disabled origins will not receive traffic and are excluded from health checks. The origin will only be disabled for the current pool.`,
+				},
+				resource.Attribute{
+					Name:        "header",
+					Description: `(Optional) The HTTP request headers. For security reasons, this header also needs to be a subdomain of the overall zone. Fields documented below.`,
+				},
+				resource.Attribute{
+					Name:        "header",
+					Description: `(Required) The header name.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) A list of string values for the header. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1632,16 +1748,16 @@ var (
 					Description: `(Required) Uniquely identifies a resource (such as an s3 bucket) where data will be pushed. Additional configuration parameters supported by the destination may be included. See [Logpush destination documentation](https://developers.cloudflare.com/logs/logpush/logpush-configuration-api/understanding-logpush-api/#destination).`,
 				},
 				resource.Attribute{
-					Name:        "ownership_challenge",
-					Description: `(Required) Ownership challenge token to prove destination ownership. See [Developer documentation](https://developers.cloudflare.com/logs/logpush/logpush-configuration-api/understanding-logpush-api/#usage).`,
-				},
-				resource.Attribute{
 					Name:        "dataset",
 					Description: `(Required) Which type of dataset resource to use. Available values are ` + "`" + `"firewall_events"` + "`" + `, ` + "`" + `"http_requests"` + "`" + `, and ` + "`" + `"spectrum_events"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "logpull_options",
 					Description: `(Optional) Configuration string for the Logshare API. It specifies things like requested fields and timestamp formats. See [Logpull options documentation](https://developers.cloudflare.com/logs/logpush/logpush-configuration-api/understanding-logpush-api/#options).`,
+				},
+				resource.Attribute{
+					Name:        "ownership_challenge",
+					Description: `(Optional) Ownership challenge token to prove destination ownership, required when destination is Amazon S3, Google Cloud Storage, Microsoft Azure or Sumo Logic. See [Developer documentation](https://developers.cloudflare.com/logs/logpush/logpush-configuration-api/understanding-logpush-api/#usage).`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -2844,7 +2960,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "plan",
-					Description: `(Optional) The name of the commercial plan to apply to the zone, can be updated once the one is created; one of ` + "`" + `free` + "`" + `, ` + "`" + `pro` + "`" + `, ` + "`" + `business` + "`" + `, ` + "`" + `enterprise` + "`" + `.`,
+					Description: `(Optional) The name of the commercial plan to apply to the zone, can be updated once the zone is created; one of ` + "`" + `free` + "`" + `, ` + "`" + `pro` + "`" + `, ` + "`" + `business` + "`" + `, ` + "`" + `enterprise` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "type",

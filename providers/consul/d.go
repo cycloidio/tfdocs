@@ -238,6 +238,10 @@ var (
 					Description: `(Required) The accessor ID of the ACL token.`,
 				},
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional, Enterprise Only) The namespace to lookup the token.`,
+				},
+				resource.Attribute{
 					Name:        "pgp_key",
 					Description: `(Optional) Either a base-64 encoded PGP public key, or a keybase username in the form ` + "`" + `keybase:some_person_that_exists` + "`" + `.`,
 				},

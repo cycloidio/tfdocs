@@ -159,7 +159,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `Timezone of schedule. Please look at [Supported Timezone Ids](https://docs.opsgenie.com/docs/supported-timezone-ids) for available timezones - Defaults to "America/New_York".`,
+					Description: `Timezone of schedule. Please look at [Supported Timezone Ids](https://docs.opsgenie.com/docs/supported-timezone-ids) for available timezones - Default: ` + "`" + `America/New_York` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "timezone",
@@ -185,7 +185,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `Timezone of schedule. Please look at [Supported Timezone Ids](https://docs.opsgenie.com/docs/supported-timezone-ids) for available timezones - Defaults to "America/New_York".`,
+					Description: `Timezone of schedule. Please look at [Supported Timezone Ids](https://docs.opsgenie.com/docs/supported-timezone-ids) for available timezones - Default: ` + "`" + `America/New_York` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "timezone",

@@ -11,6 +11,486 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "ovh_cloud_project_capabilities_containerregistry",
+			Category:         "Data Sources",
+			ShortDescription: `Get the list of container registry capabilities associated with a public cloud project.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `The id of the public cloud project. If omitted, the ` + "`" + `OVH_CLOUD_PROJECT_SERVICE` + "`" + ` environment variable is used. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the md5 sum of the list of all capabilities plans ids. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "result",
+					Description: `List of container registry capability for a single region`,
+				},
+				resource.Attribute{
+					Name:        "region_name",
+					Description: `The region name`,
+				},
+				resource.Attribute{
+					Name:        "plans",
+					Description: `Available plans in the region`,
+				},
+				resource.Attribute{
+					Name:        "code",
+					Description: `Plan code from the catalog`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Plan creation date`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Features of the plan`,
+				},
+				resource.Attribute{
+					Name:        "vulnerability",
+					Description: `Vulnerability scanning`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Plan ID`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Plan name`,
+				},
+				resource.Attribute{
+					Name:        "registry_limits",
+					Description: `Container registry limits`,
+				},
+				resource.Attribute{
+					Name:        "image_storage",
+					Description: `Docker image storage limits in bytes`,
+				},
+				resource.Attribute{
+					Name:        "parallel_request",
+					Description: `Parallel requests on Docker image API (/v2 Docker registry API)`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Plan last update date`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "result",
+					Description: `List of container registry capability for a single region`,
+				},
+				resource.Attribute{
+					Name:        "region_name",
+					Description: `The region name`,
+				},
+				resource.Attribute{
+					Name:        "plans",
+					Description: `Available plans in the region`,
+				},
+				resource.Attribute{
+					Name:        "code",
+					Description: `Plan code from the catalog`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Plan creation date`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Features of the plan`,
+				},
+				resource.Attribute{
+					Name:        "vulnerability",
+					Description: `Vulnerability scanning`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Plan ID`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Plan name`,
+				},
+				resource.Attribute{
+					Name:        "registry_limits",
+					Description: `Container registry limits`,
+				},
+				resource.Attribute{
+					Name:        "image_storage",
+					Description: `Docker image storage limits in bytes`,
+				},
+				resource.Attribute{
+					Name:        "parallel_request",
+					Description: `Parallel requests on Docker image API (/v2 Docker registry API)`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Plan last update date`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_cloud_project_capabilities_containerregistry_filter",
+			Category:         "Data Sources",
+			ShortDescription: `Filter the list of container registry capabilities associated with a public cloud project to match one and only one capability.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `The id of the public cloud project. If omitted, the ` + "`" + `OVH_CLOUD_PROJECT_SERVICE` + "`" + ` environment variable is used.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region name`,
+				},
+				resource.Attribute{
+					Name:        "plan_name",
+					Description: `The plan name ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "code",
+					Description: `Plan code from the catalog`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Plan creation date`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Features of the plan`,
+				},
+				resource.Attribute{
+					Name:        "vulnerability",
+					Description: `Vulnerability scanning`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Plan ID`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Plan name`,
+				},
+				resource.Attribute{
+					Name:        "registry_limits",
+					Description: `Container registry limits`,
+				},
+				resource.Attribute{
+					Name:        "image_storage",
+					Description: `Docker image storage limits in bytes`,
+				},
+				resource.Attribute{
+					Name:        "parallel_request",
+					Description: `Parallel requests on Docker image API (/v2 Docker registry API)`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Plan last update date`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "code",
+					Description: `Plan code from the catalog`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Plan creation date`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Features of the plan`,
+				},
+				resource.Attribute{
+					Name:        "vulnerability",
+					Description: `Vulnerability scanning`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Plan ID`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Plan name`,
+				},
+				resource.Attribute{
+					Name:        "registry_limits",
+					Description: `Container registry limits`,
+				},
+				resource.Attribute{
+					Name:        "image_storage",
+					Description: `Docker image storage limits in bytes`,
+				},
+				resource.Attribute{
+					Name:        "parallel_request",
+					Description: `Parallel requests on Docker image API (/v2 Docker registry API)`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Plan last update date`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_cloud_project_containerregistries",
+			Category:         "Data Sources",
+			ShortDescription: `Get the list of container registries associated with a public cloud project.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `The id of the public cloud project. If omitted, the ` + "`" + `OVH_CLOUD_PROJECT_SERVICE` + "`" + ` environment variable is used. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the md5 sum of the list of all registries ids. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "result",
+					Description: `The list of container registries associated with the project.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Registry creation date`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Registry ID`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Registry name`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `Project ID of your registry`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Region of the registry`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `Current size of the registry (bytes)`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Registry status`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Registry last update date`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `Access url of the registry`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version of your registry`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "result",
+					Description: `The list of container registries associated with the project.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Registry creation date`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Registry ID`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Registry name`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `Project ID of your registry`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Region of the registry`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `Current size of the registry (bytes)`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Registry status`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Registry last update date`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `Access url of the registry`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version of your registry`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_cloud_project_containerregistry",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a container registry associated with a public cloud project.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `The id of the public cloud project. If omitted, the ` + "`" + `OVH_CLOUD_PROJECT_SERVICE` + "`" + ` environment variable is used.`,
+				},
+				resource.Attribute{
+					Name:        "registry_id",
+					Description: `Registry ID ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Registry creation date`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Registry ID`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Registry name`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `Project ID of your registry`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Region of the registry`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `Current size of the registry (bytes)`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Registry status`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Registry last update date`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `Access url of the registry`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version of your registry`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Registry creation date`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Registry ID`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Registry name`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `Project ID of your registry`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Region of the registry`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `Current size of the registry (bytes)`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Registry status`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Registry last update date`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `Access url of the registry`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version of your registry`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_cloud_project_containerregistry_users",
+			Category:         "Data Sources",
+			ShortDescription: `Get the list of users of a container registry associated with a public cloud project.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `The id of the public cloud project. If omitted, the ` + "`" + `OVH_CLOUD_PROJECT_SERVICE` + "`" + ` environment variable is used.`,
+				},
+				resource.Attribute{
+					Name:        "registry_id",
+					Description: `Registry ID ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "result",
+					Description: `The list of users of the container registry associated with the project.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `User ID`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `User name`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `User email`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "result",
+					Description: `The list of users of the container registry associated with the project.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `User ID`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `User name`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `User email`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ovh_cloud_project_region",
 			Category:         "Data Sources",
 			ShortDescription: `Get information & status of a region associated with a public cloud project.`,
@@ -18,12 +498,8 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Optional) Deprecated. The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used. One of ` + "`" + `service_name` + "`" + ` or ` + "`" + `project_id` + "`" + ` is required. Conflits with ` + "`" + `service_name` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "service_name",
-					Description: `(Optional) The id of the public cloud project. If omitted, the ` + "`" + `OVH_CLOUD_PROJECT_SERVICE` + "`" + ` environment variable is used. One of ` + "`" + `service_name` + "`" + ` or ` + "`" + `project_id` + "`" + ` is required. Conflits with ` + "`" + `project_id` + "`" + `.`,
+					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_CLOUD_PROJECT_SERVICE` + "`" + ` environment variable is used.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -36,14 +512,6 @@ var (
 				resource.Attribute{
 					Name:        "datacenter_location",
 					Description: `The location code of the datacenter. E.g.: "GRA", meaning Gravelines, for region "GRA1"`,
-				},
-				resource.Attribute{
-					Name:        "continentCode",
-					Description: `(Deprecated) Use ` + "`" + `continent_code` + "`" + ` instead.`,
-				},
-				resource.Attribute{
-					Name:        "datacenterLocation",
-					Description: `(Deprecated) Use ` + "`" + `datacenter_location` + "`" + ` instead.`,
 				},
 				resource.Attribute{
 					Name:        "services",
@@ -66,14 +534,6 @@ var (
 				resource.Attribute{
 					Name:        "datacenter_location",
 					Description: `The location code of the datacenter. E.g.: "GRA", meaning Gravelines, for region "GRA1"`,
-				},
-				resource.Attribute{
-					Name:        "continentCode",
-					Description: `(Deprecated) Use ` + "`" + `continent_code` + "`" + ` instead.`,
-				},
-				resource.Attribute{
-					Name:        "datacenterLocation",
-					Description: `(Deprecated) Use ` + "`" + `datacenter_location` + "`" + ` instead.`,
 				},
 				resource.Attribute{
 					Name:        "services",
@@ -98,120 +558,12 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Optional) Deprecated. The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used. One of ` + "`" + `service_name` + "`" + ` or ` + "`" + `project_id` + "`" + ` is required. Conflits with ` + "`" + `service_name` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "service_name",
-					Description: `(Optional) The id of the public cloud project. If omitted, the ` + "`" + `OVH_CLOUD_PROJECT_SERVICE` + "`" + ` environment variable is used. One of ` + "`" + `service_name` + "`" + ` or ` + "`" + `project_id` + "`" + ` is required. Conflits with ` + "`" + `project_id` + "`" + `.`,
+					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_CLOUD_PROJECT_SERVICE` + "`" + ` environment variable is used.`,
 				},
 				resource.Attribute{
 					Name:        "has_services_up",
-					Description: `(Optional) List of services which has to be UP in regions. Example: "image", "instance", "network", "storage", "volume", "workflow", ... If left blank, returns all regions associated with the project_id. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the project. In addition, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "names",
-					Description: `The list of regions associated with the project, filtered by services UP.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "names",
-					Description: `The list of regions associated with the project, filtered by services UP.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "ovh_cloud_region (deprecated)",
-			Category:         "Data Sources",
-			ShortDescription: `Get information & status of a region associated with a public cloud project.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used.`,
-				},
-				resource.Attribute{
-					Name:        "region",
-					Description: `(Required) The name of the region associated with the public cloud project. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the project concatenated with the name of the region. In addition, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "continent_code",
-					Description: `the code of the geographic continent the region is running. E.g.: EU for Europe, US for America...`,
-				},
-				resource.Attribute{
-					Name:        "datacenter_location",
-					Description: `The location code of the datacenter. E.g.: "GRA", meaning Gravelines, for region "GRA1"`,
-				},
-				resource.Attribute{
-					Name:        "continentCode",
-					Description: `(Deprecated) Use ` + "`" + `continent_code` + "`" + ` instead.`,
-				},
-				resource.Attribute{
-					Name:        "datacenterLocation",
-					Description: `(Deprecated) Use ` + "`" + `datacenter_location` + "`" + ` instead.`,
-				},
-				resource.Attribute{
-					Name:        "services",
-					Description: `The list of public cloud services running within the region`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `the name of the public cloud service`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `the status of the service`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "continent_code",
-					Description: `the code of the geographic continent the region is running. E.g.: EU for Europe, US for America...`,
-				},
-				resource.Attribute{
-					Name:        "datacenter_location",
-					Description: `The location code of the datacenter. E.g.: "GRA", meaning Gravelines, for region "GRA1"`,
-				},
-				resource.Attribute{
-					Name:        "continentCode",
-					Description: `(Deprecated) Use ` + "`" + `continent_code` + "`" + ` instead.`,
-				},
-				resource.Attribute{
-					Name:        "datacenterLocation",
-					Description: `(Deprecated) Use ` + "`" + `datacenter_location` + "`" + ` instead.`,
-				},
-				resource.Attribute{
-					Name:        "services",
-					Description: `The list of public cloud services running within the region`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `the name of the public cloud service`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `the status of the service`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "ovh_cloud_regions (deprecated)",
-			Category:         "Data Sources",
-			ShortDescription: `Get the list of regions associated with a public cloud project.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used.`,
-				},
-				resource.Attribute{
-					Name:        "has_services_up",
-					Description: `(Optional) List of services which has to be UP in regions. Example: "image", "instance", "network", "storage", "volume", "workflow", ... If left blank, returns all regions associated with the project_id. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the project. In addition, the following attributes are exported:`,
+					Description: `(Optional) List of services which has to be UP in regions. Example: "image", "instance", "network", "storage", "volume", "workflow", ... If left blank, returns all regions associated with the service_name. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the project. In addition, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "names",
@@ -1185,30 +1537,33 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"ovh_cloud_project_region":             0,
-		"ovh_cloud_project_regions":            1,
-		"ovh_cloud_region (deprecated)":        2,
-		"ovh_cloud_regions (deprecated)":       3,
-		"ovh_dedicated_ceph":                   4,
-		"ovh_dedicated_installation_templates": 5,
-		"ovh_dedicated_server":                 6,
-		"ovh_dedicated_server_boots":           7,
-		"ovh_dedicated_servers":                8,
-		"ovh_domain_zone":                      9,
-		"ovh_iploadbalancing":                  10,
-		"ovh_iploadbalancing_vrack_network":    11,
-		"ovh_iploadbalancing_vrack_networks":   12,
-		"ovh_me_identity_user":                 13,
-		"ovh_me_identity_users":                14,
-		"ovh_me_installation_template":         15,
-		"ovh_me_installation_templates":        16,
-		"ovh_me_ipxe_script":                   17,
-		"ovh_me_ipxe_scripts":                  18,
-		"ovh_me_paymentmean_bankaccount":       19,
-		"ovh_me_paymentmean_creditcard":        20,
-		"ovh_me_ssh_key":                       21,
-		"ovh_me_ssh_keys":                      22,
-		"ovh_vracks":                           23,
+		"ovh_cloud_project_capabilities_containerregistry":        0,
+		"ovh_cloud_project_capabilities_containerregistry_filter": 1,
+		"ovh_cloud_project_containerregistries":                   2,
+		"ovh_cloud_project_containerregistry":                     3,
+		"ovh_cloud_project_containerregistry_users":               4,
+		"ovh_cloud_project_region":                                5,
+		"ovh_cloud_project_regions":                               6,
+		"ovh_dedicated_ceph":                                      7,
+		"ovh_dedicated_installation_templates":                    8,
+		"ovh_dedicated_server":                                    9,
+		"ovh_dedicated_server_boots":                              10,
+		"ovh_dedicated_servers":                                   11,
+		"ovh_domain_zone":                                         12,
+		"ovh_iploadbalancing":                                     13,
+		"ovh_iploadbalancing_vrack_network":                       14,
+		"ovh_iploadbalancing_vrack_networks":                      15,
+		"ovh_me_identity_user":                                    16,
+		"ovh_me_identity_users":                                   17,
+		"ovh_me_installation_template":                            18,
+		"ovh_me_installation_templates":                           19,
+		"ovh_me_ipxe_script":                                      20,
+		"ovh_me_ipxe_scripts":                                     21,
+		"ovh_me_paymentmean_bankaccount":                          22,
+		"ovh_me_paymentmean_creditcard":                           23,
+		"ovh_me_ssh_key":                                          24,
+		"ovh_me_ssh_keys":                                         25,
+		"ovh_vracks":                                              26,
 	}
 )
 

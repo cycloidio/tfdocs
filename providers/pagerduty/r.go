@@ -518,18 +518,6 @@ var (
 					Description: `Boolean value that indicates if the alert should be suppressed before the indicated threshold values are met.`,
 				},
 				resource.Attribute{
-					Name:        "threshold_value",
-					Description: `The number of alerts that should be suppressed.`,
-				},
-				resource.Attribute{
-					Name:        "threshold_time_amount",
-					Description: `The number value of the ` + "`" + `threshold_time_unit` + "`" + ` before an incident is created.`,
-				},
-				resource.Attribute{
-					Name:        "threshold_time_unit",
-					Description: `The ` + "`" + `minutes` + "`" + `,` + "`" + `hours` + "`" + `, or ` + "`" + `days` + "`" + ` that the ` + "`" + `threshold_time_amount` + "`" + ` should be measured.`,
-				},
-				resource.Attribute{
 					Name:        "weekdays",
 					Description: `An integer array representing which days during the week the rule executes. For example ` + "`" + `weekdays = [1,3,7]` + "`" + ` would execute on Monday, Wednesday and Sunday.`,
 				},
@@ -609,7 +597,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "start",
-					Description: `(Required) The start time of the schedule layer. This value will not be read back from the PagerDuty API because the API will always return a new ` + "`" + `start` + "`" + ` time, which represents the last updated time of the schedule layer.`,
+					Description: `(Required) The start time of the schedule layer.`,
 				},
 				resource.Attribute{
 					Name:        "end",
@@ -891,7 +879,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) A human-friendly description of the team. If not set, a placeholder of "Managed by Terraform" will be set. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) A human-friendly description of the team. If not set, a placeholder of "Managed by Terraform" will be set.`,
+				},
+				resource.Attribute{
+					Name:        "parent",
+					Description: `(Optional) ID of the parent team. This is available to accounts with the Team Hierarchy feature enabled. Please contact your account manager for more information. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -976,7 +968,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "role",
-					Description: `(Optional) The user role. Account must have the ` + "`" + `read_only_users` + "`" + ` ability to set a user as a ` + "`" + `read_only_user` + "`" + ` or a ` + "`" + `read_only_limited_user` + "`" + `, and must have advanced permissions abilities to set a user as ` + "`" + `observer` + "`" + ` or ` + "`" + `restricted_access` + "`" + `. Can be ` + "`" + `admin` + "`" + `, ` + "`" + `limited_user` + "`" + `, ` + "`" + `observer` + "`" + `, ` + "`" + `owner` + "`" + `, ` + "`" + `read_only_user` + "`" + `, ` + "`" + `read_only_limited_user` + "`" + `, ` + "`" + `restricted_access` + "`" + `, or ` + "`" + `user` + "`" + `.`,
+					Description: `(Optional) The user role. Can be ` + "`" + `admin` + "`" + `, ` + "`" + `limited_user` + "`" + `, ` + "`" + `observer` + "`" + `, ` + "`" + `owner` + "`" + `, ` + "`" + `read_only_user` + "`" + `, ` + "`" + `read_only_limited_user` + "`" + `, ` + "`" + `restricted_access` + "`" + `, or ` + "`" + `user` + "`" + `. Notes:`,
 				},
 				resource.Attribute{
 					Name:        "job_title",

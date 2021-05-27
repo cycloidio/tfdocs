@@ -647,7 +647,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "manage_policies",
-					Description: `(Optional) Allows members to create, edit, and delete the organization's Sentinel policies and override soft-mandatory policy checks.`,
+					Description: `(Optional) Allows members to create, edit, and delete the organization's Sentinel policies.`,
+				},
+				resource.Attribute{
+					Name:        "manage_policy_overrides",
+					Description: `(Optional) Allows members to override soft-mandatory policy checks.`,
 				},
 				resource.Attribute{
 					Name:        "manage_workspaces",
@@ -894,6 +898,10 @@ var (
 					Description: `(Required) Name of the organization.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A description for the workspace.`,
+				},
+				resource.Attribute{
 					Name:        "agent_pool_id",
 					Description: `(Optional) The ID of an agent pool to assign to the workspace. Requires ` + "`" + `execution_mode` + "`" + ` to be set to ` + "`" + `agent` + "`" + `. This value _must not_ be provided if ` + "`" + `execution_mode` + "`" + ` is set to any other value or if ` + "`" + `operations` + "`" + ` is provided.`,
 				},
@@ -912,6 +920,14 @@ var (
 				resource.Attribute{
 					Name:        "file_triggers_enabled",
 					Description: `(Optional) Whether to filter runs based on the changed files in a VCS push. If enabled, the working directory and trigger prefixes describe a set of paths which must contain changes for a VCS push to trigger a run. If disabled, any push will trigger a run. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "global_remote_state",
+					Description: `(Optional) Whether the workspace allows all workspaces in the organization to access its state data during runs. If false, then only specifically approved workspaces can access its state (` + "`" + `remote_state_consumer_ids` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "remote_state_consumer_ids",
+					Description: `(Optional) The set of workspace IDs set as explicit remote state consumers for the given workspace.`,
 				},
 				resource.Attribute{
 					Name:        "queue_all_runs",
@@ -943,7 +959,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "identifier",
-					Description: `(Required) A reference to your VCS repository in the format ` + "`" + `<organization>/<repository>` + "`" + ` where ` + "`" + `<organization>` + "`" + ` and ` + "`" + `<repository>` + "`" + ` refer to the organization and repository in your VCS provider.`,
+					Description: `(Required) A reference to your VCS repository in the format ` + "`" + `<organization>/<repository>` + "`" + ` where ` + "`" + `<organization>` + "`" + ` and ` + "`" + `<repository>` + "`" + ` refer to the organization and repository in your VCS provider. The format for Azure DevOps is <organization>/<project>/_git/<repository>.`,
 				},
 				resource.Attribute{
 					Name:        "branch",

@@ -11,6 +11,166 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "metal_connection",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve Equinix Fabric Connection`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "connection_id",
+					Description: `(Required) ID of the connection resource ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the connection resource`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the connection resource`,
+				},
+				resource.Attribute{
+					Name:        "facility",
+					Description: `Slug of a facility to which the connection belongs`,
+				},
+				resource.Attribute{
+					Name:        "metro",
+					Description: `Slug of a metro to which the connection belongs`,
+				},
+				resource.Attribute{
+					Name:        "organization_id",
+					Description: `ID of organization to which the connection belongs`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the connection`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `Fabric Token for the [Equinix Fabric Portal](https://ecxfabric.equinix.com/dashboard)`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Connection type, dedicated or shared`,
+				},
+				resource.Attribute{
+					Name:        "redundancy",
+					Description: `Connection redundancy, reduntant or primary`,
+				},
+				resource.Attribute{
+					Name:        "speed",
+					Description: `Connection speed in bits per second`,
+				},
+				resource.Attribute{
+					Name:        "ports",
+					Description: `List of connection ports - primary (` + "`" + `ports[0]` + "`" + `) and secondary (` + "`" + `ports[1]` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Port name`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Port UUID`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Port role - primary or secondary`,
+				},
+				resource.Attribute{
+					Name:        "speed",
+					Description: `Port speed in bits per second`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Port status`,
+				},
+				resource.Attribute{
+					Name:        "link_status",
+					Description: `Port link status`,
+				},
+				resource.Attribute{
+					Name:        "virtual_circuit_ids",
+					Description: `List of IDs of virtual cicruits attached to this port`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the connection resource`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the connection resource`,
+				},
+				resource.Attribute{
+					Name:        "facility",
+					Description: `Slug of a facility to which the connection belongs`,
+				},
+				resource.Attribute{
+					Name:        "metro",
+					Description: `Slug of a metro to which the connection belongs`,
+				},
+				resource.Attribute{
+					Name:        "organization_id",
+					Description: `ID of organization to which the connection belongs`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the connection`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `Fabric Token for the [Equinix Fabric Portal](https://ecxfabric.equinix.com/dashboard)`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Connection type, dedicated or shared`,
+				},
+				resource.Attribute{
+					Name:        "redundancy",
+					Description: `Connection redundancy, reduntant or primary`,
+				},
+				resource.Attribute{
+					Name:        "speed",
+					Description: `Connection speed in bits per second`,
+				},
+				resource.Attribute{
+					Name:        "ports",
+					Description: `List of connection ports - primary (` + "`" + `ports[0]` + "`" + `) and secondary (` + "`" + `ports[1]` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Port name`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Port UUID`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Port role - primary or secondary`,
+				},
+				resource.Attribute{
+					Name:        "speed",
+					Description: `Port speed in bits per second`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Port status`,
+				},
+				resource.Attribute{
+					Name:        "link_status",
+					Description: `Port link status`,
+				},
+				resource.Attribute{
+					Name:        "virtual_circuit_ids",
+					Description: `List of IDs of virtual cicruits attached to this port`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "metal_device",
 			Category:         "Data Sources",
 			ShortDescription: `Provides an Equinix Metal device datasource. This can be used to read existing devices.`,
@@ -60,6 +220,10 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the device`,
+				},
+				resource.Attribute{
+					Name:        "metro",
+					Description: `The metro where the device is deployed`,
 				},
 				resource.Attribute{
 					Name:        "network",
@@ -170,6 +334,10 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the device`,
+				},
+				resource.Attribute{
+					Name:        "metro",
+					Description: `The metro where the device is deployed`,
 				},
 				resource.Attribute{
 					Name:        "network",
@@ -387,11 +555,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the facilityg system running on the device`,
+					Description: `The name of the facility`,
 				},
 				resource.Attribute{
 					Name:        "features",
 					Description: `The features of the facility`,
+				},
+				resource.Attribute{
+					Name:        "metro",
+					Description: `The metro code the facility is part of`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -401,11 +573,107 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the facilityg system running on the device`,
+					Description: `The name of the facility`,
 				},
 				resource.Attribute{
 					Name:        "features",
 					Description: `The features of the facility`,
+				},
+				resource.Attribute{
+					Name:        "metro",
+					Description: `The metro code the facility is part of`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "metal_hardware_reservation",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve Equinix Metal Hardware Reservation`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the hardware reservation`,
+				},
+				resource.Attribute{
+					Name:        "device_id",
+					Description: `UUID of device occupying the reservation ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the hardware reservation to look up`,
+				},
+				resource.Attribute{
+					Name:        "short_id",
+					Description: `Reservation short ID`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `UUID of project this reservation is scoped to`,
+				},
+				resource.Attribute{
+					Name:        "device_id",
+					Description: `UUID of device occupying the reservation`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `Plan type for the reservation`,
+				},
+				resource.Attribute{
+					Name:        "facility",
+					Description: `Plan type for the reservation`,
+				},
+				resource.Attribute{
+					Name:        "provisionable",
+					Description: `Flag indicating whether the reserved server is provisionable or not. Spare devices can't be provisioned unless they are activated first`,
+				},
+				resource.Attribute{
+					Name:        "spare",
+					Description: `Flag indicating whether the Hardware Reservation is a spare. Spare Hardware Reservations are used when a Hardware Reservations requires service from Metal Equinix`,
+				},
+				resource.Attribute{
+					Name:        "switch_uuid",
+					Description: `Switch short ID, can be used to determine if two devices are connected to the same switch`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the hardware reservation to look up`,
+				},
+				resource.Attribute{
+					Name:        "short_id",
+					Description: `Reservation short ID`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `UUID of project this reservation is scoped to`,
+				},
+				resource.Attribute{
+					Name:        "device_id",
+					Description: `UUID of device occupying the reservation`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `Plan type for the reservation`,
+				},
+				resource.Attribute{
+					Name:        "facility",
+					Description: `Plan type for the reservation`,
+				},
+				resource.Attribute{
+					Name:        "provisionable",
+					Description: `Flag indicating whether the reserved server is provisionable or not. Spare devices can't be provisioned unless they are activated first`,
+				},
+				resource.Attribute{
+					Name:        "spare",
+					Description: `Flag indicating whether the Hardware Reservation is a spare. Spare Hardware Reservations are used when a Hardware Reservations requires service from Metal Equinix`,
+				},
+				resource.Attribute{
+					Name:        "switch_uuid",
+					Description: `Switch short ID, can be used to determine if two devices are connected to the same switch`,
 				},
 			},
 		},
@@ -423,7 +691,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "facility",
-					Description: `(Optional) Facility code filtering the IP blocks. Global IPv4 blcoks will be listed anyway. If you omit this, all the block from the project will be listed. ## Attributes Reference`,
+					Description: `(Optional) Facility code filtering the IP blocks. Global IPv4 blcoks will be listed anyway. If you omit this and metro, all the block from the project will be listed.`,
+				},
+				resource.Attribute{
+					Name:        "metro",
+					Description: `(Optional) Metro code filtering the IP blocks. Global IPv4 blcoks will be listed anyway. If you omit this and facility, all the block from the project will be listed. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "global_ipv4",
@@ -458,6 +730,54 @@ var (
 				resource.Attribute{
 					Name:        "ipv6",
 					Description: `list of CIDR expressions for IPv6 blocks in the project`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "metal_metro",
+			Category:         "Data Sources",
+			ShortDescription: `Provides an Equinix Metal metro datasource. This can be used to read metros.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "code",
+					Description: `The metro code Metros can be looked up by ` + "`" + `code` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the metro`,
+				},
+				resource.Attribute{
+					Name:        "code",
+					Description: `The code of the metro`,
+				},
+				resource.Attribute{
+					Name:        "country",
+					Description: `The country of the metro`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the metro`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the metro`,
+				},
+				resource.Attribute{
+					Name:        "code",
+					Description: `The code of the metro`,
+				},
+				resource.Attribute{
+					Name:        "country",
+					Description: `The country of the metro`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the metro`,
 				},
 			},
 		},
@@ -567,6 +887,102 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "metal_port",
+			Category:         "Data Sources",
+			ShortDescription: `Fetch device ports`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) ID of the port to read, conflicts with device_id.`,
+				},
+				resource.Attribute{
+					Name:        "device_id",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Whether to look for public or private block. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "network_type",
+					Description: `One of layer2-bonded, layer2-individual, layer3, hybrid, hybrid-bonded`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type is either "NetworkBondPort" for bond ports or "NetworkPort" for bondable ethernet ports`,
+				},
+				resource.Attribute{
+					Name:        "mac",
+					Description: `MAC address of the port`,
+				},
+				resource.Attribute{
+					Name:        "bond_id",
+					Description: `UUID of the bond port"`,
+				},
+				resource.Attribute{
+					Name:        "bond_name",
+					Description: `Name of the bond port`,
+				},
+				resource.Attribute{
+					Name:        "bonded",
+					Description: `Flag indicating whether the port is bonded`,
+				},
+				resource.Attribute{
+					Name:        "disbond_supported",
+					Description: `Flag indicating whether the port can be removed from a bond`,
+				},
+				resource.Attribute{
+					Name:        "native_vlan_id",
+					Description: `UUID of native VLAN of the port`,
+				},
+				resource.Attribute{
+					Name:        "vlan_ids",
+					Description: `UUIDs of attached VLANs`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "network_type",
+					Description: `One of layer2-bonded, layer2-individual, layer3, hybrid, hybrid-bonded`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type is either "NetworkBondPort" for bond ports or "NetworkPort" for bondable ethernet ports`,
+				},
+				resource.Attribute{
+					Name:        "mac",
+					Description: `MAC address of the port`,
+				},
+				resource.Attribute{
+					Name:        "bond_id",
+					Description: `UUID of the bond port"`,
+				},
+				resource.Attribute{
+					Name:        "bond_name",
+					Description: `Name of the bond port`,
+				},
+				resource.Attribute{
+					Name:        "bonded",
+					Description: `Flag indicating whether the port is bonded`,
+				},
+				resource.Attribute{
+					Name:        "disbond_supported",
+					Description: `Flag indicating whether the port can be removed from a bond`,
+				},
+				resource.Attribute{
+					Name:        "native_vlan_id",
+					Description: `UUID of native VLAN of the port`,
+				},
+				resource.Attribute{
+					Name:        "vlan_ids",
+					Description: `UUIDs of attached VLANs`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "metal_precreated_ip_block",
 			Category:         "Data Sources",
 			ShortDescription: `Load automatically created IP blocks from your Equinix Metal project`,
@@ -591,7 +1007,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "facility",
-					Description: `(Optional) Facility of the searched block. (Optional) Only allowed for non-global blocks. ## Attributes Reference`,
+					Description: `(Optional) Facility of the searched block. (for non-global blocks).`,
+				},
+				resource.Attribute{
+					Name:        "metro",
+					Description: `(Optional) Metro of the searched block (for non-global blocks). ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "cidr_notation",
@@ -811,6 +1231,29 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "metal_reserved_ip_block",
+			Category:         "Data Sources",
+			ShortDescription: `Look up an IP address block`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) UUID of the IP address block to look up`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) UUID of the project where the searched block should be`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `(Required) Block containing this IP address will be returned ## Attributes Reference This datasource exposes the same attributes as the [metal_reserved_ip_block resource](../resources/reserved_ip_block.md).`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "metal_spot_market_price",
 			Category:         "Data Sources",
 			ShortDescription: `Get an Equinix Metal Spot Market Price`,
@@ -818,12 +1261,16 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "facility",
-					Description: `(Required) Name of the facility.`,
+					Name:        "plan",
+					Description: `(Required) Name of the plan.`,
 				},
 				resource.Attribute{
-					Name:        "plan",
-					Description: `(Required) Name of the plan. ## Attributes Reference`,
+					Name:        "facility",
+					Description: `(Optional) Name of the facility.`,
+				},
+				resource.Attribute{
+					Name:        "metro",
+					Description: `(Optional) Name of the metro. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "price",
@@ -853,11 +1300,163 @@ var (
 					Name:        "device_ids",
 					Description: `List of IDs of devices spawned by the referenced Spot Market Request`,
 				},
+				resource.Attribute{
+					Name:        "devices_min",
+					Description: `Miniumum number devices to be created`,
+				},
+				resource.Attribute{
+					Name:        "devices_max",
+					Description: `Maximum number devices to be created`,
+				},
+				resource.Attribute{
+					Name:        "max_bid_price",
+					Description: `Maximum price user is willing to pay per hour per device`,
+				},
+				resource.Attribute{
+					Name:        "facilities",
+					Description: `Facility IDs where devices should be created`,
+				},
+				resource.Attribute{
+					Name:        "metro",
+					Description: `Metro where devices should be created.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `Project ID`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `The device plan slug.`,
+				},
+				resource.Attribute{
+					Name:        "end_at",
+					Description: `Date and time When the spot market request will be ended.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "device_ids",
 					Description: `List of IDs of devices spawned by the referenced Spot Market Request`,
+				},
+				resource.Attribute{
+					Name:        "devices_min",
+					Description: `Miniumum number devices to be created`,
+				},
+				resource.Attribute{
+					Name:        "devices_max",
+					Description: `Maximum number devices to be created`,
+				},
+				resource.Attribute{
+					Name:        "max_bid_price",
+					Description: `Maximum price user is willing to pay per hour per device`,
+				},
+				resource.Attribute{
+					Name:        "facilities",
+					Description: `Facility IDs where devices should be created`,
+				},
+				resource.Attribute{
+					Name:        "metro",
+					Description: `Metro where devices should be created.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `Project ID`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `The device plan slug.`,
+				},
+				resource.Attribute{
+					Name:        "end_at",
+					Description: `Date and time When the spot market request will be ended.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "metal_virtual_circuit",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve Equinix Fabric Virtual Circuit`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "virtual_circuit_id",
+					Description: `(Required) ID of the virtual circuit resource ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the virtual circuit resource`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the virtal circuit`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `ID of project to which the VC belongs`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the virtual circuit resource`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the virtal circuit`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `ID of project to which the VC belongs`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "metal_vlan",
+			Category:         "Data Sources",
+			ShortDescription: `Provides an Equinix Metal Virtual Network datasource. This can be used to read the attributes of existing VLANs.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vlan_id",
+					Description: `Metal UUID of the VLAN resource to look up`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `UUID of parent project of the VLAN. Use together with the vxlan number and metro or facility`,
+				},
+				resource.Attribute{
+					Name:        "vxlan",
+					Description: `vxlan number of the VLAN to look up. Use together with the project_id and metro or facility`,
+				},
+				resource.Attribute{
+					Name:        "facility",
+					Description: `Facility where the VLAN is deployed`,
+				},
+				resource.Attribute{
+					Name:        "metro",
+					Description: `Metro where the VLAN is deployed ## Attributes Reference The following attributes are exported, in addition to any unspecified arguments.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description text of the VLAN resource`,
+				},
+				resource.Attribute{
+					Name:        "assigned_devices_ids",
+					Description: `List of device ID to which this VLAN is assigned`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description text of the VLAN resource`,
+				},
+				resource.Attribute{
+					Name:        "assigned_devices_ids",
+					Description: `List of device ID to which this VLAN is assigned`,
 				},
 			},
 		},
@@ -965,18 +1564,25 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"metal_device":               0,
-		"metal_device_bgp_neighbors": 1,
-		"metal_facility":             2,
-		"metal_ip_block_ranges":      3,
-		"metal_operating_system":     4,
-		"metal_organization":         5,
-		"metal_precreated_ip_block":  6,
-		"metal_project":              7,
-		"metal_project_ssh_key":      8,
-		"metal_spot_market_price":    9,
-		"metal_spot_market_request":  10,
-		"metal_volume":               11,
+		"metal_connection":           0,
+		"metal_device":               1,
+		"metal_device_bgp_neighbors": 2,
+		"metal_facility":             3,
+		"metal_hardware_reservation": 4,
+		"metal_ip_block_ranges":      5,
+		"metal_metro":                6,
+		"metal_operating_system":     7,
+		"metal_organization":         8,
+		"metal_port":                 9,
+		"metal_precreated_ip_block":  10,
+		"metal_project":              11,
+		"metal_project_ssh_key":      12,
+		"metal_reserved_ip_block":    13,
+		"metal_spot_market_price":    14,
+		"metal_spot_market_request":  15,
+		"metal_virtual_circuit":      16,
+		"metal_vlan":                 17,
+		"metal_volume":               18,
 	}
 )
 

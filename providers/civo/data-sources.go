@@ -159,7 +159,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "hostname",
-					Description: `(Optional) The hostname of the Instance. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The hostname of the Instance.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region of an existing Instance. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -240,6 +244,10 @@ var (
 				resource.Attribute{
 					Name:        "status",
 					Description: `The status of the instance`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region of the instance`,
 				},
 				resource.Attribute{
 					Name:        "script",
@@ -330,6 +338,10 @@ var (
 				resource.Attribute{
 					Name:        "status",
 					Description: `The status of the instance`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region of the instance`,
 				},
 				resource.Attribute{
 					Name:        "script",
@@ -359,7 +371,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `(Required) Filter the sizes by this key. This may be one of ` + "`" + `name` + "`" + `, ` + "`" + `nice_name` + "`" + `, ` + "`" + `cpu_cores` + "`" + `, ` + "`" + `ram_mb` + "`" + `, ` + "`" + `disk_gb` + "`" + `, ` + "`" + `selectable` + "`" + `.`,
+					Description: `(Required) Filter the sizes by this key. This may be one of ` + "`" + `name` + "`" + `, ` + "`" + `type` + "`" + `, ` + "`" + `cpu` + "`" + `, ` + "`" + `ram` + "`" + `, ` + "`" + `disk` + "`" + `, ` + "`" + `selectable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "values",
@@ -367,14 +379,14 @@ var (
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `(Required) Sort the sizes by this key. This may be one of ` + "`" + `name` + "`" + `, ` + "`" + `nice_name` + "`" + `, ` + "`" + `cpu_cores` + "`" + `, ` + "`" + `ram_mb` + "`" + `, ` + "`" + `disk_gb` + "`" + `, ` + "`" + `selectable` + "`" + `.`,
+					Description: `(Required) Sort the sizes by this key. This may be one of ` + "`" + `name` + "`" + `, ` + "`" + `type` + "`" + `, ` + "`" + `cpu` + "`" + `, ` + "`" + `ram` + "`" + `, ` + "`" + `disk` + "`" + `, ` + "`" + `selectable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "direction",
 					Description: `(Required) The sort direction. This may be either ` + "`" + `asc` + "`" + ` or ` + "`" + `desc` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "cpu_cores",
+					Name:        "cpu",
 					Description: `Total of CPU in the instance.`,
 				},
 				resource.Attribute{
@@ -384,7 +396,7 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "cpu_cores",
+					Name:        "cpu",
 					Description: `Total of CPU in the instance.`,
 				},
 				resource.Attribute{
@@ -401,6 +413,10 @@ var (
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) If is used, them all instances will be from that region.`,
+				},
 				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional) Filter the results. The ` + "`" + `filter` + "`" + ` block is documented below.`,
@@ -659,7 +675,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instances",
-					Description: `In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported. - ` + "`" + `hostname` + "`" + ` - The hostname of the instance. - ` + "`" + `size` + "`" + ` - The size of the instance. - ` + "`" + `cpu_cores` + "`" + ` - Total cpu of the inatance. - ` + "`" + `ram_mb` + "`" + ` - Total ram of the instance - ` + "`" + `disk_gb` + "`" + ` - The size of the disk. - ` + "`" + `region` + "`" + ` - The region where instance are. - ` + "`" + `status` + "`" + ` - The status of the instance. - ` + "`" + `created_at` + "`" + ` - The date where the instances was created. - ` + "`" + `firewall_id` + "`" + ` - The firewall id assigned to the instance - ` + "`" + `public_ip` + "`" + ` - The public ip of the instances, only available if the instances is the master - ` + "`" + `tags` + "`" + ` - The tag of the instances`,
+					Description: `In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported: - ` + "`" + `hostname` + "`" + ` - The hostname of the instance. - ` + "`" + `cpu_cores` + "`" + ` - Total cpu of the inatance. - ` + "`" + `ram_mb` + "`" + ` - Total ram of the instance - ` + "`" + `disk_gb` + "`" + ` - The size of the disk. - ` + "`" + `status` + "`" + ` - The status of the instance. - ` + "`" + `tags` + "`" + ` - The tag of the instances`,
+				},
+				resource.Attribute{
+					Name:        "pools",
+					Description: `A list of node pools associated with the cluster. Each node pool exports the following attributes: - ` + "`" + `id` + "`" + ` - The ID of the pool - ` + "`" + `count` + "`" + ` - The size of the pool - ` + "`" + `size` + "`" + ` - The size of each node inside the pool - ` + "`" + `instance_names` + "`" + ` - A list of the instance in the pool`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `A list of instance inside the pool - ` + "`" + `hostname` + "`" + ` - The hostname of the instance. - ` + "`" + `size` + "`" + ` - The size of the instance. - ` + "`" + `cpu_cores` + "`" + ` - Total cpu of the inatance. - ` + "`" + `ram_mb` + "`" + ` - Total ram of the instance - ` + "`" + `disk_gb` + "`" + ` - The size of the disk. - ` + "`" + `status` + "`" + ` - The status of the instance. - ` + "`" + `tags` + "`" + ` - The tag of the instances`,
 				},
 				resource.Attribute{
 					Name:        "installed_applications",
@@ -725,7 +749,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instances",
-					Description: `In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported. - ` + "`" + `hostname` + "`" + ` - The hostname of the instance. - ` + "`" + `size` + "`" + ` - The size of the instance. - ` + "`" + `cpu_cores` + "`" + ` - Total cpu of the inatance. - ` + "`" + `ram_mb` + "`" + ` - Total ram of the instance - ` + "`" + `disk_gb` + "`" + ` - The size of the disk. - ` + "`" + `region` + "`" + ` - The region where instance are. - ` + "`" + `status` + "`" + ` - The status of the instance. - ` + "`" + `created_at` + "`" + ` - The date where the instances was created. - ` + "`" + `firewall_id` + "`" + ` - The firewall id assigned to the instance - ` + "`" + `public_ip` + "`" + ` - The public ip of the instances, only available if the instances is the master - ` + "`" + `tags` + "`" + ` - The tag of the instances`,
+					Description: `In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported: - ` + "`" + `hostname` + "`" + ` - The hostname of the instance. - ` + "`" + `cpu_cores` + "`" + ` - Total cpu of the inatance. - ` + "`" + `ram_mb` + "`" + ` - Total ram of the instance - ` + "`" + `disk_gb` + "`" + ` - The size of the disk. - ` + "`" + `status` + "`" + ` - The status of the instance. - ` + "`" + `tags` + "`" + ` - The tag of the instances`,
+				},
+				resource.Attribute{
+					Name:        "pools",
+					Description: `A list of node pools associated with the cluster. Each node pool exports the following attributes: - ` + "`" + `id` + "`" + ` - The ID of the pool - ` + "`" + `count` + "`" + ` - The size of the pool - ` + "`" + `size` + "`" + ` - The size of each node inside the pool - ` + "`" + `instance_names` + "`" + ` - A list of the instance in the pool`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `A list of instance inside the pool - ` + "`" + `hostname` + "`" + ` - The hostname of the instance. - ` + "`" + `size` + "`" + ` - The size of the instance. - ` + "`" + `cpu_cores` + "`" + ` - Total cpu of the inatance. - ` + "`" + `ram_mb` + "`" + ` - Total ram of the instance - ` + "`" + `disk_gb` + "`" + ` - The size of the disk. - ` + "`" + `status` + "`" + ` - The status of the instance. - ` + "`" + `tags` + "`" + ` - The tag of the instances`,
 				},
 				resource.Attribute{
 					Name:        "installed_applications",
@@ -963,11 +995,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The unique identifier of an existing Network.`,
+					Description: `(Optional) The unique identifier of an existing Network.`,
 				},
 				resource.Attribute{
 					Name:        "label",
-					Description: `The name of an existing Network. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The label of an existing Network.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region of an existing Network. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -980,10 +1016,6 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the network.`,
-				},
-				resource.Attribute{
-					Name:        "region",
-					Description: `The region where the network was create.`,
 				},
 				resource.Attribute{
 					Name:        "default",
@@ -1008,10 +1040,6 @@ var (
 					Description: `The name of the network.`,
 				},
 				resource.Attribute{
-					Name:        "region",
-					Description: `The region where the network was create.`,
-				},
-				resource.Attribute{
 					Name:        "default",
 					Description: `If is the default network.`,
 				},
@@ -1020,6 +1048,41 @@ var (
 					Description: `The block ip assigned to the network.`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "civo_region",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a Civo Region.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Filter the results. The ` + "`" + `filter` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "sort",
+					Description: `(Optional) Sort the results. The ` + "`" + `sort` + "`" + ` block is documented below. ` + "`" + `filter` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Filter the sizes by this key. This may be one of ` + "`" + `code` + "`" + `, ` + "`" + `name` + "`" + `, ` + "`" + `country` + "`" + `, ` + "`" + `default` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Only retrieves region which keys has value that matches one of the values provided here. ` + "`" + `sort` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Sort the sizes by this key. This may be one of ` + "`" + `code` + "`" + `,` + "`" + `name` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "direction",
+					Description: `(Required) The sort direction. This may be either ` + "`" + `asc` + "`" + ` or ` + "`" + `desc` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1165,6 +1228,10 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) If is used, them all instances will be from that region.`,
+				},
+				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional) Filter the results. The ` + "`" + `filter` + "`" + ` block is documented below.`,
 				},
@@ -1174,7 +1241,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `(Required) Filter the sizes by this key. This may be one of ` + "`" + `code` + "`" + `, ` + "`" + `name` + "`" + `.`,
+					Description: `(Required) Filter the sizes by this key. This may be one of ` + "`" + `id` + "`" + `,` + "`" + `name` + "`" + `,` + "`" + `version` + "`" + `,` + "`" + `label` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "values",
@@ -1182,7 +1249,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `(Required) Sort the sizes by this key. This may be one of ` + "`" + `code` + "`" + `, ` + "`" + `name` + "`" + `.`,
+					Description: `(Required) Sort the sizes by this key. This may be one of ` + "`" + `id` + "`" + `,` + "`" + `name` + "`" + `,` + "`" + `version` + "`" + `,` + "`" + `label` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "direction",
@@ -1193,36 +1260,16 @@ var (
 					Description: `The id of the template`,
 				},
 				resource.Attribute{
-					Name:        "code",
-					Description: `A unqiue, alphanumerical, short, human readable code for the template.`,
-				},
-				resource.Attribute{
 					Name:        "name",
 					Description: `A short human readable name for the template`,
 				},
 				resource.Attribute{
-					Name:        "volume_id",
-					Description: `The ID of a bootable volume, either owned by you or global.`,
+					Name:        "version",
+					Description: `The version of the template.`,
 				},
 				resource.Attribute{
-					Name:        "image_id",
-					Description: `The Image ID of any default template or the ID of another template.`,
-				},
-				resource.Attribute{
-					Name:        "short_description",
-					Description: `A one line description of the template`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A multi-line description of the template, in Markdown format`,
-				},
-				resource.Attribute{
-					Name:        "default_username",
-					Description: `The default username to suggest that the user creates`,
-				},
-				resource.Attribute{
-					Name:        "cloud_config",
-					Description: `Commonly referred to as 'user-data', this is a customisation script that is run after the instance is first booted.`,
+					Name:        "label",
+					Description: `The label of the template.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1231,36 +1278,16 @@ var (
 					Description: `The id of the template`,
 				},
 				resource.Attribute{
-					Name:        "code",
-					Description: `A unqiue, alphanumerical, short, human readable code for the template.`,
-				},
-				resource.Attribute{
 					Name:        "name",
 					Description: `A short human readable name for the template`,
 				},
 				resource.Attribute{
-					Name:        "volume_id",
-					Description: `The ID of a bootable volume, either owned by you or global.`,
+					Name:        "version",
+					Description: `The version of the template.`,
 				},
 				resource.Attribute{
-					Name:        "image_id",
-					Description: `The Image ID of any default template or the ID of another template.`,
-				},
-				resource.Attribute{
-					Name:        "short_description",
-					Description: `A one line description of the template`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A multi-line description of the template, in Markdown format`,
-				},
-				resource.Attribute{
-					Name:        "default_username",
-					Description: `The default username to suggest that the user creates`,
-				},
-				resource.Attribute{
-					Name:        "cloud_config",
-					Description: `Commonly referred to as 'user-data', this is a customisation script that is run after the instance is first booted.`,
+					Name:        "label",
+					Description: `The label of the template.`,
 				},
 			},
 		},
@@ -1345,10 +1372,11 @@ var (
 		"civo_kubernetes_version": 6,
 		"civo_loadbalancer":       7,
 		"civo_network":            8,
-		"civo_snapshot":           9,
-		"civo_ssh_key":            10,
-		"civo_template":           11,
-		"civo_volume":             12,
+		"civo_region":             9,
+		"civo_snapshot":           10,
+		"civo_ssh_key":            11,
+		"civo_template":           12,
+		"civo_volume":             13,
 	}
 )
 

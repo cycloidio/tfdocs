@@ -130,6 +130,10 @@ var (
 					Description: `(Optional) The ID of the set of TLS configuration options that apply to the enabled domains on this subscription.`,
 				},
 				resource.Attribute{
+					Name:        "force_update",
+					Description: `(Optional) Always update subscription, even when active domains are present. Defaults to false.`,
+				},
+				resource.Attribute{
 					Name:        "force_destroy",
 					Description: `(Optional) Always delete subscription, even when active domains are present. Defaults to false. !>`,
 				},

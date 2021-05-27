@@ -424,7 +424,7 @@ Use this data source to get peering information about a [Heroku Private Space](h
 			ShortDescription: `Get information on a Heroku Team.`,
 			Description: `
 
-Use this data source to get information about a Heroku Team or Heroku Enterprise team.
+Use this data source to get information about a Heroku Team.
 
 `,
 			Keywords: []string{},
@@ -485,6 +485,94 @@ Use this data source to get information about a Heroku Team or Heroku Enterprise
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "heroku_team_members",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on members for a Heroku Team.`,
+			Description: `
+
+Use this data source to get information about members for a Heroku Team.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "team",
+					Description: `(Required) The team name.`,
+				},
+				resource.Attribute{
+					Name:        "roles",
+					Description: `(Required) List of roles. Acceptable values are ` + "`" + `admin` + "`" + `, ` + "`" + `member` + "`" + `, ` + "`" + `viewer` + "`" + `, ` + "`" + `collaborator` + "`" + `, ` + "`" + `owner` + "`" + `. At least one role must be specified. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The name of the team.`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `All members of the team that have a specified role defined in the ` + "`" + `roles` + "`" + ` attribute above.`,
+				},
+				resource.Attribute{
+					Name:        "team_member_id",
+					Description: `Unique identifier of the team member on the team.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `Unique identifier of the team member. This is the member's user ID in Heroku.`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `Email address of the team member.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Role in the team.`,
+				},
+				resource.Attribute{
+					Name:        "federated",
+					Description: `Whether the user is federated and belongs to an Identity Provider.`,
+				},
+				resource.Attribute{
+					Name:        "two_factor_authentication",
+					Description: `Whether the Enterprise team member has two-factor authentication enabled.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The name of the team.`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `All members of the team that have a specified role defined in the ` + "`" + `roles` + "`" + ` attribute above.`,
+				},
+				resource.Attribute{
+					Name:        "team_member_id",
+					Description: `Unique identifier of the team member on the team.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `Unique identifier of the team member. This is the member's user ID in Heroku.`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `Email address of the team member.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Role in the team.`,
+				},
+				resource.Attribute{
+					Name:        "federated",
+					Description: `Whether the user is federated and belongs to an Identity Provider.`,
+				},
+				resource.Attribute{
+					Name:        "two_factor_authentication",
+					Description: `Whether the Enterprise team member has two-factor authentication enabled.`,
+				},
+			},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
@@ -495,6 +583,7 @@ Use this data source to get information about a Heroku Team or Heroku Enterprise
 		"heroku_space":              3,
 		"heroku_space_peering_info": 4,
 		"heroku_team":               5,
+		"heroku_team_members":       6,
 	}
 )
 

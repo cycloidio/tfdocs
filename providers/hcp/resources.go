@@ -13,7 +13,7 @@ var (
 			Name:             "",
 			Type:             "hcp_aws_network_peering",
 			Category:         "Resources",
-			ShortDescription: `The AWS Network peering resource allows you to manage a Network peering between an HVN and a peer AWS VPC.`,
+			ShortDescription: `The AWS network peering resource allows you to manage a network peering between an HVN and a peer AWS VPC.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -23,7 +23,7 @@ var (
 			Name:             "",
 			Type:             "hcp_aws_transit_gateway_attachment",
 			Category:         "Resources",
-			ShortDescription: `The AWS Transit Gateway Attachment resource allows you to manage a transit gateway attachment. The transit gateway attachment attaches an HVN to a user-owned transit gateway in AWS. Note that the HVN and transit gateway must be located in the same AWS region.`,
+			ShortDescription: `The AWS transit gateway attachment resource allows you to manage a transit gateway attachment. The transit gateway attachment attaches an HVN to a user-owned transit gateway in AWS. Note that the HVN and transit gateway must be located in the same AWS region.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -69,6 +69,26 @@ var (
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "hcp_vault_cluster",
+			Category:         "Resources",
+			ShortDescription: `The Vault cluster resource allows you to manage an HCP Vault cluster.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "hcp_vault_cluster_admin_token",
+			Category:         "Resources",
+			ShortDescription: `The Vault cluster admin token resource generates an admin-level token for the HCP Vault cluster.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
 	}
 
 	resourcesMap = map[string]int{
@@ -79,6 +99,8 @@ var (
 		"hcp_consul_cluster_root_token":      3,
 		"hcp_consul_snapshot":                4,
 		"hcp_hvn":                            5,
+		"hcp_vault_cluster":                  6,
+		"hcp_vault_cluster_admin_token":      7,
 	}
 )
 

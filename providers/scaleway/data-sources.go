@@ -111,6 +111,26 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "scaleway_rdb_acl",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about the RDB instance network Access Control List.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "scaleway_rdb_database",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an RDB database.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "scaleway_rdb_instance",
 			Category:         "Data Sources",
 			ShortDescription: `Gets information about an RDB instance.`,
@@ -168,10 +188,12 @@ var (
 		"scaleway_k8s_pool":                7,
 		"scaleway_lb_ip":                   8,
 		"scaleway_marketplace_image":       9,
-		"scaleway_rdb_instance":            10,
-		"scaleway_registry_image":          11,
-		"scaleway_registry_namespace":      12,
-		"scaleway_vpc_private_network":     13,
+		"scaleway_rdb_acl":                 10,
+		"scaleway_rdb_database":            11,
+		"scaleway_rdb_instance":            12,
+		"scaleway_registry_image":          13,
+		"scaleway_registry_namespace":      14,
+		"scaleway_vpc_private_network":     15,
 	}
 )
 

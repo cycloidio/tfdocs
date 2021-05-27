@@ -3306,11 +3306,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "panos_ip_tag",
-			Category:         "NGFW User-ID",
+			Category:         "User-ID",
 			ShortDescription: ``,
 			Description:      ``,
 			Keywords: []string{
-				"ngfw",
 				"user",
 				"id",
 				"ip",

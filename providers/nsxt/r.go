@@ -5077,7 +5077,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing EVPN Config can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_evpn_config.config1 gwPath ` + "`" + `` + "`" + `` + "`" + ` The above command imports EVPN Config named ` + "`" + `config1` + "`" + ` for NSX Policy Tier0 Gateway with full Policy Path ` + "`" + `gwPath` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing EVPN Config can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_evpn_config.config1 gwPath ` + "`" + `` + "`" + `` + "`" + ` The above command imports EVPN Config named ` + "`" + `config1` + "`" + ` for NSX Policy Tier0 Gateway with full Policy Path ` + "`" + `gwPath` + "`" + `. ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5091,7 +5091,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing EVPN Config can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_evpn_config.config1 gwPath ` + "`" + `` + "`" + `` + "`" + ` The above command imports EVPN Config named ` + "`" + `config1` + "`" + ` for NSX Policy Tier0 Gateway with full Policy Path ` + "`" + `gwPath` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing EVPN Config can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_evpn_config.config1 gwPath ` + "`" + `` + "`" + `` + "`" + ` The above command imports EVPN Config named ` + "`" + `config1` + "`" + ` for NSX Policy Tier0 Gateway with full Policy Path ` + "`" + `gwPath` + "`" + `. ~>`,
 				},
 			},
 		},
@@ -5287,7 +5287,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "transport_zone_path",
-					Description: `(Required) Policy path to the Overlay transport zone.`,
+					Description: `(Optional) Policy path to the Overlay transport zone.`,
 				},
 				resource.Attribute{
 					Name:        "dhcp_config_path",
@@ -5411,7 +5411,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "uplink_teaming_policy",
-					Description: `(Optional) The name of the switching uplink teaming policy for the bridge endpoint. This name corresponds to one of the switching uplink teaming policy names listed in the transport zone. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Optional) The name of the switching uplink teaming policy for the bridge endpoint. This name corresponds to one of the switching uplink teaming policy names listed in the transport zone.`,
+				},
+				resource.Attribute{
+					Name:        "urpf_mode",
+					Description: `(Optional) URPF mode to be applied to gateway downlink interface. One of ` + "`" + `STRICT` + "`" + `, ` + "`" + `NONE` + "`" + `. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -5852,6 +5856,82 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nsxt_policy_gateway_redistribution_config",
+			Category:         "Policy - Gateways and Routing",
+			ShortDescription: `A resource to configure Route Redistribution on Tier-0 gateway in NSX Policy manager.`,
+			Description:      ``,
+			Keywords: []string{
+				"policy",
+				"gateways",
+				"and",
+				"routing",
+				"gateway",
+				"redistribution",
+				"config",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "gateway_path",
+					Description: `(Required) Policy path to Tier0 Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "site_path",
+					Description: `(Optional) Policy path to Global Manager site (domain). This attribute is required for NSX Global Manager and not applicable otherwise.`,
+				},
+				resource.Attribute{
+					Name:        "bgp_enabled",
+					Description: `(Optional) Enable route redistribution for BGP. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ospf_enabled",
+					Description: `(Optional) Enable route redistribution for OSPF. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Optional) List of redistribution rules.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Rule name.`,
+				},
+				resource.Attribute{
+					Name:        "route_map_path",
+					Description: `(Optional) Route map to be associated with the redistribution rule.`,
+				},
+				resource.Attribute{
+					Name:        "types",
+					Description: `(Optional) List of redistribution types, possible values are: ` + "`" + `TIER0_STATIC` + "`" + `, ` + "`" + `TIER0_CONNECTED` + "`" + `, ` + "`" + `TIER0_EXTERNAL_INTERFACE` + "`" + `, ` + "`" + `TIER0_SEGMENT` + "`" + `, ` + "`" + `TIER0_ROUTER_LINK` + "`" + `, ` + "`" + `TIER0_SERVICE_INTERFACE` + "`" + `, ` + "`" + `TIER0_LOOPBACK_INTERFACE` + "`" + `, ` + "`" + `TIER0_DNS_FORWARDER_IP` + "`" + `, ` + "`" + `TIER0_IPSEC_LOCAL_IP` + "`" + `, ` + "`" + `TIER0_NAT` + "`" + `, ` + "`" + `TIER0_EVPN_TEP_IP` + "`" + `, ` + "`" + `TIER1_NAT` + "`" + `, ` + "`" + `TIER1_STATIC` + "`" + `, ` + "`" + `TIER1_LB_VIP` + "`" + `, ` + "`" + `TIER1_LB_SNAT` + "`" + `, ` + "`" + `TIER1_DNS_FORWARDER_IP` + "`" + `, ` + "`" + `TIER1_CONNECTED` + "`" + `, ` + "`" + `TIER1_SERVICE_INTERFACE` + "`" + `, ` + "`" + `TIER1_SEGMENT` + "`" + `, ` + "`" + `TIER1_IPSEC_LOCAL_ENDPOINT` + "`" + `. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "gateway_id",
+					Description: `ID of the Tier-0 Gateway`,
+				},
+				resource.Attribute{
+					Name:        "locale_service_id",
+					Description: `ID of the Tier-0 Gateway locale service. ## Importing An existing policy Tier-0 Gateway Redistribution config can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_redistribution_config.havip GW-ID/LOCALE-SERVICE-ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway Redistribution config named ` + "`" + `havip` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `, under locale service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "gateway_id",
+					Description: `ID of the Tier-0 Gateway`,
+				},
+				resource.Attribute{
+					Name:        "locale_service_id",
+					Description: `ID of the Tier-0 Gateway locale service. ## Importing An existing policy Tier-0 Gateway Redistribution config can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_redistribution_config.havip GW-ID/LOCALE-SERVICE-ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway Redistribution config named ` + "`" + `havip` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `, under locale service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nsxt_policy_gateway_route_map",
 			Category:         "Policy - Gateways and Routing",
 			ShortDescription: `A resource to configure Route Map on Tier0 Gateway.`,
@@ -5888,7 +5968,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "community_list_match",
-					Description: `(Optional) List of Prefix List match criteria for route map. Can not be configured together with ` + "`" + `prefix_list_matches` + "`" + `.`,
+					Description: `(Optional) List of Prefix List match criteria for route map. Cannot be configured together with ` + "`" + `prefix_list_matches` + "`" + `. If configured together, ` + "`" + `prefix_list_matches` + "`" + ` will be ignored.`,
 				},
 				resource.Attribute{
 					Name:        "criteria",
@@ -5900,7 +5980,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "prefix_list_matches",
-					Description: `(Optional) List of policy paths for Prefix Lists configured on this Gateway. Can not be configured together with ` + "`" + `community_list_match` + "`" + `.`,
+					Description: `(Optional) List of policy paths for Prefix Lists configured on this Gateway. Cannot be configured together with ` + "`" + `community_list_match` + "`" + `. If configured together, ` + "`" + `prefix_list_matches` + "`" + ` will be ignored.`,
 				},
 				resource.Attribute{
 					Name:        "set",
@@ -6180,10 +6260,6 @@ var (
 					Description: `(Optional) Indicates whether the policy should be locked. If locked by a user, no other user would be able to modify this policy.`,
 				},
 				resource.Attribute{
-					Name:        "scope",
-					Description: `(Optional) The list of policy object paths where the rules in this policy will get applied.`,
-				},
-				resource.Attribute{
 					Name:        "sequence_number",
 					Description: `(Optional) This field is used to resolve conflicts between IDS policies across domains.`,
 				},
@@ -6246,10 +6322,6 @@ var (
 				resource.Attribute{
 					Name:        "ids_profiles",
 					Description: `(Required) Set of IDS profile paths relevant for this rule.`,
-				},
-				resource.Attribute{
-					Name:        "scope",
-					Description: `(Optional) Set of policy object paths where the rule is applied.`,
 				},
 				resource.Attribute{
 					Name:        "services",
@@ -8268,6 +8340,10 @@ var (
 					Description: `(Optional) The name of the switching uplink teaming policy for the bridge endpoint. This name corresponds to one of the switching uplink teaming policy names listed in the transport zone.`,
 				},
 				resource.Attribute{
+					Name:        "urpf_mode",
+					Description: `(Optional) URPF mode to be applied to gateway downlink interface. One of ` + "`" + `STRICT` + "`" + `, ` + "`" + `NONE` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "discovery_profile",
 					Description: `(Optional) IP and MAC discovery profile specification for the segment.`,
 				},
@@ -8544,7 +8620,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `(Required) The gateway address of the next hop.`,
+					Description: `(Optional) The gateway address of the next hop.`,
 				},
 				resource.Attribute{
 					Name:        "interface",
@@ -8763,19 +8839,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "redistribution_config",
-					Description: `(Optional) Route redistribution properties. This setting is for local manager only.`,
+					Description: `(Deprecated) Route redistribution properties. This setting is for local manager only. This setting is deprecated, please use ` + "`" + `nsxt_policy_gateway_redistribution_config` + "`" + ` resource instead.`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Deprecated) Enable route redistribution for BGP. This attribute is deprecated, please use ` + "`" + `bgp_enabled` + "`" + ` instead.`,
-				},
-				resource.Attribute{
-					Name:        "bgp_enabled",
-					Description: `(Optional) Enable route redistribution for BGP. Defaults to true.`,
+					Description: `Enable route redistribution for BGP. Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ospf_enabled",
-					Description: `(Optional) Enable route redistribution for OSPF. Defaults to false.`,
+					Description: `(Optional) Enable route redistribution for OSPF. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "rule",
@@ -8815,7 +8887,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-0 gateway can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier0_gateway.tier0_gw ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway named ` + "`" + `tier0_gw` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-0 gateway can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier0_gateway.tier0_gw ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway named ` + "`" + `tier0_gw` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `. ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -8841,7 +8913,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-0 gateway can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier0_gateway.tier0_gw ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway named ` + "`" + `tier0_gw` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-0 gateway can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier0_gateway.tier0_gw ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway named ` + "`" + `tier0_gw` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `. ~>`,
 				},
 			},
 		},
@@ -8969,7 +9041,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_pim",
-					Description: `(Optional) Flag to enable Protocol Independent Multicast, relevant only for interfaces of type ` + "`" + `EXTERNAL` + "`" + `. This attribute is supported with NSX 3.0.0 onwards, and only for local managers.`,
+					Description: `(Optional) Flag to enable Protocol Independent Multicast, relevant only for interfaces of type ` + "`" + `EXTERNAL` + "`" + `. This attribute will always be ` + "`" + `false` + "`" + ` for other interface types. This attribute is supported with NSX 3.0.0 onwards, and only for local managers.`,
 				},
 				resource.Attribute{
 					Name:        "urpf_mode",
@@ -9458,6 +9530,10 @@ var (
 				resource.Attribute{
 					Name:        "uplink_teaming_policy",
 					Description: `(Optional) The name of the switching uplink teaming policy for the bridge endpoint. This name corresponds to one of the switching uplink teaming policy names listed in the transport zone.`,
+				},
+				resource.Attribute{
+					Name:        "urpf_mode",
+					Description: `(Optional) URPF mode to be applied to gateway downlink interface. One of ` + "`" + `STRICT` + "`" + `, ` + "`" + `NONE` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "discovery_profile",
@@ -10120,43 +10196,44 @@ var (
 		"nsxt_policy_gateway_dns_forwarder":            66,
 		"nsxt_policy_gateway_policy":                   67,
 		"nsxt_policy_gateway_prefix_list":              68,
-		"nsxt_policy_gateway_route_map":                69,
-		"nsxt_policy_gateway_static_route_bfd_peer":    70,
-		"nsxt_policy_group":                            71,
-		"nsxt_policy_intrusion_service_policy":         72,
-		"nsxt_policy_intrusion_service_profile":        73,
-		"nsxt_policy_ip_address_allocation":            74,
-		"nsxt_policy_ip_block":                         75,
-		"nsxt_policy_ip_pool":                          76,
-		"nsxt_policy_ip_pool_block_subnet":             77,
-		"nsxt_policy_ip_pool_static_subnet":            78,
-		"nsxt_policy_lb_pool":                          79,
-		"nsxt_policy_lb_service":                       80,
-		"nsxt_policy_lb_virtual_server":                81,
-		"nsxt_policy_nat_rule":                         82,
-		"nsxt_policy_ospf_area":                        83,
-		"nsxt_policy_ospf_config":                      84,
-		"nsxt_policy_predefined_gateway_policy":        85,
-		"nsxt_policy_predefined_security_policy":       86,
-		"nsxt_policy_qos_profile":                      87,
-		"nsxt_policy_security_policy":                  88,
-		"nsxt_policy_segment":                          89,
-		"nsxt_policy_service":                          90,
-		"nsxt_policy_static_route":                     91,
-		"nsxt_policy_tier0_gateway":                    92,
-		"nsxt_policy_tier0_gateway_ha_vip_config":      93,
-		"nsxt_policy_tier0_gateway_interface":          94,
-		"nsxt_policy_tier1_gateway":                    95,
-		"nsxt_policy_tier1_gateway_interface":          96,
-		"nsxt_policy_vlan_segment":                     97,
-		"nsxt_policy_vm_tags":                          98,
-		"nsxt_qos_switching_profile":                   99,
-		"nsxt_spoof_guard_switching_profile":           100,
-		"nsxt_spoofguard_switching_profile":            101,
-		"nsxt_static_route":                            102,
-		"nsxt_switch_security_switching_profile":       103,
-		"nsxt_vlan_logical_switch":                     104,
-		"nsxt_vm_tags":                                 105,
+		"nsxt_policy_gateway_redistribution_config":    69,
+		"nsxt_policy_gateway_route_map":                70,
+		"nsxt_policy_gateway_static_route_bfd_peer":    71,
+		"nsxt_policy_group":                            72,
+		"nsxt_policy_intrusion_service_policy":         73,
+		"nsxt_policy_intrusion_service_profile":        74,
+		"nsxt_policy_ip_address_allocation":            75,
+		"nsxt_policy_ip_block":                         76,
+		"nsxt_policy_ip_pool":                          77,
+		"nsxt_policy_ip_pool_block_subnet":             78,
+		"nsxt_policy_ip_pool_static_subnet":            79,
+		"nsxt_policy_lb_pool":                          80,
+		"nsxt_policy_lb_service":                       81,
+		"nsxt_policy_lb_virtual_server":                82,
+		"nsxt_policy_nat_rule":                         83,
+		"nsxt_policy_ospf_area":                        84,
+		"nsxt_policy_ospf_config":                      85,
+		"nsxt_policy_predefined_gateway_policy":        86,
+		"nsxt_policy_predefined_security_policy":       87,
+		"nsxt_policy_qos_profile":                      88,
+		"nsxt_policy_security_policy":                  89,
+		"nsxt_policy_segment":                          90,
+		"nsxt_policy_service":                          91,
+		"nsxt_policy_static_route":                     92,
+		"nsxt_policy_tier0_gateway":                    93,
+		"nsxt_policy_tier0_gateway_ha_vip_config":      94,
+		"nsxt_policy_tier0_gateway_interface":          95,
+		"nsxt_policy_tier1_gateway":                    96,
+		"nsxt_policy_tier1_gateway_interface":          97,
+		"nsxt_policy_vlan_segment":                     98,
+		"nsxt_policy_vm_tags":                          99,
+		"nsxt_qos_switching_profile":                   100,
+		"nsxt_spoof_guard_switching_profile":           101,
+		"nsxt_spoofguard_switching_profile":            102,
+		"nsxt_static_route":                            103,
+		"nsxt_switch_security_switching_profile":       104,
+		"nsxt_vlan_logical_switch":                     105,
+		"nsxt_vm_tags":                                 106,
 	}
 )
 

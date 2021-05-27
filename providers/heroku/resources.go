@@ -637,7 +637,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cname",
-					Description: `The CNAME traffic should route to. ## Importing When importing a Heroku domain resource, the ID must be built using the app name colon the unique ID from the Heroku API. For an app named ` + "`" + `production-api` + "`" + ` with a domain ID of ` + "`" + `b85d9224-310b-409b-891e-c903f5a40568` + "`" + `, you would import it as: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_domain.production_api production-api:b85d9224-310b-409b-891e-c903f5a40568 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The CNAME traffic should route to. ## Importing When importing a Heroku domain resource, the ID is specified ` + "`" + `APP_NAME:DOMAIN_IDENTIFIER` + "`" + `, where the domain can be identified either with the UUID from the Heroku API or the domain name. For an app named ` + "`" + `test-app` + "`" + ` with a domain name of ` + "`" + `terraform.example.com` + "`" + `, you could import it with: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_domain.default test-app:terraform.example.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -651,7 +651,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cname",
-					Description: `The CNAME traffic should route to. ## Importing When importing a Heroku domain resource, the ID must be built using the app name colon the unique ID from the Heroku API. For an app named ` + "`" + `production-api` + "`" + ` with a domain ID of ` + "`" + `b85d9224-310b-409b-891e-c903f5a40568` + "`" + `, you would import it as: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_domain.production_api production-api:b85d9224-310b-409b-891e-c903f5a40568 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The CNAME traffic should route to. ## Importing When importing a Heroku domain resource, the ID is specified ` + "`" + `APP_NAME:DOMAIN_IDENTIFIER` + "`" + `, where the domain can be identified either with the UUID from the Heroku API or the domain name. For an app named ` + "`" + `test-app` + "`" + ` with a domain name of ` + "`" + `terraform.example.com` + "`" + `, you could import it with: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_domain.default test-app:terraform.example.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -862,6 +862,57 @@ var (
 					Description: `The stage for this coupling. ## Import Pipeline couplings can be imported using the Pipeline coupling ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_pipeline_coupling.foobar 12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "heroku_review_app_config",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource for configuring review apps.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "pipeline_id",
+					Description: `(Required) The UUID of an existing pipeline.`,
+				},
+				resource.Attribute{
+					Name:        "org_repo",
+					Description: `(Required) The full_name of the repository that you want to enable review-apps from. Example ` + "`" + `heroku/homebrew-brew` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "deploy_target",
+					Description: `(Required) Provides a key/value pair to specify whether to use a common runtime or a private space.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) Unique identifier of deploy target.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Type of deploy target. Must be either ` + "`" + `space` + "`" + ` or ` + "`" + `region` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "automatic_review_apps",
+					Description: `(Optional) If true, this will trigger the creation of review apps when pull-requests are opened in the repo. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "base_name",
+					Description: `(Optional) A unique prefix that will be used to create review app names.`,
+				},
+				resource.Attribute{
+					Name:        "destroy_stale_apps",
+					Description: `(Optional) If ` + "`" + `true` + "`" + `, this will trigger automatic deletion of review apps when they’re stale. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "stale_days",
+					Description: `(Optional) Destroy stale review apps automatically after these many days without any deploys. Must be set with ` + "`" + `destroy_stale_apps` + "`" + ` and value needs to be between ` + "`" + `1` + "`" + ` and ` + "`" + `30` + "`" + ` inclusive.`,
+				},
+				resource.Attribute{
+					Name:        "wait_for_ci",
+					Description: `(Optional) If true, review apps will only be created when CI passes. Defaults to ` + "`" + `false` + "`" + `. ## Attributes Reference The following attributes are exported: ` + "`" + `repo_id` + "`" + ` - ID of the Github repository used for review apps. ## Import An Existing review app config using the combination of the pipeline UUID and the Github organization/repository separated by a colon. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import heroku_review_app_config.foobar afd193fb-7c5a-4d8f-afad-2388f4e6049d:heroku/homebrew-brew ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1347,14 +1398,15 @@ var (
 		"heroku_pipeline":                          15,
 		"heroku_pipeline_config_var":               16,
 		"heroku_pipeline_coupling":                 17,
-		"heroku_slug":                              18,
-		"heroku_space":                             19,
-		"heroku_space_app_access":                  20,
-		"heroku_space_inbound_ruleset":             21,
-		"heroku_space_peering_connection_accepter": 22,
-		"heroku_space_vpn_connection":              23,
-		"heroku_team_collaborator":                 24,
-		"heroku_team_member":                       25,
+		"heroku_review_app_config":                 18,
+		"heroku_slug":                              19,
+		"heroku_space":                             20,
+		"heroku_space_app_access":                  21,
+		"heroku_space_inbound_ruleset":             22,
+		"heroku_space_peering_connection_accepter": 23,
+		"heroku_space_vpn_connection":              24,
+		"heroku_team_collaborator":                 25,
+		"heroku_team_member":                       26,
 	}
 )
 

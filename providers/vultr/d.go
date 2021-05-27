@@ -245,6 +245,10 @@ var (
 					Name:        "locations",
 					Description: `A list of DCIDs (used as ` + "`" + `region` + "`" + ` in Terraform) where the plan can be deployed.`,
 				},
+				resource.Attribute{
+					Name:        "disk_count",
+					Description: `The number of disks that this plan offers.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -282,6 +286,10 @@ var (
 				resource.Attribute{
 					Name:        "locations",
 					Description: `A list of DCIDs (used as ` + "`" + `region` + "`" + ` in Terraform) where the plan can be deployed.`,
+				},
+				resource.Attribute{
+					Name:        "disk_count",
+					Description: `The number of disks that this plan offers.`,
 				},
 			},
 		},
@@ -501,6 +509,10 @@ var (
 					Name:        "date_created",
 					Description: `The date the block storage subscription was added to your Vultr account.`,
 				},
+				resource.Attribute{
+					Name:        "mount_id",
+					Description: `An ID associated with the instance, when mounted the ID can be found in /dev/disk/by-id prefixed with virtio.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -530,6 +542,10 @@ var (
 				resource.Attribute{
 					Name:        "date_created",
 					Description: `The date the block storage subscription was added to your Vultr account.`,
+				},
+				resource.Attribute{
+					Name:        "mount_id",
+					Description: `An ID associated with the instance, when mounted the ID can be found in /dev/disk/by-id prefixed with virtio.`,
 				},
 			},
 		},
@@ -757,6 +773,10 @@ var (
 					Name:        "features",
 					Description: `Array of which features are enabled.`,
 				},
+				resource.Attribute{
+					Name:        "backups_schedule",
+					Description: `The current configuration for backups`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -858,6 +878,10 @@ var (
 				resource.Attribute{
 					Name:        "features",
 					Description: `Array of which features are enabled.`,
+				},
+				resource.Attribute{
+					Name:        "backups_schedule",
+					Description: `The current configuration for backups`,
 				},
 			},
 		},
@@ -1115,7 +1139,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "forwarding_rules",
-					Description: `Defines the forwarding rules for a load balancer. The configuration of a ` + "`" + `forwarding_rules` + "`" + ` is listened below. ` + "`" + `health_check` + "`" + ` supports the following`,
+					Description: `Defines the forwarding rules for a load balancer. The configuration of a ` + "`" + `forwarding_rules` + "`" + ` is listened below.`,
+				},
+				resource.Attribute{
+					Name:        "private_network",
+					Description: `Defines the private network the load balancer is attached to. ` + "`" + `health_check` + "`" + ` supports the following`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
@@ -1159,7 +1187,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target_port",
-					Description: `Port on instance side.`,
+					Description: `Port on instance side. ` + "`" + `firewall_rules` + "`" + ` supports the following`,
+				},
+				resource.Attribute{
+					Name:        "frontend_port",
+					Description: `(Required) Port on load balancer side.`,
+				},
+				resource.Attribute{
+					Name:        "ip_type",
+					Description: `(Required) The type of ip this rule is - may be either v4 or v6.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Required) IP address with subnet that is allowed through the firewall. You may also pass in ` + "`" + `cloudflare` + "`" + ` which will allow only CloudFlares IP range.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1213,7 +1253,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "forwarding_rules",
-					Description: `Defines the forwarding rules for a load balancer. The configuration of a ` + "`" + `forwarding_rules` + "`" + ` is listened below. ` + "`" + `health_check` + "`" + ` supports the following`,
+					Description: `Defines the forwarding rules for a load balancer. The configuration of a ` + "`" + `forwarding_rules` + "`" + ` is listened below.`,
+				},
+				resource.Attribute{
+					Name:        "private_network",
+					Description: `Defines the private network the load balancer is attached to. ` + "`" + `health_check` + "`" + ` supports the following`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
@@ -1257,7 +1301,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target_port",
-					Description: `Port on instance side.`,
+					Description: `Port on instance side. ` + "`" + `firewall_rules` + "`" + ` supports the following`,
+				},
+				resource.Attribute{
+					Name:        "frontend_port",
+					Description: `(Required) Port on load balancer side.`,
+				},
+				resource.Attribute{
+					Name:        "ip_type",
+					Description: `(Required) The type of ip this rule is - may be either v4 or v6.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Required) IP address with subnet that is allowed through the firewall. You may also pass in ` + "`" + `cloudflare` + "`" + ` which will allow only CloudFlares IP range.`,
 				},
 			},
 		},
@@ -1453,6 +1509,10 @@ var (
 					Name:        "locations",
 					Description: `A list of DCIDs (used as ` + "`" + `region` + "`" + ` in Terraform) where the plan can be deployed.`,
 				},
+				resource.Attribute{
+					Name:        "disk_count",
+					Description: `The number of disks that this plan offers.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -1482,6 +1542,10 @@ var (
 				resource.Attribute{
 					Name:        "locations",
 					Description: `A list of DCIDs (used as ` + "`" + `region` + "`" + ` in Terraform) where the plan can be deployed.`,
+				},
+				resource.Attribute{
+					Name:        "disk_count",
+					Description: `The number of disks that this plan offers.`,
 				},
 			},
 		},

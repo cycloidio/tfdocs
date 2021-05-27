@@ -526,10 +526,6 @@ var (
 					Description: `(Optional) The repository directory from which the site publishes (Default: ` + "`" + `/` + "`" + `). ### Template Repositories ` + "`" + `template` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
-					Name:        "node_id",
-					Description: `the Node ID of the Repository.`,
-				},
-				resource.Attribute{
 					Name:        "full_name",
 					Description: `A string of the form "orgname/reponame".`,
 				},
@@ -579,10 +575,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "node_id",
-					Description: `the Node ID of the Repository.`,
-				},
 				resource.Attribute{
 					Name:        "full_name",
 					Description: `A string of the form "orgname/reponame".`,
@@ -715,7 +707,7 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "repo",
+					Name:        "repository",
 					Description: `(Required) The repository to create the file in.`,
 				},
 				resource.Attribute{

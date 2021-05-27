@@ -845,7 +845,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_country",
-					Description: `Formatted by the 2 digit country code (ISO 3166-2) of the host country.`,
+					Description: `Two digit country code (ISO 3166-2) of the location where this object is placed.`,
 				},
 				resource.Attribute{
 					Name:        "location_iata",
@@ -914,7 +914,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
-					Description: `Helps to identify which datacenter an object belongs to. The location of the resource depends on the location of the project.`,
+					Description: `The location this resource is placed. The location of a resource is determined by it's project.`,
 				},
 				resource.Attribute{
 					Name:        "failover",
@@ -950,7 +950,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_country",
-					Description: `Formatted by the 2 digit country code (ISO 3166-2) of the host country.`,
+					Description: `Two digit country code (ISO 3166-2) of the location where this object is placed.`,
 				},
 				resource.Attribute{
 					Name:        "location_iata",
@@ -1043,11 +1043,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
-					Description: `Helps to identify which datacenter an object belongs to.`,
+					Description: `The location this object is placed.`,
 				},
 				resource.Attribute{
 					Name:        "location_country",
-					Description: `Formatted by the 2 digit country code (ISO 3166-2) of the host country.`,
+					Description: `Two digit country code (ISO 3166-2) of the location where this object is placed.`,
 				},
 				resource.Attribute{
 					Name:        "location_iata",
@@ -1133,11 +1133,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
-					Description: `Helps to identify which datacenter an object belongs to.`,
+					Description: `The location this object is placed.`,
 				},
 				resource.Attribute{
 					Name:        "location_country",
-					Description: `Formatted by the 2 digit country code (ISO 3166-2) of the host country.`,
+					Description: `Two digit country code (ISO 3166-2) of the location where this object is placed.`,
 				},
 				resource.Attribute{
 					Name:        "location_iata",
@@ -1191,6 +1191,143 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "gridscale_k8s",
+			Category:         "Resources",
+			ShortDescription: `Manages a k8s cluster in gridscale.`,
+			Description:      ``,
+			Keywords: []string{
+				"k8s",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
+				},
+				resource.Attribute{
+					Name:        "security_zone_uuid",
+					Description: `(Optional) Security zone UUID linked to the Kubernetes resource. If ` + "`" + `security_zone_uuid` + "`" + ` is not set, the default security zone will be created (if it doesn't exist) and linked. A change of this argument necessitates the re-creation of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "release",
+					Description: `(Required) The Kubernetes release of this instance. Define which release will be used to create the cluster. For convenience, please use [gscloud](https://github.com/gridscale/gscloud) to get the list of available release numbers.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ].`,
+				},
+				resource.Attribute{
+					Name:        "node_pool",
+					Description: `(Required) Node pool's specification.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Immutable) Name of the node pool.`,
+				},
+				resource.Attribute{
+					Name:        "node_count",
+					Description: `Number of worker nodes.`,
+				},
+				resource.Attribute{
+					Name:        "cores",
+					Description: `(Immutable) Cores per worker node.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `(Immutable) Memory per worker node (in GiB).`,
+				},
+				resource.Attribute{
+					Name:        "storage",
+					Description: `(Immutable) Storage per worker node (in GiB).`,
+				},
+				resource.Attribute{
+					Name:        "storage_type",
+					Description: `(Immutable) Storage type (one of storage, storage_high, storage_insane). ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "45m" - 45 minutes) Used for creating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "45m" - 45 minutes) Used for updating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "45m" - 45 minutes) Used for deleting a resource. ## Attributes This resource exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_zone_uuid",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "release",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "service_template_uuid",
+					Description: `PaaS service template that k8s service uses. The ` + "`" + `service_template_uuid` + "`" + ` may not relate to ` + "`" + `release` + "`" + `, if ` + "`" + `service_template_uuid` + "`" + `/` + "`" + `release` + "`" + ` is updated outside of terraform (e.g. the k8s service is upgraded by gridscale staffs).`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "network_uuid",
+					Description: `Network UUID containing security zone, which is linked to the k8s cluster.`,
+				},
+				resource.Attribute{
+					Name:        "node_pool",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "node_count",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "cores",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "storage",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "storage_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "usage_in_minutes",
+					Description: `The amount of minutes the IP address has been in use.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time the object was created.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `Defines the date and time of the last object change.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `status indicates the status of the object.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "gridscale_loadbalancer",
 			Category:         "Resources",
 			ShortDescription: `Manage a loadbalancer in gridscale.`,
@@ -1220,6 +1357,22 @@ var (
 					Description: `(Required) The algorithm used to process requests. Accepted values: roundrobin/leastconn.`,
 				},
 				resource.Attribute{
+					Name:        "backend_server",
+					Description: `(Required) The servers that the load balancer can communicate with.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `(Required) A valid domain or an IP address of a server.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `(Optional) The backend host weight. Default: 100.`,
+				},
+				resource.Attribute{
+					Name:        "forwarding_rule",
+					Description: `(Required) The forwarding rules of the load balancer.`,
+				},
+				resource.Attribute{
 					Name:        "labels",
 					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
 				},
@@ -1241,7 +1394,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
-					Description: `Helps to identify which datacenter an object belongs to. The location of the resource depends on the location of the project.`,
+					Description: `The location this load balancer is placed. The location of a resource is determined by it's project.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1268,16 +1421,241 @@ var (
 					Description: `The UUID of the IPv6 address the load balancer will listen to for incoming requests.`,
 				},
 				resource.Attribute{
-					Name:        "forwarding_rule",
-					Description: `The forwarding rules of the load balancer.`,
+					Name:        "backend_server",
+					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "backend_server",
-					Description: `The servers that the load balancer can communicate with.`,
+					Name:        "host",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "forwarding_rule",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "letsencrypt_ssl",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_uuid",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "listen_port",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "target_port",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
 					Description: `The list of labels.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "gridscale_mariadb",
+			Category:         "Resources",
+			ShortDescription: `Manage a MariaDB service in gridscale.`,
+			Description:      ``,
+			Keywords: []string{
+				"mariadb",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
+				},
+				resource.Attribute{
+					Name:        "release",
+					Description: `(Required) The MariaDB release of this instance. For convenience, please use [gscloud](https://github.com/gridscale/gscloud) to get the list of available MariaDB service releases.`,
+				},
+				resource.Attribute{
+					Name:        "performance_class",
+					Description: `(Required) Performance class of MariaDB service. Available performance classes at the time of writing: ` + "`" + `standard` + "`" + `, ` + "`" + `high` + "`" + `, ` + "`" + `insane` + "`" + `, ` + "`" + `ultra` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "mariadb_log_bin",
+					Description: `(Optional) MariaDB parameter: Binary Logging. Default: false.`,
+				},
+				resource.Attribute{
+					Name:        "mariadb_sql_mode",
+					Description: `(Optional) MariaDB parameter: SQL Mode. Default: "NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO".`,
+				},
+				resource.Attribute{
+					Name:        "mariadb_server_id",
+					Description: `(Optional) MariaDB parameter: Server Id. Default: 1.`,
+				},
+				resource.Attribute{
+					Name:        "mariadb_query_cache",
+					Description: `(Optional) MariaDB parameter: Enable query cache. Default: true.`,
+				},
+				resource.Attribute{
+					Name:        "mariadb_binlog_format",
+					Description: `(Optional) MariaDB parameter: Binary Logging Format. Default: "MIXED".`,
+				},
+				resource.Attribute{
+					Name:        "mariadb_max_connections",
+					Description: `(Optional) MariaDB parameter: Max Connections. Default: 4000.`,
+				},
+				resource.Attribute{
+					Name:        "mariadb_query_cache_size",
+					Description: `(Optional) MariaDB parameter: Query Cache Size. Format: xM (where x is an integer, M stands for unit: k(kB), M(MB), G(GB)). Default: 128M.`,
+				},
+				resource.Attribute{
+					Name:        "mariadb_default_time_zone",
+					Description: `(Optional) MariaDB parameter: Server Timezone. Default: UTC.`,
+				},
+				resource.Attribute{
+					Name:        "mariadb_query_cache_limit",
+					Description: `(Optional) MariaDB parameter: Query Cache Limit. Format: xM (where x is an integer, M stands for unit: k(kB), M(MB), G(GB)). Default: 1M.`,
+				},
+				resource.Attribute{
+					Name:        "mariadb_max_allowed_packet",
+					Description: `(Optional) MariaDB parameter: Max Allowed Packet Size. Format: xM (where x is an integer, M stands for unit: k(kB), M(MB), G(GB)). Default: 64M.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ].`,
+				},
+				resource.Attribute{
+					Name:        "security_zone_uuid",
+					Description: `(Optional) The UUID of the security zone that the service is running in.`,
+				},
+				resource.Attribute{
+					Name:        "max_core_count",
+					Description: `(Optional) Maximum CPU core count. The MariaDB instance's CPU core count will be autoscaled based on the workload. The number of cores stays between 1 and ` + "`" + `max_core_count` + "`" + `. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "15m" - 15 minutes) Used for creating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "15m" - 15 minutes) Used for updating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "15m" - 15 minutes) Used for deleting a resource. ## Attributes This resource exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "release",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "performance_class",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mariadb_log_bin",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mariadb_sql_mode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mariadb_server_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mariadb_query_cache",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mariadb_binlog_format",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mariadb_max_connections",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mariadb_query_cache_size",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mariadb_default_time_zone",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mariadb_query_cache_limit",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mariadb_max_allowed_packet",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `Username for PaaS service. It is used to connect to the MariaDB instance.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password for PaaS service. It is used to connect to the MariaDB instance.`,
+				},
+				resource.Attribute{
+					Name:        "listen_port",
+					Description: `The port numbers where this MariaDB service accepts connections.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of a port.`,
+				},
+				resource.Attribute{
+					Name:        "listen_port",
+					Description: `Port number.`,
+				},
+				resource.Attribute{
+					Name:        "security_zone_uuid",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "network_uuid",
+					Description: `Network UUID containing security zone.`,
+				},
+				resource.Attribute{
+					Name:        "service_template_uuid",
+					Description: `PaaS service template that MariaDB service uses.`,
+				},
+				resource.Attribute{
+					Name:        "usage_in_minutes",
+					Description: `Number of minutes that PaaS service is in use.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `Time of the last change.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Date time this service has been created.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Current status of PaaS service.`,
+				},
+				resource.Attribute{
+					Name:        "max_core_count",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `See Argument Reference above.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1631,7 +2009,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "import_unique_hash",
-					Description: `(Required, ForceNew) Hash of a specific marketplace application that you want to import. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
+					Description: `(Required) Hash of a specific marketplace application that you want to import. A change of this argument necessitates the re-creation of the resource. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -1933,7 +2311,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
-					Description: `Helps to identify which datacenter an object belongs to. The location of the resource depends on the location of the project.`,
+					Description: `The location this network is placed. The location of a resource is determined by it's project.`,
 				},
 				resource.Attribute{
 					Name:        "l2security",
@@ -1961,7 +2339,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_country",
-					Description: `Formatted by the 2 digit country code (ISO 3166-2) of the host country.`,
+					Description: `Two digit country code (ISO 3166-2) of the location where this object is placed.`,
 				},
 				resource.Attribute{
 					Name:        "location_iata",
@@ -2172,6 +2550,123 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "gridscale_postgres",
+			Category:         "Resources",
+			ShortDescription: `Manage a PostgreSQL service in gridscale.`,
+			Description:      ``,
+			Keywords: []string{
+				"postgres",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
+				},
+				resource.Attribute{
+					Name:        "release",
+					Description: `(Required) The PostgreSQL release of this instance. For convenience, please use [gscloud](https://github.com/gridscale/gscloud) to get the list of available PostgreSQL service releases.`,
+				},
+				resource.Attribute{
+					Name:        "performance_class",
+					Description: `(Required) Performance class of PostgreSQL service. Available performance classes at the time of writing: ` + "`" + `standard` + "`" + `, ` + "`" + `high` + "`" + `, ` + "`" + `insane` + "`" + `, ` + "`" + `ultra` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ].`,
+				},
+				resource.Attribute{
+					Name:        "security_zone_uuid",
+					Description: `(Optional) The UUID of the security zone that the service is running in.`,
+				},
+				resource.Attribute{
+					Name:        "max_core_count",
+					Description: `(Optional) Maximum CPU core count. The PostgreSQL instance's CPU core count will be autoscaled based on the workload. The number of cores stays between 1 and ` + "`" + `max_core_count` + "`" + `. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "15m" - 15 minutes) Used for creating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "15m" - 15 minutes) Used for updating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "15m" - 15 minutes) Used for deleting a resource. ## Attributes This resource exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "release",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "performance_class",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `Username for PaaS service. It is used to connect to the PostgreSQL instance.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password for PaaS service. It is used to connect to the PostgreSQL instance.`,
+				},
+				resource.Attribute{
+					Name:        "listen_port",
+					Description: `The port numbers where this PostgreSQL service accepts connections.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of a port.`,
+				},
+				resource.Attribute{
+					Name:        "listen_port",
+					Description: `Port number.`,
+				},
+				resource.Attribute{
+					Name:        "security_zone_uuid",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "network_uuid",
+					Description: `Network UUID containing security zone.`,
+				},
+				resource.Attribute{
+					Name:        "service_template_uuid",
+					Description: `PaaS service template that PostgreSQL service uses.`,
+				},
+				resource.Attribute{
+					Name:        "usage_in_minutes",
+					Description: `Number of minutes that PaaS service is in use.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `Time of the last change.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Date time this service has been created.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Current status of PaaS service.`,
+				},
+				resource.Attribute{
+					Name:        "max_core_count",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "gridscale_paas_securityzone",
 			Category:         "Resources",
 			ShortDescription: `Manages a security zone in gridscale.`,
@@ -2187,7 +2682,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
-					Description: `(Optional) Helps to identify which datacenter an object belongs to. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
+					Description: `(Optional) The location this object is placed. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -2211,7 +2706,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
-					Description: `Helps to identify which datacenter an object belongs to.`,
+					Description: `The location this object is placed.`,
 				},
 				resource.Attribute{
 					Name:        "location_country",
@@ -2504,7 +2999,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
-					Description: `Helps to identify which datacenter an object belongs to. The location of the resource depends on the location of the project.`,
+					Description: `The location this server is placed. The location of a resource is determined by it's project.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -2512,7 +3007,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "hardware_profile",
-					Description: `The hardware profile of the Server.`,
+					Description: `The hardware profile of the server.`,
 				},
 				resource.Attribute{
 					Name:        "storage",
@@ -2604,7 +3099,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rules_v4_in",
-					Description: `Firewall template rules for inbound traffic - covers ipv4 addresses.`,
+					Description: `Firewall template rules for inbound traffic - covers IPv4 addresses.`,
 				},
 				resource.Attribute{
 					Name:        "order",
@@ -2640,7 +3135,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rules_v4_out",
-					Description: `Firewall template rules for outbound traffic - covers ipv4 addresses.`,
+					Description: `Firewall template rules for outbound traffic - covers IPv4 addresses.`,
 				},
 				resource.Attribute{
 					Name:        "order",
@@ -2676,7 +3171,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rules_v6_in",
-					Description: `Firewall template rules for inbound traffic - covers ipv6 addresses.`,
+					Description: `Firewall template rules for inbound traffic - covers IPv6 addresses.`,
 				},
 				resource.Attribute{
 					Name:        "order",
@@ -2712,7 +3207,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rules_v6_out",
-					Description: `Firewall template rules for outbound traffic - covers ipv6 addresses.`,
+					Description: `Firewall template rules for outbound traffic - covers IPv6 addresses.`,
 				},
 				resource.Attribute{
 					Name:        "order",
@@ -3267,6 +3762,155 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "gridscale_sqlserver",
+			Category:         "Resources",
+			ShortDescription: `Manage a MS SQL server service in gridscale.`,
+			Description:      ``,
+			Keywords: []string{
+				"sqlserver",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
+				},
+				resource.Attribute{
+					Name:        "release",
+					Description: `(Required) The MS SQL server release of this instance. For convenience, please use [gscloud](https://github.com/gridscale/gscloud) to get the list of available MS SQL server service releases.`,
+				},
+				resource.Attribute{
+					Name:        "performance_class",
+					Description: `(Required) Performance class of MS SQL server service. Available performance classes at the time of writing: ` + "`" + `standard` + "`" + `, ` + "`" + `high` + "`" + `, ` + "`" + `insane` + "`" + `, ` + "`" + `ultra` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ].`,
+				},
+				resource.Attribute{
+					Name:        "security_zone_uuid",
+					Description: `(Optional) The UUID of the security zone that the service is running in.`,
+				},
+				resource.Attribute{
+					Name:        "s3_backup",
+					Description: `(Optional) Allow backup/restore MS SQL server to/from a S3 bucket.`,
+				},
+				resource.Attribute{
+					Name:        "backup_bucket",
+					Description: `(Required) Object Storage bucket to upload backups to and restore backups from.`,
+				},
+				resource.Attribute{
+					Name:        "backup_access_key",
+					Description: `(Required) Access key used to authenticate against Object Storage server.`,
+				},
+				resource.Attribute{
+					Name:        "backup_secret_key",
+					Description: `(Required) Secret key used to authenticate against Object Storage server.`,
+				},
+				resource.Attribute{
+					Name:        "backup_server_url",
+					Description: `(Required) Object Storage server URL the bucket is located on. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "15m" - 15 minutes) Used for creating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "15m" - 15 minutes) Used for updating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "15m" - 15 minutes) Used for deleting a resource. ## Attributes This resource exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "release",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "performance_class",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `Username for PaaS service. It is used to connect to the MS SQL server instance.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password for PaaS service. It is used to connect to the MS SQL server instance.`,
+				},
+				resource.Attribute{
+					Name:        "listen_port",
+					Description: `The port numbers where this MS SQL server service accepts connections.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of a port.`,
+				},
+				resource.Attribute{
+					Name:        "listen_port",
+					Description: `Port number.`,
+				},
+				resource.Attribute{
+					Name:        "s3_backup",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "backup_bucket",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "backup_access_key",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "backup_secret_key",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "backup_server_url",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_zone_uuid",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "network_uuid",
+					Description: `Network UUID containing security zone.`,
+				},
+				resource.Attribute{
+					Name:        "service_template_uuid",
+					Description: `PaaS service template that MS SQL server service uses.`,
+				},
+				resource.Attribute{
+					Name:        "usage_in_minutes",
+					Description: `Number of minutes that PaaS service is in use.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `Time of the last change.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Date time this service has been created.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Current status of PaaS service.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "gridscale_sshkey",
 			Category:         "Resources",
 			ShortDescription: `Manages an SSH public key in gridscale.`,
@@ -3322,6 +3966,108 @@ var (
 				resource.Attribute{
 					Name:        "change_time",
 					Description: `Defines the date and time of the last object change.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "gridscale_ssl_certificate",
+			Category:         "Resources",
+			ShortDescription: `Manages a TLS/SSL certificate resource in gridscale.`,
+			Description:      ``,
+			Keywords: []string{
+				"ssl",
+				"certificate",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, Force New) The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `(Required, Force New) The PEM-formatted private-key of the SSL certificate.`,
+				},
+				resource.Attribute{
+					Name:        "leaf_certificate",
+					Description: `(Required, Force New) The PEM-formatted public SSL of the SSL certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_chain",
+					Description: `(Optional, Force New) The PEM-formatted full-chain between the certificate authority and the domain's SSL certificate.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional, Force New) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "5m" - 5 minutes) Used for creating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "5m" - 5 minutes) Used for updating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "5m" - 5 minutes) Used for deleting a resource. ## Attributes This resource exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "common_name",
+					Description: `The common domain name of the SSL certificate.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_certificate",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "leaf_certificate",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_chain",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "fingerprints",
+					Description: `Defines a list of unique identifiers generated from the MD5, SHA-1, and SHA-256 fingerprints of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "md5",
+					Description: `MD5 fingerprint of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "sha256",
+					Description: `SHA256 fingerprint of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "sha1",
+					Description: `SHA1 fingerprint of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `status indicates the status of the object.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The date and time the object was initially created.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `Defines the date and time of the last object change.`,
+				},
+				resource.Attribute{
+					Name:        "not_valid_after",
+					Description: `Defines the date after which the certificate is not valid.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3406,7 +4152,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
-					Description: `Helps to identify which datacenter an object belongs to. The location of the resource depends on the location of the project.`,
+					Description: `The location this storage is placed. The location of a resource is determined by it's project.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -3430,7 +4176,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_country",
-					Description: `Formatted by the 2 digit country code (ISO 3166-2) of the host country.`,
+					Description: `Two digit country code (ISO 3166-2) of the location where this object is placed.`,
 				},
 				resource.Attribute{
 					Name:        "location_iata",
@@ -3516,7 +4262,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
-					Description: `Helps to identify which datacenter an object belongs to. The location of the resource depends on the location of the project.`,
+					Description: `The location this resource is placed. The location of a resource is determined by it's project.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -3536,7 +4282,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_country",
-					Description: `Formatted by the 2 digit country code (ISO 3166-2) of the host country.`,
+					Description: `Two digit country code (ISO 3166-2) of the location where this object is placed.`,
 				},
 				resource.Attribute{
 					Name:        "location_iata",
@@ -3622,7 +4368,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
-					Description: `Helps to identify which datacenter an object belongs to. The location of the resource depends on the location of the project.`,
+					Description: `The location this resource is placed. The location of a resource is determined by it's project.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -3642,7 +4388,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_country",
-					Description: `Formatted by the 2 digit country code (ISO 3166-2) of the host country.`,
+					Description: `Two digit country code (ISO 3166-2) of the location where this object is placed.`,
 				},
 				resource.Attribute{
 					Name:        "location_iata",
@@ -3715,11 +4461,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
-					Description: `Helps to identify which datacenter an object belongs to.`,
+					Description: `The location this object is placed.`,
 				},
 				resource.Attribute{
 					Name:        "location_country",
-					Description: `Formatted by the 2 digit country code (ISO 3166-2) of the host country.`,
+					Description: `Two digit country code (ISO 3166-2) of the location where this object is placed.`,
 				},
 				resource.Attribute{
 					Name:        "location_iata",
@@ -3793,11 +4539,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
-					Description: `Helps to identify which datacenter an object belongs to.`,
+					Description: `The location this object is placed.`,
 				},
 				resource.Attribute{
 					Name:        "location_country",
-					Description: `Formatted by the 2 digit country code (ISO 3166-2) of the host country.`,
+					Description: `Two digit country code (ISO 3166-2) of the location where this object is placed.`,
 				},
 				resource.Attribute{
 					Name:        "location_iata",
@@ -3870,21 +4616,26 @@ var (
 		"gridscale_ipv4":                           2,
 		"gridscale_ipv6":                           3,
 		"gridscale_isoimage":                       4,
-		"gridscale_loadbalancer":                   5,
-		"gridscale_marketplace_application":        6,
-		"gridscale_marketplace_application_import": 7,
-		"gridscale_network":                        8,
-		"gridscale_object_storage_accesskey":       9,
-		"gridscale_paas":                           10,
-		"gridscale_paas_securityzone":              11,
-		"gridscale_server":                         12,
-		"gridscale_snapshot":                       13,
-		"gridscale_snapshotschedule":               14,
-		"gridscale_sshkey":                         15,
-		"gridscale_storage":                        16,
-		"gridscale_storage_clone":                  17,
-		"gridscale_storage_import":                 18,
-		"gridscale_template":                       19,
+		"gridscale_k8s":                            5,
+		"gridscale_loadbalancer":                   6,
+		"gridscale_mariadb":                        7,
+		"gridscale_marketplace_application":        8,
+		"gridscale_marketplace_application_import": 9,
+		"gridscale_network":                        10,
+		"gridscale_object_storage_accesskey":       11,
+		"gridscale_paas":                           12,
+		"gridscale_postgres":                       13,
+		"gridscale_paas_securityzone":              14,
+		"gridscale_server":                         15,
+		"gridscale_snapshot":                       16,
+		"gridscale_snapshotschedule":               17,
+		"gridscale_sqlserver":                      18,
+		"gridscale_sshkey":                         19,
+		"gridscale_ssl_certificate":                20,
+		"gridscale_storage":                        21,
+		"gridscale_storage_clone":                  22,
+		"gridscale_storage_import":                 23,
+		"gridscale_template":                       24,
 	}
 )
 
