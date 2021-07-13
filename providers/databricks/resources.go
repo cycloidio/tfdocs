@@ -368,7 +368,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "canned_acl",
-					Description: `(Optional) Set canned access control list, e.g. ` + "`" + `bucket-owner-full-control` + "`" + `. If ` + "`" + `canned_cal` + "`" + ` is set, the cluster instance profile must have ` + "`" + `s3:PutObjectAcl` + "`" + ` permission on the destination bucket and prefix. The full list of possible canned ACLs can be found [here](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl). By default, only the object owner gets full control. If you are using a cross-account role for writing data, you may want to set ` + "`" + `bucket-owner-full-control` + "`" + ` to make bucket owners able to read the logs. ## init_scripts You can specify up to 10 different init scripts for the specific cluster. If you want a shell script to run on all clusters and jobs within the same workspace, you should consider [databricks_global_init_script](global_init_script.md). Example of taking init script from DBFS: ` + "`" + `` + "`" + `` + "`" + `hcl init_scripts { dbfs { destination = "dbfs://init-scripts/install-elk.sh" } } ` + "`" + `` + "`" + `` + "`" + ` Example of taking init script from S3: ` + "`" + `` + "`" + `` + "`" + `hcl init_scripts { s3 { destination = "s3a://acmecorp-main/init-scripts/install-elk.sh" region = "us-east-1" } } ` + "`" + `` + "`" + `` + "`" + ` Like the ` + "`" + `cluster_log_conf` + "`" + ` configuration block, init scripts support S3 and DBFS locations. In addition, you can also specify a local file as follows: ` + "`" + `` + "`" + `` + "`" + `hcl init_scripts { file { destination = "file:/my/local/file.sh" } } ` + "`" + `` + "`" + `` + "`" + ` ## aws_attributes ` + "`" + `aws_attributes` + "`" + ` optional configuration block contains attributes related to [clusters running on Amazon Web Services](https://docs.databricks.com/clusters/configure.html#aws-configurations). Here is the example of shared autoscaling cluster with some of AWS options set: ` + "`" + `` + "`" + `` + "`" + `hcl resource "databricks_cluster" "this" { cluster_name = "Shared Autoscaling" spark_version = "6.6.x-scala2.11" node_type_id = "i3.xlarge" autotermination_minutes = 20 autoscale { min_workers = 1 max_workers = 50 } aws_attributes { availability = "SPOT" zone_id = "us-east-1" first_on_demand = 1 spot_bid_price_percent = 100 } } ` + "`" + `` + "`" + `` + "`" + ` The following options are available:`,
+					Description: `(Optional) Set canned access control list, e.g. ` + "`" + `bucket-owner-full-control` + "`" + `. If ` + "`" + `canned_cal` + "`" + ` is set, the cluster instance profile must have ` + "`" + `s3:PutObjectAcl` + "`" + ` permission on the destination bucket and prefix. The full list of possible canned ACLs can be found [here](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl). By default, only the object owner gets full control. If you are using a cross-account role for writing data, you may want to set ` + "`" + `bucket-owner-full-control` + "`" + ` to make bucket owners able to read the logs. ## init_scripts You can specify up to 10 different init scripts for the specific cluster. If you want a shell script to run on all clusters and jobs within the same workspace, you should consider [databricks_global_init_script](global_init_script.md). Example of taking init script from DBFS: ` + "`" + `` + "`" + `` + "`" + `hcl init_scripts { dbfs { destination = "dbfs:/init-scripts/install-elk.sh" } } ` + "`" + `` + "`" + `` + "`" + ` Example of taking init script from S3: ` + "`" + `` + "`" + `` + "`" + `hcl init_scripts { s3 { destination = "s3a://acmecorp-main/init-scripts/install-elk.sh" region = "us-east-1" } } ` + "`" + `` + "`" + `` + "`" + ` Like the ` + "`" + `cluster_log_conf` + "`" + ` configuration block, init scripts support S3 and DBFS locations. In addition, you can also specify a local file as follows: ` + "`" + `` + "`" + `` + "`" + `hcl init_scripts { file { destination = "file:/my/local/file.sh" } } ` + "`" + `` + "`" + `` + "`" + ` ## aws_attributes ` + "`" + `aws_attributes` + "`" + ` optional configuration block contains attributes related to [clusters running on Amazon Web Services](https://docs.databricks.com/clusters/configure.html#aws-configurations). Here is the example of shared autoscaling cluster with some of AWS options set: ` + "`" + `` + "`" + `` + "`" + `hcl resource "databricks_cluster" "this" { cluster_name = "Shared Autoscaling" spark_version = "6.6.x-scala2.11" node_type_id = "i3.xlarge" autotermination_minutes = 20 autoscale { min_workers = 1 max_workers = 50 } aws_attributes { availability = "SPOT" zone_id = "us-east-1" first_on_demand = 1 spot_bid_price_percent = 100 } } ` + "`" + `` + "`" + `` + "`" + ` The following options are available:`,
 				},
 				resource.Attribute{
 					Name:        "zone_id",
@@ -404,7 +404,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "availability",
-					Description: `(Optional) Availability type used for all subsequent nodes past the ` + "`" + `first_on_demand` + "`" + ` ones. Valid values are ` + "`" + `SPOT_AZURE` + "`" + `, ` + "`" + `SPOT_WITH_FALLBACK` + "`" + `, and ` + "`" + `ON_DEMAND_AZURE` + "`" + `. Note: If ` + "`" + `first_on_demand` + "`" + ` is zero, this availability type will be used for the entire cluster.`,
+					Description: `(Optional) Availability type used for all subsequent nodes past the ` + "`" + `first_on_demand` + "`" + ` ones. Valid values are ` + "`" + `SPOT_AZURE` + "`" + `, ` + "`" + `SPOT_WITH_FALLBACK_AZURE` + "`" + `, and ` + "`" + `ON_DEMAND_AZURE` + "`" + `. Note: If ` + "`" + `first_on_demand` + "`" + ` is zero, this availability type will be used for the entire cluster.`,
 				},
 				resource.Attribute{
 					Name:        "first_on_demand",
@@ -549,6 +549,19 @@ var (
 					Description: `Path, but with ` + "`" + `dbfs:` + "`" + ` prefix ## Import The resource dbfs file can be imported using the path of the file ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_dbfs_file.this <path> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_directory",
+			Category:         "Workspace",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"workspace",
+				"directory",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -861,6 +874,10 @@ var (
 				resource.Attribute{
 					Name:        "existing_cluster_id",
 					Description: `(Optional) If existing_cluster_id, the ID of an existing [cluster](cluster.md) that will be used for all runs of this job. When running jobs on an existing cluster, you may need to manually restart the cluster if it stops responding. We strongly suggest to use ` + "`" + `new_cluster` + "`" + ` for greater reliability.`,
+				},
+				resource.Attribute{
+					Name:        "always_running",
+					Description: `(Optional) (Bool) Whenever the job is always running, like a Spark Streaming application, on every update restart the current active run or start it again, if nothing it is not running. False by default. Any job runs are started with ` + "`" + `parameters` + "`" + ` specified in ` + "`" + `spark_jar_task` + "`" + ` or ` + "`" + `spark_submit_task` + "`" + ` or ` + "`" + `spark_python_task` + "`" + ` or ` + "`" + `notebook_task` + "`" + ` blocks.`,
 				},
 				resource.Attribute{
 					Name:        "library",
@@ -1466,74 +1483,42 @@ var (
 				"security",
 				"permissions",
 			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_pipeline",
+			Category:         "Compute",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"compute",
+				"pipeline",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "cluster_id",
-					Description: `[cluster](cluster.md) id`,
+					Name:        "name",
+					Description: `A user-friendly name for this pipeline. The name can be used to identify pipeline jobs in the UI.`,
 				},
 				resource.Attribute{
-					Name:        "job_id",
-					Description: `[job](job.md) id`,
+					Name:        "storage",
+					Description: `A location on DBFS or cloud storage where output data and metadata required for pipeline execution are stored. By default, tables are stored in a subdirectory of this location.`,
 				},
 				resource.Attribute{
-					Name:        "directory_id",
-					Description: `[directory](notebook.md) id`,
+					Name:        "configuration",
+					Description: `An optional list of values to apply to the entire pipeline. Elements must be formatted as key:value pairs.`,
 				},
 				resource.Attribute{
-					Name:        "directory_path",
-					Description: `path of directory`,
+					Name:        "continuous",
+					Description: `A flag indicating whether to run the pipeline continuously. The default value is ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "notebook_id",
-					Description: `ID of [notebook](notebook.md) within workspace`,
-				},
-				resource.Attribute{
-					Name:        "notebook_path",
-					Description: `path of notebook`,
-				},
-				resource.Attribute{
-					Name:        "cluster_policy_id",
-					Description: `[cluster policy](cluster_policy.md) id`,
-				},
-				resource.Attribute{
-					Name:        "instance_pool_id",
-					Description: `[instance pool](instance_pool.md) id`,
-				},
-				resource.Attribute{
-					Name:        "authorization",
-					Description: `either [` + "`" + `tokens` + "`" + `](https://docs.databricks.com/administration-guide/access-control/tokens.html) or [` + "`" + `passwords` + "`" + `](https://docs.databricks.com/administration-guide/users-groups/single-sign-on/index.html#configure-password-permission). One or more ` + "`" + `access_control` + "`" + ` blocks are required to actually set the permission levels: ` + "`" + `` + "`" + `` + "`" + `hcl access_control { group_name = databricks_group.datascience.display_name permission_level = "CAN_USE" } ` + "`" + `` + "`" + `` + "`" + ` Attributes are:`,
-				},
-				resource.Attribute{
-					Name:        "permission_level",
-					Description: `(Required) permission level according to specific resource. See examples above for the reference.`,
-				},
-				resource.Attribute{
-					Name:        "user_name",
-					Description: `(Optional) name of the [user](user.md), which should be used if group name is not used`,
-				},
-				resource.Attribute{
-					Name:        "group_name",
-					Description: `(Optional) name of the [group](group.md), which should be used if the user name is not used. We recommend setting permissions on groups. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Canonical unique identifier for the permissions.`,
-				},
-				resource.Attribute{
-					Name:        "object_type",
-					Description: `type of permissions. ## Import The resource permissions can be imported using the object id ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_permissions.this /<object type>/<object id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "target",
+					Description: `The name of a database for persisting pipeline output data. Configuring the target setting allows you to view and query the pipeline output data from the Databricks UI. ## Import The resource job can be imported using the id of the pipeline ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_pipeline.this <pipeline-id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Canonical unique identifier for the permissions.`,
-				},
-				resource.Attribute{
-					Name:        "object_type",
-					Description: `type of permissions. ## Import The resource permissions can be imported using the object id ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_permissions.this /<object type>/<object id> ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1623,7 +1608,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "initial_manage_principal",
-					Description: `(Optional) The principal with the only possible value ` + "`" + `users` + "`" + ` that is initially granted ` + "`" + `MANAGE` + "`" + ` permission to the created scope. If it's omitted, then the [databricks_secret_acl](secret_acl.md) with ` + "`" + `MANAGE` + "`" + ` permission applied to the scope is assigned to the API request issuer's user identity (see [documentation](https://docs.databricks.com/dev-tools/api/latest/secrets.html#create-secret-scope)). This part of the state cannot be imported. ## keyvault_metadata On Azure it's possible to create and manage secrets in Azure Key Vault and have use Azure Databricks secret redaction & access control functionality for reading them. There has to be a single Key Vault per single secret scope. ->`,
+					Description: `(Optional) The principal with the only possible value ` + "`" + `users` + "`" + ` that is initially granted ` + "`" + `MANAGE` + "`" + ` permission to the created scope. If it's omitted, then the [databricks_secret_acl](secret_acl.md) with ` + "`" + `MANAGE` + "`" + ` permission applied to the scope is assigned to the API request issuer's user identity (see [documentation](https://docs.databricks.com/dev-tools/api/latest/secrets.html#create-secret-scope)). This part of the state cannot be imported. ## keyvault_metadata On Azure it's possible to create and manage secrets in Azure Key Vault and have use Azure Databricks secret redaction & access control functionality for reading them. There has to be a single Key Vault per single secret scope. To define AKV access policies, you must use [azurerm_key_vault_access_policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_access_policy) instead of [access_policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault#access_policy) blocks on ` + "`" + `azurerm_key_vault` + "`" + `, otherwise Terraform will remove access policies needed to access the Key Vault and secret scope won't be in a usable state anymore. ->`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1659,19 +1644,19 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
-					Description: `(Required) This is the application id of the given service principal and will be their form of access and identity.`,
+					Description: `This is the application id of the given service principal and will be their form of access and identity. On other clouds than Azure this value is auto-generated.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `(Optional) This is an alias for the service principal can be the full name of the service principal.`,
+					Description: `(Required) This is an alias for the service principal and can be the full name of the service principal.`,
 				},
 				resource.Attribute{
 					Name:        "allow_cluster_create",
-					Description: `(Optional) Allow the service principal to have [cluster](cluster.md) create priviliges. Defaults to false. More fine grained permissions could be assigned with [databricks_permissions](permissions.md#Cluster-usage) and ` + "`" + `cluster_id` + "`" + ` argument. Everyone without ` + "`" + `allow_cluster_create` + "`" + ` arugment set, but with [permission to use](permissions.md#Cluster-Policy-usage) Cluster Policy would be able to create clusters, but within boundaries of that specific policy.`,
+					Description: `(Optional) Allow the service principal to have [cluster](cluster.md) create privileges. Defaults to false. More fine grained permissions could be assigned with [databricks_permissions](permissions.md#Cluster-usage) and ` + "`" + `cluster_id` + "`" + ` argument. Everyone without ` + "`" + `allow_cluster_create` + "`" + ` argument set, but with [permission to use](permissions.md#Cluster-Policy-usage) Cluster Policy would be able to create clusters, but within the boundaries of that specific policy.`,
 				},
 				resource.Attribute{
 					Name:        "allow_instance_pool_create",
-					Description: `(Optional) Allow the service principal to have [instance pool](instance_pool.md) create priviliges. Defaults to false. More fine grained permissions could be assigned with [databricks_permissions](permissions.md#Instance-Pool-usage) and [instance_pool_id](permissions.md#instance_pool_id) argument.`,
+					Description: `(Optional) Allow the service principal to have [instance pool](instance_pool.md) create privileges. Defaults to false. More fine grained permissions could be assigned with [databricks_permissions](permissions.md#Instance-Pool-usage) and [instance_pool_id](permissions.md#instance_pool_id) argument.`,
 				},
 				resource.Attribute{
 					Name:        "active",
@@ -1725,11 +1710,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "min_num_clusters",
-					Description: `Minimum number of clusters available when a SQL endpoint is running. The default is 1.`,
+					Description: `Minimum number of clusters available when a SQL endpoint is running. The default is ` + "`" + `1` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "max_num_clusters",
-					Description: `Maximum number of clusters available when a SQL endpoint is running. This field is required. If multi-cluster load balancing is not enabled, this is default to 1.`,
+					Description: `Maximum number of clusters available when a SQL endpoint is running. This field is required. If multi-cluster load balancing is not enabled, this is default to ` + "`" + `1` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "auto_stop_mins",
@@ -1745,7 +1730,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "spot_instance_policy",
-					Description: `The spot policy to use for allocating instances to clusters: ` + "`" + `COST_OPTIMIZED` + "`" + ` or ` + "`" + `RELIABILITY_OPTIMIZED` + "`" + `. This field is optional.`,
+					Description: `The spot policy to use for allocating instances to clusters: ` + "`" + `COST_OPTIMIZED` + "`" + ` or ` + "`" + `RELIABILITY_OPTIMIZED` + "`" + `. This field is optional. Default is ` + "`" + `COST_OPTIMIZED` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "enable_photon",
@@ -2051,38 +2036,40 @@ var (
 		"databricks_cluster":                     4,
 		"databricks_cluster_policy":              5,
 		"databricks_dbfs_file":                   6,
-		"databricks_global_init_script":          7,
-		"databricks_group":                       8,
-		"databricks_group_instance_profile":      9,
-		"databricks_group_member":                10,
-		"databricks_instance_pool":               11,
-		"databricks_instance_profile":            12,
-		"databricks_ip_access_list":              13,
-		"databricks_job":                         14,
-		"databricks_mws_credentials":             15,
-		"databricks_mws_customer_managed_keys":   16,
-		"databricks_mws_log_delivery":            17,
-		"databricks_mws_networks":                18,
-		"databricks_mws_private_access_settings": 19,
-		"databricks_mws_storage_configurations":  20,
-		"databricks_mws_vpc_endpoint":            21,
-		"databricks_mws_workspaces":              22,
-		"databricks_notebook":                    23,
-		"databricks_permissions":                 24,
-		"databricks_secret":                      25,
-		"databricks_secret_acl":                  26,
-		"databricks_secret_scope":                27,
-		"databricks_service_principal":           28,
-		"databricks_sql_dashboard":               29,
-		"databricks_sql_endpoint":                30,
-		"databricks_sql_permissions":             31,
-		"databricks_sql_query":                   32,
-		"databricks_sql_visualization":           33,
-		"databricks_sql_widget":                  34,
-		"databricks_token":                       35,
-		"databricks_user":                        36,
-		"databricks_user_instance_profile":       37,
-		"databricks_workspace_conf":              38,
+		"databricks_directory":                   7,
+		"databricks_global_init_script":          8,
+		"databricks_group":                       9,
+		"databricks_group_instance_profile":      10,
+		"databricks_group_member":                11,
+		"databricks_instance_pool":               12,
+		"databricks_instance_profile":            13,
+		"databricks_ip_access_list":              14,
+		"databricks_job":                         15,
+		"databricks_mws_credentials":             16,
+		"databricks_mws_customer_managed_keys":   17,
+		"databricks_mws_log_delivery":            18,
+		"databricks_mws_networks":                19,
+		"databricks_mws_private_access_settings": 20,
+		"databricks_mws_storage_configurations":  21,
+		"databricks_mws_vpc_endpoint":            22,
+		"databricks_mws_workspaces":              23,
+		"databricks_notebook":                    24,
+		"databricks_permissions":                 25,
+		"databricks_pipeline":                    26,
+		"databricks_secret":                      27,
+		"databricks_secret_acl":                  28,
+		"databricks_secret_scope":                29,
+		"databricks_service_principal":           30,
+		"databricks_sql_dashboard":               31,
+		"databricks_sql_endpoint":                32,
+		"databricks_sql_permissions":             33,
+		"databricks_sql_query":                   34,
+		"databricks_sql_visualization":           35,
+		"databricks_sql_widget":                  36,
+		"databricks_token":                       37,
+		"databricks_user":                        38,
+		"databricks_user_instance_profile":       39,
+		"databricks_workspace_conf":              40,
 	}
 )
 

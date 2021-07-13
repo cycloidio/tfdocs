@@ -737,6 +737,53 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "lacework_integration_aws_govcloud_cfg",
+			Category:         "Cloud Account Integrations",
+			ShortDescription: `Create and manage AWS GovCloud Config integrations`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"account",
+				"integrations",
+				"integration",
+				"aws",
+				"govcloud",
+				"cfg",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The AWS GovCloud Config integration name.`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Required) The AWS account ID.`,
+				},
+				resource.Attribute{
+					Name:        "credentials",
+					Description: `(Required) The credentials needed by the integration. See [Credentials](#credentials) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "retries",
+					Description: `(Optional) The number of attempts to create the external integration. Defaults to ` + "`" + `5` + "`" + `. ### Credentials ` + "`" + `credentials` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "access_key_id",
+					Description: `(Required) The AWS access key ID.`,
+				},
+				resource.Attribute{
+					Name:        "secret_access_key",
+					Description: `(Required) The AWS secret key for the specified AWS access key. ## Import A Lacework AWS Config integration for AWS GovCloud can be imported using a ` + "`" + `INT_GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_integration_aws_govcloud_cfg.example EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "lacework_integration_azure_al",
 			Category:         "Cloud Account Integrations",
 			ShortDescription: `Create and manage Azure Cloud Activity Log integrations`,
@@ -860,15 +907,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "limit_by_tag",
-					Description: `(Optional) An image tag to limit the assessment of images with matching tag. If you specify ` + "`" + `limit_by_tag` + "`" + ` and ` + "`" + `limit_by_label` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `. Supported field input are ` + "`" + `mytext`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "limit_by_label",
-					Description: `(Optional) An image label to limit the assessment of images with matching label. If you specify ` + "`" + `limit_by_tag` + "`" + ` and ` + "`" + `limit_by_label` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `. Supported field input are ` + "`" + `mytext`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "limit_by_repos",
-					Description: `(Optional) A comma-separated list of repositories to assess. (without spaces recommended)`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "limit_num_imgs",
@@ -876,7 +923,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `. ## Import A Lacework Docker Hub container registry integration can be imported using a ` + "`" + `INT_GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_integration_docker_hub.example EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ` ->`,
+					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "limit_by_tags",
+					Description: `(Optional) A list of image tags to limit the assessment of images with matching tags. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_labels` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "limit_by_labels",
+					Description: `(Optional) A key based map of labels to limit the assessment of images with matching ` + "`" + `key:value` + "`" + ` labels. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_labels` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "limit_by_repositories",
+					Description: `(Optional) A list of repositories to assess. ## Import A Lacework Docker Hub container registry integration can be imported using a ` + "`" + `INT_GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_integration_docker_hub.example EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -918,15 +977,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "limit_by_tag",
-					Description: `(Optional) An image tag to limit the assessment of images with matching tag. If you specify ` + "`" + `limit_by_tag` + "`" + ` and ` + "`" + `limit_by_label` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `. Supported field input are ` + "`" + `mytext`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "limit_by_label",
-					Description: `(Optional) An image label to limit the assessment of images with matching label. If you specify ` + "`" + `limit_by_tag` + "`" + ` and ` + "`" + `limit_by_label` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `. Supported field input are ` + "`" + `mytext`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `. ## Import A Lacework Docker V2 container registry integration can be imported using a ` + "`" + `INT_GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_integration_docker_v2.jfrog EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ` ->`,
+					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "limit_by_tags",
+					Description: `(Optional) A list of image tags to limit the assessment of images with matching tags. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_labels` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "limit_by_labels",
+					Description: `(Optional) A key based map of labels to limit the assessment of images with matching ` + "`" + `key:value` + "`" + ` labels. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_labels` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `. ## Import A Lacework Docker V2 container registry integration can be imported using a ` + "`" + `INT_GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_integration_docker_v2.jfrog EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -959,15 +1026,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "limit_by_tag",
-					Description: `(Optional) An image tag to limit the assessment of images with matching tag. If you specify ` + "`" + `limit_by_tag` + "`" + ` and ` + "`" + `limit_by_label` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `. Supported field input are ` + "`" + `mytext`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "limit_by_label",
-					Description: `(Optional) An image label to limit the assessment of images with matching label. If you specify ` + "`" + `limit_by_tag` + "`" + ` and ` + "`" + `limit_by_label` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `. Supported field input are ` + "`" + `mytext`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "limit_by_repos",
-					Description: `(Optional) A comma-separated list of repositories to assess. (without spaces recommended)`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "limit_num_imgs",
@@ -975,7 +1042,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `. ### Credentials ` + "`" + `credentials` + "`" + ` supports the combination of the following arguments.`,
+					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "limit_by_tags",
+					Description: `(Optional) A list of image tags to limit the assessment of images with matching tags. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_labels` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "limit_by_labels",
+					Description: `(Optional) A key based map of labels to limit the assessment of images with matching ` + "`" + `key:value` + "`" + ` labels. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_labels` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "limit_by_repositories",
+					Description: `(Optional) A list of repositories to assess. ### Credentials ` + "`" + `credentials` + "`" + ` supports the combination of the following arguments.`,
 				},
 				resource.Attribute{
 					Name:        "role_arn",
@@ -1144,15 +1223,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "limit_by_tag",
-					Description: `(Optional) An image tag to limit the assessment of images with matching tag. If you specify ` + "`" + `limit_by_tag` + "`" + ` and ` + "`" + `limit_by_label` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `. Supported field input are ` + "`" + `mytext`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "limit_by_label",
-					Description: `(Optional) An image label to limit the assessment of images with matching label. If you specify ` + "`" + `limit_by_tag` + "`" + ` and ` + "`" + `limit_by_label` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `. Supported field input are ` + "`" + `mytext`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "limit_by_repos",
-					Description: `(Optional) A comma-separated list of repositories to assess. (without spaces recommended)`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "limit_num_imgs",
@@ -1160,7 +1239,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `. ### Credentials ` + "`" + `credentials` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "limit_by_tags",
+					Description: `(Optional) A list of image tags to limit the assessment of images with matching tags. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_labels` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "limit_by_labels",
+					Description: `(Optional) A key based map of labels to limit the assessment of images with matching ` + "`" + `key:value` + "`" + ` labels. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_labels` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "limit_by_repositories",
+					Description: `(Optional) A list of repositories to assess. ### Credentials ` + "`" + `credentials` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "client_id",
@@ -1204,14 +1295,15 @@ var (
 		"lacework_alert_channel_webhook":         16,
 		"lacework_integration_aws_cfg":           17,
 		"lacework_integration_aws_ct":            18,
-		"lacework_integration_azure_al":          19,
-		"lacework_integration_azure_cfg":         20,
-		"lacework_integration_docker_hub":        21,
-		"lacework_integration_docker_v2":         22,
-		"lacework_integration_ecr":               23,
-		"lacework_integration_gcp_at":            24,
-		"lacework_integration_gcp_cfg":           25,
-		"lacework_integration_gcr":               26,
+		"lacework_integration_aws_govcloud_cfg":  19,
+		"lacework_integration_azure_al":          20,
+		"lacework_integration_azure_cfg":         21,
+		"lacework_integration_docker_hub":        22,
+		"lacework_integration_docker_v2":         23,
+		"lacework_integration_ecr":               24,
+		"lacework_integration_gcp_at":            25,
+		"lacework_integration_gcp_cfg":           26,
+		"lacework_integration_gcr":               27,
 	}
 )
 

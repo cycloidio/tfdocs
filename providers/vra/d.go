@@ -3867,7 +3867,11 @@ This data source provides information about a deployment in vRA.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "administrators",
-					Description: `(Optional) List of administrator users associated with the project. Only administrators can manage project's configuration.`,
+					Description: `(Optional) List of administrator users associated with the project. Only administrators can manage project's configuration. Deprecated, to specify the type of principal, please refer ` + "`" + `administrator_roles` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "administrator_roles",
+					Description: `(Optional) Administrator users or groups associated with the project. Only administrators can manage project's configuration.`,
 				},
 				resource.Attribute{
 					Name:        "constraints",
@@ -3891,7 +3895,11 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "members",
-					Description: `(Optional) List of member users associated with the project.`,
+					Description: `(Optional) List of member users associated with the project. Deprecated, to specify the type of principal, please refer ` + "`" + `member_roles` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "member_roles",
+					Description: `(Optional) Member users or groups associated with the project.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3914,8 +3922,12 @@ This data source provides information about a deployment in vRA.
 					Description: `(Optional) The id of the organization this entity belongs to.`,
 				},
 				resource.Attribute{
-					Name:        "viewer",
-					Description: `(Optional) List of viewer users associated with the project.`,
+					Name:        "viewers",
+					Description: `(Optional) List of viewer users associated with the project. Deprecated, to specify the type of principal, please refer ` + "`" + `viewer_roles` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "viewer_roles",
+					Description: `(Optional) Viewer users or groups associated with the project.`,
 				},
 			},
 			Attributes: []resource.Attribute{},

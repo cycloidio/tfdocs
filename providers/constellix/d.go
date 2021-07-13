@@ -1598,7 +1598,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Name of the domain.`,
+					Description: `(Required) Name of the domain. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "has_gtd_regions",
@@ -1607,6 +1607,10 @@ var (
 				resource.Attribute{
 					Name:        "has_geoip",
 					Description: `(Optional) GTD Region status of the domain. The Default value is false.`,
+				},
+				resource.Attribute{
+					Name:        "vanity_nameserver",
+					Description: `(Optional) vanity nameserver of domain.`,
 				},
 				resource.Attribute{
 					Name:        "nameserver_group",
@@ -1659,16 +1663,16 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Name of the domain.`,
-				},
-				resource.Attribute{
 					Name:        "has_gtd_regions",
 					Description: `(Optional) GTD Region status of the domain. The Default value is false.`,
 				},
 				resource.Attribute{
 					Name:        "has_geoip",
 					Description: `(Optional) GTD Region status of the domain. The Default value is false.`,
+				},
+				resource.Attribute{
+					Name:        "vanity_nameserver",
+					Description: `(Optional) vanity nameserver of domain.`,
 				},
 				resource.Attribute{
 					Name:        "nameserver_group",

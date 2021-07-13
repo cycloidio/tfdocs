@@ -180,7 +180,7 @@ var (
 			Name:             "",
 			Type:             "hcloud_snapshot",
 			Category:         "Resources",
-			ShortDescription: `Provides a Hetzner Cloud snapshot to represent a image with type snapshot in the Hetzner Cloud.`,
+			ShortDescription: `Provides a Hetzner Cloud snapshot to represent an image with type snapshot in the Hetzner Cloud.`,
 			Description:      ``,
 			Keywords: []string{
 				"snapshot",

@@ -647,7 +647,7 @@ Creates a VMware vRealize Automation vSphere cloud account resource.
 				},
 				resource.Attribute{
 					Name:        "regions",
-					Description: `(Optional) A set of region names that are enabled for the cloud account.`,
+					Description: `(Required) A set of region names that are enabled for the cloud account.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -3389,7 +3389,11 @@ Creates a VMware vRealize Automation machine resource.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "administrators",
-					Description: `(Optional) List of administrator users associated with the project. Only administrators can manage project's configuration.`,
+					Description: `(Optional) List of administrator users associated with the project. Only administrators can manage project's configuration. Deprecated, specify the type of principal, please refer ` + "`" + `administrator_roles` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "administrator_roles",
+					Description: `(Optional) Administrator users or groups associated with the project. Only administrators can manage project's configuration.`,
 				},
 				resource.Attribute{
 					Name:        "constraints",
@@ -3409,7 +3413,11 @@ Creates a VMware vRealize Automation machine resource.
 				},
 				resource.Attribute{
 					Name:        "members",
-					Description: `(Optional) List of member users associated with the project.`,
+					Description: `(Optional) List of member users associated with the project. Deprecated, specify the type of principal, please refer ` + "`" + `member_roles` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "member_roles",
+					Description: `(Optional) Member users or groups associated with the project.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3424,8 +3432,12 @@ Creates a VMware vRealize Automation machine resource.
 					Description: `(Optional) Specifies whether the resources in this projects are shared or not. If not set default will be used.`,
 				},
 				resource.Attribute{
-					Name:        "viewer",
-					Description: `(Optional) List of viewer users associated with the project.`,
+					Name:        "viewers",
+					Description: `(Optional) List of viewer users associated with the project. Deprecated, specify the type of principal, please refer ` + "`" + `viewer_roles` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "viewer_roles",
+					Description: `(Optional) Viewer users or groups associated with the project.`,
 				},
 				resource.Attribute{
 					Name:        "zone_assignments",

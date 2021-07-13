@@ -37,6 +37,10 @@ var (
 					Description: `(Required) The complete URL of the asset you wish to put Cloudflare Access in front of. Can include subdomains or paths. Or both.`,
 				},
 				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) The application type. Defaults to ` + "`" + `self_hosted` + "`" + `. Valid values are ` + "`" + `self_hosted` + "`" + `, ` + "`" + `ssh` + "`" + `, ` + "`" + `vnc` + "`" + `, or ` + "`" + `file` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "session_duration",
 					Description: `(Optional) How often a user will be forced to re-authorise. Must be in the format ` + "`" + `"48h"` + "`" + ` or ` + "`" + `"2h45m"` + "`" + `. Valid time units are ` + "`" + `ns` + "`" + `, ` + "`" + `us` + "`" + ` (or ` + "`" + `µs` + "`" + `), ` + "`" + `ms` + "`" + `, ` + "`" + `s` + "`" + `, ` + "`" + `m` + "`" + `, ` + "`" + `h` + "`" + `. Defaults to ` + "`" + `24h` + "`" + `.`,
 				},
@@ -1749,7 +1753,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dataset",
-					Description: `(Required) Which type of dataset resource to use. Available values are ` + "`" + `"firewall_events"` + "`" + `, ` + "`" + `"http_requests"` + "`" + `, and ` + "`" + `"spectrum_events"` + "`" + `.`,
+					Description: `(Required) Which type of dataset resource to use. Available values are ` + "`" + `"firewall_events"` + "`" + `, ` + "`" + `"http_requests"` + "`" + `, ` + "`" + `"spectrum_events"` + "`" + ` and ` + "`" + `"nel_reports"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "logpull_options",
@@ -2387,7 +2391,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "proxied",
-					Description: `(Optional) Whether the record gets Cloudflare's origin protection; defaults to ` + "`" + `false` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Whether the record gets Cloudflare's origin protection; defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "allow_overwrite",
+					Description: `(Optional) Allow creation of this record in Terraform to overwrite an existing record, if any. This does not affect the ability to update the record in Terraform and does not prevent other resources within Terraform or manual changes outside Terraform from overwriting this record. ` + "`" + `false` + "`" + ` by default.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2567,6 +2575,52 @@ var (
 					Description: `Application ID`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "cloudflare_static_route",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource which manages Cloudflare static routes for Magic Transit or Magic WAN.`,
+			Description:      ``,
+			Keywords: []string{
+				"static",
+				"route",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Required) The ID of the account where the static route is being created.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the static route.`,
+				},
+				resource.Attribute{
+					Name:        "prefix",
+					Description: `(Required) Your network prefix using CIDR notation.`,
+				},
+				resource.Attribute{
+					Name:        "nexthop",
+					Description: `(Required) The nexthop IP address where traffic will be routed to.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Required) The priority for the static route.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `(Optional) The optional weight for ECMP routes.`,
+				},
+				resource.Attribute{
+					Name:        "colo_names",
+					Description: `(Optional) Optional list of Cloudflare colocation names for this static route.`,
+				},
+				resource.Attribute{
+					Name:        "colo_regions",
+					Description: `(Optional) Optional list of Cloudflare colocation regions for this static route. ## Import An existing static route can be imported using the account ID and static route ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_static_route.example d41d8cd98f00b204e9800998ecf8427e/cb029e245cfdd66dc8d2e570d5dd3322 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3079,7 +3133,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Required) The value to target. Depends on target's type. IP addresses should just be standard IPv4/IPv6 notation i.e. ` + "`" + `198.51.100.4` + "`" + ` or ` + "`" + `2001:db8::/32` + "`" + ` and IP ranges in CIDR format i.e. ` + "`" + `198.51.0.0/16` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The value to target. Depends on target's type. IP addresses should just be standard IPv4/IPv6 notation i.e. ` + "`" + `198.51.100.4` + "`" + ` or ` + "`" + `2001:db8::/32` + "`" + ` and IP ranges in CIDR format i.e. ` + "`" + `198.51.0.0/16` + "`" + `. In order to add multiple IP addresses to the same rule each IP address needs to be wrapped in its own`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -3201,18 +3255,19 @@ var (
 		"cloudflare_rate_limit":                  29,
 		"cloudflare_record":                      30,
 		"cloudflare_spectrum_application":        31,
-		"cloudflare_waf_group":                   32,
-		"cloudflare_waf_override":                33,
-		"cloudflare_waf_package":                 34,
-		"cloudflare_waf_rule":                    35,
-		"cloudflare_worker_cron_trigger":         36,
-		"cloudflare_worker_route":                37,
-		"cloudflare_worker_script":               38,
-		"cloudflare_workers_kv":                  39,
-		"cloudflare_workers_kv_namespace":        40,
-		"cloudflare_zone":                        41,
-		"cloudflare_zone_lockdown":               42,
-		"cloudflare_zone_settings_override":      43,
+		"cloudflare_static_route":                32,
+		"cloudflare_waf_group":                   33,
+		"cloudflare_waf_override":                34,
+		"cloudflare_waf_package":                 35,
+		"cloudflare_waf_rule":                    36,
+		"cloudflare_worker_cron_trigger":         37,
+		"cloudflare_worker_route":                38,
+		"cloudflare_worker_script":               39,
+		"cloudflare_workers_kv":                  40,
+		"cloudflare_workers_kv_namespace":        41,
+		"cloudflare_zone":                        42,
+		"cloudflare_zone_lockdown":               43,
+		"cloudflare_zone_settings_override":      44,
 	}
 )
 

@@ -61,8 +61,28 @@ var (
 					Description: `(Required) the type of cluster to create.`,
 				},
 				resource.Attribute{
+					Name:        "nodepools",
+					Description: `A list of [nodepool](#nodepool) types.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) labels to set on cluster. ## Nested Blocks ### nodepool`,
+				},
+				resource.Attribute{
 					Name:        "node_count",
-					Description: `(Required) the number of worker nodes for the cluster.`,
+					Description: `(Required) the number of worker nodes for the cluster`,
+				},
+				resource.Attribute{
+					Name:        "enable_auto_scaling",
+					Description: `(Optional) Enable autoscaling for cluster. default valie is disable.`,
+				},
+				resource.Attribute{
+					Name:        "min_count",
+					Description: `(Optional) Set minimun node count value for cluster. ` + "`" + `enable_auto_scaling` + "`" + ` must set true to set min_count.`,
+				},
+				resource.Attribute{
+					Name:        "max_count",
+					Description: `(Optional) Set max node count value for cluster. ` + "`" + `enable_auto_scaling` + "`" + ` must set true to set max_count.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -146,6 +166,50 @@ var (
 					Name:        "system_metadata",
 					Description: `(Optional) key-value pairs that will be provisioned as a ConfigMap called system-metadata-map in the cluster.`,
 				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) labels to set on cluster. ### vault_auth`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) a unique name`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) the vault authentication path. The variable $(cluster.name) is allowed in the path for uniquenes.`,
+				},
+				resource.Attribute{
+					Name:        "addon_name",
+					Description: `(Required) the associated Vault Agent Injector add-on`,
+				},
+				resource.Attribute{
+					Name:        "credentials_name",
+					Description: `(Required) the Vault credentials to use`,
+				},
+				resource.Attribute{
+					Name:        "roles",
+					Description: `(Required) a list of application roles to configure for add-on services`,
+				},
+				resource.Attribute{
+					Name:        "delete_auth_path",
+					Description: `(Optional) delete auth path on cluster delete #### roles`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) a unique name`,
+				},
+				resource.Attribute{
+					Name:        "service_account_name",
+					Description: `(Required) the allowed service account name`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Required) the allowed namespace`,
+				},
+				resource.Attribute{
+					Name:        "policies",
+					Description: `(Required) the applied policies`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -176,6 +240,10 @@ var (
 				resource.Attribute{
 					Name:        "controller_yamls_count",
 					Description: `(Computed) the controller YAML file count`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) labels to set on cluster.`,
 				},
 				resource.Attribute{
 					Name:        "delete_action",
@@ -358,7 +426,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "roles",
-					Description: `(Required) a list of application roles to configure for add-on services #### roles`,
+					Description: `(Required) a list of application roles to configure for add-on services`,
+				},
+				resource.Attribute{
+					Name:        "delete_auth_path",
+					Description: `(Optional) delete auth path on cluster delete #### roles`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -577,7 +649,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "roles",
-					Description: `(Required) a list of application roles to configure for add-on services #### roles`,
+					Description: `(Required) a list of application roles to configure for add-on services`,
+				},
+				resource.Attribute{
+					Name:        "delete_auth_path",
+					Description: `(Optional) delete auth path on cluster delete #### roles`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -664,7 +740,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "roles",
-					Description: `(Required) a list of application roles to configure for add-on services #### roles`,
+					Description: `(Required) a list of application roles to configure for add-on services`,
+				},
+				resource.Attribute{
+					Name:        "delete_auth_path",
+					Description: `(Optional) delete auth path on cluster delete #### roles`,
 				},
 				resource.Attribute{
 					Name:        "name",

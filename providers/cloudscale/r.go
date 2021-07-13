@@ -11,6 +11,97 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "cloudscale_custom_image",
+			Category:         "Resources",
+			ShortDescription: `Provides a cloudscale.ch custom image resource. This can be used to create, modify, and delete custom images.`,
+			Description:      ``,
+			Keywords: []string{
+				"custom",
+				"image",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "import_url",
+					Description: `(Required) The URL used to download the image.`,
+				},
+				resource.Attribute{
+					Name:        "import_source_format",
+					Description: `(Required) The file format of the image referenced in the ` + "`" + `import_url` + "`" + `. Options include ` + "`" + `raw` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The human readable name of the custom image.`,
+				},
+				resource.Attribute{
+					Name:        "slug",
+					Description: `(Optional) A string identifying the custom image for use within the API.`,
+				},
+				resource.Attribute{
+					Name:        "user_data_handling",
+					Description: `(Required) How user_data will be handled when creating a server. Options include ` + "`" + `pass-through` + "`" + ` and ` + "`" + `extend-cloud-config` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "zone_slugs",
+					Description: `(Required) Specify the zones in which the custom image will be available. Options include ` + "`" + `lpg1` + "`" + ` and ` + "`" + `rma1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "timeouts",
+					Description: `(Optional) Specify how long certain operations are allowed to take before being considered to have failed. Currently, only the ` + "`" + `create` + "`" + ` timeout can be specified. Takes a string representation of a duration, such as ` + "`" + `20m` + "`" + ` for 20 minutes (default), ` + "`" + `10s` + "`" + ` for ten seconds, or ` + "`" + `2h` + "`" + ` for two hours. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "href",
+					Description: `The cloudscale.ch API URL of the current resource.`,
+				},
+				resource.Attribute{
+					Name:        "size_gb",
+					Description: `The size in GB of the custom image.`,
+				},
+				resource.Attribute{
+					Name:        "checksums",
+					Description: `The checksums of the custom image as map.`,
+				},
+				resource.Attribute{
+					Name:        "import_href",
+					Description: `The cloudscale.ch API URL of the custom image import.`,
+				},
+				resource.Attribute{
+					Name:        "import_uuid",
+					Description: `The UUID of the custom image import.`,
+				},
+				resource.Attribute{
+					Name:        "import_status",
+					Description: `The status of the custom image import. Options include ` + "`" + `started` + "`" + `, ` + "`" + `in_progress` + "`" + `, ` + "`" + `failed` + "`" + `, ` + "`" + `success` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "href",
+					Description: `The cloudscale.ch API URL of the current resource.`,
+				},
+				resource.Attribute{
+					Name:        "size_gb",
+					Description: `The size in GB of the custom image.`,
+				},
+				resource.Attribute{
+					Name:        "checksums",
+					Description: `The checksums of the custom image as map.`,
+				},
+				resource.Attribute{
+					Name:        "import_href",
+					Description: `The cloudscale.ch API URL of the custom image import.`,
+				},
+				resource.Attribute{
+					Name:        "import_uuid",
+					Description: `The UUID of the custom image import.`,
+				},
+				resource.Attribute{
+					Name:        "import_status",
+					Description: `The status of the custom image import. Options include ` + "`" + `started` + "`" + `, ` + "`" + `in_progress` + "`" + `, ` + "`" + `failed` + "`" + `, ` + "`" + `success` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "cloudscale_floating_ip",
 			Category:         "Resources",
 			ShortDescription: `Provides a cloudscale.ch Floating IP resource. This can be used to create, modify, and delete Floating IPs.`,
@@ -38,7 +129,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region_slug",
-					Description: `(Optional) You can specify a region slug. Options include ` + "`" + `lpg` + "`" + ` and ` + "`" + `rma` + "`" + `.`,
+					Description: `(Optional) The slug of the region in which the new Regional Floating IP will be created. Options include ` + "`" + `lpg` + "`" + ` and ` + "`" + `rma` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "reverse_ptr",
@@ -80,7 +171,7 @@ var (
 			Name:             "",
 			Type:             "cloudscale_network",
 			Category:         "Resources",
-			ShortDescription: `Provides a cloudscale.ch Network resource. This can be used to create, modify, and delete networks.`,
+			ShortDescription: `Provides a cloudscale.ch private network resource. This can be used to create, modify, and delete networks.`,
 			Description:      ``,
 			Keywords: []string{
 				"network",
@@ -92,7 +183,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone_slug",
-					Description: `(Optional) You can specify a zone slug. Options include ` + "`" + `lpg1` + "`" + ` and ` + "`" + `rma1` + "`" + `.`,
+					Description: `(Optional) The slug of the zone in which the new network will be created. Options include ` + "`" + `lpg1` + "`" + ` and ` + "`" + `rma1` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "mtu",
@@ -159,11 +250,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `(Required) The display name of the objects user. The following arguments are supported when updating Objects Users:`,
+					Description: `(Required) The display name of the Objects User. The following arguments are supported when updating Objects Users:`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `(Required) The new display name of the objects user. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Required) The new display name of the Objects User. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "href",
@@ -171,19 +262,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "user_id",
-					Description: `The unique identifier of the objects user.`,
+					Description: `The unique identifier of the Objects User.`,
 				},
 				resource.Attribute{
 					Name:        "keys",
-					Description: `A list of key objects containing the access and secret key associated with the objects user. Currently, only one key object is returned. Each key object has the following attributes:`,
+					Description: `A list of key objects containing the access and secret key associated with the Objects User. Currently, only one key object is returned. Each key object has the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "access_key",
-					Description: `The S3 access key of the objects user.`,
+					Description: `The S3 access key of the Objects User.`,
 				},
 				resource.Attribute{
 					Name:        "secret_key",
-					Description: `The S3 secret key of the objects user.`,
+					Description: `The S3 secret key of the Objects User.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -193,19 +284,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "user_id",
-					Description: `The unique identifier of the objects user.`,
+					Description: `The unique identifier of the Objects User.`,
 				},
 				resource.Attribute{
 					Name:        "keys",
-					Description: `A list of key objects containing the access and secret key associated with the objects user. Currently, only one key object is returned. Each key object has the following attributes:`,
+					Description: `A list of key objects containing the access and secret key associated with the Objects User. Currently, only one key object is returned. Each key object has the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "access_key",
-					Description: `The S3 access key of the objects user.`,
+					Description: `The S3 access key of the Objects User.`,
 				},
 				resource.Attribute{
 					Name:        "secret_key",
-					Description: `The S3 secret key of the objects user.`,
+					Description: `The S3 secret key of the Objects User.`,
 				},
 			},
 		},
@@ -213,7 +304,7 @@ var (
 			Name:             "",
 			Type:             "cloudscale_server",
 			Category:         "Resources",
-			ShortDescription: `Provides a cloudscale.ch Server resource. This can be used to create, modify, and delete servers.`,
+			ShortDescription: `Provides a cloudscale.ch server resource. This can be used to create, modify, and delete servers.`,
 			Description:      ``,
 			Keywords: []string{
 				"server",
@@ -229,7 +320,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "image_slug",
-					Description: `(Required) The slug (name) of the image to use for the new server. Possible values can be found in our [API documentation](https://www.cloudscale.ch/en/api/v1#images).`,
+					Description: `(Required, if ` + "`" + `image_uuid` + "`" + ` not set) The slug (name) of the image (or custom image) to use for the new server. Possible values can be found in our [API documentation](https://www.cloudscale.ch/en/api/v1#images).`,
+				},
+				resource.Attribute{
+					Name:        "image_uuid",
+					Description: `(Required, if ` + "`" + `image_slug` + "`" + ` not set) The UUID of the custom image to use for the new server.`,
 				},
 				resource.Attribute{
 					Name:        "ssh_keys",
@@ -241,7 +336,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone_slug",
-					Description: `(Optional) You can specify a zone slug. Options include ` + "`" + `lpg1` + "`" + ` and ` + "`" + `rma1` + "`" + `.`,
+					Description: `(Optional) The slug of the zone in which the new server will be created. Options include ` + "`" + `lpg1` + "`" + ` and ` + "`" + `rma1` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "volume_size_gb",
@@ -292,6 +387,10 @@ var (
 					Description: `(Optional, can be set only for ` + "`" + `private` + "`" + ` interfaces) You neet to set this to ` + "`" + `true` + "`" + ` if no address should be configured, e.g. if you want to attach to a network without a subnet.`,
 				},
 				resource.Attribute{
+					Name:        "server_group_ids",
+					Description: `(Optional) A list of server group UUIDs to which the server should be added. Default to an empty list.`,
+				},
+				resource.Attribute{
 					Name:        "user_data",
 					Description: `(Optional) User data (custom cloud-config settings) to use for the new server. Needs to be valid YAML. A default configuration will be used if this parameter is not specified or set to null. Use only if you are an advanced user with knowledge of cloud-config and cloud-init.`,
 				},
@@ -301,7 +400,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allow_stopping_for_update",
-					Description: `(Optional) If true, allows Terraform to stop the instance to update its properties. If you try to update a property that requires stopping the instance without setting this field, the update will fail. The following arguments are supported when updating servers:`,
+					Description: `(Optional) If true, allows Terraform to stop the instance to update its properties. If you try to update a property that requires stopping the instance without setting this field, the update will fail.`,
+				},
+				resource.Attribute{
+					Name:        "skip_waiting_for_ssh_host_keys",
+					Description: `(Optional) If set to ` + "`" + `true` + "`" + `, do not wait until SSH host keys become available.`,
+				},
+				resource.Attribute{
+					Name:        "timeouts",
+					Description: `(Optional) Specify how long certain operations are allowed to take before being considered to have failed. Currently, only the ` + "`" + `create` + "`" + ` timeout can be specified. Takes a string representation of a duration such as ` + "`" + `5m` + "`" + ` for 5 minutes (default), ` + "`" + `10s` + "`" + ` for ten seconds, or ` + "`" + `2h` + "`" + ` for two hours. The following arguments are supported when updating servers:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -524,7 +631,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone_slug",
-					Description: `(Optional) You can specify a zone slug. Options include ` + "`" + `lpg1` + "`" + ` and ` + "`" + `rma1` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) The slug of the zone in which the new server group will be created. Options include ` + "`" + `lpg1` + "`" + ` and ` + "`" + `rma1` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "href",
@@ -542,7 +649,7 @@ var (
 			Name:             "",
 			Type:             "cloudscale_subnet",
 			Category:         "Resources",
-			ShortDescription: `Provides a cloudscale.ch Subnet resource. This can be used to create, modify, and delete subnets.`,
+			ShortDescription: `Provides a cloudscale.ch subnet resource. This can be used to create, modify, and delete subnets.`,
 			Description:      ``,
 			Keywords: []string{
 				"subnet",
@@ -580,7 +687,7 @@ var (
 			Name:             "",
 			Type:             "cloudscale_volume",
 			Category:         "Resources",
-			ShortDescription: `Provides a cloudscale.ch Volume (block storage) resource. This can be used to create, modify, and delete Volumes.`,
+			ShortDescription: `Provides a cloudscale.ch volume (block storage) resource. This can be used to create, modify, and delete volumes.`,
 			Description:      ``,
 			Keywords: []string{
 				"volume",
@@ -596,7 +703,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone_slug",
-					Description: `(Optional) You can specify a zone slug. Options include ` + "`" + `lpg1` + "`" + ` and ` + "`" + `rma1` + "`" + `.`,
+					Description: `(Optional) The slug of the zone in which the new volume will be created. Options include ` + "`" + `lpg1` + "`" + ` and ` + "`" + `rma1` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -622,13 +729,14 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"cloudscale_floating_ip":  0,
-		"cloudscale_network":      1,
-		"cloudscale_objects_user": 2,
-		"cloudscale_server":       3,
-		"cloudscale_server_group": 4,
-		"cloudscale_subnet":       5,
-		"cloudscale_volume":       6,
+		"cloudscale_custom_image": 0,
+		"cloudscale_floating_ip":  1,
+		"cloudscale_network":      2,
+		"cloudscale_objects_user": 3,
+		"cloudscale_server":       4,
+		"cloudscale_server_group": 5,
+		"cloudscale_subnet":       6,
+		"cloudscale_volume":       7,
 	}
 )
 

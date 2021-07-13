@@ -4,6 +4,7 @@
  "flexibleengine_antiddos_v1": "Security-Anti-DDoS.svg",
  "flexibleengine_as_configuration_v1": "Computing-AS.svg",
  "flexibleengine_as_group_v1": "Computing-AS.svg",
+ "flexibleengine_as_lifecycle_hook_v1": "",
  "flexibleengine_as_policy_v1": "Computing-AS.svg",
  "flexibleengine_blockstorage_availability_zones_v3": "",
  "flexibleengine_blockstorage_volume_v2": "Storage.svg",
@@ -135,5 +136,14 @@
  "flexibleengine_vpcep_endpoint": "",
  "flexibleengine_vpcep_endpoints": "",
  "flexibleengine_vpcep_public_services": "",
- "flexibleengine_vpcep_service": ""
+ "flexibleengine_vpcep_service": "",
+ "flexibleengine_waf_certificate": "",
+ "flexibleengine_waf_domain": "",
+ "flexibleengine_waf_policy": "",
+ "flexibleengine_waf_rule_alarm_masking": "",
+ "flexibleengine_waf_rule_blacklist": "",
+ "flexibleengine_waf_rule_cc_protection": "",
+ "flexibleengine_waf_rule_data_masking": "",
+ "flexibleengine_waf_rule_precise_protection": "",
+ "flexibleengine_waf_rule_web_tamper_protection": ""
 }

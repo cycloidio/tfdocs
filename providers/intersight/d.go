@@ -376,7 +376,7 @@ of the device claim operation can be obtained from the claim workflow.
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft HyperV system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
@@ -948,6 +948,63 @@ A node within a cluster of device connectors. A Device Registration may contain 
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_asset_deployment",
+			Category:         "Data Sources",
+			ShortDescription: `Contains information about Deployments associated with consumption-based subscriptions. We listen to messages sent by Cisco Install Base and create/update an instance of this object.`,
+			Description: `
+Contains information about Deployments associated with consumption-based subscriptions. We listen to messages sent by Cisco Install Base and create/update an instance of this object.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Base",
+					Description: `Base as a License type. It is default license type.`,
+				},
+				resource.Attribute{
+					Name:        "Essential",
+					Description: `Essential as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "Standard",
+					Description: `Standard as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "Advantage",
+					Description: `Advantage as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "Premier",
+					Description: `Premier as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "IWO-Essential",
+					Description: `IWO-Essential as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "IWO-Advantage",
+					Description: `IWO-Advantage as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "IWO-Premier",
+					Description: `IWO-Premier as a License type.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_asset_deployment_device",
+			Category:         "Data Sources",
+			ShortDescription: `Contains information about Cisco devices associated with consumption-based subscriptions. In addition to device installation status, information about returns and replacements is also recorded here. We listen to messages sent by Cisco Install Base and create/update an instance of this object.`,
+			Description: `
+Contains information about Cisco devices associated with consumption-based subscriptions. In addition to device installation status, information about returns and replacements is also recorded here. We listen to messages sent by Cisco Install Base and create/update an instance of this object.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_asset_device_configuration",
 			Category:         "Data Sources",
 			ShortDescription: `The configuration of a device connector. Configuration properties may be changed by a Intersight user or by a device administrator using the connector's API exposed through the platforms management interface.`,
@@ -1114,7 +1171,7 @@ Contains information about the Cisco device identified by a unique identifier li
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft HyperV system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
@@ -1367,7 +1424,7 @@ DeviceRegistration represents a device connector enabled endpoint which has regi
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft HyperV system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
@@ -1470,6 +1527,30 @@ DeviceRegistration represents a device connector enabled endpoint which has regi
 					Description: `A Cisco Catalyst networking switch device.`,
 				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_asset_subscription",
+			Category:         "Data Sources",
+			ShortDescription: `Contains information about consumption-based Subscriptions related to the Cisco devices associated. We listen to messages sent by Cisco Install Base and create/update an instance of this object.`,
+			Description: `
+Contains information about consumption-based Subscriptions related to the Cisco devices associated. We listen to messages sent by Cisco Install Base and create/update an instance of this object.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_asset_subscription_account",
+			Category:         "Data Sources",
+			ShortDescription: `It is a empty placeholder object for Account collection. Its purpose is to avoid data updates to Subscription related MOs on Account MO change event.`,
+			Description: `
+It is a empty placeholder object for Account collection. Its purpose is to avoid data updates to Subscription related MOs on Account MO change event.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -1620,7 +1701,7 @@ Target represents an entity which can be managed by Intersight. This includes ph
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft HyperV system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
@@ -1920,12 +2001,16 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
-					Name:        "enabled",
-					Description: `Enables the BIOS setting.`,
+					Name:        "Auto",
+					Description: `Value - Auto for configuring AdvancedMemTest token.`,
 				},
 				resource.Attribute{
 					Name:        "disabled",
-					Description: `Disables the BIOS setting.`,
+					Description: `Value - disabled for configuring AdvancedMemTest token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring AdvancedMemTest token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -1942,22 +2027,22 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
-				},
-				resource.Attribute{
-					Name:        "1500-m",
-					Description: `Value - 1500-m for configuring Altitude token.`,
 				},
 				resource.Attribute{
 					Name:        "300-m",
 					Description: `Value - 300-m for configuring Altitude token.`,
 				},
 				resource.Attribute{
-					Name:        "3000-m",
-					Description: `Value - 3000-m for configuring Altitude token.`,
-				},
-				resource.Attribute{
 					Name:        "900-m",
 					Description: `Value - 900-m for configuring Altitude token.`,
+				},
+				resource.Attribute{
+					Name:        "1500-m",
+					Description: `Value - 1500-m for configuring Altitude token.`,
+				},
+				resource.Attribute{
+					Name:        "3000-m",
+					Description: `Value - 3000-m for configuring Altitude token.`,
 				},
 				resource.Attribute{
 					Name:        "auto",
@@ -2036,8 +2121,8 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
-					Name:        "115200",
-					Description: `Value - 115200 for configuring BaudRate token.`,
+					Name:        "9600",
+					Description: `Value - 9600 for configuring BaudRate token.`,
 				},
 				resource.Attribute{
 					Name:        "19200",
@@ -2052,8 +2137,8 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - 57600 for configuring BaudRate token.`,
 				},
 				resource.Attribute{
-					Name:        "9600",
-					Description: `Value - 9600 for configuring BaudRate token.`,
+					Name:        "115200",
+					Description: `Value - 115200 for configuring BaudRate token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -2072,12 +2157,12 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
-					Name:        "13",
-					Description: `Value - 13 for configuring BootOptionNumRetry token.`,
-				},
-				resource.Attribute{
 					Name:        "5",
 					Description: `Value - 5 for configuring BootOptionNumRetry token.`,
+				},
+				resource.Attribute{
+					Name:        "13",
+					Description: `Value - 13 for configuring BootOptionNumRetry token.`,
 				},
 				resource.Attribute{
 					Name:        "Infinite",
@@ -2126,6 +2211,34 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "Set by Intel NM",
 					Description: `Value - Set by Intel NM for configuring BootPerformanceMode token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "0",
+					Description: `Value - 0 for configuring CbsCmnApbdis token.`,
+				},
+				resource.Attribute{
+					Name:        "1",
+					Description: `Value - 1 for configuring CbsCmnApbdis token.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsCmnApbdis token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -2225,6 +2338,38 @@ Policy for setting BIOS tokens on the endpoint.
 				},
 				resource.Attribute{
 					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsCmnCpuSmee token.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Value - disabled for configuring CbsCmnCpuSmee token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring CbsCmnCpuSmee token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsCmnCpuStreamingStoresCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Value - disabled for configuring CbsCmnCpuStreamingStoresCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring CbsCmnCpuStreamingStoresCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
 					Description: `Value - Auto for configuring CbsCmnDeterminismSlider token.`,
 				},
 				resource.Attribute{
@@ -2241,6 +2386,42 @@ Policy for setting BIOS tokens on the endpoint.
 				},
 				resource.Attribute{
 					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsCmnEfficiencyModeEn token.`,
+				},
+				resource.Attribute{
+					Name:        "Enabled",
+					Description: `Value - Enabled for configuring CbsCmnEfficiencyModeEn token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsCmnFixedSocPstate token.`,
+				},
+				resource.Attribute{
+					Name:        "P0",
+					Description: `Value - P0 for configuring CbsCmnFixedSocPstate token.`,
+				},
+				resource.Attribute{
+					Name:        "P1",
+					Description: `Value - P1 for configuring CbsCmnFixedSocPstate token.`,
+				},
+				resource.Attribute{
+					Name:        "P2",
+					Description: `Value - P2 for configuring CbsCmnFixedSocPstate token.`,
+				},
+				resource.Attribute{
+					Name:        "P3",
+					Description: `Value - P3 for configuring CbsCmnFixedSocPstate token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
 					Description: `Value - Auto for configuring CbsCmnGnbNbIommu token.`,
 				},
 				resource.Attribute{
@@ -2250,6 +2431,38 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "enabled",
 					Description: `Value - enabled for configuring CbsCmnGnbNbIommu token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsCmnGnbSmuDfCstates token.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Value - disabled for configuring CbsCmnGnbSmuDfCstates token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring CbsCmnGnbSmuDfCstates token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsCmnGnbSmucppc token.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Value - disabled for configuring CbsCmnGnbSmucppc token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring CbsCmnGnbSmucppc token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -2296,6 +2509,142 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "2 CCDs",
+					Description: `Value - 2 CCDs for configuring CbsCpuCcdCtrlSsp token.`,
+				},
+				resource.Attribute{
+					Name:        "3 CCDs",
+					Description: `Value - 3 CCDs for configuring CbsCpuCcdCtrlSsp token.`,
+				},
+				resource.Attribute{
+					Name:        "4 CCDs",
+					Description: `Value - 4 CCDs for configuring CbsCpuCcdCtrlSsp token.`,
+				},
+				resource.Attribute{
+					Name:        "6 CCDs",
+					Description: `Value - 6 CCDs for configuring CbsCpuCcdCtrlSsp token.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsCpuCcdCtrlSsp token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsCpuCoreCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "FIVE (5 + 0)",
+					Description: `Value - FIVE (5 + 0) for configuring CbsCpuCoreCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "FOUR (4 + 0)",
+					Description: `Value - FOUR (4 + 0) for configuring CbsCpuCoreCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "ONE (1 + 0)",
+					Description: `Value - ONE (1 + 0) for configuring CbsCpuCoreCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "SEVEN (7 + 0)",
+					Description: `Value - SEVEN (7 + 0) for configuring CbsCpuCoreCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "SIX (6 + 0)",
+					Description: `Value - SIX (6 + 0) for configuring CbsCpuCoreCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "THREE (3 + 0)",
+					Description: `Value - THREE (3 + 0) for configuring CbsCpuCoreCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "TWO (2 + 0)",
+					Description: `Value - TWO (2 + 0) for configuring CbsCpuCoreCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsCpuSmtCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Value - disabled for configuring CbsCpuSmtCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring CbsCpuSmtCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsDbgCpuSnpMemCover token.`,
+				},
+				resource.Attribute{
+					Name:        "Custom",
+					Description: `Value - Custom for configuring CbsDbgCpuSnpMemCover token.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Value - disabled for configuring CbsDbgCpuSnpMemCover token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring CbsDbgCpuSnpMemCover token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsDfCmnAcpiSratL3numa token.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Value - disabled for configuring CbsDfCmnAcpiSratL3numa token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring CbsDfCmnAcpiSratL3numa token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsDfCmnDramNps token.`,
+				},
+				resource.Attribute{
+					Name:        "NPS0",
+					Description: `Value - NPS0 for configuring CbsDfCmnDramNps token.`,
+				},
+				resource.Attribute{
+					Name:        "NPS1",
+					Description: `Value - NPS1 for configuring CbsDfCmnDramNps token.`,
+				},
+				resource.Attribute{
+					Name:        "NPS2",
+					Description: `Value - NPS2 for configuring CbsDfCmnDramNps token.`,
+				},
+				resource.Attribute{
+					Name:        "NPS4",
+					Description: `Value - NPS4 for configuring CbsDfCmnDramNps token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "Auto",
 					Description: `Value - Auto for configuring CbsDfCmnMemIntlv token.`,
 				},
@@ -2320,14 +2669,6 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
-					Name:        "1 KB",
-					Description: `Value - 1 KiB for configuring CbsDfCmnMemIntlvSize token.`,
-				},
-				resource.Attribute{
-					Name:        "2 KB",
-					Description: `Value - 2 KiB for configuring CbsDfCmnMemIntlvSize token.`,
-				},
-				resource.Attribute{
 					Name:        "256 Bytes",
 					Description: `Value - 256 Bytes for configuring CbsDfCmnMemIntlvSize token.`,
 				},
@@ -2336,8 +2677,32 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - 512 Bytes for configuring CbsDfCmnMemIntlvSize token.`,
 				},
 				resource.Attribute{
+					Name:        "1 KB",
+					Description: `Value - 1 KiB for configuring CbsDfCmnMemIntlvSize token.`,
+				},
+				resource.Attribute{
+					Name:        "2 KB",
+					Description: `Value - 2 KiB for configuring CbsDfCmnMemIntlvSize token.`,
+				},
+				resource.Attribute{
+					Name:        "4 KB",
+					Description: `Value - 4 KiB for configuring CbsDfCmnMemIntlvSize token.`,
+				},
+				resource.Attribute{
 					Name:        "Auto",
 					Description: `Value - Auto for configuring CbsDfCmnMemIntlvSize token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -2418,6 +2783,18 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "Normal",
 					Description: `Value - Normal for configuring CiscoDebugLevel token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -2536,6 +2913,38 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - 1 for configuring CoreMultiProcessing token.`,
 				},
 				resource.Attribute{
+					Name:        "2",
+					Description: `Value - 2 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "3",
+					Description: `Value - 3 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "4",
+					Description: `Value - 4 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "5",
+					Description: `Value - 5 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "6",
+					Description: `Value - 6 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "7",
+					Description: `Value - 7 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "8",
+					Description: `Value - 8 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "9",
+					Description: `Value - 9 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
 					Name:        "10",
 					Description: `Value - 10 for configuring CoreMultiProcessing token.`,
 				},
@@ -2576,10 +2985,6 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - 19 for configuring CoreMultiProcessing token.`,
 				},
 				resource.Attribute{
-					Name:        "2",
-					Description: `Value - 2 for configuring CoreMultiProcessing token.`,
-				},
-				resource.Attribute{
 					Name:        "20",
 					Description: `Value - 20 for configuring CoreMultiProcessing token.`,
 				},
@@ -2616,32 +3021,84 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - 28 for configuring CoreMultiProcessing token.`,
 				},
 				resource.Attribute{
-					Name:        "3",
-					Description: `Value - 3 for configuring CoreMultiProcessing token.`,
+					Name:        "29",
+					Description: `Value - 29 for configuring CoreMultiProcessing token.`,
 				},
 				resource.Attribute{
-					Name:        "4",
-					Description: `Value - 4 for configuring CoreMultiProcessing token.`,
+					Name:        "30",
+					Description: `Value - 30 for configuring CoreMultiProcessing token.`,
 				},
 				resource.Attribute{
-					Name:        "5",
-					Description: `Value - 5 for configuring CoreMultiProcessing token.`,
+					Name:        "31",
+					Description: `Value - 31 for configuring CoreMultiProcessing token.`,
 				},
 				resource.Attribute{
-					Name:        "6",
-					Description: `Value - 6 for configuring CoreMultiProcessing token.`,
+					Name:        "32",
+					Description: `Value - 32 for configuring CoreMultiProcessing token.`,
 				},
 				resource.Attribute{
-					Name:        "7",
-					Description: `Value - 7 for configuring CoreMultiProcessing token.`,
+					Name:        "33",
+					Description: `Value - 33 for configuring CoreMultiProcessing token.`,
 				},
 				resource.Attribute{
-					Name:        "8",
-					Description: `Value - 8 for configuring CoreMultiProcessing token.`,
+					Name:        "34",
+					Description: `Value - 34 for configuring CoreMultiProcessing token.`,
 				},
 				resource.Attribute{
-					Name:        "9",
-					Description: `Value - 9 for configuring CoreMultiProcessing token.`,
+					Name:        "35",
+					Description: `Value - 35 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "36",
+					Description: `Value - 36 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "37",
+					Description: `Value - 37 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "38",
+					Description: `Value - 38 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "39",
+					Description: `Value - 39 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "40",
+					Description: `Value - 40 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "41",
+					Description: `Value - 41 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "42",
+					Description: `Value - 42 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "43",
+					Description: `Value - 43 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "44",
+					Description: `Value - 44 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "45",
+					Description: `Value - 45 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "46",
+					Description: `Value - 46 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "47",
+					Description: `Value - 47 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "48",
+					Description: `Value - 48 for configuring CoreMultiProcessing token.`,
 				},
 				resource.Attribute{
 					Name:        "all",
@@ -2736,6 +3193,18 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - Disabled for configuring CrQos token.`,
 				},
 				resource.Attribute{
+					Name:        "Mode 0 - Disable the PMem QoS Feature",
+					Description: `Value - Mode 0 - Disable the PMem QoS Feature for configuring CrQos token.`,
+				},
+				resource.Attribute{
+					Name:        "Mode 1 - M2M QoS Enable and CHA QoS Disable",
+					Description: `Value - Mode 1 - M2M QoS Enable and CHA QoS Disable for configuring CrQos token.`,
+				},
+				resource.Attribute{
+					Name:        "Mode 2 - M2M QoS Enable and CHA QoS Enable",
+					Description: `Value - Mode 2 - M2M QoS Enable and CHA QoS Enable for configuring CrQos token.`,
+				},
+				resource.Attribute{
 					Name:        "Recipe 1",
 					Description: `Value - Recipe 1 for configuring CrQos token.`,
 				},
@@ -2758,6 +3227,14 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "Default",
 					Description: `Value - Default for configuring CrfastgoConfig token.`,
+				},
+				resource.Attribute{
+					Name:        "Disable optimization",
+					Description: `Value - Disable optimization for configuring CrfastgoConfig token.`,
+				},
+				resource.Attribute{
+					Name:        "Enable optimization",
+					Description: `Value - Enable optimization for configuring CrfastgoConfig token.`,
 				},
 				resource.Attribute{
 					Name:        "Option 1",
@@ -2868,12 +3345,80 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "disabled",
-					Description: `Value - disabled for configuring DramSwThermalThrottling token.`,
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring EadrSupport token.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Value - disabled for configuring EadrSupport token.`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `Value - enabled for configuring DramSwThermalThrottling token.`,
+					Description: `Value - enabled for configuring EadrSupport token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring EdpcEn token.`,
+				},
+				resource.Attribute{
+					Name:        "On Fatal Error",
+					Description: `Value - On Fatal Error for configuring EdpcEn token.`,
+				},
+				resource.Attribute{
+					Name:        "On Fatal and Non-Fatal Errors",
+					Description: `Value - On Fatal and Non-Fatal Errors for configuring EdpcEn token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -2922,6 +3467,22 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "disabled",
 					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Change to New Random Owner EPOCHs",
+					Description: `Value - Change to New Random Owner EPOCHs for configuring EpochUpdate token.`,
+				},
+				resource.Attribute{
+					Name:        "Manual User Defined Owner EPOCHs",
+					Description: `Value - Manual User Defined Owner EPOCHs for configuring EpochUpdate token.`,
+				},
+				resource.Attribute{
+					Name:        "SGX Owner EPOCH activated",
+					Description: `Value - SGX Owner EPOCH activated for configuring EpochUpdate token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -3084,6 +3645,18 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "Base",
 					Description: `Value - Base for configuring IntelSpeedSelect token.`,
 				},
@@ -3094,6 +3667,14 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "Config 2",
 					Description: `Value - Config 2 for configuring IntelSpeedSelect token.`,
+				},
+				resource.Attribute{
+					Name:        "Config 3",
+					Description: `Value - Config 3 for configuring IntelSpeedSelect token.`,
+				},
+				resource.Attribute{
+					Name:        "Config 4",
+					Description: `Value - Config 4 for configuring IntelSpeedSelect token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -3280,12 +3861,16 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
-					Name:        "enabled",
-					Description: `Enables the BIOS setting.`,
+					Name:        "Auto",
+					Description: `Value - Auto for configuring KtiPrefetch token.`,
 				},
 				resource.Attribute{
 					Name:        "disabled",
-					Description: `Disables the BIOS setting.`,
+					Description: `Value - disabled for configuring KtiPrefetch token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring KtiPrefetch token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -3434,6 +4019,18 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "power-saving-mode",
 					Description: `Value - power-saving-mode for configuring LvDdrMode token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -3640,6 +4237,18 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "Test Only",
+					Description: `Value - Test Only for configuring OperationMode token.`,
+				},
+				resource.Attribute{
+					Name:        "Test and Repair",
+					Description: `Value - Test and Repair for configuring OperationMode token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "enabled",
 					Description: `Enables the BIOS setting.`,
 				},
@@ -3668,6 +4277,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "5-minutes",
+					Description: `Value - 5-minutes for configuring OsBootWatchdogTimerTimeout token.`,
+				},
+				resource.Attribute{
 					Name:        "10-minutes",
 					Description: `Value - 10-minutes for configuring OsBootWatchdogTimerTimeout token.`,
 				},
@@ -3678,10 +4291,6 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "20-minutes",
 					Description: `Value - 20-minutes for configuring OsBootWatchdogTimerTimeout token.`,
-				},
-				resource.Attribute{
-					Name:        "5-minutes",
-					Description: `Value - 5-minutes for configuring OsBootWatchdogTimerTimeout token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -3744,6 +4353,18 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "disabled",
 					Description: `Value - disabled for configuring PartialMirrorModeConfig token.`,
 				},
@@ -3760,12 +4381,16 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
-					Name:        "enabled",
-					Description: `Enables the BIOS setting.`,
+					Name:        "disabled",
+					Description: `Value - disabled for configuring PatrolScrub token.`,
 				},
 				resource.Attribute{
-					Name:        "disabled",
-					Description: `Disables the BIOS setting.`,
+					Name:        "Enable at End of POST",
+					Description: `Value - Enable at End of POST for configuring PatrolScrub token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring PatrolScrub token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -3866,6 +4491,114 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "ZeroPointFive",
 					Description: `Value - ZeroPointFive for configuring PciePllSsc token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring PcieSlotMraid1linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring PcieSlotMraid1linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring PcieSlotMraid1linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring PcieSlotMraid1linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring PcieSlotMraid1linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring PcieSlotMraid1linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring PcieSlotMraid2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring PcieSlotMraid2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring PcieSlotMraid2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring PcieSlotMraid2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring PcieSlotMraid2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring PcieSlotMraid2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring PcieSlotMstorraidLinkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring PcieSlotMstorraidLinkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring PcieSlotMstorraidLinkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring PcieSlotMstorraidLinkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring PcieSlotMstorraidLinkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring PcieSlotMstorraidLinkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -4124,6 +4857,18 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring PostPackageRepair token.`,
+				},
+				resource.Attribute{
+					Name:        "Hard PPR",
+					Description: `Value - Hard PPR for configuring PostPackageRepair token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "enabled",
 					Description: `Enables the BIOS setting.`,
 				},
@@ -4240,6 +4985,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - os for configuring PwrPerfTuning token.`,
 				},
 				resource.Attribute{
+					Name:        "peci",
+					Description: `Value - peci for configuring PwrPerfTuning token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -4270,6 +5019,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "10.4GT/s",
 					Description: `Value - 10.4GT/s for configuring QpiLinkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "11.2GT/s",
+					Description: `Value - 11.2GT/s for configuring QpiLinkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "9.6GT/s",
@@ -4404,6 +5157,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - Hard PPR for configuring SelectPprType token.`,
 				},
 				resource.Attribute{
+					Name:        "Soft PPR",
+					Description: `Value - Soft PPR for configuring SelectPprType token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -4430,6 +5187,66 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "Auto",
 					Description: `Value - Auto for configuring Sev token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -4608,6 +5425,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN3 for configuring Slot1linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring Slot1linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -4650,6 +5471,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN3",
 					Description: `Value - GEN3 for configuring Slot2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring Slot2linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -4696,6 +5521,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN3 for configuring Slot3linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring Slot3linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -4738,6 +5567,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN3",
 					Description: `Value - GEN3 for configuring Slot4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring Slot4linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -4784,6 +5617,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN3 for configuring Slot5linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring Slot5linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -4826,6 +5663,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN3",
 					Description: `Value - GEN3 for configuring Slot6linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring Slot6linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -4872,6 +5713,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN3 for configuring Slot7linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring Slot7linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -4916,6 +5761,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN3 for configuring Slot8linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring Slot8linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -4958,6 +5807,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN3",
 					Description: `Value - GEN3 for configuring Slot9linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring Slot9linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5009,6 +5862,210 @@ Policy for setting BIOS tokens on the endpoint.
 				},
 				resource.Attribute{
 					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme10linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme10linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme10linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme10linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme10linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme10linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme11linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme11linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme11linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme11linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme11linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme11linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme12linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme12linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme12linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme12linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme12linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme12linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
 					Description: `Value - Auto for configuring SlotFrontNvme1linkSpeed token.`,
 				},
 				resource.Attribute{
@@ -5026,6 +6083,82 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN3",
 					Description: `Value - GEN3 for configuring SlotFrontNvme1linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme1linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5050,6 +6183,302 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN3",
 					Description: `Value - GEN3 for configuring SlotFrontNvme2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme5linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme5linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme5linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme5linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme5linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme5linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme6linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme6linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme6linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme6linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme6linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme6linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme7linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme7linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme7linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme7linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme7linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme7linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme8linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme8linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme8linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme8linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme8linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme8linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme9linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme9linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme9linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme9linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme9linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme9linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5308,6 +6737,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN3 for configuring SlotMlomLinkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotMlomLinkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -5350,6 +6783,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN3",
 					Description: `Value - GEN3 for configuring SlotMraidLinkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotMraidLinkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5728,6 +7165,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN3 for configuring SlotRearNvme1linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotRearNvme1linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -5764,6 +7205,50 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN3 for configuring SlotRearNvme2linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotRearNvme2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotRearNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotRearNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotRearNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotRearNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotRearNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotRearNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -5780,12 +7265,28 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
-					Name:        "enabled",
-					Description: `Enables the BIOS setting.`,
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotRearNvme4linkSpeed token.`,
 				},
 				resource.Attribute{
-					Name:        "disabled",
-					Description: `Disables the BIOS setting.`,
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotRearNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotRearNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotRearNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotRearNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotRearNvme4linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -6228,16 +7729,16 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - pc-ansi for configuring TerminalType token.`,
 				},
 				resource.Attribute{
-					Name:        "vt-utf8",
-					Description: `Value - vt-utf8 for configuring TerminalType token.`,
-				},
-				resource.Attribute{
 					Name:        "vt100",
 					Description: `Value - vt100 for configuring TerminalType token.`,
 				},
 				resource.Attribute{
 					Name:        "vt100-plus",
 					Description: `Value - vt100-plus for configuring TerminalType token.`,
+				},
+				resource.Attribute{
+					Name:        "vt-utf8",
+					Description: `Value - vt-utf8 for configuring TerminalType token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -6250,6 +7751,18 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "disabled",
 					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `Value - None for configuring TpmPendingOperation token.`,
+				},
+				resource.Attribute{
+					Name:        "TpmClear",
+					Description: `Value - TpmClear for configuring TpmPendingOperation token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -6314,6 +7827,18 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "disabled",
 					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Disable (All2All)",
+					Description: `Value - Disable (All2All) for configuring UmaBasedClustering token.`,
+				},
+				resource.Attribute{
+					Name:        "Hemisphere (2-clusters)",
+					Description: `Value - Hemisphere (2-clusters) for configuring UmaBasedClustering token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -6444,6 +7969,18 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "1LM",
+					Description: `Value - 1LM for configuring VolMemoryMode token.`,
+				},
+				resource.Attribute{
+					Name:        "2LM",
+					Description: `Value - 2LM for configuring VolMemoryMode token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "Balanced",
 					Description: `Value - Balanced for configuring WorkLoadConfig token.`,
 				},
@@ -6513,11 +8050,35 @@ Actual Boot Order of the system.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_bios_token_settings",
+			Category:         "Data Sources",
+			ShortDescription: `Token settings for Memory Reliability, availability and serviceability (RAS) configuration.`,
+			Description: `
+Token settings for Memory Reliability, availability and serviceability (RAS) configuration.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_bios_unit",
 			Category:         "Data Sources",
 			ShortDescription: `The BIOS Unit present on a server.`,
 			Description: `
 The BIOS Unit present on a server.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_bios_vf_select_memory_ras_configuration",
+			Category:         "Data Sources",
+			ShortDescription: `Memory Reliability, availability and serviceability (RAS) configuration.`,
+			Description: `
+Memory Reliability, availability and serviceability (RAS) configuration.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -6704,9 +8265,9 @@ Virtual Media Boot Device configured on the server.
 			Name:             "",
 			Type:             "intersight_capability_adapter_unit_descriptor",
 			Category:         "Data Sources",
-			ShortDescription: `Descriptor that uniquely identifies an adaptor.`,
+			ShortDescription: `Descriptor that uniquely identifies an adapter.`,
 			Description: `
-Descriptor that uniquely identifies an adaptor.
+Descriptor that uniquely identifies an adapter.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -7257,7 +8818,7 @@ The geographic location where a clouds resources are located. It has details suc
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft HyperV system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
@@ -7470,7 +9031,7 @@ Stores hardware attribute information for a container.
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft HyperV system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
@@ -7691,7 +9252,7 @@ Stores details of instance type which handle databases.
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft HyperV system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
@@ -7956,7 +9517,7 @@ Details for an instance type.
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft HyperV system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
@@ -8177,7 +9738,7 @@ Model to represent network attributes.
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft HyperV system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
@@ -8398,7 +9959,7 @@ Stores information about the volume types.
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft HyperV system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
@@ -8587,6 +10148,10 @@ Identity object that uniquely represents a blade server object under a DR.
 					Description: `Remove the equipment permanently from Intersight management.`,
 				},
 				resource.Attribute{
+					Name:        "Replace",
+					Description: `Replace the equipment with the other one.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `Nil value when no action has been triggered by the user.`,
 				},
@@ -8665,6 +10230,14 @@ Identity object that uniquely represents a blade server object under a DR.
 				resource.Attribute{
 					Name:        "BladeMigrationInProgress",
 					Description: `Server slot migration is in progress on given physical entity.`,
+				},
+				resource.Attribute{
+					Name:        "Inactive",
+					Description: `Inactive Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "ReplaceInProgress",
+					Description: `ReplaceInProgress Lifecycle state.`,
 				},
 				resource.Attribute{
 					Name:        "Unknown",
@@ -8790,6 +10363,10 @@ Identity object that uniquely represents a server object under a DR.
 					Description: `Remove the equipment permanently from Intersight management.`,
 				},
 				resource.Attribute{
+					Name:        "Replace",
+					Description: `Replace the equipment with the other one.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `Nil value when no action has been triggered by the user.`,
 				},
@@ -8856,6 +10433,14 @@ Identity object that uniquely represents a server object under a DR.
 				resource.Attribute{
 					Name:        "BladeMigrationInProgress",
 					Description: `Server slot migration is in progress on given physical entity.`,
+				},
+				resource.Attribute{
+					Name:        "Inactive",
+					Description: `Inactive Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "ReplaceInProgress",
+					Description: `ReplaceInProgress Lifecycle state.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -9605,6 +11190,18 @@ Used to determine the list of connector packs to be installed on a target UCS Di
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_crd_custom_resource",
+			Category:         "Data Sources",
+			ShortDescription: `Custom kubernetes resource launcher service.`,
+			Description: `
+Custom kubernetes resource launcher service.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_deviceconnector_policy",
 			Category:         "Data Sources",
 			ShortDescription: `Policy to control configuration changes allowed from Cisco IMC.`,
@@ -9669,6 +11266,10 @@ ChassisIdentity Object conatains connectivity information about IOMs of the chas
 				resource.Attribute{
 					Name:        "Remove",
 					Description: `Remove the equipment permanently from Intersight management.`,
+				},
+				resource.Attribute{
+					Name:        "Replace",
+					Description: `Replace the equipment with the other one.`,
 				},
 				resource.Attribute{
 					Name:        "None",
@@ -9737,6 +11338,14 @@ ChassisIdentity Object conatains connectivity information about IOMs of the chas
 				resource.Attribute{
 					Name:        "BladeMigrationInProgress",
 					Description: `Server slot migration is in progress on given physical entity.`,
+				},
+				resource.Attribute{
+					Name:        "Inactive",
+					Description: `Inactive Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "ReplaceInProgress",
+					Description: `ReplaceInProgress Lifecycle state.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -9861,6 +11470,10 @@ FexIdentity Object conatains basic information of fabric extender. moduleId is u
 					Description: `Remove the equipment permanently from Intersight management.`,
 				},
 				resource.Attribute{
+					Name:        "Replace",
+					Description: `Replace the equipment with the other one.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `Nil value when no action has been triggered by the user.`,
 				},
@@ -9927,6 +11540,14 @@ FexIdentity Object conatains basic information of fabric extender. moduleId is u
 				resource.Attribute{
 					Name:        "BladeMigrationInProgress",
 					Description: `Server slot migration is in progress on given physical entity.`,
+				},
+				resource.Attribute{
+					Name:        "Inactive",
+					Description: `Inactive Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "ReplaceInProgress",
+					Description: `ReplaceInProgress Lifecycle state.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -10036,6 +11657,10 @@ Consolidated view of all equipment identities.
 					Description: `Remove the equipment permanently from Intersight management.`,
 				},
 				resource.Attribute{
+					Name:        "Replace",
+					Description: `Replace the equipment with the other one.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `Nil value when no action has been triggered by the user.`,
 				},
@@ -10114,6 +11739,14 @@ Consolidated view of all equipment identities.
 				resource.Attribute{
 					Name:        "BladeMigrationInProgress",
 					Description: `Server slot migration is in progress on given physical entity.`,
+				},
+				resource.Attribute{
+					Name:        "Inactive",
+					Description: `Inactive Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "ReplaceInProgress",
+					Description: `ReplaceInProgress Lifecycle state.`,
 				},
 				resource.Attribute{
 					Name:        "Unknown",
@@ -10638,6 +12271,139 @@ This provides detailed information for the deploy and validation profile configu
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_fabric_element_identity",
+			Category:         "Data Sources",
+			ShortDescription: `Identity object that uniquely represents a network element object under the domain.`,
+			Description: `
+Identity object that uniquely represents a network element object under the domain.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `No operation value for maintenance actions on an equipment.`,
+				},
+				resource.Attribute{
+					Name:        "Decommission",
+					Description: `Decommission the equipment and temporarily remove it from being managed by Intersight.`,
+				},
+				resource.Attribute{
+					Name:        "Recommission",
+					Description: `Recommission the equipment.`,
+				},
+				resource.Attribute{
+					Name:        "Reack",
+					Description: `Reacknowledge the equipment and discover it again.`,
+				},
+				resource.Attribute{
+					Name:        "Remove",
+					Description: `Remove the equipment permanently from Intersight management.`,
+				},
+				resource.Attribute{
+					Name:        "Replace",
+					Description: `Replace the equipment with the other one.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `Nil value when no action has been triggered by the user.`,
+				},
+				resource.Attribute{
+					Name:        "Applied",
+					Description: `User configured settings are in applied state.`,
+				},
+				resource.Attribute{
+					Name:        "Applying",
+					Description: `User settings are being applied on the target server.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `User configured settings could not be applied.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `Default state of an equipment. This should be an initial state when no state is defined for an equipment.`,
+				},
+				resource.Attribute{
+					Name:        "Active",
+					Description: `Default Lifecycle State for a physical entity.`,
+				},
+				resource.Attribute{
+					Name:        "Decommissioned",
+					Description: `Decommission Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "DecommissionInProgress",
+					Description: `Decommission Inprogress Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "RecommissionInProgress",
+					Description: `Recommission Inprogress Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "OperationFailed",
+					Description: `Failed Operation Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "ReackInProgress",
+					Description: `ReackInProgress Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "RemoveInProgress",
+					Description: `RemoveInProgress Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "Discovered",
+					Description: `Discovered Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "DiscoveryInProgress",
+					Description: `DiscoveryInProgress Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "DiscoveryFailed",
+					Description: `DiscoveryFailed Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "FirmwareUpgradeInProgress",
+					Description: `Firmware upgrade is in progress on given physical entity.`,
+				},
+				resource.Attribute{
+					Name:        "BladeMigrationInProgress",
+					Description: `Server slot migration is in progress on given physical entity.`,
+				},
+				resource.Attribute{
+					Name:        "Inactive",
+					Description: `Inactive Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "ReplaceInProgress",
+					Description: `ReplaceInProgress Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `The default action is none.`,
+				},
+				resource.Attribute{
+					Name:        "Individual",
+					Description: `Replacement of single network element.`,
+				},
+				resource.Attribute{
+					Name:        "Domain",
+					Description: `Domain indicates the replacement of Fabric Interconnect domain.`,
+				},
+				resource.Attribute{
+					Name:        "A",
+					Description: `Switch Identifier of Fabric Interconnect A.`,
+				},
+				resource.Attribute{
+					Name:        "B",
+					Description: `Switch Identifier of Fabric Interconnect B.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -12381,8 +14147,17 @@ Definition for forecast metric settings.
 			Description: `
 Entity representing forecast result for instance of managed object, ie, data source.
 `,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `The Enum value None represents that no action is triggered on the forecast Instance managed object.`,
+				},
+				resource.Attribute{
+					Name:        "Evaluate",
+					Description: `The Enum value Evaluate represents that a re-evaluation of the forecast needs to be triggered.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -13366,8 +15141,16 @@ A HyperFlex Application Platform compute host entity that is part of HyperFlex c
 					Description: `The entity's power state is unknown.`,
 				},
 				resource.Attribute{
+					Name:        "PoweringOn",
+					Description: `The entity is powering on.`,
+				},
+				resource.Attribute{
 					Name:        "PoweredOn",
 					Description: `The entity is powered on.`,
+				},
+				resource.Attribute{
+					Name:        "PoweringOff",
+					Description: `The entity is powering off.`,
 				},
 				resource.Attribute{
 					Name:        "PoweredOff",
@@ -13380,6 +15163,10 @@ A HyperFlex Application Platform compute host entity that is part of HyperFlex c
 				resource.Attribute{
 					Name:        "Paused",
 					Description: `The entity is in pause state.`,
+				},
+				resource.Attribute{
+					Name:        "Rebooting",
+					Description: `The entity reboot is in progress.`,
 				},
 				resource.Attribute{
 					Name:        "ESXi",
@@ -13542,8 +15329,16 @@ The Virtual machine that runs on a Hyperflex Application platform compute host.
 					Description: `The entity's power state is unknown.`,
 				},
 				resource.Attribute{
+					Name:        "PoweringOn",
+					Description: `The entity is powering on.`,
+				},
+				resource.Attribute{
 					Name:        "PoweredOn",
 					Description: `The entity is powered on.`,
+				},
+				resource.Attribute{
+					Name:        "PoweringOff",
+					Description: `The entity is powering off.`,
 				},
 				resource.Attribute{
 					Name:        "PoweredOff",
@@ -13556,6 +15351,90 @@ The Virtual machine that runs on a Hyperflex Application platform compute host.
 				resource.Attribute{
 					Name:        "Paused",
 					Description: `The entity is in pause state.`,
+				},
+				resource.Attribute{
+					Name:        "Rebooting",
+					Description: `The entity reboot is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `Cloud provider is not known.`,
+				},
+				resource.Attribute{
+					Name:        "VMwarevSphere",
+					Description: `Cloud provider named VMware vSphere.`,
+				},
+				resource.Attribute{
+					Name:        "AmazonWebServices",
+					Description: `Cloud provider named Amazon Web Services.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzure",
+					Description: `Cloud provider named Microsoft Azure.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `Cloud provider named Google Cloud Platform.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `A place holder for the default value.`,
+				},
+				resource.Attribute{
+					Name:        "Creating",
+					Description: `Virtual machine creation is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Pending",
+					Description: `The virtual machine is preparing to enter the started state.`,
+				},
+				resource.Attribute{
+					Name:        "Starting",
+					Description: `The virtual machine is starting.`,
+				},
+				resource.Attribute{
+					Name:        "Started",
+					Description: `The virtual machine is running and ready for use.`,
+				},
+				resource.Attribute{
+					Name:        "Stopping",
+					Description: `The virtual machine is preparing to be stopped.`,
+				},
+				resource.Attribute{
+					Name:        "Stopped",
+					Description: `The virtual machine is shut down and cannot be used. The virtual machine can be started again at any time.`,
+				},
+				resource.Attribute{
+					Name:        "Pausing",
+					Description: `The virtual machine is preparing to be paused.`,
+				},
+				resource.Attribute{
+					Name:        "Paused",
+					Description: `The virtual machine enters into paused state due to low free disk space.`,
+				},
+				resource.Attribute{
+					Name:        "Suspending",
+					Description: `The virtual machine is preparing to be suspended.`,
+				},
+				resource.Attribute{
+					Name:        "Suspended",
+					Description: `Virtual machine is in sleep mode.When a virtual machine is suspended, the current state of theoperating system, and applications is saved, and the virtual machine put into a suspended mode.`,
+				},
+				resource.Attribute{
+					Name:        "Deleting",
+					Description: `The virtual machine is preparing to be terminated.`,
+				},
+				resource.Attribute{
+					Name:        "Terminated",
+					Description: `The virtual machine has been permanently deleted and cannot be started.`,
+				},
+				resource.Attribute{
+					Name:        "Rebooting",
+					Description: `The virtual machine reboot is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Error",
+					Description: `The deployment of virtual machine is failed.`,
 				},
 				resource.Attribute{
 					Name:        "Unknown",
@@ -13891,6 +15770,79 @@ A policy capturing software versions for different HyperFlex Cluster compatible 
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_hyperflex_storage_container",
+			Category:         "Data Sources",
+			ShortDescription: `A storage container (datastore) entity.`,
+			Description: `
+A storage container (datastore) entity.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "UNKNOWN",
+					Description: `The storage container creator is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "USER_CREATED",
+					Description: `The storage container was created by a user action.`,
+				},
+				resource.Attribute{
+					Name:        "INTERNAL",
+					Description: `The storage container was created by the system.`,
+				},
+				resource.Attribute{
+					Name:        "NOT_APPLICABLE",
+					Description: `The HyperFlex storage container mount status is not applicable.`,
+				},
+				resource.Attribute{
+					Name:        "NORMAL",
+					Description: `The HyperFlex storage container mount status is normal.`,
+				},
+				resource.Attribute{
+					Name:        "ALERT",
+					Description: `The HyperFlex storage container mount status is alert.`,
+				},
+				resource.Attribute{
+					Name:        "FAILED",
+					Description: `The HyperFlex storage container mount status is failed.`,
+				},
+				resource.Attribute{
+					Name:        "NOT_APPLICABLE",
+					Description: `The mount summary is not applicable for this HyperFlex storage container.`,
+				},
+				resource.Attribute{
+					Name:        "MOUNTED",
+					Description: `The HyperFlex storage container is mounted.`,
+				},
+				resource.Attribute{
+					Name:        "UNMOUNTED",
+					Description: `The HyperFlex storage container is unmounted.`,
+				},
+				resource.Attribute{
+					Name:        "MOUNT_FAILURE",
+					Description: `The HyperFlex storage container mount summary is failure.`,
+				},
+				resource.Attribute{
+					Name:        "UNMOUNT_FAILURE",
+					Description: `The HyperFlex storage container unmount summary is failure.`,
+				},
+				resource.Attribute{
+					Name:        "NFS",
+					Description: `Storage container created/accesed through NFS protocol.`,
+				},
+				resource.Attribute{
+					Name:        "SMB",
+					Description: `Storage container created/accessed through SMB protocol.`,
+				},
+				resource.Attribute{
+					Name:        "iSCSI",
+					Description: `Storage container created/accessed through iSCSI protocol.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_hyperflex_sys_config_policy",
 			Category:         "Data Sources",
 			ShortDescription: `A policy specifying system configuration such as timezone, DNS servers, and NTP Servers.`,
@@ -14122,6 +16074,53 @@ Virtual Machine Snapshot information like replication status, snapshot point and
 					Description: `This snapshot status code is none.`,
 				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_hyperflex_volume",
+			Category:         "Data Sources",
+			ShortDescription: `A HyperFlex Volume entity.`,
+			Description: `
+A HyperFlex Volume entity.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ReadWriteOnce",
+					Description: `Read write permisisons to a Virtual disk by a single virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "ReadWriteMany",
+					Description: `Read write permisisons to a Virtual disk by multiple virtual machines.`,
+				},
+				resource.Attribute{
+					Name:        "ReadOnlyMany",
+					Description: `Read only permisisons to a Virtual disk by multiple virtual machines.`,
+				},
+				resource.Attribute{
+					Name:        "Block",
+					Description: `It is a Block virtual disk.`,
+				},
+				resource.Attribute{
+					Name:        "Filesystem",
+					Description: `It is a File system virtual disk.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_hyperflex_witness_configuration",
+			Category:         "Data Sources",
+			ShortDescription: `The witness configuration of the HyperFlex cluster. Cisco HyperFlex Edge deployments use a witness in their HA arbitration implementations to continue functioning in case of single node failure or network partitions between nodes. HyperFlex administrators have the option to use two different types of witnesses, the Cisco Intersight Invisible Cloud Witness or a local witness deployed within the customers environment. The type of witness and its corresponding configuration is configured within the HX Connect Device Connector UI component and configuration is stored locally on the device. Changes made locally in the device are reflected in Intersight on this object.`,
+			Description: `
+The witness configuration of the HyperFlex cluster.
+Cisco HyperFlex Edge deployments use a witness in their HA arbitration implementations to continue functioning in case of single node failure or network partitions between nodes. HyperFlex administrators have the option to use two different types of witnesses, the Cisco Intersight Invisible Cloud Witness or a local witness deployed within the customers environment.
+The type of witness and its corresponding configuration is configured within the HX Connect Device Connector UI component and configuration is stored locally on the device. Changes made locally in the device are reflected in Intersight on this object.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -14528,7 +16527,7 @@ The privilege defined at the end point which can be assigned to a user.
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft HyperV system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
@@ -14733,7 +16732,7 @@ The role defined in the end point which can be assigned to a user.
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft HyperV system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
@@ -15148,8 +17147,21 @@ SAML Service provider related information in Intersight.
 			Description: `
 The web session of a user. After a user logs into Intersight, a session object is created. Session object is deleted upon logout, idle timeout, expiry timeout, or manual deletion.
 `,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Active",
+					Description: `The session is currently active.`,
+				},
+				resource.Attribute{
+					Name:        "Ended",
+					Description: `The session has ended normally.`,
+				},
+				resource.Attribute{
+					Name:        "Terminated",
+					Description: `The session was terminated by an admin.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -16116,8 +18128,21 @@ Policy to configure KVM Launch settings.
 			Description: `
 Virtual KVM Session that provides Single Sign-On access to the vKVM console of the server. The vKVM access can be direct or can be tunneled by specifying the tunnel to be used for the access.
 `,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Active",
+					Description: `The session is currently active.`,
+				},
+				resource.Attribute{
+					Name:        "Ended",
+					Description: `The session has ended normally.`,
+				},
+				resource.Attribute{
+					Name:        "Terminated",
+					Description: `The session was terminated by an admin.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -16129,8 +18154,21 @@ Virtual KVM Session that provides Single Sign-On access to the vKVM console of t
 Tunneled Virtual KVM access to the vKVM console of a server.
 This must be specified while creating the vKVM session to gain tunneled access.
 `,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Active",
+					Description: `The session is currently active.`,
+				},
+				resource.Attribute{
+					Name:        "Ended",
+					Description: `The session has ended normally.`,
+				},
+				resource.Attribute{
+					Name:        "Terminated",
+					Description: `The session was terminated by an admin.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -16141,8 +18179,21 @@ This must be specified while creating the vKVM session to gain tunneled access.
 			Description: `
 API to launch the virtual machine console.
 `,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Active",
+					Description: `The session is currently active.`,
+				},
+				resource.Attribute{
+					Name:        "Ended",
+					Description: `The session has ended normally.`,
+				},
+				resource.Attribute{
+					Name:        "Terminated",
+					Description: `The session was terminated by an admin.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -17038,6 +19089,78 @@ The regular expression pattern to recongnize the version string.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_niatelemetry_aaa_ldap_provider_details",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture AAA Ldap provider details.`,
+			Description: `
+Object to capture AAA Ldap provider details.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_aaa_radius_provider_details",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture AAA Radius provider details.`,
+			Description: `
+Object to capture AAA Radius provider details.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_aaa_tacacs_provider_details",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture AAA Tacacs provider details.`,
+			Description: `
+Object to capture AAA Tacacs provider details.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_apic_core_file_details",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture Core File details in APIC.`,
+			Description: `
+Object to capture Core File details in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_apic_dbgexp_rs_export_dest",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture Dn of Rs export dest in APIC.`,
+			Description: `
+Object to capture Dn of Rs export dest in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_apic_dbgexp_rs_ts_scheduler",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture Dn of Rs Ts scheduler in APIC.`,
+			Description: `
+Object to capture Dn of Rs Ts scheduler in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_niatelemetry_apic_fan_details",
 			Category:         "Data Sources",
 			ShortDescription: `Object to capture the fan details in APIC.`,
@@ -17074,11 +19197,107 @@ Object to capture the flash details in APIC.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_niatelemetry_apic_ntp_auth",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture the authentication details of NTP in APIC.`,
+			Description: `
+Object to capture the authentication details of NTP in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_niatelemetry_apic_psu_details",
 			Category:         "Data Sources",
 			ShortDescription: `Object to capture PSU details in APIC.`,
 			Description: `
 Object to capture PSU details in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_apic_realm_details",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture Realm details in APIC.`,
+			Description: `
+Object to capture Realm details in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_apic_snmp_community_access_details",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture Snmp Community access details in APIC.`,
+			Description: `
+Object to capture Snmp Community access details in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_apic_snmp_community_details",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture the SNMP community details in APIC.`,
+			Description: `
+Object to capture the SNMP community details in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_apic_snmp_trap_details",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture Snmp trap details in APIC.`,
+			Description: `
+Object to capture Snmp trap details in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_apic_snmp_version_three_details",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture Snmp V3 details in APIC.`,
+			Description: `
+Object to capture Snmp V3 details in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_apic_sys_log_grp",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture the SysLogGroup details in APIC.`,
+			Description: `
+Object to capture the SysLogGroup details in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_apic_sys_log_src",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture the SysLogGroup details in APIC.`,
+			Description: `
+Object to capture the SysLogGroup details in APIC.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -17194,11 +19413,83 @@ Object is available at End Point Group scope. This currently applies only to the
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_niatelemetry_fabric_module_details",
+			Category:         "Data Sources",
+			ShortDescription: `Fabric module slot details in APIC.`,
+			Description: `
+Fabric module slot details in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_niatelemetry_fault",
 			Category:         "Data Sources",
 			ShortDescription: `Object is available at Fault scope in a fabric and provides details about a fault occurred.`,
 			Description: `
 Object is available at Fault scope in a fabric and provides details about a fault occurred.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_https_acl_contract_details",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture the HTTPS ACL contract details in APIC.`,
+			Description: `
+Object to capture the HTTPS ACL contract details in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_https_acl_contract_filter_map",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture the HTTPS ACL contract filter map in APIC.`,
+			Description: `
+Object to capture the HTTPS ACL contract filter map in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_https_acl_epg_contract_map",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture the HTTPS ACL contract EPG mappings in APIC.`,
+			Description: `
+Object to capture the HTTPS ACL contract EPG mappings in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_https_acl_epg_details",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture the HTTPS ACL EPGs in APIC.`,
+			Description: `
+Object to capture the HTTPS ACL EPGs in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_https_acl_filter_details",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture the HTTPS ACL EPGs filter details in APIC.`,
+			Description: `
+Object to capture the HTTPS ACL EPGs filter details in APIC.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -17386,11 +19677,72 @@ Object available at device scope for license information. This determines the us
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_niatelemetry_password_strength_check",
+			Category:         "Data Sources",
+			ShortDescription: `Password Strength of user in APIC.`,
+			Description: `
+Password Strength of user in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_ssh_version_two",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture SSH V2 details in APIC.`,
+			Description: `
+Object to capture SSH V2 details in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_supervisor_module_details",
+			Category:         "Data Sources",
+			ShortDescription: `Supervisor module slot details in APIC.`,
+			Description: `
+Supervisor module slot details in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_system_controller_details",
+			Category:         "Data Sources",
+			ShortDescription: `System controller slot details in APIC.`,
+			Description: `
+System controller slot details in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_niatelemetry_tenant",
 			Category:         "Data Sources",
 			ShortDescription: `Object is available at Tenant scope.`,
 			Description: `
 Object is available at Tenant scope.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_notification_account_subscription",
+			Category:         "Data Sources",
+			ShortDescription: `AccountSubscription is a concrete type that extends abstract Subscription type and intent to be used only for account level subscriptions by Account Administrator.`,
+			Description: `
+AccountSubscription is a concrete type that extends abstract Subscription type and intent to be used only
+for account level subscriptions by Account Administrator.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -17430,6 +19782,211 @@ Monitors the status of operator deployed in the assist.
 				resource.Attribute{
 					Name:        "Unhealthy",
 					Description: `An unhealthy status indicates that the resource is down.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_oprs_sync_target_list_message",
+			Category:         "Data Sources",
+			ShortDescription: `The targets sync messages are sent to assist and back to euclid for reconciliation.`,
+			Description: `
+The targets sync messages are sent to assist and back to euclid for reconciliation.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "APIC",
+					Description: `An Application Policy Infrastructure Controller cluster.`,
+				},
+				resource.Attribute{
+					Name:        "DCNM",
+					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+				},
+				resource.Attribute{
+					Name:        "UCSFI",
+					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+				},
+				resource.Attribute{
+					Name:        "UCSFIISM",
+					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+				},
+				resource.Attribute{
+					Name:        "IMC",
+					Description: `A standalone UCS Server Integrated Management Controller.`,
+				},
+				resource.Attribute{
+					Name:        "IMCM4",
+					Description: `A standalone UCS M4 Server.`,
+				},
+				resource.Attribute{
+					Name:        "IMCM5",
+					Description: `A standalone UCS M5 server.`,
+				},
+				resource.Attribute{
+					Name:        "IMCRack",
+					Description: `A standalone UCS M6 and above server.`,
+				},
+				resource.Attribute{
+					Name:        "UCSIOM",
+					Description: `An UCS Chassis IO module.`,
+				},
+				resource.Attribute{
+					Name:        "HX",
+					Description: `A HyperFlex storage controller.`,
+				},
+				resource.Attribute{
+					Name:        "HyperFlexAP",
+					Description: `A HyperFlex Application Platform.`,
+				},
+				resource.Attribute{
+					Name:        "UCSD",
+					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightAppliance",
+					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightAssist",
+					Description: `A Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "PureStorageFlashArray",
+					Description: `A Pure Storage FlashArray device.`,
+				},
+				resource.Attribute{
+					Name:        "NetAppOntap",
+					Description: `A NetApp ONTAP storage system.`,
+				},
+				resource.Attribute{
+					Name:        "NetAppActiveIqUnifiedManager",
+					Description: `A NetApp Active IQ Unified Manager.`,
+				},
+				resource.Attribute{
+					Name:        "EmcScaleIo",
+					Description: `An EMC ScaleIO storage system.`,
+				},
+				resource.Attribute{
+					Name:        "EmcVmax",
+					Description: `An EMC VMAX storage system.`,
+				},
+				resource.Attribute{
+					Name:        "EmcVplex",
+					Description: `An EMC VPLEX storage system.`,
+				},
+				resource.Attribute{
+					Name:        "EmcXtremIo",
+					Description: `An EMC XtremIO storage system.`,
+				},
+				resource.Attribute{
+					Name:        "VmwareVcenter",
+					Description: `A VMware vCenter device that manages Virtual Machines.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftHyperV",
+					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+				},
+				resource.Attribute{
+					Name:        "AppDynamics",
+					Description: `An AppDynamics controller that monitors applications.`,
+				},
+				resource.Attribute{
+					Name:        "Dynatrace",
+					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+				},
+				resource.Attribute{
+					Name:        "ReadHatOpenStack",
+					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
+				},
+				resource.Attribute{
+					Name:        "CloudFoundry",
+					Description: `An open source cloud platform on which developers can build, deploy, run and scale applications.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureApplicationInsights",
+					Description: `A feature of Azure Monitor, is an extensible Application Performance Management service for developers and DevOps professionals to monitor their live applications.`,
+				},
+				resource.Attribute{
+					Name:        "OpenStack",
+					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftSqlServer",
+					Description: `A Microsoft SQL database server.`,
+				},
+				resource.Attribute{
+					Name:        "Kubernetes",
+					Description: `A Kubernetes cluster that runs containerized applications.`,
+				},
+				resource.Attribute{
+					Name:        "AmazonWebService",
+					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+				},
+				resource.Attribute{
+					Name:        "AmazonWebServiceBilling",
+					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureServicePrincipal",
+					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureEnterpriseAgreement",
+					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+				},
+				resource.Attribute{
+					Name:        "DellCompellent",
+					Description: `A Dell Compellent storage system.`,
+				},
+				resource.Attribute{
+					Name:        "HPE3Par",
+					Description: `A HPE 3PAR storage system.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatEnterpriseVirtualization",
+					Description: `A Red Hat Enterprise Virtualization Hypervisor system that manages Virtual Machines.`,
+				},
+				resource.Attribute{
+					Name:        "NutanixAcropolis",
+					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+				},
+				resource.Attribute{
+					Name:        "HPEOneView",
+					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceEngine",
+					Description: `Cisco Application Services Engine. Cisco Application Services Engine is a platform to deploy and manage applications.`,
+				},
+				resource.Attribute{
+					Name:        "HitachiVirtualStoragePlatform",
+					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+				},
+				resource.Attribute{
+					Name:        "IMCBlade",
+					Description: `An Intersight managed UCS Blade Server.`,
+				},
+				resource.Attribute{
+					Name:        "TerraformCloud",
+					Description: `A Terraform Cloud account.`,
+				},
+				resource.Attribute{
+					Name:        "TerraformAgent",
+					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+				},
+				resource.Attribute{
+					Name:        "CustomTarget",
+					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+				},
+				resource.Attribute{
+					Name:        "HTTPEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+				},
+				resource.Attribute{
+					Name:        "CiscoCatalyst",
+					Description: `A Cisco Catalyst networking switch device.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -17958,91 +20515,6 @@ ResourceMembership represents a resource's associated groups, organizations and 
 			ShortDescription: `A holder of REST resources and their membership.`,
 			Description: `
 A holder of REST resources and their membership.
-`,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_resourcepool_lease",
-			Category:         "Data Sources",
-			ShortDescription: `Lease API invoked by passing resource pool, lease API will reserve or un-reserve the resource from the pool.`,
-			Description: `
-Lease API invoked by passing resource pool, lease API will reserve or un-reserve the resource from the pool.
-`,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_resourcepool_lease_resource",
-			Category:         "Data Sources",
-			ShortDescription: `Lease API is for reserve or unreserve the resource from the pool. Those reserved resource details are maintained in LeaseResource.`,
-			Description: `
-Lease API is for reserve or unreserve the resource from the pool. Those reserved resource details are maintained in LeaseResource.
-`,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_resourcepool_pool",
-			Category:         "Data Sources",
-			ShortDescription: `Pool represents a collection of resource. The resource can be any MO which has PoolResource meta enabled. The resource in the pool can be reserved or unreserved by using Lease API, reserved/unreserved resources can be used in the entities like server profiles.`,
-			Description: `
-Pool represents a collection of resource. The resource can be any MO which has PoolResource meta enabled. The resource in the pool can be reserved or unreserved by using Lease API, reserved/unreserved resources can be used in the entities like server profiles.
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "sequential",
-					Description: `Identifiers are assigned in a sequential order.`,
-				},
-				resource.Attribute{
-					Name:        "default",
-					Description: `Assignment order is decided by the system.`,
-				},
-				resource.Attribute{
-					Name:        "Static",
-					Description: `The resources in the pool will not be changed until user manually update it.`,
-				},
-				resource.Attribute{
-					Name:        "Dynamic",
-					Description: `The resources in the pool will be updated dynamically based on the condition.`,
-				},
-				resource.Attribute{
-					Name:        "None",
-					Description: `The resource cannot consider for Resource Pool.`,
-				},
-				resource.Attribute{
-					Name:        "Server",
-					Description: `Resource Pool holds the server kind of resources, example - RackServer, Blade.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_resourcepool_pool_member",
-			Category:         "Data Sources",
-			ShortDescription: `PoolMember represents a resources that is part of a pool.`,
-			Description: `
-PoolMember represents a resources that is part of a pool.
-`,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_resourcepool_universe",
-			Category:         "Data Sources",
-			ShortDescription: `Universe represents a book keeping container to keep track of all Resources for a given Account.`,
-			Description: `
-Universe represents a book keeping container to keep track of all Resources for a given Account.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -22091,7 +24563,7 @@ A request to collect techsupport and upload it to Intersight Storage Service. Th
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft HyperV system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
@@ -22699,8 +25171,16 @@ The VMware Host entity with its attributes. Every Host belongs to a Datacenter a
 					Description: `The entity's power state is unknown.`,
 				},
 				resource.Attribute{
+					Name:        "PoweringOn",
+					Description: `The entity is powering on.`,
+				},
+				resource.Attribute{
 					Name:        "PoweredOn",
 					Description: `The entity is powered on.`,
+				},
+				resource.Attribute{
+					Name:        "PoweringOff",
+					Description: `The entity is powering off.`,
 				},
 				resource.Attribute{
 					Name:        "PoweredOff",
@@ -22713,6 +25193,10 @@ The VMware Host entity with its attributes. Every Host belongs to a Datacenter a
 				resource.Attribute{
 					Name:        "Paused",
 					Description: `The entity is in pause state.`,
+				},
+				resource.Attribute{
+					Name:        "Rebooting",
+					Description: `The entity reboot is in progress.`,
 				},
 				resource.Attribute{
 					Name:        "ESXi",
@@ -22970,8 +25454,16 @@ The VMware Virtual machine. It has details such as power state, IP address, reso
 					Description: `The entity's power state is unknown.`,
 				},
 				resource.Attribute{
+					Name:        "PoweringOn",
+					Description: `The entity is powering on.`,
+				},
+				resource.Attribute{
 					Name:        "PoweredOn",
 					Description: `The entity is powered on.`,
+				},
+				resource.Attribute{
+					Name:        "PoweringOff",
+					Description: `The entity is powering off.`,
 				},
 				resource.Attribute{
 					Name:        "PoweredOff",
@@ -22984,6 +25476,90 @@ The VMware Virtual machine. It has details such as power state, IP address, reso
 				resource.Attribute{
 					Name:        "Paused",
 					Description: `The entity is in pause state.`,
+				},
+				resource.Attribute{
+					Name:        "Rebooting",
+					Description: `The entity reboot is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `Cloud provider is not known.`,
+				},
+				resource.Attribute{
+					Name:        "VMwarevSphere",
+					Description: `Cloud provider named VMware vSphere.`,
+				},
+				resource.Attribute{
+					Name:        "AmazonWebServices",
+					Description: `Cloud provider named Amazon Web Services.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzure",
+					Description: `Cloud provider named Microsoft Azure.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `Cloud provider named Google Cloud Platform.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `A place holder for the default value.`,
+				},
+				resource.Attribute{
+					Name:        "Creating",
+					Description: `Virtual machine creation is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Pending",
+					Description: `The virtual machine is preparing to enter the started state.`,
+				},
+				resource.Attribute{
+					Name:        "Starting",
+					Description: `The virtual machine is starting.`,
+				},
+				resource.Attribute{
+					Name:        "Started",
+					Description: `The virtual machine is running and ready for use.`,
+				},
+				resource.Attribute{
+					Name:        "Stopping",
+					Description: `The virtual machine is preparing to be stopped.`,
+				},
+				resource.Attribute{
+					Name:        "Stopped",
+					Description: `The virtual machine is shut down and cannot be used. The virtual machine can be started again at any time.`,
+				},
+				resource.Attribute{
+					Name:        "Pausing",
+					Description: `The virtual machine is preparing to be paused.`,
+				},
+				resource.Attribute{
+					Name:        "Paused",
+					Description: `The virtual machine enters into paused state due to low free disk space.`,
+				},
+				resource.Attribute{
+					Name:        "Suspending",
+					Description: `The virtual machine is preparing to be suspended.`,
+				},
+				resource.Attribute{
+					Name:        "Suspended",
+					Description: `Virtual machine is in sleep mode.When a virtual machine is suspended, the current state of theoperating system, and applications is saved, and the virtual machine put into a suspended mode.`,
+				},
+				resource.Attribute{
+					Name:        "Deleting",
+					Description: `The virtual machine is preparing to be terminated.`,
+				},
+				resource.Attribute{
+					Name:        "Terminated",
+					Description: `The virtual machine has been permanently deleted and cannot be started.`,
+				},
+				resource.Attribute{
+					Name:        "Rebooting",
+					Description: `The virtual machine reboot is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Error",
+					Description: `The deployment of virtual machine is failed.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -23070,8 +25646,21 @@ Policy to configure virtual media settings on endpoint.
 			Description: `
 API to launch VMRC console to a VMware virtual machine.
 `,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Active",
+					Description: `The session is currently active.`,
+				},
+				resource.Attribute{
+					Name:        "Ended",
+					Description: `The session has ended normally.`,
+				},
+				resource.Attribute{
+					Name:        "Terminated",
+					Description: `The session was terminated by an admin.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -23647,7 +26236,7 @@ error parameters.
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft HyperV system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
@@ -24039,6 +26628,10 @@ Contains information for a workflow execution which is a runtime instance of wor
 					Description: `Pause reason indicates the workflow is in this state due to a task that has a status as completed with warnings.`,
 				},
 				resource.Attribute{
+					Name:        "SystemMaintenance",
+					Description: `Pause reason indicates the workflow is in this state based on actions of system admin for maintenance.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `Wait reason is none, which indicates there is no reason for the waiting state.`,
 				},
@@ -24151,643 +26744,675 @@ Workflow metadata is a collection of properties that are common across all the v
 		"intersight_appliance_upgrade":                                       30,
 		"intersight_appliance_upgrade_policy":                                31,
 		"intersight_asset_cluster_member":                                    32,
-		"intersight_asset_device_configuration":                              33,
-		"intersight_asset_device_connector_manager":                          34,
-		"intersight_asset_device_contract_information":                       35,
-		"intersight_asset_device_registration":                               36,
-		"intersight_asset_subscription_device_contract_information":          37,
-		"intersight_asset_target":                                            38,
-		"intersight_bios_boot_device":                                        39,
-		"intersight_bios_boot_mode":                                          40,
-		"intersight_bios_policy":                                             41,
-		"intersight_bios_system_boot_order":                                  42,
-		"intersight_bios_unit":                                               43,
-		"intersight_boot_cdd_device":                                         44,
-		"intersight_boot_device_boot_mode":                                   45,
-		"intersight_boot_device_boot_security":                               46,
-		"intersight_boot_hdd_device":                                         47,
-		"intersight_boot_iscsi_device":                                       48,
-		"intersight_boot_nvme_device":                                        49,
-		"intersight_boot_pch_storage_device":                                 50,
-		"intersight_boot_precision_policy":                                   51,
-		"intersight_boot_pxe_device":                                         52,
-		"intersight_boot_san_device":                                         53,
-		"intersight_boot_sd_device":                                          54,
-		"intersight_boot_uefi_shell_device":                                  55,
-		"intersight_boot_usb_device":                                         56,
-		"intersight_boot_vmedia_device":                                      57,
-		"intersight_capability_adapter_unit_descriptor":                      58,
-		"intersight_capability_catalog":                                      59,
-		"intersight_capability_chassis_descriptor":                           60,
-		"intersight_capability_chassis_manufacturing_def":                    61,
-		"intersight_capability_cimc_firmware_descriptor":                     62,
-		"intersight_capability_equipment_physical_def":                       63,
-		"intersight_capability_equipment_slot_array":                         64,
-		"intersight_capability_fan_module_descriptor":                        65,
-		"intersight_capability_fan_module_manufacturing_def":                 66,
-		"intersight_capability_io_card_capability_def":                       67,
-		"intersight_capability_io_card_descriptor":                           68,
-		"intersight_capability_io_card_manufacturing_def":                    69,
-		"intersight_capability_port_group_aggregation_def":                   70,
-		"intersight_capability_psu_descriptor":                               71,
-		"intersight_capability_psu_manufacturing_def":                        72,
-		"intersight_capability_server_schema_descriptor":                     73,
-		"intersight_capability_sioc_module_capability_def":                   74,
-		"intersight_capability_sioc_module_descriptor":                       75,
-		"intersight_capability_sioc_module_manufacturing_def":                76,
-		"intersight_capability_switch_capability":                            77,
-		"intersight_capability_switch_descriptor":                            78,
-		"intersight_capability_switch_manufacturing_def":                     79,
-		"intersight_certificatemanagement_policy":                            80,
-		"intersight_chassis_config_change_detail":                            81,
-		"intersight_chassis_config_import":                                   82,
-		"intersight_chassis_config_result":                                   83,
-		"intersight_chassis_config_result_entry":                             84,
-		"intersight_chassis_iom_profile":                                     85,
-		"intersight_chassis_profile":                                         86,
-		"intersight_cloud_regions":                                           87,
-		"intersight_cloud_sku_container_type":                                88,
-		"intersight_cloud_sku_database_type":                                 89,
-		"intersight_cloud_sku_instance_type":                                 90,
-		"intersight_cloud_sku_network_type":                                  91,
-		"intersight_cloud_sku_volume_type":                                   92,
-		"intersight_comm_http_proxy_policy":                                  93,
-		"intersight_compute_blade":                                           94,
-		"intersight_compute_blade_identity":                                  95,
-		"intersight_compute_board":                                           96,
-		"intersight_compute_mapping":                                         97,
-		"intersight_compute_physical_summary":                                98,
-		"intersight_compute_rack_unit":                                       99,
-		"intersight_compute_rack_unit_identity":                              100,
-		"intersight_compute_server_setting":                                  101,
-		"intersight_compute_vmedia":                                          102,
-		"intersight_cond_alarm":                                              103,
-		"intersight_cond_alarm_aggregation":                                  104,
-		"intersight_cond_hcl_status":                                         105,
-		"intersight_cond_hcl_status_detail":                                  106,
-		"intersight_cond_hcl_status_job":                                     107,
-		"intersight_config_exported_item":                                    108,
-		"intersight_config_exporter":                                         109,
-		"intersight_config_imported_item":                                    110,
-		"intersight_config_importer":                                         111,
-		"intersight_connectorpack_connector_pack_upgrade":                    112,
-		"intersight_connectorpack_upgrade_impact":                            113,
-		"intersight_deviceconnector_policy":                                  114,
-		"intersight_equipment_chassis":                                       115,
-		"intersight_equipment_chassis_identity":                              116,
-		"intersight_equipment_chassis_operation":                             117,
-		"intersight_equipment_device_summary":                                118,
-		"intersight_equipment_fan":                                           119,
-		"intersight_equipment_fan_module":                                    120,
-		"intersight_equipment_fex":                                           121,
-		"intersight_equipment_fex_identity":                                  122,
-		"intersight_equipment_fex_operation":                                 123,
-		"intersight_equipment_fru":                                           124,
-		"intersight_equipment_identity_summary":                              125,
-		"intersight_equipment_io_card":                                       126,
-		"intersight_equipment_io_card_operation":                             127,
-		"intersight_equipment_io_expander":                                   128,
-		"intersight_equipment_locator_led":                                   129,
-		"intersight_equipment_psu":                                           130,
-		"intersight_equipment_psu_control":                                   131,
-		"intersight_equipment_rack_enclosure":                                132,
-		"intersight_equipment_rack_enclosure_slot":                           133,
-		"intersight_equipment_shared_io_module":                              134,
-		"intersight_equipment_switch_card":                                   135,
-		"intersight_equipment_system_io_controller":                          136,
-		"intersight_equipment_tpm":                                           137,
-		"intersight_equipment_transceiver":                                   138,
-		"intersight_ether_host_port":                                         139,
-		"intersight_ether_network_port":                                      140,
-		"intersight_ether_physical_port":                                     141,
-		"intersight_ether_port_channel":                                      142,
-		"intersight_externalsite_authorization":                              143,
-		"intersight_fabric_appliance_pc_role":                                144,
-		"intersight_fabric_appliance_role":                                   145,
-		"intersight_fabric_config_change_detail":                             146,
-		"intersight_fabric_config_result":                                    147,
-		"intersight_fabric_config_result_entry":                              148,
-		"intersight_fabric_eth_network_control_policy":                       149,
-		"intersight_fabric_eth_network_group_policy":                         150,
-		"intersight_fabric_eth_network_policy":                               151,
-		"intersight_fabric_fc_network_policy":                                152,
-		"intersight_fabric_fc_uplink_pc_role":                                153,
-		"intersight_fabric_fc_uplink_role":                                   154,
-		"intersight_fabric_fcoe_uplink_pc_role":                              155,
-		"intersight_fabric_fcoe_uplink_role":                                 156,
-		"intersight_fabric_flow_control_policy":                              157,
-		"intersight_fabric_link_aggregation_policy":                          158,
-		"intersight_fabric_link_control_policy":                              159,
-		"intersight_fabric_multicast_policy":                                 160,
-		"intersight_fabric_pc_member":                                        161,
-		"intersight_fabric_pc_operation":                                     162,
-		"intersight_fabric_port_mode":                                        163,
-		"intersight_fabric_port_operation":                                   164,
-		"intersight_fabric_port_policy":                                      165,
-		"intersight_fabric_server_role":                                      166,
-		"intersight_fabric_switch_cluster_profile":                           167,
-		"intersight_fabric_switch_control_policy":                            168,
-		"intersight_fabric_switch_profile":                                   169,
-		"intersight_fabric_system_qos_policy":                                170,
-		"intersight_fabric_uplink_pc_role":                                   171,
-		"intersight_fabric_uplink_role":                                      172,
-		"intersight_fabric_vlan":                                             173,
-		"intersight_fabric_vsan":                                             174,
-		"intersight_fault_instance":                                          175,
-		"intersight_fc_physical_port":                                        176,
-		"intersight_fc_port_channel":                                         177,
-		"intersight_fcpool_fc_block":                                         178,
-		"intersight_fcpool_lease":                                            179,
-		"intersight_fcpool_pool":                                             180,
-		"intersight_fcpool_pool_member":                                      181,
-		"intersight_fcpool_universe":                                         182,
-		"intersight_firmware_bios_descriptor":                                183,
-		"intersight_firmware_board_controller_descriptor":                    184,
-		"intersight_firmware_chassis_upgrade":                                185,
-		"intersight_firmware_cimc_descriptor":                                186,
-		"intersight_firmware_dimm_descriptor":                                187,
-		"intersight_firmware_distributable":                                  188,
-		"intersight_firmware_distributable_meta":                             189,
-		"intersight_firmware_drive_descriptor":                               190,
-		"intersight_firmware_driver_distributable":                           191,
-		"intersight_firmware_eula":                                           192,
-		"intersight_firmware_firmware_summary":                               193,
-		"intersight_firmware_gpu_descriptor":                                 194,
-		"intersight_firmware_hba_descriptor":                                 195,
-		"intersight_firmware_iom_descriptor":                                 196,
-		"intersight_firmware_mswitch_descriptor":                             197,
-		"intersight_firmware_nxos_descriptor":                                198,
-		"intersight_firmware_pcie_descriptor":                                199,
-		"intersight_firmware_psu_descriptor":                                 200,
-		"intersight_firmware_running_firmware":                               201,
-		"intersight_firmware_sas_expander_descriptor":                        202,
-		"intersight_firmware_server_configuration_utility_distributable":     203,
-		"intersight_firmware_storage_controller_descriptor":                  204,
-		"intersight_firmware_switch_upgrade":                                 205,
-		"intersight_firmware_unsupported_version_upgrade":                    206,
-		"intersight_firmware_upgrade":                                        207,
-		"intersight_firmware_upgrade_impact_status":                          208,
-		"intersight_firmware_upgrade_status":                                 209,
-		"intersight_forecast_catalog":                                        210,
-		"intersight_forecast_definition":                                     211,
-		"intersight_forecast_instance":                                       212,
-		"intersight_graphics_card":                                           213,
-		"intersight_graphics_controller":                                     214,
-		"intersight_hcl_driver_image":                                        215,
-		"intersight_hcl_exempted_catalog":                                    216,
-		"intersight_hcl_hyperflex_software_compatibility_info":               217,
-		"intersight_hcl_operating_system":                                    218,
-		"intersight_hcl_operating_system_vendor":                             219,
-		"intersight_hyperflex_alarm":                                         220,
-		"intersight_hyperflex_app_catalog":                                   221,
-		"intersight_hyperflex_auto_support_policy":                           222,
-		"intersight_hyperflex_backup_cluster":                                223,
-		"intersight_hyperflex_capability_info":                               224,
-		"intersight_hyperflex_cisco_hypervisor_manager":                      225,
-		"intersight_hyperflex_cluster":                                       226,
-		"intersight_hyperflex_cluster_backup_policy":                         227,
-		"intersight_hyperflex_cluster_backup_policy_deployment":              228,
-		"intersight_hyperflex_cluster_health_check_execution_snapshot":       229,
-		"intersight_hyperflex_cluster_network_policy":                        230,
-		"intersight_hyperflex_cluster_profile":                               231,
-		"intersight_hyperflex_cluster_replication_network_policy":            232,
-		"intersight_hyperflex_cluster_replication_network_policy_deployment": 233,
-		"intersight_hyperflex_cluster_storage_policy":                        234,
-		"intersight_hyperflex_config_result":                                 235,
-		"intersight_hyperflex_config_result_entry":                           236,
-		"intersight_hyperflex_data_protection_peer":                          237,
-		"intersight_hyperflex_datastore_statistic":                           238,
-		"intersight_hyperflex_device_package_download_state":                 239,
-		"intersight_hyperflex_ext_fc_storage_policy":                         240,
-		"intersight_hyperflex_ext_iscsi_storage_policy":                      241,
-		"intersight_hyperflex_feature_limit_external":                        242,
-		"intersight_hyperflex_feature_limit_internal":                        243,
-		"intersight_hyperflex_health":                                        244,
-		"intersight_hyperflex_health_check_definition":                       245,
-		"intersight_hyperflex_health_check_execution":                        246,
-		"intersight_hyperflex_health_check_execution_snapshot":               247,
-		"intersight_hyperflex_health_check_package_checksum":                 248,
-		"intersight_hyperflex_hxap_cluster":                                  249,
-		"intersight_hyperflex_hxap_datacenter":                               250,
-		"intersight_hyperflex_hxap_dv_uplink":                                251,
-		"intersight_hyperflex_hxap_dvswitch":                                 252,
-		"intersight_hyperflex_hxap_host":                                     253,
-		"intersight_hyperflex_hxap_host_interface":                           254,
-		"intersight_hyperflex_hxap_host_vswitch":                             255,
-		"intersight_hyperflex_hxap_network":                                  256,
-		"intersight_hyperflex_hxap_virtual_disk":                             257,
-		"intersight_hyperflex_hxap_virtual_machine":                          258,
-		"intersight_hyperflex_hxap_virtual_machine_network_interface":        259,
-		"intersight_hyperflex_hxdp_version":                                  260,
-		"intersight_hyperflex_license":                                       261,
-		"intersight_hyperflex_local_credential_policy":                       262,
-		"intersight_hyperflex_node":                                          263,
-		"intersight_hyperflex_node_config_policy":                            264,
-		"intersight_hyperflex_node_profile":                                  265,
-		"intersight_hyperflex_proxy_setting_policy":                          266,
-		"intersight_hyperflex_server_firmware_version":                       267,
-		"intersight_hyperflex_server_firmware_version_entry":                 268,
-		"intersight_hyperflex_server_model":                                  269,
-		"intersight_hyperflex_software_distribution_component":               270,
-		"intersight_hyperflex_software_distribution_entry":                   271,
-		"intersight_hyperflex_software_distribution_version":                 272,
-		"intersight_hyperflex_software_version_policy":                       273,
-		"intersight_hyperflex_sys_config_policy":                             274,
-		"intersight_hyperflex_ucsm_config_policy":                            275,
-		"intersight_hyperflex_vcenter_config_policy":                         276,
-		"intersight_hyperflex_vm_backup_info":                                277,
-		"intersight_hyperflex_vm_import_operation":                           278,
-		"intersight_hyperflex_vm_restore_operation":                          279,
-		"intersight_hyperflex_vm_snapshot_info":                              280,
-		"intersight_iaas_connector_pack":                                     281,
-		"intersight_iaas_device_status":                                      282,
-		"intersight_iaas_diagnostic_messages":                                283,
-		"intersight_iaas_license_info":                                       284,
-		"intersight_iaas_most_run_tasks":                                     285,
-		"intersight_iaas_service_request":                                    286,
-		"intersight_iaas_ucsd_info":                                          287,
-		"intersight_iaas_ucsd_managed_infra":                                 288,
-		"intersight_iaas_ucsd_messages":                                      289,
-		"intersight_iam_account":                                             290,
-		"intersight_iam_account_experience":                                  291,
-		"intersight_iam_api_key":                                             292,
-		"intersight_iam_app_registration":                                    293,
-		"intersight_iam_banner_message":                                      294,
-		"intersight_iam_certificate":                                         295,
-		"intersight_iam_certificate_request":                                 296,
-		"intersight_iam_domain_group":                                        297,
-		"intersight_iam_end_point_privilege":                                 298,
-		"intersight_iam_end_point_role":                                      299,
-		"intersight_iam_end_point_user":                                      300,
-		"intersight_iam_end_point_user_policy":                               301,
-		"intersight_iam_end_point_user_role":                                 302,
-		"intersight_iam_idp":                                                 303,
-		"intersight_iam_idp_reference":                                       304,
-		"intersight_iam_ip_access_management":                                305,
-		"intersight_iam_ip_address":                                          306,
-		"intersight_iam_ldap_group":                                          307,
-		"intersight_iam_ldap_policy":                                         308,
-		"intersight_iam_ldap_provider":                                       309,
-		"intersight_iam_local_user_password_policy":                          310,
-		"intersight_iam_o_auth_token":                                        311,
-		"intersight_iam_permission":                                          312,
-		"intersight_iam_private_key_spec":                                    313,
-		"intersight_iam_privilege":                                           314,
-		"intersight_iam_privilege_set":                                       315,
-		"intersight_iam_qualifier":                                           316,
-		"intersight_iam_resource_limits":                                     317,
-		"intersight_iam_resource_permission":                                 318,
-		"intersight_iam_resource_roles":                                      319,
-		"intersight_iam_role":                                                320,
-		"intersight_iam_security_holder":                                     321,
-		"intersight_iam_service_provider":                                    322,
-		"intersight_iam_session":                                             323,
-		"intersight_iam_session_limits":                                      324,
-		"intersight_iam_system":                                              325,
-		"intersight_iam_trust_point":                                         326,
-		"intersight_iam_user":                                                327,
-		"intersight_iam_user_group":                                          328,
-		"intersight_iam_user_preference":                                     329,
-		"intersight_inventory_device_info":                                   330,
-		"intersight_inventory_dn_mo_binding":                                 331,
-		"intersight_inventory_generic_inventory":                             332,
-		"intersight_inventory_generic_inventory_holder":                      333,
-		"intersight_ipmioverlan_policy":                                      334,
-		"intersight_ippool_block_lease":                                      335,
-		"intersight_ippool_ip_lease":                                         336,
-		"intersight_ippool_pool":                                             337,
-		"intersight_ippool_pool_member":                                      338,
-		"intersight_ippool_shadow_block":                                     339,
-		"intersight_ippool_shadow_pool":                                      340,
-		"intersight_ippool_universe":                                         341,
-		"intersight_iqnpool_block":                                           342,
-		"intersight_iqnpool_lease":                                           343,
-		"intersight_iqnpool_pool":                                            344,
-		"intersight_iqnpool_pool_member":                                     345,
-		"intersight_iqnpool_universe":                                        346,
-		"intersight_iwotenant_tenant_status":                                 347,
-		"intersight_kubernetes_aci_cni_apic":                                 348,
-		"intersight_kubernetes_aci_cni_profile":                              349,
-		"intersight_kubernetes_aci_cni_tenant_cluster_allocation":            350,
-		"intersight_kubernetes_addon_definition":                             351,
-		"intersight_kubernetes_addon_policy":                                 352,
-		"intersight_kubernetes_addon_repository":                             353,
-		"intersight_kubernetes_catalog":                                      354,
-		"intersight_kubernetes_cluster":                                      355,
-		"intersight_kubernetes_cluster_addon_profile":                        356,
-		"intersight_kubernetes_cluster_profile":                              357,
-		"intersight_kubernetes_config_result":                                358,
-		"intersight_kubernetes_config_result_entry":                          359,
-		"intersight_kubernetes_container_runtime_policy":                     360,
-		"intersight_kubernetes_daemon_set":                                   361,
-		"intersight_kubernetes_deployment":                                   362,
-		"intersight_kubernetes_ingress":                                      363,
-		"intersight_kubernetes_network_policy":                               364,
-		"intersight_kubernetes_node":                                         365,
-		"intersight_kubernetes_node_group_profile":                           366,
-		"intersight_kubernetes_pod":                                          367,
-		"intersight_kubernetes_service":                                      368,
-		"intersight_kubernetes_stateful_set":                                 369,
-		"intersight_kubernetes_sys_config_policy":                            370,
-		"intersight_kubernetes_trusted_registries_policy":                    371,
-		"intersight_kubernetes_version":                                      372,
-		"intersight_kubernetes_version_policy":                               373,
-		"intersight_kubernetes_virtual_machine_infra_config_policy":          374,
-		"intersight_kubernetes_virtual_machine_infrastructure_provider":      375,
-		"intersight_kubernetes_virtual_machine_instance_type":                376,
-		"intersight_kubernetes_virtual_machine_node_profile":                 377,
-		"intersight_kvm_policy":                                              378,
-		"intersight_kvm_session":                                             379,
-		"intersight_kvm_tunnel":                                              380,
-		"intersight_kvm_vm_console":                                          381,
-		"intersight_license_account_license_data":                            382,
-		"intersight_license_customer_op":                                     383,
-		"intersight_license_iwo_customer_op":                                 384,
-		"intersight_license_iwo_license_count":                               385,
-		"intersight_license_license_info":                                    386,
-		"intersight_license_license_reservation_op":                          387,
-		"intersight_license_smartlicense_token":                              388,
-		"intersight_ls_service_profile":                                      389,
-		"intersight_macpool_id_block":                                        390,
-		"intersight_macpool_lease":                                           391,
-		"intersight_macpool_pool":                                            392,
-		"intersight_macpool_pool_member":                                     393,
-		"intersight_macpool_universe":                                        394,
-		"intersight_management_controller":                                   395,
-		"intersight_management_entity":                                       396,
-		"intersight_management_interface":                                    397,
-		"intersight_memory_array":                                            398,
-		"intersight_memory_persistent_memory_config_result":                  399,
-		"intersight_memory_persistent_memory_configuration":                  400,
-		"intersight_memory_persistent_memory_namespace":                      401,
-		"intersight_memory_persistent_memory_namespace_config_result":        402,
-		"intersight_memory_persistent_memory_policy":                         403,
-		"intersight_memory_persistent_memory_region":                         404,
-		"intersight_memory_persistent_memory_unit":                           405,
-		"intersight_memory_unit":                                             406,
-		"intersight_meta_definition":                                         407,
-		"intersight_network_element":                                         408,
-		"intersight_network_element_summary":                                 409,
-		"intersight_network_fc_zone_info":                                    410,
-		"intersight_network_vlan_port_info":                                  411,
-		"intersight_networkconfig_policy":                                    412,
-		"intersight_niaapi_apic_cco_post":                                    413,
-		"intersight_niaapi_apic_field_notice":                                414,
-		"intersight_niaapi_apic_hweol":                                       415,
-		"intersight_niaapi_apic_latest_maintained_release":                   416,
-		"intersight_niaapi_apic_release_recommend":                           417,
-		"intersight_niaapi_apic_sweol":                                       418,
-		"intersight_niaapi_dcnm_cco_post":                                    419,
-		"intersight_niaapi_dcnm_field_notice":                                420,
-		"intersight_niaapi_dcnm_hweol":                                       421,
-		"intersight_niaapi_dcnm_latest_maintained_release":                   422,
-		"intersight_niaapi_dcnm_release_recommend":                           423,
-		"intersight_niaapi_dcnm_sweol":                                       424,
-		"intersight_niaapi_file_downloader":                                  425,
-		"intersight_niaapi_nia_metadata":                                     426,
-		"intersight_niaapi_nib_file_downloader":                              427,
-		"intersight_niaapi_nib_metadata":                                     428,
-		"intersight_niaapi_version_regex":                                    429,
-		"intersight_niatelemetry_apic_fan_details":                           430,
-		"intersight_niatelemetry_apic_fex_details":                           431,
-		"intersight_niatelemetry_apic_flash_details":                         432,
-		"intersight_niatelemetry_apic_psu_details":                           433,
-		"intersight_niatelemetry_apic_transceiver_details":                   434,
-		"intersight_niatelemetry_apic_ui_page_counts":                        435,
-		"intersight_niatelemetry_app_details":                                436,
-		"intersight_niatelemetry_dcnm_fan_details":                           437,
-		"intersight_niatelemetry_dcnm_fex_details":                           438,
-		"intersight_niatelemetry_dcnm_module_details":                        439,
-		"intersight_niatelemetry_dcnm_psu_details":                           440,
-		"intersight_niatelemetry_dcnm_transceiver_details":                   441,
-		"intersight_niatelemetry_epg":                                        442,
-		"intersight_niatelemetry_fault":                                      443,
-		"intersight_niatelemetry_lc":                                         444,
-		"intersight_niatelemetry_mso_contract_details":                       445,
-		"intersight_niatelemetry_mso_epg_details":                            446,
-		"intersight_niatelemetry_mso_schema_details":                         447,
-		"intersight_niatelemetry_mso_site_details":                           448,
-		"intersight_niatelemetry_mso_tenant_details":                         449,
-		"intersight_niatelemetry_nexus_dashboard_controller_details":         450,
-		"intersight_niatelemetry_nexus_dashboard_details":                    451,
-		"intersight_niatelemetry_nexus_dashboard_memory_details":             452,
-		"intersight_niatelemetry_nexus_dashboards":                           453,
-		"intersight_niatelemetry_nia_feature_usage":                          454,
-		"intersight_niatelemetry_nia_inventory":                              455,
-		"intersight_niatelemetry_nia_inventory_dcnm":                         456,
-		"intersight_niatelemetry_nia_inventory_fabric":                       457,
-		"intersight_niatelemetry_nia_license_state":                          458,
-		"intersight_niatelemetry_tenant":                                     459,
-		"intersight_ntp_policy":                                              460,
-		"intersight_oprs_deployment":                                         461,
-		"intersight_organization_organization":                               462,
-		"intersight_os_bulk_install_info":                                    463,
-		"intersight_os_catalog":                                              464,
-		"intersight_os_configuration_file":                                   465,
-		"intersight_os_distribution":                                         466,
-		"intersight_os_install":                                              467,
-		"intersight_os_supported_version":                                    468,
-		"intersight_pci_coprocessor_card":                                    469,
-		"intersight_pci_device":                                              470,
-		"intersight_pci_link":                                                471,
-		"intersight_pci_switch":                                              472,
-		"intersight_port_group":                                              473,
-		"intersight_port_mac_binding":                                        474,
-		"intersight_port_sub_group":                                          475,
-		"intersight_processor_unit":                                          476,
-		"intersight_recommendation_capacity_runway":                          477,
-		"intersight_recommendation_physical_item":                            478,
-		"intersight_recovery_backup_config_policy":                           479,
-		"intersight_recovery_backup_profile":                                 480,
-		"intersight_recovery_config_result":                                  481,
-		"intersight_recovery_config_result_entry":                            482,
-		"intersight_recovery_on_demand_backup":                               483,
-		"intersight_recovery_restore":                                        484,
-		"intersight_recovery_schedule_config_policy":                         485,
-		"intersight_resource_group":                                          486,
-		"intersight_resource_group_member":                                   487,
-		"intersight_resource_license_resource_count":                         488,
-		"intersight_resource_membership":                                     489,
-		"intersight_resource_membership_holder":                              490,
-		"intersight_resourcepool_lease":                                      491,
-		"intersight_resourcepool_lease_resource":                             492,
-		"intersight_resourcepool_pool":                                       493,
-		"intersight_resourcepool_pool_member":                                494,
-		"intersight_resourcepool_universe":                                   495,
-		"intersight_sdcard_policy":                                           496,
-		"intersight_sdwan_profile":                                           497,
-		"intersight_sdwan_router_node":                                       498,
-		"intersight_sdwan_router_policy":                                     499,
-		"intersight_sdwan_vmanage_account_policy":                            500,
-		"intersight_search_search_item":                                      501,
-		"intersight_search_tag_item":                                         502,
-		"intersight_security_unit":                                           503,
-		"intersight_server_config_change_detail":                             504,
-		"intersight_server_config_import":                                    505,
-		"intersight_server_config_result":                                    506,
-		"intersight_server_config_result_entry":                              507,
-		"intersight_server_profile":                                          508,
-		"intersight_server_profile_template":                                 509,
-		"intersight_smtp_policy":                                             510,
-		"intersight_snmp_policy":                                             511,
-		"intersight_software_appliance_distributable":                        512,
-		"intersight_software_download_history":                               513,
-		"intersight_software_hcl_meta":                                       514,
-		"intersight_software_hyperflex_bundle_distributable":                 515,
-		"intersight_software_hyperflex_distributable":                        516,
-		"intersight_software_release_meta":                                   517,
-		"intersight_software_solution_distributable":                         518,
-		"intersight_software_ucsd_bundle_distributable":                      519,
-		"intersight_software_ucsd_distributable":                             520,
-		"intersight_softwarerepository_authorization":                        521,
-		"intersight_softwarerepository_cached_image":                         522,
-		"intersight_softwarerepository_catalog":                              523,
-		"intersight_softwarerepository_category_mapper":                      524,
-		"intersight_softwarerepository_category_mapper_model":                525,
-		"intersight_softwarerepository_category_support_constraint":          526,
-		"intersight_softwarerepository_download_spec":                        527,
-		"intersight_softwarerepository_operating_system_file":                528,
-		"intersight_softwarerepository_release":                              529,
-		"intersight_sol_policy":                                              530,
-		"intersight_ssh_policy":                                              531,
-		"intersight_storage_controller":                                      532,
-		"intersight_storage_disk_group":                                      533,
-		"intersight_storage_disk_group_policy":                               534,
-		"intersight_storage_disk_slot":                                       535,
-		"intersight_storage_enclosure":                                       536,
-		"intersight_storage_enclosure_disk":                                  537,
-		"intersight_storage_enclosure_disk_slot_ep":                          538,
-		"intersight_storage_flex_flash_controller":                           539,
-		"intersight_storage_flex_flash_controller_props":                     540,
-		"intersight_storage_flex_flash_physical_drive":                       541,
-		"intersight_storage_flex_flash_virtual_drive":                        542,
-		"intersight_storage_flex_util_controller":                            543,
-		"intersight_storage_flex_util_physical_drive":                        544,
-		"intersight_storage_flex_util_virtual_drive":                         545,
-		"intersight_storage_hitachi_array":                                   546,
-		"intersight_storage_hitachi_controller":                              547,
-		"intersight_storage_hitachi_disk":                                    548,
-		"intersight_storage_hitachi_host":                                    549,
-		"intersight_storage_hitachi_host_lun":                                550,
-		"intersight_storage_hitachi_parity_group":                            551,
-		"intersight_storage_hitachi_pool":                                    552,
-		"intersight_storage_hitachi_port":                                    553,
-		"intersight_storage_hitachi_volume":                                  554,
-		"intersight_storage_hyper_flex_storage_container":                    555,
-		"intersight_storage_hyper_flex_volume":                               556,
-		"intersight_storage_item":                                            557,
-		"intersight_storage_net_app_aggregate":                               558,
-		"intersight_storage_net_app_base_disk":                               559,
-		"intersight_storage_net_app_cluster":                                 560,
-		"intersight_storage_net_app_ethernet_port":                           561,
-		"intersight_storage_net_app_export_policy":                           562,
-		"intersight_storage_net_app_fc_interface":                            563,
-		"intersight_storage_net_app_fc_port":                                 564,
-		"intersight_storage_net_app_initiator_group":                         565,
-		"intersight_storage_net_app_ip_interface":                            566,
-		"intersight_storage_net_app_license":                                 567,
-		"intersight_storage_net_app_lun":                                     568,
-		"intersight_storage_net_app_lun_map":                                 569,
-		"intersight_storage_net_app_node":                                    570,
-		"intersight_storage_net_app_storage_vm":                              571,
-		"intersight_storage_net_app_volume":                                  572,
-		"intersight_storage_net_app_volume_snapshot":                         573,
-		"intersight_storage_physical_disk":                                   574,
-		"intersight_storage_physical_disk_extension":                         575,
-		"intersight_storage_physical_disk_usage":                             576,
-		"intersight_storage_pure_array":                                      577,
-		"intersight_storage_pure_controller":                                 578,
-		"intersight_storage_pure_disk":                                       579,
-		"intersight_storage_pure_host":                                       580,
-		"intersight_storage_pure_host_group":                                 581,
-		"intersight_storage_pure_host_lun":                                   582,
-		"intersight_storage_pure_port":                                       583,
-		"intersight_storage_pure_protection_group":                           584,
-		"intersight_storage_pure_protection_group_snapshot":                  585,
-		"intersight_storage_pure_replication_schedule":                       586,
-		"intersight_storage_pure_snapshot_schedule":                          587,
-		"intersight_storage_pure_volume":                                     588,
-		"intersight_storage_pure_volume_snapshot":                            589,
-		"intersight_storage_sas_expander":                                    590,
-		"intersight_storage_sas_port":                                        591,
-		"intersight_storage_span":                                            592,
-		"intersight_storage_storage_policy":                                  593,
-		"intersight_storage_vd_member_ep":                                    594,
-		"intersight_storage_virtual_drive":                                   595,
-		"intersight_storage_virtual_drive_container":                         596,
-		"intersight_storage_virtual_drive_extension":                         597,
-		"intersight_syslog_policy":                                           598,
-		"intersight_tam_advisory_count":                                      599,
-		"intersight_tam_advisory_definition":                                 600,
-		"intersight_tam_advisory_info":                                       601,
-		"intersight_tam_advisory_instance":                                   602,
-		"intersight_tam_security_advisory":                                   603,
-		"intersight_techsupportmanagement_collection_control_policy":         604,
-		"intersight_techsupportmanagement_download":                          605,
-		"intersight_techsupportmanagement_tech_support_bundle":               606,
-		"intersight_techsupportmanagement_tech_support_status":               607,
-		"intersight_terminal_audit_log":                                      608,
-		"intersight_top_system":                                              609,
-		"intersight_ucsd_backup_info":                                        610,
-		"intersight_uuidpool_block":                                          611,
-		"intersight_uuidpool_pool":                                           612,
-		"intersight_uuidpool_pool_member":                                    613,
-		"intersight_uuidpool_universe":                                       614,
-		"intersight_uuidpool_uuid_lease":                                     615,
-		"intersight_virtualization_host":                                     616,
-		"intersight_virtualization_virtual_disk":                             617,
-		"intersight_virtualization_virtual_machine":                          618,
-		"intersight_virtualization_vmware_cluster":                           619,
-		"intersight_virtualization_vmware_datacenter":                        620,
-		"intersight_virtualization_vmware_datastore":                         621,
-		"intersight_virtualization_vmware_distributed_network":               622,
-		"intersight_virtualization_vmware_distributed_switch":                623,
-		"intersight_virtualization_vmware_folder":                            624,
-		"intersight_virtualization_vmware_host":                              625,
-		"intersight_virtualization_vmware_kernel_network":                    626,
-		"intersight_virtualization_vmware_network":                           627,
-		"intersight_virtualization_vmware_physical_network_interface":        628,
-		"intersight_virtualization_vmware_uplink_port":                       629,
-		"intersight_virtualization_vmware_vcenter":                           630,
-		"intersight_virtualization_vmware_virtual_disk":                      631,
-		"intersight_virtualization_vmware_virtual_machine":                   632,
-		"intersight_virtualization_vmware_virtual_network_interface":         633,
-		"intersight_virtualization_vmware_virtual_switch":                    634,
-		"intersight_vmedia_policy":                                           635,
-		"intersight_vmrc_console":                                            636,
-		"intersight_vnic_eth_adapter_policy":                                 637,
-		"intersight_vnic_eth_if":                                             638,
-		"intersight_vnic_eth_network_policy":                                 639,
-		"intersight_vnic_eth_qos_policy":                                     640,
-		"intersight_vnic_fc_adapter_policy":                                  641,
-		"intersight_vnic_fc_if":                                              642,
-		"intersight_vnic_fc_network_policy":                                  643,
-		"intersight_vnic_fc_qos_policy":                                      644,
-		"intersight_vnic_iscsi_adapter_policy":                               645,
-		"intersight_vnic_iscsi_boot_policy":                                  646,
-		"intersight_vnic_iscsi_static_target_policy":                         647,
-		"intersight_vnic_lan_connectivity_policy":                            648,
-		"intersight_vnic_lcp_status":                                         649,
-		"intersight_vnic_san_connectivity_policy":                            650,
-		"intersight_vnic_scp_status":                                         651,
-		"intersight_vrf_vrf":                                                 652,
-		"intersight_workflow_batch_api_executor":                             653,
-		"intersight_workflow_build_task_meta":                                654,
-		"intersight_workflow_build_task_meta_owner":                          655,
-		"intersight_workflow_catalog":                                        656,
-		"intersight_workflow_custom_data_type_definition":                    657,
-		"intersight_workflow_error_response_handler":                         658,
-		"intersight_workflow_pending_dynamic_workflow_info":                  659,
-		"intersight_workflow_rollback_workflow":                              660,
-		"intersight_workflow_task_debug_log":                                 661,
-		"intersight_workflow_task_definition":                                662,
-		"intersight_workflow_task_info":                                      663,
-		"intersight_workflow_task_metadata":                                  664,
-		"intersight_workflow_template_function_meta":                         665,
-		"intersight_workflow_workflow_definition":                            666,
-		"intersight_workflow_workflow_info":                                  667,
-		"intersight_workflow_workflow_meta":                                  668,
-		"intersight_workflow_workflow_metadata":                              669,
+		"intersight_asset_deployment":                                        33,
+		"intersight_asset_deployment_device":                                 34,
+		"intersight_asset_device_configuration":                              35,
+		"intersight_asset_device_connector_manager":                          36,
+		"intersight_asset_device_contract_information":                       37,
+		"intersight_asset_device_registration":                               38,
+		"intersight_asset_subscription":                                      39,
+		"intersight_asset_subscription_account":                              40,
+		"intersight_asset_subscription_device_contract_information":          41,
+		"intersight_asset_target":                                            42,
+		"intersight_bios_boot_device":                                        43,
+		"intersight_bios_boot_mode":                                          44,
+		"intersight_bios_policy":                                             45,
+		"intersight_bios_system_boot_order":                                  46,
+		"intersight_bios_token_settings":                                     47,
+		"intersight_bios_unit":                                               48,
+		"intersight_bios_vf_select_memory_ras_configuration":                 49,
+		"intersight_boot_cdd_device":                                         50,
+		"intersight_boot_device_boot_mode":                                   51,
+		"intersight_boot_device_boot_security":                               52,
+		"intersight_boot_hdd_device":                                         53,
+		"intersight_boot_iscsi_device":                                       54,
+		"intersight_boot_nvme_device":                                        55,
+		"intersight_boot_pch_storage_device":                                 56,
+		"intersight_boot_precision_policy":                                   57,
+		"intersight_boot_pxe_device":                                         58,
+		"intersight_boot_san_device":                                         59,
+		"intersight_boot_sd_device":                                          60,
+		"intersight_boot_uefi_shell_device":                                  61,
+		"intersight_boot_usb_device":                                         62,
+		"intersight_boot_vmedia_device":                                      63,
+		"intersight_capability_adapter_unit_descriptor":                      64,
+		"intersight_capability_catalog":                                      65,
+		"intersight_capability_chassis_descriptor":                           66,
+		"intersight_capability_chassis_manufacturing_def":                    67,
+		"intersight_capability_cimc_firmware_descriptor":                     68,
+		"intersight_capability_equipment_physical_def":                       69,
+		"intersight_capability_equipment_slot_array":                         70,
+		"intersight_capability_fan_module_descriptor":                        71,
+		"intersight_capability_fan_module_manufacturing_def":                 72,
+		"intersight_capability_io_card_capability_def":                       73,
+		"intersight_capability_io_card_descriptor":                           74,
+		"intersight_capability_io_card_manufacturing_def":                    75,
+		"intersight_capability_port_group_aggregation_def":                   76,
+		"intersight_capability_psu_descriptor":                               77,
+		"intersight_capability_psu_manufacturing_def":                        78,
+		"intersight_capability_server_schema_descriptor":                     79,
+		"intersight_capability_sioc_module_capability_def":                   80,
+		"intersight_capability_sioc_module_descriptor":                       81,
+		"intersight_capability_sioc_module_manufacturing_def":                82,
+		"intersight_capability_switch_capability":                            83,
+		"intersight_capability_switch_descriptor":                            84,
+		"intersight_capability_switch_manufacturing_def":                     85,
+		"intersight_certificatemanagement_policy":                            86,
+		"intersight_chassis_config_change_detail":                            87,
+		"intersight_chassis_config_import":                                   88,
+		"intersight_chassis_config_result":                                   89,
+		"intersight_chassis_config_result_entry":                             90,
+		"intersight_chassis_iom_profile":                                     91,
+		"intersight_chassis_profile":                                         92,
+		"intersight_cloud_regions":                                           93,
+		"intersight_cloud_sku_container_type":                                94,
+		"intersight_cloud_sku_database_type":                                 95,
+		"intersight_cloud_sku_instance_type":                                 96,
+		"intersight_cloud_sku_network_type":                                  97,
+		"intersight_cloud_sku_volume_type":                                   98,
+		"intersight_comm_http_proxy_policy":                                  99,
+		"intersight_compute_blade":                                           100,
+		"intersight_compute_blade_identity":                                  101,
+		"intersight_compute_board":                                           102,
+		"intersight_compute_mapping":                                         103,
+		"intersight_compute_physical_summary":                                104,
+		"intersight_compute_rack_unit":                                       105,
+		"intersight_compute_rack_unit_identity":                              106,
+		"intersight_compute_server_setting":                                  107,
+		"intersight_compute_vmedia":                                          108,
+		"intersight_cond_alarm":                                              109,
+		"intersight_cond_alarm_aggregation":                                  110,
+		"intersight_cond_hcl_status":                                         111,
+		"intersight_cond_hcl_status_detail":                                  112,
+		"intersight_cond_hcl_status_job":                                     113,
+		"intersight_config_exported_item":                                    114,
+		"intersight_config_exporter":                                         115,
+		"intersight_config_imported_item":                                    116,
+		"intersight_config_importer":                                         117,
+		"intersight_connectorpack_connector_pack_upgrade":                    118,
+		"intersight_connectorpack_upgrade_impact":                            119,
+		"intersight_crd_custom_resource":                                     120,
+		"intersight_deviceconnector_policy":                                  121,
+		"intersight_equipment_chassis":                                       122,
+		"intersight_equipment_chassis_identity":                              123,
+		"intersight_equipment_chassis_operation":                             124,
+		"intersight_equipment_device_summary":                                125,
+		"intersight_equipment_fan":                                           126,
+		"intersight_equipment_fan_module":                                    127,
+		"intersight_equipment_fex":                                           128,
+		"intersight_equipment_fex_identity":                                  129,
+		"intersight_equipment_fex_operation":                                 130,
+		"intersight_equipment_fru":                                           131,
+		"intersight_equipment_identity_summary":                              132,
+		"intersight_equipment_io_card":                                       133,
+		"intersight_equipment_io_card_operation":                             134,
+		"intersight_equipment_io_expander":                                   135,
+		"intersight_equipment_locator_led":                                   136,
+		"intersight_equipment_psu":                                           137,
+		"intersight_equipment_psu_control":                                   138,
+		"intersight_equipment_rack_enclosure":                                139,
+		"intersight_equipment_rack_enclosure_slot":                           140,
+		"intersight_equipment_shared_io_module":                              141,
+		"intersight_equipment_switch_card":                                   142,
+		"intersight_equipment_system_io_controller":                          143,
+		"intersight_equipment_tpm":                                           144,
+		"intersight_equipment_transceiver":                                   145,
+		"intersight_ether_host_port":                                         146,
+		"intersight_ether_network_port":                                      147,
+		"intersight_ether_physical_port":                                     148,
+		"intersight_ether_port_channel":                                      149,
+		"intersight_externalsite_authorization":                              150,
+		"intersight_fabric_appliance_pc_role":                                151,
+		"intersight_fabric_appliance_role":                                   152,
+		"intersight_fabric_config_change_detail":                             153,
+		"intersight_fabric_config_result":                                    154,
+		"intersight_fabric_config_result_entry":                              155,
+		"intersight_fabric_element_identity":                                 156,
+		"intersight_fabric_eth_network_control_policy":                       157,
+		"intersight_fabric_eth_network_group_policy":                         158,
+		"intersight_fabric_eth_network_policy":                               159,
+		"intersight_fabric_fc_network_policy":                                160,
+		"intersight_fabric_fc_uplink_pc_role":                                161,
+		"intersight_fabric_fc_uplink_role":                                   162,
+		"intersight_fabric_fcoe_uplink_pc_role":                              163,
+		"intersight_fabric_fcoe_uplink_role":                                 164,
+		"intersight_fabric_flow_control_policy":                              165,
+		"intersight_fabric_link_aggregation_policy":                          166,
+		"intersight_fabric_link_control_policy":                              167,
+		"intersight_fabric_multicast_policy":                                 168,
+		"intersight_fabric_pc_member":                                        169,
+		"intersight_fabric_pc_operation":                                     170,
+		"intersight_fabric_port_mode":                                        171,
+		"intersight_fabric_port_operation":                                   172,
+		"intersight_fabric_port_policy":                                      173,
+		"intersight_fabric_server_role":                                      174,
+		"intersight_fabric_switch_cluster_profile":                           175,
+		"intersight_fabric_switch_control_policy":                            176,
+		"intersight_fabric_switch_profile":                                   177,
+		"intersight_fabric_system_qos_policy":                                178,
+		"intersight_fabric_uplink_pc_role":                                   179,
+		"intersight_fabric_uplink_role":                                      180,
+		"intersight_fabric_vlan":                                             181,
+		"intersight_fabric_vsan":                                             182,
+		"intersight_fault_instance":                                          183,
+		"intersight_fc_physical_port":                                        184,
+		"intersight_fc_port_channel":                                         185,
+		"intersight_fcpool_fc_block":                                         186,
+		"intersight_fcpool_lease":                                            187,
+		"intersight_fcpool_pool":                                             188,
+		"intersight_fcpool_pool_member":                                      189,
+		"intersight_fcpool_universe":                                         190,
+		"intersight_firmware_bios_descriptor":                                191,
+		"intersight_firmware_board_controller_descriptor":                    192,
+		"intersight_firmware_chassis_upgrade":                                193,
+		"intersight_firmware_cimc_descriptor":                                194,
+		"intersight_firmware_dimm_descriptor":                                195,
+		"intersight_firmware_distributable":                                  196,
+		"intersight_firmware_distributable_meta":                             197,
+		"intersight_firmware_drive_descriptor":                               198,
+		"intersight_firmware_driver_distributable":                           199,
+		"intersight_firmware_eula":                                           200,
+		"intersight_firmware_firmware_summary":                               201,
+		"intersight_firmware_gpu_descriptor":                                 202,
+		"intersight_firmware_hba_descriptor":                                 203,
+		"intersight_firmware_iom_descriptor":                                 204,
+		"intersight_firmware_mswitch_descriptor":                             205,
+		"intersight_firmware_nxos_descriptor":                                206,
+		"intersight_firmware_pcie_descriptor":                                207,
+		"intersight_firmware_psu_descriptor":                                 208,
+		"intersight_firmware_running_firmware":                               209,
+		"intersight_firmware_sas_expander_descriptor":                        210,
+		"intersight_firmware_server_configuration_utility_distributable":     211,
+		"intersight_firmware_storage_controller_descriptor":                  212,
+		"intersight_firmware_switch_upgrade":                                 213,
+		"intersight_firmware_unsupported_version_upgrade":                    214,
+		"intersight_firmware_upgrade":                                        215,
+		"intersight_firmware_upgrade_impact_status":                          216,
+		"intersight_firmware_upgrade_status":                                 217,
+		"intersight_forecast_catalog":                                        218,
+		"intersight_forecast_definition":                                     219,
+		"intersight_forecast_instance":                                       220,
+		"intersight_graphics_card":                                           221,
+		"intersight_graphics_controller":                                     222,
+		"intersight_hcl_driver_image":                                        223,
+		"intersight_hcl_exempted_catalog":                                    224,
+		"intersight_hcl_hyperflex_software_compatibility_info":               225,
+		"intersight_hcl_operating_system":                                    226,
+		"intersight_hcl_operating_system_vendor":                             227,
+		"intersight_hyperflex_alarm":                                         228,
+		"intersight_hyperflex_app_catalog":                                   229,
+		"intersight_hyperflex_auto_support_policy":                           230,
+		"intersight_hyperflex_backup_cluster":                                231,
+		"intersight_hyperflex_capability_info":                               232,
+		"intersight_hyperflex_cisco_hypervisor_manager":                      233,
+		"intersight_hyperflex_cluster":                                       234,
+		"intersight_hyperflex_cluster_backup_policy":                         235,
+		"intersight_hyperflex_cluster_backup_policy_deployment":              236,
+		"intersight_hyperflex_cluster_health_check_execution_snapshot":       237,
+		"intersight_hyperflex_cluster_network_policy":                        238,
+		"intersight_hyperflex_cluster_profile":                               239,
+		"intersight_hyperflex_cluster_replication_network_policy":            240,
+		"intersight_hyperflex_cluster_replication_network_policy_deployment": 241,
+		"intersight_hyperflex_cluster_storage_policy":                        242,
+		"intersight_hyperflex_config_result":                                 243,
+		"intersight_hyperflex_config_result_entry":                           244,
+		"intersight_hyperflex_data_protection_peer":                          245,
+		"intersight_hyperflex_datastore_statistic":                           246,
+		"intersight_hyperflex_device_package_download_state":                 247,
+		"intersight_hyperflex_ext_fc_storage_policy":                         248,
+		"intersight_hyperflex_ext_iscsi_storage_policy":                      249,
+		"intersight_hyperflex_feature_limit_external":                        250,
+		"intersight_hyperflex_feature_limit_internal":                        251,
+		"intersight_hyperflex_health":                                        252,
+		"intersight_hyperflex_health_check_definition":                       253,
+		"intersight_hyperflex_health_check_execution":                        254,
+		"intersight_hyperflex_health_check_execution_snapshot":               255,
+		"intersight_hyperflex_health_check_package_checksum":                 256,
+		"intersight_hyperflex_hxap_cluster":                                  257,
+		"intersight_hyperflex_hxap_datacenter":                               258,
+		"intersight_hyperflex_hxap_dv_uplink":                                259,
+		"intersight_hyperflex_hxap_dvswitch":                                 260,
+		"intersight_hyperflex_hxap_host":                                     261,
+		"intersight_hyperflex_hxap_host_interface":                           262,
+		"intersight_hyperflex_hxap_host_vswitch":                             263,
+		"intersight_hyperflex_hxap_network":                                  264,
+		"intersight_hyperflex_hxap_virtual_disk":                             265,
+		"intersight_hyperflex_hxap_virtual_machine":                          266,
+		"intersight_hyperflex_hxap_virtual_machine_network_interface":        267,
+		"intersight_hyperflex_hxdp_version":                                  268,
+		"intersight_hyperflex_license":                                       269,
+		"intersight_hyperflex_local_credential_policy":                       270,
+		"intersight_hyperflex_node":                                          271,
+		"intersight_hyperflex_node_config_policy":                            272,
+		"intersight_hyperflex_node_profile":                                  273,
+		"intersight_hyperflex_proxy_setting_policy":                          274,
+		"intersight_hyperflex_server_firmware_version":                       275,
+		"intersight_hyperflex_server_firmware_version_entry":                 276,
+		"intersight_hyperflex_server_model":                                  277,
+		"intersight_hyperflex_software_distribution_component":               278,
+		"intersight_hyperflex_software_distribution_entry":                   279,
+		"intersight_hyperflex_software_distribution_version":                 280,
+		"intersight_hyperflex_software_version_policy":                       281,
+		"intersight_hyperflex_storage_container":                             282,
+		"intersight_hyperflex_sys_config_policy":                             283,
+		"intersight_hyperflex_ucsm_config_policy":                            284,
+		"intersight_hyperflex_vcenter_config_policy":                         285,
+		"intersight_hyperflex_vm_backup_info":                                286,
+		"intersight_hyperflex_vm_import_operation":                           287,
+		"intersight_hyperflex_vm_restore_operation":                          288,
+		"intersight_hyperflex_vm_snapshot_info":                              289,
+		"intersight_hyperflex_volume":                                        290,
+		"intersight_hyperflex_witness_configuration":                         291,
+		"intersight_iaas_connector_pack":                                     292,
+		"intersight_iaas_device_status":                                      293,
+		"intersight_iaas_diagnostic_messages":                                294,
+		"intersight_iaas_license_info":                                       295,
+		"intersight_iaas_most_run_tasks":                                     296,
+		"intersight_iaas_service_request":                                    297,
+		"intersight_iaas_ucsd_info":                                          298,
+		"intersight_iaas_ucsd_managed_infra":                                 299,
+		"intersight_iaas_ucsd_messages":                                      300,
+		"intersight_iam_account":                                             301,
+		"intersight_iam_account_experience":                                  302,
+		"intersight_iam_api_key":                                             303,
+		"intersight_iam_app_registration":                                    304,
+		"intersight_iam_banner_message":                                      305,
+		"intersight_iam_certificate":                                         306,
+		"intersight_iam_certificate_request":                                 307,
+		"intersight_iam_domain_group":                                        308,
+		"intersight_iam_end_point_privilege":                                 309,
+		"intersight_iam_end_point_role":                                      310,
+		"intersight_iam_end_point_user":                                      311,
+		"intersight_iam_end_point_user_policy":                               312,
+		"intersight_iam_end_point_user_role":                                 313,
+		"intersight_iam_idp":                                                 314,
+		"intersight_iam_idp_reference":                                       315,
+		"intersight_iam_ip_access_management":                                316,
+		"intersight_iam_ip_address":                                          317,
+		"intersight_iam_ldap_group":                                          318,
+		"intersight_iam_ldap_policy":                                         319,
+		"intersight_iam_ldap_provider":                                       320,
+		"intersight_iam_local_user_password_policy":                          321,
+		"intersight_iam_o_auth_token":                                        322,
+		"intersight_iam_permission":                                          323,
+		"intersight_iam_private_key_spec":                                    324,
+		"intersight_iam_privilege":                                           325,
+		"intersight_iam_privilege_set":                                       326,
+		"intersight_iam_qualifier":                                           327,
+		"intersight_iam_resource_limits":                                     328,
+		"intersight_iam_resource_permission":                                 329,
+		"intersight_iam_resource_roles":                                      330,
+		"intersight_iam_role":                                                331,
+		"intersight_iam_security_holder":                                     332,
+		"intersight_iam_service_provider":                                    333,
+		"intersight_iam_session":                                             334,
+		"intersight_iam_session_limits":                                      335,
+		"intersight_iam_system":                                              336,
+		"intersight_iam_trust_point":                                         337,
+		"intersight_iam_user":                                                338,
+		"intersight_iam_user_group":                                          339,
+		"intersight_iam_user_preference":                                     340,
+		"intersight_inventory_device_info":                                   341,
+		"intersight_inventory_dn_mo_binding":                                 342,
+		"intersight_inventory_generic_inventory":                             343,
+		"intersight_inventory_generic_inventory_holder":                      344,
+		"intersight_ipmioverlan_policy":                                      345,
+		"intersight_ippool_block_lease":                                      346,
+		"intersight_ippool_ip_lease":                                         347,
+		"intersight_ippool_pool":                                             348,
+		"intersight_ippool_pool_member":                                      349,
+		"intersight_ippool_shadow_block":                                     350,
+		"intersight_ippool_shadow_pool":                                      351,
+		"intersight_ippool_universe":                                         352,
+		"intersight_iqnpool_block":                                           353,
+		"intersight_iqnpool_lease":                                           354,
+		"intersight_iqnpool_pool":                                            355,
+		"intersight_iqnpool_pool_member":                                     356,
+		"intersight_iqnpool_universe":                                        357,
+		"intersight_iwotenant_tenant_status":                                 358,
+		"intersight_kubernetes_aci_cni_apic":                                 359,
+		"intersight_kubernetes_aci_cni_profile":                              360,
+		"intersight_kubernetes_aci_cni_tenant_cluster_allocation":            361,
+		"intersight_kubernetes_addon_definition":                             362,
+		"intersight_kubernetes_addon_policy":                                 363,
+		"intersight_kubernetes_addon_repository":                             364,
+		"intersight_kubernetes_catalog":                                      365,
+		"intersight_kubernetes_cluster":                                      366,
+		"intersight_kubernetes_cluster_addon_profile":                        367,
+		"intersight_kubernetes_cluster_profile":                              368,
+		"intersight_kubernetes_config_result":                                369,
+		"intersight_kubernetes_config_result_entry":                          370,
+		"intersight_kubernetes_container_runtime_policy":                     371,
+		"intersight_kubernetes_daemon_set":                                   372,
+		"intersight_kubernetes_deployment":                                   373,
+		"intersight_kubernetes_ingress":                                      374,
+		"intersight_kubernetes_network_policy":                               375,
+		"intersight_kubernetes_node":                                         376,
+		"intersight_kubernetes_node_group_profile":                           377,
+		"intersight_kubernetes_pod":                                          378,
+		"intersight_kubernetes_service":                                      379,
+		"intersight_kubernetes_stateful_set":                                 380,
+		"intersight_kubernetes_sys_config_policy":                            381,
+		"intersight_kubernetes_trusted_registries_policy":                    382,
+		"intersight_kubernetes_version":                                      383,
+		"intersight_kubernetes_version_policy":                               384,
+		"intersight_kubernetes_virtual_machine_infra_config_policy":          385,
+		"intersight_kubernetes_virtual_machine_infrastructure_provider":      386,
+		"intersight_kubernetes_virtual_machine_instance_type":                387,
+		"intersight_kubernetes_virtual_machine_node_profile":                 388,
+		"intersight_kvm_policy":                                              389,
+		"intersight_kvm_session":                                             390,
+		"intersight_kvm_tunnel":                                              391,
+		"intersight_kvm_vm_console":                                          392,
+		"intersight_license_account_license_data":                            393,
+		"intersight_license_customer_op":                                     394,
+		"intersight_license_iwo_customer_op":                                 395,
+		"intersight_license_iwo_license_count":                               396,
+		"intersight_license_license_info":                                    397,
+		"intersight_license_license_reservation_op":                          398,
+		"intersight_license_smartlicense_token":                              399,
+		"intersight_ls_service_profile":                                      400,
+		"intersight_macpool_id_block":                                        401,
+		"intersight_macpool_lease":                                           402,
+		"intersight_macpool_pool":                                            403,
+		"intersight_macpool_pool_member":                                     404,
+		"intersight_macpool_universe":                                        405,
+		"intersight_management_controller":                                   406,
+		"intersight_management_entity":                                       407,
+		"intersight_management_interface":                                    408,
+		"intersight_memory_array":                                            409,
+		"intersight_memory_persistent_memory_config_result":                  410,
+		"intersight_memory_persistent_memory_configuration":                  411,
+		"intersight_memory_persistent_memory_namespace":                      412,
+		"intersight_memory_persistent_memory_namespace_config_result":        413,
+		"intersight_memory_persistent_memory_policy":                         414,
+		"intersight_memory_persistent_memory_region":                         415,
+		"intersight_memory_persistent_memory_unit":                           416,
+		"intersight_memory_unit":                                             417,
+		"intersight_meta_definition":                                         418,
+		"intersight_network_element":                                         419,
+		"intersight_network_element_summary":                                 420,
+		"intersight_network_fc_zone_info":                                    421,
+		"intersight_network_vlan_port_info":                                  422,
+		"intersight_networkconfig_policy":                                    423,
+		"intersight_niaapi_apic_cco_post":                                    424,
+		"intersight_niaapi_apic_field_notice":                                425,
+		"intersight_niaapi_apic_hweol":                                       426,
+		"intersight_niaapi_apic_latest_maintained_release":                   427,
+		"intersight_niaapi_apic_release_recommend":                           428,
+		"intersight_niaapi_apic_sweol":                                       429,
+		"intersight_niaapi_dcnm_cco_post":                                    430,
+		"intersight_niaapi_dcnm_field_notice":                                431,
+		"intersight_niaapi_dcnm_hweol":                                       432,
+		"intersight_niaapi_dcnm_latest_maintained_release":                   433,
+		"intersight_niaapi_dcnm_release_recommend":                           434,
+		"intersight_niaapi_dcnm_sweol":                                       435,
+		"intersight_niaapi_file_downloader":                                  436,
+		"intersight_niaapi_nia_metadata":                                     437,
+		"intersight_niaapi_nib_file_downloader":                              438,
+		"intersight_niaapi_nib_metadata":                                     439,
+		"intersight_niaapi_version_regex":                                    440,
+		"intersight_niatelemetry_aaa_ldap_provider_details":                  441,
+		"intersight_niatelemetry_aaa_radius_provider_details":                442,
+		"intersight_niatelemetry_aaa_tacacs_provider_details":                443,
+		"intersight_niatelemetry_apic_core_file_details":                     444,
+		"intersight_niatelemetry_apic_dbgexp_rs_export_dest":                 445,
+		"intersight_niatelemetry_apic_dbgexp_rs_ts_scheduler":                446,
+		"intersight_niatelemetry_apic_fan_details":                           447,
+		"intersight_niatelemetry_apic_fex_details":                           448,
+		"intersight_niatelemetry_apic_flash_details":                         449,
+		"intersight_niatelemetry_apic_ntp_auth":                              450,
+		"intersight_niatelemetry_apic_psu_details":                           451,
+		"intersight_niatelemetry_apic_realm_details":                         452,
+		"intersight_niatelemetry_apic_snmp_community_access_details":         453,
+		"intersight_niatelemetry_apic_snmp_community_details":                454,
+		"intersight_niatelemetry_apic_snmp_trap_details":                     455,
+		"intersight_niatelemetry_apic_snmp_version_three_details":            456,
+		"intersight_niatelemetry_apic_sys_log_grp":                           457,
+		"intersight_niatelemetry_apic_sys_log_src":                           458,
+		"intersight_niatelemetry_apic_transceiver_details":                   459,
+		"intersight_niatelemetry_apic_ui_page_counts":                        460,
+		"intersight_niatelemetry_app_details":                                461,
+		"intersight_niatelemetry_dcnm_fan_details":                           462,
+		"intersight_niatelemetry_dcnm_fex_details":                           463,
+		"intersight_niatelemetry_dcnm_module_details":                        464,
+		"intersight_niatelemetry_dcnm_psu_details":                           465,
+		"intersight_niatelemetry_dcnm_transceiver_details":                   466,
+		"intersight_niatelemetry_epg":                                        467,
+		"intersight_niatelemetry_fabric_module_details":                      468,
+		"intersight_niatelemetry_fault":                                      469,
+		"intersight_niatelemetry_https_acl_contract_details":                 470,
+		"intersight_niatelemetry_https_acl_contract_filter_map":              471,
+		"intersight_niatelemetry_https_acl_epg_contract_map":                 472,
+		"intersight_niatelemetry_https_acl_epg_details":                      473,
+		"intersight_niatelemetry_https_acl_filter_details":                   474,
+		"intersight_niatelemetry_lc":                                         475,
+		"intersight_niatelemetry_mso_contract_details":                       476,
+		"intersight_niatelemetry_mso_epg_details":                            477,
+		"intersight_niatelemetry_mso_schema_details":                         478,
+		"intersight_niatelemetry_mso_site_details":                           479,
+		"intersight_niatelemetry_mso_tenant_details":                         480,
+		"intersight_niatelemetry_nexus_dashboard_controller_details":         481,
+		"intersight_niatelemetry_nexus_dashboard_details":                    482,
+		"intersight_niatelemetry_nexus_dashboard_memory_details":             483,
+		"intersight_niatelemetry_nexus_dashboards":                           484,
+		"intersight_niatelemetry_nia_feature_usage":                          485,
+		"intersight_niatelemetry_nia_inventory":                              486,
+		"intersight_niatelemetry_nia_inventory_dcnm":                         487,
+		"intersight_niatelemetry_nia_inventory_fabric":                       488,
+		"intersight_niatelemetry_nia_license_state":                          489,
+		"intersight_niatelemetry_password_strength_check":                    490,
+		"intersight_niatelemetry_ssh_version_two":                            491,
+		"intersight_niatelemetry_supervisor_module_details":                  492,
+		"intersight_niatelemetry_system_controller_details":                  493,
+		"intersight_niatelemetry_tenant":                                     494,
+		"intersight_notification_account_subscription":                       495,
+		"intersight_ntp_policy":                                              496,
+		"intersight_oprs_deployment":                                         497,
+		"intersight_oprs_sync_target_list_message":                           498,
+		"intersight_organization_organization":                               499,
+		"intersight_os_bulk_install_info":                                    500,
+		"intersight_os_catalog":                                              501,
+		"intersight_os_configuration_file":                                   502,
+		"intersight_os_distribution":                                         503,
+		"intersight_os_install":                                              504,
+		"intersight_os_supported_version":                                    505,
+		"intersight_pci_coprocessor_card":                                    506,
+		"intersight_pci_device":                                              507,
+		"intersight_pci_link":                                                508,
+		"intersight_pci_switch":                                              509,
+		"intersight_port_group":                                              510,
+		"intersight_port_mac_binding":                                        511,
+		"intersight_port_sub_group":                                          512,
+		"intersight_processor_unit":                                          513,
+		"intersight_recommendation_capacity_runway":                          514,
+		"intersight_recommendation_physical_item":                            515,
+		"intersight_recovery_backup_config_policy":                           516,
+		"intersight_recovery_backup_profile":                                 517,
+		"intersight_recovery_config_result":                                  518,
+		"intersight_recovery_config_result_entry":                            519,
+		"intersight_recovery_on_demand_backup":                               520,
+		"intersight_recovery_restore":                                        521,
+		"intersight_recovery_schedule_config_policy":                         522,
+		"intersight_resource_group":                                          523,
+		"intersight_resource_group_member":                                   524,
+		"intersight_resource_license_resource_count":                         525,
+		"intersight_resource_membership":                                     526,
+		"intersight_resource_membership_holder":                              527,
+		"intersight_sdcard_policy":                                           528,
+		"intersight_sdwan_profile":                                           529,
+		"intersight_sdwan_router_node":                                       530,
+		"intersight_sdwan_router_policy":                                     531,
+		"intersight_sdwan_vmanage_account_policy":                            532,
+		"intersight_search_search_item":                                      533,
+		"intersight_search_tag_item":                                         534,
+		"intersight_security_unit":                                           535,
+		"intersight_server_config_change_detail":                             536,
+		"intersight_server_config_import":                                    537,
+		"intersight_server_config_result":                                    538,
+		"intersight_server_config_result_entry":                              539,
+		"intersight_server_profile":                                          540,
+		"intersight_server_profile_template":                                 541,
+		"intersight_smtp_policy":                                             542,
+		"intersight_snmp_policy":                                             543,
+		"intersight_software_appliance_distributable":                        544,
+		"intersight_software_download_history":                               545,
+		"intersight_software_hcl_meta":                                       546,
+		"intersight_software_hyperflex_bundle_distributable":                 547,
+		"intersight_software_hyperflex_distributable":                        548,
+		"intersight_software_release_meta":                                   549,
+		"intersight_software_solution_distributable":                         550,
+		"intersight_software_ucsd_bundle_distributable":                      551,
+		"intersight_software_ucsd_distributable":                             552,
+		"intersight_softwarerepository_authorization":                        553,
+		"intersight_softwarerepository_cached_image":                         554,
+		"intersight_softwarerepository_catalog":                              555,
+		"intersight_softwarerepository_category_mapper":                      556,
+		"intersight_softwarerepository_category_mapper_model":                557,
+		"intersight_softwarerepository_category_support_constraint":          558,
+		"intersight_softwarerepository_download_spec":                        559,
+		"intersight_softwarerepository_operating_system_file":                560,
+		"intersight_softwarerepository_release":                              561,
+		"intersight_sol_policy":                                              562,
+		"intersight_ssh_policy":                                              563,
+		"intersight_storage_controller":                                      564,
+		"intersight_storage_disk_group":                                      565,
+		"intersight_storage_disk_group_policy":                               566,
+		"intersight_storage_disk_slot":                                       567,
+		"intersight_storage_enclosure":                                       568,
+		"intersight_storage_enclosure_disk":                                  569,
+		"intersight_storage_enclosure_disk_slot_ep":                          570,
+		"intersight_storage_flex_flash_controller":                           571,
+		"intersight_storage_flex_flash_controller_props":                     572,
+		"intersight_storage_flex_flash_physical_drive":                       573,
+		"intersight_storage_flex_flash_virtual_drive":                        574,
+		"intersight_storage_flex_util_controller":                            575,
+		"intersight_storage_flex_util_physical_drive":                        576,
+		"intersight_storage_flex_util_virtual_drive":                         577,
+		"intersight_storage_hitachi_array":                                   578,
+		"intersight_storage_hitachi_controller":                              579,
+		"intersight_storage_hitachi_disk":                                    580,
+		"intersight_storage_hitachi_host":                                    581,
+		"intersight_storage_hitachi_host_lun":                                582,
+		"intersight_storage_hitachi_parity_group":                            583,
+		"intersight_storage_hitachi_pool":                                    584,
+		"intersight_storage_hitachi_port":                                    585,
+		"intersight_storage_hitachi_volume":                                  586,
+		"intersight_storage_hyper_flex_storage_container":                    587,
+		"intersight_storage_hyper_flex_volume":                               588,
+		"intersight_storage_item":                                            589,
+		"intersight_storage_net_app_aggregate":                               590,
+		"intersight_storage_net_app_base_disk":                               591,
+		"intersight_storage_net_app_cluster":                                 592,
+		"intersight_storage_net_app_ethernet_port":                           593,
+		"intersight_storage_net_app_export_policy":                           594,
+		"intersight_storage_net_app_fc_interface":                            595,
+		"intersight_storage_net_app_fc_port":                                 596,
+		"intersight_storage_net_app_initiator_group":                         597,
+		"intersight_storage_net_app_ip_interface":                            598,
+		"intersight_storage_net_app_license":                                 599,
+		"intersight_storage_net_app_lun":                                     600,
+		"intersight_storage_net_app_lun_map":                                 601,
+		"intersight_storage_net_app_node":                                    602,
+		"intersight_storage_net_app_storage_vm":                              603,
+		"intersight_storage_net_app_volume":                                  604,
+		"intersight_storage_net_app_volume_snapshot":                         605,
+		"intersight_storage_physical_disk":                                   606,
+		"intersight_storage_physical_disk_extension":                         607,
+		"intersight_storage_physical_disk_usage":                             608,
+		"intersight_storage_pure_array":                                      609,
+		"intersight_storage_pure_controller":                                 610,
+		"intersight_storage_pure_disk":                                       611,
+		"intersight_storage_pure_host":                                       612,
+		"intersight_storage_pure_host_group":                                 613,
+		"intersight_storage_pure_host_lun":                                   614,
+		"intersight_storage_pure_port":                                       615,
+		"intersight_storage_pure_protection_group":                           616,
+		"intersight_storage_pure_protection_group_snapshot":                  617,
+		"intersight_storage_pure_replication_schedule":                       618,
+		"intersight_storage_pure_snapshot_schedule":                          619,
+		"intersight_storage_pure_volume":                                     620,
+		"intersight_storage_pure_volume_snapshot":                            621,
+		"intersight_storage_sas_expander":                                    622,
+		"intersight_storage_sas_port":                                        623,
+		"intersight_storage_span":                                            624,
+		"intersight_storage_storage_policy":                                  625,
+		"intersight_storage_vd_member_ep":                                    626,
+		"intersight_storage_virtual_drive":                                   627,
+		"intersight_storage_virtual_drive_container":                         628,
+		"intersight_storage_virtual_drive_extension":                         629,
+		"intersight_syslog_policy":                                           630,
+		"intersight_tam_advisory_count":                                      631,
+		"intersight_tam_advisory_definition":                                 632,
+		"intersight_tam_advisory_info":                                       633,
+		"intersight_tam_advisory_instance":                                   634,
+		"intersight_tam_security_advisory":                                   635,
+		"intersight_techsupportmanagement_collection_control_policy":         636,
+		"intersight_techsupportmanagement_download":                          637,
+		"intersight_techsupportmanagement_tech_support_bundle":               638,
+		"intersight_techsupportmanagement_tech_support_status":               639,
+		"intersight_terminal_audit_log":                                      640,
+		"intersight_top_system":                                              641,
+		"intersight_ucsd_backup_info":                                        642,
+		"intersight_uuidpool_block":                                          643,
+		"intersight_uuidpool_pool":                                           644,
+		"intersight_uuidpool_pool_member":                                    645,
+		"intersight_uuidpool_universe":                                       646,
+		"intersight_uuidpool_uuid_lease":                                     647,
+		"intersight_virtualization_host":                                     648,
+		"intersight_virtualization_virtual_disk":                             649,
+		"intersight_virtualization_virtual_machine":                          650,
+		"intersight_virtualization_vmware_cluster":                           651,
+		"intersight_virtualization_vmware_datacenter":                        652,
+		"intersight_virtualization_vmware_datastore":                         653,
+		"intersight_virtualization_vmware_distributed_network":               654,
+		"intersight_virtualization_vmware_distributed_switch":                655,
+		"intersight_virtualization_vmware_folder":                            656,
+		"intersight_virtualization_vmware_host":                              657,
+		"intersight_virtualization_vmware_kernel_network":                    658,
+		"intersight_virtualization_vmware_network":                           659,
+		"intersight_virtualization_vmware_physical_network_interface":        660,
+		"intersight_virtualization_vmware_uplink_port":                       661,
+		"intersight_virtualization_vmware_vcenter":                           662,
+		"intersight_virtualization_vmware_virtual_disk":                      663,
+		"intersight_virtualization_vmware_virtual_machine":                   664,
+		"intersight_virtualization_vmware_virtual_network_interface":         665,
+		"intersight_virtualization_vmware_virtual_switch":                    666,
+		"intersight_vmedia_policy":                                           667,
+		"intersight_vmrc_console":                                            668,
+		"intersight_vnic_eth_adapter_policy":                                 669,
+		"intersight_vnic_eth_if":                                             670,
+		"intersight_vnic_eth_network_policy":                                 671,
+		"intersight_vnic_eth_qos_policy":                                     672,
+		"intersight_vnic_fc_adapter_policy":                                  673,
+		"intersight_vnic_fc_if":                                              674,
+		"intersight_vnic_fc_network_policy":                                  675,
+		"intersight_vnic_fc_qos_policy":                                      676,
+		"intersight_vnic_iscsi_adapter_policy":                               677,
+		"intersight_vnic_iscsi_boot_policy":                                  678,
+		"intersight_vnic_iscsi_static_target_policy":                         679,
+		"intersight_vnic_lan_connectivity_policy":                            680,
+		"intersight_vnic_lcp_status":                                         681,
+		"intersight_vnic_san_connectivity_policy":                            682,
+		"intersight_vnic_scp_status":                                         683,
+		"intersight_vrf_vrf":                                                 684,
+		"intersight_workflow_batch_api_executor":                             685,
+		"intersight_workflow_build_task_meta":                                686,
+		"intersight_workflow_build_task_meta_owner":                          687,
+		"intersight_workflow_catalog":                                        688,
+		"intersight_workflow_custom_data_type_definition":                    689,
+		"intersight_workflow_error_response_handler":                         690,
+		"intersight_workflow_pending_dynamic_workflow_info":                  691,
+		"intersight_workflow_rollback_workflow":                              692,
+		"intersight_workflow_task_debug_log":                                 693,
+		"intersight_workflow_task_definition":                                694,
+		"intersight_workflow_task_info":                                      695,
+		"intersight_workflow_task_metadata":                                  696,
+		"intersight_workflow_template_function_meta":                         697,
+		"intersight_workflow_workflow_definition":                            698,
+		"intersight_workflow_workflow_info":                                  699,
+		"intersight_workflow_workflow_meta":                                  700,
+		"intersight_workflow_workflow_metadata":                              701,
 	}
 )
 

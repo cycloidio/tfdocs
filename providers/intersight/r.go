@@ -359,7 +359,7 @@ of the device claim operation can be obtained from the claim workflow.
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft HyperV system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
@@ -757,7 +757,7 @@ Target represents an entity which can be managed by Intersight. This includes ph
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft HyperV system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
@@ -1048,12 +1048,16 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
-					Name:        "enabled",
-					Description: `Enables the BIOS setting.`,
+					Name:        "Auto",
+					Description: `Value - Auto for configuring AdvancedMemTest token.`,
 				},
 				resource.Attribute{
 					Name:        "disabled",
-					Description: `Disables the BIOS setting.`,
+					Description: `Value - disabled for configuring AdvancedMemTest token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring AdvancedMemTest token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -1070,22 +1074,22 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
-				},
-				resource.Attribute{
-					Name:        "1500-m",
-					Description: `Value - 1500-m for configuring Altitude token.`,
 				},
 				resource.Attribute{
 					Name:        "300-m",
 					Description: `Value - 300-m for configuring Altitude token.`,
 				},
 				resource.Attribute{
-					Name:        "3000-m",
-					Description: `Value - 3000-m for configuring Altitude token.`,
-				},
-				resource.Attribute{
 					Name:        "900-m",
 					Description: `Value - 900-m for configuring Altitude token.`,
+				},
+				resource.Attribute{
+					Name:        "1500-m",
+					Description: `Value - 1500-m for configuring Altitude token.`,
+				},
+				resource.Attribute{
+					Name:        "3000-m",
+					Description: `Value - 3000-m for configuring Altitude token.`,
 				},
 				resource.Attribute{
 					Name:        "auto",
@@ -1164,8 +1168,8 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
-					Name:        "115200",
-					Description: `Value - 115200 for configuring BaudRate token.`,
+					Name:        "9600",
+					Description: `Value - 9600 for configuring BaudRate token.`,
 				},
 				resource.Attribute{
 					Name:        "19200",
@@ -1180,8 +1184,8 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - 57600 for configuring BaudRate token.`,
 				},
 				resource.Attribute{
-					Name:        "9600",
-					Description: `Value - 9600 for configuring BaudRate token.`,
+					Name:        "115200",
+					Description: `Value - 115200 for configuring BaudRate token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -1200,12 +1204,12 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
-					Name:        "13",
-					Description: `Value - 13 for configuring BootOptionNumRetry token.`,
-				},
-				resource.Attribute{
 					Name:        "5",
 					Description: `Value - 5 for configuring BootOptionNumRetry token.`,
+				},
+				resource.Attribute{
+					Name:        "13",
+					Description: `Value - 13 for configuring BootOptionNumRetry token.`,
 				},
 				resource.Attribute{
 					Name:        "Infinite",
@@ -1254,6 +1258,34 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "Set by Intel NM",
 					Description: `Value - Set by Intel NM for configuring BootPerformanceMode token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "0",
+					Description: `Value - 0 for configuring CbsCmnApbdis token.`,
+				},
+				resource.Attribute{
+					Name:        "1",
+					Description: `Value - 1 for configuring CbsCmnApbdis token.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsCmnApbdis token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -1353,6 +1385,38 @@ Policy for setting BIOS tokens on the endpoint.
 				},
 				resource.Attribute{
 					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsCmnCpuSmee token.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Value - disabled for configuring CbsCmnCpuSmee token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring CbsCmnCpuSmee token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsCmnCpuStreamingStoresCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Value - disabled for configuring CbsCmnCpuStreamingStoresCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring CbsCmnCpuStreamingStoresCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
 					Description: `Value - Auto for configuring CbsCmnDeterminismSlider token.`,
 				},
 				resource.Attribute{
@@ -1369,6 +1433,42 @@ Policy for setting BIOS tokens on the endpoint.
 				},
 				resource.Attribute{
 					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsCmnEfficiencyModeEn token.`,
+				},
+				resource.Attribute{
+					Name:        "Enabled",
+					Description: `Value - Enabled for configuring CbsCmnEfficiencyModeEn token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsCmnFixedSocPstate token.`,
+				},
+				resource.Attribute{
+					Name:        "P0",
+					Description: `Value - P0 for configuring CbsCmnFixedSocPstate token.`,
+				},
+				resource.Attribute{
+					Name:        "P1",
+					Description: `Value - P1 for configuring CbsCmnFixedSocPstate token.`,
+				},
+				resource.Attribute{
+					Name:        "P2",
+					Description: `Value - P2 for configuring CbsCmnFixedSocPstate token.`,
+				},
+				resource.Attribute{
+					Name:        "P3",
+					Description: `Value - P3 for configuring CbsCmnFixedSocPstate token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
 					Description: `Value - Auto for configuring CbsCmnGnbNbIommu token.`,
 				},
 				resource.Attribute{
@@ -1378,6 +1478,38 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "enabled",
 					Description: `Value - enabled for configuring CbsCmnGnbNbIommu token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsCmnGnbSmuDfCstates token.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Value - disabled for configuring CbsCmnGnbSmuDfCstates token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring CbsCmnGnbSmuDfCstates token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsCmnGnbSmucppc token.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Value - disabled for configuring CbsCmnGnbSmucppc token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring CbsCmnGnbSmucppc token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -1424,6 +1556,142 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "2 CCDs",
+					Description: `Value - 2 CCDs for configuring CbsCpuCcdCtrlSsp token.`,
+				},
+				resource.Attribute{
+					Name:        "3 CCDs",
+					Description: `Value - 3 CCDs for configuring CbsCpuCcdCtrlSsp token.`,
+				},
+				resource.Attribute{
+					Name:        "4 CCDs",
+					Description: `Value - 4 CCDs for configuring CbsCpuCcdCtrlSsp token.`,
+				},
+				resource.Attribute{
+					Name:        "6 CCDs",
+					Description: `Value - 6 CCDs for configuring CbsCpuCcdCtrlSsp token.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsCpuCcdCtrlSsp token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsCpuCoreCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "FIVE (5 + 0)",
+					Description: `Value - FIVE (5 + 0) for configuring CbsCpuCoreCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "FOUR (4 + 0)",
+					Description: `Value - FOUR (4 + 0) for configuring CbsCpuCoreCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "ONE (1 + 0)",
+					Description: `Value - ONE (1 + 0) for configuring CbsCpuCoreCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "SEVEN (7 + 0)",
+					Description: `Value - SEVEN (7 + 0) for configuring CbsCpuCoreCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "SIX (6 + 0)",
+					Description: `Value - SIX (6 + 0) for configuring CbsCpuCoreCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "THREE (3 + 0)",
+					Description: `Value - THREE (3 + 0) for configuring CbsCpuCoreCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "TWO (2 + 0)",
+					Description: `Value - TWO (2 + 0) for configuring CbsCpuCoreCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsCpuSmtCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Value - disabled for configuring CbsCpuSmtCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring CbsCpuSmtCtrl token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsDbgCpuSnpMemCover token.`,
+				},
+				resource.Attribute{
+					Name:        "Custom",
+					Description: `Value - Custom for configuring CbsDbgCpuSnpMemCover token.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Value - disabled for configuring CbsDbgCpuSnpMemCover token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring CbsDbgCpuSnpMemCover token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsDfCmnAcpiSratL3numa token.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Value - disabled for configuring CbsDfCmnAcpiSratL3numa token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring CbsDfCmnAcpiSratL3numa token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring CbsDfCmnDramNps token.`,
+				},
+				resource.Attribute{
+					Name:        "NPS0",
+					Description: `Value - NPS0 for configuring CbsDfCmnDramNps token.`,
+				},
+				resource.Attribute{
+					Name:        "NPS1",
+					Description: `Value - NPS1 for configuring CbsDfCmnDramNps token.`,
+				},
+				resource.Attribute{
+					Name:        "NPS2",
+					Description: `Value - NPS2 for configuring CbsDfCmnDramNps token.`,
+				},
+				resource.Attribute{
+					Name:        "NPS4",
+					Description: `Value - NPS4 for configuring CbsDfCmnDramNps token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "Auto",
 					Description: `Value - Auto for configuring CbsDfCmnMemIntlv token.`,
 				},
@@ -1448,14 +1716,6 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
-					Name:        "1 KB",
-					Description: `Value - 1 KiB for configuring CbsDfCmnMemIntlvSize token.`,
-				},
-				resource.Attribute{
-					Name:        "2 KB",
-					Description: `Value - 2 KiB for configuring CbsDfCmnMemIntlvSize token.`,
-				},
-				resource.Attribute{
 					Name:        "256 Bytes",
 					Description: `Value - 256 Bytes for configuring CbsDfCmnMemIntlvSize token.`,
 				},
@@ -1464,8 +1724,32 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - 512 Bytes for configuring CbsDfCmnMemIntlvSize token.`,
 				},
 				resource.Attribute{
+					Name:        "1 KB",
+					Description: `Value - 1 KiB for configuring CbsDfCmnMemIntlvSize token.`,
+				},
+				resource.Attribute{
+					Name:        "2 KB",
+					Description: `Value - 2 KiB for configuring CbsDfCmnMemIntlvSize token.`,
+				},
+				resource.Attribute{
+					Name:        "4 KB",
+					Description: `Value - 4 KiB for configuring CbsDfCmnMemIntlvSize token.`,
+				},
+				resource.Attribute{
 					Name:        "Auto",
 					Description: `Value - Auto for configuring CbsDfCmnMemIntlvSize token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -1546,6 +1830,18 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "Normal",
 					Description: `Value - Normal for configuring CiscoDebugLevel token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -1664,6 +1960,38 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - 1 for configuring CoreMultiProcessing token.`,
 				},
 				resource.Attribute{
+					Name:        "2",
+					Description: `Value - 2 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "3",
+					Description: `Value - 3 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "4",
+					Description: `Value - 4 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "5",
+					Description: `Value - 5 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "6",
+					Description: `Value - 6 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "7",
+					Description: `Value - 7 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "8",
+					Description: `Value - 8 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "9",
+					Description: `Value - 9 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
 					Name:        "10",
 					Description: `Value - 10 for configuring CoreMultiProcessing token.`,
 				},
@@ -1704,10 +2032,6 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - 19 for configuring CoreMultiProcessing token.`,
 				},
 				resource.Attribute{
-					Name:        "2",
-					Description: `Value - 2 for configuring CoreMultiProcessing token.`,
-				},
-				resource.Attribute{
 					Name:        "20",
 					Description: `Value - 20 for configuring CoreMultiProcessing token.`,
 				},
@@ -1744,32 +2068,84 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - 28 for configuring CoreMultiProcessing token.`,
 				},
 				resource.Attribute{
-					Name:        "3",
-					Description: `Value - 3 for configuring CoreMultiProcessing token.`,
+					Name:        "29",
+					Description: `Value - 29 for configuring CoreMultiProcessing token.`,
 				},
 				resource.Attribute{
-					Name:        "4",
-					Description: `Value - 4 for configuring CoreMultiProcessing token.`,
+					Name:        "30",
+					Description: `Value - 30 for configuring CoreMultiProcessing token.`,
 				},
 				resource.Attribute{
-					Name:        "5",
-					Description: `Value - 5 for configuring CoreMultiProcessing token.`,
+					Name:        "31",
+					Description: `Value - 31 for configuring CoreMultiProcessing token.`,
 				},
 				resource.Attribute{
-					Name:        "6",
-					Description: `Value - 6 for configuring CoreMultiProcessing token.`,
+					Name:        "32",
+					Description: `Value - 32 for configuring CoreMultiProcessing token.`,
 				},
 				resource.Attribute{
-					Name:        "7",
-					Description: `Value - 7 for configuring CoreMultiProcessing token.`,
+					Name:        "33",
+					Description: `Value - 33 for configuring CoreMultiProcessing token.`,
 				},
 				resource.Attribute{
-					Name:        "8",
-					Description: `Value - 8 for configuring CoreMultiProcessing token.`,
+					Name:        "34",
+					Description: `Value - 34 for configuring CoreMultiProcessing token.`,
 				},
 				resource.Attribute{
-					Name:        "9",
-					Description: `Value - 9 for configuring CoreMultiProcessing token.`,
+					Name:        "35",
+					Description: `Value - 35 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "36",
+					Description: `Value - 36 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "37",
+					Description: `Value - 37 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "38",
+					Description: `Value - 38 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "39",
+					Description: `Value - 39 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "40",
+					Description: `Value - 40 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "41",
+					Description: `Value - 41 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "42",
+					Description: `Value - 42 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "43",
+					Description: `Value - 43 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "44",
+					Description: `Value - 44 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "45",
+					Description: `Value - 45 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "46",
+					Description: `Value - 46 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "47",
+					Description: `Value - 47 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "48",
+					Description: `Value - 48 for configuring CoreMultiProcessing token.`,
 				},
 				resource.Attribute{
 					Name:        "all",
@@ -1864,6 +2240,18 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - Disabled for configuring CrQos token.`,
 				},
 				resource.Attribute{
+					Name:        "Mode 0 - Disable the PMem QoS Feature",
+					Description: `Value - Mode 0 - Disable the PMem QoS Feature for configuring CrQos token.`,
+				},
+				resource.Attribute{
+					Name:        "Mode 1 - M2M QoS Enable and CHA QoS Disable",
+					Description: `Value - Mode 1 - M2M QoS Enable and CHA QoS Disable for configuring CrQos token.`,
+				},
+				resource.Attribute{
+					Name:        "Mode 2 - M2M QoS Enable and CHA QoS Enable",
+					Description: `Value - Mode 2 - M2M QoS Enable and CHA QoS Enable for configuring CrQos token.`,
+				},
+				resource.Attribute{
 					Name:        "Recipe 1",
 					Description: `Value - Recipe 1 for configuring CrQos token.`,
 				},
@@ -1886,6 +2274,14 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "Default",
 					Description: `Value - Default for configuring CrfastgoConfig token.`,
+				},
+				resource.Attribute{
+					Name:        "Disable optimization",
+					Description: `Value - Disable optimization for configuring CrfastgoConfig token.`,
+				},
+				resource.Attribute{
+					Name:        "Enable optimization",
+					Description: `Value - Enable optimization for configuring CrfastgoConfig token.`,
 				},
 				resource.Attribute{
 					Name:        "Option 1",
@@ -1996,12 +2392,80 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "disabled",
-					Description: `Value - disabled for configuring DramSwThermalThrottling token.`,
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring EadrSupport token.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Value - disabled for configuring EadrSupport token.`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `Value - enabled for configuring DramSwThermalThrottling token.`,
+					Description: `Value - enabled for configuring EadrSupport token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring EdpcEn token.`,
+				},
+				resource.Attribute{
+					Name:        "On Fatal Error",
+					Description: `Value - On Fatal Error for configuring EdpcEn token.`,
+				},
+				resource.Attribute{
+					Name:        "On Fatal and Non-Fatal Errors",
+					Description: `Value - On Fatal and Non-Fatal Errors for configuring EdpcEn token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -2050,6 +2514,22 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "disabled",
 					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Change to New Random Owner EPOCHs",
+					Description: `Value - Change to New Random Owner EPOCHs for configuring EpochUpdate token.`,
+				},
+				resource.Attribute{
+					Name:        "Manual User Defined Owner EPOCHs",
+					Description: `Value - Manual User Defined Owner EPOCHs for configuring EpochUpdate token.`,
+				},
+				resource.Attribute{
+					Name:        "SGX Owner EPOCH activated",
+					Description: `Value - SGX Owner EPOCH activated for configuring EpochUpdate token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -2212,6 +2692,18 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "Base",
 					Description: `Value - Base for configuring IntelSpeedSelect token.`,
 				},
@@ -2222,6 +2714,14 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "Config 2",
 					Description: `Value - Config 2 for configuring IntelSpeedSelect token.`,
+				},
+				resource.Attribute{
+					Name:        "Config 3",
+					Description: `Value - Config 3 for configuring IntelSpeedSelect token.`,
+				},
+				resource.Attribute{
+					Name:        "Config 4",
+					Description: `Value - Config 4 for configuring IntelSpeedSelect token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -2408,12 +2908,16 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
-					Name:        "enabled",
-					Description: `Enables the BIOS setting.`,
+					Name:        "Auto",
+					Description: `Value - Auto for configuring KtiPrefetch token.`,
 				},
 				resource.Attribute{
 					Name:        "disabled",
-					Description: `Disables the BIOS setting.`,
+					Description: `Value - disabled for configuring KtiPrefetch token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring KtiPrefetch token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -2562,6 +3066,18 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "power-saving-mode",
 					Description: `Value - power-saving-mode for configuring LvDdrMode token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -2768,6 +3284,18 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "Test Only",
+					Description: `Value - Test Only for configuring OperationMode token.`,
+				},
+				resource.Attribute{
+					Name:        "Test and Repair",
+					Description: `Value - Test and Repair for configuring OperationMode token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "enabled",
 					Description: `Enables the BIOS setting.`,
 				},
@@ -2796,6 +3324,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "5-minutes",
+					Description: `Value - 5-minutes for configuring OsBootWatchdogTimerTimeout token.`,
+				},
+				resource.Attribute{
 					Name:        "10-minutes",
 					Description: `Value - 10-minutes for configuring OsBootWatchdogTimerTimeout token.`,
 				},
@@ -2806,10 +3338,6 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "20-minutes",
 					Description: `Value - 20-minutes for configuring OsBootWatchdogTimerTimeout token.`,
-				},
-				resource.Attribute{
-					Name:        "5-minutes",
-					Description: `Value - 5-minutes for configuring OsBootWatchdogTimerTimeout token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -2872,6 +3400,18 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "disabled",
 					Description: `Value - disabled for configuring PartialMirrorModeConfig token.`,
 				},
@@ -2888,12 +3428,16 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
-					Name:        "enabled",
-					Description: `Enables the BIOS setting.`,
+					Name:        "disabled",
+					Description: `Value - disabled for configuring PatrolScrub token.`,
 				},
 				resource.Attribute{
-					Name:        "disabled",
-					Description: `Disables the BIOS setting.`,
+					Name:        "Enable at End of POST",
+					Description: `Value - Enable at End of POST for configuring PatrolScrub token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring PatrolScrub token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -2994,6 +3538,114 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "ZeroPointFive",
 					Description: `Value - ZeroPointFive for configuring PciePllSsc token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring PcieSlotMraid1linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring PcieSlotMraid1linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring PcieSlotMraid1linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring PcieSlotMraid1linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring PcieSlotMraid1linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring PcieSlotMraid1linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring PcieSlotMraid2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring PcieSlotMraid2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring PcieSlotMraid2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring PcieSlotMraid2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring PcieSlotMraid2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring PcieSlotMraid2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring PcieSlotMstorraidLinkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring PcieSlotMstorraidLinkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring PcieSlotMstorraidLinkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring PcieSlotMstorraidLinkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring PcieSlotMstorraidLinkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring PcieSlotMstorraidLinkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -3252,6 +3904,18 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring PostPackageRepair token.`,
+				},
+				resource.Attribute{
+					Name:        "Hard PPR",
+					Description: `Value - Hard PPR for configuring PostPackageRepair token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "enabled",
 					Description: `Enables the BIOS setting.`,
 				},
@@ -3368,6 +4032,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - os for configuring PwrPerfTuning token.`,
 				},
 				resource.Attribute{
+					Name:        "peci",
+					Description: `Value - peci for configuring PwrPerfTuning token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -3398,6 +4066,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "10.4GT/s",
 					Description: `Value - 10.4GT/s for configuring QpiLinkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "11.2GT/s",
+					Description: `Value - 11.2GT/s for configuring QpiLinkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "9.6GT/s",
@@ -3532,6 +4204,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - Hard PPR for configuring SelectPprType token.`,
 				},
 				resource.Attribute{
+					Name:        "Soft PPR",
+					Description: `Value - Soft PPR for configuring SelectPprType token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -3558,6 +4234,66 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "Auto",
 					Description: `Value - Auto for configuring Sev token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -3736,6 +4472,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN3 for configuring Slot1linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring Slot1linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -3778,6 +4518,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN3",
 					Description: `Value - GEN3 for configuring Slot2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring Slot2linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -3824,6 +4568,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN3 for configuring Slot3linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring Slot3linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -3866,6 +4614,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN3",
 					Description: `Value - GEN3 for configuring Slot4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring Slot4linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -3912,6 +4664,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN3 for configuring Slot5linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring Slot5linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -3954,6 +4710,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN3",
 					Description: `Value - GEN3 for configuring Slot6linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring Slot6linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -4000,6 +4760,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN3 for configuring Slot7linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring Slot7linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -4044,6 +4808,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN3 for configuring Slot8linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring Slot8linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -4086,6 +4854,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN3",
 					Description: `Value - GEN3 for configuring Slot9linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring Slot9linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -4137,6 +4909,210 @@ Policy for setting BIOS tokens on the endpoint.
 				},
 				resource.Attribute{
 					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme10linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme10linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme10linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme10linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme10linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme10linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme11linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme11linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme11linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme11linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme11linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme11linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme12linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme12linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme12linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme12linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme12linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme12linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
 					Description: `Value - Auto for configuring SlotFrontNvme1linkSpeed token.`,
 				},
 				resource.Attribute{
@@ -4154,6 +5130,82 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN3",
 					Description: `Value - GEN3 for configuring SlotFrontNvme1linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme1linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -4178,6 +5230,302 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN3",
 					Description: `Value - GEN3 for configuring SlotFrontNvme2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme5linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme5linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme5linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme5linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme5linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme5linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme6linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme6linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme6linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme6linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme6linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme6linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme7linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme7linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme7linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme7linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme7linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme7linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme8linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme8linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme8linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme8linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme8linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme8linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme9linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme9linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme9linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme9linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme9linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme9linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -4436,6 +5784,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN3 for configuring SlotMlomLinkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotMlomLinkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -4478,6 +5830,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN3",
 					Description: `Value - GEN3 for configuring SlotMraidLinkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotMraidLinkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -4856,6 +6212,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN3 for configuring SlotRearNvme1linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotRearNvme1linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -4892,6 +6252,50 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN3 for configuring SlotRearNvme2linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotRearNvme2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotRearNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotRearNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotRearNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotRearNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotRearNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotRearNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -4908,12 +6312,28 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
-					Name:        "enabled",
-					Description: `Enables the BIOS setting.`,
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotRearNvme4linkSpeed token.`,
 				},
 				resource.Attribute{
-					Name:        "disabled",
-					Description: `Disables the BIOS setting.`,
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotRearNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotRearNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotRearNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotRearNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotRearNvme4linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5356,16 +6776,16 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - pc-ansi for configuring TerminalType token.`,
 				},
 				resource.Attribute{
-					Name:        "vt-utf8",
-					Description: `Value - vt-utf8 for configuring TerminalType token.`,
-				},
-				resource.Attribute{
 					Name:        "vt100",
 					Description: `Value - vt100 for configuring TerminalType token.`,
 				},
 				resource.Attribute{
 					Name:        "vt100-plus",
 					Description: `Value - vt100-plus for configuring TerminalType token.`,
+				},
+				resource.Attribute{
+					Name:        "vt-utf8",
+					Description: `Value - vt-utf8 for configuring TerminalType token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5378,6 +6798,18 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "disabled",
 					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `Value - None for configuring TpmPendingOperation token.`,
+				},
+				resource.Attribute{
+					Name:        "TpmClear",
+					Description: `Value - TpmClear for configuring TpmPendingOperation token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5442,6 +6874,18 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "disabled",
 					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Disable (All2All)",
+					Description: `Value - Disable (All2All) for configuring UmaBasedClustering token.`,
+				},
+				resource.Attribute{
+					Name:        "Hemisphere (2-clusters)",
+					Description: `Value - Hemisphere (2-clusters) for configuring UmaBasedClustering token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5578,6 +7022,18 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "disabled",
 					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "1LM",
+					Description: `Value - 1LM for configuring VolMemoryMode token.`,
+				},
+				resource.Attribute{
+					Name:        "2LM",
+					Description: `Value - 2LM for configuring VolMemoryMode token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5739,9 +7195,9 @@ Boot order policy models a reusable boot order configuration that can be applied
 			Name:             "",
 			Type:             "intersight_capability_adapter_unit_descriptor",
 			Category:         "capability",
-			ShortDescription: `Descriptor that uniquely identifies an adaptor.`,
+			ShortDescription: `Descriptor that uniquely identifies an adapter.`,
 			Description: `
-Descriptor that uniquely identifies an adaptor.
+Descriptor that uniquely identifies an adapter.
 `,
 			Keywords: []string{
 				"capability",
@@ -6714,6 +8170,35 @@ Used to download or install connector packs on the target device.
 				resource.Attribute{
 					Name:        "Deployed",
 					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_crd_custom_resource",
+			Category:         "crd",
+			ShortDescription: `Custom kubernetes resource launcher service.`,
+			Description: `
+Custom kubernetes resource launcher service.
+`,
+			Keywords: []string{
+				"crd",
+				"custom",
+				"resource",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_crd_custom_resource` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_crd_custom_resource.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -8233,6 +9718,10 @@ Firmware upgrade operation for chassis that downloads the image located at Cisco
 					Description: `Direct upgrade SD upgrade full.`,
 				},
 				resource.Attribute{
+					Name:        "download_only",
+					Description: `Direct upgrade image download only.`,
+				},
+				resource.Attribute{
 					Name:        "upgrade_full",
 					Description: `The upgrade downloads or mounts the image, and reboots immediately for an upgrade.`,
 				},
@@ -9436,6 +10925,10 @@ Firmware upgrade operation for Fabric Interconnects that downloads the image loc
 					Description: `Direct upgrade SD upgrade full.`,
 				},
 				resource.Attribute{
+					Name:        "download_only",
+					Description: `Direct upgrade image download only.`,
+				},
+				resource.Attribute{
 					Name:        "upgrade_full",
 					Description: `The upgrade downloads or mounts the image, and reboots immediately for an upgrade.`,
 				},
@@ -9624,6 +11117,10 @@ Firmware upgrade operation for rack and blade servers that downloads the image l
 				resource.Attribute{
 					Name:        "sd_upgrade_full",
 					Description: `Direct upgrade SD upgrade full.`,
+				},
+				resource.Attribute{
+					Name:        "download_only",
+					Description: `Direct upgrade image download only.`,
 				},
 				resource.Attribute{
 					Name:        "upgrade_full",
@@ -11087,7 +12584,11 @@ The beta features enabled for the specified account.
 				},
 				resource.Attribute{
 					Name:        "TerraformCloud",
-					Description: `Enables an ability to create Terraform Cloud. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.`,
+					Description: `Enables an ability to create Terraform Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "WashingtonEFT",
+					Description: `Support for EFT customers to use Washington firmware images for upgrades. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.`,
 				},
 				resource.Attribute{
 					Name:        "Modified",
@@ -12994,6 +14495,18 @@ Virtual KVM Session that provides Single Sign-On access to the vKVM console of t
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "Active",
+					Description: `The session is currently active.`,
+				},
+				resource.Attribute{
+					Name:        "Ended",
+					Description: `The session has ended normally.`,
+				},
+				resource.Attribute{
+					Name:        "Terminated",
+					Description: `The session was terminated by an admin.`,
+				},
+				resource.Attribute{
 					Name:        "Modified",
 					Description: `Version created every time an object is modified.`,
 				},
@@ -13022,6 +14535,18 @@ This must be specified while creating the vKVM session to gain tunneled access.
 				"tunnel",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Active",
+					Description: `The session is currently active.`,
+				},
+				resource.Attribute{
+					Name:        "Ended",
+					Description: `The session has ended normally.`,
+				},
+				resource.Attribute{
+					Name:        "Terminated",
+					Description: `The session was terminated by an admin.`,
+				},
 				resource.Attribute{
 					Name:        "Modified",
 					Description: `Version created every time an object is modified.`,
@@ -13348,6 +14873,36 @@ Enable or disable Dynamic DNS, add or update DNS settings for IPv4 and IPv6 on C
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_notification_account_subscription",
+			Category:         "notification",
+			ShortDescription: `AccountSubscription is a concrete type that extends abstract Subscription type and intent to be used only for account level subscriptions by Account Administrator.`,
+			Description: `
+AccountSubscription is a concrete type that extends abstract Subscription type and intent to be used only
+for account level subscriptions by Account Administrator.
+`,
+			Keywords: []string{
+				"notification",
+				"account",
+				"subscription",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_notification_account_subscription` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_notification_account_subscription.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_ntp_policy",
 			Category:         "ntp",
 			ShortDescription: `Policy to configure the NTP Servers.`,
@@ -13414,6 +14969,229 @@ Monitors the status of operator deployed in the assist.
 				resource.Attribute{
 					Name:        "Deployed",
 					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_oprs_deployment` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_oprs_deployment.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_oprs_sync_target_list_message",
+			Category:         "oprs",
+			ShortDescription: `The targets sync messages are sent to assist and back to euclid for reconciliation.`,
+			Description: `
+The targets sync messages are sent to assist and back to euclid for reconciliation.
+`,
+			Keywords: []string{
+				"oprs",
+				"sync",
+				"target",
+				"list",
+				"message",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "APIC",
+					Description: `An Application Policy Infrastructure Controller cluster.`,
+				},
+				resource.Attribute{
+					Name:        "DCNM",
+					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+				},
+				resource.Attribute{
+					Name:        "UCSFI",
+					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+				},
+				resource.Attribute{
+					Name:        "UCSFIISM",
+					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+				},
+				resource.Attribute{
+					Name:        "IMC",
+					Description: `A standalone UCS Server Integrated Management Controller.`,
+				},
+				resource.Attribute{
+					Name:        "IMCM4",
+					Description: `A standalone UCS M4 Server.`,
+				},
+				resource.Attribute{
+					Name:        "IMCM5",
+					Description: `A standalone UCS M5 server.`,
+				},
+				resource.Attribute{
+					Name:        "IMCRack",
+					Description: `A standalone UCS M6 and above server.`,
+				},
+				resource.Attribute{
+					Name:        "UCSIOM",
+					Description: `An UCS Chassis IO module.`,
+				},
+				resource.Attribute{
+					Name:        "HX",
+					Description: `A HyperFlex storage controller.`,
+				},
+				resource.Attribute{
+					Name:        "HyperFlexAP",
+					Description: `A HyperFlex Application Platform.`,
+				},
+				resource.Attribute{
+					Name:        "UCSD",
+					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightAppliance",
+					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightAssist",
+					Description: `A Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "PureStorageFlashArray",
+					Description: `A Pure Storage FlashArray device.`,
+				},
+				resource.Attribute{
+					Name:        "NetAppOntap",
+					Description: `A NetApp ONTAP storage system.`,
+				},
+				resource.Attribute{
+					Name:        "NetAppActiveIqUnifiedManager",
+					Description: `A NetApp Active IQ Unified Manager.`,
+				},
+				resource.Attribute{
+					Name:        "EmcScaleIo",
+					Description: `An EMC ScaleIO storage system.`,
+				},
+				resource.Attribute{
+					Name:        "EmcVmax",
+					Description: `An EMC VMAX storage system.`,
+				},
+				resource.Attribute{
+					Name:        "EmcVplex",
+					Description: `An EMC VPLEX storage system.`,
+				},
+				resource.Attribute{
+					Name:        "EmcXtremIo",
+					Description: `An EMC XtremIO storage system.`,
+				},
+				resource.Attribute{
+					Name:        "VmwareVcenter",
+					Description: `A VMware vCenter device that manages Virtual Machines.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftHyperV",
+					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+				},
+				resource.Attribute{
+					Name:        "AppDynamics",
+					Description: `An AppDynamics controller that monitors applications.`,
+				},
+				resource.Attribute{
+					Name:        "Dynatrace",
+					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+				},
+				resource.Attribute{
+					Name:        "ReadHatOpenStack",
+					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
+				},
+				resource.Attribute{
+					Name:        "CloudFoundry",
+					Description: `An open source cloud platform on which developers can build, deploy, run and scale applications.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureApplicationInsights",
+					Description: `A feature of Azure Monitor, is an extensible Application Performance Management service for developers and DevOps professionals to monitor their live applications.`,
+				},
+				resource.Attribute{
+					Name:        "OpenStack",
+					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftSqlServer",
+					Description: `A Microsoft SQL database server.`,
+				},
+				resource.Attribute{
+					Name:        "Kubernetes",
+					Description: `A Kubernetes cluster that runs containerized applications.`,
+				},
+				resource.Attribute{
+					Name:        "AmazonWebService",
+					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+				},
+				resource.Attribute{
+					Name:        "AmazonWebServiceBilling",
+					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureServicePrincipal",
+					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureEnterpriseAgreement",
+					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+				},
+				resource.Attribute{
+					Name:        "DellCompellent",
+					Description: `A Dell Compellent storage system.`,
+				},
+				resource.Attribute{
+					Name:        "HPE3Par",
+					Description: `A HPE 3PAR storage system.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatEnterpriseVirtualization",
+					Description: `A Red Hat Enterprise Virtualization Hypervisor system that manages Virtual Machines.`,
+				},
+				resource.Attribute{
+					Name:        "NutanixAcropolis",
+					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+				},
+				resource.Attribute{
+					Name:        "HPEOneView",
+					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceEngine",
+					Description: `Cisco Application Services Engine. Cisco Application Services Engine is a platform to deploy and manage applications.`,
+				},
+				resource.Attribute{
+					Name:        "HitachiVirtualStoragePlatform",
+					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+				},
+				resource.Attribute{
+					Name:        "IMCBlade",
+					Description: `An Intersight managed UCS Blade Server.`,
+				},
+				resource.Attribute{
+					Name:        "TerraformCloud",
+					Description: `A Terraform Cloud account.`,
+				},
+				resource.Attribute{
+					Name:        "TerraformAgent",
+					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+				},
+				resource.Attribute{
+					Name:        "CustomTarget",
+					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+				},
+				resource.Attribute{
+					Name:        "HTTPEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+				},
+				resource.Attribute{
+					Name:        "CiscoCatalyst",
+					Description: `A Cisco Catalyst networking switch device.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_oprs_sync_target_list_message` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_oprs_sync_target_list_message.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -13499,7 +15277,7 @@ in the model can be populated along with respective validation.
 				},
 				resource.Attribute{
 					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `: JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `properties` + "`" + `:(HashMap) - Primitive data type properties. This complex property has following sub-properties: + ` + "`" + `constraints` + "`" + `:(HashMap) - Constraints that must be applied to the parameter value supplied for this data type. This complex property has following sub-properties: + ` + "`" + `enum_list` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `label` + "`" + `:(string) Label for the enum value. A user friendly short string to identify the enum value. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), single quote ('), forward slash (/), or an underscore (_). + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) Enum value for this enum entry. Value will be passed to the workflow as string type for execution. Value can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), forward slash (/), or an underscore (_). + ` + "`" + `max` + "`" + `:(float) Allowed maximum value of the parameter if parameter is integer/float or maximum length of the parameter if the parameter is string. When max and min are set to 0, then the limits are not checked. The maximum number supported is 1.797693134862315708145274237317043567981e+308 or (2`,
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `properties` + "`" + `:(HashMap) - Primitive data type properties. This complex property has following sub-properties: + ` + "`" + `constraints` + "`" + `:(HashMap) - Constraints that must be applied to the parameter value supplied for this data type. This complex property has following sub-properties: + ` + "`" + `enum_list` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `label` + "`" + `:(string) Label for the enum value. A user friendly short string to identify the enum value. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), single quote ('), forward slash (/), or an underscore (_). + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) Enum value for this enum entry. Value will be passed to the workflow as string type for execution. Value can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), forward slash (/), or an underscore (_). + ` + "`" + `max` + "`" + `:(float) Allowed maximum value of the parameter if parameter is integer/float or maximum length of the parameter if the parameter is string. When max and min are set to 0, then the limits are not checked. The maximum number supported is 1.797693134862315708145274237317043567981e+308 or (2`,
 				},
 				resource.Attribute{
 					Name:        "string",
@@ -13523,7 +15301,7 @@ in the model can be populated along with respective validation.
 				},
 				resource.Attribute{
 					Name:        "enum",
-					Description: `Enum to specify a enum data type which is a list of pre-defined strings. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `value` + "`" + `: Value for placeholder provided by user. + ` + "`" + `answers` + "`" + `:(HashMap) -(Computed) Answers provided by user for the unattended OS installation. This complex property has following sub-properties: + ` + "`" + `answer_file` + "`" + `:(string) If the source of the answers is a static file, the content of the file is stored as valuein this property.The value is mandatory only when the 'Source' property has been set to 'File'. + ` + "`" + `hostname` + "`" + `:(string) Hostname to be configured for the server in the OS. + ` + "`" + `ip_config_type` + "`" + `:(string) IP configuration type. Values are Static or Dynamic configuration of IP.In case of static IP configuration, IP address, gateway and other details needto be populated. In case of dynamic the IP configuration is obtained dynamicallyfrom DHCP.`,
+					Description: `Enum to specify a enum data type which is a list of pre-defined strings. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `value` + "`" + `:(JSON as string) Value for placeholder provided by user. + ` + "`" + `answers` + "`" + `:(HashMap) -(Computed) Answers provided by user for the unattended OS installation. This complex property has following sub-properties: + ` + "`" + `answer_file` + "`" + `:(string) If the source of the answers is a static file, the content of the file is stored as valuein this property.The value is mandatory only when the 'Source' property has been set to 'File'. + ` + "`" + `hostname` + "`" + `:(string) Hostname to be configured for the server in the OS. + ` + "`" + `ip_config_type` + "`" + `:(string) IP configuration type. Values are Static or Dynamic configuration of IP.In case of static IP configuration, IP address, gateway and other details needto be populated. In case of dynamic the IP configuration is obtained dynamicallyfrom DHCP.`,
 				},
 				resource.Attribute{
 					Name:        "static",
@@ -13639,7 +15417,7 @@ os.OsInstall object.
 				},
 				resource.Attribute{
 					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `: JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `properties` + "`" + `:(HashMap) - Primitive data type properties. This complex property has following sub-properties: + ` + "`" + `constraints` + "`" + `:(HashMap) - Constraints that must be applied to the parameter value supplied for this data type. This complex property has following sub-properties: + ` + "`" + `enum_list` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `label` + "`" + `:(string) Label for the enum value. A user friendly short string to identify the enum value. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), single quote ('), forward slash (/), or an underscore (_). + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) Enum value for this enum entry. Value will be passed to the workflow as string type for execution. Value can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), forward slash (/), or an underscore (_). + ` + "`" + `max` + "`" + `:(float) Allowed maximum value of the parameter if parameter is integer/float or maximum length of the parameter if the parameter is string. When max and min are set to 0, then the limits are not checked. The maximum number supported is 1.797693134862315708145274237317043567981e+308 or (2`,
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `properties` + "`" + `:(HashMap) - Primitive data type properties. This complex property has following sub-properties: + ` + "`" + `constraints` + "`" + `:(HashMap) - Constraints that must be applied to the parameter value supplied for this data type. This complex property has following sub-properties: + ` + "`" + `enum_list` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `label` + "`" + `:(string) Label for the enum value. A user friendly short string to identify the enum value. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), single quote ('), forward slash (/), or an underscore (_). + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) Enum value for this enum entry. Value will be passed to the workflow as string type for execution. Value can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), forward slash (/), or an underscore (_). + ` + "`" + `max` + "`" + `:(float) Allowed maximum value of the parameter if parameter is integer/float or maximum length of the parameter if the parameter is string. When max and min are set to 0, then the limits are not checked. The maximum number supported is 1.797693134862315708145274237317043567981e+308 or (2`,
 				},
 				resource.Attribute{
 					Name:        "string",
@@ -13663,7 +15441,7 @@ os.OsInstall object.
 				},
 				resource.Attribute{
 					Name:        "enum",
-					Description: `Enum to specify a enum data type which is a list of pre-defined strings. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `value` + "`" + `: Value for placeholder provided by user.`,
+					Description: `Enum to specify a enum data type which is a list of pre-defined strings. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `value` + "`" + `:(JSON as string) Value for placeholder provided by user.`,
 				},
 				resource.Attribute{
 					Name:        "Modified",
@@ -13715,7 +15493,7 @@ using workflow engine MO workflow.WorkflowInfo.
 				},
 				resource.Attribute{
 					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `: JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `properties` + "`" + `:(HashMap) - Primitive data type properties. This complex property has following sub-properties: + ` + "`" + `constraints` + "`" + `:(HashMap) - Constraints that must be applied to the parameter value supplied for this data type. This complex property has following sub-properties: + ` + "`" + `enum_list` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `label` + "`" + `:(string) Label for the enum value. A user friendly short string to identify the enum value. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), single quote ('), forward slash (/), or an underscore (_). + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) Enum value for this enum entry. Value will be passed to the workflow as string type for execution. Value can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), forward slash (/), or an underscore (_). + ` + "`" + `max` + "`" + `:(float) Allowed maximum value of the parameter if parameter is integer/float or maximum length of the parameter if the parameter is string. When max and min are set to 0, then the limits are not checked. The maximum number supported is 1.797693134862315708145274237317043567981e+308 or (2`,
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `properties` + "`" + `:(HashMap) - Primitive data type properties. This complex property has following sub-properties: + ` + "`" + `constraints` + "`" + `:(HashMap) - Constraints that must be applied to the parameter value supplied for this data type. This complex property has following sub-properties: + ` + "`" + `enum_list` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `label` + "`" + `:(string) Label for the enum value. A user friendly short string to identify the enum value. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), single quote ('), forward slash (/), or an underscore (_). + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) Enum value for this enum entry. Value will be passed to the workflow as string type for execution. Value can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), forward slash (/), or an underscore (_). + ` + "`" + `max` + "`" + `:(float) Allowed maximum value of the parameter if parameter is integer/float or maximum length of the parameter if the parameter is string. When max and min are set to 0, then the limits are not checked. The maximum number supported is 1.797693134862315708145274237317043567981e+308 or (2`,
 				},
 				resource.Attribute{
 					Name:        "string",
@@ -13739,7 +15517,7 @@ using workflow engine MO workflow.WorkflowInfo.
 				},
 				resource.Attribute{
 					Name:        "enum",
-					Description: `Enum to specify a enum data type which is a list of pre-defined strings. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `value` + "`" + `: Value for placeholder provided by user.`,
+					Description: `Enum to specify a enum data type which is a list of pre-defined strings. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `value` + "`" + `:(JSON as string) Value for placeholder provided by user.`,
 				},
 				resource.Attribute{
 					Name:        "static",
@@ -13989,8 +15767,24 @@ Base Schedule config which contains all the required inputs to do schedule on a 
 					Description: `Allows the user to run the backup after a certain number of hours. + ` + "`" + `hours` + "`" + `:(int) The frequency, in hours, at which the backup schedule runs.`,
 				},
 				resource.Attribute{
+					Name:        "8",
+					Description: `The backup interval is 8 hours.`,
+				},
+				resource.Attribute{
+					Name:        "4",
+					Description: `The backup interval is 4 hours.`,
+				},
+				resource.Attribute{
+					Name:        "12",
+					Description: `The backup interval is 12 hours.`,
+				},
+				resource.Attribute{
+					Name:        "16",
+					Description: `The backup interval is 16 hours.`,
+				},
+				resource.Attribute{
 					Name:        "20",
-					Description: `+ ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.`,
+					Description: `The backup interval is 20 hours. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.`,
 				},
 				resource.Attribute{
 					Name:        "Modified",
@@ -14045,86 +15839,6 @@ A group of REST resources, such as a group of compute.Blade MOs. A ResourceGroup
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "intersight_resourcepool_lease",
-			Category:         "resourcepool",
-			ShortDescription: `Lease API invoked by passing resource pool, lease API will reserve or un-reserve the resource from the pool.`,
-			Description: `
-Lease API invoked by passing resource pool, lease API will reserve or un-reserve the resource from the pool.
-`,
-			Keywords: []string{
-				"resourcepool",
-				"lease",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "Modified",
-					Description: `Version created every time an object is modified.`,
-				},
-				resource.Attribute{
-					Name:        "Configured",
-					Description: `Version created every time an object is configured to the service profile.`,
-				},
-				resource.Attribute{
-					Name:        "Deployed",
-					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_resourcepool_lease` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_resourcepool_lease.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_resourcepool_pool",
-			Category:         "resourcepool",
-			ShortDescription: `Pool represents a collection of resource. The resource can be any MO which has PoolResource meta enabled. The resource in the pool can be reserved or unreserved by using Lease API, reserved/unreserved resources can be used in the entities like server profiles.`,
-			Description: `
-Pool represents a collection of resource. The resource can be any MO which has PoolResource meta enabled. The resource in the pool can be reserved or unreserved by using Lease API, reserved/unreserved resources can be used in the entities like server profiles.
-`,
-			Keywords: []string{
-				"resourcepool",
-				"pool",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "sequential",
-					Description: `Identifiers are assigned in a sequential order.`,
-				},
-				resource.Attribute{
-					Name:        "default",
-					Description: `Assignment order is decided by the system.`,
-				},
-				resource.Attribute{
-					Name:        "Static",
-					Description: `The resources in the pool will not be changed until user manually update it.`,
-				},
-				resource.Attribute{
-					Name:        "Dynamic",
-					Description: `The resources in the pool will be updated dynamically based on the condition.`,
-				},
-				resource.Attribute{
-					Name:        "None",
-					Description: `The resource cannot consider for Resource Pool.`,
-				},
-				resource.Attribute{
-					Name:        "Server",
-					Description: `Resource Pool holds the server kind of resources, example - RackServer, Blade.`,
-				},
-				resource.Attribute{
-					Name:        "Modified",
-					Description: `Version created every time an object is modified.`,
-				},
-				resource.Attribute{
-					Name:        "Configured",
-					Description: `Version created every time an object is configured to the service profile.`,
-				},
-				resource.Attribute{
-					Name:        "Deployed",
-					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_resourcepool_pool` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_resourcepool_pool.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "intersight_sdcard_policy",
 			Category:         "sdcard",
 			ShortDescription: `Policy for configuring SD Card settings on endpoint.`,
@@ -14142,7 +15856,7 @@ Policy for configuring SD Card settings on endpoint.
 				},
 				resource.Attribute{
 					Name:        "Utility",
-					Description: `This partition contains virtual drives for utilities such as SCU, HUU, Drivers and Diagnostics. + ` + "`" + `virtual_drives` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `additional_properties` + "`" + `:(JSON) - Additional Properties as per object type, can be added as JSON using ` + "`" + `jsonencode()` + "`" + `. Allowed Types are: [sdcard.Diagnostics](#sdcardDiagnostics) [sdcard.Drivers](#sdcardDrivers) [sdcard.HostUpgradeUtility](#sdcardHostUpgradeUtility) [sdcard.OperatingSystem](#sdcardOperatingSystem) [sdcard.ServerConfigurationUtility](#sdcardServerConfigurationUtility) [sdcard.UserPartition](#sdcardUserPartition) + ` + "`" + `enable` + "`" + `:(bool) Enable the respective virtual drive to be available to the host. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type.`,
+					Description: `This partition contains virtual drives for utilities such as SCU, HUU, Drivers and Diagnostics. + ` + "`" + `virtual_drives` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `additional_properties` + "`" + `:(JSON as string) - Additional Properties as per object type, can be added as JSON using ` + "`" + `jsonencode()` + "`" + `. Allowed Types are: [sdcard.Diagnostics](#sdcardDiagnostics) [sdcard.Drivers](#sdcardDrivers) [sdcard.HostUpgradeUtility](#sdcardHostUpgradeUtility) [sdcard.OperatingSystem](#sdcardOperatingSystem) [sdcard.ServerConfigurationUtility](#sdcardServerConfigurationUtility) [sdcard.UserPartition](#sdcardUserPartition) + ` + "`" + `enable` + "`" + `:(bool) Enable the respective virtual drive to be available to the host. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type.`,
 				},
 				resource.Attribute{
 					Name:        "Modified",
@@ -14536,7 +16250,23 @@ Policy to configure SNMP settings on endpoint.
 				},
 				resource.Attribute{
 					Name:        "SHA",
-					Description: `SHA protocol is used to authenticate SNMP user. + ` + "`" + `is_auth_password_set` + "`" + `:(bool)(Computed) Indicates whether the value of the 'authPassword' property has been set. + ` + "`" + `is_privacy_password_set` + "`" + `:(bool)(Computed) Indicates whether the value of the 'privacyPassword' property has been set. + ` + "`" + `name` + "`" + `:(string) SNMP username. Must have a minimum of 1 and and a maximum of 31 characters. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `privacy_password` + "`" + `:(string) Privacy password for the user. + ` + "`" + `privacy_type` + "`" + `:(string) Privacy protocol for the user.`,
+					Description: `SHA protocol is used to authenticate SNMP user.`,
+				},
+				resource.Attribute{
+					Name:        "SHA-224",
+					Description: `SHA-224 protocol is used to authenticate SNMP user.`,
+				},
+				resource.Attribute{
+					Name:        "SHA-256",
+					Description: `SHA-256 protocol is used to authenticate SNMP user.`,
+				},
+				resource.Attribute{
+					Name:        "SHA-384",
+					Description: `SHA-384 protocol is used to authenticate SNMP user.`,
+				},
+				resource.Attribute{
+					Name:        "SHA-512",
+					Description: `SHA-512 protocol is used to authenticate SNMP user. + ` + "`" + `is_auth_password_set` + "`" + `:(bool)(Computed) Indicates whether the value of the 'authPassword' property has been set. + ` + "`" + `is_privacy_password_set` + "`" + `:(bool)(Computed) Indicates whether the value of the 'privacyPassword' property has been set. + ` + "`" + `name` + "`" + `:(string) SNMP username. Must have a minimum of 1 and and a maximum of 31 characters. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `privacy_password` + "`" + `:(string) Privacy password for the user. + ` + "`" + `privacy_type` + "`" + `:(string) Privacy protocol for the user.`,
 				},
 				resource.Attribute{
 					Name:        "NA",
@@ -17338,7 +19068,7 @@ A request to collect techsupport and upload it to Intersight Storage Service. Th
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft HyperV system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
@@ -17830,6 +19560,18 @@ API to launch VMRC console to a VMware virtual machine.
 				"console",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Active",
+					Description: `The session is currently active.`,
+				},
+				resource.Attribute{
+					Name:        "Ended",
+					Description: `The session has ended normally.`,
+				},
+				resource.Attribute{
+					Name:        "Terminated",
+					Description: `The session was terminated by an admin.`,
+				},
 				resource.Attribute{
 					Name:        "Modified",
 					Description: `Version created every time an object is modified.`,
@@ -18606,7 +20348,7 @@ specification.
 				},
 				resource.Attribute{
 					Name:        "InteractiveCmd",
-					Description: `Execute an interactive SSH command on the remote server. + ` + "`" + `encrypted_aes_key` + "`" + `:(string) The secure properties that have large text content as value can be encrypted using AES key. In these cases, the AES key needs to be encrypted using the device connector public key and passed as the value for this property.The secure properties that are encrypted using the AES key are mapped against the property name with prefix 'AES' in SecureProperties dictionary. + ` + "`" + `encryption_key` + "`" + `:(string) The public key that was used to encrypt the values present in SecureProperties dictionary.If the given public key is not same as device connector's public key, an error reponse with appropriate error message is thrown back. + ` + "`" + `expect_prompts` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `expect` + "`" + `:(string) The regex of the expect prompt of the interactive command. + ` + "`" + `expect_timeout` + "`" + `:(int) The timeout for the expect prompt while executing interactive command. If timeout is not set a default of 60 seconds will be used. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `send` + "`" + `:(string) The answer string to the expect prompt. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `secure_properties` + "`" + `: A dictionary of encrypted secure values mapped against the secure property name. The values that are encrypted using AES key must be mapped against the secure property name with a 'AES' prefixDevice connector expects the message body to be a golang template and the template can use the secure property names as placeholders. + ` + "`" + `shell_prompt` + "`" + `:(string) Regex of the remote server's shell prompt. + ` + "`" + `shell_prompt_timeout` + "`" + `:(int) Expect timeout value in seconds for the shell prompt.`,
+					Description: `Execute an interactive SSH command on the remote server. + ` + "`" + `encrypted_aes_key` + "`" + `:(string) The secure properties that have large text content as value can be encrypted using AES key. In these cases, the AES key needs to be encrypted using the device connector public key and passed as the value for this property.The secure properties that are encrypted using the AES key are mapped against the property name with prefix 'AES' in SecureProperties dictionary. + ` + "`" + `encryption_key` + "`" + `:(string) The public key that was used to encrypt the values present in SecureProperties dictionary.If the given public key is not same as device connector's public key, an error reponse with appropriate error message is thrown back. + ` + "`" + `expect_prompts` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `expect` + "`" + `:(string) The regex of the expect prompt of the interactive command. + ` + "`" + `expect_timeout` + "`" + `:(int) The timeout for the expect prompt while executing interactive command. If timeout is not set a default of 60 seconds will be used. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `send` + "`" + `:(string) The answer string to the expect prompt. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `secure_properties` + "`" + `:(JSON as string) A dictionary of encrypted secure values mapped against the secure property name. The values that are encrypted using AES key must be mapped against the secure property name with a 'AES' prefixDevice connector expects the message body to be a golang template and the template can use the secure property names as placeholders. + ` + "`" + `shell_prompt` + "`" + `:(string) Regex of the remote server's shell prompt. + ` + "`" + `shell_prompt_timeout` + "`" + `:(int) Expect timeout value in seconds for the shell prompt.`,
 				},
 				resource.Attribute{
 					Name:        "Internal",
@@ -18669,7 +20411,7 @@ Captures a customized data type definition that can be used for task or workflow
 				},
 				resource.Attribute{
 					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `: JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow.`,
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow.`,
 				},
 				resource.Attribute{
 					Name:        "Modified",
@@ -18761,7 +20503,7 @@ error parameters.
 				},
 				resource.Attribute{
 					Name:        "collection",
-					Description: `The parameter value to be extracted is a collection parameter whose item typeshall be either simple type or complex type. + ` + "`" + `name` + "`" + `:(string) The name of the parameter. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `path` + "`" + `:(string) The content specific path information that identifies the parametervalue within the content. The value is usually a XPath or JSONPath or aregular expression in case of text content. + ` + "`" + `type` + "`" + `:(string) The type of the parameter. Accepted values are simple, complex,collection.`,
+					Description: `The parameter value to be extracted is a collection parameter whose item typeshall be either simple type or complex type. + ` + "`" + `name` + "`" + `:(string) The name of the parameter. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `path` + "`" + `:(string) The content specific path information that identifies the parametervalue within the content. The value is usually a XPath or JSONPath or aregular expression in case of text content. + ` + "`" + `secure` + "`" + `:(bool) The flag indicates if the extracted value is secure.This flag is applicable for parameters of type String only. + ` + "`" + `type` + "`" + `:(string) The type of the parameter. Accepted values are simple, complex,collection.`,
 				},
 				resource.Attribute{
 					Name:        "simple",
@@ -18885,7 +20627,7 @@ error parameters.
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft HyperV system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
@@ -19017,7 +20759,7 @@ error parameters.
 				},
 				resource.Attribute{
 					Name:        "collection",
-					Description: `The parameter value to be extracted is a collection parameter whose item typeshall be either simple type or complex type. + ` + "`" + `name` + "`" + `:(string) The name of the parameter. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `path` + "`" + `:(string) The content specific path information that identifies the parametervalue within the content. The value is usually a XPath or JSONPath or aregular expression in case of text content. + ` + "`" + `type` + "`" + `:(string) The type of the parameter. Accepted values are simple, complex,collection.`,
+					Description: `The parameter value to be extracted is a collection parameter whose item typeshall be either simple type or complex type. + ` + "`" + `name` + "`" + `:(string) The name of the parameter. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `path` + "`" + `:(string) The content specific path information that identifies the parametervalue within the content. The value is usually a XPath or JSONPath or aregular expression in case of text content. + ` + "`" + `secure` + "`" + `:(bool) The flag indicates if the extracted value is secure.This flag is applicable for parameters of type String only. + ` + "`" + `type` + "`" + `:(string) The type of the parameter. Accepted values are simple, complex,collection.`,
 				},
 				resource.Attribute{
 					Name:        "simple",
@@ -19222,7 +20964,7 @@ Used to define a task which can be included within a workflow. Task definition c
 				},
 				resource.Attribute{
 					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `: JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `output_definition` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `additional_properties` + "`" + `:(JSON) - Additional Properties as per object type, can be added as JSON using ` + "`" + `jsonencode()` + "`" + `. Allowed Types are: [workflow.ArrayDataType](#workflowArrayDataType) [workflow.CustomDataType](#workflowCustomDataType) [workflow.MoReferenceDataType](#workflowMoReferenceDataType) [workflow.PrimitiveDataType](#workflowPrimitiveDataType) [workflow.TargetDataType](#workflowTargetDataType) + ` + "`" + `default` + "`" + `:(HashMap) - Default value for the data type. If default value was provided and the input was required the default value will be used as the input. This complex property has following sub-properties: + ` + "`" + `is_value_set` + "`" + `:(bool)(Computed) A flag that indicates whether a default value is given or not. This flag will be useful in case of the secure parameter where the value will be filtered out in API responses. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `override` + "`" + `:(bool) Override the default value provided for the data type. When true, allow the user to enter value for the data type. + ` + "`" + `value` + "`" + `: Default value for the data type. If default value was provided and the input was required the default value will be used as the input. + ` + "`" + `description` + "`" + `:(string) Provide a detailed description of the data type. + ` + "`" + `display_meta` + "`" + `:(HashMap) - Captures the meta data needed for displaying workflow data types in Intersight User Interface. This complex property has following sub-properties: + ` + "`" + `inventory_selector` + "`" + `:(bool) Inventory selector specified for primitive data property should be used in Intersight User Interface. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `widget_type` + "`" + `:(string) Specify the widget type for data display.`,
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `output_definition` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `additional_properties` + "`" + `:(JSON as string) - Additional Properties as per object type, can be added as JSON using ` + "`" + `jsonencode()` + "`" + `. Allowed Types are: [workflow.ArrayDataType](#workflowArrayDataType) [workflow.CustomDataType](#workflowCustomDataType) [workflow.MoReferenceDataType](#workflowMoReferenceDataType) [workflow.PrimitiveDataType](#workflowPrimitiveDataType) [workflow.TargetDataType](#workflowTargetDataType) + ` + "`" + `default` + "`" + `:(HashMap) - Default value for the data type. If default value was provided and the input was required the default value will be used as the input. This complex property has following sub-properties: + ` + "`" + `is_value_set` + "`" + `:(bool)(Computed) A flag that indicates whether a default value is given or not. This flag will be useful in case of the secure parameter where the value will be filtered out in API responses. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `override` + "`" + `:(bool) Override the default value provided for the data type. When true, allow the user to enter value for the data type. + ` + "`" + `value` + "`" + `:(JSON as string) Default value for the data type. If default value was provided and the input was required the default value will be used as the input. + ` + "`" + `description` + "`" + `:(string) Provide a detailed description of the data type. + ` + "`" + `display_meta` + "`" + `:(HashMap) - Captures the meta data needed for displaying workflow data types in Intersight User Interface. This complex property has following sub-properties: + ` + "`" + `inventory_selector` + "`" + `:(bool) Inventory selector specified for primitive data property should be used in Intersight User Interface. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `widget_type` + "`" + `:(string) Specify the widget type for data display.`,
 				},
 				resource.Attribute{
 					Name:        "None",
@@ -19242,7 +20984,7 @@ Used to define a task which can be included within a workflow. Task definition c
 				},
 				resource.Attribute{
 					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `: JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `retry_count` + "`" + `:(int) The number of times a task should be tried before marking as failed. + ` + "`" + `retry_delay` + "`" + `:(int) The delay in seconds after which the the task is re-tried. + ` + "`" + `retry_policy` + "`" + `:(string) The retry policy for the task.`,
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `retry_count` + "`" + `:(int) The number of times a task should be tried before marking as failed. + ` + "`" + `retry_delay` + "`" + `:(int) The delay in seconds after which the the task is re-tried. + ` + "`" + `retry_policy` + "`" + `:(string) The retry policy for the task.`,
 				},
 				resource.Attribute{
 					Name:        "Fixed",
@@ -19314,7 +21056,7 @@ Workflow definition is a collection of tasks that are sequenced in a certain way
 				},
 				resource.Attribute{
 					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `: JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow.`,
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow.`,
 				},
 				resource.Attribute{
 					Name:        "eq",
@@ -19382,7 +21124,7 @@ Workflow definition is a collection of tasks that are sequenced in a certain way
 				},
 				resource.Attribute{
 					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `: JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow.`,
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow.`,
 				},
 				resource.Attribute{
 					Name:        "Supported",
@@ -19597,6 +21339,10 @@ Contains information for a workflow execution which is a runtime instance of wor
 					Description: `Pause reason indicates the workflow is in this state due to a task that has a status as completed with warnings.`,
 				},
 				resource.Attribute{
+					Name:        "SystemMaintenance",
+					Description: `Pause reason indicates the workflow is in this state based on actions of system admin for maintenance.`,
+				},
+				resource.Attribute{
 					Name:        "Disabled",
 					Description: `Status of the rollback action when workflow is disabled for rollback.`,
 				},
@@ -19704,225 +21450,226 @@ Contains information for a workflow execution which is a runtime instance of wor
 		"intersight_config_exporter":                                         38,
 		"intersight_config_importer":                                         39,
 		"intersight_connectorpack_connector_pack_upgrade":                    40,
-		"intersight_deviceconnector_policy":                                  41,
-		"intersight_externalsite_authorization":                              42,
-		"intersight_fabric_appliance_pc_role":                                43,
-		"intersight_fabric_appliance_role":                                   44,
-		"intersight_fabric_eth_network_control_policy":                       45,
-		"intersight_fabric_eth_network_group_policy":                         46,
-		"intersight_fabric_eth_network_policy":                               47,
-		"intersight_fabric_fc_network_policy":                                48,
-		"intersight_fabric_fc_uplink_pc_role":                                49,
-		"intersight_fabric_fc_uplink_role":                                   50,
-		"intersight_fabric_fcoe_uplink_pc_role":                              51,
-		"intersight_fabric_fcoe_uplink_role":                                 52,
-		"intersight_fabric_flow_control_policy":                              53,
-		"intersight_fabric_link_aggregation_policy":                          54,
-		"intersight_fabric_link_control_policy":                              55,
-		"intersight_fabric_multicast_policy":                                 56,
-		"intersight_fabric_pc_operation":                                     57,
-		"intersight_fabric_port_mode":                                        58,
-		"intersight_fabric_port_operation":                                   59,
-		"intersight_fabric_port_policy":                                      60,
-		"intersight_fabric_server_role":                                      61,
-		"intersight_fabric_switch_cluster_profile":                           62,
-		"intersight_fabric_switch_control_policy":                            63,
-		"intersight_fabric_switch_profile":                                   64,
-		"intersight_fabric_system_qos_policy":                                65,
-		"intersight_fabric_uplink_pc_role":                                   66,
-		"intersight_fabric_uplink_role":                                      67,
-		"intersight_fabric_vlan":                                             68,
-		"intersight_fabric_vsan":                                             69,
-		"intersight_fcpool_pool":                                             70,
-		"intersight_firmware_bios_descriptor":                                71,
-		"intersight_firmware_board_controller_descriptor":                    72,
-		"intersight_firmware_chassis_upgrade":                                73,
-		"intersight_firmware_cimc_descriptor":                                74,
-		"intersight_firmware_dimm_descriptor":                                75,
-		"intersight_firmware_distributable":                                  76,
-		"intersight_firmware_drive_descriptor":                               77,
-		"intersight_firmware_driver_distributable":                           78,
-		"intersight_firmware_eula":                                           79,
-		"intersight_firmware_gpu_descriptor":                                 80,
-		"intersight_firmware_hba_descriptor":                                 81,
-		"intersight_firmware_iom_descriptor":                                 82,
-		"intersight_firmware_mswitch_descriptor":                             83,
-		"intersight_firmware_nxos_descriptor":                                84,
-		"intersight_firmware_pcie_descriptor":                                85,
-		"intersight_firmware_psu_descriptor":                                 86,
-		"intersight_firmware_sas_expander_descriptor":                        87,
-		"intersight_firmware_server_configuration_utility_distributable":     88,
-		"intersight_firmware_storage_controller_descriptor":                  89,
-		"intersight_firmware_switch_upgrade":                                 90,
-		"intersight_firmware_unsupported_version_upgrade":                    91,
-		"intersight_firmware_upgrade":                                        92,
-		"intersight_hcl_hyperflex_software_compatibility_info":               93,
-		"intersight_hyperflex_app_catalog":                                   94,
-		"intersight_hyperflex_auto_support_policy":                           95,
-		"intersight_hyperflex_capability_info":                               96,
-		"intersight_hyperflex_cisco_hypervisor_manager":                      97,
-		"intersight_hyperflex_cluster_backup_policy":                         98,
-		"intersight_hyperflex_cluster_backup_policy_deployment":              99,
-		"intersight_hyperflex_cluster_network_policy":                        100,
-		"intersight_hyperflex_cluster_profile":                               101,
-		"intersight_hyperflex_cluster_replication_network_policy":            102,
-		"intersight_hyperflex_cluster_replication_network_policy_deployment": 103,
-		"intersight_hyperflex_cluster_storage_policy":                        104,
-		"intersight_hyperflex_ext_fc_storage_policy":                         105,
-		"intersight_hyperflex_ext_iscsi_storage_policy":                      106,
-		"intersight_hyperflex_feature_limit_external":                        107,
-		"intersight_hyperflex_feature_limit_internal":                        108,
-		"intersight_hyperflex_health_check_definition":                       109,
-		"intersight_hyperflex_health_check_package_checksum":                 110,
-		"intersight_hyperflex_hxap_datacenter":                               111,
-		"intersight_hyperflex_hxdp_version":                                  112,
-		"intersight_hyperflex_local_credential_policy":                       113,
-		"intersight_hyperflex_node_config_policy":                            114,
-		"intersight_hyperflex_node_profile":                                  115,
-		"intersight_hyperflex_proxy_setting_policy":                          116,
-		"intersight_hyperflex_server_firmware_version":                       117,
-		"intersight_hyperflex_server_firmware_version_entry":                 118,
-		"intersight_hyperflex_server_model":                                  119,
-		"intersight_hyperflex_software_distribution_component":               120,
-		"intersight_hyperflex_software_distribution_entry":                   121,
-		"intersight_hyperflex_software_distribution_version":                 122,
-		"intersight_hyperflex_software_version_policy":                       123,
-		"intersight_hyperflex_sys_config_policy":                             124,
-		"intersight_hyperflex_ucsm_config_policy":                            125,
-		"intersight_hyperflex_vcenter_config_policy":                         126,
-		"intersight_hyperflex_vm_import_operation":                           127,
-		"intersight_hyperflex_vm_restore_operation":                          128,
-		"intersight_iam_account":                                             129,
-		"intersight_iam_account_experience":                                  130,
-		"intersight_iam_api_key":                                             131,
-		"intersight_iam_app_registration":                                    132,
-		"intersight_iam_certificate":                                         133,
-		"intersight_iam_certificate_request":                                 134,
-		"intersight_iam_end_point_user":                                      135,
-		"intersight_iam_end_point_user_policy":                               136,
-		"intersight_iam_end_point_user_role":                                 137,
-		"intersight_iam_idp":                                                 138,
-		"intersight_iam_ip_access_management":                                139,
-		"intersight_iam_ip_address":                                          140,
-		"intersight_iam_ldap_group":                                          141,
-		"intersight_iam_ldap_policy":                                         142,
-		"intersight_iam_ldap_provider":                                       143,
-		"intersight_iam_permission":                                          144,
-		"intersight_iam_private_key_spec":                                    145,
-		"intersight_iam_qualifier":                                           146,
-		"intersight_iam_resource_roles":                                      147,
-		"intersight_iam_session_limits":                                      148,
-		"intersight_iam_trust_point":                                         149,
-		"intersight_iam_user":                                                150,
-		"intersight_iam_user_group":                                          151,
-		"intersight_ipmioverlan_policy":                                      152,
-		"intersight_ippool_pool":                                             153,
-		"intersight_iqnpool_pool":                                            154,
-		"intersight_kubernetes_aci_cni_apic":                                 155,
-		"intersight_kubernetes_aci_cni_profile":                              156,
-		"intersight_kubernetes_aci_cni_tenant_cluster_allocation":            157,
-		"intersight_kubernetes_addon_definition":                             158,
-		"intersight_kubernetes_addon_policy":                                 159,
-		"intersight_kubernetes_addon_repository":                             160,
-		"intersight_kubernetes_cluster":                                      161,
-		"intersight_kubernetes_cluster_addon_profile":                        162,
-		"intersight_kubernetes_cluster_profile":                              163,
-		"intersight_kubernetes_container_runtime_policy":                     164,
-		"intersight_kubernetes_network_policy":                               165,
-		"intersight_kubernetes_node_group_profile":                           166,
-		"intersight_kubernetes_sys_config_policy":                            167,
-		"intersight_kubernetes_trusted_registries_policy":                    168,
-		"intersight_kubernetes_version":                                      169,
-		"intersight_kubernetes_version_policy":                               170,
-		"intersight_kubernetes_virtual_machine_infra_config_policy":          171,
-		"intersight_kubernetes_virtual_machine_infrastructure_provider":      172,
-		"intersight_kubernetes_virtual_machine_instance_type":                173,
-		"intersight_kubernetes_virtual_machine_node_profile":                 174,
-		"intersight_kvm_policy":                                              175,
-		"intersight_kvm_session":                                             176,
-		"intersight_kvm_tunnel":                                              177,
-		"intersight_license_iwo_license_count":                               178,
-		"intersight_license_license_info":                                    179,
-		"intersight_license_license_reservation_op":                          180,
-		"intersight_macpool_pool":                                            181,
-		"intersight_memory_persistent_memory_policy":                         182,
-		"intersight_networkconfig_policy":                                    183,
-		"intersight_ntp_policy":                                              184,
-		"intersight_oprs_deployment":                                         185,
-		"intersight_organization_organization":                               186,
-		"intersight_os_bulk_install_info":                                    187,
-		"intersight_os_configuration_file":                                   188,
-		"intersight_os_install":                                              189,
-		"intersight_recovery_backup_config_policy":                           190,
-		"intersight_recovery_backup_profile":                                 191,
-		"intersight_recovery_on_demand_backup":                               192,
-		"intersight_recovery_restore":                                        193,
-		"intersight_recovery_schedule_config_policy":                         194,
-		"intersight_resource_group":                                          195,
-		"intersight_resourcepool_lease":                                      196,
-		"intersight_resourcepool_pool":                                       197,
-		"intersight_sdcard_policy":                                           198,
-		"intersight_sdwan_profile":                                           199,
-		"intersight_sdwan_router_node":                                       200,
-		"intersight_sdwan_router_policy":                                     201,
-		"intersight_sdwan_vmanage_account_policy":                            202,
-		"intersight_server_config_import":                                    203,
-		"intersight_server_profile":                                          204,
-		"intersight_server_profile_template":                                 205,
-		"intersight_smtp_policy":                                             206,
-		"intersight_snmp_policy":                                             207,
-		"intersight_software_appliance_distributable":                        208,
-		"intersight_software_hcl_meta":                                       209,
-		"intersight_software_hyperflex_bundle_distributable":                 210,
-		"intersight_software_hyperflex_distributable":                        211,
-		"intersight_software_release_meta":                                   212,
-		"intersight_software_solution_distributable":                         213,
-		"intersight_software_ucsd_bundle_distributable":                      214,
-		"intersight_software_ucsd_distributable":                             215,
-		"intersight_softwarerepository_authorization":                        216,
-		"intersight_softwarerepository_category_mapper":                      217,
-		"intersight_softwarerepository_category_mapper_model":                218,
-		"intersight_softwarerepository_category_support_constraint":          219,
-		"intersight_softwarerepository_operating_system_file":                220,
-		"intersight_softwarerepository_release":                              221,
-		"intersight_sol_policy":                                              222,
-		"intersight_ssh_policy":                                              223,
-		"intersight_storage_disk_group_policy":                               224,
-		"intersight_storage_storage_policy":                                  225,
-		"intersight_syslog_policy":                                           226,
-		"intersight_tam_advisory_count":                                      227,
-		"intersight_tam_advisory_definition":                                 228,
-		"intersight_tam_advisory_info":                                       229,
-		"intersight_tam_advisory_instance":                                   230,
-		"intersight_tam_security_advisory":                                   231,
-		"intersight_techsupportmanagement_collection_control_policy":         232,
-		"intersight_techsupportmanagement_tech_support_bundle":               233,
-		"intersight_uuidpool_pool":                                           234,
-		"intersight_virtualization_virtual_disk":                             235,
-		"intersight_virtualization_virtual_machine":                          236,
-		"intersight_vmedia_policy":                                           237,
-		"intersight_vmrc_console":                                            238,
-		"intersight_vnic_eth_adapter_policy":                                 239,
-		"intersight_vnic_eth_if":                                             240,
-		"intersight_vnic_eth_network_policy":                                 241,
-		"intersight_vnic_eth_qos_policy":                                     242,
-		"intersight_vnic_fc_adapter_policy":                                  243,
-		"intersight_vnic_fc_if":                                              244,
-		"intersight_vnic_fc_network_policy":                                  245,
-		"intersight_vnic_fc_qos_policy":                                      246,
-		"intersight_vnic_iscsi_adapter_policy":                               247,
-		"intersight_vnic_iscsi_boot_policy":                                  248,
-		"intersight_vnic_iscsi_static_target_policy":                         249,
-		"intersight_vnic_lan_connectivity_policy":                            250,
-		"intersight_vnic_san_connectivity_policy":                            251,
-		"intersight_vrf_vrf":                                                 252,
-		"intersight_workflow_batch_api_executor":                             253,
-		"intersight_workflow_custom_data_type_definition":                    254,
-		"intersight_workflow_error_response_handler":                         255,
-		"intersight_workflow_rollback_workflow":                              256,
-		"intersight_workflow_task_definition":                                257,
-		"intersight_workflow_workflow_definition":                            258,
-		"intersight_workflow_workflow_info":                                  259,
+		"intersight_crd_custom_resource":                                     41,
+		"intersight_deviceconnector_policy":                                  42,
+		"intersight_externalsite_authorization":                              43,
+		"intersight_fabric_appliance_pc_role":                                44,
+		"intersight_fabric_appliance_role":                                   45,
+		"intersight_fabric_eth_network_control_policy":                       46,
+		"intersight_fabric_eth_network_group_policy":                         47,
+		"intersight_fabric_eth_network_policy":                               48,
+		"intersight_fabric_fc_network_policy":                                49,
+		"intersight_fabric_fc_uplink_pc_role":                                50,
+		"intersight_fabric_fc_uplink_role":                                   51,
+		"intersight_fabric_fcoe_uplink_pc_role":                              52,
+		"intersight_fabric_fcoe_uplink_role":                                 53,
+		"intersight_fabric_flow_control_policy":                              54,
+		"intersight_fabric_link_aggregation_policy":                          55,
+		"intersight_fabric_link_control_policy":                              56,
+		"intersight_fabric_multicast_policy":                                 57,
+		"intersight_fabric_pc_operation":                                     58,
+		"intersight_fabric_port_mode":                                        59,
+		"intersight_fabric_port_operation":                                   60,
+		"intersight_fabric_port_policy":                                      61,
+		"intersight_fabric_server_role":                                      62,
+		"intersight_fabric_switch_cluster_profile":                           63,
+		"intersight_fabric_switch_control_policy":                            64,
+		"intersight_fabric_switch_profile":                                   65,
+		"intersight_fabric_system_qos_policy":                                66,
+		"intersight_fabric_uplink_pc_role":                                   67,
+		"intersight_fabric_uplink_role":                                      68,
+		"intersight_fabric_vlan":                                             69,
+		"intersight_fabric_vsan":                                             70,
+		"intersight_fcpool_pool":                                             71,
+		"intersight_firmware_bios_descriptor":                                72,
+		"intersight_firmware_board_controller_descriptor":                    73,
+		"intersight_firmware_chassis_upgrade":                                74,
+		"intersight_firmware_cimc_descriptor":                                75,
+		"intersight_firmware_dimm_descriptor":                                76,
+		"intersight_firmware_distributable":                                  77,
+		"intersight_firmware_drive_descriptor":                               78,
+		"intersight_firmware_driver_distributable":                           79,
+		"intersight_firmware_eula":                                           80,
+		"intersight_firmware_gpu_descriptor":                                 81,
+		"intersight_firmware_hba_descriptor":                                 82,
+		"intersight_firmware_iom_descriptor":                                 83,
+		"intersight_firmware_mswitch_descriptor":                             84,
+		"intersight_firmware_nxos_descriptor":                                85,
+		"intersight_firmware_pcie_descriptor":                                86,
+		"intersight_firmware_psu_descriptor":                                 87,
+		"intersight_firmware_sas_expander_descriptor":                        88,
+		"intersight_firmware_server_configuration_utility_distributable":     89,
+		"intersight_firmware_storage_controller_descriptor":                  90,
+		"intersight_firmware_switch_upgrade":                                 91,
+		"intersight_firmware_unsupported_version_upgrade":                    92,
+		"intersight_firmware_upgrade":                                        93,
+		"intersight_hcl_hyperflex_software_compatibility_info":               94,
+		"intersight_hyperflex_app_catalog":                                   95,
+		"intersight_hyperflex_auto_support_policy":                           96,
+		"intersight_hyperflex_capability_info":                               97,
+		"intersight_hyperflex_cisco_hypervisor_manager":                      98,
+		"intersight_hyperflex_cluster_backup_policy":                         99,
+		"intersight_hyperflex_cluster_backup_policy_deployment":              100,
+		"intersight_hyperflex_cluster_network_policy":                        101,
+		"intersight_hyperflex_cluster_profile":                               102,
+		"intersight_hyperflex_cluster_replication_network_policy":            103,
+		"intersight_hyperflex_cluster_replication_network_policy_deployment": 104,
+		"intersight_hyperflex_cluster_storage_policy":                        105,
+		"intersight_hyperflex_ext_fc_storage_policy":                         106,
+		"intersight_hyperflex_ext_iscsi_storage_policy":                      107,
+		"intersight_hyperflex_feature_limit_external":                        108,
+		"intersight_hyperflex_feature_limit_internal":                        109,
+		"intersight_hyperflex_health_check_definition":                       110,
+		"intersight_hyperflex_health_check_package_checksum":                 111,
+		"intersight_hyperflex_hxap_datacenter":                               112,
+		"intersight_hyperflex_hxdp_version":                                  113,
+		"intersight_hyperflex_local_credential_policy":                       114,
+		"intersight_hyperflex_node_config_policy":                            115,
+		"intersight_hyperflex_node_profile":                                  116,
+		"intersight_hyperflex_proxy_setting_policy":                          117,
+		"intersight_hyperflex_server_firmware_version":                       118,
+		"intersight_hyperflex_server_firmware_version_entry":                 119,
+		"intersight_hyperflex_server_model":                                  120,
+		"intersight_hyperflex_software_distribution_component":               121,
+		"intersight_hyperflex_software_distribution_entry":                   122,
+		"intersight_hyperflex_software_distribution_version":                 123,
+		"intersight_hyperflex_software_version_policy":                       124,
+		"intersight_hyperflex_sys_config_policy":                             125,
+		"intersight_hyperflex_ucsm_config_policy":                            126,
+		"intersight_hyperflex_vcenter_config_policy":                         127,
+		"intersight_hyperflex_vm_import_operation":                           128,
+		"intersight_hyperflex_vm_restore_operation":                          129,
+		"intersight_iam_account":                                             130,
+		"intersight_iam_account_experience":                                  131,
+		"intersight_iam_api_key":                                             132,
+		"intersight_iam_app_registration":                                    133,
+		"intersight_iam_certificate":                                         134,
+		"intersight_iam_certificate_request":                                 135,
+		"intersight_iam_end_point_user":                                      136,
+		"intersight_iam_end_point_user_policy":                               137,
+		"intersight_iam_end_point_user_role":                                 138,
+		"intersight_iam_idp":                                                 139,
+		"intersight_iam_ip_access_management":                                140,
+		"intersight_iam_ip_address":                                          141,
+		"intersight_iam_ldap_group":                                          142,
+		"intersight_iam_ldap_policy":                                         143,
+		"intersight_iam_ldap_provider":                                       144,
+		"intersight_iam_permission":                                          145,
+		"intersight_iam_private_key_spec":                                    146,
+		"intersight_iam_qualifier":                                           147,
+		"intersight_iam_resource_roles":                                      148,
+		"intersight_iam_session_limits":                                      149,
+		"intersight_iam_trust_point":                                         150,
+		"intersight_iam_user":                                                151,
+		"intersight_iam_user_group":                                          152,
+		"intersight_ipmioverlan_policy":                                      153,
+		"intersight_ippool_pool":                                             154,
+		"intersight_iqnpool_pool":                                            155,
+		"intersight_kubernetes_aci_cni_apic":                                 156,
+		"intersight_kubernetes_aci_cni_profile":                              157,
+		"intersight_kubernetes_aci_cni_tenant_cluster_allocation":            158,
+		"intersight_kubernetes_addon_definition":                             159,
+		"intersight_kubernetes_addon_policy":                                 160,
+		"intersight_kubernetes_addon_repository":                             161,
+		"intersight_kubernetes_cluster":                                      162,
+		"intersight_kubernetes_cluster_addon_profile":                        163,
+		"intersight_kubernetes_cluster_profile":                              164,
+		"intersight_kubernetes_container_runtime_policy":                     165,
+		"intersight_kubernetes_network_policy":                               166,
+		"intersight_kubernetes_node_group_profile":                           167,
+		"intersight_kubernetes_sys_config_policy":                            168,
+		"intersight_kubernetes_trusted_registries_policy":                    169,
+		"intersight_kubernetes_version":                                      170,
+		"intersight_kubernetes_version_policy":                               171,
+		"intersight_kubernetes_virtual_machine_infra_config_policy":          172,
+		"intersight_kubernetes_virtual_machine_infrastructure_provider":      173,
+		"intersight_kubernetes_virtual_machine_instance_type":                174,
+		"intersight_kubernetes_virtual_machine_node_profile":                 175,
+		"intersight_kvm_policy":                                              176,
+		"intersight_kvm_session":                                             177,
+		"intersight_kvm_tunnel":                                              178,
+		"intersight_license_iwo_license_count":                               179,
+		"intersight_license_license_info":                                    180,
+		"intersight_license_license_reservation_op":                          181,
+		"intersight_macpool_pool":                                            182,
+		"intersight_memory_persistent_memory_policy":                         183,
+		"intersight_networkconfig_policy":                                    184,
+		"intersight_notification_account_subscription":                       185,
+		"intersight_ntp_policy":                                              186,
+		"intersight_oprs_deployment":                                         187,
+		"intersight_oprs_sync_target_list_message":                           188,
+		"intersight_organization_organization":                               189,
+		"intersight_os_bulk_install_info":                                    190,
+		"intersight_os_configuration_file":                                   191,
+		"intersight_os_install":                                              192,
+		"intersight_recovery_backup_config_policy":                           193,
+		"intersight_recovery_backup_profile":                                 194,
+		"intersight_recovery_on_demand_backup":                               195,
+		"intersight_recovery_restore":                                        196,
+		"intersight_recovery_schedule_config_policy":                         197,
+		"intersight_resource_group":                                          198,
+		"intersight_sdcard_policy":                                           199,
+		"intersight_sdwan_profile":                                           200,
+		"intersight_sdwan_router_node":                                       201,
+		"intersight_sdwan_router_policy":                                     202,
+		"intersight_sdwan_vmanage_account_policy":                            203,
+		"intersight_server_config_import":                                    204,
+		"intersight_server_profile":                                          205,
+		"intersight_server_profile_template":                                 206,
+		"intersight_smtp_policy":                                             207,
+		"intersight_snmp_policy":                                             208,
+		"intersight_software_appliance_distributable":                        209,
+		"intersight_software_hcl_meta":                                       210,
+		"intersight_software_hyperflex_bundle_distributable":                 211,
+		"intersight_software_hyperflex_distributable":                        212,
+		"intersight_software_release_meta":                                   213,
+		"intersight_software_solution_distributable":                         214,
+		"intersight_software_ucsd_bundle_distributable":                      215,
+		"intersight_software_ucsd_distributable":                             216,
+		"intersight_softwarerepository_authorization":                        217,
+		"intersight_softwarerepository_category_mapper":                      218,
+		"intersight_softwarerepository_category_mapper_model":                219,
+		"intersight_softwarerepository_category_support_constraint":          220,
+		"intersight_softwarerepository_operating_system_file":                221,
+		"intersight_softwarerepository_release":                              222,
+		"intersight_sol_policy":                                              223,
+		"intersight_ssh_policy":                                              224,
+		"intersight_storage_disk_group_policy":                               225,
+		"intersight_storage_storage_policy":                                  226,
+		"intersight_syslog_policy":                                           227,
+		"intersight_tam_advisory_count":                                      228,
+		"intersight_tam_advisory_definition":                                 229,
+		"intersight_tam_advisory_info":                                       230,
+		"intersight_tam_advisory_instance":                                   231,
+		"intersight_tam_security_advisory":                                   232,
+		"intersight_techsupportmanagement_collection_control_policy":         233,
+		"intersight_techsupportmanagement_tech_support_bundle":               234,
+		"intersight_uuidpool_pool":                                           235,
+		"intersight_virtualization_virtual_disk":                             236,
+		"intersight_virtualization_virtual_machine":                          237,
+		"intersight_vmedia_policy":                                           238,
+		"intersight_vmrc_console":                                            239,
+		"intersight_vnic_eth_adapter_policy":                                 240,
+		"intersight_vnic_eth_if":                                             241,
+		"intersight_vnic_eth_network_policy":                                 242,
+		"intersight_vnic_eth_qos_policy":                                     243,
+		"intersight_vnic_fc_adapter_policy":                                  244,
+		"intersight_vnic_fc_if":                                              245,
+		"intersight_vnic_fc_network_policy":                                  246,
+		"intersight_vnic_fc_qos_policy":                                      247,
+		"intersight_vnic_iscsi_adapter_policy":                               248,
+		"intersight_vnic_iscsi_boot_policy":                                  249,
+		"intersight_vnic_iscsi_static_target_policy":                         250,
+		"intersight_vnic_lan_connectivity_policy":                            251,
+		"intersight_vnic_san_connectivity_policy":                            252,
+		"intersight_vrf_vrf":                                                 253,
+		"intersight_workflow_batch_api_executor":                             254,
+		"intersight_workflow_custom_data_type_definition":                    255,
+		"intersight_workflow_error_response_handler":                         256,
+		"intersight_workflow_rollback_workflow":                              257,
+		"intersight_workflow_task_definition":                                258,
+		"intersight_workflow_workflow_definition":                            259,
+		"intersight_workflow_workflow_info":                                  260,
 	}
 )
 

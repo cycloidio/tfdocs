@@ -1618,6 +1618,10 @@ var (
 					Description: `Name of a port.`,
 				},
 				resource.Attribute{
+					Name:        "host",
+					Description: `Host address.`,
+				},
+				resource.Attribute{
 					Name:        "listen_port",
 					Description: `Port number.`,
 				},
@@ -2273,6 +2277,328 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "gridscale_memcached",
+			Category:         "Resources",
+			ShortDescription: `Manage a Memcached service in gridscale.`,
+			Description:      ``,
+			Keywords: []string{
+				"memcached",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
+				},
+				resource.Attribute{
+					Name:        "release",
+					Description: `(Required) The Memcached release of this instance. For convenience, please use [gscloud](https://github.com/gridscale/gscloud) to get the list of available Memcached service releases.`,
+				},
+				resource.Attribute{
+					Name:        "performance_class",
+					Description: `(Required) Performance class of Memcached service. Available performance classes at the time of writing: ` + "`" + `standard` + "`" + `, ` + "`" + `high` + "`" + `, ` + "`" + `insane` + "`" + `, ` + "`" + `ultra` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ].`,
+				},
+				resource.Attribute{
+					Name:        "security_zone_uuid",
+					Description: `(Optional) The UUID of the security zone that the service is running in.`,
+				},
+				resource.Attribute{
+					Name:        "max_core_count",
+					Description: `(Optional) Maximum CPU core count. The Memcached instance's CPU core count will be autoscaled based on the workload. The number of cores stays between 1 and ` + "`" + `max_core_count` + "`" + `. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "15m" - 15 minutes) Used for creating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "15m" - 15 minutes) Used for updating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "15m" - 15 minutes) Used for deleting a resource. ## Attributes This resource exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "release",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "performance_class",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `Username for PaaS service. It is used to connect to the Memcached instance.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password for PaaS service. It is used to connect to the Memcached instance.`,
+				},
+				resource.Attribute{
+					Name:        "listen_port",
+					Description: `The port numbers where this Memcached service accepts connections.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of a port.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `Host address.`,
+				},
+				resource.Attribute{
+					Name:        "listen_port",
+					Description: `Port number.`,
+				},
+				resource.Attribute{
+					Name:        "security_zone_uuid",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "network_uuid",
+					Description: `Network UUID containing security zone.`,
+				},
+				resource.Attribute{
+					Name:        "service_template_uuid",
+					Description: `PaaS service template that Memcached service uses.`,
+				},
+				resource.Attribute{
+					Name:        "usage_in_minutes",
+					Description: `Number of minutes that PaaS service is in use.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `Time of the last change.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Date time this service has been created.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Current status of PaaS service.`,
+				},
+				resource.Attribute{
+					Name:        "max_core_count",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "gridscale_mysql",
+			Category:         "Resources",
+			ShortDescription: `Manage a MySQL service in gridscale.`,
+			Description:      ``,
+			Keywords: []string{
+				"mysql",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
+				},
+				resource.Attribute{
+					Name:        "release",
+					Description: `(Required) The mysql release of this instance. For convenience, please use [gscloud](https://github.com/gridscale/gscloud) to get the list of available mysql service releases.`,
+				},
+				resource.Attribute{
+					Name:        "performance_class",
+					Description: `(Required) Performance class of mysql service. Available performance classes at the time of writing: ` + "`" + `standard` + "`" + `, ` + "`" + `high` + "`" + `, ` + "`" + `insane` + "`" + `, ` + "`" + `ultra` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_log_bin",
+					Description: `(Optional) mysql parameter: Binary Logging. Default: false.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_sql_mode",
+					Description: `(Optional) mysql parameter: SQL Mode. Default: "ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION".`,
+				},
+				resource.Attribute{
+					Name:        "mysql_server_id",
+					Description: `(Optional) mysql parameter: Server Id. Default: 1.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_query_cache",
+					Description: `(Optional) mysql parameter: Enable query cache. Default: true.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_binlog_format",
+					Description: `(Optional) mysql parameter: Binary Logging Format. Default: "ROW".`,
+				},
+				resource.Attribute{
+					Name:        "mysql_max_connections",
+					Description: `(Optional) mysql parameter: Max Connections. Default: 4000.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_query_cache_size",
+					Description: `(Optional) mysql parameter: Query Cache Size. Format: xM (where x is an integer, M stands for unit: k(kB), M(MB), G(GB)). Default: 128M.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_default_time_zone",
+					Description: `(Optional) mysql parameter: Server Timezone. Default: UTC.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_query_cache_limit",
+					Description: `(Optional) mysql parameter: Query Cache Limit. Format: xM (where x is an integer, M stands for unit: k(kB), M(MB), G(GB)). Default: 1M.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_max_allowed_packet",
+					Description: `(Optional) mysql parameter: Max Allowed Packet Size. Format: xM (where x is an integer, M stands for unit: k(kB), M(MB), G(GB)). Default: 64M.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ].`,
+				},
+				resource.Attribute{
+					Name:        "security_zone_uuid",
+					Description: `(Optional) The UUID of the security zone that the service is running in.`,
+				},
+				resource.Attribute{
+					Name:        "max_core_count",
+					Description: `(Optional) Maximum CPU core count. The mysql instance's CPU core count will be autoscaled based on the workload. The number of cores stays between 1 and ` + "`" + `max_core_count` + "`" + `. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "15m" - 15 minutes) Used for creating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "15m" - 15 minutes) Used for updating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "15m" - 15 minutes) Used for deleting a resource. ## Attributes This resource exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "release",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "performance_class",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_log_bin",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_sql_mode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_server_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_query_cache",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_binlog_format",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_max_connections",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_query_cache_size",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_default_time_zone",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_query_cache_limit",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_max_allowed_packet",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `Username for PaaS service. It is used to connect to the mysql instance.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password for PaaS service. It is used to connect to the mysql instance.`,
+				},
+				resource.Attribute{
+					Name:        "listen_port",
+					Description: `The port numbers where this mysql service accepts connections.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of a port.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `Host address.`,
+				},
+				resource.Attribute{
+					Name:        "listen_port",
+					Description: `Port number.`,
+				},
+				resource.Attribute{
+					Name:        "security_zone_uuid",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "network_uuid",
+					Description: `Network UUID containing security zone.`,
+				},
+				resource.Attribute{
+					Name:        "service_template_uuid",
+					Description: `PaaS service template that mysql service uses.`,
+				},
+				resource.Attribute{
+					Name:        "usage_in_minutes",
+					Description: `Number of minutes that PaaS service is in use.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `Time of the last change.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Date time this service has been created.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Current status of PaaS service.`,
+				},
+				resource.Attribute{
+					Name:        "max_core_count",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "gridscale_network",
 			Category:         "Resources",
 			ShortDescription: `Manages a network in gridscale.`,
@@ -2474,6 +2800,10 @@ var (
 					Description: `Name of a port.`,
 				},
 				resource.Attribute{
+					Name:        "host",
+					Description: `Host address.`,
+				},
+				resource.Attribute{
 					Name:        "listen_port",
 					Description: `Port number.`,
 				},
@@ -2623,6 +2953,10 @@ var (
 					Description: `Name of a port.`,
 				},
 				resource.Attribute{
+					Name:        "host",
+					Description: `Host address.`,
+				},
+				resource.Attribute{
 					Name:        "listen_port",
 					Description: `Port number.`,
 				},
@@ -2657,6 +2991,234 @@ var (
 				resource.Attribute{
 					Name:        "max_core_count",
 					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "gridscale_redis_cache",
+			Category:         "Resources",
+			ShortDescription: `Manage a Redis cache service in gridscale.`,
+			Description:      ``,
+			Keywords: []string{
+				"redis",
+				"cache",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
+				},
+				resource.Attribute{
+					Name:        "release",
+					Description: `(Required) The Redis cache release of this instance. For convenience, please use [gscloud](https://github.com/gridscale/gscloud) to get the list of available Redis cache service releases.`,
+				},
+				resource.Attribute{
+					Name:        "performance_class",
+					Description: `(Required) Performance class of Redis cache service. Available performance classes at the time of writing: ` + "`" + `standard` + "`" + `, ` + "`" + `high` + "`" + `, ` + "`" + `insane` + "`" + `, ` + "`" + `ultra` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ].`,
+				},
+				resource.Attribute{
+					Name:        "security_zone_uuid",
+					Description: `(Optional) The UUID of the security zone that the service is running in. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "15m" - 15 minutes) Used for creating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "15m" - 15 minutes) Used for updating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "15m" - 15 minutes) Used for deleting a resource. ## Attributes This resource exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "release",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "performance_class",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `Username for PaaS service. It is used to connect to the Redis cache instance.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password for PaaS service. It is used to connect to the Redis cache instance.`,
+				},
+				resource.Attribute{
+					Name:        "listen_port",
+					Description: `The port numbers where this Redis cache service accepts connections.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of a port.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `Host address.`,
+				},
+				resource.Attribute{
+					Name:        "listen_port",
+					Description: `Port number.`,
+				},
+				resource.Attribute{
+					Name:        "security_zone_uuid",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "network_uuid",
+					Description: `Network UUID containing security zone.`,
+				},
+				resource.Attribute{
+					Name:        "service_template_uuid",
+					Description: `PaaS service template that Redis cache service uses.`,
+				},
+				resource.Attribute{
+					Name:        "usage_in_minutes",
+					Description: `Number of minutes that PaaS service is in use.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `Time of the last change.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Date time this service has been created.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Current status of PaaS service.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "gridscale_redis_store",
+			Category:         "Resources",
+			ShortDescription: `Manage a Redis store service in gridscale.`,
+			Description:      ``,
+			Keywords: []string{
+				"redis",
+				"store",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
+				},
+				resource.Attribute{
+					Name:        "release",
+					Description: `(Required) The Redis store release of this instance. For convenience, please use [gscloud](https://github.com/gridscale/gscloud) to get the list of available Redis store service releases.`,
+				},
+				resource.Attribute{
+					Name:        "performance_class",
+					Description: `(Required) Performance class of Redis store service. Available performance classes at the time of writing: ` + "`" + `standard` + "`" + `, ` + "`" + `high` + "`" + `, ` + "`" + `insane` + "`" + `, ` + "`" + `ultra` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ].`,
+				},
+				resource.Attribute{
+					Name:        "security_zone_uuid",
+					Description: `(Optional) The UUID of the security zone that the service is running in. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "15m" - 15 minutes) Used for creating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "15m" - 15 minutes) Used for updating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "15m" - 15 minutes) Used for deleting a resource. ## Attributes This resource exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "release",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "performance_class",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `Username for PaaS service. It is used to connect to the Redis store instance.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password for PaaS service. It is used to connect to the Redis store instance.`,
+				},
+				resource.Attribute{
+					Name:        "listen_port",
+					Description: `The port numbers where this Redis store service accepts connections.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of a port.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `Host address.`,
+				},
+				resource.Attribute{
+					Name:        "listen_port",
+					Description: `Port number.`,
+				},
+				resource.Attribute{
+					Name:        "security_zone_uuid",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "network_uuid",
+					Description: `Network UUID containing security zone.`,
+				},
+				resource.Attribute{
+					Name:        "service_template_uuid",
+					Description: `PaaS service template that Redis store service uses.`,
+				},
+				resource.Attribute{
+					Name:        "usage_in_minutes",
+					Description: `Number of minutes that PaaS service is in use.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `Time of the last change.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Date time this service has been created.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Current status of PaaS service.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -3799,6 +4361,10 @@ var (
 					Description: `(Required) Object Storage bucket to upload backups to and restore backups from.`,
 				},
 				resource.Attribute{
+					Name:        "backup_retention",
+					Description: `(Optional) Retention (in seconds) for local originals of backups. (0 for immediate removal once uploaded to Object Storage (default), higher values for delayed removal after the given time and once uploaded to Object Storage).`,
+				},
+				resource.Attribute{
 					Name:        "backup_access_key",
 					Description: `(Required) Access key used to authenticate against Object Storage server.`,
 				},
@@ -3808,7 +4374,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_server_url",
-					Description: `(Required) Object Storage server URL the bucket is located on. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
+					Description: `(Optional, Default: "https://gos3.io/") Object Storage server URL the bucket is located on.`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -3849,6 +4415,10 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `Name of a port.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `Host address.`,
 				},
 				resource.Attribute{
 					Name:        "listen_port",
@@ -4621,21 +5191,25 @@ var (
 		"gridscale_mariadb":                        7,
 		"gridscale_marketplace_application":        8,
 		"gridscale_marketplace_application_import": 9,
-		"gridscale_network":                        10,
-		"gridscale_object_storage_accesskey":       11,
-		"gridscale_paas":                           12,
-		"gridscale_postgres":                       13,
-		"gridscale_paas_securityzone":              14,
-		"gridscale_server":                         15,
-		"gridscale_snapshot":                       16,
-		"gridscale_snapshotschedule":               17,
-		"gridscale_sqlserver":                      18,
-		"gridscale_sshkey":                         19,
-		"gridscale_ssl_certificate":                20,
-		"gridscale_storage":                        21,
-		"gridscale_storage_clone":                  22,
-		"gridscale_storage_import":                 23,
-		"gridscale_template":                       24,
+		"gridscale_memcached":                      10,
+		"gridscale_mysql":                          11,
+		"gridscale_network":                        12,
+		"gridscale_object_storage_accesskey":       13,
+		"gridscale_paas":                           14,
+		"gridscale_postgres":                       15,
+		"gridscale_redis_cache":                    16,
+		"gridscale_redis_store":                    17,
+		"gridscale_paas_securityzone":              18,
+		"gridscale_server":                         19,
+		"gridscale_snapshot":                       20,
+		"gridscale_snapshotschedule":               21,
+		"gridscale_sqlserver":                      22,
+		"gridscale_sshkey":                         23,
+		"gridscale_ssl_certificate":                24,
+		"gridscale_storage":                        25,
+		"gridscale_storage_clone":                  26,
+		"gridscale_storage_import":                 27,
+		"gridscale_template":                       28,
 	}
 )
 

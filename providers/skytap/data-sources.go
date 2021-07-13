@@ -16,13 +16,8 @@ var (
 			ShortDescription: `Get information on a project.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The name of project. ## Attributes Reference The following attributes are exported:`,
-				},
-			},
-			Attributes: []resource.Attribute{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -31,17 +26,8 @@ var (
 			ShortDescription: `Get information on a template.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) A regular expression on the name of a template.`,
-				},
-				resource.Attribute{
-					Name:        "most_recent",
-					Description: `(Optional) Use the most recently created template from the returned list. ## Attributes Reference The following attributes are exported:`,
-				},
-			},
-			Attributes: []resource.Attribute{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 	}
 

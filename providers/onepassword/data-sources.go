@@ -13,7 +13,17 @@ var (
 			Name:             "",
 			Type:             "onepassword_item",
 			Category:         "Data Sources",
-			ShortDescription: `Get the contents of a 1Password item from its Item and Vault UUID.`,
+			ShortDescription: `Use this data source to get details of an item by its vault uuid and either the title or the uuid of the item.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "onepassword_vault",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get details of a vault by either its name or uuid.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -23,7 +33,8 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"onepassword_item": 0,
+		"onepassword_item":  0,
+		"onepassword_vault": 1,
 	}
 )
 

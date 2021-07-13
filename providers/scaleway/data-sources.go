@@ -141,6 +141,16 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "scaleway_rdb_privilege",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about the privilege on a RDB database.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "scaleway_registry_image",
 			Category:         "Data Sources",
 			ShortDescription: `Gets information about a registry image.`,
@@ -191,9 +201,10 @@ var (
 		"scaleway_rdb_acl":                 10,
 		"scaleway_rdb_database":            11,
 		"scaleway_rdb_instance":            12,
-		"scaleway_registry_image":          13,
-		"scaleway_registry_namespace":      14,
-		"scaleway_vpc_private_network":     15,
+		"scaleway_rdb_privilege":           13,
+		"scaleway_registry_image":          14,
+		"scaleway_registry_namespace":      15,
+		"scaleway_vpc_private_network":     16,
 	}
 )
 

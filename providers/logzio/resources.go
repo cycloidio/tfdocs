@@ -346,6 +346,49 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "logzio_log_shipping_token",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(String) Descriptive name for this token. ### Optional:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Boolean) To enable this token, true. To disable, false.`,
+				},
+				resource.Attribute{
+					Name:        "token_id",
+					Description: `(Integer) The token's ID.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(String) The token itself.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `(Integer) Unix timestamp of when this token was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "updated_by",
+					Description: `(String) Email address of the last user to update this token.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `(Integer) Unix timestamp of when this token was created.`,
+				},
+				resource.Attribute{
+					Name:        "created_by",
+					Description: `(String) Email address of the user who created this token.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "logzio_subaccount",
 			Category:         "Resources",
 			ShortDescription: ``,
@@ -382,7 +425,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sharing_objects_accounts",
-					Description: `(Required) IDs of accounts that can access the account's Kibana objects.`,
+					Description: `(Required) IDs of accounts that can access the account's Kibana objects. Can be an empty array.`,
 				},
 				resource.Attribute{
 					Name:        "utilization_settings",
@@ -402,7 +445,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "account_token",
-					Description: `Log shipping token for the subaccount. [Learn more](https://docs.logz.io/user-guide/tokens/log-shipping-tokens/) ## Endpoints used`,
+					Description: `Log shipping token for the subaccount. [Learn more](https://docs.logz.io/user-guide/tokens/log-shipping-tokens/)`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -446,11 +489,12 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"logzio_alert":      0,
-		"logzio_alert_v2":   1,
-		"logzio_endpoint":   2,
-		"logzio_subaccount": 3,
-		"logzio_user":       4,
+		"logzio_alert":              0,
+		"logzio_alert_v2":           1,
+		"logzio_endpoint":           2,
+		"logzio_log_shipping_token": 3,
+		"logzio_subaccount":         4,
+		"logzio_user":               5,
 	}
 )
 

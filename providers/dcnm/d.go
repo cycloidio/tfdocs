@@ -102,7 +102,7 @@ var (
 					Description: `mode for the port-channel interface.`,
 				},
 				resource.Attribute{
-					Name:        "bpdu_gaurd_flag",
+					Name:        "bpdu_guard_flag",
 					Description: `BPDU flag for the port-channel interface.`,
 				},
 				resource.Attribute{
@@ -150,7 +150,7 @@ var (
 					Description: `mode for the vPC interface.`,
 				},
 				resource.Attribute{
-					Name:        "bpdu_gaurd_flag",
+					Name:        "bpdu_guard_flag",
 					Description: `BPDU flag for the vPC interface.`,
 				},
 				resource.Attribute{
@@ -230,7 +230,11 @@ var (
 					Description: `description for the sub-interface. ## Attribute Reference for ethernet Interface ##`,
 				},
 				resource.Attribute{
-					Name:        "bpdu_gaurd_flag",
+					Name:        "vrf",
+					Description: `vrf name for the ethernet interface.`,
+				},
+				resource.Attribute{
+					Name:        "bpdu_guard_flag",
 					Description: `BPDU flag for the ethernet interface.`,
 				},
 				resource.Attribute{
@@ -332,7 +336,7 @@ var (
 					Description: `mode for the port-channel interface.`,
 				},
 				resource.Attribute{
-					Name:        "bpdu_gaurd_flag",
+					Name:        "bpdu_guard_flag",
 					Description: `BPDU flag for the port-channel interface.`,
 				},
 				resource.Attribute{
@@ -380,7 +384,7 @@ var (
 					Description: `mode for the vPC interface.`,
 				},
 				resource.Attribute{
-					Name:        "bpdu_gaurd_flag",
+					Name:        "bpdu_guard_flag",
 					Description: `BPDU flag for the vPC interface.`,
 				},
 				resource.Attribute{
@@ -460,7 +464,11 @@ var (
 					Description: `description for the sub-interface. ## Attribute Reference for ethernet Interface ##`,
 				},
 				resource.Attribute{
-					Name:        "bpdu_gaurd_flag",
+					Name:        "vrf",
+					Description: `vrf name for the ethernet interface.`,
+				},
+				resource.Attribute{
+					Name:        "bpdu_guard_flag",
 					Description: `BPDU flag for the ethernet interface.`,
 				},
 				resource.Attribute{

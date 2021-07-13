@@ -11,6 +11,16 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "spectrocloud_backup_storage_location",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "spectrocloud_cloudaccount_aws",
 			Category:         "Resources",
 			ShortDescription: ``,
@@ -119,21 +129,44 @@ var (
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "spectrocloud_project",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "spectrocloud_team",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
 	}
 
 	resourcesMap = map[string]int{
 
-		"spectrocloud_cloudaccount_aws":           0,
-		"spectrocloud_cloudaccount_azure":         1,
-		"spectrocloud_cloudaccount_gcp":           2,
-		"spectrocloud_cluster_aws":                3,
-		"spectrocloud_cluster_azure":              4,
-		"spectrocloud_cluster_eks":                5,
-		"spectrocloud_cluster_gcp":                6,
-		"spectrocloud_cluster_import":             7,
-		"spectrocloud_cluster_profile":            8,
-		"spectrocloud_cluster_vsphere":            9,
-		"spectrocloud_privatecloudgateway_ippool": 10,
+		"spectrocloud_backup_storage_location":    0,
+		"spectrocloud_cloudaccount_aws":           1,
+		"spectrocloud_cloudaccount_azure":         2,
+		"spectrocloud_cloudaccount_gcp":           3,
+		"spectrocloud_cluster_aws":                4,
+		"spectrocloud_cluster_azure":              5,
+		"spectrocloud_cluster_eks":                6,
+		"spectrocloud_cluster_gcp":                7,
+		"spectrocloud_cluster_import":             8,
+		"spectrocloud_cluster_profile":            9,
+		"spectrocloud_cluster_vsphere":            10,
+		"spectrocloud_privatecloudgateway_ippool": 11,
+		"spectrocloud_project":                    12,
+		"spectrocloud_team":                       13,
 	}
 )
 

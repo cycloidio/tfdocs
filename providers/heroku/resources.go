@@ -511,7 +511,7 @@ var (
 			Name:             "",
 			Type:             "heroku_cert",
 			Category:         "Resources",
-			ShortDescription: `Provides a Heroku SSL certificate resource. It allows to set a given certificate for a Heroku app.`,
+			ShortDescription: `Provides a Heroku SSL certificate resource to manage a certificate for a Heroku app.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -637,7 +637,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cname",
-					Description: `The CNAME traffic should route to. ## Importing When importing a Heroku domain resource, the ID is specified ` + "`" + `APP_NAME:DOMAIN_IDENTIFIER` + "`" + `, where the domain can be identified either with the UUID from the Heroku API or the domain name. For an app named ` + "`" + `test-app` + "`" + ` with a domain name of ` + "`" + `terraform.example.com` + "`" + `, you could import it with: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_domain.default test-app:terraform.example.com ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The CNAME traffic should route to.`,
+				},
+				resource.Attribute{
+					Name:        "sni_endpoint_id",
+					Description: `The ID of the heroku_ssl resource to associate the domain with. ## Importing When importing a Heroku domain resource, the ID is specified ` + "`" + `APP_NAME:DOMAIN_IDENTIFIER` + "`" + `, where the domain can be identified either with the UUID from the Heroku API or the domain name. For an app named ` + "`" + `test-app` + "`" + ` with a domain name of ` + "`" + `terraform.example.com` + "`" + `, you could import it with: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_domain.default test-app:terraform.example.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -651,7 +655,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cname",
-					Description: `The CNAME traffic should route to. ## Importing When importing a Heroku domain resource, the ID is specified ` + "`" + `APP_NAME:DOMAIN_IDENTIFIER` + "`" + `, where the domain can be identified either with the UUID from the Heroku API or the domain name. For an app named ` + "`" + `test-app` + "`" + ` with a domain name of ` + "`" + `terraform.example.com` + "`" + `, you could import it with: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_domain.default test-app:terraform.example.com ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The CNAME traffic should route to.`,
+				},
+				resource.Attribute{
+					Name:        "sni_endpoint_id",
+					Description: `The ID of the heroku_ssl resource to associate the domain with. ## Importing When importing a Heroku domain resource, the ID is specified ` + "`" + `APP_NAME:DOMAIN_IDENTIFIER` + "`" + `, where the domain can be identified either with the UUID from the Heroku API or the domain name. For an app named ` + "`" + `test-app` + "`" + ` with a domain name of ` + "`" + `terraform.example.com` + "`" + `, you could import it with: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_domain.default test-app:terraform.example.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1323,6 +1331,46 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "heroku_ssl",
+			Category:         "Resources",
+			ShortDescription: `Provides a Heroku SSL certificate resource to manage a certificate for a Heroku app.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `(Required) The Heroku app UUID to add to.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_chain",
+					Description: `(Required) The certificate chain to add.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `(Optional) The private key for a given certificate chain. You`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the SSL certificate`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the SSL certificate ## Importing An existing SSL resource can be imported using a composite value of the app name and certificate UUID separated by a colon. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_ssl.production_api production-api:b85d9224-310b-409b-891e-c903f5a40568 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the SSL certificate`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the SSL certificate ## Importing An existing SSL resource can be imported using a composite value of the app name and certificate UUID separated by a colon. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_ssl.production_api production-api:b85d9224-310b-409b-891e-c903f5a40568 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "heroku_team_collaborator",
 			Category:         "Resources",
 			ShortDescription: `Provides the ability to add/edit/remove team collaborators from team applications`,
@@ -1405,8 +1453,9 @@ var (
 		"heroku_space_inbound_ruleset":             22,
 		"heroku_space_peering_connection_accepter": 23,
 		"heroku_space_vpn_connection":              24,
-		"heroku_team_collaborator":                 25,
-		"heroku_team_member":                       26,
+		"heroku_ssl":                               25,
+		"heroku_team_collaborator":                 26,
+		"heroku_team_member":                       27,
 	}
 )
 

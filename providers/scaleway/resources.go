@@ -280,6 +280,16 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "scaleway_rdb_privilege",
+			Category:         "Resources",
+			ShortDescription: `Manages Scaleway RDB Database Privilege.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "scaleway_rdb_user",
 			Category:         "Resources",
 			ShortDescription: `Manages Scaleway Database Users.`,
@@ -338,9 +348,10 @@ var (
 		"scaleway_rdb_acl":                       23,
 		"scaleway_rdb_database":                  24,
 		"scaleway_rdb_instance":                  25,
-		"scaleway_rdb_user":                      26,
-		"scaleway_registry_namespace":            27,
-		"scaleway_vpc_private_network":           28,
+		"scaleway_rdb_privilege":                 26,
+		"scaleway_rdb_user":                      27,
+		"scaleway_registry_namespace":            28,
+		"scaleway_vpc_private_network":           29,
 	}
 )
 

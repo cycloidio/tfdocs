@@ -579,6 +579,217 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ovh_dbaas_logs_input_engine",
+			Category:         "Data Sources",
+			ShortDescription: `Get information & status of a DBaas logs input engine.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the logs input engine.`,
+				},
+				resource.Attribute{
+					Name:        "is_deprecated",
+					Description: `Indicates if engine will soon not be supported.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Software version ## Attributes Reference ` + "`" + `id` + "`" + ` is set to input engine ID`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_dbaas_logs_output_graylog_stream",
+			Category:         "Data Sources",
+			ShortDescription: `Get information & status of a DBaas logs output graylog stream.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `The service name`,
+				},
+				resource.Attribute{
+					Name:        "title",
+					Description: `Stream description ## Attributes Reference ` + "`" + `id` + "`" + ` is set to output graylog stream ID. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "cold_storage_compression",
+					Description: `Cold storage compression method`,
+				},
+				resource.Attribute{
+					Name:        "cold_storage_content",
+					Description: `ColdStorage content`,
+				},
+				resource.Attribute{
+					Name:        "cold_storage_enabled",
+					Description: `Is Cold storage enabled?`,
+				},
+				resource.Attribute{
+					Name:        "cold_storage_notify_enabled",
+					Description: `Notify on new Cold storage archive`,
+				},
+				resource.Attribute{
+					Name:        "cold_storage_retention",
+					Description: `Cold storage retention in year`,
+				},
+				resource.Attribute{
+					Name:        "cold_storage_target",
+					Description: `ColdStorage destination`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Stream creation`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Stream description`,
+				},
+				resource.Attribute{
+					Name:        "indexing_enabled",
+					Description: `Enable ES indexing`,
+				},
+				resource.Attribute{
+					Name:        "indexing_max_size",
+					Description: `Maximum indexing size (in GB)`,
+				},
+				resource.Attribute{
+					Name:        "indexing_notify_enabled",
+					Description: `If set, notify when size is near 80, 90 or 100 % of the maximum configured setting`,
+				},
+				resource.Attribute{
+					Name:        "is_editable",
+					Description: `Indicates if you are allowed to edit entry`,
+				},
+				resource.Attribute{
+					Name:        "is_shareable",
+					Description: `Indicates if you are allowed to share entry`,
+				},
+				resource.Attribute{
+					Name:        "nb_alert_condition",
+					Description: `Number of alert condition`,
+				},
+				resource.Attribute{
+					Name:        "nb_archive",
+					Description: `Number of coldstored archives`,
+				},
+				resource.Attribute{
+					Name:        "parent_stream_id",
+					Description: `Parent stream ID`,
+				},
+				resource.Attribute{
+					Name:        "pause_indexing_on_max_size",
+					Description: `If set, pause indexing when maximum size is reach`,
+				},
+				resource.Attribute{
+					Name:        "retention_id",
+					Description: `Retention ID`,
+				},
+				resource.Attribute{
+					Name:        "stream_id",
+					Description: `Stream ID`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Stream last update`,
+				},
+				resource.Attribute{
+					Name:        "web_socket_enabled",
+					Description: `Enable Websocket`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cold_storage_compression",
+					Description: `Cold storage compression method`,
+				},
+				resource.Attribute{
+					Name:        "cold_storage_content",
+					Description: `ColdStorage content`,
+				},
+				resource.Attribute{
+					Name:        "cold_storage_enabled",
+					Description: `Is Cold storage enabled?`,
+				},
+				resource.Attribute{
+					Name:        "cold_storage_notify_enabled",
+					Description: `Notify on new Cold storage archive`,
+				},
+				resource.Attribute{
+					Name:        "cold_storage_retention",
+					Description: `Cold storage retention in year`,
+				},
+				resource.Attribute{
+					Name:        "cold_storage_target",
+					Description: `ColdStorage destination`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Stream creation`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Stream description`,
+				},
+				resource.Attribute{
+					Name:        "indexing_enabled",
+					Description: `Enable ES indexing`,
+				},
+				resource.Attribute{
+					Name:        "indexing_max_size",
+					Description: `Maximum indexing size (in GB)`,
+				},
+				resource.Attribute{
+					Name:        "indexing_notify_enabled",
+					Description: `If set, notify when size is near 80, 90 or 100 % of the maximum configured setting`,
+				},
+				resource.Attribute{
+					Name:        "is_editable",
+					Description: `Indicates if you are allowed to edit entry`,
+				},
+				resource.Attribute{
+					Name:        "is_shareable",
+					Description: `Indicates if you are allowed to share entry`,
+				},
+				resource.Attribute{
+					Name:        "nb_alert_condition",
+					Description: `Number of alert condition`,
+				},
+				resource.Attribute{
+					Name:        "nb_archive",
+					Description: `Number of coldstored archives`,
+				},
+				resource.Attribute{
+					Name:        "parent_stream_id",
+					Description: `Parent stream ID`,
+				},
+				resource.Attribute{
+					Name:        "pause_indexing_on_max_size",
+					Description: `If set, pause indexing when maximum size is reach`,
+				},
+				resource.Attribute{
+					Name:        "retention_id",
+					Description: `Retention ID`,
+				},
+				resource.Attribute{
+					Name:        "stream_id",
+					Description: `Stream ID`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Stream last update`,
+				},
+				resource.Attribute{
+					Name:        "web_socket_enabled",
+					Description: `Enable Websocket`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ovh_dedicated_ceph",
 			Category:         "Data Sources",
 			ShortDescription: `Get information & status of a dedicated CEPH instance.`,
@@ -1010,6 +1221,86 @@ var (
 				resource.Attribute{
 					Name:        "dnssec_supported",
 					Description: `Is DNSSEC supported by this zone`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_ip_service",
+			Category:         "Data Sources",
+			ShortDescription: `Get information & status of a ip service.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `The service name ## Attributes Reference ` + "`" + `id` + "`" + ` is set to ip service ip block. In addition, the following attributes are exported.`,
+				},
+				resource.Attribute{
+					Name:        "can_be_terminated",
+					Description: `can be terminated`,
+				},
+				resource.Attribute{
+					Name:        "country",
+					Description: `country`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Custom description on your ip`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `ip block`,
+				},
+				resource.Attribute{
+					Name:        "organisation_id",
+					Description: `IP block organisation Id`,
+				},
+				resource.Attribute{
+					Name:        "routed_to",
+					Description: `Routage information`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `Service where ip is routed to`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Possible values for ip type ( "cdn", "cloud", "dedicated", "failover", "hosted_ssl", "housing", "loadBalancing", "mail", "overthebox", "pcc", "pci", "private", "vpn", "vps", "vrack", "xdsl")`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "can_be_terminated",
+					Description: `can be terminated`,
+				},
+				resource.Attribute{
+					Name:        "country",
+					Description: `country`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Custom description on your ip`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `ip block`,
+				},
+				resource.Attribute{
+					Name:        "organisation_id",
+					Description: `IP block organisation Id`,
+				},
+				resource.Attribute{
+					Name:        "routed_to",
+					Description: `Routage information`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `Service where ip is routed to`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Possible values for ip type ( "cdn", "cloud", "dedicated", "failover", "hosted_ssl", "housing", "loadBalancing", "mail", "overthebox", "pcc", "pci", "private", "vpn", "vps", "vrack", "xdsl")`,
 				},
 			},
 		},
@@ -1525,6 +1816,1098 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ovh_order_cart",
+			Category:         "Data Sources",
+			ShortDescription: `Create a temporary order cart to retrieve information order cart products.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ovh_subsidiary",
+					Description: `(Required) Ovh Subsidiary`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of your cart`,
+				},
+				resource.Attribute{
+					Name:        "expire",
+					Description: `Expiration time (format: 2006-01-02T15:04:05+00:00) ## Attributes Reference ` + "`" + `id` + "`" + ` is set to your cart ID In addition, the following attributes are exported.`,
+				},
+				resource.Attribute{
+					Name:        "cart_id",
+					Description: `Cart identifier`,
+				},
+				resource.Attribute{
+					Name:        "read_only",
+					Description: `Indicates if the cart has already been validated`,
+				},
+				resource.Attribute{
+					Name:        "items",
+					Description: `Items of your cart`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cart_id",
+					Description: `Cart identifier`,
+				},
+				resource.Attribute{
+					Name:        "read_only",
+					Description: `Indicates if the cart has already been validated`,
+				},
+				resource.Attribute{
+					Name:        "items",
+					Description: `Items of your cart`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_order_cart_product",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve information of order cart product products.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cart_id",
+					Description: `(Required) Cart identifier`,
+				},
+				resource.Attribute{
+					Name:        "product",
+					Description: `(Required) product ## Attributes Reference The following attributes are exported.`,
+				},
+				resource.Attribute{
+					Name:        "result",
+					Description: `products results`,
+				},
+				resource.Attribute{
+					Name:        "plan_code",
+					Description: `Product offer identifier`,
+				},
+				resource.Attribute{
+					Name:        "product_name",
+					Description: `Name of the product`,
+				},
+				resource.Attribute{
+					Name:        "product_type",
+					Description: `Product type`,
+				},
+				resource.Attribute{
+					Name:        "prices",
+					Description: `Prices of the product offer`,
+				},
+				resource.Attribute{
+					Name:        "capacities",
+					Description: `Capacities of the pricing (type of pricing)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the pricing`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `Duration for ordering the product`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Interval of renewal`,
+				},
+				resource.Attribute{
+					Name:        "maximum_quantity",
+					Description: `Maximum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "maximum_repeat",
+					Description: `Maximum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "minimum_quantity",
+					Description: `Minimum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "minimum_repeat",
+					Description: `Minimum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "price",
+					Description: `Price of the product (Price with its currency and textual representation)`,
+				},
+				resource.Attribute{
+					Name:        "currency_code",
+					Description: `Currency code`,
+				},
+				resource.Attribute{
+					Name:        "text",
+					Description: `Textual representation`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The effective price`,
+				},
+				resource.Attribute{
+					Name:        "price_in_ucents",
+					Description: `Price of the product in micro-centims`,
+				},
+				resource.Attribute{
+					Name:        "pricing_mode",
+					Description: `Pricing model identifier`,
+				},
+				resource.Attribute{
+					Name:        "pricing_type",
+					Description: `Pricing type`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "result",
+					Description: `products results`,
+				},
+				resource.Attribute{
+					Name:        "plan_code",
+					Description: `Product offer identifier`,
+				},
+				resource.Attribute{
+					Name:        "product_name",
+					Description: `Name of the product`,
+				},
+				resource.Attribute{
+					Name:        "product_type",
+					Description: `Product type`,
+				},
+				resource.Attribute{
+					Name:        "prices",
+					Description: `Prices of the product offer`,
+				},
+				resource.Attribute{
+					Name:        "capacities",
+					Description: `Capacities of the pricing (type of pricing)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the pricing`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `Duration for ordering the product`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Interval of renewal`,
+				},
+				resource.Attribute{
+					Name:        "maximum_quantity",
+					Description: `Maximum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "maximum_repeat",
+					Description: `Maximum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "minimum_quantity",
+					Description: `Minimum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "minimum_repeat",
+					Description: `Minimum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "price",
+					Description: `Price of the product (Price with its currency and textual representation)`,
+				},
+				resource.Attribute{
+					Name:        "currency_code",
+					Description: `Currency code`,
+				},
+				resource.Attribute{
+					Name:        "text",
+					Description: `Textual representation`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The effective price`,
+				},
+				resource.Attribute{
+					Name:        "price_in_ucents",
+					Description: `Price of the product in micro-centims`,
+				},
+				resource.Attribute{
+					Name:        "pricing_mode",
+					Description: `Pricing model identifier`,
+				},
+				resource.Attribute{
+					Name:        "pricing_type",
+					Description: `Pricing type`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_order_cart_product_options",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve information of order cart product options.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cart_id",
+					Description: `(Required) Cart identifier`,
+				},
+				resource.Attribute{
+					Name:        "plan_code",
+					Description: `(Required) Product offer identifier`,
+				},
+				resource.Attribute{
+					Name:        "product",
+					Description: `(Required) Product`,
+				},
+				resource.Attribute{
+					Name:        "catalog_name",
+					Description: `Catalog name ## Attributes Reference The following attributes are exported.`,
+				},
+				resource.Attribute{
+					Name:        "result",
+					Description: `products results`,
+				},
+				resource.Attribute{
+					Name:        "plan_code",
+					Description: `Product offer identifier`,
+				},
+				resource.Attribute{
+					Name:        "product_name",
+					Description: `Name of the product`,
+				},
+				resource.Attribute{
+					Name:        "product_type",
+					Description: `Product type`,
+				},
+				resource.Attribute{
+					Name:        "prices",
+					Description: `Prices of the product offer`,
+				},
+				resource.Attribute{
+					Name:        "capacities",
+					Description: `Capacities of the pricing (type of pricing)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the pricing`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `Duration for ordering the product`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Interval of renewal`,
+				},
+				resource.Attribute{
+					Name:        "maximum_quantity",
+					Description: `Maximum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "maximum_repeat",
+					Description: `Maximum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "minimum_quantity",
+					Description: `Minimum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "minimum_repeat",
+					Description: `Minimum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "price",
+					Description: `Price of the product (Price with its currency and textual representation)`,
+				},
+				resource.Attribute{
+					Name:        "currency_code",
+					Description: `Currency code`,
+				},
+				resource.Attribute{
+					Name:        "text",
+					Description: `Textual representation`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The effective price`,
+				},
+				resource.Attribute{
+					Name:        "price_in_ucents",
+					Description: `Price of the product in micro-centims`,
+				},
+				resource.Attribute{
+					Name:        "pricing_mode",
+					Description: `Pricing model identifier`,
+				},
+				resource.Attribute{
+					Name:        "pricing_type",
+					Description: `Pricing type`,
+				},
+				resource.Attribute{
+					Name:        "exclusive",
+					Description: `Define if options of this family are exclusive with each other`,
+				},
+				resource.Attribute{
+					Name:        "family",
+					Description: `Option family`,
+				},
+				resource.Attribute{
+					Name:        "mandatory",
+					Description: `Define if an option of this family is mandatory`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "result",
+					Description: `products results`,
+				},
+				resource.Attribute{
+					Name:        "plan_code",
+					Description: `Product offer identifier`,
+				},
+				resource.Attribute{
+					Name:        "product_name",
+					Description: `Name of the product`,
+				},
+				resource.Attribute{
+					Name:        "product_type",
+					Description: `Product type`,
+				},
+				resource.Attribute{
+					Name:        "prices",
+					Description: `Prices of the product offer`,
+				},
+				resource.Attribute{
+					Name:        "capacities",
+					Description: `Capacities of the pricing (type of pricing)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the pricing`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `Duration for ordering the product`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Interval of renewal`,
+				},
+				resource.Attribute{
+					Name:        "maximum_quantity",
+					Description: `Maximum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "maximum_repeat",
+					Description: `Maximum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "minimum_quantity",
+					Description: `Minimum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "minimum_repeat",
+					Description: `Minimum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "price",
+					Description: `Price of the product (Price with its currency and textual representation)`,
+				},
+				resource.Attribute{
+					Name:        "currency_code",
+					Description: `Currency code`,
+				},
+				resource.Attribute{
+					Name:        "text",
+					Description: `Textual representation`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The effective price`,
+				},
+				resource.Attribute{
+					Name:        "price_in_ucents",
+					Description: `Price of the product in micro-centims`,
+				},
+				resource.Attribute{
+					Name:        "pricing_mode",
+					Description: `Pricing model identifier`,
+				},
+				resource.Attribute{
+					Name:        "pricing_type",
+					Description: `Pricing type`,
+				},
+				resource.Attribute{
+					Name:        "exclusive",
+					Description: `Define if options of this family are exclusive with each other`,
+				},
+				resource.Attribute{
+					Name:        "family",
+					Description: `Option family`,
+				},
+				resource.Attribute{
+					Name:        "mandatory",
+					Description: `Define if an option of this family is mandatory`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_order_cart_product_options_plan",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve information of order cart product options plan.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cart_id",
+					Description: `(Required) Cart identifier`,
+				},
+				resource.Attribute{
+					Name:        "catalog_name",
+					Description: `Catalog name`,
+				},
+				resource.Attribute{
+					Name:        "options_plan_code",
+					Description: `(Required) options plan code.`,
+				},
+				resource.Attribute{
+					Name:        "plan_code",
+					Description: `(Required) Product offer identifier`,
+				},
+				resource.Attribute{
+					Name:        "price_capacity",
+					Description: `(Required) Capacity of the pricing (type of pricing)`,
+				},
+				resource.Attribute{
+					Name:        "product",
+					Description: `(Required) Product ## Attributes Reference The following attributes are exported.`,
+				},
+				resource.Attribute{
+					Name:        "selected_price",
+					Description: `Selected Price according to capacity`,
+				},
+				resource.Attribute{
+					Name:        "capacities",
+					Description: `Capacities of the pricing (type of pricing)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the pricing`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `Duration for ordering the product`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Interval of renewal`,
+				},
+				resource.Attribute{
+					Name:        "maximum_quantity",
+					Description: `Maximum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "maximum_repeat",
+					Description: `Maximum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "minimum_quantity",
+					Description: `Minimum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "minimum_repeat",
+					Description: `Minimum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "price",
+					Description: `Price of the product (Price with its currency and textual representation)`,
+				},
+				resource.Attribute{
+					Name:        "currency_code",
+					Description: `Currency code`,
+				},
+				resource.Attribute{
+					Name:        "text",
+					Description: `Textual representation`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The effective price`,
+				},
+				resource.Attribute{
+					Name:        "price_in_ucents",
+					Description: `Price of the product in micro-centims`,
+				},
+				resource.Attribute{
+					Name:        "pricing_mode",
+					Description: `Pricing model identifier`,
+				},
+				resource.Attribute{
+					Name:        "pricing_type",
+					Description: `Pricing type`,
+				},
+				resource.Attribute{
+					Name:        "plan_code",
+					Description: `Product offer identifier`,
+				},
+				resource.Attribute{
+					Name:        "product_name",
+					Description: `Name of the product`,
+				},
+				resource.Attribute{
+					Name:        "product_type",
+					Description: `Product type`,
+				},
+				resource.Attribute{
+					Name:        "prices",
+					Description: `Prices of the product offer`,
+				},
+				resource.Attribute{
+					Name:        "capacities",
+					Description: `Capacities of the pricing (type of pricing)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the pricing`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `Duration for ordering the product`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Interval of renewal`,
+				},
+				resource.Attribute{
+					Name:        "maximum_quantity",
+					Description: `Maximum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "maximum_repeat",
+					Description: `Maximum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "minimum_quantity",
+					Description: `Minimum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "minimum_repeat",
+					Description: `Minimum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "price",
+					Description: `Price of the product (Price with its currency and textual representation)`,
+				},
+				resource.Attribute{
+					Name:        "currency_code",
+					Description: `Currency code`,
+				},
+				resource.Attribute{
+					Name:        "text",
+					Description: `Textual representation`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The effective price`,
+				},
+				resource.Attribute{
+					Name:        "price_in_ucents",
+					Description: `Price of the product in micro-centims`,
+				},
+				resource.Attribute{
+					Name:        "pricing_mode",
+					Description: `Pricing model identifier`,
+				},
+				resource.Attribute{
+					Name:        "pricing_type",
+					Description: `Pricing type`,
+				},
+				resource.Attribute{
+					Name:        "exclusive",
+					Description: `Define if options of this family are exclusive with each other`,
+				},
+				resource.Attribute{
+					Name:        "family",
+					Description: `Option family`,
+				},
+				resource.Attribute{
+					Name:        "mandatory",
+					Description: `Define if an option of this family is mandatory`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "selected_price",
+					Description: `Selected Price according to capacity`,
+				},
+				resource.Attribute{
+					Name:        "capacities",
+					Description: `Capacities of the pricing (type of pricing)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the pricing`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `Duration for ordering the product`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Interval of renewal`,
+				},
+				resource.Attribute{
+					Name:        "maximum_quantity",
+					Description: `Maximum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "maximum_repeat",
+					Description: `Maximum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "minimum_quantity",
+					Description: `Minimum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "minimum_repeat",
+					Description: `Minimum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "price",
+					Description: `Price of the product (Price with its currency and textual representation)`,
+				},
+				resource.Attribute{
+					Name:        "currency_code",
+					Description: `Currency code`,
+				},
+				resource.Attribute{
+					Name:        "text",
+					Description: `Textual representation`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The effective price`,
+				},
+				resource.Attribute{
+					Name:        "price_in_ucents",
+					Description: `Price of the product in micro-centims`,
+				},
+				resource.Attribute{
+					Name:        "pricing_mode",
+					Description: `Pricing model identifier`,
+				},
+				resource.Attribute{
+					Name:        "pricing_type",
+					Description: `Pricing type`,
+				},
+				resource.Attribute{
+					Name:        "plan_code",
+					Description: `Product offer identifier`,
+				},
+				resource.Attribute{
+					Name:        "product_name",
+					Description: `Name of the product`,
+				},
+				resource.Attribute{
+					Name:        "product_type",
+					Description: `Product type`,
+				},
+				resource.Attribute{
+					Name:        "prices",
+					Description: `Prices of the product offer`,
+				},
+				resource.Attribute{
+					Name:        "capacities",
+					Description: `Capacities of the pricing (type of pricing)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the pricing`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `Duration for ordering the product`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Interval of renewal`,
+				},
+				resource.Attribute{
+					Name:        "maximum_quantity",
+					Description: `Maximum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "maximum_repeat",
+					Description: `Maximum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "minimum_quantity",
+					Description: `Minimum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "minimum_repeat",
+					Description: `Minimum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "price",
+					Description: `Price of the product (Price with its currency and textual representation)`,
+				},
+				resource.Attribute{
+					Name:        "currency_code",
+					Description: `Currency code`,
+				},
+				resource.Attribute{
+					Name:        "text",
+					Description: `Textual representation`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The effective price`,
+				},
+				resource.Attribute{
+					Name:        "price_in_ucents",
+					Description: `Price of the product in micro-centims`,
+				},
+				resource.Attribute{
+					Name:        "pricing_mode",
+					Description: `Pricing model identifier`,
+				},
+				resource.Attribute{
+					Name:        "pricing_type",
+					Description: `Pricing type`,
+				},
+				resource.Attribute{
+					Name:        "exclusive",
+					Description: `Define if options of this family are exclusive with each other`,
+				},
+				resource.Attribute{
+					Name:        "family",
+					Description: `Option family`,
+				},
+				resource.Attribute{
+					Name:        "mandatory",
+					Description: `Define if an option of this family is mandatory`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_order_cart_product_plan",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve information of order cart product plan.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cart_id",
+					Description: `(Required) Cart identifier`,
+				},
+				resource.Attribute{
+					Name:        "catalog_name",
+					Description: `Catalog name`,
+				},
+				resource.Attribute{
+					Name:        "plan_code",
+					Description: `(Required) Product offer identifier`,
+				},
+				resource.Attribute{
+					Name:        "price_capacity",
+					Description: `(Required) Capacity of the pricing (type of pricing)`,
+				},
+				resource.Attribute{
+					Name:        "product",
+					Description: `(Required) Product ## Attributes Reference The following attributes are exported.`,
+				},
+				resource.Attribute{
+					Name:        "selected_price",
+					Description: `Selected Price according to capacity`,
+				},
+				resource.Attribute{
+					Name:        "capacities",
+					Description: `Capacities of the pricing (type of pricing)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the pricing`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `Duration for ordering the product`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Interval of renewal`,
+				},
+				resource.Attribute{
+					Name:        "maximum_quantity",
+					Description: `Maximum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "maximum_repeat",
+					Description: `Maximum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "minimum_quantity",
+					Description: `Minimum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "minimum_repeat",
+					Description: `Minimum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "price",
+					Description: `Price of the product (Price with its currency and textual representation)`,
+				},
+				resource.Attribute{
+					Name:        "currency_code",
+					Description: `Currency code`,
+				},
+				resource.Attribute{
+					Name:        "text",
+					Description: `Textual representation`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The effective price`,
+				},
+				resource.Attribute{
+					Name:        "price_in_ucents",
+					Description: `Price of the product in micro-centims`,
+				},
+				resource.Attribute{
+					Name:        "pricing_mode",
+					Description: `Pricing model identifier`,
+				},
+				resource.Attribute{
+					Name:        "pricing_type",
+					Description: `Pricing type`,
+				},
+				resource.Attribute{
+					Name:        "plan_code",
+					Description: `Product offer identifier`,
+				},
+				resource.Attribute{
+					Name:        "product_name",
+					Description: `Name of the product`,
+				},
+				resource.Attribute{
+					Name:        "product_type",
+					Description: `Product type`,
+				},
+				resource.Attribute{
+					Name:        "prices",
+					Description: `Prices of the product offer`,
+				},
+				resource.Attribute{
+					Name:        "capacities",
+					Description: `Capacities of the pricing (type of pricing)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the pricing`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `Duration for ordering the product`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Interval of renewal`,
+				},
+				resource.Attribute{
+					Name:        "maximum_quantity",
+					Description: `Maximum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "maximum_repeat",
+					Description: `Maximum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "minimum_quantity",
+					Description: `Minimum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "minimum_repeat",
+					Description: `Minimum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "price",
+					Description: `Price of the product (Price with its currency and textual representation)`,
+				},
+				resource.Attribute{
+					Name:        "currency_code",
+					Description: `Currency code`,
+				},
+				resource.Attribute{
+					Name:        "text",
+					Description: `Textual representation`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The effective price`,
+				},
+				resource.Attribute{
+					Name:        "price_in_ucents",
+					Description: `Price of the product in micro-centims`,
+				},
+				resource.Attribute{
+					Name:        "pricing_mode",
+					Description: `Pricing model identifier`,
+				},
+				resource.Attribute{
+					Name:        "pricing_type",
+					Description: `Pricing type`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "selected_price",
+					Description: `Selected Price according to capacity`,
+				},
+				resource.Attribute{
+					Name:        "capacities",
+					Description: `Capacities of the pricing (type of pricing)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the pricing`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `Duration for ordering the product`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Interval of renewal`,
+				},
+				resource.Attribute{
+					Name:        "maximum_quantity",
+					Description: `Maximum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "maximum_repeat",
+					Description: `Maximum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "minimum_quantity",
+					Description: `Minimum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "minimum_repeat",
+					Description: `Minimum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "price",
+					Description: `Price of the product (Price with its currency and textual representation)`,
+				},
+				resource.Attribute{
+					Name:        "currency_code",
+					Description: `Currency code`,
+				},
+				resource.Attribute{
+					Name:        "text",
+					Description: `Textual representation`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The effective price`,
+				},
+				resource.Attribute{
+					Name:        "price_in_ucents",
+					Description: `Price of the product in micro-centims`,
+				},
+				resource.Attribute{
+					Name:        "pricing_mode",
+					Description: `Pricing model identifier`,
+				},
+				resource.Attribute{
+					Name:        "pricing_type",
+					Description: `Pricing type`,
+				},
+				resource.Attribute{
+					Name:        "plan_code",
+					Description: `Product offer identifier`,
+				},
+				resource.Attribute{
+					Name:        "product_name",
+					Description: `Name of the product`,
+				},
+				resource.Attribute{
+					Name:        "product_type",
+					Description: `Product type`,
+				},
+				resource.Attribute{
+					Name:        "prices",
+					Description: `Prices of the product offer`,
+				},
+				resource.Attribute{
+					Name:        "capacities",
+					Description: `Capacities of the pricing (type of pricing)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the pricing`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `Duration for ordering the product`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Interval of renewal`,
+				},
+				resource.Attribute{
+					Name:        "maximum_quantity",
+					Description: `Maximum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "maximum_repeat",
+					Description: `Maximum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "minimum_quantity",
+					Description: `Minimum quantity that can be ordered`,
+				},
+				resource.Attribute{
+					Name:        "minimum_repeat",
+					Description: `Minimum repeat for renewal`,
+				},
+				resource.Attribute{
+					Name:        "price",
+					Description: `Price of the product (Price with its currency and textual representation)`,
+				},
+				resource.Attribute{
+					Name:        "currency_code",
+					Description: `Currency code`,
+				},
+				resource.Attribute{
+					Name:        "text",
+					Description: `Textual representation`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The effective price`,
+				},
+				resource.Attribute{
+					Name:        "price_in_ucents",
+					Description: `Price of the product in micro-centims`,
+				},
+				resource.Attribute{
+					Name:        "pricing_mode",
+					Description: `Pricing model identifier`,
+				},
+				resource.Attribute{
+					Name:        "pricing_type",
+					Description: `Pricing type`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ovh_vracks",
 			Category:         "Data Sources",
 			ShortDescription: `Get the list of Vrack ids available for your OVH account.`,
@@ -1544,26 +2927,34 @@ var (
 		"ovh_cloud_project_containerregistry_users":               4,
 		"ovh_cloud_project_region":                                5,
 		"ovh_cloud_project_regions":                               6,
-		"ovh_dedicated_ceph":                                      7,
-		"ovh_dedicated_installation_templates":                    8,
-		"ovh_dedicated_server":                                    9,
-		"ovh_dedicated_server_boots":                              10,
-		"ovh_dedicated_servers":                                   11,
-		"ovh_domain_zone":                                         12,
-		"ovh_iploadbalancing":                                     13,
-		"ovh_iploadbalancing_vrack_network":                       14,
-		"ovh_iploadbalancing_vrack_networks":                      15,
-		"ovh_me_identity_user":                                    16,
-		"ovh_me_identity_users":                                   17,
-		"ovh_me_installation_template":                            18,
-		"ovh_me_installation_templates":                           19,
-		"ovh_me_ipxe_script":                                      20,
-		"ovh_me_ipxe_scripts":                                     21,
-		"ovh_me_paymentmean_bankaccount":                          22,
-		"ovh_me_paymentmean_creditcard":                           23,
-		"ovh_me_ssh_key":                                          24,
-		"ovh_me_ssh_keys":                                         25,
-		"ovh_vracks":                                              26,
+		"ovh_dbaas_logs_input_engine":                             7,
+		"ovh_dbaas_logs_output_graylog_stream":                    8,
+		"ovh_dedicated_ceph":                                      9,
+		"ovh_dedicated_installation_templates":                    10,
+		"ovh_dedicated_server":                                    11,
+		"ovh_dedicated_server_boots":                              12,
+		"ovh_dedicated_servers":                                   13,
+		"ovh_domain_zone":                                         14,
+		"ovh_ip_service":                                          15,
+		"ovh_iploadbalancing":                                     16,
+		"ovh_iploadbalancing_vrack_network":                       17,
+		"ovh_iploadbalancing_vrack_networks":                      18,
+		"ovh_me_identity_user":                                    19,
+		"ovh_me_identity_users":                                   20,
+		"ovh_me_installation_template":                            21,
+		"ovh_me_installation_templates":                           22,
+		"ovh_me_ipxe_script":                                      23,
+		"ovh_me_ipxe_scripts":                                     24,
+		"ovh_me_paymentmean_bankaccount":                          25,
+		"ovh_me_paymentmean_creditcard":                           26,
+		"ovh_me_ssh_key":                                          27,
+		"ovh_me_ssh_keys":                                         28,
+		"ovh_order_cart":                                          29,
+		"ovh_order_cart_product":                                  30,
+		"ovh_order_cart_product_options":                          31,
+		"ovh_order_cart_product_options_plan":                     32,
+		"ovh_order_cart_product_plan":                             33,
+		"ovh_vracks":                                              34,
 	}
 )
 

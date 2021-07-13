@@ -11,6 +11,201 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "ovh_cloud_project",
+			Category:         "Cloud Resources",
+			ShortDescription: `Orders a public cloud project.`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"project",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description associated with the user.`,
+				},
+				resource.Attribute{
+					Name:        "ovh_subsidiary",
+					Description: `(Required) Ovh Subsidiary`,
+				},
+				resource.Attribute{
+					Name:        "payment_mean",
+					Description: `(Required) Ovh payment mode (One of "default-payment-mean", "fidelity", "ovh-account")`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `(Required) Product Plan to order`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Required) duration`,
+				},
+				resource.Attribute{
+					Name:        "plan_code",
+					Description: `(Required) Plan code`,
+				},
+				resource.Attribute{
+					Name:        "pricing_mode",
+					Description: `(Required) Pricing model identifier`,
+				},
+				resource.Attribute{
+					Name:        "catalog_name",
+					Description: `Catalog name`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `(Optional) Representation of a configuration item for personalizing product`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) Identifier of the resource`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Path to the resource in API.OVH.COM`,
+				},
+				resource.Attribute{
+					Name:        "plan_option",
+					Description: `(Optional) Product Plan to order`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Required) duration`,
+				},
+				resource.Attribute{
+					Name:        "plan_code",
+					Description: `(Required) Plan code`,
+				},
+				resource.Attribute{
+					Name:        "pricing_mode",
+					Description: `(Required) Pricing model identifier`,
+				},
+				resource.Attribute{
+					Name:        "catalog_name",
+					Description: `Catalog name`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `(Optional) Representation of a configuration item for personalizing product`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) Identifier of the resource`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Path to the resource in API.OVH.COM ## Attributes Reference Id is set to the order Id. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "access",
+					Description: `project access`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `Details about an Order`,
+				},
+				resource.Attribute{
+					Name:        "date",
+					Description: `date`,
+				},
+				resource.Attribute{
+					Name:        "order_id",
+					Description: `order id`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `expiration date`,
+				},
+				resource.Attribute{
+					Name:        "details",
+					Description: `Information about a Bill entry`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `description`,
+				},
+				resource.Attribute{
+					Name:        "order_detail_id",
+					Description: `order detail id`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `expiration date`,
+				},
+				resource.Attribute{
+					Name:        "quantity",
+					Description: `quantity`,
+				},
+				resource.Attribute{
+					Name:        "project_name",
+					Description: `openstack project name`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `openstack project id`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `project status`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "access",
+					Description: `project access`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `Details about an Order`,
+				},
+				resource.Attribute{
+					Name:        "date",
+					Description: `date`,
+				},
+				resource.Attribute{
+					Name:        "order_id",
+					Description: `order id`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `expiration date`,
+				},
+				resource.Attribute{
+					Name:        "details",
+					Description: `Information about a Bill entry`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `description`,
+				},
+				resource.Attribute{
+					Name:        "order_detail_id",
+					Description: `order detail id`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `expiration date`,
+				},
+				resource.Attribute{
+					Name:        "quantity",
+					Description: `quantity`,
+				},
+				resource.Attribute{
+					Name:        "project_name",
+					Description: `openstack project name`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `openstack project id`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `project status`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ovh_cloud_project_containerregistry",
 			Category:         "Cloud Resources",
 			ShortDescription: `Creates a container registry associated with a public cloud project.`,
@@ -679,6 +874,154 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ovh_dbaas_logs_input",
+			Category:         "Database as a service",
+			ShortDescription: `Creates a dbaas logs input.`,
+			Description:      ``,
+			Keywords: []string{
+				"database",
+				"as",
+				"a",
+				"service",
+				"dbaas",
+				"logs",
+				"input",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "allowed_networks",
+					Description: `List of IP blocks`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `(Required) Input configuration`,
+				},
+				resource.Attribute{
+					Name:        "flowgger",
+					Description: `(Optional) Flowgger configuration`,
+				},
+				resource.Attribute{
+					Name:        "log_format",
+					Description: `Type of format to decode. One of "RFC5424", "LTSV", "GELF", "CAPNP"`,
+				},
+				resource.Attribute{
+					Name:        "log_framing",
+					Description: `Indicates how messages are delimited. One of "LINE", "NUL", "SYSLEN", "CAPNP"`,
+				},
+				resource.Attribute{
+					Name:        "logstash",
+					Description: `(Optional) Logstash configuration`,
+				},
+				resource.Attribute{
+					Name:        "filter_section",
+					Description: `(Optional) The filter section of logstash.conf`,
+				},
+				resource.Attribute{
+					Name:        "input_section",
+					Description: `(Required) The filter section of logstash.conf`,
+				},
+				resource.Attribute{
+					Name:        "pattern_section",
+					Description: `(Optional) The list of customs Grok patterns`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required) Input description`,
+				},
+				resource.Attribute{
+					Name:        "engine_id",
+					Description: `(Required) Input engine ID`,
+				},
+				resource.Attribute{
+					Name:        "exposed_port",
+					Description: `Port`,
+				},
+				resource.Attribute{
+					Name:        "nb_instance",
+					Description: `Number of instance running`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) service name`,
+				},
+				resource.Attribute{
+					Name:        "stream_id",
+					Description: `(Required) Associated Graylog stream`,
+				},
+				resource.Attribute{
+					Name:        "title",
+					Description: `(Required) Input title ## Attributes Reference Id is set to the input Id. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Input creation`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `Hostname`,
+				},
+				resource.Attribute{
+					Name:        "input_id",
+					Description: `Input ID`,
+				},
+				resource.Attribute{
+					Name:        "is_restart_required",
+					Description: `Indicate if input need to be restarted`,
+				},
+				resource.Attribute{
+					Name:        "public_address",
+					Description: `Input IP address`,
+				},
+				resource.Attribute{
+					Name:        "ssl_certificate",
+					Description: `Input SSL certificate`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `init: configuration required, pending: ready to start, running: available`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Input last update`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Input creation`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `Hostname`,
+				},
+				resource.Attribute{
+					Name:        "input_id",
+					Description: `Input ID`,
+				},
+				resource.Attribute{
+					Name:        "is_restart_required",
+					Description: `Indicate if input need to be restarted`,
+				},
+				resource.Attribute{
+					Name:        "public_address",
+					Description: `Input IP address`,
+				},
+				resource.Attribute{
+					Name:        "ssl_certificate",
+					Description: `Input SSL certificate`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `init: configuration required, pending: ready to start, running: available`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Input last update`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ovh_dedicated_ceph_acl",
 			Category:         "Dedicated CEPH",
 			ShortDescription: `Creates a new ACL for dedicated CEPH cluster.`,
@@ -902,26 +1245,501 @@ var (
 					Description: `(Required) The value of the reverse`,
 				},
 				resource.Attribute{
-					Name:        "ipreverse",
-					Description: `(Optional) The IP to set the reverse of, default to ` + "`" + `ip` + "`" + ` if ` + "`" + `ip` + "`" + ` is a /32 (IPv4) or a /128 (IPv6) ## Attributes Reference The following attributes are exported:`,
+					Name:        "ip_reverse",
+					Description: `(Required) The IP to set the reverse of ## Attributes Reference The id is set to the value of ip_reverse.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_ip_service",
+			Category:         "IP Resources",
+			ShortDescription: `Orders an ip service.`,
+			Description:      ``,
+			Keywords: []string{
+				"ip",
+				"service",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `Custom description on your ip.`,
 				},
 				resource.Attribute{
-					Name:        "ipreverse",
-					Description: `The IP to set the reverse of`,
+					Name:        "ovh_subsidiary",
+					Description: `(Required) Ovh Subsidiary`,
 				},
 				resource.Attribute{
-					Name:        "reverse",
-					Description: `The value of the reverse`,
+					Name:        "payment_mean",
+					Description: `(Required) Ovh payment mode (One of "default-payment-mean", "fidelity", "ovh-account")`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `(Required) Product Plan to order`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Required) duration`,
+				},
+				resource.Attribute{
+					Name:        "plan_code",
+					Description: `(Required) Plan code`,
+				},
+				resource.Attribute{
+					Name:        "pricing_mode",
+					Description: `(Required) Pricing model identifier`,
+				},
+				resource.Attribute{
+					Name:        "catalog_name",
+					Description: `Catalog name`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `(Optional) Representation of a configuration item for personalizing product`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) Identifier of the resource`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Path to the resource in API.OVH.COM`,
+				},
+				resource.Attribute{
+					Name:        "plan_option",
+					Description: `(Optional) Product Plan to order`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Required) duration`,
+				},
+				resource.Attribute{
+					Name:        "plan_code",
+					Description: `(Required) Plan code`,
+				},
+				resource.Attribute{
+					Name:        "pricing_mode",
+					Description: `(Required) Pricing model identifier`,
+				},
+				resource.Attribute{
+					Name:        "catalog_name",
+					Description: `Catalog name`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `(Optional) Representation of a configuration item for personalizing product`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) Identifier of the resource`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Path to the resource in API.OVH.COM ## Attributes Reference Id is set to the order Id. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "can_be_terminated",
+					Description: `can be terminated`,
+				},
+				resource.Attribute{
+					Name:        "country",
+					Description: `country`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `ip block`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `Details about an Order`,
+				},
+				resource.Attribute{
+					Name:        "date",
+					Description: `date`,
+				},
+				resource.Attribute{
+					Name:        "order_id",
+					Description: `order id`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `expiration date`,
+				},
+				resource.Attribute{
+					Name:        "details",
+					Description: `Information about a Bill entry`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `description`,
+				},
+				resource.Attribute{
+					Name:        "order_detail_id",
+					Description: `order detail id`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `expiration date`,
+				},
+				resource.Attribute{
+					Name:        "quantity",
+					Description: `quantity`,
+				},
+				resource.Attribute{
+					Name:        "organisation_id",
+					Description: `IP block organisation Id`,
+				},
+				resource.Attribute{
+					Name:        "routed_to",
+					Description: `Routage information`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `Service where ip is routed to`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Possible values for ip type`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "ipreverse",
-					Description: `The IP to set the reverse of`,
+					Name:        "can_be_terminated",
+					Description: `can be terminated`,
 				},
 				resource.Attribute{
-					Name:        "reverse",
-					Description: `The value of the reverse`,
+					Name:        "country",
+					Description: `country`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `ip block`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `Details about an Order`,
+				},
+				resource.Attribute{
+					Name:        "date",
+					Description: `date`,
+				},
+				resource.Attribute{
+					Name:        "order_id",
+					Description: `order id`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `expiration date`,
+				},
+				resource.Attribute{
+					Name:        "details",
+					Description: `Information about a Bill entry`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `description`,
+				},
+				resource.Attribute{
+					Name:        "order_detail_id",
+					Description: `order detail id`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `expiration date`,
+				},
+				resource.Attribute{
+					Name:        "quantity",
+					Description: `quantity`,
+				},
+				resource.Attribute{
+					Name:        "organisation_id",
+					Description: `IP block organisation Id`,
+				},
+				resource.Attribute{
+					Name:        "routed_to",
+					Description: `Routage information`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `Service where ip is routed to`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Possible values for ip type`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_iploadbalancing",
+			Category:         "IP Load Balancing Resources",
+			ShortDescription: `Orders an IP load balancing.`,
+			Description:      ``,
+			Keywords: []string{
+				"ip",
+				"load",
+				"balancing",
+				"iploadbalancing",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Set the name displayed in ManagerV6 for your iplb (max 50 chars)`,
+				},
+				resource.Attribute{
+					Name:        "ovh_subsidiary",
+					Description: `(Required) Ovh Subsidiary`,
+				},
+				resource.Attribute{
+					Name:        "payment_mean",
+					Description: `(Required) Ovh payment mode (One of "default-payment-mean", "fidelity", "ovh-account")`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `(Required) Product Plan to order`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Required) duration`,
+				},
+				resource.Attribute{
+					Name:        "plan_code",
+					Description: `(Required) Plan code`,
+				},
+				resource.Attribute{
+					Name:        "pricing_mode",
+					Description: `(Required) Pricing model identifier`,
+				},
+				resource.Attribute{
+					Name:        "catalog_name",
+					Description: `Catalog name`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `(Optional) Representation of a configuration item for personalizing product`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) Identifier of the resource`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Path to the resource in API.OVH.COM`,
+				},
+				resource.Attribute{
+					Name:        "plan_option",
+					Description: `(Optional) Product Plan to order`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Required) duration`,
+				},
+				resource.Attribute{
+					Name:        "plan_code",
+					Description: `(Required) Plan code`,
+				},
+				resource.Attribute{
+					Name:        "pricing_mode",
+					Description: `(Required) Pricing model identifier`,
+				},
+				resource.Attribute{
+					Name:        "catalog_name",
+					Description: `Catalog name`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `(Optional) Representation of a configuration item for personalizing product`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) Identifier of the resource`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Path to the resource in API.OVH.COM`,
+				},
+				resource.Attribute{
+					Name:        "ssl_configuration",
+					Description: `Modern oldest compatible clients : Firefox 27, Chrome 30, IE 11 on Windows 7, Edge, Opera 17, Safari 9, Android 5.0, and Java 8. Intermediate oldest compatible clients : Firefox 1, Chrome 1, IE 7, Opera 5, Safari 1, Windows XP IE8, Android 2.3, Java 7. Intermediate if null. one of "intermediate", "modern". ## Attributes Reference Id is set to the order Id. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "ip_loadbalancing",
+					Description: `Your IP load balancing`,
+				},
+				resource.Attribute{
+					Name:        "ipv4",
+					Description: `The IPV4 associated to your IP load balancing`,
+				},
+				resource.Attribute{
+					Name:        "ipv6",
+					Description: `The IPV6 associated to your IP load balancing. DEPRECATED.`,
+				},
+				resource.Attribute{
+					Name:        "metrics_token",
+					Description: `The metrics token associated with your IP load balancing`,
+				},
+				resource.Attribute{
+					Name:        "offer",
+					Description: `The offer of your IP load balancing`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `Details about an Order`,
+				},
+				resource.Attribute{
+					Name:        "date",
+					Description: `date`,
+				},
+				resource.Attribute{
+					Name:        "order_id",
+					Description: `order id`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `expiration date`,
+				},
+				resource.Attribute{
+					Name:        "details",
+					Description: `Information about a Bill entry`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `description`,
+				},
+				resource.Attribute{
+					Name:        "order_detail_id",
+					Description: `order detail id`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `expiration date`,
+				},
+				resource.Attribute{
+					Name:        "quantity",
+					Description: `quantity`,
+				},
+				resource.Attribute{
+					Name:        "orderable_zone",
+					Description: `Available additional zone for your Load Balancer`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The zone three letter code`,
+				},
+				resource.Attribute{
+					Name:        "plan_code",
+					Description: `The billing planCode for this zone`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `The internal name of your IP load balancing`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `Current state of your IP`,
+				},
+				resource.Attribute{
+					Name:        "vrack_eligibility",
+					Description: `Vrack eligibility`,
+				},
+				resource.Attribute{
+					Name:        "vrack_name",
+					Description: `Name of the vRack on which the current Load Balancer is attached to, as it is named on vRack product`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `Location where your service is`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ip_loadbalancing",
+					Description: `Your IP load balancing`,
+				},
+				resource.Attribute{
+					Name:        "ipv4",
+					Description: `The IPV4 associated to your IP load balancing`,
+				},
+				resource.Attribute{
+					Name:        "ipv6",
+					Description: `The IPV6 associated to your IP load balancing. DEPRECATED.`,
+				},
+				resource.Attribute{
+					Name:        "metrics_token",
+					Description: `The metrics token associated with your IP load balancing`,
+				},
+				resource.Attribute{
+					Name:        "offer",
+					Description: `The offer of your IP load balancing`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `Details about an Order`,
+				},
+				resource.Attribute{
+					Name:        "date",
+					Description: `date`,
+				},
+				resource.Attribute{
+					Name:        "order_id",
+					Description: `order id`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `expiration date`,
+				},
+				resource.Attribute{
+					Name:        "details",
+					Description: `Information about a Bill entry`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `description`,
+				},
+				resource.Attribute{
+					Name:        "order_detail_id",
+					Description: `order detail id`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `expiration date`,
+				},
+				resource.Attribute{
+					Name:        "quantity",
+					Description: `quantity`,
+				},
+				resource.Attribute{
+					Name:        "orderable_zone",
+					Description: `Available additional zone for your Load Balancer`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The zone three letter code`,
+				},
+				resource.Attribute{
+					Name:        "plan_code",
+					Description: `The billing planCode for this zone`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `The internal name of your IP load balancing`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `Current state of your IP`,
+				},
+				resource.Attribute{
+					Name:        "vrack_eligibility",
+					Description: `Vrack eligibility`,
+				},
+				resource.Attribute{
+					Name:        "vrack_name",
+					Description: `Name of the vRack on which the current Load Balancer is attached to, as it is named on vRack product`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `Location where your service is`,
 				},
 			},
 		},
@@ -2491,6 +3309,205 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ovh_domain_zone",
+			Category:         "Domain Resources",
+			ShortDescription: `Creates a domain zone.`,
+			Description:      ``,
+			Keywords: []string{
+				"domain",
+				"zone",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ovh_subsidiary",
+					Description: `(Required) Ovh Subsidiary`,
+				},
+				resource.Attribute{
+					Name:        "payment_mean",
+					Description: `(Required) Ovh payment mode (One of "default-payment-mean", "fidelity", "ovh-account")`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `(Required) Product Plan to order`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Required) duration`,
+				},
+				resource.Attribute{
+					Name:        "plan_code",
+					Description: `(Required) Plan code`,
+				},
+				resource.Attribute{
+					Name:        "pricing_mode",
+					Description: `(Required) Pricing model identifier`,
+				},
+				resource.Attribute{
+					Name:        "catalog_name",
+					Description: `Catalog name`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `(Optional) Representation of a configuration item for personalizing product`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) Identifier of the resource`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Path to the resource in API.OVH.COM`,
+				},
+				resource.Attribute{
+					Name:        "plan_option",
+					Description: `(Optional) Product Plan to order`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Required) duration`,
+				},
+				resource.Attribute{
+					Name:        "plan_code",
+					Description: `(Required) Plan code`,
+				},
+				resource.Attribute{
+					Name:        "pricing_mode",
+					Description: `(Required) Pricing model identifier`,
+				},
+				resource.Attribute{
+					Name:        "catalog_name",
+					Description: `Catalog name`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `(Optional) Representation of a configuration item for personalizing product`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) Identifier of the resource`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Path to the resource in API.OVH.COM ## Attributes Reference Id is set to the order Id. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "dnssec_supported",
+					Description: `Is DNSSEC supported by this zone`,
+				},
+				resource.Attribute{
+					Name:        "has_dns_anycast",
+					Description: `hasDnsAnycast flag of the DNS zone`,
+				},
+				resource.Attribute{
+					Name:        "last_update",
+					Description: `Last update date of the DNS zone`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Zone name`,
+				},
+				resource.Attribute{
+					Name:        "name_servers",
+					Description: `Name servers that host the DNS zone`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `Details about an Order`,
+				},
+				resource.Attribute{
+					Name:        "date",
+					Description: `date`,
+				},
+				resource.Attribute{
+					Name:        "order_id",
+					Description: `order id`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `expiration date`,
+				},
+				resource.Attribute{
+					Name:        "details",
+					Description: `Information about a Bill entry`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `description`,
+				},
+				resource.Attribute{
+					Name:        "order_detail_id",
+					Description: `order detail id`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `expiration date`,
+				},
+				resource.Attribute{
+					Name:        "quantity",
+					Description: `quantity`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dnssec_supported",
+					Description: `Is DNSSEC supported by this zone`,
+				},
+				resource.Attribute{
+					Name:        "has_dns_anycast",
+					Description: `hasDnsAnycast flag of the DNS zone`,
+				},
+				resource.Attribute{
+					Name:        "last_update",
+					Description: `Last update date of the DNS zone`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Zone name`,
+				},
+				resource.Attribute{
+					Name:        "name_servers",
+					Description: `Name servers that host the DNS zone`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `Details about an Order`,
+				},
+				resource.Attribute{
+					Name:        "date",
+					Description: `date`,
+				},
+				resource.Attribute{
+					Name:        "order_id",
+					Description: `order id`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `expiration date`,
+				},
+				resource.Attribute{
+					Name:        "details",
+					Description: `Information about a Bill entry`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `description`,
+				},
+				resource.Attribute{
+					Name:        "order_detail_id",
+					Description: `order detail id`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `expiration date`,
+				},
+				resource.Attribute{
+					Name:        "quantity",
+					Description: `quantity`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ovh_domain_zone_record",
 			Category:         "Domain Resources",
 			ShortDescription: `Provides a OVH domain zone resource.`,
@@ -2683,6 +3700,180 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ovh_vrack",
+			Category:         "vRack Resources",
+			ShortDescription: `Orders a vrack.`,
+			Description:      ``,
+			Keywords: []string{
+				"vrack",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `yourvrackdescription`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `yourvrackname`,
+				},
+				resource.Attribute{
+					Name:        "ovh_subsidiary",
+					Description: `(Required) Ovh Subsidiary`,
+				},
+				resource.Attribute{
+					Name:        "payment_mean",
+					Description: `(Required) Ovh payment mode (One of "default-payment-mean", "fidelity", "ovh-account")`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `(Required) Product Plan to order`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Required) duration`,
+				},
+				resource.Attribute{
+					Name:        "plan_code",
+					Description: `(Required) Plan code`,
+				},
+				resource.Attribute{
+					Name:        "pricing_mode",
+					Description: `(Required) Pricing model identifier`,
+				},
+				resource.Attribute{
+					Name:        "catalog_name",
+					Description: `Catalog name`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `(Optional) Representation of a configuration item for personalizing product`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) Identifier of the resource`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Path to the resource in API.OVH.COM`,
+				},
+				resource.Attribute{
+					Name:        "plan_option",
+					Description: `(Optional) Product Plan to order`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Required) duration`,
+				},
+				resource.Attribute{
+					Name:        "plan_code",
+					Description: `(Required) Plan code`,
+				},
+				resource.Attribute{
+					Name:        "pricing_mode",
+					Description: `(Required) Pricing model identifier`,
+				},
+				resource.Attribute{
+					Name:        "catalog_name",
+					Description: `Catalog name`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `(Optional) Representation of a configuration item for personalizing product`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) Identifier of the resource`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Path to the resource in API.OVH.COM ## Attributes Reference Id is set to the order Id. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `Details about an Order`,
+				},
+				resource.Attribute{
+					Name:        "date",
+					Description: `date`,
+				},
+				resource.Attribute{
+					Name:        "order_id",
+					Description: `order id`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `expiration date`,
+				},
+				resource.Attribute{
+					Name:        "details",
+					Description: `Information about a Bill entry`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `description`,
+				},
+				resource.Attribute{
+					Name:        "order_detail_id",
+					Description: `order detail id`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `expiration date`,
+				},
+				resource.Attribute{
+					Name:        "quantity",
+					Description: `quantity`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `The internal name of your vrack`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "order",
+					Description: `Details about an Order`,
+				},
+				resource.Attribute{
+					Name:        "date",
+					Description: `date`,
+				},
+				resource.Attribute{
+					Name:        "order_id",
+					Description: `order id`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `expiration date`,
+				},
+				resource.Attribute{
+					Name:        "details",
+					Description: `Information about a Bill entry`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `description`,
+				},
+				resource.Attribute{
+					Name:        "order_detail_id",
+					Description: `order detail id`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `expiration date`,
+				},
+				resource.Attribute{
+					Name:        "quantity",
+					Description: `quantity`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `The internal name of your vrack`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ovh_vrack_cloudproject",
 			Category:         "vRack Resources",
 			ShortDescription: `Attach a Public Cloud Project to a VRack.`,
@@ -2844,38 +4035,44 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"ovh_cloud_project_containerregistry":                         0,
-		"ovh_cloud_project_containerregistry_user":                    1,
-		"ovh_cloud_project_network_private":                           2,
-		"ovh_cloud_project_network_private_subnet":                    3,
-		"ovh_cloud_project_user":                                      4,
-		"ovh_dedicated_ceph_acl":                                      5,
-		"ovh_dedicated_server_reboot_task":                            6,
-		"ovh_dedicated_server_update":                                 7,
-		"ovh_ip_reverse":                                              8,
-		"ovh_iploadbalancing_http_farm":                               9,
-		"ovh_iploadbalancing_http_farm_server":                        10,
-		"ovh_iploadbalancing_http_frontend":                           11,
-		"ovh_iploadbalancing_http_route":                              12,
-		"ovh_iploadbalancing_http_route_rule":                         13,
-		"ovh_iploadbalancing_refresh":                                 14,
-		"ovh_iploadbalancing_tcp_farm":                                15,
-		"ovh_iploadbalancing_tcp_farm_server":                         16,
-		"ovh_iploadbalancing_tcp_frontend":                            17,
-		"ovh_iploadbalancing_vrack_network":                           18,
-		"ovh_me_identity_user":                                        19,
-		"ovh_me_installation_template":                                20,
-		"ovh_me_installation_template_partition_scheme":               21,
-		"ovh_me_installation_template_partition_scheme_hardware_raid": 22,
-		"ovh_me_installation_template_partition_scheme_partition":     23,
-		"ovh_me_ipxe_script":                                          24,
-		"ovh_me_ssh_key":                                              25,
-		"ovh_domain_zone_record":                                      26,
-		"ovh_domain_zone_redirection":                                 27,
-		"ovh_vrack_cloudproject":                                      28,
-		"ovh_vrack_dedicated_server":                                  29,
-		"ovh_vrack_dedicated_server_interface":                        30,
-		"ovh_vrack_iploadbalancing":                                   31,
+		"ovh_cloud_project":                                           0,
+		"ovh_cloud_project_containerregistry":                         1,
+		"ovh_cloud_project_containerregistry_user":                    2,
+		"ovh_cloud_project_network_private":                           3,
+		"ovh_cloud_project_network_private_subnet":                    4,
+		"ovh_cloud_project_user":                                      5,
+		"ovh_dbaas_logs_input":                                        6,
+		"ovh_dedicated_ceph_acl":                                      7,
+		"ovh_dedicated_server_reboot_task":                            8,
+		"ovh_dedicated_server_update":                                 9,
+		"ovh_ip_reverse":                                              10,
+		"ovh_ip_service":                                              11,
+		"ovh_iploadbalancing":                                         12,
+		"ovh_iploadbalancing_http_farm":                               13,
+		"ovh_iploadbalancing_http_farm_server":                        14,
+		"ovh_iploadbalancing_http_frontend":                           15,
+		"ovh_iploadbalancing_http_route":                              16,
+		"ovh_iploadbalancing_http_route_rule":                         17,
+		"ovh_iploadbalancing_refresh":                                 18,
+		"ovh_iploadbalancing_tcp_farm":                                19,
+		"ovh_iploadbalancing_tcp_farm_server":                         20,
+		"ovh_iploadbalancing_tcp_frontend":                            21,
+		"ovh_iploadbalancing_vrack_network":                           22,
+		"ovh_me_identity_user":                                        23,
+		"ovh_me_installation_template":                                24,
+		"ovh_me_installation_template_partition_scheme":               25,
+		"ovh_me_installation_template_partition_scheme_hardware_raid": 26,
+		"ovh_me_installation_template_partition_scheme_partition":     27,
+		"ovh_me_ipxe_script":                                          28,
+		"ovh_me_ssh_key":                                              29,
+		"ovh_domain_zone":                                             30,
+		"ovh_domain_zone_record":                                      31,
+		"ovh_domain_zone_redirection":                                 32,
+		"ovh_vrack":                                                   33,
+		"ovh_vrack_cloudproject":                                      34,
+		"ovh_vrack_dedicated_server":                                  35,
+		"ovh_vrack_dedicated_server_interface":                        36,
+		"ovh_vrack_iploadbalancing":                                   37,
 	}
 )
 

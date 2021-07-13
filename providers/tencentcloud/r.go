@@ -1326,6 +1326,10 @@ var (
 					Description: `(Optional) ID list of traditional load balancers.`,
 				},
 				resource.Attribute{
+					Name:        "multi_zone_subnet_policy",
+					Description: `(Optional) Multi zone or subnet strategy, Valid values: PRIORITY and EQUALITY.`,
+				},
+				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Optional) Specifies to which project the scaling group belongs.`,
 				},
@@ -3515,12 +3519,24 @@ var (
 					Description: `(Optional) Internet charge type, only applicable to open CLB. Valid values are ` + "`" + `TRAFFIC_POSTPAID_BY_HOUR` + "`" + `, ` + "`" + `BANDWIDTH_POSTPAID_BY_HOUR` + "`" + ` and ` + "`" + `BANDWIDTH_PACKAGE` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "load_balancer_pass_to_target",
+					Description: `(Optional) Whether the target allow flow come from clb. If value is true, only check security group of clb, or check both clb and backend instance security group.`,
+				},
+				resource.Attribute{
+					Name:        "master_zone_id",
+					Description: `(Optional) Setting master zone id of cross available zone disaster recovery, only applicable to open CLB.`,
+				},
+				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Optional, ForceNew) ID of the project within the CLB instance, ` + "`" + `0` + "`" + ` - Default Project.`,
 				},
 				resource.Attribute{
 					Name:        "security_groups",
-					Description: `(Optional) Security groups of the CLB instance. Only supports ` + "`" + `OPEN` + "`" + ` CLBs.`,
+					Description: `(Optional) Security groups of the CLB instance. Supports both ` + "`" + `OPEN` + "`" + ` and ` + "`" + `INTERNAL` + "`" + ` CLBs.`,
+				},
+				resource.Attribute{
+					Name:        "slave_zone_id",
+					Description: `(Optional) Setting slave zone id of cross available zone disaster recovery, only applicable to open CLB. this zone will undertake traffic when the master is down.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
@@ -3540,7 +3556,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Optional, ForceNew) VPC ID of the CLB. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) VPC ID of the CLB.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Optional) Available zone id, only applicable to open CLB. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -3686,7 +3706,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target_type",
-					Description: `(Optional, ForceNew) Backend target type. Valid values: ` + "`" + `NODE` + "`" + `, ` + "`" + `TARGETGROUP` + "`" + `. ` + "`" + `NODE` + "`" + ` means to bind ordinary nodes, ` + "`" + `TARGETGROUP` + "`" + ` means to bind target group. NOTES: TCP/UDP/TCP_SSL listener must configuration, HTTP/HTTPS listener needs to be configured in tencentcloud_clb_listener_rule. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Backend target type. Valid values: ` + "`" + `NODE` + "`" + `, ` + "`" + `TARGETGROUP` + "`" + `. ` + "`" + `NODE` + "`" + ` means to bind ordinary nodes, ` + "`" + `TARGETGROUP` + "`" + ` means to bind target group. NOTES: TCP/UDP/TCP_SSL listener must configuration, HTTP/HTTPS listener needs to be configured in tencentcloud_clb_listener_rule. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -3893,12 +3913,36 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) The default port of target group, add server after can use it.`,
+				},
+				resource.Attribute{
+					Name:        "target_group_instances",
+					Description: `(Optional) The backend server of target group bind.`,
+				},
+				resource.Attribute{
 					Name:        "target_group_name",
 					Description: `(Optional) Target group name.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Optional, ForceNew) VPC ID, default is based on the network. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) VPC ID, default is based on the network. The ` + "`" + `target_group_instances` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "bind_ip",
+					Description: `(Required) The internal ip of target group instance.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required) The port of target group instance.`,
+				},
+				resource.Attribute{
+					Name:        "new_port",
+					Description: `(Optional) The new port of target group instance.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `(Optional) The weight of target group instance. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -6252,7 +6296,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A mapping of tags to assign to the instance. For tag limits, please refer to [Use Limits](https://intl.cloud.tencent.com/document/product/651/13354). The ` + "`" + `multi_zone_infos` + "`" + ` object supports the following:`,
+					Description: `(Optional) A mapping of tags to assign to the instance. For tag limits, please refer to [Use Limits](https://intl.cloud.tencent.com/document/product/651/13354).`,
+				},
+				resource.Attribute{
+					Name:        "web_node_type_info",
+					Description: `(Optional) Visual node configuration. The ` + "`" + `multi_zone_infos` + "`" + ` object supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -6284,7 +6332,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Node type. Valid values are ` + "`" + `hotData` + "`" + `, ` + "`" + `warmData` + "`" + ` and ` + "`" + `dedicatedMaster` + "`" + `. The default value is 'hotData` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Node type. Valid values are ` + "`" + `hotData` + "`" + `, ` + "`" + `warmData` + "`" + ` and ` + "`" + `dedicatedMaster` + "`" + `. The default value is 'hotData` + "`" + `. The ` + "`" + `web_node_type_info` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "node_num",
+					Description: `(Required) Visual node number.`,
+				},
+				resource.Attribute{
+					Name:        "node_type",
+					Description: `(Required) Visual node specifications. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -7448,6 +7504,10 @@ var (
 					Description: `(Optional, ForceNew) Associate a public IP address with an instance in a VPC or Classic. Boolean value, Default is false.`,
 				},
 				resource.Attribute{
+					Name:        "bandwidth_package_id",
+					Description: `(Optional) bandwidth package id. if user is standard user, then the bandwidth_package_id is needed, or default has bandwidth_package_id.`,
+				},
+				resource.Attribute{
 					Name:        "cam_role_name",
 					Description: `(Optional, ForceNew) CAM role name authorized to access.`,
 				},
@@ -7490,6 +7550,10 @@ var (
 				resource.Attribute{
 					Name:        "instance_charge_type",
 					Description: `(Optional, ForceNew) The charge type of instance. Valid values are ` + "`" + `PREPAID` + "`" + `, ` + "`" + `POSTPAID_BY_HOUR` + "`" + `, ` + "`" + `SPOTPAID` + "`" + ` and ` + "`" + `CDHPAID` + "`" + `. The default is ` + "`" + `POSTPAID_BY_HOUR` + "`" + `. Note: TencentCloud International only supports ` + "`" + `POSTPAID_BY_HOUR` + "`" + ` and ` + "`" + `CDHPAID` + "`" + `. ` + "`" + `PREPAID` + "`" + ` instance may not allow to delete before expired. ` + "`" + `SPOTPAID` + "`" + ` instance must set ` + "`" + `spot_instance_type` + "`" + ` and ` + "`" + `spot_max_price` + "`" + ` at the same time. ` + "`" + `CDHPAID` + "`" + ` instance must set ` + "`" + `cdh_instance_type` + "`" + ` and ` + "`" + `cdh_host_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "instance_count",
+					Description: `(Optional) The number of instances to be purchased. Value range:[1,100]; default value: 1.`,
 				},
 				resource.Attribute{
 					Name:        "instance_name",
@@ -7891,7 +7955,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "internet_max_bandwidth_out",
-					Description: `(Optional, ForceNew) Max bandwidth of Internet access in Mbps. Default is ` + "`" + `0` + "`" + `.`,
+					Description: `(Optional) Max bandwidth of Internet access in Mbps. Default is ` + "`" + `0` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "key_ids",
@@ -8125,7 +8189,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_customized_pod_cidr",
-					Description: `(Optional, ForceNew) Whether to enable the custom mode of node podCIDR size. Default is false.`,
+					Description: `(Optional) Whether to enable the custom mode of node podCIDR size. Default is false.`,
 				},
 				resource.Attribute{
 					Name:        "eni_subnet_ids",
@@ -8149,7 +8213,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_non_static_ip_mode",
-					Description: `(Optional, ForceNew) Indicates whether static ip mode is enabled. Default is false.`,
+					Description: `(Optional, ForceNew) Indicates whether non-static ip mode is enabled. Default is false.`,
 				},
 				resource.Attribute{
 					Name:        "kube_proxy_mode",
@@ -8225,7 +8289,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_type",
-					Description: `(Optional, ForceNew) Types of disk, available values: ` + "`" + `CLOUD_PREMIUM` + "`" + ` and ` + "`" + `CLOUD_SSD` + "`" + `.`,
+					Description: `(Optional, ForceNew) Types of disk, available values: ` + "`" + `CLOUD_PREMIUM` + "`" + ` and ` + "`" + `CLOUD_SSD` + "`" + ` and ` + "`" + `CLOUD_HSSD` + "`" + ` and ` + "`" + `CLOUD_TSSD` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "snapshot_id",
@@ -8260,6 +8324,10 @@ var (
 					Description: `(Optional, ForceNew) Indicates which availability zone will be used.`,
 				},
 				resource.Attribute{
+					Name:        "bandwidth_package_id",
+					Description: `(Optional) bandwidth package id. if user is standard user, then the bandwidth_package_id is needed, or default has bandwidth_package_id.`,
+				},
+				resource.Attribute{
 					Name:        "cam_role_name",
 					Description: `(Optional, ForceNew) CAM role name authorized to access.`,
 				},
@@ -8292,6 +8360,10 @@ var (
 					Description: `(Optional, ForceNew) The host name of the attached instance. Dot (.) and dash (-) cannot be used as the first and last characters of HostName and cannot be used consecutively. Windows example: The length of the name character is [2, 15], letters (capitalization is not restricted), numbers and dashes (-) are allowed, dots (.) are not supported, and not all numbers are allowed. Examples of other types (Linux, etc.): The character length is [2, 60], and multiple dots are allowed. There is a segment between the dots. Each segment allows letters (with no limitation on capitalization), numbers and dashes (-).`,
 				},
 				resource.Attribute{
+					Name:        "img_id",
+					Description: `(Optional) The valid image id, format of img-xxx.`,
+				},
+				resource.Attribute{
 					Name:        "instance_charge_type_prepaid_period",
 					Description: `(Optional, ForceNew) The tenancy (time unit is month) of the prepaid instance. NOTE: it only works when instance_charge_type is set to ` + "`" + `PREPAID` + "`" + `. Valid values are ` + "`" + `1` + "`" + `, ` + "`" + `2` + "`" + `, ` + "`" + `3` + "`" + `, ` + "`" + `4` + "`" + `, ` + "`" + `5` + "`" + `, ` + "`" + `6` + "`" + `, ` + "`" + `7` + "`" + `, ` + "`" + `8` + "`" + `, ` + "`" + `9` + "`" + `, ` + "`" + `10` + "`" + `, ` + "`" + `11` + "`" + `, ` + "`" + `12` + "`" + `, ` + "`" + `24` + "`" + `, ` + "`" + `36` + "`" + `.`,
 				},
@@ -8313,7 +8385,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "internet_max_bandwidth_out",
-					Description: `(Optional, ForceNew) Max bandwidth of Internet access in Mbps. Default is 0.`,
+					Description: `(Optional) Max bandwidth of Internet access in Mbps. Default is 0.`,
 				},
 				resource.Attribute{
 					Name:        "key_ids",
@@ -8392,6 +8464,10 @@ var (
 					Description: `(Optional, ForceNew) Indicates which availability zone will be used.`,
 				},
 				resource.Attribute{
+					Name:        "bandwidth_package_id",
+					Description: `(Optional) bandwidth package id. if user is standard user, then the bandwidth_package_id is needed, or default has bandwidth_package_id.`,
+				},
+				resource.Attribute{
 					Name:        "cam_role_name",
 					Description: `(Optional, ForceNew) CAM role name authorized to access.`,
 				},
@@ -8424,6 +8500,10 @@ var (
 					Description: `(Optional, ForceNew) The host name of the attached instance. Dot (.) and dash (-) cannot be used as the first and last characters of HostName and cannot be used consecutively. Windows example: The length of the name character is [2, 15], letters (capitalization is not restricted), numbers and dashes (-) are allowed, dots (.) are not supported, and not all numbers are allowed. Examples of other types (Linux, etc.): The character length is [2, 60], and multiple dots are allowed. There is a segment between the dots. Each segment allows letters (with no limitation on capitalization), numbers and dashes (-).`,
 				},
 				resource.Attribute{
+					Name:        "img_id",
+					Description: `(Optional) The valid image id, format of img-xxx.`,
+				},
+				resource.Attribute{
 					Name:        "instance_charge_type_prepaid_period",
 					Description: `(Optional, ForceNew) The tenancy (time unit is month) of the prepaid instance. NOTE: it only works when instance_charge_type is set to ` + "`" + `PREPAID` + "`" + `. Valid values are ` + "`" + `1` + "`" + `, ` + "`" + `2` + "`" + `, ` + "`" + `3` + "`" + `, ` + "`" + `4` + "`" + `, ` + "`" + `5` + "`" + `, ` + "`" + `6` + "`" + `, ` + "`" + `7` + "`" + `, ` + "`" + `8` + "`" + `, ` + "`" + `9` + "`" + `, ` + "`" + `10` + "`" + `, ` + "`" + `11` + "`" + `, ` + "`" + `12` + "`" + `, ` + "`" + `24` + "`" + `, ` + "`" + `36` + "`" + `.`,
 				},
@@ -8445,7 +8525,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "internet_max_bandwidth_out",
-					Description: `(Optional, ForceNew) Max bandwidth of Internet access in Mbps. Default is 0.`,
+					Description: `(Optional) Max bandwidth of Internet access in Mbps. Default is 0.`,
 				},
 				resource.Attribute{
 					Name:        "key_ids",
@@ -8854,6 +8934,10 @@ var (
 					Description: `(Required, ForceNew) Specified types of CVM instance.`,
 				},
 				resource.Attribute{
+					Name:        "bandwidth_package_id",
+					Description: `(Optional) bandwidth package id. if user is standard user, then the bandwidth_package_id is needed, or default has bandwidth_package_id.`,
+				},
+				resource.Attribute{
 					Name:        "data_disk",
 					Description: `(Optional, ForceNew) Configurations of data disk.`,
 				},
@@ -8871,7 +8955,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "internet_max_bandwidth_out",
-					Description: `(Optional, ForceNew) Max bandwidth of Internet access in Mbps. Default is ` + "`" + `0` + "`" + `.`,
+					Description: `(Optional) Max bandwidth of Internet access in Mbps. Default is ` + "`" + `0` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "key_ids",
@@ -9074,7 +9158,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_type",
-					Description: `(Optional, ForceNew) Types of disk, available values: ` + "`" + `CLOUD_PREMIUM` + "`" + ` and ` + "`" + `CLOUD_SSD` + "`" + `.`,
+					Description: `(Optional, ForceNew) Types of disk, available values: ` + "`" + `CLOUD_PREMIUM` + "`" + ` and ` + "`" + `CLOUD_SSD` + "`" + ` and ` + "`" + `CLOUD_HSSD` + "`" + ` and ` + "`" + `CLOUD_TSSD` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "file_system",
@@ -9090,7 +9174,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_type",
-					Description: `(Optional, ForceNew) Types of disk, available values: ` + "`" + `CLOUD_PREMIUM` + "`" + ` and ` + "`" + `CLOUD_SSD` + "`" + `.`,
+					Description: `(Optional, ForceNew) Types of disk, available values: ` + "`" + `CLOUD_PREMIUM` + "`" + ` and ` + "`" + `CLOUD_SSD` + "`" + ` and ` + "`" + `CLOUD_HSSD` + "`" + ` and ` + "`" + `CLOUD_TSSD` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "snapshot_id",
@@ -9107,6 +9191,10 @@ var (
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Optional, ForceNew) Indicates which availability zone will be used.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_package_id",
+					Description: `(Optional) bandwidth package id. if user is standard user, then the bandwidth_package_id is needed, or default has bandwidth_package_id.`,
 				},
 				resource.Attribute{
 					Name:        "cam_role_name",
@@ -9141,6 +9229,10 @@ var (
 					Description: `(Optional, ForceNew) The host name of the attached instance. Dot (.) and dash (-) cannot be used as the first and last characters of HostName and cannot be used consecutively. Windows example: The length of the name character is [2, 15], letters (capitalization is not restricted), numbers and dashes (-) are allowed, dots (.) are not supported, and not all numbers are allowed. Examples of other types (Linux, etc.): The character length is [2, 60], and multiple dots are allowed. There is a segment between the dots. Each segment allows letters (with no limitation on capitalization), numbers and dashes (-).`,
 				},
 				resource.Attribute{
+					Name:        "img_id",
+					Description: `(Optional) The valid image id, format of img-xxx.`,
+				},
+				resource.Attribute{
 					Name:        "instance_charge_type_prepaid_period",
 					Description: `(Optional, ForceNew) The tenancy (time unit is month) of the prepaid instance. NOTE: it only works when instance_charge_type is set to ` + "`" + `PREPAID` + "`" + `. Valid values are ` + "`" + `1` + "`" + `, ` + "`" + `2` + "`" + `, ` + "`" + `3` + "`" + `, ` + "`" + `4` + "`" + `, ` + "`" + `5` + "`" + `, ` + "`" + `6` + "`" + `, ` + "`" + `7` + "`" + `, ` + "`" + `8` + "`" + `, ` + "`" + `9` + "`" + `, ` + "`" + `10` + "`" + `, ` + "`" + `11` + "`" + `, ` + "`" + `12` + "`" + `, ` + "`" + `24` + "`" + `, ` + "`" + `36` + "`" + `.`,
 				},
@@ -9162,7 +9254,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "internet_max_bandwidth_out",
-					Description: `(Optional, ForceNew) Max bandwidth of Internet access in Mbps. Default is 0.`,
+					Description: `(Optional) Max bandwidth of Internet access in Mbps. Default is 0.`,
 				},
 				resource.Attribute{
 					Name:        "key_ids",
@@ -14309,7 +14401,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ike_proto_authen_algorithm",
-					Description: `(Optional) Proto authenticate algorithm of the IKE operation specification. Valid values: ` + "`" + `MD5` + "`" + `, ` + "`" + `SHA` + "`" + `. Default Value is ` + "`" + `MD5` + "`" + `.`,
+					Description: `(Optional) Proto authenticate algorithm of the IKE operation specification. Valid values: ` + "`" + `MD5` + "`" + `, ` + "`" + `SHA` + "`" + `, ` + "`" + `SHA-256` + "`" + `. Default Value is ` + "`" + `MD5` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ike_proto_encry_algorithm",
@@ -14341,7 +14433,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ipsec_integrity_algorithm",
-					Description: `(Optional) Integrity algorithm of the IPSEC operation specification. Valid values: ` + "`" + `SHA1` + "`" + `, ` + "`" + `MD5` + "`" + `. Default value is ` + "`" + `MD5` + "`" + `.`,
+					Description: `(Optional) Integrity algorithm of the IPSEC operation specification. Valid values: ` + "`" + `SHA1` + "`" + `, ` + "`" + `MD5` + "`" + `, ` + "`" + `SHA-256` + "`" + `. Default value is ` + "`" + `MD5` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ipsec_pfs_dh_group",

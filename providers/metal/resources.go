@@ -145,6 +145,30 @@ var (
 					Description: `(Required) monthly or hourly`,
 				},
 				resource.Attribute{
+					Name:        "user_data",
+					Description: `(Optional) A string of the desired User Data for the device.`,
+				},
+				resource.Attribute{
+					Name:        "custom_data",
+					Description: `(Optional) A string of the desired Custom Data for the device.`,
+				},
+				resource.Attribute{
+					Name:        "ipxe_script_url",
+					Description: `(Optional) URL pointing to a hosted iPXE script. More information is in the [Custom iPXE](https://metal.equinix.com/developers/docs/servers/custom-ipxe/) doc.`,
+				},
+				resource.Attribute{
+					Name:        "always_pxe",
+					Description: `(Optional) If true, a device with OS ` + "`" + `custom_ipxe` + "`" + ` will continue to boot via iPXE on reboots.`,
+				},
+				resource.Attribute{
+					Name:        "hardware_reservation_id",
+					Description: `(Optional) The UUID of the hardware reservation where you want this device deployed, or ` + "`" + `next-available` + "`" + ` if you want to pick your next available reservation automatically. Changing this from a reservation UUID to ` + "`" + `next-available` + "`" + ` will re-create the device in another reservation. Please be careful when using hardware reservation UUID and ` + "`" + `next-available` + "`" + ` together for the same pool of reservations. It might happen that the reservation which Equinix Metal API will pick as ` + "`" + `next-available` + "`" + ` is the reservation which you refer with UUID in another metal_device resource. If that happens, and the metal_device with the UUID is created later, resource creation will fail because the reservation is already in use (by the resource created with ` + "`" + `next-available` + "`" + `). To workaround this, have the ` + "`" + `next-available` + "`" + ` resource [explicitly depend_on](https://learn.hashicorp.com/terraform/getting-started/dependencies.html#implicit-and-explicit-dependencies) the resource with hardware reservation UUID, so that the latter is created first. For more details, see [issue #176](https://github.com/packethost/terraform-provider-packet/issues/176).`,
+				},
+				resource.Attribute{
+					Name:        "storage",
+					Description: `(Optional) JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://metal.equinix.com/developers/docs/servers/custom-partitioning-raid/) doc.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `Tags attached to the device`,
 				},
@@ -155,6 +179,18 @@ var (
 				resource.Attribute{
 					Name:        "project_ssh_key_ids",
 					Description: `Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [metal_project_ssh_key](project_ssh_key.md) resource.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `(Optional) A list of IP address types for the device (structure is documented below).`,
+				},
+				resource.Attribute{
+					Name:        "wait_for_reservation_deprovision",
+					Description: `(Optional) Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).`,
+				},
+				resource.Attribute{
+					Name:        "force_detach_volumes",
+					Description: `(Optional) Delete device even if it has volumes attached. Only applies for destroy action. The ` + "`" + `ip_address` + "`" + ` block has 3 fields:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -199,6 +235,10 @@ var (
 				resource.Attribute{
 					Name:        "description",
 					Description: `Description string for the device`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `The hostname of the device`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -267,6 +307,10 @@ var (
 				resource.Attribute{
 					Name:        "bonded",
 					Description: `Whether this port is part of a bond in bonded network setup`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `The ID of the project the device belongs to`,
 				},
 				resource.Attribute{
 					Name:        "root_password",
@@ -323,6 +367,10 @@ var (
 					Description: `Description string for the device`,
 				},
 				resource.Attribute{
+					Name:        "hostname",
+					Description: `The hostname of the device`,
+				},
+				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the device`,
 				},
@@ -389,6 +437,10 @@ var (
 				resource.Attribute{
 					Name:        "bonded",
 					Description: `Whether this port is part of a bond in bonded network setup`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `The ID of the project the device belongs to`,
 				},
 				resource.Attribute{
 					Name:        "root_password",
@@ -881,7 +933,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) Arbitrary description ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Arbitrary description`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) String list of tags ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "facility",
@@ -929,7 +985,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global",
-					Description: `boolean flag whether addresses from a block are global (i.e. can be assigned in any facility) Idempotent reference to a first "/32" address from a reserved block might look like this: ` + "`" + `join("/", [cidrhost(metal_reserved_ip_block.myblock.cidr_notation,0), "32"])` + "`" + ` ## Import This resource can be imported using an existing IP reservation ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_reserved_ip_block {existing_ip_reservation_id} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `boolean flag whether addresses from a block are global (i.e. can be assigned in any facility)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `string list of tags Idempotent reference to a first "/32" address from a reserved block might look like this: ` + "`" + `join("/", [cidrhost(metal_reserved_ip_block.myblock.cidr_notation,0), "32"])` + "`" + ` ## Import This resource can be imported using an existing IP reservation ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_reserved_ip_block {existing_ip_reservation_id} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -979,7 +1039,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global",
-					Description: `boolean flag whether addresses from a block are global (i.e. can be assigned in any facility) Idempotent reference to a first "/32" address from a reserved block might look like this: ` + "`" + `join("/", [cidrhost(metal_reserved_ip_block.myblock.cidr_notation,0), "32"])` + "`" + ` ## Import This resource can be imported using an existing IP reservation ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_reserved_ip_block {existing_ip_reservation_id} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `boolean flag whether addresses from a block are global (i.e. can be assigned in any facility)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `string list of tags Idempotent reference to a first "/32" address from a reserved block might look like this: ` + "`" + `join("/", [cidrhost(metal_reserved_ip_block.myblock.cidr_notation,0), "32"])` + "`" + ` ## Import This resource can be imported using an existing IP reservation ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_reserved_ip_block {existing_ip_reservation_id} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},

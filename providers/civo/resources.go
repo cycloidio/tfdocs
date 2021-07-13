@@ -211,7 +211,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "hostname",
-					Description: `(Required) The Instance hostname.`,
+					Description: `(Required) The Instance hostname, if is not declare the provider will generate one for you`,
 				},
 				resource.Attribute{
 					Name:        "reverse_dns",
@@ -223,7 +223,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip_required",
-					Description: `(Optional) This should be either false, true or ` + "`" + `move_ip_from:intances_id` + "`" + `.`,
+					Description: `(Optional) This should be either ` + "`" + `create` + "`" + `, ` + "`" + `none` + "`" + ` or ` + "`" + `move_ip_from:intances_id` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
@@ -283,7 +283,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip_requiered",
-					Description: `This should be either false, true or ` + "`" + `move_ip_from:intances_id` + "`" + `.`,
+					Description: `This should be either ` + "`" + `create` + "`" + `, ` + "`" + `none` + "`" + ` or ` + "`" + `move_ip_from:intances_id` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
@@ -369,7 +369,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip_requiered",
-					Description: `This should be either false, true or ` + "`" + `move_ip_from:intances_id` + "`" + `.`,
+					Description: `This should be either ` + "`" + `create` + "`" + `, ` + "`" + `none` + "`" + ` or ` + "`" + `move_ip_from:intances_id` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
@@ -439,7 +439,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) A name for the Kubernetes cluster.`,
+					Description: `(Optional) A name for the Kubernetes cluster, if is not declare the provider will generate one for you.`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -463,7 +463,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "applications",
-					Description: `(Optional) A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik ## Attributes Reference In addition to the arguments listed above, the following additional attributes are exported:`,
+					Description: `(Optional) A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik ## Attributes Reference In addition to the arguments listed above, the following additional attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -471,7 +471,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of your cluster,.`,
+					Description: `The name of your cluster.`,
 				},
 				resource.Attribute{
 					Name:        "num_target_nodes",
@@ -545,7 +545,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of your cluster,.`,
+					Description: `The name of your cluster.`,
 				},
 				resource.Attribute{
 					Name:        "num_target_nodes",
@@ -847,11 +847,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "default",
-					Description: `If is the default network.`,
-				},
-				resource.Attribute{
-					Name:        "cidr",
-					Description: `The block ip assigned to the network. ## Import Firewalls can be imported using the firewall ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import civo_network.custom_net b8ecd2ab-2267-4a5e-8692-cbf1d32583e3 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `If is the default network ## Import Firewalls can be imported using the firewall ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import civo_network.custom_net b8ecd2ab-2267-4a5e-8692-cbf1d32583e3 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -873,11 +869,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "default",
-					Description: `If is the default network.`,
-				},
-				resource.Attribute{
-					Name:        "cidr",
-					Description: `The block ip assigned to the network. ## Import Firewalls can be imported using the firewall ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import civo_network.custom_net b8ecd2ab-2267-4a5e-8692-cbf1d32583e3 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `If is the default network ## Import Firewalls can be imported using the firewall ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import civo_network.custom_net b8ecd2ab-2267-4a5e-8692-cbf1d32583e3 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},

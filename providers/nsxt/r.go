@@ -5247,12 +5247,12 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_policy_fixed_segment",
-			Category:         "Beta",
+			Category:         "Policy - Segments",
 			ShortDescription: `A resource to configure a network Segment on specific Tier1 Gateway.`,
 			Description:      ``,
 			Keywords: []string{
-				"beta",
 				"policy",
+				"segments",
 				"fixed",
 				"segment",
 			},
@@ -5884,7 +5884,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ospf_enabled",
-					Description: `(Optional) Enable route redistribution for OSPF. Defaults to ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Enable route redistribution for OSPF. Defaults to ` + "`" + `false` + "`" + `. Applicable from NSX 3.1.0 onwards.`,
 				},
 				resource.Attribute{
 					Name:        "rule",
@@ -7535,12 +7535,12 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_policy_predefined_gateway_policy",
-			Category:         "Beta",
+			Category:         "Policy - Firewall",
 			ShortDescription: `A resource to update Predefined Gateway Security Policies.`,
 			Description:      ``,
 			Keywords: []string{
-				"beta",
 				"policy",
+				"firewall",
 				"predefined",
 				"gateway",
 			},
@@ -7667,7 +7667,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rule_id",
-					Description: `Unique positive number that is assigned by the system and is useful for debugging. ## Importing An existing Gateway Policy can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_policy.default policy-path ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Gateway Policy named ` + "`" + `default` + "`" + ` with the NSX Path ` + "`" + `policy-path` + "`" + `. The import command is recommended in case the NSX policy in question already has rules configured, and you with to reconfigure the policy from scratch. If your terraform configuration copies existing rules, like in VMC example above, import step can be skipped.`,
+					Description: `Unique positive number that is assigned by the system and is useful for debugging. ## Importing An existing Gateway Policy can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_policy.default policy-path ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Gateway Policy named ` + "`" + `default` + "`" + ` with the NSX Path ` + "`" + `policy-path` + "`" + `. The import command is recommended in case the NSX policy in question already has rules configured, and you wish to reconfigure the policy from scratch. If your terraform configuration copies existing rules, like in VMC example above, import step can be skipped.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -7689,19 +7689,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rule_id",
-					Description: `Unique positive number that is assigned by the system and is useful for debugging. ## Importing An existing Gateway Policy can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_policy.default policy-path ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Gateway Policy named ` + "`" + `default` + "`" + ` with the NSX Path ` + "`" + `policy-path` + "`" + `. The import command is recommended in case the NSX policy in question already has rules configured, and you with to reconfigure the policy from scratch. If your terraform configuration copies existing rules, like in VMC example above, import step can be skipped.`,
+					Description: `Unique positive number that is assigned by the system and is useful for debugging. ## Importing An existing Gateway Policy can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_policy.default policy-path ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Gateway Policy named ` + "`" + `default` + "`" + ` with the NSX Path ` + "`" + `policy-path` + "`" + `. The import command is recommended in case the NSX policy in question already has rules configured, and you wish to reconfigure the policy from scratch. If your terraform configuration copies existing rules, like in VMC example above, import step can be skipped.`,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_policy_predefined_security_policy",
-			Category:         "Beta",
+			Category:         "Policy - Firewall",
 			ShortDescription: `A resource to update Predefined (Default) Security Security Policies.`,
 			Description:      ``,
 			Keywords: []string{
-				"beta",
 				"policy",
+				"firewall",
 				"predefined",
 				"security",
 			},
@@ -8847,7 +8847,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ospf_enabled",
-					Description: `(Optional) Enable route redistribution for OSPF. Defaults to ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Enable route redistribution for OSPF. Defaults to ` + "`" + `false` + "`" + `. Applicable from NSX 3.1.0 onwards.`,
 				},
 				resource.Attribute{
 					Name:        "rule",

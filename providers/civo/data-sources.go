@@ -195,7 +195,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip_requiered",
-					Description: `This should be either false, true or ` + "`" + `move_ip_from:intances_id` + "`" + `.`,
+					Description: `This should be either ` + "`" + `create` + "`" + `, ` + "`" + `none` + "`" + ` or ` + "`" + `move_ip_from:intances_id` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
@@ -289,7 +289,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip_requiered",
-					Description: `This should be either false, true or ` + "`" + `move_ip_from:intances_id` + "`" + `.`,
+					Description: `This should be either ` + "`" + `create` + "`" + `, ` + "`" + `none` + "`" + ` or ` + "`" + `move_ip_from:intances_id` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
@@ -475,7 +475,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip_requiered",
-					Description: `This should be either false, true or ` + "`" + `move_ip_from:intances_id` + "`" + `.`,
+					Description: `This should be either ` + "`" + `create` + "`" + `, ` + "`" + `none` + "`" + ` or ` + "`" + `move_ip_from:intances_id` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
@@ -569,7 +569,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip_requiered",
-					Description: `This should be either false, true or ` + "`" + `move_ip_from:intances_id` + "`" + `.`,
+					Description: `This should be either ` + "`" + `create` + "`" + `, ` + "`" + `none` + "`" + ` or ` + "`" + `move_ip_from:intances_id` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
@@ -1021,10 +1021,6 @@ var (
 					Name:        "default",
 					Description: `If is the default network.`,
 				},
-				resource.Attribute{
-					Name:        "cidr",
-					Description: `The block ip assigned to the network.`,
-				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -1042,10 +1038,6 @@ var (
 				resource.Attribute{
 					Name:        "default",
 					Description: `If is the default network.`,
-				},
-				resource.Attribute{
-					Name:        "cidr",
-					Description: `The block ip assigned to the network.`,
 				},
 			},
 		},

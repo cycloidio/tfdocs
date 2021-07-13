@@ -116,7 +116,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "oss_write_role_arn",
-					Description: `(Optional) The unique ARN of the Oss role. ->`,
+					Description: `(Optional) The unique ARN of the Oss role.`,
+				},
+				resource.Attribute{
+					Name:        "is_organization_trail",
+					Description: `(Optional) Specifies whether to create a multi-account trail. Valid values:` + "`" + `true` + "`" + `: Create a multi-account trail.` + "`" + `false` + "`" + `: Create a single-account trail. It is the default value. ->`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -754,7 +758,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "period",
-					Description: `(Optional, ForceNew) Creating a pre-paid instance, it must be set, the unit is month, please enter an integer multiple of 12 for annually paid products.`,
+					Description: `(Optional) Creating a pre-paid instance, it must be set, the unit is month, please enter an integer multiple of 12 for annually paid products.`,
 				},
 				resource.Attribute{
 					Name:        "renew_period",
@@ -1171,6 +1175,39 @@ var (
 				resource.Attribute{
 					Name:        "create",
 					Description: `(Defaults to 10 mins) Used when creating the topic (until it reaches the initial ` + "`" + `Running` + "`" + ` status).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_amqp_virtual_host",
+			Category:         "RabbitMQ (AMQP)",
+			ShortDescription: `Provides a Alicloud RabbitMQ (AMQP) Virtual Host resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"rabbitmq",
+				"amqp",
+				"virtual",
+				"host",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Required, ForceNew) InstanceId.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_host_name",
+					Description: `(Required, ForceNew) VirtualHostName. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID of Virtual Host. The value is formatted ` + "`" + `<instance_id>:<virtual_host_name>` + "`" + `. ## Import RabbitMQ (AMQP) Virtual Host can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_amqp_virtual_host.example <instance_id>:<virtual_host_name> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID of Virtual Host. The value is formatted ` + "`" + `<instance_id>:<virtual_host_name>` + "`" + `. ## Import RabbitMQ (AMQP) Virtual Host can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_amqp_virtual_host.example <instance_id>:<virtual_host_name> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -3134,6 +3171,669 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "alicloud_cen_transit_router",
+			Category:         "Cloud Enterprise Network (CEN)",
+			ShortDescription: `Provides a Alicloud CEN transit router resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"enterprise",
+				"network",
+				"cen",
+				"transit",
+				"router",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cen_id",
+					Description: `(Required, ForceNew) The ID of the CEN.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) The Type of the Transit Router. Valid values: ` + "`" + `Enterprise` + "`" + `, ` + "`" + `Basic` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_name",
+					Description: `(Optional) The name of the transit router.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_description",
+					Description: `(Optional) The description of the transit router.`,
+				},
+				resource.Attribute{
+					Name:        "dry_run",
+					Description: `(Optional) The dry run. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource, It is formatted to ` + "`" + `<cen_id>:<transit_router_id>` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The associating status of the Transit Router. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 3 mins) Used when creating the cen transit router (until it reaches the initial ` + "`" + `Active` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 3 mins) Used when update the cen transit router.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 3 mins) Used when delete the cen transit router. ## Import CEN instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cen_transit_router.default cen-`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource, It is formatted to ` + "`" + `<cen_id>:<transit_router_id>` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The associating status of the Transit Router. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 3 mins) Used when creating the cen transit router (until it reaches the initial ` + "`" + `Active` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 3 mins) Used when update the cen transit router.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 3 mins) Used when delete the cen transit router. ## Import CEN instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cen_transit_router.default cen-`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_cen_transit_router_route_entry",
+			Category:         "Cloud Enterprise Network (CEN)",
+			ShortDescription: `Provides a Alicloud CEN transit router route entry resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"enterprise",
+				"network",
+				"cen",
+				"transit",
+				"router",
+				"route",
+				"entry",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "transit_router_route_table_id",
+					Description: `(Required, ForceNew) The ID of the transit router route table.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_route_entry_destination_cidr_block",
+					Description: `(Required, ForceNew) The CIDR of the transit router route entry.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_route_entry_next_hop_type",
+					Description: `(Required, ForceNew) The Type of the transit router route entry next hop,Valid values ` + "`" + `Attachment` + "`" + ` and ` + "`" + `BlackHole` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_route_entry_name",
+					Description: `(Optional) The name of the transit router route entry.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_route_entry_description",
+					Description: `(Optional) The description of the transit router route entry.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_route_entry_next_hop_id",
+					Description: `(Required, ForceNew) The ID of the transit router route entry next hop.`,
+				},
+				resource.Attribute{
+					Name:        "dry_run",
+					Description: `(Optional) The dry run. ->`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource, It is formatted to ` + "`" + `<transit_router_route_table_id>:<transit_router_route_entry_id>` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The associating status of the Transit Router. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 6 mins) Used when creating the cen transit router route entry (until it reaches the initial ` + "`" + `Active` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 6 mins) Used when update the cen transit router route entry.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 6 mins) Used when delete the cen transit router route entry. ## Import CEN instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cen_transit_router_route_entry.default vtb-`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource, It is formatted to ` + "`" + `<transit_router_route_table_id>:<transit_router_route_entry_id>` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The associating status of the Transit Router. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 6 mins) Used when creating the cen transit router route entry (until it reaches the initial ` + "`" + `Active` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 6 mins) Used when update the cen transit router route entry.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 6 mins) Used when delete the cen transit router route entry. ## Import CEN instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cen_transit_router_route_entry.default vtb-`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_cen_transit_router_route_table",
+			Category:         "Cloud Enterprise Network (CEN)",
+			ShortDescription: `Provides a Alicloud CEN transit router route table resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"enterprise",
+				"network",
+				"cen",
+				"transit",
+				"router",
+				"route",
+				"table",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "transit_router_id",
+					Description: `(Required, ForceNew) The ID of the transit router.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_route_table_name",
+					Description: `(Optional) The name of the transit router route table.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_route_table_description",
+					Description: `(Optional) The description of the transit router route table.`,
+				},
+				resource.Attribute{
+					Name:        "dry_run",
+					Description: `(Optional) The dry run. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource, It is formatted to ` + "`" + `<transit_router_id>:<transit_router_route_table_id>` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The associating status of the Transit Router. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 3 mins) Used when creating the cen transit router route table (until it reaches the initial ` + "`" + `Active` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 3 mins) Used when update the cen transit router route table.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 3 mins) Used when delete the cen transit router route table. ## Import CEN transit router route table can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cen_transit_router_route_table.default tr-`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource, It is formatted to ` + "`" + `<transit_router_id>:<transit_router_route_table_id>` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The associating status of the Transit Router. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 3 mins) Used when creating the cen transit router route table (until it reaches the initial ` + "`" + `Active` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 3 mins) Used when update the cen transit router route table.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 3 mins) Used when delete the cen transit router route table. ## Import CEN transit router route table can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cen_transit_router_route_table.default tr-`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_cen_transit_router_route_table_association",
+			Category:         "Cloud Enterprise Network (CEN)",
+			ShortDescription: `Provides a Alicloud CEN transit router route table association resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"enterprise",
+				"network",
+				"cen",
+				"transit",
+				"router",
+				"route",
+				"table",
+				"association",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required, ForceNew) The ID of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "cen_id",
+					Description: `(Optional, ForceNew) The ID of the CEN.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_id",
+					Description: `(Optional, ForceNew) The ID of the transit router.`,
+				},
+				resource.Attribute{
+					Name:        "zone_mapping",
+					Description: `(Required, ForceNew) The list of zone mapping of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_attachment_name",
+					Description: `(Optional) The name of the transit router vbr attachment.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_attachment_description",
+					Description: `(Optional) The description of the transit router vbr attachment.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_route_table_id",
+					Description: `(Required, ForceNew) The ID of the transit router route table.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_attachment_id",
+					Description: `(Required, ForceNew) The ID the transit router attachment.`,
+				},
+				resource.Attribute{
+					Name:        "dry_run",
+					Description: `(Optional) The dry run. ->`,
+				},
+				resource.Attribute{
+					Name:        "vswitch_id",
+					Description: `(Optional, ForceNew) The VSwitch id of attachment.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Optional, ForceNew) The zone Id of VSwitch. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource, It is formatted to ` + "`" + `<transit_router_id>:<transit_router_attachment_id>` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The associating status of the network. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 3 mins) Used when creating the cen transit router route table association (until it reaches the initial ` + "`" + `Attached` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 3 mins) Used when delete the cen transit router route table association. ## Import CEN transit router route table association can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cen_transit_router_route_table_association.default tr-`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource, It is formatted to ` + "`" + `<transit_router_id>:<transit_router_attachment_id>` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The associating status of the network. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 3 mins) Used when creating the cen transit router route table association (until it reaches the initial ` + "`" + `Attached` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 3 mins) Used when delete the cen transit router route table association. ## Import CEN transit router route table association can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cen_transit_router_route_table_association.default tr-`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_cen_transit_router_route_table_propagation",
+			Category:         "Cloud Enterprise Network (CEN)",
+			ShortDescription: `Provides a Alicloud CEN transit router route table propagation resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"enterprise",
+				"network",
+				"cen",
+				"transit",
+				"router",
+				"route",
+				"table",
+				"propagation",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required, ForceNew) The ID of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "cen_id",
+					Description: `(Optional, ForceNew) The ID of the CEN.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_id",
+					Description: `(Optional, ForceNew) The ID of the transit router.`,
+				},
+				resource.Attribute{
+					Name:        "zone_mapping",
+					Description: `(Required, ForceNew) The list of zone mapping of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_attachment_name",
+					Description: `(Optional) The name of the transit router vbr attachment.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_attachment_description",
+					Description: `(Optional) The description of the transit router vbr attachment.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_route_table_id",
+					Description: `(Required, ForceNew) The ID of the transit router route table.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_attachment_id",
+					Description: `(Required, ForceNew) The ID the transit router attachment.`,
+				},
+				resource.Attribute{
+					Name:        "dry_run",
+					Description: `(Optional) The dry run. ->`,
+				},
+				resource.Attribute{
+					Name:        "vswitch_id",
+					Description: `(Optional, ForceNew) The VSwitch id of attachment.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Optional, ForceNew) The zone Id of VSwitch. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource, It is formatted to ` + "`" + `<transit_router_id>:<transit_router_attachment_id>` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The associating status of the network. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 3 mins) Used when creating the cen transit router route table propagation (until it reaches the initial ` + "`" + `Attached` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 3 mins) Used when delete the cen transit router route table propagation. ## Import CEN transit router route table propagation can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cen_transit_router_route_table_propagation.default tr-`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource, It is formatted to ` + "`" + `<transit_router_id>:<transit_router_attachment_id>` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The associating status of the network. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 3 mins) Used when creating the cen transit router route table propagation (until it reaches the initial ` + "`" + `Attached` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 3 mins) Used when delete the cen transit router route table propagation. ## Import CEN transit router route table propagation can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cen_transit_router_route_table_propagation.default tr-`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_cen_transit_router_vbr_attachment",
+			Category:         "Cloud Enterprise Network (CEN)",
+			ShortDescription: `Provides a Alicloud CEN transit router VBR attachment resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"enterprise",
+				"network",
+				"cen",
+				"transit",
+				"router",
+				"vbr",
+				"attachment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vbr_id",
+					Description: `(Required, ForceNew) The ID of the VBR.`,
+				},
+				resource.Attribute{
+					Name:        "cen_id",
+					Description: `(Optional, ForceNew) The ID of the CEN.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_id",
+					Description: `(Optional, ForceNew) The ID of the transit router.`,
+				},
+				resource.Attribute{
+					Name:        "auto_publish_route_enabled",
+					Description: `(Optional) Auto publish route enabled.Default value is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_attachment_name",
+					Description: `(Optional) The name of the transit router vbr attachment.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_attachment_description",
+					Description: `(Optional) The description of the transit router vbr attachment.`,
+				},
+				resource.Attribute{
+					Name:        "route_table_association_enabled",
+					Description: `(Optional,ForceNew) Whether to enabled route table association. The system default value is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "route_table_propagation_enabled",
+					Description: `(Optional,ForceNew) Whether to enabled route table propagation. The system default value is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dry_run",
+					Description: `(Optional) The dry run. ->`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource, It is formatted to ` + "`" + `<transit_router_id>:<transit_router_attachment_id>` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The associating status of the network. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 3 mins) Used when creating the cen transit router vbr attachment (until it reaches the initial ` + "`" + `Attached` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 3 mins) Used when update the cen transit router vbr attachment.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 3 mins) Used when delete the cen transit router vbr attachment. ## Import CEN transit router VBR attachment can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cen_transit_router_vbr_attachment.example tr-`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource, It is formatted to ` + "`" + `<transit_router_id>:<transit_router_attachment_id>` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The associating status of the network. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 3 mins) Used when creating the cen transit router vbr attachment (until it reaches the initial ` + "`" + `Attached` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 3 mins) Used when update the cen transit router vbr attachment.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 3 mins) Used when delete the cen transit router vbr attachment. ## Import CEN transit router VBR attachment can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cen_transit_router_vbr_attachment.example tr-`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_cen_transit_router_vpc_attachment",
+			Category:         "Cloud Enterprise Network (CEN)",
+			ShortDescription: `Provides a Alicloud CEN transit router VPC attachment resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"enterprise",
+				"network",
+				"cen",
+				"transit",
+				"router",
+				"vpc",
+				"attachment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "auto_create_vpc_route",
+					Description: `(Optional) Whether to create vpc route automatically. The system default value is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dry_run",
+					Description: `(Optional) The dry run.`,
+				},
+				resource.Attribute{
+					Name:        "cen_id",
+					Description: `(Optional, ForceNew) The ID of the CEN.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required, ForceNew) The ID of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_id",
+					Description: `(Optional, ForceNew) The ID of the transit router.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_attachment_name",
+					Description: `(Optional) The name of the transit router vbr attachment.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_attachment_description",
+					Description: `(Optional) The description of the transit router vbr attachment.`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `(Optional,ForceNew) The resource type of transit router vpc attachment. Valid value ` + "`" + `VPC` + "`" + `. Default value is ` + "`" + `VPC` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "route_table_association_enabled",
+					Description: `(Optional) Whether to enabled route table association. The system default value is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "route_table_propagation_enabled",
+					Description: `(Optional) Whether to enabled route table propagation. The system default value is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_owner_id",
+					Description: `(Optional,ForceNew) The owner id of vpc.`,
+				},
+				resource.Attribute{
+					Name:        "zone_mapping",
+					Description: `(Required, ForceNew) The list of zone mapping of the VPC. ->`,
+				},
+				resource.Attribute{
+					Name:        "vswitch_id",
+					Description: `(Optional, ForceNew) The VSwitch id of attachment.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Optional, ForceNew) The zone Id of VSwitch. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource, It is formatted to ` + "`" + `<transit_router_id>:<transit_router_attachment_id>` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The associating status of the network.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_attachment_id",
+					Description: `The ID of transit router attachment. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 3 mins) Used when creating the cen transit router vpc attachment (until it reaches the initial ` + "`" + `Attached` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 3 mins) Used when update the cen transit router vpc attachment.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 3 mins) Used when delete the cen transit router vpc attachment. ## Import CEN instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cen_transit_router_vpc_attachment.example tr-`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource, It is formatted to ` + "`" + `<transit_router_id>:<transit_router_attachment_id>` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The associating status of the network.`,
+				},
+				resource.Attribute{
+					Name:        "transit_router_attachment_id",
+					Description: `The ID of transit router attachment. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 3 mins) Used when creating the cen transit router vpc attachment (until it reaches the initial ` + "`" + `Attached` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 3 mins) Used when update the cen transit router vpc attachment.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 3 mins) Used when delete the cen transit router vpc attachment. ## Import CEN instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cen_transit_router_vpc_attachment.example tr-`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alicloud_cen_vbr_health_check",
 			Category:         "Cloud Enterprise Network (CEN)",
 			ShortDescription: `Provides a Alicloud CEN VBR HealthCheck resource.`,
@@ -3964,7 +4664,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone",
-					Description: `(Optional, ForceNew, Available in 1.120.0+) The zone of bandwidth package. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional, ForceNew, Available in 1.120.0+) The zone of bandwidth package.`,
+				},
+				resource.Attribute{
+					Name:        "deletion_protection",
+					Description: `(Optional, Available in v1.124.4+) Whether enable the deletion protection or not. Default value: ` + "`" + `false` + "`" + `. - true: Enable deletion protection. - false: Disable deletion protection. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -4038,6 +4742,189 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "alicloud_config_aggregate_compliance_pack",
+			Category:         "Cloud Config",
+			ShortDescription: `Provides a Alicloud Cloud Config Aggregate Compliance Pack resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"config",
+				"aggregate",
+				"compliance",
+				"pack",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "aggregate_compliance_pack_name",
+					Description: `(Required, ForceNew)The name of compliance package name.`,
+				},
+				resource.Attribute{
+					Name:        "aggregator_id",
+					Description: `(Required, ForceNew)The ID of aggregator.`,
+				},
+				resource.Attribute{
+					Name:        "compliance_pack_template_id",
+					Description: `(Required, ForceNew)The Template ID of compliance package.`,
+				},
+				resource.Attribute{
+					Name:        "config_rules",
+					Description: `(Required) A list of compliance package rules.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required) Teh description of compliance package.`,
+				},
+				resource.Attribute{
+					Name:        "risk_level",
+					Description: `(Required) The Risk Level. Valid values: ` + "`" + `1` + "`" + `, ` + "`" + `2` + "`" + `, ` + "`" + `3` + "`" + `. #### Block config_rules The config_rules supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "config_rule_parameters",
+					Description: `(Required) A list of parameter rules.`,
+				},
+				resource.Attribute{
+					Name:        "managed_rule_identifier",
+					Description: `(Required) The Managed Rule Identifier. #### Block config_rule_parameters The config_rule_parameters supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "parameter_name",
+					Description: `(Required) The Parameter Name.`,
+				},
+				resource.Attribute{
+					Name:        "parameter_value",
+					Description: `(Required) The Parameter Value. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID of Aggregate Compliance Pack. The value is formatted ` + "`" + `<aggregator_id>:<aggregator_compliance_pack_id>` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the resource. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 1 mins) Used when create the Aggregate Compliance Pack.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 1 mins) Used when update the Aggregate Compliance Pack. ## Import Cloud Config Aggregate Compliance Pack can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_config_aggregate_compliance_pack.example <aggregator_id>:<aggregator_compliance_pack_id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID of Aggregate Compliance Pack. The value is formatted ` + "`" + `<aggregator_id>:<aggregator_compliance_pack_id>` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the resource. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 1 mins) Used when create the Aggregate Compliance Pack.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 1 mins) Used when update the Aggregate Compliance Pack. ## Import Cloud Config Aggregate Compliance Pack can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_config_aggregate_compliance_pack.example <aggregator_id>:<aggregator_compliance_pack_id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_config_aggregate_config_rule",
+			Category:         "Cloud Config",
+			ShortDescription: `Provides a Alicloud Cloud Config Aggregate Config Rule resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"config",
+				"aggregate",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "aggregate_config_rule_name",
+					Description: `(Required, ForceNew) The name of the rule.`,
+				},
+				resource.Attribute{
+					Name:        "aggregator_id",
+					Description: `(Required, ForceNew) The Aggregator Id.`,
+				},
+				resource.Attribute{
+					Name:        "config_rule_trigger_types",
+					Description: `(Required) The trigger type of the rule. Valid values: ` + "`" + `ConfigurationItemChangeNotification` + "`" + `: The rule is triggered upon configuration changes. ` + "`" + `ScheduledNotification` + "`" + `: The rule is triggered as scheduled.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of the rule.`,
+				},
+				resource.Attribute{
+					Name:        "exclude_resource_ids_scope",
+					Description: `(Optional) The rule monitors excluded resource IDs, multiple of which are separated by commas, only applies to rules created based on managed rules, , custom rule this field is empty.`,
+				},
+				resource.Attribute{
+					Name:        "input_parameters",
+					Description: `(Optional) The settings map of the input parameters for the rule.`,
+				},
+				resource.Attribute{
+					Name:        "maximum_execution_frequency",
+					Description: `(Optional) The frequency of the compliance evaluations. Valid values: ` + "`" + `One_Hour` + "`" + `, ` + "`" + `Three_Hours` + "`" + `, ` + "`" + `Six_Hours` + "`" + `, ` + "`" + `Twelve_Hours` + "`" + `, ` + "`" + `TwentyFour_Hours` + "`" + `. System default value is ` + "`" + `TwentyFour_Hours` + "`" + ` and valid when the ` + "`" + `config_rule_trigger_types` + "`" + ` is ` + "`" + `ScheduledNotification` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "region_ids_scope",
+					Description: `(Optional) The rule monitors region IDs, separated by commas, only applies to rules created based on managed rules.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_ids_scope",
+					Description: `(Optional) The rule monitors resource group IDs, separated by commas, only applies to rules created based on managed rules.`,
+				},
+				resource.Attribute{
+					Name:        "resource_types_scope",
+					Description: `(Required) Resource types to be evaluated. [Alibaba Cloud services that support Cloud Config.](https://www.alibabacloud.com/help/en/doc-detail/127411.htm)`,
+				},
+				resource.Attribute{
+					Name:        "risk_level",
+					Description: `(Required) The risk level of the resources that are not compliant with the rule. Valid values: ` + "`" + `1` + "`" + `: critical ` + "`" + `2` + "`" + `: warning ` + "`" + `3` + "`" + `: info.`,
+				},
+				resource.Attribute{
+					Name:        "tag_key_scope",
+					Description: `(Optional) The rule monitors the tag key, only applies to rules created based on managed rules.`,
+				},
+				resource.Attribute{
+					Name:        "tag_value_scope",
+					Description: `(Optional) The rule monitors the tag value, use with the TagKeyScope options. only applies to rules created based on managed rules. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID of Aggregate Config Rule. The value is formatted ` + "`" + `<aggregator_id>:<config_rule_id>` + "`" + `. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 10 mins) Used when create the Aggregate Config Rule.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 10 mins) Used when update the Aggregate Config Rule. ## Import Cloud Config Aggregate Config Rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_config_aggregate_config_rule.example <aggregator_id>:<config_rule_id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID of Aggregate Config Rule. The value is formatted ` + "`" + `<aggregator_id>:<config_rule_id>` + "`" + `. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 10 mins) Used when create the Aggregate Config Rule.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 10 mins) Used when update the Aggregate Config Rule. ## Import Cloud Config Aggregate Config Rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_config_aggregate_config_rule.example <aggregator_id>:<config_rule_id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alicloud_config_aggregator",
 			Category:         "Cloud Config",
 			ShortDescription: `Provides a Alicloud Cloud Config Aggregator resource.`,
@@ -4101,6 +4988,91 @@ var (
 				resource.Attribute{
 					Name:        "create",
 					Description: `(Defaults to 1 mins) Used when create the Aggregator. ## Import Cloud Config Aggregator can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_config_aggregator.example <id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_config_compliance_pack",
+			Category:         "Cloud Config",
+			ShortDescription: `Provides a Alicloud Cloud Config Compliance Pack resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"config",
+				"compliance",
+				"pack",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "compliance_pack_name",
+					Description: `(Required, ForceNew) The Compliance Package Name.`,
+				},
+				resource.Attribute{
+					Name:        "compliance_pack_template_id",
+					Description: `(Required, ForceNew) Compliance Package Template Id.`,
+				},
+				resource.Attribute{
+					Name:        "config_rules",
+					Description: `(Required) A list of Config Rules.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required) The Description of compliance pack.`,
+				},
+				resource.Attribute{
+					Name:        "risk_level",
+					Description: `(Required) The Risk Level. Valid values: ` + "`" + `1` + "`" + `: critical, ` + "`" + `2` + "`" + `: warning, ` + "`" + `3` + "`" + `: info. #### Block config_rules The config_rules supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "config_rule_parameters",
+					Description: `(Required) A list of Config Rule Parameters.`,
+				},
+				resource.Attribute{
+					Name:        "managed_rule_identifier",
+					Description: `(Required) The Managed Rule Identifier. #### Block config_rule_parameters The config_rule_parameters supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "parameter_name",
+					Description: `(Required) The parameter name.`,
+				},
+				resource.Attribute{
+					Name:        "parameter_value",
+					Description: `(Optional) The parameter value. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID in terraform of Compliance Pack.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the resource. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 1 mins) Used when create the Compliance Pack.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 2 mins) Used when update the Compliance Pack. ## Import Cloud Config Compliance Pack can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_config_compliance_pack.example <id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID in terraform of Compliance Pack.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the resource. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 1 mins) Used when create the Compliance Pack.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 2 mins) Used when update the Compliance Pack. ## Import Cloud Config Compliance Pack can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_config_compliance_pack.example <id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4251,6 +5223,38 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "maximum_execution_frequency",
+					Description: `(Optional, Available in v1.124.1) The frequency of the compliance evaluations, it is required if the ConfigRuleTriggerTypes value is ScheduledNotification. Valid values: ` + "`" + `One_Hour` + "`" + `, ` + "`" + `Three_Hours` + "`" + `, ` + "`" + `Six_Hours` + "`" + `, ` + "`" + `Twelve_Hours` + "`" + `, ` + "`" + `TwentyFour_Hours` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "resource_types_scope",
+					Description: `(Required, Available in v1.124.1) Resource types to be evaluated. [Alibaba Cloud services that support Cloud Config.](https://www.alibabacloud.com/help/en/doc-detail/127411.htm)`,
+				},
+				resource.Attribute{
+					Name:        "config_rule_trigger_types",
+					Description: `(Required, Available in v1.124.1) The trigger type of the rule. Valid values: ` + "`" + `ConfigurationItemChangeNotification` + "`" + `: The rule is triggered upon configuration changes. ` + "`" + `ScheduledNotification` + "`" + `: The rule is triggered as scheduled.`,
+				},
+				resource.Attribute{
+					Name:        "exclude_resource_ids_scope",
+					Description: `(Optional, Available in v1.124.1) The rule monitors excluded resource IDs, multiple of which are separated by commas, only applies to rules created based on managed rules, custom rule this field is empty.`,
+				},
+				resource.Attribute{
+					Name:        "region_ids_scope",
+					Description: `(Optional, Available in v1.124.1) The rule monitors region IDs, separated by commas, only applies to rules created based on managed rules.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_ids_scope",
+					Description: `(Optional, Available in v1.124.1) The rule monitors resource group IDs, separated by commas, only applies to rules created based on managed rules.`,
+				},
+				resource.Attribute{
+					Name:        "tag_key_scope",
+					Description: `(Optional, Available in v1.124.1) The rule monitors the tag key, only applies to rules created based on managed rules.`,
+				},
+				resource.Attribute{
+					Name:        "tag_value_scope",
+					Description: `(Optional, Available in v1.124.1) The rule monitors the tag value, use with the TagKeyScope options. only applies to rules created based on managed rules.`,
+				},
+				resource.Attribute{
 					Name:        "rule_name",
 					Description: `(Required, ForceNew) The name of the Config Rule.`,
 				},
@@ -4259,54 +5263,148 @@ var (
 					Description: `(Optional) The description of the Config Rule.`,
 				},
 				resource.Attribute{
-					Name:        "multi_account",
-					Description: `(Optional, ForceNew) Whether the enterprise management account is a member account to create or modify rules. Valid values: ` + "`" + `true` + "`" + `: Enterprise management accounts create or modify rules for all member accounts in the resource directory. ` + "`" + `false` + "`" + `:The enterprise management account creates or modifies rules for this account. Default value is ` + "`" + `false` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "member_id",
-					Description: `(Optional, ForceNew) The ID of the member account to which the rule to be created or modified belongs. The default is empty. When ` + "`" + `multi_account` + "`" + ` is set to true, this parameter is valid.`,
-				},
-				resource.Attribute{
 					Name:        "risk_level",
 					Description: `(Required) The risk level of the Config Rule. Valid values: ` + "`" + `1` + "`" + `: Critical ,` + "`" + `2` + "`" + `: Warning , ` + "`" + `3` + "`" + `: Info.`,
 				},
 				resource.Attribute{
 					Name:        "source_owner",
-					Description: `(Required, ForceNew) The source owner of the Config Rule. Values: ` + "`" + `CUSTOM_FC` + "`" + `: Custom rules, ` + "`" + `ALIYUN` + "`" + `: Trusteeship rules.`,
-				},
-				resource.Attribute{
-					Name:        "source_detail_message_type",
-					Description: `(Required) Trigger mechanism of rules. Valid values: ` + "`" + `ConfigurationItemChangeNotification` + "`" + `,` + "`" + `OversizedConfigurationItemChangeNotification` + "`" + ` and ` + "`" + `ScheduledNotification` + "`" + `.`,
+					Description: `(Required, ForceNew) Specifies whether you or Alibaba Cloud owns and manages the rule. Valid values: ` + "`" + `CUSTOM_FC` + "`" + `: The rule is a custom rule and you own the rule. ` + "`" + `ALIYUN` + "`" + `: The rule is a managed rule and Alibaba Cloud owns the rule.`,
 				},
 				resource.Attribute{
 					Name:        "source_identifier",
-					Description: `(Required, ForceNew) The name of the custom rule or managed rules. Using managed rules, refer to [List of Managed rules.](https://www.alibabacloud.com/help/en/doc-detail/127404.htm)`,
+					Description: `(Required, ForceNew) The identifier of the rule. For a managed rule, the value is the name of the managed rule. For a custom rule, the value is the ARN of the custom rule. Using managed rules, refer to [List of Managed rules.](https://www.alibabacloud.com/help/en/doc-detail/127404.htm)`,
 				},
 				resource.Attribute{
 					Name:        "input_parameters",
 					Description: `(Optional) Threshold value for managed rule triggering.`,
 				},
 				resource.Attribute{
+					Name:        "source_detail_message_type",
+					Description: `(Required, Deprecated) Field ` + "`" + `source_detail_message_type` + "`" + ` has been deprecated from provider version 1.124.1. New field ` + "`" + `config_rule_trigger_types` + "`" + ` instead.`,
+				},
+				resource.Attribute{
 					Name:        "source_maximum_execution_frequency",
-					Description: `(Optional) Rule execution cycle. Valid values: ` + "`" + `One_Hour` + "`" + `, ` + "`" + `Three_Hours` + "`" + `, ` + "`" + `Six_Hours` + "`" + `, ` + "`" + `Twelve_Hours` + "`" + ` and ` + "`" + `TwentyFour_Hours` + "`" + `.`,
+					Description: `(Optional, Deprecated) Field ` + "`" + `source_maximum_execution_frequency` + "`" + ` has been deprecated from provider version 1.124.1. New field ` + "`" + `maximum_execution_frequency` + "`" + ` instead.`,
 				},
 				resource.Attribute{
 					Name:        "scope_compliance_resource_types",
-					Description: `(Required) Resource types to be evaluated. [Alibaba Cloud services that support Cloud Config.](https://www.alibabacloud.com/help/en/doc-detail/127411.htm)`,
+					Description: `(Required, Deprecated) Field ` + "`" + `scope_compliance_resource_types` + "`" + ` has been deprecated from provider version 1.124.1. New field ` + "`" + `resource_types_scope` + "`" + ` instead.`,
+				},
+				resource.Attribute{
+					Name:        "multi_account",
+					Description: `(Optional, ForceNew, Removed) Field ` + "`" + `multi_account` + "`" + ` has been removed from provider version 1.124.1.`,
+				},
+				resource.Attribute{
+					Name:        "member_id",
+					Description: `(Optional, ForceNew, Removed) Field ` + "`" + `member_id` + "`" + ` has been removed from provider version 1.124.1.`,
 				},
 				resource.Attribute{
 					Name:        "scope_compliance_resource_id",
-					Description: `(Optional) The ID of the resource to be evaluated. If not set, all resources are evaluated. ->`,
+					Description: `(Optional, Removed) Field ` + "`" + `scope_compliance_resource_id` + "`" + ` has been removed from provider version 1.124.1. ->`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `This ID of the Config Rule. ## Import Alicloud Config Rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_config_rule.this cr-ed4bad756057`,
+					Description: `This ID of the Config Rule. ### Timeouts ->`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 10 mins) Used when create the Config Rule.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 10 mins) Used when update the Config Rule. ## Import Alicloud Config Rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_config_rule.this cr-ed4bad756057`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `This ID of the Config Rule. ## Import Alicloud Config Rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_config_rule.this cr-ed4bad756057`,
+					Description: `This ID of the Config Rule. ### Timeouts ->`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 10 mins) Used when create the Config Rule.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 10 mins) Used when update the Config Rule. ## Import Alicloud Config Rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_config_rule.this cr-ed4bad756057`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_cr_ee_instance",
+			Category:         "Container Registry (CR)",
+			ShortDescription: `Provides a Alicloud resource to manage Container Registry Enterprise Edition instances.`,
+			Description:      ``,
+			Keywords: []string{
+				"container",
+				"registry",
+				"cr",
+				"ee",
+				"instance",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "payment_type",
+					Description: `(Optional, String) Subscription of Container Registry Enterprise Edition instance. Default value: ` + "`" + `Subscription` + "`" + `. Valid values: ` + "`" + `Subscription` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "period",
+					Description: `(Optional, Int) Service time of Container Registry Enterprise Edition instance. Default value: ` + "`" + `12` + "`" + `. Valid values: ` + "`" + `1` + "`" + `, ` + "`" + `2` + "`" + `, ` + "`" + `3` + "`" + `, ` + "`" + `6` + "`" + `, ` + "`" + `12` + "`" + `, ` + "`" + `24` + "`" + `, ` + "`" + `36` + "`" + `, ` + "`" + `48` + "`" + `, ` + "`" + `60` + "`" + `. Unit: ` + "`" + `month` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "renew_period",
+					Description: `(Optional, Int) Renewal period of Container Registry Enterprise Edition instance. Unit: ` + "`" + `month` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "renewal_status",
+					Description: `(Optional, String) Renewal status of Container Registry Enterprise Edition instance. Valid values: ` + "`" + `AutoRenewal` + "`" + `, ` + "`" + `ManualRenewal` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `(Required, String) Type of Container Registry Enterprise Edition instance. Valid values: ` + "`" + `Basic` + "`" + `, ` + "`" + `Standard` + "`" + `, ` + "`" + `Advanced` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "instance_name",
+					Description: `(Required, String) Name of Container Registry Enterprise Edition instance.`,
+				},
+				resource.Attribute{
+					Name:        "custom_oss_bucket",
+					Description: `(Optional, String) Name of your customized oss bucket. Use this bucket as instance storage if set. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of Container Registry Enterprise Edition instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of Container Registry Enterprise Edition instance.`,
+				},
+				resource.Attribute{
+					Name:        "created_time",
+					Description: `Time of Container Registry Enterprise Edition instance creation.`,
+				},
+				resource.Attribute{
+					Name:        "end_time",
+					Description: `Time of Container Registry Enterprise Edition instance expiration. ## Import Container Registry Enterprise Edition instance can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cr_ee_instance.default cri-test ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of Container Registry Enterprise Edition instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of Container Registry Enterprise Edition instance.`,
+				},
+				resource.Attribute{
+					Name:        "created_time",
+					Description: `Time of Container Registry Enterprise Edition instance creation.`,
+				},
+				resource.Attribute{
+					Name:        "end_time",
+					Description: `Time of Container Registry Enterprise Edition instance expiration. ## Import Container Registry Enterprise Edition instance can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cr_ee_instance.default cri-test ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -7133,6 +8231,14 @@ var (
 					Description: `(Optional) The name of DB instance. It a string of 2 to 256 characters.`,
 				},
 				resource.Attribute{
+					Name:        "connection_string_prefix",
+					Description: `(Optional, Available in 1.126.0+) The private connection string prefix. If you want to update public connection string prefix, please use resource alicloud_db_connection [connection_prefix](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_connection#connection_prefix). ->`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional, Available in 1.126.0+) The private port of the database service. If you want to update public port, please use resource alicloud_db_connection [port](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/resources/db_connection#port).`,
+				},
+				resource.Attribute{
 					Name:        "instance_charge_type",
 					Description: `(Optional) Valid values are ` + "`" + `Prepaid` + "`" + `, ` + "`" + `Postpaid` + "`" + `, Default to ` + "`" + `Postpaid` + "`" + `. Currently, the resource only supports PostPaid to PrePaid.`,
 				},
@@ -7161,8 +8267,32 @@ var (
 					Description: `(ForceNew) The virtual switch ID to launch DB instances in one VPC. If there are multiple vswitches, separate them with commas.`,
 				},
 				resource.Attribute{
+					Name:        "private_ip_address",
+					Description: `(Optional, Available in v1.125.0+) The private IP address of the instance. The private IP address must be within the Classless Inter-Domain Routing (CIDR) block of the vSwitch that is specified by the VSwitchId parameter.`,
+				},
+				resource.Attribute{
 					Name:        "security_ips",
 					Description: `(Optional) List of IP addresses allowed to access all databases of an instance. The list contains up to 1,000 IP addresses, separated by commas. Supported formats include 0.0.0.0/0, 10.23.12.24 (IP), and 10.23.12.24/24 (Classless Inter-Domain Routing (CIDR) mode. /24 represents the length of the prefix in an IP address. The range of the prefix length is [1,32]).`,
+				},
+				resource.Attribute{
+					Name:        "db_instance_ip_array_name",
+					Description: `(Optional, Available in 1.125.0+) The name of the IP address whitelist. Default value: Default. ->`,
+				},
+				resource.Attribute{
+					Name:        "db_instance_ip_array_attribute",
+					Description: `(Optional, Available in 1.125.0+) The attribute of the IP address whitelist. By default, this parameter is empty. ->`,
+				},
+				resource.Attribute{
+					Name:        "security_ip_type",
+					Description: `(Optional, Available in 1.125.0+) The type of IP address in the IP address whitelist.`,
+				},
+				resource.Attribute{
+					Name:        "whitelist_network_type",
+					Description: `(Optional, Available in 1.125.0+) The network type of the IP address whitelist. Default value: MIX. Valid values: - Classic: classic network in enhanced whitelist mode - VPC: virtual private cloud (VPC) in enhanced whitelist mode - MIX: standard whitelist mode ->`,
+				},
+				resource.Attribute{
+					Name:        "modify_mode",
+					Description: `(Optional, Available in 1.125.0+) The method that is used to modify the IP address whitelist. Default value: Cover. Valid values: - Cover: Use the value of the SecurityIps parameter to overwrite the existing entries in the IP address whitelist. - Append: Add the IP addresses and CIDR blocks that are specified in the SecurityIps parameter to the IP address whitelist. - Delete: Delete IP addresses and CIDR blocks that are specified in the SecurityIps parameter from the IP address whitelist. You must retain at least one IP address or CIDR block.`,
 				},
 				resource.Attribute{
 					Name:        "security_ip_mode",
@@ -7197,6 +8327,22 @@ var (
 					Description: `(Optional, Available in 1.62.1+) The upgrade method to use. Valid values: - Auto: Instances are automatically upgraded to a higher minor version. - Manual: Instances are forcibly upgraded to a higher minor version when the current version is unpublished. Default to "Manual". See more [details and limitation](https://www.alibabacloud.com/help/doc-detail/123605.htm).`,
 				},
 				resource.Attribute{
+					Name:        "upgrade_db_instance_kernel_version",
+					Description: `(Optional, Available in 1.126.0+) Whether to upgrade a minor version of the kernel. Valid values: - true: upgrade - false: not to upgrade`,
+				},
+				resource.Attribute{
+					Name:        "upgrade_time",
+					Description: `(Optional, Available in 1.126.0+) The method to update the minor engine version. Default value: Immediate. It is valid only when ` + "`" + `upgrade_db_instance_kernel_version = true` + "`" + `. Valid values: - Immediate: The minor engine version is immediately updated. - MaintainTime: The minor engine version is updated during the maintenance window. For more information about how to change the maintenance window, see ModifyDBInstanceMaintainTime. - SpecifyTime: The minor engine version is updated at the point in time you specify.`,
+				},
+				resource.Attribute{
+					Name:        "switch_time",
+					Description: `(Optional, Available in 1.126.0+) The specific point in time when you want to perform the update. Specify the time in the ISO 8601 standard in the yyyy-MM-ddTHH:mm:ssZ format. It is valid only when ` + "`" + `upgrade_db_instance_kernel_version = true` + "`" + `. The time must be in UTC. ->`,
+				},
+				resource.Attribute{
+					Name:        "target_minor_version",
+					Description: `(Optional, Available in 1.126.0+) The minor engine version to which you want to update the instance. If you do not specify this parameter, the instance is updated to the latest minor engine version. It is valid only when ` + "`" + `upgrade_db_instance_kernel_version = true` + "`" + `. You must specify the minor engine version in one of the following formats: - PostgreSQL: rds_postgres_<Major engine version>00_<Minor engine version>. Example: rds_postgres_1200_20200830. - MySQL: <RDS edition>_<Minor engine version>. Examples: rds_20200229, xcluster_20200229, and xcluster80_20200229. The following RDS editions are supported: - rds: The instance runs RDS Basic or High-availability Edition. - xcluster: The instance runs MySQL 5.7 on RDS Enterprise Edition. - xcluster80: The instance runs MySQL 8.0 on RDS Enterprise Edition. - SQLServer: <Minor engine version>. Example: 15.0.4073.23. ->`,
+				},
+				resource.Attribute{
 					Name:        "zone_id_slave_a",
 					Description: `(Optional, ForceNew, Available in 1.101.0+) The region ID of the secondary instance if you create a secondary instance. If you set this parameter to the same value as the ZoneId parameter, the instance is deployed in a single zone. Otherwise, the instance is deployed in multiple zones.`,
 				},
@@ -7210,15 +8356,47 @@ var (
 				},
 				resource.Attribute{
 					Name:        "encryption_key",
-					Description: `(Optional, Available in 1.109.0+) The key id of the KMS. Used for encrypting a disk if not null. Only for PostgreSQL, MySQL and SQLServer. ->`,
+					Description: `(Optional, Available in 1.109.0+) The key id of the KMS. Used for encrypting a disk if not null. Only for PostgreSQL, MySQL and SQLServer.`,
+				},
+				resource.Attribute{
+					Name:        "ca_type",
+					Description: `(Optional, Available in 1.124.1+) The type of the server certificate. This parameter is supported only when the instance runs PostgreSQL with standard or enhanced SSDs. If you set the SSLEnabled parameter to 1, the default value of this parameter is aliyun. Value range: - aliyun: a cloud certificate - custom: a custom certificate`,
+				},
+				resource.Attribute{
+					Name:        "server_cert",
+					Description: `(Optional, Available in 1.124.1+) The content of the server certificate. This parameter is supported only when the instance runs PostgreSQL with standard or enhanced SSDs. If you set the CAType parameter to custom, you must also specify this parameter.`,
+				},
+				resource.Attribute{
+					Name:        "server_key",
+					Description: `(Optional, Available in 1.124.1+) The private key of the server certificate. This parameter is supported only when the instance runs PostgreSQL with standard or enhanced SSDs. If you set the CAType parameter to custom, you must also specify this parameter.`,
+				},
+				resource.Attribute{
+					Name:        "client_ca_enabled",
+					Description: `(Optional, Available in 1.124.1+) Specifies whether to enable the public key of the CA that issues client certificates. This parameter is supported only when the instance runs PostgreSQL with standard or enhanced SSDs. Valid values: - 1: enables the public key - 0: disables the public key`,
+				},
+				resource.Attribute{
+					Name:        "client_ca_cert",
+					Description: `(Optional, Available in 1.124.1+) The public key of the CA that issues client certificates. This parameter is supported only when the instance runs PostgreSQL with standard or enhanced SSDs. If you set the ClientCAEbabled parameter to 1, you must also specify this parameter.`,
+				},
+				resource.Attribute{
+					Name:        "client_crl_enabled",
+					Description: `(Optional, Available in 1.124.1+) Specifies whether to enable a certificate revocation list (CRL) that contains revoked client certificates. This parameter is supported only when the instance runs PostgreSQL with standard or enhanced SSDs. In addition, this parameter is available only when the public key of the CA that issues client certificates is enabled. Valid values: - 1: enables the CRL - 0: disables the CRL`,
+				},
+				resource.Attribute{
+					Name:        "client_cert_revocation_list",
+					Description: `(Optional, Available in 1.124.1+) The CRL that contains revoked client certificates. This parameter is supported only when the instance runs PostgreSQL with standard or enhanced SSDs. If you set the ClientCrlEnabled parameter to 1, you must also specify this parameter.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `(Optional, Available in 1.124.1+) The method that is used to verify the identities of clients. This parameter is supported only when the instance runs PostgreSQL with standard or enhanced SSDs. In addition, this parameter is available only when the public key of the CA that issues client certificates is enabled. Valid values: - cert - perfer - verify-ca - verify-full (supported only when the instance runs PostgreSQL 12 or later)`,
+				},
+				resource.Attribute{
+					Name:        "replication_acl",
+					Description: `(Optional, Available in 1.124.1+) The method that is used to verify the replication permission. This parameter is supported only when the instance runs PostgreSQL with standard or enhanced SSDs. In addition, this parameter is available only when the public key of the CA that issues client certificates is enabled. Valid values: - cert - perfer - verify-ca - verify-full (supported only when the instance runs PostgreSQL 12 or later) ->`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `The RDS instance ID.`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `RDS database connection port.`,
 				},
 				resource.Attribute{
 					Name:        "connection_string",
@@ -7245,10 +8423,6 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The RDS instance ID.`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `RDS database connection port.`,
 				},
 				resource.Attribute{
 					Name:        "connection_string",
@@ -7382,7 +8556,47 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional, Available in 1.68.0+) A mapping of tags to assign to the resource. - Key: It can be up to 64 characters in length. It cannot begin with "aliyun", "acs:", "http://", or "https://". It cannot be a null string. - Value: It can be up to 128 characters in length. It cannot begin with "aliyun", "acs:", "http://", or "https://". It can be a null string. ->`,
+					Description: `(Optional, Available in 1.68.0+) A mapping of tags to assign to the resource. - Key: It can be up to 64 characters in length. It cannot begin with "aliyun", "acs:", "http://", or "https://". It cannot be a null string. - Value: It can be up to 128 characters in length. It cannot begin with "aliyun", "acs:", "http://", or "https://". It can be a null string.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_enabled",
+					Description: `(Optional, Available in v1.124.4+) Specifies whether to enable or disable SSL encryption. Valid values: - 1: enables SSL encryption - 0: disables SSL encryption`,
+				},
+				resource.Attribute{
+					Name:        "ca_type",
+					Description: `(Optional, Available in 1.124.4+) The type of the server certificate. This parameter is supported only when the instance runs PostgreSQL with standard or enhanced SSDs. If you set the SSLEnabled parameter to 1, the default value of this parameter is aliyun. It is valid only when ` + "`" + `ssl_enabled = 1` + "`" + `. Value range: - aliyun: a cloud certificate - custom: a custom certificate`,
+				},
+				resource.Attribute{
+					Name:        "server_cert",
+					Description: `(Optional, Available in 1.124.4+) The content of the server certificate. This parameter is supported only when the instance runs PostgreSQL with standard or enhanced SSDs. If you set the CAType parameter to custom, you must also specify this parameter. It is valid only when ` + "`" + `ssl_enabled = 1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "server_key",
+					Description: `(Optional, Available in 1.124.4+) The private key of the server certificate. This parameter is supported only when the instance runs PostgreSQL with standard or enhanced SSDs. If you set the CAType parameter to custom, you must also specify this parameter. It is valid only when ` + "`" + `ssl_enabled = 1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "client_ca_enabled",
+					Description: `(Optional, Available in 1.124.4+) Specifies whether to enable the public key of the CA that issues client certificates. This parameter is supported only when the instance runs PostgreSQL with standard or enhanced SSDs. It is valid only when ` + "`" + `ssl_enabled = 1` + "`" + `. Valid values: - 1: enables the public key - 0: disables the public key`,
+				},
+				resource.Attribute{
+					Name:        "client_ca_cert",
+					Description: `(Optional, Available in 1.124.4+) The public key of the CA that issues client certificates. This parameter is supported only when the instance runs PostgreSQL with standard or enhanced SSDs. If you set the ClientCAEbabled parameter to 1, you must also specify this parameter. It is valid only when ` + "`" + `ssl_enabled = 1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "client_crl_enabled",
+					Description: `(Optional, Available in 1.124.4+) Specifies whether to enable a certificate revocation list (CRL) that contains revoked client certificates. This parameter is supported only when the instance runs PostgreSQL with standard or enhanced SSDs. In addition, this parameter is available only when the public key of the CA that issues client certificates is enabled. It is valid only when ` + "`" + `ssl_enabled = 1` + "`" + `. Valid values: - 1: enables the CRL - 0: disables the CRL`,
+				},
+				resource.Attribute{
+					Name:        "client_cert_revocation_list",
+					Description: `(Optional, Available in 1.124.4+) The CRL that contains revoked client certificates. This parameter is supported only when the instance runs PostgreSQL with standard or enhanced SSDs. If you set the ClientCrlEnabled parameter to 1, you must also specify this parameter. It is valid only when ` + "`" + `ssl_enabled = 1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `(Optional, Available in 1.124.4+) The method that is used to verify the identities of clients. This parameter is supported only when the instance runs PostgreSQL with standard or enhanced SSDs. In addition, this parameter is available only when the public key of the CA that issues client certificates is enabled. It is valid only when ` + "`" + `ssl_enabled = 1` + "`" + `. Valid values: - cert - perfer - verify-ca - verify-full (supported only when the instance runs PostgreSQL 12 or later)`,
+				},
+				resource.Attribute{
+					Name:        "replication_acl",
+					Description: `(Optional, Available in 1.124.4+) The method that is used to verify the replication permission. This parameter is supported only when the instance runs PostgreSQL with standard or enhanced SSDs. In addition, this parameter is available only when the public key of the CA that issues client certificates is enabled. It is valid only when ` + "`" + `ssl_enabled = 1` + "`" + `. Valid values: - cert - perfer - verify-ca - verify-full (supported only when the instance runs PostgreSQL 12 or later) ->`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -7708,7 +8922,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "period",
-					Description: `(Optional, ForceNew) The duration that you will buy Ddoscoo instance (in month). Valid values: [1~9], 12, 24, 36. Default to 1. At present, the provider does not support modify "period". ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional, ForceNew) The duration that you will buy Ddoscoo instance (in month). Valid values: [1~9], 12, 24, 36. Default to 1. At present, the provider does not support modify "period".`,
+				},
+				resource.Attribute{
+					Name:        "product_type",
+					Description: `(Optional,Available in 1.125.0+ ) The product type for purchasing DDOSCOO instances used to differ different account type. Valid values: - ddoscoo: Only supports domestic account. - ddoscoo_intl: Only supports to international account. Default to ddoscoo. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -7816,6 +9034,50 @@ var (
 				resource.Attribute{
 					Name:        "cname",
 					Description: `The cname is the traffic scheduler corresponding to rules. ## Import DdosCoo Scheduler Rule can be imported using the id or the rule name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_ddoscoo_scheduler_rule.example fbb20dc77e8fc`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_direct_mail_receivers",
+			Category:         "Direct Mail",
+			ShortDescription: `Provides a Alicloud Direct Mail Receivers resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"direct",
+				"mail",
+				"receivers",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional, ForceNew) The description of receivers and 1-50 characters in length.`,
+				},
+				resource.Attribute{
+					Name:        "receivers_alias",
+					Description: `(Required, ForceNew) The alias of receivers. Must email address and less than 30 characters in length.`,
+				},
+				resource.Attribute{
+					Name:        "receivers_name",
+					Description: `(Required, ForceNew) The name of the resource. The length that cannot be repeated is 1-30 characters. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID in terraform of Receivers.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the resource. ` + "`" + `0` + "`" + ` means uploading, ` + "`" + `1` + "`" + ` means upload completed. ## Import Direct Mail Receivers can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_direct_mail_receivers.example <id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID in terraform of Receivers.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the resource. ` + "`" + `0` + "`" + ` means uploading, ` + "`" + `1` + "`" + ` means upload completed. ## Import Direct Mail Receivers can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_direct_mail_receivers.example <id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -9359,7 +10621,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone_id",
-					Description: `(Optional, ForceNew) ID of the free zone to which the disk belongs.`,
+					Description: `(Optional, ForceNew) ID of the free zone to which the disk belongs. One of the ` + "`" + `zone_id` + "`" + ` and ` + "`" + `instance_id` + "`" + ` must be set but can not be set at the same time.`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -9391,7 +10653,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_auto_snapshot",
-					Description: `(Optional) Indicates whether the automatic snapshot is deleted when the disk is released. Default value: ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Indicates whether to enable creating snapshot automatically. Default value: ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "encrypted",
@@ -9411,7 +10673,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "payment_type",
-					Description: `(Optional) Payment method for disk. Valid values: ` + "`" + `PayAsYouGo` + "`" + `, ` + "`" + `Subscription` + "`" + `.`,
+					Description: `(Optional) Payment method for disk. Valid values: ` + "`" + `PayAsYouGo` + "`" + `, ` + "`" + `Subscription` + "`" + `. Default to ` + "`" + `PayAsYouGo` + "`" + `. If you want to change the disk payment type, the ` + "`" + `instance_id` + "`" + ` is required.`,
 				},
 				resource.Attribute{
 					Name:        "performance_level",
@@ -10824,7 +12086,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_group_id",
-					Description: `(Optional, Available in 1.58.0+, Modifiable in 1.115.0+) The Id of resource group which the eip belongs. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional, Available in 1.58.0+, Modifiable in 1.115.0+) The Id of resource group which the eip belongs.`,
+				},
+				resource.Attribute{
+					Name:        "deletion_protection",
+					Description: `(Optional, Available in v1.124.4+) Whether enable the deletion protection or not. Default value: ` + "`" + `false` + "`" + `. - true: Enable deletion protection. - false: Disable deletion protection. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -10844,7 +12110,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `The elastic ip address ## Import Elastic IP address can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_eip.example eip-abc12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The elastic ip address ## Import Elastic IP address can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_eip_address.example eip-abc12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -10866,7 +12132,112 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `The elastic ip address ## Import Elastic IP address can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_eip.example eip-abc12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The elastic ip address ## Import Elastic IP address can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_eip_address.example eip-abc12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_eip_address",
+			Category:         "Elastic IP Address (EIP)",
+			ShortDescription: `Provides a Alicloud EIP Address resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"elastic",
+				"ip",
+				"address",
+				"eip",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "activity_id",
+					Description: `(Optional) The activity id.`,
+				},
+				resource.Attribute{
+					Name:        "address_name",
+					Description: `(Optional) The name of the EIP.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth",
+					Description: `(Optional, Computed) The maximum bandwidth of the EIP. Valid values: ` + "`" + `1` + "`" + ` to ` + "`" + `200` + "`" + `. Unit: Mbit/s. Default value: ` + "`" + `5` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "deletion_protection",
+					Description: `(Optional, Computed) Whether enable the deletion protection or not. Default value: ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of the EIP.`,
+				},
+				resource.Attribute{
+					Name:        "internet_charge_type",
+					Description: `(Optional, ForceNew) The metering method of the EIP. Valid values: ` + "`" + `PayByBandwidth` + "`" + ` This is the default value. ` + "`" + `PayByTraffic` + "`" + `. If ` + "`" + `payment_type` + "`" + ` is set to ` + "`" + `Subscription` + "`" + `, ` + "`" + `internet_charge_type` + "`" + ` must be set to ` + "`" + `PayByBandwidth` + "`" + `. If ` + "`" + `payment_type` + "`" + ` is set to ` + "`" + `PayAsYouGo` + "`" + `, ` + "`" + `internet_charge_type` + "`" + ` can be set to ` + "`" + `PayByBandwidth` + "`" + ` or ` + "`" + `PayByTraffic` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "isp",
+					Description: `(Optional, ForceNew) The line type. You can set this parameter only when you create a ` + "`" + `PayAsYouGo` + "`" + ` EIP. Valid values: ` + "`" + `BGP` + "`" + `: BGP (Multi-ISP) lines.Up to 89 high-quality BGP lines are available worldwide. Direct connections with multiple Internet Service Providers (ISPs), including Telecom, Unicom, Mobile, Railcom, Netcom, CERNET, China Broadcast Network, Dr. Peng, and Founder, can be established in all regions in mainland China. ` + "`" + `BGP_PRO` + "`" + `: BGP (Multi-ISP) Pro lines optimize data transmission to mainland China and improve connection quality for international services. Compared with BGP (Multi-ISP), when BGP (Multi-ISP) Pro provides services to clients in mainland China (excluding data centers), cross-border connections are established without using international ISP services. This reduces network latency.`,
+				},
+				resource.Attribute{
+					Name:        "netmode",
+					Description: `(Optional) The type of the network. Valid value is ` + "`" + `public` + "`" + ` (Internet).`,
+				},
+				resource.Attribute{
+					Name:        "payment_type",
+					Description: `(Optional, ForceNew) The billing method of the EIP. Valid values: ` + "`" + `Subscription` + "`" + ` and ` + "`" + `PayAsYouGo` + "`" + `. Default value is ` + "`" + `PayAsYouGo` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "period",
+					Description: `(Optional) The duration that you will buy the resource, in month. It is valid when ` + "`" + `payment_type` + "`" + ` is ` + "`" + `Subscription` + "`" + `. Valid values: [1-9, 12, 24, 36]. At present, the provider does not support modify "period" and you can do that via web console.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_id",
+					Description: `(Optional) The ID of the resource group.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID in terraform of Address.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the EIP. Valid values: ` + "`" + `Associating` + "`" + `: The EIP is being associated. ` + "`" + `Unassociating` + "`" + `: The EIP is being disassociated. ` + "`" + `InUse` + "`" + `: The EIP is allocated. ` + "`" + `Available` + "`" + `:The EIP is available.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `The address of the EIP. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 5 mins) Used when create the Address.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 9 mins) Used when delete the Address. ## Import EIP Address can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_eip_address.example <id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID in terraform of Address.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the EIP. Valid values: ` + "`" + `Associating` + "`" + `: The EIP is being associated. ` + "`" + `Unassociating` + "`" + `: The EIP is being disassociated. ` + "`" + `InUse` + "`" + `: The EIP is allocated. ` + "`" + `Available` + "`" + `:The EIP is available.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `The address of the EIP. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 5 mins) Used when create the Address.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 9 mins) Used when delete the Address. ## Import EIP Address can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_eip_address.example <id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -11168,7 +12539,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_group_id",
-					Description: `(Optional, ForceNew, Computed Available in v1.86.0+) The Id of resource group which the Elasticsearch instance belongs. ### Timeouts ->`,
+					Description: `(Optional, ForceNew, Computed Available in v1.86.0+) The Id of resource group which the Elasticsearch instance belongs.`,
+				},
+				resource.Attribute{
+					Name:        "setting_config",
+					Description: `(Optional, Computed Available in v1.125.0+) The YML configuration of the instance.[Detailed introduction](https://www.alibabacloud.com/help/doc-detail/61336.html). ### Timeouts ->`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -11636,6 +13011,10 @@ var (
 					Description: `(Optional, Available in 1.92.0+) The id of auto snapshot policy for system disk.`,
 				},
 				resource.Attribute{
+					Name:        "system_disk_performance_level",
+					Description: `(Optional, Available in 1.124.3+) The performance level of the ESSD used as the system disk.`,
+				},
+				resource.Attribute{
 					Name:        "enable",
 					Description: `(Optional) Whether enable the specified scaling group(make it active) to which the current scaling configuration belongs.`,
 				},
@@ -11733,7 +13112,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_snapshot_policy_id",
-					Description: `(Optional, Available in 1.92.0+) The id of auto snapshot policy for data disk. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional, Available in 1.92.0+) The id of auto snapshot policy for data disk.`,
+				},
+				resource.Attribute{
+					Name:        "performance_level",
+					Description: `(Optional, Available in 1.124.3+) The performance level of the ESSD used as data disk. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -12389,7 +13772,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "memory_size",
-					Description: `(Optional) Amount of memory in MB your function can use at runtime. Defaults to ` + "`" + `128` + "`" + `. Limits to [128, 3072].`,
+					Description: `(Optional) Amount of memory in MB your function can use at runtime. Defaults to ` + "`" + `128` + "`" + `. Limits to [128, 32768].`,
 				},
 				resource.Attribute{
 					Name:        "runtime",
@@ -14595,7 +15978,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "create",
-					Description: `(Defaults to 10 mins) Used when creating the instance (until it reaches the initial ` + "`" + `Running` + "`" + ` status). ` + "`" + `Note` + "`" + `: There are extra at most 2 minutes used to retry to aviod some needless API errors and it is not in the timeouts configure.`,
+					Description: `(Defaults to 10 mins) Used when creating the instance (until it reaches the initial ` + "`" + `Running` + "`" + ` status). ` + "`" + `Note` + "`" + `: There are extra at most 2 minutes used to retry to avoid some needless API errors, and it is not in the timeouts configure.`,
 				},
 				resource.Attribute{
 					Name:        "update",
@@ -14603,7 +15986,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Defaults to 20 mins) Used when terminating the instance. ` + "`" + `Note` + "`" + `: There are extra at most 5 minutes used to retry to aviod some needless API errors and it is not in the timeouts configure. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Defaults to 20 mins) Used when terminating the instance. ` + "`" + `Note` + "`" + `: There are extra at most 5 minutes used to retry to avoid some needless API errors, and it is not in the timeouts configure. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -14901,7 +16284,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "creation_date",
-					Description: `The date and time (UTC time) when the Alikms key version was created.`,
+					Description: `(Removed from v1.124.4) The date and time (UTC time) when the Alikms key version was created.`,
 				},
 				resource.Attribute{
 					Name:        "key_id",
@@ -14915,7 +16298,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_date",
-					Description: `The date and time (UTC time) when the Alikms key version was created.`,
+					Description: `(Removed from v1.124.4) The date and time (UTC time) when the Alikms key version was created.`,
 				},
 				resource.Attribute{
 					Name:        "key_id",
@@ -15754,163 +17137,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "actiontrail_enabled",
-					Description: `(Optional) Notification type. Support Email, SMS, DingTalk. Default true.`,
+					Description: `(Optional) Actiontrail action log switch. Default false.`,
 				},
 				resource.Attribute{
 					Name:        "actiontrail_ttl",
-					Description: `(Optional) Actiontril action log TTL. Default 180.`,
-				},
-				resource.Attribute{
-					Name:        "oss_access_enabled",
-					Description: `(Optional) Access log switch of OSS. Default true.`,
-				},
-				resource.Attribute{
-					Name:        "oss_access_ttl",
-					Description: `(Optional) Access log TTL of OSS. Default 180.`,
-				},
-				resource.Attribute{
-					Name:        "oss_sync_enabled",
-					Description: `(Optional) OSS synchronization to central configuration switch. Default true.`,
-				},
-				resource.Attribute{
-					Name:        "oss_sync_ttl",
-					Description: `(Optional) OSS synchronization to central TTL. Default 180.`,
-				},
-				resource.Attribute{
-					Name:        "oss_metering_enabled",
-					Description: `(Optional) OSS metering log switch.Default true.`,
-				},
-				resource.Attribute{
-					Name:        "oss_metering_ttl",
-					Description: `(Optional) OSS measurement log TTL. Default 180.`,
-				},
-				resource.Attribute{
-					Name:        "rds_enabled",
-					Description: `(Optional) RDS audit log switch. Default true.`,
-				},
-				resource.Attribute{
-					Name:        "rds_ttl",
-					Description: `(Optional) Dds log centralization ttl. Default 180.`,
-				},
-				resource.Attribute{
-					Name:        "slb_access_enabled",
-					Description: `(Optional) Slb log switch. Default true.`,
-				},
-				resource.Attribute{
-					Name:        "slb_access_ttl",
-					Description: `(Optional) Slb centralized ttl. Default 180.`,
-				},
-				resource.Attribute{
-					Name:        "slb_sync_enabled",
-					Description: `(Optional) Slb sync to center switch. Default true.`,
-				},
-				resource.Attribute{
-					Name:        "slb_sync_ttl",
-					Description: `(Optional) Slb sync to center switch. Default 180.`,
-				},
-				resource.Attribute{
-					Name:        "bastion_enabled",
-					Description: `(Optional) Fortress machine operation log switch.Default true.`,
-				},
-				resource.Attribute{
-					Name:        "bastion_ttl",
-					Description: `(Optional) Fort machine centralized ttl. Default 180.`,
-				},
-				resource.Attribute{
-					Name:        "waf_enabled",
-					Description: `(Optional) Waf log switch. Default true.`,
-				},
-				resource.Attribute{
-					Name:        "waf_ttl",
-					Description: `(Optional) Waf centralized ttl. Default true.`,
-				},
-				resource.Attribute{
-					Name:        "cloudfirewall_ttl",
-					Description: `(Optional) Cloud firewall switch.Default true.`,
-				},
-				resource.Attribute{
-					Name:        "sas_ttl",
-					Description: `(Optional) Cloud Security Center centralized ttl. Default 180.`,
-				},
-				resource.Attribute{
-					Name:        "sas_process_enabled",
-					Description: `(Optional) Cloud Security Center process startup log switch. Default false.`,
-				},
-				resource.Attribute{
-					Name:        "sas_network_enabled",
-					Description: `(Optional) Cloud security center network connection log switch. Default false.`,
-				},
-				resource.Attribute{
-					Name:        "sas_login_enabled",
-					Description: `(Optional) Cloud security center login flow log switch. Default false.`,
-				},
-				resource.Attribute{
-					Name:        "sas_crack_enabled",
-					Description: `(Optional) Cloud Security Center Brute Force Log Switch. Default false.`,
-				},
-				resource.Attribute{
-					Name:        "sas_snapshot_process_enabled",
-					Description: `(Optional) Cloud Security Center process snapshot switch. Default false.`,
-				},
-				resource.Attribute{
-					Name:        "sas_snapshot_account_enabled",
-					Description: `(Optional) Cloud Security Center account snapshot switch. Default false.`,
-				},
-				resource.Attribute{
-					Name:        "sas_snapshot_port_enabled",
-					Description: `(Optional) Cloud Security Center Port Snapshot Switch. Default false.`,
-				},
-				resource.Attribute{
-					Name:        "sas_dns_enabled",
-					Description: `(Optional) Cloud Security Center DNS resolution log switch. Default false.`,
-				},
-				resource.Attribute{
-					Name:        "sas_local_dns_enabled",
-					Description: `(Optional) Cloud security center local DNS log switch. Default false.`,
-				},
-				resource.Attribute{
-					Name:        "sas_session_enabled",
-					Description: `(Optional) Cloud security center network session log switch.Default false.`,
-				},
-				resource.Attribute{
-					Name:        "sas_http_enabled",
-					Description: `(Optional). Cloud Security Center WEB access log switch. Default false.`,
-				},
-				resource.Attribute{
-					Name:        "sas_security_vul_enabled",
-					Description: `(Optional) Cloud Security Center Vulnerability Log Switch.Default false.`,
-				},
-				resource.Attribute{
-					Name:        "sas_security_hc_enabled",
-					Description: `(Optional) Cloud Security Center Baseline Log Switch. Default false.`,
-				},
-				resource.Attribute{
-					Name:        "sas_security_alert_enabled",
-					Description: `(Optional) Cloud Security Center Security Alarm Log Switch .Default false.`,
-				},
-				resource.Attribute{
-					Name:        "apigateway_enabled",
-					Description: `(Optional) API Gateway Log Switch. Default true.`,
-				},
-				resource.Attribute{
-					Name:        "apigateway_ttl",
-					Description: `(Optional) API Gateway ttl. Default 180.`,
-				},
-				resource.Attribute{
-					Name:        "nas_enabled",
-					Description: `(Optional) Nas log switch. Default true.`,
-				},
-				resource.Attribute{
-					Name:        "nas_ttl",
-					Description: `(Optional) Nas centralized ttl. Default 180.`,
-				},
-				resource.Attribute{
-					Name:        "cps_enabled",
-					Description: `(Optional) Mobile push log switch. Default true.`,
-				},
-				resource.Attribute{
-					Name:        "cps_ttl",
-					Description: `(Optional) Mobile push ttl. Default 180.`,
+					Description: `(Optional) Actiontril action log TTL. Default 180. - ` + "`" + `actiontrail_ti_enabled` + "`" + `- (Optional) Actiontrail action log threat intelligence detection swtich. Default false. - ` + "`" + `oss_access_enabled` + "`" + ` - (Optional) Access log switch of OSS. Default false. - ` + "`" + `oss_access_ttl` + "`" + ` - (Optional) Access log TTL of OSS. Default 180. - ` + "`" + `oss_sync_enabled` + "`" + ` - (Optional) OSS synchronization to central configuration switch. Default true. - ` + "`" + `oss_sync_ttl` + "`" + ` - (Optional) OSS synchronization to central TTL. Default 180. - ` + "`" + `oss_access_ti_enabled` + "`" + ` - (Optional) OSS access log threat intelligence detection swtich. Default false. - ` + "`" + `oss_metering_enabled` + "`" + ` - (Optional) OSS metering log switch.Default false. - ` + "`" + `oss_metering_ttl` + "`" + ` - (Optional) OSS measurement log TTL. Default 180. - ` + "`" + `rds_enabled` + "`" + ` - (Optional) RDS audit log switch. Default false. - ` + "`" + `rds_audit_collection_policy` + "`" + ` - (Optional) RDS audit log collection policy script. Default empty. - ` + "`" + `rds_ttl` + "`" + ` - (Optional) RDS audit log ttl. Default 180. - ` + "`" + `rds_ti_enabled` + "`" + ` - (Optional) RDS audit log threat intelligence detection swtich. Default false. - ` + "`" + `rds_slow_enabled` + "`" + ` - (Optional) RDS slow log switch. Default false. - ` + "`" + `rds_slow_collection_policy` + "`" + ` - (Optional) RDS slow log collection policy script. Default empty. - ` + "`" + `rds_slow_ttl` + "`" + ` - (Optional) RDS slow log TTL. Default 180. - ` + "`" + `rds_perf_enabled` + "`" + ` - (Optional) RDS performance log switch. Default false. - ` + "`" + `rds_perf_collection_policy` + "`" + ` - (Optional) RDS performance log collection policy script. Default empty. - ` + "`" + `rds_perf_ttl` + "`" + ` - (Optional) RDS performance log TTL. Default 180. - ` + "`" + `polardb_enabled` + "`" + ` - (Optional) PolarDB audit log switch. Default false. - ` + "`" + `polardb_audit_collection_policy` + "`" + ` - (Optional) PolarDB audit log collection policy script. Default empty. - ` + "`" + `polardb_ttl` + "`" + ` - (Optional) PolarDB audit log ttl. Default 180. - ` + "`" + `polardb_ti_enabled` + "`" + ` - (Optional) PolarDB audit log threat intelligence detection swtich. Default false. - ` + "`" + `polardb_slow_enabled` + "`" + ` - (Optional) PolarDB slow log switch. Default false. - ` + "`" + `polardb_slow_collection_policy` + "`" + ` - (Optional) PolarDB slow log collection policy script. Default empty. - ` + "`" + `polardb_slow_ttl` + "`" + ` - (Optional) PolarDB slow log TTL. Default 180. - ` + "`" + `polardb_perf_enabled` + "`" + ` - (Optional) PolarDB performance log switch. Default false. - ` + "`" + `polardb_perf_collection_policy` + "`" + ` - (Optional) PolarDB performance log collection policy script. Default empty. - ` + "`" + `polardb_perf_ttl` + "`" + ` - (Optional) PolarDB performance log TTL. Default 180. - ` + "`" + `ddrds_audit_enabled` + "`" + ` - (Optional) PolarDB-X audit log switch. Default false. - ` + "`" + `rds_audit_collection_policy` + "`" + ` - (Optional) PolarDB-X audit log collection policy script. Default empty. - ` + "`" + `drds_audit_ttl` + "`" + ` - (Optional) PolarDB-X audit log ttl. Default 180. - ` + "`" + `drds_sync_enabled` + "`" + ` - (Optional) PolarDB-X synchronization to central configuration switch. Default true. - ` + "`" + `drds_sync_ttl` + "`" + ` - (Optional) PolarDB-X synchronization to central TTL. Default 180. - ` + "`" + `drds_audit_ti_enabled` + "`" + ` - (Optional) PolarDB-X audit log threat intelligence detection swtich. Default false. - ` + "`" + `slb_access_enabled` + "`" + ` - (Optional) Slb log switch. Default false. - ` + "`" + `slb_access_collection_policy` + "`" + ` - (Optional) Slb log collection policy script. Default empty. - ` + "`" + `slb_access_ttl` + "`" + ` - (Optional) Slb centralized ttl. Default 180. - ` + "`" + `slb_sync_enabled` + "`" + ` - (Optional) Slb sync to center switch. Default true. - ` + "`" + `slb_sync_ttl` + "`" + ` - (Optional) Slb sync to center switch. Default 180. - ` + "`" + `slb_access_ti_enabled` + "`" + ` - (Optional) Slb log threat intelligence detection swtich. Default false. - ` + "`" + `bastion_enabled` + "`" + ` - (Optional) Fortress machine operation log switch.Default false. - ` + "`" + `bastion_ttl` + "`" + ` - (Optional) Fortress machine centralized ttl. Default 180. - ` + "`" + `bastion_ti_enabled` + "`" + ` - (Optional) Fortress machine operation log threat intelligence detection swtich. Default false. - ` + "`" + `waf_enabled` + "`" + ` - (Optional) Waf log switch. Default false. - ` + "`" + `waf_ttl` + "`" + ` - (Optional) Waf centralized ttl. Default 180. - ` + "`" + `waf_ti_enabled` + "`" + ` - (Optional) Waf log threat intelligence detection swtich. Default false. - ` + "`" + `cloudfirewall_enabled` + "`" + ` - (Optional) Cloudfirewall log switch. Default false. - ` + "`" + `cloudfirewall_ttl` + "`" + ` - (Optional) Cloudfirewall log ttl.Default 180. - ` + "`" + `cloudfirewall_ti_enabled` + "`" + ` - (Optional) Cloudfirewall log threat intelligence detection swtich. Default false. - ` + "`" + `ddos_coo_access_enabled` + "`" + ` - (Optional) DDoS (New BGP) access log switch. Default false. - ` + "`" + `ddos_coo_access_ttl` + "`" + ` - (Optional) DDoS (New BGP) access log ttl. Default 180. - ` + "`" + `ddos_coo_access_ti_enabled` + "`" + ` - (Optional) DDoS (New BGP) access log threat intelligence detection swtich. Default false. - ` + "`" + `sas_ttl` + "`" + ` - (Optional) Cloud Security Center centralized ttl. Default 180. - ` + "`" + `sas_process_enabled` + "`" + ` - (Optional) Cloud Security Center process startup log switch. Default false. - ` + "`" + `sas_network_enabled` + "`" + ` - (Optional) Cloud security center network connection log switch. Default false. - ` + "`" + `sas_login_enabled` + "`" + ` - (Optional) Cloud security center login flow log switch. Default false. - ` + "`" + `sas_crack_enabled` + "`" + ` - (Optional) Cloud Security Center Brute Force Log Switch. Default false. - ` + "`" + `sas_snapshot_process_enabled` + "`" + ` - (Optional) Cloud Security Center process snapshot switch. Default false. - ` + "`" + `sas_snapshot_account_enabled` + "`" + ` - (Optional) Cloud Security Center account snapshot switch. Default false. - ` + "`" + `sas_snapshot_port_enabled` + "`" + ` - (Optional) Cloud Security Center Port Snapshot Switch. Default false. - ` + "`" + `sas_dns_enabled` + "`" + ` - (Optional) Cloud Security Center DNS resolution log switch. Default false. - ` + "`" + `sas_local_dns_enabled` + "`" + ` - (Optional) Cloud security center local DNS log switch. Default false. - ` + "`" + `sas_session_enabled` + "`" + ` - (Optional) Cloud security center network session log switch.Default false. - ` + "`" + `sas_http_enabled` + "`" + ` - (Optional). Cloud Security Center WEB access log switch. Default false. - ` + "`" + `sas_security_vul_enabled` + "`" + ` - (Optional) Cloud Security Center Vulnerability Log Switch.Default false. - ` + "`" + `sas_security_hc_enabled` + "`" + ` - (Optional) Cloud Security Center Baseline Log Switch. Default false. - ` + "`" + `sas_security_alert_enabled` + "`" + ` - (Optional) Cloud Security Center Security Alarm Log Switch .Default false. - ` + "`" + `sas_ti_enabled` + "`" + ` - (Optional) Cloud Security Center Security Log threat intelligence detection swtich. Default false. - ` + "`" + `apigateway_enabled` + "`" + ` - (Optional) API Gateway Log Switch. Default false. - ` + "`" + `apigateway_ttl` + "`" + ` - (Optional) API Gateway ttl. Default 180. - ` + "`" + `apigateway_ti_enabled` + "`" + ` - (Optional) API Gateway Log threat intelligence detection swtich. Default false. - ` + "`" + `nas_enabled` + "`" + ` - (Optional) Nas log switch. Default false. - ` + "`" + `nas_ttl` + "`" + ` - (Optional) Nas centralized ttl. Default 180. - ` + "`" + `nas_ti_enabled` + "`" + ` - (Optional) Nas log threat intelligence detection swtich. Default false. - ` + "`" + `appconnect_enabled` + "`" + ` - (Optional) App Connect operation log switch. Default false. - ` + "`" + `appconnect_ttl` + "`" + ` - (Optional) App Connect operation log ttl. Default 180. - ` + "`" + `appconnect_ti_enabled` + "`" + ` - (Optional) App Connect operation log threat intelligence detection swtich. Default false. - ` + "`" + `cps_enabled` + "`" + ` - (Optional) Mobile push log switch. Default false. - ` + "`" + `cps_ttl` + "`" + ` - (Optional) Mobile push ttl. Default 180. - ` + "`" + `cps_ti_enabled` + "`" + ` - (Optional) Mobile push log threat intelligence detection swtich. Default false. - ` + "`" + `k8s_audit_enabled` + "`" + ` - (Optional) K8s audit log switch. Default false. - ` + "`" + `k8s_audit_collection_policy` + "`" + ` - (Optional) K8s audit log collection policy script. Default empty. - ` + "`" + `k8s_audit_ttl` + "`" + ` - (Optional) K8s audit log ttl. Default 180. - ` + "`" + `k8s_event_enabled` + "`" + ` - (Optional) K8s event log switch. Default false. - ` + "`" + `k8s_event_collection_policy` + "`" + ` - (Optional) K8s event log collection policy script. Default empty. - ` + "`" + `k8s_event_ttl` + "`" + ` - (Optional) K8s event log ttl. Default 180. - ` + "`" + `k8s_ingress_enabled` + "`" + ` - (Optional) K8s ingress log switch. Default false. - ` + "`" + `k8s_ingress_collection_policy` + "`" + ` - (Optional) K8s ingress log collection policy script. Default empty. - ` + "`" + `k8s_ingress_ttl` + "`" + ` - (Optional) K8s ingress log ttl. Default 180.`,
 				},
 				resource.Attribute{
 					Name:        "multi_account",
@@ -16047,7 +17278,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `(Optional) Log etl job version. the default value is 2.`,
+					Description: `(Optional) Log etl job version. the default value is ` + "`" + `2` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "logstore",
@@ -16059,7 +17290,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "role_arn",
-					Description: `(Optional) Sts role info.`,
+					Description: `(Optional) Sts role info under source logstore. ` + "`" + `role_arn` + "`" + ` and ` + "`" + `(access_key_id, access_key_secret)` + "`" + ` fill in at most one. If you do not fill in both, then you must fill in ` + "`" + `(kms_encrypted_access_key_id, kms_encrypted_access_key_secret, kms_encryption_access_key_id_context, kms_encryption_access_key_secret_context)` + "`" + ` to use KMS to get the key pair.`,
 				},
 				resource.Attribute{
 					Name:        "etl_sinks",
@@ -16067,7 +17298,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_key_id",
-					Description: `(Optional,Sensitive) Dekms_encryption_access_key_id_contextlivery target logstore access key id.`,
+					Description: `(Optional,Sensitive) Delivery target logstore access key id.`,
 				},
 				resource.Attribute{
 					Name:        "kms_encrypted_access_key_id",
@@ -16095,7 +17326,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "role_arn",
-					Description: `(Required) Sts role info.`,
+					Description: `(Optional) Sts role info under delivery target logstore. ` + "`" + `role_arn` + "`" + ` and ` + "`" + `(access_key_id, access_key_secret)` + "`" + ` fill in at most one. If you do not fill in both, then you must fill in ` + "`" + `(kms_encrypted_access_key_id, kms_encrypted_access_key_secret, kms_encryption_access_key_id_context, kms_encryption_access_key_secret_context)` + "`" + ` to use KMS to get the key pair.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -16352,7 +17583,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `Log project tags. ## Import Log project can be imported using the id or name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_log_project.example tf-log ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Log project tags. ### Timeouts ->`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 3 mins) Used when create the log project. ## Import Log project can be imported using the id or name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_log_project.example tf-log ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -16370,7 +17605,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `Log project tags. ## Import Log project can be imported using the id or name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_log_project.example tf-log ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Log project tags. ### Timeouts ->`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 3 mins) Used when create the log project. ## Import Log project can be imported using the id or name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_log_project.example tf-log ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -16944,7 +18183,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "replication_factor",
-					Description: `(Optional) Number of replica set nodes. Valid values: [3, 5, 7]`,
+					Description: `(Optional) Number of replica set nodes. Valid values: [1, 3, 5, 7]`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -17147,6 +18386,10 @@ var (
 					Description: `(Required) - Custom storage space; value range: [10, 1,000] - 10-GB increments. Unit: GB.`,
 				},
 				resource.Attribute{
+					Name:        "readonly_replicas",
+					Description: `(Optional, Available in 1.126.0+) The number of read-only nodes in shard node. Valid values: 0 to 5. Default value: 0.`,
+				},
+				resource.Attribute{
 					Name:        "backup_period",
 					Description: `(Optional, Available in 1.42.0+) MongoDB Instance backup period. It is required when ` + "`" + `backup_time` + "`" + ` was existed. Valid values: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]. Default to [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]`,
 				},
@@ -17176,7 +18419,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "retention_period",
-					Description: `Instance log backup retention days. Available in 1.42.0+. ## Import MongoDB can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_mongodb_sharding_instance.example dds-bp1291daeda44195 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Instance log backup retention days. Available in 1.42.0+. ### Timeouts ->`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 mins) Used when creating the MongoDB instance (until it reaches the initial ` + "`" + `Running` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 mins) Used when updating the MongoDB instance (until it reaches the initial ` + "`" + `Running` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 mins) Used when terminating the MongoDB instance. ## Import MongoDB can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_mongodb_sharding_instance.example dds-bp1291daeda44195 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -17202,7 +18457,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "retention_period",
-					Description: `Instance log backup retention days. Available in 1.42.0+. ## Import MongoDB can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_mongodb_sharding_instance.example dds-bp1291daeda44195 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Instance log backup retention days. Available in 1.42.0+. ### Timeouts ->`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 mins) Used when creating the MongoDB instance (until it reaches the initial ` + "`" + `Running` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 30 mins) Used when updating the MongoDB instance (until it reaches the initial ` + "`" + `Running` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 mins) Used when terminating the MongoDB instance. ## Import MongoDB can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_mongodb_sharding_instance.example dds-bp1291daeda44195 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -17229,7 +18496,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_specification",
-					Description: `(Required, ForceNew) The engine specification of MSE Cluster. Valid values: ` + "`" + `MSE_SC_1_2_200_c` + "`" + `, ` + "`" + `MSE_SC_2` + "`" + `, ` + "`" + `MSE_SC_4_8_200_c_4_200_c` + "`" + `, ` + "`" + `MSE_SC_8_16_200_c` + "`" + `.`,
+					Description: `(Required, ForceNew) The engine specification of MSE Cluster. Valid values: ` + "`" + `MSE_SC_1_2_200_c` + "`" + `：1C2G ` + "`" + `MSE_SC_2_4_200_c` + "`" + `：2C4G ` + "`" + `MSE_SC_4_8_200_c` + "`" + `：4C8G ` + "`" + `MSE_SC_8_16_200_c` + "`" + `：8C16G`,
 				},
 				resource.Attribute{
 					Name:        "cluster_type",
@@ -17249,7 +18516,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "net_type",
-					Description: `(Required, ForceNew) The type of network. Range limit: 1~5.`,
+					Description: `(Required, ForceNew) The type of network. Valid values: "privatenet" and "pubnet".`,
 				},
 				resource.Attribute{
 					Name:        "private_slb_specification",
@@ -17540,7 +18807,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional, Available in 1.121.0+) The tags of NAT gateway. ->`,
+					Description: `(Optional, Available in 1.121.0+) The tags of NAT gateway.`,
+				},
+				resource.Attribute{
+					Name:        "deletion_protection",
+					Description: `(Optional, Available in v1.124.4+) Whether enable the deletion protection or not. Default value: ` + "`" + `false` + "`" + `. - true: Enable deletion protection. - false: Disable deletion protection. ->`,
 				},
 				resource.Attribute{
 					Name:        "ip_count",
@@ -18342,7 +19613,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "update_date",
-					Description: `The time when the execution was updated. ## Import OOS Execution can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_oos_execution.example exec-ef6xxxx ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The time when the execution was updated. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 11 mins) Used when creating the alicloud_oos_execution (until it reaches the initial ` + "`" + `Running` + "`" + ` status). ## Import OOS Execution can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_oos_execution.example exec-ef6xxxx ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -18396,7 +19671,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "update_date",
-					Description: `The time when the execution was updated. ## Import OOS Execution can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_oos_execution.example exec-ef6xxxx ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The time when the execution was updated. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 11 mins) Used when creating the alicloud_oos_execution (until it reaches the initial ` + "`" + `Running` + "`" + ` status). ## Import OOS Execution can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_oos_execution.example exec-ef6xxxx ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -19333,7 +20612,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "db_node_class",
-					Description: `(Required) The db_node_class of cluster node.`,
+					Description: `(Required) The db_node_class of cluster node. ->`,
 				},
 				resource.Attribute{
 					Name:        "modify_type",
@@ -19341,7 +20620,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "db_node_count",
-					Description: `(Optional, Available in 1.95.0+)Number of the PolarDB cluster nodes, default is 2(Each cluster must contain at least a primary node and a read-only node). Add/remove nodes by modifying this parameter, valid values: [2~16].`,
+					Description: `(Optional, Available in 1.95.0+)Number of the PolarDB cluster nodes, default is 2(Each cluster must contain at least a primary node and a read-only node). Add/remove nodes by modifying this parameter, valid values: [2~16]. ->`,
 				},
 				resource.Attribute{
 					Name:        "zone_id",
@@ -19349,7 +20628,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pay_type",
-					Description: `(Optional,ForceNew) Valid values are ` + "`" + `PrePaid` + "`" + `, ` + "`" + `PostPaid` + "`" + `, Default to ` + "`" + `PostPaid` + "`" + `. Currently, the resource can not supports change pay type.`,
+					Description: `(Optional) Valid values are ` + "`" + `PrePaid` + "`" + `, ` + "`" + `PostPaid` + "`" + `, Default to ` + "`" + `PostPaid` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "renewal_status",
@@ -19369,7 +20648,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vswitch_id",
-					Description: `(Optional) The virtual switch ID to launch DB instances in one VPC.`,
+					Description: `(Optional) The virtual switch ID to launch DB instances in one VPC. ->`,
 				},
 				resource.Attribute{
 					Name:        "maintain_time",
@@ -19393,7 +20672,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tde_status",
-					Description: `(Optional, Available in 1.121.3+) turn on TDE encryption. Valid values are ` + "`" + `Enabled` + "`" + `, ` + "`" + `Disabled` + "`" + `. Default to ` + "`" + `Disabled` + "`" + `. TDE cannot be closed after it is turned on.`,
+					Description: `(Optional, Available in 1.121.3+) turn on TDE encryption. Valid values are ` + "`" + `Enabled` + "`" + `, ` + "`" + `Disabled` + "`" + `. Default to ` + "`" + `Disabled` + "`" + `. TDE cannot be closed after it is turned on. ->`,
+				},
+				resource.Attribute{
+					Name:        "encrypt_new_tables",
+					Description: `(Optional, Available in 1.124.1+) turn on table auto encryption. Valid values are ` + "`" + `ON` + "`" + `, ` + "`" + `OFF` + "`" + `. Only MySQL 8.0 supports. ->`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -19405,11 +20688,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "create",
-					Description: `(Defaults to 30 mins) Used when creating the polardb cluster (until it reaches the initial ` + "`" + `Running` + "`" + ` status).`,
+					Description: `(Defaults to 50 mins) Used when creating the polardb cluster (until it reaches the initial ` + "`" + `Running` + "`" + ` status).`,
 				},
 				resource.Attribute{
 					Name:        "update",
-					Description: `(Defaults to 30 mins) Used when updating the polardb cluster (until it reaches the initial ` + "`" + `Running` + "`" + ` status).`,
+					Description: `(Defaults to 50 mins) Used when updating the polardb cluster (until it reaches the initial ` + "`" + `Running` + "`" + ` status).`,
 				},
 				resource.Attribute{
 					Name:        "delete",
@@ -19427,11 +20710,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "create",
-					Description: `(Defaults to 30 mins) Used when creating the polardb cluster (until it reaches the initial ` + "`" + `Running` + "`" + ` status).`,
+					Description: `(Defaults to 50 mins) Used when creating the polardb cluster (until it reaches the initial ` + "`" + `Running` + "`" + ` status).`,
 				},
 				resource.Attribute{
 					Name:        "update",
-					Description: `(Defaults to 30 mins) Used when updating the polardb cluster (until it reaches the initial ` + "`" + `Running` + "`" + ` status).`,
+					Description: `(Defaults to 50 mins) Used when updating the polardb cluster (until it reaches the initial ` + "`" + `Running` + "`" + ` status).`,
 				},
 				resource.Attribute{
 					Name:        "delete",
@@ -21307,7 +22590,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "account_name",
-					Description: `(Required, ForceNew) Operation account requiring a uniqueness check. It may consist of lower case letters, numbers, and underlines, and must start with a letter and end with letters or numbers, The length must be 2-32 characters.`,
+					Description: `(Required, ForceNew) Operation account requiring a uniqueness check. It may consist of lower case letters, numbers, and underlines, and must start with a letter and end with letters or numbers, The length must be 2-63 characters for PostgreSQL, otherwise the length must be 2-32 characters.`,
 				},
 				resource.Attribute{
 					Name:        "account_password",
@@ -21827,7 +23110,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "status",
-					Description: `(Optional, Available in v1.120.0+) The status of control policy. Valid values:` + "`" + `Enabled` + "`" + ` and ` + "`" + `Disabled` + "`" + `. Default value is ` + "`" + `Disabled` + "`" + `. ## Attributes Reference`,
+					Description: `(Optional, Available in v1.120.0+) The status of control policy. Valid values:` + "`" + `Enabled` + "`" + ` and ` + "`" + `Disabled` + "`" + `. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -26025,301 +27308,315 @@ var (
 		"alicloud_alikafka_sasl_acl":                          14,
 		"alicloud_alikafka_sasl_user":                         15,
 		"alicloud_alikafka_topic":                             16,
-		"alicloud_api_gateway_api":                            17,
-		"alicloud_api_gateway_app":                            18,
-		"alicloud_api_gateway_app_attachment":                 19,
-		"alicloud_api_gateway_group":                          20,
-		"alicloud_api_gateway_vpc_access":                     21,
-		"alicloud_auto_provisioning_group":                    22,
-		"alicloud_brain_industrial_pid_loop":                  23,
-		"alicloud_brain_industrial_pid_organization":          24,
-		"alicloud_brain_industrial_pid_project":               25,
-		"alicloud_cas_certificate":                            26,
-		"alicloud_cassandra_cluster":                          27,
-		"alicloud_cassandra_data_center":                      28,
-		"alicloud_cdn_domain":                                 29,
-		"alicloud_cdn_domain_config":                          30,
-		"alicloud_cdn_domain_new":                             31,
-		"alicloud_cen_bandwidth_limit":                        32,
-		"alicloud_cen_bandwidth_package":                      33,
-		"alicloud_cen_bandwidth_package_attachment":           34,
-		"alicloud_cen_flowlog":                                35,
-		"alicloud_cen_instance":                               36,
-		"alicloud_cen_instance_attachment":                    37,
-		"alicloud_cen_instance_grant":                         38,
-		"alicloud_cen_private_zone":                           39,
-		"alicloud_cen_route_entry":                            40,
-		"alicloud_cen_route_map":                              41,
-		"alicloud_cen_route_service":                          42,
-		"alicloud_cen_vbr_health_check":                       43,
-		"alicloud_cloud_connect_network":                      44,
-		"alicloud_cloud_connect_network_attachment":           45,
-		"alicloud_cloud_connect_network_grant":                46,
-		"alicloud_cloud_storage_gateway_storage_bundle":       47,
-		"alicloud_cms_alarm":                                  48,
-		"alicloud_cms_alarm_contact":                          49,
-		"alicloud_cms_alarm_contact_group":                    50,
-		"alicloud_cms_group_metric_rule":                      51,
-		"alicloud_cms_monitor_group":                          52,
-		"alicloud_cms_monitor_group_instances":                53,
-		"alicloud_cms_site_monitor":                           54,
-		"alicloud_common_bandwidth_package":                   55,
-		"alicloud_common_bandwidth_package_attachment":        56,
-		"alicloud_config_aggregator":                          57,
-		"alicloud_config_configuration_recorder":              58,
-		"alicloud_config_delivery_channel":                    59,
-		"alicloud_config_rule":                                60,
-		"alicloud_cr_ee_namespace":                            61,
-		"alicloud_cr_ee_repo":                                 62,
-		"alicloud_cr_ee_sync_rule":                            63,
-		"alicloud_cr_namespace":                               64,
-		"alicloud_cr_repo":                                    65,
-		"alicloud_cs_edge_kubernetes":                         66,
-		"alicloud_cs_kubernetes":                              67,
-		"alicloud_cs_kubernetes_autoscaler":                   68,
-		"alicloud_cs_kubernetes_node_pool":                    69,
-		"alicloud_cs_managed_kubernetes":                      70,
-		"alicloud_cs_serverless_kubernetes":                   71,
-		"alicloud_datahub_project":                            72,
-		"alicloud_datahub_subscription":                       73,
-		"alicloud_datahub_topic":                              74,
-		"alicloud_db_account":                                 75,
-		"alicloud_db_account_privilege":                       76,
-		"alicloud_db_backup_policy":                           77,
-		"alicloud_db_connection":                              78,
-		"alicloud_db_database":                                79,
-		"alicloud_db_instance":                                80,
-		"alicloud_db_read_write_splitting_connection":         81,
-		"alicloud_db_readonly_instance":                       82,
-		"alicloud_dcdn_domain":                                83,
-		"alicloud_ddosbgp_instance":                           84,
-		"alicloud_ddoscoo_domain_resource":                    85,
-		"alicloud_ddoscoo_instance":                           86,
-		"alicloud_ddoscoo_port":                               87,
-		"alicloud_ddoscoo_scheduler_rule":                     88,
-		"alicloud_disk":                                       89,
-		"alicloud_disk_attachment":                            90,
-		"alicloud_dms_enterprise_instance":                    91,
-		"alicloud_dms_enterprise_user":                        92,
-		"alicloud_dns":                                        93,
-		"alicloud_dns_domain":                                 94,
-		"alicloud_dns_domain_attachment":                      95,
-		"alicloud_dns_group":                                  96,
-		"alicloud_dns_instance":                               97,
-		"alicloud_dns_record":                                 98,
-		"alicloud_drds_instance":                              99,
-		"alicloud_eci_container_group":                        100,
-		"alicloud_eci_image_cache":                            101,
-		"alicloud_ecs_auto_snapshot_policy":                   102,
-		"alicloud_ecs_auto_snapshot_policy_attachment":        103,
-		"alicloud_ecs_command":                                104,
-		"alicloud_ecs_dedicated_host":                         105,
-		"alicloud_ecs_disk":                                   106,
-		"alicloud_ecs_disk_attachment":                        107,
-		"alicloud_ecs_hpc_cluster":                            108,
-		"alicloud_ecs_key_pair":                               109,
-		"alicloud_ecs_key_pair_attachment":                    110,
-		"alicloud_ecs_launch_template":                        111,
-		"alicloud_ecs_network_interface":                      112,
-		"alicloud_ecs_network_interface_attachment":           113,
-		"alicloud_ecs_snapshot":                               114,
-		"alicloud_edas_application":                           115,
-		"alicloud_edas_application_deployment":                116,
-		"alicloud_edas_application_scale":                     117,
-		"alicloud_edas_cluster":                               118,
-		"alicloud_edas_deploy_group":                          119,
-		"alicloud_edas_instance_cluster_attachment":           120,
-		"alicloud_edas_k8s_application":                       121,
-		"alicloud_edas_k8s_cluster":                           122,
-		"alicloud_edas_slb_attachment":                        123,
-		"alicloud_eip":                                        124,
-		"alicloud_eip_association":                            125,
-		"alicloud_eipanycast_anycast_eip_address":             126,
-		"alicloud_eipanycast_anycast_eip_address_attachment":  127,
-		"alicloud_elasticsearch_instance":                     128,
-		"alicloud_emr_cluster":                                129,
-		"alicloud_ess_alarm":                                  130,
-		"alicloud_ess_attachment":                             131,
-		"alicloud_ess_notification":                           132,
-		"alicloud_ess_scaling_configuration":                  133,
-		"alicloud_ess_scaling_group":                          134,
-		"alicloud_ess_lifecycle_hook":                         135,
-		"alicloud_ess_scaling_rule":                           136,
-		"alicloud_ess_scalinggroup_vserver_groups":            137,
-		"alicloud_ess_schedule":                               138,
-		"alicloud_ess_scheduled_task":                         139,
-		"alicloud_fc_custom_domain":                           140,
-		"alicloud_fc_function":                                141,
-		"alicloud_fc_function_async_invoke_config":            142,
-		"alicloud_fc_service":                                 143,
-		"alicloud_fc_trigger":                                 144,
-		"alicloud_fnf_flow":                                   145,
-		"alicloud_fnf_schedule":                               146,
-		"alicloud_forward_entry":                              147,
-		"alicloud_ga_accelerator":                             148,
-		"alicloud_ga_bandwidth_package":                       149,
-		"alicloud_ga_bandwidth_package_attachment":            150,
-		"alicloud_ga_endpoint_group":                          151,
-		"alicloud_ga_forwarding_rule":                         152,
-		"alicloud_ga_ip_set":                                  153,
-		"alicloud_ga_listener":                                154,
-		"alicloud_gpdb_connection":                            155,
-		"alicloud_gpdb_instance":                              156,
-		"alicloud_havip":                                      157,
-		"alicloud_havip_attachment":                           158,
-		"alicloud_hbase_instance":                             159,
-		"alicloud_image":                                      160,
-		"alicloud_image_copy":                                 161,
-		"alicloud_image_export":                               162,
-		"alicloud_image_import":                               163,
-		"alicloud_image_share_permission":                     164,
-		"alicloud_instance":                                   165,
-		"alicloud_key_pair":                                   166,
-		"alicloud_key_pair_attachment":                        167,
-		"alicloud_kms_alias":                                  168,
-		"alicloud_kms_ciphertext":                             169,
-		"alicloud_kms_key":                                    170,
-		"alicloud_kms_key_version":                            171,
-		"alicloud_kms_secret":                                 172,
-		"alicloud_kvstore_account":                            173,
-		"alicloud_kvstore_backup_policy":                      174,
-		"alicloud_kvstore_connection":                         175,
-		"alicloud_kvstore_instance":                           176,
-		"alicloud_launch_template":                            177,
-		"alicloud_log_alert":                                  178,
-		"alicloud_log_audit":                                  179,
-		"alicloud_log_dashboard":                              180,
-		"alicloud_log_etl":                                    181,
-		"alicloud_log_machine_group":                          182,
-		"alicloud_log_oss_shipper":                            183,
-		"alicloud_log_project":                                184,
-		"alicloud_log_store":                                  185,
-		"alicloud_log_store_index":                            186,
-		"alicloud_logtail_attachment":                         187,
-		"alicloud_logtail_config":                             188,
-		"alicloud_market_order":                               189,
-		"alicloud_maxcompute_project":                         190,
-		"alicloud_mns_queue":                                  191,
-		"alicloud_mns_topic":                                  192,
-		"alicloud_mns_topic_subscription":                     193,
-		"alicloud_mongodb_instance":                           194,
-		"mongodb_sharding_instance":                           195,
-		"alicloud_mse_cluster":                                196,
-		"alicloud_nas_access_group":                           197,
-		"alicloud_nas_access_rule":                            198,
-		"alicloud_nas_file_system":                            199,
-		"alicloud_nas_mount_target":                           200,
-		"alicloud_nat_gateway":                                201,
-		"alicloud_network_acl":                                202,
-		"alicloud_network_acl_attachment":                     203,
-		"alicloud_network_acl_entries":                        204,
-		"alicloud_network_interface":                          205,
-		"alicloud_network_interface_attachment":               206,
-		"alicloud_ons_group":                                  207,
-		"alicloud_ons_instance":                               208,
-		"alicloud_ons_topic":                                  209,
-		"alicloud_oos_execution":                              210,
-		"alicloud_oos_template":                               211,
-		"alicloud_oss_bucket":                                 212,
-		"alicloud_oss_bucket_object":                          213,
-		"alicloud_ots_instance":                               214,
-		"alicloud_ots_instance_attachment":                    215,
-		"alicloud_ots_table":                                  216,
-		"alicloud_polardb_account":                            217,
-		"alicloud_polardb_account_privilege":                  218,
-		"alicloud_polardb_backup_policy":                      219,
-		"alicloud_polardb_cluster":                            220,
-		"alicloud_polardb_database":                           221,
-		"alicloud_polardb_endpoint":                           222,
-		"alicloud_polardb_endpoint_address":                   223,
-		"alicloud_privatelink_vpc_endpoint":                   224,
-		"alicloud_privatelink_vpc_endpoint_connection":        225,
-		"alicloud_privatelink_vpc_endpoint_service":           226,
-		"alicloud_privatelink_vpc_endpoint_service_resource":  227,
-		"alicloud_privatelink_vpc_endpoint_service_user":      228,
-		"alicloud_privatelink_vpc_endpoint_zone":              229,
-		"alicloud_pvtz_zone":                                  230,
-		"alicloud_pvtz_zone_attachment":                       231,
-		"alicloud_pvtz_zone_record":                           232,
-		"alicloud_quotas_quota_alarm":                         233,
-		"alicloud_quotas_quota_application":                   234,
-		"alicloud_ram_access_key":                             235,
-		"alicloud_ram_account_alias":                          236,
-		"alicloud_ram_account_password_policy":                237,
-		"alicloud_ram_alias":                                  238,
-		"alicloud_ram_group":                                  239,
-		"alicloud_ram_group_membership":                       240,
-		"alicloud_ram_group_policy_attachment":                241,
-		"alicloud_ram_login_profile":                          242,
-		"alicloud_ram_policy":                                 243,
-		"alicloud_ram_role":                                   244,
-		"alicloud_ram_role_attachment":                        245,
-		"alicloud_ram_role_policy_attachment":                 246,
-		"alicloud_ram_saml_provider":                          247,
-		"alicloud_ram_user":                                   248,
-		"alicloud_ram_user_policy_attachment":                 249,
-		"alicloud_rds_account":                                250,
-		"alicloud_rds_parameter_group":                        251,
-		"alicloud_reserved_instance":                          252,
-		"alicloud_resource_manager_account":                   253,
-		"alicloud_resource_manager_control_policy":            254,
-		"alicloud_resource_manager_control_policy_attachment": 255,
-		"alicloud_resource_manager_folder":                    256,
-		"alicloud_resource_manager_handshake":                 257,
-		"alicloud_resource_manager_policy_attachment":         258,
-		"alicloud_resource_manager_resource_directory":        259,
-		"alicloud_resource_manager_resource_group":            260,
-		"alicloud_resource_manager_resource_share":            261,
-		"alicloud_resource_manager_shared_resource":           262,
-		"alicloud_resource_manager_shared_target":             263,
-		"alicloud_ros_change_set":                             264,
-		"alicloud_ros_stack":                                  265,
-		"alicloud_ros_stack_group":                            266,
-		"alicloud_ros_template":                               267,
-		"alicloud_route_entry":                                268,
-		"alicloud_route_table":                                269,
-		"alicloud_route_table_attachment":                     270,
-		"alicloud_router_interface":                           271,
-		"alicloud_router_interface_connection":                272,
-		"alicloud_sag_acl":                                    273,
-		"alicloud_sag_acl_rule":                               274,
-		"alicloud_sag_client_user":                            275,
-		"alicloud_sag_dnat_entry":                             276,
-		"alicloud_sag_qos":                                    277,
-		"alicloud_sag_qos_car":                                278,
-		"alicloud_sag_qos_policy":                             279,
-		"alicloud_sag_snat_entry":                             280,
-		"alicloud_security_group":                             281,
-		"alicloud_security_group_rule":                        282,
-		"alicloud_slb":                                        283,
-		"alicloud_slb_acl":                                    284,
-		"alicloud_slb_attachment":                             285,
-		"alicloud_slb_backend_server":                         286,
-		"alicloud_slb_ca_certificate":                         287,
-		"alicloud_slb_domain_extension":                       288,
-		"alicloud_slb_listener":                               289,
-		"alicloud_slb_load_balancer":                          290,
-		"alicloud_slb_master_slave_server_group":              291,
-		"alicloud_slb_rule":                                   292,
-		"alicloud_slb_server_certificate":                     293,
-		"alicloud_slb_server_group":                           294,
-		"alicloud_snapshot":                                   295,
-		"alicloud_snapshot_policy":                            296,
-		"alicloud_snat_entry":                                 297,
-		"alicloud_ssl_vpn_client_cert":                        298,
-		"alicloud_ssl_vpn_server":                             299,
-		"alicloud_tsdb_instance":                              300,
-		"alicloud_vpc":                                        301,
-		"alicloud_vpc_flow_log":                               302,
-		"alicloud_vpn_connection":                             303,
-		"alicloud_vpn_customer_gateway":                       304,
-		"alicloud_vpn_gateway":                                305,
-		"alicloud_vpn_route_entry":                            306,
-		"alicloud_vswitch":                                    307,
-		"alicloud_waf_domain":                                 308,
-		"alicloud_waf_instance":                               309,
-		"alicloud_yundun_bastionhost_instance":                310,
-		"alicloud_yundun_dbaudit_instance":                    311,
+		"alicloud_amqp_virtual_host":                          17,
+		"alicloud_api_gateway_api":                            18,
+		"alicloud_api_gateway_app":                            19,
+		"alicloud_api_gateway_app_attachment":                 20,
+		"alicloud_api_gateway_group":                          21,
+		"alicloud_api_gateway_vpc_access":                     22,
+		"alicloud_auto_provisioning_group":                    23,
+		"alicloud_brain_industrial_pid_loop":                  24,
+		"alicloud_brain_industrial_pid_organization":          25,
+		"alicloud_brain_industrial_pid_project":               26,
+		"alicloud_cas_certificate":                            27,
+		"alicloud_cassandra_cluster":                          28,
+		"alicloud_cassandra_data_center":                      29,
+		"alicloud_cdn_domain":                                 30,
+		"alicloud_cdn_domain_config":                          31,
+		"alicloud_cdn_domain_new":                             32,
+		"alicloud_cen_bandwidth_limit":                        33,
+		"alicloud_cen_bandwidth_package":                      34,
+		"alicloud_cen_bandwidth_package_attachment":           35,
+		"alicloud_cen_flowlog":                                36,
+		"alicloud_cen_instance":                               37,
+		"alicloud_cen_instance_attachment":                    38,
+		"alicloud_cen_instance_grant":                         39,
+		"alicloud_cen_private_zone":                           40,
+		"alicloud_cen_route_entry":                            41,
+		"alicloud_cen_route_map":                              42,
+		"alicloud_cen_route_service":                          43,
+		"alicloud_cen_transit_router":                         44,
+		"alicloud_cen_transit_router_route_entry":             45,
+		"alicloud_cen_transit_router_route_table":             46,
+		"alicloud_cen_transit_router_route_table_association": 47,
+		"alicloud_cen_transit_router_route_table_propagation": 48,
+		"alicloud_cen_transit_router_vbr_attachment":          49,
+		"alicloud_cen_transit_router_vpc_attachment":          50,
+		"alicloud_cen_vbr_health_check":                       51,
+		"alicloud_cloud_connect_network":                      52,
+		"alicloud_cloud_connect_network_attachment":           53,
+		"alicloud_cloud_connect_network_grant":                54,
+		"alicloud_cloud_storage_gateway_storage_bundle":       55,
+		"alicloud_cms_alarm":                                  56,
+		"alicloud_cms_alarm_contact":                          57,
+		"alicloud_cms_alarm_contact_group":                    58,
+		"alicloud_cms_group_metric_rule":                      59,
+		"alicloud_cms_monitor_group":                          60,
+		"alicloud_cms_monitor_group_instances":                61,
+		"alicloud_cms_site_monitor":                           62,
+		"alicloud_common_bandwidth_package":                   63,
+		"alicloud_common_bandwidth_package_attachment":        64,
+		"alicloud_config_aggregate_compliance_pack":           65,
+		"alicloud_config_aggregate_config_rule":               66,
+		"alicloud_config_aggregator":                          67,
+		"alicloud_config_compliance_pack":                     68,
+		"alicloud_config_configuration_recorder":              69,
+		"alicloud_config_delivery_channel":                    70,
+		"alicloud_config_rule":                                71,
+		"alicloud_cr_ee_instance":                             72,
+		"alicloud_cr_ee_namespace":                            73,
+		"alicloud_cr_ee_repo":                                 74,
+		"alicloud_cr_ee_sync_rule":                            75,
+		"alicloud_cr_namespace":                               76,
+		"alicloud_cr_repo":                                    77,
+		"alicloud_cs_edge_kubernetes":                         78,
+		"alicloud_cs_kubernetes":                              79,
+		"alicloud_cs_kubernetes_autoscaler":                   80,
+		"alicloud_cs_kubernetes_node_pool":                    81,
+		"alicloud_cs_managed_kubernetes":                      82,
+		"alicloud_cs_serverless_kubernetes":                   83,
+		"alicloud_datahub_project":                            84,
+		"alicloud_datahub_subscription":                       85,
+		"alicloud_datahub_topic":                              86,
+		"alicloud_db_account":                                 87,
+		"alicloud_db_account_privilege":                       88,
+		"alicloud_db_backup_policy":                           89,
+		"alicloud_db_connection":                              90,
+		"alicloud_db_database":                                91,
+		"alicloud_db_instance":                                92,
+		"alicloud_db_read_write_splitting_connection":         93,
+		"alicloud_db_readonly_instance":                       94,
+		"alicloud_dcdn_domain":                                95,
+		"alicloud_ddosbgp_instance":                           96,
+		"alicloud_ddoscoo_domain_resource":                    97,
+		"alicloud_ddoscoo_instance":                           98,
+		"alicloud_ddoscoo_port":                               99,
+		"alicloud_ddoscoo_scheduler_rule":                     100,
+		"alicloud_direct_mail_receivers":                      101,
+		"alicloud_disk":                                       102,
+		"alicloud_disk_attachment":                            103,
+		"alicloud_dms_enterprise_instance":                    104,
+		"alicloud_dms_enterprise_user":                        105,
+		"alicloud_dns":                                        106,
+		"alicloud_dns_domain":                                 107,
+		"alicloud_dns_domain_attachment":                      108,
+		"alicloud_dns_group":                                  109,
+		"alicloud_dns_instance":                               110,
+		"alicloud_dns_record":                                 111,
+		"alicloud_drds_instance":                              112,
+		"alicloud_eci_container_group":                        113,
+		"alicloud_eci_image_cache":                            114,
+		"alicloud_ecs_auto_snapshot_policy":                   115,
+		"alicloud_ecs_auto_snapshot_policy_attachment":        116,
+		"alicloud_ecs_command":                                117,
+		"alicloud_ecs_dedicated_host":                         118,
+		"alicloud_ecs_disk":                                   119,
+		"alicloud_ecs_disk_attachment":                        120,
+		"alicloud_ecs_hpc_cluster":                            121,
+		"alicloud_ecs_key_pair":                               122,
+		"alicloud_ecs_key_pair_attachment":                    123,
+		"alicloud_ecs_launch_template":                        124,
+		"alicloud_ecs_network_interface":                      125,
+		"alicloud_ecs_network_interface_attachment":           126,
+		"alicloud_ecs_snapshot":                               127,
+		"alicloud_edas_application":                           128,
+		"alicloud_edas_application_deployment":                129,
+		"alicloud_edas_application_scale":                     130,
+		"alicloud_edas_cluster":                               131,
+		"alicloud_edas_deploy_group":                          132,
+		"alicloud_edas_instance_cluster_attachment":           133,
+		"alicloud_edas_k8s_application":                       134,
+		"alicloud_edas_k8s_cluster":                           135,
+		"alicloud_edas_slb_attachment":                        136,
+		"alicloud_eip":                                        137,
+		"alicloud_eip_address":                                138,
+		"alicloud_eip_association":                            139,
+		"alicloud_eipanycast_anycast_eip_address":             140,
+		"alicloud_eipanycast_anycast_eip_address_attachment":  141,
+		"alicloud_elasticsearch_instance":                     142,
+		"alicloud_emr_cluster":                                143,
+		"alicloud_ess_alarm":                                  144,
+		"alicloud_ess_attachment":                             145,
+		"alicloud_ess_notification":                           146,
+		"alicloud_ess_scaling_configuration":                  147,
+		"alicloud_ess_scaling_group":                          148,
+		"alicloud_ess_lifecycle_hook":                         149,
+		"alicloud_ess_scaling_rule":                           150,
+		"alicloud_ess_scalinggroup_vserver_groups":            151,
+		"alicloud_ess_schedule":                               152,
+		"alicloud_ess_scheduled_task":                         153,
+		"alicloud_fc_custom_domain":                           154,
+		"alicloud_fc_function":                                155,
+		"alicloud_fc_function_async_invoke_config":            156,
+		"alicloud_fc_service":                                 157,
+		"alicloud_fc_trigger":                                 158,
+		"alicloud_fnf_flow":                                   159,
+		"alicloud_fnf_schedule":                               160,
+		"alicloud_forward_entry":                              161,
+		"alicloud_ga_accelerator":                             162,
+		"alicloud_ga_bandwidth_package":                       163,
+		"alicloud_ga_bandwidth_package_attachment":            164,
+		"alicloud_ga_endpoint_group":                          165,
+		"alicloud_ga_forwarding_rule":                         166,
+		"alicloud_ga_ip_set":                                  167,
+		"alicloud_ga_listener":                                168,
+		"alicloud_gpdb_connection":                            169,
+		"alicloud_gpdb_instance":                              170,
+		"alicloud_havip":                                      171,
+		"alicloud_havip_attachment":                           172,
+		"alicloud_hbase_instance":                             173,
+		"alicloud_image":                                      174,
+		"alicloud_image_copy":                                 175,
+		"alicloud_image_export":                               176,
+		"alicloud_image_import":                               177,
+		"alicloud_image_share_permission":                     178,
+		"alicloud_instance":                                   179,
+		"alicloud_key_pair":                                   180,
+		"alicloud_key_pair_attachment":                        181,
+		"alicloud_kms_alias":                                  182,
+		"alicloud_kms_ciphertext":                             183,
+		"alicloud_kms_key":                                    184,
+		"alicloud_kms_key_version":                            185,
+		"alicloud_kms_secret":                                 186,
+		"alicloud_kvstore_account":                            187,
+		"alicloud_kvstore_backup_policy":                      188,
+		"alicloud_kvstore_connection":                         189,
+		"alicloud_kvstore_instance":                           190,
+		"alicloud_launch_template":                            191,
+		"alicloud_log_alert":                                  192,
+		"alicloud_log_audit":                                  193,
+		"alicloud_log_dashboard":                              194,
+		"alicloud_log_etl":                                    195,
+		"alicloud_log_machine_group":                          196,
+		"alicloud_log_oss_shipper":                            197,
+		"alicloud_log_project":                                198,
+		"alicloud_log_store":                                  199,
+		"alicloud_log_store_index":                            200,
+		"alicloud_logtail_attachment":                         201,
+		"alicloud_logtail_config":                             202,
+		"alicloud_market_order":                               203,
+		"alicloud_maxcompute_project":                         204,
+		"alicloud_mns_queue":                                  205,
+		"alicloud_mns_topic":                                  206,
+		"alicloud_mns_topic_subscription":                     207,
+		"alicloud_mongodb_instance":                           208,
+		"mongodb_sharding_instance":                           209,
+		"alicloud_mse_cluster":                                210,
+		"alicloud_nas_access_group":                           211,
+		"alicloud_nas_access_rule":                            212,
+		"alicloud_nas_file_system":                            213,
+		"alicloud_nas_mount_target":                           214,
+		"alicloud_nat_gateway":                                215,
+		"alicloud_network_acl":                                216,
+		"alicloud_network_acl_attachment":                     217,
+		"alicloud_network_acl_entries":                        218,
+		"alicloud_network_interface":                          219,
+		"alicloud_network_interface_attachment":               220,
+		"alicloud_ons_group":                                  221,
+		"alicloud_ons_instance":                               222,
+		"alicloud_ons_topic":                                  223,
+		"alicloud_oos_execution":                              224,
+		"alicloud_oos_template":                               225,
+		"alicloud_oss_bucket":                                 226,
+		"alicloud_oss_bucket_object":                          227,
+		"alicloud_ots_instance":                               228,
+		"alicloud_ots_instance_attachment":                    229,
+		"alicloud_ots_table":                                  230,
+		"alicloud_polardb_account":                            231,
+		"alicloud_polardb_account_privilege":                  232,
+		"alicloud_polardb_backup_policy":                      233,
+		"alicloud_polardb_cluster":                            234,
+		"alicloud_polardb_database":                           235,
+		"alicloud_polardb_endpoint":                           236,
+		"alicloud_polardb_endpoint_address":                   237,
+		"alicloud_privatelink_vpc_endpoint":                   238,
+		"alicloud_privatelink_vpc_endpoint_connection":        239,
+		"alicloud_privatelink_vpc_endpoint_service":           240,
+		"alicloud_privatelink_vpc_endpoint_service_resource":  241,
+		"alicloud_privatelink_vpc_endpoint_service_user":      242,
+		"alicloud_privatelink_vpc_endpoint_zone":              243,
+		"alicloud_pvtz_zone":                                  244,
+		"alicloud_pvtz_zone_attachment":                       245,
+		"alicloud_pvtz_zone_record":                           246,
+		"alicloud_quotas_quota_alarm":                         247,
+		"alicloud_quotas_quota_application":                   248,
+		"alicloud_ram_access_key":                             249,
+		"alicloud_ram_account_alias":                          250,
+		"alicloud_ram_account_password_policy":                251,
+		"alicloud_ram_alias":                                  252,
+		"alicloud_ram_group":                                  253,
+		"alicloud_ram_group_membership":                       254,
+		"alicloud_ram_group_policy_attachment":                255,
+		"alicloud_ram_login_profile":                          256,
+		"alicloud_ram_policy":                                 257,
+		"alicloud_ram_role":                                   258,
+		"alicloud_ram_role_attachment":                        259,
+		"alicloud_ram_role_policy_attachment":                 260,
+		"alicloud_ram_saml_provider":                          261,
+		"alicloud_ram_user":                                   262,
+		"alicloud_ram_user_policy_attachment":                 263,
+		"alicloud_rds_account":                                264,
+		"alicloud_rds_parameter_group":                        265,
+		"alicloud_reserved_instance":                          266,
+		"alicloud_resource_manager_account":                   267,
+		"alicloud_resource_manager_control_policy":            268,
+		"alicloud_resource_manager_control_policy_attachment": 269,
+		"alicloud_resource_manager_folder":                    270,
+		"alicloud_resource_manager_handshake":                 271,
+		"alicloud_resource_manager_policy_attachment":         272,
+		"alicloud_resource_manager_resource_directory":        273,
+		"alicloud_resource_manager_resource_group":            274,
+		"alicloud_resource_manager_resource_share":            275,
+		"alicloud_resource_manager_shared_resource":           276,
+		"alicloud_resource_manager_shared_target":             277,
+		"alicloud_ros_change_set":                             278,
+		"alicloud_ros_stack":                                  279,
+		"alicloud_ros_stack_group":                            280,
+		"alicloud_ros_template":                               281,
+		"alicloud_route_entry":                                282,
+		"alicloud_route_table":                                283,
+		"alicloud_route_table_attachment":                     284,
+		"alicloud_router_interface":                           285,
+		"alicloud_router_interface_connection":                286,
+		"alicloud_sag_acl":                                    287,
+		"alicloud_sag_acl_rule":                               288,
+		"alicloud_sag_client_user":                            289,
+		"alicloud_sag_dnat_entry":                             290,
+		"alicloud_sag_qos":                                    291,
+		"alicloud_sag_qos_car":                                292,
+		"alicloud_sag_qos_policy":                             293,
+		"alicloud_sag_snat_entry":                             294,
+		"alicloud_security_group":                             295,
+		"alicloud_security_group_rule":                        296,
+		"alicloud_slb":                                        297,
+		"alicloud_slb_acl":                                    298,
+		"alicloud_slb_attachment":                             299,
+		"alicloud_slb_backend_server":                         300,
+		"alicloud_slb_ca_certificate":                         301,
+		"alicloud_slb_domain_extension":                       302,
+		"alicloud_slb_listener":                               303,
+		"alicloud_slb_load_balancer":                          304,
+		"alicloud_slb_master_slave_server_group":              305,
+		"alicloud_slb_rule":                                   306,
+		"alicloud_slb_server_certificate":                     307,
+		"alicloud_slb_server_group":                           308,
+		"alicloud_snapshot":                                   309,
+		"alicloud_snapshot_policy":                            310,
+		"alicloud_snat_entry":                                 311,
+		"alicloud_ssl_vpn_client_cert":                        312,
+		"alicloud_ssl_vpn_server":                             313,
+		"alicloud_tsdb_instance":                              314,
+		"alicloud_vpc":                                        315,
+		"alicloud_vpc_flow_log":                               316,
+		"alicloud_vpn_connection":                             317,
+		"alicloud_vpn_customer_gateway":                       318,
+		"alicloud_vpn_gateway":                                319,
+		"alicloud_vpn_route_entry":                            320,
+		"alicloud_vswitch":                                    321,
+		"alicloud_waf_domain":                                 322,
+		"alicloud_waf_instance":                               323,
+		"alicloud_yundun_bastionhost_instance":                324,
+		"alicloud_yundun_dbaudit_instance":                    325,
 	}
 )
 

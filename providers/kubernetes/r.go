@@ -30,7 +30,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the API service that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the API service that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -38,7 +38,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the API service. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the API service. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -125,7 +125,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the certificate signing request that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the certificate signing request that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -133,7 +133,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the certificate signing request. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the certificate signing request. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -195,7 +195,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the cluster role binding that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the cluster role binding that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -203,7 +203,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the cluster role binding. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the cluster role binding. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -282,7 +282,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the cluster role binding that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the cluster role binding that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -290,7 +290,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the cluster role binding. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the cluster role binding. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -364,7 +364,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the config map that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the config map that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -372,7 +372,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the config map. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the config map. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -418,7 +418,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the resource that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info: http://kubernetes.io/docs/user-guide/annotations`,
+					Description: `(Optional) An unstructured key value map stored with the resource that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -426,7 +426,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info: http://kubernetes.io/docs/user-guide/labels`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -548,7 +548,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the csi driver that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the csi driver that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -556,7 +556,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the csi driver. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels) ### ` + "`" + `spec` + "`" + ` #### Arguments`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the csi driver. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "attach_required",
@@ -609,7 +609,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the deployment that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the deployment that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -617,7 +617,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the deployment. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem).`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the deployment. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1926,7 +1926,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the deployment that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the deployment that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -1934,7 +1934,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the deployment. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem).`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the deployment. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3271,7 +3271,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the endpoints resource that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the endpoints resource that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -3279,7 +3279,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the endpoints resource. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the endpoints resource. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3374,7 +3374,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the horizontal pod autoscaler that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the horizontal pod autoscaler that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -3382,7 +3382,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the horizontal pod autoscaler. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the horizontal pod autoscaler. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3555,7 +3555,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the ingress that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info: http://kubernetes.io/docs/user-guide/annotations`,
+					Description: `(Optional) An unstructured key value map stored with the ingress that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -3563,7 +3563,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info: http://kubernetes.io/docs/user-guide/labels`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3676,7 +3676,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the resource that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info: http://kubernetes.io/docs/user-guide/annotations`,
+					Description: `(Optional) An unstructured key value map stored with the resource that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -3684,7 +3684,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info: http://kubernetes.io/docs/user-guide/labels`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3806,7 +3806,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the limit range that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the limit range that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -3814,7 +3814,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the limit range. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the limit range. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3855,7 +3855,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the namespace that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the namespace that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -3863,7 +3863,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) namespaces. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) namespaces. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3901,7 +3901,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the network policy that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info: http://kubernetes.io/docs/user-guide/annotations`,
+					Description: `(Optional) An unstructured key value map stored with the network policy that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -3909,7 +3909,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) network policies. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info: http://kubernetes.io/docs/user-guide/labels`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) network policies. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -4415,11 +4415,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the persistent volume that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the persistent volume that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the persistent volume. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the persistent volume. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -4554,7 +4554,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the persistent volume claim that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the persistent volume claim that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -4562,7 +4562,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the persistent volume claim. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the persistent volume claim. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -4655,7 +4655,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the pod that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names appear in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the pod that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -4663,7 +4663,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the pod. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the pod. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -5966,7 +5966,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the resource that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info: http://kubernetes.io/docs/user-guide/annotations`,
+					Description: `(Optional) An unstructured key value map stored with the resource that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -5974,7 +5974,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info: http://kubernetes.io/docs/user-guide/labels`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6033,7 +6033,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the Pod Security Policy that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the Pod Security Policy that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6041,7 +6041,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the Pod Security Policy. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the Pod Security Policy. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6195,11 +6195,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the resource quota that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the resource quota that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the resource quota. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the resource quota. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6241,7 +6241,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the replication controller that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the replication controller that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6249,7 +6249,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the replication controller. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the replication controller. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6339,11 +6339,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the resource quota that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the resource quota that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the resource quota. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the resource quota. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6416,7 +6416,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the role that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the role that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6490,7 +6490,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the role binding that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the role binding that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6498,7 +6498,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the role binding. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the role binding. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6579,7 +6579,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the secret that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the secret that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6587,7 +6587,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the secret. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the secret. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6636,7 +6636,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the service that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the service that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6644,7 +6644,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6786,7 +6786,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the service account that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the service account that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6794,7 +6794,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service account. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service account. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6861,7 +6861,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the stateful set that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the stateful set that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -6953,7 +6953,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Default ` + "`" + `10 minutes` + "`" + `) Used for destroying a StatefulSet`,
+					Description: `(Default ` + "`" + `10 minutes` + "`" + `) Used for destroying a StatefulSet ## Import kubernetes_stateful_set can be imported using its namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_stateful_set.example default/terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -7003,7 +7003,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the storage class that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the storage class that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generate_name",
@@ -7011,7 +7011,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the storage class. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the storage class. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "name",

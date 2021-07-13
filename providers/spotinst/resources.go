@@ -50,11 +50,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_size",
-					Description: `(Optional; Required if using scaling policies) The maximum number of instances the group should have at any time.`,
+					Description: `(Optional, Required if using scaling policies) The maximum number of instances the group should have at any time.`,
 				},
 				resource.Attribute{
 					Name:        "min_size",
-					Description: `(Optional; Required if using scaling policies) The minimum number of instances the group should have at any time.`,
+					Description: `(Optional, Required if using scaling policies) The minimum number of instances the group should have at any time.`,
 				},
 				resource.Attribute{
 					Name:        "desired_capacity",
@@ -62,7 +62,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "capacity_unit",
-					Description: `(Optional, Default: ` + "`" + `"instance"` + "`" + `) The capacity unit to launch instances by. If not specified, when choosing the weight unit, each instance will weight as the number of its vCPUs.`,
+					Description: `(Optional, Default: ` + "`" + `instance` + "`" + `) The capacity unit to launch instances by. If not specified, when choosing the weight unit, each instance will weight as the number of its vCPUs. Valid values: ` + "`" + `instance` + "`" + `, ` + "`" + `weight` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "security_groups",
@@ -98,7 +98,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "placement_tenancy",
-					Description: `(Optional) Enable dedicated tenancy. Note: There is a flat hourly fee for each region in which dedicated tenancy is used.`,
+					Description: `(Optional, Default: "default") Enable dedicated tenancy. Note: There is a flat hourly fee for each region in which dedicated tenancy is used. Valid values: "default", "dedicated" .`,
 				},
 				resource.Attribute{
 					Name:        "metadata_options",
@@ -162,7 +162,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "orientation",
-					Description: `(Required, Default: ` + "`" + `"balanced"` + "`" + `) Select a prediction strategy. Valid values: ` + "`" + `"balanced"` + "`" + `, ` + "`" + `"costOriented"` + "`" + `, ` + "`" + `"equalAzDistribution"` + "`" + `, ` + "`" + `"availabilityOriented"` + "`" + `.`,
+					Description: `(Required, Default: ` + "`" + `balanced` + "`" + `) Select a prediction strategy. Valid values: ` + "`" + `balanced` + "`" + `, ` + "`" + `costOriented` + "`" + `, ` + "`" + `equalAzDistribution` + "`" + `, ` + "`" + `availabilityOriented` + "`" + `. You can read more in our documentation.`,
 				},
 				resource.Attribute{
 					Name:        "spot_percentage",
@@ -182,7 +182,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "minimum_instance_lifetime",
-					Description: `(Optional) Defines the preferred minimum instance lifetime. Markets which comply with this preference will be prioritized. Optional values: 1, 3, 6, 12, 24.`,
+					Description: `(Optional) Defines the preferred minimum instance lifetime in hours. Markets which comply with this preference will be prioritized. Optional values: 1, 3, 6, 12, 24.`,
 				},
 				resource.Attribute{
 					Name:        "scaling_strategy",
@@ -646,7 +646,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "should_delete_snapshots",
-					Description: `(Optional) For stateful groups: remove snapshots. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl stateful_deallocation { should_delete_images = false should_delete_network_interfaces = false should_delete_volumes = false should_delete_snapshots = false } ` + "`" + `` + "`" + `` + "`" + ` <a id="health-check"></a> ## Health Check`,
+					Description: `(Optional) For stateful groups: remove snapshots. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl stateful_deallocation { should_delete_images = false should_delete_network_interfaces = false should_delete_volumes = false should_delete_snapshots = false } ` + "`" + `` + "`" + `` + "`" + ` <a id="stateful_instance_action"></a> ## Stateful Instance Action`,
+				},
+				resource.Attribute{
+					Name:        "stateful_instance_action",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "stateful_instance_id",
+					Description: `(Required) String, Stateful Instance ID on which the action should be performed.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) String, Action type. Supported action types: ` + "`" + `pause` + "`" + `, ` + "`" + `resume` + "`" + `, ` + "`" + `recycle` + "`" + `, ` + "`" + `deallocate` + "`" + `. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl stateful_instance_action { type = "pause" stateful_instance_id = "ssi-foo" } stateful_instance_action { type = "recycle" stateful_instance_id = "ssi-bar" } ` + "`" + `` + "`" + `` + "`" + ` <a id="health-check"></a> ## Health Check`,
 				},
 				resource.Attribute{
 					Name:        "health_check_type",
@@ -1706,7 +1718,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "os",
-					Description: `(Required) Operation system type. Valid values: ` + "`" + `"Linux"` + "`" + `, ` + "`" + `"Windows"` + "`" + `.`,
+					Description: `(Required) Type of the operating system. Valid values: ` + "`" + `"Linux"` + "`" + `, ` + "`" + `"Windows"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "max_size",
@@ -1814,7 +1826,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip_version",
-					Description: `(Optional) Available from Azure Api-Version 2017-03-30 onwards, it represents whether the specific ipconfiguration is IPv4 or IPv6. Valid values: ` + "`" + `IPv4` + "`" + `, ` + "`" + `IPv6` + "`" + `. ` + "`" + `` + "`" + `` + "`" + `hcl network { virtual_network_name = "VirtualNetworkName" resource_group_name = "ResourceGroup" network_interfaces { subnet_name = "default" assign_public_ip = false is_primary = true additional_ip_configs { name = "SecondaryIPConfig" PrivateIPVersion = "IPv4" } } } ` + "`" + `` + "`" + `` + "`" + ` <a id="login"></a> ## Login`,
+					Description: `(Optional) Available from Azure Api-Version 2017-03-30 onwards, it represents whether the specific ip configuration is IPv4 or IPv6. Valid values: ` + "`" + `IPv4` + "`" + `, ` + "`" + `IPv6` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "application_security_group",
+					Description: `(Optional) - List of Application Security Groups that will be associated to the primary ip configuration of the network interface.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) - The name of the Application Security group.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) - The resource group of the Application Security Group. } ` + "`" + `` + "`" + `` + "`" + `hcl network { virtual_network_name = "VirtualNetworkName" resource_group_name = "ResourceGroup" network_interfaces { subnet_name = "default" assign_public_ip = false is_primary = true additional_ip_configs { name = "SecondaryIPConfig" PrivateIPVersion = "IPv4" } application_security_group { name = "ApplicationSecurityGroupName" resource_group_name = "ResourceGroup" } } } ` + "`" + `` + "`" + `` + "`" + ` <a id="login"></a> ## Login`,
 				},
 				resource.Attribute{
 					Name:        "login",
@@ -2404,6 +2428,10 @@ var (
 					Description: `(Optional) Valid values: ` + "`" + `"always"` + "`" + `, ` + "`" + `"never"` + "`" + `, ` + "`" + `"timeWindow"` + "`" + `. Default ` + "`" + `"never"` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "minimum_instnace_lifetime",
+					Description: `(Optional) Defines the preferred minimum instance lifetime. Markets which comply with this preference will be prioritized. Optional values: 1, 3, 6, 12, 24.`,
+				},
+				resource.Attribute{
 					Name:        "persist_private_ip",
 					Description: `(Optional) Should the instance maintain its private IP.`,
 				},
@@ -2637,7 +2665,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "use_public_dns",
-					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) - Designates whether the DNS address should be exposed to connections outside the VPC. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_route53 { # Option 1: Use A records. domains { hosted_zone_id = "zone-id" spotinst_acct_id = "act-123456" record_set_type = "a" record_sets { name = "foo.example.com" use_public_ip = true } } # Option 2: Use CNAME records. domains { hosted_zone_id = "zone-id" spotinst_acct_id = "act-123456" record_set_type = "cname" record_sets { name = "foo.example.com" use_public_dns = true } } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) - Designates whether the DNS address should be exposed to connections outside the VPC. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_route53 { # Option 1: Use A records. domains { hosted_zone_id = "zone-id" spotinst_acct_id = "act-123456" record_set_type = "a" record_sets { name = "foo.example.com" use_public_ip = true } } # Option 2: Use CNAME records. domains { hosted_zone_id = "zone-id" spotinst_acct_id = "act-123456" record_set_type = "cname" record_sets { name = "foo.example.com" use_public_dns = true } } } ` + "`" + `` + "`" + `` + "`" + ` <a id="managed_instance_action"></a> ## Managed Instance Action`,
+				},
+				resource.Attribute{
+					Name:        "managed_instance_action",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) String, Action type. Supported action types: ` + "`" + `pause` + "`" + `, ` + "`" + `resume` + "`" + `, ` + "`" + `recycle` + "`" + `. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl managed_instance_action { type = "pause" } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2822,6 +2858,10 @@ var (
 				resource.Attribute{
 					Name:        "master_lifecycle",
 					Description: `(Required) The MrScaler lifecycle for instances in master group. Allowed values are 'SPOT' and 'ON_DEMAND'.`,
+				},
+				resource.Attribute{
+					Name:        "master_target",
+					Description: `(Optional; Default 1) Number of instances in the master group.`,
 				},
 				resource.Attribute{
 					Name:        "master_ebs_optimized",
@@ -3116,7 +3156,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "controller_cluster_id",
-					Description: `(Required) The Ocean controller cluster.`,
+					Description: `(Required) A unique identifier used for connecting the Ocean SaaS platform and the Kubernetes cluster. Typically, the cluster name is used as its identifier.`,
 				},
 				resource.Attribute{
 					Name:        "aks_name",
@@ -3128,7 +3168,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "aks_resource_group_name",
-					Description: `(Required) Name of the Resource Group for AKS cluster.`,
+					Description: `(Required) Name of the Azure Resource Group where the AKS cluster is located.`,
 				},
 				resource.Attribute{
 					Name:        "ssh_public_key",
@@ -3137,6 +3177,218 @@ var (
 				resource.Attribute{
 					Name:        "user_name",
 					Description: `(Optional) Username for admin access to VMs.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Optional) Name of the Azure Resource Group into which VMs will be launched. Cannot be updated.`,
+				},
+				resource.Attribute{
+					Name:        "custom_data",
+					Description: `(Optional) Must contain a valid Base64 encoded string.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) Unique key-value pairs that will be used to tag VMs that are launched in the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) Tag key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Optional) Tag value.`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `(Optional) Define the Virtual Network and Subnet.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_network_name",
+					Description: `(Optional) Virtual network.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Optional) Vnet resource group name.`,
+				},
+				resource.Attribute{
+					Name:        "network_interface",
+					Description: `(Optional) A list of virtual network interfaces. The publicIpSku must be identical between all the network interfaces. One network interface must be set as the primary.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_name",
+					Description: `(Optional) Subnet name.`,
+				},
+				resource.Attribute{
+					Name:        "assign_public_ip",
+					Description: `(Optional) Assign public IP.`,
+				},
+				resource.Attribute{
+					Name:        "is_primary",
+					Description: `(Optional) Defines whether the network interface is primary or not.`,
+				},
+				resource.Attribute{
+					Name:        "additional_ip_config",
+					Description: `(Optional) Additional configuration of network interface. The name fields between all the ` + "`" + `additional_ip_config` + "`" + ` must be unique.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Configuration name.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_version",
+					Description: `(Optional, Default: ` + "`" + `IPv4` + "`" + `) Supported values: ` + "`" + `IPv4` + "`" + `, ` + "`" + `IPv6` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "extension",
+					Description: `(Optional) List of Azure extension objects.`,
+				},
+				resource.Attribute{
+					Name:        "api_version",
+					Description: `(Optional) API version of the extension.`,
+				},
+				resource.Attribute{
+					Name:        "minor_version_auto_upgrade",
+					Description: `(Optional) Toggles whether auto upgrades are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Extension name.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Extension type.`,
+				},
+				resource.Attribute{
+					Name:        "os_disk",
+					Description: `(Optional) OS disk specifications.`,
+				},
+				resource.Attribute{
+					Name:        "size_gb",
+					Description: `(Optional) The size of the OS disk in GB.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) The type of the OS disk. Supported values: ` + "`" + `Standard_LRS` + "`" + `, ` + "`" + `Premium_LRS` + "`" + `, ` + "`" + `StandardSSD_LRS` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer",
+					Description: `(Optional) Configure Load Balancer.`,
+				},
+				resource.Attribute{
+					Name:        "backend_pool_names",
+					Description: `(Optional) Names of the Backend Pools to register the Cluster VMs to. Each Backend Pool is a separate load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_sku",
+					Description: `(Optional) Supported values: ` + "`" + `Standard` + "`" + `, ` + "`" + `Basic` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the Load Balancer.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Optional) The Resource Group name of the Load Balancer.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) The type of load balancer. Supported value: ` + "`" + `loadBalancer` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "image",
+					Description: `(Optional) Image of VM. An image is a template for creating new VMs. Choose from Azure image catalogue (marketplace).`,
+				},
+				resource.Attribute{
+					Name:        "marketplace",
+					Description: `(Optional) Select an image from Azure's Marketplace image catalogue.`,
+				},
+				resource.Attribute{
+					Name:        "publisher",
+					Description: `(Optional) Image publisher.`,
+				},
+				resource.Attribute{
+					Name:        "offer",
+					Description: `(Optional) Image name.`,
+				},
+				resource.Attribute{
+					Name:        "sku",
+					Description: `(Optional) Image Stock Keeping Unit (which is the specific version of the image).`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional, Default: ` + "`" + `latest` + "`" + `) Image version.`,
+				},
+				resource.Attribute{
+					Name:        "vm_sizes",
+					Description: `(Optional) The types of virtual machines that may or may not be a part of the Ocean cluster.`,
+				},
+				resource.Attribute{
+					Name:        "whitelist",
+					Description: `(Optional) VM types allowed in the Ocean cluster.`,
+				},
+				resource.Attribute{
+					Name:        "strategy",
+					Description: `(Optional) The Ocean AKS strategy object.`,
+				},
+				resource.Attribute{
+					Name:        "fallback_to_ondemand",
+					Description: `(Optional) If no spot instance markets are available, enable Ocean to launch on-demand instances instead.`,
+				},
+				resource.Attribute{
+					Name:        "spot_percentage",
+					Description: `(Optional) Percentage of Spot VMs to maintain.`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `(Optional) The Ocean AKS Health object.`,
+				},
+				resource.Attribute{
+					Name:        "grace_period",
+					Description: `(Optional, Default: ` + "`" + `600` + "`" + `) The amount of time to wait, in seconds, from the moment the instance has launched before monitoring its health checks.`,
+				},
+				resource.Attribute{
+					Name:        "autoscaler",
+					Description: `(Optional) The Ocean Kubernetes Autoscaler object.`,
+				},
+				resource.Attribute{
+					Name:        "autoscale_is_enabled",
+					Description: `(Optional) Enable the Ocean Kubernetes Autoscaler.`,
+				},
+				resource.Attribute{
+					Name:        "autoscale_down",
+					Description: `(Optional) Auto Scaling scale down operations.`,
+				},
+				resource.Attribute{
+					Name:        "max_scale_down_percentage",
+					Description: `(Optional) Would represent the maximum % to scale-down.`,
+				},
+				resource.Attribute{
+					Name:        "resource_limits",
+					Description: `(Optional) Optionally set upper and lower bounds on the resource usage of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "max_vcpu",
+					Description: `(Optional) The maximum cpu in vCpu units that can be allocated to the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "max_memory_gib",
+					Description: `(Optional) The maximum memory in GiB units that can be allocated to the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "autoscale_headroom",
+					Description: `(Optional) Spare Resource Capacity Management feature enables fast assignment of Pods without having to wait for new resources to be launched.`,
+				},
+				resource.Attribute{
+					Name:        "automatic",
+					Description: `(Optional) Automatic headroom configuration.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional) Enable automatic headroom. When set to ` + "`" + `true` + "`" + `, Ocean configures and optimizes headroom automatically.`,
+				},
+				resource.Attribute{
+					Name:        "percentage",
+					Description: `(Optional) Optionally set a number between 0-100 to control the percentage of total cluster resources dedicated to headroom. Relevant when ` + "`" + `isEnabled` + "`" + ` is toggled on.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3271,7 +3523,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "controller_id",
-					Description: `(Required) The Ocean cluster identifier. Example: ` + "`" + `ocean.k8s` + "`" + ``,
+					Description: `(Required) A unique identifier used for connecting the Ocean SaaS platform and the Kubernetes cluster. Typically, the cluster name is used as its identifier.`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -3555,6 +3807,10 @@ var (
 					Description: `(Optional) A list of instance types allowed to be provisioned for pods pending under the specified launch specification. The list overrides the list defined for the cluster.`,
 				},
 				resource.Attribute{
+					Name:        "preferred_spot_types",
+					Description: `(Optional) A list of instance types. Takes the preferred types into consideration while maintaining a variety of machine types running for optimized distribution.`,
+				},
+				resource.Attribute{
 					Name:        "root_volume_size",
 					Description: `(Optional) Set root volume size (in GB).`,
 				},
@@ -3695,7 +3951,7 @@ var (
 					Description: `(Optional; if not using ` + "`" + `spot_percentege` + "`" + ` under ` + "`" + `ocean strategy` + "`" + `) When set, Ocean will proactively try to maintain as close as possible to the percentage of Spot instances out of all the Virtual Node Group instances.`,
 				},
 				resource.Attribute{
-					Name:        "create_actions",
+					Name:        "create_options",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
@@ -3811,7 +4067,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ebs_optimized",
-					Description: `(Optional) Enable EBS optimized for cluster. Flag will enable optimized capacity for high bandwidth connectivity to the EB service for non EBS optimized instance types. For instances that are EBS optimized this flag will be ignored.`,
+					Description: `(Optional) Enable EBS optimized for cluster. Flag will enable optimized capacity for high bandwidth connectivity to the EB service for non EBS optimized instance types. For instances that are EBS optimized this flag will be ignored. <a id="block-devices"></a> ## Block Devices`,
 				},
 				resource.Attribute{
 					Name:        "block_device_mappings",
@@ -3955,7 +4211,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "batch_size_percentage",
-					Description: `(Required) Sets the percentage of the instances to deploy in each batch. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy { should_roll = false roll_config { batch_size_percentage = 33 } } ` + "`" + `` + "`" + `` + "`" + ` <a id="scheduled-task"></a> ## scheduled task`,
+					Description: `(Required) Sets the percentage of the instances to deploy in each batch. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy { should_roll = false roll_config { batch_size_percentage = 33 } } ` + "`" + `` + "`" + `` + "`" + ` <a id="scheduled-tasks"></a> ## Scheduled Tasks`,
 				},
 				resource.Attribute{
 					Name:        "scheduled_task",
@@ -4035,8 +4291,8 @@ var (
 					Description: `(Optional) A list of instance types allowed to be provisioned for pods pending under the specified launch specification. The list overrides the list defined for the Ocean cluster.`,
 				},
 				resource.Attribute{
-					Name:        "device_name",
-					Description: `(Optional) String. Set device name. (Example: "/dev/xvda1").`,
+					Name:        "subnet_ids",
+					Description: `(Optional) Set subnets in launchSpec. Each element in the array should be a subnet ID.`,
 				},
 				resource.Attribute{
 					Name:        "attributes",
@@ -4064,7 +4320,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "memory_per_unit",
-					Description: `(Optional) Optionally configure the amount of memory (MiB) to allocate for each headroom unit. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Optionally configure the amount of memory (MiB) to allocate for each headroom unit. <a id="block-devices"></a> ## Block Devices`,
+				},
+				resource.Attribute{
+					Name:        "device_name",
+					Description: `(Optional) String. Set device name. (Example: "/dev/xvda1").`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -4276,6 +4536,10 @@ var (
 					Description: `(Required) The Ocean cluster ID.`,
 				},
 				resource.Attribute{
+					Name:        "node_pool_name",
+					Description: `(Optional) The node pool you wish to use in your Launch Spec.`,
+				},
+				resource.Attribute{
 					Name:        "source_image",
 					Description: `(Required) Image URL.`,
 				},
@@ -4322,6 +4586,18 @@ var (
 				resource.Attribute{
 					Name:        "restrict_scale_down",
 					Description: `(Optional) Boolean. When set to ` + "`" + `true` + "`" + `, VNG nodes will be treated as if all pods running have the restrict-scale-down label. Therefore, Ocean will not scale nodes down unless empty.`,
+				},
+				resource.Attribute{
+					Name:        "root_volume_type",
+					Description: `(Optional) Root volume disk type. Valid values: ` + "`" + `"pd-standard"` + "`" + `, ` + "`" + `"pd-ssd"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "root_volume_size",
+					Description: `(Optional) Root volume size (in GB).`,
+				},
+				resource.Attribute{
+					Name:        "instance_types",
+					Description: `(Optional) List of supported machine types for the Launch Spec.`,
 				},
 				resource.Attribute{
 					Name:        "autoscale_headrooms",

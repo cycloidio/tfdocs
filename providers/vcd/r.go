@@ -13,7 +13,7 @@ var (
 			Name:             "",
 			Type:             "vcd_catalog",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director catalog resource. This can be used to create and delete a catalog.`,
+			ShortDescription: `Provides a VMware Cloud Director catalog resource. This can be used to create and delete a catalog.`,
 			Description:      ``,
 			Keywords: []string{
 				"catalog",
@@ -42,7 +42,7 @@ var (
 			Name:             "",
 			Type:             "vcd_catalog_item",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director catalog item resource. This can be used to upload and delete OVA file inside a catalog.`,
+			ShortDescription: `Provides a VMware Cloud Director catalog item resource. This can be used to upload and delete OVA file inside a catalog.`,
 			Description:      ``,
 			Keywords: []string{
 				"catalog",
@@ -88,7 +88,7 @@ var (
 			Name:             "",
 			Type:             "vcd_catalog_media",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director media resource. This can be used to upload and delete media (ISO) file inside a catalog.`,
+			ShortDescription: `Provides a VMware Cloud Director media resource. This can be used to upload and delete media (ISO) file inside a catalog.`,
 			Description:      ``,
 			Keywords: []string{
 				"catalog",
@@ -162,7 +162,7 @@ var (
 			Name:             "",
 			Type:             "vcd_edgegateway",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director edge gateway. This can be used to create and delete edge gateways connected to one or more external networks.`,
+			ShortDescription: `Provides a VMware Cloud Director edge gateway. This can be used to create and delete edge gateways connected to one or more external networks.`,
 			Description:      ``,
 			Keywords: []string{
 				"edgegateway",
@@ -227,7 +227,7 @@ var (
 			Name:             "",
 			Type:             "vcd_edgegateway_settings",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director edge gateway global settings. This can be used to update global edge gateways settings related to firewall and load balancing.`,
+			ShortDescription: `Provides a VMware Cloud Director edge gateway global settings. This can be used to update global edge gateways settings related to firewall and load balancing.`,
 			Description:      ``,
 			Keywords: []string{
 				"edgegateway",
@@ -273,7 +273,7 @@ var (
 			Name:             "",
 			Type:             "vcd_edgegateway_vpn",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director IPsec VPN. This can be used to create, modify, and delete VPN settings and rules.`,
+			ShortDescription: `Provides a VMware Cloud Director IPsec VPN. This can be used to create, modify, and delete VPN settings and rules.`,
 			Description:      ``,
 			Keywords: []string{
 				"edgegateway",
@@ -367,7 +367,7 @@ var (
 			Name:             "",
 			Type:             "vcd_external_network",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director external network resource. This can be used to create and delete external networks.`,
+			ShortDescription: `Provides a VMware Cloud Director external network resource. This can be used to create and delete external networks.`,
 			Description:      ``,
 			Keywords: []string{
 				"external",
@@ -522,9 +522,60 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_global_role",
+			Category:         "Resources",
+			ShortDescription: `Provides a VMware Cloud Director global role. This can be used to create, modify, and delete global roles.`,
+			Description:      ``,
+			Keywords: []string{
+				"global",
+				"role",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the global role.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required) A description of the global role`,
+				},
+				resource.Attribute{
+					Name:        "rights",
+					Description: `(Optional) List of rights assigned to this role`,
+				},
+				resource.Attribute{
+					Name:        "publish_to_all_tenants",
+					Description: `(Required) When true, publishes the global role to all tenants`,
+				},
+				resource.Attribute{
+					Name:        "tenants",
+					Description: `(Optional) List of tenants to which this global role gets published. Ignored if ` + "`" + `publish_to_all_tenants` + "`" + ` is true. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "read_only",
+					Description: `Whether this global role is read-only`,
+				},
+				resource.Attribute{
+					Name:        "bundle_key",
+					Description: `Key used for internationalization ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "read_only",
+					Description: `Whether this global role is read-only`,
+				},
+				resource.Attribute{
+					Name:        "bundle_key",
+					Description: `Key used for internationalization ## Importing ~>`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_independent_disk",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director independent disk resource. This can be used to create and delete independent disks.`,
+			ShortDescription: `Provides a VMware Cloud Director independent disk resource. This can be used to create and delete independent disks.`,
 			Description:      ``,
 			Keywords: []string{
 				"independent",
@@ -582,7 +633,7 @@ var (
 			Name:             "",
 			Type:             "vcd_inserted_media",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director resource for inserting or ejecting media (ISO) file for the VM. Create this resource for inserting the media, and destroy it for ejecting.`,
+			ShortDescription: `Provides a VMware Cloud Director resource for inserting or ejecting media (ISO) file for the VM. Create this resource for inserting the media, and destroy it for ejecting.`,
 			Description:      ``,
 			Keywords: []string{
 				"inserted",
@@ -619,50 +670,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vcd_nsxv_ip_set",
-			Category:         "Resources",
-			ShortDescription: `Provides an IP set resource.`,
-			Description:      ``,
-			Keywords: []string{
-				"nsxv",
-				"ip",
-				"set",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "org",
-					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
-				},
-				resource.Attribute{
-					Name:        "vdc",
-					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique IP set name.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `(Optional) An optional description for IP set.`,
-				},
-				resource.Attribute{
-					Name:        "ip_addresses",
-					Description: `(Required) A set of IP addresses, CIDRs and ranges as strings.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `ID of IP set ## Importing ~>`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `ID of IP set ## Importing ~>`,
-				},
-			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1048,7 +1055,7 @@ var (
 			Name:             "",
 			Type:             "vcd_network_direct",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director Org VDC Network attached to an external one. This can be used to create, modify, and delete internal networks for vApps to connect.`,
+			ShortDescription: `Provides a VMware Cloud Director Org VDC Network attached to an external one. This can be used to create, modify, and delete internal networks for vApps to connect.`,
 			Description:      ``,
 			Keywords: []string{
 				"network",
@@ -1106,7 +1113,7 @@ var (
 			Name:             "",
 			Type:             "vcd_network_isolated",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director Org VDC isolated Network. This can be used to create, modify, and delete internal networks for vApps to connect.`,
+			ShortDescription: `Provides a VMware Cloud Director Org VDC isolated Network. This can be used to create, modify, and delete internal networks for vApps to connect.`,
 			Description:      ``,
 			Keywords: []string{
 				"network",
@@ -1243,7 +1250,7 @@ var (
 			Name:             "",
 			Type:             "vcd_network_routed",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director Org VDC routed Network. This can be used to create, modify, and delete internal networks for vApps to connect.`,
+			ShortDescription: `Provides a VMware Cloud Director Org VDC routed Network. This can be used to create, modify, and delete internal networks for vApps to connect.`,
 			Description:      ``,
 			Keywords: []string{
 				"network",
@@ -1386,6 +1393,54 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_nsxt_app_port_profile",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource to manage NSX-T Application Port Profiles. Application Port Profiles include a combination of a protocol and a port, or a group of ports, that is used for Firewall and NAT services on the Edge Gateway. In addition to the default Port Profiles that are preconfigured for NSX-T Data Center, you can create custom Application Port Profiles.`,
+			Description:      ``,
+			Keywords: []string{
+				"nsxt",
+				"app",
+				"port",
+				"profile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique name for Security Group`,
+				},
+				resource.Attribute{
+					Name:        "scope",
+					Description: `(Required) Application Port Profile scope - ` + "`" + `PROVIDER` + "`" + `, ` + "`" + `TENANT` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "nsxt_manager_id",
+					Description: `(Optional) Required only when ` + "`" + `scope` + "`" + ` is ` + "`" + `PROVIDER` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "app_port",
+					Description: `(Required) At least one block of [Application Port definition](#app-port) <a id="app-port"></a> ## Application Port Each Application port must have at least ` + "`" + `protocol` + "`" + ` and optionally ` + "`" + `port` + "`" + `:`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Required) One of protocols ` + "`" + `ICMPv4` + "`" + `, ` + "`" + `ICMPv6` + "`" + `, ` + "`" + `TCP` + "`" + `, ` + "`" + `UDP` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) A set of port numbers or port ranges (e.g. ` + "`" + `"10000"` + "`" + `, ` + "`" + `"20000-20010"` + "`" + `) ## Importing ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.](https://www.terraform.io/docs/import/) There are 2 different import paths based on ` + "`" + `scope` + "`" + `:`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_nsxt_edgegateway",
 			Category:         "Resources",
 			ShortDescription: `Provides a VMware Cloud Director NSX-T edge gateway. This can be used to create, update, and delete NSX-T edge gateways connected to external networks.`,
@@ -1438,6 +1493,303 @@ var (
 					Description: `Primary IP address exposed for an easy access without nesting. ## Importing ~>`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_firewall",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource to manage NSX-T Firewall. Firewalls allow user to control the incoming and outgoing network traffic to and from an NSX-T Data Center Edge Gateway.`,
+			Description:      ``,
+			Keywords: []string{
+				"nsxt",
+				"firewall",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway_id",
+					Description: `(Required) The ID of the edge gateway (NSX-T only). Can be looked up using ` + "`" + `vcd_nsxt_edgegateway` + "`" + ` datasource`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Explanatory name for firewall rule (uniqueness not enforced)`,
+				},
+				resource.Attribute{
+					Name:        "direction",
+					Description: `(Required) One of ` + "`" + `IN` + "`" + `, ` + "`" + `OUT` + "`" + `, or ` + "`" + `IN_OUT` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ip_protocol",
+					Description: `(Required) One of ` + "`" + `IPV4` + "`" + `, ` + "`" + `IPV6` + "`" + `, or ` + "`" + `IPV4_IPV6` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Defines if it should ` + "`" + `ALLOW` + "`" + ` or ` + "`" + `DROP` + "`" + ` traffic`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Defines if the rule is enabled (default ` + "`" + `true` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "logging",
+					Description: `(Optional) Defines if logging for this rule is enabled (default ` + "`" + `false` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "source_ids",
+					Description: `(Optional) A set of source object Firewall Groups (` + "`" + `IP Sets` + "`" + ` or ` + "`" + `Security groups` + "`" + `). Leaving it empty matches ` + "`" + `Any` + "`" + ` (all)`,
+				},
+				resource.Attribute{
+					Name:        "destination_ids",
+					Description: `(Optional) A set of source object Firewall Groups (` + "`" + `IP Sets` + "`" + ` or ` + "`" + `Security groups` + "`" + `). Leaving it empty matches ` + "`" + `Any` + "`" + ` (all)`,
+				},
+				resource.Attribute{
+					Name:        "app_port_profile_ids",
+					Description: `(Optional) A set of Application Port Profiles. Leaving it empty matches ` + "`" + `Any` + "`" + ` (all) ## Importing ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.](https://www.terraform.io/docs/import/) Existing Firewall Rules can be [imported][docs-import] into this resource via supplying the full dot separated path for your Edge Gateway name. An example is below: [docs-import]: https://www.terraform.io/docs/import/ ` + "`" + `` + "`" + `` + "`" + ` terraform import vcd_nsxt_firewall.imported my-org.my-org-vdc.my-nsxt-edge-gateway ` + "`" + `` + "`" + `` + "`" + ` The above would import all firewall rules defined on NSX-T Edge Gateway ` + "`" + `my-nsxt-edge-gateway` + "`" + ` which is configured in organization named ` + "`" + `my-org` + "`" + ` and VDC named ` + "`" + `my-org-vdc` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_ip_set",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource to manage NSX-T IP Set. IP sets are groups of objects to which the firewall rules apply. Combining multiple objects into IP sets helps reduce the total number of firewall rules to be created.`,
+			Description:      ``,
+			Keywords: []string{
+				"nsxt",
+				"ip",
+				"set",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique name for IP Set`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description of the IP Set`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway_id",
+					Description: `(Required) The ID of the edge gateway (NSX-T only). Can be looked up using ` + "`" + `vcd_nsxt_edgegateway` + "`" + ` data source`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_ipsec_vpn_tunnel",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource to manage NSX-T IPsec VPN Tunnel. You can configure site-to-site connectivity between an NSX-T Data Center Edge Gateway and remote sites. The remote sites must use NSX-T Data Center, have third-party hardware routers, or VPN gateways that support IPSec.`,
+			Description:      ``,
+			Keywords: []string{
+				"nsxt",
+				"ipsec",
+				"vpn",
+				"tunnel",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway_id",
+					Description: `(Required) The ID of the edge gateway (NSX-T only). Can be looked up using ` + "`" + `vcd_nsxt_edgegateway` + "`" + ` data source`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A name for NSX-T IPsec VPN Tunnel`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description of the NSX-T IPsec VPN Tunnel`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Enables or disables IPsec VPN Tunnel (default ` + "`" + `true` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "pre_shared_key",
+					Description: `(Required) Pre-shared key for negotiation.`,
+				},
+				resource.Attribute{
+					Name:        "local_ip_address",
+					Description: `(Required) IPv4 Address for the endpoint. This has to be a suballocated IP on the Edge Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "local_networks",
+					Description: `(Required) A set of local networks in CIDR format. At least one value required`,
+				},
+				resource.Attribute{
+					Name:        "remote_ip_address",
+					Description: `(Required) Public IPv4 Address of the remote device terminating the VPN connection`,
+				},
+				resource.Attribute{
+					Name:        "remote_networks",
+					Description: `(Optional) Set of remote networks in CIDR format. Leaving it empty is interpreted as 0.0.0.0/0`,
+				},
+				resource.Attribute{
+					Name:        "logging",
+					Description: `(Optional) Sets whether logging for the tunnel is enabled or not. (default - ` + "`" + `false` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "security_profile_customization",
+					Description: `(Optional) a block allowing to [customize default security profile](#security-profile) parameters <a id="security-profile"></a> ## Security Profile customization`,
+				},
+				resource.Attribute{
+					Name:        "ike_version",
+					Description: `(Required) One of ` + "`" + `IKE_V1` + "`" + `, ` + "`" + `IKE_V2` + "`" + `, ` + "`" + `IKE_FLEX` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ike_encryption_algorithms",
+					Description: `(Required) Encryption algorithms One of ` + "`" + `AES_128` + "`" + `, ` + "`" + `AES_256` + "`" + `, ` + "`" + `AES_GCM_128` + "`" + `, ` + "`" + `AES_GCM_192` + "`" + `, ` + "`" + `AES_GCM_256` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ike_digest_algorithms",
+					Description: `(Required) Secure hashing algorithms to use during the IKE negotiation. One of ` + "`" + `SHA1` + "`" + `, ` + "`" + `SHA2_256` + "`" + `, ` + "`" + `SHA2_384` + "`" + `, ` + "`" + `SHA2_512` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ike_dh_groups",
+					Description: `(Required) Diffie-Hellman groups to be used if Perfect Forward Secrecy is enabled. One of ` + "`" + `GROUP2` + "`" + `, ` + "`" + `GROUP5` + "`" + `, ` + "`" + `GROUP14` + "`" + `, ` + "`" + `GROUP15` + "`" + `, ` + "`" + `GROUP16` + "`" + `, ` + "`" + `GROUP19` + "`" + `, ` + "`" + `GROUP20` + "`" + `, ` + "`" + `GROUP21` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ike_sa_lifetime",
+					Description: `(Required) Security association lifetime in seconds. It is number of seconds before the IPsec tunnel needs to reestablish`,
+				},
+				resource.Attribute{
+					Name:        "tunnel_pfs_enabled",
+					Description: `(Required) PFS (Perfect Forward Secrecy) enabled or disabled.`,
+				},
+				resource.Attribute{
+					Name:        "tunnel_df_policy",
+					Description: `(Required) Policy for handling defragmentation bit. One of COPY, CLEAR`,
+				},
+				resource.Attribute{
+					Name:        "tunnel_encryption_algorithms",
+					Description: `(Required) Encryption algorithms to use in IPSec tunnel establishment. One of ` + "`" + `AES_128` + "`" + `, ` + "`" + `AES_256` + "`" + `, ` + "`" + `AES_GCM_128` + "`" + `, ` + "`" + `AES_GCM_192` + "`" + `, ` + "`" + `AES_GCM_256` + "`" + `, ` + "`" + `NO_ENCRYPTION_AUTH_AES_GMAC_128` + "`" + `, ` + "`" + `NO_ENCRYPTION_AUTH_AES_GMAC_192` + "`" + `, ` + "`" + `NO_ENCRYPTION_AUTH_AES_GMAC_256` + "`" + `, ` + "`" + `NO_ENCRYPTION` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "tunnel_digest_algorithms",
+					Description: `(Required) Digest algorithms to be used for message digest. One of ` + "`" + `SHA1` + "`" + `, ` + "`" + `SHA2_256` + "`" + `, ` + "`" + `SHA2_384` + "`" + `, ` + "`" + `SHA2_512` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "tunnel_dh_groups",
+					Description: `(Required) Diffie-Hellman groups to be used is PFS is enabled. One of ` + "`" + `GROUP2` + "`" + `, ` + "`" + `GROUP5` + "`" + `, ` + "`" + `GROUP14` + "`" + `, ` + "`" + `GROUP15` + "`" + `, ` + "`" + `GROUP16` + "`" + `, ` + "`" + `GROUP19` + "`" + `, ` + "`" + `GROUP20` + "`" + `, ` + "`" + `GROUP21` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "tunnel_sa_lifetime",
+					Description: `(Required) Security Association life time in seconds`,
+				},
+				resource.Attribute{
+					Name:        "dpd_probe_internal",
+					Description: `(Required) Value in seconds of dead probe detection interval. Minimum is 3 seconds and the maximum is 60 seconds ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "security_profile",
+					Description: `` + "`" + `DEFAULT` + "`" + ` for system provided configuration or ` + "`" + `CUSTOM` + "`" + ` if ` + "`" + `security_profile_customization` + "`" + ` is set`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Overall IPsec VPN Tunnel Status`,
+				},
+				resource.Attribute{
+					Name:        "ike_service_status",
+					Description: `Status for the actual IKE Session for the given tunnel`,
+				},
+				resource.Attribute{
+					Name:        "ike_fail_reason",
+					Description: `Provides more details of failure if the IKE service is not UP -> Status related fields might not immediatelly show up. It depends on when NSX-T updates its status ## Importing ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.](https://www.terraform.io/docs/import/) An existing IPSec VPN Tunnel configuration can be [imported][docs-import] into this resource via supplying the full dot separated path for your IPsec VPN Tunnel name or ID. An example is below: [docs-import]: https://www.terraform.io/docs/import/ Supplying Name ` + "`" + `` + "`" + `` + "`" + ` terraform import vcd_nsxt_ipsec_vpn_tunnel.imported my-org.my-org-vdc.my-nsxt-edge-gateway.my-ipsec-vpn-tunnel-name ` + "`" + `` + "`" + `` + "`" + ` -> When there are multiple IPsec VPN Tunnels with the same name they will all be listed so that one can pick it by ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vcd_nsxt_ipsec_vpn_tunnel.first my-org.nsxt-vdc.nsxt-gw.tunnel1 vcd_nsxt_nat_rule.dnat: Importing from ID "my-org.nsxt-vdc.nsxt-gw.dnat1"... # The following IPsec VPN Tunnels with Name 'tunnel1' are available # Please use ID instead of Name in import path to pick exact rule ID Name Local IP Remote IP 04fde766-2cbd-4986-93bb-7f57e59c6b19 tunnel1 1.1.1.1 2.2.2.2 f40e3d68-cfa6-42ea-83ed-5571659b3e7b tunnel1 4.4.4.4 8.8.8.8 $ terraform import vcd_nsxt_ipsec_vpn_tunnel.imported my-org.my-org-vdc.my-nsxt-edge-gateway.04fde766-2cbd-4986-93bb-7f57e59c6b19 ` + "`" + `` + "`" + `` + "`" + ` The above would import the ` + "`" + `my-ipsec-vpn-tunnel-name` + "`" + ` IPsec VPN Tunne config settings that are defined on NSX-T Edge Gateway ` + "`" + `my-nsxt-edge-gateway` + "`" + ` which is configured in organization named ` + "`" + `my-org` + "`" + ` and VDC named ` + "`" + `my-org-vdc` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "security_profile",
+					Description: `` + "`" + `DEFAULT` + "`" + ` for system provided configuration or ` + "`" + `CUSTOM` + "`" + ` if ` + "`" + `security_profile_customization` + "`" + ` is set`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Overall IPsec VPN Tunnel Status`,
+				},
+				resource.Attribute{
+					Name:        "ike_service_status",
+					Description: `Status for the actual IKE Session for the given tunnel`,
+				},
+				resource.Attribute{
+					Name:        "ike_fail_reason",
+					Description: `Provides more details of failure if the IKE service is not UP -> Status related fields might not immediatelly show up. It depends on when NSX-T updates its status ## Importing ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.](https://www.terraform.io/docs/import/) An existing IPSec VPN Tunnel configuration can be [imported][docs-import] into this resource via supplying the full dot separated path for your IPsec VPN Tunnel name or ID. An example is below: [docs-import]: https://www.terraform.io/docs/import/ Supplying Name ` + "`" + `` + "`" + `` + "`" + ` terraform import vcd_nsxt_ipsec_vpn_tunnel.imported my-org.my-org-vdc.my-nsxt-edge-gateway.my-ipsec-vpn-tunnel-name ` + "`" + `` + "`" + `` + "`" + ` -> When there are multiple IPsec VPN Tunnels with the same name they will all be listed so that one can pick it by ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vcd_nsxt_ipsec_vpn_tunnel.first my-org.nsxt-vdc.nsxt-gw.tunnel1 vcd_nsxt_nat_rule.dnat: Importing from ID "my-org.nsxt-vdc.nsxt-gw.dnat1"... # The following IPsec VPN Tunnels with Name 'tunnel1' are available # Please use ID instead of Name in import path to pick exact rule ID Name Local IP Remote IP 04fde766-2cbd-4986-93bb-7f57e59c6b19 tunnel1 1.1.1.1 2.2.2.2 f40e3d68-cfa6-42ea-83ed-5571659b3e7b tunnel1 4.4.4.4 8.8.8.8 $ terraform import vcd_nsxt_ipsec_vpn_tunnel.imported my-org.my-org-vdc.my-nsxt-edge-gateway.04fde766-2cbd-4986-93bb-7f57e59c6b19 ` + "`" + `` + "`" + `` + "`" + ` The above would import the ` + "`" + `my-ipsec-vpn-tunnel-name` + "`" + ` IPsec VPN Tunne config settings that are defined on NSX-T Edge Gateway ` + "`" + `my-nsxt-edge-gateway` + "`" + ` which is configured in organization named ` + "`" + `my-org` + "`" + ` and VDC named ` + "`" + `my-org-vdc` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_nat_rule",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource to manage NSX-T NAT rules. To change the source IP address from a private to a public IP address, you create a source NAT (SNAT) rule. To change the destination IP address from a public to a private IP address, you create a destination NAT (DNAT) rule.`,
+			Description:      ``,
+			Keywords: []string{
+				"nsxt",
+				"nat",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway_id",
+					Description: `(Required) The ID of the edge gateway (NSX-T only). Can be looked up using ` + "`" + `vcd_nsxt_edgegateway` + "`" + ` data source`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A name for NAT rule`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description of the NAT rule`,
+				},
+				resource.Attribute{
+					Name:        "rule_type",
+					Description: `(Required) One of ` + "`" + `DNAT` + "`" + `, ` + "`" + `NO_DNAT` + "`" + `, ` + "`" + `SNAT` + "`" + `, ` + "`" + `NO_SNAT` + "`" + `, ` + "`" + `REFLEXIVE` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "MATCH_INTERNAL_ADDRESS",
+					Description: `applies firewall rules to the internal address of a NAT rule`,
+				},
+				resource.Attribute{
+					Name:        "MATCH_EXTERNAL_ADDRESS",
+					Description: `applies firewall rules to the external address of a NAT rule`,
+				},
+				resource.Attribute{
+					Name:        "BYPASS",
+					Description: `skip applying firewall rules to NAT rule`,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1580,7 +1932,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "edge_gateway_id",
-					Description: `(Required) The ID of the edge gateway (NSX-T only). Can be looked up using ` + "`" + `vcd_nsxt_edgegateway` + "`" + ` datasource`,
+					Description: `(Required) The ID of the edge gateway (NSX-T only). Can be looked up using ` + "`" + `vcd_nsxt_edgegateway` + "`" + ` data source`,
 				},
 				resource.Attribute{
 					Name:        "vm_id",
@@ -1673,7 +2025,7 @@ var (
 			Name:             "",
 			Type:             "vcd_nsxv_dnat",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director DNAT resource for advanced edge gateways (NSX-V). This can be used to create, modify, and delete destination NATs to map an external IP/port to an internal IP/port.`,
+			ShortDescription: `Provides a VMware Cloud Director DNAT resource for advanced edge gateways (NSX-V). This can be used to create, modify, and delete destination NATs to map an external IP/port to an internal IP/port.`,
 			Description:      ``,
 			Keywords: []string{
 				"nsxv",
@@ -1756,7 +2108,7 @@ var (
 			Name:             "",
 			Type:             "vcd_nsxv_firewall_rule",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director firewall rule resource for advanced edge gateways (NSX-V). This can be used to create, modify, and delete firewall rules.`,
+			ShortDescription: `Provides a VMware Cloud Director firewall rule resource for advanced edge gateways (NSX-V). This can be used to create, modify, and delete firewall rules.`,
 			Description:      ``,
 			Keywords: []string{
 				"nsxv",
@@ -1862,9 +2214,53 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_nsxv_ip_set",
+			Category:         "Resources",
+			ShortDescription: `Provides an IP set resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"nsxv",
+				"ip",
+				"set",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique IP set name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description for IP set.`,
+				},
+				resource.Attribute{
+					Name:        "ip_addresses",
+					Description: `(Required) A set of IP addresses, CIDRs and ranges as strings.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of IP set ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of IP set ## Importing ~>`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_nsxv_snat",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director SNAT resource for advanced edge gateways (NSX-V). This can be used to create, modify, and delete source NATs to allow vApps to send external traffic.`,
+			ShortDescription: `Provides a VMware Cloud Director SNAT resource for advanced edge gateways (NSX-V). This can be used to create, modify, and delete source NATs to allow vApps to send external traffic.`,
 			Description:      ``,
 			Keywords: []string{
 				"nsxv",
@@ -1931,7 +2327,7 @@ var (
 			Name:             "",
 			Type:             "vcd_org",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director Organization resource. This can be used to create delete, and update an organization.`,
+			ShortDescription: `Provides a VMware Cloud Director Organization resource. This can be used to create delete, and update an organization.`,
 			Description:      ``,
 			Keywords: []string{
 				"org",
@@ -2016,7 +2412,7 @@ var (
 			Name:             "",
 			Type:             "vcd_org_group",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director Organization group. This can be used to create, update, and delete organization groups defined in SAML or LDAP.`,
+			ShortDescription: `Provides a VMware Cloud Director Organization group. This can be used to create, update, and delete organization groups defined in SAML or LDAP.`,
 			Description:      ``,
 			Keywords: []string{
 				"org",
@@ -2059,7 +2455,7 @@ var (
 			Name:             "",
 			Type:             "vcd_org_user",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director Organization user. This can be used to create, update, and delete organization users.`,
+			ShortDescription: `Provides a VMware Cloud Director Organization user. This can be used to create, update, and delete users.`,
 			Description:      ``,
 			Keywords: []string{
 				"org",
@@ -2068,7 +2464,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "org",
-					Description: `(Optional) The name of organization to which the user belongs. Optional if defined at provider level.`,
+					Description: `(Optional) The name of organization to which the user belongs. Optional if defined at provider level. If we want to create a user at provider level, use "System" as org name.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -2146,7 +2542,7 @@ var (
 			Name:             "",
 			Type:             "vcd_org_vdc",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director Organization VDC resource. This can be used to create and delete an Organization VDC.`,
+			ShortDescription: `Provides a VMware Cloud Director Organization VDC resource. This can be used to create and delete an Organization VDC.`,
 			Description:      ``,
 			Keywords: []string{
 				"org",
@@ -2290,9 +2686,106 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_rights_bundle",
+			Category:         "Resources",
+			ShortDescription: `Provides a VMware Cloud Director rights bundle. This can be used to create, modify, and delete rights bundles.`,
+			Description:      ``,
+			Keywords: []string{
+				"rights",
+				"bundle",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the rights bundle.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required) A description of the rights bundle`,
+				},
+				resource.Attribute{
+					Name:        "rights",
+					Description: `(Optional) List of rights assigned to this role`,
+				},
+				resource.Attribute{
+					Name:        "publish_to_all_tenants",
+					Description: `(Required) When true, publishes the rights bundle to all tenants`,
+				},
+				resource.Attribute{
+					Name:        "tenants",
+					Description: `(Optional) List of tenants to which this rights bundle gets published. Ignored if ` + "`" + `publish_to_all_tenants` + "`" + ` is true. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "read_only",
+					Description: `Whether this rights bundle is read-only`,
+				},
+				resource.Attribute{
+					Name:        "bundle_key",
+					Description: `Key used for internationalization ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "read_only",
+					Description: `Whether this rights bundle is read-only`,
+				},
+				resource.Attribute{
+					Name:        "bundle_key",
+					Description: `Key used for internationalization ## Importing ~>`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_role",
+			Category:         "Resources",
+			ShortDescription: `Provides a VMware Cloud Director role. This can be used to create, modify, and delete roles.`,
+			Description:      ``,
+			Keywords: []string{
+				"role",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the role.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required) A description of the role`,
+				},
+				resource.Attribute{
+					Name:        "rights",
+					Description: `(Optional) List of rights assigned to this role ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "read_only",
+					Description: `Whether this role is read-only`,
+				},
+				resource.Attribute{
+					Name:        "bundle_key",
+					Description: `Key used for internationalization ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "read_only",
+					Description: `Whether this role is read-only`,
+				},
+				resource.Attribute{
+					Name:        "bundle_key",
+					Description: `Key used for internationalization ## Importing ~>`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_vapp",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director vApp resource. This can be used to create, modify, and delete vApps.`,
+			ShortDescription: `Provides a VMware Cloud Director vApp resource. This can be used to create, modify, and delete vApps.`,
 			Description:      ``,
 			Keywords: []string{
 				"vapp",
@@ -2341,7 +2834,7 @@ var (
 			Name:             "",
 			Type:             "vcd_vapp_access_control",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director Access Control structure for a vApp.`,
+			ShortDescription: `Provides a VMware Cloud Director Access Control structure for a vApp.`,
 			Description:      ``,
 			Keywords: []string{
 				"vapp",
@@ -2396,7 +2889,7 @@ var (
 			Name:             "",
 			Type:             "vcd_vapp_firewall_rules",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director vApp Firewall resource. This can be used to create, modify, and delete firewall settings and rules.`,
+			ShortDescription: `Provides a VMware Cloud Director vApp Firewall resource. This can be used to create, modify, and delete firewall settings and rules.`,
 			Description:      ``,
 			Keywords: []string{
 				"vapp",
@@ -2499,7 +2992,7 @@ var (
 			Name:             "",
 			Type:             "vcd_vapp_nat_rules",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director vApp NAT resource. This can be used to create, modify, and delete NAT rules.`,
+			ShortDescription: `Provides a VMware Cloud Director vApp NAT resource. This can be used to create, modify, and delete NAT rules.`,
 			Description:      ``,
 			Keywords: []string{
 				"vapp",
@@ -2695,7 +3188,7 @@ var (
 			Name:             "",
 			Type:             "vcd_vapp_static_routing",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director vApp static routing resource. This can be used to create, modify, and delete static routing rules.`,
+			ShortDescription: `Provides a VMware Cloud Director vApp static routing resource. This can be used to create, modify, and delete static routing rules.`,
 			Description:      ``,
 			Keywords: []string{
 				"vapp",
@@ -2746,7 +3239,7 @@ var (
 			Name:             "",
 			Type:             "vcd_vapp_vm",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director VM resource. This can be used to create, modify, and delete VMs within a vApp.`,
+			ShortDescription: `Provides a VMware Cloud Director VM resource. This can be used to create, modify, and delete VMs within a vApp.`,
 			Description:      ``,
 			Keywords: []string{
 				"vapp",
@@ -2923,7 +3416,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_profile",
-					Description: `(Optional) Storage profile which overrides the VM default one. <a id="customization-block"></a> ## Customization When you customize your guest OS you can set up a virtual machine with the operating system that you want. vCloud Director can customize the network settings of the guest operating system of a virtual machine created from a vApp template. When you customize your guest operating system, you can create and deploy multiple unique virtual machines based on the same vApp template without machine name or network conflicts. When you configure a vApp template with the prerequisites for guest customization and add a virtual machine to a vApp based on that template, vCloud Director creates a package with guest customization tools. When you deploy and power on the virtual machine for the first time, vCloud Director copies the package, runs the tools, and deletes the package from the virtual machine. ~>`,
+					Description: `(Optional) Storage profile which overrides the VM default one. <a id="customization-block"></a> ## Customization When you customize your guest OS you can set up a virtual machine with the operating system that you want. VMware Cloud Director can customize the network settings of the guest operating system of a virtual machine created from a vApp template. When you customize your guest operating system, you can create and deploy multiple unique virtual machines based on the same vApp template without machine name or network conflicts. When you configure a vApp template with the prerequisites for guest customization and add a virtual machine to a vApp based on that template, VMware Cloud Director creates a package with guest customization tools. When you deploy and power on the virtual machine for the first time, VMware Cloud Director copies the package, runs the tools, and deletes the package from the virtual machine. ~>`,
 				},
 				resource.Attribute{
 					Name:        "internal_disk",
@@ -3025,7 +3518,7 @@ var (
 			Name:             "",
 			Type:             "vcd_vm_affinity_rule",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director VM affinity rule resource. This can be used to create, modify, and delete VM affinity and anti-affinity rules.`,
+			ShortDescription: `Provides a VMware Cloud Director VM affinity rule resource. This can be used to create, modify, and delete VM affinity and anti-affinity rules.`,
 			Description:      ``,
 			Keywords: []string{
 				"vm",
@@ -3056,7 +3549,7 @@ var (
 			Name:             "",
 			Type:             "vcd_vm_internal_disk",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director VM internal disk resource. This can be used to create and delete VM internal disks.`,
+			ShortDescription: `Provides a VMware Cloud Director VM internal disk resource. This can be used to create and delete VM internal disks.`,
 			Description:      ``,
 			Keywords: []string{
 				"vm",
@@ -3119,7 +3612,7 @@ var (
 			Name:             "",
 			Type:             "vcd_vm_sizing_policy",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director VM sizing policy resource. This can be used to create, modify, and delete VM sizing policy.`,
+			ShortDescription: `Provides a VMware Cloud Director VM sizing policy resource. This can be used to create, modify, and delete VM sizing policy.`,
 			Description:      ``,
 			Keywords: []string{
 				"vm",
@@ -3202,9 +3695,9 @@ var (
 		"vcd_edgegateway_vpn":       5,
 		"vcd_external_network":      6,
 		"vcd_external_network_v2":   7,
-		"vcd_independent_disk":      8,
-		"vcd_inserted_media":        9,
-		"vcd_nsxv_ip_set":           10,
+		"vcd_global_role":           8,
+		"vcd_independent_disk":      9,
+		"vcd_inserted_media":        10,
 		"vcd_lb_app_profile":        11,
 		"vcd_lb_app_rule":           12,
 		"vcd_lb_server_pool":        13,
@@ -3215,30 +3708,38 @@ var (
 		"vcd_network_isolated_v2":   18,
 		"vcd_network_routed":        19,
 		"vcd_network_routed_v2":     20,
-		"vcd_nsxt_edgegateway":      21,
-		"vcd_nsxt_network_dhcp":     22,
-		"vcd_nsxt_network_imported": 23,
-		"vcd_nsxt_security_group":   24,
-		"vcd_nsxv_dhcp_relay":       25,
-		"vcd_nsxv_dnat":             26,
-		"vcd_nsxv_firewall_rule":    27,
-		"vcd_nsxv_snat":             28,
-		"vcd_org":                   29,
-		"vcd_org_group":             30,
-		"vcd_org_user":              31,
-		"vcd_org_vdc":               32,
-		"vcd_vapp":                  33,
-		"vcd_vapp_access_control":   34,
-		"vcd_vapp_firewall_rules":   35,
-		"vcd_vapp_nat_rules":        36,
-		"vcd_vapp_network":          37,
-		"vcd_vapp_org_network":      38,
-		"vcd_vapp_static_routing":   39,
-		"vcd_vapp_vm":               40,
-		"vcd_vm":                    41,
-		"vcd_vm_affinity_rule":      42,
-		"vcd_vm_internal_disk":      43,
-		"vcd_vm_sizing_policy":      44,
+		"vcd_nsxt_app_port_profile": 21,
+		"vcd_nsxt_edgegateway":      22,
+		"vcd_nsxt_firewall":         23,
+		"vcd_nsxt_ip_set":           24,
+		"vcd_nsxt_ipsec_vpn_tunnel": 25,
+		"vcd_nsxt_nat_rule":         26,
+		"vcd_nsxt_network_dhcp":     27,
+		"vcd_nsxt_network_imported": 28,
+		"vcd_nsxt_security_group":   29,
+		"vcd_nsxv_dhcp_relay":       30,
+		"vcd_nsxv_dnat":             31,
+		"vcd_nsxv_firewall_rule":    32,
+		"vcd_nsxv_ip_set":           33,
+		"vcd_nsxv_snat":             34,
+		"vcd_org":                   35,
+		"vcd_org_group":             36,
+		"vcd_org_user":              37,
+		"vcd_org_vdc":               38,
+		"vcd_rights_bundle":         39,
+		"vcd_role":                  40,
+		"vcd_vapp":                  41,
+		"vcd_vapp_access_control":   42,
+		"vcd_vapp_firewall_rules":   43,
+		"vcd_vapp_nat_rules":        44,
+		"vcd_vapp_network":          45,
+		"vcd_vapp_org_network":      46,
+		"vcd_vapp_static_routing":   47,
+		"vcd_vapp_vm":               48,
+		"vcd_vm":                    49,
+		"vcd_vm_affinity_rule":      50,
+		"vcd_vm_internal_disk":      51,
+		"vcd_vm_sizing_policy":      52,
 	}
 )
 

@@ -1738,6 +1738,10 @@ var (
 					Description: `The minimum number of CVM instances.`,
 				},
 				resource.Attribute{
+					Name:        "multi_zone_subnet_policy",
+					Description: `Multi zone or subnet strategy, Valid values: PRIORITY and EQUALITY.`,
+				},
+				resource.Attribute{
 					Name:        "project_id",
 					Description: `ID of the project to which the scaling group belongs. Default value is 0.`,
 				},
@@ -1842,6 +1846,10 @@ var (
 				resource.Attribute{
 					Name:        "min_size",
 					Description: `The minimum number of CVM instances.`,
+				},
+				resource.Attribute{
+					Name:        "multi_zone_subnet_policy",
+					Description: `Multi zone or subnet strategy, Valid values: PRIORITY and EQUALITY.`,
 				},
 				resource.Attribute{
 					Name:        "project_id",
@@ -4942,6 +4950,10 @@ var (
 					Description: `(Optional) Name of the CLB to be queried.`,
 				},
 				resource.Attribute{
+					Name:        "master_zone",
+					Description: `(Optional) Master available zone id.`,
+				},
+				resource.Attribute{
 					Name:        "network_type",
 					Description: `(Optional) Type of CLB instance, and available values include ` + "`" + `OPEN` + "`" + ` and ` + "`" + `INTERNAL` + "`" + `.`,
 				},
@@ -4986,6 +4998,10 @@ var (
 					Description: `Internet charge type, only applicable to open CLB. Valid values are ` + "`" + `TRAFFIC_POSTPAID_BY_HOUR` + "`" + `, ` + "`" + `BANDWIDTH_POSTPAID_BY_HOUR` + "`" + ` and ` + "`" + `BANDWIDTH_PACKAGE` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "local_zone",
+					Description: `Whether this available zone is local zone, This field maybe null, means cannot get a valid value.`,
+				},
+				resource.Attribute{
 					Name:        "network_type",
 					Description: `Types of CLB.`,
 				},
@@ -5028,6 +5044,22 @@ var (
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `ID of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `Available zone unique id(numerical representation), This field maybe null, means cannot get a valid value.`,
+				},
+				resource.Attribute{
+					Name:        "zone_name",
+					Description: `Available zone name, This field maybe null, means cannot get a valid value.`,
+				},
+				resource.Attribute{
+					Name:        "zone_region",
+					Description: `Region that this available zone belong to, This field maybe null, means cannot get a valid value.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `Available zone unique id(string representation), This field maybe null, means cannot get a valid value.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5064,6 +5096,10 @@ var (
 					Description: `Internet charge type, only applicable to open CLB. Valid values are ` + "`" + `TRAFFIC_POSTPAID_BY_HOUR` + "`" + `, ` + "`" + `BANDWIDTH_POSTPAID_BY_HOUR` + "`" + ` and ` + "`" + `BANDWIDTH_PACKAGE` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "local_zone",
+					Description: `Whether this available zone is local zone, This field maybe null, means cannot get a valid value.`,
+				},
+				resource.Attribute{
 					Name:        "network_type",
 					Description: `Types of CLB.`,
 				},
@@ -5106,6 +5142,22 @@ var (
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `ID of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `Available zone unique id(numerical representation), This field maybe null, means cannot get a valid value.`,
+				},
+				resource.Attribute{
+					Name:        "zone_name",
+					Description: `Available zone name, This field maybe null, means cannot get a valid value.`,
+				},
+				resource.Attribute{
+					Name:        "zone_region",
+					Description: `Region that this available zone belong to, This field maybe null, means cannot get a valid value.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `Available zone unique id(string representation), This field maybe null, means cannot get a valid value.`,
 				},
 			},
 		},
@@ -11539,7 +11591,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_non_static_ip_mode",
-					Description: `Indicates whether static ip mode is enabled.`,
+					Description: `Indicates whether non-static ip mode is enabled.`,
 				},
 				resource.Attribute{
 					Name:        "kube_config",
@@ -11713,7 +11765,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_non_static_ip_mode",
-					Description: `Indicates whether static ip mode is enabled.`,
+					Description: `Indicates whether non-static ip mode is enabled.`,
 				},
 				resource.Attribute{
 					Name:        "kube_config",

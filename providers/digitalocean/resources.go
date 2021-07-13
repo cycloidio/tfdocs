@@ -630,7 +630,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "engine",
-					Description: `(Required) Database engine used by the cluster (ex. ` + "`" + `pg` + "`" + ` for PostreSQL, ` + "`" + `mysql` + "`" + ` for MySQL, or ` + "`" + `redis` + "`" + ` for Redis).`,
+					Description: `(Required) Database engine used by the cluster (ex. ` + "`" + `pg` + "`" + ` for PostreSQL, ` + "`" + `mysql` + "`" + ` for MySQL, ` + "`" + `redis` + "`" + ` for Redis, or ` + "`" + `mongodb` + "`" + ` for MongoDB).`,
 				},
 				resource.Attribute{
 					Name:        "size",
@@ -1137,7 +1137,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_keys",
-					Description: `(Optional) A list of SSH IDs or fingerprints to enable in the format ` + "`" + `[12345, 123456]` + "`" + `. To retrieve this info, use a tool such as ` + "`" + `curl` + "`" + ` with the [DigitalOcean API](https://developers.digitalocean.com/documentation/v2/#ssh-keys), to retrieve them.`,
+					Description: `(Optional) A list of SSH key IDs or fingerprints to enable in the format ` + "`" + `[12345, 123456]` + "`" + `. To retrieve this info, use the [DigitalOcean API](https://docs.digitalocean.com/reference/api/api-reference/#tag/SSH-Keys) or CLI (` + "`" + `doctl compute ssh-key list` + "`" + `). Once a Droplet is created keys can not be added or removed via this provider. Modifying this field will prompt you to destroy and recreate the Droplet.`,
 				},
 				resource.Attribute{
 					Name:        "resize_disk",
@@ -1444,11 +1444,11 @@ var (
 					Description: `The names of the Tags assigned to the Firewall.`,
 				},
 				resource.Attribute{
-					Name:        "inbound_rules",
+					Name:        "inbound_rule",
 					Description: `The inbound access rule block for the Firewall.`,
 				},
 				resource.Attribute{
-					Name:        "outbound_rules",
+					Name:        "outbound_rule",
 					Description: `The outbound access rule block for the Firewall. ## Import Firewalls can be imported using the firewall ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_firewall.myfirewall b8ecd2ab-2267-4a5e-8692-cbf1d32583e3 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
@@ -1482,11 +1482,11 @@ var (
 					Description: `The names of the Tags assigned to the Firewall.`,
 				},
 				resource.Attribute{
-					Name:        "inbound_rules",
+					Name:        "inbound_rule",
 					Description: `The inbound access rule block for the Firewall.`,
 				},
 				resource.Attribute{
-					Name:        "outbound_rules",
+					Name:        "outbound_rule",
 					Description: `The outbound access rule block for the Firewall. ## Import Firewalls can be imported using the firewall ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_firewall.myfirewall b8ecd2ab-2267-4a5e-8692-cbf1d32583e3 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
@@ -1584,7 +1584,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A list of tag names to be applied to the Kubernetes cluster. ## Attributes Reference In addition to the arguments listed above, the following additional attributes are exported:`,
+					Description: `(Optional) A list of tag names to be applied to the Kubernetes cluster.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_policy",
+					Description: `(Optional) A block representing the cluster's maintenance window. Updates will be applied within this window. If not specified, a default maintenance window will be chosen. ` + "`" + `auto_upgrade` + "`" + ` must be set to ` + "`" + `true` + "`" + ` for this to have an effect. - ` + "`" + `day` + "`" + ` - (Required) The day of the maintenance window policy. May be one of "monday" through "sunday", or "any" to indicate an arbitrary week day. - ` + "`" + `start_time` + "`" + ` (Required) The start time in UTC of the maintenance window policy in 24-hour clock format / HH:MM notation (e.g., 15:00). ## Attributes Reference In addition to the arguments listed above, the following additional attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1632,7 +1636,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "urn",
-					Description: `The uniform resource name (URN) for the Kubernetes cluster. ## Import Before importing a Kubernetes cluster, the cluster's default node pool must be tagged with the ` + "`" + `terraform:default-node-pool` + "`" + ` tag. The provider will automatically add this tag if the cluster has a single node pool. Clusters with more than one node pool, however, will require that you manually add the ` + "`" + `terraform:default-node-pool` + "`" + ` tag to the node pool that you intend to be the default node pool. Then the Kubernetes cluster and all of its node pools can be imported using the cluster's ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_kubernetes_cluster.mycluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The uniform resource name (URN) for the Kubernetes cluster.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_policy",
+					Description: `A block representing the cluster's maintenance window. Updates will be applied within this window. If not specified, a default maintenance window will be chosen. - ` + "`" + `day` + "`" + ` - The day of the maintenance window policy. May be one of "monday" through "sunday", or "any" to indicate an arbitrary week day. - ` + "`" + `duration` + "`" + ` A string denoting the duration of the service window, e.g., "04:00". - ` + "`" + `start_time` + "`" + ` The hour in UTC when maintenance updates will be applied, in 24 hour format (e.g. “16:00”). ## Import Before importing a Kubernetes cluster, the cluster's default node pool must be tagged with the ` + "`" + `terraform:default-node-pool` + "`" + ` tag. The provider will automatically add this tag if the cluster has a single node pool. Clusters with more than one node pool, however, will require that you manually add the ` + "`" + `terraform:default-node-pool` + "`" + ` tag to the node pool that you intend to be the default node pool. Then the Kubernetes cluster and all of its node pools can be imported using the cluster's ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_kubernetes_cluster.mycluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1682,7 +1690,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "urn",
-					Description: `The uniform resource name (URN) for the Kubernetes cluster. ## Import Before importing a Kubernetes cluster, the cluster's default node pool must be tagged with the ` + "`" + `terraform:default-node-pool` + "`" + ` tag. The provider will automatically add this tag if the cluster has a single node pool. Clusters with more than one node pool, however, will require that you manually add the ` + "`" + `terraform:default-node-pool` + "`" + ` tag to the node pool that you intend to be the default node pool. Then the Kubernetes cluster and all of its node pools can be imported using the cluster's ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_kubernetes_cluster.mycluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The uniform resource name (URN) for the Kubernetes cluster.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_policy",
+					Description: `A block representing the cluster's maintenance window. Updates will be applied within this window. If not specified, a default maintenance window will be chosen. - ` + "`" + `day` + "`" + ` - The day of the maintenance window policy. May be one of "monday" through "sunday", or "any" to indicate an arbitrary week day. - ` + "`" + `duration` + "`" + ` A string denoting the duration of the service window, e.g., "04:00". - ` + "`" + `start_time` + "`" + ` The hour in UTC when maintenance updates will be applied, in 24 hour format (e.g. “16:00”). ## Import Before importing a Kubernetes cluster, the cluster's default node pool must be tagged with the ` + "`" + `terraform:default-node-pool` + "`" + ` tag. The provider will automatically add this tag if the cluster has a single node pool. Clusters with more than one node pool, however, will require that you manually add the ` + "`" + `terraform:default-node-pool` + "`" + ` tag to the node pool that you intend to be the default node pool. Then the Kubernetes cluster and all of its node pools can be imported using the cluster's ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_kubernetes_cluster.mycluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},

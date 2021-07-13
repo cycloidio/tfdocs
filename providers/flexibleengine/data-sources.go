@@ -2246,15 +2246,11 @@ CTS Tracker data source allows access of Cloud Tracker.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 Glance client. A Glance client is needed to create an Image that can be used with a compute instance. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
-				},
-				resource.Attribute{
-					Name:        "most_recent",
-					Description: `(Optional) If more than one result is returned, use the most recent image.`,
+					Description: `(Optional) The region in which to obtain the image. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of the image.`,
+					Description: `(Optional) The name of the image. Exact matching is used.`,
 				},
 				resource.Attribute{
 					Name:        "owner",
@@ -2282,7 +2278,11 @@ CTS Tracker data source allows access of Cloud Tracker.
 				},
 				resource.Attribute{
 					Name:        "visibility",
-					Description: `(Optional) The visibility of the image. Must be one of "public", "private", "community", or "shared". Defaults to "private". ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found image. In addition, the following attributes are exported:`,
+					Description: `(Optional) The visibility of the image. Must be one of "public", "private", "community", or "shared".`,
+				},
+				resource.Attribute{
+					Name:        "most_recent",
+					Description: `(Optional) If more than one result is returned, use the most recent image. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found image. In addition, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "checksum",
@@ -2294,11 +2294,11 @@ CTS Tracker data source allows access of Cloud Tracker.
 				},
 				resource.Attribute{
 					Name:        "file",
-					Description: `the trailing path after the glance endpoint that represent the location of the image or the path to retrieve it.`,
+					Description: `The URL for uploading and downloading the image file.`,
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `The metadata associated with the image. Image metadata allow for meaningfully define the image properties and tags. See http://docs.openstack.org/developer/glance/metadefs-concepts.html.`,
+					Description: `The metadata associated with the image. Image metadata allow for meaningfully define the image properties and tags.`,
 				},
 				resource.Attribute{
 					Name:        "protected",
@@ -2332,11 +2332,11 @@ CTS Tracker data source allows access of Cloud Tracker.
 				},
 				resource.Attribute{
 					Name:        "file",
-					Description: `the trailing path after the glance endpoint that represent the location of the image or the path to retrieve it.`,
+					Description: `The URL for uploading and downloading the image file.`,
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `The metadata associated with the image. Image metadata allow for meaningfully define the image properties and tags. See http://docs.openstack.org/developer/glance/metadefs-concepts.html.`,
+					Description: `The metadata associated with the image. Image metadata allow for meaningfully define the image properties and tags.`,
 				},
 				resource.Attribute{
 					Name:        "protected",
@@ -2760,13 +2760,11 @@ CTS Tracker data source allows access of Cloud Tracker.
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_rds_flavors_v1",
-			Category:         "Relational Database Service (RDS)",
+			Category:         "Deprecated",
 			ShortDescription: ``,
 			Description:      ``,
 			Keywords: []string{
-				"relational",
-				"database",
-				"service",
+				"deprecated",
 				"rds",
 				"flavors",
 				"v1",

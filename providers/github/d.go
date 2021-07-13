@@ -318,6 +318,10 @@ var (
 					Name:        "members",
 					Description: `List of team members.`,
 				},
+				resource.Attribute{
+					Name:        "repositories",
+					Description: `List of team repositories.`,
+				},
 			},
 		},
 		&resource.Resource{
@@ -776,6 +780,10 @@ var (
 					Name:        "members",
 					Description: `List of team members`,
 				},
+				resource.Attribute{
+					Name:        "repositories",
+					Description: `List of team repositories`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -805,6 +813,10 @@ var (
 				resource.Attribute{
 					Name:        "members",
 					Description: `List of team members`,
+				},
+				resource.Attribute{
+					Name:        "repositories",
+					Description: `List of team repositories`,
 				},
 			},
 		},

@@ -95,7 +95,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "record_type",
-					Description: `(Required) The type of Record this is in the DNS system. For example, A records associate a domain name with an IPv4 address, and AAAA records associate a domain name with an IPv6 address.`,
+					Description: `(Required) The type of Record this is in the DNS system. For example, A records associate a domain name with an IPv4 address, and AAAA records associate a domain name with an IPv6 address. See all supported record types [here](https://www.linode.com/docs/api/domains/#domain-record-create__request-body-schema).`,
 				},
 				resource.Attribute{
 					Name:        "target",
@@ -152,11 +152,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "inbound_policy",
-					Description: `(Required) The default behavior for inbound traffic. This setting can be overridden by updating the inbound.action property of the Firewall Rule.`,
+					Description: `(Required) The default behavior for inbound traffic. This setting can be overridden by updating the inbound.action property of the Firewall Rule. (` + "`" + `ACCEPT` + "`" + `, ` + "`" + `DROP` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "outbound_policy",
-					Description: `(Required) The default behavior for outbound traffic. This setting can be overridden by updating the action property for an individual Firewall Rule.`,
+					Description: `(Required) The default behavior for outbound traffic. This setting can be overridden by updating the outbound.action property for an individual Firewall Rule. (` + "`" + `ACCEPT` + "`" + `, ` + "`" + `DROP` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "linodes",
@@ -172,11 +172,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "action",
-					Description: `(required) Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.`,
+					Description: `(required) Controls whether traffic is accepted or dropped by this rule (` + "`" + `ACCEPT` + "`" + `, ` + "`" + `DROP` + "`" + `). Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `(Required) The network protocol this rule controls.`,
+					Description: `(Required) The network protocol this rule controls. (` + "`" + `TCP` + "`" + `, ` + "`" + `UDP` + "`" + `, ` + "`" + `ICMP` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "ports",
@@ -278,7 +278,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Required) The region of the image. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `(Required) The region of the image. See all regions [here](https://api.linode.com/v4/regions). ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -653,7 +653,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The type of IP address.`,
+					Description: `The type of IP address. (` + "`" + `ipv4` + "`" + `, ` + "`" + `ipv6` + "`" + `, ` + "`" + `ipv6/pool` + "`" + `, ` + "`" + `ipv6/range` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -679,7 +679,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The type of IP address.`,
+					Description: `The type of IP address. (` + "`" + `ipv4` + "`" + `, ` + "`" + `ipv6` + "`" + `, ` + "`" + `ipv6/pool` + "`" + `, ` + "`" + `ipv6/range` + "`" + `)`,
 				},
 			},
 		},
@@ -712,7 +712,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) A Linode Type for all of the nodes in the Node Pool.`,
+					Description: `(Required) A Linode Type for all of the nodes in the Node Pool. See all node types [here](https://api.linode.com/v4/linode/types).`,
 				},
 				resource.Attribute{
 					Name:        "count",
@@ -752,7 +752,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of the node. ## Import LKE Clusters can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_lke_cluster.my_cluster 12345 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The status of the node. (` + "`" + `ready` + "`" + `, ` + "`" + `not_ready` + "`" + `) ## Import LKE Clusters can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_lke_cluster.my_cluster 12345 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -790,7 +790,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of the node. ## Import LKE Clusters can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_lke_cluster.my_cluster 12345 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The status of the node. (` + "`" + `ready` + "`" + `, ` + "`" + `not_ready` + "`" + `) ## Import LKE Clusters can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_lke_cluster.my_cluster 12345 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -806,7 +806,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Required) The region where this NodeBalancer will be deployed. Examples are ` + "`" + `"us-east"` + "`" + `, ` + "`" + `"us-west"` + "`" + `, ` + "`" + `"ap-south"` + "`" + `, etc.`,
+					Description: `(Required) The region where this NodeBalancer will be deployed. Examples are ` + "`" + `"us-east"` + "`" + `, ` + "`" + `"us-west"` + "`" + `, ` + "`" + `"ap-south"` + "`" + `, etc. See all regions [here](https://api.linode.com/v4/regions).`,
 				},
 				resource.Attribute{
 					Name:        "label",
@@ -872,15 +872,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Required) The region where this nodebalancer_config will be deployed. Examples are ` + "`" + `"us-east"` + "`" + `, ` + "`" + `"us-west"` + "`" + `, ` + "`" + `"ap-south"` + "`" + `, etc.`,
+					Description: `(Required) The region where this nodebalancer_config will be deployed. Examples are ` + "`" + `"us-east"` + "`" + `, ` + "`" + `"us-west"` + "`" + `, ` + "`" + `"ap-south"` + "`" + `, etc. See all regions [here](https://api.linode.com/v4/regions).`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `(Optional) The protocol this port is configured to serve. If this is set to https you must include an ssl_cert and an ssl_key. (Defaults to "http")`,
+					Description: `(Optional) The protocol this port is configured to serve. If this is set to https you must include an ssl_cert and an ssl_key. (` + "`" + `http` + "`" + `, ` + "`" + `https` + "`" + `, ` + "`" + `tcp` + "`" + `) (Defaults to ` + "`" + `http` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "proxy_protocol",
-					Description: `(Optional) The version of ProxyProtocol to use for the underlying NodeBalancer. This requires protocol to be ` + "`" + `tcp` + "`" + `. Valid values are ` + "`" + `none` + "`" + `, ` + "`" + `v1` + "`" + `, and ` + "`" + `v2` + "`" + `. (Defaults to ` + "`" + `none` + "`" + `)`,
+					Description: `(Optional) The version of ProxyProtocol to use for the underlying NodeBalancer. This requires protocol to be ` + "`" + `tcp` + "`" + `. (` + "`" + `none` + "`" + `, ` + "`" + `v1` + "`" + `, ` + "`" + `v2` + "`" + `) (Defaults to ` + "`" + `none` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "port",
@@ -888,15 +888,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "algorithm",
-					Description: `(Optional) What algorithm this NodeBalancer should use for routing traffic to backends: roundrobin, leastconn, source`,
+					Description: `(Optional) What algorithm this NodeBalancer should use for routing traffic to backends. (` + "`" + `roundrobin` + "`" + `, ` + "`" + `leastconn` + "`" + `, ` + "`" + `source` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "stickiness",
-					Description: `(Optional) Controls how session stickiness is handled on this port: 'none', 'table', 'http_cookie'`,
+					Description: `(Optional) Controls how session stickiness is handled on this port. (` + "`" + `none` + "`" + `, ` + "`" + `table` + "`" + `, ` + "`" + `http_cookie` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "check",
-					Description: `(Optional) The type of check to perform against backends to ensure they are serving requests. This is used to determine if backends are up or down. If none no check is performed. connection requires only a connection to the backend to succeed. http and http_body rely on the backend serving HTTP, and that the response returned matches what is expected.`,
+					Description: `(Optional) The type of check to perform against backends to ensure they are serving requests. This is used to determine if backends are up or down. If none no check is performed. connection requires only a connection to the backend to succeed. http and http_body rely on the backend serving HTTP, and that the response returned matches what is expected. (` + "`" + `none` + "`" + `, ` + "`" + `connection` + "`" + `, ` + "`" + `http` + "`" + `, ` + "`" + `http_body` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "check_interval",
@@ -978,7 +978,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `(Optional) The mode this NodeBalancer should use when sending traffic to this backend. If set to ` + "`" + `accept` + "`" + ` this backend is accepting traffic. If set to ` + "`" + `reject` + "`" + ` this backend will not receive traffic. If set to ` + "`" + `drain` + "`" + ` this backend will not receive new traffic, but connections already pinned to it will continue to be routed to it`,
+					Description: `(Optional) The mode this NodeBalancer should use when sending traffic to this backend. If set to ` + "`" + `accept` + "`" + ` this backend is accepting traffic. If set to ` + "`" + `reject` + "`" + ` this backend will not receive traffic. If set to ` + "`" + `drain` + "`" + ` this backend will not receive new traffic, but connections already pinned to it will continue to be routed to it. (` + "`" + `accept` + "`" + `, ` + "`" + `reject` + "`" + `, ` + "`" + `drain` + "`" + `, ` + "`" + `backup` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "weight",
@@ -986,7 +986,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The current status of this node, based on the configured checks of its NodeBalancer Config. (unknown, UP, DOWN).`,
+					Description: `The current status of this node, based on the configured checks of its NodeBalancer Config. (` + "`" + `unknown` + "`" + `, ` + "`" + `UP` + "`" + `, ` + "`" + `DOWN` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "config_id",
@@ -1104,7 +1104,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "permissions",
-					Description: `This Limited Access Key’s permissions for the selected bucket. Can be one of ` + "`" + `"read_write"` + "`" + ` or ` + "`" + `"read_only"` + "`" + `.`,
+					Description: `This Limited Access Key’s permissions for the selected bucket.`,
 				},
 				resource.Attribute{
 					Name:        "access_key",
@@ -1166,7 +1166,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "acl",
-					Description: `(Optional) The canned ACL to apply. Can be one of ` + "`" + `private` + "`" + `, ` + "`" + `public-read` + "`" + `, ` + "`" + `authenticated-read` + "`" + `, ` + "`" + `public-read-write` + "`" + `, and ` + "`" + `custom` + "`" + ` (defaults to ` + "`" + `private` + "`" + `).`,
+					Description: `(Optional) The canned ACL to apply. (` + "`" + `private` + "`" + `, ` + "`" + `public-read` + "`" + `, ` + "`" + `authenticated-read` + "`" + `, ` + "`" + `public-read-write` + "`" + `, ` + "`" + `custom` + "`" + `) (defaults to ` + "`" + `private` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "cache_control",
@@ -1558,7 +1558,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Required) The region where this volume will be deployed. Examples are ` + "`" + `"us-east"` + "`" + `, ` + "`" + `"us-west"` + "`" + `, ` + "`" + `"ap-south"` + "`" + `, etc.`,
+					Description: `(Required) The region where this volume will be deployed. Examples are ` + "`" + `"us-east"` + "`" + `, ` + "`" + `"us-west"` + "`" + `, ` + "`" + `"ap-south"` + "`" + `, etc. See all regions [here](https://api.linode.com/v4/regions).`,
 				},
 				resource.Attribute{
 					Name:        "size",
@@ -1586,7 +1586,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The label of the Linode Volume.`,
+					Description: `The status of the Linode Volume. (` + "`" + `creating` + "`" + `, ` + "`" + `active` + "`" + `, ` + "`" + `resizing` + "`" + `, ` + "`" + `contact_support` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "filesystem_path",

@@ -305,6 +305,77 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_as_lifecycle_hook_v1",
+			Category:         "Auto Scaling (AS)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"auto",
+				"scaling",
+				"as",
+				"lifecycle",
+				"hook",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, String) Specifies the lifecycle hook name. This parameter can contain a maximum of 32 characters, which may consist of letters, digits, underscores (_) and hyphens (-).`,
+				},
+				resource.Attribute{
+					Name:        "scaling_group_id",
+					Description: `(Required, String, ForceNew) Specifies the ID of the AS group in UUID format. Changing this creates a new AS lifecycle hook.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required, String) Specifies the lifecycle hook type. The valid values are following strings:`,
+				},
+				resource.Attribute{
+					Name:        "notification_topic_urn",
+					Description: `(Required, String) Specifies a unique topic in SMN.`,
+				},
+				resource.Attribute{
+					Name:        "default_result",
+					Description: `(Optional, String) Specifies the default lifecycle hook callback operation. This operation is performed when the timeout duration expires. The valid values are`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional, Int) Specifies the lifecycle hook timeout duration, which ranges from 300 to 86400 in the unit of second, default to 3600.`,
+				},
+				resource.Attribute{
+					Name:        "notification_message",
+					Description: `(Optional, String) Specifies a customized notification. This parameter can contains a maximum of 256 characters, which cannot contain the following characters: <>&'(). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID.`,
+				},
+				resource.Attribute{
+					Name:        "notification_topic_name",
+					Description: `The topic name in SMN.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The server time in UTC format when the lifecycle hook is created. ## Import Lifecycle hooks can be imported using the AS group ID and hook ID separated by a slash, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_as_lifecycle_hook_v1.test <AS group ID>/<Lifecycle hook ID> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID.`,
+				},
+				resource.Attribute{
+					Name:        "notification_topic_name",
+					Description: `The topic name in SMN.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The server time in UTC format when the lifecycle hook is created. ## Import Lifecycle hooks can be imported using the AS group ID and hook ID separated by a slash, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_as_lifecycle_hook_v1.test <AS group ID>/<Lifecycle hook ID> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_as_policy_v1",
 			Category:         "Auto Scaling (AS)",
 			ShortDescription: ``,
@@ -1012,7 +1083,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional, Map, ForceNew) Tags of a Kubernetes node, key/value pair format. Changing this parameter will create a new resource.`,
+					Description: `(Optional, Map) Tags of a Kubernetes node, key/value pair format.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1028,7 +1099,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "taints",
-					Description: `(Optional, List, ForceNew) You can add taints to created nodes to configure anti-affinity. The object structure is documented below. The ` + "`" + `root_volume` + "`" + ` block supports:`,
+					Description: `(Optional, List) You can add taints to created nodes to configure anti-affinity. The object structure is documented below. The ` + "`" + `root_volume` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "size",
@@ -1056,7 +1127,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `(Required, String, ForceNew) A key must contain 1 to 63 characters starting with a letter or digit. Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed. A DNS subdomain name can be used as the prefix of a key.`,
+					Description: `(Required, String) A key must contain 1 to 63 characters starting with a letter or digit. Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed. A DNS subdomain name can be used as the prefix of a key.`,
 				},
 				resource.Attribute{
 					Name:        "value",
@@ -1076,7 +1147,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "billing_mode",
-					Description: `Billing mode of a node. ## Timeouts This resource provides the following timeouts configuration options: - ` + "`" + `create` + "`" + ` - Default is 20 minute. - ` + "`" + `delete` + "`" + ` - Default is 20 minute.`,
+					Description: `Billing mode of a node. ## Timeouts This resource provides the following timeouts configuration options: - ` + "`" + `create` + "`" + ` - Default is 20 minute. - ` + "`" + `delete` + "`" + ` - Default is 20 minute. ## Import Node_pool can be imported using the cluster and node_pool id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_cce_node_pool_v3.node_pool_1 <cluster-id>/<node_pool-id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1090,7 +1161,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "billing_mode",
-					Description: `Billing mode of a node. ## Timeouts This resource provides the following timeouts configuration options: - ` + "`" + `create` + "`" + ` - Default is 20 minute. - ` + "`" + `delete` + "`" + ` - Default is 20 minute.`,
+					Description: `Billing mode of a node. ## Timeouts This resource provides the following timeouts configuration options: - ` + "`" + `create` + "`" + ` - Default is 20 minute. - ` + "`" + `delete` + "`" + ` - Default is 20 minute. ## Import Node_pool can be imported using the cluster and node_pool id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_cce_node_pool_v3.node_pool_1 <cluster-id>/<node_pool-id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -8519,6 +8590,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "nat_gateway_id",
+					Description: `(Required) ID of the nat gateway this dnat rule belongs to. Changing this creates a new dnat rule.`,
+				},
+				resource.Attribute{
 					Name:        "floating_ip_id",
 					Description: `(Required) Specifies the ID of the floating IP address. Changing this creates a new resource.`,
 				},
@@ -8527,42 +8602,38 @@ var (
 					Description: `(Required) Specifies port used by ECSs or BMSs to provide services for external systems. Changing this creates a new resource.`,
 				},
 				resource.Attribute{
-					Name:        "nat_gateway_id",
-					Description: `(Required) ID of the nat gateway this dnat rule belongs to. Changing this creates a new dnat rule.`,
+					Name:        "external_service_port",
+					Description: `(Required) Specifies port used by ECSs or BMSs to provide services for external systems. Changing this creates a new dnat rule.`,
 				},
 				resource.Attribute{
 					Name:        "port_id",
-					Description: `(Optional) Specifies the port ID of an ECS or a BMS. This parameter and private_ip are alternative. Changing this creates a new dnat rule.`,
+					Description: `(Optional) Specifies the port ID of an ECS or a BMS. This parameter and ` + "`" + `private_ip` + "`" + ` are alternative. Changing this creates a new dnat rule.`,
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `(Optional) Specifies the private IP address of a user, for example, the IP address of a VPC for dedicated connection. This parameter and port_id are alternative. Changing this creates a new dnat rule.`,
+					Description: `(Optional) Specifies the private IP address of a user, for example, the IP address of a VPC for dedicated connection. This parameter and ` + "`" + `port_id` + "`" + ` are alternative. Changing this creates a new dnat rule.`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `(Required) Specifies the protocol type. Currently, TCP, UDP, and ANY are supported. The protocol number of TCP, UDP, and ANY is 6, 17, and 0, respectively. Changing this creates a new dnat rule.`,
-				},
-				resource.Attribute{
-					Name:        "external_service_port",
-					Description: `(Required) Specifies port used by ECSs or BMSs to provide services for external systems. Changing this creates a new dnat rule. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Required) Specifies the protocol type. Currently, TCP, UDP, and ANY are supported. The protocol number of TCP, UDP, and ANY is 6, 17, and 0, respectively. Changing this creates a new dnat rule. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
-					Description: `Dnat rule creation time.`,
+					Description: `DNAT rule creation time.`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Dnat rule status. ## Import Dnat can be imported using the following format: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_nat_dnat_rule_v2.dnat_1 f4f783a7-b908-4215-b018-724960e5df4a ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `DNAT rule status. ## Import DNAT can be imported using the following format: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_nat_dnat_rule_v2.dnat_1 f4f783a7-b908-4215-b018-724960e5df4a ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "created_at",
-					Description: `Dnat rule creation time.`,
+					Description: `DNAT rule creation time.`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Dnat rule status. ## Import Dnat can be imported using the following format: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_nat_dnat_rule_v2.dnat_1 f4f783a7-b908-4215-b018-724960e5df4a ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `DNAT rule status. ## Import DNAT can be imported using the following format: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_nat_dnat_rule_v2.dnat_1 f4f783a7-b908-4215-b018-724960e5df4a ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -8596,16 +8667,16 @@ var (
 					Description: `(Required) The specification of the nat gateway, valid values are "1", "2", "3", "4" (for Small, Medium, Large, Extra-Large)`,
 				},
 				resource.Attribute{
-					Name:        "tenant_id",
-					Description: `(Optional) The target tenant/project ID in which to allocate the nat gateway. Changing this creates a new nat gateway .`,
-				},
-				resource.Attribute{
 					Name:        "router_id",
 					Description: `(Required) ID of the router/VPC this nat gateway belongs to. Changing this creates a new nat gateway.`,
 				},
 				resource.Attribute{
 					Name:        "internal_network_id",
-					Description: `(Required) ID of the subnet (!) this nat gateway connects to. Changing this creates a new nat gateway. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) ID of the subnet (!) this nat gateway connects to. Changing this creates a new nat gateway.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) The target tenant/project ID in which to allocate the nat gateway. Changing this creates a new nat gateway . ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -10230,6 +10301,14 @@ var (
 					Description: `(Optional) Whether enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.`,
 				},
 				resource.Attribute{
+					Name:        "encryption",
+					Description: `(Optional) Whether enable default server-side encryption of the bucket in SSE-KMS mode.`,
+				},
+				resource.Attribute{
+					Name:        "kms_key_id",
+					Description: `(Optional) Specifies the ID of a kms key. If omitted, the default master key will be used.`,
+				},
+				resource.Attribute{
 					Name:        "logging",
 					Description: `(Optional) A settings of bucket logging (documented below).`,
 				},
@@ -10250,8 +10329,12 @@ var (
 					Description: `(Optional) A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. Default to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "multi_az",
+					Description: `(Optional) Whether enable the multi-AZ mode for the bucket. When the multi-AZ mode is enabled, data in the bucket is duplicated and stored in multiple AZs. Changing this creates a new bucket.`,
+				},
+				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) If specified, the region this bucket should reside in. Otherwise, the region used by the provider. The ` + "`" + `logging` + "`" + ` object supports the following:`,
+					Description: `(Optional) If specified, the region this bucket should reside in. Otherwise, the region used by the provider. Changing this creates a new bucket. The ` + "`" + `logging` + "`" + ` object supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "target_bucket",
@@ -10275,7 +10358,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "routing_rules",
-					Description: `(Optional) A JSON or XML format containing routing rules describing redirect behavior and when redirects are applied. Each rule contains a ` + "`" + `Condition` + "`" + ` and a ` + "`" + `Redirect` + "`" + ` as shown in the following table: Parameter | Key -|- Condition | KeyPrefixEquals, HttpErrorCodeReturnedEquals Redirect | Protocol, HostName, ReplaceKeyPrefixWith, ReplaceKeyWith, HttpRedirectCode The ` + "`" + `cors_rule` + "`" + ` object supports the following:`,
+					Description: `(Optional) A JSON or XML format containing routing rules describing redirect behavior and when redirects are applied. Each rule contains a ` + "`" + `Condition` + "`" + ` and a ` + "`" + `Redirect` + "`" + ` as shown in the following table: Parameter | Key --- | --- Condition | KeyPrefixEquals, HttpErrorCodeReturnedEquals Redirect | Protocol, HostName, ReplaceKeyPrefixWith, ReplaceKeyWith, HttpRedirectCode The ` + "`" + `cors_rule` + "`" + ` object supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -10323,7 +10406,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `The region this bucket resides in. ## Import OBS bucket can be imported using the ` + "`" + `bucket` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_obs_bucket.bucket bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The region this bucket resides in. ## Import OBS bucket can be imported using the ` + "`" + `bucket` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_obs_bucket.bucket bucket-name ` + "`" + `` + "`" + `` + "`" + ` Note that the imported state may not be identical to your resource definition, due to some attrubutes missing from the API response. The missing attributes include ` + "`" + `acl` + "`" + ` and ` + "`" + `force_destroy` + "`" + `. It is generally recommended running ` + "`" + `terraform plan` + "`" + ` after importing an OBS bucket. Also you can ignore changes as below. ` + "`" + `` + "`" + `` + "`" + ` resource "flexibleengine_obs_bucket" "bucket" { ... lifecycle { ignore_changes = [ acl, force_destroy, ] } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -10337,7 +10420,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `The region this bucket resides in. ## Import OBS bucket can be imported using the ` + "`" + `bucket` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_obs_bucket.bucket bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The region this bucket resides in. ## Import OBS bucket can be imported using the ` + "`" + `bucket` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_obs_bucket.bucket bucket-name ` + "`" + `` + "`" + `` + "`" + ` Note that the imported state may not be identical to your resource definition, due to some attrubutes missing from the API response. The missing attributes include ` + "`" + `acl` + "`" + ` and ` + "`" + `force_destroy` + "`" + `. It is generally recommended running ` + "`" + `terraform plan` + "`" + ` after importing an OBS bucket. Also you can ignore changes as below. ` + "`" + `` + "`" + `` + "`" + ` resource "flexibleengine_obs_bucket" "bucket" { ... lifecycle { ignore_changes = [ acl, force_destroy, ] } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -10435,14 +10518,12 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_rds_instance_v1",
-			Category:         "Relational Database Service (RDS)",
+			Category:         "Deprecated",
 			ShortDescription: ``,
 			Description:      ``,
 			Icon:             "Database-RDS .svg",
 			Keywords: []string{
-				"relational",
-				"database",
-				"service",
+				"deprecated",
 				"rds",
 				"instance",
 				"v1",
@@ -10721,20 +10802,20 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "availability_zone",
-					Description: `(Required) Specifies the AZ name. Changing this parameter will create a new resource.`,
+					Name:        "name",
+					Description: `(Required) Specifies the DB instance name. The DB instance name of the same type must be unique for the same tenant. The value must be 4 to 64 characters in length and start with a letter. It is case-sensitive and can contain only letters, digits, hyphens (-), and underscores (_). Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `(Required) Specifies the specification code. Services will be interrupted for 5 to 10 minutes when you change RDS instance flavor.`,
 				},
 				resource.Attribute{
 					Name:        "db",
 					Description: `(Required) Specifies the database information. Structure is documented below. Changing this parameter will create a new resource.`,
 				},
 				resource.Attribute{
-					Name:        "flavor",
-					Description: `(Required) Specifies the specification code. Changing this parameter will create a new resource.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Specifies the DB instance name. The DB instance name of the same type must be unique for the same tenant. The value must be 4 to 64 characters in length and start with a letter. It is case-sensitive and can contain only letters, digits, hyphens (-), and underscores (_). Changing this parameter will create a new resource.`,
+					Name:        "availability_zone",
+					Description: `(Required) Specifies the list of AZ name. Changing this parameter will create a new resource.`,
 				},
 				resource.Attribute{
 					Name:        "security_group_id",
@@ -10754,7 +10835,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_strategy",
-					Description: `(Optional) Specifies the advanced backup policy. Structure is documented below. Changing this parameter will create a new resource.`,
+					Description: `(Optional) Specifies the advanced backup policy. Structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "ha_replication_mode",
@@ -10777,10 +10858,6 @@ var (
 					Description: `(Optional) A mapping of tags to assign to the RDS instance. Each tag is represented by one key-value pair. The ` + "`" + `db` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
-					Name:        "password",
-					Description: `(Required) Specifies the database password. The value cannot be empty and should contain 8 to 32 characters, including uppercase and lowercase letters, digits, and the following special characters: ~!@#%^`,
-				},
-				resource.Attribute{
 					Name:        "type",
 					Description: `(Required) Specifies the DB engine. Value: MySQL, PostgreSQL, SQLServer. Changing this parameter will create a new resource.`,
 				},
@@ -10789,28 +10866,32 @@ var (
 					Description: `(Required) Specifies the database version. MySQL databases support MySQL 5.6 and 5.7, example values: "5.6", "5.7". PostgreSQL databases support PostgreSQL 9.5, 9.6, 10 and 11, example values: "9.5", "9.6", "10", "11". Microsoft SQL Server databases support 2014 SE and 2014 EE, example values: "2014_SE", "2014_EE". Changing this parameter will create a new resource.`,
 				},
 				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) Specifies the database password. The value cannot be empty and should contain 8 to 32 characters, including uppercase and lowercase letters, digits, and the following special characters: ~!@#%^`,
+				},
+				resource.Attribute{
 					Name:        "port",
 					Description: `(Optional) Specifies the database port information. The MySQL database port ranges from 1024 to 65535 (excluding 12017 and 33071, which are occupied by the RDS system and cannot be used). The PostgreSQL database port ranges from 2100 to 9500. The Microsoft SQL Server database port can be 1433 or ranges from 2100 to 9500, excluding 5355 and 5985. If this parameter is not set, the default value is as follows: For MySQL, the default value is 3306. For PostgreSQL, the default value is 5432. For Microsoft SQL Server, the default value is 1433. Changing this parameter will create a new resource. The ` + "`" + `volume` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
-					Name:        "disk_encryption_id",
-					Description: `(Optional) Specifies the key ID for disk encryption. Changing this parameter will create a new resource.`,
-				},
-				resource.Attribute{
 					Name:        "size",
-					Description: `(Required) Specifies the volume size. Its value range is from 40 GB to 4000 GB. The value must be a multiple of 10. Changing this parameter will create a new resource.`,
+					Description: `(Required) Specifies the volume size. Its value range is from 40 GB to 4000 GB. The value must be a multiple of 10 and greater than the original size.`,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Specifies the volume type. Its value can be any of the following and is case-sensitive: COMMON: indicates the SATA type. ULTRAHIGH: indicates the SSD type. Changing this parameter will create a new resource. The ` + "`" + `backup_strategy` + "`" + ` block supports:`,
+					Description: `(Required) Specifies the volume type. Its value can be any of the following and is case-sensitive: COMMON: indicates the SATA type. ULTRAHIGH: indicates the SSD type. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "disk_encryption_id",
+					Description: `(Optional) Specifies the key ID for disk encryption. Changing this parameter will create a new resource. The ` + "`" + `backup_strategy` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "keep_days",
-					Description: `(Optional) Specifies the retention days for specific backup files. The value range is from 0 to 732. If this parameter is not specified or set to 0, the automated backup policy is disabled. NOTICE: Primary/standby DB instances of Microsoft SQL Server do not support disabling the automated backup policy. Changing this parameter will create a new resource.`,
+					Description: `(Optional) Specifies the retention days for specific backup files. The value range is from 0 to 732. If this parameter is not specified or set to 0, the automated backup policy is disabled. NOTICE: Primary/standby DB instances of Microsoft SQL Server do not support disabling the automated backup policy.`,
 				},
 				resource.Attribute{
 					Name:        "start_time",
-					Description: `(Required) Specifies the backup time window. Automated backups will be triggered during the backup time window. It must be a valid value in the &quot;hh:mm-HH:MM&quot; format. The current time is in the UTC format. The HH value must be 1 greater than the hh value. The values of mm and MM must be the same and must be set to any of the following: 00, 15, 30, or 45. Example value: 08:15-09:15 23:00-00:00. Changing this parameter will create a new resource. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Required) Specifies the backup time window. Automated backups will be triggered during the backup time window. It must be a valid value in the`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -11057,7 +11138,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "flavor",
-					Description: `(Required) Specifies the specification code. Changing this parameter will create a new resource.`,
+					Description: `(Required) Specifies the specification code.`,
 				},
 				resource.Attribute{
 					Name:        "replica_of_id",
@@ -12481,7 +12562,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bandwidth",
-					Description: `(Required) The bandwidth object. The ` + "`" + `publicip` + "`" + ` block supports:`,
+					Description: `(Required) The bandwidth object.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The key/value pairs to associate with the EIP. The ` + "`" + `publicip` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -12505,77 +12590,29 @@ var (
 				},
 				resource.Attribute{
 					Name:        "share_type",
-					Description: `(Required) Whether the bandwidth is shared or exclusive. Changing this creates a new eip.`,
+					Description: `(Required) Specifies the bandwidth type. The value is`,
 				},
 				resource.Attribute{
 					Name:        "charge_mode",
-					Description: `(Optional) This is a reserved field. If the system supports charging by traffic and this field is specified, then you are charged by traffic for elastic IP addresses. Changing this creates a new eip. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Specifies whether the bandwidth is billed by traffic or by bandwidth size. Only`,
 				},
 				resource.Attribute{
-					Name:        "region",
-					Description: `See Argument Reference above.`,
+					Name:        "id",
+					Description: `The resource ID in UUID format.`,
 				},
 				resource.Attribute{
-					Name:        "publicip/type",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "publicip/ip_address",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "publicip/port_id",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "bandwidth/name",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "bandwidth/size",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "bandwidth/share_type",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "bandwidth/charge_mode",
-					Description: `See Argument Reference above. ## Import EIPs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_vpc_eip_v1.eip_1 2c7f39f3-702b-48d1-940c-b50384177ee1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "status",
+					Description: `The status of eip. ## Import EIPs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_vpc_eip_v1.eip_1 2c7f39f3-702b-48d1-940c-b50384177ee1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "region",
-					Description: `See Argument Reference above.`,
+					Name:        "id",
+					Description: `The resource ID in UUID format.`,
 				},
 				resource.Attribute{
-					Name:        "publicip/type",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "publicip/ip_address",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "publicip/port_id",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "bandwidth/name",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "bandwidth/size",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "bandwidth/share_type",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "bandwidth/charge_mode",
-					Description: `See Argument Reference above. ## Import EIPs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_vpc_eip_v1.eip_1 2c7f39f3-702b-48d1-940c-b50384177ee1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "status",
+					Description: `The status of eip. ## Import EIPs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_vpc_eip_v1.eip_1 2c7f39f3-702b-48d1-940c-b50384177ee1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -13009,6 +13046,647 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_waf_certificate",
+			Category:         "Web Application Firewall (WAF)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"web",
+				"application",
+				"firewall",
+				"waf",
+				"certificate",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, String) Specifies the certificate name. The maximum length is 256 characters. Only digits, letters, underscores(` + "`" + `_` + "`" + `), and hyphens(` + "`" + `-` + "`" + `) are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `(Required, String, ForceNew) Specifies the certificate content. Changing this creates a new certificate.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `(Required, String, ForceNew) Specifies the private key. Changing this creates a new certificate. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The certificate ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "expiration",
+					Description: `Indicates the time when the certificate expires. ## Import Certificates can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import flexibleengine_waf_certificate.cert_1 9251a0ed5aa640b68a35cf2eb6a3b733 ` + "`" + `` + "`" + `` + "`" + ` Note that the imported state is not identical to your resource definition, due to security reason. The missing attributes include ` + "`" + `certificate` + "`" + `, and ` + "`" + `private_key` + "`" + `. You can ignore changes as below. ` + "`" + `` + "`" + `` + "`" + ` resource "flexibleengine_waf_certificate" "cert_1" { ... lifecycle { ignore_changes = [ certificate, private_key, ] } } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The certificate ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "expiration",
+					Description: `Indicates the time when the certificate expires. ## Import Certificates can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import flexibleengine_waf_certificate.cert_1 9251a0ed5aa640b68a35cf2eb6a3b733 ` + "`" + `` + "`" + `` + "`" + ` Note that the imported state is not identical to your resource definition, due to security reason. The missing attributes include ` + "`" + `certificate` + "`" + `, and ` + "`" + `private_key` + "`" + `. You can ignore changes as below. ` + "`" + `` + "`" + `` + "`" + ` resource "flexibleengine_waf_certificate" "cert_1" { ... lifecycle { ignore_changes = [ certificate, private_key, ] } } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_waf_domain",
+			Category:         "Web Application Firewall (WAF)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"web",
+				"application",
+				"firewall",
+				"waf",
+				"domain",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "domain",
+					Description: `(Required, String, ForceNew) Specifies the domain name to be protected. For example, www.example.com or`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `(Required, List) Specifies an array of origin web servers. The object structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_id",
+					Description: `(Optional, String) Specifies the certificate ID. This parameter is mandatory when ` + "`" + `client_protocol` + "`" + ` is set to HTTPS.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Optional, String, ForceNew) Specifies the policy ID associated with the domain. If not specified, a new policy will be created automatically. Changing this create a new domain.`,
+				},
+				resource.Attribute{
+					Name:        "keep_proxy",
+					Description: `(Optional, Bool) Specifies whether to retain the policy when deleting a domain name. Defaults to true.`,
+				},
+				resource.Attribute{
+					Name:        "proxy",
+					Description: `(Optional, Bool) Specifies whether a proxy is configured.`,
+				},
+				resource.Attribute{
+					Name:        "sip_header_name",
+					Description: `(Optional, String) Specifies the type of the source IP header. This parameter is required only when proxy is set to true. The options are as follows:`,
+				},
+				resource.Attribute{
+					Name:        "sip_header_list",
+					Description: `(Optional, List) Specifies an array of HTTP request header for identifying the real source IP address. This parameter is required only when proxy is set to true. - If ` + "`" + `sip_header_name` + "`" + ` is`,
+				},
+				resource.Attribute{
+					Name:        "client_protocol",
+					Description: `(Required, String) Protocol type of the client. The options are`,
+				},
+				resource.Attribute{
+					Name:        "server_protocol",
+					Description: `(Required, String) Protocol used by WAF to forward client requests to the server. The options are`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `(Required, String) IP address or domain name of the web server that the client accesses. For example, 192.168.1.1 or www.a.com.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required, Int) Port number used by the web server. The value ranges from 0 to 65535, for example, 8080. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the domain.`,
+				},
+				resource.Attribute{
+					Name:        "cname",
+					Description: `The CNAME value.`,
+				},
+				resource.Attribute{
+					Name:        "txt_code",
+					Description: `The TXT record. This attribute is returned only when proxy is set to true.`,
+				},
+				resource.Attribute{
+					Name:        "sub_domain",
+					Description: `The subdomain name. This attribute is returned only when proxy is set to true.`,
+				},
+				resource.Attribute{
+					Name:        "protect_status",
+					Description: `The WAF mode. -1: bypassed, 0: disabled, 1: enabled.`,
+				},
+				resource.Attribute{
+					Name:        "access_status",
+					Description: `Whether a domain name is connected to WAF. 0: The domain name is not connected to WAF, 1: The domain name is connected to WAF.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `The protocol type of the client. The options are HTTP, HTTPS, and HTTP&HTTPS. ## Import Domains can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import flexibleengine_waf_domain.dom_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the domain.`,
+				},
+				resource.Attribute{
+					Name:        "cname",
+					Description: `The CNAME value.`,
+				},
+				resource.Attribute{
+					Name:        "txt_code",
+					Description: `The TXT record. This attribute is returned only when proxy is set to true.`,
+				},
+				resource.Attribute{
+					Name:        "sub_domain",
+					Description: `The subdomain name. This attribute is returned only when proxy is set to true.`,
+				},
+				resource.Attribute{
+					Name:        "protect_status",
+					Description: `The WAF mode. -1: bypassed, 0: disabled, 1: enabled.`,
+				},
+				resource.Attribute{
+					Name:        "access_status",
+					Description: `Whether a domain name is connected to WAF. 0: The domain name is not connected to WAF, 1: The domain name is connected to WAF.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `The protocol type of the client. The options are HTTP, HTTPS, and HTTP&HTTPS. ## Import Domains can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import flexibleengine_waf_domain.dom_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_waf_policy",
+			Category:         "Web Application Firewall (WAF)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"web",
+				"application",
+				"firewall",
+				"waf",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, String) Specifies the policy name. The maximum length is 256 characters. Only digits, letters, underscores(_), and hyphens(-) are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "protection_mode",
+					Description: `(Optional, String) Specifies the protective action after a rule is matched. Valid values are: -`,
+				},
+				resource.Attribute{
+					Name:        "level",
+					Description: `(Optional, Int) Specifies the protection level. Valid values are: -`,
+				},
+				resource.Attribute{
+					Name:        "full_detection",
+					Description: `(Optional, Bool) Specifies the detection mode in Precise Protection. Valid values are:`,
+				},
+				resource.Attribute{
+					Name:        "domains",
+					Description: `(Optional, List) An array of domain IDs. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The policy ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "protection_status",
+					Description: `The protection switches. The object structure is documented below. The ` + "`" + `protection_status` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "basic_web_protection",
+					Description: `Indicates whether Basic Web Protection is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "general_check",
+					Description: `Indicates whether General Check in Basic Web Protection is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "crawler_engine",
+					Description: `Indicates whether the Search Engine switch in Basic Web Protection is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "crawler_scanner",
+					Description: `Indicates whether the Scanner switch in Basic Web Protection is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "crawler_script",
+					Description: `Indicates whether the Script Tool switch in Basic Web Protection is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "crawler_other",
+					Description: `Indicates whether detection of other crawlers in Basic Web Protection is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "webshell",
+					Description: `Indicates whether webshell detection in Basic Web Protection is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "cc_protection",
+					Description: `Indicates whether CC Attack Protection is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "precise_protection",
+					Description: `Indicates whether Precise Protection is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "blacklist",
+					Description: `Indicates whether Blacklist and Whitelist is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "data_masking",
+					Description: `Indicates whether Data Masking is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "false_alarm_masking",
+					Description: `Indicates whether False Alarm Masking is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "web_tamper_protection",
+					Description: `Indicates whether Web Tamper Protection is enabled. ## Import Policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import flexibleengine_waf_policy.policy_1 c5946141e52441d9b13c5e9d4e9560c7 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The policy ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "protection_status",
+					Description: `The protection switches. The object structure is documented below. The ` + "`" + `protection_status` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "basic_web_protection",
+					Description: `Indicates whether Basic Web Protection is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "general_check",
+					Description: `Indicates whether General Check in Basic Web Protection is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "crawler_engine",
+					Description: `Indicates whether the Search Engine switch in Basic Web Protection is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "crawler_scanner",
+					Description: `Indicates whether the Scanner switch in Basic Web Protection is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "crawler_script",
+					Description: `Indicates whether the Script Tool switch in Basic Web Protection is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "crawler_other",
+					Description: `Indicates whether detection of other crawlers in Basic Web Protection is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "webshell",
+					Description: `Indicates whether webshell detection in Basic Web Protection is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "cc_protection",
+					Description: `Indicates whether CC Attack Protection is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "precise_protection",
+					Description: `Indicates whether Precise Protection is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "blacklist",
+					Description: `Indicates whether Blacklist and Whitelist is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "data_masking",
+					Description: `Indicates whether Data Masking is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "false_alarm_masking",
+					Description: `Indicates whether False Alarm Masking is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "web_tamper_protection",
+					Description: `Indicates whether Web Tamper Protection is enabled. ## Import Policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import flexibleengine_waf_policy.policy_1 c5946141e52441d9b13c5e9d4e9560c7 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_waf_rule_alarm_masking",
+			Category:         "Web Application Firewall (WAF)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"web",
+				"application",
+				"firewall",
+				"waf",
+				"rule",
+				"alarm",
+				"masking",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Required, String, ForceNew) Specifies the WAF policy ID. Changing this creates a new rule.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required, String) Specifies a misreported URL excluding a domain name.`,
+				},
+				resource.Attribute{
+					Name:        "event_id",
+					Description: `(Required, String) Specifies the event ID. It is the ID of a misreported event in Events whose type is not`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The rule ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "event_type",
+					Description: `The event type. ## Import Alarm Masking Rules can be imported using the policy ID and rule ID separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + `sh terraform import flexibleengine_waf_rule_alarm_masking.rule_1 44d887434169475794b2717438f7fa78/6cdc116040d444f6b3e1bf1dd629f1d0 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The rule ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "event_type",
+					Description: `The event type. ## Import Alarm Masking Rules can be imported using the policy ID and rule ID separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + `sh terraform import flexibleengine_waf_rule_alarm_masking.rule_1 44d887434169475794b2717438f7fa78/6cdc116040d444f6b3e1bf1dd629f1d0 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_waf_rule_blacklist",
+			Category:         "Web Application Firewall (WAF)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"web",
+				"application",
+				"firewall",
+				"waf",
+				"rule",
+				"blacklist",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Required, String, ForceNew) Specifies the WAF policy ID. Changing this creates a new rule.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `(Required, String) Specifies the IP address or range. For example, 192.168.0.125 or 192.168.0.0/24.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Optional, Int) Specifies the protective action. 1: Whitelist, 0: Blacklist. If you do not configure the parameter, the value is Blacklist by default. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The rule ID in UUID format. ## Import Blacklist Rules can be imported using the policy ID and rule ID separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + `sh terraform import flexibleengine_waf_rule_blacklist.rule_1 523083f4543c497faecd25fcfcc0b2a0/e7f49f736bc74b828ce45e0e5c49d156 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The rule ID in UUID format. ## Import Blacklist Rules can be imported using the policy ID and rule ID separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + `sh terraform import flexibleengine_waf_rule_blacklist.rule_1 523083f4543c497faecd25fcfcc0b2a0/e7f49f736bc74b828ce45e0e5c49d156 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_waf_rule_cc_protection",
+			Category:         "Web Application Firewall (WAF)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"web",
+				"application",
+				"firewall",
+				"waf",
+				"rule",
+				"cc",
+				"protection",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Required, String, ForceNew) Specifies the WAF policy ID. Changing this creates a new rule.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required, String) Specifies the URL to which the rule applies. The path ending with`,
+				},
+				resource.Attribute{
+					Name:        "limit_num",
+					Description: `(Required, Int) Specifies the number of requests allowed from a web visitor in a rate limiting period. The value ranges from 0 to 2^32.`,
+				},
+				resource.Attribute{
+					Name:        "limit_period",
+					Description: `(Required, Int) Specifies the rate limiting period. The value ranges from 0 seconds to 2^32 seconds.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `(Required, String) Specifies the rate limit mode. Valid Options are:`,
+				},
+				resource.Attribute{
+					Name:        "cookie",
+					Description: `(Optional, String) Specifies the cookie name. This field is mandatory when ` + "`" + `mode` + "`" + ` is set to`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Optional, String) Specifies the category content. The format is as follows: http://www.example.com/path. This field is mandatory when ` + "`" + `mode` + "`" + ` is set to`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required, String) Specifies the action when the number of requests reaches the upper limit. Valid Options are:`,
+				},
+				resource.Attribute{
+					Name:        "block_time",
+					Description: `(Optional, Int) Specifies the lock duration. The value ranges from 0 seconds to 2^32 seconds.`,
+				},
+				resource.Attribute{
+					Name:        "block_page_type",
+					Description: `(Optional, String) Specifies the type of the returned page. The options are ` + "`" + `application/json` + "`" + `, ` + "`" + `text/html` + "`" + `, and ` + "`" + `text/xml` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "block_page_content",
+					Description: `(Optional, String) Specifies the content of the returned page. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The rule ID in UUID format. ## Import CC Attack Protection Rules can be imported using the policy ID and rule ID separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + `sh terraform import flexibleengine_waf_rule_cc_protection.rule_1 523083f4543c497faecd25fcfcc0b2a0/dd3c14e91550453f81cff5fc3b7c3e89 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The rule ID in UUID format. ## Import CC Attack Protection Rules can be imported using the policy ID and rule ID separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + `sh terraform import flexibleengine_waf_rule_cc_protection.rule_1 523083f4543c497faecd25fcfcc0b2a0/dd3c14e91550453f81cff5fc3b7c3e89 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_waf_rule_data_masking",
+			Category:         "Web Application Firewall (WAF)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"web",
+				"application",
+				"firewall",
+				"waf",
+				"rule",
+				"data",
+				"masking",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Required, String, ForceNew) Specifies the WAF policy ID. Changing this creates a new rule.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required, String) Specifies the URL to which the data masking rule applies (exact match by default).`,
+				},
+				resource.Attribute{
+					Name:        "field",
+					Description: `(Required, String) Specifies the masked field. The options are`,
+				},
+				resource.Attribute{
+					Name:        "subfield",
+					Description: `(Required, String) Specifies the masked subfield. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The rule ID in UUID format. ## Import Data Masking Rules can be imported using the policy ID and rule ID separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + `sh terraform import flexibleengine_waf_rule_data_masking.rule_1 523083f4543c497faecd25fcfcc0b2a0/c6482bd0059148559b625f78e8ce92be ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The rule ID in UUID format. ## Import Data Masking Rules can be imported using the policy ID and rule ID separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + `sh terraform import flexibleengine_waf_rule_data_masking.rule_1 523083f4543c497faecd25fcfcc0b2a0/c6482bd0059148559b625f78e8ce92be ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_waf_rule_precise_protection",
+			Category:         "Web Application Firewall (WAF)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"web",
+				"application",
+				"firewall",
+				"waf",
+				"rule",
+				"precise",
+				"protection",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Required, String, ForceNew) Specifies the WAF policy ID. Changing this creates a new rule.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, String) Specifies the name of a precise protection rule. The maximum length is 256 characters. Only digits, letters, underscores (_), and hyphens (-) are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Optional, String) Specifies the protective action after the precise protection rule is matched. The value can be`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Required, Int) Specifies the priority of a rule being executed. Smaller values correspond to higher priorities. If two rules are assigned with the same priority, the rule added earlier has higher priority, the rule added earlier has higher priority. The value ranges from 0 to 65535.`,
+				},
+				resource.Attribute{
+					Name:        "conditions",
+					Description: `(Required, List) Specifies the condition parameters. The object structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Optional, String) Specifies the UTC time when the precise protection rule takes effect. The time must be in "yyyy-MM-dd HH:mm:ss" format. If not specified, the rule takes effect immediately.`,
+				},
+				resource.Attribute{
+					Name:        "end_time",
+					Description: `(Optional, String) Specifies the UTC time when the precise protection rule expires. The time must be in "yyyy-MM-dd HH:mm:ss" format. The ` + "`" + `conditions` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "field",
+					Description: `(Required, String) Specifies the matched field. The value can be`,
+				},
+				resource.Attribute{
+					Name:        "subfield",
+					Description: `(Optional, String) Specifies the matched subfield. - If ` + "`" + `field` + "`" + ` is set to`,
+				},
+				resource.Attribute{
+					Name:        "logic",
+					Description: `(Required, String) Specifies the logic relationship. The value can be`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Required, String) Specifies the content matching the condition. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The rule ID in UUID format. ## Import Precise Protection Rules can be imported using the policy ID and rule ID separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + `sh terraform import flexibleengine_waf_rule_precise_protection.rule_1 523083f4543c497faecd25fcfcc0b2a0/620801321b254f8fbc7dafa6bbebe652 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The rule ID in UUID format. ## Import Precise Protection Rules can be imported using the policy ID and rule ID separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + `sh terraform import flexibleengine_waf_rule_precise_protection.rule_1 523083f4543c497faecd25fcfcc0b2a0/620801321b254f8fbc7dafa6bbebe652 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_waf_rule_web_tamper_protection",
+			Category:         "Web Application Firewall (WAF)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"web",
+				"application",
+				"firewall",
+				"waf",
+				"rule",
+				"tamper",
+				"protection",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Required, String, ForceNew) Specifies the WAF policy ID. Changing this creates a new rule.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `(Required, String, ForceNew) Specifies the domain name. Changing this creates a new rule.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required, String, ForceNew) Specifies the URL protected by the web tamper protection rule, excluding a domain name. Changing this creates a new rule. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The rule ID in UUID format. ## Import Web Tamper Protection Rules can be imported using the policy ID and rule ID separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + `sh terraform import flexibleengine_waf_rule_web_tamper_protection.rule_1 523083f4543c497faecd25fcfcc0b2a0/5b3b07fedc3642d18e424b2e45aebc8a ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The rule ID in UUID format. ## Import Web Tamper Protection Rules can be imported using the policy ID and rule ID separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + `sh terraform import flexibleengine_waf_rule_web_tamper_protection.rule_1 523083f4543c497faecd25fcfcc0b2a0/5b3b07fedc3642d18e424b2e45aebc8a ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
 	}
 
 	resourcesMap = map[string]int{
@@ -13016,110 +13694,120 @@ var (
 		"flexibleengine_antiddos_v1":                        0,
 		"flexibleengine_as_configuration_v1":                1,
 		"flexibleengine_as_group_v1":                        2,
-		"flexibleengine_as_policy_v1":                       3,
-		"flexibleengine_blockstorage_volume_v2":             4,
-		"flexibleengine_cce_cluster_v3":                     5,
-		"flexibleengine_cce_node_pool_v3":                   6,
-		"flexibleengine_cce_nodes_v3":                       7,
-		"flexibleengine_ces_alarmrule":                      8,
-		"flexibleengine_compute_bms_server_v2":              9,
-		"flexibleengine_compute_floatingip_associate_v2":    10,
-		"flexibleengine_compute_floatingip_v2":              11,
-		"flexibleengine_compute_instance_v2":                12,
-		"flexibleengine_compute_interface_attach_v2":        13,
-		"flexibleengine_compute_keypair_v2":                 14,
-		"flexibleengine_compute_servergroup_v2":             15,
-		"flexibleengine_compute_volume_attach_v2":           16,
-		"flexibleengine_csbs_backup_policy_v1":              17,
-		"flexibleengine_csbs_backup_v1":                     18,
-		"flexibleengine_css_cluster_v1":                     19,
-		"flexibleengine_css_snapshot_v1":                    20,
-		"flexibleengine_cts_tracker_v1":                     21,
-		"flexibleengine_dcs_instance_v1":                    22,
-		"flexibleengine_dds_instance_v3":                    23,
-		"flexibleengine_dns_ptrrecord_v2":                   24,
-		"flexibleengine_dns_recordset_v2":                   25,
-		"flexibleengine_dns_zone_v2":                        26,
-		"flexibleengine_drs_replication_v2":                 27,
-		"flexibleengine_drs_replicationconsistencygroup_v2": 28,
-		"flexibleengine_dws_cluster_v1":                     29,
-		"flexibleengine_elb_backend":                        30,
-		"flexibleengine_elb_health":                         31,
-		"flexibleengine_elb_listener":                       32,
-		"flexibleengine_elb_loadbalancer":                   33,
-		"flexibleengine_fw_firewall_group_v2":               34,
-		"flexibleengine_fw_policy_v2":                       35,
-		"flexibleengine_fw_rule_v2":                         36,
-		"flexibleengine_identity_agency_v3":                 37,
-		"flexibleengine_identity_group_membership_v3":       38,
-		"flexibleengine_identity_group_v3":                  39,
-		"flexibleengine_identity_role_assignment_v3":        40,
-		"flexibleengine_identity_role_v3":                   41,
-		"flexibleengine_identity_user_v3":                   42,
-		"flexibleengine_images_image_v2":                    43,
-		"flexibleengine_kms_key_v1":                         44,
-		"flexibleengine_lb_certificate_v2":                  45,
-		"flexibleengine_lb_l7policy_v2":                     46,
-		"flexibleengine_lb_l7rule_v2":                       47,
-		"flexibleengine_lb_listener_v2":                     48,
-		"flexibleengine_lb_loadbalancer_v2":                 49,
-		"flexibleengine_lb_member_v2":                       50,
-		"flexibleengine_lb_monitor_v2":                      51,
-		"flexibleengine_lb_pool_v2":                         52,
-		"flexibleengine_lb_whitelist_v2":                    53,
-		"flexibleengine_mls_instance_v1":                    54,
-		"flexibleengine_mrs_cluster_v1":                     55,
-		"flexibleengine_mrs_hybrid_cluster_v1":              56,
-		"flexibleengine_mrs_job_v1":                         57,
-		"flexibleengine_nat_dnat_rule_v2":                   58,
-		"flexibleengine_nat_gateway_v2":                     59,
-		"flexibleengine_nat_snat_rule_v2":                   60,
-		"flexibleengine_network_acl":                        61,
-		"flexibleengine_network_acl_rule":                   62,
-		"flexibleengine_networking_floatingip_associate_v2": 63,
-		"flexibleengine_networking_floatingip_v2":           64,
-		"flexibleengine_networking_network_v2":              65,
-		"flexibleengine_networking_port_v2":                 66,
-		"flexibleengine_networking_router_interface_v2":     67,
-		"flexibleengine_networking_router_route_v2":         68,
-		"flexibleengine_networking_router_v2":               69,
-		"flexibleengine_networking_secgroup_rule_v2":        70,
-		"flexibleengine_networking_secgroup_v2":             71,
-		"flexibleengine_networking_subnet_v2":               72,
-		"flexibleengine_networking_vip_associate_v2":        73,
-		"flexibleengine_networking_vip_v2":                  74,
-		"flexibleengine_obs_bucket":                         75,
-		"flexibleengine_obs_bucket_object":                  76,
-		"flexibleengine_rds_instance_v1":                    77,
-		"flexibleengine_rds_instance_v3":                    78,
-		"flexibleengine_rds_parametergroup_v3":              79,
-		"flexibleengine_rds_read_replica_v3":                80,
-		"flexibleengine_rts_software_config_v1":             81,
-		"flexibleengine_rts_stack_v1":                       82,
-		"flexibleengine_s3_bucket":                          83,
-		"flexibleengine_s3_bucket_object":                   84,
-		"flexibleengine_s3_bucket_policy":                   85,
-		"flexibleengine_sdrs_drill_v1":                      86,
-		"flexibleengine_sdrs_protectedinstance_v1":          87,
-		"flexibleengine_sdrs_protectiongroup_v1":            88,
-		"flexibleengine_sdrs_replication_attach_v1":         89,
-		"flexibleengine_sdrs_replication_pair_v1":           90,
-		"flexibleengine_sfs_access_rule_v2":                 91,
-		"flexibleengine_sfs_file_system_v2":                 92,
-		"flexibleengine_sfs_turbo":                          93,
-		"flexibleengine_smn_subscription_v2":                94,
-		"flexibleengine_smn_topic_v2":                       95,
-		"flexibleengine_vbs_backup_policy_v2":               96,
-		"flexibleengine_vbs_backup_v2":                      97,
-		"flexibleengine_vpc_eip_v1":                         98,
-		"flexibleengine_vpc_peering_accepter_v2":            99,
-		"flexibleengine_vpc_peering_v2":                     100,
-		"flexibleengine_vpc_route_v2":                       101,
-		"flexibleengine_vpc_subnet_v1":                      102,
-		"flexibleengine_vpc_v1":                             103,
-		"flexibleengine_vpcep_approval":                     104,
-		"flexibleengine_vpcep_endpoint":                     105,
-		"flexibleengine_vpcep_service":                      106,
+		"flexibleengine_as_lifecycle_hook_v1":               3,
+		"flexibleengine_as_policy_v1":                       4,
+		"flexibleengine_blockstorage_volume_v2":             5,
+		"flexibleengine_cce_cluster_v3":                     6,
+		"flexibleengine_cce_node_pool_v3":                   7,
+		"flexibleengine_cce_nodes_v3":                       8,
+		"flexibleengine_ces_alarmrule":                      9,
+		"flexibleengine_compute_bms_server_v2":              10,
+		"flexibleengine_compute_floatingip_associate_v2":    11,
+		"flexibleengine_compute_floatingip_v2":              12,
+		"flexibleengine_compute_instance_v2":                13,
+		"flexibleengine_compute_interface_attach_v2":        14,
+		"flexibleengine_compute_keypair_v2":                 15,
+		"flexibleengine_compute_servergroup_v2":             16,
+		"flexibleengine_compute_volume_attach_v2":           17,
+		"flexibleengine_csbs_backup_policy_v1":              18,
+		"flexibleengine_csbs_backup_v1":                     19,
+		"flexibleengine_css_cluster_v1":                     20,
+		"flexibleengine_css_snapshot_v1":                    21,
+		"flexibleengine_cts_tracker_v1":                     22,
+		"flexibleengine_dcs_instance_v1":                    23,
+		"flexibleengine_dds_instance_v3":                    24,
+		"flexibleengine_dns_ptrrecord_v2":                   25,
+		"flexibleengine_dns_recordset_v2":                   26,
+		"flexibleengine_dns_zone_v2":                        27,
+		"flexibleengine_drs_replication_v2":                 28,
+		"flexibleengine_drs_replicationconsistencygroup_v2": 29,
+		"flexibleengine_dws_cluster_v1":                     30,
+		"flexibleengine_elb_backend":                        31,
+		"flexibleengine_elb_health":                         32,
+		"flexibleengine_elb_listener":                       33,
+		"flexibleengine_elb_loadbalancer":                   34,
+		"flexibleengine_fw_firewall_group_v2":               35,
+		"flexibleengine_fw_policy_v2":                       36,
+		"flexibleengine_fw_rule_v2":                         37,
+		"flexibleengine_identity_agency_v3":                 38,
+		"flexibleengine_identity_group_membership_v3":       39,
+		"flexibleengine_identity_group_v3":                  40,
+		"flexibleengine_identity_role_assignment_v3":        41,
+		"flexibleengine_identity_role_v3":                   42,
+		"flexibleengine_identity_user_v3":                   43,
+		"flexibleengine_images_image_v2":                    44,
+		"flexibleengine_kms_key_v1":                         45,
+		"flexibleengine_lb_certificate_v2":                  46,
+		"flexibleengine_lb_l7policy_v2":                     47,
+		"flexibleengine_lb_l7rule_v2":                       48,
+		"flexibleengine_lb_listener_v2":                     49,
+		"flexibleengine_lb_loadbalancer_v2":                 50,
+		"flexibleengine_lb_member_v2":                       51,
+		"flexibleengine_lb_monitor_v2":                      52,
+		"flexibleengine_lb_pool_v2":                         53,
+		"flexibleengine_lb_whitelist_v2":                    54,
+		"flexibleengine_mls_instance_v1":                    55,
+		"flexibleengine_mrs_cluster_v1":                     56,
+		"flexibleengine_mrs_hybrid_cluster_v1":              57,
+		"flexibleengine_mrs_job_v1":                         58,
+		"flexibleengine_nat_dnat_rule_v2":                   59,
+		"flexibleengine_nat_gateway_v2":                     60,
+		"flexibleengine_nat_snat_rule_v2":                   61,
+		"flexibleengine_network_acl":                        62,
+		"flexibleengine_network_acl_rule":                   63,
+		"flexibleengine_networking_floatingip_associate_v2": 64,
+		"flexibleengine_networking_floatingip_v2":           65,
+		"flexibleengine_networking_network_v2":              66,
+		"flexibleengine_networking_port_v2":                 67,
+		"flexibleengine_networking_router_interface_v2":     68,
+		"flexibleengine_networking_router_route_v2":         69,
+		"flexibleengine_networking_router_v2":               70,
+		"flexibleengine_networking_secgroup_rule_v2":        71,
+		"flexibleengine_networking_secgroup_v2":             72,
+		"flexibleengine_networking_subnet_v2":               73,
+		"flexibleengine_networking_vip_associate_v2":        74,
+		"flexibleengine_networking_vip_v2":                  75,
+		"flexibleengine_obs_bucket":                         76,
+		"flexibleengine_obs_bucket_object":                  77,
+		"flexibleengine_rds_instance_v1":                    78,
+		"flexibleengine_rds_instance_v3":                    79,
+		"flexibleengine_rds_parametergroup_v3":              80,
+		"flexibleengine_rds_read_replica_v3":                81,
+		"flexibleengine_rts_software_config_v1":             82,
+		"flexibleengine_rts_stack_v1":                       83,
+		"flexibleengine_s3_bucket":                          84,
+		"flexibleengine_s3_bucket_object":                   85,
+		"flexibleengine_s3_bucket_policy":                   86,
+		"flexibleengine_sdrs_drill_v1":                      87,
+		"flexibleengine_sdrs_protectedinstance_v1":          88,
+		"flexibleengine_sdrs_protectiongroup_v1":            89,
+		"flexibleengine_sdrs_replication_attach_v1":         90,
+		"flexibleengine_sdrs_replication_pair_v1":           91,
+		"flexibleengine_sfs_access_rule_v2":                 92,
+		"flexibleengine_sfs_file_system_v2":                 93,
+		"flexibleengine_sfs_turbo":                          94,
+		"flexibleengine_smn_subscription_v2":                95,
+		"flexibleengine_smn_topic_v2":                       96,
+		"flexibleengine_vbs_backup_policy_v2":               97,
+		"flexibleengine_vbs_backup_v2":                      98,
+		"flexibleengine_vpc_eip_v1":                         99,
+		"flexibleengine_vpc_peering_accepter_v2":            100,
+		"flexibleengine_vpc_peering_v2":                     101,
+		"flexibleengine_vpc_route_v2":                       102,
+		"flexibleengine_vpc_subnet_v1":                      103,
+		"flexibleengine_vpc_v1":                             104,
+		"flexibleengine_vpcep_approval":                     105,
+		"flexibleengine_vpcep_endpoint":                     106,
+		"flexibleengine_vpcep_service":                      107,
+		"flexibleengine_waf_certificate":                    108,
+		"flexibleengine_waf_domain":                         109,
+		"flexibleengine_waf_policy":                         110,
+		"flexibleengine_waf_rule_alarm_masking":             111,
+		"flexibleengine_waf_rule_blacklist":                 112,
+		"flexibleengine_waf_rule_cc_protection":             113,
+		"flexibleengine_waf_rule_data_masking":              114,
+		"flexibleengine_waf_rule_precise_protection":        115,
+		"flexibleengine_waf_rule_web_tamper_protection":     116,
 	}
 )
 

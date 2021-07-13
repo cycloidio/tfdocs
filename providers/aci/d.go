@@ -1148,10 +1148,6 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "application_epg_dn",
-					Description: `(Required) Distinguished name of parent ApplicationEPG object.`,
-				},
-				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) name of Object client end point.`,
 				},
@@ -1417,7 +1413,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) region for object cloud_aws_provider.`,
+					Description: `(Optional) region for object cloud_aws_provider. \[Supported only in Cloud APIC 4.2(x) or earlier\]`,
 				},
 				resource.Attribute{
 					Name:        "secret_access_key",
@@ -1467,7 +1463,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) region for object cloud_aws_provider.`,
+					Description: `(Optional) region for object cloud_aws_provider. \[Supported only in Cloud APIC 4.2(x) or earlier\]`,
 				},
 				resource.Attribute{
 					Name:        "secret_access_key",

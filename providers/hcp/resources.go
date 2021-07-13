@@ -71,6 +71,16 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "hcp_hvn_route",
+			Category:         "Resources",
+			ShortDescription: `The HVN route resource allows you to manage an HVN route.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "hcp_vault_cluster",
 			Category:         "Resources",
 			ShortDescription: `The Vault cluster resource allows you to manage an HCP Vault cluster.`,
@@ -99,8 +109,9 @@ var (
 		"hcp_consul_cluster_root_token":      3,
 		"hcp_consul_snapshot":                4,
 		"hcp_hvn":                            5,
-		"hcp_vault_cluster":                  6,
-		"hcp_vault_cluster_admin_token":      7,
+		"hcp_hvn_route":                      6,
+		"hcp_vault_cluster":                  7,
+		"hcp_vault_cluster_admin_token":      8,
 	}
 )
 

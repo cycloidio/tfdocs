@@ -228,7 +228,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "default",
-					Description: `If ` + "`" + `true` + "`" + `, the DHCP options set is a default one. If ` + "`" + `false` + "`" + `, it is not.`,
+					Description: `If true, the DHCP options set is a default one. If false, it is not.`,
 				},
 				resource.Attribute{
 					Name:        "dhcp_options_name",
@@ -270,7 +270,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "default",
-					Description: `If ` + "`" + `true` + "`" + `, the DHCP options set is a default one. If ` + "`" + `false` + "`" + `, it is not.`,
+					Description: `If true, the DHCP options set is a default one. If false, it is not.`,
 				},
 				resource.Attribute{
 					Name:        "dhcp_options_name",
@@ -448,7 +448,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete_on_vm_deletion",
-					Description: `(Optional) Set to ` + "`" + `true` + "`" + ` by default, which means that the volume is deleted when the VM is terminated. If set to ` + "`" + `false` + "`" + `, the volume is not deleted when the VM is terminated.`,
+					Description: `(Optional) By default or if set to true, the volume is deleted when terminating the VM. If false, the volume is not deleted when terminating the VM.`,
 				},
 				resource.Attribute{
 					Name:        "iops",
@@ -480,7 +480,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_location",
-					Description: `(Optional) The pre-signed URL of the OMI manifest file, or the full path to the OMI stored in an OSU bucket. If you specify this parameter, a copy of the OMI is created in your account.`,
+					Description: `(Optional) The pre-signed URL of the OMI manifest file, or the full path to the OMI stored in a bucket. If you specify this parameter, a copy of the OMI is created in your account.`,
 				},
 				resource.Attribute{
 					Name:        "image_name",
@@ -488,7 +488,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "no_reboot",
-					Description: `(Optional) If ` + "`" + `false` + "`" + `, the VM shuts down before creating the OMI and then reboots. If ` + "`" + `true` + "`" + `, the VM does not.`,
+					Description: `(Optional) If false, the VM shuts down before creating the OMI and then reboots. If true, the VM does not.`,
 				},
 				resource.Attribute{
 					Name:        "root_device_name",
@@ -503,10 +503,6 @@ var (
 					Description: `(Optional) The name of the source Region, which must be the same as the Region of your account.`,
 				},
 				resource.Attribute{
-					Name:        "vm_id",
-					Description: `(Optional) The ID of the VM from which you want to create the OMI.`,
-				},
-				resource.Attribute{
 					Name:        "tags",
 					Description: `One or more tags to add to this resource.`,
 				},
@@ -516,7 +512,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
+					Description: `The value of the tag, between 0 and 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "vm_id",
+					Description: `(Optional) The ID of the VM from which you want to create the OMI. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "image",
@@ -544,7 +544,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete_on_vm_deletion",
-					Description: `Set to ` + "`" + `true` + "`" + ` by default, which means that the volume is deleted when the VM is terminated. If set to ` + "`" + `false` + "`" + `, the volume is not deleted when the VM is terminated.`,
+					Description: `By default or if set to true, the volume is deleted when terminating the VM. If false, the volume is not deleted when terminating the VM.`,
 				},
 				resource.Attribute{
 					Name:        "iops",
@@ -580,7 +580,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_location",
-					Description: `The location where the OMI file is stored on Object Storage Unit (OSU).`,
+					Description: `The location of the bucket where the OMI files are stored.`,
 				},
 				resource.Attribute{
 					Name:        "image_id",
@@ -604,7 +604,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global_permission",
-					Description: `If ` + "`" + `true` + "`" + `, the resource is public. If ` + "`" + `false` + "`" + `, the resource is private.`,
+					Description: `If true, the resource is public. If false, the resource is private.`,
 				},
 				resource.Attribute{
 					Name:        "product_codes",
@@ -674,7 +674,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete_on_vm_deletion",
-					Description: `Set to ` + "`" + `true` + "`" + ` by default, which means that the volume is deleted when the VM is terminated. If set to ` + "`" + `false` + "`" + `, the volume is not deleted when the VM is terminated.`,
+					Description: `By default or if set to true, the volume is deleted when terminating the VM. If false, the volume is not deleted when terminating the VM.`,
 				},
 				resource.Attribute{
 					Name:        "iops",
@@ -710,7 +710,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_location",
-					Description: `The location where the OMI file is stored on Object Storage Unit (OSU).`,
+					Description: `The location of the bucket where the OMI files are stored.`,
 				},
 				resource.Attribute{
 					Name:        "image_id",
@@ -734,7 +734,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global_permission",
-					Description: `If ` + "`" + `true` + "`" + `, the resource is public. If ` + "`" + `false` + "`" + `, the resource is private.`,
+					Description: `If true, the resource is public. If false, the resource is private.`,
 				},
 				resource.Attribute{
 					Name:        "product_codes",
@@ -800,7 +800,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global_permission",
-					Description: `(Optional) If ` + "`" + `true` + "`" + `, the resource is public. If ` + "`" + `false` + "`" + `, the resource is private.`,
+					Description: `(Optional) If true, the resource is public. If false, the resource is private.`,
 				},
 				resource.Attribute{
 					Name:        "account_ids",
@@ -812,7 +812,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global_permission",
-					Description: `(Optional) If ` + "`" + `true` + "`" + `, the resource is public. If ` + "`" + `false` + "`" + `, the resource is private.`,
+					Description: `(Optional) If true, the resource is public. If false, the resource is private.`,
 				},
 				resource.Attribute{
 					Name:        "account_ids",
@@ -832,7 +832,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global_permission",
-					Description: `If ` + "`" + `true` + "`" + `, the resource is public. If ` + "`" + `false` + "`" + `, the resource is private.`,
+					Description: `If true, the resource is public. If false, the resource is private.`,
 				},
 				resource.Attribute{
 					Name:        "accounts_ids",
@@ -854,7 +854,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global_permission",
-					Description: `If ` + "`" + `true` + "`" + `, the resource is public. If ` + "`" + `false` + "`" + `, the resource is private.`,
+					Description: `If true, the resource is public. If false, the resource is private.`,
 				},
 				resource.Attribute{
 					Name:        "accounts_ids",
@@ -1017,7 +1017,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "keypair_fingerprint",
-					Description: `If you create a keypair, the SHA-1 digest of the DER encoded private key.<br /> If you import a keypair, the MD5 public key fingerprint as specified in section 4 of RFC 4716.`,
+					Description: `The MD5 public key fingerprint as specified in section 4 of RFC 4716.`,
 				},
 				resource.Attribute{
 					Name:        "keypair_name",
@@ -1035,7 +1035,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "keypair_fingerprint",
-					Description: `If you create a keypair, the SHA-1 digest of the DER encoded private key.<br /> If you import a keypair, the MD5 public key fingerprint as specified in section 4 of RFC 4716.`,
+					Description: `The MD5 public key fingerprint as specified in section 4 of RFC 4716.`,
 				},
 				resource.Attribute{
 					Name:        "keypair_name",
@@ -1072,7 +1072,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "load_balancer_port",
-					Description: `(Optional) The port on which the load balancer is listening (between ` + "`" + `1` + "`" + ` and ` + "`" + `65535` + "`" + `, both included). This parameter is required if you want to update the server certificate.`,
+					Description: `(Optional) The port on which the load balancer is listening (between ` + "`" + `1` + "`" + ` and ` + "`" + `65535` + "`" + `, both included).`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_protocol",
@@ -1080,7 +1080,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_certificate_id",
-					Description: `(Optional) The OUTSCALE Resource Name (ORN) of the server certificate. If this parameter is specified, you must also specify the ` + "`" + `load_balancer_port` + "`" + ` parameter.`,
+					Description: `(Optional) The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://wiki.outscale.net/display/EN/Resource+Identifiers#ResourceIdentifiers-ORNFormat).`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_name",
@@ -1124,19 +1124,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_enabled",
-					Description: `If ` + "`" + `true` + "`" + `, access logs are enabled for your load balancer. If ` + "`" + `false` + "`" + `, they are not. If you set this to ` + "`" + `true` + "`" + ` in your request, the ` + "`" + `osu_bucket_name` + "`" + ` parameter is required.`,
+					Description: `If true, access logs are enabled for your load balancer. If false, they are not. If you set this to true in your request, the ` + "`" + `osu_bucket_name` + "`" + ` parameter is required.`,
 				},
 				resource.Attribute{
 					Name:        "osu_bucket_name",
-					Description: `The name of the Object Storage Unit (OSU) bucket for the access logs.`,
+					Description: `The name of the OOS bucket for the access logs.`,
 				},
 				resource.Attribute{
 					Name:        "osu_bucket_prefix",
-					Description: `The path to the folder of the access logs in your Object Storage Unit (OSU) bucket (by default, the ` + "`" + `root` + "`" + ` level of your bucket).`,
+					Description: `The path to the folder of the access logs in your OOS bucket (by default, the ` + "`" + `root` + "`" + ` level of your bucket).`,
 				},
 				resource.Attribute{
 					Name:        "publication_interval",
-					Description: `The time interval for the publication of access logs in the Object Storage Unit (OSU) bucket, in minutes. This value can be either 5 or 60 (by default, 60).`,
+					Description: `The time interval for the publication of access logs in the OOS bucket, in minutes. This value can be either 5 or 60 (by default, 60).`,
 				},
 				resource.Attribute{
 					Name:        "application_sticky_cookie_policies",
@@ -1172,7 +1172,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The path for HTTP or HTTPS requests.`,
+					Description: `If you use the HTTP or HTTPS protocols, the ping path.`,
 				},
 				resource.Attribute{
 					Name:        "port",
@@ -1216,7 +1216,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_certificate_id",
-					Description: `The OUTSCALE Resource Name (ORN) of the server certificate.`,
+					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://wiki.outscale.net/display/EN/Resource+Identifiers#ResourceIdentifiers-ORNFormat).`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_name",
@@ -1286,19 +1286,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_enabled",
-					Description: `If ` + "`" + `true` + "`" + `, access logs are enabled for your load balancer. If ` + "`" + `false` + "`" + `, they are not. If you set this to ` + "`" + `true` + "`" + ` in your request, the ` + "`" + `osu_bucket_name` + "`" + ` parameter is required.`,
+					Description: `If true, access logs are enabled for your load balancer. If false, they are not. If you set this to true in your request, the ` + "`" + `osu_bucket_name` + "`" + ` parameter is required.`,
 				},
 				resource.Attribute{
 					Name:        "osu_bucket_name",
-					Description: `The name of the Object Storage Unit (OSU) bucket for the access logs.`,
+					Description: `The name of the OOS bucket for the access logs.`,
 				},
 				resource.Attribute{
 					Name:        "osu_bucket_prefix",
-					Description: `The path to the folder of the access logs in your Object Storage Unit (OSU) bucket (by default, the ` + "`" + `root` + "`" + ` level of your bucket).`,
+					Description: `The path to the folder of the access logs in your OOS bucket (by default, the ` + "`" + `root` + "`" + ` level of your bucket).`,
 				},
 				resource.Attribute{
 					Name:        "publication_interval",
-					Description: `The time interval for the publication of access logs in the Object Storage Unit (OSU) bucket, in minutes. This value can be either 5 or 60 (by default, 60).`,
+					Description: `The time interval for the publication of access logs in the OOS bucket, in minutes. This value can be either 5 or 60 (by default, 60).`,
 				},
 				resource.Attribute{
 					Name:        "application_sticky_cookie_policies",
@@ -1334,7 +1334,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The path for HTTP or HTTPS requests.`,
+					Description: `If you use the HTTP or HTTPS protocols, the ping path.`,
 				},
 				resource.Attribute{
 					Name:        "port",
@@ -1378,7 +1378,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_certificate_id",
-					Description: `The OUTSCALE Resource Name (ORN) of the server certificate.`,
+					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://wiki.outscale.net/display/EN/Resource+Identifiers#ResourceIdentifiers-ORNFormat).`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_name",
@@ -1456,19 +1456,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_enabled",
-					Description: `(Optional) If ` + "`" + `true` + "`" + `, access logs are enabled for your load balancer. If ` + "`" + `false` + "`" + `, they are not. If you set this to ` + "`" + `true` + "`" + ` in your request, the ` + "`" + `osu_bucket_name` + "`" + ` parameter is required.`,
+					Description: `(Optional) If true, access logs are enabled for your load balancer. If false, they are not. If you set this to true in your request, the ` + "`" + `osu_bucket_name` + "`" + ` parameter is required.`,
 				},
 				resource.Attribute{
 					Name:        "osu_bucket_name",
-					Description: `(Optional) The name of the Object Storage Unit (OSU) bucket for the access logs.`,
+					Description: `(Optional) The name of the OOS bucket for the access logs.`,
 				},
 				resource.Attribute{
 					Name:        "osu_bucket_prefix",
-					Description: `(Optional) The path to the folder of the access logs in your Object Storage Unit (OSU) bucket (by default, the ` + "`" + `root` + "`" + ` level of your bucket).`,
+					Description: `(Optional) The path to the folder of the access logs in your OOS bucket (by default, the ` + "`" + `root` + "`" + ` level of your bucket).`,
 				},
 				resource.Attribute{
 					Name:        "publication_interval",
-					Description: `(Optional) The time interval for the publication of access logs in the Object Storage Unit (OSU) bucket, in minutes. This value can be either 5 or 60 (by default, 60).`,
+					Description: `(Optional) The time interval for the publication of access logs in the OOS bucket, in minutes. This value can be either 5 or 60 (by default, 60).`,
 				},
 				resource.Attribute{
 					Name:        "health_check",
@@ -1484,7 +1484,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `(Optional) The path for HTTP or HTTPS requests.`,
+					Description: `(Optional) If you use the HTTP or HTTPS protocols, the ping path.`,
 				},
 				resource.Attribute{
 					Name:        "port",
@@ -1508,15 +1508,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "load_balancer_port",
-					Description: `(Optional) The port on which the load balancer is listening (between ` + "`" + `1` + "`" + ` and ` + "`" + `65535` + "`" + `, both included).`,
+					Description: `(Optional) The port on which the load balancer is listening (between ` + "`" + `1` + "`" + ` and ` + "`" + `65535` + "`" + `, both included). This parameter is required if you want to update the server certificate.`,
 				},
 				resource.Attribute{
 					Name:        "policy_names",
-					Description: `(Optional) The list of policy names (must contain all the policies to be enabled).`,
+					Description: `(Optional) The name of the policy you want to enable for the listener.`,
 				},
 				resource.Attribute{
 					Name:        "server_certificate_id",
-					Description: `(Optional) The Outscale Resource Name (ORN) of the SSL certificate. ## Attribute Reference The following attributes are exported:`,
+					Description: `(Optional) The Outscale Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > Outscale Resource Names (ORNs)](https://wiki.outscale.net/display/EN/Resource+Identifiers#ResourceIdentifiers-ORNFormat). If this parameter is specified, you must also specify the ` + "`" + `load_balancer_port` + "`" + ` parameter. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer",
@@ -1528,19 +1528,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_enabled",
-					Description: `If ` + "`" + `true` + "`" + `, access logs are enabled for your load balancer. If ` + "`" + `false` + "`" + `, they are not. If you set this to ` + "`" + `true` + "`" + ` in your request, the ` + "`" + `osu_bucket_name` + "`" + ` parameter is required.`,
+					Description: `If true, access logs are enabled for your load balancer. If false, they are not. If you set this to true in your request, the ` + "`" + `osu_bucket_name` + "`" + ` parameter is required.`,
 				},
 				resource.Attribute{
 					Name:        "osu_bucket_name",
-					Description: `The name of the Object Storage Unit (OSU) bucket for the access logs.`,
+					Description: `The name of the OOS bucket for the access logs.`,
 				},
 				resource.Attribute{
 					Name:        "osu_bucket_prefix",
-					Description: `The path to the folder of the access logs in your Object Storage Unit (OSU) bucket (by default, the ` + "`" + `root` + "`" + ` level of your bucket).`,
+					Description: `The path to the folder of the access logs in your OOS bucket (by default, the ` + "`" + `root` + "`" + ` level of your bucket).`,
 				},
 				resource.Attribute{
 					Name:        "publication_interval",
-					Description: `The time interval for the publication of access logs in the Object Storage Unit (OSU) bucket, in minutes. This value can be either 5 or 60 (by default, 60).`,
+					Description: `The time interval for the publication of access logs in the OOS bucket, in minutes. This value can be either 5 or 60 (by default, 60).`,
 				},
 				resource.Attribute{
 					Name:        "application_sticky_cookie_policies",
@@ -1576,7 +1576,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The path for HTTP or HTTPS requests.`,
+					Description: `If you use the HTTP or HTTPS protocols, the ping path.`,
 				},
 				resource.Attribute{
 					Name:        "port",
@@ -1620,7 +1620,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_certificate_id",
-					Description: `The OUTSCALE Resource Name (ORN) of the server certificate.`,
+					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://wiki.outscale.net/display/EN/Resource+Identifiers#ResourceIdentifiers-ORNFormat).`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_name",
@@ -1690,19 +1690,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_enabled",
-					Description: `If ` + "`" + `true` + "`" + `, access logs are enabled for your load balancer. If ` + "`" + `false` + "`" + `, they are not. If you set this to ` + "`" + `true` + "`" + ` in your request, the ` + "`" + `osu_bucket_name` + "`" + ` parameter is required.`,
+					Description: `If true, access logs are enabled for your load balancer. If false, they are not. If you set this to true in your request, the ` + "`" + `osu_bucket_name` + "`" + ` parameter is required.`,
 				},
 				resource.Attribute{
 					Name:        "osu_bucket_name",
-					Description: `The name of the Object Storage Unit (OSU) bucket for the access logs.`,
+					Description: `The name of the OOS bucket for the access logs.`,
 				},
 				resource.Attribute{
 					Name:        "osu_bucket_prefix",
-					Description: `The path to the folder of the access logs in your Object Storage Unit (OSU) bucket (by default, the ` + "`" + `root` + "`" + ` level of your bucket).`,
+					Description: `The path to the folder of the access logs in your OOS bucket (by default, the ` + "`" + `root` + "`" + ` level of your bucket).`,
 				},
 				resource.Attribute{
 					Name:        "publication_interval",
-					Description: `The time interval for the publication of access logs in the Object Storage Unit (OSU) bucket, in minutes. This value can be either 5 or 60 (by default, 60).`,
+					Description: `The time interval for the publication of access logs in the OOS bucket, in minutes. This value can be either 5 or 60 (by default, 60).`,
 				},
 				resource.Attribute{
 					Name:        "application_sticky_cookie_policies",
@@ -1738,7 +1738,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The path for HTTP or HTTPS requests.`,
+					Description: `If you use the HTTP or HTTPS protocols, the ping path.`,
 				},
 				resource.Attribute{
 					Name:        "port",
@@ -1782,7 +1782,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_certificate_id",
-					Description: `The OUTSCALE Resource Name (ORN) of the server certificate.`,
+					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://wiki.outscale.net/display/EN/Resource+Identifiers#ResourceIdentifiers-ORNFormat).`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_name",
@@ -1868,16 +1868,12 @@ var (
 					Description: `(Optional) A host-name pattern for the rule, with a maximum length of 128 characters. This host-name pattern supports maximum three wildcards, and must not contain any special characters except [-.?].`,
 				},
 				resource.Attribute{
-					Name:        "listener_rule_id",
-					Description: `(Optional) The ID of the listener.`,
-				},
-				resource.Attribute{
 					Name:        "listener_rule_name",
 					Description: `(Optional) A human-readable name for the listener rule.`,
 				},
 				resource.Attribute{
 					Name:        "path_pattern",
-					Description: `(Optional) A path pattern for the rule, with a maximum length of 128 characters. This path pattern supports maximum three wildcards, and must not contain any special characters except [_-.$/~"'@:+?].`,
+					Description: `(Optional) A path pattern for the rule, with a maximum length of 128 characters. This path pattern supports maximum three wildcards, and must not contain any special characters except [_-.$/~&quot;'@:+?].`,
 				},
 				resource.Attribute{
 					Name:        "priority",
@@ -1925,7 +1921,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path_pattern",
-					Description: `A path pattern for the rule, with a maximum length of 128 characters. This path pattern supports maximum three wildcards, and must not contain any special characters except [_-.$/~"'@:+?].`,
+					Description: `A path pattern for the rule, with a maximum length of 128 characters. This path pattern supports maximum three wildcards, and must not contain any special characters except [_-.$/~&quot;'@:+?].`,
 				},
 				resource.Attribute{
 					Name:        "priority",
@@ -1963,7 +1959,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path_pattern",
-					Description: `A path pattern for the rule, with a maximum length of 128 characters. This path pattern supports maximum three wildcards, and must not contain any special characters except [_-.$/~"'@:+?].`,
+					Description: `A path pattern for the rule, with a maximum length of 128 characters. This path pattern supports maximum three wildcards, and must not contain any special characters except [_-.$/~&quot;'@:+?].`,
 				},
 				resource.Attribute{
 					Name:        "priority",
@@ -2013,19 +2009,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_enabled",
-					Description: `If ` + "`" + `true` + "`" + `, access logs are enabled for your load balancer. If ` + "`" + `false` + "`" + `, they are not. If you set this to ` + "`" + `true` + "`" + ` in your request, the ` + "`" + `osu_bucket_name` + "`" + ` parameter is required.`,
+					Description: `If true, access logs are enabled for your load balancer. If false, they are not. If you set this to true in your request, the ` + "`" + `osu_bucket_name` + "`" + ` parameter is required.`,
 				},
 				resource.Attribute{
 					Name:        "osu_bucket_name",
-					Description: `The name of the Object Storage Unit (OSU) bucket for the access logs.`,
+					Description: `The name of the OOS bucket for the access logs.`,
 				},
 				resource.Attribute{
 					Name:        "osu_bucket_prefix",
-					Description: `The path to the folder of the access logs in your Object Storage Unit (OSU) bucket (by default, the ` + "`" + `root` + "`" + ` level of your bucket).`,
+					Description: `The path to the folder of the access logs in your OOS bucket (by default, the ` + "`" + `root` + "`" + ` level of your bucket).`,
 				},
 				resource.Attribute{
 					Name:        "publication_interval",
-					Description: `The time interval for the publication of access logs in the Object Storage Unit (OSU) bucket, in minutes. This value can be either 5 or 60 (by default, 60).`,
+					Description: `The time interval for the publication of access logs in the OOS bucket, in minutes. This value can be either 5 or 60 (by default, 60).`,
 				},
 				resource.Attribute{
 					Name:        "application_sticky_cookie_policies",
@@ -2061,7 +2057,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The path for HTTP or HTTPS requests.`,
+					Description: `If you use the HTTP or HTTPS protocols, the ping path.`,
 				},
 				resource.Attribute{
 					Name:        "port",
@@ -2105,7 +2101,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_certificate_id",
-					Description: `The OUTSCALE Resource Name (ORN) of the server certificate.`,
+					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://wiki.outscale.net/display/EN/Resource+Identifiers#ResourceIdentifiers-ORNFormat).`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_name",
@@ -2175,19 +2171,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_enabled",
-					Description: `If ` + "`" + `true` + "`" + `, access logs are enabled for your load balancer. If ` + "`" + `false` + "`" + `, they are not. If you set this to ` + "`" + `true` + "`" + ` in your request, the ` + "`" + `osu_bucket_name` + "`" + ` parameter is required.`,
+					Description: `If true, access logs are enabled for your load balancer. If false, they are not. If you set this to true in your request, the ` + "`" + `osu_bucket_name` + "`" + ` parameter is required.`,
 				},
 				resource.Attribute{
 					Name:        "osu_bucket_name",
-					Description: `The name of the Object Storage Unit (OSU) bucket for the access logs.`,
+					Description: `The name of the OOS bucket for the access logs.`,
 				},
 				resource.Attribute{
 					Name:        "osu_bucket_prefix",
-					Description: `The path to the folder of the access logs in your Object Storage Unit (OSU) bucket (by default, the ` + "`" + `root` + "`" + ` level of your bucket).`,
+					Description: `The path to the folder of the access logs in your OOS bucket (by default, the ` + "`" + `root` + "`" + ` level of your bucket).`,
 				},
 				resource.Attribute{
 					Name:        "publication_interval",
-					Description: `The time interval for the publication of access logs in the Object Storage Unit (OSU) bucket, in minutes. This value can be either 5 or 60 (by default, 60).`,
+					Description: `The time interval for the publication of access logs in the OOS bucket, in minutes. This value can be either 5 or 60 (by default, 60).`,
 				},
 				resource.Attribute{
 					Name:        "application_sticky_cookie_policies",
@@ -2223,7 +2219,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The path for HTTP or HTTPS requests.`,
+					Description: `If you use the HTTP or HTTPS protocols, the ping path.`,
 				},
 				resource.Attribute{
 					Name:        "port",
@@ -2267,7 +2263,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_certificate_id",
-					Description: `The OUTSCALE Resource Name (ORN) of the server certificate.`,
+					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://wiki.outscale.net/display/EN/Resource+Identifiers#ResourceIdentifiers-ORNFormat).`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_name",
@@ -2363,7 +2359,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `(Required) The allocation ID of the EIP to associate with the NAT service. If the EIP is already associated with another resource, you must first disassociate it.`,
+					Description: `(Required) The allocation ID of the EIP to associate with the NAT service.<br /> If the EIP is already associated with another resource, you must first disassociate it.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
@@ -2488,10 +2484,6 @@ var (
 					Description: `(Required) The IP range for the Net, in CIDR notation (for example, 10.0.0.0/16).`,
 				},
 				resource.Attribute{
-					Name:        "tenancy",
-					Description: `(Optional) The tenancy options for the VMs (` + "`" + `default` + "`" + ` if a VM created in a Net can be launched with any tenancy, ` + "`" + `dedicated` + "`" + ` if it can be launched with dedicated tenancy VMs running on single-tenant hardware).`,
-				},
-				resource.Attribute{
 					Name:        "tags",
 					Description: `One or more tags to add to this resource.`,
 				},
@@ -2501,7 +2493,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
+					Description: `The value of the tag, between 0 and 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "tenancy",
+					Description: `(Optional) The tenancy options for the VMs (` + "`" + `default` + "`" + ` if a VM created in a Net can be launched with any tenancy, ` + "`" + `dedicated` + "`" + ` if it can be launched with dedicated tenancy VMs running on single-tenant hardware). ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "net",
@@ -2724,7 +2720,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `The state of the Net (` + "`" + `pending` + "`" + ` | ` + "`" + `available` + "`" + `).`,
+					Description: `The state of the Net (` + "`" + `pending` + "`" + ` \| ` + "`" + `available` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -2740,7 +2736,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenancy",
-					Description: `The VM tenancy in a Net (` + "`" + `default` + "`" + ` | ` + "`" + `dedicated` + "`" + `). ## Import A Net attribute can be imported using the Net ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_net_attributes.ImportedNet vpc-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The VM tenancy in a Net. ## Import A Net attribute can be imported using the Net ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_net_attributes.ImportedNet vpc-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2758,7 +2754,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `The state of the Net (` + "`" + `pending` + "`" + ` | ` + "`" + `available` + "`" + `).`,
+					Description: `The state of the Net (` + "`" + `pending` + "`" + ` \| ` + "`" + `available` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -2774,7 +2770,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenancy",
-					Description: `The VM tenancy in a Net (` + "`" + `default` + "`" + ` | ` + "`" + `dedicated` + "`" + `). ## Import A Net attribute can be imported using the Net ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_net_attributes.ImportedNet vpc-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The VM tenancy in a Net. ## Import A Net attribute can be imported using the Net ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_net_attributes.ImportedNet vpc-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -3093,7 +3089,7 @@ var (
 			Name:             "",
 			Type:             "nic",
 			Category:         "Resources",
-			ShortDescription: `[Manages a NIC.]`,
+			ShortDescription: `[Manages a network interface card (NIC).]`,
 			Description:      ``,
 			Keywords: []string{
 				"nic",
@@ -3105,11 +3101,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ips",
-					Description: `(Optional) The primary private IP address for the NIC. This IP address must be within the IP address range of the Subnet that you specify with the ` + "`" + `subnet_id` + "`" + ` attribute. If you do not specify this attribute, a random private IP address is selected within the IP address range of the Subnet.`,
+					Description: `(Optional) The primary private IP address for the NIC.<br /> This IP address must be within the IP address range of the Subnet that you specify with the ` + "`" + `subnet_id` + "`" + ` attribute.<br /> If you do not specify this attribute, a random private IP address is selected within the IP address range of the Subnet.`,
 				},
 				resource.Attribute{
 					Name:        "is_primary",
-					Description: `(Optional) If ` + "`" + `true` + "`" + `, the IP address is the primary private IP address of the NIC.`,
+					Description: `(Optional) If true, the IP address is the primary private IP address of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "private_ip",
@@ -3149,7 +3145,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_source_dest_checked",
-					Description: `(Net only) If ` + "`" + `true` + "`" + `, the source/destination check is enabled. If ` + "`" + `false` + "`" + `, it is disabled. This value must be ` + "`" + `false` + "`" + ` for a NAT VM to perform network address translation (NAT) in a Net.`,
+					Description: `(Net only) If true, the source/destination check is enabled. If false, it is disabled. This value must be false for a NAT VM to perform network address translation (NAT) in a Net.`,
 				},
 				resource.Attribute{
 					Name:        "link_nic",
@@ -3157,7 +3153,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete_on_vm_deletion",
-					Description: `If ` + "`" + `true` + "`" + `, the volume is deleted when the VM is terminated.`,
+					Description: `If true, the NIC is deleted when the VM is terminated.`,
 				},
 				resource.Attribute{
 					Name:        "device_number",
@@ -3225,7 +3221,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_primary",
-					Description: `If ` + "`" + `true` + "`" + `, the IP address is the primary private IP address of the NIC.`,
+					Description: `If true, the IP address is the primary private IP address of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
@@ -3311,7 +3307,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_source_dest_checked",
-					Description: `(Net only) If ` + "`" + `true` + "`" + `, the source/destination check is enabled. If ` + "`" + `false` + "`" + `, it is disabled. This value must be ` + "`" + `false` + "`" + ` for a NAT VM to perform network address translation (NAT) in a Net.`,
+					Description: `(Net only) If true, the source/destination check is enabled. If false, it is disabled. This value must be false for a NAT VM to perform network address translation (NAT) in a Net.`,
 				},
 				resource.Attribute{
 					Name:        "link_nic",
@@ -3319,7 +3315,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete_on_vm_deletion",
-					Description: `If ` + "`" + `true` + "`" + `, the volume is deleted when the VM is terminated.`,
+					Description: `If true, the NIC is deleted when the VM is terminated.`,
 				},
 				resource.Attribute{
 					Name:        "device_number",
@@ -3387,7 +3383,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_primary",
-					Description: `If ` + "`" + `true` + "`" + `, the IP address is the primary private IP address of the NIC.`,
+					Description: `If true, the IP address is the primary private IP address of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
@@ -3508,7 +3504,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allow_relink",
-					Description: `(Optional) If ` + "`" + `true` + "`" + `, allows an IP address that is already assigned to another NIC in the same Subnet to be assigned to the NIC you specified.`,
+					Description: `(Optional) If true, allows an IP address that is already assigned to another NIC in the same Subnet to be assigned to the NIC you specified.`,
 				},
 				resource.Attribute{
 					Name:        "nic_id",
@@ -3654,7 +3650,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allow_relink",
-					Description: `(Optional) (By default, ` + "`" + `true` + "`" + ` in the public Cloud, ` + "`" + `false` + "`" + ` in a Net.) If ` + "`" + `true` + "`" + `, allows the EIP to be associated with the VM or NIC that you specify even if it is already associated with another VM or NIC. If ` + "`" + `false` + "`" + `, prevents the EIP from being associated with the VM or NIC that you specify if it is already associated with another VM or NIC.`,
+					Description: `(Optional) If true, allows the EIP to be associated with the VM or NIC that you specify even if it is already associated with another VM or NIC.<br /> If false, prevents the EIP from being associated with the VM or NIC that you specify if it is already associated with another VM or NIC.<br /> (By default, true in the public Cloud, false in a Net.)`,
 				},
 				resource.Attribute{
 					Name:        "nic_id",
@@ -3665,16 +3661,16 @@ var (
 					Description: `(Optional) (Net only) The primary or secondary private IP address of the specified NIC. By default, the primary private IP address.`,
 				},
 				resource.Attribute{
-					Name:        "public_ip",
-					Description: `(Optional) The EIP. In the public Cloud, this parameter is required.`,
-				},
-				resource.Attribute{
 					Name:        "public_ip_id",
 					Description: `(Optional) The allocation ID of the EIP. In a Net, this parameter is required.`,
 				},
 				resource.Attribute{
+					Name:        "public_ip",
+					Description: `(Optional) The EIP. In the public Cloud, this parameter is required.`,
+				},
+				resource.Attribute{
 					Name:        "vm_id",
-					Description: `(Optional) The ID of the VM. In the public Cloud, this parameter is required. In a Net, this parameter is required if the VM has only one NIC. Otherwise, you need to specify the ` + "`" + `nic_id` + "`" + ` parameter instead. You cannot specify both parameters at the same time. ## Attribute Reference The following attributes are exported:`,
+					Description: `(Optional) The ID of the VM.<br /> In the public Cloud, this parameter is required.<br /> In a Net, this parameter is required if the VM has only one NIC. Otherwise, you need to specify the ` + "`" + `nic_id` + "`" + ` parameter instead. You cannot specify both parameters at the same time. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip_id",
@@ -3740,7 +3736,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "main",
-					Description: `If ` + "`" + `true` + "`" + `, the route table is the main one.`,
+					Description: `If true, the route table is the main one.`,
 				},
 				resource.Attribute{
 					Name:        "route_table_id",
@@ -3780,7 +3776,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "destination_service_id",
-					Description: `The ID of the 3DS OUTSCALE service.`,
+					Description: `The ID of the OUTSCALE service.`,
 				},
 				resource.Attribute{
 					Name:        "gateway_id",
@@ -3842,7 +3838,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "main",
-					Description: `If ` + "`" + `true` + "`" + `, the route table is the main one.`,
+					Description: `If true, the route table is the main one.`,
 				},
 				resource.Attribute{
 					Name:        "route_table_id",
@@ -3882,7 +3878,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "destination_service_id",
-					Description: `The ID of the 3DS OUTSCALE service.`,
+					Description: `The ID of the OUTSCALE service.`,
 				},
 				resource.Attribute{
 					Name:        "gateway_id",
@@ -3971,7 +3967,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "main",
-					Description: `If ` + "`" + `true` + "`" + `, the route table is the main one.`,
+					Description: `If true, the route table is the main one.`,
 				},
 				resource.Attribute{
 					Name:        "route_table_id",
@@ -4011,7 +4007,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "destination_service_id",
-					Description: `The ID of the 3DS OUTSCALE service.`,
+					Description: `The ID of the OUTSCALE service.`,
 				},
 				resource.Attribute{
 					Name:        "gateway_id",
@@ -4073,7 +4069,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "main",
-					Description: `If ` + "`" + `true` + "`" + `, the route table is the main one.`,
+					Description: `If true, the route table is the main one.`,
 				},
 				resource.Attribute{
 					Name:        "route_table_id",
@@ -4113,7 +4109,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "destination_service_id",
-					Description: `The ID of the 3DS OUTSCALE service.`,
+					Description: `The ID of the OUTSCALE service.`,
 				},
 				resource.Attribute{
 					Name:        "gateway_id",
@@ -4183,7 +4179,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "link_route_table_id",
-					Description: `The ID of the route table association.`,
+					Description: `The ID of the association between the route table and the Subnet.`,
 				},
 				resource.Attribute{
 					Name:        "main",
@@ -4201,7 +4197,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "link_route_table_id",
-					Description: `The ID of the route table association.`,
+					Description: `The ID of the association between the route table and the Subnet.`,
 				},
 				resource.Attribute{
 					Name:        "main",
@@ -4298,7 +4294,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_ids",
-					Description: `One or more service IDs to allow traffic from a Net to access the corresponding 3DS OUTSCALE services. For more information, see [ReadNetAccessPointServices](https://docs.outscale.com/api#readnetaccesspointservices).`,
+					Description: `One or more service IDs to allow traffic from a Net to access the corresponding OUTSCALE services. For more information, see [ReadNetAccessPointServices](https://docs.outscale.com/api#readnetaccesspointservices).`,
 				},
 				resource.Attribute{
 					Name:        "to_port_range",
@@ -4342,7 +4338,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_ids",
-					Description: `One or more service IDs to allow traffic from a Net to access the corresponding 3DS OUTSCALE services. For more information, see [ReadNetAccessPointServices](https://docs.outscale.com/api#readnetaccesspointservices).`,
+					Description: `One or more service IDs to allow traffic from a Net to access the corresponding OUTSCALE services. For more information, see [ReadNetAccessPointServices](https://docs.outscale.com/api#readnetaccesspointservices).`,
 				},
 				resource.Attribute{
 					Name:        "to_port_range",
@@ -4416,7 +4412,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_ids",
-					Description: `One or more service IDs to allow traffic from a Net to access the corresponding 3DS OUTSCALE services. For more information, see [ReadNetAccessPointServices](https://docs.outscale.com/api#readnetaccesspointservices).`,
+					Description: `One or more service IDs to allow traffic from a Net to access the corresponding OUTSCALE services. For more information, see [ReadNetAccessPointServices](https://docs.outscale.com/api#readnetaccesspointservices).`,
 				},
 				resource.Attribute{
 					Name:        "to_port_range",
@@ -4460,7 +4456,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_ids",
-					Description: `One or more service IDs to allow traffic from a Net to access the corresponding 3DS OUTSCALE services. For more information, see [ReadNetAccessPointServices](https://docs.outscale.com/api#readnetaccesspointservices).`,
+					Description: `One or more service IDs to allow traffic from a Net to access the corresponding OUTSCALE services. For more information, see [ReadNetAccessPointServices](https://docs.outscale.com/api#readnetaccesspointservices).`,
 				},
 				resource.Attribute{
 					Name:        "to_port_range",
@@ -4550,7 +4546,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_ids",
-					Description: `(Optional) One or more service IDs to allow traffic from a Net to access the corresponding 3DS OUTSCALE services. For more information, see [ReadNetAccessPointServices](https://docs.outscale.com/api#readnetaccesspointservices).`,
+					Description: `(Optional) One or more service IDs to allow traffic from a Net to access the corresponding OUTSCALE services. For more information, see [ReadNetAccessPointServices](https://docs.outscale.com/api#readnetaccesspointservices).`,
 				},
 				resource.Attribute{
 					Name:        "to_port_range",
@@ -4618,7 +4614,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_ids",
-					Description: `One or more service IDs to allow traffic from a Net to access the corresponding 3DS OUTSCALE services. For more information, see [ReadNetAccessPointServices](https://docs.outscale.com/api#readnetaccesspointservices).`,
+					Description: `One or more service IDs to allow traffic from a Net to access the corresponding OUTSCALE services. For more information, see [ReadNetAccessPointServices](https://docs.outscale.com/api#readnetaccesspointservices).`,
 				},
 				resource.Attribute{
 					Name:        "to_port_range",
@@ -4662,7 +4658,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_ids",
-					Description: `One or more service IDs to allow traffic from a Net to access the corresponding 3DS OUTSCALE services. For more information, see [ReadNetAccessPointServices](https://docs.outscale.com/api#readnetaccesspointservices).`,
+					Description: `One or more service IDs to allow traffic from a Net to access the corresponding OUTSCALE services. For more information, see [ReadNetAccessPointServices](https://docs.outscale.com/api#readnetaccesspointservices).`,
 				},
 				resource.Attribute{
 					Name:        "to_port_range",
@@ -4736,7 +4732,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_ids",
-					Description: `One or more service IDs to allow traffic from a Net to access the corresponding 3DS OUTSCALE services. For more information, see [ReadNetAccessPointServices](https://docs.outscale.com/api#readnetaccesspointservices).`,
+					Description: `One or more service IDs to allow traffic from a Net to access the corresponding OUTSCALE services. For more information, see [ReadNetAccessPointServices](https://docs.outscale.com/api#readnetaccesspointservices).`,
 				},
 				resource.Attribute{
 					Name:        "to_port_range",
@@ -4780,7 +4776,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_ids",
-					Description: `One or more service IDs to allow traffic from a Net to access the corresponding 3DS OUTSCALE services. For more information, see [ReadNetAccessPointServices](https://docs.outscale.com/api#readnetaccesspointservices).`,
+					Description: `One or more service IDs to allow traffic from a Net to access the corresponding OUTSCALE services. For more information, see [ReadNetAccessPointServices](https://docs.outscale.com/api#readnetaccesspointservices).`,
 				},
 				resource.Attribute{
 					Name:        "to_port_range",
@@ -4824,7 +4820,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_location",
-					Description: `(Optional) The pre-signed URL of the snapshot you want to import from the OSU bucket.`,
+					Description: `(Optional) The pre-signed URL of the snapshot you want to import from the bucket.`,
 				},
 				resource.Attribute{
 					Name:        "snapshot_size",
@@ -4839,10 +4835,6 @@ var (
 					Description: `(Optional) The ID of the snapshot you want to copy.`,
 				},
 				resource.Attribute{
-					Name:        "volume_id",
-					Description: `(Optional) The ID of the volume you want to create a snapshot of.`,
-				},
-				resource.Attribute{
 					Name:        "tags",
 					Description: `One or more tags to add to this resource.`,
 				},
@@ -4852,7 +4844,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
+					Description: `The value of the tag, between 0 and 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "volume_id",
+					Description: `(Optional) The ID of the volume you want to create a snapshot of. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "snapshot",
@@ -4880,7 +4876,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global_permission",
-					Description: `If ` + "`" + `true` + "`" + `, the resource is public. If ` + "`" + `false` + "`" + `, the resource is private.`,
+					Description: `If true, the resource is public. If false, the resource is private.`,
 				},
 				resource.Attribute{
 					Name:        "progress",
@@ -4942,7 +4938,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global_permission",
-					Description: `If ` + "`" + `true` + "`" + `, the resource is public. If ` + "`" + `false` + "`" + `, the resource is private.`,
+					Description: `If true, the resource is public. If false, the resource is private.`,
 				},
 				resource.Attribute{
 					Name:        "progress",
@@ -4990,10 +4986,6 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "snapshot_id",
-					Description: `(Required) The ID of the snapshot.`,
-				},
-				resource.Attribute{
 					Name:        "permissions_to_create_volume_additions",
 					Description: `(Optional) Information about the users you want to give permissions for the resource.`,
 				},
@@ -5003,7 +4995,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global_permission",
-					Description: `(Optional) If ` + "`" + `true` + "`" + `, the resource is public. If ` + "`" + `false` + "`" + `, the resource is private.`,
+					Description: `(Optional) If true, the resource is public. If false, the resource is private.`,
 				},
 				resource.Attribute{
 					Name:        "permissions_to_create_volume_removals",
@@ -5015,11 +5007,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global_permission",
-					Description: `(Optional) If ` + "`" + `true` + "`" + `, the resource is public. If ` + "`" + `false` + "`" + `, the resource is private. ## Attribute Reference The following attributes are exported:`,
+					Description: `(Optional) If true, the resource is public. If false, the resource is private.`,
 				},
 				resource.Attribute{
 					Name:        "snapshot_id",
-					Description: `The ID of the snapshot.`,
+					Description: `(Required) The ID of the snapshot. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "permissions_to_create_volume_additions",
@@ -5031,15 +5023,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global_permission",
-					Description: `If ` + "`" + `true` + "`" + `, the resource is public. If ` + "`" + `false` + "`" + `, the resource is private.`,
+					Description: `If true, the resource is public. If false, the resource is private.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `The ID of the snapshot.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "snapshot_id",
-					Description: `The ID of the snapshot.`,
-				},
-				resource.Attribute{
 					Name:        "permissions_to_create_volume_additions",
 					Description: `Information about the permissions for the resource.`,
 				},
@@ -5049,7 +5041,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global_permission",
-					Description: `If ` + "`" + `true` + "`" + `, the resource is public. If ` + "`" + `false` + "`" + `, the resource is private.`,
+					Description: `If true, the resource is public. If false, the resource is private.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `The ID of the snapshot.`,
 				},
 			},
 		},
@@ -5101,7 +5097,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "map_public_ip_on_launch",
-					Description: `If ` + "`" + `true` + "`" + `, a public IP address is assigned to the network interface cards (NICs) created in the specified Subnet.`,
+					Description: `If true, a public IP address is assigned to the network interface cards (NICs) created in the specified Subnet.`,
 				},
 				resource.Attribute{
 					Name:        "net_id",
@@ -5147,7 +5143,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "map_public_ip_on_launch",
-					Description: `If ` + "`" + `true` + "`" + `, a public IP address is assigned to the network interface cards (NICs) created in the specified Subnet.`,
+					Description: `If true, a public IP address is assigned to the network interface cards (NICs) created in the specified Subnet.`,
 				},
 				resource.Attribute{
 					Name:        "net_id",
@@ -5353,7 +5349,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "enable",
-					Description: `(Required) If ` + "`" + `true` + "`" + `, a virtual gateway can propagate routes to a specified route table of a Net. If ` + "`" + `false` + "`" + `, the propagation is disabled.`,
+					Description: `(Required) If true, a virtual gateway can propagate routes to a specified route table of a Net. If false, the propagation is disabled.`,
 				},
 				resource.Attribute{
 					Name:        "route_table_id",
@@ -5377,7 +5373,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "main",
-					Description: `If ` + "`" + `true` + "`" + `, the route table is the main one.`,
+					Description: `If true, the route table is the main one.`,
 				},
 				resource.Attribute{
 					Name:        "route_table_id",
@@ -5417,7 +5413,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "destination_service_id",
-					Description: `The ID of the 3DS OUTSCALE service.`,
+					Description: `The ID of the OUTSCALE service.`,
 				},
 				resource.Attribute{
 					Name:        "gateway_id",
@@ -5479,7 +5475,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "main",
-					Description: `If ` + "`" + `true` + "`" + `, the route table is the main one.`,
+					Description: `If true, the route table is the main one.`,
 				},
 				resource.Attribute{
 					Name:        "route_table_id",
@@ -5519,7 +5515,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "destination_service_id",
-					Description: `The ID of the 3DS OUTSCALE service.`,
+					Description: `The ID of the OUTSCALE service.`,
 				},
 				resource.Attribute{
 					Name:        "gateway_id",
@@ -5587,7 +5583,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete_on_vm_deletion",
-					Description: `(Optional) Set to ` + "`" + `true` + "`" + ` by default, which means that the volume is deleted when the VM is terminated. If set to ` + "`" + `false` + "`" + `, the volume is not deleted when the VM is terminated.`,
+					Description: `(Optional) By default or if set to true, the volume is deleted when terminating the VM. If false, the volume is not deleted when terminating the VM.`,
 				},
 				resource.Attribute{
 					Name:        "iops",
@@ -5619,7 +5615,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bsu_optimized",
-					Description: `(Optional) If ` + "`" + `true` + "`" + `, the VM is created with optimized BSU I/O. Updating this parameter will trigger a stop/start of the VM.`,
+					Description: `(Optional) If true, the VM is created with optimized BSU I/O. Updating this parameter will trigger a stop/start of the VM.`,
 				},
 				resource.Attribute{
 					Name:        "client_token",
@@ -5627,7 +5623,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "deletion_protection",
-					Description: `(Optional) If ` + "`" + `true` + "`" + `, you cannot terminate the VM using Cockpit, the CLI or the API. If ` + "`" + `false` + "`" + `, you can.`,
+					Description: `(Optional) If true, you cannot terminate the VM using Cockpit, the CLI or the API. If false, you can.`,
 				},
 				resource.Attribute{
 					Name:        "image_id",
@@ -5643,7 +5639,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete_on_vm_deletion",
-					Description: `(Optional) If ` + "`" + `true` + "`" + `, the NIC is deleted when the VM is terminated. You can specify ` + "`" + `true` + "`" + ` only if you create a NIC when creating a VM.`,
+					Description: `(Optional) By default or if set to true, the NIC is deleted when the VM is terminated. You can specify this parameter only for a new NIC. To modify this value for an existing NIC, see [UpdateNic](https://docs.outscale.com/api#updatenic).`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -5663,7 +5659,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_primary",
-					Description: `(Optional) If ` + "`" + `true` + "`" + `, the IP address is the primary private IP address of the NIC.`,
+					Description: `(Optional) If true, the IP address is the primary private IP address of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "private_ip",
@@ -5710,6 +5706,18 @@ var (
 					Description: `(Optional) The ID of the Subnet in which you want to create the VM.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `A tag to add to this resource. You can specify this argument several times.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key of the tag, with a minimum of 1 character.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the tag, between 0 and 255 characters.`,
+				},
+				resource.Attribute{
 					Name:        "user_data",
 					Description: `(Optional) Data or script used to add a specific configuration to the VM. It must be base64-encoded, either directly or using the [base64encode](https://www.terraform.io/docs/configuration/functions/base64encode.html) Terraform function. For multiline strings, use a [heredoc syntax](https://www.terraform.io/docs/configuration/expressions.html#string-literals). Updating this parameter will trigger a stop/start of the VM.`,
 				},
@@ -5719,19 +5727,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vm_type",
-					Description: `(Optional) The type of VM (` + "`" + `t2.small` + "`" + ` by default). Updating this parameter will trigger a stop/start of the VM.<br /> For more information, see [Instance Types](https://wiki.outscale.net/display/EN/Instance+Types).`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `One or more tags to add to this resource.`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `The key of the tag, with a minimum of 1 character.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
+					Description: `(Optional) The type of VM (` + "`" + `t2.small` + "`" + ` by default). Updating this parameter will trigger a stop/start of the VM.<br /> For more information, see [Instance Types](https://wiki.outscale.net/display/EN/Instance+Types). ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "vms",
@@ -5739,7 +5735,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_password",
-					Description: `(Windows VM only) The administrator password of the VM. This password is encrypted with the keypair of the VM and encoded in Base64. You need to wait about 10 minutes after launching the VM to be able to retrieve this attribute. Once the password is ready, this attribute will appear in the Terraform state after the next refresh or apply command. Note also that after the first reboot of the VM, this attribute can no longer be retrieved. For more information on how to use this password to connect to the VM, see [Accessing a Windows Instance](https://wiki.outscale.net/display/EN/Accessing+a+Windows+Instance).`,
+					Description: `(Windows VM only) The administrator password of the VM. This password is encrypted with the keypair you specified when launching the VM and encoded in Base64. You need to wait about 10 minutes after launching the VM to be able to retrieve this password.<br /> If ` + "`" + `get_admin_password` + "`" + ` is false or not specified, the VM resource is created without the ` + "`" + `admin_password` + "`" + ` attribute. Once ` + "`" + `admin_password` + "`" + ` is available, it will appear in the Terraform state after the next`,
 				},
 				resource.Attribute{
 					Name:        "architecture",
@@ -5755,7 +5751,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete_on_vm_deletion",
-					Description: `Set to ` + "`" + `true` + "`" + ` by default, which means that the volume is deleted when the VM is terminated. If set to ` + "`" + `false` + "`" + `, the volume is not deleted when the VM is terminated.`,
+					Description: `If true, the volume is deleted when terminating the VM. If false, the volume is not deleted when terminating the VM.`,
 				},
 				resource.Attribute{
 					Name:        "link_date",
@@ -5775,7 +5771,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bsu_optimized",
-					Description: `If ` + "`" + `true` + "`" + `, the VM is optimized for BSU I/O.`,
+					Description: `If true, the VM is optimized for BSU I/O.`,
 				},
 				resource.Attribute{
 					Name:        "client_token",
@@ -5783,7 +5779,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "deletion_protection",
-					Description: `If ` + "`" + `true` + "`" + `, you cannot terminate the VM using Cockpit, the CLI or the API. If ` + "`" + `false` + "`" + `, you can.`,
+					Description: `If true, you cannot terminate the VM using Cockpit, the CLI or the API. If false, you can.`,
 				},
 				resource.Attribute{
 					Name:        "hypervisor",
@@ -5795,7 +5791,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_source_dest_checked",
-					Description: `(Net only) If ` + "`" + `true` + "`" + `, the source/destination check is enabled. If ` + "`" + `false` + "`" + `, it is disabled. This value must be ` + "`" + `false` + "`" + ` for a NAT VM to perform network address translation (NAT) in a Net.`,
+					Description: `(Net only) If true, the source/destination check is enabled. If false, it is disabled. This value must be false for a NAT VM to perform network address translation (NAT) in a Net.`,
 				},
 				resource.Attribute{
 					Name:        "keypair_name",
@@ -5823,7 +5819,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_source_dest_checked",
-					Description: `(Net only) If ` + "`" + `true` + "`" + `, the source/destination check is enabled. If ` + "`" + `false` + "`" + `, it is disabled. This value must be ` + "`" + `false` + "`" + ` for a NAT VM to perform network address translation (NAT) in a Net.`,
+					Description: `(Net only) If true, the source/destination check is enabled. If false, it is disabled. This value must be false for a NAT VM to perform network address translation (NAT) in a Net.`,
 				},
 				resource.Attribute{
 					Name:        "link_nic",
@@ -5831,7 +5827,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete_on_vm_deletion",
-					Description: `If ` + "`" + `true` + "`" + `, the volume is deleted when the VM is terminated.`,
+					Description: `If true, the NIC is deleted when the VM is terminated.`,
 				},
 				resource.Attribute{
 					Name:        "device_number",
@@ -5883,7 +5879,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_primary",
-					Description: `If ` + "`" + `true` + "`" + `, the IP address is the primary private IP address of the NIC.`,
+					Description: `If true, the IP address is the primary private IP address of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
@@ -6041,7 +6037,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_password",
-					Description: `(Windows VM only) The administrator password of the VM. This password is encrypted with the keypair of the VM and encoded in Base64. You need to wait about 10 minutes after launching the VM to be able to retrieve this attribute. Once the password is ready, this attribute will appear in the Terraform state after the next refresh or apply command. Note also that after the first reboot of the VM, this attribute can no longer be retrieved. For more information on how to use this password to connect to the VM, see [Accessing a Windows Instance](https://wiki.outscale.net/display/EN/Accessing+a+Windows+Instance).`,
+					Description: `(Windows VM only) The administrator password of the VM. This password is encrypted with the keypair you specified when launching the VM and encoded in Base64. You need to wait about 10 minutes after launching the VM to be able to retrieve this password.<br /> If ` + "`" + `get_admin_password` + "`" + ` is false or not specified, the VM resource is created without the ` + "`" + `admin_password` + "`" + ` attribute. Once ` + "`" + `admin_password` + "`" + ` is available, it will appear in the Terraform state after the next`,
 				},
 				resource.Attribute{
 					Name:        "architecture",
@@ -6057,7 +6053,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete_on_vm_deletion",
-					Description: `Set to ` + "`" + `true` + "`" + ` by default, which means that the volume is deleted when the VM is terminated. If set to ` + "`" + `false` + "`" + `, the volume is not deleted when the VM is terminated.`,
+					Description: `If true, the volume is deleted when terminating the VM. If false, the volume is not deleted when terminating the VM.`,
 				},
 				resource.Attribute{
 					Name:        "link_date",
@@ -6077,7 +6073,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bsu_optimized",
-					Description: `If ` + "`" + `true` + "`" + `, the VM is optimized for BSU I/O.`,
+					Description: `If true, the VM is optimized for BSU I/O.`,
 				},
 				resource.Attribute{
 					Name:        "client_token",
@@ -6085,7 +6081,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "deletion_protection",
-					Description: `If ` + "`" + `true` + "`" + `, you cannot terminate the VM using Cockpit, the CLI or the API. If ` + "`" + `false` + "`" + `, you can.`,
+					Description: `If true, you cannot terminate the VM using Cockpit, the CLI or the API. If false, you can.`,
 				},
 				resource.Attribute{
 					Name:        "hypervisor",
@@ -6097,7 +6093,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_source_dest_checked",
-					Description: `(Net only) If ` + "`" + `true` + "`" + `, the source/destination check is enabled. If ` + "`" + `false` + "`" + `, it is disabled. This value must be ` + "`" + `false` + "`" + ` for a NAT VM to perform network address translation (NAT) in a Net.`,
+					Description: `(Net only) If true, the source/destination check is enabled. If false, it is disabled. This value must be false for a NAT VM to perform network address translation (NAT) in a Net.`,
 				},
 				resource.Attribute{
 					Name:        "keypair_name",
@@ -6125,7 +6121,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_source_dest_checked",
-					Description: `(Net only) If ` + "`" + `true` + "`" + `, the source/destination check is enabled. If ` + "`" + `false` + "`" + `, it is disabled. This value must be ` + "`" + `false` + "`" + ` for a NAT VM to perform network address translation (NAT) in a Net.`,
+					Description: `(Net only) If true, the source/destination check is enabled. If false, it is disabled. This value must be false for a NAT VM to perform network address translation (NAT) in a Net.`,
 				},
 				resource.Attribute{
 					Name:        "link_nic",
@@ -6133,7 +6129,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete_on_vm_deletion",
-					Description: `If ` + "`" + `true` + "`" + `, the volume is deleted when the VM is terminated.`,
+					Description: `If true, the NIC is deleted when the VM is terminated.`,
 				},
 				resource.Attribute{
 					Name:        "device_number",
@@ -6185,7 +6181,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_primary",
-					Description: `If ` + "`" + `true` + "`" + `, the IP address is the primary private IP address of the NIC.`,
+					Description: `If true, the IP address is the primary private IP address of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
@@ -6353,7 +6349,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `(Optional) The size of the volume, in gibibytes (GiB). The maximum allowed size for a volume is 14,901 GiB. This parameter is required if the volume is not created from a snapshot (` + "`" + `snapshot_id` + "`" + ` unspecified).`,
+					Description: `(Optional) The size of the volume, in gibibytes (GiB). The maximum allowed size for a volume is 14901 GiB. This parameter is required if the volume is not created from a snapshot (` + "`" + `snapshot_id` + "`" + ` unspecified).`,
 				},
 				resource.Attribute{
 					Name:        "snapshot_id",
@@ -6362,10 +6358,6 @@ var (
 				resource.Attribute{
 					Name:        "subregion_name",
 					Description: `(Required) The Subregion in which you want to create the volume.`,
-				},
-				resource.Attribute{
-					Name:        "volume_type",
-					Description: `(Optional) The type of volume you want to create (` + "`" + `io1` + "`" + ` \| ` + "`" + `gp2` + "`" + ` \| ` + "`" + `standard` + "`" + `). If not specified, a ` + "`" + `standard` + "`" + ` volume is created.<br /> For more information about volume types, see [Volume Types and IOPS](https://wiki.outscale.net/display/EN/About+Volumes#AboutVolumes-VolumeTypesVolumeTypesandIOPS).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -6377,7 +6369,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
+					Description: `The value of the tag, between 0 and 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "volume_type",
+					Description: `(Optional) The type of volume you want to create (` + "`" + `io1` + "`" + ` \| ` + "`" + `gp2` + "`" + ` \| ` + "`" + `standard` + "`" + `). If not specified, a ` + "`" + `standard` + "`" + ` volume is created.<br /> For more information about volume types, see [Volume Types and IOPS](https://wiki.outscale.net/display/EN/About+Volumes#AboutVolumes-VolumeTypesVolumeTypesandIOPS). ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "volume",
@@ -6393,7 +6389,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete_on_vm_deletion",
-					Description: `If ` + "`" + `true` + "`" + `, the volume is deleted when the VM is terminated.`,
+					Description: `If true, the volume is deleted when terminating the VM. If false, the volume is not deleted when terminating the VM.`,
 				},
 				resource.Attribute{
 					Name:        "device_name",
@@ -6463,7 +6459,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete_on_vm_deletion",
-					Description: `If ` + "`" + `true` + "`" + `, the volume is deleted when the VM is terminated.`,
+					Description: `If true, the volume is deleted when terminating the VM. If false, the volume is not deleted when terminating the VM.`,
 				},
 				resource.Attribute{
 					Name:        "device_name",
@@ -6540,11 +6536,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "static_routes_only",
-					Description: `(Optional) If ` + "`" + `false` + "`" + `, the VPN connection uses dynamic routing with Border Gateway Protocol (BGP). If ` + "`" + `true` + "`" + `, routing is controlled using static routes. For more information about how to create and delete static routes, see [CreateVpnConnectionRoute](https://docs.outscale.com/api#createvpnconnectionroute) and [DeleteVpnConnectionRoute](https://docs.outscale.com/api#deletevpnconnectionroute).`,
-				},
-				resource.Attribute{
-					Name:        "virtual_gateway_id",
-					Description: `(Required) The ID of the virtual gateway.`,
+					Description: `(Optional) If false, the VPN connection uses dynamic routing with Border Gateway Protocol (BGP). If true, routing is controlled using static routes. For more information about how to create and delete static routes, see [CreateVpnConnectionRoute](https://docs.outscale.com/api#createvpnconnectionroute) and [DeleteVpnConnectionRoute](https://docs.outscale.com/api#deletevpnconnectionroute).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -6556,7 +6548,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
+					Description: `The value of the tag, between 0 and 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_gateway_id",
+					Description: `(Required) The ID of the virtual gateway. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "vpn_connection",
@@ -6564,7 +6560,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "client_gateway_configuration",
-					Description: `The configuration to apply to the client gateway to establish the VPN connection, in XML format.`,
+					Description: `Example configuration for the client gateway.`,
 				},
 				resource.Attribute{
 					Name:        "client_gateway_id",
@@ -6596,7 +6592,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "static_routes_only",
-					Description: `If ` + "`" + `false` + "`" + `, the VPN connection uses dynamic routing with Border Gateway Protocol (BGP). If ` + "`" + `true` + "`" + `, routing is controlled using static routes. For more information about how to create and delete static routes, see [CreateVpnConnectionRoute](https://docs.outscale.com/api#createvpnconnectionroute) and [DeleteVpnConnectionRoute](https://docs.outscale.com/api#deletevpnconnectionroute).`,
+					Description: `If false, the VPN connection uses dynamic routing with Border Gateway Protocol (BGP). If true, routing is controlled using static routes. For more information about how to create and delete static routes, see [CreateVpnConnectionRoute](https://docs.outscale.com/api#createvpnconnectionroute) and [DeleteVpnConnectionRoute](https://docs.outscale.com/api#deletevpnconnectionroute).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -6612,7 +6608,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "virtual_gateway_id",
-					Description: `The ID of the virtual gateway used on the 3DS OUTSCALE end of the connection.`,
+					Description: `The ID of the virtual gateway used on the OUTSCALE end of the connection.`,
 				},
 				resource.Attribute{
 					Name:        "vpn_connection_id",
@@ -6626,7 +6622,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "client_gateway_configuration",
-					Description: `The configuration to apply to the client gateway to establish the VPN connection, in XML format.`,
+					Description: `Example configuration for the client gateway.`,
 				},
 				resource.Attribute{
 					Name:        "client_gateway_id",
@@ -6658,7 +6654,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "static_routes_only",
-					Description: `If ` + "`" + `false` + "`" + `, the VPN connection uses dynamic routing with Border Gateway Protocol (BGP). If ` + "`" + `true` + "`" + `, routing is controlled using static routes. For more information about how to create and delete static routes, see [CreateVpnConnectionRoute](https://docs.outscale.com/api#createvpnconnectionroute) and [DeleteVpnConnectionRoute](https://docs.outscale.com/api#deletevpnconnectionroute).`,
+					Description: `If false, the VPN connection uses dynamic routing with Border Gateway Protocol (BGP). If true, routing is controlled using static routes. For more information about how to create and delete static routes, see [CreateVpnConnectionRoute](https://docs.outscale.com/api#createvpnconnectionroute) and [DeleteVpnConnectionRoute](https://docs.outscale.com/api#deletevpnconnectionroute).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -6674,7 +6670,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "virtual_gateway_id",
-					Description: `The ID of the virtual gateway used on the 3DS OUTSCALE end of the connection.`,
+					Description: `The ID of the virtual gateway used on the OUTSCALE end of the connection.`,
 				},
 				resource.Attribute{
 					Name:        "vpn_connection_id",

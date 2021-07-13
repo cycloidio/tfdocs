@@ -204,6 +204,70 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_global_role",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a VMware Cloud Director global role data source . This can be used to read global roles.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the global role. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the global role`,
+				},
+				resource.Attribute{
+					Name:        "bundle_key",
+					Description: `Key used for internationalization.`,
+				},
+				resource.Attribute{
+					Name:        "rights",
+					Description: `List of rights assigned to this role`,
+				},
+				resource.Attribute{
+					Name:        "publish_to_all_tenants",
+					Description: `When true, publishes the global role to all tenants`,
+				},
+				resource.Attribute{
+					Name:        "tenants",
+					Description: `List of tenants to which this global role gets published. Ignored if ` + "`" + `publish_to_all_tenants` + "`" + ` is true.`,
+				},
+				resource.Attribute{
+					Name:        "read_only",
+					Description: `Whether this global role is read-only ## More information See [Roles management](/docs/providers/vcd/guides/roles_management.html) for a broader description of how global roles and rights work together.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the global role`,
+				},
+				resource.Attribute{
+					Name:        "bundle_key",
+					Description: `Key used for internationalization.`,
+				},
+				resource.Attribute{
+					Name:        "rights",
+					Description: `List of rights assigned to this role`,
+				},
+				resource.Attribute{
+					Name:        "publish_to_all_tenants",
+					Description: `When true, publishes the global role to all tenants`,
+				},
+				resource.Attribute{
+					Name:        "tenants",
+					Description: `List of tenants to which this global role gets published. Ignored if ` + "`" + `publish_to_all_tenants` + "`" + ` is true.`,
+				},
+				resource.Attribute{
+					Name:        "read_only",
+					Description: `Whether this global role is read-only ## More information See [Roles management](/docs/providers/vcd/guides/roles_management.html) for a broader description of how global roles and rights work together.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_independent_disk",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a independent disk data source.`,
@@ -225,29 +289,6 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) Disk name.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vcd_nsxv_ip_set",
-			Category:         "Data Sources",
-			ShortDescription: `Provides an IP set data source.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "org",
-					Description: `(Optional) The name of organization to use, optional if defined at provider level`,
-				},
-				resource.Attribute{
-					Name:        "vdc",
-					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) IP set name for identifying the exact IP set ## Attribute Reference All the attributes defined in [` + "`" + `vcd_nsxv_ip_set` + "`" + `](/docs/providers/vcd/r/ipset.html) resource are available.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -391,7 +432,7 @@ var (
 			Name:             "",
 			Type:             "vcd_network_direct",
 			Category:         "Data Sources",
-			ShortDescription: `Provides a vCloud Director Org VDC Network attached to an external one. This can be used to reference internal networks for vApps to connect.`,
+			ShortDescription: `Provides a VMware Cloud Director Org VDC Network attached to an external one. This can be used to reference internal networks for vApps to connect.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -435,7 +476,7 @@ var (
 			Name:             "",
 			Type:             "vcd_network_isolated",
 			Category:         "Data Sources",
-			ShortDescription: `Provides a vCloud Director Org VDC isolated Network. This can be used to reference internal networks for vApps to connect.`,
+			ShortDescription: `Provides a VMware Cloud Director Org VDC isolated Network. This can be used to reference internal networks for vApps to connect.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -489,7 +530,7 @@ var (
 			Name:             "",
 			Type:             "vcd_network_routed",
 			Category:         "Data Sources",
-			ShortDescription: `Provides a vCloud Director Org VDC routed Network. This can be used to reference internal networks for vApps to connect.`,
+			ShortDescription: `Provides a VMware Cloud Director Org VDC routed Network. This can be used to reference internal networks for vApps to connect.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -535,6 +576,33 @@ var (
 				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional) Retrieves the data source using one or more filter parameters ## Attribute reference All attributes defined in [routed network resource](/docs/providers/vcd/r/network_routed_v2.html#attribute-reference) are supported. ## Filter arguments`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_app_port_profile",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data source to read NSX-T Application Port Profiles. Application Port Profiles include a combination of a protocol and a port, or a group of ports, that is used for Firewall and NAT services on the Edge Gateway.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) - Unique name of existing Security Group.`,
+				},
+				resource.Attribute{
+					Name:        "scope",
+					Description: `(Required) - ` + "`" + `SYSTEM` + "`" + `, ` + "`" + `PROVIDER` + "`" + `, or ` + "`" + `TENANT` + "`" + `. ## Attribute Reference All the arguments and attributes defined in [` + "`" + `vcd_nsxt_app_port_profile` + "`" + `](/docs/providers/vcd/r/nsxt_app_port_profile.html) resource are available.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -595,6 +663,83 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_nsxt_firewall",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data source to read NSX-T Firewall configuration of an Edge Gateway. Firewalls allow user to control the incoming and outgoing network traffic to and from an NSX-T Data Center Edge Gateway.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organizations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway_id",
+					Description: `(Required) The ID of the Edge Gateway (NSX-T only). Can be looked up using ` + "`" + `vcd_nsxt_edgegateway` + "`" + ` data source ## Attribute reference All properties defined in [vcd_nsxt_firewall](/docs/providers/vcd/r/nsxt_firewall.html) resource are available.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_ip_set",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data source to read NSX-T IP Set. IP sets are groups of objects to which the firewall rules apply. Combining multiple objects into IP sets helps reduce the total number of firewall rules to be created.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway_id",
+					Description: `(Required) The ID of the edge gateway (NSX-T only). Can be looked up using`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) - Unique name of existing IP Set. ## Attribute Reference All the arguments and attributes defined in [` + "`" + `vcd_nsxt_ip_set` + "`" + `](/docs/providers/vcd/r/nsxt_ip_set.html) resource are available.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_ipsec_vpn_tunnel",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data source to read NSX-T IPsec VPN Tunnel. You can configure site-to-site connectivity between an NSX-T Data Center Edge Gateway and remote sites. The remote sites must use NSX-T Data Center, have third-party hardware routers, or VPN gateways that support IPSec.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway_id",
+					Description: `(Required) The ID of the edge gateway (NSX-T only). Can be looked up using ` + "`" + `vcd_nsxt_edgegateway` + "`" + ` data source`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) - Name of existing IPsec VPN Tunnel ## Attribute Reference All the arguments and attributes defined in [` + "`" + `vcd_nsxt_ipsec_vpn_tunnel` + "`" + `](/docs/providers/vcd/r/nsxt_ipsec_vpn_tunnel.html) resource are available.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_nsxt_manager",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data source for available NSX-T manager.`,
@@ -604,6 +749,33 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) NSX-T manager name ## Attribute reference Only ID is set to be able and reference in other resources or data sources.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_nat_rule",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data source to read NSX-T NAT rules. Source NAT (SNAT) rules change the source IP address from a private to a public IP address. Destination NAT (DNAT) rules change the destination IP address from a public to a private IP address.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organizations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway_id",
+					Description: `(Required) The ID of the Edge Gateway (NSX-T only). Can be looked up using`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) - Name of existing NAT Rule. -> Name uniqueness is not enforced in NSX-T NAT rules, but for this data source to work properly names should be unique so that they can be distinguished. ## Attribute Reference All the arguments and attributes defined in [` + "`" + `vcd_nsxt_nat_rule` + "`" + `](/docs/providers/vcd/r/nsxt_nat_rule.html) resource are available.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -662,7 +834,7 @@ var (
 			Name:             "",
 			Type:             "vcd_nsxt_security_group",
 			Category:         "Data Sources",
-			ShortDescription: `Provides a datasource to access NSX-T Security Group configuration. Security groups are groups of data center group networks to which distributed firewall rules apply. Grouping networks helps you to reduce the total number of distributed firewall rules to be created.`,
+			ShortDescription: `Provides a data source to access NSX-T Security Group configuration. Security groups are groups of data center group networks to which distributed firewall rules apply. Grouping networks helps you to reduce the total number of distributed firewall rules to be created.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -735,7 +907,7 @@ var (
 			Name:             "",
 			Type:             "vcd_nsxv_dnat",
 			Category:         "Data Sources",
-			ShortDescription: `Provides a vCloud Director DNAT data source for advanced edge gateways (NSX-V). This can be used to read existing rule by ID and use its attributes in other resources.`,
+			ShortDescription: `Provides a VMware Cloud Director DNAT data source for advanced edge gateways (NSX-V). This can be used to read existing rule by ID and use its attributes in other resources.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -762,7 +934,7 @@ var (
 			Name:             "",
 			Type:             "vcd_nsxv_firewall_rule",
 			Category:         "Data Sources",
-			ShortDescription: `Provides a vCloud Director firewall rule data source for advanced edge gateways (NSX-V). This can be used to read existing rules by ID and use its attributes in other resources.`,
+			ShortDescription: `Provides a VMware Cloud Director firewall rule data source for advanced edge gateways (NSX-V). This can be used to read existing rules by ID and use its attributes in other resources.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -787,9 +959,32 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_nsxv_ip_set",
+			Category:         "Data Sources",
+			ShortDescription: `Provides an IP set data source.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) IP set name for identifying the exact IP set ## Attribute Reference All the attributes defined in [` + "`" + `vcd_nsxv_ip_set` + "`" + `](/docs/providers/vcd/r/nsxv_ip_set.html) resource are available.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_nsxv_snat",
 			Category:         "Data Sources",
-			ShortDescription: `Provides a vCloud Director SNAT data source for advanced edge gateways (NSX-V). This can be used to read existing rule by ID and use its attributes in other resources.`,
+			ShortDescription: `Provides a VMware Cloud Director SNAT data source for advanced edge gateways (NSX-V). This can be used to read existing rule by ID and use its attributes in other resources.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -952,7 +1147,7 @@ var (
 			Name:             "",
 			Type:             "vcd_org_user",
 			Category:         "Data Sources",
-			ShortDescription: `Provides a vCloud Director Organization user data source. This can be used to read organization users.`,
+			ShortDescription: `Provides a VMware Cloud Director Organization user data source. This can be used to read organization users.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -1191,6 +1386,157 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_right",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a VMware Cloud Director Organization Right data source. This can be used to read existing rights`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the right. ## Attribute reference`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the right`,
+				},
+				resource.Attribute{
+					Name:        "category_id",
+					Description: `The ID of the category for this right`,
+				},
+				resource.Attribute{
+					Name:        "bundle_key",
+					Description: `Key used for internationalization`,
+				},
+				resource.Attribute{
+					Name:        "right type",
+					Description: `Type of the right (VIEW or MODIFY)`,
+				},
+				resource.Attribute{
+					Name:        "implied_rights",
+					Description: `List of rights that are implied with this one ## More information See [Roles management](/docs/providers/vcd/guides/roles_management.html) for a broader description of how roles and rights work together.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_rights_bundle",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a VMware Cloud Director rights bundle data source. This can be used to read rights bundles.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the rights bundle. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the rights bundle`,
+				},
+				resource.Attribute{
+					Name:        "bundle_key",
+					Description: `Key used for internationalization.`,
+				},
+				resource.Attribute{
+					Name:        "rights",
+					Description: `List of rights assigned to this role`,
+				},
+				resource.Attribute{
+					Name:        "publish_to_all_tenants",
+					Description: `When true, publishes the rights bundle to all tenants`,
+				},
+				resource.Attribute{
+					Name:        "tenants",
+					Description: `List of tenants to which this rights bundle gets published. Ignored if ` + "`" + `publish_to_all_tenants` + "`" + ` is true.`,
+				},
+				resource.Attribute{
+					Name:        "read_only",
+					Description: `Whether this rights bundle is read-only ## More information See [Roles management](/docs/providers/vcd/guides/roles_management.html) for a broader description of how rights bundles and rights work together.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the rights bundle`,
+				},
+				resource.Attribute{
+					Name:        "bundle_key",
+					Description: `Key used for internationalization.`,
+				},
+				resource.Attribute{
+					Name:        "rights",
+					Description: `List of rights assigned to this role`,
+				},
+				resource.Attribute{
+					Name:        "publish_to_all_tenants",
+					Description: `When true, publishes the rights bundle to all tenants`,
+				},
+				resource.Attribute{
+					Name:        "tenants",
+					Description: `List of tenants to which this rights bundle gets published. Ignored if ` + "`" + `publish_to_all_tenants` + "`" + ` is true.`,
+				},
+				resource.Attribute{
+					Name:        "read_only",
+					Description: `Whether this rights bundle is read-only ## More information See [Roles management](/docs/providers/vcd/guides/roles_management.html) for a broader description of how rights bundles and rights work together.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_role",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a VMware Cloud Director role. This can be used to read roles.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the role. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "read_only",
+					Description: `Whether this role is read-only`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the role`,
+				},
+				resource.Attribute{
+					Name:        "bundle_key",
+					Description: `Key used for internationalization.`,
+				},
+				resource.Attribute{
+					Name:        "rights",
+					Description: `List of rights assigned to this role ## More information See [Roles management](/docs/providers/vcd/guides/roles_management.html) for a broader description of how roles and rights work together.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "read_only",
+					Description: `Whether this role is read-only`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the role`,
+				},
+				resource.Attribute{
+					Name:        "bundle_key",
+					Description: `Key used for internationalization.`,
+				},
+				resource.Attribute{
+					Name:        "rights",
+					Description: `List of rights assigned to this role ## More information See [Roles management](/docs/providers/vcd/guides/roles_management.html) for a broader description of how roles and rights work together.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_storage_profile",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data source for VDC storage profile.`,
@@ -1216,7 +1562,7 @@ var (
 			Name:             "",
 			Type:             "vcd_vapp",
 			Category:         "Data Sources",
-			ShortDescription: `Provides a vCloud Director vApp data source. This can be used to reference vApps.`,
+			ShortDescription: `Provides a VMware Cloud Director vApp data source. This can be used to reference vApps.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -1259,7 +1605,7 @@ var (
 			Name:             "",
 			Type:             "vcd_vapp_network",
 			Category:         "Data Sources",
-			ShortDescription: `Provides a vCloud Director vApp network data source. This can be used to access a vApp network.`,
+			ShortDescription: `Provides a VMware Cloud Director vApp network data source. This can be used to access a vApp network.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -1286,7 +1632,7 @@ var (
 			Name:             "",
 			Type:             "vcd_vapp_org_network",
 			Category:         "Data Sources",
-			ShortDescription: `Provides a data source for vCloud director Org network attached to vApp. This can be used to access vApp Org network.`,
+			ShortDescription: `Provides a data source for VMware Cloud Director Org network attached to vApp. This can be used to access vApp Org network.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -1313,7 +1659,7 @@ var (
 			Name:             "",
 			Type:             "vcd_vapp_vm",
 			Category:         "Data Sources",
-			ShortDescription: `Provides a vCloud Director VM data source. This can be used to access VMs within a vApp.`,
+			ShortDescription: `Provides a VMware Cloud Director VM data source. This can be used to access VMs within a vApp.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -1458,7 +1804,7 @@ var (
 			Name:             "",
 			Type:             "vcd_vm_affinity_rule",
 			Category:         "Data Sources",
-			ShortDescription: `Provides a vCloud Director VM affinity rule data source. This can be used to read VM affinity and anti-affinity rules.`,
+			ShortDescription: `Provides a VMware Cloud Director VM affinity rule data source. This can be used to read VM affinity and anti-affinity rules.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -1489,7 +1835,7 @@ var (
 			Name:             "",
 			Type:             "vcd_vm_sizing_policy",
 			Category:         "Data Sources",
-			ShortDescription: `Provides a vCloud Director VM sizing policy data source. This can be used to read VM sizing policy.`,
+			ShortDescription: `Provides a VMware Cloud Director VM sizing policy data source. This can be used to read VM sizing policy.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -1514,8 +1860,8 @@ var (
 		"vcd_edgegateway":           3,
 		"vcd_external_network":      4,
 		"vcd_external_network_v2":   5,
-		"vcd_independent_disk":      6,
-		"vcd_nsxv_ip_set":           7,
+		"vcd_global_role":           6,
+		"vcd_independent_disk":      7,
 		"vcd_lb_app_profile":        8,
 		"vcd_lb_app_rule":           9,
 		"vcd_lb_server_pool":        10,
@@ -1526,32 +1872,41 @@ var (
 		"vcd_network_isolated_v2":   15,
 		"vcd_network_routed":        16,
 		"vcd_network_routed_v2":     17,
-		"vcd_nsxt_edge_cluster":     18,
-		"vcd_nsxt_edgegateway":      19,
-		"vcd_nsxt_manager":          20,
-		"vcd_nsxt_network_dhcp":     21,
-		"vcd_nsxt_network_imported": 22,
-		"vcd_nsxt_security_group":   23,
-		"vcd_nsxt_tier0_router":     24,
-		"vcd_nsxv_dhcp_relay":       25,
-		"vcd_nsxv_dnat":             26,
-		"vcd_nsxv_firewall_rule":    27,
-		"vcd_nsxv_snat":             28,
-		"vcd_org":                   29,
-		"vcd_org_user":              30,
-		"vcd_org_vdc":               31,
-		"vcd_portgroup":             32,
-		"vcd_resource_list":         33,
-		"vcd_resource_schema":       34,
-		"vcd_storage_profile":       35,
-		"vcd_vapp":                  36,
-		"vcd_vapp_network":          37,
-		"vcd_vapp_org_network":      38,
-		"vcd_vapp_vm":               39,
-		"vcd_vcenter":               40,
-		"vcd_vm":                    41,
-		"vcd_vm_affinity_rule":      42,
-		"vcd_vm_sizing_policy":      43,
+		"vcd_nsxt_app_port_profile": 18,
+		"vcd_nsxt_edge_cluster":     19,
+		"vcd_nsxt_edgegateway":      20,
+		"vcd_nsxt_firewall":         21,
+		"vcd_nsxt_ip_set":           22,
+		"vcd_nsxt_ipsec_vpn_tunnel": 23,
+		"vcd_nsxt_manager":          24,
+		"vcd_nsxt_nat_rule":         25,
+		"vcd_nsxt_network_dhcp":     26,
+		"vcd_nsxt_network_imported": 27,
+		"vcd_nsxt_security_group":   28,
+		"vcd_nsxt_tier0_router":     29,
+		"vcd_nsxv_dhcp_relay":       30,
+		"vcd_nsxv_dnat":             31,
+		"vcd_nsxv_firewall_rule":    32,
+		"vcd_nsxv_ip_set":           33,
+		"vcd_nsxv_snat":             34,
+		"vcd_org":                   35,
+		"vcd_org_user":              36,
+		"vcd_org_vdc":               37,
+		"vcd_portgroup":             38,
+		"vcd_resource_list":         39,
+		"vcd_resource_schema":       40,
+		"vcd_right":                 41,
+		"vcd_rights_bundle":         42,
+		"vcd_role":                  43,
+		"vcd_storage_profile":       44,
+		"vcd_vapp":                  45,
+		"vcd_vapp_network":          46,
+		"vcd_vapp_org_network":      47,
+		"vcd_vapp_vm":               48,
+		"vcd_vcenter":               49,
+		"vcd_vm":                    50,
+		"vcd_vm_affinity_rule":      51,
+		"vcd_vm_sizing_policy":      52,
 	}
 )
 

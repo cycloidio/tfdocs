@@ -1717,6 +1717,10 @@ var (
 					Description: `(Optional) A nested block containing configuration options for MongoDB connections.`,
 				},
 				resource.Attribute{
+					Name:        "mongodbatlas",
+					Description: `(Optional) A nested block containing configuration options for MongoDB Atlas connections.`,
+				},
+				resource.Attribute{
 					Name:        "hana",
 					Description: `(Optional) A nested block containing configuration options for SAP HanaDB connections.`,
 				},
@@ -1794,7 +1798,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "connection_url",
-					Description: `(Required) A URL containing connection information. See the [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload) for an example. ### SAP HanaDB Configuration Options`,
+					Description: `(Required) A URL containing connection information. See the [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload) for an example. ### MongoDB Atlas Configuration Options`,
+				},
+				resource.Attribute{
+					Name:        "public_key",
+					Description: `(Required) The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `(Required) The Private Programmatic API Key used to connect with MongoDB Atlas API.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The Project ID the Database User should be created within. ### SAP HanaDB Configuration Options`,
 				},
 				resource.Attribute{
 					Name:        "connection_url",
@@ -2765,13 +2781,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ` + "`" + `id` + "`" + ` of the created group alias. ## Import Group aliases can be imported using the uuid of the alias record, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import vault_identity_group_alias.alias_name 63104e20-88e4-11eb-8d04-cf7ac9d60157 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ` + "`" + `id` + "`" + ` of the created group alias. ## Import The group alias can be imported with the group alias ` + "`" + `id` + "`" + `, for example: ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import vault_identity_group_alias.group-alias id ` + "`" + `` + "`" + `` + "`" + ` Group aliases can also be imported using the UUID of the alias record, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import vault_identity_group_alias.alias_name 63104e20-88e4-11eb-8d04-cf7ac9d60157 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ` + "`" + `id` + "`" + ` of the created group alias. ## Import Group aliases can be imported using the uuid of the alias record, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import vault_identity_group_alias.alias_name 63104e20-88e4-11eb-8d04-cf7ac9d60157 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ` + "`" + `id` + "`" + ` of the created group alias. ## Import The group alias can be imported with the group alias ` + "`" + `id` + "`" + `, for example: ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import vault_identity_group_alias.group-alias id ` + "`" + `` + "`" + `` + "`" + ` Group aliases can also be imported using the UUID of the alias record, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import vault_identity_group_alias.alias_name 63104e20-88e4-11eb-8d04-cf7ac9d60157 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4775,6 +4791,33 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vault_quota_lease_count",
+			Category:         "Resources",
+			ShortDescription: `Manage Lease Count Quota`,
+			Description:      ``,
+			Keywords: []string{
+				"quota",
+				"lease",
+				"count",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the rate limit quota`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional) Path of the mount or namespace to apply the quota. A blank path configures a global rate limit quota. For example ` + "`" + `namespace1/` + "`" + ` adds a quota to a full namespace, ` + "`" + `namespace1/auth/userpass` + "`" + ` adds a ` + "`" + `quota` + "`" + ` to ` + "`" + `userpass` + "`" + ` in ` + "`" + `namespace1` + "`" + `. Updating this field on an existing quota can have "moving" effects. For example, updating ` + "`" + `auth/userpass` + "`" + ` to ` + "`" + `namespace1/auth/userpass` + "`" + ` moves this quota from being a global mount quota to a namespace specific mount quota.`,
+				},
+				resource.Attribute{
+					Name:        "max_leases",
+					Description: `(Required) The maximum number of leases to be allowed by the quota rule. The ` + "`" + `max_leases` + "`" + ` must be positive. ## Attributes Reference No additional attributes are exported by this resource. ## Import Lease count quotas can be imported using their names ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_quota_lease_count.global global ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vault_quota_rate_limit",
 			Category:         "Resources",
 			ShortDescription: `Manage Rate Limit Quota`,
@@ -4830,7 +4873,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `(Optional) The unique path this backend should be mounted at. Must not begin or end with a ` + "`" + `/` + "`" + `. Defaults to ` + "`" + `aws` + "`" + `.`,
+					Description: `(Optional) The unique path this backend should be mounted at. Must not begin or end with a ` + "`" + `/` + "`" + `. Defaults to ` + "`" + `rabbitmq` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -5415,15 +5458,16 @@ var (
 		"vault_pki_secret_backend_root_sign_intermediate":    72,
 		"vault_pki_secret_backend_sign":                      73,
 		"vault_policy":                                       74,
-		"vault_quota_rate_limit":                             75,
-		"vault_rabbitmq_secret_backend":                      76,
-		"vault_rabbitmq_secret_backend_role":                 77,
-		"vault_rgp_policy":                                   78,
-		"vault_ssh_secret_backend_ca":                        79,
-		"vault_ssh_secret_backend_role":                      80,
-		"vault_token":                                        81,
-		"vault_token_auth_backend_role":                      82,
-		"vault_transit_secret_backend_key":                   83,
+		"vault_quota_lease_count":                            75,
+		"vault_quota_rate_limit":                             76,
+		"vault_rabbitmq_secret_backend":                      77,
+		"vault_rabbitmq_secret_backend_role":                 78,
+		"vault_rgp_policy":                                   79,
+		"vault_ssh_secret_backend_ca":                        80,
+		"vault_ssh_secret_backend_role":                      81,
+		"vault_token":                                        82,
+		"vault_token_auth_backend_role":                      83,
+		"vault_transit_secret_backend_key":                   84,
 	}
 )
 

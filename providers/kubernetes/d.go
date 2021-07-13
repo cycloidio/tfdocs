@@ -261,7 +261,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotations",
-					Description: `(Optional) An unstructured key value map stored with the namespace that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such annotations can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such annotations in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/annotations)`,
+					Description: `(Optional) An unstructured key value map stored with the namespace that may be used to store arbitrary metadata. ~> By default, the provider ignores any annotations whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "generation",
@@ -269,7 +269,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) namespaces. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names are in the [Well-Known Labels, Annotations and Taints](https://kubernetes.io/docs/reference/labels-annotations-taints). This is necessary because such labels can be mutated by server-side components and consequently cause a perpetual diff in the Terraform plan output. If you explicitly specify any such labels in the configuration template then Terraform will consider these as normal resource attributes and manage them as expected (while still avoiding the perpetual diff problem). For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/labels)`,
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) namespaces. May match selectors of replication controllers and services. ~> By default, the provider ignores any labels whose key names end with`,
 				},
 				resource.Attribute{
 					Name:        "resource_version",
@@ -1089,6 +1089,10 @@ var (
 					Description: `A map of the secret data.`,
 				},
 				resource.Attribute{
+					Name:        "binary_data",
+					Description: `A map of the secret data with values encoded in base64 format. ~> In case the secret has been created outside terraform in order to retrieve binary data from the secret in base64 format you need to define a ` + "`" + `binary_data` + "`" + ` map with data to retrieve as key and an empty string as a value ` + "`" + `` + "`" + `` + "`" + `hcl data "kubernetes_secret" "example" { metadata { name = "example-secret" namespace = "kube-system" } binary_data = { "keystore.p12" = "" another_field = "" } } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "type",
 					Description: `The secret type. Defaults to ` + "`" + `Opaque` + "`" + `. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/c7151dd8dd7e487e96e5ce34c6a416bb3b037609/contributors/design-proposals/auth/secrets.md#proposed-design)`,
 				},
@@ -1097,6 +1101,10 @@ var (
 				resource.Attribute{
 					Name:        "data",
 					Description: `A map of the secret data.`,
+				},
+				resource.Attribute{
+					Name:        "binary_data",
+					Description: `A map of the secret data with values encoded in base64 format. ~> In case the secret has been created outside terraform in order to retrieve binary data from the secret in base64 format you need to define a ` + "`" + `binary_data` + "`" + ` map with data to retrieve as key and an empty string as a value ` + "`" + `` + "`" + `` + "`" + `hcl data "kubernetes_secret" "example" { metadata { name = "example-secret" namespace = "kube-system" } binary_data = { "keystore.p12" = "" another_field = "" } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "type",

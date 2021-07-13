@@ -285,6 +285,22 @@ var (
 					Description: `(Optional) Node category, which can be one of:`,
 				},
 				resource.Attribute{
+					Name:        "photon_worker_capable",
+					Description: `(Optional) Pick only nodes that can run Photon workers. Defaults to`,
+				},
+				resource.Attribute{
+					Name:        "photon_driver_capable",
+					Description: `(Optional) Pick only nodes that can run Photon driver. Defaults to`,
+				},
+				resource.Attribute{
+					Name:        "is_io_cache_enabled",
+					Description: `(Optional) . Pick only nodes that have IO Cache. Defaults to`,
+				},
+				resource.Attribute{
+					Name:        "support_port_forwarding",
+					Description: `(Optional) Pick only nodes that support port forwarding. Defaults to`,
+				},
+				resource.Attribute{
 					Name:        "id",
 					Description: `node type, that can be used for [databricks_job](../resources/job.md), [databricks_cluster](../resources/cluster.md), or [databricks_instance_pool](../resources/instance_pool.md).`,
 				},

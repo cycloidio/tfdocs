@@ -40,8 +40,12 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "encrypted_value",
+					Description: `(Optional) Encrypted value of the secret using the Github public key in Base64 format.`,
+				},
+				resource.Attribute{
 					Name:        "plaintext_value",
-					Description: `(Required) Plaintext value of the secret to be encrypted ## Attributes Reference`,
+					Description: `(Optional) Plaintext value of the secret to be encrypted ## Attributes Reference`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -697,6 +701,48 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "github_repository_environment",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages environments for GitHub repositories`,
+			Description:      ``,
+			Keywords: []string{
+				"repository",
+				"environment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "environment",
+					Description: `(Required) The name of the environment.`,
+				},
+				resource.Attribute{
+					Name:        "repository",
+					Description: `(Required) The repository of the environment.`,
+				},
+				resource.Attribute{
+					Name:        "wait_timer",
+					Description: `(Optional) Amount of time to delay a job after the job is initially triggered. ### Reviewers The ` + "`" + `reviewers` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "teams",
+					Description: `(Optional) Up to 6 IDs for teams who may review jobs that reference the environment. Reviewers must have at least read access to the repository. Only one of the required reviewers needs to approve the job for it to proceed.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `(Optional) Up to 6 IDs for users who may review jobs that reference the environment. Reviewers must have at least read access to the repository. Only one of the required reviewers needs to approve the job for it to proceed. #### Deployment Branch Policy #### The ` + "`" + `deployment_branch_policy` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "protected_branches",
+					Description: `(Required) Whether only branches with branch protection rules can deploy to this environment.`,
+				},
+				resource.Attribute{
+					Name:        "custom_branch_policies",
+					Description: `(Required) Whether only branches that match the specified name patterns can deploy to this environment.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "github_repository_file",
 			Category:         "Resources",
 			ShortDescription: `Creates and manages files within a GitHub repository`,
@@ -1140,17 +1186,18 @@ var (
 		"github_repository":                  13,
 		"github_repository_collaborator":     14,
 		"github_repository_deploy_key":       15,
-		"github_repository_file":             16,
-		"github_repository_milestone":        17,
-		"github_repository_project":          18,
-		"github_repository_webhook":          19,
-		"github_team":                        20,
-		"github_team_membership":             21,
-		"github_team_repository":             22,
-		"github_team_sync_group_mapping":     23,
-		"github_user_gpg_key":                24,
-		"github_user_invitation_accepter":    25,
-		"github_user_ssh_key":                26,
+		"github_repository_environment":      16,
+		"github_repository_file":             17,
+		"github_repository_milestone":        18,
+		"github_repository_project":          19,
+		"github_repository_webhook":          20,
+		"github_team":                        21,
+		"github_team_membership":             22,
+		"github_team_repository":             23,
+		"github_team_sync_group_mapping":     24,
+		"github_user_gpg_key":                25,
+		"github_user_invitation_accepter":    26,
+		"github_user_ssh_key":                27,
 	}
 )
 

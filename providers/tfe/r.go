@@ -394,7 +394,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "branch",
-					Description: `(Optional) The repository branch that Terraform will execute from. Default to ` + "`" + `master` + "`" + `.`,
+					Description: `(Optional) The repository branch that Terraform will execute from. This defaults to the repository's default branch (e.g. main).`,
 				},
 				resource.Attribute{
 					Name:        "ingress_submodules",
@@ -915,11 +915,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "execution_mode",
-					Description: `(Optional) Which [execution mode](https://www.terraform.io/docs/cloud/workspaces/settings.html#execution-mode) to use. Using Terraform Cloud, valid values are ` + "`" + `remote` + "`" + `, ` + "`" + `local` + "`" + ` or ` + "`" + `agent` + "`" + `. Using Terraform Enterprise, only ` + "`" + `remote` + "`" + ` and ` + "`" + `local` + "`" + ` execution modes are valid. When set to ` + "`" + `local` + "`" + `, the workspace will be used for state storage only. Defaults to ` + "`" + `remote` + "`" + `. This value _must not_ be provided if ` + "`" + `operations` + "`" + ` is provided.`,
+					Description: `(Optional) Which [execution mode](https://www.terraform.io/docs/cloud/workspaces/settings.html#execution-mode) to use. Using Terraform Cloud, valid values are ` + "`" + `remote` + "`" + `, ` + "`" + `local` + "`" + ` or` + "`" + `agent` + "`" + `. Defaults to ` + "`" + `remote` + "`" + `. Using Terraform Enterprise, only ` + "`" + `remote` + "`" + `and ` + "`" + `local` + "`" + ` execution modes are valid. When set to ` + "`" + `local` + "`" + `, the workspace will be used for state storage only. This value _must not_ be provided if ` + "`" + `operations` + "`" + ` is provided.`,
 				},
 				resource.Attribute{
 					Name:        "file_triggers_enabled",
-					Description: `(Optional) Whether to filter runs based on the changed files in a VCS push. If enabled, the working directory and trigger prefixes describe a set of paths which must contain changes for a VCS push to trigger a run. If disabled, any push will trigger a run. Defaults to ` + "`" + `true` + "`" + `.`,
+					Description: `(Optional) Whether to filter runs based on the changed files in a VCS push. Defaults to ` + "`" + `true` + "`" + `. If enabled, the working directory and trigger prefixes describe a set of paths which must contain changes for a VCS push to trigger a run. If disabled, any push will trigger a run.`,
 				},
 				resource.Attribute{
 					Name:        "global_remote_state",
@@ -931,11 +931,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "queue_all_runs",
-					Description: `(Optional) Whether the workspace should start automatically performing runs immediately after its creation. When set to ` + "`" + `false` + "`" + `, runs triggered by a webhook (such as a commit in VCS) will not be queued until at least one run has been manually queued. Defaults to ` + "`" + `true` + "`" + `.`,
+					Description: `(Optional) Whether the workspace should start automatically performing runs immediately after its creation. Defaults to ` + "`" + `true` + "`" + `. When set to ` + "`" + `false` + "`" + `, runs triggered by a webhook (such as a commit in VCS) will not be queued until at least one run has been manually queued.`,
 				},
 				resource.Attribute{
 					Name:        "speculative_enabled",
-					Description: `(Optional) Whether this workspace allows speculative plans. Setting this to ` + "`" + `false` + "`" + ` prevents Terraform Cloud or the Terraform Enterprise instance from running plans on pull requests, which can improve security if the VCS repository is public or includes untrusted contributors. Defaults to ` + "`" + `true` + "`" + `.`,
+					Description: `(Optional) Whether this workspace allows speculative plans. Defaults to ` + "`" + `true` + "`" + `. Setting this to ` + "`" + `false` + "`" + ` prevents Terraform Cloud or the Terraform Enterprise instance from running plans on pull requests, which can improve security if the VCS repository is public or includes untrusted contributors.`,
+				},
+				resource.Attribute{
+					Name:        "structured_run_output_enabled",
+					Description: `(Optional) Whether this workspace should show output from Terraform runs using the enhanced UI when available. Defaults to ` + "`" + `true` + "`" + `. Setting this to ` + "`" + `false` + "`" + ` ensures that all runs in this workspace will display their output as text logs.`,
 				},
 				resource.Attribute{
 					Name:        "ssh_key_id",
@@ -963,7 +967,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "branch",
-					Description: `(Optional) The repository branch that Terraform will execute from. Default to ` + "`" + `master` + "`" + `.`,
+					Description: `(Optional) The repository branch that Terraform will execute from. This defaults to the repository's default branch (e.g. main).`,
 				},
 				resource.Attribute{
 					Name:        "ingress_submodules",

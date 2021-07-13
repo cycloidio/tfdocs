@@ -390,63 +390,55 @@ var (
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_bd",
-					Description: `(Optional) Relation to class fvBD. Cardinality - N_TO_ONE. Type - String.`,
+					Description: `(Required) Relation to Bridge domain associated with EPG (Point to class fvBD). Cardinality - N_TO_ONE. Type - String.`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_cust_qos_pol",
-					Description: `(Optional) Relation to class qosCustomPol. Cardinality - N_TO_ONE. Type - String.`,
+					Description: `(Optional) Relation to Custom Quality of Service traffic policy name (Point to class qosCustomPol). Cardinality - N_TO_ONE. Type - String. <!-- tenant -> policies -> protocol -> Custom QoS -->`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_fc_path_att",
-					Description: `(Optional) Relation to class fabricPathEp. Cardinality - N_TO_M. Type - Set of String.`,
+					Description: `(Optional) Relation to Fibre Channel (Paths) (Point to class fabricPathEp). Cardinality - N_TO_M. Type - Set of String.`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_prov",
-					Description: `(Optional) Relation to class vzBrCP. Cardinality - N_TO_M. Type - Set of String.`,
-				},
-				resource.Attribute{
-					Name:        "relation_fv_rs_graph_def",
-					Description: `(Optional) Relation to class vzGraphCont. Cardinality - N_TO_M. Type - Set of String.`,
+					Description: `(Optional) Relation to Provided Contract (Point to class vzBrCP). Cardinality - N_TO_M. Type - Set of String.`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_cons_if",
-					Description: `(Optional) Relation to class vzCPIf. Cardinality - N_TO_M. Type - Set of String.`,
+					Description: `(Optional) Relation to Imported Contract (Point to class vzCPIf). Cardinality - N_TO_M. Type - Set of String.`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_sec_inherited",
-					Description: `(Optional) Relation to class fvEPg. Cardinality - N_TO_M. Type - Set of String.`,
+					Description: `(Optional) Relation represents that the EPG is inheriting security configuration from other EPGs (Point to class fvEPg). Cardinality - N_TO_M. Type - Set of String.`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_node_att",
-					Description: `(Optional) Relation to class fabricNode. Cardinality - N_TO_M. Type - Set of String.`,
+					Description: `(Optional) Relation used to define a Static Leaf binding (Point to class fabricNode). Cardinality - N_TO_M. Type - Set of String. <!-- tenant -> Application Profile -> EPG ->Static Leaf -->`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_dpp_pol",
-					Description: `(Optional) Relation to class qosDppPol. Cardinality - N_TO_ONE. Type - String.`,
+					Description: `(Optional) Relation to define a Data Plane Policing policy (Point to class qosDppPol). Cardinality - N_TO_ONE. Type - String. <!-- tenant -> policies -> protocol -> Data Plane Policing -->`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_cons",
-					Description: `(Optional) Relation to class vzBrCP. Cardinality - N_TO_M. Type - Set of String.`,
-				},
-				resource.Attribute{
-					Name:        "relation_fv_rs_prov_def",
-					Description: `(Optional) Relation to class vzCtrctEPgCont. Cardinality - N_TO_M. Type - Set of String.`,
+					Description: `(Optional) Relation to Consumed Contract (Point to class vzBrCP). Cardinality - N_TO_M. Type - Set of String.`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_trust_ctrl",
-					Description: `(Optional) Relation to class fhsTrustCtrlPol. Cardinality - N_TO_ONE. Type - String.`,
+					Description: `(Optional) Relation to First Hop Security trust control (Point to class fhsTrustCtrlPol). Cardinality - N_TO_ONE. Type - String. <!-- tenant -> policies -> protocol -> First Hop Security -->`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_prot_by",
-					Description: `(Optional) Relation to class vzTaboo. Cardinality - N_TO_M. Type - Set of String.`,
+					Description: `(Optional) Relation to Taboo Contract (Point to class vzTaboo). Cardinality - N_TO_M. Type - Set of String.`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_aepg_mon_pol",
-					Description: `(Optional) Relation to class monEPGPol. Cardinality - N_TO_ONE. Type - String.`,
+					Description: `(Optional) Relation to create a container for monitoring policies associated with the tenant. This allows you to apply tenant-specific policies (Point to class monEPGPol). Cardinality - N_TO_ONE. Type - String. <!-- tenant -> policies -> Monitoring -->`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_intra_epg",
-					Description: `(Optional) Relation to class vzBrCP. Cardinality - N_TO_M. Type - Set of String. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Application EPG. ## Importing ## An existing Application EPG can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_application_epg.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Relation to Intra EPG Contract (Point to class vzBrCP). Cardinality - N_TO_M. Type - Set of String. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Application EPG. ## Importing ## An existing Application EPG can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_application_epg.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -809,51 +801,51 @@ var (
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_bd_to_profile",
-					Description: `(Optional) Relation to class rtctrlProfile. Cardinality - N_TO_ONE. Type - String.`,
+					Description: `(Optional) Relation to L3Outs Route Map For Import and Export Route Control (Point to class rtctrlProfile). Cardinality - N_TO_ONE. Type - String.`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_mldsn",
-					Description: `(Optional) Relation to class mldSnoopPol. Cardinality - N_TO_ONE. Type - String.`,
+					Description: `(Optional) Relation to MLD Snoop (Point to class mldSnoopPol). Cardinality - N_TO_ONE. Type - String.`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_abd_pol_mon_pol",
-					Description: `(Optional) Relation to class monEPGPol. Cardinality - N_TO_ONE. Type - String.`,
+					Description: `(Optional) Relation to create a container for monitoring policies associated with the tenant (Point to class monEPGPol). Cardinality - N_TO_ONE. Type - String.`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_bd_to_nd_p",
-					Description: `(Optional) Relation to class ndIfPol. Cardinality - N_TO_ONE. Type - String.`,
+					Description: `(Optional) Relation to ND Policy (Point to class ndIfPol). Cardinality - N_TO_ONE. Type - String.`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_bd_flood_to",
-					Description: `(Optional) Relation to class vzFilter. Cardinality - N_TO_M. Type - Set of String.`,
+					Description: `(Optional) Relation to Contract Filters (Point to class vzFilter). Cardinality - N_TO_M. Type - Set of String. <!-- Tenants -> Contracts -> Filters -->`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_bd_to_fhs",
-					Description: `(Optional) Relation to class fhsBDPol. Cardinality - N_TO_ONE. Type - String.`,
+					Description: `(Optional) Relation First Hop Security Feature Policies (Point to class fhsBDPol). Cardinality - N_TO_ONE. Type - String.`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_bd_to_relay_p",
-					Description: `(Optional) Relation to class dhcpRelayP. Cardinality - N_TO_ONE. Type - String.`,
+					Description: `(Optional) Relation to DHCP Relay policy (Point to class dhcpRelayP). Cardinality - N_TO_ONE. Type - String.`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_ctx",
-					Description: `(Optional) Relation to class fvCtx. Cardinality - N_TO_ONE. Type - String.`,
+					Description: `(Optional) Relation to VRF (Point to class fvCtx). Cardinality - N_TO_ONE. Type - String. Note: In the APIC GUI,a VRF (fvCtx) was called a "Context"or "PrivateNetwork."`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_bd_to_netflow_monitor_pol",
-					Description: `(Optional) Relation to class netflowMonitorPol. Cardinality - N_TO_M. Type - Set of Map.`,
+					Description: `(Optional) Relation to Netflow Monitors policy (Point to class netflowMonitorPol). Cardinality - N_TO_M. Type - Set of Map.`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_igmpsn",
-					Description: `(Optional) Relation to class igmpSnoopPol. Cardinality - N_TO_ONE. Type - String.`,
+					Description: `(Optional) Relation to IGMP Snoop policy (Point to class igmpSnoopPol). Cardinality - N_TO_ONE. Type - String.`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_bd_to_ep_ret",
-					Description: `(Optional) Relation to class fvEpRetPol. Cardinality - N_TO_ONE. Type - String.`,
+					Description: `(Optional) Relation to End Point Retention policy (Point to class fvEpRetPol). Cardinality - N_TO_ONE. Type - String.`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_bd_to_out",
-					Description: `(Optional) Relation to class l3extOut. Cardinality - N_TO_M. Type - Set of String. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Bridge Domain. ## Importing ## An existing Bridge Domain can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_bridge_domain.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Relation to L3Outs (Point to class l3extOut). Cardinality - N_TO_M. Type - Set of String. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Bridge Domain. ## Importing ## An existing Bridge Domain can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_bridge_domain.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1004,7 +996,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) which AWS region to manage.`,
+					Description: `(Optional) region for object cloud_aws_provider. \[Supported only in Cloud APIC 4.2(x) or earlier\]`,
 				},
 				resource.Attribute{
 					Name:        "secret_access_key",
@@ -1666,10 +1658,6 @@ var (
 					Description: `(Optional) The target differentiated services code point (DSCP) of the path attached to the layer 3 outside profile. Allowed values are "CS0", "CS1", "AF11", "AF12", "AF13", "CS2", "AF21", "AF22", "AF23", "CS3", "AF31", "AF32", "AF33", "CS4", "AF41", "AF42", "AF43", "CS5", "VA", "EF", "CS6", "CS7" and "unspecified". Default is "unspecified".`,
 				},
 				resource.Attribute{
-					Name:        "relation_vz_rs_graph_att",
-					Description: `(Optional) Relation to class vnsAbsGraph. Cardinality - N_TO_ONE. Type - String.`,
-				},
-				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional) to manage filters from the contract resource. It has the attributes like filter_name, annotation, description and name_alias.`,
 				},
@@ -1687,99 +1675,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "filter.name_alias",
-					Description: `(Optional) Name alias for filter object.`,
-				},
-				resource.Attribute{
-					Name:        "filter.filter_entry",
-					Description: `(Optional) to manage filter entries for particular filter from the contract resource. It has following attributes.`,
-				},
-				resource.Attribute{
-					Name:        "filter.filter_entry.filter_entry_name",
-					Description: `(Required) name of Object filter_entry.`,
-				},
-				resource.Attribute{
-					Name:        "filter.filterentry.entry_annotation",
-					Description: `(Optional) annotation for object filter_entry.`,
-				},
-				resource.Attribute{
-					Name:        "filter.filter_entry.entry_description",
-					Description: `(Optional) Description for the filter entry.`,
-				},
-				resource.Attribute{
-					Name:        "filter.filter_entry.apply_to_frag",
-					Description: `(Optional) Flag to determine whether to apply changes to fragment. Allowed values are "yes" and "no". Default is "no".`,
-				},
-				resource.Attribute{
-					Name:        "filter.filter_entry.arp_opc",
-					Description: `(Optional) open peripheral codes. Allowed values are "unspecified", "req" and "reply". Default is "unspecified".`,
-				},
-				resource.Attribute{
-					Name:        "filter.filter_entry.d_from_port",
-					Description: `(Optional) Destination From Port. Accepted values are any valid TCP/UDP port range. Default is "unspecified". Allowed values: "unspecified", "ftpData", "smtp", "dns", "http","pop3", "https", "rtsp"`,
-				},
-				resource.Attribute{
-					Name:        "filter.filter_entry.d_to_port",
-					Description: `(Optional) Destination To Port. Accepted values are any valid TCP/UDP port range. Default is "unspecified". Allowed values: "unspecified", "ftpData", "smtp", "dns", "http","pop3", "https", "rtsp"`,
-				},
-				resource.Attribute{
-					Name:        "filter.filter_entry.ether_t",
-					Description: `(Optional) ether type for the entry. Allowed values are "unspecified", "ipv4", "trill", "arp", "ipv6", "mpls_ucast", "mac_security", "fcoe" and "ip". Default is "unspecified".`,
-				},
-				resource.Attribute{
-					Name:        "filter.filter_entry.icmpv4_t",
-					Description: `(Optional) ICMPv4 message type; used when ip_protocol is icmp. Allowed values are "echo-rep", "dst-unreach", "src-quench", "echo", "time-exceeded" and "unspecified". Default is "unspecified".`,
-				},
-				resource.Attribute{
-					Name:        "filter.filter_entry.icmpv6_t",
-					Description: `(Optional) ICMPv6 message type; used when ip_protocol is icmpv6. Allowed values are "unspecified", "dst-unreach", "time-exceeded", "echo-req", "echo-rep", "nbr-solicit", "nbr-advert" and "redirect". Default is "unspecified".`,
-				},
-				resource.Attribute{
-					Name:        "filter.filter_entry.match_dscp",
-					Description: `(Optional) The matching differentiated services code point (DSCP) of the path attached to the layer 3 outside profile. Allowed values are "CS0", "CS1", "AF11", "AF12", "AF13", "CS2", "AF21", "AF22", "AF23", "CS3", "AF31", "AF32", "AF33", "CS4", "AF41", "AF42", "AF43", "CS5", "VA", "EF", "CS6", "CS7" and "unspecified". Default is "unspecified".`,
-				},
-				resource.Attribute{
-					Name:        "filter.filter_entry.entry_name_alias",
-					Description: `(Optional) name_alias for object filter_entry.`,
-				},
-				resource.Attribute{
-					Name:        "filter.filter_entry.prot",
-					Description: `(Optional) level 3 ip protocol. Allowed values are "unspecified", "icmp", "igmp", "tcp", "egp", "igp", "udp", "icmpv6", "eigrp", "ospfigp", "pim" and "l2tp". Default is "unspecified".`,
-				},
-				resource.Attribute{
-					Name:        "filter.filter_entry.s_from_port",
-					Description: `(Optional) Source From Port. Accepted values are any valid TCP/UDP port range. Default is "unspecified". Allowed values: "unspecified", "ftpData", "smtp", "dns", "http","pop3", "https", "rtsp"`,
-				},
-				resource.Attribute{
-					Name:        "filter.filter_entry.s_to_port",
-					Description: `(Optional) Source To Port. Accepted values are any valid TCP/UDP port range. Default is "unspecified". Allowed values: "unspecified", "ftpData", "smtp", "dns", "http","pop3", "https", "rtsp"`,
-				},
-				resource.Attribute{
-					Name:        "filter.filter_entry.stateful",
-					Description: `(Optional) Determines if entry is stateful or not. Allowed values are "yes" and "no". Default is "no".`,
-				},
-				resource.Attribute{
-					Name:        "filter.filter_entry.tcp_rules",
-					Description: `(Optional) TCP Session Rules. Allowed values are "unspecified", "est", "syn", "ack", "fin" and "rst". Default is "unspecified". ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Contract.`,
-				},
-				resource.Attribute{
-					Name:        "filter.id",
-					Description: `exports this attribute for filter object. Set to the Dn for the filter managed by the contract.`,
-				},
-				resource.Attribute{
-					Name:        "filter.filter_entry.id",
-					Description: `exports this attribute for filter entry object of filter object. Set to the Dn for the filter entry managed by the contract. ## Importing ## An existing Contract can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_contract.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Name alias for filter object. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Contract. ## Importing ## An existing Contract can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_contract.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "filter.id",
-					Description: `exports this attribute for filter object. Set to the Dn for the filter managed by the contract.`,
-				},
-				resource.Attribute{
-					Name:        "filter.filter_entry.id",
-					Description: `exports this attribute for filter entry object of filter object. Set to the Dn for the filter entry managed by the contract. ## Importing ## An existing Contract can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_contract.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6135,7 +6034,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_ctx_to_bgp_ctx_af_pol",
-					Description: `(Optional) Relation to class bgpCtxAfPol. Cardinality - N_TO_M. Type - [Set of Map]. ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the VRF. ## Importing ## An existing VRF can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import aci_vrf.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Relation to class bgpCtxAfPol. Cardinality - N_TO_M. Type - [Set of Map]. Note: In the APIC GUI,a VRF (fvCtx) was called a "Context"or "PrivateNetwork." ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the VRF. ## Importing ## An existing VRF can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import aci_vrf.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},

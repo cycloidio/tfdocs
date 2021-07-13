@@ -3371,6 +3371,70 @@ The ipset resource is used to create ip set resources.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_iptunnel",
+			Category:         "Network",
+			ShortDescription: ``,
+			Description: `
+
+The iptunnel resource is used to create ipv4 network tunnels.
+
+
+`,
+			Keywords: []string{
+				"network",
+				"iptunnel",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the IP tunnel. Leading character must be a number or letter. Other characters allowed, after the first character, are @ _ - . (period) : (colon) # and space ( ).`,
+				},
+				resource.Attribute{
+					Name:        "remote",
+					Description: `(Optional) Public IPv4 address, of the remote device, used to set up the tunnel. For this parameter, you can alternatively specify a network address.`,
+				},
+				resource.Attribute{
+					Name:        "remotesubnetmask",
+					Description: `(Optional) Subnet mask of the remote IP address of the tunnel.`,
+				},
+				resource.Attribute{
+					Name:        "local",
+					Description: `(Optional) Type of Citrix ADC owned public IPv4 address, configured on the local Citrix ADC and used to set up the tunnel.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Optional) Name of the protocol to be used on this tunnel. Possible values: [ IPIP, GRE, IPSEC, UDP ]`,
+				},
+				resource.Attribute{
+					Name:        "grepayload",
+					Description: `(Optional) The payload GRE will carry. Possible values: [ ETHERNETwithDOT1Q, ETHERNET, IP ]`,
+				},
+				resource.Attribute{
+					Name:        "ipsecprofilename",
+					Description: `(Optional) Name of IPSec profile to be associated.`,
+				},
+				resource.Attribute{
+					Name:        "vlan",
+					Description: `(Optional) The vlan for mulicast packets.`,
+				},
+				resource.Attribute{
+					Name:        "ownergroup",
+					Description: `(Optional) The owner node group in a Cluster for the iptunnel. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the iptunnel. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A iptunnel can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_iptunnel.tf_iptunnel tf_iptunnel ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the iptunnel. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A iptunnel can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_iptunnel.tf_iptunnel tf_iptunnel ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_lbmonitor",
 			Category:         "Load Balancing",
 			ShortDescription: ``,
@@ -3787,6 +3851,119 @@ The lbmonitor resource is used to create load balancing monitors.
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the lbmonitor. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A lbmonitor can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbmonitor.tf_lbmonitor tf_lbmonitor ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_lbparameter",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `
+
+The lbparameter resource is used to set load balancing parameters.
+
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbparameter",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "httponlycookieflag",
+					Description: `(Optional) Include the HttpOnly attribute in persistence cookies. The HttpOnly attribute limits the scope of a cookie to HTTP requests and helps mitigate the risk of cross-site scripting attacks. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "usesecuredpersistencecookie",
+					Description: `(Optional) Encode persistence cookie values using SHA2 hash. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "useencryptedpersistencecookie",
+					Description: `(Optional) Encode persistence cookie values using SHA2 hash. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "cookiepassphrase",
+					Description: `(Optional) Use this parameter to specify the passphrase used to generate secured persistence cookie value. It specifies the passphrase with a maximum of 31 characters.`,
+				},
+				resource.Attribute{
+					Name:        "consolidatedlconn",
+					Description: `(Optional) To find the service with the fewest connections, the virtual server uses the consolidated connection statistics from all the packet engines. The NO setting allows consideration of only the number of connections on the packet engine that received the new connection. Possible values: [ YES, NO ]`,
+				},
+				resource.Attribute{
+					Name:        "useportforhashlb",
+					Description: `(Optional) Include the port number of the service when creating a hash for hash based load balancing methods. With the NO setting, only the IP address of the service is considered when creating a hash. Possible values: [ YES, NO ]`,
+				},
+				resource.Attribute{
+					Name:        "preferdirectroute",
+					Description: `(Optional) Perform route lookup for traffic received by the Citrix ADC, and forward the traffic according to configured routes. Do not set this parameter if you want a wildcard virtual server to direct packets received by the appliance to an intermediary device, such as a firewall, even if their destination is directly connected to the appliance. Route lookup is performed after the packets have been processed and returned by the intermediary device. Possible values: [ YES, NO ]`,
+				},
+				resource.Attribute{
+					Name:        "startuprrfactor",
+					Description: `(Optional) Number of requests, per service, for which to apply the round robin load balancing method before switching to the configured load balancing method, thus allowing services to ramp up gradually to full load. Until the specified number of requests is distributed, the Citrix ADC is said to be implementing the slow start mode (or startup round robin). Implemented for a virtual server when one of the following is true:`,
+				},
+				resource.Attribute{
+					Name:        "monitorskipmaxclient",
+					Description: `(Optional) When a monitor initiates a connection to a service, do not check to determine whether the number of connections to the service has reached the limit specified by the service's Max Clients setting. Enables monitoring to continue even if the service has reached its connection limit. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "monitorconnectionclose",
+					Description: `(Optional) Close monitoring connections by sending the service a connection termination message with the specified bit set. Possible values: [ RESET, FIN ]`,
+				},
+				resource.Attribute{
+					Name:        "vserverspecificmac",
+					Description: `(Optional) Allow a MAC-mode virtual server to accept traffic returned by an intermediary device, such as a firewall, to which the traffic was previously forwarded by another MAC-mode virtual server. The second virtual server can then distribute that traffic across the destination server farm. Also useful when load balancing Branch Repeater appliances. Note: The second virtual server can also send the traffic to another set of intermediary devices, such as another set of firewalls. If necessary, you can configure multiple MAC-mode virtual servers to pass traffic successively through multiple sets of intermediary devices. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "allowboundsvcremoval",
+					Description: `(Optional) This is used, to enable/disable the option of svc/svcgroup removal, if it is bound to one or more vserver. If it is enabled, the svc/svcgroup can be removed, even if it bound to vservers. If disabled, an error will be thrown, when the user tries to remove a svc/svcgroup without unbinding from its vservers. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "retainservicestate",
+					Description: `(Optional) This option is used to retain the original state of service or servicegroup member when an enable server command is issued. Possible values: [ on, off ]`,
+				},
+				resource.Attribute{
+					Name:        "dbsttl",
+					Description: `(Optional) Specify the TTL for DNS record for domain based service. The default value of ttl is 0 which indicates to use the TTL received in DNS response for monitors.`,
+				},
+				resource.Attribute{
+					Name:        "maxpipelinenat",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "literaladccookieattribute",
+					Description: `(Optional) String configured as LiteralADCCookieAttribute will be appended as attribute for Citrix ADC cookie (for example: LB cookie persistence , GSLB site persistence, CS cookie persistence, LB group cookie persistence). Sample usage - set lb parameter -LiteralADCCookieAttribute ";SameSite=None".`,
+				},
+				resource.Attribute{
+					Name:        "computedadccookieattribute",
+					Description: `(Optional) ComputedADCCookieAttribute accepts ns variable as input in form of string starting with $ (to understand how to configure ns variable, please check man add ns variable). policies can be configured to modify this variable for every transaction and the final value of the variable after policy evaluation will be appended as attribute to Citrix ADC cookie (for example: LB cookie persistence , GSLB sitepersistence, CS cookie persistence, LB group cookie persistence). Only one of ComputedADCCookieAttribute, LiteralADCCookieAttribute can be set. Sample usage - add ns variable lbvar -type TEXT(100) -scope Transaction add ns assignment lbassign -variable $lbvar -set "\\";SameSite=Strict\\"" add rewrite policy lbpol <valid policy expression> lbassign bind rewrite global lbpol 100 next -type RES_OVERRIDE set lb param -ComputedADCCookieAttribute "$lbvar" For incoming client request, if above policy evaluates TRUE, then SameSite=Strict will be appended to ADC generated cookie.`,
+				},
+				resource.Attribute{
+					Name:        "storemqttclientidandusername",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "lbhashalgorithm",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "dropmqttjumbomessage",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "lbhashfingers",
+					Description: `(Optional) ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbparameter. It is a unique string prefixed with "tf-lbparameter"`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbparameter. It is a unique string prefixed with "tf-lbparameter"`,
 				},
 			},
 		},
@@ -4613,6 +4790,48 @@ The lbvserver\_service\_binding resource is used to bind load balancing virtual 
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the lbvserver\_service\_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `servicename` + "`" + ` attributes separated by a comma. ## Import A lbvserver\_service\_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_service_binding.tf_binding tf_lbvserver,tf_service ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_lbvserver_servicegroup_binding",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `\_servicegroup\_binding
+
+The lbvserver\_servicegroup\_binding resource is used to bind servicegroups to lb vservers.
+
+If a binding between lbvserver and servicegroup is set this way the ` + "`" + `lbvservers` + "`" + ` option
+of ` + "`" + `resource_citrixadc_servicegroup` + "`" + ` should not be set for the same servicegroup.
+
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbvserver",
+				"servicegroup",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "servicegroupname",
+					Description: `(Required) The service group name bound to the selected load balancing virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (\_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver'). . ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver\_servicegroup\_binding. It is the concatenation of the name and servicegroupname attributes separated by a comma. ## Import A lbvserver\_servicegroup\_binding can be imported using its id. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_servicegroup_binding.tf_binding tf_lbvserver,tf_servicegroupname ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver\_servicegroup\_binding. It is the concatenation of the name and servicegroupname attributes separated by a comma. ## Import A lbvserver\_servicegroup\_binding can be imported using its id. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_servicegroup_binding.tf_binding tf_lbvserver,tf_servicegroupname ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5996,7 +6215,7 @@ The nslicense resource is used to upload and apply a license file to the target 
 				},
 				resource.Attribute{
 					Name:        "ssh_host_pubkey",
-					Description: `(Optional) The ADC public ssh host key.`,
+					Description: `(Required) The ADC public ssh host key.`,
 				},
 				resource.Attribute{
 					Name:        "reboot",
@@ -10055,6 +10274,58 @@ The transformprofile resource is used to create transform profiles.
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vlan",
+			Category:         "Network",
+			ShortDescription: ``,
+			Description: `
+
+The vlan resource is used to create vlans.
+
+
+`,
+			Keywords: []string{
+				"network",
+				"vlan",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vlanid",
+					Description: `(Requiredc) A positive integer that uniquely identifies a VLAN.`,
+				},
+				resource.Attribute{
+					Name:        "aliasname",
+					Description: `(Optional) A name for the VLAN. Must begin with a letter, a number, or the underscore symbol, and can consist of from 1 to 31 letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at sign (@), equals (=), colon (:), and underscore (\_) characters. You should choose a name that helps identify the VLAN. However, you cannot perform any VLAN operation by specifying this name instead of the VLAN ID.`,
+				},
+				resource.Attribute{
+					Name:        "dynamicrouting",
+					Description: `(Optional) Enable dynamic routing on this VLAN. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "ipv6dynamicrouting",
+					Description: `(Optional) Enable all IPv6 dynamic routing protocols on this VLAN. Note: For the ENABLED setting to work, you must configure IPv6 dynamic routing protocols from the VTYSH command line. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "mtu",
+					Description: `(Optional) Specifies the maximum transmission unit (MTU), in bytes. The MTU is the largest packet size, excluding 14 bytes of ethernet header and 4 bytes of crc, that can be transmitted and received over this VLAN.`,
+				},
+				resource.Attribute{
+					Name:        "sharing",
+					Description: `(Optional) If sharing is enabled, then this vlan can be shared across multiple partitions by binding it to all those partitions. If sharing is disabled, then this vlan can be bound to only one of the partitions. Possible values: [ ENABLED, DISABLED ] ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vlan. It has the same value as the ` + "`" + `vlanid` + "`" + ` attribute. ## Import A can be imported using its ` + "`" + `vlanid` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vlan.tf_vlan 40 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vlan. It has the same value as the ` + "`" + `vlanid` + "`" + ` attribute. ## Import A can be imported using its ` + "`" + `vlanid` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vlan.tf_vlan 40 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
 	}
 
 	resourcesMap = map[string]int{
@@ -10096,77 +10367,81 @@ The transformprofile resource is used to create transform profiles.
 		"citrixadc_installer":                               34,
 		"citrixadc_interface":                               35,
 		"citrixadc_ipset":                                   36,
-		"citrixadc_lbmonitor":                               37,
-		"citrixadc_lbvserver":                               38,
-		"citrixadc_lbvserver_appfwpolicy_binding":           39,
-		"citrixadc_lbvserver_cmppolicy_binding":             40,
-		"citrixadc_lbvserver_filterpolicy_binding":          41,
-		"citrixadc_lbvserver_responderpolicy_binding":       42,
-		"citrixadc_lbvserver_rewritepolicy_binding":         43,
-		"citrixadc_lbvserver_service_binding":               44,
-		"citrixadc_lbvserver_transformpolicy_binding":       45,
-		"citrixadc_linkset":                                 46,
-		"citrixadc_netprofile":                              47,
-		"citrixadc_nsacl":                                   48,
-		"citrixadc_nsacls":                                  49,
-		"citrixadc_nscapacity":                              50,
-		"citrixadc_nsconfig_clear":                          51,
-		"citrixadc_nsconfig_save":                           52,
-		"citrixadc_nsconfig_update":                         53,
-		"citrixadc_nsfeature":                               54,
-		"citrixadc_nshttpprofile":                           55,
-		"citrixadc_nsip":                                    56,
-		"citrixadc_nsip6":                                   57,
-		"citrixadc_nslicense":                               58,
-		"citrixadc_nslicenseserver":                         59,
-		"citrixadc_nsparam":                                 60,
-		"citrixadc_nsrpcnode":                               61,
-		"citrixadc_nstcpparam":                              62,
-		"citrixadc_nstcpprofile":                            63,
-		"citrixadc_nsvpxparam":                              64,
-		"citrixadc_password_resetter":                       65,
-		"citrixadc_pinger":                                  66,
-		"citrixadc_policydataset":                           67,
-		"citrixadc_policydataset_value_binding":             68,
-		"citrixadc_policyexpression":                        69,
-		"citrixadc_policypatset":                            70,
-		"citrixadc_policypatset_pattern_binding":            71,
-		"citrixadc_policystringmap":                         72,
-		"citrixadc_policystringmap_pattern_binding":         73,
-		"citrixadc_quicbridgeprofile":                       74,
-		"citrixadc_rebooter":                                75,
-		"citrixadc_responderaction":                         76,
-		"citrixadc_responderpolicy":                         77,
-		"citrixadc_responderpolicylabel":                    78,
-		"citrixadc_rewriteaction":                           79,
-		"citrixadc_rewritepolicy":                           80,
-		"citrixadc_rewritepolicylabel":                      81,
-		"citrixadc_rnat":                                    82,
-		"citrixadc_route":                                   83,
-		"citrixadc_routerdynamicrouting":                    84,
-		"citrixadc_server":                                  85,
-		"citrixadc_service":                                 86,
-		"citrixadc_servicegroup":                            87,
-		"citrixadc_servicegroup_lbmonitor_binding":          88,
-		"citrixadc_servicegroup_servicegroupmember_binding": 89,
-		"citrixadc_sslaction":                               90,
-		"citrixadc_sslcertkey":                              91,
-		"citrixadc_sslcipher":                               92,
-		"citrixadc_ssldhparam":                              93,
-		"citrixadc_sslparameter":                            94,
-		"citrixadc_sslpolicy":                               95,
-		"citrixadc_sslprofile":                              96,
-		"citrixadc_sslprofile_sslcipher_binding":            97,
-		"citrixadc_sslvserver_sslcertkey_binding":           98,
-		"citrixadc_sslvserver_sslpolicy_binding":            99,
-		"citrixadc_systemcmdpolicy":                         100,
-		"citrixadc_systemextramgmtcpu":                      101,
-		"citrixadc_systemfile":                              102,
-		"citrixadc_systemgroup":                             103,
-		"citrixadc_systemuser":                              104,
-		"citrixadc_transformaction":                         105,
-		"citrixadc_transformpolicy":                         106,
-		"citrixadc_transformprofile":                        107,
+		"citrixadc_iptunnel":                                37,
+		"citrixadc_lbmonitor":                               38,
+		"citrixadc_lbparameter":                             39,
+		"citrixadc_lbvserver":                               40,
+		"citrixadc_lbvserver_appfwpolicy_binding":           41,
+		"citrixadc_lbvserver_cmppolicy_binding":             42,
+		"citrixadc_lbvserver_filterpolicy_binding":          43,
+		"citrixadc_lbvserver_responderpolicy_binding":       44,
+		"citrixadc_lbvserver_rewritepolicy_binding":         45,
+		"citrixadc_lbvserver_service_binding":               46,
+		"citrixadc_lbvserver_servicegroup_binding":          47,
+		"citrixadc_lbvserver_transformpolicy_binding":       48,
+		"citrixadc_linkset":                                 49,
+		"citrixadc_netprofile":                              50,
+		"citrixadc_nsacl":                                   51,
+		"citrixadc_nsacls":                                  52,
+		"citrixadc_nscapacity":                              53,
+		"citrixadc_nsconfig_clear":                          54,
+		"citrixadc_nsconfig_save":                           55,
+		"citrixadc_nsconfig_update":                         56,
+		"citrixadc_nsfeature":                               57,
+		"citrixadc_nshttpprofile":                           58,
+		"citrixadc_nsip":                                    59,
+		"citrixadc_nsip6":                                   60,
+		"citrixadc_nslicense":                               61,
+		"citrixadc_nslicenseserver":                         62,
+		"citrixadc_nsparam":                                 63,
+		"citrixadc_nsrpcnode":                               64,
+		"citrixadc_nstcpparam":                              65,
+		"citrixadc_nstcpprofile":                            66,
+		"citrixadc_nsvpxparam":                              67,
+		"citrixadc_password_resetter":                       68,
+		"citrixadc_pinger":                                  69,
+		"citrixadc_policydataset":                           70,
+		"citrixadc_policydataset_value_binding":             71,
+		"citrixadc_policyexpression":                        72,
+		"citrixadc_policypatset":                            73,
+		"citrixadc_policypatset_pattern_binding":            74,
+		"citrixadc_policystringmap":                         75,
+		"citrixadc_policystringmap_pattern_binding":         76,
+		"citrixadc_quicbridgeprofile":                       77,
+		"citrixadc_rebooter":                                78,
+		"citrixadc_responderaction":                         79,
+		"citrixadc_responderpolicy":                         80,
+		"citrixadc_responderpolicylabel":                    81,
+		"citrixadc_rewriteaction":                           82,
+		"citrixadc_rewritepolicy":                           83,
+		"citrixadc_rewritepolicylabel":                      84,
+		"citrixadc_rnat":                                    85,
+		"citrixadc_route":                                   86,
+		"citrixadc_routerdynamicrouting":                    87,
+		"citrixadc_server":                                  88,
+		"citrixadc_service":                                 89,
+		"citrixadc_servicegroup":                            90,
+		"citrixadc_servicegroup_lbmonitor_binding":          91,
+		"citrixadc_servicegroup_servicegroupmember_binding": 92,
+		"citrixadc_sslaction":                               93,
+		"citrixadc_sslcertkey":                              94,
+		"citrixadc_sslcipher":                               95,
+		"citrixadc_ssldhparam":                              96,
+		"citrixadc_sslparameter":                            97,
+		"citrixadc_sslpolicy":                               98,
+		"citrixadc_sslprofile":                              99,
+		"citrixadc_sslprofile_sslcipher_binding":            100,
+		"citrixadc_sslvserver_sslcertkey_binding":           101,
+		"citrixadc_sslvserver_sslpolicy_binding":            102,
+		"citrixadc_systemcmdpolicy":                         103,
+		"citrixadc_systemextramgmtcpu":                      104,
+		"citrixadc_systemfile":                              105,
+		"citrixadc_systemgroup":                             106,
+		"citrixadc_systemuser":                              107,
+		"citrixadc_transformaction":                         108,
+		"citrixadc_transformpolicy":                         109,
+		"citrixadc_transformprofile":                        110,
+		"citrixadc_vlan":                                    111,
 	}
 )
 

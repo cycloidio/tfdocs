@@ -30,6 +30,8 @@
  "openstack_db_instance_v1": "db-gray.svg",
  "openstack_db_user_v1": "db-gray.svg",
  "openstack_dns_recordset_v2": "",
+ "openstack_dns_transfer_accept_v2": "",
+ "openstack_dns_transfer_request_v2": "",
  "openstack_dns_zone_v2": "",
  "openstack_fw_firewall_v1": "firewall-gray.svg",
  "openstack_fw_policy_v1": "firewall-gray.svg",

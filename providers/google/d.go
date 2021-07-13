@@ -1387,6 +1387,10 @@ var (
 					Description: `If the instance has an access config, either the given external ip (in the ` + "`" + `nat_ip` + "`" + ` field) or the ephemeral (generated) ip (if you didn't provide one).`,
 				},
 				resource.Attribute{
+					Name:        "network_performance_config",
+					Description: `The network performance configuration setting for the instance, if set. Structure is documented below.`,
+				},
+				resource.Attribute{
 					Name:        "attached_disk.0.disk_encryption_key_sha256",
 					Description: `The [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4) encoded SHA-256 hash of the [customer-supplied encryption key] (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption) that protects this resource.`,
 				},
@@ -1505,6 +1509,10 @@ var (
 				resource.Attribute{
 					Name:        "count",
 					Description: `The number of the guest accelerator cards exposed to this instance. [network-tier]: https://cloud.google.com/network-tiers/docs/overview The ` + "`" + `shielded_instance_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "total_egress_bandwidth_tier",
+					Description: `The egress bandwidth tier for the instance.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1605,6 +1613,10 @@ var (
 					Description: `If the instance has an access config, either the given external ip (in the ` + "`" + `nat_ip` + "`" + ` field) or the ephemeral (generated) ip (if you didn't provide one).`,
 				},
 				resource.Attribute{
+					Name:        "network_performance_config",
+					Description: `The network performance configuration setting for the instance, if set. Structure is documented below.`,
+				},
+				resource.Attribute{
 					Name:        "attached_disk.0.disk_encryption_key_sha256",
 					Description: `The [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4) encoded SHA-256 hash of the [customer-supplied encryption key] (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption) that protects this resource.`,
 				},
@@ -1723,6 +1735,10 @@ var (
 				resource.Attribute{
 					Name:        "count",
 					Description: `The number of the guest accelerator cards exposed to this instance. [network-tier]: https://cloud.google.com/network-tiers/docs/overview The ` + "`" + `shielded_instance_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "total_egress_bandwidth_tier",
+					Description: `The egress bandwidth tier for the instance.`,
 				},
 			},
 		},
@@ -1895,6 +1911,10 @@ var (
 					Description: `Networks to attach to instances created from this template. This can be specified multiple times for multiple networks. Structure is documented below.`,
 				},
 				resource.Attribute{
+					Name:        "network_performance_config",
+					Description: `The network performance configuration setting for the instance, if set. Structure is documented below.`,
+				},
+				resource.Attribute{
 					Name:        "project",
 					Description: `The ID of the project in which the resource belongs. If it is not provided, the provider project is used.`,
 				},
@@ -2073,6 +2093,10 @@ var (
 				resource.Attribute{
 					Name:        "value",
 					Description: `The values for the node affinity label. The ` + "`" + `shielded_instance_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "total_egress_bandwidth_tier",
+					Description: `The egress bandwidth tier for the instance. ---`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2137,6 +2161,10 @@ var (
 					Description: `Networks to attach to instances created from this template. This can be specified multiple times for multiple networks. Structure is documented below.`,
 				},
 				resource.Attribute{
+					Name:        "network_performance_config",
+					Description: `The network performance configuration setting for the instance, if set. Structure is documented below.`,
+				},
+				resource.Attribute{
 					Name:        "project",
 					Description: `The ID of the project in which the resource belongs. If it is not provided, the provider project is used.`,
 				},
@@ -2315,6 +2343,10 @@ var (
 				resource.Attribute{
 					Name:        "value",
 					Description: `The values for the node affinity label. The ` + "`" + `shielded_instance_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "total_egress_bandwidth_tier",
+					Description: `The egress bandwidth tier for the instance. ---`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -4411,10 +4443,19 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `(Optional) The project ID. If it is not provided, the provider project is used. ## Attributes Reference The following attributes are exported: See [google_project](https://www.terraform.io/docs/providers/google/r/google_project.html) resource for details of the available attributes.`,
+					Description: `(Optional) The project ID. If it is not provided, the provider project is used. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "number",
+					Description: `The numeric identifier of the project. See [google_project](https://www.terraform.io/docs/providers/google/r/google_project.html) resource for details of the available attributes.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "number",
+					Description: `The numeric identifier of the project. See [google_project](https://www.terraform.io/docs/providers/google/r/google_project.html) resource for details of the available attributes.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4960,7 +5001,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "master_instance_name",
-					Description: `The name of the instance that will act as the master in the replication setup.`,
+					Description: `The name of the existing instance that will act as the master in the replication setup.`,
 				},
 				resource.Attribute{
 					Name:        "replica_configuration",
@@ -5218,7 +5259,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "master_instance_name",
-					Description: `The name of the instance that will act as the master in the replication setup.`,
+					Description: `The name of the existing instance that will act as the master in the replication setup.`,
 				},
 				resource.Attribute{
 					Name:        "replica_configuration",

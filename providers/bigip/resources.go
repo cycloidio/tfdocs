@@ -254,6 +254,10 @@ var (
 					Name:        "source",
 					Description: `(Required) Path to the zip archive file containing FAST template set on Local Disk`,
 				},
+				resource.Attribute{
+					Name:        "md5_hash",
+					Description: `(Required) MD5 hash of the zip archive file containing FAST template`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -376,43 +380,47 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "parent",
-					Description: `(Required) Existing LTM monitor to inherit from`,
+					Description: `(Required,type ` + "`" + `string` + "`" + `) Parent monitor for the system to use for setting initial values for the new monitor.`,
 				},
 				resource.Attribute{
 					Name:        "interval",
-					Description: `(Optional) Check interval in seconds`,
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies, in seconds, the frequency at which the system issues the monitor check when either the resource is down or the status of the resource is unknown. The default is ` + "`" + `5` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "up_interval",
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies the interval for the system to use to perform the health check when a resource is up. The default is ` + "`" + `0(Disabled)` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "timeout",
-					Description: `(Optional) Timeout in seconds`,
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies the number of seconds the target has in which to respond to the monitor request. The default is ` + "`" + `16` + "`" + ` seconds`,
 				},
 				resource.Attribute{
 					Name:        "send",
-					Description: `(Optional) Request string to send`,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies the text string that the monitor sends to the target object.`,
 				},
 				resource.Attribute{
 					Name:        "receive",
-					Description: `(Optional) Expected response string`,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies the regular expression representing the text string that the monitor looks for in the returned resource.`,
 				},
 				resource.Attribute{
 					Name:        "receive_disable",
-					Description: `(Optional)`,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) The system marks the node or pool member disabled when its response matches Receive Disable String but not Receive String.`,
 				},
 				resource.Attribute{
 					Name:        "transparent",
-					Description: `(Optional)`,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies whether the monitor operates in transparent mode.`,
 				},
 				resource.Attribute{
 					Name:        "manual_resume",
-					Description: `(Optional)`,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies whether the system automatically changes the status of a resource to Enabled at the next successful monitor check.`,
 				},
 				resource.Attribute{
 					Name:        "ip_dscp",
-					Description: `(Optional)`,
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Displays the differentiated services code point (DSCP).The default is ` + "`" + `0 (zero)` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "time_until_up",
-					Description: `(Optional)`,
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies the number of seconds to wait after a resource first responds correctly to the monitor before setting the resource to up.`,
 				},
 				resource.Attribute{
 					Name:        "database",
@@ -420,27 +428,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "destination",
-					Description: `(Optional) Specify an alias address for monitoring`,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specify an alias address for monitoring`,
+				},
+				resource.Attribute{
+					Name:        "adaptive",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies whether adaptive response time monitoring is enabled for this monitor. The default is ` + "`" + `disabled` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adaptive_limit",
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies the absolute number of milliseconds that may not be exceeded by a monitor probe, regardless of Allowed Divergence.`,
 				},
 				resource.Attribute{
 					Name:        "username",
-					Description: `(Optional) Specifies the user name if the monitored target requires authentication`,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies the user name if the monitored target requires authentication`,
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional) Specifies the password if the monitored target requires authentication`,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies the password if the monitored target requires authentication`,
 				},
 				resource.Attribute{
 					Name:        "compatibility",
-					Description: `(Optional) Specifies, when enabled, that the SSL options setting (in OpenSSL) is set to ALL. Accepts 'enabled' or 'disabled' values, the default value is 'enabled'.`,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies, when enabled, that the SSL options setting (in OpenSSL) is set to ALL. Accepts 'enabled' or 'disabled' values, the default value is 'enabled'.`,
 				},
 				resource.Attribute{
 					Name:        "filename",
-					Description: `(Optional) Specifies the full path and file name of the file that the system attempts to download. The health check is successful if the system can download the file.`,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies the full path and file name of the file that the system attempts to download. The health check is successful if the system can download the file.`,
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `(Optional) Specifies the data transfer process (DTP) mode. The default value is passive. The options are passive (Specifies that the monitor sends a data transfer request to the FTP server. When the FTP server receives the request, the FTP server then initiates and establishes the data connection.) and active (Specifies that the monitor initiates and establishes the data connection with the FTP server.).`,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies the data transfer process (DTP) mode. The default value is passive. The options are passive (Specifies that the monitor sends a data transfer request to the FTP server. When the FTP server receives the request, the FTP server then initiates and establishes the data connection.) and active (Specifies that the monitor initiates and establishes the data connection with the FTP server.).`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -480,6 +496,10 @@ var (
 				resource.Attribute{
 					Name:        "state",
 					Description: `(Optional) Default is "user-up" you can set to "user-down" if you want to disable`,
+				},
+				resource.Attribute{
+					Name:        "session",
+					Description: `(Optional) Enables or disables the node for new sessions. Can be set to ` + "`" + `user-enabled` + "`" + ` or ` + "`" + `user-disabled` + "`" + `. (Default: ` + "`" + `user-enabled` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "interval",
@@ -1481,7 +1501,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Name of the route`,
+					Description: `(Required) Name of the route.Name of Route should be full path,full path is the combination of the ` + "`" + `partition + route name` + "`" + `,For ex: ` + "`" + `/Common/test-net-route` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "network",
@@ -1811,20 +1831,24 @@ var (
 					Description: `Is the resource which is used to provision big-ip modules like asm, afm, ilx etc`,
 				},
 				resource.Attribute{
-					Name:        "Common/ilx",
-					Description: `Common is the partition and ilx is the module being enabled it could be asm, afm apm etc.`,
+					Name:        "full_path",
+					Description: `Specifies the module being enabled. It can be one among the list [afm, am, apm, asm, avr, cgnat, fps, gtm, ilx, lc, ltm, pem, swg, urldb, sslo, vcmp]`,
 				},
 				resource.Attribute{
 					Name:        "cpuRatio",
-					Description: `how much cpu resources you need for this resource`,
+					Description: `(Optional) Use this option only when the level option is set to custom. F5 recommends that you do not modify this option. The default value is zero.`,
 				},
 				resource.Attribute{
 					Name:        "diskRatio",
-					Description: `how much disk space you want to allocate for this resource.`,
+					Description: `(Optional) Use this option only when the level option is set to custom. F5 recommends that you do not modify this option. The default value is zero.`,
 				},
 				resource.Attribute{
 					Name:        "memoryRatio",
-					Description: `how much memory you want to deidcate for this resource`,
+					Description: `(Optional) Use this option only when the level option is set to custom. F5 recommends that you do not modify this option. The default value is zero.`,
+				},
+				resource.Attribute{
+					Name:        "level",
+					Description: `(Optional) Specifies the level of resources that you want to provision for a module. The list of allowed values are [minimum, nominal, dedicated, custom, none]`,
 				},
 			},
 			Attributes: []resource.Attribute{},

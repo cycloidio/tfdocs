@@ -523,15 +523,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "timezone",
-					Description: `Timezone for the given schedule.`,
+					Description: `[The name of the timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for the given schedule, which will be used to determine UTC offset including adjustment for daylight saving time. For example: ` + "`" + `timezone = "America/Toronto"` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "start_time",
-					Description: `Time when the schedule will start. Unix timestamp in milliseconds. For example, if you have a rule with a ` + "`" + `start_time` + "`" + ` of ` + "`" + `0` + "`" + ` and a ` + "`" + `duration` + "`" + ` of ` + "`" + `60,000` + "`" + ` then that rule would be active from ` + "`" + `00:00` + "`" + ` to ` + "`" + `00:01` + "`" + `. If the ` + "`" + `start_time` + "`" + ` was ` + "`" + `3,600,000` + "`" + ` the it would be active starting at ` + "`" + `01:00` + "`" + `.`,
+					Description: `A Unix timestamp in milliseconds which is combined with the ` + "`" + `timezone` + "`" + ` to determine the time this rule will start on each specified ` + "`" + `weekday` + "`" + `. Note that the _date_ of the timestamp you specify does`,
 				},
 				resource.Attribute{
 					Name:        "duration",
-					Description: `Length of time the schedule will be active. Unix timestamp in milliseconds.`,
+					Description: `Length of time the schedule will be active in milliseconds. For example ` + "`" + `duration = 2`,
 				},
 				resource.Attribute{
 					Name:        "start_time",
@@ -683,11 +683,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "alert_grouping",
-					Description: `(Optional) Defines how alerts on this service will be automatically grouped into incidents. Note that the alert grouping features are available only on certain plans. If not set, each alert will create a separate incident; If value is set to ` + "`" + `time` + "`" + `: All alerts within a specified duration will be grouped into the same incident. This duration is set in the ` + "`" + `alert_grouping_timeout` + "`" + ` setting (described below). Available on Standard, Enterprise, and Event Intelligence plans; If value is set to ` + "`" + `intelligent` + "`" + ` - Alerts will be intelligently grouped based on a machine learning model that looks at the alert summary, timing, and the history of grouped alerts. Available on Enterprise and Event Intelligence plan.`,
+					Description: `(Optional) (Deprecated) Defines how alerts on this service will be automatically grouped into incidents. Note that the alert grouping features are available only on certain plans. If not set, each alert will create a separate incident; If value is set to ` + "`" + `time` + "`" + `: All alerts within a specified duration will be grouped into the same incident. This duration is set in the ` + "`" + `alert_grouping_timeout` + "`" + ` setting (described below). Available on Standard, Enterprise, and Event Intelligence plans; If value is set to ` + "`" + `intelligent` + "`" + ` - Alerts will be intelligently grouped based on a machine learning model that looks at the alert summary, timing, and the history of grouped alerts. Available on Enterprise and Event Intelligence plan.`,
 				},
 				resource.Attribute{
 					Name:        "alert_grouping_timeout",
-					Description: `(Optional) The duration in minutes within which to automatically group incoming alerts. This setting applies only when ` + "`" + `alert_grouping` + "`" + ` is set to ` + "`" + `time` + "`" + `. To continue grouping alerts until the incident is resolved, set this value to ` + "`" + `0` + "`" + `. You may specify one optional ` + "`" + `incident_urgency_rule` + "`" + ` block configuring what urgencies to use. Your PagerDuty account must have the ` + "`" + `urgencies` + "`" + ` ability to assign an incident urgency rule. The block contains the following arguments:`,
+					Description: `(Optional) (Deprecated) The duration in minutes within which to automatically group incoming alerts. This setting applies only when ` + "`" + `alert_grouping` + "`" + ` is set to ` + "`" + `time` + "`" + `. To continue grouping alerts until the incident is resolved, set this value to ` + "`" + `0` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "alert_grouping_parameters",
+					Description: `(Optional) Defines how alerts on this service will be automatically grouped into incidents. Note that the alert grouping features are available only on certain plans. If not set, each alert will create a separate incident. The ` + "`" + `alert_grouping_parameters` + "`" + ` block contains the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) The duration in minutes within which to automatically group incoming alerts. This setting applies only when ` + "`" + `type` + "`" + ` is set to ` + "`" + `time` + "`" + `. To continue grouping alerts until the incident is resolved, set this value to ` + "`" + `0` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "aggregate",
+					Description: `(Optional) One of ` + "`" + `any` + "`" + ` or ` + "`" + `all` + "`" + `. This setting applies only when ` + "`" + `type` + "`" + ` is set to ` + "`" + `content_based` + "`" + `. Group alerts based on one or all of ` + "`" + `fields` + "`" + ` value(s).`,
+				},
+				resource.Attribute{
+					Name:        "fields",
+					Description: `(Optional) Alerts will be grouped together if the content of these fields match. This setting applies only when ` + "`" + `type` + "`" + ` is set to ` + "`" + `content_based` + "`" + `. You may specify one optional ` + "`" + `incident_urgency_rule` + "`" + ` block configuring what urgencies to use. Your PagerDuty account must have the ` + "`" + `urgencies` + "`" + ` ability to assign an incident urgency rule. The block contains the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "type",

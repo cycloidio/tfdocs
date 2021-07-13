@@ -150,7 +150,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "volumes_config.#.username",
-					Description: `(Required) Username of the Prism Element user that the API calls use to provision volumes. ### External LB Config The external load balancer configuration in the case of a multi-master-external-load-balancer type master deployment.`,
+					Description: `(Required) Username of the Prism Element user that the API calls use to provision volumes.`,
 				},
 			},
 			Attributes: []resource.Attribute{},

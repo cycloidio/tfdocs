@@ -72,7 +72,7 @@ var (
 					Description: `(Optional) mode for the port-channel interface. Allowed values are "on", "active" and "passive".`,
 				},
 				resource.Attribute{
-					Name:        "bpdu_gaurd_flag",
+					Name:        "bpdu_guard_flag",
 					Description: `(Optional) BPDU flag for the port-channel interface. Allowed values are "true", "false" and "no".`,
 				},
 				resource.Attribute{
@@ -120,7 +120,7 @@ var (
 					Description: `(Optional) mode for the vPC interface. Allowed values are "on", "active" and "passive".`,
 				},
 				resource.Attribute{
-					Name:        "bpdu_gaurd_flag",
+					Name:        "bpdu_guard_flag",
 					Description: `(Optional) BPDU flag for the vPC interface. Allowed values are "true", "false" and "no".`,
 				},
 				resource.Attribute{
@@ -200,7 +200,11 @@ var (
 					Description: `(Optional) description for the sub-interface. ## Argument Reference for ethernet Interface ##`,
 				},
 				resource.Attribute{
-					Name:        "bpdu_gaurd_flag",
+					Name:        "vrf",
+					Description: `(Optional) vrf name for the ethernet interface.`,
+				},
+				resource.Attribute{
+					Name:        "bpdu_guard_flag",
 					Description: `(Optional) BPDU flag for the ethernet interface. Allowed values are "true", "false" and "no".`,
 				},
 				resource.Attribute{

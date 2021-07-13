@@ -274,7 +274,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "services",
-					Description: `The list of the NLB service names. ## Import An existing NLB can be imported as a resource by ID: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import exoscale_nlb.website eb556678-ec59-4be6-8c54-0406ae0f6da6 ` + "`" + `` + "`" + `` + "`" + ` ~>`,
+					Description: `The list of the NLB service names. ## Import An existing NLB can be imported as a resource by ` + "`" + `<ID>@<ZONE>` + "`" + `: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import exoscale_nlb.example eb556678-ec59-4be6-8c54-0406ae0f6da6@de-fra-1 ` + "`" + `` + "`" + `` + "`" + ` ~>`,
 				},
 			},
 		},
@@ -292,7 +292,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the NLB service. ## Import An existing NLB service can be imported as a resource by ID. ` + "`" + `` + "`" + `` + "`" + `console $ terraform import exoscale_nlb_service.website 9ecc6b8b-73d4-4211-8ced-f7f29bb79524 ` + "`" + `` + "`" + `` + "`" + ` [r-nlb]: nlb.html [zone]: https://www.exoscale.com/datacenters/`,
+					Description: `The ID of the NLB service. ## Import An existing NLB service can be imported as a resource by ` + "`" + `<NLB-ID>/<SERVICE-ID>@<ZONE>` + "`" + `: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import exoscale_nlb_service.example eb556678-ec59-4be6-8c54-0406ae0f6da6/9ecc6b8b-73d4-4211-8ced-f7f29bb79524@de-fra-1 ` + "`" + `` + "`" + `` + "`" + ` [r-nlb]: nlb.html [zone]: https://www.exoscale.com/datacenters/`,
 				},
 			},
 		},
@@ -395,7 +395,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nodepools",
-					Description: `The list of [SKS Nodepools][r-sks_nodepool] (IDs) attached to the SKS cluster. ## Import An existing SKS cluster can be imported as a resource by ID: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import exoscale_sks_cluster.prod eb556678-ec59-4be6-8c54-0406ae0f6da6 ` + "`" + `` + "`" + `` + "`" + ` ~>`,
+					Description: `The list of [SKS Nodepools][r-sks_nodepool] (IDs) attached to the SKS cluster. ## Import An existing SKS cluster can be imported as a resource by specifying ` + "`" + `ID@ZONE` + "`" + `: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import exoscale_sks_cluster.example eb556678-ec59-4be6-8c54-0406ae0f6da6@de-fra-1 ` + "`" + `` + "`" + `` + "`" + ` ~>`,
 				},
 			},
 		},
@@ -433,7 +433,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `The Kubernetes version of the SKS Nodepool members. ## Import An existing SKS Nodepool can be imported as a resource by ID: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import exoscale_sks_nodepool.ci-builders eb556678-ec59-4be6-8c54-0406ae0f6da6 ` + "`" + `` + "`" + `` + "`" + ` [r-sks_cluster]: sks_cluster.html [sks-doc]: https://community.exoscale.com/documentation/sks/ [zone]: https://www.exoscale.com/datacenters/`,
+					Description: `The Kubernetes version of the SKS Nodepool members. ## Import An existing SKS Nodepool can be imported as a resource by ` + "`" + `<CLUSTER-ID>/<NODEPOOL-ID>@<ZONE>` + "`" + `: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import exoscale_sks_nodepool.ci-builders eb556678-ec59-4be6-8c54-0406ae0f6da6/8c08b92a-e673-47c7-866e-dc009f620a82@de-fra-1 ` + "`" + `` + "`" + `` + "`" + ` [r-sks_cluster]: sks_cluster.html [sks-doc]: https://community.exoscale.com/documentation/sks/ [zone]: https://www.exoscale.com/datacenters/`,
 				},
 			},
 		},

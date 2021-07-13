@@ -394,8 +394,24 @@ Use this data source to get information about a workspace.
 					Description: `Indicates whether the workspace is using remote execution mode. Set to ` + "`" + `false` + "`" + ` to switch execution mode to local. ` + "`" + `true` + "`" + ` by default.`,
 				},
 				resource.Attribute{
+					Name:        "policy_check_failures",
+					Description: `The number of policy check failures from the latest run.`,
+				},
+				resource.Attribute{
 					Name:        "queue_all_runs",
 					Description: `Indicates whether the workspace will automatically perform runs in response to webhooks immediately after its creation. If ` + "`" + `false` + "`" + `, an initial run must be manually queued to enable future automatic runs.`,
+				},
+				resource.Attribute{
+					Name:        "resource_count",
+					Description: `The number of resources managed by the workspace.`,
+				},
+				resource.Attribute{
+					Name:        "run_failures",
+					Description: `The number of run failures on the workspace.`,
+				},
+				resource.Attribute{
+					Name:        "runs_count",
+					Description: `The number of runs on the workspace.`,
 				},
 				resource.Attribute{
 					Name:        "speculative_enabled",
@@ -404,6 +420,10 @@ Use this data source to get information about a workspace.
 				resource.Attribute{
 					Name:        "ssh_key_id",
 					Description: `The ID of an SSH key assigned to the workspace.`,
+				},
+				resource.Attribute{
+					Name:        "structured_run_output_enabled",
+					Description: `Indicates whether runs in this workspace use the enhanced apply UI.`,
 				},
 				resource.Attribute{
 					Name:        "terraform_version",
@@ -419,23 +439,7 @@ Use this data source to get information about a workspace.
 				},
 				resource.Attribute{
 					Name:        "working_directory",
-					Description: `A relative path that Terraform will execute within.`,
-				},
-				resource.Attribute{
-					Name:        "resource_count",
-					Description: `The number of resources managed by the workspace.`,
-				},
-				resource.Attribute{
-					Name:        "policy_check_failures",
-					Description: `The number of policy check failures from the latest run.`,
-				},
-				resource.Attribute{
-					Name:        "run_failures",
-					Description: `The number of run failures on the workspace.`,
-				},
-				resource.Attribute{
-					Name:        "runs_count",
-					Description: `The number of runs on the workspace. The ` + "`" + `vcs_repo` + "`" + ` block contains:`,
+					Description: `A relative path that Terraform will execute within. The ` + "`" + `vcs_repo` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "identifier",
@@ -484,8 +488,24 @@ Use this data source to get information about a workspace.
 					Description: `Indicates whether the workspace is using remote execution mode. Set to ` + "`" + `false` + "`" + ` to switch execution mode to local. ` + "`" + `true` + "`" + ` by default.`,
 				},
 				resource.Attribute{
+					Name:        "policy_check_failures",
+					Description: `The number of policy check failures from the latest run.`,
+				},
+				resource.Attribute{
 					Name:        "queue_all_runs",
 					Description: `Indicates whether the workspace will automatically perform runs in response to webhooks immediately after its creation. If ` + "`" + `false` + "`" + `, an initial run must be manually queued to enable future automatic runs.`,
+				},
+				resource.Attribute{
+					Name:        "resource_count",
+					Description: `The number of resources managed by the workspace.`,
+				},
+				resource.Attribute{
+					Name:        "run_failures",
+					Description: `The number of run failures on the workspace.`,
+				},
+				resource.Attribute{
+					Name:        "runs_count",
+					Description: `The number of runs on the workspace.`,
 				},
 				resource.Attribute{
 					Name:        "speculative_enabled",
@@ -494,6 +514,10 @@ Use this data source to get information about a workspace.
 				resource.Attribute{
 					Name:        "ssh_key_id",
 					Description: `The ID of an SSH key assigned to the workspace.`,
+				},
+				resource.Attribute{
+					Name:        "structured_run_output_enabled",
+					Description: `Indicates whether runs in this workspace use the enhanced apply UI.`,
 				},
 				resource.Attribute{
 					Name:        "terraform_version",
@@ -509,23 +533,7 @@ Use this data source to get information about a workspace.
 				},
 				resource.Attribute{
 					Name:        "working_directory",
-					Description: `A relative path that Terraform will execute within.`,
-				},
-				resource.Attribute{
-					Name:        "resource_count",
-					Description: `The number of resources managed by the workspace.`,
-				},
-				resource.Attribute{
-					Name:        "policy_check_failures",
-					Description: `The number of policy check failures from the latest run.`,
-				},
-				resource.Attribute{
-					Name:        "run_failures",
-					Description: `The number of run failures on the workspace.`,
-				},
-				resource.Attribute{
-					Name:        "runs_count",
-					Description: `The number of runs on the workspace. The ` + "`" + `vcs_repo` + "`" + ` block contains:`,
+					Description: `A relative path that Terraform will execute within. The ` + "`" + `vcs_repo` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "identifier",

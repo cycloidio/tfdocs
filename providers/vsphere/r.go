@@ -2130,6 +2130,10 @@ var (
 					Description: `(Optional) Extra configuration data for this virtual machine. Can be used to supply advanced parameters not normally in configuration, such as instance metadata. ~>`,
 				},
 				resource.Attribute{
+					Name:        "replace_trigger",
+					Description: `(Optional) Triggers replacement of resource whenever it changes. ` + "`" + `replace_trigger = sha256(format("%s-%s",data.template_file.cloud_init_metadata.rendered,data.template_file.cloud_init_userdata.rendered))` + "`" + ` will fingerprint the changes in cloud_init metadata and userdata templates. This will enable a replacement of the resource whenever the dependant template renders a new configuration. (Forces a replacement)`,
+				},
+				resource.Attribute{
 					Name:        "scsi_type",
 					Description: `(Optional) The type of SCSI bus this virtual machine will have. Can be one of lsilogic (LSI Logic Parallel), lsilogic-sas (LSI Logic SAS) or pvscsi (VMware Paravirtual). Defualt: ` + "`" + `pvscsi` + "`" + `.`,
 				},
@@ -2191,7 +2195,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sync_time_with_host",
-					Description: `(Optional) Enable guest clock synchronization with the host. Requires VMware tools to be installed. Default: ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Enable guest clock synchronization with the host. On vSphere 7 U1 and above, with only this setting the clock is synchronized on startup and resume so consider also setting ` + "`" + `sync_time_with_host_periodically` + "`" + `. Requires VMware tools to be installed. Default: ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sync_time_with_host_periodically",
+					Description: `(Optional) Enable periodic clock synchronization with the host. Supported only on vSphere 7 U1 and above. On older versions setting ` + "`" + `sync_time_with_host` + "`" + ` is enough for periodic synchronization. Requires VMware tools to be installed. Default: ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "run_tools_scripts_after_power_on",
@@ -2328,10 +2336,6 @@ var (
 				resource.Attribute{
 					Name:        "label",
 					Description: `(Required) A label for the disk. Forces a new disk if changed. ~>`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Optional) An alias for both ` + "`" + `label` + "`" + ` and ` + "`" + `path` + "`" + `, the latter when using ` + "`" + `attach` + "`" + `. Required if not using ` + "`" + `label` + "`" + `. ~>`,
 				},
 				resource.Attribute{
 					Name:        "size",

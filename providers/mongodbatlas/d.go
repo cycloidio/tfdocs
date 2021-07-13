@@ -3123,170 +3123,6 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "mongodbatlas_private_endpoint",
-			Category:         "Data Sources",
-			ShortDescription: `Describes a Private Endpoint.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Required) Unique identifier for the project.`,
-				},
-				resource.Attribute{
-					Name:        "private_link_id",
-					Description: `(Required) Unique identifier of the AWS PrivateLink connection. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `The Terraform's unique identifier used internally for state management.`,
-				},
-				resource.Attribute{
-					Name:        "endpoint_service_name",
-					Description: `Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.`,
-				},
-				resource.Attribute{
-					Name:        "error_message",
-					Description: `Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.`,
-				},
-				resource.Attribute{
-					Name:        "interface_endpoints",
-					Description: `Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values: AWS:`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `The Terraform's unique identifier used internally for state management.`,
-				},
-				resource.Attribute{
-					Name:        "endpoint_service_name",
-					Description: `Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.`,
-				},
-				resource.Attribute{
-					Name:        "error_message",
-					Description: `Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.`,
-				},
-				resource.Attribute{
-					Name:        "interface_endpoints",
-					Description: `Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values: AWS:`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "mongodbatlas_private_endpoint_interface_link",
-			Category:         "Data Sources",
-			ShortDescription: `Describes a Private Endpoint Link.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Required) Unique identifier for the project.`,
-				},
-				resource.Attribute{
-					Name:        "private_link_id",
-					Description: `(Required) Unique identifier of the AWS PrivateLink connection.`,
-				},
-				resource.Attribute{
-					Name:        "interface_endpoints",
-					Description: `(Required) Unique identifiers of the interface endpoints in your VPC. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `The Terraform's unique identifier used internally for state management.`,
-				},
-				resource.Attribute{
-					Name:        "delete_requested",
-					Description: `Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.`,
-				},
-				resource.Attribute{
-					Name:        "error_message",
-					Description: `Error message pertaining to the interface endpoint. Returns null if there are no errors.`,
-				},
-				resource.Attribute{
-					Name:        "connection_status",
-					Description: `Status of the interface endpoint. Returns one of the following values:`,
-				},
-				resource.Attribute{
-					Name:        "NONE",
-					Description: `Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.`,
-				},
-				resource.Attribute{
-					Name:        "PENDING_ACCEPTANCE",
-					Description: `AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.`,
-				},
-				resource.Attribute{
-					Name:        "PENDING",
-					Description: `AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.`,
-				},
-				resource.Attribute{
-					Name:        "AVAILABLE",
-					Description: `Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.`,
-				},
-				resource.Attribute{
-					Name:        "REJECTED",
-					Description: `AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.`,
-				},
-				resource.Attribute{
-					Name:        "DELETING",
-					Description: `Atlas is removing the interface endpoint from the private endpoint connection. See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/private-endpoint-get-one-interface-endpoint/) Documentation for more information.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `The Terraform's unique identifier used internally for state management.`,
-				},
-				resource.Attribute{
-					Name:        "delete_requested",
-					Description: `Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.`,
-				},
-				resource.Attribute{
-					Name:        "error_message",
-					Description: `Error message pertaining to the interface endpoint. Returns null if there are no errors.`,
-				},
-				resource.Attribute{
-					Name:        "connection_status",
-					Description: `Status of the interface endpoint. Returns one of the following values:`,
-				},
-				resource.Attribute{
-					Name:        "NONE",
-					Description: `Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.`,
-				},
-				resource.Attribute{
-					Name:        "PENDING_ACCEPTANCE",
-					Description: `AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.`,
-				},
-				resource.Attribute{
-					Name:        "PENDING",
-					Description: `AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.`,
-				},
-				resource.Attribute{
-					Name:        "AVAILABLE",
-					Description: `Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.`,
-				},
-				resource.Attribute{
-					Name:        "REJECTED",
-					Description: `AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.`,
-				},
-				resource.Attribute{
-					Name:        "DELETING",
-					Description: `Atlas is removing the interface endpoint from the private endpoint connection. See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/private-endpoint-get-one-interface-endpoint/) Documentation for more information.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "mongodbatlas_project",
 			Category:         "Data Sources",
 			ShortDescription: `Describes a Project.`,
@@ -3334,50 +3170,6 @@ var (
 				resource.Attribute{
 					Name:        "teams.#.role_names",
 					Description: `Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The following are valid roles:`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "mongodbatlas_project_ip_whitelist",
-			Category:         "Data Sources",
-			ShortDescription: `Provides an IP Whitelist resource.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Required) The ID of the project in which to add the whitelist entry.`,
-				},
-				resource.Attribute{
-					Name:        "aws_security_group",
-					Description: `(Optional) ID of the whitelisted AWS security group. Mutually exclusive with ` + "`" + `cidr_block` + "`" + ` and ` + "`" + `ip_address` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "cidr_block",
-					Description: `(Optional) Whitelist entry in Classless Inter-Domain Routing (CIDR) notation. Mutually exclusive with ` + "`" + `aws_security_group` + "`" + ` and ` + "`" + `ip_address` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "ip_address",
-					Description: `(Optional) Whitelisted IP address. Mutually exclusive with ` + "`" + `aws_security_group` + "`" + ` and ` + "`" + `cidr_block` + "`" + `. ->`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Unique identifier used by Terraform for internal management and can be used to import.`,
-				},
-				resource.Attribute{
-					Name:        "comment",
-					Description: `Comment to add to the whitelist entry. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/whitelist/)`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Unique identifier used by Terraform for internal management and can be used to import.`,
-				},
-				resource.Attribute{
-					Name:        "comment",
-					Description: `Comment to add to the whitelist entry. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/whitelist/)`,
 				},
 			},
 		},
@@ -3581,13 +3373,10 @@ var (
 		"mongodbatlas_network_containers":                    14,
 		"mongodbatlas_network_peering":                       15,
 		"mongodbatlas_network_peerings":                      16,
-		"mongodbatlas_private_endpoint":                      17,
-		"mongodbatlas_private_endpoint_interface_link":       18,
-		"mongodbatlas_project":                               19,
-		"mongodbatlas_project_ip_whitelist":                  20,
-		"mongodbatlas_projects":                              21,
-		"mongodbatlas_team":                                  22,
-		"mongodbatlas_x509_authentication_database_user":     23,
+		"mongodbatlas_project":                               17,
+		"mongodbatlas_projects":                              18,
+		"mongodbatlas_team":                                  19,
+		"mongodbatlas_x509_authentication_database_user":     20,
 	}
 )
 

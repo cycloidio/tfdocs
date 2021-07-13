@@ -969,6 +969,10 @@ var (
 					Description: `(Optional) GTD Region status of the domain. The Default value is false.`,
 				},
 				resource.Attribute{
+					Name:        "vanity_nameserver",
+					Description: `(Optional) vanity nameserver of domain.`,
+				},
+				resource.Attribute{
 					Name:        "nameserver_group",
 					Description: `(Optional) Shows the nameserver group of domain. The Default nameserverGroup is 1.`,
 				},

@@ -104,7 +104,7 @@ Provides information about a Linode domain.
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `If this Domain represents the authoritative source of information for the domain it describes, or if it is a read-only copy of a master (also called a slave)`,
+					Description: `If this Domain represents the authoritative source of information for the domain it describes, or if it is a read-only copy of a master (also called a slave) (` + "`" + `master` + "`" + `, ` + "`" + `slave` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "group",
@@ -112,7 +112,7 @@ Provides information about a Linode domain.
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Used to control whether this Domain is currently being rendered.`,
+					Description: `Used to control whether this Domain is currently being rendered. (` + "`" + `disabled` + "`" + `, ` + "`" + `active` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -197,11 +197,11 @@ Provides details about a Linode Firewall.
 				},
 				resource.Attribute{
 					Name:        "inbound_policy",
-					Description: `The default behavior for inbound traffic.`,
+					Description: `The default behavior for inbound traffic. (` + "`" + `ACCEPT` + "`" + `, ` + "`" + `DROP` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "outbound_policy",
-					Description: `The default behavior for outbound traffic. This setting can be overridden by updating the outbound.action property for an individual Firewall Rule.`,
+					Description: `The default behavior for outbound traffic. (` + "`" + `ACCEPT` + "`" + `, ` + "`" + `DROP` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "linodes",
@@ -209,7 +209,7 @@ Provides details about a Linode Firewall.
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of the firewall.`,
+					Description: `The status of the firewall. (` + "`" + `enabled` + "`" + `, ` + "`" + `disabled` + "`" + `, ` + "`" + `deleted` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "label",
@@ -221,7 +221,7 @@ Provides details about a Linode Firewall.
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `The network protocol this rule controls.`,
+					Description: `The network protocol this rule controls. (` + "`" + `TCP` + "`" + `, ` + "`" + `UDP` + "`" + `, ` + "`" + `ICMP` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "ports",
@@ -267,11 +267,11 @@ Provides details about a Linode Firewall.
 				},
 				resource.Attribute{
 					Name:        "inbound_policy",
-					Description: `The default behavior for inbound traffic.`,
+					Description: `The default behavior for inbound traffic. (` + "`" + `ACCEPT` + "`" + `, ` + "`" + `DROP` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "outbound_policy",
-					Description: `The default behavior for outbound traffic. This setting can be overridden by updating the outbound.action property for an individual Firewall Rule.`,
+					Description: `The default behavior for outbound traffic. (` + "`" + `ACCEPT` + "`" + `, ` + "`" + `DROP` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "linodes",
@@ -279,7 +279,7 @@ Provides details about a Linode Firewall.
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of the firewall.`,
+					Description: `The status of the firewall. (` + "`" + `enabled` + "`" + `, ` + "`" + `disabled` + "`" + `, ` + "`" + `deleted` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "label",
@@ -291,7 +291,7 @@ Provides details about a Linode Firewall.
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `The network protocol this rule controls.`,
+					Description: `The network protocol this rule controls. (` + "`" + `TCP` + "`" + `, ` + "`" + `UDP` + "`" + `, ` + "`" + `ICMP` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "ports",
@@ -369,11 +369,11 @@ Provides information about a Linode image
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The current status of this image.`,
+					Description: `The current status of this image. (` + "`" + `creating` + "`" + `, ` + "`" + `pending_upload` + "`" + `, ` + "`" + `available` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `How the Image was created. Manual Images can be created at any time. image"Automatic" Images are created automatically from a deleted Linode.`,
+					Description: `How the Image was created. Manual Images can be created at any time. "Automatic" Images are created automatically from a deleted Linode. (` + "`" + `manual` + "`" + `, ` + "`" + `automatic` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "vendor",
@@ -436,11 +436,11 @@ Provides information about Linode images that match a set of filters.
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The current status of this image.`,
+					Description: `The current status of this image. (` + "`" + `creating` + "`" + `, ` + "`" + `pending_upload` + "`" + `, ` + "`" + `available` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `How the Image was created. Manual Images can be created at any time. "Automatic" Images are created automatically from a deleted Linode.`,
+					Description: `How the Image was created. Manual Images can be created at any time. "Automatic" Images are created automatically from a deleted Linode. (` + "`" + `manual` + "`" + `, ` + "`" + `automatic` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "vendor",
@@ -475,11 +475,11 @@ Provides details about the backups of an Instance.
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The current state of a specific Backup.`,
+					Description: `The current state of a specific Backup. (` + "`" + `paused` + "`" + `, ` + "`" + `pending` + "`" + `, ` + "`" + `running` + "`" + `, ` + "`" + `needsPostProcessing` + "`" + `, ` + "`" + `successful` + "`" + `, ` + "`" + `failed` + "`" + `, ` + "`" + `userAborted` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `This indicates whether the Backup is an automatic Backup or manual snapshot taken by the User at a specific point in time.`,
+					Description: `This indicates whether the Backup is an automatic Backup or manual snapshot taken by the User at a specific point in time. (` + "`" + `auto` + "`" + `, ` + "`" + `snapshot` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "created",
@@ -521,11 +521,11 @@ Provides details about the backups of an Instance.
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The current state of a specific Backup.`,
+					Description: `The current state of a specific Backup. (` + "`" + `paused` + "`" + `, ` + "`" + `pending` + "`" + `, ` + "`" + `running` + "`" + `, ` + "`" + `needsPostProcessing` + "`" + `, ` + "`" + `successful` + "`" + `, ` + "`" + `failed` + "`" + `, ` + "`" + `userAborted` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `This indicates whether the Backup is an automatic Backup or manual snapshot taken by the User at a specific point in time.`,
+					Description: `This indicates whether the Backup is an automatic Backup or manual snapshot taken by the User at a specific point in time. (` + "`" + `auto` + "`" + `, ` + "`" + `snapshot` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "created",
@@ -583,7 +583,7 @@ Provides information about a Linode instance type
 				},
 				resource.Attribute{
 					Name:        "class",
-					Description: `The class of the Linode Type`,
+					Description: `The class of the Linode Type. See all classes [here](https://www.linode.com/docs/api/linode-types/#type-view__responses).`,
 				},
 				resource.Attribute{
 					Name:        "disk",
@@ -893,7 +893,7 @@ Provides details about an LKE Cluster.
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The linode type for all of the nodes in the Node Pool.`,
+					Description: `The linode type for all of the nodes in the Node Pool. See all node types [here](https://api.linode.com/v4/linode/types).`,
 				},
 				resource.Attribute{
 					Name:        "count",
@@ -913,7 +913,7 @@ Provides details about an LKE Cluster.
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of the node.`,
+					Description: `The status of the node. (` + "`" + `ready` + "`" + `, ` + "`" + `not_ready` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -951,7 +951,7 @@ Provides details about an LKE Cluster.
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The linode type for all of the nodes in the Node Pool.`,
+					Description: `The linode type for all of the nodes in the Node Pool. See all node types [here](https://api.linode.com/v4/linode/types).`,
 				},
 				resource.Attribute{
 					Name:        "count",
@@ -971,7 +971,7 @@ Provides details about an LKE Cluster.
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of the node.`,
+					Description: `The status of the node. (` + "`" + `ready` + "`" + `, ` + "`" + `not_ready` + "`" + `)`,
 				},
 			},
 		},
@@ -1025,7 +1025,7 @@ Provides information about a Linode Networking IP Address
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `The Region this IP address resides in.`,
+					Description: `The Region this IP address resides in. See all regions [here](https://api.linode.com/v4/regions).`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1152,15 +1152,15 @@ Provides details about a Linode NodeBalancer Config.
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `The region where this nodebalancer_config will be deployed. Examples are ` + "`" + `"us-east"` + "`" + `, ` + "`" + `"us-west"` + "`" + `, ` + "`" + `"ap-south"` + "`" + `, etc`,
+					Description: `The region where this nodebalancer_config will be deployed. Examples are ` + "`" + `"us-east"` + "`" + `, ` + "`" + `"us-west"` + "`" + `, ` + "`" + `"ap-south"` + "`" + `, etc. See all regions [here](https://api.linode.com/v4/regions).`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `The protocol this port is configured to serve. If this is set to https you must include an ssl_cert and an ssl_key. (Defaults to "http")`,
+					Description: `The protocol this port is configured to serve. If this is set to https you must include an ssl_cert and an ssl_key. (` + "`" + `http` + "`" + `, ` + "`" + `https` + "`" + `, ` + "`" + `tcp` + "`" + `) (Defaults to ` + "`" + `http` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "proxy_protocol",
-					Description: `The version of ProxyProtocol to use for the underlying NodeBalancer. This requires protocol to be ` + "`" + `tcp` + "`" + `. Valid values are ` + "`" + `none` + "`" + `, ` + "`" + `v1` + "`" + `, and ` + "`" + `v2` + "`" + `. (Defaults to ` + "`" + `none` + "`" + `)`,
+					Description: `The version of ProxyProtocol to use for the underlying NodeBalancer. This requires protocol to be ` + "`" + `tcp` + "`" + `. (` + "`" + `none` + "`" + `, ` + "`" + `v1` + "`" + `, and ` + "`" + `v2` + "`" + `) (Defaults to ` + "`" + `none` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "port",
@@ -1168,15 +1168,15 @@ Provides details about a Linode NodeBalancer Config.
 				},
 				resource.Attribute{
 					Name:        "algorithm",
-					Description: `What algorithm this NodeBalancer should use for routing traffic to backends: roundrobin, leastconn, source`,
+					Description: `What algorithm this NodeBalancer should use for routing traffic to backends (` + "`" + `roundrobin` + "`" + `, ` + "`" + `leastconn` + "`" + `, ` + "`" + `source` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "stickiness",
-					Description: `Controls how session stickiness is handled on this port: 'none', 'table', 'http_cookie'`,
+					Description: `Controls how session stickiness is handled on this port. (` + "`" + `none` + "`" + `, ` + "`" + `table` + "`" + `, ` + "`" + `http_cookie` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "check",
-					Description: `The type of check to perform against backends to ensure they are serving requests. This is used to determine if backends are up or down. If none no check is performed. connection requires only a connection to the backend to succeed. http and http_body rely on the backend serving HTTP, and that the response returned matches what is expected.`,
+					Description: `The type of check to perform against backends to ensure they are serving requests. This is used to determine if backends are up or down. If none no check is performed. connection requires only a connection to the backend to succeed. http and http_body rely on the backend serving HTTP, and that the response returned matches what is expected. (` + "`" + `none` + "`" + `, ` + "`" + `connection` + "`" + `, ` + "`" + `http` + "`" + `, ` + "`" + `http_body` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "check_interval",
@@ -1200,7 +1200,7 @@ Provides details about a Linode NodeBalancer Config.
 				},
 				resource.Attribute{
 					Name:        "cipher_suite",
-					Description: `What ciphers to use for SSL connections served by this NodeBalancer. ` + "`" + `legacy` + "`" + ` is considered insecure and should only be used if necessary.`,
+					Description: `What ciphers to use for SSL connections served by this NodeBalancer. ` + "`" + `legacy` + "`" + ` is considered insecure and should only be used if necessary. (` + "`" + `recommended` + "`" + `, ` + "`" + `legacy` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "ssl_commonname",
@@ -1222,15 +1222,15 @@ Provides details about a Linode NodeBalancer Config.
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `The region where this nodebalancer_config will be deployed. Examples are ` + "`" + `"us-east"` + "`" + `, ` + "`" + `"us-west"` + "`" + `, ` + "`" + `"ap-south"` + "`" + `, etc`,
+					Description: `The region where this nodebalancer_config will be deployed. Examples are ` + "`" + `"us-east"` + "`" + `, ` + "`" + `"us-west"` + "`" + `, ` + "`" + `"ap-south"` + "`" + `, etc. See all regions [here](https://api.linode.com/v4/regions).`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `The protocol this port is configured to serve. If this is set to https you must include an ssl_cert and an ssl_key. (Defaults to "http")`,
+					Description: `The protocol this port is configured to serve. If this is set to https you must include an ssl_cert and an ssl_key. (` + "`" + `http` + "`" + `, ` + "`" + `https` + "`" + `, ` + "`" + `tcp` + "`" + `) (Defaults to ` + "`" + `http` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "proxy_protocol",
-					Description: `The version of ProxyProtocol to use for the underlying NodeBalancer. This requires protocol to be ` + "`" + `tcp` + "`" + `. Valid values are ` + "`" + `none` + "`" + `, ` + "`" + `v1` + "`" + `, and ` + "`" + `v2` + "`" + `. (Defaults to ` + "`" + `none` + "`" + `)`,
+					Description: `The version of ProxyProtocol to use for the underlying NodeBalancer. This requires protocol to be ` + "`" + `tcp` + "`" + `. (` + "`" + `none` + "`" + `, ` + "`" + `v1` + "`" + `, and ` + "`" + `v2` + "`" + `) (Defaults to ` + "`" + `none` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "port",
@@ -1238,15 +1238,15 @@ Provides details about a Linode NodeBalancer Config.
 				},
 				resource.Attribute{
 					Name:        "algorithm",
-					Description: `What algorithm this NodeBalancer should use for routing traffic to backends: roundrobin, leastconn, source`,
+					Description: `What algorithm this NodeBalancer should use for routing traffic to backends (` + "`" + `roundrobin` + "`" + `, ` + "`" + `leastconn` + "`" + `, ` + "`" + `source` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "stickiness",
-					Description: `Controls how session stickiness is handled on this port: 'none', 'table', 'http_cookie'`,
+					Description: `Controls how session stickiness is handled on this port. (` + "`" + `none` + "`" + `, ` + "`" + `table` + "`" + `, ` + "`" + `http_cookie` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "check",
-					Description: `The type of check to perform against backends to ensure they are serving requests. This is used to determine if backends are up or down. If none no check is performed. connection requires only a connection to the backend to succeed. http and http_body rely on the backend serving HTTP, and that the response returned matches what is expected.`,
+					Description: `The type of check to perform against backends to ensure they are serving requests. This is used to determine if backends are up or down. If none no check is performed. connection requires only a connection to the backend to succeed. http and http_body rely on the backend serving HTTP, and that the response returned matches what is expected. (` + "`" + `none` + "`" + `, ` + "`" + `connection` + "`" + `, ` + "`" + `http` + "`" + `, ` + "`" + `http_body` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "check_interval",
@@ -1270,7 +1270,7 @@ Provides details about a Linode NodeBalancer Config.
 				},
 				resource.Attribute{
 					Name:        "cipher_suite",
-					Description: `What ciphers to use for SSL connections served by this NodeBalancer. ` + "`" + `legacy` + "`" + ` is considered insecure and should only be used if necessary.`,
+					Description: `What ciphers to use for SSL connections served by this NodeBalancer. ` + "`" + `legacy` + "`" + ` is considered insecure and should only be used if necessary. (` + "`" + `recommended` + "`" + `, ` + "`" + `legacy` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "ssl_commonname",
@@ -1324,7 +1324,7 @@ Provides details about a Linode NodeBalancer node.
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `The mode this NodeBalancer should use when sending traffic to this backend. If set to ` + "`" + `accept` + "`" + ` this backend is accepting traffic. If set to ` + "`" + `reject` + "`" + ` this backend will not receive traffic. If set to ` + "`" + `drain` + "`" + ` this backend will not receive new traffic, but connections already pinned to it will continue to be routed to it`,
+					Description: `The mode this NodeBalancer should use when sending traffic to this backend. If set to ` + "`" + `accept` + "`" + ` this backend is accepting traffic. If set to ` + "`" + `reject` + "`" + ` this backend will not receive traffic. If set to ` + "`" + `drain` + "`" + ` this backend will not receive new traffic, but connections already pinned to it will continue to be routed to it. (` + "`" + `accept` + "`" + `, ` + "`" + `reject` + "`" + `, ` + "`" + `drain` + "`" + `, ` + "`" + `backup` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "weight",
@@ -1332,7 +1332,7 @@ Provides details about a Linode NodeBalancer node.
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The current status of this node, based on the configured checks of its NodeBalancer Config. (unknown, UP, DOWN).`,
+					Description: `The current status of this node, based on the configured checks of its NodeBalancer Config. (` + "`" + `unknown` + "`" + `, ` + "`" + `UP` + "`" + `, ` + "`" + `DOWN` + "`" + `).`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1346,7 +1346,7 @@ Provides details about a Linode NodeBalancer node.
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `The mode this NodeBalancer should use when sending traffic to this backend. If set to ` + "`" + `accept` + "`" + ` this backend is accepting traffic. If set to ` + "`" + `reject` + "`" + ` this backend will not receive traffic. If set to ` + "`" + `drain` + "`" + ` this backend will not receive new traffic, but connections already pinned to it will continue to be routed to it`,
+					Description: `The mode this NodeBalancer should use when sending traffic to this backend. If set to ` + "`" + `accept` + "`" + ` this backend is accepting traffic. If set to ` + "`" + `reject` + "`" + ` this backend will not receive traffic. If set to ` + "`" + `drain` + "`" + ` this backend will not receive new traffic, but connections already pinned to it will continue to be routed to it. (` + "`" + `accept` + "`" + `, ` + "`" + `reject` + "`" + `, ` + "`" + `drain` + "`" + `, ` + "`" + `backup` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "weight",
@@ -1354,7 +1354,7 @@ Provides details about a Linode NodeBalancer node.
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The current status of this node, based on the configured checks of its NodeBalancer Config. (unknown, UP, DOWN).`,
+					Description: `The current status of this node, based on the configured checks of its NodeBalancer Config. (` + "`" + `unknown` + "`" + `, ` + "`" + `UP` + "`" + `, ` + "`" + `DOWN` + "`" + `).`,
 				},
 			},
 		},
@@ -1380,11 +1380,11 @@ Provides information about a Linode Object Storage Cluster
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `This cluster's status.`,
+					Description: `This cluster's status. (` + "`" + `available` + "`" + `, ` + "`" + `unavailable` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `The region this cluster is located in.`,
+					Description: `The region this cluster is located in. See all regions [here](https://api.linode.com/v4/regions).`,
 				},
 				resource.Attribute{
 					Name:        "static_site_domain",
@@ -1652,7 +1652,7 @@ Provides details about Linode VLANs.
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `The region the VLAN is located in.`,
+					Description: `The region the VLAN is located in. See all regions [here](https://api.linode.com/v4/regions).`,
 				},
 				resource.Attribute{
 					Name:        "created",

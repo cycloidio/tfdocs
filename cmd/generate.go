@@ -105,7 +105,7 @@ func unkGenerate(provider string) {
 		panic(err)
 	}
 
-	var aliases = make(map[string]map[string]string)
+	var aliases = make(map[string]map[string][]string)
 	err = readJSONFile(filepath.Join(aliasesPath, provider, aliasFile), &aliases)
 	if err != nil {
 		panic(err)
@@ -172,8 +172,10 @@ func unkGenerate(provider string) {
 			resources = append(resources, r)
 
 			if nt, ok := aliases[t][rt]; ok {
-				r.Type = nt
-				resources = append(resources, r)
+				for _, t := range nt {
+					r.Type = t
+					resources = append(resources, r)
+				}
 			}
 		}
 
@@ -233,7 +235,7 @@ func newGenerate(provider string) {
 		panic(err)
 	}
 
-	var aliases = make(map[string]map[string]string)
+	var aliases = make(map[string]map[string][]string)
 	err = readJSONFile(filepath.Join(aliasesPath, provider, aliasFile), &aliases)
 	if err != nil {
 		panic(err)
@@ -300,8 +302,10 @@ func newGenerate(provider string) {
 			resources = append(resources, r)
 
 			if nt, ok := aliases[t][rt]; ok {
-				r.Type = nt
-				resources = append(resources, r)
+				for _, t := range nt {
+					r.Type = t
+					resources = append(resources, r)
+				}
 			}
 		}
 
@@ -367,7 +371,7 @@ func oldGenerate(provider string) {
 		panic(err)
 	}
 
-	var aliases = make(map[string]map[string]string)
+	var aliases = make(map[string]map[string][]string)
 	err = readJSONFile(filepath.Join(aliasesPath, provider, aliasFile), &aliases)
 	if err != nil {
 		panic(err)
@@ -509,8 +513,10 @@ func oldGenerate(provider string) {
 			resources = append(resources, r)
 
 			if nt, ok := aliases[t][rt]; ok {
-				r.Type = nt
-				resources = append(resources, r)
+				for _, t := range nt {
+					r.Type = t
+					resources = append(resources, r)
+				}
 			}
 		}
 

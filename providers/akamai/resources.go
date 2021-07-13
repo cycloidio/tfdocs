@@ -27,10 +27,6 @@ var (
 					Description: `(Required) The ID of the security configuration to use.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
-				},
-				resource.Attribute{
 					Name:        "notification_emails",
 					Description: `(Required) A bracketed, comma-separated list of email addresses that will be notified when the operation is complete.`,
 				},
@@ -44,7 +40,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "activate",
-					Description: `A boolean indicating whether to activate the specified configuration version. If not supplied, True is assumed. ## Attribute Reference In addition to the arguments above, the following attribute is exported:`,
+					Description: `(Optional) A boolean indicating whether to activate the specified configuration version. If not supplied, True is assumed. ## Attribute Reference In addition to the arguments above, the following attribute is exported:`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -78,16 +74,42 @@ var (
 					Description: `(Required) The ID of the security configuration to use.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
-				},
-				resource.Attribute{
 					Name:        "logging",
 					Description: `(Required) The logging settings to apply ([format](https://developer.akamai.com/api/cloud_security/application_security/v1.html#puthttpheaderloggingforaconfiguration)).`,
 				},
 				resource.Attribute{
 					Name:        "security_policy_id",
 					Description: `(Optional) The ID of a specific security policy to which the logging settings should be applied. If not supplied, the indicated settings will be applied to all policies within the configuration. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_appsec_advanced_settings_pragma",
+			Category:         "Application Security",
+			ShortDescription: `AdvancedSettingsPragmaHeader`,
+			Description:      ``,
+			Keywords: []string{
+				"application",
+				"security",
+				"appsec",
+				"advanced",
+				"settings",
+				"pragma",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "config_id",
+					Description: `(Required) The ID of the security configuration to use.`,
+				},
+				resource.Attribute{
+					Name:        "security_policy_id",
+					Description: `(Optional) The ID of the security policy to use.`,
+				},
+				resource.Attribute{
+					Name:        "pragma_header",
+					Description: `(Required) The name of a file containing a JSON-formatted ([format](https://developer.akamai.com/api/cloud_security/application_security/v1.html#putpragmaheaderpolicy)) description of the conditions to exclude from the default ` + "`" + `remove` + "`" + ` action. By default, the Pragma header debugging information is stripped from an operation’s response except in cases where you set excludeCondition. To remove existing settings, submit your request with an empty payload {} at the top-level of an object. For example, submit "type": "{}" in the request body to remove the REQUEST_HEADER_VALUE_MATCH from the excluded conditions. If you submit an empty payload for each member, you’ll clear all of your condition settings. To modify Pragma header settings at the security configuration level, run Modify Pragma header settings for a configuration. Contact your account team if you’d like to run this operation. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -112,10 +134,6 @@ var (
 					Description: `(Required) The ID of the security configuration to use.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
-				},
-				resource.Attribute{
 					Name:        "enable_app_layer",
 					Description: `(Required) Whether to enable prefetch requests.`,
 				},
@@ -133,6 +151,45 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_appsec_api_constraints_protection",
+			Category:         "Application Security",
+			ShortDescription: `API Constraints Protection`,
+			Description:      ``,
+			Keywords: []string{
+				"application",
+				"security",
+				"appsec",
+				"api",
+				"constraints",
+				"protection",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "config_id",
+					Description: `(Required) The ID of the security configuration to use.`,
+				},
+				resource.Attribute{
+					Name:        "security_policy_id",
+					Description: `(Required) The ID of the security policy to use.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Whether to enable API constraints protection: either ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "output_text",
+					Description: `A tabular display showing the current protection settings.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "output_text",
+					Description: `A tabular display showing the current protection settings.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -154,76 +211,25 @@ var (
 					Description: `(Required) The ID of the security configuration to use.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
-				},
-				resource.Attribute{
 					Name:        "security_policy_id",
 					Description: `(Required) The ID of the security policy to use.`,
 				},
 				resource.Attribute{
 					Name:        "api_endpoint_id",
-					Description: `(Optional) The ID of the API endpoint to use. If not supplied, the request constraint action will be updated for all APIs.`,
+					Description: `(Required) The ID of the API endpoint to use.`,
 				},
 				resource.Attribute{
 					Name:        "action",
 					Description: `(Required) The action to assign to API request constraints: either ` + "`" + `alert` + "`" + `, ` + "`" + `deny` + "`" + `, or ` + "`" + `none` + "`" + `. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the API request constraint information.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the API request constraint information.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "akamai_appsec_attack_group_action",
-			Category:         "Application Security",
-			ShortDescription: `Attack Group Action`,
-			Description:      ``,
-			Keywords: []string{
-				"application",
-				"security",
-				"appsec",
-				"attack",
-				"group",
-				"action",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `(Required) The ID of the security policy to use.`,
-				},
-				resource.Attribute{
-					Name:        "attack_group",
-					Description: `(Required) The ID of the attack group to use.`,
-				},
-				resource.Attribute{
-					Name:        "attack_group_action",
-					Description: `(Required) The action to be taken: ` + "`" + `alert` + "`" + ` to record the trigger of the event, ` + "`" + `deny` + "`" + ` to block the request, ` + "`" + `deny_custom_{custom_deny_id}` + "`" + ` to execute a custom deny action, or ` + "`" + `none` + "`" + ` to take no action. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "akamai_appsec_attack_group_condition_exception",
+			Type:             "akamai_appsec_attack_group",
 			Category:         "Application Security",
-			ShortDescription: `Attack Group Condition & Exception`,
+			ShortDescription: `Attack Group`,
 			Description:      ``,
 			Keywords: []string{
 				"application",
@@ -231,17 +237,11 @@ var (
 				"appsec",
 				"attack",
 				"group",
-				"condition",
-				"exception",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "config_id",
 					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
 				},
 				resource.Attribute{
 					Name:        "security_policy_id",
@@ -250,6 +250,10 @@ var (
 				resource.Attribute{
 					Name:        "attack_group",
 					Description: `The attack group to use.`,
+				},
+				resource.Attribute{
+					Name:        "attack_group_action",
+					Description: `(Required) The action to be taken: ` + "`" + `alert` + "`" + ` to record the trigger of the event, ` + "`" + `deny` + "`" + ` to block the request, ` + "`" + `deny_custom_{custom_deny_id}` + "`" + ` to execute a custom deny action, or ` + "`" + `none` + "`" + ` to take no action.`,
 				},
 				resource.Attribute{
 					Name:        "condition_exception",
@@ -276,10 +280,6 @@ var (
 				resource.Attribute{
 					Name:        "config_id",
 					Description: `(Required) The configuration ID to use.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the configuration to use.`,
 				},
 				resource.Attribute{
 					Name:        "bypass_network_list",
@@ -315,12 +315,20 @@ var (
 					Description: `(Required) A description of the configuration.`,
 				},
 				resource.Attribute{
+					Name:        "create_from_config_id",
+					Description: `(Optional) The config ID of the security configuration to clone from.`,
+				},
+				resource.Attribute{
+					Name:        "create_from_version",
+					Description: `(Optional) The version number of the security configuration to clone from.`,
+				},
+				resource.Attribute{
 					Name:        "contract_id",
 					Description: `(Required) The contract ID of the configuration.`,
 				},
 				resource.Attribute{
 					Name:        "group_id",
-					Description: `(Required) The group ID of the configuration>`,
+					Description: `(Required) The group ID of the configuration.`,
 				},
 				resource.Attribute{
 					Name:        "host_names",
@@ -330,81 +338,11 @@ var (
 					Name:        "config_id",
 					Description: `(Required) The ID of the security configuration.`,
 				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The latest version of the security configuration.`,
-				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "config_id",
 					Description: `(Required) The ID of the security configuration.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The latest version of the security configuration.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "akamai_appsec_configuration_clone",
-			Category:         "Application Security",
-			ShortDescription: `ConfigurationClone`,
-			Description:      ``,
-			Keywords: []string{
-				"application",
-				"security",
-				"appsec",
-				"configuration",
-				"clone",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The name to be applied to the new configuration.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `(Required) A description of the new configuration.`,
-				},
-				resource.Attribute{
-					Name:        "create_from_config_id",
-					Description: `(Required) The ID of the configuration to be cloned.`,
-				},
-				resource.Attribute{
-					Name:        "create_from_version",
-					Description: `(Required) The version number of the configuration to be cloned.`,
-				},
-				resource.Attribute{
-					Name:        "contract_id",
-					Description: `(Required) The contract id to use.`,
-				},
-				resource.Attribute{
-					Name:        "group_id",
-					Description: `(Required) The group id to use.`,
-				},
-				resource.Attribute{
-					Name:        "host_names",
-					Description: `(Required) The hostnames to be protected under the new configuration. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `The ID of the newly created configuration.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `The version number of the newly created configuration.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `The ID of the newly created configuration.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `The version number of the newly created configuration.`,
 				},
 			},
 		},
@@ -439,45 +377,6 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "akamai_appsec_configuration_version_clone",
-			Category:         "Application Security",
-			ShortDescription: `ConfigurationVersionClone`,
-			Description:      ``,
-			Keywords: []string{
-				"application",
-				"security",
-				"appsec",
-				"configuration",
-				"version",
-				"clone",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "create_from_version",
-					Description: `(Required) The version number of the security configuration to clone.`,
-				},
-				resource.Attribute{
-					Name:        "rule_update",
-					Description: `A boolean indicating whether to update the rules of the new version. If not supplied, False is assumed. ## Attribute Reference In addition to the arguments above, the following attribute is exported:`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `The number of the cloned version.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "version",
-					Description: `The number of the cloned version.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "akamai_appsec_custom_deny",
 			Category:         "Application Security",
 			ShortDescription: `CustomDeny`,
@@ -493,10 +392,6 @@ var (
 				resource.Attribute{
 					Name:        "config_id",
 					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
 				},
 				resource.Attribute{
 					Name:        "custom_deny",
@@ -559,10 +454,6 @@ var (
 					Description: `(Required) The ID of the security configuration to use.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
-				},
-				resource.Attribute{
 					Name:        "security_policy_id",
 					Description: `(Required) The security policy to use.`,
 				},
@@ -593,10 +484,6 @@ var (
 				resource.Attribute{
 					Name:        "config_id",
 					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
 				},
 				resource.Attribute{
 					Name:        "security_policy_id",
@@ -661,10 +548,6 @@ var (
 					Description: `(Required) The ID of the security configuration to use.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
-				},
-				resource.Attribute{
 					Name:        "hostnames",
 					Description: `(Required) A list of evaluation hostnames to be used for the specified configuration version. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
 				},
@@ -691,10 +574,6 @@ var (
 					Description: `(Required) The ID of the security configuration to use.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
-				},
-				resource.Attribute{
 					Name:        "hostnames",
 					Description: `(Required) The evaluation hostnames to be moved to active protection. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
 				},
@@ -703,9 +582,9 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "akamai_appsec_eval_rule_action",
+			Type:             "akamai_appsec_eval_rule",
 			Category:         "Application Security",
-			ShortDescription: `Eval Rule Action`,
+			ShortDescription: `Eval Rule`,
 			Description:      ``,
 			Keywords: []string{
 				"application",
@@ -713,55 +592,11 @@ var (
 				"appsec",
 				"eval",
 				"rule",
-				"action",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "config_id",
 					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `(Required) The ID of the security policy to use.`,
-				},
-				resource.Attribute{
-					Name:        "rule_id",
-					Description: `(Required) The ID of the rule being evaluated.`,
-				},
-				resource.Attribute{
-					Name:        "action",
-					Description: `(Required) The action to be taken: ` + "`" + `alert` + "`" + ` to record the trigger of the event, ` + "`" + `deny` + "`" + ` to block the request, ` + "`" + `deny_custom_{custom_deny_id}` + "`" + ` to execute a custom deny action, or ` + "`" + `none` + "`" + ` to take no action. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "akamai_appsec_eval_rule_condition_exception",
-			Category:         "Application Security",
-			ShortDescription: `Eval Rule Condition / Exception`,
-			Description:      ``,
-			Keywords: []string{
-				"application",
-				"security",
-				"appsec",
-				"eval",
-				"rule",
-				"condition",
-				"exception",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
 				},
 				resource.Attribute{
 					Name:        "security_policy_id",
@@ -770,6 +605,10 @@ var (
 				resource.Attribute{
 					Name:        "rule_id",
 					Description: `(Required) The ID of the eval rule to use.`,
+				},
+				resource.Attribute{
+					Name:        "rule_action",
+					Description: `(Required) The action to be taken: ` + "`" + `alert` + "`" + ` to record the trigger of the event, ` + "`" + `deny` + "`" + ` to block the request, ` + "`" + `deny_custom_{custom_deny_id}` + "`" + ` to execute a custom deny action, or ` + "`" + `none` + "`" + ` to take no action.`,
 				},
 				resource.Attribute{
 					Name:        "condition_exception",
@@ -797,10 +636,6 @@ var (
 					Description: `(Required) The ID of the security configuration to use.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
-				},
-				resource.Attribute{
 					Name:        "security_policy_id",
 					Description: `(Required) The ID of the security policy to use.`,
 				},
@@ -825,6 +660,45 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "akamai_appsec_ip_geo_protection",
+			Category:         "Application Security",
+			ShortDescription: `IP GEO Protection`,
+			Description:      ``,
+			Keywords: []string{
+				"application",
+				"security",
+				"appsec",
+				"ip",
+				"geo",
+				"protection",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "config_id",
+					Description: `(Required) The ID of the security configuration to use.`,
+				},
+				resource.Attribute{
+					Name:        "security_policy_id",
+					Description: `(Required) The ID of the security policy to use.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Whether to enable ip geo controls: either ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "output_text",
+					Description: `A tabular display showing the current protection settings.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "output_text",
+					Description: `A tabular display showing the current protection settings.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "akamai_appsec_match_target",
 			Category:         "Application Security",
 			ShortDescription: `MatchTarget`,
@@ -840,10 +714,6 @@ var (
 				resource.Attribute{
 					Name:        "config_id",
 					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
 				},
 				resource.Attribute{
 					Name:        "match_target",
@@ -881,12 +751,8 @@ var (
 					Description: `(Required) The ID of the security configuration to use.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
-				},
-				resource.Attribute{
 					Name:        "match_target_sequence",
-					Description: `(Required) The name of a JSON file containing the sequence of all match targets defined for the specified security configuration version ([format](https://developer.akamai.com/api/cloud_security/application_security/v1.html#putsequence)). ## Attribute Reference In addition to the arguments above, the following attribute is exported:`,
+					Description: `(Required) The name of a JSON file containing the sequence of all match targets defined for the specified security configuration ([format](https://developer.akamai.com/api/cloud_security/application_security/v1.html#putsequence)). ## Attribute Reference In addition to the arguments above, the following attribute is exported:`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -908,10 +774,6 @@ var (
 				resource.Attribute{
 					Name:        "config_id",
 					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
 				},
 				resource.Attribute{
 					Name:        "security_policy_id",
@@ -945,10 +807,6 @@ var (
 				resource.Attribute{
 					Name:        "config_id",
 					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
 				},
 				resource.Attribute{
 					Name:        "rate_policy",
@@ -990,10 +848,6 @@ var (
 					Description: `(Required) The ID of the security configuration to use.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
-				},
-				resource.Attribute{
 					Name:        "rate_policy_id",
 					Description: `(Required) The ID of the rate policy to use.`,
 				},
@@ -1025,10 +879,6 @@ var (
 				resource.Attribute{
 					Name:        "config_id",
 					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
 				},
 				resource.Attribute{
 					Name:        "security_policy_id",
@@ -1069,10 +919,6 @@ var (
 					Description: `(Required) The ID of the security configuration to use.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
-				},
-				resource.Attribute{
 					Name:        "reputation_profile",
 					Description: `(Required) The name of a file containing a JSON-formatted definition of the reputation profile. ([format](https://developer.akamai.com/api/cloud_security/application_security/v1.html#postreputationprofiles)) ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
 				},
@@ -1106,10 +952,6 @@ var (
 				resource.Attribute{
 					Name:        "config_id",
 					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
 				},
 				resource.Attribute{
 					Name:        "security_policy_id",
@@ -1146,10 +988,6 @@ var (
 					Description: `(Required) The ID of the security configuration to use.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
-				},
-				resource.Attribute{
 					Name:        "security_policy_id",
 					Description: `(Required) The ID of the security_policy_id to which the settings should be applied.`,
 				},
@@ -1183,10 +1021,6 @@ var (
 					Description: `(Required) The ID of the security configuration to use.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
-				},
-				resource.Attribute{
 					Name:        "security_policy_id",
 					Description: `(Required) The ID of the security policy to use.`,
 				},
@@ -1208,25 +1042,20 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "akamai_appsec_rule_action",
+			Type:             "akamai_appsec_rule",
 			Category:         "Application Security",
-			ShortDescription: `Rule Action`,
+			ShortDescription: `Rule`,
 			Description:      ``,
 			Keywords: []string{
 				"application",
 				"security",
 				"appsec",
 				"rule",
-				"action",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "config_id",
 					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
 				},
 				resource.Attribute{
 					Name:        "security_policy_id",
@@ -1237,42 +1066,8 @@ var (
 					Description: `(Required) The ID of the rule to use.`,
 				},
 				resource.Attribute{
-					Name:        "action",
-					Description: `(Required) The action to be taken: ` + "`" + `alert` + "`" + ` to record the trigger of the event, ` + "`" + `deny` + "`" + ` to block the request, ` + "`" + `deny_custom_{custom_deny_id}` + "`" + ` to execute a custom deny action, or ` + "`" + `none` + "`" + ` to take no action. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "akamai_appsec_rule_condition_exception",
-			Category:         "Application Security",
-			ShortDescription: `Rule Condition / Exception`,
-			Description:      ``,
-			Keywords: []string{
-				"application",
-				"security",
-				"appsec",
-				"rule",
-				"condition",
-				"exception",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `(Required) The ID of the security policy to use.`,
-				},
-				resource.Attribute{
-					Name:        "rule_id",
-					Description: `(Required) The ID of the rule to use.`,
+					Name:        "rule_action",
+					Description: `(Required) The action to be taken: ` + "`" + `alert` + "`" + ` to record the trigger of the event, ` + "`" + `deny` + "`" + ` to block the request, ` + "`" + `deny_custom_{custom_deny_id}` + "`" + ` to execute a custom deny action, or ` + "`" + `none` + "`" + ` to take no action.`,
 				},
 				resource.Attribute{
 					Name:        "condition_exception",
@@ -1298,10 +1093,6 @@ var (
 				resource.Attribute{
 					Name:        "config_id",
 					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
 				},
 				resource.Attribute{
 					Name:        "security_policy_id",
@@ -1353,138 +1144,30 @@ var (
 					Description: `(Required) The configuration ID to use.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the configuration to use.`,
-				},
-				resource.Attribute{
 					Name:        "security_policy_name",
 					Description: `(Required) The name of the new security policy.`,
 				},
 				resource.Attribute{
+					Name:        "security_policy_prefix",
+					Description: `(Required) The four-character alphanumeric string prefix for the policy ID.`,
+				},
+				resource.Attribute{
 					Name:        "default_settings",
-					Description: `(Optional) Whether the new policy should use the default settings. If not supplied, defaults to true. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `The ID of the newly created security policy.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `The ID of the newly created security policy.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "akamai_appsec_security_policy_clone",
-			Category:         "Application Security",
-			ShortDescription: `SecurityPolicyClone`,
-			Description:      ``,
-			Keywords: []string{
-				"application",
-				"security",
-				"appsec",
-				"policy",
-				"clone",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "create_from_version",
-					Description: `(Required) The version number of the security configuration to clone.`,
+					Description: `(Optional) Whether the new policy should use the default settings. If not supplied, defaults to true.`,
 				},
 				resource.Attribute{
 					Name:        "create_from_security_policy_id",
-					Description: `(Required) The ID of the security policy to clone.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_name",
-					Description: `The name to be used for the new security policy. If not specified, the name will be autogenerated with the pattern 'clone from '.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_prefix",
-					Description: `The four-character policy prefix to be used for the new security policy. If not specified, the prefix will be autogenerated. ## Attribute Reference In addition to the arguments above, the following attribute is exported:`,
+					Description: `(Optional) The ID of the security policy to clone from. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "security_policy_id",
-					Description: `The ID of the new security policy.`,
+					Description: `The ID of the newly created security policy.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "security_policy_id",
-					Description: `The ID of the new security policy.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "akamai_appsec_security_policy_protections",
-			Category:         "Application Security",
-			ShortDescription: `Security Policy Protections`,
-			Description:      ``,
-			Keywords: []string{
-				"application",
-				"security",
-				"appsec",
-				"policy",
-				"protections",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `(Required) The ID of the security policy to use.`,
-				},
-				resource.Attribute{
-					Name:        "apply_application_layer_controls",
-					Description: `(Required) Whether to enable application layer controls: either ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "apply_network_layer_controls",
-					Description: `(Required) Whether to enable network layer controls: either ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "apply_rate_controls",
-					Description: `(Required) Whether to enable rate controls: either ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "apply_reputation_controls",
-					Description: `(Required) Whether to enable reputation controls: either ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "apply_botman_controls",
-					Description: `(Required) Whether to enable botman controls: either ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "apply_api_constraints",
-					Description: `(Required) Whether to enable api constraints: either ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "apply_slow_post_controls",
-					Description: `(Required) Whether to enable slow post controls: either ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the current protection settings.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the current protection settings.`,
+					Description: `The ID of the newly created security policy.`,
 				},
 			},
 		},
@@ -1505,10 +1188,6 @@ var (
 				resource.Attribute{
 					Name:        "config_id",
 					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
 				},
 				resource.Attribute{
 					Name:        "security_policy_id",
@@ -1540,10 +1219,6 @@ var (
 					Description: `(Required) The ID of the security configuration to use.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
-				},
-				resource.Attribute{
 					Name:        "hostnames",
 					Description: `(Required) The list of hostnames to be applied, added or removed.`,
 				},
@@ -1573,16 +1248,12 @@ var (
 					Description: `(Required) The configuration ID to use.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the configuration to use.`,
-				},
-				resource.Attribute{
 					Name:        "enable_siem",
 					Description: `(Required) Whether you enabled SIEM in a security configuration version.`,
 				},
 				resource.Attribute{
 					Name:        "enable_for_all_policies",
-					Description: `(Required) Whether you enabled SIEM for all the security policies in the configuration version.`,
+					Description: `(Required) Whether you enabled SIEM for all the security policies in the configuration.`,
 				},
 				resource.Attribute{
 					Name:        "enable_botman_siem",
@@ -1627,10 +1298,6 @@ var (
 					Description: `(Required) The ID of the security configuration to use.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
-				},
-				resource.Attribute{
 					Name:        "security_policy_id",
 					Description: `(Required) The ID of the security policy to use.`,
 				},
@@ -1672,10 +1339,6 @@ var (
 					Description: `(Required) The ID of the security configuration to use.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
-				},
-				resource.Attribute{
 					Name:        "security_policy_id",
 					Description: `(Required) The ID of the security policy to use.`,
 				},
@@ -1714,10 +1377,6 @@ var (
 					Description: `(Required) The configuration ID to use.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the configuration to use.`,
-				},
-				resource.Attribute{
 					Name:        "version_notes",
 					Description: `(Required) A string containing the version notes to be used. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
 				},
@@ -1750,10 +1409,6 @@ var (
 				resource.Attribute{
 					Name:        "config_id",
 					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
 				},
 				resource.Attribute{
 					Name:        "security_policy_id",
@@ -1826,10 +1481,6 @@ var (
 					Description: `(Required) The ID of the security configuration to use.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
-				},
-				resource.Attribute{
 					Name:        "security_policy_id",
 					Description: `(Required) The ID of the security policy to use.`,
 				},
@@ -1859,6 +1510,34 @@ var (
 				"provisioning",
 				"cp",
 				"code",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_cps_dv_enrollment",
+			Category:         "CPS",
+			ShortDescription: `DV Enrollment`,
+			Description:      ``,
+			Keywords: []string{
+				"cps",
+				"dv",
+				"enrollment",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_cps_dv_validation",
+			Category:         "CPS",
+			ShortDescription: `Domain Validation`,
+			Description:      ``,
+			Keywords: []string{
+				"cps",
+				"dv",
+				"validation",
 			},
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
@@ -2201,68 +1880,66 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"akamai_appsec_activations":                      0,
-		"akamai_appsec_advanced_settings_logging":        1,
-		"akamai_appsec_advanced_settings_prefetch":       2,
-		"akamai_appsec_api_request_constraints":          3,
-		"akamai_appsec_attack_group_action":              4,
-		"akamai_appsec_attack_group_condition_exception": 5,
-		"akamai_appsec_bypass_network_lists":             6,
-		"akamai_appsec_configuration":                    7,
-		"akamai_appsec_configuration_clone":              8,
-		"akamai_appsec_configuration_rename":             9,
-		"akamai_appsec_configuration_version_clone":      10,
-		"akamai_appsec_custom_deny":                      11,
-		"akamai_appsec_custom_rule":                      12,
-		"akamai_appsec_custom_rule_action":               13,
-		"akamai_appsec_eval":                             14,
-		"akamai_appsec_eval_hostnames":                   15,
-		"akamai_appsec_eval_protect_host":                16,
-		"akamai_appsec_eval_rule_action":                 17,
-		"akamai_appsec_eval_rule_condition_exception":    18,
-		"akamai_appsec_ip_geo":                           19,
-		"akamai_appsec_match_target":                     20,
-		"akamai_appsec_match_target_sequence":            21,
-		"akamai_appsec_penalty_box":                      22,
-		"akamai_appsec_rate_policy":                      23,
-		"akamai_appsec_rate_policy_action":               24,
-		"akamai_appsec_rate_protection":                  25,
-		"akamai_appsec_reputation_profile":               26,
-		"akamai_appsec_reputation_profile_action":        27,
-		"akamai_appsec_reputation_profile_analysis":      28,
-		"akamai_appsec_reputation_protection":            29,
-		"akamai_appsec_rule_action":                      30,
-		"akamai_appsec_rule_condition_exception":         31,
-		"akamai_appsec_rule_upgrade":                     32,
-		"akamai_appsec_security_policy":                  33,
-		"akamai_appsec_security_policy_clone":            34,
-		"akamai_appsec_security_policy_protections":      35,
-		"akamai_appsec_security_policy_rename":           36,
-		"akamai_appsec_selected_hostnames":               37,
-		"akamai_appsec_siem_settings":                    38,
-		"akamai_appsec_slow_post":                        39,
-		"akamai_appsec_slowpost_protection":              40,
-		"akamai_appsec_version_notes":                    41,
-		"akamai_appsec_waf_mode":                         42,
-		"akamai_appsec_waf_protection":                   43,
-		"akamai_cp_code":                                 44,
-		"akamai_dns_record":                              45,
-		"akamai_dns_zone":                                46,
-		"akamai_edge_hostname":                           47,
-		"akamai_gtm_asmap":                               48,
-		"akamai_gtm_cidrmap":                             49,
-		"akamai_gtm_datacenter":                          50,
-		"akamai_gtm_domain":                              51,
-		"akamai_gtm_geomap":                              52,
-		"akamai_gtm_property":                            53,
-		"akamai_gtm_resource":                            54,
-		"akamai_iam_user":                                55,
-		"akamai_networklist_activations":                 56,
-		"akamai_networklist_description":                 57,
-		"akamai_networklist_network_list":                58,
-		"akamai_networklist_subscription":                59,
-		"akamai_property":                                60,
-		"akamai_property_activation":                     61,
+		"akamai_appsec_activations":                 0,
+		"akamai_appsec_advanced_settings_logging":   1,
+		"akamai_appsec_advanced_settings_pragma":    2,
+		"akamai_appsec_advanced_settings_prefetch":  3,
+		"akamai_appsec_api_constraints_protection":  4,
+		"akamai_appsec_api_request_constraints":     5,
+		"akamai_appsec_attack_group":                6,
+		"akamai_appsec_bypass_network_lists":        7,
+		"akamai_appsec_configuration":               8,
+		"akamai_appsec_configuration_rename":        9,
+		"akamai_appsec_custom_deny":                 10,
+		"akamai_appsec_custom_rule":                 11,
+		"akamai_appsec_custom_rule_action":          12,
+		"akamai_appsec_eval":                        13,
+		"akamai_appsec_eval_hostnames":              14,
+		"akamai_appsec_eval_protect_host":           15,
+		"akamai_appsec_eval_rule":                   16,
+		"akamai_appsec_ip_geo":                      17,
+		"akamai_appsec_ip_geo_protection":           18,
+		"akamai_appsec_match_target":                19,
+		"akamai_appsec_match_target_sequence":       20,
+		"akamai_appsec_penalty_box":                 21,
+		"akamai_appsec_rate_policy":                 22,
+		"akamai_appsec_rate_policy_action":          23,
+		"akamai_appsec_rate_protection":             24,
+		"akamai_appsec_reputation_profile":          25,
+		"akamai_appsec_reputation_profile_action":   26,
+		"akamai_appsec_reputation_profile_analysis": 27,
+		"akamai_appsec_reputation_protection":       28,
+		"akamai_appsec_rule":                        29,
+		"akamai_appsec_rule_upgrade":                30,
+		"akamai_appsec_security_policy":             31,
+		"akamai_appsec_security_policy_rename":      32,
+		"akamai_appsec_selected_hostnames":          33,
+		"akamai_appsec_siem_settings":               34,
+		"akamai_appsec_slow_post":                   35,
+		"akamai_appsec_slowpost_protection":         36,
+		"akamai_appsec_version_notes":               37,
+		"akamai_appsec_waf_mode":                    38,
+		"akamai_appsec_waf_protection":              39,
+		"akamai_cp_code":                            40,
+		"akamai_cps_dv_enrollment":                  41,
+		"akamai_cps_dv_validation":                  42,
+		"akamai_dns_record":                         43,
+		"akamai_dns_zone":                           44,
+		"akamai_edge_hostname":                      45,
+		"akamai_gtm_asmap":                          46,
+		"akamai_gtm_cidrmap":                        47,
+		"akamai_gtm_datacenter":                     48,
+		"akamai_gtm_domain":                         49,
+		"akamai_gtm_geomap":                         50,
+		"akamai_gtm_property":                       51,
+		"akamai_gtm_resource":                       52,
+		"akamai_iam_user":                           53,
+		"akamai_networklist_activations":            54,
+		"akamai_networklist_description":            55,
+		"akamai_networklist_network_list":           56,
+		"akamai_networklist_subscription":           57,
+		"akamai_property":                           58,
+		"akamai_property_activation":                59,
 	}
 )
 

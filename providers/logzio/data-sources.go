@@ -507,6 +507,49 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "logzio_log_shipping_token",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(String) Descriptive name for this token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Boolean) To enable this token, true. To disable, false.`,
+				},
+				resource.Attribute{
+					Name:        "token_id",
+					Description: `(Integer) The token's ID.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(String) The token itself.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `(Integer) Unix timestamp of when this token was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "updated_by",
+					Description: `(String) Email address of the last user to update this token.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `(Integer) Unix timestamp of when this token was created.`,
+				},
+				resource.Attribute{
+					Name:        "created_by",
+					Description: `(String) Email address of the user who created this token.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "logzio_subaccount",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -607,11 +650,12 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"logzio_alert":      0,
-		"logzio_alert_v2":   1,
-		"logzio_endpoint":   2,
-		"logzio_subaccount": 3,
-		"logzio_user":       4,
+		"logzio_alert":              0,
+		"logzio_alert_v2":           1,
+		"logzio_endpoint":           2,
+		"logzio_log_shipping_token": 3,
+		"logzio_subaccount":         4,
+		"logzio_user":               5,
 	}
 )
 
